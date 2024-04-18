@@ -8,38 +8,35 @@ python_api_name: qiskit.circuit.library.U3Gate
 
 # U3Gate
 
-<span id="qiskit.circuit.library.U3Gate" />
+<Class id="qiskit.circuit.library.U3Gate" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py" signature="U3Gate(theta, phi, lam, label=None)">
+  Generic single-qubit rotation gate with 3 Euler angles.
 
-`U3Gate(theta, phi, lam, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/u3.py "view source code")
-
-Generic single-qubit rotation gate with 3 Euler angles.
-
-Implemented using two X90 pulses on IBM Quantum systems:
+  Implemented using two X90 pulses on IBM Quantum systems:
 
 $$
 U3(\theta, \phi, \lambda) =
-    RZ(\phi - \pi/2) RX(\pi/2) RZ(\pi - \theta) RX(\pi/2) RZ(\lambda - \pi/2)
+RZ(\phi - \pi/2) RX(\pi/2) RZ(\pi - \theta) RX(\pi/2) RZ(\lambda - \pi/2)
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
 
-```python
-     ┌───────────┐
-q_0: ┤ U3(ϴ,φ,λ) ├
-     └───────────┘
-```
+  ```python
+       ┌───────────┐
+  q_0: ┤ U3(ϴ,φ,λ) ├
+       └───────────┘
+  ```
 
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U3(\theta, \phi, \lambda) =
-    \begin{pmatrix}
-        \cos(\th)          & -e^{i\lambda}\sin(\th) \\
-        e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U3(\theta, \phi, \lambda) =
+\begin{pmatrix}
+\cos(\th)          & -e^{i\lambda}\sin(\th) \\
+e^{i\phi}\sin(\th) & e^{i(\phi+\lambda)}\cos(\th)
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-**Examples:**
+  **Examples:**
 
 $$
 U3(\theta, -\frac{\pi}{2}, \frac{pi}{2}) = RX(\theta)
@@ -49,262 +46,241 @@ $$
 U3(\theta, 0, 0) = RY(\theta)
 $$
 
-Create new U3 gate.
+  Create new U3 gate.
 
-## Attributes
+  ## Attributes
 
-### decompositions
+  ### decompositions
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.U3Gate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### definition
+  ### definition
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.U3Gate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### label
+  ### label
 
-<span id="qiskit.circuit.library.U3Gate.label" />
+  <Attribute id="qiskit.circuit.library.U3Gate.label" name="label" signature="str">
+    Return gate label
 
-`str`
+    **Return type**
 
-Return gate label
+    `str`
+  </Attribute>
 
-**Return type**
+  ### params
 
-`str`
+  <Attribute id="qiskit.circuit.library.U3Gate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### params
+  ## Methods
 
-return instruction params.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.circuit.library.U3Gate.add_decomposition" name="add_decomposition" signature="U3Gate.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.circuit.library.U3Gate.add_decomposition" />
+  <Function id="qiskit.circuit.library.U3Gate.assemble" name="assemble" signature="U3Gate.assemble()">
+    Assemble a QasmQobjInstruction
 
-`U3Gate.add_decomposition(decomposition)`
+    **Return type**
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  </Function>
 
-### assemble
+  ### broadcast\_arguments
 
-<span id="qiskit.circuit.library.U3Gate.assemble" />
+  <Function id="qiskit.circuit.library.U3Gate.broadcast_arguments" name="broadcast_arguments" signature="U3Gate.broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-`U3Gate.assemble()`
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-Assemble a QasmQobjInstruction
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-**Return type**
+    The general broadcasting rules are:
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-### broadcast\_arguments
+    **Parameters**
 
-<span id="qiskit.circuit.library.U3Gate.broadcast_arguments" />
+    *   **qargs** (`List`) – List of quantum bit arguments.
+    *   **cargs** (`List`) – List of classical bit arguments.
 
-`U3Gate.broadcast_arguments(qargs, cargs)`
+    **Return type**
 
-Validation and handling of the arguments and its relationship.
+    `Tuple`\[`List`, `List`]
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    **Returns**
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    A tuple with single arguments.
 
-The general broadcasting rules are:
+    **Raises**
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-**Parameters**
+  ### c\_if
 
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
+  <Function id="qiskit.circuit.library.U3Gate.c_if" name="c_if" signature="U3Gate.c_if(classical, val)">
+    Add classical condition on register classical and value val.
+  </Function>
 
-**Return type**
+  ### control
 
-`Tuple`\[`List`, `List`]
+  <Function id="qiskit.circuit.library.U3Gate.control" name="control" signature="U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (mutli-)controlled-U3 gate.
 
-**Returns**
+    **Parameters**
 
-A tuple with single arguments.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    controlled version of this gate.
 
-### c\_if
+    **Return type**
 
-<span id="qiskit.circuit.library.U3Gate.c_if" />
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-`U3Gate.c_if(classical, val)`
+  ### copy
 
-Add classical condition on register classical and value val.
+  <Function id="qiskit.circuit.library.U3Gate.copy" name="copy" signature="U3Gate.copy(name=None)">
+    Copy of the instruction.
 
-### control
+    **Parameters**
 
-<span id="qiskit.circuit.library.U3Gate.control" />
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-`U3Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    **Returns**
 
-Return a (mutli-)controlled-U3 gate.
+    **a copy of the current instruction, with the name**
 
-**Parameters**
+    updated if it was provided
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-controlled version of this gate.
+  ### inverse
 
-**Return type**
+  <Function id="qiskit.circuit.library.U3Gate.inverse" name="inverse" signature="U3Gate.inverse()">
+    Return inverted U3 gate.
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+    $U3(\theta,\phi,\lambda)^{\dagger} =U3(-\theta,-\phi,-\lambda)$)
+  </Function>
 
-### copy
+  ### is\_parameterized
 
-<span id="qiskit.circuit.library.U3Gate.copy" />
+  <Function id="qiskit.circuit.library.U3Gate.is_parameterized" name="is_parameterized" signature="U3Gate.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-`U3Gate.copy(name=None)`
+  ### mirror
 
-Copy of the instruction.
+  <Function id="qiskit.circuit.library.U3Gate.mirror" name="mirror" signature="U3Gate.mirror()">
+    For a composite instruction, reverse the order of sub-gates.
 
-**Parameters**
+    This is done by recursively mirroring all sub-instructions. It does not invert any gate.
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Returns**
 
-**Returns**
+    a fresh gate with sub-gates reversed
 
-**a copy of the current instruction, with the name**
+    **Return type**
 
-updated if it was provided
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Return type**
+  ### power
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.library.U3Gate.power" name="power" signature="U3Gate.power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-### inverse
+    **Parameters**
 
-<span id="qiskit.circuit.library.U3Gate.inverse" />
+    **exponent** (*float*) – Gate^exponent
 
-`U3Gate.inverse()`
+    **Returns**
 
-Return inverted U3 gate.
+    To which to\_matrix is self.to\_matrix^exponent.
 
-$U3(\theta,\phi,\lambda)^{\dagger} =U3(-\theta,-\phi,-\lambda)$)
+    **Return type**
 
-### is\_parameterized
+    [qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
-<span id="qiskit.circuit.library.U3Gate.is_parameterized" />
+    **Raises**
 
-`U3Gate.is_parameterized()`
+    **CircuitError** – If Gate is not unitary
+  </Function>
 
-Return True .IFF. instruction is parameterized else False
+  ### qasm
 
-### mirror
+  <Function id="qiskit.circuit.library.U3Gate.qasm" name="qasm" signature="U3Gate.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-<span id="qiskit.circuit.library.U3Gate.mirror" />
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-`U3Gate.mirror()`
+  ### repeat
 
-For a composite instruction, reverse the order of sub-gates.
+  <Function id="qiskit.circuit.library.U3Gate.repeat" name="repeat" signature="U3Gate.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
+    **Parameters**
 
-**Returns**
+    **n** (*int*) – Number of times to repeat the instruction
 
-a fresh gate with sub-gates reversed
+    **Returns**
 
-**Return type**
+    Containing the definition.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### power
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="qiskit.circuit.library.U3Gate.power" />
+    **Raises**
 
-`U3Gate.power(exponent)`
+    **CircuitError** – If n \< 1.
+  </Function>
 
-Creates a unitary gate as gate^exponent.
+  ### to\_matrix
 
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.U3Gate.qasm" />
-
-`U3Gate.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.U3Gate.repeat" />
-
-`U3Gate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.U3Gate.to_matrix" />
-
-`U3Gate.to_matrix()`
-
-Return a Numpy.array for the U3 gate.
+  <Function id="qiskit.circuit.library.U3Gate.to_matrix" name="to_matrix" signature="U3Gate.to_matrix()">
+    Return a Numpy.array for the U3 gate.
+  </Function>
+</Class>
 

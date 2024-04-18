@@ -8,69 +8,61 @@ python_api_name: qiskit.providers.ProviderV1
 
 # ProviderV1
 
-<span id="qiskit.providers.ProviderV1" />
+<Class id="qiskit.providers.ProviderV1" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/provider.py" signature="ProviderV1">
+  Bases: [`qiskit.providers.provider.Provider`](qiskit.providers.Provider "qiskit.providers.provider.Provider"), `abc.ABC`
 
-`ProviderV1` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/providers/provider.py "view source code")
+  Base class for a Backend Provider.
 
-Bases: [`qiskit.providers.provider.Provider`](qiskit.providers.Provider "qiskit.providers.provider.Provider"), `abc.ABC`
+  ## Methods
 
-Base class for a Backend Provider.
+  ### backends
 
-## Methods
+  <Function id="qiskit.providers.ProviderV1.backends" name="backends" signature="abstract ProviderV1.backends(name=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
 
-### backends
+    **Parameters**
 
-<span id="qiskit.providers.ProviderV1.backends" />
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-`abstract ProviderV1.backends(name=None, **kwargs)`
+    **Returns**
 
-Return a list of backends matching the specified filtering.
+    **a list of Backends that match the filtering**
 
-**Parameters**
+    criteria.
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    **Return type**
 
-**Returns**
+    list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+  </Function>
 
-**a list of Backends that match the filtering**
+  ### get\_backend
 
-criteria.
+  <Function id="qiskit.providers.ProviderV1.get_backend" name="get_backend" signature="ProviderV1.get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
 
-**Return type**
+    **Parameters**
 
-list\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
 
-### get\_backend
+    **Returns**
 
-<span id="qiskit.providers.ProviderV1.get_backend" />
+    a backend matching the filtering.
 
-`ProviderV1.get_backend(name=None, **kwargs)`
+    **Return type**
 
-Return a single backend matching the specified filtering.
+    [Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
-**Parameters**
+    **Raises**
 
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
+    [**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-a backend matching the filtering.
+  ### version
 
-**Return type**
-
-[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
-
-**Raises**
-
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
-
-## Attributes
-
-<span id="qiskit.providers.ProviderV1.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.ProviderV1.version" name="version" attributeValue="= 1" />
+</Class>
 

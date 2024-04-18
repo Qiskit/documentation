@@ -8,270 +8,242 @@ python_api_name: qiskit.circuit.Delay
 
 # Delay
 
-<span id="qiskit.circuit.Delay" />
+<Class id="qiskit.circuit.Delay" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/delay.py" signature="Delay(duration, unit='dt')">
+  Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
-`Delay(duration, unit='dt')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/delay.py "view source code")
+  Do nothing and just delay/wait/idle for a specified duration.
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Create new delay instruction.
 
-Do nothing and just delay/wait/idle for a specified duration.
+  ## Methods
 
-Create new delay instruction.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.circuit.Delay.add_decomposition" name="add_decomposition" signature="Delay.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.circuit.Delay.add_decomposition" />
+  <Function id="qiskit.circuit.Delay.assemble" name="assemble" signature="Delay.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`Delay.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.circuit.Delay.broadcast_arguments" name="broadcast_arguments" signature="Delay.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.circuit.Delay.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`Delay.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.Delay.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`Delay.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.circuit.Delay.c_if" name="c_if" signature="Delay.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.circuit.Delay.copy" name="copy" signature="Delay.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.circuit.Delay.c_if" />
+    updated if it was provided
 
-`Delay.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit.circuit.Delay.inverse" name="inverse" signature="Delay.inverse()">
+    Special case. Return self.
+  </Function>
 
-<span id="qiskit.circuit.Delay.copy" />
+  ### is\_parameterized
 
-`Delay.copy(name=None)`
+  <Function id="qiskit.circuit.Delay.is_parameterized" name="is_parameterized" signature="Delay.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-Copy of the instruction.
+  ### qasm
 
-**Parameters**
+  <Function id="qiskit.circuit.Delay.qasm" name="qasm" signature="Delay.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Returns**
+  ### repeat
 
-**a copy of the current instruction, with the name**
+  <Function id="qiskit.circuit.Delay.repeat" name="repeat" signature="Delay.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-updated if it was provided
+    **Parameters**
 
-**Return type**
+    **n** (*int*) – Number of times to repeat the instruction
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Returns**
 
-### inverse
+    Containing the definition.
 
-<span id="qiskit.circuit.Delay.inverse" />
+    **Return type**
 
-`Delay.inverse()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Special case. Return self.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.circuit.Delay.is_parameterized" />
+  ### reverse\_ops
 
-`Delay.is_parameterized()`
+  <Function id="qiskit.circuit.Delay.reverse_ops" name="reverse_ops" signature="Delay.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-Return True .IFF. instruction is parameterized else False
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-### qasm
+    **Returns**
 
-<span id="qiskit.circuit.Delay.qasm" />
+    **a new instruction with**
 
-`Delay.qasm()`
+    sub-instructions reversed.
 
-Return a default OpenQASM string for the instruction.
+    **Return type**
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### repeat
+  ### soft\_compare
 
-<span id="qiskit.circuit.Delay.repeat" />
+  <Function id="qiskit.circuit.Delay.soft_compare" name="soft_compare" signature="Delay.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-`Delay.repeat(n)`
+    **Parameters**
 
-Creates an instruction with gate repeated n amount of times.
+    **other** (*instruction*) – other instruction.
 
-**Parameters**
+    **Returns**
 
-**n** (*int*) – Number of times to repeat the instruction
+    are self and other equal up to parameter expressions.
 
-**Returns**
+    **Return type**
 
-Containing the definition.
+    bool
+  </Function>
 
-**Return type**
+  ### to\_matrix
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.Delay.to_matrix" name="to_matrix" signature="Delay.to_matrix()">
+    Return a Numpy.array for the unitary matrix. This has been added to enable simulation without making delay a full Gate type.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If n \< 1.
+    matrix representation.
 
-### reverse\_ops
+    **Return type**
 
-<span id="qiskit.circuit.Delay.reverse_ops" />
+    np.ndarray
+  </Function>
 
-`Delay.reverse_ops()`
+  ### validate\_parameter
 
-For a composite instruction, reverse the order of sub-instructions.
+  <Function id="qiskit.circuit.Delay.validate_parameter" name="validate_parameter" signature="Delay.validate_parameter(parameter)">
+    Delay parameter (i.e. duration) must be int, float or ParameterExpression.
+  </Function>
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  ## Attributes
 
-**Returns**
+  ### condition\_bits
 
-**a new instruction with**
+  <Attribute id="qiskit.circuit.Delay.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-sub-instructions reversed.
+    **Return type**
 
-**Return type**
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### decompositions
 
-### soft\_compare
+  <Attribute id="qiskit.circuit.Delay.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.Delay.soft_compare" />
+  ### definition
 
-`Delay.soft_compare(other)`
+  <Attribute id="qiskit.circuit.Delay.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### duration
 
-**Parameters**
+  <Attribute id="qiskit.circuit.Delay.duration" name="duration">
+    Get the duration of this delay.
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### label
 
-**Returns**
+  <Attribute id="qiskit.circuit.Delay.label" name="label">
+    Return instruction label
 
-are self and other equal up to parameter expressions.
+    **Return type**
 
-**Return type**
+    `str`
+  </Attribute>
 
-bool
+  ### name
 
-### to\_matrix
+  <Attribute id="qiskit.circuit.Delay.name" name="name">
+    Return the name.
+  </Attribute>
 
-<span id="qiskit.circuit.Delay.to_matrix" />
+  ### num\_clbits
 
-`Delay.to_matrix()`
+  <Attribute id="qiskit.circuit.Delay.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-Return a Numpy.array for the unitary matrix. This has been added to enable simulation without making delay a full Gate type.
+  ### num\_qubits
 
-**Returns**
+  <Attribute id="qiskit.circuit.Delay.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-matrix representation.
+  ### params
 
-**Return type**
+  <Attribute id="qiskit.circuit.Delay.params" name="params">
+    return instruction params.
+  </Attribute>
 
-np.ndarray
+  ### unit
 
-### validate\_parameter
-
-<span id="qiskit.circuit.Delay.validate_parameter" />
-
-`Delay.validate_parameter(parameter)`
-
-Delay parameter (i.e. duration) must be int, float or ParameterExpression.
-
-## Attributes
-
-<span id="qiskit.circuit.Delay.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit.circuit.Delay.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.Delay.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.circuit.Delay.duration" />
-
-### duration
-
-Get the duration of this delay.
-
-<span id="qiskit.circuit.Delay.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.Delay.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.Delay.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.Delay.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.Delay.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.Delay.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.Delay.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

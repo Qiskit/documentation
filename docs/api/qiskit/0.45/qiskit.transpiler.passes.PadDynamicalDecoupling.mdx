@@ -8,200 +8,190 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 # PadDynamicalDecoupling
 
-<span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
+<Class id="qiskit.transpiler.passes.PadDynamicalDecoupling" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py" signature="qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)">
+  Bases: `BasePadding`
 
-`qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
+  Dynamical decoupling insertion pass.
 
-Bases: `BasePadding`
+  This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods.
 
-Dynamical decoupling insertion pass.
+  As a special case, the pass allows a length-1 sequence (e.g. `[XGate()]`). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
 
-This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods.
+  This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
 
-As a special case, the pass allows a length-1 sequence (e.g. `[XGate()]`). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
+  ```python
+  import numpy as np
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import XGate
+  from qiskit.transpiler import PassManager, InstructionDurations
+  from qiskit.transpiler.passes import ALAPScheduleAnalysis, PadDynamicalDecoupling
+  from qiskit.visualization import timeline_drawer
+  circ = QuantumCircuit(4)
+  circ.h(0)
+  circ.cx(0, 1)
+  circ.cx(1, 2)
+  circ.cx(2, 3)
+  circ.measure_all()
+  durations = InstructionDurations(
+      [("h", 0, 50), ("cx", [0, 1], 700), ("reset", None, 10),
+       ("cx", [1, 2], 200), ("cx", [2, 3], 300),
+       ("x", None, 50), ("measure", None, 1000)]
+  )
 
-This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
+  # balanced X-X sequence on all qubits
+  dd_sequence = [XGate(), XGate()]
+  pm = PassManager([ALAPScheduleAnalysis(durations),
+                    PadDynamicalDecoupling(durations, dd_sequence)])
+  circ_dd = pm.run(circ)
+  timeline_drawer(circ_dd)
 
-```python
-import numpy as np
-from qiskit.circuit import QuantumCircuit
-from qiskit.circuit.library import XGate
-from qiskit.transpiler import PassManager, InstructionDurations
-from qiskit.transpiler.passes import ALAPScheduleAnalysis, PadDynamicalDecoupling
-from qiskit.visualization import timeline_drawer
-circ = QuantumCircuit(4)
-circ.h(0)
-circ.cx(0, 1)
-circ.cx(1, 2)
-circ.cx(2, 3)
-circ.measure_all()
-durations = InstructionDurations(
-    [("h", 0, 50), ("cx", [0, 1], 700), ("reset", None, 10),
-     ("cx", [1, 2], 200), ("cx", [2, 3], 300),
-     ("x", None, 50), ("measure", None, 1000)]
-)
+  # Uhrig sequence on qubit 0
+  n = 8
+  dd_sequence = [XGate()] * n
+  def uhrig_pulse_location(k):
+      return np.sin(np.pi * (k + 1) / (2 * n + 2)) ** 2
+  spacing = []
+  for k in range(n):
+      spacing.append(uhrig_pulse_location(k) - sum(spacing))
+  spacing.append(1 - sum(spacing))
+  pm = PassManager(
+      [
+          ALAPScheduleAnalysis(durations),
+          PadDynamicalDecoupling(durations, dd_sequence, qubits=[0], spacing=spacing),
+      ]
+  )
+  circ_dd = pm.run(circ)
+  timeline_drawer(circ_dd)
+  ```
 
-# balanced X-X sequence on all qubits
-dd_sequence = [XGate(), XGate()]
-pm = PassManager([ALAPScheduleAnalysis(durations),
-                  PadDynamicalDecoupling(durations, dd_sequence)])
-circ_dd = pm.run(circ)
-timeline_drawer(circ_dd)
+  ![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_00.png](/images/api/qiskit/0.45/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.png)
 
-# Uhrig sequence on qubit 0
-n = 8
-dd_sequence = [XGate()] * n
-def uhrig_pulse_location(k):
-    return np.sin(np.pi * (k + 1) / (2 * n + 2)) ** 2
-spacing = []
-for k in range(n):
-    spacing.append(uhrig_pulse_location(k) - sum(spacing))
-spacing.append(1 - sum(spacing))
-pm = PassManager(
-    [
-        ALAPScheduleAnalysis(durations),
-        PadDynamicalDecoupling(durations, dd_sequence, qubits=[0], spacing=spacing),
-    ]
-)
-circ_dd = pm.run(circ)
-timeline_drawer(circ_dd)
-```
+  ![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_01.png](/images/api/qiskit/0.45/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.png)
 
-![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_00.png](/images/api/qiskit/0.45/qiskit-transpiler-passes-PadDynamicalDecoupling-1_00.png)
+  <Admonition title="Note" type="note">
+    You may need to call alignment pass before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints.
+  </Admonition>
 
-![../\_images/qiskit-transpiler-passes-PadDynamicalDecoupling-1\_01.png](/images/api/qiskit/0.45/qiskit-transpiler-passes-PadDynamicalDecoupling-1_01.png)
+  Dynamical decoupling initializer.
 
-<Admonition title="Note" type="note">
-  You may need to call alignment pass before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints.
-</Admonition>
+  **Parameters**
 
-Dynamical decoupling initializer.
+  *   **durations** – Durations of instructions to be used in scheduling.
 
-**Parameters**
+  *   **dd\_sequence** – Sequence of gates to apply in idle spots.
 
-*   **durations** – Durations of instructions to be used in scheduling.
+  *   **qubits** – Physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
 
-*   **dd\_sequence** – Sequence of gates to apply in idle spots.
+  *   **spacing** – A list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
 
-*   **qubits** – Physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
+  *   **skip\_reset\_qubits** – If True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptile to decoherence).
 
-*   **spacing** – A list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
+  *   **pulse\_alignment** – The hardware constraints for gate timing allocation. This is usually provided from `backend.configuration().timing_constraints`. If provided, the delay length, i.e. `spacing`, is implicitly adjusted to satisfy this constraint.
 
-*   **skip\_reset\_qubits** – If True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptile to decoherence).
+  *   **extra\_slack\_distribution** –
 
-*   **pulse\_alignment** – The hardware constraints for gate timing allocation. This is usually provided from `backend.configuration().timing_constraints`. If provided, the delay length, i.e. `spacing`, is implicitly adjusted to satisfy this constraint.
+      The option to control the behavior of DD sequence generation. The duration of the DD sequence should be identical to an idle time in the scheduled quantum circuit, however, the delay in between gates comprising the sequence should be integer number in units of dt, and it might be further truncated when `pulse_alignment` is specified. This sometimes results in the duration of the created sequence being shorter than the idle time that you want to fill with the sequence, i.e. extra slack. This option takes following values.
 
-*   **extra\_slack\_distribution** –
+      > *   ”middle”: Put the extra slack to the interval at the middle of the sequence.
+      > *   ”edges”: Divide the extra slack as evenly as possible into intervals at beginning and end of the sequence.
 
-    The option to control the behavior of DD sequence generation. The duration of the DD sequence should be identical to an idle time in the scheduled quantum circuit, however, the delay in between gates comprising the sequence should be integer number in units of dt, and it might be further truncated when `pulse_alignment` is specified. This sometimes results in the duration of the created sequence being shorter than the idle time that you want to fill with the sequence, i.e. extra slack. This option takes following values.
+  *   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `durations` and this are specified then this argument will take precedence and `durations` will be ignored.
 
-    > *   ”middle”: Put the extra slack to the interval at the middle of the sequence.
-    > *   ”edges”: Divide the extra slack as evenly as possible into intervals at beginning and end of the sequence.
+  **Raises**
 
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `durations` and this are specified then this argument will take precedence and `durations` will be ignored.
+  *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When invalid DD sequence is specified.
+  *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate with the duration which is non-multiple of the alignment constraint value is found.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `dd_sequence` is not specified
 
-**Raises**
+  ## Attributes
 
-*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When invalid DD sequence is specified.
-*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate with the duration which is non-multiple of the alignment constraint value is found.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `dd_sequence` is not specified
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.PadDynamicalDecoupling.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.PadDynamicalDecoupling.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### execute
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Parameters**
 
-## Methods
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
-### execute
+    **Returns**
 
-<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.execute" />
+    Optimized Qiskit IR and state of the workflow.
 
-`execute(passmanager_ir, state, callback=None)`
+    **Return type**
 
-Execute optimization task for input Qiskit IR.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
 
-**Parameters**
+  ### name
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.name" name="name" signature="name()">
+    Name of the pass.
 
-**Returns**
+    **Return type**
 
-Optimized Qiskit IR and state of the workflow.
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### run
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.run" name="run" signature="run(dag)">
+    Run the padding pass on `dag`.
 
-### name
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.name" />
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
 
-`name()`
+    **Returns**
 
-Name of the pass.
+    DAG with idle time filled with instructions.
 
-**Return type**
+    **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-### run
+    **Raises**
 
-<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.run" />
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
+  </Function>
 
-`run(dag)`
+  ### update\_status
 
-Run the padding pass on `dag`.
+  <Function id="qiskit.transpiler.passes.PadDynamicalDecoupling.update_status" name="update_status" signature="update_status(state, run_state)">
+    Update workflow status.
 
-**Parameters**
+    **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
 
-**Returns**
+    **Returns**
 
-DAG with idle time filled with instructions.
+    Updated pass manager state.
 
-**Return type**
+    **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
-
-### update\_status
-
-<span id="qiskit.transpiler.passes.PadDynamicalDecoupling.update_status" />
-
-`update_status(state, run_state)`
-
-Update workflow status.
-
-**Parameters**
-
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
-*   **run\_state** (*RunState*) – Completion status of current task.
-
-**Returns**
-
-Updated pass manager state.
-
-**Return type**
-
-[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
 

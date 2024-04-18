@@ -8,85 +8,79 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
 # StochasticSwap
 
-<span id="qiskit.transpiler.passes.StochasticSwap" />
+<Class id="qiskit.transpiler.passes.StochasticSwap" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/routing/stochastic_swap.py" signature="StochasticSwap(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`StochasticSwap(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
+  Map a DAGCircuit onto a coupling\_map adding swap gates.
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  Uses a randomized algorithm.
 
-Map a DAGCircuit onto a coupling\_map adding swap gates.
+  **Notes**
 
-Uses a randomized algorithm.
+  1.  Measurements may occur and be followed by swaps that result in repeated measurement of the same qubit. Near-term experiments cannot implement these circuits, so some care is required when using this mapper with experimental backend targets.
+  2.  We do not use the fact that the input state is zero to simplify the circuit.
 
-**Notes**
+  StochasticSwap initializer.
 
-1.  Measurements may occur and be followed by swaps that result in repeated measurement of the same qubit. Near-term experiments cannot implement these circuits, so some care is required when using this mapper with experimental backend targets.
-2.  We do not use the fact that the input state is zero to simplify the circuit.
+  The coupling map is a connected graph
 
-StochasticSwap initializer.
+  If these are not satisfied, the behavior is undefined.
 
-The coupling map is a connected graph
+  **Parameters**
 
-If these are not satisfied, the behavior is undefined.
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
+  *   **trials** (*int*) – maximum number of iterations to attempt
+  *   **seed** (*int*) – seed for random number generator
+  *   **fake\_run** (*bool*) – if true, it only pretend to do routing, i.e., no swap is effectively added.
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – starting layout at beginning of pass.
 
-**Parameters**
+  ## Methods
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
-*   **trials** (*int*) – maximum number of iterations to attempt
-*   **seed** (*int*) – seed for random number generator
-*   **fake\_run** (*bool*) – if true, it only pretend to do routing, i.e., no swap is effectively added.
-*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – starting layout at beginning of pass.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.StochasticSwap.name" name="name" signature="StochasticSwap.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.StochasticSwap.name" />
+  <Function id="qiskit.transpiler.passes.StochasticSwap.run" name="run" signature="StochasticSwap.run(dag)">
+    Run the StochasticSwap pass on dag.
 
-`StochasticSwap.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
 
-### run
+    **Returns**
 
-<span id="qiskit.transpiler.passes.StochasticSwap.run" />
+    A mapped DAG.
 
-`StochasticSwap.run(dag)`
+    **Return type**
 
-Run the StochasticSwap pass on dag.
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**Parameters**
+    **Raises**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
+    *   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the coupling map or the layout are not
+    *   **compatible with the DAG** –
+  </Function>
 
-**Returns**
+  ## Attributes
 
-A mapped DAG.
+  ### is\_analysis\_pass
 
-**Return type**
+  <Attribute id="qiskit.transpiler.passes.StochasticSwap.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Raises**
+  ### is\_transformation\_pass
 
-*   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the coupling map or the layout are not
-*   **compatible with the DAG** –
+  <Attribute id="qiskit.transpiler.passes.StochasticSwap.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.StochasticSwap.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.StochasticSwap.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

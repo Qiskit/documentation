@@ -8,39 +8,35 @@ python_api_name: qiskit.algorithms.PVQDResult
 
 # PVQDResult
 
-<span id="qiskit.algorithms.PVQDResult" />
+<Class id="qiskit.algorithms.PVQDResult" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd_result.py" signature="PVQDResult(evolved_state, aux_ops_evaluated=None, times=None, parameters=None, fidelities=None, estimated_error=None, observables=None)">
+  Bases: [`qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult`](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
 
-`PVQDResult(evolved_state, aux_ops_evaluated=None, times=None, parameters=None, fidelities=None, estimated_error=None, observables=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd_result.py "view source code")
+  The result object for the p-VQD algorithm.
 
-Bases: [`qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult`](qiskit.algorithms.TimeEvolutionResult "qiskit.algorithms.time_evolvers.time_evolution_result.TimeEvolutionResult")
+  **Parameters**
 
-The result object for the p-VQD algorithm.
+  *   **evolved\_state** – An evolved quantum state.
+  *   **aux\_ops\_evaluated** – Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
+  *   **times** – The times evaluated during the time integration.
+  *   **parameters** – The parameter values at each evaluation time.
+  *   **fidelities** – The fidelity of the Trotter step and variational update at each iteration.
+  *   **estimated\_error** – The overall estimated error evaluated as one minus the product of all fidelities.
+  *   **observables** – The value of the observables evaluated at each iteration.
 
-**Parameters**
+  ## Methods
 
-*   **evolved\_state** – An evolved quantum state.
-*   **aux\_ops\_evaluated** – Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
-*   **times** – The times evaluated during the time integration.
-*   **parameters** – The parameter values at each evaluation time.
-*   **fidelities** – The fidelity of the Trotter step and variational update at each iteration.
-*   **estimated\_error** – The overall estimated error evaluated as one minus the product of all fidelities.
-*   **observables** – The value of the observables evaluated at each iteration.
+  ### combine
 
-## Methods
+  <Function id="qiskit.algorithms.PVQDResult.combine" name="combine" signature="PVQDResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-### combine
+    **Raises**
 
-<span id="qiskit.algorithms.PVQDResult.combine" />
+    **TypeError** – Argument is None
 
-`PVQDResult.combine(result)`
+    **Return type**
 
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
-
-**Raises**
-
-**TypeError** – Argument is None
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

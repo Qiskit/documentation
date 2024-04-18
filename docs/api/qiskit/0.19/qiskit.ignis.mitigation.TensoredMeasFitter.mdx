@@ -8,103 +8,103 @@ python_api_name: qiskit.ignis.mitigation.TensoredMeasFitter
 
 # TensoredMeasFitter
 
-<span id="qiskit.ignis.mitigation.TensoredMeasFitter" />
+<Class id="qiskit.ignis.mitigation.TensoredMeasFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py" signature="TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')">
+  Measurement correction fitter for a tensored calibration.
 
-`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/mitigation/measurement/fitters.py "view source code")
+  Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits.
 
-Measurement correction fitter for a tensored calibration.
+  **Parameters**
 
-Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits.
+  *   **results** (`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]) – the results of running the measurement calibration circuits. If this is None, the user will set calibration matrices later.
+  *   **mit\_pattern** (`List`\[`List`\[`int`]]) – qubits to perform the measurement correction on, divided to groups according to tensors
+  *   **substate\_labels\_list** (`Optional`\[`List`\[`List`\[`str`]]]) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
+  *   **circlabel** (`str`) – if the qubits were labeled
 
-**Parameters**
+  **Raises**
 
-*   **results** (`Union`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result"), `List`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]]) – the results of running the measurement calibration circuits. If this is None, the user will set calibration matrices later.
-*   **mit\_pattern** (`List`\[`List`\[`int`]]) – qubits to perform the measurement correction on, divided to groups according to tensors
-*   **substate\_labels\_list** (`Optional`\[`List`\[`List`\[`str`]]]) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
-*   **circlabel** (`str`) – if the qubits were labeled
+  **ValueError** – if the mit\_pattern doesn’t match the substate\_labels\_list
 
-**Raises**
+  ## Attributes
 
-**ValueError** – if the mit\_pattern doesn’t match the substate\_labels\_list
+  ### cal\_matrices
 
-## Attributes
+  <Attribute id="qiskit.ignis.mitigation.TensoredMeasFitter.cal_matrices" name="cal_matrices">
+    Return cal\_matrices.
+  </Attribute>
 
-### cal\_matrices
+  ### filter
 
-Return cal\_matrices.
+  <Attribute id="qiskit.ignis.mitigation.TensoredMeasFitter.filter" name="filter">
+    Return a measurement filter using the cal matrices.
+  </Attribute>
 
-### filter
+  ### nqubits
 
-Return a measurement filter using the cal matrices.
+  <Attribute id="qiskit.ignis.mitigation.TensoredMeasFitter.nqubits" name="nqubits">
+    Return \_qubit\_list\_sizes.
+  </Attribute>
 
-### nqubits
+  ### substate\_labels\_list
 
-Return \_qubit\_list\_sizes.
+  <Attribute id="qiskit.ignis.mitigation.TensoredMeasFitter.substate_labels_list" name="substate_labels_list">
+    Return \_substate\_labels\_list.
+  </Attribute>
 
-### substate\_labels\_list
+  ## Methods
 
-Return \_substate\_labels\_list.
+  ### add\_data
 
-## Methods
+  <Function id="qiskit.ignis.mitigation.TensoredMeasFitter.add_data" name="add_data" signature="TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)">
+    Add measurement calibration data
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.ignis.mitigation.TensoredMeasFitter.add_data" />
+    *   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
+    *   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+  </Function>
 
-`TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`
+  ### plot\_calibration
 
-Add measurement calibration data
+  <Function id="qiskit.ignis.mitigation.TensoredMeasFitter.plot_calibration" name="plot_calibration" signature="TensoredMeasFitter.plot_calibration(cal_index=0, ax=None, show_plot=True)">
+    Plot one of the calibration matrices (2D color grid plot).
 
-**Parameters**
+    **Parameters**
 
-*   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
-*   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+    *   **cal\_index** (*integer*) – calibration matrix to plot
+    *   **ax** (*matplotlib.axes*) – settings for the graph
+    *   **show\_plot** (*bool*) – call plt.show()
 
-### plot\_calibration
+    **Raises**
 
-<span id="qiskit.ignis.mitigation.TensoredMeasFitter.plot_calibration" />
+    *   **QiskitError** – if \_cal\_matrices was not set.
+    *   **ImportError** – if matplotlib was not installed.
+  </Function>
 
-`TensoredMeasFitter.plot_calibration(cal_index=0, ax=None, show_plot=True)`
+  ### readout\_fidelity
 
-Plot one of the calibration matrices (2D color grid plot).
+  <Function id="qiskit.ignis.mitigation.TensoredMeasFitter.readout_fidelity" name="readout_fidelity" signature="TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)">
+    Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
 
-**Parameters**
+    **Parameters**
 
-*   **cal\_index** (*integer*) – calibration matrix to plot
-*   **ax** (*matplotlib.axes*) – settings for the graph
-*   **show\_plot** (*bool*) – call plt.show()
+    *   **cal\_index** (*integer*) – readout fidelity for this index in \_cal\_matrices
+    *   **label\_list** (*list*) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
 
-**Raises**
+    **Returns**
 
-*   **QiskitError** – if \_cal\_matrices was not set.
-*   **ImportError** – if matplotlib was not installed.
+    The readout fidelity (assignment fidelity)
 
-### readout\_fidelity
+    **Return type**
 
-<span id="qiskit.ignis.mitigation.TensoredMeasFitter.readout_fidelity" />
+    numpy.array
 
-`TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)`
+    **Raises**
 
-Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
+    **QiskitError** – If the calibration matrix has not been set for the object.
 
-**Parameters**
+    #### Additional Information:
 
-*   **cal\_index** (*integer*) – readout fidelity for this index in \_cal\_matrices
-*   **label\_list** (*list*) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
-
-**Returns**
-
-The readout fidelity (assignment fidelity)
-
-**Return type**
-
-numpy.array
-
-**Raises**
-
-**QiskitError** – If the calibration matrix has not been set for the object.
-
-#### Additional Information:
-
-The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
+    The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
+  </Function>
+</Class>
 

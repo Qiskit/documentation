@@ -8,233 +8,223 @@ python_api_name: qiskit.circuit.library.PolynomialPauliRotations
 
 # PolynomialPauliRotations
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations" />
+<Class id="qiskit.circuit.library.PolynomialPauliRotations" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py" signature="PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', reverse=False, name='poly')">
+  Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
 
-`PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', reverse=False, name='poly')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
+  A circuit implementing polynomial Pauli rotations.
 
-Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
-
-A circuit implementing polynomial Pauli rotations.
-
-For a polynomial :math\`p(x)\`, a basis state $|i\rangle$ and a target qubit $|0\rangle$ this operator acts as:
+  For a polynomial :math\`p(x)\`, a basis state $|i\rangle$ and a target qubit $|0\rangle$ this operator acts as:
 
 $$
 |i\rangle |0\rangle \mapsto \cos(p(i)) |i\rangle |0\rangle + \sin(p(i)) |i\rangle |1\rangle
 $$
 
-Let n be the number of qubits representing the state, d the degree of p(x) and q\_i the qubits, where q\_0 is the least significant qubit. Then for
+  Let n be the number of qubits representing the state, d the degree of p(x) and q\_i the qubits, where q\_0 is the least significant qubit. Then for
 
 $$
 x = \sum_{i=0}^{n-1} 2^i q_i,
 $$
 
-we can write
+  we can write
 
 $$
 p(x) = \sum_{j=0}^{j=d} c_j x_j
 $$
 
-where $c$ are the input coefficients, `coeffs`.
+  where $c$ are the input coefficients, `coeffs`.
 
-Prepare an approximation to a state with amplitudes specified by a polynomial.
+  Prepare an approximation to a state with amplitudes specified by a polynomial.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state.
-*   **coeffs** (`Optional`\[`List`\[`float`]]) – The coefficients of the polynomial. `coeffs[i]` is the coefficient of the i-th power of x. Defaults to linear: \[0, 1].
-*   **basis** (`str`) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
-*   **reverse** (`bool`) – If True, apply the polynomial with the reversed list of qubits (i.e. q\_n as q\_0, q\_n-1 as q\_1, etc).
-*   **name** (`str`) – The name of the circuit.
+  *   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state.
+  *   **coeffs** (`Optional`\[`List`\[`float`]]) – The coefficients of the polynomial. `coeffs[i]` is the coefficient of the i-th power of x. Defaults to linear: \[0, 1].
+  *   **basis** (`str`) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
+  *   **reverse** (`bool`) – If True, apply the polynomial with the reversed list of qubits (i.e. q\_n as q\_0, q\_n-1 as q\_1, etc).
+  *   **name** (`str`) – The name of the circuit.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### basis
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.basis" />
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.basis" name="basis">
+    The kind of Pauli rotation to be used.
 
-### basis
+    Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
 
-The kind of Pauli rotation to be used.
+    **Return type**
 
-Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
+    `str`
 
-**Return type**
+    **Returns**
 
-`str`
+    The kind of Pauli rotation used in controlled rotation.
+  </Attribute>
 
-**Returns**
+  ### calibrations
 
-The kind of Pauli rotation used in controlled rotation.
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.calibrations" />
+    **The custom pulse definition of a given gate is of the form**
 
-### calibrations
+    \{‘gate\_name’: \{(qubits, params): schedule}}
+  </Attribute>
 
-Return calibration dictionary.
+  ### clbits
 
-**The custom pulse definition of a given gate is of the form**
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+  ### coeffs
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.clbits" />
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.coeffs" name="coeffs">
+    The multiplicative factor in the rotation angle of the controlled rotations.
 
-### clbits
+    The rotation angles are `slope * 2^0`, `slope * 2^1`, … , `slope * 2^(n-1)` where `n` is the number of state qubits.
 
-Returns a list of classical bits in the order that the registers were added.
+    **Return type**
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.coeffs" />
+    `List`\[`float`]
 
-### coeffs
+    **Returns**
 
-The multiplicative factor in the rotation angle of the controlled rotations.
+    The rotation angle common in all controlled rotations.
+  </Attribute>
 
-The rotation angles are `slope * 2^0`, `slope * 2^1`, … , `slope * 2^(n-1)` where `n` is the number of state qubits.
+  ### data
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.data" name="data" />
 
-`List`\[`float`]
+  ### degree
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.degree" name="degree">
+    Return the degree of the polynomial, equals to the number of coefficients minus 1.
 
-The rotation angle common in all controlled rotations.
+    **Return type**
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.data" />
+    `int`
 
-### data
+    **Returns**
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.degree" />
+    The degree of the polynomial. If the coefficients have not been set, return 0.
+  </Attribute>
 
-### degree
+  ### extension\_lib
 
-Return the degree of the polynomial, equals to the number of coefficients minus 1.
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Return type**
+  ### global\_phase
 
-`int`
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
+  </Attribute>
 
-**Returns**
+  ### header
 
-The degree of the polynomial. If the coefficients have not been set, return 0.
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.extension_lib" />
+  ### instances
 
-### extension\_lib
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.instances" name="instances" attributeValue="= 16" />
 
-`= 'include "qelib1.inc";'`
+  ### metadata
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.global_phase" />
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-### global\_phase
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-Return the global phase of the circuit in radians.
+  ### num\_ancilla\_qubits
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.header" />
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.num_ancilla_qubits" name="num_ancilla_qubits">
+    Deprecated. Use num\_ancillas instead.
+  </Attribute>
 
-### header
+  ### num\_ancillas
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.instances" />
+  ### num\_clbits
 
-### instances
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-`= 16`
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.metadata" />
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.num_parameters" name="num_parameters">
+    **Return type**
 
-### metadata
+    `int`
+  </Attribute>
 
-The user provided metadata associated with the circuit
+  ### num\_qubits
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.num_ancilla_qubits" />
+  ### num\_state\_qubits
 
-### num\_ancilla\_qubits
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.num_state_qubits" name="num_state_qubits">
+    The number of state qubits representing the state $|x\rangle$.
 
-Deprecated. Use num\_ancillas instead.
+    **Return type**
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.num_ancillas" />
+    `int`
 
-### num\_ancillas
+    **Returns**
 
-Return the number of ancilla qubits.
+    The number of state qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.num_clbits" />
+  ### parameters
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.parameters" name="parameters">
+    **Return type**
 
-Return number of classical bits.
+    `ParameterView`
+  </Attribute>
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.num_parameters" />
+  ### prefix
 
-### num\_parameters
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Return type**
+  ### qregs
 
-`int`
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.num_qubits" />
+  ### qubits
 
-### num\_qubits
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-Return number of qubits.
+  ### reverse
 
-<span id="qiskit.circuit.library.PolynomialPauliRotations.num_state_qubits" />
+  <Attribute id="qiskit.circuit.library.PolynomialPauliRotations.reverse" name="reverse">
+    Whether to apply the rotations on the reversed list of qubits.
 
-### num\_state\_qubits
+    **Return type**
 
-The number of state qubits representing the state $|x\rangle$.
+    `bool`
 
-**Return type**
+    **Returns**
 
-`int`
-
-**Returns**
-
-The number of state qubits.
-
-<span id="qiskit.circuit.library.PolynomialPauliRotations.parameters" />
-
-### parameters
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.PolynomialPauliRotations.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.PolynomialPauliRotations.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.PolynomialPauliRotations.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-<span id="qiskit.circuit.library.PolynomialPauliRotations.reverse" />
-
-### reverse
-
-Whether to apply the rotations on the reversed list of qubits.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True, if the rotations are applied on the reversed list, False otherwise.
+    True, if the rotations are applied on the reversed list, False otherwise.
+  </Attribute>
+</Class>
 

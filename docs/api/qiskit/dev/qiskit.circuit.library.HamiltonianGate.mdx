@@ -8,162 +8,150 @@ python_api_name: qiskit.circuit.library.HamiltonianGate
 
 # HamiltonianGate
 
-<span id="qiskit.circuit.library.HamiltonianGate" />
+<Class id="qiskit.circuit.library.HamiltonianGate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py#L38-L138" signature="qiskit.circuit.library.HamiltonianGate(data, time, label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`qiskit.circuit.library.HamiltonianGate(data, time, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py "view source code")
+  Class for representing evolution by a Hamiltonian operator as a gate.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  This gate resolves to a [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate") as $U(t) = \exp(-i t H)$, which can be decomposed into basis gates if it is 2 qubits or less, or simulated directly in Aer for more qubits.
 
-Class for representing evolution by a Hamiltonian operator as a gate.
+  **Parameters**
 
-This gate resolves to a [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate") as $U(t) = \exp(-i t H)$, which can be decomposed into basis gates if it is 2 qubits or less, or simulated directly in Aer for more qubits.
+  *   **data** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – A hermitian operator.
+  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Time evolution parameter.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
 
-**Parameters**
+  **Raises**
 
-*   **data** (*np.ndarray |* [*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – A hermitian operator.
-*   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Time evolution parameter.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if input data is not an N-qubit unitary operator.
 
-**Raises**
+  ## Attributes
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if input data is not an N-qubit unitary operator.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.library.HamiltonianGate.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.HamiltonianGate.base_class "qiskit.circuit.library.HamiltonianGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.HamiltonianGate.base_class "qiskit.circuit.library.HamiltonianGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.HamiltonianGate.condition" />
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HamiltonianGate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.HamiltonianGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.HamiltonianGate.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HamiltonianGate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.HamiltonianGate.label" />
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HamiltonianGate.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.params" name="params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.HamiltonianGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HamiltonianGate.name" />
+  ## Methods
 
-### name
+  ### adjoint
 
-Return the name.
+  <Function id="qiskit.circuit.library.HamiltonianGate.adjoint" name="adjoint" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py#L116-L118" signature="adjoint()">
+    Return the adjoint of the unitary.
+  </Function>
 
-<span id="qiskit.circuit.library.HamiltonianGate.num_clbits" />
+  ### conjugate
 
-### num\_clbits
+  <Function id="qiskit.circuit.library.HamiltonianGate.conjugate" name="conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py#L112-L114" signature="conjugate()">
+    Return the conjugate of the Hamiltonian.
+  </Function>
 
-Return the number of clbits.
+  ### inverse
 
-<span id="qiskit.circuit.library.HamiltonianGate.num_qubits" />
+  <Function id="qiskit.circuit.library.HamiltonianGate.inverse" name="inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py#L108-L110" signature="inverse(annotated=False)">
+    Return the adjoint of the unitary.
+  </Function>
 
-### num\_qubits
+  ### transpose
 
-Return the number of qubits.
+  <Function id="qiskit.circuit.library.HamiltonianGate.transpose" name="transpose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py#L120-L122" signature="transpose()">
+    Return the transpose of the Hamiltonian.
+  </Function>
 
-<span id="qiskit.circuit.library.HamiltonianGate.params" />
+  ### validate\_parameter
 
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.HamiltonianGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### adjoint
-
-<span id="qiskit.circuit.library.HamiltonianGate.adjoint" />
-
-`adjoint()`
-
-Return the adjoint of the unitary.
-
-### conjugate
-
-<span id="qiskit.circuit.library.HamiltonianGate.conjugate" />
-
-`conjugate()`
-
-Return the conjugate of the Hamiltonian.
-
-### inverse
-
-<span id="qiskit.circuit.library.HamiltonianGate.inverse" />
-
-`inverse(annotated=False)`
-
-Return the adjoint of the unitary.
-
-### transpose
-
-<span id="qiskit.circuit.library.HamiltonianGate.transpose" />
-
-`transpose()`
-
-Return the transpose of the Hamiltonian.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.HamiltonianGate.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Hamiltonian parameter has to be an ndarray, operator or float.
+  <Function id="qiskit.circuit.library.HamiltonianGate.validate_parameter" name="validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hamiltonian_gate.py#L131-L138" signature="validate_parameter(parameter)">
+    Hamiltonian parameter has to be an ndarray, operator or float.
+  </Function>
+</Class>
 

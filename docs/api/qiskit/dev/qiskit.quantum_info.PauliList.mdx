@@ -8,882 +8,816 @@ python_api_name: qiskit.quantum_info.PauliList
 
 # PauliList
 
-<span id="qiskit.quantum_info.PauliList" />
+<Class id="qiskit.quantum_info.PauliList" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L33-L1230" signature="qiskit.quantum_info.PauliList(data)">
+  Bases: `BasePauli`, `LinearMixin`, `GroupMixin`
 
-`qiskit.quantum_info.PauliList(data)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py "view source code")
+  List of N-qubit Pauli operators.
 
-Bases: `BasePauli`, `LinearMixin`, `GroupMixin`
+  This class is an efficient representation of a list of [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") operators. It supports 1D numpy array indexing returning a [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") for integer indexes or a [`PauliList`](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") for slice or list indices.
 
-List of N-qubit Pauli operators.
+  **Initialization**
 
-This class is an efficient representation of a list of [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") operators. It supports 1D numpy array indexing returning a [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") for integer indexes or a [`PauliList`](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList") for slice or list indices.
+  A PauliList object can be initialized in several ways.
 
-**Initialization**
+  > **`PauliList(list[str])`**
+  >
+  > where strings are same representation with [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
+  >
+  > **`PauliList(Pauli) and PauliList(list[Pauli])`**
+  >
+  > where Pauli is [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
+  >
+  > **`PauliList.from_symplectic(z, x, phase)`**
+  >
+  > where `z` and `x` are 2 dimensional boolean `numpy.ndarrays` and `phase` is an integer in `[0, 1, 2, 3]`.
 
-A PauliList object can be initialized in several ways.
+  For example,
 
-> **`PauliList(list[str])`**
->
-> where strings are same representation with [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
->
-> **`PauliList(Pauli) and PauliList(list[Pauli])`**
->
-> where Pauli is [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli").
->
-> **`PauliList.from_symplectic(z, x, phase)`**
->
-> where `z` and `x` are 2 dimensional boolean `numpy.ndarrays` and `phase` is an integer in `[0, 1, 2, 3]`.
+  ```python
+  import numpy as np
 
-For example,
+  from qiskit.quantum_info import Pauli, PauliList
 
-```python
-import numpy as np
+  # 1. init from list[str]
+  pauli_list = PauliList(["II", "+ZI", "-iYY"])
+  print("1. ", pauli_list)
 
-from qiskit.quantum_info import Pauli, PauliList
+  pauli1 = Pauli("iXI")
+  pauli2 = Pauli("iZZ")
 
-# 1. init from list[str]
-pauli_list = PauliList(["II", "+ZI", "-iYY"])
-print("1. ", pauli_list)
+  # 2. init from Pauli
+  print("2. ", PauliList(pauli1))
 
-pauli1 = Pauli("iXI")
-pauli2 = Pauli("iZZ")
+  # 3. init from list[Pauli]
+  print("3. ", PauliList([pauli1, pauli2]))
 
-# 2. init from Pauli
-print("2. ", PauliList(pauli1))
+  # 4. init from np.ndarray
+  z = np.array([[True, True], [False, False]])
+  x = np.array([[False, True], [True, False]])
+  phase = np.array([0, 1])
+  pauli_list = PauliList.from_symplectic(z, x, phase)
+  print("4. ", pauli_list)
+  ```
 
-# 3. init from list[Pauli]
-print("3. ", PauliList([pauli1, pauli2]))
+  ```python
+  1.  ['II', 'ZI', '-iYY']
+  2.  ['iXI']
+  3.  ['iXI', 'iZZ']
+  4.  ['YZ', '-iIX']
+  ```
 
-# 4. init from np.ndarray
-z = np.array([[True, True], [False, False]])
-x = np.array([[False, True], [True, False]])
-phase = np.array([0, 1])
-pauli_list = PauliList.from_symplectic(z, x, phase)
-print("4. ", pauli_list)
-```
+  **Data Access**
 
-```python
-1.  ['II', 'ZI', '-iYY']
-2.  ['iXI']
-3.  ['iXI', 'iZZ']
-4.  ['YZ', '-iIX']
-```
+  The individual Paulis can be accessed and updated using the `[]` operator which accepts integer, lists, or slices for selecting subsets of PauliList. If integer is given, it returns Pauli not PauliList.
 
-**Data Access**
+  ```python
+  pauli_list = PauliList(["XX", "ZZ", "IZ"])
+  print("Integer: ", repr(pauli_list[1]))
+  print("List: ", repr(pauli_list[[0, 2]]))
+  print("Slice: ", repr(pauli_list[0:2]))
+  ```
 
-The individual Paulis can be accessed and updated using the `[]` operator which accepts integer, lists, or slices for selecting subsets of PauliList. If integer is given, it returns Pauli not PauliList.
+  ```python
+  Integer:  Pauli('ZZ')
+  List:  PauliList(['XX', 'IZ'])
+  Slice:  PauliList(['XX', 'ZZ'])
+  ```
 
-```python
-pauli_list = PauliList(["XX", "ZZ", "IZ"])
-print("Integer: ", repr(pauli_list[1]))
-print("List: ", repr(pauli_list[[0, 2]]))
-print("Slice: ", repr(pauli_list[0:2]))
-```
+  **Iteration**
 
-```python
-Integer:  Pauli('ZZ')
-List:  PauliList(['XX', 'IZ'])
-Slice:  PauliList(['XX', 'ZZ'])
-```
+  Rows in the Pauli table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](#qiskit.quantum_info.PauliList.label_iter "qiskit.quantum_info.PauliList.label_iter") and [`matrix_iter()`](#qiskit.quantum_info.PauliList.matrix_iter "qiskit.quantum_info.PauliList.matrix_iter") methods.
 
-**Iteration**
+  Initialize the PauliList.
 
-Rows in the Pauli table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](#qiskit.quantum_info.PauliList.label_iter "qiskit.quantum_info.PauliList.label_iter") and [`matrix_iter()`](#qiskit.quantum_info.PauliList.matrix_iter "qiskit.quantum_info.PauliList.matrix_iter") methods.
+  **Parameters**
 
-Initialize the PauliList.
+  **data** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
 
-**Parameters**
+  **Raises**
 
-**data** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input array is invalid shape.
 
-**Raises**
+  **Additional Information:**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input array is invalid shape.
+  The input array is not copied so multiple Pauli tables can share the same underlying array.
 
-**Additional Information:**
+  ## Attributes
 
-The input array is not copied so multiple Pauli tables can share the same underlying array.
+  ### dim
 
-## Attributes
+  <Attribute id="qiskit.quantum_info.PauliList.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-<span id="qiskit.quantum_info.PauliList.dim" />
+  ### num\_qubits
 
-### dim
+  <Attribute id="qiskit.quantum_info.PauliList.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-Return tuple (input\_shape, output\_shape).
+  ### phase
 
-<span id="qiskit.quantum_info.PauliList.num_qubits" />
+  <Attribute id="qiskit.quantum_info.PauliList.phase" name="phase">
+    Return the phase exponent of the PauliList.
+  </Attribute>
 
-### num\_qubits
+  ### qargs
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+  <Attribute id="qiskit.quantum_info.PauliList.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-<span id="qiskit.quantum_info.PauliList.phase" />
+  ### settings
 
-### phase
+  <Attribute id="qiskit.quantum_info.PauliList.settings" name="settings">
+    Return settings.
+  </Attribute>
 
-Return the phase exponent of the PauliList.
+  ### shape
 
-<span id="qiskit.quantum_info.PauliList.qargs" />
+  <Attribute id="qiskit.quantum_info.PauliList.shape" name="shape">
+    The full shape of the `array()`
+  </Attribute>
 
-### qargs
+  ### size
 
-Return the qargs for the operator.
+  <Attribute id="qiskit.quantum_info.PauliList.size" name="size">
+    The number of Pauli rows in the table.
+  </Attribute>
 
-<span id="qiskit.quantum_info.PauliList.settings" />
+  ### x
 
-### settings
+  <Attribute id="qiskit.quantum_info.PauliList.x" name="x">
+    The x array for the symplectic representation.
+  </Attribute>
 
-Return settings.
+  ### z
 
-<span id="qiskit.quantum_info.PauliList.shape" />
+  <Attribute id="qiskit.quantum_info.PauliList.z" name="z">
+    The z array for the symplectic representation.
+  </Attribute>
 
-### shape
+  ## Methods
 
-The full shape of the `array()`
+  ### adjoint
 
-<span id="qiskit.quantum_info.PauliList.size" />
+  <Function id="qiskit.quantum_info.PauliList.adjoint" name="adjoint" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L820-L822" signature="adjoint()">
+    Return the adjoint of each Pauli in the list.
+  </Function>
 
-### size
+  ### anticommutes
 
-The number of Pauli rows in the table.
+  <Function id="qiskit.quantum_info.PauliList.anticommutes" name="anticommutes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L848-L858" signature="anticommutes(other, qargs=None)">
+    Return `True` if other Pauli that anticommutes with other.
 
-<span id="qiskit.quantum_info.PauliList.x" />
+    **Parameters**
 
-### x
+    *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList operator.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: `None`).
 
-The x array for the symplectic representation.
+    **Returns**
 
-<span id="qiskit.quantum_info.PauliList.z" />
+    `True` if Paulis anticommute, `False` if they commute.
 
-### z
+    **Return type**
 
-The z array for the symplectic representation.
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-## Methods
+  ### anticommutes\_with\_all
 
-### adjoint
+  <Function id="qiskit.quantum_info.PauliList.anticommutes_with_all" name="anticommutes_with_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L875-L888" signature="anticommutes_with_all(other)">
+    Return indexes of rows that commute other.
 
-<span id="qiskit.quantum_info.PauliList.adjoint" />
+    If `other` is a multi-row Pauli list the returned vector indexes rows of the current PauliList that anti-commute with *all* Paulis in other. If no rows satisfy the condition the returned array will be empty.
 
-`adjoint()`
+    **Parameters**
 
-Return the adjoint of each Pauli in the list.
+    **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – a single Pauli or multi-row PauliList.
 
-### anticommutes
+    **Returns**
 
-<span id="qiskit.quantum_info.PauliList.anticommutes" />
+    index array of the anti-commuting rows.
 
-`anticommutes(other, qargs=None)`
+    **Return type**
 
-Return `True` if other Pauli that anticommutes with other.
+    array
+  </Function>
 
-**Parameters**
+  ### argsort
 
-*   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList operator.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: `None`).
+  <Function id="qiskit.quantum_info.PauliList.argsort" name="argsort" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L472-L533" signature="argsort(weight=False, phase=False)">
+    Return indices for sorting the rows of the table.
 
-**Returns**
+    The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Paulis of a given weight are still ordered lexicographically.
 
-`True` if Paulis anticommute, `False` if they commute.
+    **Parameters**
 
-**Return type**
+    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by weight if `True` (Default: `False`).
+    *   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by phase before weight or order (Default: `False`).
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    **Returns**
 
-### anticommutes\_with\_all
+    the indices for sorting the table.
 
-<span id="qiskit.quantum_info.PauliList.anticommutes_with_all" />
+    **Return type**
 
-`anticommutes_with_all(other)`
+    array
+  </Function>
 
-Return indexes of rows that commute other.
+  ### commutes
 
-If `other` is a multi-row Pauli list the returned vector indexes rows of the current PauliList that anti-commute with *all* Paulis in other. If no rows satisfy the condition the returned array will be empty.
+  <Function id="qiskit.quantum_info.PauliList.commutes" name="commutes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L832-L846" signature="commutes(other, qargs=None)">
+    Return True for each Pauli that commutes with other.
 
-**Parameters**
+    **Parameters**
 
-**other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – a single Pauli or multi-row PauliList.
+    *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList operator.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: `None`).
 
-**Returns**
+    **Returns**
 
-index array of the anti-commuting rows.
+    `True` if Paulis commute, `False` if they anti-commute.
 
-**Return type**
+    **Return type**
 
-array
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-### argsort
+  ### commutes\_with\_all
 
-<span id="qiskit.quantum_info.PauliList.argsort" />
+  <Function id="qiskit.quantum_info.PauliList.commutes_with_all" name="commutes_with_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L860-L873" signature="commutes_with_all(other)">
+    Return indexes of rows that commute `other`.
 
-`argsort(weight=False, phase=False)`
+    If `other` is a multi-row Pauli list the returned vector indexes rows of the current PauliList that commute with *all* Paulis in other. If no rows satisfy the condition the returned array will be empty.
 
-Return indices for sorting the rows of the table.
+    **Parameters**
 
-The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Paulis of a given weight are still ordered lexicographically.
+    **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – a single Pauli or multi-row PauliList.
 
-**Parameters**
+    **Returns**
 
-*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by weight if `True` (Default: `False`).
-*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by phase before weight or order (Default: `False`).
+    index array of the commuting rows.
 
-**Returns**
+    **Return type**
 
-the indices for sorting the table.
+    array
+  </Function>
 
-**Return type**
+  ### compose
 
-array
+  <Function id="qiskit.quantum_info.PauliList.compose" name="compose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L704-L737" signature="compose(other, qargs=None, front=False, inplace=False)">
+    Return the composition self∘other for each Pauli in the list.
 
-### commutes
+    **Parameters**
 
-<span id="qiskit.quantum_info.PauliList.commutes" />
+    *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (Default: `None`).
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True use dot composition method \[default: `False`].
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` update in-place (default: `False`).
 
-`commutes(other, qargs=None)`
+    **Returns**
 
-Return True for each Pauli that commutes with other.
+    the list of composed Paulis.
 
-**Parameters**
+    **Return type**
 
-*   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList operator.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: `None`).
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-**Returns**
+    **Raises**
 
-`True` if Paulis commute, `False` if they anti-commute.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list, or has the wrong number of qubits for the specified `qargs`.
+  </Function>
 
-**Return type**
+  ### conjugate
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  <Function id="qiskit.quantum_info.PauliList.conjugate" name="conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L812-L814" signature="conjugate()">
+    Return the conjugate of each Pauli in the list.
+  </Function>
 
-### commutes\_with\_all
+  ### copy
 
-<span id="qiskit.quantum_info.PauliList.commutes_with_all" />
+  <Function id="qiskit.quantum_info.PauliList.copy" name="copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/base_pauli.py#L61-L70" signature="copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-`commutes_with_all(other)`
+  ### delete
 
-Return indexes of rows that commute `other`.
+  <Function id="qiskit.quantum_info.PauliList.delete" name="delete" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L358-L403" signature="delete(ind, qubit=False)">
+    Return a copy with Pauli rows deleted from table.
 
-If `other` is a multi-row Pauli list the returned vector indexes rows of the current PauliList that commute with *all* Paulis in other. If no rows satisfy the condition the returned array will be empty.
+    When deleting qubits the qubit index is the same as the column index of the underlying `X` and `Z` arrays.
 
-**Parameters**
+    **Parameters**
 
-**other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – a single Pauli or multi-row PauliList.
+    *   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – index(es) to delete.
+    *   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` delete qubit columns, otherwise delete Pauli rows (Default: `False`).
 
-**Returns**
+    **Returns**
 
-index array of the commuting rows.
+    the resulting table with the entries removed.
 
-**Return type**
+    **Return type**
 
-array
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-### compose
+    **Raises**
 
-<span id="qiskit.quantum_info.PauliList.compose" />
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `ind` is out of bounds for the array size or number of qubits.
+  </Function>
 
-`compose(other, qargs=None, front=False, inplace=False)`
+  ### dot
 
-Return the composition self∘other for each Pauli in the list.
+  <Function id="qiskit.quantum_info.PauliList.dot" name="dot" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L739-L756" signature="dot(other, qargs=None, inplace=False)">
+    Return the composition other∘self for each Pauli in the list.
 
-**Parameters**
+    **Parameters**
 
-*   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (Default: `None`).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True use dot composition method \[default: `False`].
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` update in-place (default: `False`).
+    *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (Default: `None`).
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True update in-place (default: `False`).
 
-**Returns**
+    **Returns**
 
-the list of composed Paulis.
+    the list of composed Paulis.
 
-**Return type**
+    **Return type**
 
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-**Raises**
+    **Raises**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list, or has the wrong number of qubits for the specified `qargs`.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list, or has the wrong number of qubits for the specified `qargs`.
+  </Function>
 
-### conjugate
+  ### equiv
 
-<span id="qiskit.quantum_info.PauliList.conjugate" />
+  <Function id="qiskit.quantum_info.PauliList.equiv" name="equiv" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L234-L246" signature="equiv(other)">
+    Entrywise comparison of Pauli equivalence up to global phase.
 
-`conjugate()`
+    **Parameters**
 
-Return the conjugate of each Pauli in the list.
+    **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a comparison object.
 
-### copy
+    **Returns**
 
-<span id="qiskit.quantum_info.PauliList.copy" />
+    **An array of `True` or `False` for entrywise equivalence**
 
-`copy()`
+    of the current table.
 
-Make a deep copy of current operator.
+    **Return type**
 
-### delete
+    np.ndarray
+  </Function>
 
-<span id="qiskit.quantum_info.PauliList.delete" />
+  ### evolve
 
-`delete(ind, qubit=False)`
+  <Function id="qiskit.quantum_info.PauliList.evolve" name="evolve" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L914-L951" signature="evolve(other, qargs=None, frame='h')">
+    Performs either Heisenberg (default) or Schrödinger picture evolution of the Pauli by a Clifford and returns the evolved Pauli.
 
-Return a copy with Pauli rows deleted from table.
+    Schrödinger picture evolution can be chosen by passing parameter `frame='s'`. This option yields a faster calculation.
 
-When deleting qubits the qubit index is the same as the column index of the underlying `X` and `Z` arrays.
+    Heisenberg picture evolves the Pauli as $P^\prime = C^\dagger.P.C$.
 
-**Parameters**
+    Schrödinger picture evolves the Pauli as $P^\prime = C.P.C^\dagger$.
 
-*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – index(es) to delete.
-*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` delete qubit columns, otherwise delete Pauli rows (Default: `False`).
+    **Parameters**
 
-**Returns**
+    *   **other** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of qubits to apply the Clifford to.
+    *   **frame** (*string*) – `'h'` for Heisenberg (default) or `'s'` for Schrödinger framework.
 
-the resulting table with the entries removed.
+    **Returns**
 
-**Return type**
+    the Pauli $C^\dagger.P.C$ (Heisenberg picture) or the Pauli $C.P.C^\dagger$ (Schrödinger picture).
 
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+    **Return type**
 
-**Raises**
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `ind` is out of bounds for the array size or number of qubits.
+    **Raises**
 
-### dot
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the Clifford number of qubits and qargs don’t match.
+  </Function>
 
-<span id="qiskit.quantum_info.PauliList.dot" />
+  ### expand
 
-`dot(other, qargs=None, inplace=False)`
+  <Function id="qiskit.quantum_info.PauliList.expand" name="expand" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L681-L702" signature="expand(other)">
+    Return the expand product of each Pauli in the list.
 
-Return the composition other∘self for each Pauli in the list.
+    **Parameters**
 
-**Parameters**
+    **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
 
-*   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (Default: `None`).
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True update in-place (default: `False`).
+    **Returns**
 
-**Returns**
+    the list of tensor product Paulis.
 
-the list of composed Paulis.
+    **Return type**
 
-**Return type**
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+    **Raises**
 
-**Raises**
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list.
+  </Function>
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list, or has the wrong number of qubits for the specified `qargs`.
+  ### from\_symplectic
 
-### equiv
+  <Function id="qiskit.quantum_info.PauliList.from_symplectic" name="from_symplectic" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L1110-L1125" signature="classmethod from_symplectic(z, x, phase=0)">
+    Construct a PauliList from a symplectic data.
 
-<span id="qiskit.quantum_info.PauliList.equiv" />
+    **Parameters**
 
-`equiv(other)`
+    *   **z** (*np.ndarray*) – 2D boolean Numpy array.
+    *   **x** (*np.ndarray*) – 2D boolean Numpy array.
+    *   **phase** (*np.ndarray or None*) – Optional, 1D integer array from Z\_4.
 
-Entrywise comparison of Pauli equivalence up to global phase.
+    **Returns**
 
-**Parameters**
+    the constructed PauliList.
 
-**other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a comparison object.
+    **Return type**
 
-**Returns**
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+  </Function>
 
-**An array of `True` or `False` for entrywise equivalence**
+  ### group\_commuting
 
-of the current table.
+  <Function id="qiskit.quantum_info.PauliList.group_commuting" name="group_commuting" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L1210-L1230" signature="group_commuting(qubit_wise=False)">
+    Partition a PauliList into sets of commuting Pauli strings.
 
-**Return type**
+    **Parameters**
 
-np.ndarray
+    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
 
-### evolve
+    whether the commutation rule is applied to the whole operator, or on a per-qubit basis. For example:
 
-<span id="qiskit.quantum_info.PauliList.evolve" />
+    ```python
+    >>> from qiskit.quantum_info import PauliList
+    >>> op = PauliList(["XX", "YY", "IZ", "ZZ"])
+    >>> op.group_commuting()
+    [PauliList(['XX', 'YY']), PauliList(['IZ', 'ZZ'])]
+    >>> op.group_commuting(qubit_wise=True)
+    [PauliList(['XX']), PauliList(['YY']), PauliList(['IZ', 'ZZ'])]
+    ```
 
-`evolve(other, qargs=None, frame='h')`
+    **Returns**
 
-Performs either Heisenberg (default) or Schrödinger picture evolution of the Pauli by a Clifford and returns the evolved Pauli.
+    List of PauliLists where each PauliList contains commuting Pauli operators.
 
-Schrödinger picture evolution can be chosen by passing parameter `frame='s'`. This option yields a faster calculation.
+    **Return type**
 
-Heisenberg picture evolves the Pauli as $P^\prime = C^\dagger.P.C$.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
+  </Function>
 
-Schrödinger picture evolves the Pauli as $P^\prime = C.P.C^\dagger$.
+  ### group\_qubit\_wise\_commuting
 
-**Parameters**
+  <Function id="qiskit.quantum_info.PauliList.group_qubit_wise_commuting" name="group_qubit_wise_commuting" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L1202-L1208" signature="group_qubit_wise_commuting()">
+    Partition a PauliList into sets of mutually qubit-wise commuting Pauli strings.
 
-*   **other** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of qubits to apply the Clifford to.
-*   **frame** (*string*) – `'h'` for Heisenberg (default) or `'s'` for Schrödinger framework.
+    **Returns**
 
-**Returns**
+    List of PauliLists where each PauliList contains commutable Pauli operators.
 
-the Pauli $C^\dagger.P.C$ (Heisenberg picture) or the Pauli $C.P.C^\dagger$ (Schrödinger picture).
+    **Return type**
 
-**Return type**
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
+  </Function>
 
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+  ### input\_dims
 
-**Raises**
+  <Function id="qiskit.quantum_info.PauliList.input_dims" name="input_dims" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/base_operator.py#L135-L137" signature="input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the Clifford number of qubits and qargs don’t match.
+  ### insert
 
-### expand
+  <Function id="qiskit.quantum_info.PauliList.insert" name="insert" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L405-L470" signature="insert(ind, value, qubit=False)">
+    Insert Paulis into the table.
 
-<span id="qiskit.quantum_info.PauliList.expand" />
+    When inserting qubits the qubit index is the same as the column index of the underlying `X` and `Z` arrays.
 
-`expand(other)`
+    **Parameters**
 
-Return the expand product of each Pauli in the list.
+    *   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – index to insert at.
+    *   **value** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – values to insert.
+    *   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` insert qubit columns, otherwise insert Pauli rows (Default: `False`).
 
-**Parameters**
+    **Returns**
 
-**other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
+    the resulting table with the entries inserted.
 
-**Returns**
+    **Return type**
 
-the list of tensor product Paulis.
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-**Return type**
+    **Raises**
 
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the insertion index is invalid.
+  </Function>
 
-**Raises**
+  ### inverse
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list.
+  <Function id="qiskit.quantum_info.PauliList.inverse" name="inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L824-L826" signature="inverse()">
+    Return the inverse of each Pauli in the list.
+  </Function>
 
-### from\_symplectic
+  ### label\_iter
 
-<span id="qiskit.quantum_info.PauliList.from_symplectic" />
+  <Function id="qiskit.quantum_info.PauliList.label_iter" name="label_iter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L1055-L1075" signature="label_iter()">
+    Return a label representation iterator.
 
-`classmethod from_symplectic(z, x, phase=0)`
+    This is a lazy iterator that converts each row into the string label only as it is used. To convert the entire table to labels use the [`to_labels()`](#qiskit.quantum_info.PauliList.to_labels "qiskit.quantum_info.PauliList.to_labels") method.
 
-Construct a PauliList from a symplectic data.
+    **Returns**
 
-**Parameters**
+    label iterator object for the PauliList.
 
-*   **z** (*np.ndarray*) – 2D boolean Numpy array.
-*   **x** (*np.ndarray*) – 2D boolean Numpy array.
-*   **phase** (*np.ndarray or None*) – Optional, 1D integer array from Z\_4.
+    **Return type**
 
-**Returns**
+    LabelIterator
+  </Function>
 
-the constructed PauliList.
+  ### matrix\_iter
 
-**Return type**
+  <Function id="qiskit.quantum_info.PauliList.matrix_iter" name="matrix_iter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L1077-L1104" signature="matrix_iter(sparse=False)">
+    Return a matrix representation iterator.
 
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+    This is a lazy iterator that converts each row into the Pauli matrix representation only as it is used. To convert the entire table to matrices use the [`to_matrix()`](#qiskit.quantum_info.PauliList.to_matrix "qiskit.quantum_info.PauliList.to_matrix") method.
 
-### group\_commuting
+    **Parameters**
 
-<span id="qiskit.quantum_info.PauliList.group_commuting" />
+    **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally return sparse CSR matrices if `True`, otherwise return Numpy array matrices (Default: `False`)
 
-`group_commuting(qubit_wise=False)`
+    **Returns**
 
-Partition a PauliList into sets of commuting Pauli strings.
+    matrix iterator object for the PauliList.
 
-**Parameters**
+    **Return type**
 
-**qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
+    MatrixIterator
+  </Function>
 
-whether the commutation rule is applied to the whole operator, or on a per-qubit basis. For example:
+  ### noncommutation\_graph
 
-```python
->>> from qiskit.quantum_info import PauliList
->>> op = PauliList(["XX", "YY", "IZ", "ZZ"])
->>> op.group_commuting()
-[PauliList(['XX', 'YY']), PauliList(['IZ', 'ZZ'])]
->>> op.group_commuting(qubit_wise=True)
-[PauliList(['XX']), PauliList(['YY']), PauliList(['IZ', 'ZZ'])]
-```
+  <Function id="qiskit.quantum_info.PauliList.noncommutation_graph" name="noncommutation_graph" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L1158-L1178" signature="noncommutation_graph(qubit_wise)">
+    Create the non-commutation graph of this PauliList.
 
-**Returns**
+    This transforms the measurement operator grouping problem into graph coloring problem. The constructed graph contains one node for each Pauli. The nodes will be connecting for any two Pauli terms that do \_not\_ commute.
 
-List of PauliLists where each PauliList contains commuting Pauli operators.
+    **Parameters**
 
-**Return type**
+    **qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
+    **Returns**
 
-### group\_qubit\_wise\_commuting
+    **the non-commutation graph with nodes for each Pauli and edges**
 
-<span id="qiskit.quantum_info.PauliList.group_qubit_wise_commuting" />
+    indicating a non-commutation relation. Each node will hold the index of the Pauli term it corresponds to in its data. The edges of the graph hold no data.
 
-`group_qubit_wise_commuting()`
+    **Return type**
 
-Partition a PauliList into sets of mutually qubit-wise commuting Pauli strings.
+    [rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.14)")
+  </Function>
 
-**Returns**
+  ### output\_dims
 
-List of PauliLists where each PauliList contains commutable Pauli operators.
+  <Function id="qiskit.quantum_info.PauliList.output_dims" name="output_dims" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/base_operator.py#L139-L141" signature="output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-**Return type**
+  ### power
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
+  <Function id="qiskit.quantum_info.PauliList.power" name="power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/mixins/group.py#L151-L171" signature="power(n)">
+    Return the compose of a operator with itself n times.
 
-### input\_dims
+    **Parameters**
 
-<span id="qiskit.quantum_info.PauliList.input_dims" />
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
 
-`input_dims(qargs=None)`
+    **Returns**
 
-Return tuple of input dimension for specified subsystems.
+    the n-times composed operator.
 
-### insert
+    **Return type**
 
-<span id="qiskit.quantum_info.PauliList.insert" />
+    [Clifford](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-`insert(ind, value, qubit=False)`
+    **Raises**
 
-Insert Paulis into the table.
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+  </Function>
 
-When inserting qubits the qubit index is the same as the column index of the underlying `X` and `Z` arrays.
+  ### reshape
 
-**Parameters**
+  <Function id="qiskit.quantum_info.PauliList.reshape" name="reshape" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/base_operator.py#L106-L133" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – index to insert at.
-*   **value** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – values to insert.
-*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` insert qubit columns, otherwise insert Pauli rows (Default: `False`).
+    **Parameters**
 
-**Returns**
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
-the resulting table with the entries inserted.
+    **Returns**
 
-**Return type**
+    returns self with reshaped input and output dimensions.
 
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+    **Return type**
 
-**Raises**
+    BaseOperator
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the insertion index is invalid.
+    **Raises**
 
-### inverse
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-<span id="qiskit.quantum_info.PauliList.inverse" />
+  ### sort
 
-`inverse()`
+  <Function id="qiskit.quantum_info.PauliList.sort" name="sort" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L535-L591" signature="sort(weight=False, phase=False)">
+    Sort the rows of the table.
 
-Return the inverse of each Pauli in the list.
+    The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Paulis of a given weight are still ordered lexicographically.
 
-### label\_iter
+    **Example**
 
-<span id="qiskit.quantum_info.PauliList.label_iter" />
+    Consider sorting all a random ordering of all 2-qubit Paulis
 
-`label_iter()`
+    ```python
+    from numpy.random import shuffle
+    from qiskit.quantum_info.operators import PauliList
 
-Return a label representation iterator.
+    # 2-qubit labels
+    labels = ['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ',
+              'YI', 'YX', 'YY', 'YZ', 'ZI', 'ZX', 'ZY', 'ZZ']
+    # Shuffle Labels
+    shuffle(labels)
+    pt = PauliList(labels)
+    print('Initial Ordering')
+    print(pt)
 
-This is a lazy iterator that converts each row into the string label only as it is used. To convert the entire table to labels use the [`to_labels()`](#qiskit.quantum_info.PauliList.to_labels "qiskit.quantum_info.PauliList.to_labels") method.
+    # Lexicographic Ordering
+    srt = pt.sort()
+    print('Lexicographically sorted')
+    print(srt)
 
-**Returns**
+    # Weight Ordering
+    srt = pt.sort(weight=True)
+    print('Weight sorted')
+    print(srt)
+    ```
 
-label iterator object for the PauliList.
+    ```python
+    Initial Ordering
+    ['YX', 'ZZ', 'XZ', 'YI', 'YZ', 'II', 'XX', 'XI', 'XY', 'YY', 'IX', 'IZ',
+     'ZY', 'ZI', 'ZX', 'IY']
+    Lexicographically sorted
+    ['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ', 'YI', 'YX', 'YY', 'YZ',
+     'ZI', 'ZX', 'ZY', 'ZZ']
+    Weight sorted
+    ['II', 'IX', 'IY', 'IZ', 'XI', 'YI', 'ZI', 'XX', 'XY', 'XZ', 'YX', 'YY',
+     'YZ', 'ZX', 'ZY', 'ZZ']
+    ```
 
-**Return type**
+    **Parameters**
 
-LabelIterator
+    *   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally sort by weight if `True` (Default: `False`).
+    *   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by phase before weight or order (Default: `False`).
 
-### matrix\_iter
+    **Returns**
 
-<span id="qiskit.quantum_info.PauliList.matrix_iter" />
+    a sorted copy of the original table.
 
-`matrix_iter(sparse=False)`
+    **Return type**
 
-Return a matrix representation iterator.
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+  </Function>
 
-This is a lazy iterator that converts each row into the Pauli matrix representation only as it is used. To convert the entire table to matrices use the [`to_matrix()`](#qiskit.quantum_info.PauliList.to_matrix "qiskit.quantum_info.PauliList.to_matrix") method.
+  ### tensor
 
-**Parameters**
+  <Function id="qiskit.quantum_info.PauliList.tensor" name="tensor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L663-L679" signature="tensor(other)">
+    Return the tensor product with each Pauli in the list.
 
-**sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally return sparse CSR matrices if `True`, otherwise return Numpy array matrices (Default: `False`)
+    **Parameters**
 
-**Returns**
+    **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
 
-matrix iterator object for the PauliList.
+    **Returns**
 
-**Return type**
+    the list of tensor product Paulis.
 
-MatrixIterator
+    **Return type**
 
-### noncommutation\_graph
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
 
-<span id="qiskit.quantum_info.PauliList.noncommutation_graph" />
+    **Raises**
 
-`noncommutation_graph(qubit_wise)`
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list.
+  </Function>
 
-Create the non-commutation graph of this PauliList.
+  ### to\_labels
 
-This transforms the measurement operator grouping problem into graph coloring problem. The constructed graph contains one node for each Pauli. The nodes will be connecting for any two Pauli terms that do \_not\_ commute.
+  <Function id="qiskit.quantum_info.PauliList.to_labels" name="to_labels" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L953-L999" signature="to_labels(array=False)">
+    Convert a PauliList to a list Pauli string labels.
 
-**Parameters**
+    For large PauliLists converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
 
-**qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether the commutation rule is applied to the whole operator, or on a per-qubit basis.
+    | Label | Symplectic | Matrix                                          |
+    | ----- | ---------- | ----------------------------------------------- |
+    | `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
+    | `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
+    | `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
+    | `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
 
-**Returns**
+    **Parameters**
 
-**the non-commutation graph with nodes for each Pauli and edges**
+    **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return a Numpy array if `True`, otherwise return a list (Default: `False`).
 
-indicating a non-commutation relation. Each node will hold the index of the Pauli term it corresponds to in its data. The edges of the graph hold no data.
+    **Returns**
 
-**Return type**
+    The rows of the PauliList in label form.
 
-[rustworkx.PyGraph](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.14)")
+    **Return type**
 
-### output\_dims
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") or array
+  </Function>
 
-<span id="qiskit.quantum_info.PauliList.output_dims" />
+  ### to\_matrix
 
-`output_dims(qargs=None)`
+  <Function id="qiskit.quantum_info.PauliList.to_matrix" name="to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L1001-L1049" signature="to_matrix(sparse=False, array=False)">
+    Convert to a list or array of Pauli matrices.
 
-Return tuple of output dimension for specified subsystems.
+    For large PauliLists converting using the `array=True` kwarg will be more efficient since it allocates memory a full rank-3 Numpy array of matrices in advance.
 
-### power
+    | Label | Symplectic | Matrix                                          |
+    | ----- | ---------- | ----------------------------------------------- |
+    | `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
+    | `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
+    | `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
+    | `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
 
-<span id="qiskit.quantum_info.PauliList.power" />
+    **Parameters**
 
-`power(n)`
+    *   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` return sparse CSR matrices, otherwise return dense Numpy arrays (Default: `False`).
+    *   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return as rank-3 numpy array if `True`, otherwise return a list of Numpy arrays (Default: `False`).
 
-Return the compose of a operator with itself n times.
+    **Returns**
 
-**Parameters**
+    A list of dense Pauli matrices if ```array=False` and ``sparse=False`. list: A list of sparse Pauli matrices if ``array=False``` and `sparse=True`. array: A dense rank-3 array of Pauli matrices if `array=True`.
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
+    **Return type**
 
-**Returns**
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+  </Function>
 
-the n-times composed operator.
+  ### transpose
 
-**Return type**
+  <Function id="qiskit.quantum_info.PauliList.transpose" name="transpose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L816-L818" signature="transpose()">
+    Return the transpose of each Pauli in the list.
+  </Function>
 
-[Clifford](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+  ### unique
 
-**Raises**
+  <Function id="qiskit.quantum_info.PauliList.unique" name="unique" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/pauli_list.py#L593-L657" signature="unique(return_index=False, return_counts=False)">
+    Return unique Paulis from the table.
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+    **Example**
 
-### reshape
+    ```python
+    from qiskit.quantum_info.operators import PauliList
 
-<span id="qiskit.quantum_info.PauliList.reshape" />
+    pt = PauliList(['X', 'Y', '-X', 'I', 'I', 'Z', 'X', 'iZ'])
+    unique = pt.unique()
+    print(unique)
+    ```
 
-`reshape(input_dims=None, output_dims=None, num_qubits=None)`
+    ```python
+    ['X', 'Y', '-X', 'I', 'Z', 'iZ']
+    ```
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
+    **Parameters**
 
-**Parameters**
+    *   **return\_index** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, also return the indices that result in the unique array. (Default: `False`)
+    *   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, also return the number of times each unique item appears in the table.
 
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
+    **Returns**
 
-**Returns**
+    **unique**
 
-returns self with reshaped input and output dimensions.
+    the table of the unique rows.
 
-**Return type**
+    **unique\_indices: np.ndarray, optional**
 
-BaseOperator
+    The indices of the first occurrences of the unique values in the original array. Only provided if `return_index` is `True`.
 
-**Raises**
+    **unique\_counts: np.array, optional**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    The number of times each of the unique values comes up in the original array. Only provided if `return_counts` is `True`.
 
-### sort
+    **Return type**
 
-<span id="qiskit.quantum_info.PauliList.sort" />
-
-`sort(weight=False, phase=False)`
-
-Sort the rows of the table.
-
-The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Paulis of a given weight are still ordered lexicographically.
-
-**Example**
-
-Consider sorting all a random ordering of all 2-qubit Paulis
-
-```python
-from numpy.random import shuffle
-from qiskit.quantum_info.operators import PauliList
-
-# 2-qubit labels
-labels = ['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ',
-          'YI', 'YX', 'YY', 'YZ', 'ZI', 'ZX', 'ZY', 'ZZ']
-# Shuffle Labels
-shuffle(labels)
-pt = PauliList(labels)
-print('Initial Ordering')
-print(pt)
-
-# Lexicographic Ordering
-srt = pt.sort()
-print('Lexicographically sorted')
-print(srt)
-
-# Weight Ordering
-srt = pt.sort(weight=True)
-print('Weight sorted')
-print(srt)
-```
-
-```python
-Initial Ordering
-['YX', 'ZZ', 'XZ', 'YI', 'YZ', 'II', 'XX', 'XI', 'XY', 'YY', 'IX', 'IZ',
- 'ZY', 'ZI', 'ZX', 'IY']
-Lexicographically sorted
-['II', 'IX', 'IY', 'IZ', 'XI', 'XX', 'XY', 'XZ', 'YI', 'YX', 'YY', 'YZ',
- 'ZI', 'ZX', 'ZY', 'ZZ']
-Weight sorted
-['II', 'IX', 'IY', 'IZ', 'XI', 'YI', 'ZI', 'XX', 'XY', 'XZ', 'YX', 'YY',
- 'YZ', 'ZX', 'ZY', 'ZZ']
-```
-
-**Parameters**
-
-*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally sort by weight if `True` (Default: `False`).
-*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by phase before weight or order (Default: `False`).
-
-**Returns**
-
-a sorted copy of the original table.
-
-**Return type**
-
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
-
-### tensor
-
-<span id="qiskit.quantum_info.PauliList.tensor" />
-
-`tensor(other)`
-
-Return the tensor product with each Pauli in the list.
-
-**Parameters**
-
-**other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
-
-**Returns**
-
-the list of tensor product Paulis.
-
-**Return type**
-
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to a PauliList, does not have either 1 or the same number of Paulis as the current list.
-
-### to\_labels
-
-<span id="qiskit.quantum_info.PauliList.to_labels" />
-
-`to_labels(array=False)`
-
-Convert a PauliList to a list Pauli string labels.
-
-For large PauliLists converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
-
-| Label | Symplectic | Matrix                                          |
-| ----- | ---------- | ----------------------------------------------- |
-| `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
-| `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
-| `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
-| `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
-
-**Parameters**
-
-**array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return a Numpy array if `True`, otherwise return a list (Default: `False`).
-
-**Returns**
-
-The rows of the PauliList in label form.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") or array
-
-### to\_matrix
-
-<span id="qiskit.quantum_info.PauliList.to_matrix" />
-
-`to_matrix(sparse=False, array=False)`
-
-Convert to a list or array of Pauli matrices.
-
-For large PauliLists converting using the `array=True` kwarg will be more efficient since it allocates memory a full rank-3 Numpy array of matrices in advance.
-
-| Label | Symplectic | Matrix                                          |
-| ----- | ---------- | ----------------------------------------------- |
-| `"I"` | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$  |
-| `"X"` | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$  |
-| `"Y"` | $[1, 1]$   | $\begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$ |
-| `"Z"` | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$ |
-
-**Parameters**
-
-*   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` return sparse CSR matrices, otherwise return dense Numpy arrays (Default: `False`).
-*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return as rank-3 numpy array if `True`, otherwise return a list of Numpy arrays (Default: `False`).
-
-**Returns**
-
-A list of dense Pauli matrices if ```array=False` and ``sparse=False`. list: A list of sparse Pauli matrices if ``array=False``` and `sparse=True`. array: A dense rank-3 array of Pauli matrices if `array=True`.
-
-**Return type**
-
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
-
-### transpose
-
-<span id="qiskit.quantum_info.PauliList.transpose" />
-
-`transpose()`
-
-Return the transpose of each Pauli in the list.
-
-### unique
-
-<span id="qiskit.quantum_info.PauliList.unique" />
-
-`unique(return_index=False, return_counts=False)`
-
-Return unique Paulis from the table.
-
-**Example**
-
-```python
-from qiskit.quantum_info.operators import PauliList
-
-pt = PauliList(['X', 'Y', '-X', 'I', 'I', 'Z', 'X', 'iZ'])
-unique = pt.unique()
-print(unique)
-```
-
-```python
-['X', 'Y', '-X', 'I', 'Z', 'iZ']
-```
-
-**Parameters**
-
-*   **return\_index** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, also return the indices that result in the unique array. (Default: `False`)
-*   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, also return the number of times each unique item appears in the table.
-
-**Returns**
-
-**unique**
-
-the table of the unique rows.
-
-**unique\_indices: np.ndarray, optional**
-
-The indices of the first occurrences of the unique values in the original array. Only provided if `return_index` is `True`.
-
-**unique\_counts: np.array, optional**
-
-The number of times each of the unique values comes up in the original array. Only provided if `return_counts` is `True`.
-
-**Return type**
-
-[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+    [PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+  </Function>
+</Class>
 

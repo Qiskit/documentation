@@ -8,93 +8,85 @@ python_api_name: qiskit.algorithms.gradients.ReverseQGT
 
 # ReverseQGT
 
-<span id="qiskit.algorithms.gradients.ReverseQGT" />
+<Class id="qiskit.algorithms.gradients.ReverseQGT" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/reverse/reverse_qgt.py" signature="qiskit.algorithms.gradients.ReverseQGT(phase_fix=True, derivative_type=DerivativeType.COMPLEX)">
+  Bases: [`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base.base_qgt.BaseQGT")
 
-`qiskit.algorithms.gradients.ReverseQGT(phase_fix=True, derivative_type=DerivativeType.COMPLEX)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/gradients/reverse/reverse_qgt.py "view source code")
+  QGT calculation with the classically efficient reverse mode.
 
-Bases: [`BaseQGT`](qiskit.algorithms.gradients.BaseQGT "qiskit.algorithms.gradients.base.base_qgt.BaseQGT")
+  <Admonition title="Note" type="note">
+    This QGT implementation is based on statevector manipulations and scales exponentially with the number of qubits. However, for small system sizes it can be very fast compared to circuit-based gradients.
+  </Admonition>
 
-QGT calculation with the classically efficient reverse mode.
+  This class implements the calculation of the QGT as described in \[1]. By keeping track of three statevectors and iteratively sweeping through each parameterized gate, this method scales only quadratically with the number of parameters.
 
-<Admonition title="Note" type="note">
-  This QGT implementation is based on statevector manipulations and scales exponentially with the number of qubits. However, for small system sizes it can be very fast compared to circuit-based gradients.
-</Admonition>
+  **References:**
 
-This class implements the calculation of the QGT as described in \[1]. By keeping track of three statevectors and iteratively sweeping through each parameterized gate, this method scales only quadratically with the number of parameters.
+  > **\[1]: Jones, T. “Efficient classical calculation of the Quantum Natural Gradient” (2020).**
+  >
+  > [arXiv:2011.02991](https://arxiv.org/abs/2011.02991).
 
-**References:**
+  **Parameters**
 
-> **\[1]: Jones, T. “Efficient classical calculation of the Quantum Natural Gradient” (2020).**
->
-> [arXiv:2011.02991](https://arxiv.org/abs/2011.02991).
+  *   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether or not to include the phase fix.
+  *   **derivative\_type** (*DerivativeType*) – Determines whether the complex QGT or only the real or imaginary parts are calculated.
 
-**Parameters**
+  ## Attributes
 
-*   **phase\_fix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether or not to include the phase fix.
-*   **derivative\_type** (*DerivativeType*) – Determines whether the complex QGT or only the real or imaginary parts are calculated.
+  ### SUPPORTED\_GATES
 
-## Attributes
+  <Attribute id="qiskit.algorithms.gradients.ReverseQGT.SUPPORTED_GATES" name="SUPPORTED_GATES" attributeValue="= ['rx', 'ry', 'rz', 'cp', 'crx', 'cry', 'crz']" />
 
-<span id="qiskit.algorithms.gradients.ReverseQGT.SUPPORTED_GATES" />
+  ### derivative\_type
 
-### SUPPORTED\_GATES
+  <Attribute id="qiskit.algorithms.gradients.ReverseQGT.derivative_type" name="derivative_type">
+    The derivative type.
+  </Attribute>
 
-`= ['rx', 'ry', 'rz', 'cp', 'crx', 'cry', 'crz']`
+  ### options
 
-<span id="qiskit.algorithms.gradients.ReverseQGT.derivative_type" />
+  <Attribute id="qiskit.algorithms.gradients.ReverseQGT.options" name="options">
+    There are no options for the reverse QGT, returns an empty options dict.
 
-### derivative\_type
+    **Returns**
 
-The derivative type.
+    Empty options.
+  </Attribute>
 
-<span id="qiskit.algorithms.gradients.ReverseQGT.options" />
+  ## Methods
 
-### options
+  ### run
 
-There are no options for the reverse QGT, returns an empty options dict.
+  <Function id="qiskit.algorithms.gradients.ReverseQGT.run" name="run" signature="run(circuits, parameter_values, parameters=None, **options)">
+    Run the job of the QGTs on the given circuits.
 
-**Returns**
+    **Parameters**
 
-Empty options.
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QGTs.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
+    *   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QGTs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QGTs of all parameters in each circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
 
-## Methods
+    **Returns**
 
-### run
+    The job object of the QGTs of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
 
-<span id="qiskit.algorithms.gradients.ReverseQGT.run" />
+    **Raises**
 
-`run(circuits, parameter_values, parameters=None, **options)`
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
 
-Run the job of the QGTs on the given circuits.
+    **Return type**
 
-**Parameters**
+    [AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
+  </Function>
 
-*   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The list of quantum circuits to compute the QGTs.
-*   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – The list of parameter values to be bound to the circuit.
-*   **parameters** (*Sequence\[Sequence\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*] | None] | None*) – The sequence of parameters to calculate only the QGTs of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the QGTs of all parameters in each circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > QGT’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting.
+  ### update\_default\_options
 
-**Returns**
+  <Function id="qiskit.algorithms.gradients.ReverseQGT.update_default_options" name="update_default_options" signature="update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-The job object of the QGTs of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+    **Parameters**
 
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
-
-**Return type**
-
-[AlgorithmJob](qiskit.algorithms.AlgorithmJob "qiskit.algorithms.AlgorithmJob")
-
-### update\_default\_options
-
-<span id="qiskit.algorithms.gradients.ReverseQGT.update_default_options" />
-
-`update_default_options(**options)`
-
-Update the gradient’s default options setting.
-
-**Parameters**
-
-**\*\*options** – The fields to update the default options.
+    **\*\*options** – The fields to update the default options.
+  </Function>
+</Class>
 

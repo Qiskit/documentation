@@ -8,120 +8,114 @@ python_api_name: qiskit.transpiler.passes.TranslateParameterizedGates
 
 # TranslateParameterizedGates
 
-<span id="qiskit.transpiler.passes.TranslateParameterizedGates" />
+<Class id="qiskit.transpiler.passes.TranslateParameterizedGates" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py" signature="TranslateParameterizedGates(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-`TranslateParameterizedGates(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
+  Translate parameterized gates to a supported basis set.
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+  Once a parameterized instruction is found that is not in the `supported_gates` list, the instruction is decomposed one level and the parameterized sub-blocks are recursively decomposed. The recursion is stopped once all parameterized gates are in `supported_gates`, or if a gate has no definition and a translation to the basis is attempted (this might happen e.g. for the `UGate` if it’s not in the specified gate list).
 
-Translate parameterized gates to a supported basis set.
+  **Example**
 
-Once a parameterized instruction is found that is not in the `supported_gates` list, the instruction is decomposed one level and the parameterized sub-blocks are recursively decomposed. The recursion is stopped once all parameterized gates are in `supported_gates`, or if a gate has no definition and a translation to the basis is attempted (this might happen e.g. for the `UGate` if it’s not in the specified gate list).
+  The following, multiply nested circuit:
 
-**Example**
+  ```python
+  from qiskit.circuit import QuantumCircuit, ParameterVector
+  from qiskit.transpiler.passes import TranslateParameterizedGates
 
-The following, multiply nested circuit:
+  x = ParameterVector("x", 4)
+  block1 = QuantumCircuit(1)
+  block1.rx(x[0], 0)
 
-```python
-from qiskit.circuit import QuantumCircuit, ParameterVector
-from qiskit.transpiler.passes import TranslateParameterizedGates
+  sub_block = QuantumCircuit(2)
+  sub_block.cx(0, 1)
+  sub_block.rz(x[2], 0)
 
-x = ParameterVector("x", 4)
-block1 = QuantumCircuit(1)
-block1.rx(x[0], 0)
+  block2 = QuantumCircuit(2)
+  block2.ry(x[1], 0)
+  block2.append(sub_block.to_gate(), [0, 1])
 
-sub_block = QuantumCircuit(2)
-sub_block.cx(0, 1)
-sub_block.rz(x[2], 0)
+  block3 = QuantumCircuit(3)
+  block3.ccx(0, 1, 2)
 
-block2 = QuantumCircuit(2)
-block2.ry(x[1], 0)
-block2.append(sub_block.to_gate(), [0, 1])
+  circuit = QuantumCircuit(3)
+  circuit.append(block1.to_gate(), [1])
+  circuit.append(block2.to_gate(), [0, 1])
+  circuit.append(block3.to_gate(), [0, 1, 2])
+  circuit.cry(x[3], 0, 2)
 
-block3 = QuantumCircuit(3)
-block3.ccx(0, 1, 2)
+  supported_gates = ["rx", "ry", "rz", "cp", "crx", "cry", "crz"]
+  unrolled = TranslateParameterizedGates(supported_gates)(circuit)
+  ```
 
-circuit = QuantumCircuit(3)
-circuit.append(block1.to_gate(), [1])
-circuit.append(block2.to_gate(), [0, 1])
-circuit.append(block3.to_gate(), [0, 1, 2])
-circuit.cry(x[3], 0, 2)
+  is decomposed to:
 
-supported_gates = ["rx", "ry", "rz", "cp", "crx", "cry", "crz"]
-unrolled = TranslateParameterizedGates(supported_gates)(circuit)
-```
+  ```python
+       ┌──────────┐     ┌──────────┐┌─────────────┐
+  q_0: ┤ Ry(x[1]) ├──■──┤ Rz(x[2]) ├┤0            ├─────■──────
+       ├──────────┤┌─┴─┐└──────────┘│             │     │
+  q_1: ┤ Rx(x[0]) ├┤ X ├────────────┤1 circuit-92 ├─────┼──────
+       └──────────┘└───┘            │             │┌────┴─────┐
+  q_2: ─────────────────────────────┤2            ├┤ Ry(x[3]) ├
+                                    └─────────────┘└──────────┘
+  ```
 
-is decomposed to:
+  **Parameters**
 
-```python
-     ┌──────────┐     ┌──────────┐┌─────────────┐
-q_0: ┤ Ry(x[1]) ├──■──┤ Rz(x[2]) ├┤0            ├─────■──────
-     ├──────────┤┌─┴─┐└──────────┘│             │     │
-q_1: ┤ Rx(x[0]) ├┤ X ├────────────┤1 circuit-92 ├─────┼──────
-     └──────────┘└───┘            │             │┌────┴─────┐
-q_2: ─────────────────────────────┤2            ├┤ Ry(x[3]) ├
-                                  └─────────────┘└──────────┘
-```
+  *   **supported\_gates** – A list of suppported basis gates specified as string. If `None`, a `target` must be provided.
+  *   **equivalence\_library** – The equivalence library to translate the gates. Defaults to the equivalence library of all Qiskit standard gates.
+  *   **target** – A [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") containing the supported operations. If `None`, `supported_gates` must be set. Note that this argument takes precedence over `supported_gates`, if both are set.
 
-**Parameters**
+  **Raises**
 
-*   **supported\_gates** – A list of suppported basis gates specified as string. If `None`, a `target` must be provided.
-*   **equivalence\_library** – The equivalence library to translate the gates. Defaults to the equivalence library of all Qiskit standard gates.
-*   **target** – A [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") containing the supported operations. If `None`, `supported_gates` must be set. Note that this argument takes precedence over `supported_gates`, if both are set.
+  **ValueError** – If neither of `supported_gates` and `target` are passed.
 
-**Raises**
+  ## Methods
 
-**ValueError** – If neither of `supported_gates` and `target` are passed.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.TranslateParameterizedGates.name" name="name" signature="TranslateParameterizedGates.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.TranslateParameterizedGates.name" />
+  <Function id="qiskit.transpiler.passes.TranslateParameterizedGates.run" name="run" signature="TranslateParameterizedGates.run(dag)">
+    Run the transpiler pass.
 
-`TranslateParameterizedGates.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – The DAG circuit in which the parameterized gates should be unrolled.
 
-### run
+    **Return type**
 
-<span id="qiskit.transpiler.passes.TranslateParameterizedGates.run" />
+    [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
 
-`TranslateParameterizedGates.run(dag)`
+    **Returns**
 
-Run the transpiler pass.
+    A DAG where the parameterized gates have been unrolled.
 
-**Parameters**
+    **Raises**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – The DAG circuit in which the parameterized gates should be unrolled.
+    **QiskitError** – If the circuit cannot be unrolled.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+  ### is\_analysis\_pass
 
-**Returns**
+  <Attribute id="qiskit.transpiler.passes.TranslateParameterizedGates.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-A DAG where the parameterized gates have been unrolled.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Raises**
+  ### is\_transformation\_pass
 
-**QiskitError** – If the circuit cannot be unrolled.
+  <Attribute id="qiskit.transpiler.passes.TranslateParameterizedGates.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.TranslateParameterizedGates.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.TranslateParameterizedGates.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

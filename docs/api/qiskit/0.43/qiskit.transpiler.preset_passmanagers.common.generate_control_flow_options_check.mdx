@@ -10,17 +10,15 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_control_f
 
 # qiskit.transpiler.preset\_passmanagers.common.generate\_control\_flow\_options\_check
 
-<span id="qiskit.transpiler.preset_passmanagers.common.generate_control_flow_options_check" />
+<Function id="qiskit.transpiler.preset_passmanagers.common.generate_control_flow_options_check" name="generate_control_flow_options_check" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py" signature="generate_control_flow_options_check(layout_method=None, routing_method=None, translation_method=None, optimization_method=None, scheduling_method=None, basis_gates=(), target=None)">
+  Generate a pass manager that, when run on a DAG that contains control flow, fails with an error message explaining the invalid options, and what could be used instead.
 
-`generate_control_flow_options_check(layout_method=None, routing_method=None, translation_method=None, optimization_method=None, scheduling_method=None, basis_gates=(), target=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+  **Returns**
 
-Generate a pass manager that, when run on a DAG that contains control flow, fails with an error message explaining the invalid options, and what could be used instead.
+  a pass manager that populates the `contains_x` properties for each of the control-flow operations, and raises an error if any of the given options do not support control flow, but a circuit with control flow is given.
 
-**Returns**
+  **Return type**
 
-a pass manager that populates the `contains_x` properties for each of the control-flow operations, and raises an error if any of the given options do not support control flow, but a circuit with control flow is given.
-
-**Return type**
-
-[PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
+  [PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
+</Function>
 

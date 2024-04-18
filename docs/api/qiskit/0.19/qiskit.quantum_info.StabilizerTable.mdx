@@ -8,939 +8,893 @@ python_api_name: qiskit.quantum_info.StabilizerTable
 
 # StabilizerTable
 
-<span id="qiskit.quantum_info.StabilizerTable" />
+<Class id="qiskit.quantum_info.StabilizerTable" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/stabilizer_table.py" signature="StabilizerTable(data, phase=None)">
+  Symplectic representation of a list Stabilizer matrices.
 
-`StabilizerTable(data, phase=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
+  **Symplectic Representation**
 
-Symplectic representation of a list Stabilizer matrices.
+  The symplectic representation of a single-qubit Stabilizer matrix is a pair of boolean values $[x, z]$ and a boolean phase p such that the Stabilizer matrix is given by $S = (-1)^p \sigma_z^z.\sigma_x^x$. The correspondence between labels, symplectic representation, stabilizer matrices, and Pauli matrices for the single-qubit case is shown in the following table.
 
-**Symplectic Representation**
+  | Label  | Phase | Symplectic | Matrix                                           | Pauli |
+  | ------ | ----- | ---------- | ------------------------------------------------ | ----- |
+  | `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
+  | `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
+  | `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
+  | `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
+  | `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
+  | `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
+  | `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
+  | `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
 
-The symplectic representation of a single-qubit Stabilizer matrix is a pair of boolean values $[x, z]$ and a boolean phase p such that the Stabilizer matrix is given by $S = (-1)^p \sigma_z^z.\sigma_x^x$. The correspondence between labels, symplectic representation, stabilizer matrices, and Pauli matrices for the single-qubit case is shown in the following table.
-
-| Label  | Phase | Symplectic | Matrix                                           | Pauli |
-| ------ | ----- | ---------- | ------------------------------------------------ | ----- |
-| `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
-| `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
-| `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
-| `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
-| `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
-| `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
-| `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
-| `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
-
-Internally this is stored as a length N boolean phase vector $[p_{N-1}, ..., p_{0}]$ and a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") $M \times 2N$ boolean matrix:
+  Internally this is stored as a length N boolean phase vector $[p_{N-1}, ..., p_{0}]$ and a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") $M \times 2N$ boolean matrix:
 
 $$
 \begin{split}\left(\begin{array}{ccc|ccc}
-    x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
-    x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
-    \vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
-    x_{M-1,0} & ... & x_{M-1,N-1} & z_{M-1,0} & ... & z_{M-1,N-1}
+x_{0,0} & ... & x_{0,N-1} & z_{0,0} & ... & z_{0,N-1}  \\
+x_{1,0} & ... & x_{1,N-1} & z_{1,0} & ... & z_{1,N-1}  \\
+\vdots & \ddots & \vdots & \vdots & \ddots & \vdots  \\
+x_{M-1,0} & ... & x_{M-1,N-1} & z_{M-1,0} & ... & z_{M-1,N-1}
 \end{array}\right)\end{split}
 $$
 
-where each row is a block vector $[X_i, Z_i]$ with $X_i = [x_{i,0}, ..., x_{i,N-1}]$, $Z_i = [z_{i,0}, ..., z_{i,N-1}]$ is the symplectic representation of an N-qubit Pauli. This representation is based on reference \[1].
+  where each row is a block vector $[X_i, Z_i]$ with $X_i = [x_{i,0}, ..., x_{i,N-1}]$, $Z_i = [z_{i,0}, ..., z_{i,N-1}]$ is the symplectic representation of an N-qubit Pauli. This representation is based on reference \[1].
 
-StabilizerTable’s can be created from a list of labels using [`from_labels()`](qiskit.quantum_info.StabilizerTable#from_labels "qiskit.quantum_info.StabilizerTable.from_labels"), and converted to a list of labels or a list of matrices using [`to_labels()`](qiskit.quantum_info.StabilizerTable#to_labels "qiskit.quantum_info.StabilizerTable.to_labels") and [`to_matrix()`](qiskit.quantum_info.StabilizerTable#to_matrix "qiskit.quantum_info.StabilizerTable.to_matrix") respectively.
+  StabilizerTable’s can be created from a list of labels using [`from_labels()`](qiskit.quantum_info.StabilizerTable#from_labels "qiskit.quantum_info.StabilizerTable.from_labels"), and converted to a list of labels or a list of matrices using [`to_labels()`](qiskit.quantum_info.StabilizerTable#to_labels "qiskit.quantum_info.StabilizerTable.to_labels") and [`to_matrix()`](qiskit.quantum_info.StabilizerTable#to_matrix "qiskit.quantum_info.StabilizerTable.to_matrix") respectively.
 
-**Group Product**
+  **Group Product**
 
-The product of the stabilizer elements is defined with respect to the matrix multiplication of the matrices in Table 1. In terms of stabilizes labels the dot product group structure is
+  The product of the stabilizer elements is defined with respect to the matrix multiplication of the matrices in Table 1. In terms of stabilizes labels the dot product group structure is
 
-| A.B   | I | X  | Y  | Z  |
-| ----- | - | -- | -- | -- |
-| **I** | I | X  | Y  | Z  |
-| **X** | X | I  | -Z | Y  |
-| **Y** | Y | Z  | -I | -X |
-| **Z** | Z | -Y | X  | I  |
+  | A.B   | I | X  | Y  | Z  |
+  | ----- | - | -- | -- | -- |
+  | **I** | I | X  | Y  | Z  |
+  | **X** | X | I  | -Z | Y  |
+  | **Y** | Y | Z  | -I | -X |
+  | **Z** | Z | -Y | X  | I  |
 
-The [`dot()`](qiskit.quantum_info.StabilizerTable#dot "qiskit.quantum_info.StabilizerTable.dot") method will return the output for `row.dot(col) = row.col`, while the [`compose()`](qiskit.quantum_info.StabilizerTable#compose "qiskit.quantum_info.StabilizerTable.compose") will return `row.compose(col) = col.row` from the above table.
+  The [`dot()`](qiskit.quantum_info.StabilizerTable#dot "qiskit.quantum_info.StabilizerTable.dot") method will return the output for `row.dot(col) = row.col`, while the [`compose()`](qiskit.quantum_info.StabilizerTable#compose "qiskit.quantum_info.StabilizerTable.compose") will return `row.compose(col) = col.row` from the above table.
 
-Note that while this dot product is different to the matrix product of the [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable"), it does not change the commutation structure of elements. Hence `commutes:()` will be the same for the same labels.
+  Note that while this dot product is different to the matrix product of the [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable"), it does not change the commutation structure of elements. Hence `commutes:()` will be the same for the same labels.
 
-**Qubit Ordering**
+  **Qubit Ordering**
 
-The qubits are ordered in the table such the least significant qubit \[x\_\{i, 0}, z\_\{i, 0}] is the first element of each of the $X_i, Z_i$ vector blocks. This is the opposite order to position in string labels or matrix tensor products where the least significant qubit is the right-most string character. For example Pauli `"ZX"` has `"X"` on qubit-0 and `"Z"` on qubit 1, and would have symplectic vectors $x=[1, 0]$, $z=[0, 1]$.
+  The qubits are ordered in the table such the least significant qubit \[x\_\{i, 0}, z\_\{i, 0}] is the first element of each of the $X_i, Z_i$ vector blocks. This is the opposite order to position in string labels or matrix tensor products where the least significant qubit is the right-most string character. For example Pauli `"ZX"` has `"X"` on qubit-0 and `"Z"` on qubit 1, and would have symplectic vectors $x=[1, 0]$, $z=[0, 1]$.
 
-**Data Access**
+  **Data Access**
 
-Subsets of rows can be accessed using the list access `[]` operator and will return a table view of part of the StabilizerTable. The underlying phase vector and Pauli array can be directly accessed using the [`phase`](qiskit.quantum_info.StabilizerTable#phase "qiskit.quantum_info.StabilizerTable.phase") and [`array`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array") properties respectively. The sub-arrays for only the X or Z blocks can be accessed using the [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") properties respectively.
+  Subsets of rows can be accessed using the list access `[]` operator and will return a table view of part of the StabilizerTable. The underlying phase vector and Pauli array can be directly accessed using the [`phase`](qiskit.quantum_info.StabilizerTable#phase "qiskit.quantum_info.StabilizerTable.phase") and [`array`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array") properties respectively. The sub-arrays for only the X or Z blocks can be accessed using the [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") properties respectively.
 
-The Pauli part of the Stabilizer table can be viewed and accessed as a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") object using the [`pauli`](qiskit.quantum_info.StabilizerTable#pauli "qiskit.quantum_info.StabilizerTable.pauli") property. Note that this doesn’t copy the underlying array so any changes made to the Pauli table will also change the stabilizer table.
+  The Pauli part of the Stabilizer table can be viewed and accessed as a [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable") object using the [`pauli`](qiskit.quantum_info.StabilizerTable#pauli "qiskit.quantum_info.StabilizerTable.pauli") property. Note that this doesn’t copy the underlying array so any changes made to the Pauli table will also change the stabilizer table.
 
-**Iteration**
+  **Iteration**
 
-Rows in the Stabilizer table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.StabilizerTable#label_iter "qiskit.quantum_info.StabilizerTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.StabilizerTable#matrix_iter "qiskit.quantum_info.StabilizerTable.matrix_iter") methods.
+  Rows in the Stabilizer table can be iterated over like a list. Iteration can also be done using the label or matrix representation of each row using the [`label_iter()`](qiskit.quantum_info.StabilizerTable#label_iter "qiskit.quantum_info.StabilizerTable.label_iter") and [`matrix_iter()`](qiskit.quantum_info.StabilizerTable#matrix_iter "qiskit.quantum_info.StabilizerTable.matrix_iter") methods.
 
-**References**
+  **References**
 
-1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
+  1.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
-Initialize the StabilizerTable.
+  Initialize the StabilizerTable.
 
-**Parameters**
+  **Parameters**
 
-*   **data** (*array or str or* [*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input PauliTable data.
-*   **phase** (*array or bool or None*) – optional phase vector for input data (Default: None).
+  *   **data** (*array or str or* [*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input PauliTable data.
+  *   **phase** (*array or bool or None*) – optional phase vector for input data (Default: None).
 
-**Raises**
+  **Raises**
 
-**QiskitError** – if input array or phase vector has an invalid shape.
+  **QiskitError** – if input array or phase vector has an invalid shape.
 
-**Additional Information:**
+  **Additional Information:**
 
-The input array is not copied so multiple Pauli and Stabilizer tables can share the same underlying array.
+  The input array is not copied so multiple Pauli and Stabilizer tables can share the same underlying array.
 
-## Attributes
+  ## Attributes
 
-### X
+  ### X
 
-The X block of the [`array`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array").
+  <Attribute id="qiskit.quantum_info.StabilizerTable.X" name="X">
+    The X block of the [`array`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array").
+  </Attribute>
 
-### Z
+  ### Z
 
-The Z block of the [`array`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array").
+  <Attribute id="qiskit.quantum_info.StabilizerTable.Z" name="Z">
+    The Z block of the [`array`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array").
+  </Attribute>
 
-### array
+  ### array
 
-The underlying boolean array.
+  <Attribute id="qiskit.quantum_info.StabilizerTable.array" name="array">
+    The underlying boolean array.
+  </Attribute>
 
-### atol
+  ### atol
 
-The default absolute tolerance parameter for float comparisons.
+  <Attribute id="qiskit.quantum_info.StabilizerTable.atol" name="atol">
+    The default absolute tolerance parameter for float comparisons.
+  </Attribute>
 
-### dim
+  ### dim
 
-Return tuple (input\_shape, output\_shape).
+  <Attribute id="qiskit.quantum_info.StabilizerTable.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-### num\_qubits
+  ### num\_qubits
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+  <Attribute id="qiskit.quantum_info.StabilizerTable.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-### pauli
+  ### pauli
 
-Return PauliTable
+  <Attribute id="qiskit.quantum_info.StabilizerTable.pauli" name="pauli">
+    Return PauliTable
+  </Attribute>
 
-### phase
+  ### phase
 
-Return phase vector
+  <Attribute id="qiskit.quantum_info.StabilizerTable.phase" name="phase">
+    Return phase vector
+  </Attribute>
 
-### qargs
+  ### qargs
 
-Return the qargs for the operator.
+  <Attribute id="qiskit.quantum_info.StabilizerTable.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-### rtol
+  ### rtol
 
-The relative tolerance parameter for float comparisons.
+  <Attribute id="qiskit.quantum_info.StabilizerTable.rtol" name="rtol">
+    The relative tolerance parameter for float comparisons.
+  </Attribute>
 
-### shape
+  ### shape
 
-The full shape of the [`array()`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array")
+  <Attribute id="qiskit.quantum_info.StabilizerTable.shape" name="shape">
+    The full shape of the [`array()`](qiskit.quantum_info.StabilizerTable#array "qiskit.quantum_info.StabilizerTable.array")
+  </Attribute>
 
-### size
+  ### size
 
-The number of Pauli rows in the table.
+  <Attribute id="qiskit.quantum_info.StabilizerTable.size" name="size">
+    The number of Pauli rows in the table.
+  </Attribute>
 
-## Methods
+  ## Methods
 
-### \_\_call\_\_
+  ### \_\_call\_\_
 
-<span id="qiskit.quantum_info.StabilizerTable.__call__" />
+  <Function id="qiskit.quantum_info.StabilizerTable.__call__" name="__call__" signature="StabilizerTable.__call__(qargs)">
+    Return a clone with qargs set
+  </Function>
 
-`StabilizerTable.__call__(qargs)`
+  ### \_\_getitem\_\_
 
-Return a clone with qargs set
+  <Function id="qiskit.quantum_info.StabilizerTable.__getitem__" name="__getitem__" signature="StabilizerTable.__getitem__(key)">
+    Return a view of StabilizerTable
+  </Function>
 
-### \_\_getitem\_\_
+  ### \_\_len\_\_
 
-<span id="qiskit.quantum_info.StabilizerTable.__getitem__" />
+  <Function id="qiskit.quantum_info.StabilizerTable.__len__" name="__len__" signature="StabilizerTable.__len__()">
+    Return the number of Pauli rows in the table.
+  </Function>
 
-`StabilizerTable.__getitem__(key)`
+  ### \_\_mul\_\_
 
-Return a view of StabilizerTable
+  <Function id="qiskit.quantum_info.StabilizerTable.__mul__" name="__mul__" signature="StabilizerTable.__mul__(other)" />
 
-### \_\_len\_\_
+  ### add
 
-<span id="qiskit.quantum_info.StabilizerTable.__len__" />
+  <Function id="qiskit.quantum_info.StabilizerTable.add" name="add" signature="StabilizerTable.add(other)">
+    Return the linear operator self + other.
 
-`StabilizerTable.__len__()`
+    DEPRECATED: use `operator + other` instead.
 
-Return the number of Pauli rows in the table.
+    **Parameters**
 
-### \_\_mul\_\_
+    **other** (*BaseOperator*) – an operator object.
 
-<span id="qiskit.quantum_info.StabilizerTable.__mul__" />
+    **Returns**
 
-`StabilizerTable.__mul__(other)`
+    the operator self + other.
 
-### add
+    **Return type**
 
-<span id="qiskit.quantum_info.StabilizerTable.add" />
+    BaseOperator
+  </Function>
 
-`StabilizerTable.add(other)`
+  ### adjoint
 
-Return the linear operator self + other.
+  <Function id="qiskit.quantum_info.StabilizerTable.adjoint" name="adjoint" signature="StabilizerTable.adjoint()">
+    Return the adjoint of the operator.
+  </Function>
 
-DEPRECATED: use `operator + other` instead.
+  ### anticommutes\_with\_all
 
-**Parameters**
+  <Function id="qiskit.quantum_info.StabilizerTable.anticommutes_with_all" name="anticommutes_with_all" signature="StabilizerTable.anticommutes_with_all(other)">
+    Return indexes of rows that commute other.
 
-**other** (*BaseOperator*) – an operator object.
+    If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that anti-commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
 
-**Returns**
+    **Parameters**
 
-the operator self + other.
+    **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
 
-**Return type**
+    **Returns**
 
-BaseOperator
+    index array of the anti-commuting rows.
 
-### adjoint
+    **Return type**
 
-<span id="qiskit.quantum_info.StabilizerTable.adjoint" />
+    array
+  </Function>
 
-`StabilizerTable.adjoint()`
+  ### argsort
 
-Return the adjoint of the operator.
+  <Function id="qiskit.quantum_info.StabilizerTable.argsort" name="argsort" signature="StabilizerTable.argsort(weight=False)">
+    Return indices for sorting the rows of the PauliTable.
 
-### anticommutes\_with\_all
+    The default sort method is lexicographic sorting of Paulis by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Stabilizer, where the set of all Pauli’s of a given weight are still ordered lexicographically.
 
-<span id="qiskit.quantum_info.StabilizerTable.anticommutes_with_all" />
+    This does not sort based on phase values. It will preserve the original order of rows with the same Pauli’s but different phases.
 
-`StabilizerTable.anticommutes_with_all(other)`
+    **Parameters**
 
-Return indexes of rows that commute other.
+    **weight** (*bool*) – optionally sort by weight if True (Default: False).
 
-If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that anti-commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
+    **Returns**
 
-**Parameters**
+    the indices for sorting the table.
 
-**other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
+    **Return type**
 
-**Returns**
+    array
+  </Function>
 
-index array of the anti-commuting rows.
+  ### commutes
 
-**Return type**
+  <Function id="qiskit.quantum_info.StabilizerTable.commutes" name="commutes" signature="StabilizerTable.commutes(pauli)">
+    Return list of commutation properties for each row with a Pauli.
 
-array
+    The returned vector is the same length as the size of the table and contains True for rows that commute with the Pauli, and False for the rows that anti-commute.
 
-### argsort
+    **Parameters**
 
-<span id="qiskit.quantum_info.StabilizerTable.argsort" />
+    **pauli** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli row.
 
-`StabilizerTable.argsort(weight=False)`
+    **Returns**
 
-Return indices for sorting the rows of the PauliTable.
+    The boolean vector of which rows commute or anti-commute.
 
-The default sort method is lexicographic sorting of Paulis by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Stabilizer, where the set of all Pauli’s of a given weight are still ordered lexicographically.
+    **Return type**
 
-This does not sort based on phase values. It will preserve the original order of rows with the same Pauli’s but different phases.
+    array
 
-**Parameters**
+    **Raises**
 
-**weight** (*bool*) – optionally sort by weight if True (Default: False).
+    **QiskitError** – if input is not a single Pauli row.
+  </Function>
 
-**Returns**
+  ### commutes\_with\_all
 
-the indices for sorting the table.
+  <Function id="qiskit.quantum_info.StabilizerTable.commutes_with_all" name="commutes_with_all" signature="StabilizerTable.commutes_with_all(other)">
+    Return indexes of rows that commute other.
 
-**Return type**
+    If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
 
-array
+    **Parameters**
 
-### commutes
+    **other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
 
-<span id="qiskit.quantum_info.StabilizerTable.commutes" />
+    **Returns**
 
-`StabilizerTable.commutes(pauli)`
+    index array of the commuting rows.
 
-Return list of commutation properties for each row with a Pauli.
+    **Return type**
 
-The returned vector is the same length as the size of the table and contains True for rows that commute with the Pauli, and False for the rows that anti-commute.
+    array
+  </Function>
 
-**Parameters**
+  ### compose
 
-**pauli** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli row.
+  <Function id="qiskit.quantum_info.StabilizerTable.compose" name="compose" signature="StabilizerTable.compose(other, qargs=None, front=False)">
+    Return the compose output product of two tables.
 
-**Returns**
+    This returns the combination of the compose product of all stabilizers in the current table with all stabilizers in the other table.
 
-The boolean vector of which rows commute or anti-commute.
+    The individual stabilizer compose product is given by
 
-**Return type**
+    | `A.compose(B)` | I | X  | Y  | Z  |
+    | -------------- | - | -- | -- | -- |
+    | **I**          | I | X  | Y  | Z  |
+    | **X**          | X | I  | Z  | -Y |
+    | **Y**          | Y | -Z | -I | X  |
+    | **Z**          | Z | Y  | -X | I  |
 
-array
+    If front=True the composition will be given by the [`dot()`](qiskit.quantum_info.StabilizerTable#dot "qiskit.quantum_info.StabilizerTable.dot") method.
 
-**Raises**
+    **Example**
 
-**QiskitError** – if input is not a single Pauli row.
+    ```python
+    from qiskit.quantum_info.operators import StabilizerTable
 
-### commutes\_with\_all
+    current = StabilizerTable.from_labels(['+I', '-X'])
+    other =  StabilizerTable.from_labels(['+X', '-Z'])
+    print(current.compose(other))
+    ```
 
-<span id="qiskit.quantum_info.StabilizerTable.commutes_with_all" />
+    ```python
+    StabilizerTable: ['+X', '-Z', '-I', '-Y']
+    ```
 
-`StabilizerTable.commutes_with_all(other)`
+    **Parameters**
 
-Return indexes of rows that commute other.
+    *   **other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
+    *   **qargs** (*None or list*) – qubits to apply compose product on (Default: None).
+    *   **front** (*bool*) – If True use dot composition method (default: False).
 
-If other is a multi-row Pauli table the returned vector indexes rows of the current PauliTable that commute with *all* Pauli’s in other. If no rows satisfy the condition the returned array will be empty.
+    **Returns**
 
-**Parameters**
+    the compose outer product table.
 
-**other** ([*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – a single Pauli or multi-row PauliTable.
+    **Return type**
 
-**Returns**
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-index array of the commuting rows.
+    **Raises**
 
-**Return type**
+    **QiskitError** – if other cannot be converted to a StabilizerTable.
+  </Function>
 
-array
+  ### conjugate
 
-### compose
+  <Function id="qiskit.quantum_info.StabilizerTable.conjugate" name="conjugate" signature="StabilizerTable.conjugate()">
+    Not implemented.
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerTable.compose" />
+  ### copy
 
-`StabilizerTable.compose(other, qargs=None, front=False)`
+  <Function id="qiskit.quantum_info.StabilizerTable.copy" name="copy" signature="StabilizerTable.copy()">
+    Return a copy of the StabilizerTable.
+  </Function>
 
-Return the compose output product of two tables.
+  ### delete
 
-This returns the combination of the compose product of all stabilizers in the current table with all stabilizers in the other table.
+  <Function id="qiskit.quantum_info.StabilizerTable.delete" name="delete" signature="StabilizerTable.delete(ind, qubit=False)">
+    Return a copy with Stabilizer rows deleted from table.
 
-The individual stabilizer compose product is given by
+    When deleting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") arrays.
 
-| `A.compose(B)` | I | X  | Y  | Z  |
-| -------------- | - | -- | -- | -- |
-| **I**          | I | X  | Y  | Z  |
-| **X**          | X | I  | Z  | -Y |
-| **Y**          | Y | -Z | -I | X  |
-| **Z**          | Z | Y  | -X | I  |
+    **Parameters**
 
-If front=True the composition will be given by the [`dot()`](qiskit.quantum_info.StabilizerTable#dot "qiskit.quantum_info.StabilizerTable.dot") method.
+    *   **ind** (*int or list*) – index(es) to delete.
+    *   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Stabilizer rows (Default: False).
 
-**Example**
+    **Returns**
 
-```python
-from qiskit.quantum_info.operators import StabilizerTable
+    the resulting table with the entries removed.
 
-current = StabilizerTable.from_labels(['+I', '-X'])
-other =  StabilizerTable.from_labels(['+X', '-Z'])
-print(current.compose(other))
-```
+    **Return type**
 
-```python
-StabilizerTable: ['+X', '-Z', '-I', '-Y']
-```
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-**Parameters**
+    **Raises**
 
-*   **other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
-*   **qargs** (*None or list*) – qubits to apply compose product on (Default: None).
-*   **front** (*bool*) – If True use dot composition method (default: False).
+    **QiskitError** – if ind is out of bounds for the array size or number of qubits.
+  </Function>
 
-**Returns**
+  ### dot
 
-the compose outer product table.
+  <Function id="qiskit.quantum_info.StabilizerTable.dot" name="dot" signature="StabilizerTable.dot(other, qargs=None)">
+    Return the dot output product of two tables.
 
-**Return type**
+    This returns the combination of the compose product of all stabilizers in the current table with all stabilizers in the other table.
 
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+    The individual stabilizer dot product is given by
 
-**Raises**
+    | `A.dot(B)` | I | X  | Y  | Z  |
+    | ---------- | - | -- | -- | -- |
+    | **I**      | I | X  | Y  | Z  |
+    | **X**      | X | I  | -Z | Y  |
+    | **Y**      | Y | Z  | -I | -X |
+    | **Z**      | Z | -Y | X  | I  |
 
-**QiskitError** – if other cannot be converted to a StabilizerTable.
+    **Example**
 
-### conjugate
+    ```python
+    from qiskit.quantum_info.operators import StabilizerTable
 
-<span id="qiskit.quantum_info.StabilizerTable.conjugate" />
+    current = StabilizerTable.from_labels(['+I', '-X'])
+    other =  StabilizerTable.from_labels(['+X', '-Z'])
+    print(current.dot(other))
+    ```
 
-`StabilizerTable.conjugate()`
+    ```python
+    StabilizerTable: ['+X', '-Z', '-I', '+Y']
+    ```
 
-Not implemented.
+    **Parameters**
 
-### copy
+    *   **other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
+    *   **qargs** (*None or list*) – qubits to apply dot product on (Default: None).
 
-<span id="qiskit.quantum_info.StabilizerTable.copy" />
+    **Returns**
 
-`StabilizerTable.copy()`
+    the dot outer product table.
 
-Return a copy of the StabilizerTable.
+    **Return type**
 
-### delete
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-<span id="qiskit.quantum_info.StabilizerTable.delete" />
+    **Raises**
 
-`StabilizerTable.delete(ind, qubit=False)`
+    **QiskitError** – if other cannot be converted to a StabilizerTable.
+  </Function>
 
-Return a copy with Stabilizer rows deleted from table.
+  ### expand
 
-When deleting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") arrays.
+  <Function id="qiskit.quantum_info.StabilizerTable.expand" name="expand" signature="StabilizerTable.expand(other)">
+    Return the expand output product of two tables.
 
-**Parameters**
+    This returns the combination of the tensor product of all stabilizers in the other table with all stabilizers in the current table. The current tables qubits will be the least-significant in the returned table. This is the opposite tensor order to [`tensor()`](qiskit.quantum_info.StabilizerTable#tensor "qiskit.quantum_info.StabilizerTable.tensor").
 
-*   **ind** (*int or list*) – index(es) to delete.
-*   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Stabilizer rows (Default: False).
+    **Example**
 
-**Returns**
+    ```python
+    from qiskit.quantum_info.operators import StabilizerTable
 
-the resulting table with the entries removed.
+    current = StabilizerTable.from_labels(['+I', '-X'])
+    other =  StabilizerTable.from_labels(['-Y', '+Z'])
+    print(current.expand(other))
+    ```
 
-**Return type**
+    ```python
+    StabilizerTable: ['-YI', '+ZI', '+YX', '-ZX']
+    ```
 
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+    **Parameters**
 
-**Raises**
+    **other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
 
-**QiskitError** – if ind is out of bounds for the array size or number of qubits.
+    **Returns**
 
-### dot
+    the expand outer product table.
 
-<span id="qiskit.quantum_info.StabilizerTable.dot" />
+    **Return type**
 
-`StabilizerTable.dot(other, qargs=None)`
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-Return the dot output product of two tables.
+    **Raises**
 
-This returns the combination of the compose product of all stabilizers in the current table with all stabilizers in the other table.
+    **QiskitError** – if other cannot be converted to a StabilizerTable.
+  </Function>
 
-The individual stabilizer dot product is given by
+  ### from\_labels
 
-| `A.dot(B)` | I | X  | Y  | Z  |
-| ---------- | - | -- | -- | -- |
-| **I**      | I | X  | Y  | Z  |
-| **X**      | X | I  | -Z | Y  |
-| **Y**      | Y | Z  | -I | -X |
-| **Z**      | Z | -Y | X  | I  |
+  <Function id="qiskit.quantum_info.StabilizerTable.from_labels" name="from_labels" signature="classmethod StabilizerTable.from_labels(labels)">
+    Construct a StabilizerTable from a list of Pauli stabilizer strings.
 
-**Example**
+    Pauli Stabilizer string labels are Pauli strings with an optional `"+"` or `"-"` character. If there is no +/-sign a + phase is used by default.
 
-```python
-from qiskit.quantum_info.operators import StabilizerTable
+    | Label  | Phase | Symplectic | Matrix                                           | Pauli |
+    | ------ | ----- | ---------- | ------------------------------------------------ | ----- |
+    | `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
+    | `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
+    | `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
+    | `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
+    | `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
+    | `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
+    | `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
+    | `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
 
-current = StabilizerTable.from_labels(['+I', '-X'])
-other =  StabilizerTable.from_labels(['+X', '-Z'])
-print(current.dot(other))
-```
+    **Parameters**
 
-```python
-StabilizerTable: ['+X', '-Z', '-I', '+Y']
-```
+    **labels** (*list*) – Pauli stabilizer string label(es).
 
-**Parameters**
+    **Returns**
 
-*   **other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
-*   **qargs** (*None or list*) – qubits to apply dot product on (Default: None).
+    the constructed StabilizerTable.
 
-**Returns**
+    **Return type**
 
-the dot outer product table.
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-**Return type**
+    **Raises**
 
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+    **QiskitError** – If the input list is empty or contains invalid Pauli stabilizer strings.
+  </Function>
 
-**Raises**
+  ### input\_dims
 
-**QiskitError** – if other cannot be converted to a StabilizerTable.
+  <Function id="qiskit.quantum_info.StabilizerTable.input_dims" name="input_dims" signature="StabilizerTable.input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-### expand
+  ### insert
 
-<span id="qiskit.quantum_info.StabilizerTable.expand" />
+  <Function id="qiskit.quantum_info.StabilizerTable.insert" name="insert" signature="StabilizerTable.insert(ind, value, qubit=False)">
+    Insert stabilizers’s into the table.
 
-`StabilizerTable.expand(other)`
+    When inserting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") arrays.
 
-Return the expand output product of two tables.
+    **Parameters**
 
-This returns the combination of the tensor product of all stabilizers in the other table with all stabilizers in the current table. The current tables qubits will be the least-significant in the returned table. This is the opposite tensor order to [`tensor()`](qiskit.quantum_info.StabilizerTable#tensor "qiskit.quantum_info.StabilizerTable.tensor").
+    *   **ind** (*int*) – index to insert at.
+    *   **value** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – values to insert.
+    *   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
 
-**Example**
+    **Returns**
 
-```python
-from qiskit.quantum_info.operators import StabilizerTable
+    the resulting table with the entries inserted.
 
-current = StabilizerTable.from_labels(['+I', '-X'])
-other =  StabilizerTable.from_labels(['-Y', '+Z'])
-print(current.expand(other))
-```
+    **Return type**
 
-```python
-StabilizerTable: ['-YI', '+ZI', '+YX', '-ZX']
-```
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-**Parameters**
+    **Raises**
 
-**other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
+    **QiskitError** – if the insertion index is invalid.
+  </Function>
 
-**Returns**
+  ### label\_iter
 
-the expand outer product table.
+  <Function id="qiskit.quantum_info.StabilizerTable.label_iter" name="label_iter" signature="StabilizerTable.label_iter()">
+    Return a label representation iterator.
 
-**Return type**
+    This is a lazy iterator that converts each row into the string label only as it is used. To convert the entire table to labels use the [`to_labels()`](qiskit.quantum_info.StabilizerTable#to_labels "qiskit.quantum_info.StabilizerTable.to_labels") method.
 
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+    **Returns**
 
-**Raises**
+    label iterator object for the StabilizerTable.
 
-**QiskitError** – if other cannot be converted to a StabilizerTable.
+    **Return type**
 
-### from\_labels
+    LabelIterator
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerTable.from_labels" />
+  ### matrix\_iter
 
-`classmethod StabilizerTable.from_labels(labels)`
+  <Function id="qiskit.quantum_info.StabilizerTable.matrix_iter" name="matrix_iter" signature="StabilizerTable.matrix_iter(sparse=False)">
+    Return a matrix representation iterator.
 
-Construct a StabilizerTable from a list of Pauli stabilizer strings.
+    This is a lazy iterator that converts each row into the Pauli matrix representation only as it is used. To convert the entire table to matrices use the [`to_matrix()`](qiskit.quantum_info.StabilizerTable#to_matrix "qiskit.quantum_info.StabilizerTable.to_matrix") method.
 
-Pauli Stabilizer string labels are Pauli strings with an optional `"+"` or `"-"` character. If there is no +/-sign a + phase is used by default.
+    **Parameters**
 
-| Label  | Phase | Symplectic | Matrix                                           | Pauli |
-| ------ | ----- | ---------- | ------------------------------------------------ | ----- |
-| `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
-| `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
-| `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
-| `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
-| `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
-| `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
-| `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
-| `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
+    **sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
 
-**Parameters**
+    **Returns**
 
-**labels** (*list*) – Pauli stabilizer string label(es).
+    matrix iterator object for the StabilizerTable.
 
-**Returns**
+    **Return type**
 
-the constructed StabilizerTable.
+    MatrixIterator
+  </Function>
 
-**Return type**
+  ### multiply
 
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+  <Function id="qiskit.quantum_info.StabilizerTable.multiply" name="multiply" signature="StabilizerTable.multiply(other)">
+    Return the linear operator other \* self.
 
-**Raises**
+    DEPRECATED: use `other * operator` instead.
 
-**QiskitError** – If the input list is empty or contains invalid Pauli stabilizer strings.
+    **Parameters**
 
-### input\_dims
+    **other** (*complex*) – a complex number.
 
-<span id="qiskit.quantum_info.StabilizerTable.input_dims" />
+    **Returns**
 
-`StabilizerTable.input_dims(qargs=None)`
+    the linear operator other \* self.
 
-Return tuple of input dimension for specified subsystems.
+    **Return type**
 
-### insert
+    BaseOperator
 
-<span id="qiskit.quantum_info.StabilizerTable.insert" />
+    **Raises**
 
-`StabilizerTable.insert(ind, value, qubit=False)`
+    **NotImplementedError** – if subclass does not support multiplication.
+  </Function>
 
-Insert stabilizers’s into the table.
+  ### output\_dims
 
-When inserting qubit columns, qubit-0 is the right-most (largest index) column, and qubit-(N-1) is the left-most (0 index) column of the underlying [`X`](qiskit.quantum_info.StabilizerTable#x "qiskit.quantum_info.StabilizerTable.X") and [`Z`](qiskit.quantum_info.StabilizerTable#z "qiskit.quantum_info.StabilizerTable.Z") arrays.
+  <Function id="qiskit.quantum_info.StabilizerTable.output_dims" name="output_dims" signature="StabilizerTable.output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-**Parameters**
+  ### power
 
-*   **ind** (*int*) – index to insert at.
-*   **value** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – values to insert.
-*   **qubit** (*bool*) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
+  <Function id="qiskit.quantum_info.StabilizerTable.power" name="power" signature="StabilizerTable.power(n)">
+    Return the compose of a operator with itself n times.
 
-**Returns**
+    **Parameters**
 
-the resulting table with the entries inserted.
+    **n** (*int*) – the number of times to compose with self (n>0).
 
-**Return type**
+    **Returns**
 
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+    the n-times composed operator.
 
-**Raises**
+    **Return type**
 
-**QiskitError** – if the insertion index is invalid.
+    BaseOperator
 
-### label\_iter
+    **Raises**
 
-<span id="qiskit.quantum_info.StabilizerTable.label_iter" />
+    **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+  </Function>
 
-`StabilizerTable.label_iter()`
+  ### reshape
 
-Return a label representation iterator.
+  <Function id="qiskit.quantum_info.StabilizerTable.reshape" name="reshape" signature="StabilizerTable.reshape(input_dims=None, output_dims=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-This is a lazy iterator that converts each row into the string label only as it is used. To convert the entire table to labels use the [`to_labels()`](qiskit.quantum_info.StabilizerTable#to_labels "qiskit.quantum_info.StabilizerTable.to_labels") method.
+    #### Arg:
 
-**Returns**
+    #### input\_dims (None or tuple): new subsystem input dimensions.
 
-label iterator object for the StabilizerTable.
+    If None the original input dims will be preserved \[Default: None].
 
-**Return type**
+    #### output\_dims (None or tuple): new subsystem output dimensions.
 
-LabelIterator
+    If None the original output dims will be preserved \[Default: None].
 
-### matrix\_iter
+    **Returns**
 
-<span id="qiskit.quantum_info.StabilizerTable.matrix_iter" />
+    returns self with reshaped input and output dimensions.
 
-`StabilizerTable.matrix_iter(sparse=False)`
+    **Return type**
 
-Return a matrix representation iterator.
+    BaseOperator
 
-This is a lazy iterator that converts each row into the Pauli matrix representation only as it is used. To convert the entire table to matrices use the [`to_matrix()`](qiskit.quantum_info.StabilizerTable#to_matrix "qiskit.quantum_info.StabilizerTable.to_matrix") method.
+    **Raises**
 
-**Parameters**
+    **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-**sparse** (*bool*) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
+  ### set\_atol
 
-**Returns**
+  <Function id="qiskit.quantum_info.StabilizerTable.set_atol" name="set_atol" signature="classmethod StabilizerTable.set_atol(value)">
+    Set the class default absolute tolerance parameter for float comparisons.
+  </Function>
 
-matrix iterator object for the StabilizerTable.
+  ### set\_rtol
 
-**Return type**
+  <Function id="qiskit.quantum_info.StabilizerTable.set_rtol" name="set_rtol" signature="classmethod StabilizerTable.set_rtol(value)">
+    Set the class default relative tolerance parameter for float comparisons.
+  </Function>
 
-MatrixIterator
+  ### sort
 
-### multiply
+  <Function id="qiskit.quantum_info.StabilizerTable.sort" name="sort" signature="StabilizerTable.sort(weight=False)">
+    Sort the rows of the table.
 
-<span id="qiskit.quantum_info.StabilizerTable.multiply" />
+    The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
 
-`StabilizerTable.multiply(other)`
+    This does not sort based on phase values. It will preserve the original order of rows with the same Pauli’s but different phases.
 
-Return the linear operator other \* self.
+    Consider sorting all a random ordering of all 2-qubit Paulis
 
-DEPRECATED: use `other * operator` instead.
+    ```python
+    from numpy.random import shuffle
+    from qiskit.quantum_info.operators import StabilizerTable
 
-**Parameters**
+    # 2-qubit labels
+    labels = ['+II', '+IX', '+IY', '+IZ', '+XI', '+XX', '+XY', '+XZ',
+              '+YI', '+YX', '+YY', '+YZ', '+ZI', '+ZX', '+ZY', '+ZZ',
+              '-II', '-IX', '-IY', '-IZ', '-XI', '-XX', '-XY', '-XZ',
+              '-YI', '-YX', '-YY', '-YZ', '-ZI', '-ZX', '-ZY', '-ZZ']
+    # Shuffle Labels
+    shuffle(labels)
+    st = StabilizerTable.from_labels(labels)
+    print('Initial Ordering')
+    print(st)
 
-**other** (*complex*) – a complex number.
+    # Lexicographic Ordering
+    srt = st.sort()
+    print('Lexicographically sorted')
+    print(srt)
 
-**Returns**
+    # Weight Ordering
+    srt = st.sort(weight=True)
+    print('Weight sorted')
+    print(srt)
+    ```
 
-the linear operator other \* self.
+    ```python
+    Initial Ordering
+    StabilizerTable: ['+YY', '-YY', '-YZ', '+ZI', '-ZX', '+IX', '-II', '+ZZ', '-XI', '+ZX', '-XZ', '-ZY', '-IX', '+YX', '+XI', '-IZ', '+IY', '-XX', '+XX', '-ZZ', '+XZ', '+YZ', '+YI', '-ZI', '-YI', '-YX', '+IZ', '+XY', '-IY', '-XY', '+ZY', '+II']
+    Lexicographically sorted
+    StabilizerTable: ['-II', '+II', '+IX', '-IX', '+IY', '-IY', '-IZ', '+IZ', '-XI', '+XI', '-XX', '+XX', '+XY', '-XY', '-XZ', '+XZ', '+YI', '-YI', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '+ZI', '-ZI', '-ZX', '+ZX', '-ZY', '+ZY', '+ZZ', '-ZZ']
+    Weight sorted
+    StabilizerTable: ['-II', '+II', '+IX', '-IX', '+IY', '-IY', '-IZ', '+IZ', '-XI', '+XI', '+YI', '-YI', '+ZI', '-ZI', '-XX', '+XX', '+XY', '-XY', '-XZ', '+XZ', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '-ZX', '+ZX', '-ZY', '+ZY', '+ZZ', '-ZZ']
+    ```
 
-**Return type**
+    **Parameters**
 
-BaseOperator
+    **weight** (*bool*) – optionally sort by weight if True (Default: False).
 
-**Raises**
+    **Returns**
 
-**NotImplementedError** – if subclass does not support multiplication.
+    a sorted copy of the original table.
 
-### output\_dims
+    **Return type**
 
-<span id="qiskit.quantum_info.StabilizerTable.output_dims" />
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+  </Function>
 
-`StabilizerTable.output_dims(qargs=None)`
+  ### subtract
 
-Return tuple of output dimension for specified subsystems.
+  <Function id="qiskit.quantum_info.StabilizerTable.subtract" name="subtract" signature="StabilizerTable.subtract(other)">
+    Return the linear operator self - other.
 
-### power
+    DEPRECATED: use `operator - other` instead.
 
-<span id="qiskit.quantum_info.StabilizerTable.power" />
+    **Parameters**
 
-`StabilizerTable.power(n)`
+    **other** (*BaseOperator*) – an operator object.
 
-Return the compose of a operator with itself n times.
+    **Returns**
 
-**Parameters**
+    the operator self - other.
 
-**n** (*int*) – the number of times to compose with self (n>0).
+    **Return type**
 
-**Returns**
+    BaseOperator
+  </Function>
 
-the n-times composed operator.
+  ### tensor
 
-**Return type**
+  <Function id="qiskit.quantum_info.StabilizerTable.tensor" name="tensor" signature="StabilizerTable.tensor(other)">
+    Return the tensor output product of two tables.
 
-BaseOperator
+    This returns the combination of the tensor product of all stabilizers in the current table with all stabilizers in the other table. The other tables qubits will be the least-significant in the returned table. This is the opposite tensor order to [`tensor()`](#qiskit.quantum_info.StabilizerTable.tensor "qiskit.quantum_info.StabilizerTable.tensor").
 
-**Raises**
+    **Example**
 
-**QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
+    ```python
+    from qiskit.quantum_info.operators import StabilizerTable
 
-### reshape
+    current = StabilizerTable.from_labels(['+I', '-X'])
+    other =  StabilizerTable.from_labels(['-Y', '+Z'])
+    print(current.tensor(other))
+    ```
 
-<span id="qiskit.quantum_info.StabilizerTable.reshape" />
+    ```python
+    StabilizerTable: ['-IY', '+IZ', '+XY', '-XZ']
+    ```
 
-`StabilizerTable.reshape(input_dims=None, output_dims=None)`
+    **Parameters**
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
+    **other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
 
-#### Arg:
+    **Returns**
 
-#### input\_dims (None or tuple): new subsystem input dimensions.
+    the tensor outer product table.
 
-If None the original input dims will be preserved \[Default: None].
+    **Return type**
 
-#### output\_dims (None or tuple): new subsystem output dimensions.
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-If None the original output dims will be preserved \[Default: None].
+    **Raises**
 
-**Returns**
+    **QiskitError** – if other cannot be converted to a StabilizerTable.
+  </Function>
 
-returns self with reshaped input and output dimensions.
+  ### to\_labels
 
-**Return type**
+  <Function id="qiskit.quantum_info.StabilizerTable.to_labels" name="to_labels" signature="StabilizerTable.to_labels(array=False)">
+    Convert a StabilizerTable to a list Pauli stabilizer string labels.
 
-BaseOperator
+    For large StabilizerTables converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
 
-**Raises**
+    | Label  | Phase | Symplectic | Matrix                                           | Pauli |
+    | ------ | ----- | ---------- | ------------------------------------------------ | ----- |
+    | `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
+    | `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
+    | `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
+    | `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
+    | `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
+    | `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
+    | `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
+    | `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
 
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    **Parameters**
 
-### set\_atol
+    **array** (*bool*) – return a Numpy array if True, otherwise return a list (Default: False).
 
-<span id="qiskit.quantum_info.StabilizerTable.set_atol" />
+    **Returns**
 
-`classmethod StabilizerTable.set_atol(value)`
+    The rows of the StabilizerTable in label form.
 
-Set the class default absolute tolerance parameter for float comparisons.
+    **Return type**
 
-### set\_rtol
+    list or array
+  </Function>
 
-<span id="qiskit.quantum_info.StabilizerTable.set_rtol" />
+  ### to\_matrix
 
-`classmethod StabilizerTable.set_rtol(value)`
+  <Function id="qiskit.quantum_info.StabilizerTable.to_matrix" name="to_matrix" signature="StabilizerTable.to_matrix(sparse=False, array=False)">
+    Convert to a list or array of Stabilizer matrices.
 
-Set the class default relative tolerance parameter for float comparisons.
+    For large StabilizerTables converting using the `array=True` kwarg will be more efficient since it allocates memory for the full rank-3 Numpy array of matrices in advance.
 
-### sort
+    | Label  | Phase | Symplectic | Matrix                                           | Pauli |
+    | ------ | ----- | ---------- | ------------------------------------------------ | ----- |
+    | `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
+    | `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
+    | `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
+    | `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
+    | `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
+    | `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
+    | `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
+    | `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
 
-<span id="qiskit.quantum_info.StabilizerTable.sort" />
+    **Parameters**
 
-`StabilizerTable.sort(weight=False)`
+    *   **sparse** (*bool*) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (Default: False).
+    *   **array** (*bool*) – return as rank-3 numpy array if True, otherwise return a list of Numpy arrays (Default: False).
 
-Sort the rows of the table.
+    **Returns**
 
-The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
+    A list of dense Pauli matrices if array=False and sparse=False. list: A list of sparse Pauli matrices if array=False and sparse=True. array: A dense rank-3 array of Pauli matrices if array=True.
 
-This does not sort based on phase values. It will preserve the original order of rows with the same Pauli’s but different phases.
+    **Return type**
 
-Consider sorting all a random ordering of all 2-qubit Paulis
+    list
+  </Function>
 
-```python
-from numpy.random import shuffle
-from qiskit.quantum_info.operators import StabilizerTable
+  ### transpose
 
-# 2-qubit labels
-labels = ['+II', '+IX', '+IY', '+IZ', '+XI', '+XX', '+XY', '+XZ',
-          '+YI', '+YX', '+YY', '+YZ', '+ZI', '+ZX', '+ZY', '+ZZ',
-          '-II', '-IX', '-IY', '-IZ', '-XI', '-XX', '-XY', '-XZ',
-          '-YI', '-YX', '-YY', '-YZ', '-ZI', '-ZX', '-ZY', '-ZZ']
-# Shuffle Labels
-shuffle(labels)
-st = StabilizerTable.from_labels(labels)
-print('Initial Ordering')
-print(st)
+  <Function id="qiskit.quantum_info.StabilizerTable.transpose" name="transpose" signature="StabilizerTable.transpose()">
+    Not implemented.
+  </Function>
 
-# Lexicographic Ordering
-srt = st.sort()
-print('Lexicographically sorted')
-print(srt)
+  ### unique
 
-# Weight Ordering
-srt = st.sort(weight=True)
-print('Weight sorted')
-print(srt)
-```
+  <Function id="qiskit.quantum_info.StabilizerTable.unique" name="unique" signature="StabilizerTable.unique(return_index=False, return_counts=False)">
+    Return unique stabilizers from the table.
 
-```python
-Initial Ordering
-StabilizerTable: ['+YY', '-YY', '-YZ', '+ZI', '-ZX', '+IX', '-II', '+ZZ', '-XI', '+ZX', '-XZ', '-ZY', '-IX', '+YX', '+XI', '-IZ', '+IY', '-XX', '+XX', '-ZZ', '+XZ', '+YZ', '+YI', '-ZI', '-YI', '-YX', '+IZ', '+XY', '-IY', '-XY', '+ZY', '+II']
-Lexicographically sorted
-StabilizerTable: ['-II', '+II', '+IX', '-IX', '+IY', '-IY', '-IZ', '+IZ', '-XI', '+XI', '-XX', '+XX', '+XY', '-XY', '-XZ', '+XZ', '+YI', '-YI', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '+ZI', '-ZI', '-ZX', '+ZX', '-ZY', '+ZY', '+ZZ', '-ZZ']
-Weight sorted
-StabilizerTable: ['-II', '+II', '+IX', '-IX', '+IY', '-IY', '-IZ', '+IZ', '-XI', '+XI', '+YI', '-YI', '+ZI', '-ZI', '-XX', '+XX', '+XY', '-XY', '-XZ', '+XZ', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '-ZX', '+ZX', '-ZY', '+ZY', '+ZZ', '-ZZ']
-```
+    **Example**
 
-**Parameters**
+    ```python
+    from qiskit.quantum_info.operators import StabilizerTable
 
-**weight** (*bool*) – optionally sort by weight if True (Default: False).
+    st = StabilizerTable.from_labels(['+X', '+I', '-I', '-X', '+X', '-X', '+I'])
+    unique = st.unique()
+    print(unique)
+    ```
 
-**Returns**
+    ```python
+    StabilizerTable: ['+X', '+I', '-I', '-X']
+    ```
 
-a sorted copy of the original table.
+    **Parameters**
 
-**Return type**
+    *   **return\_index** (*bool*) – If True, also return the indices that result in the unique array. (Default: False)
+    *   **return\_counts** (*bool*) – If True, also return the number of times each unique item appears in the table.
 
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+    **Returns**
 
-### subtract
+    **unique**
 
-<span id="qiskit.quantum_info.StabilizerTable.subtract" />
+    the table of the unique rows.
 
-`StabilizerTable.subtract(other)`
+    **unique\_indices: np.ndarray, optional**
 
-Return the linear operator self - other.
+    The indices of the first occurrences of the unique values in the original array. Only provided if `return_index` is True.
 
-DEPRECATED: use `operator - other` instead.
+    **unique\_counts: np.array, optional**
 
-**Parameters**
+    The number of times each of the unique values comes up in the original array. Only provided if `return_counts` is True.
 
-**other** (*BaseOperator*) – an operator object.
+    **Return type**
 
-**Returns**
-
-the operator self - other.
-
-**Return type**
-
-BaseOperator
-
-### tensor
-
-<span id="qiskit.quantum_info.StabilizerTable.tensor" />
-
-`StabilizerTable.tensor(other)`
-
-Return the tensor output product of two tables.
-
-This returns the combination of the tensor product of all stabilizers in the current table with all stabilizers in the other table. The other tables qubits will be the least-significant in the returned table. This is the opposite tensor order to [`tensor()`](#qiskit.quantum_info.StabilizerTable.tensor "qiskit.quantum_info.StabilizerTable.tensor").
-
-**Example**
-
-```python
-from qiskit.quantum_info.operators import StabilizerTable
-
-current = StabilizerTable.from_labels(['+I', '-X'])
-other =  StabilizerTable.from_labels(['-Y', '+Z'])
-print(current.tensor(other))
-```
-
-```python
-StabilizerTable: ['-IY', '+IZ', '+XY', '-XZ']
-```
-
-**Parameters**
-
-**other** ([*StabilizerTable*](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
-
-**Returns**
-
-the tensor outer product table.
-
-**Return type**
-
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
-
-**Raises**
-
-**QiskitError** – if other cannot be converted to a StabilizerTable.
-
-### to\_labels
-
-<span id="qiskit.quantum_info.StabilizerTable.to_labels" />
-
-`StabilizerTable.to_labels(array=False)`
-
-Convert a StabilizerTable to a list Pauli stabilizer string labels.
-
-For large StabilizerTables converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
-
-| Label  | Phase | Symplectic | Matrix                                           | Pauli |
-| ------ | ----- | ---------- | ------------------------------------------------ | ----- |
-| `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
-| `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
-| `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
-| `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
-| `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
-| `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
-| `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
-| `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
-
-**Parameters**
-
-**array** (*bool*) – return a Numpy array if True, otherwise return a list (Default: False).
-
-**Returns**
-
-The rows of the StabilizerTable in label form.
-
-**Return type**
-
-list or array
-
-### to\_matrix
-
-<span id="qiskit.quantum_info.StabilizerTable.to_matrix" />
-
-`StabilizerTable.to_matrix(sparse=False, array=False)`
-
-Convert to a list or array of Stabilizer matrices.
-
-For large StabilizerTables converting using the `array=True` kwarg will be more efficient since it allocates memory for the full rank-3 Numpy array of matrices in advance.
-
-| Label  | Phase | Symplectic | Matrix                                           | Pauli |
-| ------ | ----- | ---------- | ------------------------------------------------ | ----- |
-| `"+I"` | 0     | $[0, 0]$   | $\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$   | $I$   |
-| `"-I"` | 1     | $[0, 0]$   | $\begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}$ | $-I$  |
-| `"X"`  | 0     | $[1, 0]$   | $\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$   | $X$   |
-| `"-X"` | 1     | $[1, 0]$   | $\begin{bmatrix} 0 & -1 \\ -1 & 0 \end{bmatrix}$ | $-X$  |
-| `"Y"`  | 0     | $[1, 1]$   | $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$  | $iY$  |
-| `"-Y"` | 1     | $[1, 1]$   | $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$  | $-iY$ |
-| `"Z"`  | 0     | $[0, 1]$   | $\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$  | $Z$   |
-| `"-Z"` | 1     | $[0, 1]$   | $\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$  | $-Z$  |
-
-**Parameters**
-
-*   **sparse** (*bool*) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (Default: False).
-*   **array** (*bool*) – return as rank-3 numpy array if True, otherwise return a list of Numpy arrays (Default: False).
-
-**Returns**
-
-A list of dense Pauli matrices if array=False and sparse=False. list: A list of sparse Pauli matrices if array=False and sparse=True. array: A dense rank-3 array of Pauli matrices if array=True.
-
-**Return type**
-
-list
-
-### transpose
-
-<span id="qiskit.quantum_info.StabilizerTable.transpose" />
-
-`StabilizerTable.transpose()`
-
-Not implemented.
-
-### unique
-
-<span id="qiskit.quantum_info.StabilizerTable.unique" />
-
-`StabilizerTable.unique(return_index=False, return_counts=False)`
-
-Return unique stabilizers from the table.
-
-**Example**
-
-```python
-from qiskit.quantum_info.operators import StabilizerTable
-
-st = StabilizerTable.from_labels(['+X', '+I', '-I', '-X', '+X', '-X', '+I'])
-unique = st.unique()
-print(unique)
-```
-
-```python
-StabilizerTable: ['+X', '+I', '-I', '-X']
-```
-
-**Parameters**
-
-*   **return\_index** (*bool*) – If True, also return the indices that result in the unique array. (Default: False)
-*   **return\_counts** (*bool*) – If True, also return the number of times each unique item appears in the table.
-
-**Returns**
-
-**unique**
-
-the table of the unique rows.
-
-**unique\_indices: np.ndarray, optional**
-
-The indices of the first occurrences of the unique values in the original array. Only provided if `return_index` is True.
-
-**unique\_counts: np.array, optional**
-
-The number of times each of the unique values comes up in the original array. Only provided if `return_counts` is True.
-
-**Return type**
-
-[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+    [StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+  </Function>
+</Class>
 

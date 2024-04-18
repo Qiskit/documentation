@@ -8,29 +8,27 @@ python_api_name: qiskit.pulse.builder.drive_channel
 
 # qiskit.pulse.builder.drive\_channel
 
-<span id="qiskit.pulse.builder.drive_channel" />
+<Function id="qiskit.pulse.builder.drive_channel" name="drive_channel" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py" signature="drive_channel(qubit)">
+  Return `DriveChannel` for `qubit` on the active builder backend.
 
-`drive_channel(qubit)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
+  Examples:
 
-Return `DriveChannel` for `qubit` on the active builder backend.
+  ```python
+  from qiskit import pulse
+  from qiskit.test.mock import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.test.mock import FakeOpenPulse2Q
+  with pulse.build(backend):
+      assert pulse.drive_channel(0) == pulse.DriveChannel(0)
+  ```
 
-backend = FakeOpenPulse2Q()
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-with pulse.build(backend):
-    assert pulse.drive_channel(0) == pulse.DriveChannel(0)
-```
+  **Return type**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
-
-**Return type**
-
-[`DriveChannel`](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+  [`DriveChannel`](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+</Function>
 

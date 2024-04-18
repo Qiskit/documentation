@@ -8,38 +8,34 @@ python_api_name: qiskit.circuit.CommutationChecker
 
 # CommutationChecker
 
-<span id="qiskit.circuit.CommutationChecker" />
+<Class id="qiskit.circuit.CommutationChecker" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/commutation_checker.py" signature="CommutationChecker">
+  Bases: `object`
 
-`CommutationChecker` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/commutation_checker.py "view source code")
+  This code is essentially copy-pasted from commutative\_analysis.py. This code cleverly hashes commutativity and non-commutativity results between DAG nodes and seems quite efficient for large Clifford circuits. They may be other possible efficiency improvements: using rule-based commutativity analysis, evicting from the cache less useful entries, etc.
 
-Bases: `object`
+  ## Methods
 
-This code is essentially copy-pasted from commutative\_analysis.py. This code cleverly hashes commutativity and non-commutativity results between DAG nodes and seems quite efficient for large Clifford circuits. They may be other possible efficiency improvements: using rule-based commutativity analysis, evicting from the cache less useful entries, etc.
+  ### commute
 
-## Methods
+  <Function id="qiskit.circuit.CommutationChecker.commute" name="commute" signature="CommutationChecker.commute(op1, qargs1, cargs1, op2, qargs2, cargs2)">
+    Checks if two Operations commute.
 
-### commute
+    **Parameters**
 
-<span id="qiskit.circuit.CommutationChecker.commute" />
+    *   **op1** ([`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
+    *   **qargs1** (`List`) – first operation’s qubits.
+    *   **cargs1** (`List`) – first operation’s clbits.
+    *   **op2** ([`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
+    *   **qargs2** (`List`) – second operation’s qubits.
+    *   **cargs2** (`List`) – second operation’s clbits.
 
-`CommutationChecker.commute(op1, qargs1, cargs1, op2, qargs2, cargs2)`
+    **Returns**
 
-Checks if two Operations commute.
+    whether two operations commute.
 
-**Parameters**
+    **Return type**
 
-*   **op1** ([`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
-*   **qargs1** (`List`) – first operation’s qubits.
-*   **cargs1** (`List`) – first operation’s clbits.
-*   **op2** ([`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
-*   **qargs2** (`List`) – second operation’s qubits.
-*   **cargs2** (`List`) – second operation’s clbits.
-
-**Returns**
-
-whether two operations commute.
-
-**Return type**
-
-bool
+    bool
+  </Function>
+</Class>
 

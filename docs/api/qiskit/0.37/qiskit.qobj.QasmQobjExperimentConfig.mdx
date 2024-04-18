@@ -8,56 +8,50 @@ python_api_name: qiskit.qobj.QasmQobjExperimentConfig
 
 # QasmQobjExperimentConfig
 
-<span id="qiskit.qobj.QasmQobjExperimentConfig" />
+<Class id="qiskit.qobj.QasmQobjExperimentConfig" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/qobj/qasm_qobj.py" signature="QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)">
+  Bases: `qiskit.qobj.common.QobjDictField`
 
-`QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/qobj/qasm_qobj.py "view source code")
+  Configuration for a single QASM experiment in the qobj.
 
-Bases: `qiskit.qobj.common.QobjDictField`
+  **Parameters**
 
-Configuration for a single QASM experiment in the qobj.
+  *   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+  *   **qubit\_lo\_freq** (*List\[float]*) – List of qubit LO frequencies in GHz.
+  *   **meas\_lo\_freq** (*List\[float]*) – List of meas readout LO frequencies in GHz.
+  *   **kwargs** – Additional free form key value fields to add to the configuration
 
-**Parameters**
+  ## Methods
 
-*   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
-*   **qubit\_lo\_freq** (*List\[float]*) – List of qubit LO frequencies in GHz.
-*   **meas\_lo\_freq** (*List\[float]*) – List of meas readout LO frequencies in GHz.
-*   **kwargs** – Additional free form key value fields to add to the configuration
+  ### from\_dict
 
-## Methods
+  <Function id="qiskit.qobj.QasmQobjExperimentConfig.from_dict" name="from_dict" signature="classmethod QasmQobjExperimentConfig.from_dict(data)">
+    Create a new QobjHeader object from a dictionary.
 
-### from\_dict
+    **Parameters**
 
-<span id="qiskit.qobj.QasmQobjExperimentConfig.from_dict" />
+    **data** (*dict*) – A dictionary representing the QobjHeader to create. It will be in the same format as output by [`to_dict()`](qiskit.qobj.QasmQobjExperimentConfig#to_dict "qiskit.qobj.QasmQobjExperimentConfig.to_dict").
 
-`classmethod QasmQobjExperimentConfig.from_dict(data)`
+    **Returns**
 
-Create a new QobjHeader object from a dictionary.
+    The QobjDictField from the input dictionary.
 
-**Parameters**
+    **Return type**
 
-**data** (*dict*) – A dictionary representing the QobjHeader to create. It will be in the same format as output by [`to_dict()`](qiskit.qobj.QasmQobjExperimentConfig#to_dict "qiskit.qobj.QasmQobjExperimentConfig.to_dict").
+    QobjDictFieldr
+  </Function>
 
-**Returns**
+  ### to\_dict
 
-The QobjDictField from the input dictionary.
+  <Function id="qiskit.qobj.QasmQobjExperimentConfig.to_dict" name="to_dict" signature="QasmQobjExperimentConfig.to_dict()">
+    Return a dictionary format representation of the QASM Qobj.
 
-**Return type**
+    **Returns**
 
-QobjDictFieldr
+    The dictionary form of the QobjHeader.
 
-### to\_dict
+    **Return type**
 
-<span id="qiskit.qobj.QasmQobjExperimentConfig.to_dict" />
-
-`QasmQobjExperimentConfig.to_dict()`
-
-Return a dictionary format representation of the QASM Qobj.
-
-**Returns**
-
-The dictionary form of the QobjHeader.
-
-**Return type**
-
-dict
+    dict
+  </Function>
+</Class>
 

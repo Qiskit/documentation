@@ -8,311 +8,283 @@ python_api_name: qiskit.circuit.ControlFlowOp
 
 # ControlFlowOp
 
-<span id="qiskit.circuit.ControlFlowOp" />
+<Class id="qiskit.circuit.ControlFlowOp" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlflow/control_flow.py" signature="ControlFlowOp(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)">
+  Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `abc.ABC`
 
-`ControlFlowOp(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/controlflow/control_flow.py "view source code")
+  Abstract class to encapsulate all control flow operations.
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `abc.ABC`
+  Create a new instruction.
 
-Abstract class to encapsulate all control flow operations.
+  **Parameters**
 
-Create a new instruction.
+  *   **name** (*str*) – instruction name
+  *   **num\_qubits** (*int*) – instruction’s qubit width
+  *   **num\_clbits** (*int*) – instruction’s clbit width
+  *   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+  *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
+  *   **unit** (*str*) – time unit of duration
+  *   **label** (*str or None*) – An optional label for identifying the instruction.
 
-**Parameters**
+  **Raises**
 
-*   **name** (*str*) – instruction name
-*   **num\_qubits** (*int*) – instruction’s qubit width
-*   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
-*   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
-*   **unit** (*str*) – time unit of duration
-*   **label** (*str or None*) – An optional label for identifying the instruction.
+  *   **CircuitError** – when the register is not in the correct format.
+  *   **TypeError** – when the optional label is provided, but it is not a string.
 
-**Raises**
+  ## Methods
 
-*   **CircuitError** – when the register is not in the correct format.
-*   **TypeError** – when the optional label is provided, but it is not a string.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.circuit.ControlFlowOp.add_decomposition" name="add_decomposition" signature="ControlFlowOp.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.circuit.ControlFlowOp.add_decomposition" />
+  <Function id="qiskit.circuit.ControlFlowOp.assemble" name="assemble" signature="ControlFlowOp.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`ControlFlowOp.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.circuit.ControlFlowOp.broadcast_arguments" name="broadcast_arguments" signature="ControlFlowOp.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.circuit.ControlFlowOp.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`ControlFlowOp.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.ControlFlowOp.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`ControlFlowOp.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.circuit.ControlFlowOp.c_if" name="c_if" signature="ControlFlowOp.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.circuit.ControlFlowOp.copy" name="copy" signature="ControlFlowOp.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.circuit.ControlFlowOp.c_if" />
+    updated if it was provided
 
-`ControlFlowOp.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit.circuit.ControlFlowOp.inverse" name="inverse" signature="ControlFlowOp.inverse()">
+    Invert this instruction.
 
-<span id="qiskit.circuit.ControlFlowOp.copy" />
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-`ControlFlowOp.copy(name=None)`
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-Copy of the instruction.
+    **Returns**
 
-**Parameters**
+    a fresh instruction for the inverse
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**a copy of the current instruction, with the name**
+    **Raises**
 
-updated if it was provided
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.ControlFlowOp.is_parameterized" name="is_parameterized" signature="ControlFlowOp.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-### inverse
+  ### qasm
 
-<span id="qiskit.circuit.ControlFlowOp.inverse" />
+  <Function id="qiskit.circuit.ControlFlowOp.qasm" name="qasm" signature="ControlFlowOp.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-`ControlFlowOp.inverse()`
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-Invert this instruction.
+  ### repeat
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+  <Function id="qiskit.circuit.ControlFlowOp.repeat" name="repeat" signature="ControlFlowOp.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+    **Parameters**
 
-**Returns**
+    **n** (*int*) – Number of times to repeat the instruction
 
-a fresh instruction for the inverse
+    **Returns**
 
-**Return type**
+    Containing the definition.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-**Raises**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+    **Raises**
 
-### is\_parameterized
+    **CircuitError** – If n \< 1.
+  </Function>
 
-<span id="qiskit.circuit.ControlFlowOp.is_parameterized" />
+  ### replace\_blocks
 
-`ControlFlowOp.is_parameterized()`
+  <Function id="qiskit.circuit.ControlFlowOp.replace_blocks" name="replace_blocks" signature="abstract ControlFlowOp.replace_blocks(blocks)">
+    Replace blocks and return new instruction. :type blocks: `Iterable`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")] :param blocks: Tuple of QuantumCircuits to replace in instruction.
 
-Return True .IFF. instruction is parameterized else False
+    **Return type**
 
-### qasm
+    [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
-<span id="qiskit.circuit.ControlFlowOp.qasm" />
+    **Returns**
 
-`ControlFlowOp.qasm()`
+    New ControlFlowOp with replaced blocks.
+  </Function>
 
-Return a default OpenQASM string for the instruction.
+  ### reverse\_ops
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  <Function id="qiskit.circuit.ControlFlowOp.reverse_ops" name="reverse_ops" signature="ControlFlowOp.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-### repeat
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-<span id="qiskit.circuit.ControlFlowOp.repeat" />
+    **Returns**
 
-`ControlFlowOp.repeat(n)`
+    **a new instruction with**
 
-Creates an instruction with gate repeated n amount of times.
+    sub-instructions reversed.
 
-**Parameters**
+    **Return type**
 
-**n** (*int*) – Number of times to repeat the instruction
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Returns**
+  ### soft\_compare
 
-Containing the definition.
+  <Function id="qiskit.circuit.ControlFlowOp.soft_compare" name="soft_compare" signature="ControlFlowOp.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-**Return type**
+    **Parameters**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **other** (*instruction*) – other instruction.
 
-**Raises**
+    **Returns**
 
-**CircuitError** – If n \< 1.
+    are self and other equal up to parameter expressions.
 
-### replace\_blocks
+    **Return type**
 
-<span id="qiskit.circuit.ControlFlowOp.replace_blocks" />
+    bool
+  </Function>
 
-`abstract ControlFlowOp.replace_blocks(blocks)`
+  ### validate\_parameter
 
-Replace blocks and return new instruction. :type blocks: `Iterable`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")] :param blocks: Tuple of QuantumCircuits to replace in instruction.
+  <Function id="qiskit.circuit.ControlFlowOp.validate_parameter" name="validate_parameter" signature="ControlFlowOp.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+  ### blocks
 
-**Returns**
+  <Attribute id="qiskit.circuit.ControlFlowOp.blocks" name="blocks">
+    Tuple of QuantumCircuits which may be executed as part of the execution of this ControlFlowOp. May be parameterized by a loop parameter to be resolved at run time.
 
-New ControlFlowOp with replaced blocks.
+    **Return type**
 
-### reverse\_ops
+    `Tuple`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `...`]
+  </Attribute>
 
-<span id="qiskit.circuit.ControlFlowOp.reverse_ops" />
+  ### condition\_bits
 
-`ControlFlowOp.reverse_ops()`
+  <Attribute id="qiskit.circuit.ControlFlowOp.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-For a composite instruction, reverse the order of sub-instructions.
+    **Return type**
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-**Returns**
+  ### decompositions
 
-**a new instruction with**
+  <Attribute id="qiskit.circuit.ControlFlowOp.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-sub-instructions reversed.
+  ### definition
 
-**Return type**
+  <Attribute id="qiskit.circuit.ControlFlowOp.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### duration
 
-### soft\_compare
+  <Attribute id="qiskit.circuit.ControlFlowOp.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.ControlFlowOp.soft_compare" />
+  ### label
 
-`ControlFlowOp.soft_compare(other)`
+  <Attribute id="qiskit.circuit.ControlFlowOp.label" name="label">
+    Return instruction label
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+    **Return type**
 
-**Parameters**
+    `str`
+  </Attribute>
 
-**other** (*instruction*) – other instruction.
+  ### name
 
-**Returns**
+  <Attribute id="qiskit.circuit.ControlFlowOp.name" name="name">
+    Return the name.
+  </Attribute>
 
-are self and other equal up to parameter expressions.
+  ### num\_clbits
 
-**Return type**
+  <Attribute id="qiskit.circuit.ControlFlowOp.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-bool
+  ### num\_qubits
 
-### validate\_parameter
+  <Attribute id="qiskit.circuit.ControlFlowOp.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.ControlFlowOp.validate_parameter" />
+  ### params
 
-`ControlFlowOp.validate_parameter(parameter)`
+  <Attribute id="qiskit.circuit.ControlFlowOp.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Instruction parameters has no validation or normalization.
+  ### unit
 
-## Attributes
-
-<span id="qiskit.circuit.ControlFlowOp.blocks" />
-
-### blocks
-
-Tuple of QuantumCircuits which may be executed as part of the execution of this ControlFlowOp. May be parameterized by a loop parameter to be resolved at run time.
-
-**Return type**
-
-`Tuple`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `...`]
-
-<span id="qiskit.circuit.ControlFlowOp.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
-
-<span id="qiskit.circuit.ControlFlowOp.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.ControlFlowOp.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.circuit.ControlFlowOp.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.circuit.ControlFlowOp.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.ControlFlowOp.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.ControlFlowOp.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.ControlFlowOp.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.ControlFlowOp.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.ControlFlowOp.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.ControlFlowOp.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

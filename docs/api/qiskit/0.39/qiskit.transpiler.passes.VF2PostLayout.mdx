@@ -8,71 +8,65 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
 # VF2PostLayout
 
-<span id="qiskit.transpiler.passes.VF2PostLayout" />
+<Class id="qiskit.transpiler.passes.VF2PostLayout" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/layout/vf2_post_layout.py" signature="VF2PostLayout(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`VF2PostLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/layout/vf2_post_layout.py "view source code")
+  A pass for choosing a Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  Unlike the [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") transpiler pass which is designed to find an initial layout for a circuit early in the transpilation pipeline this transpiler pass is designed to try and find a better layout after transpilation is complete. The initial layout phase of the transpiler doesn’t have as much information available as we do after transpilation. This pass is designed to be paired in a similar pipeline as the layout passes. This pass will strip any idle wires from the circuit, use VF2 to find a subgraph in the coupling graph for the circuit to run on with better fidelity and then update the circuit layout to use the new qubits. The algorithm used in this pass is described in [arXiv:2209.15512](https://arxiv.org/abs/2209.15512).
 
-A pass for choosing a Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
+  If a solution is found that means there is a lower error layout available for the circuit. If a solution is found the layout will be set in the property set as will be set in the property set as `property_set['post_layout']`. However, if no solution is found, no `property_set['post_layout']` is set. The stopping reason is set in `property_set['VF2PostLayout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2PostLayoutStopReason` which has the following values:
 
-Unlike the [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") transpiler pass which is designed to find an initial layout for a circuit early in the transpilation pipeline this transpiler pass is designed to try and find a better layout after transpilation is complete. The initial layout phase of the transpiler doesn’t have as much information available as we do after transpilation. This pass is designed to be paired in a similar pipeline as the layout passes. This pass will strip any idle wires from the circuit, use VF2 to find a subgraph in the coupling graph for the circuit to run on with better fidelity and then update the circuit layout to use the new qubits. The algorithm used in this pass is described in [arXiv:2209.15512](https://arxiv.org/abs/2209.15512).
+  > *   `"solution found"`: If a solution was found.
+  > *   `"nonexistent solution"`: If no solution was found.
+  > *   `">2q gates in basis"`: If VF2PostLayout can’t work with basis
 
-If a solution is found that means there is a lower error layout available for the circuit. If a solution is found the layout will be set in the property set as will be set in the property set as `property_set['post_layout']`. However, if no solution is found, no `property_set['post_layout']` is set. The stopping reason is set in `property_set['VF2PostLayout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2PostLayoutStopReason` which has the following values:
+  Initialize a `VF2PostLayout` pass instance
 
-> *   `"solution found"`: If a solution was found.
-> *   `"nonexistent solution"`: If no solution was found.
-> *   `">2q gates in basis"`: If VF2PostLayout can’t work with basis
+  **Parameters**
 
-Initialize a `VF2PostLayout` pass instance
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2PostLayout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
+  *   **seed** (*int*) – Sets the seed of the PRNG. -1 Means no node shuffling.
+  *   **call\_limit** (*int*) – The number of state visits to attempt in each execution of VF2.
+  *   **time\_limit** (*float*) – The total time limit in seconds to run `VF2PostLayout`
+  *   **strict\_direction** (*bool*) – Whether the pass is configured to follow the strict direction in the coupling graph. If this is set to false, the pass will treat any edge in the coupling graph as a weak edge and the interaction graph will be undirected. For the purposes of evaluating layouts the avg error rate for each qubit and 2q link will be used. This enables the pass to be run prior to basis translation and work with any 1q and 2q operations. However, if `strict_direction=True` the pass expects the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object to [`run()`](qiskit.transpiler.passes.VF2PostLayout#run "qiskit.transpiler.passes.VF2PostLayout.run") to be in the target set of instructions.
 
-**Parameters**
+  **Raises**
 
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2PostLayout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
-*   **seed** (*int*) – Sets the seed of the PRNG. -1 Means no node shuffling.
-*   **call\_limit** (*int*) – The number of state visits to attempt in each execution of VF2.
-*   **time\_limit** (*float*) – The total time limit in seconds to run `VF2PostLayout`
-*   **strict\_direction** (*bool*) – Whether the pass is configured to follow the strict direction in the coupling graph. If this is set to false, the pass will treat any edge in the coupling graph as a weak edge and the interaction graph will be undirected. For the purposes of evaluating layouts the avg error rate for each qubit and 2q link will be used. This enables the pass to be run prior to basis translation and work with any 1q and 2q operations. However, if `strict_direction=True` the pass expects the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object to [`run()`](qiskit.transpiler.passes.VF2PostLayout#run "qiskit.transpiler.passes.VF2PostLayout.run") to be in the target set of instructions.
+  **TypeError** – At runtime, if neither `coupling_map` or `target` are provided.
 
-**Raises**
+  ## Methods
 
-**TypeError** – At runtime, if neither `coupling_map` or `target` are provided.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.VF2PostLayout.name" name="name" signature="VF2PostLayout.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.VF2PostLayout.name" />
+  <Function id="qiskit.transpiler.passes.VF2PostLayout.run" name="run" signature="VF2PostLayout.run(dag)">
+    run the layout method
+  </Function>
 
-`VF2PostLayout.name()`
+  ## Attributes
 
-Return the name of the pass.
+  ### is\_analysis\_pass
 
-### run
+  <Attribute id="qiskit.transpiler.passes.VF2PostLayout.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.VF2PostLayout.run" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-`VF2PostLayout.run(dag)`
+  ### is\_transformation\_pass
 
-run the layout method
+  <Attribute id="qiskit.transpiler.passes.VF2PostLayout.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.VF2PostLayout.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.VF2PostLayout.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

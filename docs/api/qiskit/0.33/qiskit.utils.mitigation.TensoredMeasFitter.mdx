@@ -8,98 +8,92 @@ python_api_name: qiskit.utils.mitigation.TensoredMeasFitter
 
 # TensoredMeasFitter
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter" />
+<Class id="qiskit.utils.mitigation.TensoredMeasFitter" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/utils/mitigation/fitters.py" signature="TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')">
+  Bases: `object`
 
-`TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/utils/mitigation/fitters.py "view source code")
+  Measurement correction fitter for a tensored calibration.
 
-Bases: `object`
+  Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits.
 
-Measurement correction fitter for a tensored calibration.
+  <Admonition title="Warning" type="caution">
+    This class is not a public API. The internals are not stable and will likely change. It is used solely for the `measurement_error_mitigation_cls` kwarg of the [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") class’s constructor (as a class not an instance). Anything outside of that usage does not have the normal user-facing API stability.
+  </Admonition>
 
-Initialize a measurement calibration matrix from the results of running the circuits returned by measurement\_calibration\_circuits.
+  **Parameters**
 
-<Admonition title="Warning" type="caution">
-  This class is not a public API. The internals are not stable and will likely change. It is used solely for the `measurement_error_mitigation_cls` kwarg of the [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") class’s constructor (as a class not an instance). Anything outside of that usage does not have the normal user-facing API stability.
-</Admonition>
+  *   **results** – the results of running the measurement calibration circuits. If this is None, the user will set calibration matrices later.
+  *   **mit\_pattern** (`List`\[`List`\[`int`]]) – qubits to perform the measurement correction on, divided to groups according to tensors
+  *   **substate\_labels\_list** (`Optional`\[`List`\[`List`\[`str`]]]) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
+  *   **circlabel** (`str`) – if the qubits were labeled
 
-**Parameters**
+  **Raises**
 
-*   **results** – the results of running the measurement calibration circuits. If this is None, the user will set calibration matrices later.
-*   **mit\_pattern** (`List`\[`List`\[`int`]]) – qubits to perform the measurement correction on, divided to groups according to tensors
-*   **substate\_labels\_list** (`Optional`\[`List`\[`List`\[`str`]]]) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
-*   **circlabel** (`str`) – if the qubits were labeled
+  **ValueError** – if the mit\_pattern doesn’t match the substate\_labels\_list
 
-**Raises**
+  ## Methods
 
-**ValueError** – if the mit\_pattern doesn’t match the substate\_labels\_list
+  ### add\_data
 
-## Methods
+  <Function id="qiskit.utils.mitigation.TensoredMeasFitter.add_data" name="add_data" signature="TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)">
+    Add measurement calibration data
 
-### add\_data
+    **Parameters**
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.add_data" />
+    *   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
+    *   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+  </Function>
 
-`TensoredMeasFitter.add_data(new_results, rebuild_cal_matrix=True)`
+  ### readout\_fidelity
 
-Add measurement calibration data
+  <Function id="qiskit.utils.mitigation.TensoredMeasFitter.readout_fidelity" name="readout_fidelity" signature="TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)">
+    Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
 
-**Parameters**
+    **Parameters**
 
-*   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
-*   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
+    *   **cal\_index** (*integer*) – readout fidelity for this index in \_cal\_matrices
+    *   **label\_list** (*list*) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
 
-### readout\_fidelity
+    **Returns**
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.readout_fidelity" />
+    The readout fidelity (assignment fidelity)
 
-`TensoredMeasFitter.readout_fidelity(cal_index=0, label_list=None)`
+    **Return type**
 
-Based on the results, output the readout fidelity, which is the average of the diagonal entries in the calibration matrices.
+    numpy.array
 
-**Parameters**
+    **Raises**
 
-*   **cal\_index** (*integer*) – readout fidelity for this index in \_cal\_matrices
-*   **label\_list** (*list*) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
+    **QiskitError** – If the calibration matrix has not been set for the object.
 
-**Returns**
+    #### Additional Information:
 
-The readout fidelity (assignment fidelity)
+    The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-numpy.array
+  ### cal\_matrices
 
-**Raises**
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.cal_matrices" name="cal_matrices">
+    Return cal\_matrices.
+  </Attribute>
 
-**QiskitError** – If the calibration matrix has not been set for the object.
+  ### filter
 
-#### Additional Information:
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.filter" name="filter">
+    Return a measurement filter using the cal matrices.
+  </Attribute>
 
-The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
+  ### nqubits
 
-## Attributes
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.nqubits" name="nqubits">
+    Return \_qubit\_list\_sizes.
+  </Attribute>
 
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.cal_matrices" />
+  ### substate\_labels\_list
 
-### cal\_matrices
-
-Return cal\_matrices.
-
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.filter" />
-
-### filter
-
-Return a measurement filter using the cal matrices.
-
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.nqubits" />
-
-### nqubits
-
-Return \_qubit\_list\_sizes.
-
-<span id="qiskit.utils.mitigation.TensoredMeasFitter.substate_labels_list" />
-
-### substate\_labels\_list
-
-Return \_substate\_labels\_list.
+  <Attribute id="qiskit.utils.mitigation.TensoredMeasFitter.substate_labels_list" name="substate_labels_list">
+    Return \_substate\_labels\_list.
+  </Attribute>
+</Class>
 

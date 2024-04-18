@@ -8,428 +8,418 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
 # TwoLocal
 
-<span id="qiskit.circuit.library.TwoLocal" />
-
-`qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/two_local.py "view source code")
-
-Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
-
-The two-local circuit.
-
-The two-local circuit is a parameterized circuit consisting of alternating rotation layers and entanglement layers. The rotation layers are single qubit gates applied on all qubits. The entanglement layer uses two-qubit gates to entangle the qubits according to a strategy set using `entanglement`. Both the rotation and entanglement gates can be specified as string (e.g. `'ry'` or `'cx'`), as gate-type (e.g. `RYGate` or `CXGate`) or as QuantumCircuit (e.g. a 1-qubit circuit or 2-qubit circuit).
-
-A set of default entanglement strategies is provided:
-
-*   `'full'` entanglement is each qubit is entangled with all the others.
-*   `'linear'` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{0, 1, ... , n - 2\}$, where $n$ is the total number of qubits.
-*   `'reverse_linear'` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{n-2, n-3, ... , 1, 0\}$, where $n$ is the total number of qubits. Note that if `entanglement_blocks = 'cx'` then this option provides the same unitary as `'full'` with fewer entangling gates.
-*   `'pairwise'` entanglement is one layer where qubit $i$ is entangled with qubit $i + 1$, for all even values of $i$, and then a second layer where qubit $i$ is entangled with qubit $i + 1$, for all odd values of $i$.
-*   `'circular'` entanglement is linear entanglement but with an additional entanglement of the first and last qubit before the linear part.
-*   `'sca'` (shifted-circular-alternating) entanglement is a generalized and modified version of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the ‘long’ entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
-
-The entanglement can further be specified using an entangler map, which is a list of index pairs, such as
-
-```python
->>> entangler_map = [(0, 1), (1, 2), (2, 0)]
-```
-
-If different entanglements per block should be used, provide a list of entangler maps. See the examples below on how this can be used.
-
-```python
->>> entanglement = [entangler_map_layer_1, entangler_map_layer_2, ... ]
-```
-
-Barriers can be inserted in between the different layers for better visualization using the `insert_barriers` attribute.
-
-For each parameterized gate a new parameter is generated using a `ParameterVector`. The name of these parameters can be chosen using the `parameter_prefix`.
-
-**Examples**
-
-```python
->>> two = TwoLocal(3, 'ry', 'cx', 'linear', reps=2, insert_barriers=True)
->>> print(two)  # decompose the layers into standard gates
-     ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
-q_0: ┤ Ry(θ[0]) ├─░───■────────░─┤ Ry(θ[3]) ├─░───■────────░─┤ Ry(θ[6]) ├
-     ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤
-q_1: ┤ Ry(θ[1]) ├─░─┤ X ├──■───░─┤ Ry(θ[4]) ├─░─┤ X ├──■───░─┤ Ry(θ[7]) ├
-     ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤
-q_2: ┤ Ry(θ[2]) ├─░──────┤ X ├─░─┤ Ry(θ[5]) ├─░──────┤ X ├─░─┤ Ry(θ[8]) ├
-     └──────────┘ ░      └───┘ ░ └──────────┘ ░      └───┘ ░ └──────────┘
-```
-
-```python
->>> two = TwoLocal(3, ['ry','rz'], 'cz', 'full', reps=1, insert_barriers=True)
->>> qc = QuantumCircuit(3)
->>> qc += two
->>> print(qc.decompose().draw())
-     ┌──────────┐┌──────────┐ ░           ░ ┌──────────┐ ┌──────────┐
-q_0: ┤ Ry(θ[0]) ├┤ Rz(θ[3]) ├─░──■──■─────░─┤ Ry(θ[6]) ├─┤ Rz(θ[9]) ├
-     ├──────────┤├──────────┤ ░  │  │     ░ ├──────────┤┌┴──────────┤
-q_1: ┤ Ry(θ[1]) ├┤ Rz(θ[4]) ├─░──■──┼──■──░─┤ Ry(θ[7]) ├┤ Rz(θ[10]) ├
-     ├──────────┤├──────────┤ ░     │  │  ░ ├──────────┤├───────────┤
-q_2: ┤ Ry(θ[2]) ├┤ Rz(θ[5]) ├─░─────■──■──░─┤ Ry(θ[8]) ├┤ Rz(θ[11]) ├
-     └──────────┘└──────────┘ ░           ░ └──────────┘└───────────┘
-```
+<Class id="qiskit.circuit.library.TwoLocal" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/two_local.py#L54-L338" signature="qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)">
+  Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
+
+  The two-local circuit.
+
+  The two-local circuit is a parameterized circuit consisting of alternating rotation layers and entanglement layers. The rotation layers are single qubit gates applied on all qubits. The entanglement layer uses two-qubit gates to entangle the qubits according to a strategy set using `entanglement`. Both the rotation and entanglement gates can be specified as string (e.g. `'ry'` or `'cx'`), as gate-type (e.g. `RYGate` or `CXGate`) or as QuantumCircuit (e.g. a 1-qubit circuit or 2-qubit circuit).
+
+  A set of default entanglement strategies is provided:
+
+  *   `'full'` entanglement is each qubit is entangled with all the others.
+  *   `'linear'` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{0, 1, ... , n - 2\}$, where $n$ is the total number of qubits.
+  *   `'reverse_linear'` entanglement is qubit $i$ entangled with qubit $i + 1$, for all $i \in \{n-2, n-3, ... , 1, 0\}$, where $n$ is the total number of qubits. Note that if `entanglement_blocks = 'cx'` then this option provides the same unitary as `'full'` with fewer entangling gates.
+  *   `'pairwise'` entanglement is one layer where qubit $i$ is entangled with qubit $i + 1$, for all even values of $i$, and then a second layer where qubit $i$ is entangled with qubit $i + 1$, for all odd values of $i$.
+  *   `'circular'` entanglement is linear entanglement but with an additional entanglement of the first and last qubit before the linear part.
+  *   `'sca'` (shifted-circular-alternating) entanglement is a generalized and modified version of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876). It consists of circular entanglement where the ‘long’ entanglement connecting the first with the last qubit is shifted by one each block. Furthermore the role of control and target qubits are swapped every block (therefore alternating).
+
+  The entanglement can further be specified using an entangler map, which is a list of index pairs, such as
+
+  ```python
+  >>> entangler_map = [(0, 1), (1, 2), (2, 0)]
+  ```
+
+  If different entanglements per block should be used, provide a list of entangler maps. See the examples below on how this can be used.
+
+  ```python
+  >>> entanglement = [entangler_map_layer_1, entangler_map_layer_2, ... ]
+  ```
+
+  Barriers can be inserted in between the different layers for better visualization using the `insert_barriers` attribute.
+
+  For each parameterized gate a new parameter is generated using a `ParameterVector`. The name of these parameters can be chosen using the `parameter_prefix`.
+
+  **Examples**
+
+  ```python
+  >>> two = TwoLocal(3, 'ry', 'cx', 'linear', reps=2, insert_barriers=True)
+  >>> print(two)  # decompose the layers into standard gates
+       ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
+  q_0: ┤ Ry(θ[0]) ├─░───■────────░─┤ Ry(θ[3]) ├─░───■────────░─┤ Ry(θ[6]) ├
+       ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤
+  q_1: ┤ Ry(θ[1]) ├─░─┤ X ├──■───░─┤ Ry(θ[4]) ├─░─┤ X ├──■───░─┤ Ry(θ[7]) ├
+       ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤ ░ └───┘┌─┴─┐ ░ ├──────────┤
+  q_2: ┤ Ry(θ[2]) ├─░──────┤ X ├─░─┤ Ry(θ[5]) ├─░──────┤ X ├─░─┤ Ry(θ[8]) ├
+       └──────────┘ ░      └───┘ ░ └──────────┘ ░      └───┘ ░ └──────────┘
+  ```
+
+  ```python
+  >>> two = TwoLocal(3, ['ry','rz'], 'cz', 'full', reps=1, insert_barriers=True)
+  >>> qc = QuantumCircuit(3)
+  >>> qc += two
+  >>> print(qc.decompose().draw())
+       ┌──────────┐┌──────────┐ ░           ░ ┌──────────┐ ┌──────────┐
+  q_0: ┤ Ry(θ[0]) ├┤ Rz(θ[3]) ├─░──■──■─────░─┤ Ry(θ[6]) ├─┤ Rz(θ[9]) ├
+       ├──────────┤├──────────┤ ░  │  │     ░ ├──────────┤┌┴──────────┤
+  q_1: ┤ Ry(θ[1]) ├┤ Rz(θ[4]) ├─░──■──┼──■──░─┤ Ry(θ[7]) ├┤ Rz(θ[10]) ├
+       ├──────────┤├──────────┤ ░     │  │  ░ ├──────────┤├───────────┤
+  q_2: ┤ Ry(θ[2]) ├┤ Rz(θ[5]) ├─░─────■──■──░─┤ Ry(θ[8]) ├┤ Rz(θ[11]) ├
+       └──────────┘└──────────┘ ░           ░ └──────────┘└───────────┘
+  ```
+
+  ```python
+  >>> entangler_map = [[0, 1], [1, 2], [2, 0]]  # circular entanglement for 3 qubits
+  >>> two = TwoLocal(3, 'x', 'crx', entangler_map, reps=1)
+  >>> print(two)  # note: no barriers inserted this time!
+          ┌───┐                             ┌──────────┐┌───┐
+  q_0: |0>┤ X ├─────■───────────────────────┤ Rx(θ[2]) ├┤ X ├
+          ├───┤┌────┴─────┐            ┌───┐└─────┬────┘└───┘
+  q_1: |0>┤ X ├┤ Rx(θ[0]) ├─────■──────┤ X ├──────┼──────────
+          ├───┤└──────────┘┌────┴─────┐└───┘      │     ┌───┐
+  q_2: |0>┤ X ├────────────┤ Rx(θ[1]) ├───────────■─────┤ X ├
+          └───┘            └──────────┘                 └───┘
+  ```
+
+  ```python
+  >>> entangler_map = [[0, 3], [0, 2]]  # entangle the first and last two-way
+  >>> two = TwoLocal(4, [], 'cry', entangler_map, reps=1)
+  >>> circuit = two + two
+  >>> print(circuit.decompose().draw())  # note, that the parameters are the same!
+  q_0: ─────■───────────■───────────■───────────■──────
+            │           │           │           │
+  q_1: ─────┼───────────┼───────────┼───────────┼──────
+            │      ┌────┴─────┐     │      ┌────┴─────┐
+  q_2: ─────┼──────┤ Ry(θ[1]) ├─────┼──────┤ Ry(θ[1]) ├
+       ┌────┴─────┐└──────────┘┌────┴─────┐└──────────┘
+  q_3: ┤ Ry(θ[0]) ├────────────┤ Ry(θ[0]) ├────────────
+       └──────────┘            └──────────┘
+  ```
+
+  ```python
+  >>> layer_1 = [(0, 1), (0, 2)]
+  >>> layer_2 = [(1, 2)]
+  >>> two = TwoLocal(3, 'x', 'cx', [layer_1, layer_2], reps=2, insert_barriers=True)
+  >>> print(two)
+       ┌───┐ ░            ░ ┌───┐ ░       ░ ┌───┐
+  q_0: ┤ X ├─░───■────■───░─┤ X ├─░───────░─┤ X ├
+       ├───┤ ░ ┌─┴─┐  │   ░ ├───┤ ░       ░ ├───┤
+  q_1: ┤ X ├─░─┤ X ├──┼───░─┤ X ├─░───■───░─┤ X ├
+       ├───┤ ░ └───┘┌─┴─┐ ░ ├───┤ ░ ┌─┴─┐ ░ ├───┤
+  q_2: ┤ X ├─░──────┤ X ├─░─┤ X ├─░─┤ X ├─░─┤ X ├
+       └───┘ ░      └───┘ ░ └───┘ ░ └───┘ ░ └───┘
+  ```
 
-```python
->>> entangler_map = [[0, 1], [1, 2], [2, 0]]  # circular entanglement for 3 qubits
->>> two = TwoLocal(3, 'x', 'crx', entangler_map, reps=1)
->>> print(two)  # note: no barriers inserted this time!
-        ┌───┐                             ┌──────────┐┌───┐
-q_0: |0>┤ X ├─────■───────────────────────┤ Rx(θ[2]) ├┤ X ├
-        ├───┤┌────┴─────┐            ┌───┐└─────┬────┘└───┘
-q_1: |0>┤ X ├┤ Rx(θ[0]) ├─────■──────┤ X ├──────┼──────────
-        ├───┤└──────────┘┌────┴─────┐└───┘      │     ┌───┐
-q_2: |0>┤ X ├────────────┤ Rx(θ[1]) ├───────────■─────┤ X ├
-        └───┘            └──────────┘                 └───┘
-```
+  **Parameters**
 
-```python
->>> entangler_map = [[0, 3], [0, 2]]  # entangle the first and last two-way
->>> two = TwoLocal(4, [], 'cry', entangler_map, reps=1)
->>> circuit = two + two
->>> print(circuit.decompose().draw())  # note, that the parameters are the same!
-q_0: ─────■───────────■───────────■───────────■──────
-          │           │           │           │
-q_1: ─────┼───────────┼───────────┼───────────┼──────
-          │      ┌────┴─────┐     │      ┌────┴─────┐
-q_2: ─────┼──────┤ Ry(θ[1]) ├─────┼──────┤ Ry(θ[1]) ├
-     ┌────┴─────┐└──────────┘┌────┴─────┐└──────────┘
-q_3: ┤ Ry(θ[0]) ├────────────┤ Ry(θ[0]) ├────────────
-     └──────────┘            └──────────┘
-```
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits of the two-local circuit.
+  *   **rotation\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the rotation layer. Can be specified via the name of a gate (e.g. `'ry'`) or the gate type itself (e.g. [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate")). If only one gate is provided, the gate same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order. See the Examples section for more detail.
+  *   **entanglement\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the entanglement layer. Can be specified in the same format as `rotation_blocks`.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to `'full'` entanglement. Note that if `entanglement_blocks = 'cx'`, then `'full'` entanglement provides the same unitary as `'reverse_linear'` but the latter option has fewer entangling gates. See the Examples section for more detail.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Specifies how often a block consisting of a rotation layer and entanglement layer is repeated.
+  *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, the single qubit gates are only applied to qubits that are entangled with another qubit. If `False`, the single qubit gates are applied to each qubit in the ansatz. Defaults to `False`.
+  *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False`, a rotation layer is added at the end of the ansatz. If `True`, no rotation layer is added.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use instances of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). The name of each parameter will be this specified prefix plus its index.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object to prepend to the circuit.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
 
-```python
->>> layer_1 = [(0, 1), (0, 2)]
->>> layer_2 = [(1, 2)]
->>> two = TwoLocal(3, 'x', 'cx', [layer_1, layer_2], reps=2, insert_barriers=True)
->>> print(two)
-     ┌───┐ ░            ░ ┌───┐ ░       ░ ┌───┐
-q_0: ┤ X ├─░───■────■───░─┤ X ├─░───────░─┤ X ├
-     ├───┤ ░ ┌─┴─┐  │   ░ ├───┤ ░       ░ ├───┤
-q_1: ┤ X ├─░─┤ X ├──┼───░─┤ X ├─░───■───░─┤ X ├
-     ├───┤ ░ └───┘┌─┴─┐ ░ ├───┤ ░ ┌─┴─┐ ░ ├───┤
-q_2: ┤ X ├─░──────┤ X ├─░─┤ X ├─░─┤ X ├─░─┤ X ├
-     └───┘ ░      └───┘ ░ └───┘ ░ └───┘ ░ └───┘
-```
+  ## Attributes
 
-**Parameters**
+  ### ancillas
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits of the two-local circuit.
-*   **rotation\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the rotation layer. Can be specified via the name of a gate (e.g. `'ry'`) or the gate type itself (e.g. [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate")). If only one gate is provided, the gate same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order. See the Examples section for more detail.
-*   **entanglement\_blocks** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – The gates used in the entanglement layer. Can be specified in the same format as `rotation_blocks`.
-*   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. Default to `'full'` entanglement. Note that if `entanglement_blocks = 'cx'`, then `'full'` entanglement provides the same unitary as `'reverse_linear'` but the latter option has fewer entangling gates. See the Examples section for more detail.
-*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Specifies how often a block consisting of a rotation layer and entanglement layer is repeated.
-*   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, the single qubit gates are only applied to qubits that are entangled with another qubit. If `False`, the single qubit gates are applied to each qubit in the ansatz. Defaults to `False`.
-*   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False`, a rotation layer is added at the end of the ansatz. If `True`, no rotation layer is added.
-*   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The parameterized gates require a parameter to be defined, for which we use instances of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). The name of each parameter will be this specified prefix plus its index.
-*   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
-*   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object to prepend to the circuit.
-*   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+  <Attribute id="qiskit.circuit.library.TwoLocal.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-## Attributes
+  ### calibrations
 
-<span id="qiskit.circuit.library.TwoLocal.ancillas" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### ancillas
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### clbits
 
-<span id="qiskit.circuit.library.TwoLocal.calibrations" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-### calibrations
+  ### data
 
-Return calibration dictionary.
+  <Attribute id="qiskit.circuit.library.TwoLocal.data" name="data" />
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  ### entanglement
 
-<span id="qiskit.circuit.library.TwoLocal.clbits" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.entanglement" name="entanglement">
+    Get the entanglement strategy.
 
-### clbits
+    **Returns**
 
-Returns a list of classical bits in the order that the registers were added.
+    The entanglement strategy, see [`get_entangler_map()`](#qiskit.circuit.library.TwoLocal.get_entangler_map "qiskit.circuit.library.TwoLocal.get_entangler_map") for more detail on how the format is interpreted.
+  </Attribute>
 
-<span id="qiskit.circuit.library.TwoLocal.data" />
+  ### entanglement\_blocks
 
-### data
+  <Attribute id="qiskit.circuit.library.TwoLocal.entanglement_blocks" name="entanglement_blocks">
+    The blocks in the entanglement layers.
 
-<span id="qiskit.circuit.library.TwoLocal.entanglement" />
+    **Returns**
 
-### entanglement
+    The blocks in the entanglement layers.
+  </Attribute>
 
-Get the entanglement strategy.
+  ### flatten
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.TwoLocal.flatten" name="flatten">
+    Returns whether the circuit is wrapped in nested gates/instructions or flattened.
+  </Attribute>
 
-The entanglement strategy, see [`get_entangler_map()`](#qiskit.circuit.library.TwoLocal.get_entangler_map "qiskit.circuit.library.TwoLocal.get_entangler_map") for more detail on how the format is interpreted.
+  ### global\_phase
 
-<span id="qiskit.circuit.library.TwoLocal.entanglement_blocks" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-### entanglement\_blocks
+  ### initial\_state
 
-The blocks in the entanglement layers.
+  <Attribute id="qiskit.circuit.library.TwoLocal.initial_state" name="initial_state">
+    Return the initial state that is added in front of the n-local circuit.
 
-**Returns**
+    **Returns**
 
-The blocks in the entanglement layers.
+    The initial state.
+  </Attribute>
 
-<span id="qiskit.circuit.library.TwoLocal.flatten" />
+  ### insert\_barriers
 
-### flatten
+  <Attribute id="qiskit.circuit.library.TwoLocal.insert_barriers" name="insert_barriers">
+    If barriers are inserted in between the layers or not.
 
-Returns whether the circuit is wrapped in nested gates/instructions or flattened.
+    **Returns**
 
-<span id="qiskit.circuit.library.TwoLocal.global_phase" />
+    `True`, if barriers are inserted in between the layers, `False` if not.
+  </Attribute>
 
-### global\_phase
+  ### instances
 
-Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.TwoLocal.instances" name="instances" attributeValue="= 158" />
 
-<span id="qiskit.circuit.library.TwoLocal.initial_state" />
+  ### layout
 
-### initial\_state
+  <Attribute id="qiskit.circuit.library.TwoLocal.layout" name="layout">
+    Return any associated layout information about the circuit
 
-Return the initial state that is added in front of the n-local circuit.
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-**Returns**
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-The initial state.
+  ### metadata
 
-<span id="qiskit.circuit.library.TwoLocal.insert_barriers" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-### insert\_barriers
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-If barriers are inserted in between the layers or not.
+  ### num\_ancillas
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-`True`, if barriers are inserted in between the layers, `False` if not.
+  ### num\_captured\_vars
 
-<span id="qiskit.circuit.library.TwoLocal.instances" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_captured_vars" name="num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
 
-### instances
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.TwoLocal.num_input_vars "qiskit.circuit.library.TwoLocal.num_input_vars") must be zero.
+  </Attribute>
 
-`= 412`
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.TwoLocal.layout" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-### layout
+  ### num\_declared\_vars
 
-Return any associated layout information about the circuit
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_declared_vars" name="num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  ### num\_input\_vars
 
-<span id="qiskit.circuit.library.TwoLocal.metadata" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_input_vars" name="num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
 
-### metadata
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.TwoLocal.num_captured_vars "qiskit.circuit.library.TwoLocal.num_captured_vars") must be zero.
+  </Attribute>
 
-The user provided metadata associated with the circuit.
+  ### num\_layers
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_layers" name="num_layers">
+    Return the number of layers in the n-local circuit.
 
-<span id="qiskit.circuit.library.TwoLocal.num_ancillas" />
+    **Returns**
 
-### num\_ancillas
+    The number of layers in the circuit.
+  </Attribute>
 
-Return the number of ancilla qubits.
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.TwoLocal.num_captured_vars" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_parameters" name="num_parameters" />
 
-### num\_captured\_vars
+  ### num\_parameters\_settable
 
-The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_parameters_settable" name="num_parameters_settable">
+    The number of total parameters that can be set to distinct values.
 
-This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.TwoLocal.num_input_vars "qiskit.circuit.library.TwoLocal.num_input_vars") must be zero.
+    This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
-<span id="qiskit.circuit.library.TwoLocal.num_clbits" />
+    **Returns**
 
-### num\_clbits
+    The number of parameters originally available in the circuit.
 
-Return number of classical bits.
+    <Admonition title="Note" type="note">
+      This quantity does not require the circuit to be built yet.
+    </Admonition>
+  </Attribute>
 
-<span id="qiskit.circuit.library.TwoLocal.num_declared_vars" />
+  ### num\_qubits
 
-### num\_declared\_vars
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_qubits" name="num_qubits">
+    Returns the number of qubits in this circuit.
 
-The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+    **Returns**
 
-This is the length of the `iter_declared_vars()` iterable.
+    The number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.TwoLocal.num_input_vars" />
+  ### num\_vars
 
-### num\_input\_vars
+  <Attribute id="qiskit.circuit.library.TwoLocal.num_vars" name="num_vars">
+    The number of real-time classical variables in the circuit.
 
-The number of runtime classical variables in the circuit marked as circuit inputs.
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
 
-This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.TwoLocal.num_captured_vars "qiskit.circuit.library.TwoLocal.num_captured_vars") must be zero.
+  ### op\_start\_times
 
-<span id="qiskit.circuit.library.TwoLocal.num_layers" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-### num\_layers
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-Return the number of layers in the n-local circuit.
+    **Returns**
 
-**Returns**
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-The number of layers in the circuit.
+    **Raises**
 
-<span id="qiskit.circuit.library.TwoLocal.num_parameters" />
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-### num\_parameters
+  ### ordered\_parameters
 
-<span id="qiskit.circuit.library.TwoLocal.num_parameters_settable" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.ordered_parameters" name="ordered_parameters">
+    The parameters used in the underlying circuit.
 
-### num\_parameters\_settable
+    This includes float values and duplicates.
 
-The number of total parameters that can be set to distinct values.
+    **Examples**
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
 
-**Returns**
+    **Returns**
 
-The number of parameters originally available in the circuit.
+    The parameters objects used in the circuit.
+  </Attribute>
 
-<Admonition title="Note" type="note">
-  This quantity does not require the circuit to be built yet.
-</Admonition>
+  ### parameter\_bounds
 
-<span id="qiskit.circuit.library.TwoLocal.num_qubits" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.parameter_bounds" name="parameter_bounds">
+    The parameter bounds for the unbound parameters in the circuit.
 
-### num\_qubits
+    **Returns**
 
-Returns the number of qubits in this circuit.
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If `None` is returned, problem is fully unbounded.
+  </Attribute>
 
-**Returns**
+  ### parameters
 
-The number of qubits.
+  <Attribute id="qiskit.circuit.library.TwoLocal.parameters" name="parameters" />
 
-<span id="qiskit.circuit.library.TwoLocal.num_vars" />
+  ### preferred\_init\_points
 
-### num\_vars
+  <Attribute id="qiskit.circuit.library.TwoLocal.preferred_init_points" name="preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
 
-The number of runtime classical variables in the circuit.
+    **Returns**
 
-This is the length of the `iter_vars()` iterable.
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
 
-<span id="qiskit.circuit.library.TwoLocal.op_start_times" />
+  ### prefix
 
-### op\_start\_times
+  <Attribute id="qiskit.circuit.library.TwoLocal.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-Return a list of operation start times.
+  ### qregs
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+  <Attribute id="qiskit.circuit.library.TwoLocal.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-**Returns**
+  ### qubits
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+  <Attribute id="qiskit.circuit.library.TwoLocal.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-**Raises**
+  ### reps
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  <Attribute id="qiskit.circuit.library.TwoLocal.reps" name="reps">
+    The number of times rotation and entanglement block are repeated.
 
-<span id="qiskit.circuit.library.TwoLocal.ordered_parameters" />
+    **Returns**
 
-### ordered\_parameters
+    The number of repetitions.
+  </Attribute>
 
-The parameters used in the underlying circuit.
+  ### rotation\_blocks
 
-This includes float values and duplicates.
+  <Attribute id="qiskit.circuit.library.TwoLocal.rotation_blocks" name="rotation_blocks">
+    The blocks in the rotation layers.
 
-**Examples**
+    **Returns**
 
-```python
->>> # prepare circuit ...
->>> print(nlocal)
-     ┌───────┐┌──────────┐┌──────────┐┌──────────┐
-q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
-     └───────┘└──────────┘└──────────┘└──────────┘
->>> nlocal.parameters
-{Parameter(θ[1]), Parameter(θ[3])}
->>> nlocal.ordered_parameters
-[1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
-```
+    The blocks in the rotation layers.
+  </Attribute>
 
-**Returns**
+  ## Methods
 
-The parameters objects used in the circuit.
+  ### get\_entangler\_map
 
-<span id="qiskit.circuit.library.TwoLocal.parameter_bounds" />
+  <Function id="qiskit.circuit.library.TwoLocal.get_entangler_map" name="get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/two_local.py#L332-L338" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+    Overloading to handle the special case of 1 qubit where the entanglement are ignored.
 
-### parameter\_bounds
+    **Return type**
 
-The parameter bounds for the unbound parameters in the circuit.
-
-**Returns**
-
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If `None` is returned, problem is fully unbounded.
-
-<span id="qiskit.circuit.library.TwoLocal.parameters" />
-
-### parameters
-
-<span id="qiskit.circuit.library.TwoLocal.preferred_init_points" />
-
-### preferred\_init\_points
-
-The initial points for the parameters. Can be stored as initial guess in optimization.
-
-**Returns**
-
-The initial values for the parameters, or None, if none have been set.
-
-<span id="qiskit.circuit.library.TwoLocal.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.TwoLocal.qregs" />
-
-### qregs
-
-`list[QuantumRegister]`
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.TwoLocal.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-<span id="qiskit.circuit.library.TwoLocal.reps" />
-
-### reps
-
-The number of times rotation and entanglement block are repeated.
-
-**Returns**
-
-The number of repetitions.
-
-<span id="qiskit.circuit.library.TwoLocal.rotation_blocks" />
-
-### rotation\_blocks
-
-The blocks in the rotation layers.
-
-**Returns**
-
-The blocks in the rotation layers.
-
-## Methods
-
-### get\_entangler\_map
-
-<span id="qiskit.circuit.library.TwoLocal.get_entangler_map" />
-
-`get_entangler_map(rep_num, block_num, num_block_qubits)`
-
-Overloading to handle the special case of 1 qubit where the entanglement are ignored.
-
-**Return type**
-
-[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+    [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+  </Function>
+</Class>
 

@@ -8,298 +8,270 @@ python_api_name: qiskit.circuit.BreakLoopOp
 
 # BreakLoopOp
 
-<span id="qiskit.circuit.BreakLoopOp" />
+<Class id="qiskit.circuit.BreakLoopOp" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/break_loop.py" signature="BreakLoopOp(num_qubits, num_clbits, label=None)">
+  Bases: `qiskit.circuit.instruction.Instruction`
 
-`BreakLoopOp(num_qubits, num_clbits, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/controlflow/break_loop.py "view source code")
+  A circuit operation which, when encountered, jumps to the end of the nearest enclosing loop.
 
-Bases: `qiskit.circuit.instruction.Instruction`
+  **Circuit symbol:**
 
-A circuit operation which, when encountered, jumps to the end of the nearest enclosing loop.
+  ```python
+       ┌──────────────┐
+  q_0: ┤0             ├
+       │              │
+  q_1: ┤1             ├
+       │  break_loop  │
+  q_2: ┤2             ├
+       │              │
+  c_0: ╡0             ╞
+       └──────────────┘
+  ```
 
-**Circuit symbol:**
+  Create a new instruction.
 
-```python
-     ┌──────────────┐
-q_0: ┤0             ├
-     │              │
-q_1: ┤1             ├
-     │  break_loop  │
-q_2: ┤2             ├
-     │              │
-c_0: ╡0             ╞
-     └──────────────┘
-```
+  **Parameters**
 
-Create a new instruction.
+  *   **name** (*str*) – instruction name
+  *   **num\_qubits** (*int*) – instruction’s qubit width
+  *   **num\_clbits** (*int*) – instruction’s clbit width
+  *   **params** (*list\[int|float|complex|str|ndarray|list|ParameterExpression]*) – list of parameters
+  *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
+  *   **unit** (*str*) – time unit of duration
+  *   **label** (*str or None*) – An optional label for identifying the instruction.
 
-**Parameters**
+  **Raises**
 
-*   **name** (*str*) – instruction name
-*   **num\_qubits** (*int*) – instruction’s qubit width
-*   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|ParameterExpression]*) – list of parameters
-*   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
-*   **unit** (*str*) – time unit of duration
-*   **label** (*str or None*) – An optional label for identifying the instruction.
+  **CircuitError** – when the register is not in the correct format.
 
-**Raises**
+  ## Methods
 
-**CircuitError** – when the register is not in the correct format.
+  ### add\_decomposition
 
-## Methods
+  <Function id="qiskit.circuit.BreakLoopOp.add_decomposition" name="add_decomposition" signature="BreakLoopOp.add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-### add\_decomposition
+  ### assemble
 
-<span id="qiskit.circuit.BreakLoopOp.add_decomposition" />
+  <Function id="qiskit.circuit.BreakLoopOp.assemble" name="assemble" signature="BreakLoopOp.assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-`BreakLoopOp.add_decomposition(decomposition)`
+  ### broadcast\_arguments
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  <Function id="qiskit.circuit.BreakLoopOp.broadcast_arguments" name="broadcast_arguments" signature="BreakLoopOp.broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### assemble
+    **Parameters**
 
-<span id="qiskit.circuit.BreakLoopOp.assemble" />
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-`BreakLoopOp.assemble()`
+    **Yields**
 
-Assemble a QasmQobjInstruction
+    *Tuple(List, List)* – A tuple with single arguments.
 
-### broadcast\_arguments
+    **Raises**
 
-<span id="qiskit.circuit.BreakLoopOp.broadcast_arguments" />
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-`BreakLoopOp.broadcast_arguments(qargs, cargs)`
+  ### c\_if
 
-Validation of the arguments.
+  <Function id="qiskit.circuit.BreakLoopOp.c_if" name="c_if" signature="BreakLoopOp.c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-**Parameters**
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+  ### copy
 
-**Yields**
+  <Function id="qiskit.circuit.BreakLoopOp.copy" name="copy" signature="BreakLoopOp.copy(name=None)">
+    Copy of the instruction.
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **Parameters**
 
-**Raises**
+    **name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
 
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Returns**
 
-### c\_if
+    **a copy of the current instruction, with the name**
 
-<span id="qiskit.circuit.BreakLoopOp.c_if" />
+    updated if it was provided
 
-`BreakLoopOp.c_if(classical, val)`
+    **Return type**
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### inverse
 
-### copy
+  <Function id="qiskit.circuit.BreakLoopOp.inverse" name="inverse" signature="BreakLoopOp.inverse()">
+    Invert this instruction.
 
-<span id="qiskit.circuit.BreakLoopOp.copy" />
+    If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
 
-`BreakLoopOp.copy(name=None)`
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
 
-Copy of the instruction.
+    **Returns**
 
-**Parameters**
+    a fresh instruction for the inverse
 
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-**a copy of the current instruction, with the name**
+    **Raises**
 
-updated if it was provided
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-**Return type**
+  ### is\_parameterized
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  <Function id="qiskit.circuit.BreakLoopOp.is_parameterized" name="is_parameterized" signature="BreakLoopOp.is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-### inverse
+  ### mirror
 
-<span id="qiskit.circuit.BreakLoopOp.inverse" />
+  <Function id="qiskit.circuit.BreakLoopOp.mirror" name="mirror" signature="BreakLoopOp.mirror()">
+    DEPRECATED: use instruction.reverse\_ops().
 
-`BreakLoopOp.inverse()`
+    **Returns**
 
-Invert this instruction.
+    **a new instruction with sub-instructions**
 
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+    reversed.
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-a fresh instruction for the inverse
+  ### qasm
 
-**Return type**
+  <Function id="qiskit.circuit.BreakLoopOp.qasm" name="qasm" signature="BreakLoopOp.qasm()">
+    Return a default OpenQASM string for the instruction.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  </Function>
 
-**Raises**
+  ### repeat
 
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  <Function id="qiskit.circuit.BreakLoopOp.repeat" name="repeat" signature="BreakLoopOp.repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-### is\_parameterized
+    **Parameters**
 
-<span id="qiskit.circuit.BreakLoopOp.is_parameterized" />
+    **n** (*int*) – Number of times to repeat the instruction
 
-`BreakLoopOp.is_parameterized()`
+    **Returns**
 
-Return True .IFF. instruction is parameterized else False
+    Containing the definition.
 
-### mirror
+    **Return type**
 
-<span id="qiskit.circuit.BreakLoopOp.mirror" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-`BreakLoopOp.mirror()`
+    **Raises**
 
-DEPRECATED: use instruction.reverse\_ops().
+    **CircuitError** – If n \< 1.
+  </Function>
 
-**Returns**
+  ### reverse\_ops
 
-**a new instruction with sub-instructions**
+  <Function id="qiskit.circuit.BreakLoopOp.reverse_ops" name="reverse_ops" signature="BreakLoopOp.reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-reversed.
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **a new instruction with**
 
-### qasm
+    sub-instructions reversed.
 
-<span id="qiskit.circuit.BreakLoopOp.qasm" />
+    **Return type**
 
-`BreakLoopOp.qasm()`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-Return a default OpenQASM string for the instruction.
+  ### soft\_compare
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+  <Function id="qiskit.circuit.BreakLoopOp.soft_compare" name="soft_compare" signature="BreakLoopOp.soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-### repeat
+    **Parameters**
 
-<span id="qiskit.circuit.BreakLoopOp.repeat" />
+    **other** (*instruction*) – other instruction.
 
-`BreakLoopOp.repeat(n)`
+    **Returns**
 
-Creates an instruction with gate repeated n amount of times.
+    are self and other equal up to parameter expressions.
 
-**Parameters**
+    **Return type**
 
-**n** (*int*) – Number of times to repeat the instruction
+    bool
+  </Function>
 
-**Returns**
+  ### validate\_parameter
 
-Containing the definition.
+  <Function id="qiskit.circuit.BreakLoopOp.validate_parameter" name="validate_parameter" signature="BreakLoopOp.validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### condition\_bits
 
-**Raises**
+  <Attribute id="qiskit.circuit.BreakLoopOp.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-**CircuitError** – If n \< 1.
+    **Return type**
 
-### reverse\_ops
+    `List`\[`Clbit`]
+  </Attribute>
 
-<span id="qiskit.circuit.BreakLoopOp.reverse_ops" />
+  ### decompositions
 
-`BreakLoopOp.reverse_ops()`
+  <Attribute id="qiskit.circuit.BreakLoopOp.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-For a composite instruction, reverse the order of sub-instructions.
+  ### definition
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+  <Attribute id="qiskit.circuit.BreakLoopOp.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-**Returns**
+  ### duration
 
-**a new instruction with**
+  <Attribute id="qiskit.circuit.BreakLoopOp.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-sub-instructions reversed.
+  ### label
 
-**Return type**
+  <Attribute id="qiskit.circuit.BreakLoopOp.label" name="label">
+    Return instruction label
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### soft\_compare
+    `str`
+  </Attribute>
 
-<span id="qiskit.circuit.BreakLoopOp.soft_compare" />
+  ### params
 
-`BreakLoopOp.soft_compare(other)`
+  <Attribute id="qiskit.circuit.BreakLoopOp.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+  ### unit
 
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-bool
-
-### validate\_parameter
-
-<span id="qiskit.circuit.BreakLoopOp.validate_parameter" />
-
-`BreakLoopOp.validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
-
-## Attributes
-
-<span id="qiskit.circuit.BreakLoopOp.condition_bits" />
-
-### condition\_bits
-
-Get Clbits in condition.
-
-**Return type**
-
-`List`\[`Clbit`]
-
-<span id="qiskit.circuit.BreakLoopOp.decompositions" />
-
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.BreakLoopOp.definition" />
-
-### definition
-
-Return definition in terms of other basic gates.
-
-<span id="qiskit.circuit.BreakLoopOp.duration" />
-
-### duration
-
-Get the duration.
-
-<span id="qiskit.circuit.BreakLoopOp.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.BreakLoopOp.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.BreakLoopOp.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.BreakLoopOp.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

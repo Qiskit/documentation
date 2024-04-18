@@ -10,69 +10,61 @@ python_api_name: qiskit.aqua.components.initial_states.Zero
 
 # qiskit.aqua.components.initial\_states.Zero
 
-<span id="qiskit.aqua.components.initial_states.Zero" />
+<Class id="qiskit.aqua.components.initial_states.Zero" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/zero.py" signature="Zero(num_qubits)">
+  The zero (null/vacuum) state.
 
-`Zero(num_qubits)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/zero.py "view source code")
+  This is suitable for those situations in which the all-zeros state is the desired state. This is the case for a *vacuum state* in physics or chemistry
 
-The zero (null/vacuum) state.
+  **Parameters**
 
-This is suitable for those situations in which the all-zeros state is the desired state. This is the case for a *vacuum state* in physics or chemistry
+  **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
+  <Function id="qiskit.aqua.components.initial_states.Zero.__init__" name="__init__" signature="__init__(num_qubits)">
+    **Parameters**
 
-### \_\_init\_\_
+    **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
+  </Function>
 
-<span id="qiskit.aqua.components.initial_states.Zero.__init__" />
+  ## Methods
 
-`__init__(num_qubits)`
+  |                                                                                                                                                                        |                                                     |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.initial_states.Zero.__init__ "qiskit.aqua.components.initial_states.Zero.__init__")(num\_qubits)                                  | **type num\_qubits**`int`                           |
+  | [`construct_circuit`](#qiskit.aqua.components.initial_states.Zero.construct_circuit "qiskit.aqua.components.initial_states.Zero.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
 
-**Parameters**
+  ## Attributes
 
-**num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
+  |                                                                                                                    |   |
+  | ------------------------------------------------------------------------------------------------------------------ | - |
+  | [`bitstr`](#qiskit.aqua.components.initial_states.Zero.bitstr "qiskit.aqua.components.initial_states.Zero.bitstr") |   |
 
-## Methods
+  ### bitstr
 
-|                                                                                                                                                                        |                                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.initial_states.Zero.__init__ "qiskit.aqua.components.initial_states.Zero.__init__")(num\_qubits)                                  | **type num\_qubits**`int`                           |
-| [`construct_circuit`](#qiskit.aqua.components.initial_states.Zero.construct_circuit "qiskit.aqua.components.initial_states.Zero.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
+  <Function id="qiskit.aqua.components.initial_states.Zero.bitstr" name="bitstr" signature="property bitstr" />
 
-## Attributes
+  ### construct\_circuit
 
-|                                                                                                                    |   |
-| ------------------------------------------------------------------------------------------------------------------ | - |
-| [`bitstr`](#qiskit.aqua.components.initial_states.Zero.bitstr "qiskit.aqua.components.initial_states.Zero.bitstr") |   |
+  <Function id="qiskit.aqua.components.initial_states.Zero.construct_circuit" name="construct_circuit" signature="construct_circuit(mode='circuit', register=None)">
+    Construct the statevector of desired initial state.
 
-### bitstr
+    **Parameters**
 
-<span id="qiskit.aqua.components.initial_states.Zero.bitstr" />
+    *   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+    *   **register** – qubits for circuit construction.
 
-`property bitstr`
+    **Returns**
 
-### construct\_circuit
+    statevector.
 
-<span id="qiskit.aqua.components.initial_states.Zero.construct_circuit" />
+    **Return type**
 
-`construct_circuit(mode='circuit', register=None)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
-Construct the statevector of desired initial state.
+    **Raises**
 
-**Parameters**
-
-*   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** – qubits for circuit construction.
-
-**Returns**
-
-statevector.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+  </Function>
+</Class>
 

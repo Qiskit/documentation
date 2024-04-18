@@ -8,54 +8,50 @@ python_api_name: qiskit.algorithms.TimeEvolutionResult
 
 # TimeEvolutionResult
 
-<span id="qiskit.algorithms.TimeEvolutionResult" />
+<Class id="qiskit.algorithms.TimeEvolutionResult" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/time_evolution_result.py" signature="TimeEvolutionResult(evolved_state, aux_ops_evaluated=None)">
+  Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
-`TimeEvolutionResult(evolved_state, aux_ops_evaluated=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/time_evolution_result.py "view source code")
+  Class for holding time evolution result.
 
-Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
+  ### evolved\_state
 
-Class for holding time evolution result.
+  <Attribute id="qiskit.algorithms.TimeEvolutionResult.evolved_state" name="evolved_state">
+    An evolved quantum state.
 
-<span id="qiskit.algorithms.TimeEvolutionResult.evolved_state" />
+    **Type**
 
-### evolved\_state
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Attribute>
 
-An evolved quantum state.
+  ### aux\_ops\_evaluated
 
-**Type**
+  <Attribute id="qiskit.algorithms.TimeEvolutionResult.aux_ops_evaluated" name="aux_ops_evaluated">
+    Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Type**
 
-<span id="qiskit.algorithms.TimeEvolutionResult.aux_ops_evaluated" />
+    ListOrDict\[tuple\[complex, complex]] | None
+  </Attribute>
 
-### aux\_ops\_evaluated
+  **Parameters**
 
-Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
+  *   **evolved\_state** – An evolved quantum state.
+  *   **aux\_ops\_evaluated** – Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
 
-**Type**
+  ## Methods
 
-ListOrDict\[tuple\[complex, complex]] | None
+  ### combine
 
-**Parameters**
+  <Function id="qiskit.algorithms.TimeEvolutionResult.combine" name="combine" signature="TimeEvolutionResult.combine(result)">
+    Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
-*   **evolved\_state** – An evolved quantum state.
-*   **aux\_ops\_evaluated** – Optional list of observables for which expected values on an evolved state are calculated. These values are in fact tuples formatted as (mean, standard deviation).
+    **Raises**
 
-## Methods
+    **TypeError** – Argument is None
 
-### combine
+    **Return type**
 
-<span id="qiskit.algorithms.TimeEvolutionResult.combine" />
-
-`TimeEvolutionResult.combine(result)`
-
-Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
-
-**Raises**
-
-**TypeError** – Argument is None
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

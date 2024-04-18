@@ -8,98 +8,92 @@ python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
 
 # FasterAmplitudeEstimation
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimation" />
+<Class id="qiskit.algorithms.FasterAmplitudeEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/fae.py" signature="FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)">
+  Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
-`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
+  The Faster Amplitude Estimation algorithm.
 
-Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
+  The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amplitude Estimation (QAE), where the Quantum Phase Estimation (QPE) by an iterative Grover search, similar to \[2].
 
-The Faster Amplitude Estimation algorithm.
+  Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
 
-The Faster Amplitude Estimation (FAE) \[1] algorithm is a variant of Quantum Amplitude Estimation (QAE), where the Quantum Phase Estimation (QPE) by an iterative Grover search, similar to \[2].
+  **References**
 
-Due to the iterative version of the QPE, this algorithm does not require any additional qubits, as the originally proposed QAE \[3] and thus the resulting circuits are less complex.
+  **\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
 
-**References**
+  [arXiv:2002.02417](https://arxiv.org/pdf/2003.02417.pdf)
 
-**\[1]: K. Nakaji. Faster Amplitude Estimation, 2020;**
+  **\[2]: D. Grinko et al. Iterative Amplitude Estimation, 2019;**
 
-[arXiv:2002.02417](https://arxiv.org/pdf/2003.02417.pdf)
+  [arXiv:1912.05559](http://arxiv.org/abs/1912.05559)
 
-**\[2]: D. Grinko et al. Iterative Amplitude Estimation, 2019;**
+  **\[3]: G. Brassard et al. Quantum Amplitude Amplification and Estimation, 2000;**
 
-[arXiv:1912.05559](http://arxiv.org/abs/1912.05559)
+  [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055)
 
-**\[3]: G. Brassard et al. Quantum Amplitude Amplification and Estimation, 2000;**
+  **Parameters**
 
-[arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055)
+  *   **delta** (`float`) – The probability that the true value is outside of the final confidence interval.
+  *   **maxiter** (`int`) – The number of iterations, the maximal power of Q is 2 \*\* (maxiter - 1).
+  *   **rescale** (`bool`) – Whether to rescale the problem passed to estimate.
+  *   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – The quantum instance or backend to run the circuits.
 
-**Parameters**
+  <Admonition title="Note" type="note">
+    This algorithm overwrites the number of shots set in the `quantum_instance` argument, but will reset them to the initial number after running.
+  </Admonition>
 
-*   **delta** (`float`) – The probability that the true value is outside of the final confidence interval.
-*   **maxiter** (`int`) – The number of iterations, the maximal power of Q is 2 \*\* (maxiter - 1).
-*   **rescale** (`bool`) – Whether to rescale the problem passed to estimate.
-*   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – The quantum instance or backend to run the circuits.
+  ## Methods
 
-<Admonition title="Note" type="note">
-  This algorithm overwrites the number of shots set in the `quantum_instance` argument, but will reset them to the initial number after running.
-</Admonition>
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" name="construct_circuit" signature="FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)">
+    Construct the circuit $Q^k X |0\rangle>$.
 
-### construct\_circuit
+    The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" />
+    **Parameters**
 
-`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`
+    *   **estimation\_problem** ([`EstimationProblem`](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the circuit.
+    *   **k** (`int`) – The power of the Q operator.
+    *   **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuits.
 
-Construct the circuit $Q^k X |0\rangle>$.
+    **Return type**
 
-The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
+    `Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `Tuple`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[`int`]]]
 
-**Parameters**
+    **Returns**
 
-*   **estimation\_problem** ([`EstimationProblem`](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the circuit.
-*   **k** (`int`) – The power of the Q operator.
-*   **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuits.
+    The circuit $Q^k X |0\rangle$.
+  </Function>
 
-**Return type**
+  ### estimate
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `Tuple`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[`int`]]]
+  <Function id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" name="estimate" signature="FasterAmplitudeEstimation.estimate(estimation_problem)">
+    Run the amplitude estimation algorithm.
 
-**Returns**
+    **Parameters**
 
-The circuit $Q^k X |0\rangle$.
+    **estimation\_problem** ([`EstimationProblem`](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – An `EstimationProblem` containing all problem-relevant information such as the state preparation and the objective qubits.
 
-### estimate
+    **Return type**
 
-<span id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" />
+    [`FasterAmplitudeEstimationResult`](qiskit.algorithms.FasterAmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.fae.FasterAmplitudeEstimationResult")
+  </Function>
 
-`FasterAmplitudeEstimation.estimate(estimation_problem)`
+  ## Attributes
 
-Run the amplitude estimation algorithm.
+  ### quantum\_instance
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance" name="quantum_instance">
+    Get the quantum instance.
 
-**estimation\_problem** ([`EstimationProblem`](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – An `EstimationProblem` containing all problem-relevant information such as the state preparation and the objective qubits.
+    **Return type**
 
-**Return type**
+    `Optional`\[[`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance")]
 
-[`FasterAmplitudeEstimationResult`](qiskit.algorithms.FasterAmplitudeEstimationResult "qiskit.algorithms.amplitude_estimators.fae.FasterAmplitudeEstimationResult")
+    **Returns**
 
-## Attributes
-
-<span id="qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance" />
-
-### quantum\_instance
-
-Get the quantum instance.
-
-**Return type**
-
-`Optional`\[[`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance")]
-
-**Returns**
-
-The quantum instance used to run this algorithm.
+    The quantum instance used to run this algorithm.
+  </Attribute>
+</Class>
 

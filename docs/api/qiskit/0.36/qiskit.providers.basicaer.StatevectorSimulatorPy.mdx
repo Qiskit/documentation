@@ -8,262 +8,232 @@ python_api_name: qiskit.providers.basicaer.StatevectorSimulatorPy
 
 # StatevectorSimulatorPy
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy" />
+<Class id="qiskit.providers.basicaer.StatevectorSimulatorPy" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/basicaer/statevector_simulator.py" signature="StatevectorSimulatorPy(configuration=None, provider=None, **fields)">
+  Bases: `qiskit.providers.basicaer.qasm_simulator.QasmSimulatorPy`
 
-`StatevectorSimulatorPy(configuration=None, provider=None, **fields)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/basicaer/statevector_simulator.py "view source code")
+  Python statevector simulator.
 
-Bases: `qiskit.providers.basicaer.qasm_simulator.QasmSimulatorPy`
+  Initialize a backend class
 
-Python statevector simulator.
+  **Parameters**
 
-Initialize a backend class
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+  *   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+  *   **fields** – kwargs for the values to use to override the default options.
 
-**Parameters**
+  **Raises**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
-*   **fields** – kwargs for the values to use to override the default options.
+  **AttributeError** – if input field not a valid options
 
-**Raises**
+  In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-**AttributeError** – if input field not a valid options
+  ### \_default\_options
 
-In addition to the public abstract methods, subclasses should also implement the following private methods:
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy._default_options" name="_default_options" signature="classmethod _default_options()">
+    Return the default options
 
-### \_default\_options
+    This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy._default_options" />
+    **Returns**
 
-`classmethod _default_options()`
+    **A options object with**
 
-Return the default options
+    default values set
 
-This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+    **Return type**
 
-**Returns**
+    [qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+  </Function>
 
-**A options object with**
+  ## Methods
 
-default values set
+  ### configuration
 
-**Return type**
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.configuration" name="configuration" signature="StatevectorSimulatorPy.configuration()">
+    Return the backend configuration.
 
-[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
+    **Returns**
 
-## Methods
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.configuration" />
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-`StatevectorSimulatorPy.configuration()`
+  ### name
 
-Return the backend configuration.
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.name" name="name" signature="StatevectorSimulatorPy.name()">
+    Return the backend name.
 
-**Returns**
+    **Returns**
 
-the configuration for the backend.
+    the name of the backend.
 
-**Return type**
+    **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.name" />
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.properties" name="properties" signature="StatevectorSimulatorPy.properties()">
+    Return the backend properties.
 
-`StatevectorSimulatorPy.name()`
+    **Returns**
 
-Return the backend name.
+    the configuration for the backend. If the backend does not support properties, it returns `None`.
 
-**Returns**
+    **Return type**
 
-the name of the backend.
+    [BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+  </Function>
 
-**Return type**
+  ### provider
 
-str
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.provider" name="provider" signature="StatevectorSimulatorPy.provider()">
+    Return the backend Provider.
 
-### properties
+    **Returns**
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.properties" />
+    the Provider responsible for the backend.
 
-`StatevectorSimulatorPy.properties()`
+    **Return type**
 
-Return the backend properties.
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-**Returns**
+  ### run
 
-the configuration for the backend. If the backend does not support properties, it returns `None`.
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.run" name="run" signature="StatevectorSimulatorPy.run(qobj, **backend_options)">
+    Run qobj asynchronously.
 
-**Return type**
+    **Parameters**
 
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+    *   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+    *   **backend\_options** (*dict*) – backend options
 
-### provider
+    **Returns**
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.provider" />
+    derived from BaseJob
 
-`StatevectorSimulatorPy.provider()`
+    **Return type**
 
-Return the backend Provider.
+    [BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
-**Returns**
+    #### Additional Information:
 
-the Provider responsible for the backend.
+    #### backend\_options: Is a dict of options for the backend. It may contain
 
-**Return type**
+    *   “initial\_statevector”: vector\_like
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in all experiments in the qobj.
 
-### run
+    Example:
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run" />
+    ```python
+    backend_options = {
+        "initial_statevector": np.array([1, 0, 0, 1j]) / np.sqrt(2),
+    }
+    ```
+  </Function>
 
-`StatevectorSimulatorPy.run(qobj, **backend_options)`
+  ### run\_experiment
 
-Run qobj asynchronously.
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.run_experiment" name="run_experiment" signature="StatevectorSimulatorPy.run_experiment(experiment)">
+    Run an experiment (circuit) and return a single experiment result.
 
-**Parameters**
+    **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
-*   **backend\_options** (*dict*) – backend options
+    **experiment** (*QobjExperiment*) – experiment from qobj experiments list
 
-**Returns**
+    **Returns**
 
-derived from BaseJob
+    A result dictionary which looks something like:
 
-**Return type**
-
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
-
-#### Additional Information:
-
-#### backend\_options: Is a dict of options for the backend. It may contain
-
-*   “initial\_statevector”: vector\_like
-
-The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in all experiments in the qobj.
-
-Example:
-
-```python
-backend_options = {
-    "initial_statevector": np.array([1, 0, 0, 1j]) / np.sqrt(2),
-}
-```
-
-### run\_experiment
-
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run_experiment" />
-
-`StatevectorSimulatorPy.run_experiment(experiment)`
-
-Run an experiment (circuit) and return a single experiment result.
-
-**Parameters**
-
-**experiment** (*QobjExperiment*) – experiment from qobj experiments list
-
-**Returns**
-
-A result dictionary which looks something like:
-
-```python
-{
-"name": name of this experiment (obtained from qobj.experiment header)
-"seed": random seed used for simulation
-"shots": number of shots used in the simulation
-"data":
+    ```python
     {
-    "counts": {'0x9: 5, ...},
-    "memory": ['0x9', '0xF', '0x1D', ..., '0x9']
-    },
-"status": status string for the simulation
-"success": boolean
-"time_taken": simulation time of this single experiment
-}
-```
+    "name": name of this experiment (obtained from qobj.experiment header)
+    "seed": random seed used for simulation
+    "shots": number of shots used in the simulation
+    "data":
+        {
+        "counts": {'0x9: 5, ...},
+        "memory": ['0x9', '0xF', '0x1D', ..., '0x9']
+        },
+    "status": status string for the simulation
+    "success": boolean
+    "time_taken": simulation time of this single experiment
+    }
+    ```
 
-**Return type**
+    **Return type**
 
-dict
+    dict
 
-**Raises**
+    **Raises**
 
-[**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+    [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+  </Function>
 
-### set\_options
+  ### set\_options
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.set_options" />
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.set_options" name="set_options" signature="StatevectorSimulatorPy.set_options(**fields)">
+    Set the options fields for the backend
 
-`StatevectorSimulatorPy.set_options(**fields)`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Set the options fields for the backend
+    **Parameters**
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+    **fields** – The fields to update the options
 
-**Parameters**
+    **Raises**
 
-**fields** – The fields to update the options
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-**Raises**
+  ### status
 
-**AttributeError** – If the field passed in is not part of the options
+  <Function id="qiskit.providers.basicaer.StatevectorSimulatorPy.status" name="status" signature="StatevectorSimulatorPy.status()">
+    Return the backend status.
 
-### status
+    **Returns**
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.status" />
+    the status of the backend.
 
-`StatevectorSimulatorPy.status()`
+    **Return type**
 
-Return the backend status.
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-**Returns**
+  ## Attributes
 
-the status of the backend.
+  ### DEFAULT\_CONFIGURATION
 
-**Return type**
+  <Attribute id="qiskit.providers.basicaer.StatevectorSimulatorPy.DEFAULT_CONFIGURATION" name="DEFAULT_CONFIGURATION" attributeValue="= {'backend_name': 'statevector_simulator', 'backend_version': '1.1.0', 'basis_gates': ['u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': True, 'coupling_map': None, 'description': 'A Python statevector simulator for qobj files', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 65536, 'memory': True, 'n_qubits': 24, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}" />
 
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  ### DEFAULT\_OPTIONS
 
-## Attributes
+  <Attribute id="qiskit.providers.basicaer.StatevectorSimulatorPy.DEFAULT_OPTIONS" name="DEFAULT_OPTIONS" attributeValue="= {'chop_threshold': 1e-15, 'initial_statevector': None}" />
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.DEFAULT_CONFIGURATION" />
+  ### MAX\_QUBITS\_MEMORY
 
-### DEFAULT\_CONFIGURATION
+  <Attribute id="qiskit.providers.basicaer.StatevectorSimulatorPy.MAX_QUBITS_MEMORY" name="MAX_QUBITS_MEMORY" attributeValue="= 28" />
 
-`= {'backend_name': 'statevector_simulator', 'backend_version': '1.1.0', 'basis_gates': ['u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': True, 'coupling_map': None, 'description': 'A Python statevector simulator for qobj files', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 65536, 'memory': True, 'n_qubits': 24, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}`
+  ### SHOW\_FINAL\_STATE
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.DEFAULT_OPTIONS" />
+  <Attribute id="qiskit.providers.basicaer.StatevectorSimulatorPy.SHOW_FINAL_STATE" name="SHOW_FINAL_STATE" attributeValue="= True" />
 
-### DEFAULT\_OPTIONS
+  ### options
 
-`= {'chop_threshold': 1e-15, 'initial_statevector': None}`
+  <Attribute id="qiskit.providers.basicaer.StatevectorSimulatorPy.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.MAX_QUBITS_MEMORY" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.basicaer.StatevectorSimulatorPy#run "qiskit.providers.basicaer.StatevectorSimulatorPy.run") method.
+  </Attribute>
 
-### MAX\_QUBITS\_MEMORY
+  ### version
 
-`= 28`
-
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.SHOW_FINAL_STATE" />
-
-### SHOW\_FINAL\_STATE
-
-`= True`
-
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.basicaer.StatevectorSimulatorPy#run "qiskit.providers.basicaer.StatevectorSimulatorPy.run") method.
-
-<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.basicaer.StatevectorSimulatorPy.version" name="version" attributeValue="= 1" />
+</Class>
 

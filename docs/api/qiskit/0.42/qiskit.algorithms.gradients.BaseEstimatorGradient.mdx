@@ -8,95 +8,89 @@ python_api_name: qiskit.algorithms.gradients.BaseEstimatorGradient
 
 # BaseEstimatorGradient
 
-<span id="qiskit.algorithms.gradients.BaseEstimatorGradient" />
+<Class id="qiskit.algorithms.gradients.BaseEstimatorGradient" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/base_estimator_gradient.py" signature="BaseEstimatorGradient(estimator, options=None, derivative_type=DerivativeType.REAL)">
+  Bases: `abc.ABC`
 
-`BaseEstimatorGradient(estimator, options=None, derivative_type=DerivativeType.REAL)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/base_estimator_gradient.py "view source code")
+  Base class for an `EstimatorGradient` to compute the gradients of the expectation value.
 
-Bases: `abc.ABC`
+  **Parameters**
 
-Base class for an `EstimatorGradient` to compute the gradients of the expectation value.
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
 
-**Parameters**
+  *   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) – The estimator used to compute the gradients.
+  *   **derivative\_type** ([*DerivativeType*](qiskit.algorithms.gradients.DerivativeType "qiskit.algorithms.gradients.DerivativeType")) –
 
-*   **options** ([*Options*](qiskit.providers.Options "qiskit.providers.Options") *| None*) – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+      The type of derivative. Can be either `DerivativeType.REAL` `DerivativeType.IMAG`, or `DerivativeType.COMPLEX`.
 
-*   **derivative\_type** ([*DerivativeType*](qiskit.algorithms.gradients.DerivativeType "qiskit.algorithms.gradients.DerivativeType")) –
+      > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
+      > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
+      > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)|O(θ)|dω ψ(ω)〉$.
 
-    The type of derivative. Can be either `DerivativeType.REAL` `DerivativeType.IMAG`, or `DerivativeType.COMPLEX`.
+      Defaults to `DerivativeType.REAL`, as this yields e.g. the commonly-used energy gradient and this type is the only supported type for function-level schemes like finite difference.
 
-    > *   `DerivativeType.REAL` computes $2 \mathrm{Re}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
-    > *   `DerivativeType.IMAG` computes $2 \mathrm{Im}[⟨ψ(ω)|O(θ)|dω ψ(ω)〉]$.
-    > *   `DerivativeType.COMPLEX` computes $2 ⟨ψ(ω)|O(θ)|dω ψ(ω)〉$.
+  ## Methods
 
-    Defaults to `DerivativeType.REAL`, as this yields e.g. the commonly-used energy gradient and this type is the only supported type for function-level schemes like finite difference.
+  ### run
 
-## Methods
+  <Function id="qiskit.algorithms.gradients.BaseEstimatorGradient.run" name="run" signature="BaseEstimatorGradient.run(circuits, observables, parameter_values, parameters=None, **options)">
+    Run the job of the estimator gradient on the given circuits.
 
-### run
+    **Parameters**
 
-<span id="qiskit.algorithms.gradients.BaseEstimatorGradient.run" />
+    *   **circuits** – The list of quantum circuits to compute the gradients.
+    *   **observables** – The list of observables.
+    *   **parameter\_values** – The list of parameter values to be bound to the circuit.
+    *   **parameters** – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated.
+    *   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
 
-`BaseEstimatorGradient.run(circuits, observables, parameter_values, parameters=None, **options)`
+    **Returns**
 
-Run the job of the estimator gradient on the given circuits.
+    The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
 
-**Parameters**
+    **Raises**
 
-*   **circuits** – The list of quantum circuits to compute the gradients.
-*   **observables** – The list of observables.
-*   **parameter\_values** – The list of parameter values to be bound to the circuit.
-*   **parameters** – The sequence of parameters to calculate only the gradients of the specified parameters. Each sequence of parameters corresponds to a circuit in `circuits`. Defaults to None, which means that the gradients of all parameters in each circuit are calculated.
-*   **options** – Primitive backend runtime options used for circuit execution. The order of priority is: options in `run` method > gradient’s default options > primitive’s default setting. Higher priority setting overrides lower priority setting
+    **ValueError** – Invalid arguments are given.
+  </Function>
 
-**Returns**
+  ### update\_default\_options
 
-The job object of the gradients of the expectation values. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`. The j-th element of the i-th result corresponds to the gradient of the i-th circuit with respect to the j-th parameter.
+  <Function id="qiskit.algorithms.gradients.BaseEstimatorGradient.update_default_options" name="update_default_options" signature="BaseEstimatorGradient.update_default_options(**options)">
+    Update the gradient’s default options setting.
 
-**Raises**
+    **Parameters**
 
-**ValueError** – Invalid arguments are given.
+    **\*\*options** – The fields to update the default options.
+  </Function>
 
-### update\_default\_options
+  ## Attributes
 
-<span id="qiskit.algorithms.gradients.BaseEstimatorGradient.update_default_options" />
+  ### derivative\_type
 
-`BaseEstimatorGradient.update_default_options(**options)`
+  <Attribute id="qiskit.algorithms.gradients.BaseEstimatorGradient.derivative_type" name="derivative_type">
+    Return the derivative type (real, imaginary or complex).
 
-Update the gradient’s default options setting.
+    **Return type**
 
-**Parameters**
+    [`DerivativeType`](qiskit.algorithms.gradients.DerivativeType "qiskit.algorithms.gradients.utils.DerivativeType")
 
-**\*\*options** – The fields to update the default options.
+    **Returns**
 
-## Attributes
+    The derivative type.
+  </Attribute>
 
-<span id="qiskit.algorithms.gradients.BaseEstimatorGradient.derivative_type" />
+  ### options
 
-### derivative\_type
+  <Attribute id="qiskit.algorithms.gradients.BaseEstimatorGradient.options" name="options">
+    Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
 
-Return the derivative type (real, imaginary or complex).
+    **Return type**
 
-**Return type**
+    [`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
 
-[`DerivativeType`](qiskit.algorithms.gradients.DerivativeType "qiskit.algorithms.gradients.utils.DerivativeType")
+    **Returns**
 
-**Returns**
-
-The derivative type.
-
-<span id="qiskit.algorithms.gradients.BaseEstimatorGradient.options" />
-
-### options
-
-Return the union of estimator options setting and gradient default options, where, if the same field is set in both, the gradient’s default options override the primitive’s default setting.
-
-**Return type**
-
-[`Options`](qiskit.providers.Options "qiskit.providers.options.Options")
-
-**Returns**
-
-The gradient default + estimator options.
+    The gradient default + estimator options.
+  </Attribute>
+</Class>
 

@@ -8,116 +8,102 @@ python_api_name: qiskit.chemistry.transformations.Transformation
 
 # qiskit.chemistry.transformations.Transformation
 
-<span id="qiskit.chemistry.transformations.Transformation" />
+<Class id="qiskit.chemistry.transformations.Transformation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py" signature="Transformation">
+  Base class for transformation to qubit operators for chemistry problems
 
-`Transformation` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/transformations/transformation.py "view source code")
+  ### \_\_init\_\_
 
-Base class for transformation to qubit operators for chemistry problems
+  <Function id="qiskit.chemistry.transformations.Transformation.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.chemistry.transformations.Transformation.__init__" />
+  |                                                                                                                                                                                                  |                                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.chemistry.transformations.Transformation.__init__ "qiskit.chemistry.transformations.Transformation.__init__")()                                                             | Initialize self.                                                                                  |
+  | [`build_hopping_operators`](#qiskit.chemistry.transformations.Transformation.build_hopping_operators "qiskit.chemistry.transformations.Transformation.build_hopping_operators")(\[excitations])  | Builds the product of raising and lowering operators (basic excitation operators)                 |
+  | [`get_default_filter_criterion`](#qiskit.chemistry.transformations.Transformation.get_default_filter_criterion "qiskit.chemistry.transformations.Transformation.get_default_filter_criterion")() | Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. |
+  | [`interpret`](#qiskit.chemistry.transformations.Transformation.interpret "qiskit.chemistry.transformations.Transformation.interpret")(raw\_result)                                               | Interprets an EigenstateResult in the context of this transformation.                             |
+  | [`transform`](#qiskit.chemistry.transformations.Transformation.transform "qiskit.chemistry.transformations.Transformation.transform")(driver\[, aux\_operators])                                 | Transformation from the `driver` to a qubit operator.                                             |
 
-`__init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                                            |                                |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+  | [`commutation_rule`](#qiskit.chemistry.transformations.Transformation.commutation_rule "qiskit.chemistry.transformations.Transformation.commutation_rule") | Getter of the commutation rule |
 
-## Methods
+  ### build\_hopping\_operators
 
-|                                                                                                                                                                                                  |                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.transformations.Transformation.__init__ "qiskit.chemistry.transformations.Transformation.__init__")()                                                             | Initialize self.                                                                                  |
-| [`build_hopping_operators`](#qiskit.chemistry.transformations.Transformation.build_hopping_operators "qiskit.chemistry.transformations.Transformation.build_hopping_operators")(\[excitations])  | Builds the product of raising and lowering operators (basic excitation operators)                 |
-| [`get_default_filter_criterion`](#qiskit.chemistry.transformations.Transformation.get_default_filter_criterion "qiskit.chemistry.transformations.Transformation.get_default_filter_criterion")() | Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. |
-| [`interpret`](#qiskit.chemistry.transformations.Transformation.interpret "qiskit.chemistry.transformations.Transformation.interpret")(raw\_result)                                               | Interprets an EigenstateResult in the context of this transformation.                             |
-| [`transform`](#qiskit.chemistry.transformations.Transformation.transform "qiskit.chemistry.transformations.Transformation.transform")(driver\[, aux\_operators])                                 | Transformation from the `driver` to a qubit operator.                                             |
+  <Function id="qiskit.chemistry.transformations.Transformation.build_hopping_operators" name="build_hopping_operators" signature="abstract build_hopping_operators(excitations='sd')">
+    Builds the product of raising and lowering operators (basic excitation operators)
 
-## Attributes
+    **Parameters**
 
-|                                                                                                                                                            |                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| [`commutation_rule`](#qiskit.chemistry.transformations.Transformation.commutation_rule "qiskit.chemistry.transformations.Transformation.commutation_rule") | Getter of the commutation rule |
+    **excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
 
-### build\_hopping\_operators
+    Returns:
 
-<span id="qiskit.chemistry.transformations.Transformation.build_hopping_operators" />
+    **Return type**
 
-`abstract build_hopping_operators(excitations='sd')`
+    `Tuple`\[`Dict`\[`str`, `WeightedPauliOperator`], `Dict`\[`str`, `List`\[`bool`]], `Dict`\[`str`, `List`\[`Any`]]]
+  </Function>
 
-Builds the product of raising and lowering operators (basic excitation operators)
+  ### commutation\_rule
 
-**Parameters**
+  <Function id="qiskit.chemistry.transformations.Transformation.commutation_rule" name="commutation_rule" signature="abstract property commutation_rule">
+    Getter of the commutation rule
 
-**excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
+    **Return type**
 
-Returns:
+    `bool`
+  </Function>
 
-**Return type**
+  ### get\_default\_filter\_criterion
 
-`Tuple`\[`Dict`\[`str`, `WeightedPauliOperator`], `Dict`\[`str`, `List`\[`bool`]], `Dict`\[`str`, `List`\[`Any`]]]
+  <Function id="qiskit.chemistry.transformations.Transformation.get_default_filter_criterion" name="get_default_filter_criterion" signature="get_default_filter_criterion()">
+    Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion.
 
-### commutation\_rule
+    **Return type**
 
-<span id="qiskit.chemistry.transformations.Transformation.commutation_rule" />
+    `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+  </Function>
 
-`abstract property commutation_rule`
+  ### interpret
 
-Getter of the commutation rule
+  <Function id="qiskit.chemistry.transformations.Transformation.interpret" name="interpret" signature="abstract interpret(raw_result)">
+    Interprets an EigenstateResult in the context of this transformation.
 
-**Return type**
+    **Parameters**
 
-`bool`
+    **raw\_result** (`Union`\[`EigenstateResult`, `EigensolverResult`, `MinimumEigensolverResult`]) – an eigenstate result object.
 
-### get\_default\_filter\_criterion
+    **Return type**
 
-<span id="qiskit.chemistry.transformations.Transformation.get_default_filter_criterion" />
+    `EigenstateResult`
 
-`get_default_filter_criterion()`
+    **Returns**
 
-Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion.
+    An “interpreted” eigenstate result.
+  </Function>
 
-**Return type**
+  ### transform
 
-`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
+  <Function id="qiskit.chemistry.transformations.Transformation.transform" name="transform" signature="abstract transform(driver, aux_operators=None)">
+    Transformation from the `driver` to a qubit operator.
 
-### interpret
+    **Parameters**
 
-<span id="qiskit.chemistry.transformations.Transformation.interpret" />
+    *   **driver** (`BaseDriver`) – A driver encoding the molecule information.
+    *   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
 
-`abstract interpret(raw_result)`
+    **Return type**
 
-Interprets an EigenstateResult in the context of this transformation.
+    `Tuple`\[`OperatorBase`, `List`\[`OperatorBase`]]
 
-**Parameters**
+    **Returns**
 
-**raw\_result** (`Union`\[`EigenstateResult`, `EigensolverResult`, `MinimumEigensolverResult`]) – an eigenstate result object.
-
-**Return type**
-
-`EigenstateResult`
-
-**Returns**
-
-An “interpreted” eigenstate result.
-
-### transform
-
-<span id="qiskit.chemistry.transformations.Transformation.transform" />
-
-`abstract transform(driver, aux_operators=None)`
-
-Transformation from the `driver` to a qubit operator.
-
-**Parameters**
-
-*   **driver** (`BaseDriver`) – A driver encoding the molecule information.
-*   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate. Must be of type `FermionicOperator` if the qubit transformation is fermionic and of type `BosonicOperator` it is bosonic.
-
-**Return type**
-
-`Tuple`\[`OperatorBase`, `List`\[`OperatorBase`]]
-
-**Returns**
-
-A qubit operator and a dictionary of auxiliary operators.
+    A qubit operator and a dictionary of auxiliary operators.
+  </Function>
+</Class>
 

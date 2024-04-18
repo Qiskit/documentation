@@ -26,122 +26,106 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 ### dump
 
-<span id="qiskit.qasm3.dump" />
+<Function id="qiskit.qasm3.dump" name="dump" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py" signature="qiskit.qasm3.dump(circuit, stream, **kwargs)">
+  Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as an OpenQASM 3 stream to file-like object.
 
-`qiskit.qasm3.dump(circuit, stream, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
+  **Parameters**
 
-Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as an OpenQASM 3 stream to file-like object.
-
-**Parameters**
-
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Circuit to serialize.
-*   **stream** (*TextIOBase*) – stream-like object to dump the OpenQASM 3 serialization
-*   **\*\*kwargs** – Arguments for the [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") constructor.
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Circuit to serialize.
+  *   **stream** (*TextIOBase*) – stream-like object to dump the OpenQASM 3 serialization
+  *   **\*\*kwargs** – Arguments for the [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") constructor.
+</Function>
 
 ### dumps
 
-<span id="qiskit.qasm3.dumps" />
+<Function id="qiskit.qasm3.dumps" name="dumps" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py" signature="qiskit.qasm3.dumps(circuit, **kwargs)">
+  Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM 3 string.
 
-`qiskit.qasm3.dumps(circuit, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
+  **Parameters**
 
-Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM 3 string.
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Circuit to serialize.
+  *   **\*\*kwargs** – Arguments for the [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") constructor.
 
-**Parameters**
+  **Returns**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Circuit to serialize.
-*   **\*\*kwargs** – Arguments for the [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") constructor.
+  The OpenQASM 3 serialization
 
-**Returns**
+  **Return type**
 
-The OpenQASM 3 serialization
-
-**Return type**
-
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+</Function>
 
 Both of these exporter functions are single-use wrappers around the main [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") class. For more complex exporting needs, including dumping multiple circuits in a single session, it may be more convenient or faster to use the complete interface.
 
-<span id="qiskit.qasm3.Exporter" />
+<Class id="qiskit.qasm3.Exporter" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/exporter.py" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)">
+  QASM3 exporter main class.
 
-`qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/exporter.py "view source code")
+  **Parameters**
 
-QASM3 exporter main class.
+  *   **includes** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
 
-**Parameters**
+  *   **basis\_gates** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
 
-*   **includes** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
+  *   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
 
-*   **basis\_gates** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
+  *   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
 
-*   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
+      If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3.
 
-*   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
+        <Admonition title="See also" type="note">
+          **Parameter `allow_aliasing`**
 
-    If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3.
+          A value for `allow_aliasing` overrides any value given here, and supersedes this parameter.
+        </Admonition>
 
-    <Admonition title="See also" type="note">
-      **Parameter `allow_aliasing`**
+  *   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
 
-      A value for `allow_aliasing` overrides any value given here, and supersedes this parameter.
-    </Admonition>
+      If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3. Defaults to `False` or the value of `alias_classical_registers`.
 
-*   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
+      New in version 0.25.0.
 
-    If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3. Defaults to `False` or the value of `alias_classical_registers`.
+  *   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
 
-    New in version 0.25.0.
+  *   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.experimental.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
 
-*   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
+  ### dump
 
-*   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.experimental.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
+  <Function id="qiskit.qasm3.Exporter.dump" name="dump" signature="dump(circuit, stream)">
+    Convert the circuit to OpenQASM 3, dumping the result to a file or text stream.
+  </Function>
 
-### dump
+  ### dumps
 
-<span id="qiskit.qasm3.Exporter.dump" />
-
-`dump(circuit, stream)`
-
-Convert the circuit to OpenQASM 3, dumping the result to a file or text stream.
-
-### dumps
-
-<span id="qiskit.qasm3.Exporter.dumps" />
-
-`dumps(circuit)`
-
-Convert the circuit to OpenQASM 3, returning the result as a string.
+  <Function id="qiskit.qasm3.Exporter.dumps" name="dumps" signature="dumps(circuit)">
+    Convert the circuit to OpenQASM 3, returning the result as a string.
+  </Function>
+</Class>
 
 All of these interfaces will raise [`QASM3ExporterError`](#qiskit.qasm3.QASM3ExporterError "qiskit.qasm3.QASM3ExporterError") on failure.
 
 ### QASM3ExporterError
 
-<span id="qiskit.qasm3.QASM3ExporterError" />
+<Class id="qiskit.qasm3.QASM3ExporterError" name="QASM3ExporterError" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/exceptions.py" signature="qiskit.qasm3.QASM3ExporterError(*message)">
+  An error raised during running the OpenQASM 3 exporter.
 
-`qiskit.qasm3.QASM3ExporterError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/exceptions.py "view source code")
-
-An error raised during running the OpenQASM 3 exporter.
-
-Set the error message.
+  Set the error message.
+</Class>
 
 ### Experimental features
 
 The OpenQASM 3 language is still evolving as hardware capabilities improve, so there is no final syntax that Qiskit can reliably target. In order to represent the evolving language, we will sometimes release features before formal standardization, which may need to change as the review process in the OpenQASM 3 design committees progresses. By default, the exporters will only support standardised features of the language. To enable these early-release features, use the `experimental` keyword argument of [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](#qiskit.qasm3.dumps "qiskit.qasm3.dumps"). The available feature flags are:
 
-<span id="qiskit.qasm3.ExperimentalFeatures" />
+<Class id="qiskit.qasm3.ExperimentalFeatures" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/experimental.py" signature="qiskit.qasm3.ExperimentalFeatures(value)">
+  Flags for experimental features that the OpenQASM 3 exporter supports.
 
-`qiskit.qasm3.ExperimentalFeatures(value)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/experimental.py "view source code")
+  These are experimental and are more liable to change, because the OpenQASM 3 specification has not formally accepted them yet, so the syntax may not be finalized.
 
-Flags for experimental features that the OpenQASM 3 exporter supports.
+  ### SWITCH\_CASE\_V1
 
-These are experimental and are more liable to change, because the OpenQASM 3 specification has not formally accepted them yet, so the syntax may not be finalized.
-
-<span id="qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1" />
-
-### SWITCH\_CASE\_V1
-
-`= 1`
-
-Support exporting switch-case statements as proposed by [https://github.com/openqasm/openqasm/pull/463](https://github.com/openqasm/openqasm/pull/463) at [commit bfa787aa3078](https://github.com/openqasm/openqasm/pull/463/commits/bfa787aa3078).
+  <Attribute id="qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1" name="SWITCH_CASE_V1" attributeValue="= 1">
+    Support exporting switch-case statements as proposed by [https://github.com/openqasm/openqasm/pull/463](https://github.com/openqasm/openqasm/pull/463) at [commit bfa787aa3078](https://github.com/openqasm/openqasm/pull/463/commits/bfa787aa3078).
+  </Attribute>
+</Class>
 
 If you want to enable multiple experimental features, you should combine the flags using the `|` operator, such as `flag1 | flag2`.
 
@@ -188,63 +172,57 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 ### load
 
-<span id="qiskit.qasm3.load" />
+<Function id="qiskit.qasm3.load" name="load" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py" signature="qiskit.qasm3.load(filename)">
+  Load an OpenQASM 3 program from the file `filename`.
 
-`qiskit.qasm3.load(filename)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
+  **Parameters**
 
-Load an OpenQASM 3 program from the file `filename`.
+  **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the filename to load the program from.
 
-**Parameters**
+  **Returns**
 
-**filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the filename to load the program from.
+  a circuit representation of the OpenQASM 3 program.
 
-**Returns**
+  **Return type**
 
-a circuit representation of the OpenQASM 3 program.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+  [**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+</Function>
 
 ### loads
 
-<span id="qiskit.qasm3.loads" />
+<Function id="qiskit.qasm3.loads" name="loads" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py" signature="qiskit.qasm3.loads(program)">
+  Load an OpenQASM 3 program from the given string.
 
-`qiskit.qasm3.loads(program)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
+  **Parameters**
 
-Load an OpenQASM 3 program from the given string.
+  **program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the OpenQASM 3 program.
 
-**Parameters**
+  **Returns**
 
-**program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the OpenQASM 3 program.
+  a circuit representation of the OpenQASM 3 program.
 
-**Returns**
+  **Return type**
 
-a circuit representation of the OpenQASM 3 program.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+  [**QASM3ImporterError**](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") – if the OpenQASM 3 file is invalid, or cannot be represented by a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+</Function>
 
 Both of these two functions raise [`QASM3ImporterError`](#qiskit.qasm3.QASM3ImporterError "qiskit.qasm3.QASM3ImporterError") on failure.
 
 ### QASM3ImporterError
 
-<span id="qiskit.qasm3.QASM3ImporterError" />
+<Class id="qiskit.qasm3.QASM3ImporterError" name="QASM3ImporterError" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/exceptions.py" signature="qiskit.qasm3.QASM3ImporterError(*message)">
+  An error raised during the OpenQASM 3 importer.
 
-`qiskit.qasm3.QASM3ImporterError(*message)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/exceptions.py "view source code")
-
-An error raised during the OpenQASM 3 importer.
-
-Set the error message.
+  Set the error message.
+</Class>
 
 For example, we can define a quantum program using OpenQASM 3, and use [`loads()`](#qiskit.qasm3.loads "qiskit.qasm3.loads") to directly convert it into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"):
 

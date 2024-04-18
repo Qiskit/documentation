@@ -8,133 +8,115 @@ python_api_name: qiskit.tools.events.TextProgressBar
 
 # TextProgressBar
 
-<span id="qiskit.tools.events.TextProgressBar" />
+<Class id="qiskit.tools.events.TextProgressBar" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/events/progressbar.py" signature="TextProgressBar(output_handler=None)">
+  Bases: `qiskit.tools.events.progressbar.BaseProgressBar`
 
-`TextProgressBar(output_handler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/events/progressbar.py "view source code")
+  A simple text-based progress bar.
 
-Bases: `qiskit.tools.events.progressbar.BaseProgressBar`
+  **output\_handlerthe handler the progress bar should be written to, default**
 
-A simple text-based progress bar.
+  is sys.stdout, another option is sys.stderr
 
-**output\_handlerthe handler the progress bar should be written to, default**
+  **Examples**
 
-is sys.stdout, another option is sys.stderr
+  The progress bar can be used to track the progress of a parallel\_map.
 
-**Examples**
+  ```python
+  import numpy as np
+  import qiskit.tools.jupyter
+  from qiskit.tools.parallel import parallel_map
+  from qiskit.tools.events import TextProgressBar
 
-The progress bar can be used to track the progress of a parallel\_map.
+  TextProgressBar()
+  %qiskit_progress_bar -t text
+  parallel_map(np.sin, np.linspace(0,10,100));
+  ```
 
-```python
-import numpy as np
-import qiskit.tools.jupyter
-from qiskit.tools.parallel import parallel_map
-from qiskit.tools.events import TextProgressBar
+  And it can also be used individually.
 
-TextProgressBar()
-%qiskit_progress_bar -t text
-parallel_map(np.sin, np.linspace(0,10,100));
-```
+  ```python
+  from qiskit.tools.events import TextProgressBar
 
-And it can also be used individually.
+  iterations = 100
+  t = TextProgressBar()
+  t.start(iterations=iterations)
+  for i in range(iterations):
+      # step i of heavy calculation ...
+      t.update(i + 1)  # update progress bar
+  ```
 
-```python
-from qiskit.tools.events import TextProgressBar
+  ## Methods
 
-iterations = 100
-t = TextProgressBar()
-t.start(iterations=iterations)
-for i in range(iterations):
-    # step i of heavy calculation ...
-    t.update(i + 1)  # update progress bar
-```
+  ### clear
 
-## Methods
+  <Function id="qiskit.tools.events.TextProgressBar.clear" name="clear" signature="TextProgressBar.clear()">
+    Unsubscribe everything
+  </Function>
 
-### clear
+  ### finished
 
-<span id="qiskit.tools.events.TextProgressBar.clear" />
+  <Function id="qiskit.tools.events.TextProgressBar.finished" name="finished" signature="TextProgressBar.finished()">
+    Run when progress bar has completed.
+  </Function>
 
-`TextProgressBar.clear()`
+  ### start
 
-Unsubscribe everything
+  <Function id="qiskit.tools.events.TextProgressBar.start" name="start" signature="TextProgressBar.start(iterations)">
+    Start the progress bar.
 
-### finished
+    **Parameters**
 
-<span id="qiskit.tools.events.TextProgressBar.finished" />
+    **iterations** (*int*) – Number of iterations.
+  </Function>
 
-`TextProgressBar.finished()`
+  ### subscribe
 
-Run when progress bar has completed.
+  <Function id="qiskit.tools.events.TextProgressBar.subscribe" name="subscribe" signature="TextProgressBar.subscribe(event, callback)">
+    Subscribes to an event, associating a callback function to that event, so when the event occurs, the callback will be called. This is a blocking call, so try to keep callbacks as lightweight as possible.
+  </Function>
 
-### start
+  ### time\_elapsed
 
-<span id="qiskit.tools.events.TextProgressBar.start" />
+  <Function id="qiskit.tools.events.TextProgressBar.time_elapsed" name="time_elapsed" signature="TextProgressBar.time_elapsed()">
+    Return the time elapsed since start.
 
-`TextProgressBar.start(iterations)`
+    **Returns**
 
-Start the progress bar.
+    Time since progress bar started.
 
-**Parameters**
+    **Return type**
 
-**iterations** (*int*) – Number of iterations.
+    elapsed\_time
+  </Function>
 
-### subscribe
+  ### time\_remaining\_est
 
-<span id="qiskit.tools.events.TextProgressBar.subscribe" />
+  <Function id="qiskit.tools.events.TextProgressBar.time_remaining_est" name="time_remaining_est" signature="TextProgressBar.time_remaining_est(completed_iter)">
+    Estimate the remaining time left.
 
-`TextProgressBar.subscribe(event, callback)`
+    **Parameters**
 
-Subscribes to an event, associating a callback function to that event, so when the event occurs, the callback will be called. This is a blocking call, so try to keep callbacks as lightweight as possible.
+    **completed\_iter** (*int*) – Number of iterations completed.
 
-### time\_elapsed
+    **Returns**
 
-<span id="qiskit.tools.events.TextProgressBar.time_elapsed" />
+    Estimated time remaining.
 
-`TextProgressBar.time_elapsed()`
+    **Return type**
 
-Return the time elapsed since start.
+    est\_time
+  </Function>
 
-**Returns**
+  ### unsubscribe
 
-Time since progress bar started.
+  <Function id="qiskit.tools.events.TextProgressBar.unsubscribe" name="unsubscribe" signature="TextProgressBar.unsubscribe(event, callback)">
+    Unsubscribe a pair event-callback, so the callback will not be called anymore when the event occurs.
+  </Function>
 
-**Return type**
+  ### update
 
-elapsed\_time
-
-### time\_remaining\_est
-
-<span id="qiskit.tools.events.TextProgressBar.time_remaining_est" />
-
-`TextProgressBar.time_remaining_est(completed_iter)`
-
-Estimate the remaining time left.
-
-**Parameters**
-
-**completed\_iter** (*int*) – Number of iterations completed.
-
-**Returns**
-
-Estimated time remaining.
-
-**Return type**
-
-est\_time
-
-### unsubscribe
-
-<span id="qiskit.tools.events.TextProgressBar.unsubscribe" />
-
-`TextProgressBar.unsubscribe(event, callback)`
-
-Unsubscribe a pair event-callback, so the callback will not be called anymore when the event occurs.
-
-### update
-
-<span id="qiskit.tools.events.TextProgressBar.update" />
-
-`TextProgressBar.update(n)`
-
-Update status of progress bar.
+  <Function id="qiskit.tools.events.TextProgressBar.update" name="update" signature="TextProgressBar.update(n)">
+    Update status of progress bar.
+  </Function>
+</Class>
 

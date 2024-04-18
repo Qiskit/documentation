@@ -8,146 +8,136 @@ python_api_name: qiskit.algorithms.linear_solvers.MatrixFunctional
 
 # MatrixFunctional
 
-<span id="qiskit.algorithms.linear_solvers.MatrixFunctional" />
+<Class id="qiskit.algorithms.linear_solvers.MatrixFunctional" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/matrix_functional.py" signature="MatrixFunctional(main_diag, off_diag)">
+  Bases: [`qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`](qiskit.algorithms.linear_solvers.LinearSystemObservable "qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable")
 
-`MatrixFunctional(main_diag, off_diag)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+  A class for the matrix functional of the vector solution to the linear systems.
 
-Bases: [`qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`](qiskit.algorithms.linear_solvers.LinearSystemObservable "qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable")
+  **Examples**
 
-A class for the matrix functional of the vector solution to the linear systems.
+  ```python
+  import numpy as np
+  from qiskit import QuantumCircuit
+  from qiskit.algorithms.linear_solvers.observables.matrix_functional import             MatrixFunctional
+  from qiskit.transpiler.passes import RemoveResetInZeroState
+  from qiskit.opflow import StateFn
 
-**Examples**
+  tpass = RemoveResetInZeroState()
 
-```python
-import numpy as np
-from qiskit import QuantumCircuit
-from qiskit.algorithms.linear_solvers.observables.matrix_functional import             MatrixFunctional
-from qiskit.transpiler.passes import RemoveResetInZeroState
-from qiskit.opflow import StateFn
+  vector = [1.0, -2.1, 3.2, -4.3]
+  observable = MatrixFunctional(1, -1 / 3)
 
-tpass = RemoveResetInZeroState()
+  init_state = vector / np.linalg.norm(vector)
+  num_qubits = int(np.log2(len(vector)))
 
-vector = [1.0, -2.1, 3.2, -4.3]
-observable = MatrixFunctional(1, -1 / 3)
+  # Get observable circuits
+  obs_circuits = observable.observable_circuit(num_qubits)
+  qcs = []
+  for obs_circ in obs_circuits:
+      qc = QuantumCircuit(num_qubits)
+      qc.isometry(init_state, list(range(num_qubits)), None)
+      qc.append(obs_circ, list(range(num_qubits)))
+      qcs.append(tpass(qc.decompose()))
 
-init_state = vector / np.linalg.norm(vector)
-num_qubits = int(np.log2(len(vector)))
+  # Get observables
+  observable_ops = observable.observable(num_qubits)
+  state_vecs = []
+  # First is the norm
+  state_vecs.append((~StateFn(observable_ops[0]) @ StateFn(qcs[0])).eval())
+  for i in range(1, len(observable_ops), 2):
+      state_vecs += [(~StateFn(observable_ops[i]) @ StateFn(qcs[i])).eval(),
+                     (~StateFn(observable_ops[i + 1]) @ StateFn(qcs[i + 1])).eval()]
 
-# Get observable circuits
-obs_circuits = observable.observable_circuit(num_qubits)
-qcs = []
-for obs_circ in obs_circuits:
-    qc = QuantumCircuit(num_qubits)
-    qc.isometry(init_state, list(range(num_qubits)), None)
-    qc.append(obs_circ, list(range(num_qubits)))
-    qcs.append(tpass(qc.decompose()))
+  # Obtain result
+  result = observable.post_processing(state_vecs, num_qubits)
 
-# Get observables
-observable_ops = observable.observable(num_qubits)
-state_vecs = []
-# First is the norm
-state_vecs.append((~StateFn(observable_ops[0]) @ StateFn(qcs[0])).eval())
-for i in range(1, len(observable_ops), 2):
-    state_vecs += [(~StateFn(observable_ops[i]) @ StateFn(qcs[i])).eval(),
-                   (~StateFn(observable_ops[i + 1]) @ StateFn(qcs[i + 1])).eval()]
+  # Obtain analytical evaluation
+  exact = observable.evaluate_classically(init_state)
+  ```
 
-# Obtain result
-result = observable.post_processing(state_vecs, num_qubits)
+  **Parameters**
 
-# Obtain analytical evaluation
-exact = observable.evaluate_classically(init_state)
-```
+  *   **main\_diag** (`float`) – The main diagonal of the tridiagonal Toeplitz symmetric matrix to compute the functional.
+  *   **off\_diag** (`int`) – The off diagonal of the tridiagonal Toeplitz symmetric matrix to compute the functional.
 
-**Parameters**
+  ## Methods
 
-*   **main\_diag** (`float`) – The main diagonal of the tridiagonal Toeplitz symmetric matrix to compute the functional.
-*   **off\_diag** (`int`) – The off diagonal of the tridiagonal Toeplitz symmetric matrix to compute the functional.
+  ### evaluate\_classically
 
-## Methods
+  <Function id="qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically" name="evaluate_classically" signature="MatrixFunctional.evaluate_classically(solution)">
+    Evaluates the given observable on the solution to the linear system.
 
-### evaluate\_classically
+    **Parameters**
 
-<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically" />
+    **solution** (`Union`\[`array`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The solution to the system as a numpy array or the circuit that prepares it.
 
-`MatrixFunctional.evaluate_classically(solution)`
+    **Return type**
 
-Evaluates the given observable on the solution to the linear system.
+    `float`
 
-**Parameters**
+    **Returns**
 
-**solution** (`Union`\[`array`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The solution to the system as a numpy array or the circuit that prepares it.
+    The value of the observable.
+  </Function>
 
-**Return type**
+  ### observable
 
-`float`
+  <Function id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable" name="observable" signature="MatrixFunctional.observable(num_qubits)">
+    The observable operators.
 
-**Returns**
+    **Parameters**
 
-The value of the observable.
+    **num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
 
-### observable
+    **Return type**
 
-<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable" />
+    `Union`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp"), `List`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")]]
 
-`MatrixFunctional.observable(num_qubits)`
+    **Returns**
 
-The observable operators.
+    The observable as a list of sums of Pauli strings.
+  </Function>
 
-**Parameters**
+  ### observable\_circuit
 
-**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+  <Function id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit" name="observable_circuit" signature="MatrixFunctional.observable_circuit(num_qubits)">
+    The circuits to implement the matrix functional observable.
 
-**Return type**
+    **Parameters**
 
-`Union`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp"), `List`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")]]
+    **num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
 
-**Returns**
+    **Return type**
 
-The observable as a list of sums of Pauli strings.
+    `Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
 
-### observable\_circuit
+    **Returns**
 
-<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit" />
+    The observable as a list of QuantumCircuits.
+  </Function>
 
-`MatrixFunctional.observable_circuit(num_qubits)`
+  ### post\_processing
 
-The circuits to implement the matrix functional observable.
+  <Function id="qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing" name="post_processing" signature="MatrixFunctional.post_processing(solution, num_qubits, scaling=1)">
+    Evaluates the matrix functional on the solution to the linear system.
 
-**Parameters**
+    **Parameters**
 
-**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+    *   **solution** (`Union`\[`float`, `List`\[`float`]]) – The list of probabilities calculated from the circuit and the observable.
+    *   **num\_qubits** (`int`) – The number of qubits where the observable was applied.
+    *   **scaling** (`float`) – Scaling of the solution.
 
-**Return type**
+    **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+    `float`
 
-**Returns**
+    **Returns**
 
-The observable as a list of QuantumCircuits.
+    The value of the absolute average.
 
-### post\_processing
+    **Raises**
 
-<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing" />
-
-`MatrixFunctional.post_processing(solution, num_qubits, scaling=1)`
-
-Evaluates the matrix functional on the solution to the linear system.
-
-**Parameters**
-
-*   **solution** (`Union`\[`float`, `List`\[`float`]]) – The list of probabilities calculated from the circuit and the observable.
-*   **num\_qubits** (`int`) – The number of qubits where the observable was applied.
-*   **scaling** (`float`) – Scaling of the solution.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The value of the absolute average.
-
-**Raises**
-
-**ValueError** – If the input is not in the correct format.
+    **ValueError** – If the input is not in the correct format.
+  </Function>
+</Class>
 

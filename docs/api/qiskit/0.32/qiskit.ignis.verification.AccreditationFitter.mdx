@@ -8,91 +8,69 @@ python_api_name: qiskit.ignis.verification.AccreditationFitter
 
 # AccreditationFitter
 
-<span id="qiskit.ignis.verification.AccreditationFitter" />
+<Class id="qiskit.ignis.verification.AccreditationFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/fitters.py" signature="AccreditationFitter">
+  Bases: `object`
 
-`AccreditationFitter` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/verification/accreditation/fitters.py "view source code")
+  Class for fitters for accreditation
 
-Bases: `object`
+  Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis and Animesh Datta New Journal of Physics, Volume 21, November 2019 [https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
 
-Class for fitters for accreditation
+  ## Methods
 
-Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis and Animesh Datta New Journal of Physics, Volume 21, November 2019 [https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
+  ### bound\_variation\_distance
 
-## Methods
+  <Function id="qiskit.ignis.verification.AccreditationFitter.bound_variation_distance" name="bound_variation_distance" signature="AccreditationFitter.bound_variation_distance(theta)">
+    This function computes the bound on variation distance based and the confidence
 
-### bound\_variation\_distance
+    **Parameters**
 
-<span id="qiskit.ignis.verification.AccreditationFitter.bound_variation_distance" />
+    **theta** (*float*) – number between 0 and 1
+  </Function>
 
-`AccreditationFitter.bound_variation_distance(theta)`
+  ### single\_protocol\_run
 
-This function computes the bound on variation distance based and the confidence
+  <Function id="qiskit.ignis.verification.AccreditationFitter.single_protocol_run" name="single_protocol_run" signature="AccreditationFitter.single_protocol_run(results, postp_list, v_zero)">
+    Single protocol run of accreditation protocol on simul backend
 
-**Parameters**
+    **Parameters**
 
-**theta** (*float*) – number between 0 and 1
+    *   **results** ([*Result*](qiskit.result.Result "qiskit.result.Result")) – results of the quantum job
+    *   **postp\_list** (*list*) – list of strings used to post-process outputs
+    *   **v\_zero** (*int*) – position of target
+  </Function>
 
-### single\_protocol\_run
+  ## Attributes
 
-<span id="qiskit.ignis.verification.AccreditationFitter.single_protocol_run" />
+  ### N\_acc
 
-`AccreditationFitter.single_protocol_run(results, postp_list, v_zero)`
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.N_acc" name="N_acc" attributeValue="= 0" />
 
-Single protocol run of accreditation protocol on simul backend
+  ### bound
 
-**Parameters**
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.bound" name="bound" attributeValue="= 1" />
 
-*   **results** ([*Result*](qiskit.result.Result "qiskit.result.Result")) – results of the quantum job
-*   **postp\_list** (*list*) – list of strings used to post-process outputs
-*   **v\_zero** (*int*) – position of target
+  ### confidence
 
-## Attributes
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.confidence" name="confidence" attributeValue="= 1" />
 
-<span id="qiskit.ignis.verification.AccreditationFitter.N_acc" />
+  ### flag
 
-### N\_acc
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.flag" name="flag" attributeValue="= 'accepted'" />
 
-`= 0`
+  ### g\_num
 
-<span id="qiskit.ignis.verification.AccreditationFitter.bound" />
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.g_num" name="g_num" attributeValue="= 1" />
 
-### bound
+  ### num\_runs
 
-`= 1`
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.num_runs" name="num_runs" attributeValue="= 0" />
 
-<span id="qiskit.ignis.verification.AccreditationFitter.confidence" />
+  ### num\_traps
 
-### confidence
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.num_traps" name="num_traps" attributeValue="= 0" />
 
-`= 1`
+  ### outputs
 
-<span id="qiskit.ignis.verification.AccreditationFitter.flag" />
-
-### flag
-
-`= 'accepted'`
-
-<span id="qiskit.ignis.verification.AccreditationFitter.g_num" />
-
-### g\_num
-
-`= 1`
-
-<span id="qiskit.ignis.verification.AccreditationFitter.num_runs" />
-
-### num\_runs
-
-`= 0`
-
-<span id="qiskit.ignis.verification.AccreditationFitter.num_traps" />
-
-### num\_traps
-
-`= 0`
-
-<span id="qiskit.ignis.verification.AccreditationFitter.outputs" />
-
-### outputs
-
-`= []`
+  <Attribute id="qiskit.ignis.verification.AccreditationFitter.outputs" name="outputs" attributeValue="= []" />
+</Class>
 

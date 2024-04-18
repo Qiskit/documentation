@@ -8,53 +8,51 @@ python_api_name: qiskit.visualization.pass_manager_drawer
 
 # qiskit.visualization.pass\_manager\_drawer
 
-<span id="qiskit.visualization.pass_manager_drawer" />
+<Function id="qiskit.visualization.pass_manager_drawer" name="pass_manager_drawer" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/visualization/pass_manager_visualization.py" signature="pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)">
+  Draws the pass manager.
 
-`pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/visualization/pass_manager_visualization.py "view source code")
+  This function needs pydot \<[https://github.com/erocarrera/pydot](https://github.com/erocarrera/pydot)>, which in turn needs Graphviz \<[https://www.graphviz.org/](https://www.graphviz.org/)>\` to be installed.
 
-Draws the pass manager.
+  **Parameters**
 
-This function needs pydot \<[https://github.com/erocarrera/pydot](https://github.com/erocarrera/pydot)>, which in turn needs Graphviz \<[https://www.graphviz.org/](https://www.graphviz.org/)>\` to be installed.
+  *   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – the pass manager to be drawn
+  *   **filename** (*str*) – file path to save image to
+  *   **style** (*dict or OrderedDict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict
+  *   **raw** (*Bool*) – True if you want to save the raw Dot output not an image. The default is False.
 
-**Parameters**
+  **Returns**
 
-*   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – the pass manager to be drawn
-*   **filename** (*str*) – file path to save image to
-*   **style** (*dict or OrderedDict*) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict
-*   **raw** (*Bool*) – True if you want to save the raw Dot output not an image. The default is False.
+  an in-memory representation of the pass manager. Or None if no image was generated or PIL is not installed.
 
-**Returns**
+  **Return type**
 
-an in-memory representation of the pass manager. Or None if no image was generated or PIL is not installed.
+  PIL.Image or None
 
-**Return type**
+  **Raises**
 
-PIL.Image or None
+  *   **MissingOptionalLibraryError** – when nxpd or pydot not installed.
+  *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – If raw=True and filename=None.
 
-**Raises**
+  **Example**
 
-*   **MissingOptionalLibraryError** – when nxpd or pydot not installed.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – If raw=True and filename=None.
+  ```python
+   %matplotlib inline
+  from qiskit import QuantumCircuit
+  from qiskit.compiler import transpile
+  from qiskit.transpiler import PassManager
+  from qiskit.visualization import pass_manager_drawer
+  from qiskit.transpiler.passes import Unroller
 
-**Example**
+  circ = QuantumCircuit(3)
+  circ.ccx(0, 1, 2)
+  circ.draw()
 
-```python
- %matplotlib inline
-from qiskit import QuantumCircuit
-from qiskit.compiler import transpile
-from qiskit.transpiler import PassManager
-from qiskit.visualization import pass_manager_drawer
-from qiskit.transpiler.passes import Unroller
+  pass_ = Unroller(['u1', 'u2', 'u3', 'cx'])
+  pm = PassManager(pass_)
+  new_circ = pm.run(circ)
+  new_circ.draw(output='mpl')
 
-circ = QuantumCircuit(3)
-circ.ccx(0, 1, 2)
-circ.draw()
-
-pass_ = Unroller(['u1', 'u2', 'u3', 'cx'])
-pm = PassManager(pass_)
-new_circ = pm.run(circ)
-new_circ.draw(output='mpl')
-
-pass_manager_drawer(pm, "passmanager.jpg")
-```
+  pass_manager_drawer(pm, "passmanager.jpg")
+  ```
+</Function>
 

@@ -10,111 +10,99 @@ python_api_name: qiskit.ignis.logging.IgnisLogging
 
 # qiskit.ignis.logging.IgnisLogging
 
-<span id="qiskit.ignis.logging.IgnisLogging" />
+<Class id="qiskit.ignis.logging.IgnisLogging" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/logging/ignis_logging.py" signature="IgnisLogging(log_config_path=None)">
+  Singleton class to configure file logging via IgnisLogger
 
-`IgnisLogging(log_config_path=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/logging/ignis_logging.py "view source code")
+  Logging to file is enabled only if there is a config file present. Otherwise IgnisLogger will behave as a regular logger.
 
-Singleton class to configure file logging via IgnisLogger
+  Config file is assumed to be in \<user home>/.qiskit/logging.yaml
 
-Logging to file is enabled only if there is a config file present. Otherwise IgnisLogger will behave as a regular logger.
+  **Config file fields:**
 
-Config file is assumed to be in \<user home>/.qiskit/logging.yaml
+  file\_logging: \{true/false} - Specifies whether file logging is enabled
 
-**Config file fields:**
+  log\_file: \<path> - path to the log file. If not specified, ignis.log will be used
 
-file\_logging: \{true/false} - Specifies whether file logging is enabled
+  max\_size: \<# bytes> - maximum size limit for a given log file. If not specified file size is unlimited
 
-log\_file: \<path> - path to the log file. If not specified, ignis.log will be used
+  max\_rotations: \<count> - maximum number of log files to rotate (oldest file is deleted in case count is reached)
 
-max\_size: \<# bytes> - maximum size limit for a given log file. If not specified file size is unlimited
+  ### \_\_init\_\_
 
-max\_rotations: \<count> - maximum number of log files to rotate (oldest file is deleted in case count is reached)
+  <Function id="qiskit.ignis.logging.IgnisLogging.__init__" name="__init__" signature="__init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.ignis.logging.IgnisLogging.__init__" />
+  |                                                                                                                                              |                                                               |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.logging.IgnisLogging.__init__ "qiskit.ignis.logging.IgnisLogging.__init__")()                                     | Initialize self.                                              |
+  | [`default_datetime_fmt`](#qiskit.ignis.logging.IgnisLogging.default_datetime_fmt "qiskit.ignis.logging.IgnisLogging.default_datetime_fmt")() | Get the default date time format used for writing log entries |
+  | [`get_file_handler`](#qiskit.ignis.logging.IgnisLogging.get_file_handler "qiskit.ignis.logging.IgnisLogging.get_file_handler")()             | Configure and retrieve the RotatingFileHandler object.        |
+  | [`get_log_file`](#qiskit.ignis.logging.IgnisLogging.get_log_file "qiskit.ignis.logging.IgnisLogging.get_log_file")()                         | Get the name of the log file                                  |
+  | [`get_logger`](#qiskit.ignis.logging.IgnisLogging.get_logger "qiskit.ignis.logging.IgnisLogging.get_logger")(name)                           | Return an IgnisLogger object                                  |
 
-`__init__()`
+  ### default\_datetime\_fmt
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.ignis.logging.IgnisLogging.default_datetime_fmt" name="default_datetime_fmt" signature="default_datetime_fmt()">
+    Get the default date time format used for writing log entries
 
-## Methods
+    **Return type**
 
-|                                                                                                                                              |                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.logging.IgnisLogging.__init__ "qiskit.ignis.logging.IgnisLogging.__init__")()                                     | Initialize self.                                              |
-| [`default_datetime_fmt`](#qiskit.ignis.logging.IgnisLogging.default_datetime_fmt "qiskit.ignis.logging.IgnisLogging.default_datetime_fmt")() | Get the default date time format used for writing log entries |
-| [`get_file_handler`](#qiskit.ignis.logging.IgnisLogging.get_file_handler "qiskit.ignis.logging.IgnisLogging.get_file_handler")()             | Configure and retrieve the RotatingFileHandler object.        |
-| [`get_log_file`](#qiskit.ignis.logging.IgnisLogging.get_log_file "qiskit.ignis.logging.IgnisLogging.get_log_file")()                         | Get the name of the log file                                  |
-| [`get_logger`](#qiskit.ignis.logging.IgnisLogging.get_logger "qiskit.ignis.logging.IgnisLogging.get_logger")(name)                           | Return an IgnisLogger object                                  |
+    `str`
 
-### default\_datetime\_fmt
+    **Returns**
 
-<span id="qiskit.ignis.logging.IgnisLogging.default_datetime_fmt" />
+    Default date time format
+  </Function>
 
-`default_datetime_fmt()`
+  ### get\_file\_handler
 
-Get the default date time format used for writing log entries
+  <Function id="qiskit.ignis.logging.IgnisLogging.get_file_handler" name="get_file_handler" signature="get_file_handler()">
+    Configure and retrieve the RotatingFileHandler object. Called on demand the first time IgnisLoggers needs to write to a file
 
-**Return type**
+    **Returns**
 
-`str`
+    The configured RotatingFileHandler object
 
-**Returns**
+    **Return type**
 
-Default date time format
+    RotatingFileHandler
+  </Function>
 
-### get\_file\_handler
+  ### get\_log\_file
 
-<span id="qiskit.ignis.logging.IgnisLogging.get_file_handler" />
+  <Function id="qiskit.ignis.logging.IgnisLogging.get_log_file" name="get_log_file" signature="get_log_file()">
+    Get the name of the log file
 
-`get_file_handler()`
+    **Return type**
 
-Configure and retrieve the RotatingFileHandler object. Called on demand the first time IgnisLoggers needs to write to a file
+    `str`
 
-**Returns**
+    **Returns**
 
-The configured RotatingFileHandler object
+    Name of the log file
+  </Function>
 
-**Return type**
+  ### get\_logger
 
-RotatingFileHandler
+  <Function id="qiskit.ignis.logging.IgnisLogging.get_logger" name="get_logger" signature="get_logger(name)">
+    Return an IgnisLogger object
 
-### get\_log\_file
+    To be used in by the code which needs logging.
 
-<span id="qiskit.ignis.logging.IgnisLogging.get_log_file" />
+    **Parameters**
 
-`get_log_file()`
+    **name** (`str`) – Name of the module being logged
 
-Get the name of the log file
+    **Return type**
 
-**Return type**
+    `IgnisLogger`
 
-`str`
+    **Returns**
 
-**Returns**
-
-Name of the log file
-
-### get\_logger
-
-<span id="qiskit.ignis.logging.IgnisLogging.get_logger" />
-
-`get_logger(name)`
-
-Return an IgnisLogger object
-
-To be used in by the code which needs logging.
-
-**Parameters**
-
-**name** (`str`) – Name of the module being logged
-
-**Return type**
-
-`IgnisLogger`
-
-**Returns**
-
-An IgnisLogger object
+    An IgnisLogger object
+  </Function>
+</Class>
 

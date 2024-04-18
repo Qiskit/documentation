@@ -8,367 +8,337 @@ python_api_name: qiskit.chemistry.algorithms.QEomVQE
 
 # QEomVQE
 
-<span id="qiskit.chemistry.algorithms.QEomVQE" />
+<Class id="qiskit.chemistry.algorithms.QEomVQE" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/eigen_solvers/q_eom_vqe.py" signature="QEomVQE(operator, var_form, optimizer, num_orbitals, num_particles, initial_point=None, max_evals_grouped=1, callback=None, qubit_mapping='parity', two_qubit_reduction=True, is_eom_matrix_symmetric=True, active_occupied=None, active_unoccupied=None, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None, quantum_instance=None)">
+  Bases: `qiskit.aqua.algorithms.minimum_eigen_solvers.vqe.VQE`
 
-`QEomVQE(operator, var_form, optimizer, num_orbitals, num_particles, initial_point=None, max_evals_grouped=1, callback=None, qubit_mapping='parity', two_qubit_reduction=True, is_eom_matrix_symmetric=True, active_occupied=None, active_unoccupied=None, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None, quantum_instance=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/eigen_solvers/q_eom_vqe.py "view source code")
+  QEomVQE algorithm
 
-Bases: `qiskit.aqua.algorithms.minimum_eigen_solvers.vqe.VQE`
+  **Parameters**
 
-QEomVQE algorithm
+  *   **operator** (`LegacyBaseOperator`) – qubit operator
+  *   **var\_form** (`Union`\[`QuantumCircuit`, `VariationalForm`]) – parameterized variational form.
+  *   **optimizer** (`Optimizer`) – the classical optimization algorithm.
+  *   **num\_orbitals** (`int`) – total number of spin orbitals, has a min. value of 1.
+  *   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
+  *   **initial\_point** (`Optional`\[`ndarray`]) – optimizer initial point, 1-D vector
+  *   **max\_evals\_grouped** (`int`) – max number of evaluations performed simultaneously
+  *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Internally, four arguments are provided as follows the index of evaluation, parameters of variational form, evaluated mean, evaluated standard deviation.
+  *   **qubit\_mapping** (`str`) – qubit mapping type
+  *   **two\_qubit\_reduction** (`bool`) – two qubit reduction is applied or not
+  *   **is\_eom\_matrix\_symmetric** (`bool`) – is EoM matrix symmetric
+  *   **active\_occupied** (`Optional`\[`List`\[`int`]]) – list of occupied orbitals to include, indices are 0 to n where n is num particles // 2
+  *   **active\_unoccupied** (`Optional`\[`List`\[`int`]]) – list of unoccupied orbitals to include, indices are 0 to m where m is (num\_orbitals - num particles) // 2
+  *   **se\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – single excitation list, overwrite the setting in active space
+  *   **de\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – double excitation list, overwrite the setting in active space
+  *   **z2\_symmetries** (`Optional`\[`Z2Symmetries`]) – represent the Z2 symmetries
+  *   **untapered\_op** (`Optional`\[`LegacyBaseOperator`]) – if the operator is tapered, we need untapered operator during building element of EoM matrix
+  *   **aux\_operators** (`Optional`\[`List`\[`LegacyBaseOperator`]]) – Auxiliary operators to be evaluated at each eigenvalue
+  *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
-**Parameters**
+  **Raises**
 
-*   **operator** (`LegacyBaseOperator`) – qubit operator
-*   **var\_form** (`Union`\[`QuantumCircuit`, `VariationalForm`]) – parameterized variational form.
-*   **optimizer** (`Optimizer`) – the classical optimization algorithm.
-*   **num\_orbitals** (`int`) – total number of spin orbitals, has a min. value of 1.
-*   **num\_particles** (`Union`\[`List`\[`int`], `int`]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
-*   **initial\_point** (`Optional`\[`ndarray`]) – optimizer initial point, 1-D vector
-*   **max\_evals\_grouped** (`int`) – max number of evaluations performed simultaneously
-*   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Internally, four arguments are provided as follows the index of evaluation, parameters of variational form, evaluated mean, evaluated standard deviation.
-*   **qubit\_mapping** (`str`) – qubit mapping type
-*   **two\_qubit\_reduction** (`bool`) – two qubit reduction is applied or not
-*   **is\_eom\_matrix\_symmetric** (`bool`) – is EoM matrix symmetric
-*   **active\_occupied** (`Optional`\[`List`\[`int`]]) – list of occupied orbitals to include, indices are 0 to n where n is num particles // 2
-*   **active\_unoccupied** (`Optional`\[`List`\[`int`]]) – list of unoccupied orbitals to include, indices are 0 to m where m is (num\_orbitals - num particles) // 2
-*   **se\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – single excitation list, overwrite the setting in active space
-*   **de\_list** (`Optional`\[`List`\[`List`\[`int`]]]) – double excitation list, overwrite the setting in active space
-*   **z2\_symmetries** (`Optional`\[`Z2Symmetries`]) – represent the Z2 symmetries
-*   **untapered\_op** (`Optional`\[`LegacyBaseOperator`]) – if the operator is tapered, we need untapered operator during building element of EoM matrix
-*   **aux\_operators** (`Optional`\[`List`\[`LegacyBaseOperator`]]) – Auxiliary operators to be evaluated at each eigenvalue
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
+  **ValueError** – invalid parameter
 
-**Raises**
+  ## Methods
 
-**ValueError** – invalid parameter
+  ### cleanup\_parameterized\_circuits
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.cleanup_parameterized_circuits" name="cleanup_parameterized_circuits" signature="QEomVQE.cleanup_parameterized_circuits()">
+    set parameterized circuits to None
+  </Function>
 
-### cleanup\_parameterized\_circuits
+  ### compute\_minimum\_eigenvalue
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.cleanup_parameterized_circuits" />
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="QEomVQE.compute_minimum_eigenvalue(operator=None, aux_operators=None)">
+    Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
-`QEomVQE.cleanup_parameterized_circuits()`
+    **Parameters**
 
-set parameterized circuits to None
+    *   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
+    *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
 
-### compute\_minimum\_eigenvalue
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.compute_minimum_eigenvalue" />
+    `MinimumEigensolverResult`
 
-`QEomVQE.compute_minimum_eigenvalue(operator=None, aux_operators=None)`
+    **Returns**
 
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
+    MinimumEigensolverResult
+  </Function>
 
-**Parameters**
+  ### construct\_circuit
 
-*   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – If not None replaces operator in algorithm
-*   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – If not None replaces aux\_operators in algorithm
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.construct_circuit" name="construct_circuit" signature="QEomVQE.construct_circuit(parameter)">
+    Return the circuits used to compute the expectation value.
 
-**Return type**
+    **Parameters**
 
-`MinimumEigensolverResult`
+    **parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
 
-**Returns**
+    **Return type**
 
-MinimumEigensolverResult
+    `List`\[`QuantumCircuit`]
 
-### construct\_circuit
+    **Returns**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.construct_circuit" />
+    A list of the circuits used to compute the expectation value.
+  </Function>
 
-`QEomVQE.construct_circuit(parameter)`
+  ### construct\_expectation
 
-Return the circuits used to compute the expectation value.
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.construct_expectation" name="construct_expectation" signature="QEomVQE.construct_expectation(parameter)">
+    Generate the ansatz circuit and expectation value measurement, and return their runnable composition.
 
-**Parameters**
+    **Parameters**
 
-**parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
+    **parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
 
-**Return type**
+    **Return type**
 
-`List`\[`QuantumCircuit`]
+    `OperatorBase`
 
-**Returns**
+    **Returns**
 
-A list of the circuits used to compute the expectation value.
+    The Operator equalling the measurement of the ansatz `StateFn` by the Observable’s expectation `StateFn`.
 
-### construct\_expectation
+    **Raises**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.construct_expectation" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If no operator has been provided.
+  </Function>
 
-`QEomVQE.construct_expectation(parameter)`
+  ### find\_minimum
 
-Generate the ansatz circuit and expectation value measurement, and return their runnable composition.
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.find_minimum" name="find_minimum" signature="QEomVQE.find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)">
+    Optimize to find the minimum cost value.
 
-**Parameters**
+    **Parameters**
 
-**parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
+    *   **initial\_point** (`Optional`\[`ndarray`]) – If not None will be used instead of any initial point supplied via constructor. If None and None was supplied to constructor then a random point will be used if the optimizer requires an initial point.
+    *   **var\_form** (`Union`\[`QuantumCircuit`, `VariationalForm`, `None`]) – If not None will be used instead of any variational form supplied via constructor.
+    *   **cost\_fn** (`Optional`\[`Callable`]) – If not None will be used instead of any cost\_fn supplied via constructor.
+    *   **optimizer** (`Optional`\[`Optimizer`]) – If not None will be used instead of any optimizer supplied via constructor.
+    *   **gradient\_fn** (`Optional`\[`Callable`]) – Optional gradient function for optimizer
 
-**Return type**
+    **Returns**
 
-`OperatorBase`
+    Optimized variational parameters, and corresponding minimum cost value.
 
-**Returns**
+    **Return type**
 
-The Operator equalling the measurement of the ansatz `StateFn` by the Observable’s expectation `StateFn`.
+    dict
 
-**Raises**
+    **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If no operator has been provided.
+    **ValueError** – invalid input
+  </Function>
 
-### find\_minimum
+  ### get\_optimal\_circuit
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.find_minimum" />
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.get_optimal_circuit" name="get_optimal_circuit" signature="QEomVQE.get_optimal_circuit()">
+    Get the circuit with the optimal parameters.
 
-`QEomVQE.find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
+    **Return type**
 
-Optimize to find the minimum cost value.
+    `QuantumCircuit`
+  </Function>
 
-**Parameters**
+  ### get\_optimal\_cost
 
-*   **initial\_point** (`Optional`\[`ndarray`]) – If not None will be used instead of any initial point supplied via constructor. If None and None was supplied to constructor then a random point will be used if the optimizer requires an initial point.
-*   **var\_form** (`Union`\[`QuantumCircuit`, `VariationalForm`, `None`]) – If not None will be used instead of any variational form supplied via constructor.
-*   **cost\_fn** (`Optional`\[`Callable`]) – If not None will be used instead of any cost\_fn supplied via constructor.
-*   **optimizer** (`Optional`\[`Optimizer`]) – If not None will be used instead of any optimizer supplied via constructor.
-*   **gradient\_fn** (`Optional`\[`Callable`]) – Optional gradient function for optimizer
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.get_optimal_cost" name="get_optimal_cost" signature="QEomVQE.get_optimal_cost()">
+    Get the minimal cost or energy found by the VQE.
 
-**Returns**
+    **Return type**
 
-Optimized variational parameters, and corresponding minimum cost value.
+    `float`
+  </Function>
 
-**Return type**
+  ### get\_optimal\_vector
 
-dict
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.get_optimal_vector" name="get_optimal_vector" signature="QEomVQE.get_optimal_vector()">
+    Get the simulation outcome of the optimal circuit.
 
-**Raises**
+    **Return type**
 
-**ValueError** – invalid input
+    `Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
+  </Function>
 
-### get\_optimal\_circuit
+  ### get\_prob\_vector\_for\_params
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.get_optimal_circuit" />
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.get_prob_vector_for_params" name="get_prob_vector_for_params" signature="QEomVQE.get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)">
+    Helper function to get probability vectors for a set of params
+  </Function>
 
-`QEomVQE.get_optimal_circuit()`
+  ### get\_probabilities\_for\_counts
 
-Get the circuit with the optimal parameters.
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.get_probabilities_for_counts" name="get_probabilities_for_counts" signature="QEomVQE.get_probabilities_for_counts(counts)">
+    get probabilities for counts
+  </Function>
 
-**Return type**
+  ### print\_settings
 
-`QuantumCircuit`
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.print_settings" name="print_settings" signature="QEomVQE.print_settings()">
+    Preparing the setting of VQE into a string.
 
-### get\_optimal\_cost
+    **Returns**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.get_optimal_cost" />
+    the formatted setting of VQE
 
-`QEomVQE.get_optimal_cost()`
+    **Return type**
 
-Get the minimal cost or energy found by the VQE.
+    str
+  </Function>
 
-**Return type**
+  ### run
 
-`float`
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.run" name="run" signature="QEomVQE.run(quantum_instance=None, **kwargs)">
+    Execute the algorithm with selected backend.
 
-### get\_optimal\_vector
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.get_optimal_vector" />
+    *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+    *   **kwargs** (*dict*) – kwargs
 
-`QEomVQE.get_optimal_vector()`
+    **Returns**
 
-Get the simulation outcome of the optimal circuit.
+    results of an algorithm.
 
-**Return type**
+    **Return type**
 
-`Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
+    dict
 
-### get\_prob\_vector\_for\_params
+    **Raises**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.get_prob_vector_for_params" />
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  </Function>
 
-`QEomVQE.get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
+  ### set\_backend
 
-Helper function to get probability vectors for a set of params
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.set_backend" name="set_backend" signature="QEomVQE.set_backend(backend, **kwargs)">
+    Sets backend with configuration.
 
-### get\_probabilities\_for\_counts
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.get_probabilities_for_counts" />
+    `None`
+  </Function>
 
-`QEomVQE.get_probabilities_for_counts(counts)`
+  ### supports\_aux\_operators
 
-get probabilities for counts
+  <Function id="qiskit.chemistry.algorithms.QEomVQE.supports_aux_operators" name="supports_aux_operators" signature="classmethod QEomVQE.supports_aux_operators()">
+    Whether computing the expectation value of auxiliary operators is supported.
 
-### print\_settings
+    If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.print_settings" />
+    **Return type**
 
-`QEomVQE.print_settings()`
+    `bool`
 
-Preparing the setting of VQE into a string.
+    **Returns**
 
-**Returns**
+    True if aux\_operator expectations can be evaluated, False otherwise
+  </Function>
 
-the formatted setting of VQE
+  ## Attributes
 
-**Return type**
+  ### aux\_operators
 
-str
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.aux_operators" name="aux_operators">
+    Returns aux operators
 
-### run
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.run" />
+    `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
+  </Attribute>
 
-`QEomVQE.run(quantum_instance=None, **kwargs)`
+  ### backend
 
-Execute the algorithm with selected backend.
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.backend" name="backend">
+    Returns backend.
 
-**Parameters**
+    **Return type**
 
-*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
+    `Union`\[`Backend`, `BaseBackend`]
+  </Attribute>
 
-**Returns**
+  ### expectation
 
-results of an algorithm.
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.expectation" name="expectation">
+    The expectation value algorithm used to construct the expectation measurement from the observable.
 
-**Return type**
+    **Return type**
 
-dict
+    `ExpectationBase`
+  </Attribute>
 
-**Raises**
+  ### initial\_point
 
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.initial_point" name="initial_point">
+    Returns initial point
 
-### set\_backend
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.set_backend" />
+    `Optional`\[`ndarray`]
+  </Attribute>
 
-`QEomVQE.set_backend(backend, **kwargs)`
+  ### operator
 
-Sets backend with configuration.
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.operator" name="operator">
+    Returns operator
 
-**Return type**
+    **Return type**
 
-`None`
+    `Optional`\[`OperatorBase`]
+  </Attribute>
 
-### supports\_aux\_operators
+  ### optimal\_params
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.supports_aux_operators" />
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.optimal_params" name="optimal_params">
+    The optimal parameters for the variational form.
 
-`classmethod QEomVQE.supports_aux_operators()`
+    **Return type**
 
-Whether computing the expectation value of auxiliary operators is supported.
+    `List`\[`float`]
+  </Attribute>
 
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
+  ### optimizer
 
-**Return type**
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.optimizer" name="optimizer">
+    Returns optimizer
 
-`bool`
+    **Return type**
 
-**Returns**
+    `Optional`\[`Optimizer`]
+  </Attribute>
 
-True if aux\_operator expectations can be evaluated, False otherwise
+  ### quantum\_instance
 
-## Attributes
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.quantum_instance" name="quantum_instance">
+    Returns quantum instance.
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.aux_operators" />
+    **Return type**
 
-### aux\_operators
+    `Optional`\[`QuantumInstance`]
+  </Attribute>
 
-Returns aux operators
+  ### random
 
-**Return type**
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.random" name="random">
+    Return a numpy random.
+  </Attribute>
 
-`Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
+  ### setting
 
-<span id="qiskit.chemistry.algorithms.QEomVQE.backend" />
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.setting" name="setting">
+    Prepare the setting of VQE as a string.
+  </Attribute>
 
-### backend
+  ### var\_form
 
-Returns backend.
+  <Attribute id="qiskit.chemistry.algorithms.QEomVQE.var_form" name="var_form">
+    Returns variational form
 
-**Return type**
+    **Return type**
 
-`Union`\[`Backend`, `BaseBackend`]
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.expectation" />
-
-### expectation
-
-The expectation value algorithm used to construct the expectation measurement from the observable.
-
-**Return type**
-
-`ExpectationBase`
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.initial_point" />
-
-### initial\_point
-
-Returns initial point
-
-**Return type**
-
-`Optional`\[`ndarray`]
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.operator" />
-
-### operator
-
-Returns operator
-
-**Return type**
-
-`Optional`\[`OperatorBase`]
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.optimal_params" />
-
-### optimal\_params
-
-The optimal parameters for the variational form.
-
-**Return type**
-
-`List`\[`float`]
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.optimizer" />
-
-### optimizer
-
-Returns optimizer
-
-**Return type**
-
-`Optional`\[`Optimizer`]
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.quantum_instance" />
-
-### quantum\_instance
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[`QuantumInstance`]
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.random" />
-
-### random
-
-Return a numpy random.
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.setting" />
-
-### setting
-
-Prepare the setting of VQE as a string.
-
-<span id="qiskit.chemistry.algorithms.QEomVQE.var_form" />
-
-### var\_form
-
-Returns variational form
-
-**Return type**
-
-`Union`\[`QuantumCircuit`, `VariationalForm`, `None`]
+    `Union`\[`QuantumCircuit`, `VariationalForm`, `None`]
+  </Attribute>
+</Class>
 

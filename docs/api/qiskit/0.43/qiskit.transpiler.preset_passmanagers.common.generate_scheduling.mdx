@@ -10,29 +10,27 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_schedulin
 
 # qiskit.transpiler.preset\_passmanagers.common.generate\_scheduling
 
-<span id="qiskit.transpiler.preset_passmanagers.common.generate_scheduling" />
+<Function id="qiskit.transpiler.preset_passmanagers.common.generate_scheduling" name="generate_scheduling" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py" signature="generate_scheduling(instruction_durations, scheduling_method, timing_constraints, inst_map, target=None)">
+  Generate a post optimization scheduling [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
-`generate_scheduling(instruction_durations, scheduling_method, timing_constraints, inst_map, target=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+  **Parameters**
 
-Generate a post optimization scheduling [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
+  *   **instruction\_durations** (*dict*) – The dictionary of instruction durations
+  *   **scheduling\_method** (*str*) – The scheduling method to use, can either be `'asap'`/`'as_soon_as_possible'` or `'alap'`/`'as_late_as_possible'`
+  *   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
+  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping object that maps gate to schedule.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
 
-**Parameters**
+  **Returns**
 
-*   **instruction\_durations** (*dict*) – The dictionary of instruction durations
-*   **scheduling\_method** (*str*) – The scheduling method to use, can either be `'asap'`/`'as_soon_as_possible'` or `'alap'`/`'as_late_as_possible'`
-*   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
-*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping object that maps gate to schedule.
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
+  The scheduling pass manager
 
-**Returns**
+  **Return type**
 
-The scheduling pass manager
+  [PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
-**Return type**
+  **Raises**
 
-[PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the `scheduling_method` kwarg is not a valid value
+  [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the `scheduling_method` kwarg is not a valid value
+</Function>
 

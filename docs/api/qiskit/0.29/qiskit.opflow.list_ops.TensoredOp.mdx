@@ -8,221 +8,209 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
 # TensoredOp
 
-<span id="qiskit.opflow.list_ops.TensoredOp" />
+<Class id="qiskit.opflow.list_ops.TensoredOp" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/tensored_op.py" signature="TensoredOp(oplist, coeff=1.0, abelian=False)">
+  Bases: `qiskit.opflow.list_ops.list_op.ListOp`
 
-`TensoredOp(oplist, coeff=1.0, abelian=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/tensored_op.py "view source code")
+  A class for lazily representing tensor products of Operators. Often Operators cannot be efficiently tensored to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be tensored together, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits, they can be reduced by tensor product.
 
-Bases: `qiskit.opflow.list_ops.list_op.ListOp`
+  **Parameters**
 
-A class for lazily representing tensor products of Operators. Often Operators cannot be efficiently tensored to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be tensored together, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits, they can be reduced by tensor product.
+  *   **oplist** (`List`\[`OperatorBase`]) – The Operators being tensored.
+  *   **coeff** (`Union`\[`complex`, `ParameterExpression`]) – A coefficient multiplying the operator
+  *   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **oplist** (`List`\[`OperatorBase`]) – The Operators being tensored.
-*   **coeff** (`Union`\[`complex`, `ParameterExpression`]) – A coefficient multiplying the operator
-*   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
+  ### eval
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.list_ops.TensoredOp.eval" name="eval" signature="TensoredOp.eval(front=None)">
+    Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
-### eval
+    ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
 
-<span id="qiskit.opflow.list_ops.TensoredOp.eval" />
+    **Parameters**
 
-`TensoredOp.eval(front=None)`
+    **front** (`Union`\[`str`, `dict`, `ndarray`, `OperatorBase`, `Statevector`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
 
-Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
+    **Return type**
 
-ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
+    `Union`\[`OperatorBase`, `complex`]
 
-**Parameters**
+    **Returns**
 
-**front** (`Union`\[`str`, `dict`, `ndarray`, `OperatorBase`, `Statevector`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
+    The output of the `oplist` Operators’ evaluation function, combined with the `combo_fn`. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-**Return type**
+    **Raises**
 
-`Union`\[`OperatorBase`, `complex`]
+    *   **NotImplementedError** – Raised if called for a subclass which is not distributive.
+    *   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
+    *   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
+  </Function>
 
-**Returns**
+  ### reduce
 
-The output of the `oplist` Operators’ evaluation function, combined with the `combo_fn`. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
+  <Function id="qiskit.opflow.list_ops.TensoredOp.reduce" name="reduce" signature="TensoredOp.reduce()">
+    Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
-**Raises**
+    **Return type**
 
-*   **NotImplementedError** – Raised if called for a subclass which is not distributive.
-*   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
-*   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
+    `OperatorBase`
 
-### reduce
+    **Returns**
 
-<span id="qiskit.opflow.list_ops.TensoredOp.reduce" />
+    The reduced `OperatorBase`.
+  </Function>
 
-`TensoredOp.reduce()`
+  ### tensor
 
-Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
+  <Function id="qiskit.opflow.list_ops.TensoredOp.tensor" name="tensor" signature="TensoredOp.tensor(other)">
+    Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
-**Return type**
+    > -\[Y]- -\[X]-
 
-`OperatorBase`
+    Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
 
-**Returns**
+    **Parameters**
 
-The reduced `OperatorBase`.
+    **other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
 
-### tensor
+    **Return type**
 
-<span id="qiskit.opflow.list_ops.TensoredOp.tensor" />
+    `OperatorBase`
 
-`TensoredOp.tensor(other)`
+    **Returns**
 
-Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
+    An `OperatorBase` equivalent to the tensor product of self and other.
+  </Function>
 
-> -\[Y]- -\[X]-
+  ### to\_circuit
 
-Because Terra prints circuits and results with qubit 0 at the end of the string or circuit.
+  <Function id="qiskit.opflow.list_ops.TensoredOp.to_circuit" name="to_circuit" signature="TensoredOp.to_circuit()">
+    Returns the quantum circuit, representing the tensored operator.
 
-**Parameters**
+    **Return type**
 
-**other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
+    `QuantumCircuit`
 
-**Return type**
+    **Returns**
 
-`OperatorBase`
+    The circuit representation of the tensored operator.
 
-**Returns**
+    **Raises**
 
-An `OperatorBase` equivalent to the tensor product of self and other.
+    [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – for operators where a single underlying circuit can not be produced.
+  </Function>
 
-### to\_circuit
+  ## Attributes
 
-<span id="qiskit.opflow.list_ops.TensoredOp.to_circuit" />
+  ### INDENTATION
 
-`TensoredOp.to_circuit()`
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
 
-Returns the quantum circuit, representing the tensored operator.
+  ### abelian
 
-**Return type**
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.abelian" name="abelian">
+    Whether the Operators in `oplist` are known to commute with one another.
 
-`QuantumCircuit`
+    **Return type**
 
-**Returns**
+    `bool`
 
-The circuit representation of the tensored operator.
+    **Returns**
 
-**Raises**
+    A bool indicating whether the `oplist` is Abelian.
+  </Attribute>
 
-[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – for operators where a single underlying circuit can not be produced.
+  ### coeff
 
-## Attributes
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.coeff" name="coeff">
+    The scalar coefficient multiplying the Operator.
 
-<span id="qiskit.opflow.list_ops.TensoredOp.INDENTATION" />
+    **Return type**
 
-### INDENTATION
+    `Union`\[`complex`, `ParameterExpression`]
 
-`= ' '`
+    **Returns**
 
-<span id="qiskit.opflow.list_ops.TensoredOp.abelian" />
+    The coefficient.
+  </Attribute>
 
-### abelian
+  ### combo\_fn
 
-Whether the Operators in `oplist` are known to commute with one another.
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.combo_fn" name="combo_fn">
+    The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `Callable`
 
-**Returns**
+    **Returns**
 
-A bool indicating whether the `oplist` is Abelian.
+    The combination function.
+  </Attribute>
 
-<span id="qiskit.opflow.list_ops.TensoredOp.coeff" />
+  ### distributive
 
-### coeff
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.distributive" name="distributive">
+    **Return type**
 
-The scalar coefficient multiplying the Operator.
+    `bool`
+  </Attribute>
 
-**Return type**
+  ### grad\_combo\_fn
 
-`Union`\[`complex`, `ParameterExpression`]
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.grad_combo_fn" name="grad_combo_fn">
+    The gradient of `combo_fn`.
 
-**Returns**
+    **Return type**
 
-The coefficient.
+    `Optional`\[`Callable`]
+  </Attribute>
 
-<span id="qiskit.opflow.list_ops.TensoredOp.combo_fn" />
+  ### instance\_id
 
-### combo\_fn
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.instance_id" name="instance_id">
+    Return the unique instance id.
 
-The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`Callable`
+  ### num\_qubits
 
-**Returns**
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.num_qubits" name="num_qubits">
+    **Return type**
 
-The combination function.
+    `int`
+  </Attribute>
 
-<span id="qiskit.opflow.list_ops.TensoredOp.distributive" />
+  ### oplist
 
-### distributive
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.oplist" name="oplist">
+    The list of `OperatorBases` defining the underlying function of this Operator.
 
-**Return type**
+    **Return type**
 
-`bool`
+    `List`\[`OperatorBase`]
 
-<span id="qiskit.opflow.list_ops.TensoredOp.grad_combo_fn" />
+    **Returns**
 
-### grad\_combo\_fn
+    The Operators defining the ListOp
+  </Attribute>
 
-The gradient of `combo_fn`.
+  ### parameters
 
-**Return type**
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.parameters" name="parameters" />
 
-`Optional`\[`Callable`]
+  ### settings
 
-<span id="qiskit.opflow.list_ops.TensoredOp.instance_id" />
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.settings" name="settings">
+    Return settings.
 
-### instance\_id
+    **Return type**
 
-Return the unique instance id.
-
-**Return type**
-
-`int`
-
-<span id="qiskit.opflow.list_ops.TensoredOp.num_qubits" />
-
-### num\_qubits
-
-**Return type**
-
-`int`
-
-<span id="qiskit.opflow.list_ops.TensoredOp.oplist" />
-
-### oplist
-
-The list of `OperatorBases` defining the underlying function of this Operator.
-
-**Return type**
-
-`List`\[`OperatorBase`]
-
-**Returns**
-
-The Operators defining the ListOp
-
-<span id="qiskit.opflow.list_ops.TensoredOp.parameters" />
-
-### parameters
-
-<span id="qiskit.opflow.list_ops.TensoredOp.settings" />
-
-### settings
-
-Return settings.
-
-**Return type**
-
-`Dict`
+    `Dict`
+  </Attribute>
+</Class>
 

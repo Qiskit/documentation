@@ -12,179 +12,169 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManager
 
 # IBMQJobManager
 
-<span id="qiskit.providers.ibmq.managed.IBMQJobManager" />
+<Class id="qiskit.providers.ibmq.managed.IBMQJobManager" github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/ibmqjobmanager.py" signature="IBMQJobManager">
+  Bases: `object`
 
-`IBMQJobManager` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
+  Job Manager for IBM Quantum Experience.
 
-Bases: `object`
+  The Job Manager is a higher level mechanism for handling [`jobs`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob") composed of multiple circuits or pulse schedules. It splits the experiments into multiple jobs based on backend restrictions. When the jobs are finished, it collects and presents the results in a unified view.
 
-Job Manager for IBM Quantum Experience.
+  You can use the [`run()`](qiskit.providers.ibmq.managed.IBMQJobManager#run "qiskit.providers.ibmq.managed.IBMQJobManager.run") method to submit multiple experiments with the Job Manager:
 
-The Job Manager is a higher level mechanism for handling [`jobs`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob") composed of multiple circuits or pulse schedules. It splits the experiments into multiple jobs based on backend restrictions. When the jobs are finished, it collects and presents the results in a unified view.
+  ```python
+  from qiskit import IBMQ, transpile
+  from qiskit.providers.ibmq.managed import IBMQJobManager
+  from qiskit.circuit.random import random_circuit
 
-You can use the [`run()`](qiskit.providers.ibmq.managed.IBMQJobManager#run "qiskit.providers.ibmq.managed.IBMQJobManager.run") method to submit multiple experiments with the Job Manager:
+  provider = IBMQ.load_account()
+  backend = provider.get_backend('ibmq_qasm_simulator')
 
-```python
-from qiskit import IBMQ, transpile
-from qiskit.providers.ibmq.managed import IBMQJobManager
-from qiskit.circuit.random import random_circuit
+  # Build a thousand circuits.
+  circs = []
+  for _ in range(1000):
+      circs.append(random_circuit(num_qubits=5, depth=4, measure=True))
 
-provider = IBMQ.load_account()
-backend = provider.get_backend('ibmq_qasm_simulator')
+  # Need to transpile the circuits first.
+  circs = transpile(circs, backend=backend)
 
-# Build a thousand circuits.
-circs = []
-for _ in range(1000):
-    circs.append(random_circuit(num_qubits=5, depth=4, measure=True))
+  # Use Job Manager to break the circuits into multiple jobs.
+  job_manager = IBMQJobManager()
+  job_set_foo = job_manager.run(circs, backend=backend, name='foo')
+  ```
 
-# Need to transpile the circuits first.
-circs = transpile(circs, backend=backend)
+  The [`run()`](qiskit.providers.ibmq.managed.IBMQJobManager#run "qiskit.providers.ibmq.managed.IBMQJobManager.run") method returns a [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") instance, which represents the set of jobs for the experiments. You can use the [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") methods, such as [`statuses()`](qiskit.providers.ibmq.managed.ManagedJobSet#statuses "qiskit.providers.ibmq.managed.ManagedJobSet.statuses"), [`results()`](qiskit.providers.ibmq.managed.ManagedJobSet#results "qiskit.providers.ibmq.managed.ManagedJobSet.results"), and [`error_messages()`](qiskit.providers.ibmq.managed.ManagedJobSet#error_messages "qiskit.providers.ibmq.managed.ManagedJobSet.error_messages") to get a combined view of the jobs in the set. For example:
 
-# Use Job Manager to break the circuits into multiple jobs.
-job_manager = IBMQJobManager()
-job_set_foo = job_manager.run(circs, backend=backend, name='foo')
-```
+  ```python
+  results = job_set_foo.results()
+  results.get_counts(5)  # Counts for experiment 5.
+  ```
 
-The [`run()`](qiskit.providers.ibmq.managed.IBMQJobManager#run "qiskit.providers.ibmq.managed.IBMQJobManager.run") method returns a [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") instance, which represents the set of jobs for the experiments. You can use the [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") methods, such as [`statuses()`](qiskit.providers.ibmq.managed.ManagedJobSet#statuses "qiskit.providers.ibmq.managed.ManagedJobSet.statuses"), [`results()`](qiskit.providers.ibmq.managed.ManagedJobSet#results "qiskit.providers.ibmq.managed.ManagedJobSet.results"), and [`error_messages()`](qiskit.providers.ibmq.managed.ManagedJobSet#error_messages "qiskit.providers.ibmq.managed.ManagedJobSet.error_messages") to get a combined view of the jobs in the set. For example:
+  The [`job_set_id()`](qiskit.providers.ibmq.managed.ManagedJobSet#job_set_id "qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id") method of [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") returns the job set ID, which can be used to retrieve the job set later:
 
-```python
-results = job_set_foo.results()
-results.get_counts(5)  # Counts for experiment 5.
-```
+  ```python
+  job_set_id = job_set_foo.job_set_id()
+  retrieved_foo = job_manager.retrieve_job_set(job_set_id=job_set_id, provider=provider)
+  ```
 
-The [`job_set_id()`](qiskit.providers.ibmq.managed.ManagedJobSet#job_set_id "qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id") method of [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") returns the job set ID, which can be used to retrieve the job set later:
+  IBMQJobManager constructor.
 
-```python
-job_set_id = job_set_foo.job_set_id()
-retrieved_foo = job_manager.retrieve_job_set(job_set_id=job_set_id, provider=provider)
-```
+  ## Methods
 
-IBMQJobManager constructor.
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-## Methods
+  ### job\_sets
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+  <Function id="qiskit.providers.ibmq.managed.IBMQJobManager.job_sets" name="job_sets" signature="IBMQJobManager.job_sets(name=None)">
+    Return job sets being managed in this session, subject to optional filtering.
 
-### job\_sets
+    **Parameters**
 
-<span id="qiskit.providers.ibmq.managed.IBMQJobManager.job_sets" />
+    **name** (`Optional`\[`str`]) – Name of the managed job sets.
 
-`IBMQJobManager.job_sets(name=None)`
+    **Return type**
 
-Return job sets being managed in this session, subject to optional filtering.
+    `List`\[[`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")]
 
-**Parameters**
+    **Returns**
 
-**name** (`Optional`\[`str`]) – Name of the managed job sets.
+    A list of managed job sets that match the filter.
+  </Function>
 
-**Return type**
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-`List`\[[`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")]
+  ### report
 
-**Returns**
+  <Function id="qiskit.providers.ibmq.managed.IBMQJobManager.report" name="report" signature="IBMQJobManager.report(detailed=True)">
+    Return a report on the statuses of all jobs managed by this Job Manager.
 
-A list of managed job sets that match the filter.
+    **Parameters**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    **detailed** (`bool`) – `True` if a detailed report is to be returned. `False` if a summary report is to be returned.
 
-### report
+    **Return type**
 
-<span id="qiskit.providers.ibmq.managed.IBMQJobManager.report" />
+    `str`
 
-`IBMQJobManager.report(detailed=True)`
+    **Returns**
 
-Return a report on the statuses of all jobs managed by this Job Manager.
+    A report on job statuses.
+  </Function>
 
-**Parameters**
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-**detailed** (`bool`) – `True` if a detailed report is to be returned. `False` if a summary report is to be returned.
+  ### retrieve\_job\_set
 
-**Return type**
+  <Function id="qiskit.providers.ibmq.managed.IBMQJobManager.retrieve_job_set" name="retrieve_job_set" signature="IBMQJobManager.retrieve_job_set(job_set_id, provider, refresh=False)">
+    Retrieve a previously submitted job set.
 
-`str`
+    **Parameters**
 
-**Returns**
+    *   **job\_set\_id** (`str`) – Job set ID.
+    *   **provider** ([`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.accountprovider.AccountProvider")) – Provider used for this job set.
+    *   **refresh** (`bool`) – If `True`, re-query the server for the job set information. Otherwise return the cached value.
 
-A report on job statuses.
+    **Return type**
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")
 
-### retrieve\_job\_set
+    **Returns**
 
-<span id="qiskit.providers.ibmq.managed.IBMQJobManager.retrieve_job_set" />
+    Retrieved job set.
 
-`IBMQJobManager.retrieve_job_set(job_set_id, provider, refresh=False)`
+    **Raises**
 
-Retrieve a previously submitted job set.
+    *   [**IBMQJobManagerUnknownJobSet**](qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet "qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet") – If the job set cannot be found.
+    *   [**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If jobs for this job set are found but have unexpected attributes.
+  </Function>
 
-**Parameters**
+  <Admonition title="Warning" type="caution">
+    The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
+  </Admonition>
 
-*   **job\_set\_id** (`str`) – Job set ID.
-*   **provider** ([`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.accountprovider.AccountProvider")) – Provider used for this job set.
-*   **refresh** (`bool`) – If `True`, re-query the server for the job set information. Otherwise return the cached value.
+  ### run
 
-**Return type**
+  <Function id="qiskit.providers.ibmq.managed.IBMQJobManager.run" name="run" signature="IBMQJobManager.run(experiments, backend, name=None, max_experiments_per_job=None, job_share_level=None, job_tags=None, **run_config)">
+    Execute a set of circuits or pulse schedules on a backend.
 
-[`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")
+    The circuits or schedules will be split into multiple jobs. Circuits or schedules in a job will be executed together in each shot.
 
-**Returns**
+    **Parameters**
 
-Retrieved job set.
+    *   **experiments** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], `List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]) – Circuit(s) or pulse schedule(s) to execute.
 
-**Raises**
+    *   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – Backend to execute the experiments on.
 
-*   [**IBMQJobManagerUnknownJobSet**](qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet "qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet") – If the job set cannot be found.
-*   [**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If jobs for this job set are found but have unexpected attributes.
+    *   **name** (`Optional`\[`str`]) – Name for this set of jobs. Each job within the set will have a job name that consists of the set name followed by a suffix. If not specified, the current date and time is used.
 
-<Admonition title="Warning" type="caution">
-  The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
-</Admonition>
+    *   **max\_experiments\_per\_job** (`Optional`\[`int`]) – Maximum number of experiments to run in each job. If not specified, the default is to use the maximum allowed by the backend. If the specified value is greater the maximum allowed by the backend, the default is used.
 
-### run
+    *   **job\_share\_level** (`Optional`\[`str`]) – Allow sharing the jobs at the hub, group, project, or global level. The level can be one of: `global`, `hub`, `group`, `project`, and `none`.
 
-<span id="qiskit.providers.ibmq.managed.IBMQJobManager.run" />
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the jobs. The tags can subsequently be used as a filter in the `IBMQBackend.jobs()` function call.
 
-`IBMQJobManager.run(experiments, backend, name=None, max_experiments_per_job=None, job_share_level=None, job_tags=None, **run_config)`
+    *   **run\_config** (`Any`) –
 
-Execute a set of circuits or pulse schedules on a backend.
+        Configuration of the runtime environment. Some examples of these configuration parameters include: `qobj_id`, `qobj_header`, `shots`, `memory`, `seed_simulator`, `qubit_lo_freq`, `meas_lo_freq`, `qubit_lo_range`, `meas_lo_range`, `schedule_los`, `meas_level`, `meas_return`, `meas_map`, `memory_slot_size`, `rep_time`, and `parameter_binds`.
 
-The circuits or schedules will be split into multiple jobs. Circuits or schedules in a job will be executed together in each shot.
+        Refer to the documentation on [`qiskit.compiler.assemble()`](qiskit.compiler.assemble "qiskit.compiler.assemble") for details on these arguments.
 
-**Parameters**
+    **Return type**
 
-*   **experiments** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], `List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]) – Circuit(s) or pulse schedule(s) to execute.
+    [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")
 
-*   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – Backend to execute the experiments on.
+    **Returns**
 
-*   **name** (`Optional`\[`str`]) – Name for this set of jobs. Each job within the set will have a job name that consists of the set name followed by a suffix. If not specified, the current date and time is used.
+    A [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") instance representing the set of jobs for the experiments.
 
-*   **max\_experiments\_per\_job** (`Optional`\[`int`]) – Maximum number of experiments to run in each job. If not specified, the default is to use the maximum allowed by the backend. If the specified value is greater the maximum allowed by the backend, the default is used.
+    **Raises**
 
-*   **job\_share\_level** (`Optional`\[`str`]) – Allow sharing the jobs at the hub, group, project, or global level. The level can be one of: `global`, `hub`, `group`, `project`, and `none`.
-
-*   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the jobs. The tags can subsequently be used as a filter in the `IBMQBackend.jobs()` function call.
-
-*   **run\_config** (`Any`) –
-
-    Configuration of the runtime environment. Some examples of these configuration parameters include: `qobj_id`, `qobj_header`, `shots`, `memory`, `seed_simulator`, `qubit_lo_freq`, `meas_lo_freq`, `qubit_lo_range`, `meas_lo_range`, `schedule_los`, `meas_level`, `meas_return`, `meas_map`, `memory_slot_size`, `rep_time`, and `parameter_binds`.
-
-    Refer to the documentation on [`qiskit.compiler.assemble()`](qiskit.compiler.assemble "qiskit.compiler.assemble") for details on these arguments.
-
-**Return type**
-
-[`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")
-
-**Returns**
-
-A [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") instance representing the set of jobs for the experiments.
-
-**Raises**
-
-[**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If an input parameter value is not valid.
+    [**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If an input parameter value is not valid.
+  </Function>
+</Class>
 

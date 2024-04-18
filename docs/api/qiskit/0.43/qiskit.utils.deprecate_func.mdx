@@ -10,30 +10,28 @@ python_api_name: qiskit.utils.deprecate_func
 
 # qiskit.utils.deprecate\_func
 
-<span id="qiskit.utils.deprecate_func" />
+<Function id="qiskit.utils.deprecate_func" name="deprecate_func" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py" signature="deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit-terra', removal_timeline='no earlier than 3 months after the release date', is_property=False)">
+  Decorator to indicate a function has been deprecated.
 
-`deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit-terra', removal_timeline='no earlier than 3 months after the release date', is_property=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/utils/deprecation.py "view source code")
+  It should be placed beneath other decorators like @staticmethod and property decorators.
 
-Decorator to indicate a function has been deprecated.
+  When deprecating a class, set this decorator on its \_\_init\_\_ function.
 
-It should be placed beneath other decorators like @staticmethod and property decorators.
+  **Parameters**
 
-When deprecating a class, set this decorator on its \_\_init\_\_ function.
+  *   **since** (*str*) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
+  *   **additional\_msg** (*str | None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
+  *   **pending** (*bool*) – Set to `True` if the deprecation is still pending.
+  *   **package\_name** (*str*) – The PyPI package name, e.g. “qiskit-nature”.
+  *   **removal\_timeline** (*str*) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+  *   **is\_property** (*bool*) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
 
-**Parameters**
+  **Returns**
 
-*   **since** (*str*) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
-*   **additional\_msg** (*str | None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
-*   **pending** (*bool*) – Set to `True` if the deprecation is still pending.
-*   **package\_name** (*str*) – The PyPI package name, e.g. “qiskit-nature”.
-*   **removal\_timeline** (*str*) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
-*   **is\_property** (*bool*) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
+  The decorated callable.
 
-**Returns**
+  **Return type**
 
-The decorated callable.
-
-**Return type**
-
-Callable
+  Callable
+</Function>
 

@@ -8,64 +8,58 @@ python_api_name: qiskit.transpiler.passes.CSPLayout
 
 # CSPLayout
 
-<span id="qiskit.transpiler.passes.CSPLayout" />
+<Class id="qiskit.transpiler.passes.CSPLayout" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/layout/csp_layout.py" signature="CSPLayout(*args, **kwargs)">
+  Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`CSPLayout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
+  If possible, chooses a Layout as a CSP, using backtracking.
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  If possible, chooses a Layout as a CSP, using backtracking.
 
-If possible, chooses a Layout as a CSP, using backtracking.
+  If not possible, does not set the layout property. In all the cases, the property CSPLayout\_stop\_reason will be added with one of the following values:
 
-If possible, chooses a Layout as a CSP, using backtracking.
+  *   solution found: If a perfect layout was found.
+  *   nonexistent solution: If no perfect layout was found and every combination was checked.
+  *   call limit reached: If no perfect layout was found and the call limit was reached.
+  *   time limit reached: If no perfect layout was found and the time limit was reached.
 
-If not possible, does not set the layout property. In all the cases, the property CSPLayout\_stop\_reason will be added with one of the following values:
+  **Parameters**
 
-*   solution found: If a perfect layout was found.
-*   nonexistent solution: If no perfect layout was found and every combination was checked.
-*   call limit reached: If no perfect layout was found and the call limit was reached.
-*   time limit reached: If no perfect layout was found and the time limit was reached.
+  *   **coupling\_map** (*Coupling*) – Directed graph representing a coupling map.
+  *   **strict\_direction** (*bool*) – If True, considers the direction of the coupling map. Default is False.
+  *   **seed** (*int*) – Sets the seed of the PRNG.
+  *   **call\_limit** (*int*) – Amount of times that `constraint.RecursiveBacktrackingSolver.recursiveBacktracking` will be called. None means no call limit. Default: 1000.
+  *   **time\_limit** (*int*) – Amount of seconds that the pass will try to find a solution. None means no time limit. Default: 10 seconds.
 
-**Parameters**
+  ## Methods
 
-*   **coupling\_map** (*Coupling*) – Directed graph representing a coupling map.
-*   **strict\_direction** (*bool*) – If True, considers the direction of the coupling map. Default is False.
-*   **seed** (*int*) – Sets the seed of the PRNG.
-*   **call\_limit** (*int*) – Amount of times that `constraint.RecursiveBacktrackingSolver.recursiveBacktracking` will be called. None means no call limit. Default: 1000.
-*   **time\_limit** (*int*) – Amount of seconds that the pass will try to find a solution. None means no time limit. Default: 10 seconds.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.CSPLayout.name" name="name" signature="CSPLayout.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.CSPLayout.name" />
+  <Function id="qiskit.transpiler.passes.CSPLayout.run" name="run" signature="CSPLayout.run(dag)">
+    run the layout method
+  </Function>
 
-`CSPLayout.name()`
+  ## Attributes
 
-Return the name of the pass.
+  ### is\_analysis\_pass
 
-### run
+  <Attribute id="qiskit.transpiler.passes.CSPLayout.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.CSPLayout.run" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-`CSPLayout.run(dag)`
+  ### is\_transformation\_pass
 
-run the layout method
+  <Attribute id="qiskit.transpiler.passes.CSPLayout.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.CSPLayout.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.CSPLayout.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

@@ -8,87 +8,79 @@ python_api_name: qiskit.transpiler.passes.FullAncillaAllocation
 
 # FullAncillaAllocation
 
-<span id="qiskit.transpiler.passes.FullAncillaAllocation" />
+<Class id="qiskit.transpiler.passes.FullAncillaAllocation" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/full_ancilla_allocation.py" signature="FullAncillaAllocation(*args, **kwargs)">
+  Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
-`FullAncillaAllocation(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/full_ancilla_allocation.py "view source code")
+  Allocate all idle nodes from the coupling map as ancilla on the layout.
 
-Bases: `qiskit.transpiler.basepasses.AnalysisPass`
+  A pass for allocating all idle physical qubits (those that exist in coupling map but not the dag circuit) as ancilla. It will also choose new virtual qubits to correspond to those physical ancilla.
 
-Allocate all idle nodes from the coupling map as ancilla on the layout.
+  <Admonition title="Note" type="note">
+    This is an analysis pass, and only responsible for choosing physical ancilla locations and their corresponding virtual qubits. A separate transformation pass must add those virtual qubits to the circuit.
+  </Admonition>
 
-A pass for allocating all idle physical qubits (those that exist in coupling map but not the dag circuit) as ancilla. It will also choose new virtual qubits to correspond to those physical ancilla.
+  FullAncillaAllocation initializer.
 
-<Admonition title="Note" type="note">
-  This is an analysis pass, and only responsible for choosing physical ancilla locations and their corresponding virtual qubits. A separate transformation pass must add those virtual qubits to the circuit.
-</Admonition>
+  **Parameters**
 
-FullAncillaAllocation initializer.
+  **coupling\_map** (*Coupling*) – directed graph representing a coupling map.
 
-**Parameters**
+  ## Methods
 
-**coupling\_map** (*Coupling*) – directed graph representing a coupling map.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.FullAncillaAllocation.name" name="name" signature="FullAncillaAllocation.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.FullAncillaAllocation.name" />
+  <Function id="qiskit.transpiler.passes.FullAncillaAllocation.run" name="run" signature="FullAncillaAllocation.run(dag)">
+    Run the FullAncillaAllocation pass on dag.
 
-`FullAncillaAllocation.name()`
+    Extend the layout with new (physical qubit, virtual qubit) pairs. The dag signals which virtual qubits are already in the circuit. This pass will allocate new virtual qubits such that no collision occurs (i.e. Layout bijectivity is preserved)
 
-Return the name of the pass.
+    The coupling\_map and layout together determine which physical qubits are free.
 
-### run
+    **Parameters**
 
-<span id="qiskit.transpiler.passes.FullAncillaAllocation.run" />
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to analyze
 
-`FullAncillaAllocation.run(dag)`
+    **Returns**
 
-Run the FullAncillaAllocation pass on dag.
+    returns the same dag circuit, unmodified
 
-Extend the layout with new (physical qubit, virtual qubit) pairs. The dag signals which virtual qubits are already in the circuit. This pass will allocate new virtual qubits such that no collision occurs (i.e. Layout bijectivity is preserved)
+    **Return type**
 
-The coupling\_map and layout together determine which physical qubits are free.
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**Parameters**
+    **Raises**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to analyze
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is not layout in the property set or not set at init time.
+  </Function>
 
-**Returns**
+  ### validate\_layout
 
-returns the same dag circuit, unmodified
+  <Function id="qiskit.transpiler.passes.FullAncillaAllocation.validate_layout" name="validate_layout" signature="static FullAncillaAllocation.validate_layout(layout_qubits, dag_qubits)">
+    Checks if all the qregs in layout\_qregs already exist in dag\_qregs. Otherwise, raise.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  ### is\_analysis\_pass
 
-**Raises**
+  <Attribute id="qiskit.transpiler.passes.FullAncillaAllocation.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If there is not layout in the property set or not set at init time.
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### validate\_layout
+  ### is\_transformation\_pass
 
-<span id="qiskit.transpiler.passes.FullAncillaAllocation.validate_layout" />
+  <Attribute id="qiskit.transpiler.passes.FullAncillaAllocation.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-`static FullAncillaAllocation.validate_layout(layout_qubits, dag_qubits)`
-
-Checks if all the qregs in layout\_qregs already exist in dag\_qregs. Otherwise, raise.
-
-## Attributes
-
-<span id="qiskit.transpiler.passes.FullAncillaAllocation.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.FullAncillaAllocation.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

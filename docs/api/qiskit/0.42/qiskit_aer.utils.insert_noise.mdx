@@ -8,27 +8,25 @@ python_api_name: qiskit_aer.utils.insert_noise
 
 # qiskit\_aer.utils.insert\_noise
 
-<span id="qiskit_aer.utils.insert_noise" />
+<Function id="qiskit_aer.utils.insert_noise" name="insert_noise" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_model_inserter.py" signature="insert_noise(circuits, noise_model, transpile=False)">
+  Return a noisy version of a QuantumCircuit.
 
-`insert_noise(circuits, noise_model, transpile=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_model_inserter.py "view source code")
+  **Parameters**
 
-Return a noisy version of a QuantumCircuit.
+  *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – Input noise-free circuits.
+  *   **noise\_model** ([*NoiseModel*](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel")) – The noise model containing the errors to add
+  *   **transpile** (*Boolean*) – Should the circuit be transpiled into the noise model basis gates
 
-**Parameters**
+  **Returns**
 
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – Input noise-free circuits.
-*   **noise\_model** ([*NoiseModel*](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel")) – The noise model containing the errors to add
-*   **transpile** (*Boolean*) – Should the circuit be transpiled into the noise model basis gates
+  The new circuit with the Kraus noise instructions inserted.
 
-**Returns**
+  **Return type**
 
-The new circuit with the Kraus noise instructions inserted.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  ## Additional Information:
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-## Additional Information:
-
-The noisy circuit return by this function will consist of the original circuit with `Kraus` instructions inserted after all instructions referenced in the `noise_model`. The resulting circuit cannot be ran on a quantum computer but can be executed on the [`QasmSimulator`](qiskit_aer.QasmSimulator "qiskit_aer.QasmSimulator").
+  The noisy circuit return by this function will consist of the original circuit with `Kraus` instructions inserted after all instructions referenced in the `noise_model`. The resulting circuit cannot be ran on a quantum computer but can be executed on the [`QasmSimulator`](qiskit_aer.QasmSimulator "qiskit_aer.QasmSimulator").
+</Function>
 

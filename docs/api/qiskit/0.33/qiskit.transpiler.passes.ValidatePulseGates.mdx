@@ -8,78 +8,72 @@ python_api_name: qiskit.transpiler.passes.ValidatePulseGates
 
 # ValidatePulseGates
 
-<span id="qiskit.transpiler.passes.ValidatePulseGates" />
+<Class id="qiskit.transpiler.passes.ValidatePulseGates" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/scheduling/instruction_alignment.py" signature="ValidatePulseGates(granularity=1, min_length=1)">
+  Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
-`ValidatePulseGates(granularity=1, min_length=1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/scheduling/instruction_alignment.py "view source code")
+  Check custom gate length.
 
-Bases: `qiskit.transpiler.basepasses.AnalysisPass`
+  This is a control electronics aware analysis pass.
 
-Check custom gate length.
+  Quantum gates (instructions) are often implemented with shaped analog stimulus signals. These signals may be digitally stored in the waveform memory of the control electronics and converted into analog voltage signals by electronic components known as digital to analog converters (DAC).
 
-This is a control electronics aware analysis pass.
+  In Qiskit SDK, we can define the pulse-level implementation of custom quantum gate instructions, as a [pulse gate](https://qiskit.org/documentation/tutorials/circuits_advanced/05_pulse_gates.html), thus user gates should satisfy all waveform memory constraints imposed by the backend.
 
-Quantum gates (instructions) are often implemented with shaped analog stimulus signals. These signals may be digitally stored in the waveform memory of the control electronics and converted into analog voltage signals by electronic components known as digital to analog converters (DAC).
+  This pass validates all attached calibration entries and raises `TranspilerError` to kill the transpilation process if any invalid calibration entry is found. This pass saves users from waiting until job execution time to get an invalid pulse error from the backend control electronics.
 
-In Qiskit SDK, we can define the pulse-level implementation of custom quantum gate instructions, as a [pulse gate](https://qiskit.org/documentation/tutorials/circuits_advanced/05_pulse_gates.html), thus user gates should satisfy all waveform memory constraints imposed by the backend.
+  Create new pass.
 
-This pass validates all attached calibration entries and raises `TranspilerError` to kill the transpilation process if any invalid calibration entry is found. This pass saves users from waiting until job execution time to get an invalid pulse error from the backend control electronics.
+  **Parameters**
 
-Create new pass.
+  *   **granularity** (`int`) – Integer number representing the minimum time resolution to define the pulse gate length in units of `dt`. This value depends on the control electronics of your quantum processor.
+  *   **min\_length** (`int`) – Integer number representing the minimum data point length to define the pulse gate in units of `dt`. This value depends on the control electronics of your quantum processor.
 
-**Parameters**
+  ## Methods
 
-*   **granularity** (`int`) – Integer number representing the minimum time resolution to define the pulse gate length in units of `dt`. This value depends on the control electronics of your quantum processor.
-*   **min\_length** (`int`) – Integer number representing the minimum data point length to define the pulse gate in units of `dt`. This value depends on the control electronics of your quantum processor.
+  ### name
 
-## Methods
+  <Function id="qiskit.transpiler.passes.ValidatePulseGates.name" name="name" signature="ValidatePulseGates.name()">
+    Return the name of the pass.
+  </Function>
 
-### name
+  ### run
 
-<span id="qiskit.transpiler.passes.ValidatePulseGates.name" />
+  <Function id="qiskit.transpiler.passes.ValidatePulseGates.run" name="run" signature="ValidatePulseGates.run(dag)">
+    Run the measurement alignment pass on dag.
 
-`ValidatePulseGates.name()`
+    **Parameters**
 
-Return the name of the pass.
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to be checked.
 
-### run
+    **Returns**
 
-<span id="qiskit.transpiler.passes.ValidatePulseGates.run" />
+    DAG with consistent timing and op nodes annotated with duration.
 
-`ValidatePulseGates.run(dag)`
+    **Return type**
 
-Run the measurement alignment pass on dag.
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-**Parameters**
+    **Raises**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to be checked.
+    [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate violate pulse controller constraints.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-DAG with consistent timing and op nodes annotated with duration.
+  ### is\_analysis\_pass
 
-**Return type**
+  <Attribute id="qiskit.transpiler.passes.ValidatePulseGates.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-**Raises**
+  ### is\_transformation\_pass
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate violate pulse controller constraints.
+  <Attribute id="qiskit.transpiler.passes.ValidatePulseGates.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-## Attributes
-
-<span id="qiskit.transpiler.passes.ValidatePulseGates.is_analysis_pass" />
-
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-<span id="qiskit.transpiler.passes.ValidatePulseGates.is_transformation_pass" />
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+</Class>
 

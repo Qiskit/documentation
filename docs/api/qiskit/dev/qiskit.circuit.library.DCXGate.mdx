@@ -8,134 +8,132 @@ python_api_name: qiskit.circuit.library.DCXGate
 
 # DCXGate
 
-<span id="qiskit.circuit.library.DCXGate" />
+<Class id="qiskit.circuit.library.DCXGate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/dcx.py#L20-L74" signature="qiskit.circuit.library.DCXGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-`qiskit.circuit.library.DCXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/dcx.py "view source code")
+  Double-CNOT gate.
 
-Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+  A 2-qubit Clifford gate consisting of two back-to-back CNOTs with alternate controls.
 
-Double-CNOT gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`dcx()`](qiskit.circuit.QuantumCircuit#dcx "qiskit.circuit.QuantumCircuit.dcx") method.
 
-A 2-qubit Clifford gate consisting of two back-to-back CNOTs with alternate controls.
+  ```python
+            ┌───┐
+  q_0: ──■──┤ X ├
+       ┌─┴─┐└─┬─┘
+  q_1: ┤ X ├──■──
+       └───┘
+  ```
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`dcx()`](qiskit.circuit.QuantumCircuit#dcx "qiskit.circuit.QuantumCircuit.dcx") method.
-
-```python
-          ┌───┐
-q_0: ──■──┤ X ├
-     ┌─┴─┐└─┬─┘
-q_1: ┤ X ├──■──
-     └───┘
-```
-
-This is a classical logic gate, equivalent to a CNOT-SWAP (CNS) sequence, and locally equivalent to an iSWAP.
+  This is a classical logic gate, equivalent to a CNOT-SWAP (CNS) sequence, and locally equivalent to an iSWAP.
 
 $$
 DCX\ q_0, q_1 =
-    \begin{pmatrix}
-        1 & 0 & 0 & 0 \\
-        0 & 0 & 0 & 1 \\
-        0 & 1 & 0 & 0 \\
-        0 & 0 & 1 & 0
-    \end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
 $$
 
-Create new DCX gate.
+  Create new DCX gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.DCXGate.base_class" />
+  ### base\_class
 
-### base\_class
+  <Attribute id="qiskit.circuit.library.DCXGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.DCXGate.base_class "qiskit.circuit.library.DCXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.DCXGate.base_class "qiskit.circuit.library.DCXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.library.DCXGate.condition" />
+  <Attribute id="qiskit.circuit.library.DCXGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition
+  ### condition\_bits
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.DCXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.DCXGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.DCXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.DCXGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.DCXGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.DCXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.DCXGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.DCXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### mutable
 
-<span id="qiskit.circuit.library.DCXGate.duration" />
+  <Attribute id="qiskit.circuit.library.DCXGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### duration
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Get the duration.
+  ### name
 
-<span id="qiskit.circuit.library.DCXGate.label" />
+  <Attribute id="qiskit.circuit.library.DCXGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.DCXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.DCXGate.mutable" />
+  ### num\_qubits
 
-### mutable
+  <Attribute id="qiskit.circuit.library.DCXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### params
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.DCXGate.params" name="params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
 
-<span id="qiskit.circuit.library.DCXGate.name" />
+  ### unit
 
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.DCXGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.DCXGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.DCXGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.DCXGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.DCXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

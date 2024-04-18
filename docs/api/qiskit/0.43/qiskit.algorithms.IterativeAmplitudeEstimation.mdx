@@ -8,138 +8,132 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
 # IterativeAmplitudeEstimation
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
+<Class id="qiskit.algorithms.IterativeAmplitudeEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/iae.py" signature="IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)">
+  Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
-`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
+  The Iterative Amplitude Estimation algorithm.
 
-Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
+  This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorithm, proposed in \[1]. The output of the algorithm is an estimate that, with at least probability $1 - \alpha$, differs by epsilon to the target value, where both alpha and epsilon can be specified.
 
-The Iterative Amplitude Estimation algorithm.
+  It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
 
-This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorithm, proposed in \[1]. The output of the algorithm is an estimate that, with at least probability $1 - \alpha$, differs by epsilon to the target value, where both alpha and epsilon can be specified.
+  **References**
 
-It differs from the original QAE algorithm proposed by Brassard \[2] in that it does not rely on Quantum Phase Estimation, but is only based on Grover’s algorithm. IQAE iteratively applies carefully selected Grover iterations to find an estimate for the target amplitude.
+  **\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
 
-**References**
+  Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs/1912.05559).
 
-**\[1]: Grinko, D., Gacon, J., Zoufal, C., & Woerner, S. (2019).**
+  **\[2]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 
-Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs/1912.05559).
+  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
 
-**\[2]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+  The output of the algorithm is an estimate for the amplitude a, that with at least probability 1 - alpha has an error of epsilon. The number of A operator calls scales linearly in 1/epsilon (up to a logarithmic factor).
 
-Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    `qiskit.algorithms.amplitude_estimators.iae.IterativeAmplitudeEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  </Admonition>
 
-The output of the algorithm is an estimate for the amplitude a, that with at least probability 1 - alpha has an error of epsilon. The number of A operator calls scales linearly in 1/epsilon (up to a logarithmic factor).
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  `qiskit.algorithms.amplitude_estimators.iae.IterativeAmplitudeEstimation.__init__()`’s argument `quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the `sampler` argument. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+  *   **epsilon\_target** (*float*) – Target precision for estimation target a, has values between 0 and 0.5
+  *   **alpha** (*float*) – Confidence level, the target probability is 1 - alpha, has values between 0 and 1
+  *   **confint\_method** (*str*) – Statistical method used to estimate the confidence intervals in each iteration, can be ‘chernoff’ for the Chernoff intervals or ‘beta’ for the Clopper-Pearson intervals (default)
+  *   **min\_ratio** (*float*) – Minimal q-ratio ($K_{i+1} / K_i$) for FindNextK
+  *   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: Quantum Instance or Backend
+  *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
 
-**Parameters**
+  **Raises**
 
-*   **epsilon\_target** (*float*) – Target precision for estimation target a, has values between 0 and 0.5
-*   **alpha** (*float*) – Confidence level, the target probability is 1 - alpha, has values between 0 and 1
-*   **confint\_method** (*str*) – Statistical method used to estimate the confidence intervals in each iteration, can be ‘chernoff’ for the Chernoff intervals or ‘beta’ for the Clopper-Pearson intervals (default)
-*   **min\_ratio** (*float*) – Minimal q-ratio ($K_{i+1} / K_i$) for FindNextK
-*   **quantum\_instance** ([*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance")  *|*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend") *| None*) – Deprecated: Quantum Instance or Backend
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to evaluate the circuits.
+  *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
+  *   **ValueError** – If the target epsilon is not in (0, 0.5]
+  *   **ValueError** – If alpha is not in (0, 1)
+  *   **ValueError** – If confint\_method is not supported
 
-**Raises**
+  ## Methods
 
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
-*   **ValueError** – If the target epsilon is not in (0, 0.5]
-*   **ValueError** – If alpha is not in (0, 1)
-*   **ValueError** – If confint\_method is not supported
+  <span id="qiskit-algorithms-iterativeamplitudeestimation-construct-circuit" />
 
-## Methods
+  ### construct\_circuit
 
-<span id="qiskit-algorithms-iterativeamplitudeestimation-construct-circuit" />
+  <Function id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" name="construct_circuit" signature="IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)">
+    Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
-### construct\_circuit
+    The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
+    **Parameters**
 
-`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`
+    *   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
+    *   **k** (*int*) – The power of the Q operator.
+    *   **measurement** (*bool*) – Boolean flag to indicate if measurements should be included in the circuits.
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
+    **Returns**
 
-The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
+    The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
-**Parameters**
+    **Return type**
 
-*   **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem for which to construct the QAE circuit.
-*   **k** (*int*) – The power of the Q operator.
-*   **measurement** (*bool*) – Boolean flag to indicate if measurements should be included in the circuits.
+    [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  </Function>
 
-**Returns**
+  <span id="qiskit-algorithms-iterativeamplitudeestimation-estimate" />
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
+  ### estimate
 
-**Return type**
+  <Function id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" name="estimate" signature="IterativeAmplitudeEstimation.estimate(estimation_problem)">
+    Run the amplitude estimation algorithm on provided estimation problem.
 
-[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+    **Parameters**
 
-<span id="qiskit-algorithms-iterativeamplitudeestimation-estimate" />
+    **estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem.
 
-### estimate
+    **Returns**
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" />
+    An amplitude estimation results object.
 
-`IterativeAmplitudeEstimation.estimate(estimation_problem)`
+    **Raises**
 
-Run the amplitude estimation algorithm on provided estimation problem.
+    *   **ValueError** – A quantum instance or Sampler must be provided.
+    *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler job run error.
 
-**Parameters**
+    **Return type**
 
-**estimation\_problem** ([*EstimationProblem*](qiskit.algorithms.EstimationProblem "qiskit.algorithms.amplitude_estimators.estimation_problem.EstimationProblem")) – The estimation problem.
+    [IterativeAmplitudeEstimationResult](qiskit.algorithms.IterativeAmplitudeEstimationResult "qiskit.algorithms.IterativeAmplitudeEstimationResult")
+  </Function>
 
-**Returns**
+  ## Attributes
 
-An amplitude estimation results object.
+  ### epsilon\_target
 
-**Raises**
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target" name="epsilon_target">
+    Returns the target precision `epsilon_target` of the algorithm.
 
-*   **ValueError** – A quantum instance or Sampler must be provided.
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – Sampler job run error.
+    **Returns**
 
-**Return type**
+    The target precision (which is half the width of the confidence interval).
+  </Attribute>
 
-[IterativeAmplitudeEstimationResult](qiskit.algorithms.IterativeAmplitudeEstimationResult "qiskit.algorithms.IterativeAmplitudeEstimationResult")
+  ### quantum\_instance
 
-## Attributes
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance" name="quantum_instance">
+    Deprecated. Get the quantum instance.
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target" />
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      The property `qiskit.algorithms.amplitude_estimators.iae.IterativeAmplitudeEstimation.quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+    </Admonition>
 
-### epsilon\_target
+    **Returns**
 
-Returns the target precision `epsilon_target` of the algorithm.
+    The quantum instance used to run this algorithm.
+  </Attribute>
 
-**Returns**
+  ### sampler
 
-The target precision (which is half the width of the confidence interval).
+  <Attribute id="qiskit.algorithms.IterativeAmplitudeEstimation.sampler" name="sampler">
+    Get the sampler primitive.
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance" />
+    **Returns**
 
-### quantum\_instance
-
-Deprecated. Get the quantum instance.
-
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The property `qiskit.algorithms.amplitude_estimators.iae.IterativeAmplitudeEstimation.quantum_instance` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
-
-**Returns**
-
-The quantum instance used to run this algorithm.
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.sampler" />
-
-### sampler
-
-Get the sampler primitive.
-
-**Returns**
-
-The sampler primitive to evaluate the circuits.
+    The sampler primitive to evaluate the circuits.
+  </Attribute>
+</Class>
 

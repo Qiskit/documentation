@@ -8,58 +8,52 @@ python_api_name: qiskit.ignis.verification.AccreditationCircuits
 
 # AccreditationCircuits
 
-<span id="qiskit.ignis.verification.AccreditationCircuits" />
+<Class id="qiskit.ignis.verification.AccreditationCircuits" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/accreditation/circuits.py" signature="AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)">
+  This class generates accreditation circuits from a target.
 
-`AccreditationCircuits(target_circ, two_qubit_gate='cx', coupling_map=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/accreditation/circuits.py "view source code")
+  Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis and Animesh Datta New Journal of Physics, Volume 21, November 2019 [https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
 
-This class generates accreditation circuits from a target.
+  Initialize the circuit generation class parse into layers
 
-Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis and Animesh Datta New Journal of Physics, Volume 21, November 2019 [https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
+  **Parameters**
 
-Initialize the circuit generation class parse into layers
+  *   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
+  *   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
+  *   **coupling\_map** (*list*) – some particular device topology as list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
+  *   **seed** (*int*) – seed to the random number generator
 
-**Parameters**
+  ## Methods
 
-*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
-*   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
-*   **coupling\_map** (*list*) – some particular device topology as list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
-*   **seed** (*int*) – seed to the random number generator
+  ### generate\_circuits
 
-## Methods
+  <Function id="qiskit.ignis.verification.AccreditationCircuits.generate_circuits" name="generate_circuits" signature="AccreditationCircuits.generate_circuits(num_trap)">
+    Generate quantum circuits for accreditation
 
-### generate\_circuits
+    **Parameters**
 
-<span id="qiskit.ignis.verification.AccreditationCircuits.generate_circuits" />
+    **num\_trap** (*int*) – number of trap circuits
 
-`AccreditationCircuits.generate_circuits(num_trap)`
+    **Returns**
 
-Generate quantum circuits for accreditation
+    **A tuple of the form**
 
-**Parameters**
+    (`circuit_list`, postp\_list\`, `v_zero`) where: circuit\_list (list): accreditation circuits postp\_list (list): strings used for classical post-processing v\_zero (int): position of target circuit
 
-**num\_trap** (*int*) – number of trap circuits
+    **Return type**
 
-**Returns**
+    tuple
+  </Function>
 
-**A tuple of the form**
+  ### target\_circuit
 
-(`circuit_list`, postp\_list\`, `v_zero`) where: circuit\_list (list): accreditation circuits postp\_list (list): strings used for classical post-processing v\_zero (int): position of target circuit
+  <Function id="qiskit.ignis.verification.AccreditationCircuits.target_circuit" name="target_circuit" signature="AccreditationCircuits.target_circuit(target_circ, two_qubit_gate='cx', coupling_map=None)">
+    Load target circuit in to class, and parse into layers
 
-**Return type**
+    **Parameters**
 
-tuple
-
-### target\_circuit
-
-<span id="qiskit.ignis.verification.AccreditationCircuits.target_circuit" />
-
-`AccreditationCircuits.target_circuit(target_circ, two_qubit_gate='cx', coupling_map=None)`
-
-Load target circuit in to class, and parse into layers
-
-**Parameters**
-
-*   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
-*   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
-*   **coupling\_map** (*list*) – some particular device topology as list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
+    *   **target\_circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – a qiskit circuit to accredit
+    *   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
+    *   **coupling\_map** (*list*) – some particular device topology as list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
+  </Function>
+</Class>
 

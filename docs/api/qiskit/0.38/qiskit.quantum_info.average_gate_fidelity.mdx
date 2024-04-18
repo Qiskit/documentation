@@ -8,39 +8,37 @@ python_api_name: qiskit.quantum_info.average_gate_fidelity
 
 # qiskit.quantum\_info.average\_gate\_fidelity
 
-<span id="qiskit.quantum_info.average_gate_fidelity" />
+<Function id="qiskit.quantum_info.average_gate_fidelity" name="average_gate_fidelity" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/operators/measures.py" signature="average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)">
+  Return the average gate fidelity of a noisy quantum channel.
 
-`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/quantum_info/operators/measures.py "view source code")
-
-Return the average gate fidelity of a noisy quantum channel.
-
-The average gate fidelity $F_{\text{ave}}$ is given by
+  The average gate fidelity $F_{\text{ave}}$ is given by
 
 $$
 \begin{split}F_{\text{ave}}(\mathcal{E}, U)
-    &= \int d\psi \langle\psi|U^\dagger
-        \mathcal{E}(|\psi\rangle\!\langle\psi|)U|\psi\rangle \\
-    &= \frac{d F_{\text{pro}}(\mathcal{E}, U) + 1}{d + 1}\end{split}
+&= \int d\psi \langle\psi|U^\dagger
+\mathcal{E}(|\psi\rangle\!\langle\psi|)U|\psi\rangle \\
+&= \frac{d F_{\text{pro}}(\mathcal{E}, U) + 1}{d + 1}\end{split}
 $$
 
-where $F_{\text{pro}}(\mathcal{E}, U)$ is the [`process_fidelity()`](qiskit.quantum_info.process_fidelity "qiskit.quantum_info.process_fidelity") of the input quantum *channel* $\mathcal{E}$ with a *target* unitary $U$, and $d$ is the dimension of the *channel*.
+  where $F_{\text{pro}}(\mathcal{E}, U)$ is the [`process_fidelity()`](qiskit.quantum_info.process_fidelity "qiskit.quantum_info.process_fidelity") of the input quantum *channel* $\mathcal{E}$ with a *target* unitary $U$, and $d$ is the dimension of the *channel*.
 
-**Parameters**
+  **Parameters**
 
-*   **channel** (*QuantumChannel or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – noisy quantum channel.
-*   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
-*   **require\_cp** (*bool*) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
-*   **require\_tp** (*bool*) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
+  *   **channel** (*QuantumChannel or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – noisy quantum channel.
+  *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
+  *   **require\_cp** (*bool*) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+  *   **require\_tp** (*bool*) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
 
-**Returns**
+  **Returns**
 
-The average gate fidelity $F_{\text{ave}}$.
+  The average gate fidelity $F_{\text{ave}}$.
 
-**Return type**
+  **Return type**
 
-float
+  float
 
-**Raises**
+  **Raises**
 
-**QiskitError** – if the channel and target do not have the same dimensions, or have different input and output dimensions.
+  **QiskitError** – if the channel and target do not have the same dimensions, or have different input and output dimensions.
+</Function>
 

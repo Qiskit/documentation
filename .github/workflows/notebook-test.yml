@@ -14,6 +14,7 @@ name: Test notebooks
 on:
   pull_request:
     paths:
+      - "tutorials/**/*.ipynb"
       - "docs/**/*.ipynb"
       - "!docs/api/**/*"
   workflow_dispatch:
@@ -28,7 +29,7 @@ jobs:
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
-          files: docs/**/*.ipynb
+          files: "{tutorials,docs}/**/*.ipynb"
           separator: "\n"
 
       - name: Check for notebooks that require Linux
@@ -38,6 +39,7 @@ jobs:
           # Add your notebook to this list if it needs latex or graphviz to run
           files: |
             docs/build/circuit-visualization.ipynb
+            docs/build-new/circuit-visualization.ipynb
             docs/transpile/common-parameters.ipynb
             docs/transpile/representing_quantum_computers.ipynb
             docs/transpile/transpiler-stages.ipynb

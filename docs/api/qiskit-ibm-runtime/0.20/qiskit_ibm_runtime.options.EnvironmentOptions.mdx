@@ -8,60 +8,46 @@ python_api_name: qiskit_ibm_runtime.options.EnvironmentOptions
 
 # EnvironmentOptions
 
-<span id="qiskit_ibm_runtime.options.EnvironmentOptions" />
+<Class id="qiskit_ibm_runtime.options.EnvironmentOptions" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/environment_options.py#L27-L62" signature="EnvironmentOptions(log_level='WARNING', callback=None, job_tags=<factory>)">
+  Options related to the execution environment.
 
-`EnvironmentOptions(log_level='WARNING', callback=None, job_tags=<factory>)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/environment_options.py#L27-L62 "view source code")
+  **Parameters**
 
-Options related to the execution environment.
+  *   **log\_level** (`str`) – logging level to set in the execution environment. The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. The default level is `WARNING`.
 
-**Parameters**
+  *   **callback** (`Optional`\[`Callable`]) –
 
-*   **log\_level** (`str`) – logging level to set in the execution environment. The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. The default level is `WARNING`.
+      Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
 
-*   **callback** (`Optional`\[`Callable`]) –
+      > 1.  Job ID
+      > 2.  Job result.
 
-    Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
+  *   **job\_tags** (`Optional`\[`List`]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `qiskit_ibm_runtime.qiskit_runtime_service.jobs()` function call.
 
-    > 1.  Job ID
-    > 2.  Job result.
+  ## Attributes
 
-*   **job\_tags** (`Optional`\[`List`]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `qiskit_ibm_runtime.qiskit_runtime_service.jobs()` function call.
+  ### callback
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" name="callback" attributeTypeHint="Callable | None" attributeValue="= None" />
 
-<span id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" />
+  ### log\_level
 
-### callback
+  <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.log_level" name="log_level" attributeTypeHint="str" attributeValue="= 'WARNING'" />
 
-`Callable | None`
+  ### job\_tags
 
-`= None`
+  <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.job_tags" name="job_tags" attributeTypeHint="List | None" />
 
-<span id="qiskit_ibm_runtime.options.EnvironmentOptions.log_level" />
+  ## Methods
 
-### log\_level
+  ### validate\_environment\_options
 
-`str`
+  <Function id="qiskit_ibm_runtime.options.EnvironmentOptions.validate_environment_options" name="validate_environment_options" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/environment_options.py#L51-L62" signature="static validate_environment_options(environment_options)">
+    Validate that environment options are legal. :raises ValueError: if log\_level is not in LogLevelType.
 
-`= 'WARNING'`
+    **Return type**
 
-<span id="qiskit_ibm_runtime.options.EnvironmentOptions.job_tags" />
-
-### job\_tags
-
-`List | None`
-
-## Methods
-
-### validate\_environment\_options
-
-<span id="qiskit_ibm_runtime.options.EnvironmentOptions.validate_environment_options" />
-
-`static validate_environment_options(environment_options)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.20/qiskit_ibm_runtime/options/environment_options.py#L51-L62 "view source code")
-
-Validate that environment options are legal. :raises ValueError: if log\_level is not in LogLevelType.
-
-**Return type**
-
-`None`
+    `None`
+  </Function>
+</Class>
 

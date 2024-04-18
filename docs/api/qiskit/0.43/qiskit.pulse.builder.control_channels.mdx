@@ -10,38 +10,36 @@ python_api_name: qiskit.pulse.builder.control_channels
 
 # qiskit.pulse.builder.control\_channels
 
-<span id="qiskit.pulse.builder.control_channels" />
+<Function id="qiskit.pulse.builder.control_channels" name="control_channels" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py" signature="control_channels(*qubits)">
+  Return `ControlChannel` for `qubit` on the active builder backend.
 
-`control_channels(*qubits)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/builder.py "view source code")
+  Return the secondary drive channel for the given qubit – typically utilized for controlling multi-qubit interactions.
 
-Return `ControlChannel` for `qubit` on the active builder backend.
+  Examples:
 
-Return the secondary drive channel for the given qubit – typically utilized for controlling multi-qubit interactions.
+  ```python
+  from qiskit import pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
+  with pulse.build(backend):
+      assert pulse.control_channels(0, 1) == [pulse.ControlChannel(0)]
+  ```
 
-```python
-from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-backend = FakeOpenPulse2Q()
-with pulse.build(backend):
-    assert pulse.control_channels(0, 1) == [pulse.ControlChannel(0)]
-```
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
+  **qubits** (*Iterable\[int]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
 
-**Parameters**
+  **Returns**
 
-**qubits** (*Iterable\[int]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
+  List of control channels associated with the supplied ordered list of qubits.
 
-**Returns**
+  **Return type**
 
-List of control channels associated with the supplied ordered list of qubits.
-
-**Return type**
-
-*List*\[[*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+  *List*\[[*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+</Function>
 

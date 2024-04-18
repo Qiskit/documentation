@@ -8,45 +8,41 @@ python_api_name: qiskit.pulse.transforms.AlignSequential
 
 # AlignSequential
 
-<span id="qiskit.pulse.transforms.AlignSequential" />
+<Class id="qiskit.pulse.transforms.AlignSequential" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/alignments.py#L225-L256" signature="qiskit.pulse.transforms.AlignSequential">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
-`qiskit.pulse.transforms.AlignSequential` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/alignments.py "view source code")
+  Align instructions sequentially.
 
-Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+  Instructions played on different channels are also arranged in a sequence. No buffer time is inserted in between instructions.
 
-Align instructions sequentially.
+  Create new sequential context.
 
-Instructions played on different channels are also arranged in a sequence. No buffer time is inserted in between instructions.
+  ## Attributes
 
-Create new sequential context.
+  ### is\_sequential
 
-## Attributes
+  <Attribute id="qiskit.pulse.transforms.AlignSequential.is_sequential" name="is_sequential" />
 
-<span id="qiskit.pulse.transforms.AlignSequential.is_sequential" />
+  ## Methods
 
-### is\_sequential
+  ### align
 
-## Methods
+  <Function id="qiskit.pulse.transforms.AlignSequential.align" name="align" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/alignments.py#L240-L256" signature="align(schedule)">
+    Reallocate instructions according to the policy.
 
-### align
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
 
-<span id="qiskit.pulse.transforms.AlignSequential.align" />
+    **Parameters**
 
-`align(schedule)`
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
 
-Reallocate instructions according to the policy.
+    **Returns**
 
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+    Schedule with reallocated instructions.
 
-**Parameters**
+    **Return type**
 
-**schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
-
-**Returns**
-
-Schedule with reallocated instructions.
-
-**Return type**
-
-[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
+</Class>
 

@@ -8,359 +8,331 @@ python_api_name: qiskit.circuit.IfElseOp
 
 # IfElseOp
 
-<span id="qiskit.circuit.IfElseOp" />
+<Class id="qiskit.circuit.IfElseOp" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/controlflow/if_else.py#L42-L175" signature="qiskit.circuit.IfElseOp(condition, true_body, false_body=None, label=None)">
+  Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
-`qiskit.circuit.IfElseOp(condition, true_body, false_body=None, label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/controlflow/if_else.py "view source code")
+  A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise.
 
-Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+  **Parameters**
 
-A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise.
+  *   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+  *   **true\_body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A program to be executed if `condition` evaluates to true.
+  *   **false\_body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A optional program to be executed if `condition` evaluates to false.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for identifying the instruction.
 
-**Parameters**
+  If provided, `false_body` must be of the same `num_qubits` and `num_clbits` as `true_body`.
 
-*   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
-*   **true\_body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A program to be executed if `condition` evaluates to true.
-*   **false\_body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A optional program to be executed if `condition` evaluates to false.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for identifying the instruction.
+  The classical bits used in `condition` must be a subset of those attached to the circuit on which this `IfElseOp` will be appended.
 
-If provided, `false_body` must be of the same `num_qubits` and `num_clbits` as `true_body`.
+  **Circuit symbol:**
 
-The classical bits used in `condition` must be a subset of those attached to the circuit on which this `IfElseOp` will be appended.
+  ```python
+       ┌───────────┐
+  q_0: ┤0          ├
+       │           │
+  q_1: ┤1          ├
+       │  if_else  │
+  q_2: ┤2          ├
+       │           │
+  c_0: ╡0          ╞
+       └───────────┘
+  ```
 
-**Circuit symbol:**
+  Create a new instruction.
 
-```python
-     ┌───────────┐
-q_0: ┤0          ├
-     │           │
-q_1: ┤1          ├
-     │  if_else  │
-q_2: ┤2          ├
-     │           │
-c_0: ╡0          ╞
-     └───────────┘
-```
+  **Parameters**
 
-Create a new instruction.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – instruction name
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – instruction’s qubit width
+  *   **num\_clbits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – instruction’s clbit width
+  *   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*|ndarray|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – instruction’s duration. it must be integer if `unit` is ‘dt’
+  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – time unit of duration
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for identifying the instruction.
 
-**Parameters**
+  **Raises**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – instruction name
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – instruction’s qubit width
-*   **num\_clbits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – instruction’s clbit width
-*   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*|ndarray|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – instruction’s duration. it must be integer if `unit` is ‘dt’
-*   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – time unit of duration
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for identifying the instruction.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when the register is not in the correct format.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – when the optional label is provided, but it is not a string.
 
-**Raises**
+  ## Attributes
 
-*   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when the register is not in the correct format.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – when the optional label is provided, but it is not a string.
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.IfElseOp.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.IfElseOp.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.IfElseOp.base_class "qiskit.circuit.IfElseOp.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.IfElseOp.base_class "qiskit.circuit.IfElseOp.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### blocks
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.IfElseOp.blocks" name="blocks" />
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.IfElseOp.blocks" />
+  <Attribute id="qiskit.circuit.IfElseOp.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### blocks
+  ### condition\_bits
 
-<span id="qiskit.circuit.IfElseOp.condition" />
+  <Attribute id="qiskit.circuit.IfElseOp.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.IfElseOp.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.IfElseOp.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.IfElseOp.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.IfElseOp.decompositions" />
+  <Attribute id="qiskit.circuit.IfElseOp.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.IfElseOp.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.IfElseOp.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.IfElseOp.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.IfElseOp.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.IfElseOp.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.IfElseOp.label" />
+  <Attribute id="qiskit.circuit.IfElseOp.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.IfElseOp.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.IfElseOp.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.IfElseOp.params" name="params" />
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.IfElseOp.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.IfElseOp.name" />
+  ## Methods
 
-### name
+  ### add\_decomposition
 
-Return the name.
+  <Function id="qiskit.circuit.IfElseOp.add_decomposition" name="add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L327-L332" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-<span id="qiskit.circuit.IfElseOp.num_clbits" />
+  ### assemble
 
-### num\_clbits
+  <Function id="qiskit.circuit.IfElseOp.assemble" name="assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L354-L374" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-Return the number of clbits.
+  ### broadcast\_arguments
 
-<span id="qiskit.circuit.IfElseOp.num_qubits" />
+  <Function id="qiskit.circuit.IfElseOp.broadcast_arguments" name="broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L535-L564" signature="broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
 
-### num\_qubits
+    **Parameters**
 
-Return the number of qubits.
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
 
-<span id="qiskit.circuit.IfElseOp.params" />
+    **Yields**
 
-### params
+    *Tuple(List, List)* – A tuple with single arguments.
 
-<span id="qiskit.circuit.IfElseOp.unit" />
+    **Raises**
 
-### unit
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
 
-Get the time unit of duration.
+  ### c\_if
 
-## Methods
+  <Function id="qiskit.circuit.IfElseOp.c_if" name="c_if" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/controlflow/if_else.py#L171-L175" signature="c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-### add\_decomposition
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-<span id="qiskit.circuit.IfElseOp.add_decomposition" />
+  ### copy
 
-`add_decomposition(decomposition)`
+  <Function id="qiskit.circuit.IfElseOp.copy" name="copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L499-L514" signature="copy(name=None)">
+    Copy of the instruction.
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+    **Parameters**
 
-### assemble
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
 
-<span id="qiskit.circuit.IfElseOp.assemble" />
+    **Returns**
 
-`assemble()`
+    a copy of the current instruction, with the name updated if it was provided
 
-Assemble a QasmQobjInstruction
+    **Return type**
 
-### broadcast\_arguments
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-<span id="qiskit.circuit.IfElseOp.broadcast_arguments" />
+  ### inverse
 
-`broadcast_arguments(qargs, cargs)`
+  <Function id="qiskit.circuit.IfElseOp.inverse" name="inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L422-L477" signature="inverse(annotated=False)">
+    Invert this instruction.
 
-Validation of the arguments.
+    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
 
-**Parameters**
+    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
 
-**Yields**
+    **Parameters**
 
-*Tuple(List, List)* – A tuple with single arguments.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
-**Raises**
+    **Returns**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    The inverse operation.
 
-### c\_if
+    **Raises**
 
-<span id="qiskit.circuit.IfElseOp.c_if" />
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-`c_if(classical, val)`
+  ### is\_parameterized
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+  <Function id="qiskit.circuit.IfElseOp.is_parameterized" name="is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L293-L297" signature="is_parameterized()">
+    Return True .IFF. instruction is parameterized else False
+  </Function>
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+  ### repeat
 
-### copy
+  <Function id="qiskit.circuit.IfElseOp.repeat" name="repeat" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L574-L608" signature="repeat(n)">
+    Creates an instruction with gate repeated n amount of times.
 
-<span id="qiskit.circuit.IfElseOp.copy" />
+    **Parameters**
 
-`copy(name=None)`
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
 
-Copy of the instruction.
+    **Returns**
 
-**Parameters**
+    Containing the definition.
 
-**name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-a copy of the current instruction, with the name updated if it was provided
+    **Raises**
 
-**Return type**
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### replace\_blocks
 
-### inverse
+  <Function id="qiskit.circuit.IfElseOp.replace_blocks" name="replace_blocks" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/controlflow/if_else.py#L155-L169" signature="replace_blocks(blocks)">
+    Replace blocks and return new instruction.
 
-<span id="qiskit.circuit.IfElseOp.inverse" />
+    **Parameters**
 
-`inverse(annotated=False)`
+    **blocks** (*Iterable\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – Iterable of circuits for “if” and “else” condition. If there is no “else” circuit it may be set to None or omitted.
 
-Invert this instruction.
+    **Returns**
 
-If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
+    New IfElseOp with replaced blocks.
 
-If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
+    **Return type**
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+    [IfElseOp](#qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")
+  </Function>
 
-**Parameters**
+  ### reverse\_ops
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+  <Function id="qiskit.circuit.IfElseOp.reverse_ops" name="reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L396-L420" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-**Returns**
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-The inverse operation.
+    **Returns**
 
-**Raises**
+    **a new instruction with**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    sub-instructions reversed.
 
-### is\_parameterized
+    **Return type**
 
-<span id="qiskit.circuit.IfElseOp.is_parameterized" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`is_parameterized()`
+  ### soft\_compare
 
-Return True .IFF. instruction is parameterized else False
+  <Function id="qiskit.circuit.IfElseOp.soft_compare" name="soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L229-L269" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-### repeat
+    **Parameters**
 
-<span id="qiskit.circuit.IfElseOp.repeat" />
+    **other** (*instruction*) – other instruction.
 
-`repeat(n)`
+    **Returns**
 
-Creates an instruction with gate repeated n amount of times.
+    are self and other equal up to parameter expressions.
 
-**Parameters**
+    **Return type**
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-**Returns**
+  ### to\_mutable
 
-Containing the definition.
+  <Function id="qiskit.circuit.IfElseOp.to_mutable" name="to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L151-L159" signature="to_mutable()">
+    Return a mutable copy of this gate.
 
-**Return type**
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### validate\_parameter
 
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
-
-### replace\_blocks
-
-<span id="qiskit.circuit.IfElseOp.replace_blocks" />
-
-`replace_blocks(blocks)`
-
-Replace blocks and return new instruction.
-
-**Parameters**
-
-**blocks** (*Iterable\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – Iterable of circuits for “if” and “else” condition. If there is no “else” circuit it may be set to None or omitted.
-
-**Returns**
-
-New IfElseOp with replaced blocks.
-
-**Return type**
-
-[IfElseOp](#qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")
-
-### reverse\_ops
-
-<span id="qiskit.circuit.IfElseOp.reverse_ops" />
-
-`reverse_ops()`
-
-For a composite instruction, reverse the order of sub-instructions.
-
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-**a new instruction with**
-
-sub-instructions reversed.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### soft\_compare
-
-<span id="qiskit.circuit.IfElseOp.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### to\_mutable
-
-<span id="qiskit.circuit.IfElseOp.to_mutable" />
-
-`to_mutable()`
-
-Return a mutable copy of this gate.
-
-This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.IfElseOp.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Instruction parameters has no validation or normalization.
+  <Function id="qiskit.circuit.IfElseOp.validate_parameter" name="validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py#L289-L291" signature="validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+</Class>
 

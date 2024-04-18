@@ -8,284 +8,274 @@ python_api_name: qiskit.circuit.library.LinearPauliRotations
 
 # LinearPauliRotations
 
-<span id="qiskit.circuit.library.LinearPauliRotations" />
+<Class id="qiskit.circuit.library.LinearPauliRotations" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py" signature="LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')">
+  Bases: [`qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
-`LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py "view source code")
+  Linearly-controlled X, Y or Z rotation.
 
-Bases: [`qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
+  For a register of state qubits $|x\rangle$, a target qubit $|0\rangle$ and the basis `'Y'` this circuit acts as:
 
-Linearly-controlled X, Y or Z rotation.
+  ```python
+      q_0: ─────────────────────────■───────── ... ──────────────────────
+                                    │
+                                    .
+                                    │
+  q_(n-1): ─────────────────────────┼───────── ... ───────────■──────────
+            ┌────────────┐  ┌───────┴───────┐       ┌─────────┴─────────┐
+      q_n: ─┤ RY(offset) ├──┤ RY(2^0 slope) ├  ...  ┤ RY(2^(n-1) slope) ├
+            └────────────┘  └───────────────┘       └───────────────────┘
+  ```
 
-For a register of state qubits $|x\rangle$, a target qubit $|0\rangle$ and the basis `'Y'` this circuit acts as:
-
-```python
-    q_0: ─────────────────────────■───────── ... ──────────────────────
-                                  │
-                                  .
-                                  │
-q_(n-1): ─────────────────────────┼───────── ... ───────────■──────────
-          ┌────────────┐  ┌───────┴───────┐       ┌─────────┴─────────┐
-    q_n: ─┤ RY(offset) ├──┤ RY(2^0 slope) ├  ...  ┤ RY(2^(n-1) slope) ├
-          └────────────┘  └───────────────┘       └───────────────────┘
-```
-
-This can for example be used to approximate linear functions, with $a/2 =$ `slope` and $b/2 =$ `offset` and the basis `'Y'`:
+  This can for example be used to approximate linear functions, with $a/2 =$ `slope` and $b/2 =$ `offset` and the basis `'Y'`:
 
 $$
 |x\rangle |0\rangle \mapsto \cos(ax + b)|x\rangle|0\rangle + \sin(ax + b)|x\rangle |1\rangle
 $$
 
-Since for small arguments $\sin(x) \approx x$ this operator can be used to approximate linear functions.
+  Since for small arguments $\sin(x) \approx x$ this operator can be used to approximate linear functions.
 
-Create a new linear rotation circuit.
+  Create a new linear rotation circuit.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
-*   **slope** (`float`) – The slope of the controlled rotation.
-*   **offset** (`float`) – The offset of the controlled rotation.
-*   **basis** (`str`) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
-*   **name** (`str`) – The name of the circuit object.
+  *   **num\_state\_qubits** (`Optional`\[`int`]) – The number of qubits representing the state $|x\rangle$.
+  *   **slope** (`float`) – The slope of the controlled rotation.
+  *   **offset** (`float`) – The offset of the controlled rotation.
+  *   **basis** (`str`) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
+  *   **name** (`str`) – The name of the circuit object.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.LinearPauliRotations.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  ### basis
 
-<span id="qiskit.circuit.library.LinearPauliRotations.basis" />
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.basis" name="basis">
+    The kind of Pauli rotation to be used.
 
-### basis
+    Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
 
-The kind of Pauli rotation to be used.
+    **Return type**
 
-Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
+    `str`
 
-**Return type**
+    **Returns**
 
-`str`
+    The kind of Pauli rotation used in controlled rotation.
+  </Attribute>
 
-**Returns**
+  ### calibrations
 
-The kind of Pauli rotation used in controlled rotation.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-<span id="qiskit.circuit.library.LinearPauliRotations.calibrations" />
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
 
-### calibrations
+    **Return type**
 
-Return calibration dictionary.
+    `dict`
+  </Attribute>
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  ### clbits
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-`dict`
+    **Return type**
 
-<span id="qiskit.circuit.library.LinearPauliRotations.clbits" />
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-### clbits
+  ### data
 
-Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.data" name="data" />
 
-**Return type**
+  ### extension\_lib
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-<span id="qiskit.circuit.library.LinearPauliRotations.data" />
+  ### global\_phase
 
-### data
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-<span id="qiskit.circuit.library.LinearPauliRotations.extension_lib" />
+    **Return type**
 
-### extension\_lib
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-`= 'include "qelib1.inc";'`
+  ### header
 
-<span id="qiskit.circuit.library.LinearPauliRotations.global_phase" />
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### global\_phase
+  ### instances
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.instances" name="instances" attributeValue="= 2368" />
 
-**Return type**
+  ### metadata
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-<span id="qiskit.circuit.library.LinearPauliRotations.header" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `dict`
+  </Attribute>
 
-<span id="qiskit.circuit.library.LinearPauliRotations.instances" />
+  ### num\_ancilla\_qubits
 
-### instances
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_ancilla_qubits" name="num_ancilla_qubits">
+    The minimum number of ancilla qubits in the circuit.
 
-`= 2368`
+    **Return type**
 
-<span id="qiskit.circuit.library.LinearPauliRotations.metadata" />
+    `int`
 
-### metadata
+    **Returns**
 
-The user provided metadata associated with the circuit
+    The minimal number of ancillas required.
+  </Attribute>
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  ### num\_ancillas
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-`dict`
+    **Return type**
 
-<span id="qiskit.circuit.library.LinearPauliRotations.num_ancilla_qubits" />
+    `int`
+  </Attribute>
 
-### num\_ancilla\_qubits
+  ### num\_clbits
 
-The minimum number of ancilla qubits in the circuit.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-**Returns**
+  ### num\_parameters
 
-The minimal number of ancillas required.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_parameters" name="num_parameters">
+    **Return type**
 
-<span id="qiskit.circuit.library.LinearPauliRotations.num_ancillas" />
+    `int`
+  </Attribute>
 
-### num\_ancillas
+  ### num\_qubits
 
-Return the number of ancilla qubits.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-**Return type**
+    **Return type**
 
-`int`
+    `int`
+  </Attribute>
 
-<span id="qiskit.circuit.library.LinearPauliRotations.num_clbits" />
+  ### num\_state\_qubits
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_state_qubits" name="num_state_qubits">
+    The number of state qubits representing the state $|x\rangle$.
 
-Return number of classical bits.
+    **Return type**
 
-**Return type**
+    `int`
 
-`int`
+    **Returns**
 
-<span id="qiskit.circuit.library.LinearPauliRotations.num_parameters" />
+    The number of state qubits.
+  </Attribute>
 
-### num\_parameters
+  ### offset
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.offset" name="offset">
+    The angle of the single qubit offset rotation on the target qubit.
 
-`int`
+    Before applying the controlled rotations, a single rotation of angle `offset` is applied to the target qubit.
 
-<span id="qiskit.circuit.library.LinearPauliRotations.num_qubits" />
+    **Return type**
 
-### num\_qubits
+    `float`
 
-Return number of qubits.
+    **Returns**
 
-**Return type**
+    The offset angle.
+  </Attribute>
 
-`int`
+  ### op\_start\_times
 
-<span id="qiskit.circuit.library.LinearPauliRotations.num_state_qubits" />
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-### num\_state\_qubits
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-The number of state qubits representing the state $|x\rangle$.
+    **Return type**
 
-**Return type**
+    `List`\[`int`]
 
-`int`
+    **Returns**
 
-**Returns**
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-The number of state qubits.
+    **Raises**
 
-<span id="qiskit.circuit.library.LinearPauliRotations.offset" />
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-### offset
+  ### parameters
 
-The angle of the single qubit offset rotation on the target qubit.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.parameters" name="parameters">
+    **Return type**
 
-Before applying the controlled rotations, a single rotation of angle `offset` is applied to the target qubit.
+    `ParameterView`
+  </Attribute>
 
-**Return type**
+  ### prefix
 
-`float`
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-**Returns**
+  ### qregs
 
-The offset angle.
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.qregs" name="qregs">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-<span id="qiskit.circuit.library.LinearPauliRotations.op_start_times" />
+  ### qubits
 
-### op\_start\_times
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-Return a list of operation start times.
+    **Return type**
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
 
-**Return type**
+  ### slope
 
-`List`\[`int`]
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.slope" name="slope">
+    The multiplicative factor in the rotation angle of the controlled rotations.
 
-**Returns**
+    The rotation angles are `slope * 2^0`, `slope * 2^1`, … , `slope * 2^(n-1)` where `n` is the number of state qubits.
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Return type**
 
-**Raises**
+    `float`
 
-**AttributeError** – When circuit is not scheduled.
+    **Returns**
 
-<span id="qiskit.circuit.library.LinearPauliRotations.parameters" />
-
-### parameters
-
-**Return type**
-
-`ParameterView`
-
-<span id="qiskit.circuit.library.LinearPauliRotations.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.LinearPauliRotations.qregs" />
-
-### qregs
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.LinearPauliRotations.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
-
-<span id="qiskit.circuit.library.LinearPauliRotations.slope" />
-
-### slope
-
-The multiplicative factor in the rotation angle of the controlled rotations.
-
-The rotation angles are `slope * 2^0`, `slope * 2^1`, … , `slope * 2^(n-1)` where `n` is the number of state qubits.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The rotation angle common in all controlled rotations.
+    The rotation angle common in all controlled rotations.
+  </Attribute>
+</Class>
 

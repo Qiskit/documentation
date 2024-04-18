@@ -8,135 +8,117 @@ python_api_name: qiskit.providers.fake_provider.FakeTenerife
 
 # FakeTenerife
 
-<span id="qiskit.providers.fake_provider.FakeTenerife" />
+<Class id="qiskit.providers.fake_provider.FakeTenerife" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/tenerife/fake_tenerife.py" signature="FakeTenerife">
+  Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
-`FakeTenerife` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/tenerife/fake_tenerife.py "view source code")
+  A fake 5 qubit backend.
 
-Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
+  ```python
+      1
+    ↙ ↑
+  0 ← 2 ← 3
+      ↑ ↙
+      4
+  ```
 
-A fake 5 qubit backend.
+  ## Methods
 
-```python
-    1
-  ↙ ↑
-0 ← 2 ← 3
-    ↑ ↙
-    4
-```
+  ### configuration
 
-## Methods
+  <Function id="qiskit.providers.fake_provider.FakeTenerife.configuration" name="configuration" signature="FakeTenerife.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeTenerife.configuration" />
+    the configuration for the backend.
 
-`FakeTenerife.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  ### name
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeTenerife.name" name="name" signature="FakeTenerife.name()">
+    Return the backend name.
 
-**Return type**
+    **Returns**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeTenerife.name" />
+    str
+  </Function>
 
-`FakeTenerife.name()`
+  ### properties
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakeTenerife.properties" name="properties" signature="FakeTenerife.properties()">
+    Returns a snapshot of device properties as recorded on 8/30/19.
+  </Function>
 
-**Returns**
+  ### provider
 
-the name of the backend.
+  <Function id="qiskit.providers.fake_provider.FakeTenerife.provider" name="provider" signature="FakeTenerife.provider()">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-str
+    the Provider responsible for the backend.
 
-### properties
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeTenerife.properties" />
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-`FakeTenerife.properties()`
+  ### run
 
-Returns a snapshot of device properties as recorded on 8/30/19.
+  <Function id="qiskit.providers.fake_provider.FakeTenerife.run" name="run" signature="FakeTenerife.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### provider
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.FakeTenerife.provider" />
+  <Function id="qiskit.providers.fake_provider.FakeTenerife.set_options" name="set_options" signature="FakeTenerife.set_options(**fields)">
+    Set the options fields for the backend
 
-`FakeTenerife.provider()`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the backend Provider.
+    **Parameters**
 
-**Returns**
+    **fields** – The fields to update the options
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  ### status
 
-### run
+  <Function id="qiskit.providers.fake_provider.FakeTenerife.status" name="status" signature="FakeTenerife.status()">
+    Return the backend status.
 
-<span id="qiskit.providers.fake_provider.FakeTenerife.run" />
+    **Returns**
 
-`FakeTenerife.run(run_input, **kwargs)`
+    the status of the backend.
 
-Main job in simulator
+    **Return type**
 
-### set\_options
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeTenerife.set_options" />
+  ## Attributes
 
-`FakeTenerife.set_options(**fields)`
+  ### options
 
-Set the options fields for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeTenerife.options" name="options">
+    Return the options for the backend
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeTenerife#run "qiskit.providers.fake_provider.FakeTenerife.run") method.
+  </Attribute>
 
-**Parameters**
+  ### version
 
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit.providers.fake_provider.FakeTenerife.status" />
-
-`FakeTenerife.status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeTenerife.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeTenerife#run "qiskit.providers.fake_provider.FakeTenerife.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeTenerife.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeTenerife.version" name="version" attributeValue="= 1" />
+</Class>
 

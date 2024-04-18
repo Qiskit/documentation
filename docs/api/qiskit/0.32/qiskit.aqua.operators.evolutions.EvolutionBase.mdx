@@ -8,33 +8,29 @@ python_api_name: qiskit.aqua.operators.evolutions.EvolutionBase
 
 # EvolutionBase
 
-<span id="qiskit.aqua.operators.evolutions.EvolutionBase" />
+<Class id="qiskit.aqua.operators.evolutions.EvolutionBase" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_base.py" signature="EvolutionBase">
+  Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
 
-`EvolutionBase` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/evolutions/evolution_base.py "view source code")
+  A base for Evolution converters. Evolutions are converters which traverse an Operator tree, replacing any `EvolvedOp` e with a Schrodinger equation-style evolution `CircuitOp` equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
 
-Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
+  ## Methods
 
-A base for Evolution converters. Evolutions are converters which traverse an Operator tree, replacing any `EvolvedOp` e with a Schrodinger equation-style evolution `CircuitOp` equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
+  ### convert
 
-## Methods
+  <Function id="qiskit.aqua.operators.evolutions.EvolutionBase.convert" name="convert" signature="EvolutionBase.convert(operator)">
+    Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
 
-### convert
+    > #### Args:
+    >
+    > operator: The Operator to convert.
 
-<span id="qiskit.aqua.operators.evolutions.EvolutionBase.convert" />
+    **Return type**
 
-`EvolutionBase.convert(operator)`
+    `OperatorBase`
 
-Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
+    **Returns**
 
-> #### Args:
->
-> operator: The Operator to convert.
-
-**Return type**
-
-`OperatorBase`
-
-**Returns**
-
-The converted Operator, with `EvolutionOps` replaced by `CircuitOps`.
+    The converted Operator, with `EvolutionOps` replaced by `CircuitOps`.
+  </Function>
+</Class>
 

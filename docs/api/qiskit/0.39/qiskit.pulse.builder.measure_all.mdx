@@ -8,36 +8,34 @@ python_api_name: qiskit.pulse.builder.measure_all
 
 # qiskit.pulse.builder.measure\_all
 
-<span id="qiskit.pulse.builder.measure_all" />
+<Function id="qiskit.pulse.builder.measure_all" name="measure_all" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py" signature="measure_all()">
+  Measure all qubits within the currently active builder context.
 
-`measure_all()` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/builder.py "view source code")
+  A simple macro function to measure all of the qubits in the device at the same time. This is useful for handling device `meas_map` and single measurement constraints.
 
-Measure all qubits within the currently active builder context.
+  Examples:
 
-A simple macro function to measure all of the qubits in the device at the same time. This is useful for handling device `meas_map` and single measurement constraints.
+  ```python
+  from qiskit import pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
 
-Examples:
+  backend = FakeOpenPulse2Q()
 
-```python
-from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+  with pulse.build(backend) as pulse_prog:
+      # Measure all qubits and return associated registers.
+      regs = pulse.measure_all()
+  ```
 
-backend = FakeOpenPulse2Q()
+  <Admonition title="Note" type="note">
+    Requires the active builder context to have a backend set.
+  </Admonition>
 
-with pulse.build(backend) as pulse_prog:
-    # Measure all qubits and return associated registers.
-    regs = pulse.measure_all()
-```
+  **Return type**
 
-<Admonition title="Note" type="note">
-  Requires the active builder context to have a backend set.
-</Admonition>
+  `List`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
 
-**Return type**
+  **Returns**
 
-`List`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
-
-**Returns**
-
-The `register`s the qubit measurement results will be stored in.
+  The `register`s the qubit measurement results will be stored in.
+</Function>
 

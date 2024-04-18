@@ -10,42 +10,40 @@ python_api_name: qiskit.ignis.mitigation.complete_meas_cal
 
 # qiskit.ignis.mitigation.complete\_meas\_cal
 
-<span id="qiskit.ignis.mitigation.complete_meas_cal" />
+<Function id="qiskit.ignis.mitigation.complete_meas_cal" name="complete_meas_cal" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/measurement/circuits.py" signature="complete_meas_cal(qubit_list=None, qr=None, cr=None, circlabel='')">
+  Return a list of measurement calibration circuits for the full Hilbert space.
 
-`complete_meas_cal(qubit_list=None, qr=None, cr=None, circlabel='')` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/measurement/circuits.py "view source code")
+  If the circuit contains $n$ qubits, then $2^n$ calibration circuits are created, each of which creates a basis state.
 
-Return a list of measurement calibration circuits for the full Hilbert space.
+  **Parameters**
 
-If the circuit contains $n$ qubits, then $2^n$ calibration circuits are created, each of which creates a basis state.
+  *   **qubit\_list** (`Optional`\[`List`\[`int`]]) – A list of qubits to perform the measurement correction on. If None, and qr is given then assumed to be performed over the entire qr. The calibration states will be labelled according to this ordering (default None).
+  *   **qr** (`Union`\[`int`, `List`\[`QuantumRegister`], `None`]) – Quantum registers (or their size).
+  *   **None** (*If*) –
+  *   **is created** (*one*) –
+  *   **cr** (`Union`\[`int`, `List`\[`ClassicalRegister`], `None`]) – Classical registers (or their size).
+  *   **None** –
+  *   **is created** –
+  *   **circlabel** (`str`) – A string to add to the front of circuit names for unique identification(default ‘ ‘).
 
-**Parameters**
+  **Return type**
 
-*   **qubit\_list** (`Optional`\[`List`\[`int`]]) – A list of qubits to perform the measurement correction on. If None, and qr is given then assumed to be performed over the entire qr. The calibration states will be labelled according to this ordering (default None).
-*   **qr** (`Union`\[`int`, `List`\[`QuantumRegister`], `None`]) – Quantum registers (or their size).
-*   **None** (*If*) –
-*   **is created** (*one*) –
-*   **cr** (`Union`\[`int`, `List`\[`ClassicalRegister`], `None`]) – Classical registers (or their size).
-*   **None** –
-*   **is created** –
-*   **circlabel** (`str`) – A string to add to the front of circuit names for unique identification(default ‘ ‘).
+  `Tuple`\[`List`\[`QuantumCircuit`], `List`\[`str`]]
 
-**Return type**
+  **Returns**
 
-`Tuple`\[`List`\[`QuantumCircuit`], `List`\[`str`]]
+  A list of QuantumCircuit objects containing the calibration circuits.
 
-**Returns**
+  A list of calibration state labels.
 
-A list of QuantumCircuit objects containing the calibration circuits.
+  ## Additional Information:
 
-A list of calibration state labels.
+  The returned circuits are named circlabel+cal\_XXX where XXX is the basis state, e.g., cal\_1001.
 
-## Additional Information:
+  Pass the results of these circuits to the CompleteMeasurementFitter constructor.
 
-The returned circuits are named circlabel+cal\_XXX where XXX is the basis state, e.g., cal\_1001.
+  **Raises**
 
-Pass the results of these circuits to the CompleteMeasurementFitter constructor.
-
-**Raises**
-
-**QiskitError** – if both qubit\_list and qr are None.
+  **QiskitError** – if both qubit\_list and qr are None.
+</Function>
 

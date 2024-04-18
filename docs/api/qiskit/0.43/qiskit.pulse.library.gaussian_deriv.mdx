@@ -10,28 +10,26 @@ python_api_name: qiskit.pulse.library.gaussian_deriv
 
 # qiskit.pulse.library.gaussian\_deriv
 
-<span id="qiskit.pulse.library.gaussian_deriv" />
+<Function id="qiskit.pulse.library.gaussian_deriv" name="gaussian_deriv" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py" signature="gaussian_deriv(duration, amp, sigma, name=None)">
+  Generates unnormalized gaussian derivative [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 
-`gaussian_deriv(duration, amp, sigma, name=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/library/discrete.py "view source code")
-
-Generates unnormalized gaussian derivative [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
-
-For $A=$ `amp` and $\sigma=$ `sigma` applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
+  For $A=$ `amp` and $\sigma=$ `sigma` applies the midpoint sampling strategy to generate a discrete pulse sampled from the continuous function:
 
 $$
 f(x) = A\frac{(x - \mu)}{\sigma^2}\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right)
 $$
 
-i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
+  i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
-**Parameters**
+  **Parameters**
 
-*   **duration** (*int*) – Duration of pulse. Must be greater than zero.
-*   **amp** (*complex*) – Pulse amplitude of corresponding Gaussian at the pulse center (`duration/2`).
-*   **sigma** (*float*) – Width (standard deviation) of pulse.
-*   **name** (*str | None*) – Name of pulse.
+  *   **duration** (*int*) – Duration of pulse. Must be greater than zero.
+  *   **amp** (*complex*) – Pulse amplitude of corresponding Gaussian at the pulse center (`duration/2`).
+  *   **sigma** (*float*) – Width (standard deviation) of pulse.
+  *   **name** (*str | None*) – Name of pulse.
 
-**Return type**
+  **Return type**
 
-[*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+  [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+</Function>
 

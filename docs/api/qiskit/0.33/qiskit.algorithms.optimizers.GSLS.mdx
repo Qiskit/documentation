@@ -8,369 +8,343 @@ python_api_name: qiskit.algorithms.optimizers.GSLS
 
 # GSLS
 
-<span id="qiskit.algorithms.optimizers.GSLS" />
+<Class id="qiskit.algorithms.optimizers.GSLS" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/gsls.py" signature="GSLS(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)">
+  Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
-`GSLS(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/optimizers/gsls.py "view source code")
+  Gaussian-smoothed Line Search.
 
-Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
+  An implementation of the line search algorithm described in [https://arxiv.org/pdf/1905.01332.pdf](https://arxiv.org/pdf/1905.01332.pdf), using gradient approximation based on Gaussian-smoothed samples on a sphere.
 
-Gaussian-smoothed Line Search.
+  <Admonition title="Note" type="note">
+    This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
+  </Admonition>
 
-An implementation of the line search algorithm described in [https://arxiv.org/pdf/1905.01332.pdf](https://arxiv.org/pdf/1905.01332.pdf), using gradient approximation based on Gaussian-smoothed samples on a sphere.
+  **Parameters**
 
-<Admonition title="Note" type="note">
-  This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
-</Admonition>
+  *   **maxiter** (`int`) – Maximum number of iterations.
+  *   **max\_eval** (`int`) – Maximum number of evaluations.
+  *   **disp** (`bool`) – Set to True to display convergence messages.
+  *   **sampling\_radius** (`float`) – Sampling radius to determine gradient estimate.
+  *   **sample\_size\_factor** (`int`) – The size of the sample set at each iteration is this number multiplied by the dimension of the problem, rounded to the nearest integer.
+  *   **initial\_step\_size** (`float`) – Initial step size for the descent algorithm.
+  *   **min\_step\_size** (`float`) – Minimum step size for the descent algorithm.
+  *   **step\_size\_multiplier** (`float`) – Step size reduction after unsuccessful steps, in the interval (0, 1).
+  *   **armijo\_parameter** (`float`) – Armijo parameter for sufficient decrease criterion, in the interval (0, 1).
+  *   **min\_gradient\_norm** (`float`) – If the gradient norm is below this threshold, the algorithm stops.
+  *   **max\_failed\_rejection\_sampling** (`int`) – Maximum number of attempts to sample points within bounds.
 
-**Parameters**
+  ## Methods
 
-*   **maxiter** (`int`) – Maximum number of iterations.
-*   **max\_eval** (`int`) – Maximum number of evaluations.
-*   **disp** (`bool`) – Set to True to display convergence messages.
-*   **sampling\_radius** (`float`) – Sampling radius to determine gradient estimate.
-*   **sample\_size\_factor** (`int`) – The size of the sample set at each iteration is this number multiplied by the dimension of the problem, rounded to the nearest integer.
-*   **initial\_step\_size** (`float`) – Initial step size for the descent algorithm.
-*   **min\_step\_size** (`float`) – Minimum step size for the descent algorithm.
-*   **step\_size\_multiplier** (`float`) – Step size reduction after unsuccessful steps, in the interval (0, 1).
-*   **armijo\_parameter** (`float`) – Armijo parameter for sufficient decrease criterion, in the interval (0, 1).
-*   **min\_gradient\_norm** (`float`) – If the gradient norm is below this threshold, the algorithm stops.
-*   **max\_failed\_rejection\_sampling** (`int`) – Maximum number of attempts to sample points within bounds.
+  ### get\_support\_level
 
-## Methods
+  <Function id="qiskit.algorithms.optimizers.GSLS.get_support_level" name="get_support_level" signature="GSLS.get_support_level()">
+    Return support level dictionary.
 
-### get\_support\_level
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.GSLS.get_support_level" />
+    `Dict`\[`str`, `int`]
 
-`GSLS.get_support_level()`
+    **Returns**
 
-Return support level dictionary.
+    A dictionary containing the support levels for different options.
+  </Function>
 
-**Return type**
+  ### gradient\_approximation
 
-`Dict`\[`str`, `int`]
+  <Function id="qiskit.algorithms.optimizers.GSLS.gradient_approximation" name="gradient_approximation" signature="GSLS.gradient_approximation(n, x, x_value, directions, sample_set_x, sample_set_y)">
+    Construct gradient approximation from given sample.
 
-**Returns**
+    **Parameters**
 
-A dictionary containing the support levels for different options.
+    *   **n** (`int`) – Dimension of the problem.
+    *   **x** (`ndarray`) – Point around which the sample set was constructed.
+    *   **x\_value** (`float`) – Objective function value at x.
+    *   **directions** (`ndarray`) – Directions of the sample points wrt the central point x, as a 2D array.
+    *   **sample\_set\_x** (`ndarray`) – x-coordinates of the sample set, one point per row, as a 2D array.
+    *   **sample\_set\_y** (`ndarray`) – Objective function values of the points in sample\_set\_x, as a 1D array.
 
-### gradient\_approximation
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.GSLS.gradient_approximation" />
+    `ndarray`
 
-`GSLS.gradient_approximation(n, x, x_value, directions, sample_set_x, sample_set_y)`
+    **Returns**
 
-Construct gradient approximation from given sample.
+    Gradient approximation at x, as a 1D array.
+  </Function>
 
-**Parameters**
+  ### gradient\_num\_diff
 
-*   **n** (`int`) – Dimension of the problem.
-*   **x** (`ndarray`) – Point around which the sample set was constructed.
-*   **x\_value** (`float`) – Objective function value at x.
-*   **directions** (`ndarray`) – Directions of the sample points wrt the central point x, as a 2D array.
-*   **sample\_set\_x** (`ndarray`) – x-coordinates of the sample set, one point per row, as a 2D array.
-*   **sample\_set\_y** (`ndarray`) – Objective function values of the points in sample\_set\_x, as a 1D array.
+  <Function id="qiskit.algorithms.optimizers.GSLS.gradient_num_diff" name="gradient_num_diff" signature="static GSLS.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-**Return type**
+    **Parameters**
 
-`ndarray`
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** (*int*) – max evals grouped
 
-**Returns**
+    **Returns**
 
-Gradient approximation at x, as a 1D array.
+    the gradient computed
 
-### gradient\_num\_diff
+    **Return type**
 
-<span id="qiskit.algorithms.optimizers.GSLS.gradient_num_diff" />
+    grad
+  </Function>
 
-`static GSLS.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+  ### ls\_optimize
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+  <Function id="qiskit.algorithms.optimizers.GSLS.ls_optimize" name="ls_optimize" signature="GSLS.ls_optimize(n, obj_fun, initial_point, var_lb, var_ub)">
+    Run the line search optimization.
 
-**Parameters**
+    **Parameters**
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
+    *   **n** (`int`) – Dimension of the problem.
+    *   **obj\_fun** (`Callable`) – Objective function.
+    *   **initial\_point** (`ndarray`) – Initial point.
+    *   **var\_lb** (`ndarray`) – Vector of lower bounds on the decision variables. Vector elements can be -np.inf if the corresponding variable is unbounded from below.
+    *   **var\_ub** (`ndarray`) – Vector of upper bounds on the decision variables. Vector elements can be np.inf if the corresponding variable is unbounded from below.
 
-**Returns**
+    **Return type**
 
-the gradient computed
+    `Tuple`\[`ndarray`, `float`, `int`, `float`]
 
-**Return type**
+    **Returns**
 
-grad
+    Final iterate as a vector, corresponding objective function value, number of evaluations, and norm of the gradient estimate.
 
-### ls\_optimize
+    **Raises**
 
-<span id="qiskit.algorithms.optimizers.GSLS.ls_optimize" />
+    **ValueError** – If the number of dimensions mismatches the size of the initial point or the length of the lower or upper bound.
+  </Function>
 
-`GSLS.ls_optimize(n, obj_fun, initial_point, var_lb, var_ub)`
+  ### minimize
 
-Run the line search optimization.
+  <Function id="qiskit.algorithms.optimizers.GSLS.minimize" name="minimize" signature="GSLS.minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-**Parameters**
+    **Parameters**
 
-*   **n** (`int`) – Dimension of the problem.
-*   **obj\_fun** (`Callable`) – Objective function.
-*   **initial\_point** (`ndarray`) – Initial point.
-*   **var\_lb** (`ndarray`) – Vector of lower bounds on the decision variables. Vector elements can be -np.inf if the corresponding variable is unbounded from below.
-*   **var\_ub** (`ndarray`) – Vector of upper bounds on the decision variables. Vector elements can be np.inf if the corresponding variable is unbounded from below.
+    *   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+    *   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+    *   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+    *   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`ndarray`, `float`, `int`, `float`]
+    `OptimizerResult`
 
-**Returns**
+    **Returns**
 
-Final iterate as a vector, corresponding objective function value, number of evaluations, and norm of the gradient estimate.
+    The result of the optimization, containing e.g. the result as attribute `x`.
+  </Function>
 
-**Raises**
+  ### optimize
 
-**ValueError** – If the number of dimensions mismatches the size of the initial point or the length of the lower or upper bound.
+  <Function id="qiskit.algorithms.optimizers.GSLS.optimize" name="optimize" signature="GSLS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-### minimize
+    **Parameters**
 
-<span id="qiskit.algorithms.optimizers.GSLS.minimize" />
+    *   **num\_vars** (*int*) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+    *   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+    *   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
 
-`GSLS.minimize(fun, x0, jac=None, bounds=None)`
+    **Return type**
 
-Minimize the scalar function.
+    `Tuple`\[`ndarray`, `float`, `int`]
 
-**Parameters**
+    **Returns**
 
-*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
-*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
-*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
-*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+    **point, value, nfev**
 
-**Return type**
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-`OptimizerResult`
+    **Raises**
 
-**Returns**
+    **ValueError** – invalid input
+  </Function>
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+  ### print\_options
 
-### optimize
+  <Function id="qiskit.algorithms.optimizers.GSLS.print_options" name="print_options" signature="GSLS.print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.GSLS.optimize" />
+  ### sample\_points
 
-`GSLS.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+  <Function id="qiskit.algorithms.optimizers.GSLS.sample_points" name="sample_points" signature="GSLS.sample_points(n, x, num_points)">
+    Sample `num_points` points around `x` on the `n`-sphere of specified radius.
 
-Perform optimization.
+    The radius of the sphere is `self._options['sampling_radius']`.
 
-**Parameters**
+    **Parameters**
 
-*   **num\_vars** (*int*) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
-*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+    *   **n** (`int`) – Dimension of the problem.
+    *   **x** (`ndarray`) – Point around which the sample set is constructed.
+    *   **num\_points** (`int`) – Number of points in the sample set.
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`ndarray`, `float`, `int`]
+    `Tuple`\[`ndarray`, `ndarray`]
 
-**Returns**
+    **Returns**
 
-**point, value, nfev**
+    A tuple containing the sampling points and the directions.
+  </Function>
 
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+  ### sample\_set
 
-**Raises**
+  <Function id="qiskit.algorithms.optimizers.GSLS.sample_set" name="sample_set" signature="GSLS.sample_set(n, x, var_lb, var_ub, num_points)">
+    Construct sample set of given size.
 
-**ValueError** – invalid input
+    **Parameters**
 
-### print\_options
+    *   **n** (`int`) – Dimension of the problem.
+    *   **x** (`ndarray`) – Point around which the sample set is constructed.
+    *   **var\_lb** (`ndarray`) – Vector of lower bounds on the decision variables. Vector elements can be -np.inf if the corresponding variable is unbounded from below.
+    *   **var\_ub** (`ndarray`) – Vector of lower bounds on the decision variables. Vector elements can be np.inf if the corresponding variable is unbounded from above.
+    *   **num\_points** (`int`) – Number of points in the sample set.
 
-<span id="qiskit.algorithms.optimizers.GSLS.print_options" />
+    **Return type**
 
-`GSLS.print_options()`
+    `Tuple`\[`ndarray`, `ndarray`]
 
-Print algorithm-specific options.
+    **Returns**
 
-### sample\_points
+    Matrices of (unit-norm) sample directions and sample points, one per row. Both matrices are 2D arrays of floats.
 
-<span id="qiskit.algorithms.optimizers.GSLS.sample_points" />
+    **Raises**
 
-`GSLS.sample_points(n, x, num_points)`
+    **RuntimeError** – If not enough samples could be generated within the bounds.
+  </Function>
 
-Sample `num_points` points around `x` on the `n`-sphere of specified radius.
+  ### set\_max\_evals\_grouped
 
-The radius of the sphere is `self._options['sampling_radius']`.
+  <Function id="qiskit.algorithms.optimizers.GSLS.set_max_evals_grouped" name="set_max_evals_grouped" signature="GSLS.set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**Parameters**
+  ### set\_options
 
-*   **n** (`int`) – Dimension of the problem.
-*   **x** (`ndarray`) – Point around which the sample set is constructed.
-*   **num\_points** (`int`) – Number of points in the sample set.
+  <Function id="qiskit.algorithms.optimizers.GSLS.set_options" name="set_options" signature="GSLS.set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Return type**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-`Tuple`\[`ndarray`, `ndarray`]
+    **Parameters**
 
-**Returns**
+    **kwargs** (*dict*) – options, given as name=value.
+  </Function>
 
-A tuple containing the sampling points and the directions.
+  ### wrap\_function
 
-### sample\_set
+  <Function id="qiskit.algorithms.optimizers.GSLS.wrap_function" name="wrap_function" signature="static GSLS.wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-<span id="qiskit.algorithms.optimizers.GSLS.sample_set" />
+    **Parameters**
 
-`GSLS.sample_set(n, x, var_lb, var_ub, num_points)`
+    *   **function** (*func*) – the target function
+    *   **args** (*tuple*) – the args to be injected
 
-Construct sample set of given size.
+    **Returns**
 
-**Parameters**
+    wrapper
 
-*   **n** (`int`) – Dimension of the problem.
-*   **x** (`ndarray`) – Point around which the sample set is constructed.
-*   **var\_lb** (`ndarray`) – Vector of lower bounds on the decision variables. Vector elements can be -np.inf if the corresponding variable is unbounded from below.
-*   **var\_ub** (`ndarray`) – Vector of lower bounds on the decision variables. Vector elements can be np.inf if the corresponding variable is unbounded from above.
-*   **num\_points** (`int`) – Number of points in the sample set.
+    **Return type**
 
-**Return type**
+    function\_wrapper
+  </Function>
 
-`Tuple`\[`ndarray`, `ndarray`]
+  ## Attributes
 
-**Returns**
+  ### bounds\_support\_level
 
-Matrices of (unit-norm) sample directions and sample points, one per row. Both matrices are 2D arrays of floats.
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-**Raises**
+  ### gradient\_support\_level
 
-**RuntimeError** – If not enough samples could be generated within the bounds.
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-### set\_max\_evals\_grouped
+  ### initial\_point\_support\_level
 
-<span id="qiskit.algorithms.optimizers.GSLS.set_max_evals_grouped" />
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-`GSLS.set_max_evals_grouped(limit)`
+  ### is\_bounds\_ignored
 
-Set max evals grouped
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-### set\_options
+  ### is\_bounds\_required
 
-<span id="qiskit.algorithms.optimizers.GSLS.set_options" />
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-`GSLS.set_options(**kwargs)`
+  ### is\_bounds\_supported
 
-Sets or updates values in the options dictionary.
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+  ### is\_gradient\_ignored
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-**kwargs** (*dict*) – options, given as name=value.
+  ### is\_gradient\_required
 
-### wrap\_function
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.GSLS.wrap_function" />
+  ### is\_gradient\_supported
 
-`static GSLS.wrap_function(function, args)`
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-Wrap the function to implicitly inject the args at the call of the function.
+  ### is\_initial\_point\_ignored
 
-**Parameters**
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
+  ### is\_initial\_point\_required
 
-**Returns**
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-wrapper
+  ### is\_initial\_point\_supported
 
-**Return type**
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-function\_wrapper
+  ### setting
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.setting" name="setting">
+    Return setting
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.GSLS.bounds_support_level" />
+  ### settings
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.GSLS.settings" name="settings">
+    **Return type**
 
-Returns bounds support level
-
-<span id="qiskit.algorithms.optimizers.GSLS.gradient_support_level" />
-
-### gradient\_support\_level
-
-Returns gradient support level
-
-<span id="qiskit.algorithms.optimizers.GSLS.initial_point_support_level" />
-
-### initial\_point\_support\_level
-
-Returns initial point support level
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_bounds_ignored" />
-
-### is\_bounds\_ignored
-
-Returns is bounds ignored
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_bounds_required" />
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_bounds_supported" />
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_gradient_ignored" />
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_gradient_required" />
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_gradient_supported" />
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_initial_point_ignored" />
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.GSLS.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.GSLS.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.GSLS.settings" />
-
-### settings
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
+    `Dict`\[`str`, `Any`]
+  </Attribute>
+</Class>
 

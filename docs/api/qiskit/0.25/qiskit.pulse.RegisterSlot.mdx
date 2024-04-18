@@ -8,117 +8,103 @@ python_api_name: qiskit.pulse.RegisterSlot
 
 # qiskit.pulse.RegisterSlot
 
-<span id="qiskit.pulse.RegisterSlot" />
+<Class id="qiskit.pulse.RegisterSlot" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py" signature="RegisterSlot(index)">
+  Classical resister slot channels represent classical registers (low-latency classical memory).
 
-`RegisterSlot(index)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/channels.py "view source code")
+  Channel class.
 
-Classical resister slot channels represent classical registers (low-latency classical memory).
+  **Parameters**
 
-Channel class.
+  **index** (`int`) – Index of channel.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**index** (`int`) – Index of channel.
+  <Function id="qiskit.pulse.RegisterSlot.__init__" name="__init__" signature="__init__(index)">
+    Channel class.
 
-### \_\_init\_\_
+    **Parameters**
 
-<span id="qiskit.pulse.RegisterSlot.__init__" />
+    **index** (`int`) – Index of channel.
+  </Function>
 
-`__init__(index)`
+  ## Methods
 
-Channel class.
+  |                                                                                                                  |                                                                  |
+  | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+  | [`__init__`](#qiskit.pulse.RegisterSlot.__init__ "qiskit.pulse.RegisterSlot.__init__")(index)                    | Channel class.                                                   |
+  | [`assign`](#qiskit.pulse.RegisterSlot.assign "qiskit.pulse.RegisterSlot.assign")(parameter, value)               | Return a new channel with the input Parameter assigned to value. |
+  | [`is_parameterized`](#qiskit.pulse.RegisterSlot.is_parameterized "qiskit.pulse.RegisterSlot.is_parameterized")() | Return True iff the channel is parameterized.                    |
 
-**Parameters**
+  ## Attributes
 
-**index** (`int`) – Index of channel.
+  |                                                                                              |                                                                                    |
+  | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+  | [`index`](#qiskit.pulse.RegisterSlot.index "qiskit.pulse.RegisterSlot.index")                | Return the index of this channel.                                                  |
+  | [`name`](#qiskit.pulse.RegisterSlot.name "qiskit.pulse.RegisterSlot.name")                   | Return the shorthand alias for this channel, which is based on its type and index. |
+  | [`parameters`](#qiskit.pulse.RegisterSlot.parameters "qiskit.pulse.RegisterSlot.parameters") | Parameters which determine the channel index.                                      |
+  | `prefix`                                                                                     |                                                                                    |
 
-## Methods
+  ### assign
 
-|                                                                                                                  |                                                                  |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [`__init__`](#qiskit.pulse.RegisterSlot.__init__ "qiskit.pulse.RegisterSlot.__init__")(index)                    | Channel class.                                                   |
-| [`assign`](#qiskit.pulse.RegisterSlot.assign "qiskit.pulse.RegisterSlot.assign")(parameter, value)               | Return a new channel with the input Parameter assigned to value. |
-| [`is_parameterized`](#qiskit.pulse.RegisterSlot.is_parameterized "qiskit.pulse.RegisterSlot.is_parameterized")() | Return True iff the channel is parameterized.                    |
+  <Function id="qiskit.pulse.RegisterSlot.assign" name="assign" signature="assign(parameter, value)">
+    Return a new channel with the input Parameter assigned to value.
 
-## Attributes
+    **Parameters**
 
-|                                                                                              |                                                                                    |
-| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`index`](#qiskit.pulse.RegisterSlot.index "qiskit.pulse.RegisterSlot.index")                | Return the index of this channel.                                                  |
-| [`name`](#qiskit.pulse.RegisterSlot.name "qiskit.pulse.RegisterSlot.name")                   | Return the shorthand alias for this channel, which is based on its type and index. |
-| [`parameters`](#qiskit.pulse.RegisterSlot.parameters "qiskit.pulse.RegisterSlot.parameters") | Parameters which determine the channel index.                                      |
-| `prefix`                                                                                     |                                                                                    |
+    *   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+    *   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
 
-### assign
+    **Return type**
 
-<span id="qiskit.pulse.RegisterSlot.assign" />
+    [`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
 
-`assign(parameter, value)`
+    **Returns**
 
-Return a new channel with the input Parameter assigned to value.
+    A new channel with updated parameters.
 
-**Parameters**
+    **Raises**
 
-*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[`ParameterExpression`, `float`, `int`]) – The new value to bind to.
+    [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  </Function>
 
-**Return type**
+  ### index
 
-[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")
+  <Function id="qiskit.pulse.RegisterSlot.index" name="index" signature="property index">
+    Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
 
-**Returns**
+    **Return type**
 
-A new channel with updated parameters.
+    `Union`\[`int`, `ParameterExpression`]
+  </Function>
 
-**Raises**
+  ### is\_parameterized
 
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+  <Function id="qiskit.pulse.RegisterSlot.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+    Return True iff the channel is parameterized.
 
-### index
+    **Return type**
 
-<span id="qiskit.pulse.RegisterSlot.index" />
+    `bool`
+  </Function>
 
-`property index`
+  ### name
 
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
+  <Function id="qiskit.pulse.RegisterSlot.name" name="name" signature="property name">
+    Return the shorthand alias for this channel, which is based on its type and index.
 
-**Return type**
+    **Return type**
 
-`Union`\[`int`, `ParameterExpression`]
+    `str`
+  </Function>
 
-### is\_parameterized
+  ### parameters
 
-<span id="qiskit.pulse.RegisterSlot.is_parameterized" />
+  <Function id="qiskit.pulse.RegisterSlot.parameters" name="parameters" signature="property parameters">
+    Parameters which determine the channel index.
 
-`is_parameterized()`
+    **Return type**
 
-Return True iff the channel is parameterized.
-
-**Return type**
-
-`bool`
-
-### name
-
-<span id="qiskit.pulse.RegisterSlot.name" />
-
-`property name`
-
-Return the shorthand alias for this channel, which is based on its type and index.
-
-**Return type**
-
-`str`
-
-### parameters
-
-<span id="qiskit.pulse.RegisterSlot.parameters" />
-
-`property parameters`
-
-Parameters which determine the channel index.
-
-**Return type**
-
-`Set`
+    `Set`
+  </Function>
+</Class>
 

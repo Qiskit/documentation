@@ -10,29 +10,27 @@ python_api_name: qiskit.ignis.verification.qv_circuits
 
 # qiskit.ignis.verification.qv\_circuits
 
-<span id="qiskit.ignis.verification.qv_circuits" />
+<Function id="qiskit.ignis.verification.qv_circuits" name="qv_circuits" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/quantum_volume/circuits.py" signature="qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)">
+  Return a list of square quantum volume circuits (depth=width)
 
-`qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/quantum_volume/circuits.py "view source code")
+  The qubit\_lists is specified as a list of qubit lists. For each set of qubits, circuits the depth as the number of qubits in the list are generated
 
-Return a list of square quantum volume circuits (depth=width)
+  **Parameters**
 
-The qubit\_lists is specified as a list of qubit lists. For each set of qubits, circuits the depth as the number of qubits in the list are generated
+  *   **qubit\_lists** (*list*) – list of list of qubits to apply qv circuits to. Assume the list is ordered in increasing number of qubits
+  *   **ntrials** (*int*) – number of random iterations
+  *   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – quantum register to act on (if None one is created)
+  *   **cr** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")) – classical register to measure to (if None one is created)
+  *   **seed** (*int*) – An optional RNG seed to use for the generated circuit
 
-**Parameters**
+  **Returns**
 
-*   **qubit\_lists** (*list*) – list of list of qubits to apply qv circuits to. Assume the list is ordered in increasing number of qubits
-*   **ntrials** (*int*) – number of random iterations
-*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – quantum register to act on (if None one is created)
-*   **cr** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")) – classical register to measure to (if None one is created)
-*   **seed** (*int*) – An optional RNG seed to use for the generated circuit
+  **A tuple of the type (`circuits`, `circuits_nomeas`) wheere:**
 
-**Returns**
+  `circuits` is a list of lists of circuits for the qv sequences (separate list for each trial) and \`\` circuitss\_nomeas\`\` is the same circuits but with no measurements for the ideal simulation
 
-**A tuple of the type (`circuits`, `circuits_nomeas`) wheere:**
+  **Return type**
 
-`circuits` is a list of lists of circuits for the qv sequences (separate list for each trial) and \`\` circuitss\_nomeas\`\` is the same circuits but with no measurements for the ideal simulation
-
-**Return type**
-
-tuple
+  tuple
+</Function>
 

@@ -8,112 +8,106 @@ python_api_name: qiskit.chemistry.algorithms.VQEUVCCSDFactory
 
 # VQEUVCCSDFactory
 
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory" />
+<Class id="qiskit.chemistry.algorithms.VQEUVCCSDFactory" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/vqe_uvccsd_factory.py" signature="VQEUVCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False)">
+  Bases: `qiskit.chemistry.algorithms.ground_state_solvers.minimum_eigensolver_factories.minimum_eigensolver_factory.MinimumEigensolverFactory`
 
-`VQEUVCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/vqe_uvccsd_factory.py "view source code")
+  A factory to construct a VQE minimum eigensolver with UVCCSD ansatz wavefunction.
 
-Bases: `qiskit.chemistry.algorithms.ground_state_solvers.minimum_eigensolver_factories.minimum_eigensolver_factory.MinimumEigensolverFactory`
+  **Parameters**
 
-A factory to construct a VQE minimum eigensolver with UVCCSD ansatz wavefunction.
+  *   **quantum\_instance** (`QuantumInstance`) – The quantum instance used in the minimum eigensolver.
+  *   **optimizer** (`Optional`\[`Optimizer`]) – A classical optimizer.
+  *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQE will look to the variational form for a preferred point and if not will simply compute a random one.
+  *   **gradient** (`Union`\[`GradientBase`, `Callable`, `None`]) – An optional gradient function or operator for optimizer.
+  *   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
+  *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
 
-**Parameters**
+  ## Methods
 
-*   **quantum\_instance** (`QuantumInstance`) – The quantum instance used in the minimum eigensolver.
-*   **optimizer** (`Optional`\[`Optimizer`]) – A classical optimizer.
-*   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQE will look to the variational form for a preferred point and if not will simply compute a random one.
-*   **gradient** (`Union`\[`GradientBase`, `Callable`, `None`]) – An optional gradient function or operator for optimizer.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
-*   **include\_custom** (`bool`) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
+  ### get\_solver
 
-## Methods
+  <Function id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.get_solver" name="get_solver" signature="VQEUVCCSDFactory.get_solver(transformation)">
+    Returns a VQE with a UVCCSD wavefunction ansatz, based on `transformation`. This works only with a `BosonicTransformation`.
 
-### get\_solver
+    **Parameters**
 
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.get_solver" />
+    **transformation** (`BosonicTransformation`) – a bosonic qubit operator transformation.
 
-`VQEUVCCSDFactory.get_solver(transformation)`
+    **Return type**
 
-Returns a VQE with a UVCCSD wavefunction ansatz, based on `transformation`. This works only with a `BosonicTransformation`.
+    `MinimumEigensolver`
 
-**Parameters**
+    **Returns**
 
-**transformation** (`BosonicTransformation`) – a bosonic qubit operator transformation.
+    A VQE suitable to compute the ground state of the molecule transformed by `transformation`.
+  </Function>
 
-**Return type**
+  ### supports\_aux\_operators
 
-`MinimumEigensolver`
+  <Function id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.supports_aux_operators" name="supports_aux_operators" signature="VQEUVCCSDFactory.supports_aux_operators()">
+    Returns whether the eigensolver generated by this factory supports auxiliary operators.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-A VQE suitable to compute the ground state of the molecule transformed by `transformation`.
+  ### expectation
 
-### supports\_aux\_operators
+  <Attribute id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.expectation" name="expectation">
+    Getter of the expectation.
 
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.supports_aux_operators" />
+    **Return type**
 
-`VQEUVCCSDFactory.supports_aux_operators()`
+    `ExpectationBase`
+  </Attribute>
 
-Returns whether the eigensolver generated by this factory supports auxiliary operators.
+  ### gradient
 
-## Attributes
+  <Attribute id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.gradient" name="gradient">
+    Getter of the gradient function
 
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.expectation" />
+    **Return type**
 
-### expectation
+    `Union`\[`GradientBase`, `Callable`, `None`]
+  </Attribute>
 
-Getter of the expectation.
+  ### include\_custom
 
-**Return type**
+  <Attribute id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.include_custom" name="include_custom">
+    Getter of the `include_custom` setting for the `expectation` setting.
 
-`ExpectationBase`
+    **Return type**
 
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.gradient" />
+    `bool`
+  </Attribute>
 
-### gradient
+  ### initial\_point
 
-Getter of the gradient function
+  <Attribute id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.initial_point" name="initial_point">
+    Getter of the initial point.
 
-**Return type**
+    **Return type**
 
-`Union`\[`GradientBase`, `Callable`, `None`]
+    `ndarray`
+  </Attribute>
 
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.include_custom" />
+  ### optimizer
 
-### include\_custom
+  <Attribute id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.optimizer" name="optimizer">
+    Getter of the optimizer.
 
-Getter of the `include_custom` setting for the `expectation` setting.
+    **Return type**
 
-**Return type**
+    `Optimizer`
+  </Attribute>
 
-`bool`
+  ### quantum\_instance
 
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.initial_point" />
+  <Attribute id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.quantum_instance" name="quantum_instance">
+    Getter of the quantum instance.
 
-### initial\_point
+    **Return type**
 
-Getter of the initial point.
-
-**Return type**
-
-`ndarray`
-
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.optimizer" />
-
-### optimizer
-
-Getter of the optimizer.
-
-**Return type**
-
-`Optimizer`
-
-<span id="qiskit.chemistry.algorithms.VQEUVCCSDFactory.quantum_instance" />
-
-### quantum\_instance
-
-Getter of the quantum instance.
-
-**Return type**
-
-`QuantumInstance`
+    `QuantumInstance`
+  </Attribute>
+</Class>
 

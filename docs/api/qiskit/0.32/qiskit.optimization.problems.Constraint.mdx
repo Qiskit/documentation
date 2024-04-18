@@ -8,100 +8,96 @@ python_api_name: qiskit.optimization.problems.Constraint
 
 # Constraint
 
-<span id="qiskit.optimization.problems.Constraint" />
+<Class id="qiskit.optimization.problems.Constraint" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/constraint.py" signature="Constraint(quadratic_program, name, sense, rhs)">
+  Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
-`Constraint(quadratic_program, name, sense, rhs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/constraint.py "view source code")
+  Abstract Constraint Class.
 
-Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
+  Initializes the constraint.
 
-Abstract Constraint Class.
+  **Parameters**
 
-Initializes the constraint.
+  *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
+  *   **name** (`str`) – The name of the constraint.
+  *   **sense** (`ConstraintSense`) – The sense of the constraint.
+  *   **rhs** (`float`) – The right-hand-side of the constraint.
 
-**Parameters**
+  ## Methods
 
-*   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
-*   **name** (`str`) – The name of the constraint.
-*   **sense** (`ConstraintSense`) – The sense of the constraint.
-*   **rhs** (`float`) – The right-hand-side of the constraint.
+  ### evaluate
 
-## Methods
+  <Function id="qiskit.optimization.problems.Constraint.evaluate" name="evaluate" signature="abstract Constraint.evaluate(x)">
+    Evaluate left-hand-side of constraint for given values of variables.
 
-### evaluate
+    **Parameters**
 
-<span id="qiskit.optimization.problems.Constraint.evaluate" />
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values to be used for the variables.
 
-`abstract Constraint.evaluate(x)`
+    **Return type**
 
-Evaluate left-hand-side of constraint for given values of variables.
+    `float`
 
-**Parameters**
+    **Returns**
 
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values to be used for the variables.
+    The left-hand-side of the constraint.
+  </Function>
 
-**Return type**
+  ## Attributes
 
-`float`
+  ### name
 
-**Returns**
+  <Attribute id="qiskit.optimization.problems.Constraint.name" name="name">
+    Returns the name of the constraint.
 
-The left-hand-side of the constraint.
+    **Return type**
 
-## Attributes
+    `str`
 
-<span id="qiskit.optimization.problems.Constraint.name" />
+    **Returns**
 
-### name
+    The name of the constraint.
+  </Attribute>
 
-Returns the name of the constraint.
+  ### quadratic\_program
 
-**Return type**
+  <Attribute id="qiskit.optimization.problems.Constraint.quadratic_program" name="quadratic_program">
+    Returns the parent QuadraticProgram.
 
-`str`
+    **Return type**
 
-**Returns**
+    `Any`
 
-The name of the constraint.
+    **Returns**
 
-<span id="qiskit.optimization.problems.Constraint.quadratic_program" />
+    The parent QuadraticProgram.
+  </Attribute>
 
-### quadratic\_program
+  ### rhs
 
-Returns the parent QuadraticProgram.
+  <Attribute id="qiskit.optimization.problems.Constraint.rhs" name="rhs">
+    Returns the right-hand-side of the constraint.
 
-**Return type**
+    **Return type**
 
-`Any`
+    `float`
 
-**Returns**
+    **Returns**
 
-The parent QuadraticProgram.
+    The right-hand-side of the constraint.
+  </Attribute>
 
-<span id="qiskit.optimization.problems.Constraint.rhs" />
+  ### sense
 
-### rhs
+  <Attribute id="qiskit.optimization.problems.Constraint.sense" name="sense">
+    Returns the sense of the constraint.
 
-Returns the right-hand-side of the constraint.
+    **Return type**
 
-**Return type**
+    `ConstraintSense`
 
-`float`
+    **Returns**
 
-**Returns**
-
-The right-hand-side of the constraint.
-
-<span id="qiskit.optimization.problems.Constraint.sense" />
-
-### sense
-
-Returns the sense of the constraint.
-
-**Return type**
-
-`ConstraintSense`
-
-**Returns**
-
-The sense of the constraint.
+    The sense of the constraint.
+  </Attribute>
+</Class>
 

@@ -8,49 +8,45 @@ python_api_name: qiskit.algorithms.VarQITE
 
 # VarQITE
 
-<span id="qiskit.algorithms.VarQITE" />
+<Class id="qiskit.algorithms.VarQITE" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/time_evolvers/variational/var_qite.py" signature="qiskit.algorithms.VarQITE(ansatz, initial_parameters, variational_principle=None, estimator=None, ode_solver=<class 'qiskit.algorithms.time_evolvers.variational.solvers.ode.forward_euler_solver.ForwardEulerSolver'>, lse_solver=None, num_timesteps=None, imag_part_tol=1e-07, num_instability_tol=1e-07)">
+  Bases: `VarQTE`, [`ImaginaryTimeEvolver`](qiskit.algorithms.ImaginaryTimeEvolver "qiskit.algorithms.time_evolvers.imaginary_time_evolver.ImaginaryTimeEvolver")
 
-`qiskit.algorithms.VarQITE(ansatz, initial_parameters, variational_principle=None, estimator=None, ode_solver=<class 'qiskit.algorithms.time_evolvers.variational.solvers.ode.forward_euler_solver.ForwardEulerSolver'>, lse_solver=None, num_timesteps=None, imag_part_tol=1e-07, num_instability_tol=1e-07)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/time_evolvers/variational/var_qite.py "view source code")
+  Variational Quantum Imaginary Time Evolution algorithm.
 
-Bases: `VarQTE`, [`ImaginaryTimeEvolver`](qiskit.algorithms.ImaginaryTimeEvolver "qiskit.algorithms.time_evolvers.imaginary_time_evolver.ImaginaryTimeEvolver")
+  **Parameters**
 
-Variational Quantum Imaginary Time Evolution algorithm.
+  *   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Ansatz to be used for variational time evolution.
+  *   **initial\_parameters** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Initial parameter values for the ansatz.
+  *   **variational\_principle** ([*ImaginaryVariationalPrinciple*](qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple") *| None*) – Variational Principle to be used. Defaults to `ImaginaryMcLachlanPrinciple`.
+  *   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") *| None*) – An estimator primitive used for calculating expectation values of TimeEvolutionProblem.aux\_operators.
+  *   **ode\_solver** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[OdeSolver] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ODE solver callable that implements a SciPy `OdeSolver` interface or a string indicating a valid method offered by SciPy.
+  *   **lse\_solver** (*Callable\[\[np.ndarray, np.ndarray], np.ndarray] | None*) – Linear system of equations solver callable. It accepts `A` and `b` to solve `Ax=b` and returns `x`. If `None`, the default `np.linalg.lstsq` solver is used.
+  *   **num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of timesteps to take. If `None`, it is automatically selected to achieve a timestep of approximately 0.01. Only relevant in case of the `ForwardEulerSolver`.
+  *   **imag\_part\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Allowed value of an imaginary part that can be neglected if no imaginary part is expected.
+  *   **num\_instability\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The amount of negative value that is allowed to be rounded up to 0 for quantities that are expected to be non-negative.
 
-**Parameters**
+  ## Methods
 
-*   **ansatz** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Ansatz to be used for variational time evolution.
-*   **initial\_parameters** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Initial parameter values for the ansatz.
-*   **variational\_principle** ([*ImaginaryVariationalPrinciple*](qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple") *| None*) – Variational Principle to be used. Defaults to `ImaginaryMcLachlanPrinciple`.
-*   **estimator** ([*BaseEstimator*](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") *| None*) – An estimator primitive used for calculating expectation values of TimeEvolutionProblem.aux\_operators.
-*   **ode\_solver** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[OdeSolver] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ODE solver callable that implements a SciPy `OdeSolver` interface or a string indicating a valid method offered by SciPy.
-*   **lse\_solver** (*Callable\[\[np.ndarray, np.ndarray], np.ndarray] | None*) – Linear system of equations solver callable. It accepts `A` and `b` to solve `Ax=b` and returns `x`. If `None`, the default `np.linalg.lstsq` solver is used.
-*   **num\_timesteps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of timesteps to take. If `None`, it is automatically selected to achieve a timestep of approximately 0.01. Only relevant in case of the `ForwardEulerSolver`.
-*   **imag\_part\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Allowed value of an imaginary part that can be neglected if no imaginary part is expected.
-*   **num\_instability\_tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The amount of negative value that is allowed to be rounded up to 0 for quantities that are expected to be non-negative.
+  ### evolve
 
-## Methods
+  <Function id="qiskit.algorithms.VarQITE.evolve" name="evolve" signature="evolve(evolution_problem)">
+    Apply Variational Quantum Time Evolution to the given operator.
 
-### evolve
+    **Parameters**
 
-<span id="qiskit.algorithms.VarQITE.evolve" />
+    **evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – Instance defining an evolution problem.
 
-`evolve(evolution_problem)`
+    **Returns**
 
-Apply Variational Quantum Time Evolution to the given operator.
+    Result of the evolution which includes a quantum circuit with bound parameters as an evolved state and, if provided, observables evaluated on the evolved state.
 
-**Parameters**
+    **Raises**
 
-**evolution\_problem** ([*TimeEvolutionProblem*](qiskit.algorithms.TimeEvolutionProblem "qiskit.algorithms.time_evolvers.time_evolution_problem.TimeEvolutionProblem")) – Instance defining an evolution problem.
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `initial_state` is included in the `evolution_problem`.
 
-**Returns**
+    **Return type**
 
-Result of the evolution which includes a quantum circuit with bound parameters as an evolved state and, if provided, observables evaluated on the evolved state.
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `initial_state` is included in the `evolution_problem`.
-
-**Return type**
-
-*VarQTEResult*
+    *VarQTEResult*
+  </Function>
+</Class>
 

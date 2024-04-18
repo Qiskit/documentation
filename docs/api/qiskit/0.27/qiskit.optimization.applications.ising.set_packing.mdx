@@ -22,59 +22,53 @@ set packing module
 
 ### check\_disjoint
 
-<span id="qiskit.optimization.applications.ising.set_packing.check_disjoint" />
-
-`check_disjoint(sol, list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
-
-check disjoint
+<Function id="qiskit.optimization.applications.ising.set_packing.check_disjoint" name="check_disjoint" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py" signature="check_disjoint(sol, list_of_subsets)">
+  check disjoint
+</Function>
 
 ### get\_operator
 
-<span id="qiskit.optimization.applications.ising.set_packing.get_operator" />
+<Function id="qiskit.optimization.applications.ising.set_packing.get_operator" name="get_operator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py" signature="get_operator(list_of_subsets)">
+  Construct the Hamiltonian for the set packing.
 
-`get_operator(list_of_subsets)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
+  **Notes**
 
-Construct the Hamiltonian for the set packing.
+  find the maximal number of subsets which are disjoint pairwise.
 
-**Notes**
+  Hamiltonian: H = A Ha + B Hb Ha = sum\_\{Si and Sj overlaps}\{XiXj} Hb = -sum\_\{i}\{Xi}
 
-find the maximal number of subsets which are disjoint pairwise.
+  Ha is to ensure the disjoint condition, while Hb is to achieve the maximal number. Ha is hard constraint that must be satisfied. Therefore A >> B. In the following, we set A=10 and B = 1
 
-Hamiltonian: H = A Ha + B Hb Ha = sum\_\{Si and Sj overlaps}\{XiXj} Hb = -sum\_\{i}\{Xi}
+  where Xi = (Zi + 1)/2
 
-Ha is to ensure the disjoint condition, while Hb is to achieve the maximal number. Ha is hard constraint that must be satisfied. Therefore A >> B. In the following, we set A=10 and B = 1
+  **Parameters**
 
-where Xi = (Zi + 1)/2
+  **list\_of\_subsets** (*list*) – list of lists (i.e., subsets)
 
-**Parameters**
+  **Returns**
 
-**list\_of\_subsets** (*list*) – list of lists (i.e., subsets)
+  **operator for the Hamiltonian,**
 
-**Returns**
+  a constant shift for the obj function.
 
-**operator for the Hamiltonian,**
+  **Return type**
 
-a constant shift for the obj function.
-
-**Return type**
-
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+  tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+</Function>
 
 ### get\_solution
 
-<span id="qiskit.optimization.applications.ising.set_packing.get_solution" />
+<Function id="qiskit.optimization.applications.ising.set_packing.get_solution" name="get_solution" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py" signature="get_solution(x)">
+  **Parameters**
 
-`get_solution(x)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/set_packing.py "view source code")
+  **x** (*numpy.ndarray*) – binary string as numpy array.
 
-**Parameters**
+  **Returns**
 
-**x** (*numpy.ndarray*) – binary string as numpy array.
+  graph solution as binary numpy array.
 
-**Returns**
+  **Return type**
 
-graph solution as binary numpy array.
-
-**Return type**
-
-numpy.ndarray
+  numpy.ndarray
+</Function>
 

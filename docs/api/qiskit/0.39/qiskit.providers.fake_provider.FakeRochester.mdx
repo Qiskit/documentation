@@ -8,158 +8,132 @@ python_api_name: qiskit.providers.fake_provider.FakeRochester
 
 # FakeRochester
 
-<span id="qiskit.providers.fake_provider.FakeRochester" />
+<Class id="qiskit.providers.fake_provider.FakeRochester" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/rochester/fake_rochester.py" signature="FakeRochester">
+  Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 
-`FakeRochester` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/providers/fake_provider/backends/rochester/fake_rochester.py "view source code")
+  A fake Rochester backend.
 
-Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
+  FakeBackend initializer.
 
-A fake Rochester backend.
+  **Parameters**
 
-FakeBackend initializer.
+  *   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+  *   **time\_alive** (*int*) – time to wait before returning result
 
-**Parameters**
+  ## Methods
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **time\_alive** (*int*) – time to wait before returning result
+  ### configuration
 
-## Methods
+  <Function id="qiskit.providers.fake_provider.FakeRochester.configuration" name="configuration" signature="FakeRochester.configuration()">
+    Return the backend configuration.
 
-### configuration
+    **Returns**
 
-<span id="qiskit.providers.fake_provider.FakeRochester.configuration" />
+    the configuration for the backend.
 
-`FakeRochester.configuration()`
+    **Return type**
 
-Return the backend configuration.
+    [BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+  </Function>
 
-**Returns**
+  ### name
 
-the configuration for the backend.
+  <Function id="qiskit.providers.fake_provider.FakeRochester.name" name="name" signature="FakeRochester.name()">
+    Return the backend name.
 
-**Return type**
+    **Returns**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+    the name of the backend.
 
-### name
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeRochester.name" />
+    str
+  </Function>
 
-`FakeRochester.name()`
+  ### properties
 
-Return the backend name.
+  <Function id="qiskit.providers.fake_provider.FakeRochester.properties" name="properties" signature="FakeRochester.properties()">
+    Returns a snapshot of device properties
+  </Function>
 
-**Returns**
+  ### provider
 
-the name of the backend.
+  <Function id="qiskit.providers.fake_provider.FakeRochester.provider" name="provider" signature="FakeRochester.provider()">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-str
+    the Provider responsible for the backend.
 
-### properties
+    **Return type**
 
-<span id="qiskit.providers.fake_provider.FakeRochester.properties" />
+    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  </Function>
 
-`FakeRochester.properties()`
+  ### run
 
-Returns a snapshot of device properties
+  <Function id="qiskit.providers.fake_provider.FakeRochester.run" name="run" signature="FakeRochester.run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-### provider
+  ### set\_options
 
-<span id="qiskit.providers.fake_provider.FakeRochester.provider" />
+  <Function id="qiskit.providers.fake_provider.FakeRochester.set_options" name="set_options" signature="FakeRochester.set_options(**fields)">
+    Set the options fields for the backend
 
-`FakeRochester.provider()`
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-Return the backend Provider.
+    **Parameters**
 
-**Returns**
+    **fields** – The fields to update the options
 
-the Provider responsible for the backend.
+    **Raises**
 
-**Return type**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+  ### status
 
-### run
+  <Function id="qiskit.providers.fake_provider.FakeRochester.status" name="status" signature="FakeRochester.status()">
+    Return the backend status.
 
-<span id="qiskit.providers.fake_provider.FakeRochester.run" />
+    **Returns**
 
-`FakeRochester.run(run_input, **kwargs)`
+    the status of the backend.
 
-Main job in simulator
+    **Return type**
 
-### set\_options
+    [BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+  </Function>
 
-<span id="qiskit.providers.fake_provider.FakeRochester.set_options" />
+  ## Attributes
 
-`FakeRochester.set_options(**fields)`
+  ### backend\_name
 
-Set the options fields for the backend
+  <Attribute id="qiskit.providers.fake_provider.FakeRochester.backend_name" name="backend_name" attributeValue="= 'fake_rochester'" />
 
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
+  ### conf\_filename
 
-**Parameters**
+  <Attribute id="qiskit.providers.fake_provider.FakeRochester.conf_filename" name="conf_filename" attributeValue="= 'conf_rochester.json'" />
 
-**fields** – The fields to update the options
+  ### dirname
 
-**Raises**
+  <Attribute id="qiskit.providers.fake_provider.FakeRochester.dirname" name="dirname" attributeValue="= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/rochester'" />
 
-**AttributeError** – If the field passed in is not part of the options
+  ### options
 
-### status
+  <Attribute id="qiskit.providers.fake_provider.FakeRochester.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit.providers.fake_provider.FakeRochester.status" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeRochester#run "qiskit.providers.fake_provider.FakeRochester.run") method.
+  </Attribute>
 
-`FakeRochester.status()`
+  ### props\_filename
 
-Return the backend status.
+  <Attribute id="qiskit.providers.fake_provider.FakeRochester.props_filename" name="props_filename" attributeValue="= 'props_rochester.json'" />
 
-**Returns**
+  ### version
 
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-## Attributes
-
-<span id="qiskit.providers.fake_provider.FakeRochester.backend_name" />
-
-### backend\_name
-
-`= 'fake_rochester'`
-
-<span id="qiskit.providers.fake_provider.FakeRochester.conf_filename" />
-
-### conf\_filename
-
-`= 'conf_rochester.json'`
-
-<span id="qiskit.providers.fake_provider.FakeRochester.dirname" />
-
-### dirname
-
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.8/site-packages/qiskit/providers/fake_provider/backends/rochester'`
-
-<span id="qiskit.providers.fake_provider.FakeRochester.options" />
-
-### options
-
-Return the options for the backend
-
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.fake_provider.FakeRochester#run "qiskit.providers.fake_provider.FakeRochester.run") method.
-
-<span id="qiskit.providers.fake_provider.FakeRochester.props_filename" />
-
-### props\_filename
-
-`= 'props_rochester.json'`
-
-<span id="qiskit.providers.fake_provider.FakeRochester.version" />
-
-### version
-
-`= 1`
+  <Attribute id="qiskit.providers.fake_provider.FakeRochester.version" name="version" attributeValue="= 1" />
+</Class>
 

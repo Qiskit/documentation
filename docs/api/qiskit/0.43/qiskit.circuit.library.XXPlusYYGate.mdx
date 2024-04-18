@@ -8,151 +8,145 @@ python_api_name: qiskit.circuit.library.XXPlusYYGate
 
 # XXPlusYYGate
 
-<span id="qiskit.circuit.library.XXPlusYYGate" />
+<Class id="qiskit.circuit.library.XXPlusYYGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/xx_plus_yy.py" signature="XXPlusYYGate(theta, beta=0, label='{XX+YY}')">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`XXPlusYYGate(theta, beta=0, label='{XX+YY}')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
+  XX+YY interaction gate.
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $|01\rangle$ and $|10\rangle$.
 
-XX+YY interaction gate.
-
-A 2-qubit parameterized XX+YY interaction, also known as an XY gate. Its action is to induce a coherent rotation by some angle between $|01\rangle$ and $|10\rangle$.
-
-**Circuit Symbol:**
-
-```python
-     ┌───────────────┐
-q_0: ┤0              ├
-     │  {XX+YY}(θ,β) │
-q_1: ┤1              ├
-     └───────────────┘
-```
-
-**Matrix Representation:**
-
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
-  RZ_0(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_0(\beta) =
-    \begin{pmatrix}
-        1 & 0                     & 0                    & 0  \\
-        0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{-i\beta} & 0  \\
-        0 & -i\sin\left(\th\right)e^{i\beta} & \cos\left(\th\right)            & 0  \\
-        0 & 0                     & 0                    & 1
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
-
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in adding the (optional) phase defined by $beta$ on q\_0. Instead, if we apply it on (q\_1, q\_0), the phase is added on q\_1. If $beta$ is set to its default value of $0$, the gate is equivalent in big and little endian.
+  **Circuit Symbol:**
 
   ```python
        ┌───────────────┐
-  q_0: ┤1              ├
+  q_0: ┤0              ├
        │  {XX+YY}(θ,β) │
-  q_1: ┤0              ├
+  q_1: ┤1              ├
        └───────────────┘
   ```
-</Admonition>
+
+  **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
-  RZ_1(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_1(\beta) =
-    \begin{pmatrix}
-        1 & 0                     & 0                    & 0  \\
-        0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{i\beta} & 0  \\
-        0 & -i\sin\left(\th\right)e^{-i\beta} & \cos\left(\th\right)            & 0  \\
-        0 & 0                     & 0                    & 1
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
+RZ_0(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_0(\beta) =
+\begin{pmatrix}
+1 & 0                     & 0                    & 0  \\
+0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{-i\beta} & 0  \\
+0 & -i\sin\left(\th\right)e^{i\beta} & \cos\left(\th\right)            & 0  \\
+0 & 0                     & 0                    & 1
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
-Create new XX+YY gate.
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in adding the (optional) phase defined by $beta$ on q\_0. Instead, if we apply it on (q\_1, q\_0), the phase is added on q\_1. If $beta$ is set to its default value of $0$, the gate is equivalent in big and little endian.
 
-**Parameters**
+    ```python
+         ┌───────────────┐
+    q_0: ┤1              ├
+         │  {XX+YY}(θ,β) │
+    q_1: ┤0              ├
+         └───────────────┘
+    ```
+  </Admonition>
 
-*   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The rotation angle.
-*   **beta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The phase angle.
-*   **label** (*str | None*) – The label of the gate.
+$$
+\begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
+RZ_1(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_1(\beta) =
+\begin{pmatrix}
+1 & 0                     & 0                    & 0  \\
+0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{i\beta} & 0  \\
+0 & -i\sin\left(\th\right)e^{-i\beta} & \cos\left(\th\right)            & 0  \\
+0 & 0                     & 0                    & 1
+\end{pmatrix}\end{split}\end{aligned}\end{align} 
+$$
 
-## Methods Defined Here
+  Create new XX+YY gate.
 
-<span id="qiskit-circuit-library-xxplusyygate-inverse" />
+  **Parameters**
 
-### inverse
+  *   **theta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The rotation angle.
+  *   **beta** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") *| float*) – The phase angle.
+  *   **label** (*str | None*) – The label of the gate.
 
-<span id="qiskit.circuit.library.XXPlusYYGate.inverse" />
+  ## Methods Defined Here
 
-`XXPlusYYGate.inverse()`
+  <span id="qiskit-circuit-library-xxplusyygate-inverse" />
 
-Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
+  ### inverse
 
-<span id="qiskit-circuit-library-xxplusyygate-power" />
+  <Function id="qiskit.circuit.library.XXPlusYYGate.inverse" name="inverse" signature="XXPlusYYGate.inverse()">
+    Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
+  </Function>
 
-### power
+  <span id="qiskit-circuit-library-xxplusyygate-power" />
 
-<span id="qiskit.circuit.library.XXPlusYYGate.power" />
+  ### power
 
-`XXPlusYYGate.power(exponent)`
+  <Function id="qiskit.circuit.library.XXPlusYYGate.power" name="power" signature="XXPlusYYGate.power(exponent)">
+    Raise gate to a power.
+  </Function>
 
-Raise gate to a power.
+  ## Attributes
 
-## Attributes
+  ### condition\_bits
 
-<span id="qiskit.circuit.library.XXPlusYYGate.condition_bits" />
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition\_bits
+  ### decompositions
 
-Get Clbits in condition.
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.XXPlusYYGate.decompositions" />
+  ### definition
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### duration
 
-<span id="qiskit.circuit.library.XXPlusYYGate.definition" />
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### definition
+  ### label
 
-Return definition in terms of other basic gates.
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.XXPlusYYGate.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.XXPlusYYGate.label" />
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.XXPlusYYGate.name" />
+  ### params
 
-### name
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Return the name.
+  ### unit
 
-<span id="qiskit.circuit.library.XXPlusYYGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.XXPlusYYGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.XXPlusYYGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.XXPlusYYGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.XXPlusYYGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

@@ -8,122 +8,116 @@ python_api_name: qiskit.circuit.library.SGate
 
 # SGate
 
-<span id="qiskit.circuit.library.SGate" />
+<Class id="qiskit.circuit.library.SGate" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py" signature="SGate(label=None)">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-`SGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/standard_gates/s.py "view source code")
+  Single qubit S gate (Z\*\*0.5).
 
-Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+  It induces a $\pi/2$ phase, and is sometimes called the P gate (phase).
 
-Single qubit S gate (Z\*\*0.5).
+  This is a Clifford gate and a square-root of Pauli-Z.
 
-It induces a $\pi/2$ phase, and is sometimes called the P gate (phase).
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`s()`](qiskit.circuit.QuantumCircuit#s "qiskit.circuit.QuantumCircuit.s") method.
 
-This is a Clifford gate and a square-root of Pauli-Z.
-
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`s()`](qiskit.circuit.QuantumCircuit#s "qiskit.circuit.QuantumCircuit.s") method.
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}S = \begin{pmatrix}
-        1 & 0 \\
-        0 & i
-    \end{pmatrix}\end{split}
+1 & 0 \\
+0 & i
+\end{pmatrix}\end{split}
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
 
-```python
-     ┌───┐
-q_0: ┤ S ├
-     └───┘
-```
+  ```python
+       ┌───┐
+  q_0: ┤ S ├
+       └───┘
+  ```
 
-Equivalent to a $\pi/2$ radian rotation about the Z axis.
+  Equivalent to a $\pi/2$ radian rotation about the Z axis.
 
-Create new S gate.
+  Create new S gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-<span id="qiskit-circuit-library-sgate-inverse" />
+  <span id="qiskit-circuit-library-sgate-inverse" />
 
-### inverse
+  ### inverse
 
-<span id="qiskit.circuit.library.SGate.inverse" />
+  <Function id="qiskit.circuit.library.SGate.inverse" name="inverse" signature="SGate.inverse()">
+    Return inverse of S (SdgGate).
+  </Function>
 
-`SGate.inverse()`
+  <span id="qiskit-circuit-library-sgate-power" />
 
-Return inverse of S (SdgGate).
+  ### power
 
-<span id="qiskit-circuit-library-sgate-power" />
+  <Function id="qiskit.circuit.library.SGate.power" name="power" signature="SGate.power(exponent)">
+    Raise gate to a power.
+  </Function>
 
-### power
+  ## Attributes
 
-<span id="qiskit.circuit.library.SGate.power" />
+  ### condition\_bits
 
-`SGate.power(exponent)`
+  <Attribute id="qiskit.circuit.library.SGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-Raise gate to a power.
+  ### decompositions
 
-## Attributes
+  <Attribute id="qiskit.circuit.library.SGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SGate.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.SGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.library.SGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.SGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.SGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.library.SGate.definition" />
+  ### name
 
-### definition
+  <Attribute id="qiskit.circuit.library.SGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.SGate.duration" />
+  <Attribute id="qiskit.circuit.library.SGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### duration
+  ### num\_qubits
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.SGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.SGate.label" />
+  ### params
 
-### label
+  <Attribute id="qiskit.circuit.library.SGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-Return instruction label
+  ### unit
 
-<span id="qiskit.circuit.library.SGate.name" />
-
-### name
-
-Return the name.
-
-<span id="qiskit.circuit.library.SGate.num_clbits" />
-
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.SGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.SGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.SGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.SGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

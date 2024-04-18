@@ -8,1928 +8,1710 @@ python_api_name: qiskit.circuit.library.HiddenLinearFunction
 
 # HiddenLinearFunction
 
-<span id="qiskit.circuit.library.HiddenLinearFunction" />
+<Class id="qiskit.circuit.library.HiddenLinearFunction" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/hidden_linear_function.py" signature="HiddenLinearFunction(adjacency_matrix)">
+  Circuit to solve the hidden linear function problem.
 
-`HiddenLinearFunction(adjacency_matrix)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/hidden_linear_function.py "view source code")
+  The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
 
-Circuit to solve the hidden linear function problem.
+  The hidden linear function problem is as follows:
 
-The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
-
-The hidden linear function problem is as follows:
-
-Consider the quadratic form
+  Consider the quadratic form
 
 $$
 q(x) = \sum_{i,j=1}^{n}{x_i x_j} ~(\mathrm{mod}~ 4)
 $$
 
-and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
+  and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
 
 $$
 2 \sum_{i=1}^{n}{z_i x_i} ~(\mathrm{mod}~ 4)  \forall  x \in \mathrm{Ker}(A)
 $$
 
-and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
+  and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
 
-In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
+  In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
 
-**Reference Circuit:**
+  **Reference Circuit:**
 
->
+  >
 
-**Reference:**
+  **Reference:**
 
-\[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
+  \[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
 
-Create new HLF circuit.
+  Create new HLF circuit.
 
-**Parameters**
+  **Parameters**
 
-**adjacency\_matrix** (`Union`\[`List`\[`List`\[`int`]], `ndarray`]) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
+  **adjacency\_matrix** (`Union`\[`List`\[`List`\[`int`]], `ndarray`]) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
 
-## Attributes
+  ## Attributes
 
-### clbits
+  ### clbits
 
-Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-### data
+  ### data
 
-Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.data" name="data">
+    Return the circuit data (instructions and context).
 
-**Returns**
+    **Returns**
 
-a list-like object containing the tuples for the circuit’s data.
+    a list-like object containing the tuples for the circuit’s data.
 
-Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
+    Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
-**Return type**
+    **Return type**
 
-QuantumCircuitData
+    QuantumCircuitData
+  </Attribute>
 
-### extension\_lib
+  ### extension\_lib
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.extension_lib" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.extension_lib" signature="= 'include \&#x22;qelib1.inc\&#x22;;'" />
 
-`= 'include "qelib1.inc";'`
+  ### header
 
-### header
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.header" signature="= 'OPENQASM 2.0;'" />
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.header" />
+  ### instances
 
-`= 'OPENQASM 2.0;'`
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.instances" signature="= 8" />
 
-### instances
+  ### n\_qubits
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.instances" />
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.n_qubits" name="n_qubits">
+    Deprecated, use `num_qubits` instead. Return number of qubits.
+  </Attribute>
 
-`= 8`
+  ### num\_clbits
 
-### n\_qubits
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-Deprecated, use `num_qubits` instead. Return number of qubits.
+  ### num\_parameters
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_parameters" name="num_parameters">
+    Convenience function to get the number of parameter objects in the circuit.
+  </Attribute>
 
-Return number of classical bits.
+  ### num\_qubits
 
-### num\_parameters
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-Convenience function to get the number of parameter objects in the circuit.
+  ### parameters
 
-### num\_qubits
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.parameters" name="parameters">
+    Convenience function to get the parameters defined in the parameter table.
+  </Attribute>
 
-Return number of qubits.
+  ### prefix
 
-### parameters
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.prefix" signature="= 'circuit'" />
 
-Convenience function to get the parameters defined in the parameter table.
+  ### qubits
 
-### prefix
+  <Attribute id="qiskit.circuit.library.HiddenLinearFunction.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.prefix" />
+  ## Methods
 
-`= 'circuit'`
+  ### AND
 
-### qubits
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.AND" name="AND" signature="HiddenLinearFunction.AND(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='no-ancilla')">
+    Build a collective conjunction (AND) circuit in place using mct.
 
-Returns a list of quantum bits in the order that the registers were added.
+    **Parameters**
 
-## Methods
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the conjunction on.
+    *   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
+    *   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the conjunction result.
+    *   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
+    *   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
+    *   **mct\_mode** (*str*) – The mct building mode.
+  </Function>
 
-### AND
+  ### OR
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.AND" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.OR" name="OR" signature="HiddenLinearFunction.OR(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='basic')">
+    Build a collective disjunction (OR) circuit in place using mct.
 
-`HiddenLinearFunction.AND(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='no-ancilla')`
+    **Parameters**
 
-Build a collective conjunction (AND) circuit in place using mct.
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the disjunction on.
+    *   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
+    *   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
+    *   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the disjunction result.
+    *   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
+    *   **mct\_mode** (*str*) – The mct building mode.
+  </Function>
 
-**Parameters**
+  ### \_\_getitem\_\_
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the conjunction on.
-*   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
-*   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the conjunction result.
-*   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
-*   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
-*   **mct\_mode** (*str*) – The mct building mode.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.__getitem__" name="__getitem__" signature="HiddenLinearFunction.__getitem__(item)">
+    Return indexed operation.
+  </Function>
 
-### OR
+  ### \_\_len\_\_
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.OR" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.__len__" name="__len__" signature="HiddenLinearFunction.__len__()">
+    Return number of operations in circuit.
+  </Function>
 
-`HiddenLinearFunction.OR(qr_variables, qb_target, qr_ancillae, flags=None, mct_mode='basic')`
+  ### add\_register
 
-Build a collective disjunction (OR) circuit in place using mct.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.add_register" name="add_register" signature="HiddenLinearFunction.add_register(*regs)">
+    Add registers.
+  </Function>
 
-**Parameters**
+  ### append
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to build the disjunction on.
-*   **qr\_variables** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The QuantumRegister holding the variable qubits.
-*   **flags** (*list\[int]*) – A list of +1/-1/0 to mark negations or omissions of qubits.
-*   **qb\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit to hold the disjunction result.
-*   **qr\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The ancillary QuantumRegister for building the mct.
-*   **mct\_mode** (*str*) – The mct building mode.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.append" name="append" signature="HiddenLinearFunction.append(instruction, qargs=None, cargs=None)">
+    Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
 
-### \_\_getitem\_\_
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.__getitem__" />
+    *   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
+    *   **qargs** (*list(argument)*) – qubits to attach instruction to
+    *   **cargs** (*list(argument)*) – clbits to attach instruction to
 
-`HiddenLinearFunction.__getitem__(item)`
+    **Returns**
 
-Return indexed operation.
+    a handle to the instruction that was just added
 
-### \_\_len\_\_
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.__len__" />
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-`HiddenLinearFunction.__len__()`
+  ### assign\_parameters
 
-Return number of operations in circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.assign_parameters" name="assign_parameters" signature="HiddenLinearFunction.assign_parameters(param_dict, inplace=False)">
+    Assign parameters to new parameters or values.
 
-### add\_register
+    The keys of the parameter dictionary must be Parameter instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects. The values can be assigned to the current circuit object or to a copy of it.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.add_register" />
+    **Parameters**
 
-`HiddenLinearFunction.add_register(*regs)`
+    *   **param\_dict** (*dict*) – A dictionary specifying the mapping from `current_parameter` to `new_parameter`, where `new_parameter` can be a new parameter object or a numeric value.
+    *   **inplace** (*bool*) – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
 
-Add registers.
+    **Raises**
 
-### append
+    **CircuitError** – If param\_dict contains parameters not present in the circuit
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.append" />
+    **Returns**
 
-`HiddenLinearFunction.append(instruction, qargs=None, cargs=None)`
+    **A copy of the circuit with bound parameters, if**
 
-Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
+    `inplace` is True, otherwise None.
 
-**Parameters**
+    **Return type**
 
-*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
-*   **qargs** (*list(argument)*) – qubits to attach instruction to
-*   **cargs** (*list(argument)*) – clbits to attach instruction to
+    optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
 
-**Returns**
-
-a handle to the instruction that was just added
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### assign\_parameters
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.assign_parameters" />
-
-`HiddenLinearFunction.assign_parameters(param_dict, inplace=False)`
-
-Assign parameters to new parameters or values.
-
-The keys of the parameter dictionary must be Parameter instances in the current circuit. The values of the dictionary can either be numeric values or new parameter objects. The values can be assigned to the current circuit object or to a copy of it.
-
-**Parameters**
-
-*   **param\_dict** (*dict*) – A dictionary specifying the mapping from `current_parameter` to `new_parameter`, where `new_parameter` can be a new parameter object or a numeric value.
-*   **inplace** (*bool*) – If False, a copy of the circuit with the bound parameters is returned. If True the circuit instance itself is modified.
-
-**Raises**
-
-**CircuitError** – If param\_dict contains parameters not present in the circuit
-
-**Returns**
-
-**A copy of the circuit with bound parameters, if**
-
-`inplace` is True, otherwise None.
-
-**Return type**
-
-optional([QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"))
-
-**Examples**
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> circuit = QuantumCircuit(2)
->>> params = [Parameter('A'), Parameter('B'), Parameter('C')]
->>> circuit.ry(params[0], 0)
->>> circuit.crx(params[1], 0, 1)
->>> circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(A) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(B) ├
-                 └───────┘
->>> circuit.assign_parameters({params[0]: params[2]}, inplace=True)
->>> circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(C) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(B) ├
-                 └───────┘
->>> bound_circuit = circuit.assign_parameters({params[1]: 1, params[2]: 2})
->>> bound_circuit.draw()
-        ┌───────┐
-q_0: |0>┤ Ry(2) ├────■────
-        └───────┘┌───┴───┐
-q_1: |0>─────────┤ Rx(1) ├
-                 └───────┘
->>> bound_circuit.parameters  # this one has no free parameters anymore
-set()
->>> circuit.parameters  # the original one is still parameterized
-{Parameter(A), Parameter(C)}
-```
-
-### barrier
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.barrier" />
-
-`HiddenLinearFunction.barrier(*qargs)`
-
-Apply `Barrier`. If qargs is None, applies to all.
-
-### bind\_parameters
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.bind_parameters" />
-
-`HiddenLinearFunction.bind_parameters(value_dict)`
-
-Assign numeric parameters to values yielding a new circuit.
-
-To assign new Parameter objects or bind the values in-place, without yielding a new circuit, use the assign\_parameters method.
-
-**Parameters**
-
-**value\_dict** (*dict*) – \{parameter: value, …}
-
-**Raises**
-
-*   **CircuitError** – If value\_dict contains parameters not present in the circuit
-*   **TypeError** – If value\_dict contains a ParameterExpression in the values.
-
-**Returns**
-
-copy of self with assignment substitution.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### cast
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cast" />
-
-`static HiddenLinearFunction.cast(value, _type)`
-
-Best effort to cast value to type. Otherwise, returns the value.
-
-### cbit\_argument\_conversion
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cbit_argument_conversion" />
-
-`HiddenLinearFunction.cbit_argument_conversion(clbit_representation)`
-
-Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
-
-**Parameters**
-
-**clbit\_representation** (*Object*) – representation to expand
-
-**Returns**
-
-Where each tuple is a classical bit.
-
-**Return type**
-
-List(tuple)
-
-### ccx
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.ccx" />
-
-`HiddenLinearFunction.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
-
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
-
-### ch
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.ch" />
-
-`HiddenLinearFunction.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
-
-### cls\_instances
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cls_instances" />
-
-`classmethod HiddenLinearFunction.cls_instances()`
-
-Return the current number of instances of this class, useful for auto naming.
-
-### cls\_prefix
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cls_prefix" />
-
-`classmethod HiddenLinearFunction.cls_prefix()`
-
-Return the prefix to use for auto naming.
-
-### cnot
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cnot" />
-
-`HiddenLinearFunction.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-
-### combine
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.combine" />
-
-`HiddenLinearFunction.combine(rhs)`
-
-Append rhs to self if self contains compatible registers.
-
-Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
-
-Return self + rhs as a new object.
-
-**Parameters**
-
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
-
-**Returns**
-
-Returns a new QuantumCircuit object
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the rhs circuit is not compatible
-
-### compose
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.compose" />
-
-`HiddenLinearFunction.compose(other, qubits=None, clbits=None, front=False, inplace=False)`
-
-Compose circuit with `other` circuit or instruction, optionally permuting wires.
-
-`other` can be narrower or of equal width to `self`.
-
-**Parameters**
-
-*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
-*   **qubits** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|int]*) – qubits of self to compose onto.
-*   **clbits** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|int]*) – clbits of self to compose onto.
-*   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
-*   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
-
-**Returns**
-
-the composed circuit (returns None if inplace==True).
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **CircuitError** – if composing on the front.
-*   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
-
-**Examples**
-
-```python
->>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
-```
-
-```python
-            ┌───┐                   ┌─────┐                ┌───┐
-lqr_1_0: ───┤ H ├───    rqr_0: ──■──┤ Tdg ├    lqr_1_0: ───┤ H ├───────────────
-            ├───┤              ┌─┴─┐└─────┘                ├───┤
-lqr_1_1: ───┤ X ├───    rqr_1: ┤ X ├───────    lqr_1_1: ───┤ X ├───────────────
-         ┌──┴───┴──┐           └───┘                    ┌──┴───┴──┐┌───┐
-lqr_1_2: ┤ U1(0.1) ├  +                     =  lqr_1_2: ┤ U1(0.1) ├┤ X ├───────
-         └─────────┘                                    └─────────┘└─┬─┘┌─────┐
-lqr_2_0: ─────■─────                           lqr_2_0: ─────■───────■──┤ Tdg ├
-            ┌─┴─┐                                          ┌─┴─┐        └─────┘
-lqr_2_1: ───┤ X ├───                           lqr_2_1: ───┤ X ├───────────────
-            └───┘                                          └───┘
-lcr_0: 0 ═══════════                           lcr_0: 0 ═══════════════════════
-
-lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
-```
-
-### copy
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.copy" />
-
-`HiddenLinearFunction.copy(name=None)`
-
-Copy the circuit.
-
-**Parameters**
-
-**name** (*str*) – name to be given to the copied circuit. If None, then the name stays the same
-
-**Returns**
-
-a deepcopy of the current circuit, with the specified name
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### count\_ops
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.count_ops" />
-
-`HiddenLinearFunction.count_ops()`
-
-Count each operation kind in the circuit.
-
-**Returns**
-
-a breakdown of how many operations of each kind, sorted by amount.
-
-**Return type**
-
-OrderedDict
-
-### crx
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.crx" />
-
-`HiddenLinearFunction.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
-
-### cry
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cry" />
-
-`HiddenLinearFunction.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
-
-### crz
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.crz" />
-
-`HiddenLinearFunction.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
-
-### cswap
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cswap" />
-
-`HiddenLinearFunction.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)`
-
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
-
-### cu1
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cu1" />
-
-`HiddenLinearFunction.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
-
-### cu3
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cu3" />
-
-`HiddenLinearFunction.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
-
-### cx
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cx" />
-
-`HiddenLinearFunction.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
-
-### cy
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cy" />
-
-`HiddenLinearFunction.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
-
-### cz
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.cz" />
-
-`HiddenLinearFunction.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)`
-
-Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
-
-### dcx
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.dcx" />
-
-`HiddenLinearFunction.dcx(qubit1, qubit2)`
-
-Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
-
-### decompose
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.decompose" />
-
-`HiddenLinearFunction.decompose()`
-
-Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
-
-**Returns**
-
-a circuit one level decomposed
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### depth
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.depth" />
-
-`HiddenLinearFunction.depth()`
-
-Return circuit depth (i.e., length of critical path). This does not include compiler or simulator directives such as ‘barrier’ or ‘snapshot’.
-
-**Returns**
-
-Depth of circuit.
-
-**Return type**
-
-int
-
-**Notes**
-
-The circuit depth and the DAG depth need not be the same.
-
-### diag\_gate
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.diag_gate" />
-
-`HiddenLinearFunction.diag_gate(diag, qubit)`
-
-Deprecated version of QuantumCircuit.diagonal.
-
-### diagonal
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.diagonal" />
-
-`HiddenLinearFunction.diagonal(diag, qubit)`
-
-Attach a diagonal gate to a circuit.
-
-The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic Circuits” by Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf)).
-
-**Parameters**
-
-*   **diag** (*list*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
-
-**Returns**
-
-the diagonal gate which was attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
-
-### draw
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.draw" />
-
-`HiddenLinearFunction.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)`
-
-Draw the quantum circuit.
-
-**text**: ASCII art TextDrawing that can be printed in the console.
-
-**latex**: high-quality images compiled via LaTeX.
-
-**latex\_source**: raw uncompiled LaTeX output.
-
-**matplotlib**: images with color rendered purely in Python.
-
-**Parameters**
-
-*   **output** (*str*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `latex`, `latex_source`, or `mpl`. By default the ‘text’ drawer is used unless a user config file has an alternative backend set as the default. If the output kwarg is set, that backend will always be used over the default in a user config file.
-*   **scale** (*float*) – scale of image to draw (shrink if \< 1)
-*   **filename** (*str*) – file path to save image to
-*   **style** (*dict or str*) – dictionary of style or file name of style file. This option is only used by the `mpl` output type. If a str is passed in that is the path to a json file which contains a dictionary of style, then that will be opened, parsed, and used as the input dict. See: [Style Dict Doc](qiskit.circuit.library.ZZFeatureMap#draw) for more information on the contents.
-*   **interactive** (*bool*) – when set true show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored.
-*   **line\_length** (*int*) – Deprecated; see fold which supersedes this option. Sets the length of the lines generated by text output type. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if you’re running in jupyter, the default line length is set to 80 characters. If you don’t want pagination at all, set `line_length=-1`.
-*   **reverse\_bits** (*bool*) – When set to True, reverse the bit order inside registers for the output visualization.
-*   **plot\_barriers** (*bool*) – Enable/disable drawing barriers in the output circuit. Defaults to True.
-*   **justify** (*string*) – Options are `left`, `right` or `none`. If anything else is supplied it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
-*   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the `text` output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
-*   **idle\_wires** (*bool*) – Include idle wires (wires with no circuit elements) in output visualization. Default is True.
-*   **with\_layout** (*bool*) – Include layout information, with labels on the physical layout. Default is True.
-*   **fold** (*int*) – Sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil. get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl` is the number of (visual) layers before folding. Default is 25.
-*   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified, there will be no returned Figure since it is redundant. This is only used when the `output` kwarg is set to use the `mpl` backend. It will be silently ignored with all other outputs.
-*   **initial\_state** (*bool*) – Optional. Adds `|0>` in the beginning of the wire. Only used by the `text`, `latex` and `latex_source` outputs. Default: `False`.
-*   **cregbundle** (*bool*) – Optional. If set True bundle classical registers. Only used by the `text` output. Default: `False`.
-
-**Returns**
-
-`PIL.Image` or `matplotlib.figure` or `str` or `TextDrawing`:
-
-*   **PIL.Image (output=’latex’)**
-
-    an in-memory representation of the image of the circuit diagram.
-
-*   **matplotlib.figure.Figure (output=’mpl’)**
-
-    a matplotlib figure object for the circuit diagram.
-
-*   **str (output=’latex\_source’)**
-
-    The LaTeX source code for visualizing the circuit diagram.
-
-*   **TextDrawing (output=’text’)**
-
-    A drawing that can be printed as ASCII art.
-
-**Raises**
-
-*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
-*   **ImportError** – when the output methods require non-installed libraries
-
-**Style Dict Details**
-
-The style dict kwarg contains numerous options that define the style of the output circuit visualization. The style dict is only used by the `mpl` output. The options available in the style dict are defined below:
-
-**Parameters**
-
-*   **textcolor** (*str*) – The color code to use for text. Defaults to ‘#000000’
-
-*   **subtextcolor** (*str*) – The color code to use for subtext. Defaults to ‘#000000’
-
-*   **linecolor** (*str*) – The color code to use for lines. Defaults to ‘#000000’
-
-*   **creglinecolor** (*str*) – The color code to use for classical register lines. Defaults to ‘#778899’
-
-*   **gatetextcolor** (*str*) – The color code to use for gate text. Defaults to ‘#000000’
-
-*   **gatefacecolor** (*str*) – The color code to use for gates. Defaults to ‘#ffffff’
-
-*   **barrierfacecolor** (*str*) – The color code to use for barriers. Defaults to ‘#bdbdbd’
-
-*   **backgroundcolor** (*str*) – The color code to use for the background. Defaults to ‘#ffffff’
-
-*   **fontsize** (*int*) – The font size to use for text. Defaults to 13.
-
-*   **subfontsize** (*int*) – The font size to use for subtext. Defaults to 8.
-
-*   **displaytext** (*dict*) –
-
-    A dictionary of the text to use for each element type in the output visualization. The default values are:
+    **Examples**
 
     ```python
-    {
-        'id': 'id',
-        'u0': 'U_0',
-        'u1': 'U_1',
-        'u2': 'U_2',
-        'u3': 'U_3',
-        'x': 'X',
-        'y': 'Y',
-        'z': 'Z',
-        'h': 'H',
-        's': 'S',
-        'sdg': 'S^\dagger',
-        't': 'T',
-        'tdg': 'T^\dagger',
-        'rx': 'R_x',
-        'ry': 'R_y',
-        'rz': 'R_z',
-        'reset': '\left|0\right\rangle'
-    }
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> circuit = QuantumCircuit(2)
+    >>> params = [Parameter('A'), Parameter('B'), Parameter('C')]
+    >>> circuit.ry(params[0], 0)
+    >>> circuit.crx(params[1], 0, 1)
+    >>> circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(A) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(B) ├
+                     └───────┘
+    >>> circuit.assign_parameters({params[0]: params[2]}, inplace=True)
+    >>> circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(C) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(B) ├
+                     └───────┘
+    >>> bound_circuit = circuit.assign_parameters({params[1]: 1, params[2]: 2})
+    >>> bound_circuit.draw()
+            ┌───────┐
+    q_0: |0>┤ Ry(2) ├────■────
+            └───────┘┌───┴───┐
+    q_1: |0>─────────┤ Rx(1) ├
+                     └───────┘
+    >>> bound_circuit.parameters  # this one has no free parameters anymore
+    set()
+    >>> circuit.parameters  # the original one is still parameterized
+    {Parameter(A), Parameter(C)}
     ```
+  </Function>
 
-    You must specify all the necessary values if using this. There is no provision for passing an incomplete dict in.
+  ### barrier
 
-*   **displaycolor** (*dict*) –
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.barrier" name="barrier" signature="HiddenLinearFunction.barrier(*qargs)">
+    Apply `Barrier`. If qargs is None, applies to all.
+  </Function>
 
-    **The color codes to use for each circuit**
+  ### bind\_parameters
 
-    element. The default values are:
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.bind_parameters" name="bind_parameters" signature="HiddenLinearFunction.bind_parameters(value_dict)">
+    Assign numeric parameters to values yielding a new circuit.
+
+    To assign new Parameter objects or bind the values in-place, without yielding a new circuit, use the assign\_parameters method.
+
+    **Parameters**
+
+    **value\_dict** (*dict*) – \{parameter: value, …}
+
+    **Raises**
+
+    *   **CircuitError** – If value\_dict contains parameters not present in the circuit
+    *   **TypeError** – If value\_dict contains a ParameterExpression in the values.
+
+    **Returns**
+
+    copy of self with assignment substitution.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+
+  ### cast
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cast" name="cast" signature="static HiddenLinearFunction.cast(value, _type)">
+    Best effort to cast value to type. Otherwise, returns the value.
+  </Function>
+
+  ### cbit\_argument\_conversion
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cbit_argument_conversion" name="cbit_argument_conversion" signature="HiddenLinearFunction.cbit_argument_conversion(clbit_representation)">
+    Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.
+
+    **Parameters**
+
+    **clbit\_representation** (*Object*) – representation to expand
+
+    **Returns**
+
+    Where each tuple is a classical bit.
+
+    **Return type**
+
+    List(tuple)
+  </Function>
+
+  ### ccx
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ccx" name="ccx" signature="HiddenLinearFunction.ccx(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)">
+    Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  </Function>
+
+  ### ch
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ch" name="ch" signature="HiddenLinearFunction.ch(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
+  </Function>
+
+  ### cls\_instances
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cls_instances" name="cls_instances" signature="classmethod HiddenLinearFunction.cls_instances()">
+    Return the current number of instances of this class, useful for auto naming.
+  </Function>
+
+  ### cls\_prefix
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cls_prefix" name="cls_prefix" signature="classmethod HiddenLinearFunction.cls_prefix()">
+    Return the prefix to use for auto naming.
+  </Function>
+
+  ### cnot
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cnot" name="cnot" signature="HiddenLinearFunction.cnot(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  </Function>
+
+  ### combine
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.combine" name="combine" signature="HiddenLinearFunction.combine(rhs)">
+    Append rhs to self if self contains compatible registers.
+
+    Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
+
+    Return self + rhs as a new object.
+
+    **Parameters**
+
+    **rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+
+    **Returns**
+
+    Returns a new QuantumCircuit object
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    **QiskitError** – if the rhs circuit is not compatible
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.compose" name="compose" signature="HiddenLinearFunction.compose(other, qubits=None, clbits=None, front=False, inplace=False)">
+    Compose circuit with `other` circuit or instruction, optionally permuting wires.
+
+    `other` can be narrower or of equal width to `self`.
+
+    **Parameters**
+
+    *   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
+    *   **qubits** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|int]*) – qubits of self to compose onto.
+    *   **clbits** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|int]*) – clbits of self to compose onto.
+    *   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
+    *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
+
+    **Returns**
+
+    the composed circuit (returns None if inplace==True).
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Raises**
+
+    *   **CircuitError** – if composing on the front.
+    *   **QiskitError** – if `other` is wider or there are duplicate edge mappings.
+
+    **Examples**
 
     ```python
-    {
-        'id': '#F0E442',
-        'u0': '#E7AB3B',
-        'u1': '#E7AB3B',
-        'u2': '#E7AB3B',
-        'u3': '#E7AB3B',
-        'x': '#58C698',
-        'y': '#58C698',
-        'z': '#58C698',
-        'h': '#70B7EB',
-        's': '#E0722D',
-        'sdg': '#E0722D',
-        't': '#E0722D',
-        'tdg': '#E0722D',
-        'rx': '#ffffff',
-        'ry': '#ffffff',
-        'rz': '#ffffff',
-        'reset': '#D188B4',
-        'target': '#70B7EB',
-        'meas': '#D188B4'
-    }
+    >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
     ```
 
-    Also, just like displaytext there is no provision for an incomplete dict passed in.
+    ```python
+                ┌───┐                   ┌─────┐                ┌───┐
+    lqr_1_0: ───┤ H ├───    rqr_0: ──■──┤ Tdg ├    lqr_1_0: ───┤ H ├───────────────
+                ├───┤              ┌─┴─┐└─────┘                ├───┤
+    lqr_1_1: ───┤ X ├───    rqr_1: ┤ X ├───────    lqr_1_1: ───┤ X ├───────────────
+             ┌──┴───┴──┐           └───┘                    ┌──┴───┴──┐┌───┐
+    lqr_1_2: ┤ U1(0.1) ├  +                     =  lqr_1_2: ┤ U1(0.1) ├┤ X ├───────
+             └─────────┘                                    └─────────┘└─┬─┘┌─────┐
+    lqr_2_0: ─────■─────                           lqr_2_0: ─────■───────■──┤ Tdg ├
+                ┌─┴─┐                                          ┌─┴─┐        └─────┘
+    lqr_2_1: ───┤ X ├───                           lqr_2_1: ───┤ X ├───────────────
+                └───┘                                          └───┘
+    lcr_0: 0 ═══════════                           lcr_0: 0 ═══════════════════════
 
-*   **latexdrawerstyle** (*bool*) – When set to True, enable LaTeX mode, which will draw gates like the latex output modes.
+    lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
+    ```
+  </Function>
 
-*   **usepiformat** (*bool*) – When set to True, use radians for output.
+  ### copy
 
-*   **fold** (*int*) – The number of circuit elements to fold the circuit at. Defaults to 20.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.copy" name="copy" signature="HiddenLinearFunction.copy(name=None)">
+    Copy the circuit.
 
-*   **cregbundle** (*bool*) – If set True, bundle classical registers
+    **Parameters**
 
-*   **showindex** (*bool*) – If set True, draw an index.
+    **name** (*str*) – name to be given to the copied circuit. If None, then the name stays the same
 
-*   **compress** (*bool*) – If set True, draw a compressed circuit.
+    **Returns**
 
-*   **figwidth** (*int*) – The maximum width (in inches) for the output figure.
+    a deepcopy of the current circuit, with the specified name
 
-*   **dpi** (*int*) – The DPI to use for the output image. Defaults to 150.
+    **Return type**
 
-*   **margin** (*list*) – A list of margin values to adjust spacing around output image. Takes a list of 4 ints: \[x left, x right, y bottom, y top].
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-*   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
+  ### count\_ops
 
-### extend
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.count_ops" name="count_ops" signature="HiddenLinearFunction.count_ops()">
+    Count each operation kind in the circuit.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.extend" />
+    **Returns**
 
-`HiddenLinearFunction.extend(rhs)`
+    a breakdown of how many operations of each kind, sorted by amount.
 
-Append QuantumCircuit to the right hand side if it contains compatible registers.
+    **Return type**
 
-Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
+    OrderedDict
+  </Function>
 
-Modify and return self.
+  ### crx
 
-**Parameters**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.crx" name="crx" signature="HiddenLinearFunction.crx(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
+  </Function>
 
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+  ### cry
 
-**Returns**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cry" name="cry" signature="HiddenLinearFunction.cry(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
+  </Function>
 
-Returns this QuantumCircuit object (which has been modified)
+  ### crz
 
-**Return type**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.crz" name="crz" signature="HiddenLinearFunction.crz(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### cswap
 
-**Raises**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cswap" name="cswap" signature="HiddenLinearFunction.cswap(control_qubit, target_qubit1, target_qubit2, *, label=None, ctrl_state=None, ctl=None, tgt1=None, tgt2=None)">
+    Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  </Function>
 
-**QiskitError** – if the rhs circuit is not compatible
+  ### cu1
 
-### fredkin
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cu1" name="cu1" signature="HiddenLinearFunction.cu1(theta, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.fredkin" />
+  ### cu3
 
-`HiddenLinearFunction.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cu3" name="cu3" signature="HiddenLinearFunction.cu3(theta, phi, lam, control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
+  </Function>
 
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  ### cx
 
-### from\_qasm\_file
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cx" name="cx" signature="HiddenLinearFunction.cx(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.from_qasm_file" />
+  ### cy
 
-`static HiddenLinearFunction.from_qasm_file(path)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cy" name="cy" signature="HiddenLinearFunction.cy(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
+  </Function>
 
-Take in a QASM file and generate a QuantumCircuit object.
+  ### cz
 
-**Parameters**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.cz" name="cz" signature="HiddenLinearFunction.cz(control_qubit, target_qubit, *, label=None, ctrl_state=None, ctl=None, tgt=None)">
+    Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
+  </Function>
 
-**path** (*str*) – Path to the file for a QASM program
+  ### dcx
 
-**Returns**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.dcx" name="dcx" signature="HiddenLinearFunction.dcx(qubit1, qubit2)">
+    Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
+  </Function>
 
-The QuantumCircuit object for the input QASM
+  ### decompose
 
-**Return type**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.decompose" name="decompose" signature="HiddenLinearFunction.decompose()">
+    Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Returns**
 
-### from\_qasm\_str
+    a circuit one level decomposed
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.from_qasm_str" />
+    **Return type**
 
-`static HiddenLinearFunction.from_qasm_str(qasm_str)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-Take in a QASM string and generate a QuantumCircuit object.
+  ### depth
 
-**Parameters**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.depth" name="depth" signature="HiddenLinearFunction.depth()">
+    Return circuit depth (i.e., length of critical path). This does not include compiler or simulator directives such as ‘barrier’ or ‘snapshot’.
 
-**qasm\_str** (*str*) – A QASM program string
+    **Returns**
 
-**Returns**
+    Depth of circuit.
 
-The QuantumCircuit object for the input QASM
+    **Return type**
 
-**Return type**
+    int
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Notes**
 
-### h
+    The circuit depth and the DAG depth need not be the same.
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.h" />
+  ### diag\_gate
 
-`HiddenLinearFunction.h(qubit, *, q=None)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.diag_gate" name="diag_gate" signature="HiddenLinearFunction.diag_gate(diag, qubit)">
+    Deprecated version of QuantumCircuit.diagonal.
+  </Function>
 
-Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+  ### diagonal
 
-### hamiltonian
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.diagonal" name="diagonal" signature="HiddenLinearFunction.diagonal(diag, qubit)">
+    Attach a diagonal gate to a circuit.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.hamiltonian" />
+    The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic Circuits” by Shende et al. ([https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf)).
 
-`HiddenLinearFunction.hamiltonian(operator, time, qubits, label=None)`
+    **Parameters**
 
-Apply hamiltonian evolution to to qubits.
+    *   **diag** (*list*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
 
-### has\_register
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.has_register" />
+    the diagonal gate which was attached to the circuit.
 
-`HiddenLinearFunction.has_register(register)`
+    **Return type**
 
-Test if this circuit has the register r.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-**register** (*Register*) – a quantum or classical register.
+    **QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
+  </Function>
 
-**Returns**
+  ### draw
 
-True if the register is contained in this circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.draw" name="draw" signature="HiddenLinearFunction.draw(output=None, scale=0.7, filename=None, style=None, interactive=False, line_length=None, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=False)">
+    Draw the quantum circuit.
 
-**Return type**
+    **text**: ASCII art TextDrawing that can be printed in the console.
 
-bool
+    **latex**: high-quality images compiled via LaTeX.
 
-### i
+    **latex\_source**: raw uncompiled LaTeX output.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.i" />
+    **matplotlib**: images with color rendered purely in Python.
 
-`HiddenLinearFunction.i(qubit, *, q=None)`
+    **Parameters**
 
-Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+    *   **output** (*str*) – Select the output method to use for drawing the circuit. Valid choices are `text`, `latex`, `latex_source`, or `mpl`. By default the ‘text’ drawer is used unless a user config file has an alternative backend set as the default. If the output kwarg is set, that backend will always be used over the default in a user config file.
+    *   **scale** (*float*) – scale of image to draw (shrink if \< 1)
+    *   **filename** (*str*) – file path to save image to
+    *   **style** (*dict or str*) – dictionary of style or file name of style file. This option is only used by the `mpl` output type. If a str is passed in that is the path to a json file which contains a dictionary of style, then that will be opened, parsed, and used as the input dict. See: [Style Dict Doc](qiskit.circuit.library.ZZFeatureMap#draw) for more information on the contents.
+    *   **interactive** (*bool*) – when set true show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored.
+    *   **line\_length** (*int*) – Deprecated; see fold which supersedes this option. Sets the length of the lines generated by text output type. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if you’re running in jupyter, the default line length is set to 80 characters. If you don’t want pagination at all, set `line_length=-1`.
+    *   **reverse\_bits** (*bool*) – When set to True, reverse the bit order inside registers for the output visualization.
+    *   **plot\_barriers** (*bool*) – Enable/disable drawing barriers in the output circuit. Defaults to True.
+    *   **justify** (*string*) – Options are `left`, `right` or `none`. If anything else is supplied it defaults to left justified. It refers to where gates should be placed in the output circuit if there is an option. `none` results in each gate being placed in its own column.
+    *   **vertical\_compression** (*string*) – `high`, `medium` or `low`. It merges the lines generated by the `text` output so the drawing will take less vertical room. Default is `medium`. Only used by the `text` output, will be silently ignored otherwise.
+    *   **idle\_wires** (*bool*) – Include idle wires (wires with no circuit elements) in output visualization. Default is True.
+    *   **with\_layout** (*bool*) – Include layout information, with labels on the physical layout. Default is True.
+    *   **fold** (*int*) – Sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil. get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In `mpl` is the number of (visual) layers before folding. Default is 25.
+    *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified, there will be no returned Figure since it is redundant. This is only used when the `output` kwarg is set to use the `mpl` backend. It will be silently ignored with all other outputs.
+    *   **initial\_state** (*bool*) – Optional. Adds `|0>` in the beginning of the wire. Only used by the `text`, `latex` and `latex_source` outputs. Default: `False`.
+    *   **cregbundle** (*bool*) – Optional. If set True bundle classical registers. Only used by the `text` output. Default: `False`.
 
-### id
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.id" />
+    `PIL.Image` or `matplotlib.figure` or `str` or `TextDrawing`:
 
-`HiddenLinearFunction.id(qubit, *, q=None)`
+    *   **PIL.Image (output=’latex’)**
 
-Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+        an in-memory representation of the image of the circuit diagram.
 
-### iden
+    *   **matplotlib.figure.Figure (output=’mpl’)**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.iden" />
+        a matplotlib figure object for the circuit diagram.
 
-`HiddenLinearFunction.iden(qubit, *, q=None)`
+    *   **str (output=’latex\_source’)**
 
-Deprecated identity gate.
+        The LaTeX source code for visualizing the circuit diagram.
 
-### initialize
+    *   **TextDrawing (output=’text’)**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.initialize" />
+        A drawing that can be printed as ASCII art.
 
-`HiddenLinearFunction.initialize(params, qubits)`
+    **Raises**
 
-Apply initialize to circuit.
+    *   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
+    *   **ImportError** – when the output methods require non-installed libraries
 
-### inverse
+    **Style Dict Details**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.inverse" />
+    The style dict kwarg contains numerous options that define the style of the output circuit visualization. The style dict is only used by the `mpl` output. The options available in the style dict are defined below:
 
-`HiddenLinearFunction.inverse()`
+    **Parameters**
 
-Invert this circuit.
+    *   **textcolor** (*str*) – The color code to use for text. Defaults to ‘#000000’
 
-This is done by recursively inverting all gates.
+    *   **subtextcolor** (*str*) – The color code to use for subtext. Defaults to ‘#000000’
 
-**Returns**
+    *   **linecolor** (*str*) – The color code to use for lines. Defaults to ‘#000000’
 
-the inverted circuit
+    *   **creglinecolor** (*str*) – The color code to use for classical register lines. Defaults to ‘#778899’
 
-**Return type**
+    *   **gatetextcolor** (*str*) – The color code to use for gate text. Defaults to ‘#000000’
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **gatefacecolor** (*str*) – The color code to use for gates. Defaults to ‘#ffffff’
 
-**Raises**
+    *   **barrierfacecolor** (*str*) – The color code to use for barriers. Defaults to ‘#bdbdbd’
 
-**CircuitError** – if the circuit cannot be inverted.
+    *   **backgroundcolor** (*str*) – The color code to use for the background. Defaults to ‘#ffffff’
 
-### iso
+    *   **fontsize** (*int*) – The font size to use for text. Defaults to 13.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.iso" />
+    *   **subfontsize** (*int*) – The font size to use for subtext. Defaults to 8.
 
-`HiddenLinearFunction.iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
+    *   **displaytext** (*dict*) –
 
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
+        A dictionary of the text to use for each element type in the output visualization. The default values are:
 
-**Parameters**
+        ```python
+        {
+            'id': 'id',
+            'u0': 'U_0',
+            'u1': 'U_1',
+            'u2': 'U_2',
+            'u3': 'U_3',
+            'x': 'X',
+            'y': 'Y',
+            'z': 'Z',
+            'h': 'H',
+            's': 'S',
+            'sdg': 'S^\dagger',
+            't': 'T',
+            'tdg': 'T^\dagger',
+            'rx': 'R_x',
+            'ry': 'R_y',
+            'rz': 'R_z',
+            'reset': '\left|0\right\rangle'
+        }
+        ```
 
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+        You must specify all the necessary values if using this. There is no provision for passing an incomplete dict in.
 
-**Returns**
+    *   **displaycolor** (*dict*) –
 
-the isometry is attached to the quantum circuit.
+        **The color codes to use for each circuit**
 
-**Return type**
+        element. The default values are:
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+        ```python
+        {
+            'id': '#F0E442',
+            'u0': '#E7AB3B',
+            'u1': '#E7AB3B',
+            'u2': '#E7AB3B',
+            'u3': '#E7AB3B',
+            'x': '#58C698',
+            'y': '#58C698',
+            'z': '#58C698',
+            'h': '#70B7EB',
+            's': '#E0722D',
+            'sdg': '#E0722D',
+            't': '#E0722D',
+            'tdg': '#E0722D',
+            'rx': '#ffffff',
+            'ry': '#ffffff',
+            'rz': '#ffffff',
+            'reset': '#D188B4',
+            'target': '#70B7EB',
+            'meas': '#D188B4'
+        }
+        ```
 
-**Raises**
+        Also, just like displaytext there is no provision for an incomplete dict passed in.
 
-**QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+    *   **latexdrawerstyle** (*bool*) – When set to True, enable LaTeX mode, which will draw gates like the latex output modes.
 
-### isometry
+    *   **usepiformat** (*bool*) – When set to True, use radians for output.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.isometry" />
+    *   **fold** (*int*) – The number of circuit elements to fold the circuit at. Defaults to 20.
 
-`HiddenLinearFunction.isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
+    *   **cregbundle** (*bool*) – If set True, bundle classical registers
 
-Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
+    *   **showindex** (*bool*) – If set True, draw an index.
 
-**Parameters**
+    *   **compress** (*bool*) – If set True, draw a compressed circuit.
 
-*   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+    *   **figwidth** (*int*) – The maximum width (in inches) for the output figure.
 
-**Returns**
+    *   **dpi** (*int*) – The DPI to use for the output image. Defaults to 150.
 
-the isometry is attached to the quantum circuit.
+    *   **margin** (*list*) – A list of margin values to adjust spacing around output image. Takes a list of 4 ints: \[x left, x right, y bottom, y top].
 
-**Return type**
+    *   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### extend
 
-**Raises**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.extend" name="extend" signature="HiddenLinearFunction.extend(rhs)">
+    Append QuantumCircuit to the right hand side if it contains compatible registers.
 
-**QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+    Two circuits are compatible if they contain the same registers or if they contain different registers with unique names. The returned circuit will contain all unique registers between both circuits.
 
-### iswap
+    Modify and return self.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.iswap" />
+    **Parameters**
 
-`HiddenLinearFunction.iswap(qubit1, qubit2)`
+    **rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
 
-Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+    **Returns**
 
-### mcmt
+    Returns this QuantumCircuit object (which has been modified)
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mcmt" />
+    **Return type**
 
-`HiddenLinearFunction.mcmt(gate, control_qubits, target_qubits, ancilla_qubits=None, mode='no-ancilla', *, single_control_gate_fun=None, q_controls=None, q_ancillae=None, q_targets=None)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-Apply a multi-control, multi-target using a generic gate.
+    **Raises**
 
-This can also be used to implement a generic multi-control gate, as the target could also be of length 1.
+    **QiskitError** – if the rhs circuit is not compatible
+  </Function>
 
-### mcrx
+  ### fredkin
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mcrx" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.fredkin" name="fredkin" signature="HiddenLinearFunction.fredkin(control_qubit, target_qubit1, target_qubit2, *, ctl=None, tgt1=None, tgt2=None)">
+    Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+  </Function>
 
-`HiddenLinearFunction.mcrx(theta, q_controls, q_target, use_basis_gates=False)`
+  ### from\_qasm\_file
 
-Apply Multiple-Controlled X rotation gate
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.from_qasm_file" name="from_qasm_file" signature="static HiddenLinearFunction.from_qasm_file(path)">
+    Take in a QASM file and generate a QuantumCircuit object.
 
-**Parameters**
+    **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
-*   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+    **path** (*str*) – Path to the file for a QASM program
 
-**Raises**
+    **Returns**
 
-**QiskitError** – parameter errors
+    The QuantumCircuit object for the input QASM
 
-### mcry
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mcry" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`HiddenLinearFunction.mcry(theta, q_controls, q_target, q_ancillae, mode='basic', use_basis_gates=False)`
+  ### from\_qasm\_str
 
-Apply Multiple-Controlled Y rotation gate
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.from_qasm_str" name="from_qasm_str" signature="static HiddenLinearFunction.from_qasm_str(qasm_str)">
+    Take in a QASM string and generate a QuantumCircuit object.
 
-**Parameters**
+    **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
-*   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
-*   **mode** (*string*) – The implementation mode to use
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+    **qasm\_str** (*str*) – A QASM program string
 
-**Raises**
+    **Returns**
 
-**QiskitError** – parameter errors
+    The QuantumCircuit object for the input QASM
 
-### mcrz
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mcrz" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`HiddenLinearFunction.mcrz(lam, q_controls, q_target, use_basis_gates=False)`
+  ### h
 
-Apply Multiple-Controlled Z rotation gate
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.h" name="h" signature="HiddenLinearFunction.h(qubit, *, q=None)">
+    Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+  </Function>
 
-**Parameters**
+  ### hamiltonian
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
-*   **lam** (*float*) – angle lambda
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.hamiltonian" name="hamiltonian" signature="HiddenLinearFunction.hamiltonian(operator, time, qubits, label=None)">
+    Apply hamiltonian evolution to to qubits.
+  </Function>
 
-**Raises**
+  ### has\_register
 
-**QiskitError** – parameter errors
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.has_register" name="has_register" signature="HiddenLinearFunction.has_register(register)">
+    Test if this circuit has the register r.
 
-### mct
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mct" />
+    **register** (*Register*) – a quantum or classical register.
 
-`HiddenLinearFunction.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
+    **Returns**
 
-Apply `MCXGate`.
+    True if the register is contained in this circuit.
 
-### mcu1
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mcu1" />
+    bool
+  </Function>
 
-`HiddenLinearFunction.mcu1(lam, control_qubits, target_qubit)`
+  ### i
 
-Apply `MCU1Gate`.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.i" name="i" signature="HiddenLinearFunction.i(qubit, *, q=None)">
+    Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+  </Function>
 
-### mcx
+  ### id
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mcx" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.id" name="id" signature="HiddenLinearFunction.id(qubit, *, q=None)">
+    Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+  </Function>
 
-`HiddenLinearFunction.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
+  ### iden
 
-Apply `MCXGate`.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.iden" name="iden" signature="HiddenLinearFunction.iden(qubit, *, q=None)">
+    Deprecated identity gate.
+  </Function>
 
-The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘no-ancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
+  ### initialize
 
-### measure
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.initialize" name="initialize" signature="HiddenLinearFunction.initialize(params, qubits)">
+    Apply initialize to circuit.
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.measure" />
+  ### inverse
 
-`HiddenLinearFunction.measure(qubit, cbit)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.inverse" name="inverse" signature="HiddenLinearFunction.inverse()">
+    Invert this circuit.
 
-Measure quantum bit into classical bit (tuples).
+    This is done by recursively inverting all gates.
 
-**Parameters**
+    **Returns**
 
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list|tuple*) – quantum register
-*   **cbit** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*|list|tuple*) – classical register
+    the inverted circuit
 
-**Returns**
+    **Return type**
 
-the attached measure instruction.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+    **Raises**
 
-qiskit.Instruction
+    **CircuitError** – if the circuit cannot be inverted.
+  </Function>
 
-**Raises**
+  ### iso
 
-**CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.iso" name="iso" signature="HiddenLinearFunction.iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)">
+    Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
 
-### measure\_active
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.measure_active" />
+    *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
+    *   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+    *   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+    *   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+    *   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
-`HiddenLinearFunction.measure_active(inplace=True)`
+    **Returns**
 
-Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
+    the isometry is attached to the quantum circuit.
 
-Returns a new circuit with measurements if inplace=False.
+    **Return type**
 
-**Parameters**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**inplace** (*bool*) – All measurements inplace or return new circuit.
+    **Raises**
 
-**Returns**
+    **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+  </Function>
 
-Returns circuit with measurements when inplace = False.
+  ### isometry
 
-**Return type**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.isometry" name="isometry" signature="HiddenLinearFunction.isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)">
+    Attach an arbitrary isometry from m to n qubits to a circuit. In particular, this allows to attach arbitrary unitaries on n qubits (m=n) or to prepare any state on n qubits (m=0). The decomposition used here was introduced by Iten et al. in [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911).
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Parameters**
 
-### measure\_all
+    *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
+    *   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+    *   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+    *   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+    *   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.measure_all" />
+    **Returns**
 
-`HiddenLinearFunction.measure_all(inplace=True)`
+    the isometry is attached to the quantum circuit.
 
-Adds measurement to all qubits. Creates a new ClassicalRegister with a size equal to the number of qubits being measured.
+    **Return type**
 
-Returns a new circuit with measurements if inplace=False.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-**inplace** (*bool*) – All measurements inplace or return new circuit.
+    **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
+  </Function>
 
-**Returns**
+  ### iswap
 
-Returns circuit with measurements when inplace = False.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.iswap" name="iswap" signature="HiddenLinearFunction.iswap(qubit1, qubit2)">
+    Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+  </Function>
 
-**Return type**
+  ### mcmt
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mcmt" name="mcmt" signature="HiddenLinearFunction.mcmt(gate, control_qubits, target_qubits, ancilla_qubits=None, mode='no-ancilla', *, single_control_gate_fun=None, q_controls=None, q_ancillae=None, q_targets=None)">
+    Apply a multi-control, multi-target using a generic gate.
 
-### mirror
+    This can also be used to implement a generic multi-control gate, as the target could also be of length 1.
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.mirror" />
+  ### mcrx
 
-`HiddenLinearFunction.mirror()`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mcrx" name="mcrx" signature="HiddenLinearFunction.mcrx(theta, q_controls, q_target, use_basis_gates=False)">
+    Apply Multiple-Controlled X rotation gate
 
-Mirror the circuit by reversing the instructions.
+    **Parameters**
 
-This is done by recursively mirroring all instructions. It does not invert any gate.
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
+    *   **theta** (*float*) – angle theta
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-**Returns**
+    **Raises**
 
-the mirrored circuit
+    **QiskitError** – parameter errors
+  </Function>
 
-**Return type**
+  ### mcry
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mcry" name="mcry" signature="HiddenLinearFunction.mcry(theta, q_controls, q_target, q_ancillae, mode='basic', use_basis_gates=False)">
+    Apply Multiple-Controlled Y rotation gate
 
-### ms
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ms" />
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
+    *   **theta** (*float*) – angle theta
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
+    *   **mode** (*string*) – The implementation mode to use
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-`HiddenLinearFunction.ms(theta, qubits)`
+    **Raises**
 
-Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+    **QiskitError** – parameter errors
+  </Function>
 
-### num\_connected\_components
+  ### mcrz
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_connected_components" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mcrz" name="mcrz" signature="HiddenLinearFunction.mcrz(lam, q_controls, q_target, use_basis_gates=False)">
+    Apply Multiple-Controlled Z rotation gate
 
-`HiddenLinearFunction.num_connected_components(unitary_only=False)`
+    **Parameters**
 
-How many non-entangled subcircuits can the circuit be factored to.
+    *   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
+    *   **lam** (*float*) – angle lambda
+    *   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+    *   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+    *   **use\_basis\_gates** (*bool*) – use u1, u2, u3, cx, id
 
-**Parameters**
+    **Raises**
 
-**unitary\_only** (*bool*) – Compute only unitary part of graph.
+    **QiskitError** – parameter errors
+  </Function>
 
-**Returns**
+  ### mct
 
-Number of connected components in circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mct" name="mct" signature="HiddenLinearFunction.mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')">
+    Apply `MCXGate`.
+  </Function>
 
-**Return type**
+  ### mcu1
 
-int
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mcu1" name="mcu1" signature="HiddenLinearFunction.mcu1(lam, control_qubits, target_qubit)">
+    Apply `MCU1Gate`.
+  </Function>
 
-### num\_nonlocal\_gates
+  ### mcx
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_nonlocal_gates" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mcx" name="mcx" signature="HiddenLinearFunction.mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')">
+    Apply `MCXGate`.
 
-`HiddenLinearFunction.num_nonlocal_gates()`
+    The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘no-ancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
+  </Function>
 
-Return number of non-local gates (i.e. involving 2+ qubits).
+  ### measure
 
-Conditional nonlocal gates are also included.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.measure" name="measure" signature="HiddenLinearFunction.measure(qubit, cbit)">
+    Measure quantum bit into classical bit (tuples).
 
-### num\_tensor\_factors
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_tensor_factors" />
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list|tuple*) – quantum register
+    *   **cbit** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*|list|tuple*) – classical register
 
-`HiddenLinearFunction.num_tensor_factors()`
+    **Returns**
 
-Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+    the attached measure instruction.
 
-**Notes**
+    **Return type**
 
-This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
+    qiskit.Instruction
 
-### num\_unitary\_factors
+    **Raises**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.num_unitary_factors" />
+    **CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
+  </Function>
 
-`HiddenLinearFunction.num_unitary_factors()`
+  ### measure\_active
 
-Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.measure_active" name="measure_active" signature="HiddenLinearFunction.measure_active(inplace=True)">
+    Adds measurement to all non-idle qubits. Creates a new ClassicalRegister with a size equal to the number of non-idle qubits being measured.
 
-### qasm
+    Returns a new circuit with measurements if inplace=False.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.qasm" />
+    **Parameters**
 
-`HiddenLinearFunction.qasm(formatted=False, filename=None)`
+    **inplace** (*bool*) – All measurements inplace or return new circuit.
 
-Return OpenQASM string.
+    **Returns**
 
-**Parameters**
+    Returns circuit with measurements when inplace = False.
 
-*   **formatted** (*bool*) – Return formatted Qasm string.
-*   **filename** (*str*) – Save Qasm to file with name ‘filename’.
+    **Return type**
 
-**Returns**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-If formatted=False.
+  ### measure\_all
 
-**Return type**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.measure_all" name="measure_all" signature="HiddenLinearFunction.measure_all(inplace=True)">
+    Adds measurement to all qubits. Creates a new ClassicalRegister with a size equal to the number of qubits being measured.
 
-str
+    Returns a new circuit with measurements if inplace=False.
 
-**Raises**
+    **Parameters**
 
-**ImportError** – If pygments is not installed and `formatted` is `True`.
+    **inplace** (*bool*) – All measurements inplace or return new circuit.
 
-### qbit\_argument\_conversion
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.qbit_argument_conversion" />
+    Returns circuit with measurements when inplace = False.
 
-`HiddenLinearFunction.qbit_argument_conversion(qubit_representation)`
+    **Return type**
 
-Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-**Parameters**
+  ### mirror
 
-**qubit\_representation** (*Object*) – representation to expand
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.mirror" name="mirror" signature="HiddenLinearFunction.mirror()">
+    Mirror the circuit by reversing the instructions.
 
-**Returns**
+    This is done by recursively mirroring all instructions. It does not invert any gate.
 
-Where each tuple is a qubit.
+    **Returns**
 
-**Return type**
+    the mirrored circuit
 
-List(tuple)
+    **Return type**
 
-### r
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.r" />
+  ### ms
 
-`HiddenLinearFunction.r(theta, phi, qubit, *, q=None)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ms" name="ms" signature="HiddenLinearFunction.ms(theta, qubits)">
+    Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+  </Function>
 
-Apply `RGate`.
+  ### num\_connected\_components
 
-### rcccx
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.num_connected_components" name="num_connected_components" signature="HiddenLinearFunction.num_connected_components(unitary_only=False)">
+    How many non-entangled subcircuits can the circuit be factored to.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.rcccx" />
+    **Parameters**
 
-`HiddenLinearFunction.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`
+    **unitary\_only** (*bool*) – Compute only unitary part of graph.
 
-Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+    **Returns**
 
-### rccx
+    Number of connected components in circuit.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.rccx" />
+    **Return type**
 
-`HiddenLinearFunction.rccx(control_qubit1, control_qubit2, target_qubit)`
+    int
+  </Function>
 
-Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+  ### num\_nonlocal\_gates
 
-### remove\_final\_measurements
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.num_nonlocal_gates" name="num_nonlocal_gates" signature="HiddenLinearFunction.num_nonlocal_gates()">
+    Return number of non-local gates (i.e. involving 2+ qubits).
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.remove_final_measurements" />
+    Conditional nonlocal gates are also included.
+  </Function>
 
-`HiddenLinearFunction.remove_final_measurements(inplace=True)`
+  ### num\_tensor\_factors
 
-Removes final measurement on all qubits if they are present. Deletes the ClassicalRegister that was used to store the values from these measurements if it is idle.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.num_tensor_factors" name="num_tensor_factors" signature="HiddenLinearFunction.num_tensor_factors()">
+    Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
-Returns a new circuit without measurements if inplace=False.
+    **Notes**
 
-**Parameters**
+    This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
+  </Function>
 
-**inplace** (*bool*) – All measurements removed inplace or return new circuit.
+  ### num\_unitary\_factors
 
-**Returns**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.num_unitary_factors" name="num_unitary_factors" signature="HiddenLinearFunction.num_unitary_factors()">
+    Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
+  </Function>
 
-Returns circuit with measurements removed when inplace = False.
+  ### qasm
 
-**Return type**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.qasm" name="qasm" signature="HiddenLinearFunction.qasm(formatted=False, filename=None)">
+    Return OpenQASM string.
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **Parameters**
 
-### reset
+    *   **formatted** (*bool*) – Return formatted Qasm string.
+    *   **filename** (*str*) – Save Qasm to file with name ‘filename’.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.reset" />
+    **Returns**
 
-`HiddenLinearFunction.reset(qubit)`
+    If formatted=False.
 
-Reset q.
+    **Return type**
 
-### rx
+    str
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.rx" />
+    **Raises**
 
-`HiddenLinearFunction.rx(theta, qubit, *, label=None, q=None)`
+    **ImportError** – If pygments is not installed and `formatted` is `True`.
+  </Function>
 
-Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+  ### qbit\_argument\_conversion
 
-### rxx
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.qbit_argument_conversion" name="qbit_argument_conversion" signature="HiddenLinearFunction.qbit_argument_conversion(qubit_representation)">
+    Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.rxx" />
+    **Parameters**
 
-`HiddenLinearFunction.rxx(theta, qubit1, qubit2)`
+    **qubit\_representation** (*Object*) – representation to expand
 
-Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+    **Returns**
 
-### ry
+    Where each tuple is a qubit.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ry" />
+    **Return type**
 
-`HiddenLinearFunction.ry(theta, qubit, *, label=None, q=None)`
+    List(tuple)
+  </Function>
 
-Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+  ### r
 
-### ryy
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.r" name="r" signature="HiddenLinearFunction.r(theta, phi, qubit, *, q=None)">
+    Apply `RGate`.
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ryy" />
+  ### rcccx
 
-`HiddenLinearFunction.ryy(theta, qubit1, qubit2)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.rcccx" name="rcccx" signature="HiddenLinearFunction.rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)">
+    Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+  </Function>
 
-Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+  ### rccx
 
-### rz
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.rccx" name="rccx" signature="HiddenLinearFunction.rccx(control_qubit1, control_qubit2, target_qubit)">
+    Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.rz" />
+  ### remove\_final\_measurements
 
-`HiddenLinearFunction.rz(phi, qubit, *, q=None)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.remove_final_measurements" name="remove_final_measurements" signature="HiddenLinearFunction.remove_final_measurements(inplace=True)">
+    Removes final measurement on all qubits if they are present. Deletes the ClassicalRegister that was used to store the values from these measurements if it is idle.
 
-Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+    Returns a new circuit without measurements if inplace=False.
 
-### rzx
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.rzx" />
+    **inplace** (*bool*) – All measurements removed inplace or return new circuit.
 
-`HiddenLinearFunction.rzx(theta, qubit1, qubit2)`
+    **Returns**
 
-Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+    Returns circuit with measurements removed when inplace = False.
 
-### rzz
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.rzz" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-`HiddenLinearFunction.rzz(theta, qubit1, qubit2)`
+  ### reset
 
-Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.reset" name="reset" signature="HiddenLinearFunction.reset(qubit)">
+    Reset q.
+  </Function>
 
-### s
+  ### rx
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.s" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.rx" name="rx" signature="HiddenLinearFunction.rx(theta, qubit, *, label=None, q=None)">
+    Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+  </Function>
 
-`HiddenLinearFunction.s(qubit, *, q=None)`
+  ### rxx
 
-Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.rxx" name="rxx" signature="HiddenLinearFunction.rxx(theta, qubit1, qubit2)">
+    Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+  </Function>
 
-### sdg
+  ### ry
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.sdg" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ry" name="ry" signature="HiddenLinearFunction.ry(theta, qubit, *, label=None, q=None)">
+    Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+  </Function>
 
-`HiddenLinearFunction.sdg(qubit, *, q=None)`
+  ### ryy
 
-Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ryy" name="ryy" signature="HiddenLinearFunction.ryy(theta, qubit1, qubit2)">
+    Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+  </Function>
 
-### size
+  ### rz
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.size" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.rz" name="rz" signature="HiddenLinearFunction.rz(phi, qubit, *, q=None)">
+    Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+  </Function>
 
-`HiddenLinearFunction.size()`
+  ### rzx
 
-Returns total number of gate operations in circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.rzx" name="rzx" signature="HiddenLinearFunction.rzx(theta, qubit1, qubit2)">
+    Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+  </Function>
 
-**Returns**
+  ### rzz
 
-Total number of gate operations.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.rzz" name="rzz" signature="HiddenLinearFunction.rzz(theta, qubit1, qubit2)">
+    Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+  </Function>
 
-**Return type**
+  ### s
 
-int
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.s" name="s" signature="HiddenLinearFunction.s(qubit, *, q=None)">
+    Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+  </Function>
 
-### snapshot
+  ### sdg
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.snapshot" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.sdg" name="sdg" signature="HiddenLinearFunction.sdg(qubit, *, q=None)">
+    Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+  </Function>
 
-`HiddenLinearFunction.snapshot(label, snapshot_type='statevector', qubits=None, params=None)`
+  ### size
 
-Take a statevector snapshot of the internal simulator representation. Works on all qubits, and prevents reordering (like barrier). :param label: a snapshot label to report the result :type label: str :param snapshot\_type: the type of the snapshot. :type snapshot\_type: str :param qubits: the qubits to apply snapshot to \[Default: None]. :type qubits: list or None :param params: the parameters for snapshot\_type \[Default: None]. :type params: list or None
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.size" name="size" signature="HiddenLinearFunction.size()">
+    Returns total number of gate operations in circuit.
 
-**Returns**
+    **Returns**
 
-with attached command
+    Total number of gate operations.
 
-**Return type**
+    **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    int
+  </Function>
 
-**Raises**
+  ### snapshot
 
-**ExtensionError** – malformed command
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.snapshot" name="snapshot" signature="HiddenLinearFunction.snapshot(label, snapshot_type='statevector', qubits=None, params=None)">
+    Take a statevector snapshot of the internal simulator representation. Works on all qubits, and prevents reordering (like barrier). :param label: a snapshot label to report the result :type label: str :param snapshot\_type: the type of the snapshot. :type snapshot\_type: str :param qubits: the qubits to apply snapshot to \[Default: None]. :type qubits: list or None :param params: the parameters for snapshot\_type \[Default: None]. :type params: list or None
 
-### snapshot\_density\_matrix
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.snapshot_density_matrix" />
+    with attached command
 
-`HiddenLinearFunction.snapshot_density_matrix(label, qubits=None)`
+    **Return type**
 
-Take a density matrix snapshot of simulator state.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Parameters**
+    **Raises**
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **qubits** (*list or None*) – the qubits to apply snapshot to. If None all qubits will be snapshot \[Default: None].
+    **ExtensionError** – malformed command
+  </Function>
 
-**Returns**
+  ### snapshot\_density\_matrix
 
-with attached instruction.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.snapshot_density_matrix" name="snapshot_density_matrix" signature="HiddenLinearFunction.snapshot_density_matrix(label, qubits=None)">
+    Take a density matrix snapshot of simulator state.
 
-**Return type**
+    **Parameters**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **qubits** (*list or None*) – the qubits to apply snapshot to. If None all qubits will be snapshot \[Default: None].
 
-**Raises**
+    **Returns**
 
-**ExtensionError** – if snapshot is invalid.
+    with attached instruction.
 
-### snapshot\_expectation\_value
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.snapshot_expectation_value" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-`HiddenLinearFunction.snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)`
+    **Raises**
 
-Take a snapshot of expectation value \<O> of an Operator.
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-**Parameters**
+  ### snapshot\_expectation\_value
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
-*   **qubits** (*list*) – the qubits to snapshot.
-*   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
-*   **variance** (*bool*) – compute variance of probabilities \[Default: False]
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.snapshot_expectation_value" name="snapshot_expectation_value" signature="HiddenLinearFunction.snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)">
+    Take a snapshot of expectation value \<O> of an Operator.
 
-**Returns**
+    **Parameters**
 
-with attached instruction.
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
+    *   **qubits** (*list*) – the qubits to snapshot.
+    *   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
+    *   **variance** (*bool*) – compute variance of probabilities \[Default: False]
 
-**Return type**
+    **Returns**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    with attached instruction.
 
-**Raises**
+    **Return type**
 
-**ExtensionError** – if snapshot is invalid.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-### snapshot\_probabilities
+    **Raises**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.snapshot_probabilities" />
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-`HiddenLinearFunction.snapshot_probabilities(label, qubits, variance=False)`
+  ### snapshot\_probabilities
 
-Take a probability snapshot of the simulator state.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.snapshot_probabilities" name="snapshot_probabilities" signature="HiddenLinearFunction.snapshot_probabilities(label, qubits, variance=False)">
+    Take a probability snapshot of the simulator state.
 
-**Parameters**
+    **Parameters**
 
-*   **label** (*str*) – a snapshot label to report the result
-*   **qubits** (*list*) – the qubits to snapshot.
-*   **variance** (*bool*) – compute variance of probabilities \[Default: False]
+    *   **label** (*str*) – a snapshot label to report the result
+    *   **qubits** (*list*) – the qubits to snapshot.
+    *   **variance** (*bool*) – compute variance of probabilities \[Default: False]
 
-**Returns**
+    **Returns**
 
-with attached instruction.
+    with attached instruction.
 
-**Return type**
+    **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Raises**
+    **Raises**
 
-**ExtensionError** – if snapshot is invalid.
+    **ExtensionError** – if snapshot is invalid.
+  </Function>
 
-### snapshot\_stabilizer
+  ### snapshot\_stabilizer
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.snapshot_stabilizer" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.snapshot_stabilizer" name="snapshot_stabilizer" signature="HiddenLinearFunction.snapshot_stabilizer(label)">
+    Take a stabilizer snapshot of the simulator state.
 
-`HiddenLinearFunction.snapshot_stabilizer(label)`
+    **Parameters**
 
-Take a stabilizer snapshot of the simulator state.
+    **label** (*str*) – a snapshot label to report the result.
 
-**Parameters**
+    **Returns**
 
-**label** (*str*) – a snapshot label to report the result.
+    with attached instruction.
 
-**Returns**
+    **Return type**
 
-with attached instruction.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+    **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **ExtensionError** – if snapshot is invalid.
 
-**Raises**
+    #### Additional Information:
 
-**ExtensionError** – if snapshot is invalid.
+    This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  </Function>
 
-#### Additional Information:
+  ### snapshot\_statevector
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.snapshot_statevector" name="snapshot_statevector" signature="HiddenLinearFunction.snapshot_statevector(label)">
+    Take a statevector snapshot of the simulator state.
 
-### snapshot\_statevector
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.snapshot_statevector" />
+    **label** (*str*) – a snapshot label to report the result.
 
-`HiddenLinearFunction.snapshot_statevector(label)`
+    **Returns**
 
-Take a statevector snapshot of the simulator state.
+    with attached instruction.
 
-**Parameters**
+    **Return type**
 
-**label** (*str*) – a snapshot label to report the result.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Returns**
+    **Raises**
 
-with attached instruction.
+    **ExtensionError** – if snapshot is invalid.
 
-**Return type**
+    #### Additional Information:
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+  </Function>
 
-**Raises**
+  ### squ
 
-**ExtensionError** – if snapshot is invalid.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.squ" name="squ" signature="HiddenLinearFunction.squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)">
+    Decompose an arbitrary 2\*2 unitary into three rotation gates.
 
-#### Additional Information:
+    Note that the decomposition is up to a global phase shift. (This is a well known decomposition, which can be found for example in Nielsen and Chuang’s book “Quantum computation and quantum information”.)
 
-This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
+    **Parameters**
 
-### squ
+    *   **unitary\_matrix** (*ndarray*) – 2\*2 unitary (given as a (complex) ndarray).
+    *   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The qubit which the gate is acting on.
+    *   **mode** (*string*) – determines the used decomposition by providing the rotation axes. The allowed modes are: “ZYZ” (default)
+    *   **up\_to\_diagonal** (*bool*) – if set to True, the single-qubit unitary is decomposed up to a diagonal matrix, i.e. a unitary u’ is implemented such that there exists a 2\*2 diagonal gate d with u = d.dot(u’)
+    *   **u** (*ndarray*) – Deprecated, use `unitary_matrix` instead.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.squ" />
+    **Returns**
 
-`HiddenLinearFunction.squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)`
+    The single-qubit unitary instruction attached to the circuit.
 
-Decompose an arbitrary 2\*2 unitary into three rotation gates.
+    **Return type**
 
-Note that the decomposition is up to a global phase shift. (This is a well known decomposition, which can be found for example in Nielsen and Chuang’s book “Quantum computation and quantum information”.)
+    [InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
-**Parameters**
+    **Raises**
 
-*   **unitary\_matrix** (*ndarray*) – 2\*2 unitary (given as a (complex) ndarray).
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The qubit which the gate is acting on.
-*   **mode** (*string*) – determines the used decomposition by providing the rotation axes. The allowed modes are: “ZYZ” (default)
-*   **up\_to\_diagonal** (*bool*) – if set to True, the single-qubit unitary is decomposed up to a diagonal matrix, i.e. a unitary u’ is implemented such that there exists a 2\*2 diagonal gate d with u = d.dot(u’)
-*   **u** (*ndarray*) – Deprecated, use `unitary_matrix` instead.
+    **QiskitError** – if the format is wrong; if the array u is not unitary
+  </Function>
 
-**Returns**
+  ### swap
 
-The single-qubit unitary instruction attached to the circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.swap" name="swap" signature="HiddenLinearFunction.swap(qubit1, qubit2)">
+    Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+  </Function>
 
-**Return type**
+  ### t
 
-[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.t" name="t" signature="HiddenLinearFunction.t(qubit, *, q=None)">
+    Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+  </Function>
 
-**Raises**
+  ### tdg
 
-**QiskitError** – if the format is wrong; if the array u is not unitary
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.tdg" name="tdg" signature="HiddenLinearFunction.tdg(qubit, *, q=None)">
+    Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+  </Function>
 
-### swap
+  ### to\_gate
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.swap" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.to_gate" name="to_gate" signature="HiddenLinearFunction.to_gate(parameter_map=None)">
+    Create a Gate out of this circuit.
 
-`HiddenLinearFunction.swap(qubit1, qubit2)`
+    **Parameters**
 
-Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+    **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the gate.
 
-### t
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.t" />
+    a composite gate encapsulating this circuit (can be decomposed back)
 
-`HiddenLinearFunction.t(qubit, *, q=None)`
+    **Return type**
 
-Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+    [Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+  </Function>
 
-### tdg
+  ### to\_instruction
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.tdg" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.to_instruction" name="to_instruction" signature="HiddenLinearFunction.to_instruction(parameter_map=None)">
+    Create an Instruction out of this circuit.
 
-`HiddenLinearFunction.tdg(qubit, *, q=None)`
+    **Parameters**
 
-Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+    **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
 
-### to\_gate
+    **Returns**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.to_gate" />
+    a composite instruction encapsulating this circuit (can be decomposed back)
 
-`HiddenLinearFunction.to_gate(parameter_map=None)`
+    **Return type**
 
-Create a Gate out of this circuit.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-**Parameters**
+  ### toffoli
 
-**parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the gate.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.toffoli" name="toffoli" signature="HiddenLinearFunction.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)">
+    Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  </Function>
 
-**Returns**
+  ### u1
 
-a composite gate encapsulating this circuit (can be decomposed back)
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.u1" name="u1" signature="HiddenLinearFunction.u1(theta, qubit, *, q=None)">
+    Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+  </Function>
 
-**Return type**
+  ### u2
 
-[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.u2" name="u2" signature="HiddenLinearFunction.u2(phi, lam, qubit, *, q=None)">
+    Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+  </Function>
 
-### to\_instruction
+  ### u3
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.to_instruction" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.u3" name="u3" signature="HiddenLinearFunction.u3(theta, phi, lam, qubit, *, q=None)">
+    Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+  </Function>
 
-`HiddenLinearFunction.to_instruction(parameter_map=None)`
+  ### uc
 
-Create an Instruction out of this circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.uc" name="uc" signature="HiddenLinearFunction.uc(gate_list, q_controls, q_target, up_to_diagonal=False)">
+    Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.
 
-**Parameters**
+    The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/quant-ph/0410066.pdf](https://arxiv.org/pdf/quant-ph/0410066.pdf).
 
-**parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
+    **Parameters**
 
-**Returns**
+    *   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
+    *   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
 
-a composite instruction encapsulating this circuit (can be decomposed back)
+    **Returns**
 
-**Return type**
+    the uniformly controlled gate is attached to the circuit.
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    **Return type**
 
-### toffoli
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.toffoli" />
+    **Raises**
 
-`HiddenLinearFunction.toffoli(control_qubit1, control_qubit2, target_qubit, *, ctl1=None, ctl2=None, tgt=None)`
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+  ### ucg
 
-### u1
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ucg" name="ucg" signature="HiddenLinearFunction.ucg(angle_list, q_controls, q_target, up_to_diagonal=False)">
+    Deprecated version of uc.
+  </Function>
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.u1" />
+  ### ucrx
 
-`HiddenLinearFunction.u1(theta, qubit, *, q=None)`
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ucrx" name="ucrx" signature="HiddenLinearFunction.ucrx(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.
 
-Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-### u2
+    **Parameters**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.u2" />
+    *   **angle\_list** (*list*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-`HiddenLinearFunction.u2(phi, lam, qubit, *, q=None)`
+    **Returns**
 
-Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+    the uniformly controlled rotation gate is attached to the circuit.
 
-### u3
+    **Return type**
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.u3" />
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-`HiddenLinearFunction.u3(theta, phi, lam, qubit, *, q=None)`
+    **Raises**
 
-Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-### uc
+  ### ucry
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.uc" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ucry" name="ucry" signature="HiddenLinearFunction.ucry(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.
 
-`HiddenLinearFunction.uc(gate_list, q_controls, q_target, up_to_diagonal=False)`
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.
+    **Parameters**
 
-The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/quant-ph/0410066.pdf](https://arxiv.org/pdf/quant-ph/0410066.pdf).
+    *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-**Parameters**
+    **Returns**
 
-*   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
-*   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
+    the uniformly controlled rotation gate is attached to the circuit.
 
-**Returns**
+    **Return type**
 
-the uniformly controlled gate is attached to the circuit.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+    **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-**Raises**
+  ### ucrz
 
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ucrz" name="ucrz" signature="HiddenLinearFunction.ucrz(angle_list, q_controls, q_target)">
+    Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.
 
-### ucg
+    The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ucg" />
+    **Parameters**
 
-`HiddenLinearFunction.ucg(angle_list, q_controls, q_target, up_to_diagonal=False)`
+    *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
+    *   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
+    *   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
 
-Deprecated version of uc.
+    **Returns**
 
-### ucrx
+    the uniformly controlled rotation gate is attached to the circuit.
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ucrx" />
+    **Return type**
 
-`HiddenLinearFunction.ucrx(angle_list, q_controls, q_target)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.
+    **Raises**
 
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
+    **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  </Function>
 
-**Parameters**
+  ### ucx
 
-*   **angle\_list** (*list*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ucx" name="ucx" signature="HiddenLinearFunction.ucx(angle_list, q_controls, q_target)">
+    Deprecated version of ucrx.
+  </Function>
 
-**Returns**
+  ### ucy
 
-the uniformly controlled rotation gate is attached to the circuit.
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ucy" name="ucy" signature="HiddenLinearFunction.ucy(angle_list, q_controls, q_target)">
+    Deprecated version of ucry.
+  </Function>
 
-**Return type**
+  ### ucz
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.ucz" name="ucz" signature="HiddenLinearFunction.ucz(angle_list, q_controls, q_target)">
+    Deprecated version of ucrz.
+  </Function>
 
-**Raises**
+  ### unitary
 
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.unitary" name="unitary" signature="HiddenLinearFunction.unitary(obj, qubits, label=None)">
+    Apply unitary gate to q.
+  </Function>
 
-### ucry
+  ### width
 
-<span id="qiskit.circuit.library.HiddenLinearFunction.ucry" />
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.width" name="width" signature="HiddenLinearFunction.width()">
+    Return number of qubits plus clbits in circuit.
 
-`HiddenLinearFunction.ucry(angle_list, q_controls, q_target)`
+    **Returns**
 
-Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.
+    Width of circuit.
 
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
+    **Return type**
 
-**Parameters**
+    int
+  </Function>
 
-*   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+  ### x
 
-**Returns**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.x" name="x" signature="HiddenLinearFunction.x(qubit, *, label=None, ctrl_state=None, q=None)">
+    Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
+  </Function>
 
-the uniformly controlled rotation gate is attached to the circuit.
+  ### y
 
-**Return type**
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.y" name="y" signature="HiddenLinearFunction.y(qubit, *, q=None)">
+    Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
+  </Function>
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  ### z
 
-**Raises**
-
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucrz
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.ucrz" />
-
-`HiddenLinearFunction.ucrz(angle_list, q_controls, q_target)`
-
-Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.
-
-The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https://arxiv.org/pdf/quant-ph/0406176.pdf) by Shende et al.
-
-**Parameters**
-
-*   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
-
-**Returns**
-
-the uniformly controlled rotation gate is attached to the circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
-
-### ucx
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.ucx" />
-
-`HiddenLinearFunction.ucx(angle_list, q_controls, q_target)`
-
-Deprecated version of ucrx.
-
-### ucy
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.ucy" />
-
-`HiddenLinearFunction.ucy(angle_list, q_controls, q_target)`
-
-Deprecated version of ucry.
-
-### ucz
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.ucz" />
-
-`HiddenLinearFunction.ucz(angle_list, q_controls, q_target)`
-
-Deprecated version of ucrz.
-
-### unitary
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.unitary" />
-
-`HiddenLinearFunction.unitary(obj, qubits, label=None)`
-
-Apply unitary gate to q.
-
-### width
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.width" />
-
-`HiddenLinearFunction.width()`
-
-Return number of qubits plus clbits in circuit.
-
-**Returns**
-
-Width of circuit.
-
-**Return type**
-
-int
-
-### x
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.x" />
-
-`HiddenLinearFunction.x(qubit, *, label=None, ctrl_state=None, q=None)`
-
-Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
-
-### y
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.y" />
-
-`HiddenLinearFunction.y(qubit, *, q=None)`
-
-Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
-
-### z
-
-<span id="qiskit.circuit.library.HiddenLinearFunction.z" />
-
-`HiddenLinearFunction.z(qubit, *, q=None)`
-
-Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+  <Function id="qiskit.circuit.library.HiddenLinearFunction.z" name="z" signature="HiddenLinearFunction.z(qubit, *, q=None)">
+    Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+  </Function>
+</Class>
 

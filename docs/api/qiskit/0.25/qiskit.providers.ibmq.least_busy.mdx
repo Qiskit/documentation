@@ -8,28 +8,26 @@ python_api_name: qiskit.providers.ibmq.least_busy
 
 # qiskit.providers.ibmq.least\_busy
 
-<span id="qiskit.providers.ibmq.least_busy" />
+<Function id="qiskit.providers.ibmq.least_busy" name="least_busy" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/__init__.py" signature="least_busy(backends, reservation_lookahead=60)">
+  Return the least busy backend from a list.
 
-`least_busy(backends, reservation_lookahead=60)` [GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/__init__.py "view source code")
+  Return the least busy available backend for those that have a `pending_jobs` in their `status`. Note that local backends may not have this attribute.
 
-Return the least busy backend from a list.
+  **Parameters**
 
-Return the least busy available backend for those that have a `pending_jobs` in their `status`. Note that local backends may not have this attribute.
+  *   **backends** (`List`\[`Union`\[`Backend`, `BaseBackend`]]) – The backends to choose from.
+  *   **reservation\_lookahead** (`Optional`\[`int`]) – A backend is considered unavailable if it has reservations in the next `n` minutes, where `n` is the value of `reservation_lookahead`. If `None`, reservations are not taken into consideration.
 
-**Parameters**
+  **Return type**
 
-*   **backends** (`List`\[`Union`\[`Backend`, `BaseBackend`]]) – The backends to choose from.
-*   **reservation\_lookahead** (`Optional`\[`int`]) – A backend is considered unavailable if it has reservations in the next `n` minutes, where `n` is the value of `reservation_lookahead`. If `None`, reservations are not taken into consideration.
+  `Union`\[`Backend`, `BaseBackend`]
 
-**Return type**
+  **Returns**
 
-`Union`\[`Backend`, `BaseBackend`]
+  The backend with the fewest number of pending jobs.
 
-**Returns**
+  **Raises**
 
-The backend with the fewest number of pending jobs.
-
-**Raises**
-
-[**IBMQError**](qiskit.providers.ibmq.IBMQError "qiskit.providers.ibmq.IBMQError") – If the backends list is empty, or if none of the backends is available, or if a backend in the list does not have the `pending_jobs` attribute in its status.
+  [**IBMQError**](qiskit.providers.ibmq.IBMQError "qiskit.providers.ibmq.IBMQError") – If the backends list is empty, or if none of the backends is available, or if a backend in the list does not have the `pending_jobs` attribute in its status.
+</Function>
 

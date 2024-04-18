@@ -8,64 +8,60 @@ python_api_name: qiskit.opflow.evolutions.Suzuki
 
 # Suzuki
 
-<span id="qiskit.opflow.evolutions.Suzuki" />
+<Class id="qiskit.opflow.evolutions.Suzuki" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/trotterizations/suzuki.py" signature="Suzuki(reps=1, order=2)">
+  Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 
-`Suzuki(reps=1, order=2)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/opflow/evolutions/trotterizations/suzuki.py "view source code")
+  Deprecated: Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
 
-Bases: [`TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
+  Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).
 
-Deprecated: Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
+  <Admonition title="Deprecated since version 0.24.0" type="danger">
+    The class `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
+  </Admonition>
 
-Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).
+  **Parameters**
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. For code migration guidelines, visit [https://qisk.it/opflow\_migration](https://qisk.it/opflow_migration).
-</Admonition>
+  *   **reps** (*int*) – The number of times to repeat the expansion circuit.
+  *   **order** (*int*) – The order of the expansion to perform.
 
-**Parameters**
+  ## Methods Defined Here
 
-*   **reps** (*int*) – The number of times to repeat the expansion circuit.
-*   **order** (*int*) – The order of the expansion to perform.
+  <span id="qiskit-opflow-evolutions-suzuki-convert" />
 
-## Methods Defined Here
+  ### convert
 
-<span id="qiskit-opflow-evolutions-suzuki-convert" />
+  <Function id="qiskit.opflow.evolutions.Suzuki.convert" name="convert" signature="Suzuki.convert(operator)">
+    Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 
-### convert
+    **Parameters**
 
-<span id="qiskit.opflow.evolutions.Suzuki.convert" />
+    **operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
 
-`Suzuki.convert(operator)`
+    **Returns**
 
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
+    The Operator approximating op\_sum’s evolution.
 
-**Parameters**
+    **Raises**
 
-**operator** ([*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `SummedOp` to evolve.
+    **TypeError** – A non-SummedOps Operator is passed into `convert`.
 
-**Returns**
+    **Return type**
 
-The Operator approximating op\_sum’s evolution.
+    [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  </Function>
 
-**Raises**
+  ## Attributes
 
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+  ### order
 
-**Return type**
+  <Attribute id="qiskit.opflow.evolutions.Suzuki.order" name="order">
+    returns order
+  </Attribute>
 
-[*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+  ### reps
 
-## Attributes
-
-<span id="qiskit.opflow.evolutions.Suzuki.order" />
-
-### order
-
-returns order
-
-<span id="qiskit.opflow.evolutions.Suzuki.reps" />
-
-### reps
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+  <Attribute id="qiskit.opflow.evolutions.Suzuki.reps" name="reps">
+    The number of repetitions to use in the Trotterization, improving the approximation accuracy.
+  </Attribute>
+</Class>
 

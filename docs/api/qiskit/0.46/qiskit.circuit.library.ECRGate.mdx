@@ -8,168 +8,164 @@ python_api_name: qiskit.circuit.library.ECRGate
 
 # ECRGate
 
-<span id="qiskit.circuit.library.ECRGate" />
+<Class id="qiskit.circuit.library.ECRGate" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/ecr.py" signature="qiskit.circuit.library.ECRGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
-`qiskit.circuit.library.ECRGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/standard_gates/ecr.py "view source code")
+  An echoed cross-resonance gate.
 
-Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+  This gate is maximally entangling and is equivalent to a CNOT up to single-qubit pre-rotations. The echoing procedure mitigates some unwanted terms (terms other than ZX) to cancel in an experiment. More specifically, this gate implements $\frac{1}{\sqrt{2}}(IX-XY)$.
 
-An echoed cross-resonance gate.
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ecr()`](qiskit.circuit.QuantumCircuit#ecr "qiskit.circuit.QuantumCircuit.ecr") method.
 
-This gate is maximally entangling and is equivalent to a CNOT up to single-qubit pre-rotations. The echoing procedure mitigates some unwanted terms (terms other than ZX) to cancel in an experiment. More specifically, this gate implements $\frac{1}{\sqrt{2}}(IX-XY)$.
+  **Circuit Symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ecr()`](qiskit.circuit.QuantumCircuit#ecr "qiskit.circuit.QuantumCircuit.ecr") method.
+  ```python
+       ┌─────────┐            ┌────────────┐┌────────┐┌─────────────┐
+  q_0: ┤0        ├       q_0: ┤0           ├┤ RX(pi) ├┤0            ├
+       │   ECR   │   =        │  RZX(pi/4) │└────────┘│  RZX(-pi/4) │
+  q_1: ┤1        ├       q_1: ┤1           ├──────────┤1            ├
+       └─────────┘            └────────────┘          └─────────────┘
+  ```
 
-**Circuit Symbol:**
-
-```python
-     ┌─────────┐            ┌────────────┐┌────────┐┌─────────────┐
-q_0: ┤0        ├       q_0: ┤0           ├┤ RX(pi) ├┤0            ├
-     │   ECR   │   =        │  RZX(pi/4) │└────────┘│  RZX(-pi/4) │
-q_1: ┤1        ├       q_1: ┤1           ├──────────┤1            ├
-     └─────────┘            └────────────┘          └─────────────┘
-```
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 ECR\ q_0, q_1 = \frac{1}{\sqrt{2}}
-    \begin{pmatrix}
-        0   & 1   &  0  & i \\
-        1   & 0   &  -i & 0 \\
-        0   & i   &  0  & 1 \\
-        -i  & 0   &  1  & 0
-    \end{pmatrix}
+\begin{pmatrix}
+0   & 1   &  0  & i \\
+1   & 0   &  -i & 0 \\
+0   & i   &  0  & 1 \\
+-i  & 0   &  1  & 0
+\end{pmatrix}
 $$
 
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
 
-  ```python
-       ┌─────────┐
-  q_0: ┤1        ├
-       │   ECR   │
-  q_1: ┤0        ├
-       └─────────┘
-  ```
+    ```python
+         ┌─────────┐
+    q_0: ┤1        ├
+         │   ECR   │
+    q_1: ┤0        ├
+         └─────────┘
+    ```
 
-  $$
-  ECR\ q_0, q_1 = \frac{1}{\sqrt{2}}
-      \begin{pmatrix}
-          0   & 0   &  1  & i \\
-          0   & 0   &  i  & 1 \\
-          1   & -i  &  0  & 0 \\
-          -i  & 1   &  0  & 0
-      \end{pmatrix}
-  $$
-</Admonition>
+$$
+ECR\ q_0, q_1 = \frac{1}{\sqrt{2}}
+\begin{pmatrix}
+0   & 0   &  1  & i \\
+0   & 0   &  i  & 1 \\
+1   & -i  &  0  & 0 \\
+-i  & 1   &  0  & 0
+\end{pmatrix}
+$$
+  </Admonition>
 
-Create new ECR gate.
+  Create new ECR gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.ECRGate.base_class" />
+  ### base\_class
 
-### base\_class
+  <Attribute id="qiskit.circuit.library.ECRGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.ECRGate.base_class "qiskit.circuit.library.ECRGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.ECRGate.base_class "qiskit.circuit.library.ECRGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.library.ECRGate.condition" />
+  <Attribute id="qiskit.circuit.library.ECRGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition
+  ### condition\_bits
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.ECRGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.ECRGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.ECRGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-<span id="qiskit.circuit.library.ECRGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.ECRGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-### decompositions
+  ### duration
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.ECRGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.ECRGate.definition" />
+  ### label
 
-### definition
+  <Attribute id="qiskit.circuit.library.ECRGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### mutable
 
-<span id="qiskit.circuit.library.ECRGate.duration" />
+  <Attribute id="qiskit.circuit.library.ECRGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-### duration
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-Get the duration.
+  ### name
 
-<span id="qiskit.circuit.library.ECRGate.label" />
+  <Attribute id="qiskit.circuit.library.ECRGate.name" name="name">
+    Return the name.
+  </Attribute>
 
-### label
+  ### num\_clbits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.library.ECRGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.ECRGate.mutable" />
+  ### num\_qubits
 
-### mutable
+  <Attribute id="qiskit.circuit.library.ECRGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### params
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.library.ECRGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-<span id="qiskit.circuit.library.ECRGate.name" />
+  ### unit
 
-### name
+  <Attribute id="qiskit.circuit.library.ECRGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-Return the name.
+  ## Methods
 
-<span id="qiskit.circuit.library.ECRGate.num_clbits" />
+  ### inverse
 
-### num\_clbits
-
-Return the number of clbits.
-
-<span id="qiskit.circuit.library.ECRGate.num_qubits" />
-
-### num\_qubits
-
-Return the number of qubits.
-
-<span id="qiskit.circuit.library.ECRGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.ECRGate.unit" />
-
-### unit
-
-Get the time unit of duration.
-
-## Methods
-
-### inverse
-
-<span id="qiskit.circuit.library.ECRGate.inverse" />
-
-`inverse()`
-
-Return inverse ECR gate (itself).
+  <Function id="qiskit.circuit.library.ECRGate.inverse" name="inverse" signature="inverse()">
+    Return inverse ECR gate (itself).
+  </Function>
+</Class>
 

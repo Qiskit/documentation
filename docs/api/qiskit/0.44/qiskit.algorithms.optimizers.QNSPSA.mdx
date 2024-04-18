@@ -8,409 +8,385 @@ python_api_name: qiskit.algorithms.optimizers.QNSPSA
 
 # QNSPSA
 
-<span id="qiskit.algorithms.optimizers.QNSPSA" />
+<Class id="qiskit.algorithms.optimizers.QNSPSA" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/qnspsa.py" signature="qiskit.algorithms.optimizers.QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)">
+  Bases: [`SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.spsa.SPSA")
 
-`qiskit.algorithms.optimizers.QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+  The Quantum Natural SPSA (QN-SPSA) optimizer.
 
-Bases: [`SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.spsa.SPSA")
+  The QN-SPSA optimizer \[1] is a stochastic optimizer that belongs to the family of gradient descent methods. This optimizer is based on SPSA but attempts to improve the convergence by sampling the **natural gradient** instead of the vanilla, first-order gradient. It achieves this by approximating Hessian of the `fidelity` of the ansatz circuit.
 
-The Quantum Natural SPSA (QN-SPSA) optimizer.
+  Compared to natural gradients, which require $\mathcal{O}(d^2)$ expectation value evaluations for a circuit with $d$ parameters, QN-SPSA only requires $\mathcal{O}(1)$ and can therefore significantly speed up the natural gradient calculation by sacrificing some accuracy. Compared to SPSA, QN-SPSA requires 4 additional function evaluations of the fidelity.
 
-The QN-SPSA optimizer \[1] is a stochastic optimizer that belongs to the family of gradient descent methods. This optimizer is based on SPSA but attempts to improve the convergence by sampling the **natural gradient** instead of the vanilla, first-order gradient. It achieves this by approximating Hessian of the `fidelity` of the ansatz circuit.
+  The stochastic approximation of the natural gradient can be systematically improved by increasing the number of `resamplings`. This leads to a Monte Carlo-style convergence to the exact, analytic value.
 
-Compared to natural gradients, which require $\mathcal{O}(d^2)$ expectation value evaluations for a circuit with $d$ parameters, QN-SPSA only requires $\mathcal{O}(1)$ and can therefore significantly speed up the natural gradient calculation by sacrificing some accuracy. Compared to SPSA, QN-SPSA requires 4 additional function evaluations of the fidelity.
+  <Admonition title="Note" type="note">
+    This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
+  </Admonition>
 
-The stochastic approximation of the natural gradient can be systematically improved by increasing the number of `resamplings`. This leads to a Monte Carlo-style convergence to the exact, analytic value.
+  **Examples**
 
-<Admonition title="Note" type="note">
-  This component has some function that is normally random. If you want to reproduce behavior then you should set the random number generator seed in the algorithm\_globals (`qiskit.utils.algorithm_globals.random_seed = seed`).
-</Admonition>
+  This short example runs QN-SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
 
-**Examples**
+  ```python
+  import numpy as np
+  from qiskit.algorithms.optimizers import QNSPSA
+  from qiskit.circuit.library import PauliTwoDesign
+  from qiskit.primitives import Estimator, Sampler
+  from qiskit.quantum_info import Pauli
 
-This short example runs QN-SPSA for the ground state calculation of the `Z ^ Z` observable where the ansatz is a `PauliTwoDesign` circuit.
+  # problem setup
+  ansatz = PauliTwoDesign(2, reps=1, seed=2)
+  observable = Pauli("ZZ")
+  initial_point = np.random.random(ansatz.num_parameters)
 
-```python
-import numpy as np
-from qiskit.algorithms.optimizers import QNSPSA
-from qiskit.circuit.library import PauliTwoDesign
-from qiskit.primitives import Estimator, Sampler
-from qiskit.quantum_info import Pauli
+  # loss function
+  estimator = Estimator()
 
-# problem setup
-ansatz = PauliTwoDesign(2, reps=1, seed=2)
-observable = Pauli("ZZ")
-initial_point = np.random.random(ansatz.num_parameters)
+  def loss(x):
+      result = estimator.run([ansatz], [observable], [x]).result()
+      return np.real(result.values[0])
 
-# loss function
-estimator = Estimator()
+  # fidelity for estimation of the geometric tensor
+  sampler = Sampler()
+  fidelity = QNSPSA.get_fidelity(ansatz, sampler)
 
-def loss(x):
-    result = estimator.run([ansatz], [observable], [x]).result()
-    return np.real(result.values[0])
+  # run QN-SPSA
+  qnspsa = QNSPSA(fidelity, maxiter=300)
+  result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
+  ```
 
-# fidelity for estimation of the geometric tensor
-sampler = Sampler()
-fidelity = QNSPSA.get_fidelity(ansatz, sampler)
+  This is a legacy version solving the same problem but using Qiskit Opflow instead of the Qiskit Primitives. Note however, that this usage is deprecated.
 
-# run QN-SPSA
-qnspsa = QNSPSA(fidelity, maxiter=300)
-result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
-```
+  ```python
+  import numpy as np
+  from qiskit.algorithms.optimizers import QNSPSA
+  from qiskit.circuit.library import PauliTwoDesign
+  from qiskit.opflow import Z, StateFn
 
-This is a legacy version solving the same problem but using Qiskit Opflow instead of the Qiskit Primitives. Note however, that this usage is deprecated.
+  ansatz = PauliTwoDesign(2, reps=1, seed=2)
+  observable = Z ^ Z
+  initial_point = np.random.random(ansatz.num_parameters)
 
-```python
-import numpy as np
-from qiskit.algorithms.optimizers import QNSPSA
-from qiskit.circuit.library import PauliTwoDesign
-from qiskit.opflow import Z, StateFn
+  def loss(x):
+      bound = ansatz.bind_parameters(x)
+      return np.real((StateFn(observable, is_measurement=True) @ StateFn(bound)).eval())
 
-ansatz = PauliTwoDesign(2, reps=1, seed=2)
-observable = Z ^ Z
-initial_point = np.random.random(ansatz.num_parameters)
+  fidelity = QNSPSA.get_fidelity(ansatz)
+  qnspsa = QNSPSA(fidelity, maxiter=300)
+  result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
+  ```
 
-def loss(x):
-    bound = ansatz.bind_parameters(x)
-    return np.real((StateFn(observable, is_measurement=True) @ StateFn(bound)).eval())
+  **References**
 
-fidelity = QNSPSA.get_fidelity(ansatz)
-qnspsa = QNSPSA(fidelity, maxiter=300)
-result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_point)
-```
+  \[1] J. Gacon et al, “Simultaneous Perturbation Stochastic Approximation of the Quantum Fisher Information”, [arXiv:2103.09232](https://arxiv.org/abs/2103.09232)
 
-**References**
+  **Parameters**
 
-\[1] J. Gacon et al, “Simultaneous Perturbation Stochastic Approximation of the Quantum Fisher Information”, [arXiv:2103.09232](https://arxiv.org/abs/2103.09232)
+  *   **fidelity** (*FIDELITY*) – A function to compute the fidelity of the ansatz state with itself for two different sets of parameters.
+  *   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of iterations. Note that this is not the maximal number of function evaluations.
+  *   **blocking** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, only accepts updates that improve the loss (up to some allowed increase, see next argument).
+  *   **allowed\_increase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – If `blocking` is `True`, this argument determines by how much the loss can increase with the proposed parameters and still be accepted. If `None`, the allowed increases is calibrated automatically to be twice the approximated standard deviation of the loss function.
+  *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| Callable\[\[], Iterator] | None*) – The update step is the learning rate is multiplied with the gradient. If the learning rate is a float, it remains constant over the course of the optimization. It can also be a callable returning an iterator which yields the learning rates for each optimization step. If `learning_rate` is set `perturbation` must also be provided.
+  *   **perturbation** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| Callable\[\[], Iterator] | None*) – Specifies the magnitude of the perturbation for the finite difference approximation of the gradients. Can be either a float or a generator yielding the perturbation magnitudes per step. If `perturbation` is set `learning_rate` must also be provided.
+  *   **resamplings** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The number of times the gradient (and Hessian) is sampled using a random direction to construct a gradient estimate. Per default the gradient is estimated using only one random direction. If an integer, all iterations use the same number of resamplings. If a dictionary, this is interpreted as `{iteration: number of resamplings per iteration}`.
+  *   **perturbation\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of perturbed dimensions. Per default, all dimensions are perturbed, but a smaller, fixed number can be perturbed. If set, the perturbed dimensions are chosen uniformly at random.
+  *   **regularization** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – To ensure the preconditioner is symmetric and positive definite, the identity times a small coefficient is added to it. This generator yields that coefficient.
+  *   **hessian\_delay** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Start multiplying the gradient with the inverse Hessian only after a certain number of iterations. The Hessian is still evaluated and therefore this argument can be useful to first get a stable average over the last iterations before using it as preconditioner.
+  *   **lse\_solver** (*Callable\[\[np.ndarray, np.ndarray], np.ndarray] | None*) – The method to solve for the inverse of the Hessian. Per default an exact LSE solver is used, but can e.g. be overwritten by a minimization routine.
+  *   **initial\_hessian** (*np.ndarray | None*) – The initial guess for the Hessian. By default the identity matrix is used.
+  *   **callback** (*CALLBACK | None*) – A callback function passed information in each iteration step. The information is, in this order: the parameters, the function value, the number of function evaluations, the stepsize, whether the step was accepted.
+  *   **termination\_checker** (*TERMINATIONCHECKER | None*) – A callback function executed at the end of each iteration step. The arguments are, in this order: the parameters, the function value, the number of function evaluations, the stepsize, whether the step was accepted. If the callback returns True, the optimization is terminated. To prevent additional evaluations of the objective method, if the objective has not yet been evaluated, the objective is estimated by taking the mean of the objective evaluations used in the estimate of the gradient.
 
-**Parameters**
+  ## Attributes
 
-*   **fidelity** (*FIDELITY*) – A function to compute the fidelity of the ansatz state with itself for two different sets of parameters.
-*   **maxiter** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of iterations. Note that this is not the maximal number of function evaluations.
-*   **blocking** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, only accepts updates that improve the loss (up to some allowed increase, see next argument).
-*   **allowed\_increase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – If `blocking` is `True`, this argument determines by how much the loss can increase with the proposed parameters and still be accepted. If `None`, the allowed increases is calibrated automatically to be twice the approximated standard deviation of the loss function.
-*   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| Callable\[\[], Iterator] | None*) – The update step is the learning rate is multiplied with the gradient. If the learning rate is a float, it remains constant over the course of the optimization. It can also be a callable returning an iterator which yields the learning rates for each optimization step. If `learning_rate` is set `perturbation` must also be provided.
-*   **perturbation** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| Callable\[\[], Iterator] | None*) – Specifies the magnitude of the perturbation for the finite difference approximation of the gradients. Can be either a float or a generator yielding the perturbation magnitudes per step. If `perturbation` is set `learning_rate` must also be provided.
-*   **resamplings** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The number of times the gradient (and Hessian) is sampled using a random direction to construct a gradient estimate. Per default the gradient is estimated using only one random direction. If an integer, all iterations use the same number of resamplings. If a dictionary, this is interpreted as `{iteration: number of resamplings per iteration}`.
-*   **perturbation\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of perturbed dimensions. Per default, all dimensions are perturbed, but a smaller, fixed number can be perturbed. If set, the perturbed dimensions are chosen uniformly at random.
-*   **regularization** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – To ensure the preconditioner is symmetric and positive definite, the identity times a small coefficient is added to it. This generator yields that coefficient.
-*   **hessian\_delay** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Start multiplying the gradient with the inverse Hessian only after a certain number of iterations. The Hessian is still evaluated and therefore this argument can be useful to first get a stable average over the last iterations before using it as preconditioner.
-*   **lse\_solver** (*Callable\[\[np.ndarray, np.ndarray], np.ndarray] | None*) – The method to solve for the inverse of the Hessian. Per default an exact LSE solver is used, but can e.g. be overwritten by a minimization routine.
-*   **initial\_hessian** (*np.ndarray | None*) – The initial guess for the Hessian. By default the identity matrix is used.
-*   **callback** (*CALLBACK | None*) – A callback function passed information in each iteration step. The information is, in this order: the parameters, the function value, the number of function evaluations, the stepsize, whether the step was accepted.
-*   **termination\_checker** (*TERMINATIONCHECKER | None*) – A callback function executed at the end of each iteration step. The arguments are, in this order: the parameters, the function value, the number of function evaluations, the stepsize, whether the step was accepted. If the callback returns True, the optimization is terminated. To prevent additional evaluations of the objective method, if the objective has not yet been evaluated, the objective is estimated by taking the mean of the objective evaluations used in the estimate of the gradient.
+  ### bounds\_support\_level
 
-## Attributes
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.bounds_support_level" name="bounds_support_level">
+    Returns bounds support level
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.bounds_support_level" />
+  ### gradient\_support\_level
 
-### bounds\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.gradient_support_level" name="gradient_support_level">
+    Returns gradient support level
+  </Attribute>
 
-Returns bounds support level
+  ### initial\_point\_support\_level
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.gradient_support_level" />
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.initial_point_support_level" name="initial_point_support_level">
+    Returns initial point support level
+  </Attribute>
 
-### gradient\_support\_level
+  ### is\_bounds\_ignored
 
-Returns gradient support level
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_ignored" name="is_bounds_ignored">
+    Returns is bounds ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.initial_point_support_level" />
+  ### is\_bounds\_required
 
-### initial\_point\_support\_level
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_required" name="is_bounds_required">
+    Returns is bounds required
+  </Attribute>
 
-Returns initial point support level
+  ### is\_bounds\_supported
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_ignored" />
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_supported" name="is_bounds_supported">
+    Returns is bounds supported
+  </Attribute>
 
-### is\_bounds\_ignored
+  ### is\_gradient\_ignored
 
-Returns is bounds ignored
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_ignored" name="is_gradient_ignored">
+    Returns is gradient ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_required" />
+  ### is\_gradient\_required
 
-### is\_bounds\_required
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_required" name="is_gradient_required">
+    Returns is gradient required
+  </Attribute>
 
-Returns is bounds required
+  ### is\_gradient\_supported
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_supported" />
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_supported" name="is_gradient_supported">
+    Returns is gradient supported
+  </Attribute>
 
-### is\_bounds\_supported
+  ### is\_initial\_point\_ignored
 
-Returns is bounds supported
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_ignored" name="is_initial_point_ignored">
+    Returns is initial point ignored
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_ignored" />
+  ### is\_initial\_point\_required
 
-### is\_gradient\_ignored
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_required" name="is_initial_point_required">
+    Returns is initial point required
+  </Attribute>
 
-Returns is gradient ignored
+  ### is\_initial\_point\_supported
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_required" />
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_supported" name="is_initial_point_supported">
+    Returns is initial point supported
+  </Attribute>
 
-### is\_gradient\_required
+  ### setting
 
-Returns is gradient required
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.setting" name="setting">
+    Return setting
+  </Attribute>
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_supported" />
+  ### settings
 
-### is\_gradient\_supported
+  <Attribute id="qiskit.algorithms.optimizers.QNSPSA.settings" name="settings">
+    The optimizer settings in a dictionary format.
+  </Attribute>
 
-Returns is gradient supported
+  ## Methods
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_ignored" />
+  ### calibrate
 
-### is\_initial\_point\_ignored
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.calibrate" name="calibrate" signature="static calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False, max_evals_grouped=1)">
+    Calibrate SPSA parameters with a powerseries as learning rate and perturbation coeffs.
 
-Returns is initial point ignored
-
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_required" />
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-<span id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_supported" />
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-<span id="qiskit.algorithms.optimizers.QNSPSA.setting" />
-
-### setting
-
-Return setting
-
-<span id="qiskit.algorithms.optimizers.QNSPSA.settings" />
-
-### settings
-
-The optimizer settings in a dictionary format.
-
-## Methods
-
-### calibrate
-
-<span id="qiskit.algorithms.optimizers.QNSPSA.calibrate" />
-
-`static calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False, max_evals_grouped=1)`
-
-Calibrate SPSA parameters with a powerseries as learning rate and perturbation coeffs.
-
-The powerseries are:
+    The powerseries are:
 
 $$
 a_k = \frac{a}{(A + k + 1)^\alpha}, c_k = \frac{c}{(k + 1)^\gamma}
 $$
 
-**Parameters**
+    **Parameters**
 
-*   **loss** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The loss function.
-*   **initial\_point** (*np.ndarray*) – The initial guess of the iteration.
-*   **c** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The initial perturbation magnitude.
-*   **stability\_constant** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The value of A.
-*   **target\_magnitude** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The target magnitude for the first update step, defaults to $2\pi / 10$.
-*   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The exponent of the learning rate powerseries.
-*   **gamma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The exponent of the perturbation powerseries.
-*   **modelspace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the target magnitude is the difference of parameter values or function values (= model space).
-*   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of grouped evaluations supported by the loss function. Defaults to 1, i.e. no grouping.
+    *   **loss** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The loss function.
+    *   **initial\_point** (*np.ndarray*) – The initial guess of the iteration.
+    *   **c** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The initial perturbation magnitude.
+    *   **stability\_constant** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The value of A.
+    *   **target\_magnitude** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The target magnitude for the first update step, defaults to $2\pi / 10$.
+    *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The exponent of the learning rate powerseries.
+    *   **gamma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The exponent of the perturbation powerseries.
+    *   **modelspace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the target magnitude is the difference of parameter values or function values (= model space).
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of grouped evaluations supported by the loss function. Defaults to 1, i.e. no grouping.
 
-**Returns**
+    **Returns**
 
-**A tuple of powerseries generators, the first one for the**
+    **A tuple of powerseries generators, the first one for the**
 
-learning rate and the second one for the perturbation.
+    learning rate and the second one for the perturbation.
 
-**Return type**
+    **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")(generator, generator)
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")(generator, generator)
+  </Function>
 
-### estimate\_stddev
+  ### estimate\_stddev
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.estimate_stddev" />
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.estimate_stddev" name="estimate_stddev" signature="static estimate_stddev(loss, initial_point, avg=25, max_evals_grouped=1)">
+    Estimate the standard deviation of the loss function.
 
-`static estimate_stddev(loss, initial_point, avg=25, max_evals_grouped=1)`
+    **Return type**
 
-Estimate the standard deviation of the loss function.
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### get\_fidelity
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" name="get_fidelity" signature="static get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)">
+    Get a function to compute the fidelity of `circuit` with itself.
 
-### get\_fidelity
+    <Admonition title="Note" type="note">
+      Using this function with a backend and expectation converter is pending deprecation, instead pass a Qiskit Primitive sampler, such as [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler"). The sampler can be passed as keyword argument or, positionally, as second argument.
+    </Admonition>
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" />
-
-`static get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)`
-
-Get a function to compute the fidelity of `circuit` with itself.
-
-<Admonition title="Note" type="note">
-  Using this function with a backend and expectation converter is pending deprecation, instead pass a Qiskit Primitive sampler, such as [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler"). The sampler can be passed as keyword argument or, positionally, as second argument.
-</Admonition>
-
-Let `circuit` be a parameterized quantum circuit performing the operation $U(\theta)$ given a set of parameters $\theta$. Then this method returns a function to evaluate
+    Let `circuit` be a parameterized quantum circuit performing the operation $U(\theta)$ given a set of parameters $\theta$. Then this method returns a function to evaluate
 
 $$
 F(\theta, \phi) = \big|\langle 0 | U^\dagger(\theta) U(\phi) |0\rangle  \big|^2.
 $$
 
-The output of this function can be used as input for the `fidelity` to the [`QNSPSA`](#qiskit.algorithms.optimizers.QNSPSA "qiskit.algorithms.optimizers.QNSPSA") optimizer.
+    The output of this function can be used as input for the `fidelity` to the [`QNSPSA`](#qiskit.algorithms.optimizers.QNSPSA "qiskit.algorithms.optimizers.QNSPSA") optimizer.
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  `qiskit.algorithms.optimizers.qnspsa.QNSPSA.get_fidelity()`’s argument `expectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      `qiskit.algorithms.optimizers.qnspsa.QNSPSA.get_fidelity()`’s argument `expectation` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+    </Admonition>
 
-<Admonition title="Deprecated since version 0.24.0" type="danger">
-  `qiskit.algorithms.optimizers.qnspsa.QNSPSA.get_fidelity()`’s argument `backend` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
-</Admonition>
+    <Admonition title="Deprecated since version 0.24.0" type="danger">
+      `qiskit.algorithms.optimizers.qnspsa.QNSPSA.get_fidelity()`’s argument `backend` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+    </Admonition>
 
-**Parameters**
+    **Parameters**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit preparing the parameterized ansatz.
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")  *|*[*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") *| None*) – Deprecated. A backend of quantum instance to evaluate the circuits. If None, plain matrix multiplication will be used.
-*   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase") *| None*) – Deprecated. An expectation converter to specify how the expected value is computed. If a shot-based readout is used this should be set to `PauliExpectation`.
-*   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to sample from a quantum state.
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit preparing the parameterized ansatz.
+    *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")  *|*[*QuantumInstance*](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") *| None*) – Deprecated. A backend of quantum instance to evaluate the circuits. If None, plain matrix multiplication will be used.
+    *   **expectation** ([*ExpectationBase*](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase") *| None*) – Deprecated. An expectation converter to specify how the expected value is computed. If a shot-based readout is used this should be set to `PauliExpectation`.
+    *   **sampler** ([*BaseSampler*](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") *| None*) – A sampler primitive to sample from a quantum state.
 
-**Returns**
+    **Returns**
 
-A handle to the function $F$.
+    A handle to the function $F$.
 
-**Return type**
+    **Return type**
 
-Callable\[\[np.ndarray, np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+    Callable\[\[np.ndarray, np.ndarray], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
+  </Function>
 
-### get\_support\_level
+  ### get\_support\_level
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.get_support_level" />
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.get_support_level" name="get_support_level" signature="get_support_level()">
+    Get the support level dictionary.
+  </Function>
 
-`get_support_level()`
+  ### gradient\_num\_diff
 
-Get the support level dictionary.
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.gradient_num_diff" name="gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+    We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
-### gradient\_num\_diff
+    **Parameters**
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.gradient_num_diff" />
+    *   **x\_center** (*ndarray*) – point around which we compute the gradient
+    *   **f** (*func*) – the function of which the gradient is to be computed.
+    *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
+    *   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
 
-`static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)`
+    **Returns**
 
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+    the gradient computed
 
-**Parameters**
+    **Return type**
 
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max evals grouped, defaults to 1 (i.e. no batching).
+    grad
+  </Function>
 
-**Returns**
+  ### minimize
 
-the gradient computed
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.minimize" name="minimize" signature="minimize(fun, x0, jac=None, bounds=None)">
+    Minimize the scalar function.
 
-**Return type**
+    **Parameters**
 
-grad
+    *   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
+    *   **x0** (*POINT*) – The initial point for the minimization.
+    *   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
+    *   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
 
-### minimize
+    **Returns**
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.minimize" />
+    The result of the optimization, containing e.g. the result as attribute `x`.
 
-`minimize(fun, x0, jac=None, bounds=None)`
+    **Return type**
 
-Minimize the scalar function.
+    [OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
+  </Function>
 
-**Parameters**
+  ### optimize
 
-*   **fun** (*Callable\[\[POINT],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The scalar function to minimize.
-*   **x0** (*POINT*) – The initial point for the minimization.
-*   **jac** (*Callable\[\[POINT], POINT] | None*) – The gradient of the scalar function `fun`.
-*   **bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.optimize" name="optimize" signature="optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)">
+    Perform optimization.
 
-**Returns**
+    <Admonition title="Deprecated since version 0.21.0" type="danger">
+      The method `qiskit.algorithms.optimizers.spsa.SPSA.optimize()` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. Instead, use `SPSA.minimize` as a replacement, which supports the same arguments but follows the interface of scipy.optimize and returns a complete result object containing additional information.
+    </Admonition>
 
-The result of the optimization, containing e.g. the result as attribute `x`.
+    **Parameters**
 
-**Return type**
+    *   **num\_vars** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of parameters to be optimized.
+    *   **objective\_function** (*callable*) – A function that computes the objective function.
+    *   **gradient\_function** (*callable*) – Not supported for SPSA.
+    *   **variable\_bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[(*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*)]*) – Not supported for SPSA.
+    *   **initial\_point** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Initial point.
 
-[OptimizerResult](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.OptimizerResult")
+    **Returns**
 
-### optimize
+    **point, value, nfev**
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.optimize" />
+    point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
 
-`optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+    **Return type**
 
-Perform optimization.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
+  </Function>
 
-<Admonition title="Deprecated since version 0.21.0" type="danger">
-  The method `qiskit.algorithms.optimizers.spsa.SPSA.optimize()` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. Instead, use `SPSA.minimize` as a replacement, which supports the same arguments but follows the interface of scipy.optimize and returns a complete result object containing additional information.
-</Admonition>
+  ### print\_options
 
-**Parameters**
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.print_options" name="print_options" signature="print_options()">
+    Print algorithm-specific options.
+  </Function>
 
-*   **num\_vars** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of parameters to be optimized.
-*   **objective\_function** (*callable*) – A function that computes the objective function.
-*   **gradient\_function** (*callable*) – Not supported for SPSA.
-*   **variable\_bounds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[(*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*)]*) – Not supported for SPSA.
-*   **initial\_point** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Initial point.
+  ### set\_max\_evals\_grouped
 
-**Returns**
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.set_max_evals_grouped" name="set_max_evals_grouped" signature="set_max_evals_grouped(limit)">
+    Set max evals grouped
+  </Function>
 
-**point, value, nfev**
+  ### set\_options
 
-point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.set_options" name="set_options" signature="set_options(**kwargs)">
+    Sets or updates values in the options dictionary.
 
-**Return type**
+    The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
+    **Parameters**
 
-### print\_options
+    **kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
+  </Function>
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.print_options" />
+  ### wrap\_function
 
-`print_options()`
+  <Function id="qiskit.algorithms.optimizers.QNSPSA.wrap_function" name="wrap_function" signature="static wrap_function(function, args)">
+    Wrap the function to implicitly inject the args at the call of the function.
 
-Print algorithm-specific options.
+    **Parameters**
 
-### set\_max\_evals\_grouped
+    *   **function** (*func*) – the target function
+    *   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
 
-<span id="qiskit.algorithms.optimizers.QNSPSA.set_max_evals_grouped" />
+    **Returns**
 
-`set_max_evals_grouped(limit)`
+    wrapper
 
-Set max evals grouped
+    **Return type**
 
-### set\_options
-
-<span id="qiskit.algorithms.optimizers.QNSPSA.set_options" />
-
-`set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – options, given as name=value.
-
-### wrap\_function
-
-<span id="qiskit.algorithms.optimizers.QNSPSA.wrap_function" />
-
-`static wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+    function\_wrapper
+  </Function>
+</Class>
 

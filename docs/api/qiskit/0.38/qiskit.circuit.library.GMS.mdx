@@ -8,278 +8,268 @@ python_api_name: qiskit.circuit.library.GMS
 
 # GMS
 
-<span id="qiskit.circuit.library.GMS" />
+<Class id="qiskit.circuit.library.GMS" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/generalized_gates/gms.py" signature="GMS(num_qubits, theta)">
+  Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
-`GMS(num_qubits, theta)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/generalized_gates/gms.py "view source code")
+  Global Mølmer–Sørensen gate.
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+  **Circuit symbol:**
 
-Global Mølmer–Sørensen gate.
+  ```python
+       ┌───────────┐
+  q_0: ┤0          ├
+       │           │
+  q_1: ┤1   GMS    ├
+       │           │
+  q_2: ┤2          ├
+       └───────────┘
+  ```
 
-**Circuit symbol:**
+  **Expanded Circuit:**
 
-```python
-     ┌───────────┐
-q_0: ┤0          ├
-     │           │
-q_1: ┤1   GMS    ├
-     │           │
-q_2: ┤2          ├
-     └───────────┘
-```
+  The Mølmer–Sørensen gate is native to ion-trap systems. The global MS can be applied to multiple ions to entangle multiple qubits simultaneously \[1].
 
-**Expanded Circuit:**
-
-The Mølmer–Sørensen gate is native to ion-trap systems. The global MS can be applied to multiple ions to entangle multiple qubits simultaneously \[1].
-
-In the two-qubit case, this is equivalent to an XX(theta) interaction, and is thus reduced to the RXXGate. The global MS gate is a sum of XX interactions on all pairs \[2].
+  In the two-qubit case, this is equivalent to an XX(theta) interaction, and is thus reduced to the RXXGate. The global MS gate is a sum of XX interactions on all pairs \[2].
 
 $$
 GMS(\chi_{12}, \chi_{13}, ..., \chi_{n-1 n}) =
 exp(-i \sum_{i=1}^{n} \sum_{j=i+1}^{n} X{\otimes}X \frac{\chi_{ij}}{2})
 $$
 
-**References:**
+  **References:**
 
-\[1] Sørensen, A. and Mølmer, K., Multi-particle entanglement of hot trapped ions. Physical Review Letters. 82 (9): 1835–1838. [arXiv:9810040](https://arxiv.org/abs/quant-ph/9810040)
+  \[1] Sørensen, A. and Mølmer, K., Multi-particle entanglement of hot trapped ions. Physical Review Letters. 82 (9): 1835–1838. [arXiv:9810040](https://arxiv.org/abs/quant-ph/9810040)
 
-\[2] Maslov, D. and Nam, Y., Use of global interactions in efficient quantum circuit constructions. New Journal of Physics, 20(3), p.033018. [arXiv:1707.06356](https://arxiv.org/abs/1707.06356)
+  \[2] Maslov, D. and Nam, Y., Use of global interactions in efficient quantum circuit constructions. New Journal of Physics, 20(3), p.033018. [arXiv:1707.06356](https://arxiv.org/abs/1707.06356)
 
-Create a new Global Mølmer–Sørensen (GMS) gate.
+  Create a new Global Mølmer–Sørensen (GMS) gate.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_qubits** (`int`) – width of gate.
-*   **theta** (`Union`\[`List`\[`List`\[`float`]], `ndarray`]) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
+  *   **num\_qubits** (`int`) – width of gate.
+  *   **theta** (`Union`\[`List`\[`List`\[`float`]], `ndarray`]) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.GMS.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.GMS.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
 
-Returns a list of ancilla bits in the order that the registers were added.
+    **Return type**
 
-**Return type**
+    `List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  </Attribute>
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+  ### calibrations
 
-<span id="qiskit.circuit.library.GMS.calibrations" />
+  <Attribute id="qiskit.circuit.library.GMS.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-### calibrations
+    **The custom pulse definition of a given gate is of the form**
 
-Return calibration dictionary.
+    \{‘gate\_name’: \{(qubits, params): schedule}}
 
-**The custom pulse definition of a given gate is of the form**
+    **Return type**
 
-\{‘gate\_name’: \{(qubits, params): schedule}}
+    `dict`
+  </Attribute>
 
-**Return type**
+  ### clbits
 
-`dict`
+  <Attribute id="qiskit.circuit.library.GMS.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
 
-<span id="qiskit.circuit.library.GMS.clbits" />
+    **Return type**
 
-### clbits
+    `List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+  </Attribute>
 
-Returns a list of classical bits in the order that the registers were added.
+  ### data
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.GMS.data" name="data">
+    Return the circuit data (instructions and context).
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+    **Returns**
 
-<span id="qiskit.circuit.library.GMS.data" />
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
 
-### data
+    **Return type**
 
-Return the circuit data (instructions and context).
+    QuantumCircuitData
+  </Attribute>
 
-**Returns**
+  ### extension\_lib
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+  <Attribute id="qiskit.circuit.library.GMS.extension_lib" name="extension_lib" attributeValue="= 'include &#x22;qelib1.inc&#x22;;'" />
 
-**Return type**
+  ### global\_phase
 
-QuantumCircuitData
+  <Attribute id="qiskit.circuit.library.GMS.global_phase" name="global_phase">
+    Return the global phase of the circuit in radians.
 
-<span id="qiskit.circuit.library.GMS.extension_lib" />
+    **Return type**
 
-### extension\_lib
+    `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  </Attribute>
 
-`= 'include "qelib1.inc";'`
+  ### header
 
-<span id="qiskit.circuit.library.GMS.global_phase" />
+  <Attribute id="qiskit.circuit.library.GMS.header" name="header" attributeValue="= 'OPENQASM 2.0;'" />
 
-### global\_phase
+  ### instances
 
-Return the global phase of the circuit in radians.
+  <Attribute id="qiskit.circuit.library.GMS.instances" name="instances" attributeValue="= 87" />
 
-**Return type**
+  ### metadata
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+  <Attribute id="qiskit.circuit.library.GMS.metadata" name="metadata">
+    The user provided metadata associated with the circuit
 
-<span id="qiskit.circuit.library.GMS.header" />
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-### header
+    **Return type**
 
-`= 'OPENQASM 2.0;'`
+    `dict`
+  </Attribute>
 
-<span id="qiskit.circuit.library.GMS.instances" />
+  ### num\_ancillas
 
-### instances
+  <Attribute id="qiskit.circuit.library.GMS.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
 
-`= 87`
+    **Return type**
 
-<span id="qiskit.circuit.library.GMS.metadata" />
+    `int`
+  </Attribute>
 
-### metadata
+  ### num\_clbits
 
-The user provided metadata associated with the circuit
+  <Attribute id="qiskit.circuit.library.GMS.num_clbits" name="num_clbits">
+    Return number of classical bits.
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    **Return type**
 
-**Return type**
+    `int`
+  </Attribute>
 
-`dict`
+  ### num\_parameters
 
-<span id="qiskit.circuit.library.GMS.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.GMS.num_parameters" name="num_parameters">
+    The number of parameter objects in the circuit.
 
-### num\_ancillas
+    **Return type**
 
-Return the number of ancilla qubits.
+    `int`
+  </Attribute>
 
-**Return type**
+  ### num\_qubits
 
-`int`
+  <Attribute id="qiskit.circuit.library.GMS.num_qubits" name="num_qubits">
+    Return number of qubits.
 
-<span id="qiskit.circuit.library.GMS.num_clbits" />
+    **Return type**
 
-### num\_clbits
+    `int`
+  </Attribute>
 
-Return number of classical bits.
+  ### op\_start\_times
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.GMS.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-`int`
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-<span id="qiskit.circuit.library.GMS.num_parameters" />
+    **Return type**
 
-### num\_parameters
+    `List`\[`int`]
 
-The number of parameter objects in the circuit.
+    **Returns**
 
-**Return type**
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-`int`
+    **Raises**
 
-<span id="qiskit.circuit.library.GMS.num_qubits" />
+    **AttributeError** – When circuit is not scheduled.
+  </Attribute>
 
-### num\_qubits
+  ### parameters
 
-Return number of qubits.
+  <Attribute id="qiskit.circuit.library.GMS.parameters" name="parameters">
+    The parameters defined in the circuit.
 
-**Return type**
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-`int`
+    **Examples**
 
-<span id="qiskit.circuit.library.GMS.op_start_times" />
+    The snippet below shows that insertion order of parameters does not matter.
 
-### op\_start\_times
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
 
-Return a list of operation start times.
+    Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
 
-**Return type**
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
 
-`List`\[`int`]
+    ```python
+    ```
 
-**Returns**
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Return type**
 
-**Raises**
+    `ParameterView`
 
-**AttributeError** – When circuit is not scheduled.
+    **Returns**
 
-<span id="qiskit.circuit.library.GMS.parameters" />
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
-### parameters
+  ### prefix
 
-The parameters defined in the circuit.
+  <Attribute id="qiskit.circuit.library.GMS.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+  ### qubits
 
-**Examples**
+  <Attribute id="qiskit.circuit.library.GMS.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
 
-The snippet below shows that insertion order of parameters does not matter.
+    **Return type**
 
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
->>> circuit = QuantumCircuit(1)
->>> circuit.rx(b, 0)
->>> circuit.rz(elephant, 0)
->>> circuit.ry(a, 0)
->>> circuit.parameters  # sorted alphabetically!
-ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
-```
-
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter
->>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
->>> circuit = QuantumCircuit(1)
->>> circuit.u(*angles, 0)
->>> circuit.draw()
-   ┌─────────────────────────────┐
-q: ┤ U(angle_1,angle_2,angle_10) ├
-   └─────────────────────────────┘
->>> circuit.parameters
-ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
-```
-
-To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
-
-```python
-```
-
-```python
->>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
->>> x = ParameterVector("x", 12)
->>> circuit = QuantumCircuit(1)
->>> for x_i in x:
-...     circuit.rx(x_i, 0)
->>> circuit.parameters
-ParameterView([
-    ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
-    ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
-    ..., ParameterVectorElement(x[11])
-])
-```
-
-**Return type**
-
-`ParameterView`
-
-**Returns**
-
-The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
-
-<span id="qiskit.circuit.library.GMS.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.GMS.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-**Return type**
-
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+    `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+  </Attribute>
+</Class>
 

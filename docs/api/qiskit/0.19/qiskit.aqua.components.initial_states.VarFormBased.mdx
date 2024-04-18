@@ -8,50 +8,46 @@ python_api_name: qiskit.aqua.components.initial_states.VarFormBased
 
 # VarFormBased
 
-<span id="qiskit.aqua.components.initial_states.VarFormBased" />
+<Class id="qiskit.aqua.components.initial_states.VarFormBased" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/var_form_based.py" signature="VarFormBased(var_form, params)">
+  The variational form based initial state.
 
-`VarFormBased(var_form, params)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/initial_states/var_form_based.py "view source code")
+  This can been useful, say for example, if you have been doing experiments using a [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm") and have parameters for a state of interest of that form. Using this class it can then be turned into an initial state for use elsewhere.
 
-The variational form based initial state.
+  As an example this [notebook](https://github.com/Qiskit/qiskit-community-tutorials/blob/master/aqua/vqe2iqpe.ipynb) shows where the variational form’s state, from a [`VQE`](qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE") run, is then used as an initial state for [`IQPE`](qiskit.aqua.algorithms.IQPE "qiskit.aqua.algorithms.IQPE") by using this class.
 
-This can been useful, say for example, if you have been doing experiments using a [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm") and have parameters for a state of interest of that form. Using this class it can then be turned into an initial state for use elsewhere.
+  **Parameters**
 
-As an example this [notebook](https://github.com/Qiskit/qiskit-community-tutorials/blob/master/aqua/vqe2iqpe.ipynb) shows where the variational form’s state, from a [`VQE`](qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE") run, is then used as an initial state for [`IQPE`](qiskit.aqua.algorithms.IQPE "qiskit.aqua.algorithms.IQPE") by using this class.
+  *   **var\_form** (`Union`\[[`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The variational form.
+  *   **params** (`Union`\[`List`\[`float`], `ndarray`, `Dict`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter"), `float`]]) – Parameters for the variational form.
 
-**Parameters**
+  **Raises**
 
-*   **var\_form** (`Union`\[[`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.variational_form.VariationalForm"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The variational form.
-*   **params** (`Union`\[`List`\[`float`], `ndarray`, `Dict`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter"), `float`]]) – Parameters for the variational form.
+  **ValueError** – Invalid input
 
-**Raises**
+  ## Methods
 
-**ValueError** – Invalid input
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.components.initial_states.VarFormBased.construct_circuit" name="construct_circuit" signature="VarFormBased.construct_circuit(mode='circuit', register=None)">
+    Construct the statevector of desired initial state.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.components.initial_states.VarFormBased.construct_circuit" />
+    *   **mode** (*string*) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+    *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – qubits for circuit construction.
 
-`VarFormBased.construct_circuit(mode='circuit', register=None)`
+    **Returns**
 
-Construct the statevector of desired initial state.
+    statevector.
 
-**Parameters**
+    **Return type**
 
-*   **mode** (*string*) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – qubits for circuit construction.
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
-**Returns**
+    **Raises**
 
-statevector.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-*   **RuntimeError** – invalid input for mode
-*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+    *   **RuntimeError** – invalid input for mode
+    *   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+  </Function>
+</Class>
 

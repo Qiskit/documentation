@@ -8,78 +8,72 @@ python_api_name: qiskit.opflow.expectations.CVaRExpectation
 
 # CVaRExpectation
 
-<span id="qiskit.opflow.expectations.CVaRExpectation" />
+<Class id="qiskit.opflow.expectations.CVaRExpectation" github="https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/expectations/cvar_expectation.py" signature="CVaRExpectation(alpha, expectation=None)">
+  Bases: [`qiskit.opflow.expectations.expectation_base.ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
 
-`CVaRExpectation(alpha, expectation=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/opflow/expectations/cvar_expectation.py "view source code")
+  Compute the Conditional Value at Risk (CVaR) expectation value.
 
-Bases: [`qiskit.opflow.expectations.expectation_base.ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
+  The standard approach to calculating the expectation value of a Hamiltonian w\.r.t. a state is to take the sample mean of the measurement outcomes. This corresponds to an estimator of the energy. However in several problem settings with a diagonal Hamiltonian, e.g. in combinatorial optimization where the Hamiltonian encodes a cost function, we are not interested in calculating the energy but in the lowest possible value we can find.
 
-Compute the Conditional Value at Risk (CVaR) expectation value.
+  To this end, we might consider using the best observed sample as a cost function during variational optimization. The issue here, is that this can result in a non-smooth optimization surface. To resolve this issue, we can smooth the optimization surface by using not just the best observed sample, but instead average over some fraction of best observed samples. This is exactly what the CVaR estimator accomplishes \[1].
 
-The standard approach to calculating the expectation value of a Hamiltonian w\.r.t. a state is to take the sample mean of the measurement outcomes. This corresponds to an estimator of the energy. However in several problem settings with a diagonal Hamiltonian, e.g. in combinatorial optimization where the Hamiltonian encodes a cost function, we are not interested in calculating the energy but in the lowest possible value we can find.
+  It is empirically shown, that this can lead to faster convergence for combinatorial optimization problems.
 
-To this end, we might consider using the best observed sample as a cost function during variational optimization. The issue here, is that this can result in a non-smooth optimization surface. To resolve this issue, we can smooth the optimization surface by using not just the best observed sample, but instead average over some fraction of best observed samples. This is exactly what the CVaR estimator accomplishes \[1].
+  Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
 
-It is empirically shown, that this can lead to faster convergence for combinatorial optimization problems.
+  **References**
 
-Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best observed samples which are used to compute the objective function. Observe that if $\alpha = 1$, CVaR is equivalent to a standard expectation value. Similarly, if $\alpha = 0$, then CVaR corresponds to using the best observed sample. Intermediate values of $\alpha$ interpolate between these two objective functions.
+  **\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
 
-**References**
+  “Improving Variational Quantum Optimization using CVaR” [arXiv:1907.04769](https://arxiv.org/abs/1907.04769)
 
-**\[1]: Barkoutsos, P. K., Nannicini, G., Robert, A., Tavernelli, I., and Woerner, S.,**
+  **Parameters**
 
-“Improving Variational Quantum Optimization using CVaR” [arXiv:1907.04769](https://arxiv.org/abs/1907.04769)
+  *   **alpha** (`float`) – The alpha value describing the quantile considered in the expectation value.
+  *   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
 
-**Parameters**
+  **Raises**
 
-*   **alpha** (`float`) – The alpha value describing the quantile considered in the expectation value.
-*   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – An expectation object to compute the expectation value. Defaults to the PauliExpectation calculation.
+  **NotImplementedError** – If the `expectation` is an AerPauliExpecation.
 
-**Raises**
+  ## Methods Defined Here
 
-**NotImplementedError** – If the `expectation` is an AerPauliExpecation.
+  ### compute\_variance
 
-## Methods Defined Here
+  <Function id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" name="compute_variance" signature="CVaRExpectation.compute_variance(exp_op)">
+    Returns the variance of the CVaR calculation
 
-### compute\_variance
+    **Parameters**
 
-<span id="qiskit.opflow.expectations.CVaRExpectation.compute_variance" />
+    **exp\_op** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator whose evaluation yields an expectation of some StateFn against a diagonal observable.
 
-`CVaRExpectation.compute_variance(exp_op)`
+    **Return type**
 
-Returns the variance of the CVaR calculation
+    `Union`\[`list`, `float`]
 
-**Parameters**
+    **Returns**
 
-**exp\_op** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator whose evaluation yields an expectation of some StateFn against a diagonal observable.
+    **The variance of the CVaR estimate corresponding to the converted**
 
-**Return type**
+    exp\_op.
 
-`Union`\[`list`, `float`]
+    **Raises**
 
-**Returns**
+    **ValueError** – If the exp\_op does not correspond to an expectation value.
+  </Function>
 
-**The variance of the CVaR estimate corresponding to the converted**
+  ### convert
 
-exp\_op.
+  <Function id="qiskit.opflow.expectations.CVaRExpectation.convert" name="convert" signature="CVaRExpectation.convert(operator)">
+    Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") :param operator: The operator to convert.
 
-**Raises**
+    **Return type**
 
-**ValueError** – If the exp\_op does not correspond to an expectation value.
+    [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
 
-### convert
+    **Returns**
 
-<span id="qiskit.opflow.expectations.CVaRExpectation.convert" />
-
-`CVaRExpectation.convert(operator)`
-
-Return an expression that computes the CVaR expectation upon calling `eval`. :type operator: [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase") :param operator: The operator to convert.
-
-**Return type**
-
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
-
-**Returns**
-
-The converted operator.
+    The converted operator.
+  </Function>
+</Class>
 

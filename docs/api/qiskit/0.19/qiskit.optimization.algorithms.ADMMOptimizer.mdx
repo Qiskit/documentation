@@ -8,97 +8,89 @@ python_api_name: qiskit.optimization.algorithms.ADMMOptimizer
 
 # ADMMOptimizer
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer" />
+<Class id="qiskit.optimization.algorithms.ADMMOptimizer" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/admm_optimizer.py" signature="ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)">
+  An implementation of the ADMM-based heuristic.
 
-`ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
+  This algorithm is introduced in \[1].
 
-An implementation of the ADMM-based heuristic.
+  **References:**
 
-This algorithm is introduced in \[1].
+  **\[1] Gambella, C., & Simonetto, A. (2020). Multi-block ADMM Heuristics for Mixed-Binary**
 
-**References:**
+  Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069.
 
-**\[1] Gambella, C., & Simonetto, A. (2020). Multi-block ADMM Heuristics for Mixed-Binary**
+  **Parameters**
 
-Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069.
+  *   **qubo\_optimizer** (`Optional`\[[`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm")]) – An instance of OptimizationAlgorithm that can effectively solve QUBO problems.
+  *   **continuous\_optimizer** (`Optional`\[[`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm")]) – An instance of OptimizationAlgorithm that can solve continuous problems.
+  *   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
 
-**Parameters**
+  **Raises**
 
-*   **qubo\_optimizer** (`Optional`\[[`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm")]) – An instance of OptimizationAlgorithm that can effectively solve QUBO problems.
-*   **continuous\_optimizer** (`Optional`\[[`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm")]) – An instance of OptimizationAlgorithm that can solve continuous problems.
-*   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
+  **NameError** – CPLEX is not installed.
 
-**Raises**
+  ## Methods
 
-**NameError** – CPLEX is not installed.
+  ### get\_compatibility\_msg
 
-## Methods
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg" name="get_compatibility_msg" signature="ADMMOptimizer.get_compatibility_msg(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-### get\_compatibility\_msg
+    **Parameters**
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg" />
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
 
-`ADMMOptimizer.get_compatibility_msg(problem)`
+    **Return type**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    `Optional`\[`str`]
 
-**Parameters**
+    **Returns**
 
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
+    Returns True if the problem is compatible, otherwise raises an error.
 
-**Return type**
+    **Raises**
 
-`Optional`\[`str`]
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+  </Function>
 
-**Returns**
+  ### is\_compatible
 
-Returns True if the problem is compatible, otherwise raises an error.
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.is_compatible" name="is_compatible" signature="ADMMOptimizer.is_compatible(problem)">
+    Checks whether a given problem can be solved with the optimizer implementing this method.
 
-**Raises**
+    **Parameters**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
 
-### is\_compatible
+    **Return type**
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.is_compatible" />
+    `bool`
 
-`ADMMOptimizer.is_compatible(problem)`
+    **Returns**
 
-Checks whether a given problem can be solved with the optimizer implementing this method.
+    Returns True if the problem is compatible, False otherwise.
+  </Function>
 
-**Parameters**
+  ### solve
 
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
+  <Function id="qiskit.optimization.algorithms.ADMMOptimizer.solve" name="solve" signature="ADMMOptimizer.solve(problem)">
+    Tries to solves the given problem using ADMM algorithm.
 
-**Return type**
+    **Parameters**
 
-`bool`
+    **problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
 
-**Returns**
+    **Return type**
 
-Returns True if the problem is compatible, False otherwise.
+    `ADMMOptimizationResult`
 
-### solve
+    **Returns**
 
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.solve" />
+    The result of the optimizer applied to the problem.
 
-`ADMMOptimizer.solve(problem)`
+    **Raises**
 
-Tries to solves the given problem using ADMM algorithm.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`ADMMOptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+    [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+  </Function>
+</Class>
 

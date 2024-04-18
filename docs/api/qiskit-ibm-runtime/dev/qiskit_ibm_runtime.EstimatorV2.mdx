@@ -8,120 +8,114 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
 # EstimatorV2
 
-<span id="qiskit_ibm_runtime.EstimatorV2" />
+<Class id="qiskit_ibm_runtime.EstimatorV2" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L49-L179" signature="EstimatorV2(backend=None, session=None, options=None)">
+  Class for interacting with Qiskit Runtime Estimator primitive service.
 
-`EstimatorV2(backend=None, session=None, options=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L48-L176 "view source code")
+  Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
 
-Class for interacting with Qiskit Runtime Estimator primitive service.
+  The [`run()`](#qiskit_ibm_runtime.EstimatorV2.run "qiskit_ibm_runtime.EstimatorV2.run") can be used to submit circuits, observables, and parameters to the Estimator primitive.
 
-Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
+  Following construction, an estimator is used by calling its [`run()`](#qiskit_ibm_runtime.EstimatorV2.run "qiskit_ibm_runtime.EstimatorV2.run") method with a list of PUBs (Primitive Unified Blocs). Each PUB contains four values that, together, define a computation unit of work for the estimator to complete:
 
-The [`run()`](#qiskit_ibm_runtime.EstimatorV2.run "qiskit_ibm_runtime.EstimatorV2.run") can be used to submit circuits, observables, and parameters to the Estimator primitive.
+  *   a single `QuantumCircuit`, possibly parametrized, whose final state we define as $\psi(\theta)$,
+  *   one or more observables (specified as any `ObservablesArrayLike`, including `Pauli`, `SparsePauliOp`, `str`) that specify which expectation values to estimate, denoted $H_j$, and
+  *   a collection parameter value sets to bind the circuit against, $\theta_k$.
+  *   an optional target precision for expectation value estimates.
 
-Following construction, an estimator is used by calling its [`run()`](#qiskit_ibm_runtime.EstimatorV2.run "qiskit_ibm_runtime.EstimatorV2.run") method with a list of PUBs (Primitive Unified Blocs). Each PUB contains four values that, together, define a computation unit of work for the estimator to complete:
+  Here is an example of how the estimator is used.
 
-*   a single `QuantumCircuit`, possibly parametrized, whose final state we define as $\psi(\theta)$,
-*   one or more observables (specified as any `ObservablesArrayLike`, including `Pauli`, `SparsePauliOp`, `str`) that specify which expectation values to estimate, denoted $H_j$, and
-*   a collection parameter value sets to bind the circuit against, $\theta_k$.
-*   an optional target precision for expectation value estimates.
+  ```python
+  from qiskit.circuit.library import RealAmplitudes
+  from qiskit.quantum_info import SparsePauliOp
+  from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+  from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
-Here is an example of how the estimator is used.
+  service = QiskitRuntimeService()
+  backend = service.least_busy(operational=True, simulator=False)
 
-```python
-from qiskit.circuit.library import RealAmplitudes
-from qiskit.quantum_info import SparsePauliOp
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+  psi = RealAmplitudes(num_qubits=2, reps=2)
+  hamiltonian = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
+  theta = [0, 1, 1, 2, 3, 5]
 
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
+  pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+  isa_psi = pm.run(psi)
+  isa_observables = hamiltonian.apply_layout(isa_psi.layout)
 
-psi = RealAmplitudes(num_qubits=2, reps=2)
-hamiltonian = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
-theta = [0, 1, 1, 2, 3, 5]
+  estimator = Estimator(backend=backend)
 
-pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-isa_psi = pm.run(psi)
-isa_observables = hamiltonian.apply_layout(isa_psi.layout)
+  # calculate [ <psi(theta1)|hamiltonian|psi(theta)> ]
+  job = estimator.run([(isa_psi, isa_observables, [theta])])
+  pub_result = job.result()[0]
+  print(f"Expectation values: {pub_result.data.evs}")
+  ```
 
-estimator = Estimator(backend=backend)
+  Initializes the Estimator primitive.
 
-# calculate [ <psi(theta1)|hamiltonian|psi(theta)> ]
-job = estimator.run([(isa_psi, isa_observables, [theta])])
-pub_result = job.result()[0]
-print(f"Expectation values: {pub_result.data.evs}")
-```
+  **Parameters**
 
-Initializes the Estimator primitive.
+  *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
-**Parameters**
+  *   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
 
-*   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
+      Session in which to call the primitive.
 
-*   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
+      If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
 
-    Session in which to call the primitive.
+  *   **options** (`Union`\[`Dict`, [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions"), `None`]) – Estimator options, see `EstimatorOptions` for detailed description.
 
-    If both `session` and `backend` are specified, `session` takes precedence. If neither is specified, and the primitive is created inside a [`qiskit_ibm_runtime.Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") context manager, then the session is used. Otherwise if IBM Cloud channel is used, a default backend is selected.
+  **Raises**
 
-*   **options** (`Union`\[`Dict`, [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions"), `None`]) – Estimator options, see `EstimatorOptions` for detailed description.
+  **NotImplementedError** – If “q-ctrl” channel strategy is used.
 
-**Raises**
+  ## Attributes
 
-**NotImplementedError** – If “q-ctrl” channel strategy is used.
+  ### options
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.EstimatorV2.options" name="options">
+    Return options
 
-<span id="qiskit_ibm_runtime.EstimatorV2.options" />
+    **Return type**
 
-### options
+    `TypeVar`(`OptionsT`, bound= `BaseOptions`)
+  </Attribute>
 
-Return options
+  ### session
 
-**Return type**
+  <Attribute id="qiskit_ibm_runtime.EstimatorV2.session" name="session">
+    Return session used by this primitive.
 
-`TypeVar`(`OptionsT`, bound= `BaseOptions`)
+    **Return type**
 
-<span id="qiskit_ibm_runtime.EstimatorV2.session" />
+    `Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
 
-### session
+    **Returns**
 
-Return session used by this primitive.
+    Session used by this primitive, or `None` if session is not used.
+  </Attribute>
 
-**Return type**
+  ### version
 
-`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]
+  <Attribute id="qiskit_ibm_runtime.EstimatorV2.version" name="version" attributeValue="= 2" />
 
-**Returns**
+  ## Methods
 
-Session used by this primitive, or `None` if session is not used.
+  ### run
 
-<span id="qiskit_ibm_runtime.EstimatorV2.version" />
+  <Function id="qiskit_ibm_runtime.EstimatorV2.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L134-L151" signature="run(pubs, *, precision=None)">
+    Submit a request to the estimator primitive.
 
-### version
+    **Parameters**
 
-`= 2`
+    *   **pubs** (*Iterable\[EstimatorPubLike]*) – An iterable of pub-like (primitive unified bloc) objects, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`.
+    *   **precision** (*float | None*) – The target precision for expectation value estimates of each run Estimator Pub that does not specify its own precision. If None the estimator’s default precision value will be used.
 
-## Methods
+    **Return type**
 
-### run
+    [RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
 
-<span id="qiskit_ibm_runtime.EstimatorV2.run" />
+    **Returns**
 
-`run(pubs, *, precision=None)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L136-L153 "view source code")
-
-Submit a request to the estimator primitive.
-
-**Parameters**
-
-*   **pubs** (*Iterable\[EstimatorPubLike]*) – An iterable of pub-like (primitive unified bloc) objects, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`.
-*   **precision** (*float | None*) – The target precision for expectation value estimates of each run Estimator Pub that does not specify its own precision. If None the estimator’s default precision value will be used.
-
-**Return type**
-
-[RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
-
-**Returns**
-
-Submitted job.
+    Submitted job.
+  </Function>
+</Class>
 

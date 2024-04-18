@@ -205,10 +205,12 @@ For Sampler V2, the circuit and optional parameter value sets are input as *prim
   <TabItem value="SamplerV2" label="Sampler V2">
 
 ```python
-job = sampler.run([(isa_circuit)])
+job = sampler.run([isa_circuit])
 print(f">>> Job ID: {job.job_id()}")
 print(f">>> Job Status: {job.status()}")
 ```
+
+You need the classical register name to get the results.  By default, it is named `meas` when you use `measure_all()`. When defining your circuit, if you create one or more classical registers with a non-default name, use that name to get the results. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
 
 ```python
 result = job.result()

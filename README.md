@@ -100,6 +100,8 @@ To execute notebooks in a fixed Python environment, first install `tox` using
 pipx install tox
 ```
 
+You also need to install a few system dependencies: TeX, Poppler, and graphviz. On macOS, you can run `brew install mactex-no-gui poppler graphviz`. On Ubuntu, you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz`.
+
 - To execute all notebooks, run tox.
   ```sh
   tox
@@ -393,6 +395,8 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 ```
 
 # How to write the documentation
+
+Refer to our [style guide](./style-guide.md) for technical writing guidance.
 
 We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensions for custom components we have.
 

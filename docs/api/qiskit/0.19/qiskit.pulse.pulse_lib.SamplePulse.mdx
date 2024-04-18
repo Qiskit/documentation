@@ -8,79 +8,69 @@ python_api_name: qiskit.pulse.pulse_lib.SamplePulse
 
 # SamplePulse
 
-<span id="qiskit.pulse.pulse_lib.SamplePulse" />
+<Class id="qiskit.pulse.pulse_lib.SamplePulse" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/sample_pulse.py" signature="SamplePulse(samples, name=None, epsilon=1e-07)">
+  A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
 
-`SamplePulse(samples, name=None, epsilon=1e-07)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/sample_pulse.py "view source code")
+  Create new sample pulse command.
 
-A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
+  **Parameters**
 
-Create new sample pulse command.
+  *   **samples** (`Union`\[`ndarray`, `List`\[`complex`]]) – Complex array of the samples in the pulse envelope.
+  *   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
+  *   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
 
-**Parameters**
+  ## Attributes
 
-*   **samples** (`Union`\[`ndarray`, `List`\[`complex`]]) – Complex array of the samples in the pulse envelope.
-*   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
-*   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
+  ### id
 
-## Attributes
+  <Attribute id="qiskit.pulse.pulse_lib.SamplePulse.id" name="id" signature="int">
+    Unique identifier for this pulse.
 
-### id
+    **Return type**
 
-<span id="qiskit.pulse.pulse_lib.SamplePulse.id" />
+    `int`
+  </Attribute>
 
-`int`
+  ### samples
 
-Unique identifier for this pulse.
+  <Attribute id="qiskit.pulse.pulse_lib.SamplePulse.samples" name="samples" signature="numpy.ndarray">
+    Return sample values.
 
-**Return type**
+    **Return type**
 
-`int`
+    `ndarray`
+  </Attribute>
 
-### samples
+  ## Methods
 
-<span id="qiskit.pulse.pulse_lib.SamplePulse.samples" />
+  ### \_\_call\_\_
 
-`numpy.ndarray`
+  <Function id="qiskit.pulse.pulse_lib.SamplePulse.__call__" name="__call__" signature="SamplePulse.__call__(channel)">
+    Call self as a function.
+  </Function>
 
-Return sample values.
+  ### draw
 
-**Return type**
+  <Function id="qiskit.pulse.pulse_lib.SamplePulse.draw" name="draw" signature="SamplePulse.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)">
+    Plot the interpolated envelope of pulse.
 
-`ndarray`
+    **Parameters**
 
-## Methods
+    *   **dt** (`float`) – Time interval of samples.
+    *   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance.
+    *   **filename** (`Optional`\[`str`]) – Name required to save pulse image.
+    *   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation.
+    *   **scale** (`float`) – Relative visual scaling of waveform amplitudes.
+    *   **interactive** (`bool`) – When set true show the circuit in a new window. (This depends on the matplotlib backend being used.)
+    *   **scaling** (`Optional`\[`float`]) – Deprecated, see scale,
 
-### \_\_call\_\_
+    **Returns**
 
-<span id="qiskit.pulse.pulse_lib.SamplePulse.__call__" />
+    A matplotlib figure object of the pulse envelope
 
-`SamplePulse.__call__(channel)`
+    **Return type**
 
-Call self as a function.
-
-### draw
-
-<span id="qiskit.pulse.pulse_lib.SamplePulse.draw" />
-
-`SamplePulse.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
-
-Plot the interpolated envelope of pulse.
-
-**Parameters**
-
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#pulsestyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance.
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image.
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation.
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes.
-*   **interactive** (`bool`) – When set true show the circuit in a new window. (This depends on the matplotlib backend being used.)
-*   **scaling** (`Optional`\[`float`]) – Deprecated, see scale,
-
-**Returns**
-
-A matplotlib figure object of the pulse envelope
-
-**Return type**
-
-matplotlib.figure
+    matplotlib.figure
+  </Function>
+</Class>
 

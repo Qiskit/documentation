@@ -8,440 +8,400 @@ python_api_name: qiskit.quantum_info.Kraus
 
 # Kraus
 
-<span id="qiskit.quantum_info.Kraus" />
+<Class id="qiskit.quantum_info.Kraus" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py" signature="Kraus(data, input_dims=None, output_dims=None)">
+  Kraus representation of a quantum channel.
 
-`Kraus(data, input_dims=None, output_dims=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/operators/channel/kraus.py "view source code")
+  The Kraus representation for a quantum channel $\mathcal{E}$ is a set of matrices $[A_0,...,A_{K-1}]$ such that
 
-Kraus representation of a quantum channel.
-
-The Kraus representation for a quantum channel $\mathcal{E}$ is a set of matrices $[A_0,...,A_{K-1}]$ such that
-
-For a quantum channel $\mathcal{E}$, the Kraus representation is given by a set of matrices $[A_0,...,A_{K-1}]$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
+  For a quantum channel $\mathcal{E}$, the Kraus representation is given by a set of matrices $[A_0,...,A_{K-1}]$ such that the evolution of a [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") $\rho$ is given by
 
 $$
 \mathcal{E}(\rho) = \sum_{i=0}^{K-1} A_i \rho A_i^\dagger
 $$
 
-A general operator map $\mathcal{G}$ can also be written using the generalized Kraus representation which is given by two sets of matrices $[A_0,...,A_{K-1}]$, $[B_0,...,A_{B-1}]$ such that
+  A general operator map $\mathcal{G}$ can also be written using the generalized Kraus representation which is given by two sets of matrices $[A_0,...,A_{K-1}]$, $[B_0,...,A_{B-1}]$ such that
 
 $$
 \mathcal{G}(\rho) = \sum_{i=0}^{K-1} A_i \rho B_i^\dagger
 $$
 
-See reference \[1] for further details.
+  See reference \[1] for further details.
 
-**References**
+  **References**
 
-1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
+  1.  C.J. Wood, J.D. Biamonte, D.G. Cory, *Tensor networks and graphical calculus for open quantum systems*, Quant. Inf. Comp. 15, 0579-0811 (2015). [arXiv:1111.6950 \[quant-ph\]](https://arxiv.org/abs/1111.6950)
 
-Initialize a quantum channel Kraus operator.
+  Initialize a quantum channel Kraus operator.
 
-**Parameters**
+  **Parameters**
 
-*   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
-*   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
+  *   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
+  *   **input\_dims** (*tuple*) – the input subsystem dimensions. \[Default: None]
+  *   **output\_dims** (*tuple*) – the output subsystem dimensions. \[Default: None]
 
-**Raises**
+  **Raises**
 
-**QiskitError** – if input data cannot be initialized as a a list of Kraus matrices.
+  **QiskitError** – if input data cannot be initialized as a a list of Kraus matrices.
 
-**Additional Information:**
+  **Additional Information:**
 
-If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a list of Numpy arrays of shape (2\*\*N, 2\*\*N) qubit systems will be used. If the input does not correspond to an N-qubit channel, it will assign a single subsystem with dimension specified by the shape of the input.
+  If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a list of Numpy arrays of shape (2\*\*N, 2\*\*N) qubit systems will be used. If the input does not correspond to an N-qubit channel, it will assign a single subsystem with dimension specified by the shape of the input.
 
-## Attributes
+  ## Attributes
 
-### atol
+  ### atol
 
-The default absolute tolerance parameter for float comparisons.
+  <Attribute id="qiskit.quantum_info.Kraus.atol" name="atol">
+    The default absolute tolerance parameter for float comparisons.
+  </Attribute>
 
-### data
+  ### data
 
-Return list of Kraus matrices for channel.
+  <Attribute id="qiskit.quantum_info.Kraus.data" name="data">
+    Return list of Kraus matrices for channel.
+  </Attribute>
 
-### dim
+  ### dim
 
-Return tuple (input\_shape, output\_shape).
+  <Attribute id="qiskit.quantum_info.Kraus.dim" name="dim">
+    Return tuple (input\_shape, output\_shape).
+  </Attribute>
 
-### num\_qubits
+  ### num\_qubits
 
-Return the number of qubits if a N-qubit operator or None otherwise.
+  <Attribute id="qiskit.quantum_info.Kraus.num_qubits" name="num_qubits">
+    Return the number of qubits if a N-qubit operator or None otherwise.
+  </Attribute>
 
-### qargs
+  ### qargs
 
-Return the qargs for the operator.
+  <Attribute id="qiskit.quantum_info.Kraus.qargs" name="qargs">
+    Return the qargs for the operator.
+  </Attribute>
 
-### rtol
+  ### rtol
 
-The relative tolerance parameter for float comparisons.
+  <Attribute id="qiskit.quantum_info.Kraus.rtol" name="rtol">
+    The relative tolerance parameter for float comparisons.
+  </Attribute>
 
-## Methods
+  ## Methods
 
-### \_\_call\_\_
+  ### \_\_call\_\_
 
-<span id="qiskit.quantum_info.Kraus.__call__" />
+  <Function id="qiskit.quantum_info.Kraus.__call__" name="__call__" signature="Kraus.__call__(qargs)">
+    Return a clone with qargs set
+  </Function>
 
-`Kraus.__call__(qargs)`
+  ### \_\_mul\_\_
 
-Return a clone with qargs set
+  <Function id="qiskit.quantum_info.Kraus.__mul__" name="__mul__" signature="Kraus.__mul__(other)" />
 
-### \_\_mul\_\_
+  ### add
 
-<span id="qiskit.quantum_info.Kraus.__mul__" />
+  <Function id="qiskit.quantum_info.Kraus.add" name="add" signature="Kraus.add(other)">
+    Return the linear operator self + other.
 
-`Kraus.__mul__(other)`
+    DEPRECATED: use `operator + other` instead.
 
-### add
+    **Parameters**
 
-<span id="qiskit.quantum_info.Kraus.add" />
+    **other** (*BaseOperator*) – an operator object.
 
-`Kraus.add(other)`
+    **Returns**
 
-Return the linear operator self + other.
+    the operator self + other.
 
-DEPRECATED: use `operator + other` instead.
+    **Return type**
 
-**Parameters**
+    BaseOperator
+  </Function>
 
-**other** (*BaseOperator*) – an operator object.
+  ### adjoint
 
-**Returns**
+  <Function id="qiskit.quantum_info.Kraus.adjoint" name="adjoint" signature="Kraus.adjoint()">
+    Return the adjoint of the operator.
+  </Function>
 
-the operator self + other.
+  ### compose
 
-**Return type**
+  <Function id="qiskit.quantum_info.Kraus.compose" name="compose" signature="Kraus.compose(other, qargs=None, front=False)">
+    Return the composed quantum channel self @ other.
 
-BaseOperator
+    **Parameters**
 
-### adjoint
+    *   **other** (*QuantumChannel*) – a quantum channel.
+    *   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
+    *   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
-<span id="qiskit.quantum_info.Kraus.adjoint" />
+    **Returns**
 
-`Kraus.adjoint()`
+    The quantum channel self @ other.
 
-Return the adjoint of the operator.
+    **Return type**
 
-### compose
+    [Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
 
-<span id="qiskit.quantum_info.Kraus.compose" />
+    **Raises**
 
-`Kraus.compose(other, qargs=None, front=False)`
+    **QiskitError** – if other cannot be converted to a Kraus or has incompatible dimensions.
 
-Return the composed quantum channel self @ other.
+    #### Additional Information:
 
-**Parameters**
+    Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](qiskit.quantum_info.Kraus#dot "qiskit.quantum_info.Kraus.dot") method.
+  </Function>
 
-*   **other** (*QuantumChannel*) – a quantum channel.
-*   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
-*   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+  ### conjugate
 
-**Returns**
+  <Function id="qiskit.quantum_info.Kraus.conjugate" name="conjugate" signature="Kraus.conjugate()">
+    Return the conjugate of the QuantumChannel.
+  </Function>
 
-The quantum channel self @ other.
+  ### copy
 
-**Return type**
+  <Function id="qiskit.quantum_info.Kraus.copy" name="copy" signature="Kraus.copy()">
+    Make a deep copy of current operator.
+  </Function>
 
-[Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
+  ### dot
 
-**Raises**
+  <Function id="qiskit.quantum_info.Kraus.dot" name="dot" signature="Kraus.dot(other, qargs=None)">
+    Return the right multiplied quantum channel self \* other.
 
-**QiskitError** – if other cannot be converted to a Kraus or has incompatible dimensions.
+    **Parameters**
 
-#### Additional Information:
+    *   **other** (*QuantumChannel*) – a quantum channel.
+    *   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
 
-Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](qiskit.quantum_info.Kraus#dot "qiskit.quantum_info.Kraus.dot") method.
+    **Returns**
 
-### conjugate
+    The quantum channel self \* other.
 
-<span id="qiskit.quantum_info.Kraus.conjugate" />
+    **Return type**
 
-`Kraus.conjugate()`
+    [Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
 
-Return the conjugate of the QuantumChannel.
+    **Raises**
 
-### copy
+    **QiskitError** – if other cannot be converted to a Kraus or has incompatible dimensions.
+  </Function>
 
-<span id="qiskit.quantum_info.Kraus.copy" />
+  ### expand
 
-`Kraus.copy()`
+  <Function id="qiskit.quantum_info.Kraus.expand" name="expand" signature="Kraus.expand(other)">
+    Return the tensor product channel other ⊗ self.
 
-Make a deep copy of current operator.
+    **Parameters**
 
-### dot
+    **other** (*QuantumChannel*) – a quantum channel subclass.
 
-<span id="qiskit.quantum_info.Kraus.dot" />
+    **Returns**
 
-`Kraus.dot(other, qargs=None)`
+    the tensor product channel other ⊗ self as a Kraus object.
 
-Return the right multiplied quantum channel self \* other.
+    **Return type**
 
-**Parameters**
+    [Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
 
-*   **other** (*QuantumChannel*) – a quantum channel.
-*   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
+    **Raises**
 
-**Returns**
+    **QiskitError** – if other cannot be converted to a channel.
+  </Function>
 
-The quantum channel self \* other.
+  ### input\_dims
 
-**Return type**
+  <Function id="qiskit.quantum_info.Kraus.input_dims" name="input_dims" signature="Kraus.input_dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
 
-[Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
+  ### is\_cp
 
-**Raises**
+  <Function id="qiskit.quantum_info.Kraus.is_cp" name="is_cp" signature="Kraus.is_cp(atol=None, rtol=None)">
+    Test if Choi-matrix is completely-positive (CP)
+  </Function>
 
-**QiskitError** – if other cannot be converted to a Kraus or has incompatible dimensions.
+  ### is\_cptp
 
-### expand
+  <Function id="qiskit.quantum_info.Kraus.is_cptp" name="is_cptp" signature="Kraus.is_cptp(atol=None, rtol=None)">
+    Return True if completely-positive trace-preserving.
+  </Function>
 
-<span id="qiskit.quantum_info.Kraus.expand" />
+  ### is\_tp
 
-`Kraus.expand(other)`
+  <Function id="qiskit.quantum_info.Kraus.is_tp" name="is_tp" signature="Kraus.is_tp(atol=None, rtol=None)">
+    Test if a channel is completely-positive (CP)
+  </Function>
 
-Return the tensor product channel other ⊗ self.
+  ### is\_unitary
 
-**Parameters**
+  <Function id="qiskit.quantum_info.Kraus.is_unitary" name="is_unitary" signature="Kraus.is_unitary(atol=None, rtol=None)">
+    Return True if QuantumChannel is a unitary channel.
+  </Function>
 
-**other** (*QuantumChannel*) – a quantum channel subclass.
+  ### multiply
 
-**Returns**
+  <Function id="qiskit.quantum_info.Kraus.multiply" name="multiply" signature="Kraus.multiply(other)">
+    Return the linear operator other \* self.
 
-the tensor product channel other ⊗ self as a Kraus object.
+    DEPRECATED: use `other * operator` instead.
 
-**Return type**
+    **Parameters**
 
-[Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
+    **other** (*complex*) – a complex number.
 
-**Raises**
+    **Returns**
 
-**QiskitError** – if other cannot be converted to a channel.
+    the linear operator other \* self.
 
-### input\_dims
+    **Return type**
 
-<span id="qiskit.quantum_info.Kraus.input_dims" />
+    BaseOperator
 
-`Kraus.input_dims(qargs=None)`
+    **Raises**
 
-Return tuple of input dimension for specified subsystems.
+    **NotImplementedError** – if subclass does not support multiplication.
+  </Function>
 
-### is\_cp
+  ### output\_dims
 
-<span id="qiskit.quantum_info.Kraus.is_cp" />
+  <Function id="qiskit.quantum_info.Kraus.output_dims" name="output_dims" signature="Kraus.output_dims(qargs=None)">
+    Return tuple of output dimension for specified subsystems.
+  </Function>
 
-`Kraus.is_cp(atol=None, rtol=None)`
+  ### power
 
-Test if Choi-matrix is completely-positive (CP)
+  <Function id="qiskit.quantum_info.Kraus.power" name="power" signature="Kraus.power(n)">
+    The matrix power of the channel.
 
-### is\_cptp
+    **Parameters**
 
-<span id="qiskit.quantum_info.Kraus.is_cptp" />
+    **n** (*int*) – compute the matrix power of the superoperator matrix.
 
-`Kraus.is_cptp(atol=None, rtol=None)`
+    **Returns**
 
-Return True if completely-positive trace-preserving.
+    the matrix power of the SuperOp converted to a Kraus channel.
 
-### is\_tp
+    **Return type**
 
-<span id="qiskit.quantum_info.Kraus.is_tp" />
+    [Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
 
-`Kraus.is_tp(atol=None, rtol=None)`
+    **Raises**
 
-Test if a channel is completely-positive (CP)
+    **QiskitError** – if the input and output dimensions of the QuantumChannel are not equal, or the power is not an integer.
+  </Function>
 
-### is\_unitary
+  ### reshape
 
-<span id="qiskit.quantum_info.Kraus.is_unitary" />
+  <Function id="qiskit.quantum_info.Kraus.reshape" name="reshape" signature="Kraus.reshape(input_dims=None, output_dims=None)">
+    Return a shallow copy with reshaped input and output subsystem dimensions.
 
-`Kraus.is_unitary(atol=None, rtol=None)`
+    #### Arg:
 
-Return True if QuantumChannel is a unitary channel.
+    #### input\_dims (None or tuple): new subsystem input dimensions.
 
-### multiply
+    If None the original input dims will be preserved \[Default: None].
 
-<span id="qiskit.quantum_info.Kraus.multiply" />
+    #### output\_dims (None or tuple): new subsystem output dimensions.
 
-`Kraus.multiply(other)`
+    If None the original output dims will be preserved \[Default: None].
 
-Return the linear operator other \* self.
+    **Returns**
 
-DEPRECATED: use `other * operator` instead.
+    returns self with reshaped input and output dimensions.
 
-**Parameters**
+    **Return type**
 
-**other** (*complex*) – a complex number.
+    BaseOperator
 
-**Returns**
+    **Raises**
 
-the linear operator other \* self.
+    **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  </Function>
 
-**Return type**
+  ### set\_atol
 
-BaseOperator
+  <Function id="qiskit.quantum_info.Kraus.set_atol" name="set_atol" signature="classmethod Kraus.set_atol(value)">
+    Set the class default absolute tolerance parameter for float comparisons.
+  </Function>
 
-**Raises**
+  ### set\_rtol
 
-**NotImplementedError** – if subclass does not support multiplication.
+  <Function id="qiskit.quantum_info.Kraus.set_rtol" name="set_rtol" signature="classmethod Kraus.set_rtol(value)">
+    Set the class default relative tolerance parameter for float comparisons.
+  </Function>
 
-### output\_dims
+  ### subtract
 
-<span id="qiskit.quantum_info.Kraus.output_dims" />
+  <Function id="qiskit.quantum_info.Kraus.subtract" name="subtract" signature="Kraus.subtract(other)">
+    Return the linear operator self - other.
 
-`Kraus.output_dims(qargs=None)`
+    DEPRECATED: use `operator - other` instead.
 
-Return tuple of output dimension for specified subsystems.
+    **Parameters**
 
-### power
+    **other** (*BaseOperator*) – an operator object.
 
-<span id="qiskit.quantum_info.Kraus.power" />
+    **Returns**
 
-`Kraus.power(n)`
+    the operator self - other.
 
-The matrix power of the channel.
+    **Return type**
 
-**Parameters**
+    BaseOperator
+  </Function>
 
-**n** (*int*) – compute the matrix power of the superoperator matrix.
+  ### tensor
 
-**Returns**
+  <Function id="qiskit.quantum_info.Kraus.tensor" name="tensor" signature="Kraus.tensor(other)">
+    Return the tensor product channel self ⊗ other.
 
-the matrix power of the SuperOp converted to a Kraus channel.
+    **Parameters**
 
-**Return type**
+    **other** (*QuantumChannel*) – a quantum channel subclass.
 
-[Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
+    **Returns**
 
-**Raises**
+    the tensor product channel self ⊗ other as a Kraus object.
 
-**QiskitError** – if the input and output dimensions of the QuantumChannel are not equal, or the power is not an integer.
+    **Return type**
 
-### reshape
+    [Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
 
-<span id="qiskit.quantum_info.Kraus.reshape" />
+    **Raises**
 
-`Kraus.reshape(input_dims=None, output_dims=None)`
+    **QiskitError** – if other cannot be converted to a channel.
+  </Function>
 
-Return a shallow copy with reshaped input and output subsystem dimensions.
+  ### to\_instruction
 
-#### Arg:
+  <Function id="qiskit.quantum_info.Kraus.to_instruction" name="to_instruction" signature="Kraus.to_instruction()">
+    Convert to a Kraus or UnitaryGate circuit instruction.
 
-#### input\_dims (None or tuple): new subsystem input dimensions.
+    If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
 
-If None the original input dims will be preserved \[Default: None].
+    **Returns**
 
-#### output\_dims (None or tuple): new subsystem output dimensions.
+    A kraus instruction for the channel.
 
-If None the original output dims will be preserved \[Default: None].
+    **Return type**
 
-**Returns**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-returns self with reshaped input and output dimensions.
+    **Raises**
 
-**Return type**
+    **QiskitError** – if input data is not an N-qubit CPTP quantum channel.
+  </Function>
 
-BaseOperator
+  ### to\_operator
 
-**Raises**
+  <Function id="qiskit.quantum_info.Kraus.to_operator" name="to_operator" signature="Kraus.to_operator()">
+    Try to convert channel to a unitary representation Operator.
+  </Function>
 
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+  ### transpose
 
-### set\_atol
-
-<span id="qiskit.quantum_info.Kraus.set_atol" />
-
-`classmethod Kraus.set_atol(value)`
-
-Set the class default absolute tolerance parameter for float comparisons.
-
-### set\_rtol
-
-<span id="qiskit.quantum_info.Kraus.set_rtol" />
-
-`classmethod Kraus.set_rtol(value)`
-
-Set the class default relative tolerance parameter for float comparisons.
-
-### subtract
-
-<span id="qiskit.quantum_info.Kraus.subtract" />
-
-`Kraus.subtract(other)`
-
-Return the linear operator self - other.
-
-DEPRECATED: use `operator - other` instead.
-
-**Parameters**
-
-**other** (*BaseOperator*) – an operator object.
-
-**Returns**
-
-the operator self - other.
-
-**Return type**
-
-BaseOperator
-
-### tensor
-
-<span id="qiskit.quantum_info.Kraus.tensor" />
-
-`Kraus.tensor(other)`
-
-Return the tensor product channel self ⊗ other.
-
-**Parameters**
-
-**other** (*QuantumChannel*) – a quantum channel subclass.
-
-**Returns**
-
-the tensor product channel self ⊗ other as a Kraus object.
-
-**Return type**
-
-[Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
-
-**Raises**
-
-**QiskitError** – if other cannot be converted to a channel.
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.Kraus.to_instruction" />
-
-`Kraus.to_instruction()`
-
-Convert to a Kraus or UnitaryGate circuit instruction.
-
-If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
-
-**Returns**
-
-A kraus instruction for the channel.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**QiskitError** – if input data is not an N-qubit CPTP quantum channel.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.Kraus.to_operator" />
-
-`Kraus.to_operator()`
-
-Try to convert channel to a unitary representation Operator.
-
-### transpose
-
-<span id="qiskit.quantum_info.Kraus.transpose" />
-
-`Kraus.transpose()`
-
-Return the transpose of the QuantumChannel.
+  <Function id="qiskit.quantum_info.Kraus.transpose" name="transpose" signature="Kraus.transpose()">
+    Return the transpose of the QuantumChannel.
+  </Function>
+</Class>
 

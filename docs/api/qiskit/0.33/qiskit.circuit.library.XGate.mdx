@@ -8,137 +8,131 @@ python_api_name: qiskit.circuit.library.XGate
 
 # XGate
 
-<span id="qiskit.circuit.library.XGate" />
+<Class id="qiskit.circuit.library.XGate" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/x.py" signature="XGate(label=None)">
+  Bases: `qiskit.circuit.gate.Gate`
 
-`XGate(label=None)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/x.py "view source code")
+  The single-qubit Pauli-X gate ($\sigma_x$).
 
-Bases: `qiskit.circuit.gate.Gate`
-
-The single-qubit Pauli-X gate ($\sigma_x$).
-
-**Matrix Representation:**
+  **Matrix Representation:**
 
 $$
 \begin{split}X = \begin{pmatrix}
-        0 & 1 \\
-        1 & 0
-    \end{pmatrix}\end{split}
+0 & 1 \\
+1 & 0
+\end{pmatrix}\end{split}
 $$
 
-**Circuit symbol:**
+  **Circuit symbol:**
 
-```python
-     ┌───┐
-q_0: ┤ X ├
-     └───┘
-```
+  ```python
+       ┌───┐
+  q_0: ┤ X ├
+       └───┘
+  ```
 
-Equivalent to a $\pi$ radian rotation about the X axis.
+  Equivalent to a $\pi$ radian rotation about the X axis.
 
-<Admonition title="Note" type="note">
-  A global phase difference exists between the definitions of $RX(\pi)$ and $X$.
+  <Admonition title="Note" type="note">
+    A global phase difference exists between the definitions of $RX(\pi)$ and $X$.
 
-  $$
-  \begin{split}RX(\pi) = \begin{pmatrix}
-              0 & -i \\
-              -i & 0
-            \end{pmatrix}
-          = -i X\end{split}
-  $$
-</Admonition>
+$$
+\begin{split}RX(\pi) = \begin{pmatrix}
+0 & -i \\
+-i & 0
+\end{pmatrix}
+= -i X\end{split}
+$$
+  </Admonition>
 
-The gate is equivalent to a classical bit flip.
+  The gate is equivalent to a classical bit flip.
 
 $$
 \begin{split}|0\rangle \rightarrow |1\rangle \\
 |1\rangle \rightarrow |0\rangle\end{split}
 $$
 
-Create new X gate.
+  Create new X gate.
 
-## Methods Defined Here
+  ## Methods Defined Here
 
-### control
+  ### control
 
-<span id="qiskit.circuit.library.XGate.control" />
+  <Function id="qiskit.circuit.library.XGate.control" name="control" signature="XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)">
+    Return a (multi-)controlled-X gate.
 
-`XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+    One control returns a CX gate. Two controls returns a CCX gate.
 
-Return a (multi-)controlled-X gate.
+    **Parameters**
 
-One control returns a CX gate. Two controls returns a CCX gate.
+    *   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+    *   **label** (*str or None*) – An optional label for the gate \[Default: None]
+    *   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
-**Parameters**
+    **Returns**
 
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+    controlled version of this gate.
 
-**Returns**
+    **Return type**
 
-controlled version of this gate.
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-**Return type**
+  ### inverse
 
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  <Function id="qiskit.circuit.library.XGate.inverse" name="inverse" signature="XGate.inverse()">
+    Return inverted X gate (itself).
+  </Function>
 
-### inverse
+  ## Attributes
 
-<span id="qiskit.circuit.library.XGate.inverse" />
+  ### condition\_bits
 
-`XGate.inverse()`
+  <Attribute id="qiskit.circuit.library.XGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
 
-Return inverted X gate (itself).
+    **Return type**
 
-## Attributes
+    `List`\[`Clbit`]
+  </Attribute>
 
-<span id="qiskit.circuit.library.XGate.condition_bits" />
+  ### decompositions
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.XGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-Get Clbits in condition.
+  ### definition
 
-**Return type**
+  <Attribute id="qiskit.circuit.library.XGate.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-`List`\[`Clbit`]
+  ### duration
 
-<span id="qiskit.circuit.library.XGate.decompositions" />
+  <Attribute id="qiskit.circuit.library.XGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.library.XGate.label" name="label">
+    Return instruction label
 
-<span id="qiskit.circuit.library.XGate.definition" />
+    **Return type**
 
-### definition
+    `str`
+  </Attribute>
 
-Return definition in terms of other basic gates.
+  ### params
 
-<span id="qiskit.circuit.library.XGate.duration" />
+  <Attribute id="qiskit.circuit.library.XGate.params" name="params">
+    return instruction params.
+  </Attribute>
 
-### duration
+  ### unit
 
-Get the duration.
-
-<span id="qiskit.circuit.library.XGate.label" />
-
-### label
-
-Return instruction label
-
-**Return type**
-
-`str`
-
-<span id="qiskit.circuit.library.XGate.params" />
-
-### params
-
-return instruction params.
-
-<span id="qiskit.circuit.library.XGate.unit" />
-
-### unit
-
-Get the time unit of duration.
+  <Attribute id="qiskit.circuit.library.XGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
+</Class>
 

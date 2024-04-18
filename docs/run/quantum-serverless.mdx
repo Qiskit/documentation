@@ -131,7 +131,7 @@ Instead of manually selecting a system, step 2 of the Qiskit Pattern optimizes t
 
 For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSelectors` require Qiskit Runtime credentials. The `IBMLeastNoisyQPUSelector` requires a circuit and transpile options specifying how the circuit should be optimized for each system when determining the most optimal QPU and qubit layout. All `IBMQPUSelector`s implement a `get_backend` method, which retrieves the optimal system with respect to the given context. The `get_backend` method also allows for additional filtering of the systems. It is implemented using the same interface as the [QiskitRuntimeService.backends method](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
 
-Then, in step 3 of the pattern, you execute the target circuit on the system chosen by the selector. Since you optimized your circuit for the system in step 2, you can skip transpilation in the primitives by setting `skip_transpilation=True`. 
+Then, in step 3 of the pattern, you execute the target circuit on the system chosen by the selector. Since you optimized your circuit for the system in step 2, you can skip further optimization in the primitives by setting `optimization_level=0`. 
 
 <Tabs>
   <TabItem value="SamplerV2" label="Sampler V2">
@@ -166,7 +166,7 @@ target_circuit = selector.optimized_circuit
 
 # Step 3: Execute the target circuit
 sampler = Sampler(backend=backend, options={"default_shots": 1024})
-job = sampler.run([(target_circuit,)])
+job = sampler.run([target_circuit])
 result = job.result()
     
 # Step 4: Postprocess the results

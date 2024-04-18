@@ -8,45 +8,41 @@ python_api_name: qiskit.aqua.components.qfts.Approximate
 
 # Approximate
 
-<span id="qiskit.aqua.components.qfts.Approximate" />
+<Class id="qiskit.aqua.components.qfts.Approximate" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/qfts/approximate.py" signature="Approximate(num_qubits, degree=0)">
+  The Approximate QFT.
 
-`Approximate(num_qubits, degree=0)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/qfts/approximate.py "view source code")
+  This is an Approximate Quantum Fourier Transform as described in [https://arxiv.org/abs/1803.04933](https://arxiv.org/abs/1803.04933).
 
-The Approximate QFT.
+  **Parameters**
 
-This is an Approximate Quantum Fourier Transform as described in [https://arxiv.org/abs/1803.04933](https://arxiv.org/abs/1803.04933).
+  *   **num\_qubits** (`int`) – The number of qubits
+  *   **degree** (`int`) – The degree of approximation. 0 is the minimum value and causes no approximation so will in fact be the same as a `StandardQFT`.
 
-**Parameters**
+  ## Methods
 
-*   **num\_qubits** (`int`) – The number of qubits
-*   **degree** (`int`) – The degree of approximation. 0 is the minimum value and causes no approximation so will in fact be the same as a `StandardQFT`.
+  ### construct\_circuit
 
-## Methods
+  <Function id="qiskit.aqua.components.qfts.Approximate.construct_circuit" name="construct_circuit" signature="Approximate.construct_circuit(mode='circuit', qubits=None, circuit=None, do_swaps=True)">
+    Construct the circuit.
 
-### construct\_circuit
+    **Parameters**
 
-<span id="qiskit.aqua.components.qfts.Approximate.construct_circuit" />
+    *   **mode** (*str*) – ‘matrix’ or ‘circuit’
+    *   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or qubits*) – register or qubits to build the circuit on.
+    *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – circuit for construction.
+    *   **do\_swaps** (*bool*) – include the swaps.
 
-`Approximate.construct_circuit(mode='circuit', qubits=None, circuit=None, do_swaps=True)`
+    **Returns**
 
-Construct the circuit.
+    The matrix or circuit depending on the specified mode.
 
-**Parameters**
+    **Return type**
 
-*   **mode** (*str*) – ‘matrix’ or ‘circuit’
-*   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or qubits*) – register or qubits to build the circuit on.
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – circuit for construction.
-*   **do\_swaps** (*bool*) – include the swaps.
+    numpy.ndarray
 
-**Returns**
+    **Raises**
 
-The matrix or circuit depending on the specified mode.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – ‘Unrecognized mode
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – ‘Unrecognized mode
+  </Function>
+</Class>
 

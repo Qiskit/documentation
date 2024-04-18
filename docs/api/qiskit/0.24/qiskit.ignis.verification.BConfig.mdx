@@ -10,195 +10,175 @@ python_api_name: qiskit.ignis.verification.BConfig
 
 # qiskit.ignis.verification.BConfig
 
-<span id="qiskit.ignis.verification.BConfig" />
+<Class id="qiskit.ignis.verification.BConfig" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/parallelize.py" signature="BConfig(backend, indicator=True)">
+  This class is used to create a GHZ circuit with parallellized CNOT gates to increase fidelity
 
-`BConfig(backend, indicator=True)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/verification/entanglement/parallelize.py "view source code")
+  ### \_\_init\_\_
 
-This class is used to create a GHZ circuit with parallellized CNOT gates to increase fidelity
+  <Function id="qiskit.ignis.verification.BConfig.__init__" name="__init__" signature="__init__(backend, indicator=True)">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.ignis.verification.BConfig.__init__" />
+  |                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                    |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.ignis.verification.BConfig.__init__ "qiskit.ignis.verification.BConfig.__init__")(backend\[, indicator])                                     | Initialize self.                                                                                                                                                                                                                                                                                                                   |
+  | [`get_ghz_layout`](#qiskit.ignis.verification.BConfig.get_ghz_layout "qiskit.ignis.verification.BConfig.get_ghz_layout")(n\[, transpiled, barriered])             | Feeds the Tier Dict of the backend to create a basic qiskit GHZ circuit with no measurement; :type n: `int` :param n: number of qubits :type transpiled: `bool` :param transpiled: toggle on/off transpilation - useful for tomography :type barriered: `bool` :param barriered: yes/no whether to barrier each step of CNOT gates |
+  | [`get_ghz_mqc`](#qiskit.ignis.verification.BConfig.get_ghz_mqc "qiskit.ignis.verification.BConfig.get_ghz_mqc")(n, delta\[, full\_measurement])                   | This function creates an MQC circuit with n qubits, where the middle phase rotation around the z axis is by delta                                                                                                                                                                                                                  |
+  | [`get_ghz_mqc_para`](#qiskit.ignis.verification.BConfig.get_ghz_mqc_para "qiskit.ignis.verification.BConfig.get_ghz_mqc_para")(n\[, full\_measurement])           | Get a parametrized MQC circuit.                                                                                                                                                                                                                                                                                                    |
+  | [`get_ghz_po`](#qiskit.ignis.verification.BConfig.get_ghz_po "qiskit.ignis.verification.BConfig.get_ghz_po")(n, delta)                                            | This function creates an Parity Oscillation circuit with n qubits, where the middle superposition rotation around the x and y axes is by delta                                                                                                                                                                                     |
+  | [`get_ghz_po_para`](#qiskit.ignis.verification.BConfig.get_ghz_po_para "qiskit.ignis.verification.BConfig.get_ghz_po_para")(n)                                    | Get a parametrized PO circuit.                                                                                                                                                                                                                                                                                                     |
+  | [`get_ghz_simple`](#qiskit.ignis.verification.BConfig.get_ghz_simple "qiskit.ignis.verification.BConfig.get_ghz_simple")(n\[, full\_measurement])                 | Get simple GHZ circuit with measurement                                                                                                                                                                                                                                                                                            |
+  | [`get_measurement_circ`](#qiskit.ignis.verification.BConfig.get_measurement_circ "qiskit.ignis.verification.BConfig.get_measurement_circ")(n, qregname, cregname) | Creates a measurement circuit that can toggle between measuring the control qubit or measuring all qubits.                                                                                                                                                                                                                         |
+  | [`get_tier_dict`](#qiskit.ignis.verification.BConfig.get_tier_dict "qiskit.ignis.verification.BConfig.get_tier_dict")()                                           | Take the nodes of the BConfig to create a Tier Dictionary, where keys are the steps in the process, and the values are the connections following pattern of: \[controlled qubit, NOT qubit].                                                                                                                                       |
 
-`__init__(backend, indicator=True)`
+  ### get\_ghz\_layout
 
-Initialize self. See help(type(self)) for accurate signature.
+  <Function id="qiskit.ignis.verification.BConfig.get_ghz_layout" name="get_ghz_layout" signature="get_ghz_layout(n, transpiled=True, barriered=True)">
+    Feeds the Tier Dict of the backend to create a basic qiskit GHZ circuit with no measurement; :type n: `int` :param n: number of qubits :type transpiled: `bool` :param transpiled: toggle on/off transpilation - useful for tomography :type barriered: `bool` :param barriered: yes/no whether to barrier each step of CNOT gates
 
-## Methods
+    **Return type**
 
-|                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.verification.BConfig.__init__ "qiskit.ignis.verification.BConfig.__init__")(backend\[, indicator])                                     | Initialize self.                                                                                                                                                                                                                                                                                                                   |
-| [`get_ghz_layout`](#qiskit.ignis.verification.BConfig.get_ghz_layout "qiskit.ignis.verification.BConfig.get_ghz_layout")(n\[, transpiled, barriered])             | Feeds the Tier Dict of the backend to create a basic qiskit GHZ circuit with no measurement; :type n: `int` :param n: number of qubits :type transpiled: `bool` :param transpiled: toggle on/off transpilation - useful for tomography :type barriered: `bool` :param barriered: yes/no whether to barrier each step of CNOT gates |
-| [`get_ghz_mqc`](#qiskit.ignis.verification.BConfig.get_ghz_mqc "qiskit.ignis.verification.BConfig.get_ghz_mqc")(n, delta\[, full\_measurement])                   | This function creates an MQC circuit with n qubits, where the middle phase rotation around the z axis is by delta                                                                                                                                                                                                                  |
-| [`get_ghz_mqc_para`](#qiskit.ignis.verification.BConfig.get_ghz_mqc_para "qiskit.ignis.verification.BConfig.get_ghz_mqc_para")(n\[, full\_measurement])           | Get a parametrized MQC circuit.                                                                                                                                                                                                                                                                                                    |
-| [`get_ghz_po`](#qiskit.ignis.verification.BConfig.get_ghz_po "qiskit.ignis.verification.BConfig.get_ghz_po")(n, delta)                                            | This function creates an Parity Oscillation circuit with n qubits, where the middle superposition rotation around the x and y axes is by delta                                                                                                                                                                                     |
-| [`get_ghz_po_para`](#qiskit.ignis.verification.BConfig.get_ghz_po_para "qiskit.ignis.verification.BConfig.get_ghz_po_para")(n)                                    | Get a parametrized PO circuit.                                                                                                                                                                                                                                                                                                     |
-| [`get_ghz_simple`](#qiskit.ignis.verification.BConfig.get_ghz_simple "qiskit.ignis.verification.BConfig.get_ghz_simple")(n\[, full\_measurement])                 | Get simple GHZ circuit with measurement                                                                                                                                                                                                                                                                                            |
-| [`get_measurement_circ`](#qiskit.ignis.verification.BConfig.get_measurement_circ "qiskit.ignis.verification.BConfig.get_measurement_circ")(n, qregname, cregname) | Creates a measurement circuit that can toggle between measuring the control qubit or measuring all qubits.                                                                                                                                                                                                                         |
-| [`get_tier_dict`](#qiskit.ignis.verification.BConfig.get_tier_dict "qiskit.ignis.verification.BConfig.get_tier_dict")()                                           | Take the nodes of the BConfig to create a Tier Dictionary, where keys are the steps in the process, and the values are the connections following pattern of: \[controlled qubit, NOT qubit].                                                                                                                                       |
+    `Tuple`\[`QuantumCircuit`, `Dict`]
 
-### get\_ghz\_layout
+    **Returns**
 
-<span id="qiskit.ignis.verification.BConfig.get_ghz_layout" />
+    A GHZ Circuit and its initial GHZ layout
+  </Function>
 
-`get_ghz_layout(n, transpiled=True, barriered=True)`
+  ### get\_ghz\_mqc
 
-Feeds the Tier Dict of the backend to create a basic qiskit GHZ circuit with no measurement; :type n: `int` :param n: number of qubits :type transpiled: `bool` :param transpiled: toggle on/off transpilation - useful for tomography :type barriered: `bool` :param barriered: yes/no whether to barrier each step of CNOT gates
+  <Function id="qiskit.ignis.verification.BConfig.get_ghz_mqc" name="get_ghz_mqc" signature="get_ghz_mqc(n, delta, full_measurement=True)">
+    This function creates an MQC circuit with n qubits, where the middle phase rotation around the z axis is by delta
 
-**Return type**
+    **Parameters**
 
-`Tuple`\[`QuantumCircuit`, `Dict`]
+    *   **n** (`int`) – number of qubits
+    *   **delta** (`float`) – the rotation of the middle phase around the z axis
+    *   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
 
-**Returns**
+    **Return type**
 
-A GHZ Circuit and its initial GHZ layout
+    `Tuple`\[`QuantumCircuit`, `Dict`]
 
-### get\_ghz\_mqc
+    **Returns**
 
-<span id="qiskit.ignis.verification.BConfig.get_ghz_mqc" />
+    The MQC circuit and the initial GHZ layout
+  </Function>
 
-`get_ghz_mqc(n, delta, full_measurement=True)`
+  ### get\_ghz\_mqc\_para
 
-This function creates an MQC circuit with n qubits, where the middle phase rotation around the z axis is by delta
+  <Function id="qiskit.ignis.verification.BConfig.get_ghz_mqc_para" name="get_ghz_mqc_para" signature="get_ghz_mqc_para(n, full_measurement=True)">
+    Get a parametrized MQC circuit. Remember that get\_counts() method accepts an index now, not a circuit
 
-**Parameters**
+    **Parameters**
 
-*   **n** (`int`) – number of qubits
-*   **delta** (`float`) – the rotation of the middle phase around the z axis
-*   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
+    *   **n** (`int`) – number of qubits
+    *   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
 
-**Return type**
+    **Return type**
 
-`Tuple`\[`QuantumCircuit`, `Dict`]
+    `Tuple`\[`QuantumCircuit`, `Parameter`, `Dict`]
 
-**Returns**
+    **Returns**
 
-The MQC circuit and the initial GHZ layout
+    The MQC circuit, its delta parameter, and the initial GHZ layout
+  </Function>
 
-### get\_ghz\_mqc\_para
+  ### get\_ghz\_po
 
-<span id="qiskit.ignis.verification.BConfig.get_ghz_mqc_para" />
+  <Function id="qiskit.ignis.verification.BConfig.get_ghz_po" name="get_ghz_po" signature="get_ghz_po(n, delta)">
+    This function creates an Parity Oscillation circuit with n qubits, where the middle superposition rotation around the x and y axes is by delta
 
-`get_ghz_mqc_para(n, full_measurement=True)`
+    **Parameters**
 
-Get a parametrized MQC circuit. Remember that get\_counts() method accepts an index now, not a circuit
+    *   **n** (`int`) – number of qubits
+    *   **delta** (`float`) – the middle superposition rotation
 
-**Parameters**
+    **Return type**
 
-*   **n** (`int`) – number of qubits
-*   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
+    `Tuple`\[`QuantumCircuit`, `Dict`]
 
-**Return type**
+    **Returns**
 
-`Tuple`\[`QuantumCircuit`, `Parameter`, `Dict`]
+    The Parity Oscillation circuit and the initial GHZ layout
+  </Function>
 
-**Returns**
+  ### get\_ghz\_po\_para
 
-The MQC circuit, its delta parameter, and the initial GHZ layout
+  <Function id="qiskit.ignis.verification.BConfig.get_ghz_po_para" name="get_ghz_po_para" signature="get_ghz_po_para(n)">
+    Get a parametrized PO circuit. Remember that get\_counts() method accepts an index now, not a circuit. The two phase parameters are a quirk of the Parameter module
 
-### get\_ghz\_po
+    **Parameters**
 
-<span id="qiskit.ignis.verification.BConfig.get_ghz_po" />
+    **n** (`int`) – number of qubits
 
-`get_ghz_po(n, delta)`
+    **Return type**
 
-This function creates an Parity Oscillation circuit with n qubits, where the middle superposition rotation around the x and y axes is by delta
+    `Tuple`\[`QuantumCircuit`, `List`\[`Parameter`], `Dict`]
 
-**Parameters**
+    **Returns**
 
-*   **n** (`int`) – number of qubits
-*   **delta** (`float`) – the middle superposition rotation
+    **A parity oscillation circuit, its Delta/minus-delta parameters,**
 
-**Return type**
+    and the initial ghz layout
+  </Function>
 
-`Tuple`\[`QuantumCircuit`, `Dict`]
+  ### get\_ghz\_simple
 
-**Returns**
+  <Function id="qiskit.ignis.verification.BConfig.get_ghz_simple" name="get_ghz_simple" signature="get_ghz_simple(n, full_measurement=True)">
+    Get simple GHZ circuit with measurement
 
-The Parity Oscillation circuit and the initial GHZ layout
+    **Parameters**
 
-### get\_ghz\_po\_para
+    *   **n** (`int`) – number of qubits
+    *   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
 
-<span id="qiskit.ignis.verification.BConfig.get_ghz_po_para" />
+    **Return type**
 
-`get_ghz_po_para(n)`
+    `Tuple`\[`QuantumCircuit`, `QuantumRegister`, `Dict`]
 
-Get a parametrized PO circuit. Remember that get\_counts() method accepts an index now, not a circuit. The two phase parameters are a quirk of the Parameter module
+    **Returns**
 
-**Parameters**
+    A GHZ Circuit, its measurement circle quantum register and the initial GHZ layout
+  </Function>
 
-**n** (`int`) – number of qubits
+  ### get\_measurement\_circ
 
-**Return type**
+  <Function id="qiskit.ignis.verification.BConfig.get_measurement_circ" name="get_measurement_circ" signature="get_measurement_circ(n, qregname, cregname, full_measurement=True)">
+    Creates a measurement circuit that can toggle between measuring the control qubit or measuring all qubits. The default is measurement of all qubits.
 
-`Tuple`\[`QuantumCircuit`, `List`\[`Parameter`], `Dict`]
+    **Parameters**
 
-**Returns**
+    *   **n** (`int`) – number of qubits
+    *   **qregname** (`str`) – name of the qubit register
+    *   **cregname** (`str`) – name of the classical register
+    *   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
 
-**A parity oscillation circuit, its Delta/minus-delta parameters,**
+    **Return type**
 
-and the initial ghz layout
+    `QuantumCircuit`
 
-### get\_ghz\_simple
+    **Returns**
 
-<span id="qiskit.ignis.verification.BConfig.get_ghz_simple" />
+    The measurement circuit
+  </Function>
 
-`get_ghz_simple(n, full_measurement=True)`
+  ### get\_tier\_dict
 
-Get simple GHZ circuit with measurement
+  <Function id="qiskit.ignis.verification.BConfig.get_tier_dict" name="get_tier_dict" signature="get_tier_dict()">
+    Take the nodes of the BConfig to create a Tier Dictionary, where keys are the steps in the process, and the values are the connections following pattern of: \[controlled qubit, NOT qubit]. Thus the backend’s GHZ state is parallelized.
 
-**Parameters**
+    **Return type**
 
-*   **n** (`int`) – number of qubits
-*   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
+    `Dict`
 
-**Return type**
+    **Returns**
 
-`Tuple`\[`QuantumCircuit`, `QuantumRegister`, `Dict`]
+    **Tier dictionary - \[step in process, control-target connection]**
 
-**Returns**
-
-A GHZ Circuit, its measurement circle quantum register and the initial GHZ layout
-
-### get\_measurement\_circ
-
-<span id="qiskit.ignis.verification.BConfig.get_measurement_circ" />
-
-`get_measurement_circ(n, qregname, cregname, full_measurement=True)`
-
-Creates a measurement circuit that can toggle between measuring the control qubit or measuring all qubits. The default is measurement of all qubits.
-
-**Parameters**
-
-*   **n** (`int`) – number of qubits
-*   **qregname** (`str`) – name of the qubit register
-*   **cregname** (`str`) – name of the classical register
-*   **full\_measurement** (`bool`) – Whether to append full measurement, or only on the first qubit
-
-**Return type**
-
-`QuantumCircuit`
-
-**Returns**
-
-The measurement circuit
-
-### get\_tier\_dict
-
-<span id="qiskit.ignis.verification.BConfig.get_tier_dict" />
-
-`get_tier_dict()`
-
-Take the nodes of the BConfig to create a Tier Dictionary, where keys are the steps in the process, and the values are the connections following pattern of: \[controlled qubit, NOT qubit]. Thus the backend’s GHZ state is parallelized.
-
-**Return type**
-
-`Dict`
-
-**Returns**
-
-**Tier dictionary - \[step in process, control-target connection]**
-
-Facilitates parallelized GHZ circuits
+    Facilitates parallelized GHZ circuits
+  </Function>
+</Class>
 

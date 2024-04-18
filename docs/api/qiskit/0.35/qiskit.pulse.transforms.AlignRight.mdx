@@ -8,59 +8,51 @@ python_api_name: qiskit.pulse.transforms.AlignRight
 
 # AlignRight
 
-<span id="qiskit.pulse.transforms.AlignRight" />
+<Class id="qiskit.pulse.transforms.AlignRight" github="https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/alignments.py" signature="AlignRight">
+  Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
 
-`AlignRight` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/alignments.py "view source code")
+  Align instructions in as-late-as-possible manner.
 
-Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
+  Instructions are placed at latest available timeslots.
 
-Align instructions in as-late-as-possible manner.
+  Create new context.
 
-Instructions are placed at latest available timeslots.
+  ## Methods
 
-Create new context.
+  ### align
 
-## Methods
+  <Function id="qiskit.pulse.transforms.AlignRight.align" name="align" signature="AlignRight.align(schedule)">
+    Reallocate instructions according to the policy.
 
-### align
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
 
-<span id="qiskit.pulse.transforms.AlignRight.align" />
+    **Parameters**
 
-`AlignRight.align(schedule)`
+    **schedule** (`Schedule`) – Schedule to align.
 
-Reallocate instructions according to the policy.
+    **Return type**
 
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+    `Schedule`
 
-**Parameters**
+    **Returns**
 
-**schedule** (`Schedule`) – Schedule to align.
+    Schedule with reallocated instructions.
+  </Function>
 
-**Return type**
+  ### to\_dict
 
-`Schedule`
+  <Function id="qiskit.pulse.transforms.AlignRight.to_dict" name="to_dict" signature="AlignRight.to_dict()">
+    Returns dictionary to represent this alignment.
 
-**Returns**
+    **Return type**
 
-Schedule with reallocated instructions.
+    `Dict`\[`str`, `Any`]
+  </Function>
 
-### to\_dict
+  ## Attributes
 
-<span id="qiskit.pulse.transforms.AlignRight.to_dict" />
+  ### is\_sequential
 
-`AlignRight.to_dict()`
-
-Returns dictionary to represent this alignment.
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-## Attributes
-
-<span id="qiskit.pulse.transforms.AlignRight.is_sequential" />
-
-### is\_sequential
-
-`= False`
+  <Attribute id="qiskit.pulse.transforms.AlignRight.is_sequential" name="is_sequential" attributeValue="= False" />
+</Class>
 

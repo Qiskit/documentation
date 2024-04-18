@@ -8,259 +8,249 @@ python_api_name: qiskit.circuit.library.PiecewiseLinearPauliRotations
 
 # PiecewiseLinearPauliRotations
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations" />
+<Class id="qiskit.circuit.library.PiecewiseLinearPauliRotations" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py#L27-L277" signature="qiskit.circuit.library.PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')">
+  Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
-`qiskit.circuit.library.PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py "view source code")
+  Piecewise-linearly-controlled Pauli rotations.
 
-Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
-
-Piecewise-linearly-controlled Pauli rotations.
-
-For a piecewise linear (not necessarily continuous) function $f(x)$, which is defined through breakpoints, slopes and offsets as follows. Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding slopes and offsets by $a_j$ and $b_j$ respectively. Then f(x) is defined as:
+  For a piecewise linear (not necessarily continuous) function $f(x)$, which is defined through breakpoints, slopes and offsets as follows. Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding slopes and offsets by $a_j$ and $b_j$ respectively. Then f(x) is defined as:
 
 $$
 f(x) = \begin{cases}
-    0, x < x_0 \\
-    a_j (x - x_j) + b_j, x_j \leq x < x_{j+1}
-    \end{cases}
+0, x < x_0 \\
+a_j (x - x_j) + b_j, x_j \leq x < x_{j+1}
+\end{cases}
 $$
 
-where we implicitly assume $x_{J+1} = 2^n$.
+  where we implicitly assume $x_{J+1} = 2^n$.
 
-Construct piecewise-linearly-controlled Pauli rotations.
+  Construct piecewise-linearly-controlled Pauli rotations.
 
-**Parameters**
+  **Parameters**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state.
-*   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
-*   **slopes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | np.ndarray | None*) – The slopes for different segments of the piecewise-linear function. Defaults to `[1]`.
-*   **offsets** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | np.ndarray | None*) – The offsets for different segments of the piecewise-linear function. Defaults to `[0]`.
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit.
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state.
+  *   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
+  *   **slopes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | np.ndarray | None*) – The slopes for different segments of the piecewise-linear function. Defaults to `[1]`.
+  *   **offsets** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | np.ndarray | None*) – The offsets for different segments of the piecewise-linear function. Defaults to `[0]`.
+  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ancillas" />
+  ### ancillas
 
-### ancillas
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ancillas" name="ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
 
-Returns a list of ancilla bits in the order that the registers were added.
+  ### basis
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.basis" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.basis" name="basis">
+    The kind of Pauli rotation to be used.
 
-### basis
+    Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
 
-The kind of Pauli rotation to be used.
+    **Returns**
 
-Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotations respectively.
+    The kind of Pauli rotation used in controlled rotation.
+  </Attribute>
 
-**Returns**
+  ### breakpoints
 
-The kind of Pauli rotation used in controlled rotation.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.breakpoints" name="breakpoints">
+    The breakpoints of the piecewise linear function.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.breakpoints" />
+    The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitly is `2**(num_state_qubits + 1)`.
+  </Attribute>
 
-### breakpoints
+  ### calibrations
 
-The breakpoints of the piecewise linear function.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.calibrations" name="calibrations">
+    Return calibration dictionary.
 
-The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitly is `2**(num_state_qubits + 1)`.
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.calibrations" />
+  ### clbits
 
-### calibrations
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.clbits" name="clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
 
-Return calibration dictionary.
+  ### contains\_zero\_breakpoint
 
-The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.contains_zero_breakpoint" name="contains_zero_breakpoint">
+    Whether 0 is the first breakpoint.
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.clbits" />
+    **Returns**
 
-### clbits
+    True, if 0 is the first breakpoint, otherwise False.
+  </Attribute>
 
-Returns a list of classical bits in the order that the registers were added.
+  ### data
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.contains_zero_breakpoint" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.data" name="data" />
 
-### contains\_zero\_breakpoint
+  ### global\_phase
 
-Whether 0 is the first breakpoint.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.global_phase" name="global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
 
-**Returns**
+  ### instances
 
-True, if 0 is the first breakpoint, otherwise False.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.instances" name="instances" attributeValue="= 266" />
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.data" />
+  ### layout
 
-### data
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.layout" name="layout">
+    Return any associated layout information about the circuit
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.global_phase" />
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
-### global\_phase
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
 
-Return the global phase of the current circuit scope in radians.
+  ### mapped\_offsets
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.instances" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_offsets" name="mapped_offsets">
+    The offsets mapped to the internal representation.
 
-### instances
+    **Returns**
 
-`= 266`
+    The mapped offsets.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.layout" />
+  ### mapped\_slopes
 
-### layout
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_slopes" name="mapped_slopes">
+    The slopes mapped to the internal representation.
 
-Return any associated layout information about the circuit
+    **Returns**
 
-This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+    The mapped slopes.
+  </Attribute>
 
-There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  ### metadata
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_offsets" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.metadata" name="metadata">
+    The user provided metadata associated with the circuit.
 
-### mapped\_offsets
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
 
-The offsets mapped to the internal representation.
+  ### num\_ancilla\_qubits
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancilla_qubits" name="num_ancilla_qubits">
+    The minimum number of ancilla qubits in the circuit.
 
-The mapped offsets.
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_slopes" />
+    The minimal number of ancillas required.
+  </Attribute>
 
-### mapped\_slopes
+  ### num\_ancillas
 
-The slopes mapped to the internal representation.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancillas" name="num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
 
-**Returns**
+  ### num\_clbits
 
-The mapped slopes.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_clbits" name="num_clbits">
+    Return number of classical bits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.metadata" />
+  ### num\_parameters
 
-### metadata
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_parameters" name="num_parameters" />
 
-The user provided metadata associated with the circuit.
+  ### num\_qubits
 
-The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_qubits" name="num_qubits">
+    Return number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancilla_qubits" />
+  ### num\_state\_qubits
 
-### num\_ancilla\_qubits
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_state_qubits" name="num_state_qubits">
+    The number of state qubits representing the state $|x\rangle$.
 
-The minimum number of ancilla qubits in the circuit.
+    **Returns**
 
-**Returns**
+    The number of state qubits.
+  </Attribute>
 
-The minimal number of ancillas required.
+  ### offsets
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancillas" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.offsets" name="offsets">
+    The breakpoints of the piecewise linear function.
 
-### num\_ancillas
+    The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitly is `2**(num_state_qubits + 1)`.
+  </Attribute>
 
-Return the number of ancilla qubits.
+  ### op\_start\_times
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_clbits" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.op_start_times" name="op_start_times">
+    Return a list of operation start times.
 
-### num\_clbits
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
-Return number of classical bits.
+    **Returns**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_parameters" />
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
-### num\_parameters
+    **Raises**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_qubits" />
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
 
-### num\_qubits
+  ### parameters
 
-Return number of qubits.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.parameters" name="parameters" />
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_state_qubits" />
+  ### prefix
 
-### num\_state\_qubits
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.prefix" name="prefix" attributeValue="= 'circuit'" />
 
-The number of state qubits representing the state $|x\rangle$.
+  ### qregs
 
-**Returns**
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
 
-The number of state qubits.
+  ### qubits
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.offsets" />
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qubits" name="qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
 
-### offsets
+  ### slopes
 
-The breakpoints of the piecewise linear function.
+  <Attribute id="qiskit.circuit.library.PiecewiseLinearPauliRotations.slopes" name="slopes">
+    The breakpoints of the piecewise linear function.
 
-The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitly is `2**(num_state_qubits + 1)`.
+    The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitly is `2**(num_state_qubits + 1)`.
+  </Attribute>
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.op_start_times" />
+  ## Methods
 
-### op\_start\_times
+  ### evaluate
 
-Return a list of operation start times.
+  <Function id="qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate" name="evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_linear_pauli_rotations.py#L173-L189" signature="evaluate(x)">
+    Classically evaluate the piecewise linear rotation.
 
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+    **Parameters**
 
-**Returns**
+    **x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value to be evaluated at.
 
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    **Returns**
 
-**Raises**
+    Value of piecewise linear function at x.
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+    **Return type**
 
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.parameters" />
-
-### parameters
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.prefix" />
-
-### prefix
-
-`= 'circuit'`
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qregs" />
-
-### qregs
-
-`list[QuantumRegister]`
-
-A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qubits" />
-
-### qubits
-
-Returns a list of quantum bits in the order that the registers were added.
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.slopes" />
-
-### slopes
-
-The breakpoints of the piecewise linear function.
-
-The function is linear in the intervals `[point_i, point_{i+1}]` where the last point implicitly is `2**(num_state_qubits + 1)`.
-
-## Methods
-
-### evaluate
-
-<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate" />
-
-`evaluate(x)`
-
-Classically evaluate the piecewise linear rotation.
-
-**Parameters**
-
-**x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value to be evaluated at.
-
-**Returns**
-
-Value of piecewise linear function at x.
-
-**Return type**
-
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
+  </Function>
+</Class>
 

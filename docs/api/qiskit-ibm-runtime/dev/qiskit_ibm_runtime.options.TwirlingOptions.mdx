@@ -8,74 +8,52 @@ python_api_name: qiskit_ibm_runtime.options.TwirlingOptions
 
 # TwirlingOptions
 
-<span id="qiskit_ibm_runtime.options.TwirlingOptions" />
+<Class id="qiskit_ibm_runtime.options.TwirlingOptions" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/twirling_options.py#L28-L67" signature="TwirlingOptions(*args, **kwargs)">
+  Twirling options.
 
-`TwirlingOptions(*args, **kwargs)` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options/twirling_options.py#L28-L67 "view source code")
+  **Parameters**
 
-Twirling options.
+  *   **enable\_gates** – Whether to apply 2-qubit gate twirling. Default: False.
 
-**Parameters**
+  *   **enable\_measure** – Whether to enable twirling of measurements. Twirling will only be applied to those measurement registers not involved within a conditional logic. Default: True.
 
-*   **enable\_gates** – Whether to apply 2-qubit gate twirling. Default: False.
+  *   **num\_randomizations** – The number of random samples to use when twirling or peforming sampled mitigation. If “auto”, the value will be chosen automatically based on the input PUBs. Default: “auto”.
 
-*   **enable\_measure** – Whether to enable twirling of expectation value measurements in Estimator. Default: True.
+  *   **shots\_per\_randomization** – The number of shots to run for each random sample. If “auto”, the value will be chosen automatically based on the input PUBs. Default: “auto”.
 
-*   **num\_randomizations** – The number of random samples to use when twirling or peforming sampled mitigation. If “auto”, the value will be chosen automatically based on the input PUBs. Default: “auto”.
+  *   **strategy** –
 
-*   **shots\_per\_randomization** – The number of shots to run for each random sample. If “auto”, the value will be chosen automatically based on the input PUBs. Default: “auto”.
+      Specify the strategy of twirling qubits in identified layers of 2-qubit twirled gates. Allowed values are
 
-*   **strategy** –
+      *   If `"active"` only the instruction qubits in each individual twirled layer will be twirled.
+      *   If `"active-circuit"` the union of all instruction qubits in the circuit will be twirled in each twirled layer.
+      *   If `"active-accum"` the union of instructions qubits in the circuit up to the current twirled layer will be twirled in each individual twirled layer.
+      *   If `"all"` all qubits in the input circuit will be twirled in each twirled layer.
 
-    Specify the strategy of twirling qubits in identified layers of 2-qubit twirled gates. Allowed values are
+      Default: “active-accum”.
 
-    *   If `"active"` only the instruction qubits in each individual twirled layer will be twirled.
-    *   If `"active-circuit"` the union of all instruction qubits in the circuit will be twirled in each twirled layer.
-    *   If `"active-accum"` the union of instructions qubits in the circuit up to the current twirled layer will be twirled in each individual twirled layer.
-    *   If `"all"` all qubits in the input circuit will be twirled in each twirled layer.
+  ## Attributes
 
-    Default: “active-accum”.
+  ### enable\_gates
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_gates" name="enable_gates" attributeTypeHint="UnsetType | bool" attributeValue="= Unset" />
 
-<span id="qiskit_ibm_runtime.options.TwirlingOptions.enable_gates" />
+  ### enable\_measure
 
-### enable\_gates
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.enable_measure" name="enable_measure" attributeTypeHint="UnsetType | bool" attributeValue="= Unset" />
 
-`UnsetType | bool`
+  ### num\_randomizations
 
-`= Unset`
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.num_randomizations" name="num_randomizations" attributeTypeHint="UnsetType | int | Literal['auto']" attributeValue="= Unset" />
 
-<span id="qiskit_ibm_runtime.options.TwirlingOptions.enable_measure" />
+  ### shots\_per\_randomization
 
-### enable\_measure
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.shots_per_randomization" name="shots_per_randomization" attributeTypeHint="UnsetType | int | Literal['auto']" attributeValue="= Unset" />
 
-`UnsetType | bool`
+  ### strategy
 
-`= Unset`
+  <Attribute id="qiskit_ibm_runtime.options.TwirlingOptions.strategy" name="strategy" attributeTypeHint="UnsetType | Literal['active', 'active-accum', 'active-circuit', 'all']" attributeValue="= Unset" />
 
-<span id="qiskit_ibm_runtime.options.TwirlingOptions.num_randomizations" />
-
-### num\_randomizations
-
-`UnsetType | int | Literal['auto']`
-
-`= Unset`
-
-<span id="qiskit_ibm_runtime.options.TwirlingOptions.shots_per_randomization" />
-
-### shots\_per\_randomization
-
-`UnsetType | int | Literal['auto']`
-
-`= Unset`
-
-<span id="qiskit_ibm_runtime.options.TwirlingOptions.strategy" />
-
-### strategy
-
-`UnsetType | Literal['active', 'active-accum', 'active-circuit', 'all']`
-
-`= Unset`
-
-## Methods
+  ## Methods
+</Class>
 

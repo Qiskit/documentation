@@ -8,64 +8,56 @@ python_api_name: qiskit.primitives.EstimatorResult
 
 # EstimatorResult
 
-<span id="qiskit.primitives.EstimatorResult" />
+<Class id="qiskit.primitives.EstimatorResult" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/estimator_result.py" signature="EstimatorResult(values, metadata)">
+  Bases: `BasePrimitiveResult`
 
-`EstimatorResult(values, metadata)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/primitives/base/estimator_result.py "view source code")
+  Result of Estimator.
 
-Bases: `BasePrimitiveResult`
+  ```python
+  result = estimator.run(circuits, observables, params).result()
+  ```
 
-Result of Estimator.
+  where the i-th elements of `result` correspond to the circuit and observable given by `circuits[i]`, `observables[i]`, and the parameter values bounds by `params[i]`. For example, `results.values[i]` gives the expectation value, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
 
-```python
-result = estimator.run(circuits, observables, params).result()
-```
+  **Parameters**
 
-where the i-th elements of `result` correspond to the circuit and observable given by `circuits[i]`, `observables[i]`, and the parameter values bounds by `params[i]`. For example, `results.values[i]` gives the expectation value, and `result.metadata[i]` is a metadata dictionary for this circuit and parameters.
+  *   **values** (*np.ndarray*) – The array of the expectation values.
+  *   **metadata** (*list\[dict]*) – List of the metadata.
 
-**Parameters**
+  ## Methods
 
-*   **values** (*np.ndarray*) – The array of the expectation values.
-*   **metadata** (*list\[dict]*) – List of the metadata.
+  <span id="qiskit-primitives-estimatorresult-decompose" />
 
-## Methods
+  ### decompose
 
-<span id="qiskit-primitives-estimatorresult-decompose" />
+  <Function id="qiskit.primitives.EstimatorResult.decompose" name="decompose" signature="EstimatorResult.decompose()">
+    Generate single experiment result objects from self.
 
-### decompose
+    **Return type**
 
-<span id="qiskit.primitives.EstimatorResult.decompose" />
+    Iterator\[BasePrimitiveResult]
+  </Function>
 
-`EstimatorResult.decompose()`
+  ## Attributes
 
-Generate single experiment result objects from self.
+  ### experiments
 
-**Return type**
+  <Attribute id="qiskit.primitives.EstimatorResult.experiments" name="experiments">
+    Experiment data dicts in any inheriting result dataclass.
+  </Attribute>
 
-Iterator\[BasePrimitiveResult]
+  ### num\_experiments
 
-## Attributes
+  <Attribute id="qiskit.primitives.EstimatorResult.num_experiments" name="num_experiments">
+    Number of experiments in any inheriting result dataclass.
+  </Attribute>
 
-<span id="qiskit.primitives.EstimatorResult.experiments" />
+  ### values
 
-### experiments
+  <Attribute id="qiskit.primitives.EstimatorResult.values" name="values" attributeTypeHint="np.ndarray[Any, np.dtype[np.float64]]" />
 
-Experiment data dicts in any inheriting result dataclass.
+  ### metadata
 
-<span id="qiskit.primitives.EstimatorResult.num_experiments" />
-
-### num\_experiments
-
-Number of experiments in any inheriting result dataclass.
-
-<span id="qiskit.primitives.EstimatorResult.values" />
-
-### values
-
-`np.ndarray[Any, np.dtype[np.float64]]`
-
-<span id="qiskit.primitives.EstimatorResult.metadata" />
-
-### metadata
-
-`list[dict[str, Any]]`
+  <Attribute id="qiskit.primitives.EstimatorResult.metadata" name="metadata" attributeTypeHint="list[dict[str, Any]]" />
+</Class>
 

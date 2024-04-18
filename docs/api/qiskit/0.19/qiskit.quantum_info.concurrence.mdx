@@ -8,35 +8,33 @@ python_api_name: qiskit.quantum_info.concurrence
 
 # concurrence
 
-<span id="qiskit.quantum_info.concurrence" />
+<Function id="qiskit.quantum_info.concurrence" name="concurrence" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py" signature="concurrence(state)">
+  Calculate the concurrence of a quantum state.
 
-`concurrence(state)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/quantum_info/states/measures.py "view source code")
+  The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ is given by
 
-Calculate the concurrence of a quantum state.
+  where $\rho_0 = Tr_1[|\psi\rangle\!\langle\psi|]$ is the reduced state from by taking the $~qiskit.quantum_info.partial_trace$ of the input state.
 
-The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ is given by
+  For density matrices the concurrence is only defined for 2-qubit states, it is given by:
 
-where $\rho_0 = Tr_1[|\psi\rangle\!\langle\psi|]$ is the reduced state from by taking the $~qiskit.quantum_info.partial_trace$ of the input state.
+  where $\lambda _1 \ge \lambda _2 \ge \lambda _3 \ge \lambda _4$ are the ordered eigenvalues of the matrix $R=\sqrt{\sqrt{\rho }(Y\otimes Y)\overline{\rho}(Y\otimes Y)\sqrt{\rho}}$.
 
-For density matrices the concurrence is only defined for 2-qubit states, it is given by:
+  **Parameters**
 
-where $\lambda _1 \ge \lambda _2 \ge \lambda _3 \ge \lambda _4$ are the ordered eigenvalues of the matrix $R=\sqrt{\sqrt{\rho }(Y\otimes Y)\overline{\rho}(Y\otimes Y)\sqrt{\rho}}$.
+  **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a 2-qubit quantum state.
 
-**Parameters**
+  **Returns**
 
-**state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a 2-qubit quantum state.
+  The concurrence.
 
-**Returns**
+  **Return type**
 
-The concurrence.
+  float
 
-**Return type**
+  **Raises**
 
-float
-
-**Raises**
-
-*   **QiskitError** – if the input state is not a valid QuantumState.
-*   **QiskitError** – if input is not a bipartite QuantumState.
-*   **QiskitError** – if density matrix input is not a 2-qubit state.
+  *   **QiskitError** – if the input state is not a valid QuantumState.
+  *   **QiskitError** – if input is not a bipartite QuantumState.
+  *   **QiskitError** – if density matrix input is not a 2-qubit state.
+</Function>
 

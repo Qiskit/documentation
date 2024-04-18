@@ -8,46 +8,44 @@ python_api_name: qiskit.circuit.qpy_serialization.dump
 
 # qiskit.circuit.qpy\_serialization.dump
 
-<span id="qiskit.circuit.qpy_serialization.dump" />
+<Function id="qiskit.circuit.qpy_serialization.dump" name="dump" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/qpy_serialization.py" signature="dump(circuits, file_obj)">
+  Write QPY binary data to a file
 
-`dump(circuits, file_obj)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/qpy_serialization.py "view source code")
+  This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
 
-Write QPY binary data to a file
+  For example:
 
-This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit import qpy_serialization
 
-For example:
+  qc = QuantumCircuit(2, name='Bell', metadata={'test': True})
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.measure_all()
+  ```
 
-```python
-from qiskit.circuit import QuantumCircuit
-from qiskit.circuit import qpy_serialization
+  from this you can write the qpy data to a file:
 
-qc = QuantumCircuit(2, name='Bell', metadata={'test': True})
-qc.h(0)
-qc.cx(0, 1)
-qc.measure_all()
-```
+  ```python
+  with open('bell.qpy', 'wb') as fd:
+      qpy_serialization.dump(qc, fd)
+  ```
 
-from this you can write the qpy data to a file:
+  or a gzip compressed file:
 
-```python
-with open('bell.qpy', 'wb') as fd:
-    qpy_serialization.dump(qc, fd)
-```
+  ```python
+  import gzip
 
-or a gzip compressed file:
+  with gzip.open('bell.qpy.gz', 'wb') as fd:
+      qpy_serialization.dump(qc, fd)
+  ```
 
-```python
-import gzip
+  Which will save the qpy serialized circuit to the provided file.
 
-with gzip.open('bell.qpy.gz', 'wb') as fd:
-    qpy_serialization.dump(qc, fd)
-```
+  **Parameters**
 
-Which will save the qpy serialized circuit to the provided file.
-
-**Parameters**
-
-*   **circuits** (*list or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit object(s) to store in the specified file like object. This can either be a single QuantumCircuit object or a list of QuantumCircuits.
-*   **file\_obj** (*file*) – The file like object to write the QPY data too
+  *   **circuits** (*list or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit object(s) to store in the specified file like object. This can either be a single QuantumCircuit object or a list of QuantumCircuits.
+  *   **file\_obj** (*file*) – The file like object to write the QPY data too
+</Function>
 

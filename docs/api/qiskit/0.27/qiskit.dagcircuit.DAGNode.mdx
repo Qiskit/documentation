@@ -8,96 +8,82 @@ python_api_name: qiskit.dagcircuit.DAGNode
 
 # qiskit.dagcircuit.DAGNode
 
-<span id="qiskit.dagcircuit.DAGNode" />
+<Class id="qiskit.dagcircuit.DAGNode" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/dagcircuit/dagnode.py" signature="DAGNode(type=None, op=None, name=None, qargs=None, cargs=None, wire=None, nid=- 1)">
+  Object to represent the information at a node in the DAGCircuit.
 
-`DAGNode(type=None, op=None, name=None, qargs=None, cargs=None, wire=None, nid=- 1)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/dagcircuit/dagnode.py "view source code")
+  It is used as the return value from \*\_nodes() functions and can be supplied to functions that take a node.
 
-Object to represent the information at a node in the DAGCircuit.
+  Create a node
 
-It is used as the return value from \*\_nodes() functions and can be supplied to functions that take a node.
+  ### \_\_init\_\_
 
-Create a node
+  <Function id="qiskit.dagcircuit.DAGNode.__init__" name="__init__" signature="__init__(type=None, op=None, name=None, qargs=None, cargs=None, wire=None, nid=- 1)">
+    Create a node
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.dagcircuit.DAGNode.__init__" />
+  |                                                                                                                                    |                                                                                             |
+  | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.dagcircuit.DAGNode.__init__ "qiskit.dagcircuit.DAGNode.__init__")(\[type, op, name, qargs, cargs, …])         | Create a node                                                                               |
+  | [`semantic_eq`](#qiskit.dagcircuit.DAGNode.semantic_eq "qiskit.dagcircuit.DAGNode.semantic_eq")(node1, node2\[, bit\_indices1, …]) | Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic. |
 
-`__init__(type=None, op=None, name=None, qargs=None, cargs=None, wire=None, nid=- 1)`
+  ## Attributes
 
-Create a node
+  |                                                                                           |                                                                                |
+  | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+  | `cargs`                                                                                   |                                                                                |
+  | [`condition`](#qiskit.dagcircuit.DAGNode.condition "qiskit.dagcircuit.DAGNode.condition") | Returns the condition of the node.op                                           |
+  | `name`                                                                                    |                                                                                |
+  | [`op`](#qiskit.dagcircuit.DAGNode.op "qiskit.dagcircuit.DAGNode.op")                      | Returns the Instruction object corresponding to the op for the node, else None |
+  | [`qargs`](#qiskit.dagcircuit.DAGNode.qargs "qiskit.dagcircuit.DAGNode.qargs")             | Returns list of Qubit, else an empty list.                                     |
+  | `sort_key`                                                                                |                                                                                |
+  | `type`                                                                                    |                                                                                |
+  | [`wire`](#qiskit.dagcircuit.DAGNode.wire "qiskit.dagcircuit.DAGNode.wire")                | Returns the Bit object, else None.                                             |
 
-## Methods
+  ### condition
 
-|                                                                                                                                    |                                                                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.dagcircuit.DAGNode.__init__ "qiskit.dagcircuit.DAGNode.__init__")(\[type, op, name, qargs, cargs, …])         | Create a node                                                                               |
-| [`semantic_eq`](#qiskit.dagcircuit.DAGNode.semantic_eq "qiskit.dagcircuit.DAGNode.semantic_eq")(node1, node2\[, bit\_indices1, …]) | Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic. |
+  <Function id="qiskit.dagcircuit.DAGNode.condition" name="condition" signature="property condition">
+    Returns the condition of the node.op
+  </Function>
 
-## Attributes
+  ### op
 
-|                                                                                           |                                                                                |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `cargs`                                                                                   |                                                                                |
-| [`condition`](#qiskit.dagcircuit.DAGNode.condition "qiskit.dagcircuit.DAGNode.condition") | Returns the condition of the node.op                                           |
-| `name`                                                                                    |                                                                                |
-| [`op`](#qiskit.dagcircuit.DAGNode.op "qiskit.dagcircuit.DAGNode.op")                      | Returns the Instruction object corresponding to the op for the node, else None |
-| [`qargs`](#qiskit.dagcircuit.DAGNode.qargs "qiskit.dagcircuit.DAGNode.qargs")             | Returns list of Qubit, else an empty list.                                     |
-| `sort_key`                                                                                |                                                                                |
-| `type`                                                                                    |                                                                                |
-| [`wire`](#qiskit.dagcircuit.DAGNode.wire "qiskit.dagcircuit.DAGNode.wire")                | Returns the Bit object, else None.                                             |
+  <Function id="qiskit.dagcircuit.DAGNode.op" name="op" signature="property op">
+    Returns the Instruction object corresponding to the op for the node, else None
+  </Function>
 
-### condition
+  ### qargs
 
-<span id="qiskit.dagcircuit.DAGNode.condition" />
+  <Function id="qiskit.dagcircuit.DAGNode.qargs" name="qargs" signature="property qargs">
+    Returns list of Qubit, else an empty list.
+  </Function>
 
-`property condition`
+  ### semantic\_eq
 
-Returns the condition of the node.op
+  <Function id="qiskit.dagcircuit.DAGNode.semantic_eq" name="semantic_eq" signature="static semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)">
+    Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
 
-### op
+    **Parameters**
 
-<span id="qiskit.dagcircuit.DAGNode.op" />
+    *   **node1** ([*DAGNode*](#qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – A node to compare.
+    *   **node2** ([*DAGNode*](#qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – The other node to compare.
+    *   **bit\_indices1** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node1
+    *   **bit\_indices2** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node2
 
-`property op`
+    **Returns**
 
-Returns the Instruction object corresponding to the op for the node, else None
+    If node1 == node2
 
-### qargs
+    **Return type**
 
-<span id="qiskit.dagcircuit.DAGNode.qargs" />
+    Bool
+  </Function>
 
-`property qargs`
+  ### wire
 
-Returns list of Qubit, else an empty list.
-
-### semantic\_eq
-
-<span id="qiskit.dagcircuit.DAGNode.semantic_eq" />
-
-`static semantic_eq(node1, node2, bit_indices1=None, bit_indices2=None)`
-
-Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
-
-**Parameters**
-
-*   **node1** ([*DAGNode*](#qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – A node to compare.
-*   **node2** ([*DAGNode*](#qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")) – The other node to compare.
-*   **bit\_indices1** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node1
-*   **bit\_indices2** (*dict*) – Dictionary mapping Bit instances to their index within the circuit containing node2
-
-**Returns**
-
-If node1 == node2
-
-**Return type**
-
-Bool
-
-### wire
-
-<span id="qiskit.dagcircuit.DAGNode.wire" />
-
-`property wire`
-
-Returns the Bit object, else None.
+  <Function id="qiskit.dagcircuit.DAGNode.wire" name="wire" signature="property wire">
+    Returns the Bit object, else None.
+  </Function>
+</Class>
 

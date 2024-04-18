@@ -8,137 +8,119 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeTenerife
 
 # FakeTenerife
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife" />
+<Class id="qiskit_ibm_runtime.fake_provider.FakeTenerife" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.23/qiskit_ibm_runtime/fake_provider/backends/tenerife/fake_tenerife.py#L28-L68" signature="FakeTenerife">
+  A fake 5 qubit backend.
 
-`FakeTenerife` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.22/qiskit_ibm_runtime/fake_provider/backends/tenerife/fake_tenerife.py#L28-L68 "view source code")
+  ```python
+      1
+    ↙ ↑
+  0 ← 2 ← 3
+      ↑ ↙
+      4
+  ```
 
-A fake 5 qubit backend.
+  ## Attributes
 
-```python
-    1
-  ↙ ↑
-0 ← 2 ← 3
-    ↑ ↙
-    4
-```
+  ### options
 
-## Attributes
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeTenerife.options" name="options">
+    Return the options for the backend
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.options" />
+    The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeTenerife.run "qiskit_ibm_runtime.fake_provider.FakeTenerife.run") method.
+  </Attribute>
 
-### options
+  ### version
 
-Return the options for the backend
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeTenerife.version" name="version" attributeValue="= 1" />
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.fake_provider.FakeTenerife.run "qiskit_ibm_runtime.fake_provider.FakeTenerife.run") method.
+  ## Methods
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.version" />
+  ### configuration
 
-### version
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeTenerife.configuration" name="configuration" signature="configuration()">
+    Return the backend configuration.
 
-`= 1`
+    **Returns**
 
-## Methods
+    the configuration for the backend.
 
-### configuration
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.configuration" />
+    BackendConfiguration
+  </Function>
 
-`configuration()`
+  ### name
 
-Return the backend configuration.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeTenerife.name" name="name" signature="name()">
+    Return the backend name.
 
-**Returns**
+    **Returns**
 
-the configuration for the backend.
+    the name of the backend.
 
-**Return type**
+    **Return type**
 
-BackendConfiguration
+    str
+  </Function>
 
-### name
+  ### properties
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.name" />
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeTenerife.properties" name="properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.23/qiskit_ibm_runtime/fake_provider/backends/tenerife/fake_tenerife.py#L62-L68" signature="properties()">
+    Returns a snapshot of device properties as recorded on 8/30/19.
 
-`name()`
+    **Return type**
 
-Return the backend name.
+    `BackendProperties`
+  </Function>
 
-**Returns**
+  ### provider
 
-the name of the backend.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeTenerife.provider" name="provider" signature="provider()">
+    Return the backend Provider.
 
-**Return type**
+    **Returns**
 
-str
+    the Provider responsible for the backend.
 
-### properties
+    **Return type**
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.properties" />
+    Provider
+  </Function>
 
-`properties()` [GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.22/qiskit_ibm_runtime/fake_provider/backends/tenerife/fake_tenerife.py#L62-L68 "view source code")
+  ### run
 
-Returns a snapshot of device properties as recorded on 8/30/19.
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeTenerife.run" name="run" signature="run(run_input, **kwargs)">
+    Main job in simulator
+  </Function>
 
-**Return type**
+  ### set\_options
 
-`BackendProperties`
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeTenerife.set_options" name="set_options" signature="set_options(**fields)">
+    Set the options fields for the backend
 
-### provider
+    This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.provider" />
+    **Parameters**
 
-`provider()`
+    **fields** – The fields to update the options
 
-Return the backend Provider.
+    **Raises**
 
-**Returns**
+    **AttributeError** – If the field passed in is not part of the options
+  </Function>
 
-the Provider responsible for the backend.
+  ### status
 
-**Return type**
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeTenerife.status" name="status" signature="status()">
+    Return the backend status.
 
-Provider
+    **Returns**
 
-### run
+    the status of the backend.
 
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.run" />
+    **Return type**
 
-`run(run_input, **kwargs)`
-
-Main job in simulator
-
-### set\_options
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.set_options" />
-
-`set_options(**fields)`
-
-Set the options fields for the backend
-
-This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
-
-**Parameters**
-
-**fields** – The fields to update the options
-
-**Raises**
-
-**AttributeError** – If the field passed in is not part of the options
-
-### status
-
-<span id="qiskit_ibm_runtime.fake_provider.FakeTenerife.status" />
-
-`status()`
-
-Return the backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-BackendStatus
+    BackendStatus
+  </Function>
+</Class>
 

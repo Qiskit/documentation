@@ -8,130 +8,120 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
 # VF2Layout
 
-<span id="qiskit.transpiler.passes.VF2Layout" />
+<Class id="qiskit.transpiler.passes.VF2Layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/vf2_layout.py#L39-L257" signature="qiskit.transpiler.passes.VF2Layout(*args, **kwargs)">
+  Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-`qiskit.transpiler.passes.VF2Layout(*args, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
+  A pass for choosing a Layout of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
 
-Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+  If a solution is found that means there is a “perfect layout” and that no further swap mapping or routing is needed. If a solution is found the layout will be set in the property set as `property_set['layout']`. However, if no solution is found, no `property_set['layout']` is set. The stopping reason is set in `property_set['VF2Layout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2LayoutStopReason` which has the following values:
 
-A pass for choosing a Layout of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
+  > *   `"solution found"`: If a perfect layout was found.
+  > *   `"nonexistent solution"`: If no perfect layout was found.
+  > *   `">2q gates in basis"`: If VF2Layout can’t work with basis
 
-If a solution is found that means there is a “perfect layout” and that no further swap mapping or routing is needed. If a solution is found the layout will be set in the property set as `property_set['layout']`. However, if no solution is found, no `property_set['layout']` is set. The stopping reason is set in `property_set['VF2Layout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2LayoutStopReason` which has the following values:
+  By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
 
-> *   `"solution found"`: If a perfect layout was found.
-> *   `"nonexistent solution"`: If no perfect layout was found.
-> *   `">2q gates in basis"`: If VF2Layout can’t work with basis
+  ```python
+  from qiskit.transpiler.passes.layout.vf2_utils import ErrorMap
 
-By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
+  error_map = ErrorMap(3)
+  error_map.add_error((0, 0), 0.0024)
+  error_map.add_error((0, 1), 0.01)
+  error_map.add_error((1, 1), 0.0032)
+  ```
 
-```python
-from qiskit.transpiler.passes.layout.vf2_utils import ErrorMap
+  that represents the error map for a 2 qubit target, where the avg 1q error rate is `0.0024` on qubit 0 and `0.0032` on qubit 1. Then the avg 2q error rate for gates that operate on (0, 1) is 0.01 and (1, 0) is not supported by the target. This will be used for scoring if it’s set as the `vf2_avg_error_map` key in the property set when [`VF2Layout`](#qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") is run.
 
-error_map = ErrorMap(3)
-error_map.add_error((0, 0), 0.0024)
-error_map.add_error((0, 1), 0.01)
-error_map.add_error((1, 1), 0.0032)
-```
+  Initialize a `VF2Layout` pass instance
 
-that represents the error map for a 2 qubit target, where the avg 1q error rate is `0.0024` on qubit 0 and `0.0032` on qubit 1. Then the avg 2q error rate for gates that operate on (0, 1) is 0.01 and (1, 0) is not supported by the target. This will be used for scoring if it’s set as the `vf2_avg_error_map` key in the property set when [`VF2Layout`](#qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") is run.
+  **Parameters**
 
-Initialize a `VF2Layout` pass instance
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
+  *   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, considers the direction of the coupling map. Default is False.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
+  *   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of state visits to attempt in each execution of VF2.
+  *   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The total time limit in seconds to run `VF2Layout`
+  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
+  *   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger) if no other limits are set. If set to a value \<= 0 no limit on the number of trials will be set.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
 
-**Parameters**
+  **Raises**
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
-*   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, considers the direction of the coupling map. Default is False.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
-*   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of state visits to attempt in each execution of VF2.
-*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The total time limit in seconds to run `VF2Layout`
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
-*   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger) if no other limits are set. If set to a value \<= 0 no limit on the number of trials will be set.
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – At runtime, if neither `coupling_map` or `target` are provided.
 
-**Raises**
+  ## Attributes
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – At runtime, if neither `coupling_map` or `target` are provided.
+  ### is\_analysis\_pass
 
-## Attributes
+  <Attribute id="qiskit.transpiler.passes.VF2Layout.is_analysis_pass" name="is_analysis_pass">
+    Check if the pass is an analysis pass.
 
-<span id="qiskit.transpiler.passes.VF2Layout.is_analysis_pass" />
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
 
-### is\_analysis\_pass
+  ### is\_transformation\_pass
 
-Check if the pass is an analysis pass.
+  <Attribute id="qiskit.transpiler.passes.VF2Layout.is_transformation_pass" name="is_transformation_pass">
+    Check if the pass is a transformation pass.
 
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
 
-<span id="qiskit.transpiler.passes.VF2Layout.is_transformation_pass" />
+  ## Methods
 
-### is\_transformation\_pass
+  ### execute
 
-Check if the pass is a transformation pass.
+  <Function id="qiskit.transpiler.passes.VF2Layout.execute" name="execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
 
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+    **Parameters**
 
-## Methods
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
 
-### execute
+    **Returns**
 
-<span id="qiskit.transpiler.passes.VF2Layout.execute" />
+    Optimized Qiskit IR and state of the workflow.
 
-`execute(passmanager_ir, state, callback=None)`
+    **Return type**
 
-Execute optimization task for input Qiskit IR.
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
 
-**Parameters**
+  ### name
 
-*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+  <Function id="qiskit.transpiler.passes.VF2Layout.name" name="name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
 
-**Returns**
+    **Return type**
 
-Optimized Qiskit IR and state of the workflow.
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
 
-**Return type**
+  ### run
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  <Function id="qiskit.transpiler.passes.VF2Layout.run" name="run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/vf2_layout.py#L126-L257" signature="run(dag)">
+    run the layout method
+  </Function>
 
-### name
+  ### update\_status
 
-<span id="qiskit.transpiler.passes.VF2Layout.name" />
+  <Function id="qiskit.transpiler.passes.VF2Layout.update_status" name="update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
+    Update workflow status.
 
-`name()`
+    **Parameters**
 
-Name of the pass.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
 
-**Return type**
+    **Returns**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    Updated pass manager state.
 
-### run
+    **Return type**
 
-<span id="qiskit.transpiler.passes.VF2Layout.run" />
-
-`run(dag)`
-
-run the layout method
-
-### update\_status
-
-<span id="qiskit.transpiler.passes.VF2Layout.update_status" />
-
-`update_status(state, run_state)`
-
-Update workflow status.
-
-**Parameters**
-
-*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
-*   **run\_state** (*RunState*) – Completion status of current task.
-
-**Returns**
-
-Updated pass manager state.
-
-**Return type**
-
-[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
 

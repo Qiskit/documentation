@@ -8,467 +8,431 @@ python_api_name: qiskit.circuit.classicalfunction.BooleanExpression
 
 # BooleanExpression
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression" />
+<Class id="qiskit.circuit.classicalfunction.BooleanExpression" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/boolean_expression.py#L23-L129" signature="qiskit.circuit.classicalfunction.BooleanExpression(expression, name=None, var_order=None)">
+  Bases: `ClassicalElement`
 
-`qiskit.circuit.classicalfunction.BooleanExpression(expression, name=None, var_order=None)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/boolean_expression.py "view source code")
+  The Boolean Expression gate.
 
-Bases: `ClassicalElement`
+  **Parameters**
 
-The Boolean Expression gate.
+  *   **expression** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The logical expression string.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. Instruction gate name. Otherwise part of the expression is going to be used.
+  *   **var\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list with the order in which variables will be created. (default: by appearance)
 
-**Parameters**
+  ## Attributes
 
-*   **expression** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The logical expression string.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. Instruction gate name. Otherwise part of the expression is going to be used.
-*   **var\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list with the order in which variables will be created. (default: by appearance)
+  ### base\_class
 
-## Attributes
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.base_class" />
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.classicalfunction.BooleanExpression.base_class "qiskit.circuit.classicalfunction.BooleanExpression.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-### base\_class
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.classicalfunction.BooleanExpression.base_class "qiskit.circuit.classicalfunction.BooleanExpression.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+  ### condition
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition\_bits
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.condition" />
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-### condition
+  ### decompositions
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.condition_bits" />
+  ### definition
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.definition" name="definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
 
-Get Clbits in condition.
+  ### duration
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.decompositions" />
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-### decompositions
+  ### label
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.label" name="label">
+    Return instruction label
+  </Attribute>
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.definition" />
+  ### mutable
 
-### definition
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-Return definition in terms of other basic gates.
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.duration" />
+  ### name
 
-### duration
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.name" name="name">
+    Return the name.
+  </Attribute>
 
-Get the duration.
+  ### num\_clbits
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.label" />
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### label
+  ### num\_qubits
 
-Return instruction label
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.mutable" />
+  ### params
 
-### mutable
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.params" name="params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
 
-Is this instance is a mutable unique instance or not.
+  ### unit
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  <Attribute id="qiskit.circuit.classicalfunction.BooleanExpression.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.name" />
+  ## Methods
 
-### name
+  ### add\_decomposition
 
-Return the name.
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.add_decomposition" name="add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L332-L337" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.num_clbits" />
+  ### assemble
 
-### num\_clbits
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.assemble" name="assemble" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L359-L379" signature="assemble()">
+    Assemble a QasmQobjInstruction
+  </Function>
 
-Return the number of clbits.
+  ### broadcast\_arguments
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.num_qubits" />
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.broadcast_arguments" name="broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L169-L226" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
 
-### num\_qubits
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
 
-Return the number of qubits.
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.params" />
+    The general broadcasting rules are:
 
-### params
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
 
-return instruction params.
+    **Parameters**
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.unit" />
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of classical bit arguments.
 
-### unit
+    **Returns**
 
-Get the time unit of duration.
+    A tuple with single arguments.
 
-## Methods
+    **Raises**
 
-### add\_decomposition
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.add_decomposition" />
+    **Return type**
 
-`add_decomposition(decomposition)`
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+  </Function>
 
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  ### c\_if
 
-### assemble
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.c_if" name="c_if" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L484-L502" signature="c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.assemble" />
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
 
-`assemble()`
+  ### control
 
-Assemble a QasmQobjInstruction
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.control" name="control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L89-L126" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+    Return the controlled version of itself.
 
-### broadcast\_arguments
+    Implemented either as a controlled gate (ref. [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.broadcast_arguments" />
+    **Parameters**
 
-`broadcast_arguments(qargs, cargs)`
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of controls to add to gate (default: `1`)
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – optional gate label. Ignored if implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – the control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
-Validation and handling of the arguments and its relationship.
+    **Returns**
 
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+    Controlled version of the given operation.
 
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
+    **Raises**
 
-The general broadcasting rules are:
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+  </Function>
 
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
+  ### copy
 
-**Parameters**
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.copy" name="copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L504-L519" signature="copy(name=None)">
+    Copy of the instruction.
 
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of quantum bit arguments.
-*   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of classical bit arguments.
+    **Parameters**
 
-**Returns**
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
 
-A tuple with single arguments.
+    **Returns**
 
-**Raises**
+    a copy of the current instruction, with the name updated if it was provided
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    **Return type**
 
-**Return type**
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
+  ### from\_dimacs\_file
 
-### c\_if
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file" name="from_dimacs_file" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/boolean_expression.py#L101-L129" signature="classmethod from_dimacs_file(filename)">
+    Create a BooleanExpression from the string in the DIMACS format. :param filename: A file in DIMACS format.
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.c_if" />
+    **Returns**
 
-`c_if(classical, val)`
+    A gate for the input string
 
-Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+    **Return type**
 
-<Admonition title="Note" type="note">
-  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-</Admonition>
+    [BooleanExpression](#qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")
 
-### control
+    **Raises**
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.control" />
+    [**FileNotFoundError**](https://docs.python.org/3/library/exceptions.html#FileNotFoundError "(in Python v3.12)") – If filename is not found.
+  </Function>
 
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
+  ### inverse
 
-Return the controlled version of itself.
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.inverse" name="inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L427-L482" signature="inverse(annotated=False)">
+    Invert this instruction.
 
-Implemented either as a controlled gate (ref. [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. `AnnotatedOperation`).
+    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
 
-**Parameters**
+    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
 
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of controls to add to gate (default: `1`)
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – optional gate label. Ignored if implemented as an annotated operation.
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – the control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
-*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
 
-**Returns**
+    **Parameters**
 
-Controlled version of the given operation.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
-**Raises**
+    **Returns**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+    The inverse operation.
 
-### copy
+    **Raises**
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.copy" />
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
 
-`copy(name=None)`
+  ### is\_parameterized
 
-Copy of the instruction.
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.is_parameterized" name="is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L297-L302" signature="is_parameterized()">
+    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
 
-**Parameters**
+  ### power
 
-**name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.power" name="power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L65-L81" signature="power(exponent)">
+    Creates a unitary gate as gate^exponent.
 
-**Returns**
+    **Parameters**
 
-a copy of the current instruction, with the name updated if it was provided
+    **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Gate^exponent
 
-**Return type**
+    **Returns**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+    To which to\_matrix is self.to\_matrix^exponent.
 
-### from\_dimacs\_file
+    **Return type**
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.from_dimacs_file" />
+    .library.UnitaryGate
 
-`classmethod from_dimacs_file(filename)`
+    **Raises**
 
-Create a BooleanExpression from the string in the DIMACS format. :param filename: A file in DIMACS format.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If Gate is not unitary
+  </Function>
 
-**Returns**
+  ### repeat
 
-A gate for the input string
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.repeat" name="repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L567-L609" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
 
-**Return type**
+    If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
 
-[BooleanExpression](#qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")
+    **Parameters**
 
-**Raises**
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
 
-[**FileNotFoundError**](https://docs.python.org/3/library/exceptions.html#FileNotFoundError "(in Python v3.12)") – If filename is not found.
+    **Returns**
 
-### inverse
+    Containing the definition.
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.inverse" />
+    **Return type**
 
-`inverse(annotated=False)`
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-Invert this instruction.
+    **Raises**
 
-If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
 
-If annotated is True, the inverse instruction is implemented as `AnnotatedOperation`, and corresponds to the given instruction annotated with the “inverse modifier”.
+  ### reverse\_ops
 
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.reverse_ops" name="reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L401-L425" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
 
-**Parameters**
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
 
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if set to True the output inverse gate will be returned as `AnnotatedOperation`.
+    **Returns**
 
-**Returns**
+    **a new instruction with**
 
-The inverse operation.
+    sub-instructions reversed.
 
-**Raises**
+    **Return type**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
 
-### is\_parameterized
+  ### simulate
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.is_parameterized" />
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.simulate" name="simulate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/boolean_expression.py#L50-L66" signature="simulate(bitstring)">
+    Evaluate the expression on a bitstring.
 
-`is_parameterized()`
+    This evaluation is done classically.
 
-Return True .IFF. instruction is parameterized else False
+    **Parameters**
 
-### power
+    **bitstring** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The bitstring for which to evaluate.
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.power" />
+    **Returns**
 
-`power(exponent)`
+    result of the evaluation.
 
-Creates a unitary gate as gate^exponent.
+    **Return type**
 
-**Parameters**
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-**exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Gate^exponent
+  ### soft\_compare
 
-**Returns**
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.soft_compare" name="soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L228-L268" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
-To which to\_matrix is self.to\_matrix^exponent.
+    **Parameters**
 
-**Return type**
+    **other** (*instruction*) – other instruction.
 
-.library.UnitaryGate
+    **Returns**
 
-**Raises**
+    are self and other equal up to parameter expressions.
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If Gate is not unitary
+    **Return type**
 
-### repeat
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+  </Function>
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.repeat" />
+  ### synth
 
-`repeat(n)`
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.synth" name="synth" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/boolean_expression.py#L68-L95" signature="synth(registerless=True, synthesizer=None)">
+    Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
-Creates an instruction with gate repeated n amount of times.
+    **Parameters**
 
-**Parameters**
+    *   **registerless** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default `True`. If `False` uses the parameter names to create registers with those names. Otherwise, creates a circuit with a flat quantum register.
+    *   **synthesizer** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*BooleanExpression*](#qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.boolean_expression.BooleanExpression")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A callable that takes self and returns a Tweedledum circuit.
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
+    **Returns**
 
-**Returns**
+    A circuit implementing the logic network.
 
-Containing the definition.
+    **Return type**
 
-**Return type**
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  ### to\_matrix
 
-**Raises**
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.to_matrix" name="to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L51-L63" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+    **Returns**
 
-### reverse\_ops
+    if the Gate subclass has a matrix definition.
 
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.reverse_ops" />
+    **Return type**
 
-`reverse_ops()`
+    np.ndarray
 
-For a composite instruction, reverse the order of sub-instructions.
+    **Raises**
 
-This is done by recursively reversing all sub-instructions. It does not invert any gate.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
 
-**Returns**
+  ### to\_mutable
 
-**a new instruction with**
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.to_mutable" name="to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L150-L158" signature="to_mutable()">
+    Return a mutable copy of this gate.
 
-sub-instructions reversed.
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
 
-**Return type**
+  ### validate\_parameter
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### simulate
-
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.simulate" />
-
-`simulate(bitstring)`
-
-Evaluate the expression on a bitstring.
-
-This evaluation is done classically.
-
-**Parameters**
-
-**bitstring** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The bitstring for which to evaluate.
-
-**Returns**
-
-result of the evaluation.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### soft\_compare
-
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.soft_compare" />
-
-`soft_compare(other)`
-
-Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
-
-**Parameters**
-
-**other** (*instruction*) – other instruction.
-
-**Returns**
-
-are self and other equal up to parameter expressions.
-
-**Return type**
-
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
-
-### synth
-
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.synth" />
-
-`synth(registerless=True, synthesizer=None)`
-
-Synthesis the logic network into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
-
-**Parameters**
-
-*   **registerless** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Default `True`. If `False` uses the parameter names to create registers with those names. Otherwise, creates a circuit with a flat quantum register.
-*   **synthesizer** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*BooleanExpression*](#qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.boolean_expression.BooleanExpression")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A callable that takes self and returns a Tweedledum circuit.
-
-**Returns**
-
-A circuit implementing the logic network.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### to\_matrix
-
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.to_matrix" />
-
-`to_matrix()`
-
-Return a Numpy.array for the gate unitary matrix.
-
-**Returns**
-
-if the Gate subclass has a matrix definition.
-
-**Return type**
-
-np.ndarray
-
-**Raises**
-
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
-
-### to\_mutable
-
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.to_mutable" />
-
-`to_mutable()`
-
-Return a mutable copy of this gate.
-
-This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.classicalfunction.BooleanExpression.validate_parameter" />
-
-`validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
+  <Function id="qiskit.circuit.classicalfunction.BooleanExpression.validate_parameter" name="validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/gate.py#L228-L242" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
 

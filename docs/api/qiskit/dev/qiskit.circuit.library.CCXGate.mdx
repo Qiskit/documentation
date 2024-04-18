@@ -8,249 +8,243 @@ python_api_name: qiskit.circuit.library.CCXGate
 
 # CCXGate
 
-<span id="qiskit.circuit.library.CCXGate" />
+<Class id="qiskit.circuit.library.CCXGate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L296-L487" signature="qiskit.circuit.library.CCXGate(*args, _force_mutable=False, **kwargs)">
+  Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
-`qiskit.circuit.library.CCXGate(*args, _force_mutable=False, **kwargs)` [GitHub](https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py "view source code")
+  CCX gate, also known as Toffoli gate.
 
-Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ccx()`](qiskit.circuit.QuantumCircuit#ccx "qiskit.circuit.QuantumCircuit.ccx") and `toffoli()` methods.
 
-CCX gate, also known as Toffoli gate.
+  **Circuit symbol:**
 
-Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`ccx()`](qiskit.circuit.QuantumCircuit#ccx "qiskit.circuit.QuantumCircuit.ccx") and `toffoli()` methods.
+  ```python
+  q_0: ──■──
+         │
+  q_1: ──■──
+       ┌─┴─┐
+  q_2: ┤ X ├
+       └───┘
+  ```
 
-**Circuit symbol:**
-
-```python
-q_0: ──■──
-       │
-q_1: ──■──
-     ┌─┴─┐
-q_2: ┤ X ├
-     └───┘
-```
-
-**Matrix representation:**
+  **Matrix representation:**
 
 $$
 CCX q_0, q_1, q_2 =
-    I \otimes I \otimes |0 \rangle \langle 0| + CX \otimes |1 \rangle \langle 1| =
-   \begin{pmatrix}
-        1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-        0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
-        0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
-        0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
-        0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
-        0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
-        0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
-        0 & 0 & 0 & 1 & 0 & 0 & 0 & 0
-    \end{pmatrix}
+I \otimes I \otimes |0 \rangle \langle 0| + CX \otimes |1 \rangle \langle 1| =
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0
+\end{pmatrix}
 $$
 
-<Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2 and q\_1. Thus a textbook matrix for this gate will be:
+  <Admonition title="Note" type="note">
+    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_2 and q\_1. Thus a textbook matrix for this gate will be:
 
-  ```python
-       ┌───┐
-  q_0: ┤ X ├
-       └─┬─┘
-  q_1: ──■──
-         │
-  q_2: ──■──
-  ```
+    ```python
+         ┌───┐
+    q_0: ┤ X ├
+         └─┬─┘
+    q_1: ──■──
+           │
+    q_2: ──■──
+    ```
 
-  $$
-  CCX\ q_2, q_1, q_0 =
-      |0 \rangle \langle 0| \otimes I \otimes I + |1 \rangle \langle 1| \otimes CX =
-      \begin{pmatrix}
-          1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-          0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
-          0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
-          0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
-          0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
-          0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
-          0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
-          0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
-      \end{pmatrix}
-  $$
-</Admonition>
+$$
+CCX\ q_2, q_1, q_0 =
+|0 \rangle \langle 0| \otimes I \otimes I + |1 \rangle \langle 1| \otimes CX =
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix}
+$$
+  </Admonition>
 
-Create new CCX gate.
+  Create new CCX gate.
 
-## Attributes
+  ## Attributes
 
-<span id="qiskit.circuit.library.CCXGate.base_class" />
+  ### base\_class
 
-### base\_class
+  <Attribute id="qiskit.circuit.library.CCXGate.base_class" name="base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CCXGate.base_class "qiskit.circuit.library.CCXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
 
-The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.CCXGate.base_class "qiskit.circuit.library.CCXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
-This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
 
-```python
->>> isinstance(XGate(), XGate)
-True
->>> type(XGate()) is XGate
-False
->>> XGate().base_class is XGate
-True
-```
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
 
-In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  ### condition
 
-<span id="qiskit.circuit.library.CCXGate.condition" />
+  <Attribute id="qiskit.circuit.library.CCXGate.condition" name="condition">
+    The classical condition on the instruction.
+  </Attribute>
 
-### condition
+  ### condition\_bits
 
-The classical condition on the instruction.
+  <Attribute id="qiskit.circuit.library.CCXGate.condition_bits" name="condition_bits">
+    Get Clbits in condition.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CCXGate.condition_bits" />
+  ### ctrl\_state
 
-### condition\_bits
+  <Attribute id="qiskit.circuit.library.CCXGate.ctrl_state" name="ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
 
-Get Clbits in condition.
+  ### decompositions
 
-<span id="qiskit.circuit.library.CCXGate.ctrl_state" />
+  <Attribute id="qiskit.circuit.library.CCXGate.decompositions" name="decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
 
-### ctrl\_state
+  ### definition
 
-Return the control state of the gate as a decimal integer.
+  <Attribute id="qiskit.circuit.library.CCXGate.definition" name="definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.library.CCXGate.ctrl_state "qiskit.circuit.library.CCXGate.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CCXGate.decompositions" />
+  ### duration
 
-### decompositions
+  <Attribute id="qiskit.circuit.library.CCXGate.duration" name="duration">
+    Get the duration.
+  </Attribute>
 
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  ### label
 
-<span id="qiskit.circuit.library.CCXGate.definition" />
+  <Attribute id="qiskit.circuit.library.CCXGate.label" name="label">
+    Return instruction label
+  </Attribute>
 
-### definition
+  ### mutable
 
-Return definition in terms of other basic gates. If the gate has open controls, as determined from self.ctrl\_state, the returned definition is conjugated with X without changing the internal \_definition.
+  <Attribute id="qiskit.circuit.library.CCXGate.mutable" name="mutable">
+    Is this instance is a mutable unique instance or not.
 
-<span id="qiskit.circuit.library.CCXGate.duration" />
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
 
-### duration
+  ### name
 
-Get the duration.
+  <Attribute id="qiskit.circuit.library.CCXGate.name" name="name">
+    Get name of gate. If the gate has open controls the gate name will become:
 
-<span id="qiskit.circuit.library.CCXGate.label" />
+    > \<original\_name\_o\<ctrl\_state>
 
-### label
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
 
-Return instruction label
+  ### num\_clbits
 
-<span id="qiskit.circuit.library.CCXGate.mutable" />
+  <Attribute id="qiskit.circuit.library.CCXGate.num_clbits" name="num_clbits">
+    Return the number of clbits.
+  </Attribute>
 
-### mutable
+  ### num\_ctrl\_qubits
 
-Is this instance is a mutable unique instance or not.
+  <Attribute id="qiskit.circuit.library.CCXGate.num_ctrl_qubits" name="num_ctrl_qubits">
+    Get number of control qubits.
 
-If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+    **Returns**
 
-<span id="qiskit.circuit.library.CCXGate.name" />
+    The number of control qubits for the gate.
 
-### name
+    **Return type**
 
-Get name of gate. If the gate has open controls the gate name will become:
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  </Attribute>
 
-> \<original\_name\_o\<ctrl\_state>
+  ### num\_qubits
 
-where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  <Attribute id="qiskit.circuit.library.CCXGate.num_qubits" name="num_qubits">
+    Return the number of qubits.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CCXGate.num_clbits" />
+  ### params
 
-### num\_clbits
+  <Attribute id="qiskit.circuit.library.CCXGate.params" name="params">
+    Get parameters from base\_gate.
 
-Return the number of clbits.
+    **Returns**
 
-<span id="qiskit.circuit.library.CCXGate.num_ctrl_qubits" />
+    List of gate parameters.
 
-### num\_ctrl\_qubits
+    **Return type**
 
-Get number of control qubits.
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
-**Returns**
+    **Raises**
 
-The number of control qubits for the gate.
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
 
-**Return type**
+  ### unit
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  <Attribute id="qiskit.circuit.library.CCXGate.unit" name="unit">
+    Get the time unit of duration.
+  </Attribute>
 
-<span id="qiskit.circuit.library.CCXGate.num_qubits" />
+  ## Methods
 
-### num\_qubits
+  ### control
 
-Return the number of qubits.
+  <Function id="qiskit.circuit.library.CCXGate.control" name="control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L434-L470" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+    Controlled version of this gate.
 
-<span id="qiskit.circuit.library.CCXGate.params" />
+    **Parameters**
 
-### params
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
-Get parameters from base\_gate.
+    **Returns**
 
-**Returns**
+    controlled version of this gate.
 
-List of gate parameters.
+    **Return type**
 
-**Return type**
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+  ### inverse
 
-**Raises**
+  <Function id="qiskit.circuit.library.CCXGate.inverse" name="inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L472-L484" signature="inverse(annotated=False)">
+    Return an inverted CCX gate (also a CCX).
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+    **Parameters**
 
-<span id="qiskit.circuit.library.CCXGate.unit" />
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
 
-### unit
+    **Returns**
 
-Get the time unit of duration.
+    inverse gate (self-inverse).
 
-## Methods
+    **Return type**
 
-### control
-
-<span id="qiskit.circuit.library.CCXGate.control" />
-
-`control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)`
-
-Controlled version of this gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-*   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
-*   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.CCXGate.inverse" />
-
-`inverse(annotated=False)`
-
-Return an inverted CCX gate (also a CCX).
-
-**Parameters**
-
-**annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
-
-**Returns**
-
-inverse gate (self-inverse).
-
-**Return type**
-
-[CCXGate](#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate")
+    [CCXGate](#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate")
+  </Function>
+</Class>
 

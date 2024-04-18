@@ -10,63 +10,55 @@ python_api_name: qiskit.aqua.components.initial_states.InitialState
 
 # qiskit.aqua.components.initial\_states.InitialState
 
-<span id="qiskit.aqua.components.initial_states.InitialState" />
+<Class id="qiskit.aqua.components.initial_states.InitialState" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/initial_state.py" signature="InitialState">
+  Base class for InitialState.
 
-`InitialState` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/initial_state.py "view source code")
+  This method should initialize the module and use an exception if a component of the module is not available.
 
-Base class for InitialState.
+  ### \_\_init\_\_
 
-This method should initialize the module and use an exception if a component of the module is not available.
+  <Function id="qiskit.aqua.components.initial_states.InitialState.__init__" name="__init__" signature="abstract __init__()">
+    Initialize self. See help(type(self)) for accurate signature.
+  </Function>
 
-### \_\_init\_\_
+  ## Methods
 
-<span id="qiskit.aqua.components.initial_states.InitialState.__init__" />
+  |                                                                                                                                                                                        |                                                     |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+  | [`__init__`](#qiskit.aqua.components.initial_states.InitialState.__init__ "qiskit.aqua.components.initial_states.InitialState.__init__")()                                             | Initialize self.                                    |
+  | [`construct_circuit`](#qiskit.aqua.components.initial_states.InitialState.construct_circuit "qiskit.aqua.components.initial_states.InitialState.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
 
-`abstract __init__()`
+  ## Attributes
 
-Initialize self. See help(type(self)) for accurate signature.
+  |                                                                                                                                    |   |
+  | ---------------------------------------------------------------------------------------------------------------------------------- | - |
+  | [`bitstr`](#qiskit.aqua.components.initial_states.InitialState.bitstr "qiskit.aqua.components.initial_states.InitialState.bitstr") |   |
 
-## Methods
+  ### bitstr
 
-|                                                                                                                                                                                        |                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.initial_states.InitialState.__init__ "qiskit.aqua.components.initial_states.InitialState.__init__")()                                             | Initialize self.                                    |
-| [`construct_circuit`](#qiskit.aqua.components.initial_states.InitialState.construct_circuit "qiskit.aqua.components.initial_states.InitialState.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
+  <Function id="qiskit.aqua.components.initial_states.InitialState.bitstr" name="bitstr" signature="property bitstr" />
 
-## Attributes
+  ### construct\_circuit
 
-|                                                                                                                                    |   |
-| ---------------------------------------------------------------------------------------------------------------------------------- | - |
-| [`bitstr`](#qiskit.aqua.components.initial_states.InitialState.bitstr "qiskit.aqua.components.initial_states.InitialState.bitstr") |   |
+  <Function id="qiskit.aqua.components.initial_states.InitialState.construct_circuit" name="construct_circuit" signature="abstract construct_circuit(mode='circuit', register=None)">
+    Construct the statevector of desired initial state.
 
-### bitstr
+    **Parameters**
 
-<span id="qiskit.aqua.components.initial_states.InitialState.bitstr" />
+    *   **mode** (`str`) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
+    *   **register** (`Optional`\[`QuantumRegister`]) – qubits for circuit construction.
 
-`property bitstr`
+    **Returns**
 
-### construct\_circuit
+    statevector.
 
-<span id="qiskit.aqua.components.initial_states.InitialState.construct_circuit" />
+    **Return type**
 
-`abstract construct_circuit(mode='circuit', register=None)`
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
-Construct the statevector of desired initial state.
+    **Raises**
 
-**Parameters**
-
-*   **mode** (`str`) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** (`Optional`\[`QuantumRegister`]) – qubits for circuit construction.
-
-**Returns**
-
-statevector.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+    [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+  </Function>
+</Class>
 

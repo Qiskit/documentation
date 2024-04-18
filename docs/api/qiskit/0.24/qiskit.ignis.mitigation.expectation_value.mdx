@@ -10,35 +10,33 @@ python_api_name: qiskit.ignis.mitigation.expectation_value
 
 # qiskit.ignis.mitigation.expectation\_value
 
-<span id="qiskit.ignis.mitigation.expectation_value" />
+<Function id="qiskit.ignis.mitigation.expectation_value" name="expectation_value" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/utils.py" signature="expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)">
+  Compute the expectation value of a diagonal operator from counts.
 
-`expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)` [GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.5/qiskit/ignis/mitigation/expval/utils.py "view source code")
+  This computes the estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$, optionally with measurement error mitigation, of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
 
-Compute the expectation value of a diagonal operator from counts.
+  **Parameters**
 
-This computes the estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$, optionally with measurement error mitigation, of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
+  *   **counts** – counts object
+  *   **diagonal** – Optional, the vector of diagonal values for summing the expectation value. If `None` the the default value is $[1, -1]^\otimes n$.
+  *   **qubits** – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
+  *   **clbits** – Optional, if not None marginalize counts to the specified bits.
+  *   **meas\_mitigator** – Optional, a measurement mitigator to apply mitigation.
 
-**Parameters**
+  **Returns**
 
-*   **counts** – counts object
-*   **diagonal** – Optional, the vector of diagonal values for summing the expectation value. If `None` the the default value is $[1, -1]^\otimes n$.
-*   **qubits** – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
-*   **clbits** – Optional, if not None marginalize counts to the specified bits.
-*   **meas\_mitigator** – Optional, a measurement mitigator to apply mitigation.
+  the expectation value and standard deviation.
 
-**Returns**
+  **Return type**
 
-the expectation value and standard deviation.
+  (float, float)
 
-**Return type**
+  ## Additional Information:
 
-(float, float)
+  The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Numpy array $[O(0), ..., O(2^n -1)]$. If no diagonal is specified the diagonal of the Pauli operator $O = \mbox{diag}(Z^{\otimes n}) = [1, -1]^{\otimes n}$ is used.
 
-## Additional Information:
+  The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
 
-The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Numpy array $[O(0), ..., O(2^n -1)]$. If no diagonal is specified the diagonal of the Pauli operator $O = \mbox{diag}(Z^{\otimes n}) = [1, -1]^{\otimes n}$ is used.
-
-The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
-
-For calibrating a expval measurement error mitigator for the `meas_mitigator` kwarg see [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter").
+  For calibrating a expval measurement error mitigator for the `meas_mitigator` kwarg see [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter").
+</Function>
 

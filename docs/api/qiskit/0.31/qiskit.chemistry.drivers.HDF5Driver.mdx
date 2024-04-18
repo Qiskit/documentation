@@ -8,91 +8,87 @@ python_api_name: qiskit.chemistry.drivers.HDF5Driver
 
 # HDF5Driver
 
-<span id="qiskit.chemistry.drivers.HDF5Driver" />
+<Class id="qiskit.chemistry.drivers.HDF5Driver" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/hdf5d/hdf5driver.py" signature="HDF5Driver(hdf5_input='molecule.hdf5')">
+  Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
 
-`HDF5Driver(hdf5_input='molecule.hdf5')` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/hdf5d/hdf5driver.py "view source code")
+  Qiskit chemistry driver reading an HDF5 file.
 
-Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
+  The HDF5 file is as saved from a [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") instance.
 
-Qiskit chemistry driver reading an HDF5 file.
+  **Parameters**
 
-The HDF5 file is as saved from a [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") instance.
+  **hdf5\_input** (`str`) – Path to HDF5 file
 
-**Parameters**
+  ## Methods
 
-**hdf5\_input** (`str`) – Path to HDF5 file
+  ### run
 
-## Methods
+  <Function id="qiskit.chemistry.drivers.HDF5Driver.run" name="run" signature="HDF5Driver.run()">
+    Runs driver to produce a QMolecule output.
 
-### run
+    **Return type**
 
-<span id="qiskit.chemistry.drivers.HDF5Driver.run" />
+    `QMolecule`
 
-`HDF5Driver.run()`
+    **Returns**
 
-Runs driver to produce a QMolecule output.
+    A QMolecule containing the molecular data.
 
-**Return type**
+    **Raises**
 
-`QMolecule`
+    **LookupError** – file not found.
+  </Function>
 
-**Returns**
+  ## Attributes
 
-A QMolecule containing the molecular data.
+  ### basis
 
-**Raises**
+  <Attribute id="qiskit.chemistry.drivers.HDF5Driver.basis" name="basis">
+    return basis
 
-**LookupError** – file not found.
+    **Return type**
 
-## Attributes
+    `str`
+  </Attribute>
 
-<span id="qiskit.chemistry.drivers.HDF5Driver.basis" />
+  ### hf\_method
 
-### basis
+  <Attribute id="qiskit.chemistry.drivers.HDF5Driver.hf_method" name="hf_method">
+    return Hartree-Fock method
 
-return basis
+    **Return type**
 
-**Return type**
+    `str`
+  </Attribute>
 
-`str`
+  ### molecule
 
-<span id="qiskit.chemistry.drivers.HDF5Driver.hf_method" />
+  <Attribute id="qiskit.chemistry.drivers.HDF5Driver.molecule" name="molecule">
+    return molecule
 
-### hf\_method
+    **Return type**
 
-return Hartree-Fock method
+    `Optional`\[`Molecule`]
+  </Attribute>
 
-**Return type**
+  ### supports\_molecule
 
-`str`
+  <Attribute id="qiskit.chemistry.drivers.HDF5Driver.supports_molecule" name="supports_molecule">
+    True for derived classes that support Molecule.
 
-<span id="qiskit.chemistry.drivers.HDF5Driver.molecule" />
+    **Return type**
 
-### molecule
+    `bool`
 
-return molecule
+    **Returns**
 
-**Return type**
+    True if Molecule is supported.
+  </Attribute>
 
-`Optional`\[`Molecule`]
+  ### work\_path
 
-<span id="qiskit.chemistry.drivers.HDF5Driver.supports_molecule" />
-
-### supports\_molecule
-
-True for derived classes that support Molecule.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if Molecule is supported.
-
-<span id="qiskit.chemistry.drivers.HDF5Driver.work_path" />
-
-### work\_path
-
-Returns work path.
+  <Attribute id="qiskit.chemistry.drivers.HDF5Driver.work_path" name="work_path">
+    Returns work path.
+  </Attribute>
+</Class>
 

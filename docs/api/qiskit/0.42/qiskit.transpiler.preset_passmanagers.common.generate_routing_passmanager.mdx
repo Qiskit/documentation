@@ -8,28 +8,26 @@ python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_routing_p
 
 # qiskit.transpiler.preset\_passmanagers.common.generate\_routing\_passmanager
 
-<span id="qiskit.transpiler.preset_passmanagers.common.generate_routing_passmanager" />
+<Function id="qiskit.transpiler.preset_passmanagers.common.generate_routing_passmanager" name="generate_routing_passmanager" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py" signature="generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, backend_properties=None, seed_transpiler=None, check_trivial=False, use_barrier_before_measurement=True)">
+  Generate a routing [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
-`generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, backend_properties=None, seed_transpiler=None, check_trivial=False, use_barrier_before_measurement=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
+  **Parameters**
 
-Generate a routing [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
+  *   **routing\_pass** ([*TransformationPass*](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")) – The pass which will perform the routing
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend to route for
+  *   **vf2\_call\_limit** (*int*) – The internal call limit for the vf2 post layout pass. If this is `None` the vf2 post layout will not be run.
+  *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties of a backend to synthesize for (e.g. gate fidelities).
+  *   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
+  *   **check\_trivial** (*bool*) – If set to true this will condition running the [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") pass after routing on whether a trivial layout was tried and was found to not be perfect. This is only needed if the constructed pass manager runs [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout") as a first layout attempt and uses it if it’s a perfect layout (as is the case with preset pass manager level 1).
+  *   **use\_barrier\_before\_measurement** (*bool*) – If true (the default) the [`BarrierBeforeFinalMeasurements`](qiskit.transpiler.passes.BarrierBeforeFinalMeasurements "qiskit.transpiler.passes.BarrierBeforeFinalMeasurements") transpiler pass will be run prior to the specified pass in the `routing_pass` argument.
 
-**Parameters**
+  **Returns**
 
-*   **routing\_pass** ([*TransformationPass*](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")) – The pass which will perform the routing
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object representing the backend
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend to route for
-*   **vf2\_call\_limit** (*int*) – The internal call limit for the vf2 post layout pass. If this is `None` the vf2 post layout will not be run.
-*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties of a backend to synthesize for (e.g. gate fidelities).
-*   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
-*   **check\_trivial** (*bool*) – If set to true this will condition running the [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") pass after routing on whether a trivial layout was tried and was found to not be perfect. This is only needed if the constructed pass manager runs [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout") as a first layout attempt and uses it if it’s a perfect layout (as is the case with preset pass manager level 1).
-*   **use\_barrier\_before\_measurement** (*bool*) – If true (the default) the [`BarrierBeforeFinalMeasurements`](qiskit.transpiler.passes.BarrierBeforeFinalMeasurements "qiskit.transpiler.passes.BarrierBeforeFinalMeasurements") transpiler pass will be run prior to the specified pass in the `routing_pass` argument.
+  The routing pass manager
 
-**Returns**
+  **Return type**
 
-The routing pass manager
-
-**Return type**
-
-[PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
+  [PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
+</Function>
 

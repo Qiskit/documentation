@@ -8,93 +8,85 @@ python_api_name: qiskit.chemistry.BosonicOperator
 
 # BosonicOperator
 
-<span id="qiskit.chemistry.BosonicOperator" />
+<Class id="qiskit.chemistry.BosonicOperator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/bosonic_operator.py" signature="BosonicOperator(h, basis)">
+  Bases: `object`
 
-`BosonicOperator(h, basis)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/bosonic_operator.py "view source code")
+  A set of functions to map bosonic Hamiltonians to qubit Hamiltonians.
 
-Bases: `object`
+  References:
 
-A set of functions to map bosonic Hamiltonians to qubit Hamiltonians.
+  *   *Veis Libor, et al., International Journal of Quantum Chemistry 116.18 (2016): 1328-1336.*
+  *   *McArdle Sam, et al., Chemical science 10.22 (2019): 5725-5735.*
+  *   *Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.*
 
-References:
+  The Bosonic operator in this class is written in the n-mode second quantization format (Eq. 10 in Ref. Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.) The second quantization operators act on a given modal in a given mode. self.\_degree is the truncation degree of the expansion (n).
 
-*   *Veis Libor, et al., International Journal of Quantum Chemistry 116.18 (2016): 1328-1336.*
-*   *McArdle Sam, et al., Chemical science 10.22 (2019): 5725-5735.*
-*   *Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.*
+  **Parameters**
 
-The Bosonic operator in this class is written in the n-mode second quantization format (Eq. 10 in Ref. Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.) The second quantization operators act on a given modal in a given mode. self.\_degree is the truncation degree of the expansion (n).
+  *   **h** (`List`\[`List`\[`Tuple`\[`List`\[`List`\[`int`]], `float`]]]) – Matrix elements for the n-body expansion. The format is as follows: h is a self.\_degree (n) dimensional array. For each degree n, h\[n] contains the list \[\[indices, coeff]\_0, \[indices, coeff]\_1, …] where the indices is a n-entry list and each entry is of the shape \[mode, modal1, modal2] which define the indices of the corresponding raising (mode, modal1) and lowering (mode, modal2) operators.
+  *   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4].
 
-**Parameters**
+  ## Methods
 
-*   **h** (`List`\[`List`\[`Tuple`\[`List`\[`List`\[`int`]], `float`]]]) – Matrix elements for the n-body expansion. The format is as follows: h is a self.\_degree (n) dimensional array. For each degree n, h\[n] contains the list \[\[indices, coeff]\_0, \[indices, coeff]\_1, …] where the indices is a n-entry list and each entry is of the shape \[mode, modal1, modal2] which define the indices of the corresponding raising (mode, modal1) and lowering (mode, modal2) operators.
-*   **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4].
+  ### direct\_mapping\_filtering\_criterion
 
-## Methods
+  <Function id="qiskit.chemistry.BosonicOperator.direct_mapping_filtering_criterion" name="direct_mapping_filtering_criterion" signature="BosonicOperator.direct_mapping_filtering_criterion(state, value, aux_values=None)">
+    Filters out the states of irrelevant symmetries
 
-### direct\_mapping\_filtering\_criterion
+    **Parameters**
 
-<span id="qiskit.chemistry.BosonicOperator.direct_mapping_filtering_criterion" />
+    *   **state** (`Union`\[`List`, `ndarray`]) – the statevector
+    *   **value** (`float`) – the energy
+    *   **aux\_values** (`Optional`\[`List`\[`float`]]) – the auxiliary energies
 
-`BosonicOperator.direct_mapping_filtering_criterion(state, value, aux_values=None)`
+    **Return type**
 
-Filters out the states of irrelevant symmetries
+    `bool`
 
-**Parameters**
+    **Returns**
 
-*   **state** (`Union`\[`List`, `ndarray`]) – the statevector
-*   **value** (`float`) – the energy
-*   **aux\_values** (`Optional`\[`List`\[`float`]]) – the auxiliary energies
+    True if the state is has one and only one modal occupied per mode meaning that the direct mapping symmetries are respected and False otherwise
+  </Function>
 
-**Return type**
+  ### mapping
 
-`bool`
+  <Function id="qiskit.chemistry.BosonicOperator.mapping" name="mapping" signature="BosonicOperator.mapping(qubit_mapping='direct', threshold=1e-08)">
+    Maps a bosonic operator into a qubit operator.
 
-**Returns**
+    **Parameters**
 
-True if the state is has one and only one modal occupied per mode meaning that the direct mapping symmetries are respected and False otherwise
+    *   **qubit\_mapping** (`str`) – a string giving the type of mapping (only the ‘direct’ mapping is implemented at this point)
+    *   **threshold** (`float`) – threshold to chop the low contribution paulis
 
-### mapping
+    **Return type**
 
-<span id="qiskit.chemistry.BosonicOperator.mapping" />
+    `WeightedPauliOperator`
 
-`BosonicOperator.mapping(qubit_mapping='direct', threshold=1e-08)`
+    **Returns**
 
-Maps a bosonic operator into a qubit operator.
+    A qubit operator
 
-**Parameters**
+    **Raises**
 
-*   **qubit\_mapping** (`str`) – a string giving the type of mapping (only the ‘direct’ mapping is implemented at this point)
-*   **threshold** (`float`) – threshold to chop the low contribution paulis
+    **ValueError** – If requested mapping is not supported
+  </Function>
 
-**Return type**
+  ### number\_occupied\_modals\_per\_mode
 
-`WeightedPauliOperator`
+  <Function id="qiskit.chemistry.BosonicOperator.number_occupied_modals_per_mode" name="number_occupied_modals_per_mode" signature="BosonicOperator.number_occupied_modals_per_mode(mode)">
+    A bosonic operator which can be used to evaluate the number of occupied modals in a given mode
 
-**Returns**
+    **Parameters**
 
-A qubit operator
+    **mode** (`int`) – the index of the mode
 
-**Raises**
+    **Returns**
 
-**ValueError** – If requested mapping is not supported
+    the corresponding bosonic operator
 
-### number\_occupied\_modals\_per\_mode
+    **Return type**
 
-<span id="qiskit.chemistry.BosonicOperator.number_occupied_modals_per_mode" />
-
-`BosonicOperator.number_occupied_modals_per_mode(mode)`
-
-A bosonic operator which can be used to evaluate the number of occupied modals in a given mode
-
-**Parameters**
-
-**mode** (`int`) – the index of the mode
-
-**Returns**
-
-the corresponding bosonic operator
-
-**Return type**
-
-[BosonicOperator](qiskit.chemistry.BosonicOperator "qiskit.chemistry.BosonicOperator")
+    [BosonicOperator](qiskit.chemistry.BosonicOperator "qiskit.chemistry.BosonicOperator")
+  </Function>
+</Class>
 

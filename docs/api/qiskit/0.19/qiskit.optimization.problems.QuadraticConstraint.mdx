@@ -8,140 +8,124 @@ python_api_name: qiskit.optimization.problems.QuadraticConstraint
 
 # QuadraticConstraint
 
-<span id="qiskit.optimization.problems.QuadraticConstraint" />
+<Class id="qiskit.optimization.problems.QuadraticConstraint" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/quadratic_constraint.py" signature="QuadraticConstraint(quadratic_program, name, linear, quadratic, sense, rhs)">
+  Representation of a quadratic constraint.
 
-`QuadraticConstraint(quadratic_program, name, linear, quadratic, sense, rhs)` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/problems/quadratic_constraint.py "view source code")
+  Constructs a quadratic constraint, consisting of a linear and a quadratic term.
 
-Representation of a quadratic constraint.
+  **Parameters**
 
-Constructs a quadratic constraint, consisting of a linear and a quadratic term.
+  *   **quadratic\_program** (`Any`) – The parent quadratic program.
+  *   **name** (`str`) – The name of the constraint.
+  *   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The coefficients specifying the linear part of the constraint.
+  *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The coefficients specifying the linear part of the constraint.
+  *   **sense** (`ConstraintSense`) – The sense of the constraint.
+  *   **rhs** (`float`) – The right-hand-side of the constraint.
 
-**Parameters**
+  ## Attributes
 
-*   **quadratic\_program** (`Any`) – The parent quadratic program.
-*   **name** (`str`) – The name of the constraint.
-*   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The coefficients specifying the linear part of the constraint.
-*   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The coefficients specifying the linear part of the constraint.
-*   **sense** (`ConstraintSense`) – The sense of the constraint.
-*   **rhs** (`float`) – The right-hand-side of the constraint.
+  ### linear
 
-## Attributes
+  <Attribute id="qiskit.optimization.problems.QuadraticConstraint.linear" name="linear" signature="qiskit.optimization.problems.linear_expression.LinearExpression">
+    Returns the linear expression corresponding to the left-hand-side of the constraint.
 
-### linear
+    **Return type**
 
-<span id="qiskit.optimization.problems.QuadraticConstraint.linear" />
+    [`LinearExpression`](qiskit.optimization.problems.LinearExpression "qiskit.optimization.problems.linear_expression.LinearExpression")
 
-`qiskit.optimization.problems.linear_expression.LinearExpression`
+    **Returns**
 
-Returns the linear expression corresponding to the left-hand-side of the constraint.
+    The left-hand-side linear expression.
+  </Attribute>
 
-**Return type**
+  ### name
 
-[`LinearExpression`](qiskit.optimization.problems.LinearExpression "qiskit.optimization.problems.linear_expression.LinearExpression")
+  <Attribute id="qiskit.optimization.problems.QuadraticConstraint.name" name="name" signature="str">
+    Returns the name of the constraint.
 
-**Returns**
+    **Return type**
 
-The left-hand-side linear expression.
+    `str`
 
-### name
+    **Returns**
 
-<span id="qiskit.optimization.problems.QuadraticConstraint.name" />
+    The name of the constraint.
+  </Attribute>
 
-`str`
+  ### quadratic
 
-Returns the name of the constraint.
+  <Attribute id="qiskit.optimization.problems.QuadraticConstraint.quadratic" name="quadratic" signature="qiskit.optimization.problems.quadratic_expression.QuadraticExpression">
+    Returns the quadratic expression corresponding to the left-hand-side of the constraint.
 
-**Return type**
+    **Return type**
 
-`str`
+    [`QuadraticExpression`](qiskit.optimization.problems.QuadraticExpression "qiskit.optimization.problems.quadratic_expression.QuadraticExpression")
 
-**Returns**
+    **Returns**
 
-The name of the constraint.
+    The left-hand-side quadratic expression.
+  </Attribute>
 
-### quadratic
+  ### quadratic\_program
 
-<span id="qiskit.optimization.problems.QuadraticConstraint.quadratic" />
+  <Attribute id="qiskit.optimization.problems.QuadraticConstraint.quadratic_program" name="quadratic_program" signature="Any">
+    Returns the parent QuadraticProgram.
 
-`qiskit.optimization.problems.quadratic_expression.QuadraticExpression`
+    **Return type**
 
-Returns the quadratic expression corresponding to the left-hand-side of the constraint.
+    `Any`
 
-**Return type**
+    **Returns**
 
-[`QuadraticExpression`](qiskit.optimization.problems.QuadraticExpression "qiskit.optimization.problems.quadratic_expression.QuadraticExpression")
+    The parent QuadraticProgram.
+  </Attribute>
 
-**Returns**
+  ### rhs
 
-The left-hand-side quadratic expression.
+  <Attribute id="qiskit.optimization.problems.QuadraticConstraint.rhs" name="rhs" signature="float">
+    Returns the right-hand-side of the constraint.
 
-### quadratic\_program
+    **Return type**
 
-<span id="qiskit.optimization.problems.QuadraticConstraint.quadratic_program" />
+    `float`
 
-`Any`
+    **Returns**
 
-Returns the parent QuadraticProgram.
+    The right-hand-side of the constraint.
+  </Attribute>
 
-**Return type**
+  ### sense
 
-`Any`
+  <Attribute id="qiskit.optimization.problems.QuadraticConstraint.sense" name="sense" signature="qiskit.optimization.problems.constraint.ConstraintSense">
+    Returns the sense of the constraint.
 
-**Returns**
+    **Return type**
 
-The parent QuadraticProgram.
+    `ConstraintSense`
 
-### rhs
+    **Returns**
 
-<span id="qiskit.optimization.problems.QuadraticConstraint.rhs" />
+    The sense of the constraint.
+  </Attribute>
 
-`float`
+  ## Methods
 
-Returns the right-hand-side of the constraint.
+  ### evaluate
 
-**Return type**
+  <Function id="qiskit.optimization.problems.QuadraticConstraint.evaluate" name="evaluate" signature="QuadraticConstraint.evaluate(x)">
+    Evaluate the left-hand-side of the constraint.
 
-`float`
+    **Parameters**
 
-**Returns**
+    **x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
 
-The right-hand-side of the constraint.
+    **Return type**
 
-### sense
+    `float`
 
-<span id="qiskit.optimization.problems.QuadraticConstraint.sense" />
+    **Returns**
 
-`qiskit.optimization.problems.constraint.ConstraintSense`
-
-Returns the sense of the constraint.
-
-**Return type**
-
-`ConstraintSense`
-
-**Returns**
-
-The sense of the constraint.
-
-## Methods
-
-### evaluate
-
-<span id="qiskit.optimization.problems.QuadraticConstraint.evaluate" />
-
-`QuadraticConstraint.evaluate(x)`
-
-Evaluate the left-hand-side of the constraint.
-
-**Parameters**
-
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The left-hand-side of the constraint given the variable values.
+    The left-hand-side of the constraint given the variable values.
+  </Function>
+</Class>
 

@@ -8,85 +8,71 @@ python_api_name: qiskit.chemistry.core.ChemistryOperator
 
 # ChemistryOperator
 
-<span id="qiskit.chemistry.core.ChemistryOperator" />
+<Class id="qiskit.chemistry.core.ChemistryOperator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py" signature="ChemistryOperator">
+  Bases: `abc.ABC`
 
-`ChemistryOperator` [GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/core/chemistry_operator.py "view source code")
+  Base class for ChemistryOperator.
 
-Bases: `abc.ABC`
+  ## Methods
 
-Base class for ChemistryOperator.
+  ### process\_algorithm\_result
 
-## Methods
+  <Function id="qiskit.chemistry.core.ChemistryOperator.process_algorithm_result" name="process_algorithm_result" signature="ChemistryOperator.process_algorithm_result(algo_result)">
+    Takes the algorithm result and processes it as required, e.g. by combination of any parts that were classically computed, for the final result.
 
-### process\_algorithm\_result
+    **Parameters**
 
-<span id="qiskit.chemistry.core.ChemistryOperator.process_algorithm_result" />
+    **algo\_result** (`Union`\[`dict`, `MinimumEigensolverResult`, `EigensolverResult`]) – Result from algorithm
 
-`ChemistryOperator.process_algorithm_result(algo_result)`
+    **Return type**
 
-Takes the algorithm result and processes it as required, e.g. by combination of any parts that were classically computed, for the final result.
+    `Union`\[`Tuple`\[`List`\[`str`], `dict`], `MolecularGroundStateResult`, `MolecularExcitedStatesResult`]
 
-**Parameters**
+    **Returns**
 
-**algo\_result** (`Union`\[`dict`, `MinimumEigensolverResult`, `EigensolverResult`]) – Result from algorithm
+    Final chemistry result computed from the algorithm result
+  </Function>
 
-**Return type**
+  ### run
 
-`Union`\[`Tuple`\[`List`\[`str`], `dict`], `MolecularGroundStateResult`, `MolecularExcitedStatesResult`]
+  <Function id="qiskit.chemistry.core.ChemistryOperator.run" name="run" signature="abstract ChemistryOperator.run(qmolecule)">
+    Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
 
-**Returns**
+    **Parameters**
 
-Final chemistry result computed from the algorithm result
+    **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – from a chemistry driver
 
-### run
+    **Returns**
 
-<span id="qiskit.chemistry.core.ChemistryOperator.run" />
+    (qubit\_op, aux\_ops)
 
-`abstract ChemistryOperator.run(qmolecule)`
+    **Return type**
 
-Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
+    Tuple
+  </Function>
 
-**Parameters**
+  ## Attributes
 
-**qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – from a chemistry driver
+  ### INFO\_NUM\_ORBITALS
 
-**Returns**
+  <Attribute id="qiskit.chemistry.core.ChemistryOperator.INFO_NUM_ORBITALS" name="INFO_NUM_ORBITALS" attributeValue="= 'num_orbitals'" />
 
-(qubit\_op, aux\_ops)
+  ### INFO\_NUM\_PARTICLES
 
-**Return type**
+  <Attribute id="qiskit.chemistry.core.ChemistryOperator.INFO_NUM_PARTICLES" name="INFO_NUM_PARTICLES" attributeValue="= 'num_particles'" />
 
-Tuple
+  ### INFO\_TWO\_QUBIT\_REDUCTION
 
-## Attributes
+  <Attribute id="qiskit.chemistry.core.ChemistryOperator.INFO_TWO_QUBIT_REDUCTION" name="INFO_TWO_QUBIT_REDUCTION" attributeValue="= 'two_qubit_reduction'" />
 
-<span id="qiskit.chemistry.core.ChemistryOperator.INFO_NUM_ORBITALS" />
+  ### INFO\_Z2SYMMETRIES
 
-### INFO\_NUM\_ORBITALS
+  <Attribute id="qiskit.chemistry.core.ChemistryOperator.INFO_Z2SYMMETRIES" name="INFO_Z2SYMMETRIES" attributeValue="= 'z2symmetries'" />
 
-`= 'num_orbitals'`
+  ### molecule\_info
 
-<span id="qiskit.chemistry.core.ChemistryOperator.INFO_NUM_PARTICLES" />
-
-### INFO\_NUM\_PARTICLES
-
-`= 'num_particles'`
-
-<span id="qiskit.chemistry.core.ChemistryOperator.INFO_TWO_QUBIT_REDUCTION" />
-
-### INFO\_TWO\_QUBIT\_REDUCTION
-
-`= 'two_qubit_reduction'`
-
-<span id="qiskit.chemistry.core.ChemistryOperator.INFO_Z2SYMMETRIES" />
-
-### INFO\_Z2SYMMETRIES
-
-`= 'z2symmetries'`
-
-<span id="qiskit.chemistry.core.ChemistryOperator.molecule_info" />
-
-### molecule\_info
-
-returns molecule info
+  <Attribute id="qiskit.chemistry.core.ChemistryOperator.molecule_info" name="molecule_info">
+    returns molecule info
+  </Attribute>
+</Class>
 

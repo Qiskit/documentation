@@ -8,31 +8,29 @@ python_api_name: qiskit.quantum_info.pauli_group
 
 # qiskit.quantum\_info.pauli\_group
 
-<span id="qiskit.quantum_info.pauli_group" />
+<Function id="qiskit.quantum_info.pauli_group" name="pauli_group" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/pauli.py" signature="pauli_group(number_of_qubits, case='weight')">
+  DEPRECATED: Return the Pauli group with 4^n elements.
 
-`pauli_group(number_of_qubits, case='weight')` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/quantum_info/operators/pauli.py "view source code")
+  This function is deprecated. Use [`pauli_basis()`](qiskit.quantum_info.pauli_basis "qiskit.quantum_info.pauli_basis") for equivalent functionality.
 
-DEPRECATED: Return the Pauli group with 4^n elements.
+  The phases have been removed. case ‘weight’ is ordered by Pauli weights and case ‘tensor’ is ordered by I,X,Y,Z counting lowest qubit fastest.
 
-This function is deprecated. Use [`pauli_basis()`](qiskit.quantum_info.pauli_basis "qiskit.quantum_info.pauli_basis") for equivalent functionality.
+  **Parameters**
 
-The phases have been removed. case ‘weight’ is ordered by Pauli weights and case ‘tensor’ is ordered by I,X,Y,Z counting lowest qubit fastest.
+  *   **number\_of\_qubits** (*int*) – number of qubits
+  *   **case** (*str*) – determines ordering of group elements (‘weight’ or ‘tensor’)
 
-**Parameters**
+  **Returns**
 
-*   **number\_of\_qubits** (*int*) – number of qubits
-*   **case** (*str*) – determines ordering of group elements (‘weight’ or ‘tensor’)
+  list of Pauli objects
 
-**Returns**
+  **Return type**
 
-list of Pauli objects
+  list
 
-**Return type**
+  **Raises**
 
-list
-
-**Raises**
-
-*   **QiskitError** – case is not ‘weight’ or ‘tensor’
-*   **QiskitError** – number\_of\_qubits is larger than 4
+  *   **QiskitError** – case is not ‘weight’ or ‘tensor’
+  *   **QiskitError** – number\_of\_qubits is larger than 4
+</Function>
 

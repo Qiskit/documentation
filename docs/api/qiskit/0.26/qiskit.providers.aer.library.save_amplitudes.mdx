@@ -8,28 +8,26 @@ python_api_name: qiskit.providers.aer.library.save_amplitudes
 
 # qiskit.providers.aer.library.save\_amplitudes
 
-<span id="qiskit.providers.aer.library.save_amplitudes" />
+<Function id="qiskit.providers.aer.library.save_amplitudes" name="save_amplitudes" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_amplitudes.py" signature="save_amplitudes(self, params, label='amplitudes', pershot=False, conditional=False)">
+  Save complex statevector amplitudes.
 
-`save_amplitudes(self, params, label='amplitudes', pershot=False, conditional=False)` [GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/save_instructions/save_amplitudes.py "view source code")
+  **Parameters**
 
-Save complex statevector amplitudes.
+  *   **params** (*List\[int] or List\[str]*) – the basis states to return amplitudes for.
+  *   **label** (*str*) – the key for retrieving saved data from results.
+  *   **pershot** (*bool*) – if True save a list of amplitudes vectors for each shot of the simulation rather than the a single amplitude vector \[Default: False].
+  *   **conditional** (*bool*) – if True save the amplitudes vector conditional on the current classical register values \[Default: False].
 
-**Parameters**
+  **Returns**
 
-*   **params** (*List\[int] or List\[str]*) – the basis states to return amplitudes for.
-*   **label** (*str*) – the key for retrieving saved data from results.
-*   **pershot** (*bool*) – if True save a list of amplitudes vectors for each shot of the simulation rather than the a single amplitude vector \[Default: False].
-*   **conditional** (*bool*) – if True save the amplitudes vector conditional on the current classical register values \[Default: False].
+  with attached instruction.
 
-**Returns**
+  **Return type**
 
-with attached instruction.
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-**Return type**
+  **Raises**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**ExtensionError** – if params is invalid for the specified number of qubits.
+  **ExtensionError** – if params is invalid for the specified number of qubits.
+</Function>
 

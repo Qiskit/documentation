@@ -8,77 +8,69 @@ python_api_name: qiskit.opflow.converters.AbelianGrouper
 
 # qiskit.opflow\.converters.AbelianGrouper
 
-<span id="qiskit.opflow.converters.AbelianGrouper" />
+<Class id="qiskit.opflow.converters.AbelianGrouper" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/converters/abelian_grouper.py" signature="AbelianGrouper(traverse=True)">
+  The AbelianGrouper converts SummedOps into a sum of Abelian sums.
 
-`AbelianGrouper(traverse=True)` [GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/converters/abelian_grouper.py "view source code")
+  Meaning, it will traverse the Operator, and when it finds a SummedOp, it will evaluate which of the summed sub-Operators commute with one another. It will then convert each of the groups of commuting Operators into their own SummedOps, and return the sum-of-commuting-SummedOps. This is particularly useful for cases where mutually commuting groups can be handled similarly, as in the case of Pauli Expectations, where commuting Paulis have the same diagonalizing circuit rotation, or Pauli Evolutions, where commuting Paulis can be diagonalized together.
 
-The AbelianGrouper converts SummedOps into a sum of Abelian sums.
+  **Parameters**
 
-Meaning, it will traverse the Operator, and when it finds a SummedOp, it will evaluate which of the summed sub-Operators commute with one another. It will then convert each of the groups of commuting Operators into their own SummedOps, and return the sum-of-commuting-SummedOps. This is particularly useful for cases where mutually commuting groups can be handled similarly, as in the case of Pauli Expectations, where commuting Paulis have the same diagonalizing circuit rotation, or Pauli Evolutions, where commuting Paulis can be diagonalized together.
+  **traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
 
-**Parameters**
+  ### \_\_init\_\_
 
-**traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
+  <Function id="qiskit.opflow.converters.AbelianGrouper.__init__" name="__init__" signature="__init__(traverse=True)">
+    **Parameters**
 
-### \_\_init\_\_
+    **traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
+  </Function>
 
-<span id="qiskit.opflow.converters.AbelianGrouper.__init__" />
+  ## Methods
 
-`__init__(traverse=True)`
+  |                                                                                                                                          |                                                                                                                                                                                                         |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit.opflow.converters.AbelianGrouper.__init__ "qiskit.opflow.converters.AbelianGrouper.__init__")(\[traverse])          | **type traverse**`bool`                                                                                                                                                                                 |
+  | [`convert`](#qiskit.opflow.converters.AbelianGrouper.convert "qiskit.opflow.converters.AbelianGrouper.convert")(operator)                | Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators. |
+  | [`group_subops`](#qiskit.opflow.converters.AbelianGrouper.group_subops "qiskit.opflow.converters.AbelianGrouper.group_subops")(list\_op) | Given a ListOp, attempt to group into Abelian ListOps of the same type.                                                                                                                                 |
 
-**Parameters**
+  ### convert
 
-**traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
+  <Function id="qiskit.opflow.converters.AbelianGrouper.convert" name="convert" signature="convert(operator)">
+    Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
 
-## Methods
+    **Parameters**
 
-|                                                                                                                                          |                                                                                                                                                                                                         |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.opflow.converters.AbelianGrouper.__init__ "qiskit.opflow.converters.AbelianGrouper.__init__")(\[traverse])          | **type traverse**`bool`                                                                                                                                                                                 |
-| [`convert`](#qiskit.opflow.converters.AbelianGrouper.convert "qiskit.opflow.converters.AbelianGrouper.convert")(operator)                | Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators. |
-| [`group_subops`](#qiskit.opflow.converters.AbelianGrouper.group_subops "qiskit.opflow.converters.AbelianGrouper.group_subops")(list\_op) | Given a ListOp, attempt to group into Abelian ListOps of the same type.                                                                                                                                 |
+    **operator** (`OperatorBase`) – The Operator to attempt to convert.
 
-### convert
+    **Return type**
 
-<span id="qiskit.opflow.converters.AbelianGrouper.convert" />
+    `OperatorBase`
 
-`convert(operator)`
+    **Returns**
 
-Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
+    The converted Operator.
+  </Function>
 
-**Parameters**
+  ### group\_subops
 
-**operator** (`OperatorBase`) – The Operator to attempt to convert.
+  <Function id="qiskit.opflow.converters.AbelianGrouper.group_subops" name="group_subops" signature="classmethod group_subops(list_op)">
+    Given a ListOp, attempt to group into Abelian ListOps of the same type.
 
-**Return type**
+    **Parameters**
 
-`OperatorBase`
+    **list\_op** (`Union`\[`ListOp`, `PauliSumOp`]) – The Operator to group into Abelian groups
 
-**Returns**
+    **Return type**
 
-The converted Operator.
+    `ListOp`
 
-### group\_subops
+    **Returns**
 
-<span id="qiskit.opflow.converters.AbelianGrouper.group_subops" />
+    The grouped Operator.
 
-`classmethod group_subops(list_op)`
+    **Raises**
 
-Given a ListOp, attempt to group into Abelian ListOps of the same type.
-
-**Parameters**
-
-**list\_op** (`Union`\[`ListOp`, `PauliSumOp`]) – The Operator to group into Abelian groups
-
-**Return type**
-
-`ListOp`
-
-**Returns**
-
-The grouped Operator.
-
-**Raises**
-
-[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If any of list\_op’s sub-ops is not `PauliOp`.
+    [**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – If any of list\_op’s sub-ops is not `PauliOp`.
+  </Function>
+</Class>
 
