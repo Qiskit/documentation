@@ -112,7 +112,7 @@ async function convertFilesToMarkdown(
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
       imageDestination: pkg.outputDir("/images"),
-      releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
+      releaseNotesTitle: pkg.releaseNotesTitle(),
     });
 
     // Avoid creating an empty markdown file for HTML files without content

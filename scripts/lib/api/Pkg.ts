@@ -162,6 +162,13 @@ export class Pkg {
     return this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45;
   }
 
+  releaseNotesTitle(): string {
+    const versionStr = this.hasSeparateReleaseNotes
+      ? ` ${this.versionWithoutPatch}`
+      : "";
+    return `${this.title}${versionStr} release notes`;
+  }
+
   /**
    * Returns a function that takes in a fileName like `qiskit_ibm_provider/job/exceptions` and returns the
    * stable GitHub URL to the file for this package's version.
