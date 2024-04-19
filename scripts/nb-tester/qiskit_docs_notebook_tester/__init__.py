@@ -13,6 +13,7 @@
 import argparse
 import sys
 import textwrap
+import tomllib
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -24,27 +25,16 @@ import nbformat
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
-NOTEBOOKS_GLOB = "[!.]*/**/*.ipynb"
-NOTEBOOKS_EXCLUDE = [
-    "docs/api/**",
-    "**/.ipynb_checkpoints/**",
-]
-NOTEBOOKS_THAT_SUBMIT_JOBS = [
-    "docs/start/hello-world.ipynb",
-    "tutorials/build-repitition-codes/notebook.ipynb",
-    "tutorials/chsh-inequality/notebook.ipynb",
-    "tutorials/grovers-algorithm/notebook.ipynb",
-    "tutorials/quantum-approximate-optimization-algorithm/notebook.ipynb",
-    "tutorials/repeat-until-success/notebook.ipynb",
-    "tutorials/submitting-transpiled-circuits/notebook.ipynb",
-    "tutorials/variational-quantum-eigensolver/notebook.ipynb",
-]
-
+def get_globs(path: str) -> dict[str, str | list[str]]:
+    """
+    Load the globs from the TOML file
+    """
+    return tomllib.loads(Path(path).read_text())
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
 
-def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
+def filter_paths(paths: list[Path], args: argparse.Namespace, globs: dict) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
@@ -54,20 +44,19 @@ def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
             continue
 
-        if matches(path, NOTEBOOKS_EXCLUDE):
-            this_file = Path(__file__).resolve()
+        if matches(path, globs["notebooks-exclude"]):
             print(
-                f"ℹ️ Skipping {path}; to run it, edit `NOTEBOOKS_EXCLUDE` in {this_file}."
+                f"ℹ️ Skipping {path}; to run it, edit `notebooks-exclude` in {args.config_path}."
             )
             continue
 
-        if not submit_jobs and matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+        if not submit_jobs and matches(path, globs["notebooks-that-submit-jobs"]):
             print(
                 f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
             )
             continue
 
-        if args.only_submit_jobs and not matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+        if args.only_submit_jobs and not matches(path, globs["notebooks-that-submit-jobs"]):
             print(
                 f"ℹ️ Skipping {path} as it does not submit jobs and the --only-submit-jobs flag is set."
             )
@@ -174,20 +163,20 @@ def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.Note
     return nb
 
 
-def find_notebooks() -> list[Path]:
+def find_notebooks(globs: dict) -> list[Path]:
     """
-    Get paths to all notebooks in NOTEBOOKS_GLOB that are not excluded by
-    NOTEBOOKS_EXCLUDE
+    Get paths to notebooks in glob `all-notebooks` that are not excluded by
+    glob `notebooks-exclude`.
     """
-    all_notebooks = Path(".").glob(NOTEBOOKS_GLOB)
+    all_notebooks = Path(".").glob(globs["all-notebooks"])
     return [
         path
         for path in all_notebooks
-        if not matches(path, NOTEBOOKS_EXCLUDE)
+        if not matches(path, globs["notebooks-exclude"])
     ]
 
 
-def cancel_trailing_jobs(start_time: datetime) -> bool:
+def cancel_trailing_jobs(start_time: datetime, args: argparse.Namespace) -> bool:
     """
     Cancel any runtime jobs created after `start_time`.
 
@@ -210,8 +199,8 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
 
     print(
         f"⚠️ Cancelling {len(jobs)} job(s) created after {start_time}.\n"
-        "Add any notebooks that submit jobs to NOTEBOOKS_EXCLUDE in "
-        "`scripts/nb-tester/test-notebook.py`."
+        "Add any notebooks that submit jobs to `notebooks-that-submit-jobs` in "
+        f"`{arg.config_path}`."
     )
     for job in jobs:
         job.cancel()
@@ -228,7 +217,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
         help=(
             "Paths to notebooks. If not provided, the script will search for "
             "notebooks in `docs/`. To exclude a notebook from this process, add it "
-            "to `NOTEBOOKS_EXCLUDE` in the script."
+            "to `notebooks-exclude` in the config file."
         ),
         nargs="*",
     )
@@ -252,20 +241,25 @@ def create_argument_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Same as --submit-jobs, but also skips notebooks that do not submit jobs to IBM Quantum",
     )
+    parser.add_argument(
+        "--config-path",
+        help="Path to a TOML file containing the globs for detecting and sorting notebooks",
+    )
     return parser
 
 
 def main() -> None:
     args = create_argument_parser().parse_args()
-    paths = map(Path, args.filenames or find_notebooks())
-    filtered_paths = filter_paths(paths, args)
+    globs = get_globs(args.config_path)
+    paths = map(Path, args.filenames or find_notebooks(globs))
+    filtered_paths = filter_paths(paths, args, globs)
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
     results = [execute_notebook(path, args) for path in filtered_paths]
     print("Checking for trailing jobs...")
-    results.append(cancel_trailing_jobs(start_time))
+    results.append(cancel_trailing_jobs(start_time, args))
     if not all(results):
         sys.exit(1)
     sys.exit(0)
