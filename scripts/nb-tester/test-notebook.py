@@ -12,7 +12,6 @@
 
 import argparse
 import sys
-import warnings
 import textwrap
 from dataclasses import dataclass
 from datetime import datetime
@@ -150,7 +149,7 @@ def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
 
 def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
     """
-    Use nbconvert to execute notebook
+    Use nbconvert to execute notebook.
     """
     submit_jobs = args.submit_jobs or args.only_submit_jobs
     nb = nbformat.read(filepath, as_version=4)
@@ -191,6 +190,7 @@ def find_notebooks() -> list[Path]:
 def cancel_trailing_jobs(start_time: datetime) -> bool:
     """
     Cancel any runtime jobs created after `start_time`.
+
     Return True if non exist, False otherwise.
 
     Notebooks should not submit jobs during a normal test run. If they do, the
@@ -200,16 +200,11 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     If a notebook submits a job but does not wait for the result, this check
     will also catch it and cancel the job.
     """
-    # QiskitRuntimeService().jobs() includes qiskit-ibm-provider jobs too
-    service = QiskitRuntimeService()
-
-    def _is_not_finished(job):
-        # Force runtime to update job status
-        # Workaround for Qiskit/qiskit-ibm-runtime#1547
-        job.status()
-        return not job.in_final_state()
-
-    jobs = list(filter(_is_not_finished, service.jobs(created_after=start_time)))
+    jobs = [
+        job
+        for job in QiskitRuntimeService().jobs(created_after=start_time)
+        if not job.in_final_state()
+    ]
     if not jobs:
         return True
 
@@ -260,7 +255,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
     return parser
 
 
-if __name__ == "__main__":
+def main() -> None:
     args = create_argument_parser().parse_args()
     paths = map(Path, args.filenames or find_notebooks())
     filtered_paths = filter_paths(paths, args)
@@ -274,3 +269,7 @@ if __name__ == "__main__":
     if not all(results):
         sys.exit(1)
     sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()
