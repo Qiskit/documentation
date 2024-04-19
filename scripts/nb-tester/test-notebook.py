@@ -150,7 +150,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
 
 async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
     """
-    Use nbconvert to execute notebook
+    Use nbconvert to execute notebook.
     """
     submit_jobs = args.submit_jobs or args.only_submit_jobs
     nb = nbformat.read(filepath, as_version=4)
