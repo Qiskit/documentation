@@ -28,8 +28,8 @@ There are several benefits to using sessions:
 
 The basic workflow for sessions is as follows:
 
-1. The first job in a session enters the normal queue. 
-2. When the first job starts running, the _maximum timeout_ clock starts. 
+1. The first job in a session enters the normal queue.
+2. When the first job starts running, the _maximum timeout_ clock starts.
 2. Subsequent jobs within the session are prioritized over others, reducing wait times.
 3. The _interactive timeout_ runs between the jobs in a session. Every session has an interactive timeout value (ITTL, or interactive time to live). If there are no session jobs queued within the ITTL window, the session is temporarily deactivated and normal job selection resumes. A deactivated session can be resumed for the next job<sup>*</sup> if the session has not reached its maximum timeout value.
 3. If the maximum timeout value is reached, the sessions end and any remaining queued jobs fail.
@@ -45,7 +45,7 @@ The basic workflow for sessions is as follows:
 To find the maximum session timeout value for a session, follow the instructions in [Determine session details](run-jobs-in-session#session-details).
 
 <Admonition type="note">
-    There might be a limit imposed on the ITTL value depending on whether your hub is Premium, Open, and so on. 
+    There might be a limit imposed on the ITTL value depending on whether your hub is Premium, Open, and so on.
 </Admonition>
 
 For instructions to start a session, see [Run a job in a session](run-jobs-in-session).
@@ -53,9 +53,9 @@ For instructions to start a session, see [Run a job in a session](run-jobs-in-se
 <span id="ends"></span>
 ## End a session
 
-A session can end in the following circumstances: 
+A session can end in the following circumstances:
 
-* The maximum timeout is reached, resulting in the cancelation of all queued jobs. 
+* The maximum timeout is reached, resulting in the cancelation of all queued jobs.
 * The session is manually canceled, resulting in the cancelation of all queued jobs.
 * The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
 
@@ -86,6 +86,7 @@ session.close()
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial. 
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial.
   - Review the [Session API](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session) reference.
+  - Review the execution modes [best practices.](execution-modes#best-practices)
 </Admonition>
