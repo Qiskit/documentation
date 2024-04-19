@@ -115,7 +115,7 @@ There is also an interactive timeout value (ITTL, or interactive time to live) t
 <span id="close"></span>
 ## Close a session
 
-A session automatically closes when it exits the context manager. With `qiskit-ibm-runtime` 0.13 or later releases, when the session context manager is exited, the session is put into "In progress, not accepting new jobs" status. This means that the session finishes processing all running or queued jobs until the maximum timeout value is reached. After all jobs are completed, the session is immediately closed. This allows the scheduler to run the next job without waiting for the session interactive timeout, thereby reducing the average job queuing time. You cannot submit jobs to a closed session.
+A session automatically closes when it exits the context manager. With `qiskit-ibm-runtime` 0.13 or later releases, when the session context manager is exited, the session is put into "In progress, not accepting new jobs" status. This means that the session finishes processing all running or queued jobs until the maximum timeout value is reached. After all jobs are completed, the session is immediately canceled. This allows the scheduler to run the next job without waiting for the session interactive timeout, thereby reducing the average job queuing time. You cannot submit jobs to a closed session.
 
 ``` python
 with Session(service=service, backend=backend) as session:
