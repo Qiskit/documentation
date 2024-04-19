@@ -148,7 +148,9 @@ def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
 
 
 def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
-    """Use nbconvert to execute notebook"""
+    """
+    Use nbconvert to execute notebook.
+    """
     submit_jobs = args.submit_jobs or args.only_submit_jobs
     nb = nbformat.read(filepath, as_version=4)
 
@@ -186,7 +188,8 @@ def find_notebooks() -> list[Path]:
 
 
 def cancel_trailing_jobs(start_time: datetime) -> bool:
-    """Cancel any runtime jobs created after `start_time`.
+    """
+    Cancel any runtime jobs created after `start_time`.
 
     Return True if non exist, False otherwise.
 
