@@ -31,7 +31,7 @@ The above are general guidelines, and you should tune your workload to find the 
 
 ## Sessions
 
-Sessions are designed for iterative workloads to avoid queueing delays between each iteration. By default, all sessions now run in *dedicated* mode, so that when running a session, you have exclusive access to the backend.  Additionally, sessions are now thread safe. That is, you can run multiple workloads within a session.
+Sessions are designed for iterative workloads to avoid queueing delays between each iteration. By default, all sessions now run in *dedicated* mode, so that when running a session, you have exclusive access to the backend.  Because of this, you are now charged for the total wall clock time that the system is reserved for your use. Additionally, sessions are now thread safe. That is, you can run multiple workloads within a session.
 
 <span id="two-vqe"></span>
 ### Example: Run two VQE algorithms in a session by using threading
@@ -64,10 +64,10 @@ With extended sessions, the session pauses after the active window ends. The ses
 
 ## Batch
 
-Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs can start when batch jobs are being processed.
+Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs can start when batch jobs are being processed, however, individual jobs might run between batch jobs.
 
 <span id="divide"></span>
-### Example: divide a 500-circuit job into five 100-circuit jobs and run them in batch
+### Example: Partition a 500-circuit job into five 100-circuit jobs and run them in batch
 ```python
 from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
 
