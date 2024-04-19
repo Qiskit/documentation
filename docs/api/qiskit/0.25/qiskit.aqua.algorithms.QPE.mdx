@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.algorithms.QPE
 
 # qiskit.aqua.algorithms.QPE
 
-<Class id="qiskit.aqua.algorithms.QPE" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py" signature="QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.QPE" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py" signature="QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)">
   The Quantum Phase Estimation algorithm.
 
   QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two quantum registers, **control** and **target**, where the control consists of several qubits initially put in uniform superposition, and the target a set of qubits prepared in an eigenstate (often a guess of the eigenstate) of the unitary operator of a quantum system. QPE then evolves the target under the control using dynamics on the unitary operator. The information of the corresponding eigenvalue is then ‘kicked-back’ into the phases of the control register, which can then be deconvoluted by an Inverse Quantum Fourier Transform (IQFT), and measured for read-out in binary decimal format. QPE also requires a reasonably good estimate of the eigen wave function to start the process. For example, when estimating molecular ground energies in chemistry, the Hartree-Fock method could be used to provide such trial eigen wave functions.
