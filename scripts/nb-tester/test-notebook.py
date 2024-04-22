@@ -164,7 +164,7 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
 
     # This runs the notebook, including possibly submitting jobs. We run it in a
     # new thread to avoid blocking other notebooks from submitting jobs.
-    await asyncio.to_thread(processor.preprocess(nb))
+    await asyncio.to_thread(processor.preprocess, nb)
 
     if not args.write:
         return nb
