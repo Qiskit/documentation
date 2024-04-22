@@ -82,11 +82,11 @@ class NotebookWarning:
     cell_index: int
     msg: str
 
-    def report(self):
+    def format(self) -> str:
         """
-        Format warning and print it
+        Format warning to pretty string
         """
-        message = f"Warning detected in cell {self.cell_index}:\n"
+        message = f"Cell {self.cell_index}:\n"
         for line in self.msg.splitlines():
             message += (
                 textwrap.fill(
@@ -94,14 +94,7 @@ class NotebookWarning:
                 )
                 + "\n"
             )
-        print_yellow(message, flush=True)
-
-
-def print_yellow(s: str, **kwargs):
-    """
-    Use ANSI escape codes to print yellow text
-    """
-    print(f"\033[0;33m{s}\033[0m", **kwargs)
+        return message
 
 
 def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
@@ -126,7 +119,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
     """
-    print(f"▶️  {path}")
+    print(f"▶️ Executing {path}")
     possible_exceptions = (
         nbconvert.preprocessors.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
@@ -134,17 +127,18 @@ async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
     try:
         nb = await _execute_notebook(path, args)
     except possible_exceptions as err:
-        print("\r❌\n")
-        print(err)
+        print(f"❌ Problem in {path}:\n{err}")
         return False
 
     notebook_warnings = extract_warnings(nb)
     if notebook_warnings:
-        print("\r⚠️")
-        [w.report() for w in notebook_warnings]
+        print(
+            f"⚠️ Warnings in {path}:\n"
+            + "\n".join((w.format() for w in notebook_warnings))
+        )
         return False
 
-    print("\r✅")
+    print(f"✅ No problems in {path}")
     return True
 
 
