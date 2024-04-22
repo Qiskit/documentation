@@ -151,7 +151,7 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
-        timeout=-1 if submit_jobs else 100,
+        timeout=-1 if submit_jobs else 300,
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
