@@ -33,6 +33,10 @@ The above are general guidelines, and you should tune your workload to find the 
 
 Sessions are designed for iterative workloads to avoid queueing delays between each iteration. By default, all sessions now run in *dedicated* mode, so that when running a session, you have exclusive access to the backend.  Because of this, you are now charged for the total wall clock time that the system is reserved for your use. Additionally, sessions are now thread safe. That is, you can run multiple workloads within a session.
 
+<Admonition type="note">
+Session execution mode is not supported in the Open plan. Jobs will run in job mode instead.
+</Admonition>
+
 <span id="two-vqe"></span>
 ### Example: Run two VQE algorithms in a session by using threading
 
