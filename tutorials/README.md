@@ -10,12 +10,28 @@ tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tuto
 workflow. This will push the notebooks on the main branch to the environment
 you select.
 
-> [!NOTE]
-> One potential gotcha is that the learning platform ignores the top-level
-> heading of the notebook. These headings are only included in the notebook for
-> writers' convenience. If you want to change the title of a notebook, find the
-> page on https://learning-api.quantum.ibm.com/admin and change its title
-> there. Make sure to update the title in the notebook too.
+You should always start with deploying to "Learning platform (staging)". This
+will deploy to https://learning.www-dev.quantum.ibm.com/catalog/tutorials.
+Check that your tutorial renders properly.
+
+Once you are happy with staging, rerun the [Deploy
+tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
+workflow, but this time choose "Learning platform (production)". Warning: this will
+update every non-network tutorial to use the version from the `main` branch. That means
+that if another author had a tutorial that was merged to `main` but not yet ready to go live
+to production, you might accidentally deploy their tutorial. So, before deploying to
+production, check with the team that it is okay to deploy.
+
+After deploying to production, check https://learning.quantum.ibm.com/catalog/tutorials
+to ensure your tutorial is working correctly.
+
+## Gotcha: tutorial headings ignored
+
+One potential gotcha is that the learning platform ignores the top-level
+heading of the notebook. These headings are only included in the notebook for
+writers' convenience. If you want to change the title of a notebook, find the
+page on https://learning-api.quantum.ibm.com/admin and change its title
+there. Make sure to update the title in the notebook too.
 
 ## Adding new tutorials
 
