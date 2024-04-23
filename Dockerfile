@@ -33,9 +33,6 @@
 
 FROM icr.io/quantum-computing/iqp-channel-docs-dev:hostname-experiment
 
-# Debug https://github.com/vercel/next.js/issues/53171
-ENV HOSTNAME 0.0.0.0
-
 COPY docs/ /home/node/app/docs
 COPY translations/ /home/node/app/docs
 COPY public/ /home/node/app/packages/web/public/
