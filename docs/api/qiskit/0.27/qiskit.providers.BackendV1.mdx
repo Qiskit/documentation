@@ -8,7 +8,7 @@ python_api_name: qiskit.providers.BackendV1
 
 # qiskit.providers.BackendV1
 
-<Class id="qiskit.providers.BackendV1" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/backend.py" signature="BackendV1(configuration, provider=None, **fields)">
+<Class id="qiskit.providers.BackendV1" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/backend.py" signature="BackendV1(configuration, provider=None, **fields)">
   Abstract class for Backends
 
   This abstract class is to be used for all Backend objects created by a provider. There are several classes of information contained in a Backend. The first are the attributes of the class itself. These should be used to defined the immutable characteristics of the backend. The `options` attribute of the backend is used to contain the dynamic user configurable options of the backend. It should be used more for runtime options that configure how the backend is used. For example, something like a `shots` field for a backend that runs experiments which would contain an int for how many shots to execute. The `properties` attribute is optionally defined [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object and is used to return measured properties, or properties of a backend that may change over time. The simplest example of this would be a version string, which will change as a backend is updated, but also could be something like noise parameters for backends that run experiments.

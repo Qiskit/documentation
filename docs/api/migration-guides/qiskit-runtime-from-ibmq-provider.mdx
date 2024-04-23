@@ -1,0 +1,184 @@
+---
+title: Migrate from qiskit_ibm_provider
+description: How to migrate `backend.run()` from Qiskit IBM Provider to Qiskit IBM Runtime
+---
+
+# Migrate from `qiskit_ibmq_provider`
+
+This topic describes how to migrate code from the legacy IBMQ provider
+`qiskit-ibmq-provider` package to use Qiskit Runtime
+`qiskit-ibm-runtime`. 
+
+## Changes in Class name and location
+
+The classes related to Qiskit Runtime that were included in
+`qiskit-ibmq-provider` are now part of `qiskit-ibm-runtime`. Previously, the
+provider populated the `qiskit.providers.ibmq.runtime` namespace
+with objects for Qiskit Runtime. These now live in the
+`qiskit_ibm_runtime` module.
+
+The following table contains example access patterns in
+`qiskit.providers.ibmq.runtime` and their new form in
+`qiskit_ibm_runtime`:
+
+| Class in qiskit-ibmq-provider                    | Class in qiskit-ibm-runtime               | Notes                                                                                                                |
+|--------------------------------------------------|-------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| qiskit.providers.ibmq.runtime.IBMRuntimeService  | qiskit_ibm_runtime.QiskitRuntimeService   | IBMRuntimeService class was removed from qiskit-ibm-runtime 0.6 and replaced by the new class in qiskit-ibm-runtime. |
+| qiskit.providers.ibmq.runtime.RuntimeEncoder     | qiskit_ibm_runtime.RuntimeEncoder         |                                                                                                                      |
+| qiskit.providers.ibmq.runtime.RuntimeDecoder     | qiskit_ibm_runtime.RuntimeDecoder         |                                                                                                                      |
+
+The following classes were used for custom programs, which are no longer supported.  Therefore, the classes are no longer supported:
+
+* qiskit.providers.ibmq.runtime.RuntimeProgram
+* qiskit.providers.ibmq.runtime.UserMessenger
+* qiskit.providers.ibmq.runtime.ProgramBackend
+* qiskit.providers.ibmq.runtime.ResultDecoder
+* qiskit.providers.ibmq.runtime.ParameterNamespace
+
+## Import path
+
+The import path has changed as follows:
+
+<Tabs>
+  <TabItem value="updated" label="Runtime primitives">
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="backend.run">
+``` python
+from qiskit import IBMQ
+```
+  </TabItem>
+</Tabs>
+
+## Save accounts
+
+Use the updated code to work save accounts.
+
+<Tabs>
+  <TabItem value="updated" label="Runtime primitives">
+The new syntax accepts credentials for
+Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
+information on retrieving account credentials, see [Select and set up an IBM Quantum channel](../../start/setup-channel).
+
+``` python
+# IBM Quantum channel; set to default 
+
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
+```
+
+Additionally, you can now name your saved credentials and load the credentials by name.
+
+
+``` python
+# Save different accounts for open and premium access
+
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h1/g1/p1", name="premium")
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h2/g2/p2", name="open")
+
+# Load the "open" credentials
+
+service = QiskitRuntimeService(name="open")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="backend.run">
+``` python
+IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
+```
+  </TabItem>
+</Tabs>
+
+
+## Load accounts
+
+Use the updated code to load accounts.
+
+<Tabs>
+  <TabItem value="updated" label="Runtime primitives">
+The `channel` input parameter is
+optional. If multiple accounts have been saved in one device and no
+`channel` is provided, the default is `"ibm_cloud"`.
+
+``` python
+# To access saved credentials for the IBM cloud channel
+service = QiskitRuntimeService(channel="ibm_cloud")
+
+# To access saved credentials for the IBM quantum channel
+service = QiskitRuntimeService(channel="ibm_quantum")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="backend.run">
+``` python
+IBMQ.load_account()
+```
+  </TabItem>
+</Tabs>
+
+
+## Instance selection (get a provider)
+
+Use the updated code to select a hub, group, and project.
+
+<Tabs>
+  <TabItem value="updated" label="Runtime primitives">
+The new syntax combines the functionality from `load_account()` and
+`get_provider()` in one statement. When using the `ibm_quantum` channel,
+the `hub`, `group`, and `project` are specified through the new
+`instance` keyword.
+
+``` python
+# To access saved credentials for the IBM quantum channel and select an instance
+service = QiskitRuntimeService(channel="ibm_quantum", instance="my_hub/my_group/my_project")
+```
+  </TabItem>
+
+  <TabItem value="legacy" label="backend.run">
+``` python
+provider = IBMQ.get_provider(project="my_project", group="my_group", hub="my_hub")
+```
+  </TabItem>
+</Tabs>
+
+## Get a backend 
+
+Use the updated code to specify a backend.
+
+<Tabs>
+  <TabItem value="updated" label="Runtime primitives">
+``` python
+# You can specify the instance in service.backend() instead of initializing a new service
+backend = service.backend("ibm_backend", instance="h1/g1/p1")
+```
+If you don't know what backend you want to use, you can instead use code such as the following:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=<num_qubits>)
+```
+With Qiskit Runtime, you can also run in local testing mode.
+
+```python
+# Define a local backend
+from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+backend = FakeManilaV2()
+
+# You could use an Aer simulator instead by using the following code:
+# from qiskit_aer import AerSimulator
+# backend = AerSimulator()
+```
+
+  </TabItem>
+
+  <TabItem value="legacy" label="backend.run">
+``` python
+provider = IBMQ.get_provider(hub="h1", group="g1", project="p1")
+backend = provider.get_backend("ibm_backend")
+```
+  </TabItem>
+</Tabs>
