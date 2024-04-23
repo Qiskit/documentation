@@ -36,7 +36,7 @@ there. Make sure to update the title in the notebook too.
 ## Adding new tutorials
 
 Each tutorial has its own folder in `tutorials/`. Within that folder is the content notebook
-(named `notebook.ipynb`) and an optional `images` folder.
+(ending in `.ipynb`) and an optional `images` folder.
 
 To add a new tutorial to the learning platform, go to
 https://learning-api.quantum.ibm.com/admin/ and choose "Create item" (the blue
