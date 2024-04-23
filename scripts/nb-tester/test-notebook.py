@@ -32,13 +32,13 @@ NOTEBOOKS_EXCLUDE = [
 ]
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
-    "tutorials/build-repitition-codes/notebook.ipynb",
-    "tutorials/chsh-inequality/notebook.ipynb",
-    "tutorials/grovers-algorithm/notebook.ipynb",
-    "tutorials/quantum-approximate-optimization-algorithm/notebook.ipynb",
-    "tutorials/repeat-until-success/notebook.ipynb",
-    "tutorials/submitting-transpiled-circuits/notebook.ipynb",
-    "tutorials/variational-quantum-eigensolver/notebook.ipynb",
+    "tutorials/build-repitition-codes/build-repitition-codes.ipynb",
+    "tutorials/chsh-inequality/chsh-inequality.ipynb",
+    "tutorials/grovers-algorithm/grovers.ipynb",
+    "tutorials/quantum-approximate-optimization-algorithm/qaoa.ipynb",
+    "tutorials/repeat-until-success/repeat-until-success.ipynb",
+    "tutorials/submitting-transpiled-circuits/submitting-transpiled-circuits.ipynb",
+    "tutorials/variational-quantum-eigensolver/vqe.ipynb",
 ]
 
 
