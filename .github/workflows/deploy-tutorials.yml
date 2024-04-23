@@ -22,6 +22,7 @@ jobs:
   deploy:
     name: Deploy tutorials to learning platform
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
