@@ -22,14 +22,8 @@ const DEFAULT_ARGS = {
 };
 
 test("nestModule", () => {
-  const nestingDisabled = Pkg.mock({ nestModulesInToc: false });
-  const nestingEnabled = Pkg.mock({ nestModulesInToc: true });
-  expect(nestModule(nestingDisabled, "project.module")).toEqual(false);
-  expect(nestModule(nestingDisabled, "project.module.submodule")).toEqual(
-    false,
-  );
-  expect(nestModule(nestingEnabled, "project.module")).toEqual(false);
-  expect(nestModule(nestingEnabled, "project.module.submodule")).toEqual(true);
+  expect(nestModule("project.module")).toEqual(false);
+  expect(nestModule("project.module.submodule")).toEqual(true);
 });
 
 describe("generateToc", () => {

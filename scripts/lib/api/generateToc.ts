@@ -29,12 +29,7 @@ type Toc = {
   collapsed: boolean;
 };
 
-export function nestModule(pkg: Pkg, id: string): boolean {
-  // Most packages don't nest submodules because there module list is so small,
-  // so it's more useful to show them all and have less nesting.
-  if (!pkg.nestModulesInToc) {
-    return false;
-  }
+export function nestModule(id: string): boolean {
   // For example, nest `qiskit.algorithms.submodule`, but
   // not `qiskit.algorithms` which should be top-level.
   return id.split(".").length > 2;
@@ -122,10 +117,15 @@ function getNestedTocModulesSorted(
   tocModulesByTitle: Dictionary<TocEntry>,
   tocModuleTitles: string[],
 ): TocEntry[] {
-  const nestedTocModules: TocEntry[] = [];
+  // Most packages don't nest submodules because there module list is so small,
+  // so it's more useful to show them all and have less nesting.
+  if (!pkg.nestModulesInToc) {
+    return orderEntriesByTitle(tocModules);
+  }
 
+  const nestedTocModules: TocEntry[] = [];
   for (const tocModule of tocModules) {
-    if (!nestModule(pkg, tocModule.title)) {
+    if (!nestModule(tocModule.title)) {
       nestedTocModules.push(tocModule);
       continue;
     }
