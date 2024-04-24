@@ -23,6 +23,7 @@ from typing import Iterator
 import nbclient
 import nbconvert
 import nbformat
+import tomli as tomllib
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
