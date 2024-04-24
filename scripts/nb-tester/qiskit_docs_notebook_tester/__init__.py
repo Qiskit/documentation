@@ -17,7 +17,6 @@ import argparse
 import asyncio
 import sys
 import textwrap
-import tomllib
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -26,7 +25,7 @@ from typing import Iterator
 import nbclient
 import nbconvert
 import nbformat
-import tomli as tomllib
+import tomli
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
@@ -41,7 +40,7 @@ class Config:
         """
         Load the globs from the TOML file
         """
-        return cls(**tomllib.loads(Path(path).read_text()))
+        return cls(**tomli.loads(Path(path).read_text()))
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
