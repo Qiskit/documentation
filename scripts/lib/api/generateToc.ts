@@ -117,7 +117,7 @@ function getNestedTocModulesSorted(
   tocModulesByTitle: Dictionary<TocEntry>,
   tocModuleTitles: string[],
 ): TocEntry[] {
-  // Most packages don't nest submodules because there module list is so small,
+  // Most packages don't nest submodules because their module list is so small,
   // so it's more useful to show them all and have less nesting.
   if (!pkg.nestModulesInToc) {
     return orderEntriesByTitle(tocModules);
