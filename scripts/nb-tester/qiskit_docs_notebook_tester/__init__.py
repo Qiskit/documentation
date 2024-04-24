@@ -40,7 +40,13 @@ class Config:
         """
         Load the globs from the TOML file
         """
-        return cls(**tomli.loads(Path(path).read_text()))
+        try:
+            return cls(**tomli.loads(Path(path).read_text()))
+        except TypeError as err:
+            raise ValueError(
+                f"Couldn't read config from {path}; check it exists and the"
+                " entries are correct."
+            ) from err
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
