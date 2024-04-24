@@ -10,6 +10,9 @@
 # notice, and modified files need to carry a notice indicating that they have
 # been altered from the originals.
 
+from __future__ import annotations
+
+
 import argparse
 import asyncio
 import sys
@@ -22,30 +25,33 @@ from typing import Iterator
 import nbclient
 import nbconvert
 import nbformat
+import tomli
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
-NOTEBOOKS_GLOB = "[!.]*/**/*.ipynb"
-NOTEBOOKS_EXCLUDE = [
-    "docs/api/**",
-    "**/.ipynb_checkpoints/**",
-]
-NOTEBOOKS_THAT_SUBMIT_JOBS = [
-    "docs/start/hello-world.ipynb",
-    "tutorials/build-repitition-codes/build-repitition-codes.ipynb",
-    "tutorials/chsh-inequality/chsh-inequality.ipynb",
-    "tutorials/grovers-algorithm/grovers.ipynb",
-    "tutorials/quantum-approximate-optimization-algorithm/qaoa.ipynb",
-    "tutorials/repeat-until-success/repeat-until-success.ipynb",
-    "tutorials/submitting-transpiled-circuits/submitting-transpiled-circuits.ipynb",
-    "tutorials/variational-quantum-eigensolver/vqe.ipynb",
-]
+@dataclass
+class Config:
+    all_notebooks: str
+    notebooks_exclude: list[str]
+    notebooks_that_submit_jobs: list[str]
 
+    @classmethod
+    def read(cls, path: str) -> Config:
+        """
+        Load the globs from the TOML file
+        """
+        try:
+            return cls(**tomli.loads(Path(path).read_text()))
+        except TypeError as err:
+            raise ValueError(
+                f"Couldn't read config from {path}; check it exists and the"
+                " entries are correct."
+            ) from err
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
 
-def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
+def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
@@ -55,20 +61,19 @@ def filter_paths(paths: list[Path], args: argparse.Namespace) -> Iterator[Path]:
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
             continue
 
-        if matches(path, NOTEBOOKS_EXCLUDE):
-            this_file = Path(__file__).resolve()
+        if matches(path, config.notebooks_exclude):
             print(
-                f"ℹ️ Skipping {path}; to run it, edit `NOTEBOOKS_EXCLUDE` in {this_file}."
+                f"ℹ️ Skipping {path}; to run it, edit `notebooks-exclude` in {args.config_path}."
             )
             continue
 
-        if not submit_jobs and matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+        if not submit_jobs and matches(path, config.notebooks_that_submit_jobs):
             print(
                 f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
             )
             continue
 
-        if args.only_submit_jobs and not matches(path, NOTEBOOKS_THAT_SUBMIT_JOBS):
+        if args.only_submit_jobs and not matches(path, config.notebooks_that_submit_jobs):
             print(
                 f"ℹ️ Skipping {path} as it does not submit jobs and the --only-submit-jobs flag is set."
             )
@@ -171,20 +176,20 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
     return nb
 
 
-def find_notebooks() -> list[Path]:
+def find_notebooks(config: Config) -> list[Path]:
     """
-    Get paths to all notebooks in NOTEBOOKS_GLOB that are not excluded by
-    NOTEBOOKS_EXCLUDE
+    Get paths to notebooks in glob `all-notebooks` that are not excluded by
+    glob `notebooks-exclude`.
     """
-    all_notebooks = Path(".").glob(NOTEBOOKS_GLOB)
+    all_notebooks = Path(".").glob(config.all_notebooks)
     return [
         path
         for path in all_notebooks
-        if not matches(path, NOTEBOOKS_EXCLUDE)
+        if not matches(path, config.notebooks_exclude)
     ]
 
 
-def cancel_trailing_jobs(start_time: datetime) -> bool:
+def cancel_trailing_jobs(start_time: datetime, config_path: str) -> bool:
     """
     Cancel any runtime jobs created after `start_time`.
 
@@ -207,8 +212,8 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
 
     print(
         f"⚠️ Cancelling {len(jobs)} job(s) created after {start_time}.\n"
-        "Add any notebooks that submit jobs to NOTEBOOKS_EXCLUDE in "
-        "`scripts/nb-tester/test-notebook.py`."
+        "Add any notebooks that submit jobs to `notebooks-that-submit-jobs` in "
+        f"`{config_path}`."
     )
     for job in jobs:
         job.cancel()
@@ -225,7 +230,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
         help=(
             "Paths to notebooks. If not provided, the script will search for "
             "notebooks in `docs/`. To exclude a notebook from this process, add it "
-            "to `NOTEBOOKS_EXCLUDE` in the script."
+            "to `notebooks-exclude` in the config file."
         ),
         nargs="*",
     )
@@ -249,24 +254,28 @@ def create_argument_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Same as --submit-jobs, but also skips notebooks that do not submit jobs to IBM Quantum",
     )
+    parser.add_argument(
+        "--config-path",
+        help="Path to a TOML file containing the globs for detecting and sorting notebooks",
+    )
     return parser
 
 
-async def main() -> None:
+async def _main() -> None:
     args = create_argument_parser().parse_args()
-    paths = map(Path, args.filenames or find_notebooks())
-    filtered_paths = filter_paths(paths, args)
+    config = Config.read(args.config_path)
+    paths = map(Path, args.filenames or find_notebooks(config))
+    filtered_paths = filter_paths(paths, args, config)
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
     results = await asyncio.gather(*(execute_notebook(path, args) for path in filtered_paths))
     print("Checking for trailing jobs...")
-    results.append(cancel_trailing_jobs(start_time))
+    results.append(cancel_trailing_jobs(start_time, args.config_path))
     if not all(results):
         sys.exit(1)
     sys.exit(0)
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
+def main():
+    asyncio.run(_main())
