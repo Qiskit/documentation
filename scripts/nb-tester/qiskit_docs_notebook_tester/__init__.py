@@ -27,16 +27,23 @@ import tomli as tomllib
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
-def get_globs(path: str) -> dict[str, str | list[str]]:
-    """
-    Load the globs from the TOML file
-    """
-    return tomllib.loads(Path(path).read_text())
+@dataclass
+class Config:
+    all_notebooks: str
+    notebooks_exclude: list[str]
+    notebooks_that_submit_jobs: list[str]
+
+    @classmethod
+    def read(cls, path: str) -> Config:
+        """
+        Load the globs from the TOML file
+        """
+        return cls(**tomllib.loads(Path(path).read_text()))
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
 
-def filter_paths(paths: list[Path], args: argparse.Namespace, globs: dict) -> Iterator[Path]:
+def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) -> Iterator[Path]:
     """
     Filter out any paths we don't want to run, printing messages.
     """
@@ -46,19 +53,19 @@ def filter_paths(paths: list[Path], args: argparse.Namespace, globs: dict) -> It
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
             continue
 
-        if matches(path, globs["notebooks-exclude"]):
+        if matches(path, config.notebooks_exclude):
             print(
                 f"ℹ️ Skipping {path}; to run it, edit `notebooks-exclude` in {args.config_path}."
             )
             continue
 
-        if not submit_jobs and matches(path, globs["notebooks-that-submit-jobs"]):
+        if not submit_jobs and matches(path, config.notebooks_that_submit_jobs):
             print(
                 f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
             )
             continue
 
-        if args.only_submit_jobs and not matches(path, globs["notebooks-that-submit-jobs"]):
+        if args.only_submit_jobs and not matches(path, config.notebooks_that_submit_jobs):
             print(
                 f"ℹ️ Skipping {path} as it does not submit jobs and the --only-submit-jobs flag is set."
             )
@@ -161,16 +168,16 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
     return nb
 
 
-def find_notebooks(globs: dict) -> list[Path]:
+def find_notebooks(config: Config) -> list[Path]:
     """
     Get paths to notebooks in glob `all-notebooks` that are not excluded by
     glob `notebooks-exclude`.
     """
-    all_notebooks = Path(".").glob(globs["all-notebooks"])
+    all_notebooks = Path(".").glob(config.all_notebooks)
     return [
         path
         for path in all_notebooks
-        if not matches(path, globs["notebooks-exclude"])
+        if not matches(path, config.notebooks_exclude)
     ]
 
 
@@ -248,9 +255,9 @@ def create_argument_parser() -> argparse.ArgumentParser:
 
 async def main() -> None:
     args = create_argument_parser().parse_args()
-    globs = get_globs(args.config_path)
-    paths = map(Path, args.filenames or find_notebooks(globs))
-    filtered_paths = filter_paths(paths, args, globs)
+    config = Config.read(args.config_path)
+    paths = map(Path, args.filenames or find_notebooks(config))
+    filtered_paths = filter_paths(paths, args, config)
 
     # Execute notebooks
     start_time = datetime.now()
