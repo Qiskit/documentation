@@ -12,7 +12,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 
-import { generateToc, nestModule } from "./generateToc";
+import { generateToc } from "./generateToc";
 import { Pkg } from "./Pkg";
 
 const DEFAULT_ARGS = {
@@ -20,11 +20,6 @@ const DEFAULT_ARGS = {
   images: [],
   isReleaseNotes: false,
 };
-
-test("nestModule", () => {
-  expect(nestModule("project.module")).toEqual(false);
-  expect(nestModule("project.module.submodule")).toEqual(true);
-});
 
 describe("generateToc", () => {
   test("generate a basic toc", () => {
