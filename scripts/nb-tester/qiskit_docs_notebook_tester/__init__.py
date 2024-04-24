@@ -10,6 +10,9 @@
 # notice, and modified files need to carry a notice indicating that they have
 # been altered from the originals.
 
+from __future__ import annotations
+
+
 import argparse
 import asyncio
 import sys
@@ -253,7 +256,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
     return parser
 
 
-async def main() -> None:
+async def _main() -> None:
     args = create_argument_parser().parse_args()
     config = Config.read(args.config_path)
     paths = map(Path, args.filenames or find_notebooks(config))
@@ -269,6 +272,5 @@ async def main() -> None:
         sys.exit(1)
     sys.exit(0)
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
+def main():
+    asyncio.run(_main())
