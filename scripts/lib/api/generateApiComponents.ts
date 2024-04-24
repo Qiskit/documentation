@@ -226,6 +226,8 @@ function prepareAttributeProps(
   }
 
   // The attributes have the following shape: name [: type] [= value]
+  // We skip the first character to leave off the `:` and the `=` in
+  // both type hint and default value
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
   const attributeTypeHint = text
     .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
