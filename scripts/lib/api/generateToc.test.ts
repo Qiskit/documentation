@@ -12,7 +12,7 @@
 
 import { describe, expect, test } from "@jest/globals";
 
-import { generateToc } from "./generateToc";
+import { generateToc, nestModule } from "./generateToc";
 import { Pkg } from "./Pkg";
 
 const DEFAULT_ARGS = {
@@ -21,8 +21,19 @@ const DEFAULT_ARGS = {
   isReleaseNotes: false,
 };
 
+test("nestModule", () => {
+  const nestingDisabled = Pkg.mock({ nestModulesInToc: false });
+  const nestingEnabled = Pkg.mock({ nestModulesInToc: true });
+  expect(nestModule(nestingDisabled, "project.module")).toEqual(false);
+  expect(nestModule(nestingDisabled, "project.module.submodule")).toEqual(
+    false,
+  );
+  expect(nestModule(nestingEnabled, "project.module")).toEqual(false);
+  expect(nestModule(nestingEnabled, "project.module.submodule")).toEqual(true);
+});
+
 describe("generateToc", () => {
-  test("generate a toc", () => {
+  test("generate a basic toc", () => {
     const toc = generateToc(Pkg.mock({}), [
       {
         meta: {
@@ -38,6 +49,14 @@ describe("generateToc", () => {
           apiName: "qiskit_ibm_runtime.options",
         },
         url: "/docs/options",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime.options.submodule",
+        },
+        url: "/docs/qiskit_ibm_runtime.options.submodule",
         ...DEFAULT_ARGS,
       },
       {
@@ -95,6 +114,10 @@ describe("generateToc", () => {
             "url": "/docs/options",
           },
           {
+            "title": "qiskit_ibm_runtime.options.submodule",
+            "url": "/docs/qiskit_ibm_runtime.options.submodule",
+          },
+          {
             "title": "qiskit_ibm_runtime.single",
             "url": "/docs/single",
           },
@@ -107,6 +130,62 @@ describe("generateToc", () => {
         "title": "My Quantum Project",
       }
     `);
+  });
+
+  test("TOC with nested submodules", () => {
+    const toc = generateToc(Pkg.mock({ nestModulesInToc: true }), [
+      {
+        meta: {
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime",
+        },
+        url: "/docs/runtime",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime.options",
+        },
+        url: "/docs/options",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime.options.submodule",
+        },
+        url: "/docs/qiskit_ibm_runtime.options.submodule",
+        ...DEFAULT_ARGS,
+      },
+    ]);
+    expect(toc).toEqual({
+      children: [
+        {
+          title: "qiskit_ibm_runtime",
+          url: "/docs/runtime",
+        },
+        {
+          children: [
+            {
+              title: "Overview",
+              url: "/docs/options",
+            },
+            {
+              title: "qiskit_ibm_runtime.options.submodule",
+              url: "/docs/qiskit_ibm_runtime.options.submodule",
+            },
+          ],
+          title: "qiskit_ibm_runtime.options",
+        },
+        {
+          title: "Release notes",
+          url: "/api/my-quantum-project/release-notes",
+        },
+      ],
+      collapsed: true,
+      title: "My Quantum Project",
+    });
   });
 
   test("TOC with distinct release note files", () => {
