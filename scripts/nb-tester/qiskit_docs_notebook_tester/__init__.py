@@ -189,7 +189,7 @@ def find_notebooks(config: Config) -> list[Path]:
     ]
 
 
-def cancel_trailing_jobs(start_time: datetime, args: argparse.Namespace) -> bool:
+def cancel_trailing_jobs(start_time: datetime, config_path: str) -> bool:
     """
     Cancel any runtime jobs created after `start_time`.
 
@@ -213,7 +213,7 @@ def cancel_trailing_jobs(start_time: datetime, args: argparse.Namespace) -> bool
     print(
         f"⚠️ Cancelling {len(jobs)} job(s) created after {start_time}.\n"
         "Add any notebooks that submit jobs to `notebooks-that-submit-jobs` in "
-        f"`{arg.config_path}`."
+        f"`{config_path}`."
     )
     for job in jobs:
         job.cancel()
@@ -272,7 +272,7 @@ async def _main() -> None:
     print("Executing notebooks:")
     results = await asyncio.gather(*(execute_notebook(path, args) for path in filtered_paths))
     print("Checking for trailing jobs...")
-    results.append(cancel_trailing_jobs(start_time, args))
+    results.append(cancel_trailing_jobs(start_time, args.config_path))
     if not all(results):
         sys.exit(1)
     sys.exit(0)
