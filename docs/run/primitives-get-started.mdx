@@ -20,7 +20,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 </Admonition>
 
 <Admonition type="note">
-    These examples all use the primitives from Qiskit Runtime, but you could use the base primitives instead. 
+    While this documentation uses the primitives from Qiskit Runtime, which allow you to use IBM&reg; backends, the primitives can be run on any provider by using the [backend primitives](#backend) instead.  Additionally, you can use the *reference* primitives to run on a local statevector simulator.  See [Exact simulation with Qiskit primitives](../verify/simulate-with-qiskit-primitives) for details.
 </Admonition>
 
 <span id="start-estimator"></span>
@@ -235,6 +235,35 @@ print(f"  > Metadata: {result.metadata[0]}")
 ```
   </TabItem>
 </Tabs>
+
+<span id="backend"></span>
+## Get started with the backend primitives
+
+The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler). Likewise, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). Equivalent implementations in V2 are coming soon.   
+  
+Some providers implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#providers) for more details).
+
+### Example: BackendEstimator
+
+```python
+from qiskit.primitives import BackendEstimator
+from <some_qiskit_provider> import QiskitProvider
+
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+estimator = BackendEstimator(backend)
+```
+
+### Example: BackendSampler
+
+```python
+from qiskit.primitives import BackendSampler
+from <some_qiskit_provider> import QiskitProvider
+
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+sampler = BackendSampler(backend)
+```
 
 ## Next steps
 

@@ -88,7 +88,7 @@ function prepareProps(
   id: string,
 ): ComponentProps {
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
-    class: () => prepareClassProps($child, githubSourceLink, id),
+    class: () => prepareClassProps($child, $dl, githubSourceLink, id),
     property: () =>
       preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
     method: () =>
@@ -113,14 +113,25 @@ function prepareProps(
 
 function prepareClassProps(
   $child: Cheerio<any>,
+  $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  return {
+  const props = {
     id,
     rawSignature: $child.html()!,
     githubSourceLink,
   };
+
+  const pageHeading = $dl.siblings("h1").text();
+  if (id.endsWith(pageHeading) && pageHeading != "") {
+    // Page is already dedicated to the class
+    return {
+      ...props,
+      isDedicatedPage: true,
+    };
+  }
+  return props;
 }
 
 function preparePropertyProps(
