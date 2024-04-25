@@ -14,11 +14,13 @@ Workloads can be run as single jobs, sessions, or in a batch:
 - Use **batch** mode to submit multiple primitive jobs simultaneously.
 - Use **job** mode to submit a single primitive request without a context manager.
 
+The differences are summarized in the following table:
+
 |     Mode     |         Example        |                  Usage                  |                                                                                                        Benefit                                                                                                        |
 |:------------:|:----------------------:|:---------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Job mode     |                        | Quantum computation only.               | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
 | Batch mode   |                        | Quantum computation only.               | The entire batch of jobs is scheduled together and there is no additional queueing time for each. Jobs in a batch are run close together.                                                                             |
-| Session Mode | Hamiltonian simulation | Both classical and quantum computation. | Dedicated and exclusive access to the system during the session active window, and no other users’ or system jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
+| Session mode | Hamiltonian simulation | Both classical and quantum computation. | Dedicated and exclusive access to the system during the session active window, and no other users’ or system jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
 
 ## Best practices
 
