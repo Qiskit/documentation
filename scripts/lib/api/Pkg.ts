@@ -15,6 +15,10 @@ import { join } from "path/posix";
 import { findLegacyReleaseNotes } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
+import {
+  TocModuleGrouping,
+  QISKIT_TOC_MODULE_GROUPING,
+} from "./TocModuleGrouping";
 
 export interface ReleaseNoteEntry {
   title: string;
@@ -35,7 +39,7 @@ export class Pkg {
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
   readonly releaseNoteEntries: ReleaseNoteEntry[];
-  readonly nestModulesInToc: boolean;
+  readonly tocModuleGrouping?: TocModuleGrouping;
 
   static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
 
@@ -48,7 +52,7 @@ export class Pkg {
     versionWithoutPatch: string;
     type: PackageType;
     releaseNoteEntries: ReleaseNoteEntry[];
-    nestModulesInToc: boolean;
+    tocModuleGrouping?: TocModuleGrouping;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -58,7 +62,7 @@ export class Pkg {
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
     this.releaseNoteEntries = kwargs.releaseNoteEntries;
-    this.nestModulesInToc = kwargs.nestModulesInToc;
+    this.tocModuleGrouping = kwargs.tocModuleGrouping;
   }
 
   static async fromArgs(
@@ -83,7 +87,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
         releaseNoteEntries,
-        nestModulesInToc: true,
+        tocModuleGrouping: QISKIT_TOC_MODULE_GROUPING,
       });
     }
 
@@ -95,7 +99,6 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-runtime",
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
-        nestModulesInToc: false,
       });
     }
 
@@ -107,7 +110,6 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-provider",
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
-        nestModulesInToc: false,
       });
     }
 
@@ -123,7 +125,7 @@ export class Pkg {
     versionWithoutPatch?: string;
     type?: PackageType;
     releaseNoteEntries?: ReleaseNoteEntry[];
-    nestModulesInToc?: boolean;
+    tocModuleGrouping?: TocModuleGrouping;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -134,7 +136,7 @@ export class Pkg {
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
       releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
-      nestModulesInToc: kwargs.nestModulesInToc ?? false,
+      tocModuleGrouping: kwargs.tocModuleGrouping ?? undefined,
     });
   }
 

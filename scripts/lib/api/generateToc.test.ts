@@ -121,8 +121,14 @@ describe("generateToc", () => {
     `);
   });
 
-  test("TOC with nested submodules", () => {
-    const toc = generateToc(Pkg.mock({ nestModulesInToc: true }), [
+  test("TOC with grouped modules", () => {
+    const tocModuleGrouping = {
+      // Order is intentionally reversed.
+      sections: ["Group 2", "Group 1"],
+      moduleToSection: (module: string) =>
+        module == "qiskit_ibm_runtime" ? "Group 1" : "Group 2",
+    };
+    const toc = generateToc(Pkg.mock({ tocModuleGrouping }), [
       {
         meta: {
           apiType: "module",
@@ -149,15 +155,14 @@ describe("generateToc", () => {
       },
     ]);
     expect(toc).toEqual({
+      collapsed: true,
+      title: "My Quantum Project",
       children: [
         {
-          title: "qiskit_ibm_runtime",
-          url: "/docs/runtime",
-        },
-        {
+          title: "Group 2",
           children: [
             {
-              title: "Module overview",
+              title: "qiskit_ibm_runtime.options",
               url: "/docs/options",
             },
             {
@@ -165,15 +170,21 @@ describe("generateToc", () => {
               url: "/docs/qiskit_ibm_runtime.options.submodule",
             },
           ],
-          title: "qiskit_ibm_runtime.options",
+        },
+        {
+          title: "Group 1",
+          children: [
+            {
+              title: "qiskit_ibm_runtime",
+              url: "/docs/runtime",
+            },
+          ],
         },
         {
           title: "Release notes",
           url: "/api/my-quantum-project/release-notes",
         },
       ],
-      collapsed: true,
-      title: "My Quantum Project",
     });
   });
 

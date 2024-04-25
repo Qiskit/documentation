@@ -15,6 +15,7 @@ import { Dictionary, isEmpty, keyBy, keys, orderBy } from "lodash";
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { Pkg } from "./Pkg";
+import type { TocModuleGrouping } from "./TocModuleGrouping";
 
 export type TocEntry = {
   title: string;
@@ -29,12 +30,6 @@ type Toc = {
   collapsed: boolean;
 };
 
-function nestModule(id: string): boolean {
-  // For example, nest `qiskit.algorithms.submodule`, but
-  // not `qiskit.algorithms` which should be top-level.
-  return id.split(".").length > 2;
-}
-
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results);
   const tocModules = generateTocModules(modules);
@@ -43,10 +38,8 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
-  // Most packages don't nest submodules because their module list is so small,
-  // so it's more useful to show them all and have less nesting.
-  const sortedTocModules = pkg.nestModulesInToc
-    ? getNestedTocModulesSorted(tocModules, tocModulesByTitle, tocModuleTitles)
+  const sortedTocModules = pkg.tocModuleGrouping
+    ? groupAndSortModules(pkg.tocModuleGrouping, tocModules)
     : orderEntriesByTitle(tocModules);
   generateOverviewPage(tocModules);
 
@@ -111,33 +104,34 @@ function addItemsToModules(
   }
 }
 
-function getNestedTocModulesSorted(
+function groupAndSortModules(
+  moduleGrouping: TocModuleGrouping,
   tocModules: TocEntry[],
-  tocModulesByTitle: Dictionary<TocEntry>,
-  tocModuleTitles: string[],
 ): TocEntry[] {
-  const nestedTocModules: TocEntry[] = [];
+  // Note that Map will preserve the order of sections.
+  const sectionsToModules = new Map<string, TocEntry[]>(
+    moduleGrouping.sections.map((section) => [section, []]),
+  );
   for (const tocModule of tocModules) {
-    if (!nestModule(tocModule.title)) {
-      nestedTocModules.push(tocModule);
-      continue;
+    const section = moduleGrouping.moduleToSection(tocModule.title);
+    const sectionModules = sectionsToModules.get(section);
+    if (!sectionModules) {
+      throw new Error(
+        `Unexpected section '${section} for the module ${tocModule.title}`,
+      );
     }
-
-    const parentModuleTitle = findClosestParentModules(
-      tocModule.title,
-      tocModuleTitles,
-    );
-
-    if (parentModuleTitle) {
-      const parentModule = tocModulesByTitle[parentModuleTitle];
-      if (!parentModule.children) parentModule.children = [];
-      parentModule.children.push(tocModule);
-    } else {
-      nestedTocModules.push(tocModule);
-    }
+    sectionModules.push(tocModule);
   }
 
-  return orderEntriesByTitle(nestedTocModules);
+  const result = [];
+  for (const [section, modules] of sectionsToModules.entries()) {
+    if (!modules) continue;
+    result.push({
+      title: section,
+      children: orderEntriesByTitle(modules),
+    });
+  }
+  return result;
 }
 
 function generateOverviewPage(tocModules: TocEntry[]): void {
