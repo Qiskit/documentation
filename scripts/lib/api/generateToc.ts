@@ -15,7 +15,7 @@ import { Dictionary, isEmpty, keyBy, keys, orderBy } from "lodash";
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { Pkg } from "./Pkg";
-import type { TocModuleGrouping } from "./TocModuleGrouping";
+import type { TocGrouping, TocGroupingEntry } from "./TocGrouping";
 
 export type TocEntry = {
   title: string;
@@ -38,8 +38,8 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
-  const sortedTocModules = pkg.tocModuleGrouping
-    ? groupAndSortModules(pkg.tocModuleGrouping, tocModules)
+  const sortedTocModules = pkg.tocGrouping
+    ? groupAndSortModules(pkg.tocGrouping, tocModules, tocModulesByTitle)
     : orderEntriesByTitle(tocModules);
   generateOverviewPage(tocModules);
 
@@ -105,32 +105,59 @@ function addItemsToModules(
 }
 
 function groupAndSortModules(
-  moduleGrouping: TocModuleGrouping,
+  moduleGrouping: TocGrouping,
   tocModules: TocEntry[],
+  tocModulesByTitle: Dictionary<TocEntry>,
 ): TocEntry[] {
-  // Note that Map will preserve the order of sections.
-  const sectionsToModules = new Map<string, TocEntry[]>(
-    moduleGrouping.sections.map((section) => [section, []]),
-  );
-  for (const tocModule of tocModules) {
+  const topLevelModules = new Set<string>();
+  const sectionsToModules = new Map<string, TocEntry[]>();
+  moduleGrouping.entries.forEach((entry) => {
+    if (entry.kind === "module") {
+      topLevelModules.add(entry.name);
+    } else {
+      sectionsToModules.set(entry.name, []);
+    }
+  });
+
+  // Go through each module in use and ensure it is either a top-level module
+  // or assign it to its section.
+  tocModules.forEach((tocModule) => {
+    if (topLevelModules.has(tocModule.title)) return;
     const section = moduleGrouping.moduleToSection(tocModule.title);
+    if (!section) {
+      throw new Error(
+        `Unrecognized module '${tocModule.title}'. It must either be listed as a module in TocGrouping.entries or be matched in TocGrouping.moduleToSection().`,
+      );
+    }
     const sectionModules = sectionsToModules.get(section);
     if (!sectionModules) {
       throw new Error(
-        `Unexpected section '${section} for the module ${tocModule.title}`,
+        `Unknown section '${section}' set for the module '${tocModule.title}'. This means TocGrouping.moduleToSection() is not aligned with TocGrouping.entries`,
       );
     }
     sectionModules.push(tocModule);
-  }
+  });
 
-  const result = [];
-  for (const [section, modules] of sectionsToModules.entries()) {
-    if (!modules) continue;
-    result.push({
-      title: section,
-      children: orderEntriesByTitle(modules),
-    });
-  }
+  // Finally, create the ToC by using the ordering from moduleGrouping.entries.
+  // Note that moduleGrouping.entries might be a superset of the modules/sections
+  // actually in use for the API version, so we sometimes skip adding individual
+  // entries to the final result.
+  const result: TocEntry[] = [];
+  moduleGrouping.entries.forEach((entry) => {
+    if (entry.kind === "module") {
+      const module = tocModulesByTitle[entry.name];
+      if (!module) return;
+      result.push(module);
+    } else {
+      const modules = sectionsToModules.get(entry.name);
+      if (!modules || modules.length === 0) return;
+      result.push({
+        title: entry.name,
+        // Within a section, sort alphabetically.
+        children: orderEntriesByTitle(modules),
+      });
+    }
+  });
   return result;
 }
 

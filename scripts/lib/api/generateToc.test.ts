@@ -14,6 +14,7 @@ import { describe, expect, test } from "@jest/globals";
 
 import { generateToc } from "./generateToc";
 import { Pkg } from "./Pkg";
+import type { TocGroupingEntry } from "./TocGrouping";
 
 const DEFAULT_ARGS = {
   markdown: "",
@@ -122,35 +123,44 @@ describe("generateToc", () => {
   });
 
   test("TOC with grouped modules", () => {
-    const tocModuleGrouping = {
-      // Order is intentionally reversed.
-      sections: ["Group 2", "Group 1"],
+    // This ordering is intentional.
+    const topLevelEntries: TocGroupingEntry[] = [
+      { name: "my_project", kind: "module" },
+      { name: "Group 2", kind: "section" },
+      { name: "Group 1", kind: "section" },
+      // Ensure we can handle unused entries.
+      { name: "unused_module", kind: "module" },
+      { name: "Unused section", kind: "section" },
+    ];
+    const tocGrouping = {
+      entries: topLevelEntries,
       moduleToSection: (module: string) =>
-        module == "qiskit_ibm_runtime" ? "Group 1" : "Group 2",
+        module == "my_project.module" ? "Group 1" : "Group 2",
     };
-    const toc = generateToc(Pkg.mock({ tocModuleGrouping }), [
+
+    const toc = generateToc(Pkg.mock({ tocGrouping }), [
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime",
+          apiName: "my_project",
         },
-        url: "/docs/runtime",
+        url: "/docs/my_project",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime.options",
+          apiName: "my_project.module",
         },
-        url: "/docs/options",
+        url: "/docs/my_project.module",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime.options.submodule",
+          apiName: "my_project.module.submodule",
         },
-        url: "/docs/qiskit_ibm_runtime.options.submodule",
+        url: "/docs/my_project.module.submodule",
         ...DEFAULT_ARGS,
       },
     ]);
@@ -159,15 +169,15 @@ describe("generateToc", () => {
       title: "My Quantum Project",
       children: [
         {
+          title: "my_project",
+          url: "/docs/my_project",
+        },
+        {
           title: "Group 2",
           children: [
             {
-              title: "qiskit_ibm_runtime.options",
-              url: "/docs/options",
-            },
-            {
-              title: "qiskit_ibm_runtime.options.submodule",
-              url: "/docs/qiskit_ibm_runtime.options.submodule",
+              title: "my_project.module.submodule",
+              url: "/docs/my_project.module.submodule",
             },
           ],
         },
@@ -175,8 +185,8 @@ describe("generateToc", () => {
           title: "Group 1",
           children: [
             {
-              title: "qiskit_ibm_runtime",
-              url: "/docs/runtime",
+              title: "my_project.module",
+              url: "/docs/my_project.module",
             },
           ],
         },

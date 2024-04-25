@@ -62,4 +62,5 @@ test("hasPrefix()", () => {
   expect(hasPrefix("abc", ["x", "z"])).toBe(false);
   expect(hasPrefix("abc", ["x", "a"])).toBe(true);
   expect(hasPrefix("abc", [])).toBe(false);
+  expect(hasPrefix("abc", ["abc"])).toBe(true);
 });

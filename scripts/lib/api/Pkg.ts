@@ -15,10 +15,7 @@ import { join } from "path/posix";
 import { findLegacyReleaseNotes } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
-import {
-  TocModuleGrouping,
-  QISKIT_TOC_MODULE_GROUPING,
-} from "./TocModuleGrouping";
+import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping";
 
 export interface ReleaseNoteEntry {
   title: string;
@@ -39,7 +36,7 @@ export class Pkg {
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
   readonly releaseNoteEntries: ReleaseNoteEntry[];
-  readonly tocModuleGrouping?: TocModuleGrouping;
+  readonly tocGrouping?: TocGrouping;
 
   static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
 
@@ -52,7 +49,7 @@ export class Pkg {
     versionWithoutPatch: string;
     type: PackageType;
     releaseNoteEntries: ReleaseNoteEntry[];
-    tocModuleGrouping?: TocModuleGrouping;
+    tocGrouping?: TocGrouping;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -62,7 +59,7 @@ export class Pkg {
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
     this.releaseNoteEntries = kwargs.releaseNoteEntries;
-    this.tocModuleGrouping = kwargs.tocModuleGrouping;
+    this.tocGrouping = kwargs.tocGrouping;
   }
 
   static async fromArgs(
@@ -87,7 +84,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
         releaseNoteEntries,
-        tocModuleGrouping: QISKIT_TOC_MODULE_GROUPING,
+        tocGrouping: QISKIT_TOC_GROUPING,
       });
     }
 
@@ -125,7 +122,7 @@ export class Pkg {
     versionWithoutPatch?: string;
     type?: PackageType;
     releaseNoteEntries?: ReleaseNoteEntry[];
-    tocModuleGrouping?: TocModuleGrouping;
+    tocGrouping?: TocGrouping;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -136,7 +133,7 @@ export class Pkg {
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
       releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
-      tocModuleGrouping: kwargs.tocModuleGrouping ?? undefined,
+      tocGrouping: kwargs.tocGrouping ?? undefined,
     });
   }
 
