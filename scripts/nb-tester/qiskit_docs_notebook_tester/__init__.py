@@ -46,6 +46,7 @@ class Config:
     all_notebooks: str
     notebooks_exclude: list[str]
     notebooks_that_submit_jobs: list[str]
+    notebooks_no_mock: list[str]
 
     @classmethod
     def read(cls, path: str) -> Config:
@@ -78,13 +79,13 @@ def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) ->
             )
             continue
 
-        if not args.submit_jobs and matches(path, config.notebooks_that_cant_be_mocked):
+        if not args.submit_jobs and matches(path, config.notebooks_no_mock):
             print(
                 f"ℹ️ Skipping {path} as it doesn't work with mock hardware; use the --submit-jobs flag to run it."
             )
             continue
 
-        if args.only_unmockable and not matches(path, config.notebooks_that_cant_be_mocked):
+        if args.only_unmockable and not matches(path, config.notebooks_no_mock):
             print(
                 f"ℹ️ Skipping {path} as it can be tested with a mock backend and the --only-unmockable flag is set."
             )
@@ -148,11 +149,16 @@ def patch_runtime(nb: nbformat.NotebookNode, *, should_patch: bool):
             if hasattr(output, "execution_count"):
                 output.execution_count -= 1
 
-async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
+async def execute_notebook(path: Path, args: argparse.Namespace, config: Config) -> bool:
     """
-    Wrapper function for `_execute_notebook` to print status
+    Wrapper function for `_execute_notebook` to print status and write result
     """
-    print(f"▶️ Executing {path}")
+    def _is_patched():
+        return not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
+    if _is_patched():
+        print(f"▶️ Executing {path} (with least_busy patched to return FakeWashingtonV2)")
+    else:
+        print(f"▶️ Executing {path}")
     possible_exceptions = (
         nbconvert.preprocessors.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
@@ -171,7 +177,16 @@ async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
         )
         return False
 
-    print(f"✅ No problems in {path}")
+    if not args.write:
+        print(f"✅ No problems in {path}")
+        return True
+
+    if _is_patched():
+        print(f"✅ No problems in {path} (not written as tested with mock backend)")
+        return True
+
+    nbformat.write(nb, filepath)
+    print(f"✅ No problems in {path} (written)")
     return True
 
 async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
@@ -199,7 +214,6 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
     nb, _ = clean_notebook(nb)
-    nbformat.write(nb, filepath)
     return nb
 
 
@@ -300,9 +314,7 @@ async def _main() -> None:
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    if not args.submit_jobs:
-        print("ℹ️  Note: Using patched qiskit-ibm-runtime; least_busy will return FakeWashingtonV2")
-    results = await asyncio.gather(*(execute_notebook(path, args) for path in filtered_paths))
+    results = await asyncio.gather(*(execute_notebook(path, args, config) for path in filtered_paths))
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time, args.config_path))
     if not all(results):
