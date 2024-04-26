@@ -28,7 +28,7 @@ There are several benefits to using sessions:
 
 The basic workflow for sessions is as follows:
 
-1. The first job in a session enters the normal queue. The job's owner become the priority user.
+1. The first job in a session enters the normal queue.
 2. When the first job starts running, the _maximum timeout_ clock starts.
 2. Subsequent jobs within the session are prioritized over other jobs, reducing wait times.
 3. The _interactive timeout_ runs between the jobs in a session. Every session has an interactive timeout value (ITTL, or interactive time to live). If there are no session jobs queued within the ITTL window, the session is temporarily deactivated and normal job selection resumes. A job can reactivate the deactivated session<sup>*</sup> if the session has not reached its maximum timeout value.
@@ -60,6 +60,7 @@ A session ends in the following circumstances:
 * The maximum timeout is reached, resulting in the cancelation of all queued jobs.
 * The session is manually canceled, resulting in the cancelation of all queued jobs.
 * The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
+* If you use Session as a context manager, that is,  `with Session()`, the session is automatically closed when the context ends (the same behavior as using `session.close()`).
 
 <Admonition type = "note">
 When a session ends, the system finishes running any job that is currently running.
@@ -67,7 +68,7 @@ When a session ends, the system finishes running any job that is currently runni
 
 ## Usage patterns
 
-Sessions run iteratively.  This is useful for algorithms that require classical post-processing, where jobs submitted within the interactive time-out are processed immediately. If you want to submit jobs in a batch instead, see [Run jobs in a batch.](run-jobs-batch)
+Sessions are especially useful for algorithms that require classical post-processing, where jobs submitted within the interactive time-out are processed immediately. If you want to submit jobs in a batch instead, see [Run jobs in a batch.](run-jobs-batch)
 
 Example: Run an iterative workload that uses the classical SciPy optimizer to minimize a cost function. In this model, SciPy uses the output of the cost function to calculate its next input.
 
