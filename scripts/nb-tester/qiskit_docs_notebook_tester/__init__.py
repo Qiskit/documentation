@@ -153,9 +153,8 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
     """
     Wrapper function for `_execute_notebook` to print status and write result
     """
-    def _is_patched():
-        return not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
-    if _is_patched():
+    is_patched = not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
+    if is_patched:
         print(f"▶️ Executing {path} (with least_busy patched to return FakeKyoto)")
     else:
         print(f"▶️ Executing {path}")
@@ -181,7 +180,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
         print(f"✅ No problems in {path}")
         return True
 
-    if _is_patched():
+    if is_patched:
         print(f"✅ No problems in {path} (not written as tested with mock backend)")
         return True
 
