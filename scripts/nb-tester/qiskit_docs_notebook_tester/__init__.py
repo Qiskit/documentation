@@ -36,7 +36,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime.fake_provider import FakeWashingtonV2
 
 def patched_least_busy(self, *args, **kwarg):
-  return FakeWashingtonV2
+  return FakeWashingtonV2()
 
 QiskitRuntimeService.least_busy = patched_least_busy
 """
