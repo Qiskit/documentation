@@ -12,8 +12,16 @@
 
 import { hasPrefix } from "../stringUtils";
 
-type Kind = "section" | "module";
-export type TocGroupingEntry = { name: string; kind: Kind };
+type Section = {
+  name: string;
+  kind: "section";
+};
+type TopLevelModule = {
+  moduleId: string;
+  description: string;
+  kind: "module";
+};
+export type TocGroupingEntry = Section | TopLevelModule;
 
 export type TocGrouping = {
   // Ordering is respected.
@@ -32,9 +40,13 @@ const _OTHER = "Other";
 
 // The ordering of Qiskit ToC
 const QISKIT_ENTRIES = [
-  { name: "qiskit", kind: "module" },
+  { moduleId: "qiskit", description: "Module list", kind: "module" },
   { name: _CIRCUITS, kind: "section" },
-  { name: "qiskit.quantum_info", kind: "module" },
+  {
+    moduleId: "qiskit.quantum_info",
+    description: "Quantum information (qiskit.quantum_info)",
+    kind: "module",
+  },
   { name: _TRANSPILATION, kind: "section" },
   { name: _PRIMITVES, kind: "section" },
   { name: _RESULTS, kind: "section" },

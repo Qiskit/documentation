@@ -125,11 +125,11 @@ describe("generateToc", () => {
   test("TOC with grouped modules", () => {
     // This ordering is intentional.
     const topLevelEntries: TocGroupingEntry[] = [
-      { name: "my_project", kind: "module" },
+      { moduleId: "my_project", description: "API index", kind: "module" },
       { name: "Group 2", kind: "section" },
       { name: "Group 1", kind: "section" },
       // Ensure we can handle unused entries.
-      { name: "unused_module", kind: "module" },
+      { moduleId: "unused_module", description: "unused", kind: "module" },
       { name: "Unused section", kind: "section" },
     ];
     const tocGrouping = {
@@ -169,7 +169,7 @@ describe("generateToc", () => {
       title: "My Quantum Project",
       children: [
         {
-          title: "my_project",
+          title: "API index",
           url: "/docs/my_project",
         },
         {

@@ -109,11 +109,11 @@ function groupAndSortModules(
   tocModules: TocEntry[],
   tocModulesByTitle: Dictionary<TocEntry>,
 ): TocEntry[] {
-  const topLevelModules = new Set<string>();
+  const topLevelModuleIds = new Set<string>();
   const sectionsToModules = new Map<string, TocEntry[]>();
   moduleGrouping.entries.forEach((entry) => {
     if (entry.kind === "module") {
-      topLevelModules.add(entry.name);
+      topLevelModuleIds.add(entry.moduleId);
     } else {
       sectionsToModules.set(entry.name, []);
     }
@@ -122,7 +122,7 @@ function groupAndSortModules(
   // Go through each module in use and ensure it is either a top-level module
   // or assign it to its section.
   tocModules.forEach((tocModule) => {
-    if (topLevelModules.has(tocModule.title)) return;
+    if (topLevelModuleIds.has(tocModule.title)) return;
     const section = moduleGrouping.moduleToSection(tocModule.title);
     if (!section) {
       throw new Error(
@@ -145,8 +145,9 @@ function groupAndSortModules(
   const result: TocEntry[] = [];
   moduleGrouping.entries.forEach((entry) => {
     if (entry.kind === "module") {
-      const module = tocModulesByTitle[entry.name];
+      const module = tocModulesByTitle[entry.moduleId];
       if (!module) return;
+      module.title = entry.description;
       result.push(module);
     } else {
       const modules = sectionsToModules.get(entry.name);
