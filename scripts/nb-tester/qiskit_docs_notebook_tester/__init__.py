@@ -185,7 +185,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
         print(f"✅ No problems in {path} (not written as tested with mock backend)")
         return True
 
-    nbformat.write(nb, filepath)
+    nbformat.write(nb, path)
     print(f"✅ No problems in {path} (written)")
     return True
 
