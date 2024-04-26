@@ -314,10 +314,6 @@ Run `npm run fmt` to automatically format the README, `.github` folder, and `scr
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
-## Prettier errors
-
-If you get an error that tells you to `run Prettier to fix`, the command to do so is `npx prettier --write` or `npm run fmt` as mentioned in the [Format TypeScript files](#format-typescript-files) section. To run Prettier on a single file, you can do so with `npx prettier --write filename.md`.
-
 ## Regenerate an existing API docs version
 
 This is useful when we make improvements to the API generation script.
