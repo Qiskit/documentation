@@ -28,7 +28,7 @@ The number of jobs running in parallel is based on the degree of parallelism con
 
   Yes.  Session and batch modes each have advantages.  Choose the mode that best fits your needs.
 
-  - Sessions have greater efficiency because multiple jobs from a single algorithm run can be run sequentially without interruptions.  Additionally, you can submit jobs, check results, and submit new jobs within an active session without needing to start a new one.
+  - Sessions have greater efficiency because multiple jobs from a single algorithm run can be run sequentially without interruptions.  Additionally, you can submit jobs, check results, and submit new jobs within an active session without needing to start a new one. You can use sessions for everything you can do in batch mode, such as submitting multiple jobs simultaneously to avoid drift and getting results from individual jobs. However, sessions can be more expensive to use.
   - Batch mode has minimal delay between jobs, which can help avoid drift. Also, if you partition your workload into multiple jobs and run them in batch mode, you can get results from individual jobs.
 </details>
 
@@ -92,7 +92,7 @@ No.  Sessions run in dedicated mode, which means that the user has total access 
 
 <details>
   <summary>
-    Is compilation time counted as usage in sessions mode?
+    Is compilation time counted as usage in session mode?
   </summary>
 
 Yes.  In session mode, the entire time the session is active counts as usage.  The session becomes active when the first session job starts running.

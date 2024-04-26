@@ -8,11 +8,15 @@ description: Learn about the changes to execution modes (sessions, batch, and si
 
 # Execution modes changes
 
+Utility-scale workloads can take many hours to complete, so it has become increasinly important that both the classical and quantum resources are scheduled efficiently to streamline the execution. With the improved execution modes, you have more flexibility than ever in balancing the cost and time tradeoff to use resources in a way that is optimal for your workloads.
+
+Workloads can be run in one of the execution modes: Job, Session, or Batch:
+
 Workloads can be run as single jobs, sessions, or in a batch:
 
-- Use **sessions** mode for iterative workloads, or if you need dedicated access to the system
+- Use **session** mode for iterative workloads, or if you need dedicated access to the system
 - Use **batch** mode to submit multiple primitive jobs simultaneously to shorten processing time
-- Use **job** mode to submit a single primitive request for quick testing 
+- Use **job** mode to submit a single primitive request for quick testing
 
 The differences are summarized in the following table:
 
@@ -33,7 +37,7 @@ To ensure the most efficient use of the execution modes, the following practices
 
 - If each of your jobs consume more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, classical processing can be done in parallel. You can take advantage of this by submitting multiple jobs in [batch](#divide) or [session](#two-vqe) execution mode.
 
-The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, running smaller jobs in parallel might be more cost effective because of reduced wall clock time.
+The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because of reduced wall clock time.
 
 
 ## Sessions
@@ -63,16 +67,6 @@ with Session(backend=backend), ThreadPoolExecutor() as executor:
     nelder_mead_result = executor.submit(minimize_thread, estimator2, "nelder-mead").result()
 ```
 
-### Extended sessions
-
-Before this release, sessions were terminated after the active window, as shown in the following image.
-
-![This image shows four jobs.  Between each is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job completes, the active window ends and the session terminates.](/images/run/sessions/SessionTTL.svg 'Figure 1: Session behavior prior to extended sessions')
-
-With extended sessions, the session pauses after the active window ends. The session is resumed if more session jobs exit the queue.
-
-![This image shows multiple sets of jobs.  Within each set, and between each job, is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused.  Another set of jobs then starts and jobs continue in a similar manner.](/images/run/sessions/ExtendedSession.svg 'Figure 2: Extended sessions')
-
 ## Batch
 
 Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs, or jobs from another batch, can start when batch jobs are being processed, however, individual jobs might run between batch jobs.
@@ -98,8 +92,8 @@ with Batch(backend):
 
 Usage is a measurement of the amount of time the system is locked for your workload.
 
-* Session usage is the wall clock time of the entire session active window.
+* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
 * Batch usage is the sum of quantum time of all jobs in the batch.
 * Single job usage is the quantum time the job uses in processing.
 
-[This image shows multiple sets of jobs.  One set is being run in sessions mode and the other is being run in batch mode.  For sessions mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The system is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the system.  The system is locked for your use from the time the first job reaches the system until the last job is done processing on the system.  There is no gap between jobs where the system is idle.](/images/run/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
+[This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The system is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the system.  The system is locked for your use from the time the first job reaches the system until the last job is done processing on the system.  There is no gap between jobs where the system is idle.](/images/run/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
