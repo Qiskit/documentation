@@ -33,10 +33,10 @@ from squeaky import clean_notebook
 # If not submitting jobs, we mock the real backend by prepending this to each notebook
 MOCKING_CODE = """\
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime.fake_provider import FakeWashingtonV2
+from qiskit_ibm_runtime.fake_provider import FakeKyoto
 
 def patched_least_busy(self, *args, **kwarg):
-  return FakeWashingtonV2()
+  return FakeKyoto()
 
 QiskitRuntimeService.least_busy = patched_least_busy
 """
@@ -156,7 +156,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
     def _is_patched():
         return not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
     if _is_patched():
-        print(f"▶️ Executing {path} (with least_busy patched to return FakeWashingtonV2)")
+        print(f"▶️ Executing {path} (with least_busy patched to return FakeKyoto)")
     else:
         print(f"▶️ Executing {path}")
     possible_exceptions = (
