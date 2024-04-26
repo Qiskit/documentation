@@ -310,7 +310,9 @@ CI will check on every PR that any changed files render correctly. We also run a
 
 ## Format TypeScript files
 
-If you're working on our support code in `scripts/`, run `npm run fmt` to automatically format the files.
+## Format README and TypeScript files
+
+Run `npm run fmt` to automatically format the README, `.github` folder, and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
