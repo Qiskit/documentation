@@ -132,7 +132,7 @@ result = job1.result()
 result2 = job2.result()
 ```
 
-If you are not using a context manager, manually close the session after all the necessary results have been retrieved. When a session is closed with `session.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
+If you are not using a context manager, you should manually close the session to avoid unwanted cost. With `qiskit-ibm-runtime` 0.13 or later releases, you can close a session as soon as you are done submitting jobs to it. When a session is closed with `session.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved. Prior to qiskit-ibm-runtime 0.13, when a session is closed with `session.close()`, any jobs that are already running continue to run, but any queued jobs remaining in the session are put into a failed state.
 
 ``` python
 session = Session(backend=backend)
@@ -206,6 +206,7 @@ with Session(backend=backend):
 <span id="two-vqe"></span>
 ## Run two VQE algorithms in a session by using threading
 
+You can get more out of a session by running multiple workloads at once. The following example shows how you can run two VQE algorithms, each uses a different classical optimizer, simultaneously inside a single session. Job tags are also used to differentiate jobs from each workload.
 ```python
 from concurrent.futures import ThreadPoolExecutor
 from qiskit_ibm_runtime import  Session, EstimatorV2 as Estimator
