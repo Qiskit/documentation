@@ -308,8 +308,6 @@ You can also check that API docs and translations render by using any of these a
 
 CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
-## Format TypeScript files
-
 ## Format README and TypeScript files
 
 Run `npm run fmt` to automatically format the README, `.github` folder, and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
