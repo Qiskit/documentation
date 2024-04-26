@@ -55,11 +55,15 @@ For instructions to start a session, see [Run a job in a session](run-jobs-in-se
 <span id="ends"></span>
 ## End a session
 
-A session can end in the following circumstances:
+A session ends in the following circumstances:
 
 * The maximum timeout is reached, resulting in the cancelation of all queued jobs.
 * The session is manually canceled, resulting in the cancelation of all queued jobs.
 * The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
+
+<Admonition type = "note">
+When a session ends, the system finishes running any job that is currently running.
+</Admonition>
 
 ## Usage patterns
 

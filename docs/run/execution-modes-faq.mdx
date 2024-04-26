@@ -21,16 +21,6 @@ Local testing mode supports the syntax for the different execution modes, but be
 The number of jobs running in parallel is based on the degree of parallelism configured for the backend, which is five for most backends today.
 </details>
 
-<details>
-  <summary>
-    Are there reasons other than cost why I would choose session or batch mode?
-  </summary>
-
-  Yes.  Session and batch modes each have advantages.  Choose the mode that best fits your needs.
-
-  - Sessions have greater efficiency because multiple jobs from a single algorithm run can be run sequentially without interruptions.  Additionally, you can submit jobs, check results, and submit new jobs within an active session without needing to start a new one. You can use sessions for everything you can do in batch mode, such as submitting multiple jobs simultaneously to avoid drift and getting results from individual jobs. However, sessions can be more expensive to use.
-  - Batch mode has minimal delay between jobs, which can help avoid drift. Also, if you partition your workload into multiple jobs and run them in batch mode, you can get results from individual jobs.
-</details>
 
 ## Sessions
 
@@ -95,7 +85,7 @@ No.  Sessions run in dedicated mode, which means that the user has total access 
     Is compilation time counted as usage in session mode?
   </summary>
 
-Yes.  In session mode, the entire time the session is active counts as usage.  The session becomes active when the first session job starts running.
+Yes.  In session mode, usage is the wall clock time the system is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the system is still running a job. Additionally, time after a job completes while the system waits for another session job (the interactive time to live (ITTL)) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
 </details>
 
 ## Batch
