@@ -132,7 +132,7 @@ result = job1.result()
 result2 = job2.result()
 ```
 
-If you are not using a context manager, you should manually close the session to avoid unwanted cost. With `qiskit-ibm-runtime` 0.13 or later releases, you can close a session as soon as you are done submitting jobs to it. When a session is closed with `session.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved. Prior to qiskit-ibm-runtime 0.13, when a session is closed with `session.close()`, any jobs that are already running continue to run, but any queued jobs remaining in the session are put into a failed state.
+If you are not using a context manager, manually close the session to avoid unwanted cost. You can close a session as soon as you are done submitting jobs to it. When a session is closed with `session.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
 
 ``` python
 session = Session(backend=backend)
