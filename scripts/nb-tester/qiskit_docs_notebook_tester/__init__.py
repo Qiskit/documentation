@@ -293,7 +293,11 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "--only-unmockable",
         action="store_true",
-        help="Same as --submit-jobs, but only runs notebooks that can't be tested with the fake backend.",
+        help=(
+            "Same as --submit-jobs, but only runs notebooks that can't be "
+            "tested with the fake backend. Setting this option implicitly "
+            "sets --submit-jobs."
+        )
     )
     parser.add_argument(
         "--config-path",
