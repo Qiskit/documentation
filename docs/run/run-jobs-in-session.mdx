@@ -206,6 +206,7 @@ with Session(backend=backend):
 <span id="two-vqe"></span>
 ## Run two VQE algorithms in a session by using threading
 
+You can get more out of a session by running multiple workloads at once. The following example shows how you can run two VQE algorithms, each uses a different classical optimizer, simultaneously inside a single session. Job tags are also used to differentiate jobs from each workload. 
 ```python
 from concurrent.futures import ThreadPoolExecutor
 from qiskit_ibm_runtime import  Session, EstimatorV2 as Estimator
