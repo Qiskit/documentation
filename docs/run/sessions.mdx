@@ -32,7 +32,7 @@ The basic workflow for sessions is as follows:
 2. When the first job starts running, the _maximum timeout_ clock starts.
 2. Subsequent jobs within the session are prioritized over other jobs, reducing wait times.
 3. The _interactive timeout_ runs between the jobs in a session. Every session has an interactive timeout value (ITTL, or interactive time to live). If there are no session jobs queued within the ITTL window, the session is temporarily deactivated and normal job selection resumes. A job can reactivate the deactivated session<sup>*</sup> if the session has not reached its maximum timeout value.
-3. If the maximum timeout value is reached, the session ends and any remaining queued jobs fail.
+3. If the maximum timeout value is reached, the session ends and any remaining queued jobs fail. However, any jobs already running will run to completion.
 
 The following video illustrates session basic workflow:
 
