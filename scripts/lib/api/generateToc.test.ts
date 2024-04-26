@@ -99,15 +99,15 @@ describe("generateToc", () => {
             "url": "/docs/runtime",
           },
           {
-            "title": "qiskit_ibm_runtime.options",
+            "title": "...options",
             "url": "/docs/options",
           },
           {
-            "title": "qiskit_ibm_runtime.options.submodule",
+            "title": "...options.submodule",
             "url": "/docs/qiskit_ibm_runtime.options.submodule",
           },
           {
-            "title": "qiskit_ibm_runtime.single",
+            "title": "...single",
             "url": "/docs/single",
           },
           {

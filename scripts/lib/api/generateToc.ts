@@ -47,7 +47,7 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   // so it's more useful to show them all and have less nesting.
   const sortedTocModules = pkg.nestModulesInToc
     ? getNestedTocModulesSorted(tocModules, tocModulesByTitle, tocModuleTitles)
-    : orderEntriesByTitle(tocModules);
+    : sortAndTruncateModules(tocModules);
   generateOverviewPage(tocModules);
 
   return {
@@ -138,6 +138,16 @@ function getNestedTocModulesSorted(
   }
 
   return orderEntriesByTitle(nestedTocModules);
+}
+
+function sortAndTruncateModules(entries: TocEntry[]): TocEntry[] {
+  const sorted = orderEntriesByTitle(entries);
+  sorted.forEach((entry) => {
+    // E.g. qiskit_ibm_runtime.options -> ...options, but ignore
+    // qiskit_ibm_runtime without a `.`.
+    entry.title = entry.title.replace(/^[^.]+\./, "...");
+  });
+  return sorted;
 }
 
 function generateOverviewPage(tocModules: TocEntry[]): void {
