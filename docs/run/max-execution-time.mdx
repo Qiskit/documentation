@@ -1,6 +1,6 @@
 ---
 title: Maximum execution time for a Qiskit Runtime job
-description: Describes how long a Qiskit Runtime job can run.
+description: Describes how long a Qiskit Runtime job can run, regardless of what execution mode is used.
 
 ---
 
@@ -16,7 +16,7 @@ The maximum execution time for a job is the smaller of these values:
 - The value set for max_execution_time
 - The system-determined job timeout value
 
-The `max_execution_time` value is based on _quantum time_, not wall clock time. Quantum time is the duration a quantum system is committed to fulfilling a user request. However, simulator jobs use wall clock time because they do not have quantum time.
+The `max_execution_time` value is based on _quantum time_, not wall clock time. Quuantum time is the time spent by the QPU complex to process the job. However, simulator jobs use wall clock time because they do not have quantum time.
 
 Set the maximum execution time (in seconds) on the job options by using one of the following methods:
 
@@ -43,6 +43,10 @@ print(f"Quantum time used by job {job.job_id()} was {job.metrics()['usage']['qua
 The system calculates an appropriate job timeout value based on the input circuits and options. This system-calculated timeout is capped at 3 hours to ensure fair device usage. If a `max_execution_time` is also specified for the job, the lesser of the two values is used.
 
 For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the system determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
+
+## Session maximum execution time
+
+When a session is started, it is assigned a maximum session timeout value. After this timeout is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state. For instructions to set the session maximum time, see [Specify the session length](run-jobs-in-session#specify-length).
 
 ## Other limitations
 
