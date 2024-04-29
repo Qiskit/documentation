@@ -1,6 +1,6 @@
 ---
-title: Advanced runtime options
-description: Specify options when building with Qiskit runtime primitives
+title: Advanced Qiskit Runtime options
+description: Specify options when building with Qiskit Runtime primitives
 
 ---
 
@@ -129,7 +129,7 @@ sampler.run([circuit1, circuit2], shots=128)
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the category the options are in. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid).
+You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the options category. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid).
 ```python
 estimator = Estimator(session=backend, options=options)
 result = estimator.run(circuit, observable, shots=1024).result()
@@ -271,7 +271,7 @@ algorithm.  These methods can be set through the `resilience_level` option.  For
 
 <Tabs>
   <TabItem value="PrimV2" label="Estimator V2">
-With Estimator V2, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine tuning.
+With Estimator V2, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine-tuning.
 
 ```python
 estimator = Estimator(backend=backend)
