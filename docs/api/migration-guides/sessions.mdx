@@ -35,17 +35,17 @@ To ensure the most efficient use of the execution modes, the following practices
 
     A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`.
 
-- If each of your jobs consume more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, classical processing can be done in parallel. You can take advantage of this by submitting multiple jobs in [batch](#divide) or [session](#two-vqe) execution mode.
+- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, classical processing can be done in parallel. You can take advantage of this by submitting multiple jobs in [batch](#divide) or [session](#two-vqe) execution mode.
 
-The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because of reduced wall clock time.
+The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because it can reduce wall clock time.
 
 
 ## Sessions
 
-Sessions are designed for iterative workloads to avoid queueing delays between each iteration. All sessions now run in *dedicated* mode, so that when running a session, you have exclusive access to the backend.  Because of this, you are now charged for the total wall clock time that the system is reserved for your use. Additionally, sessions are now thread safe. That is, you can run multiple workloads within a session.
+Sessions are designed for iterative workloads to avoid queuing delays between each iteration. All sessions now run in *dedicated* mode, so that when running a session, you have exclusive access to the backend.  Because of this, you are now charged for the total wall clock time that the system is reserved for your use. Additionally, sessions are now thread safe. That is, you can run multiple workloads within a session.
 
 <Admonition type="note">
-Session execution mode is not supported in the Open plan. Jobs will run in job mode instead.
+Session execution mode is not supported in the Open Plan. Jobs will run in job mode instead.
 </Admonition>
 
 <span id="two-vqe"></span>
@@ -69,7 +69,7 @@ with Session(backend=backend), ThreadPoolExecutor() as executor:
 
 ## Batch
 
-Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs, or jobs from another batch, can start when batch jobs are being processed, however, individual jobs might run between batch jobs.
+Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs, or jobs from another batch, can start when batch jobs are being processed; however, individual jobs might run between batch jobs.
 
 <span id="divide"></span>
 ### Example: Partition a 500-circuit job into five 100-circuit jobs and run them in batch

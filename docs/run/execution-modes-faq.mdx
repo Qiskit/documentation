@@ -108,7 +108,7 @@ The main difference is the time and cost trade off:
 Batch mode:
 
 - The total run time is less because the classical processing might run in parallel.
-- There is a slight overhead for running each job, so you end up paying a little more for batched jobs. This overhead correlates to the size of the job. For example, the total usage of two jobs, each containing 40 100x100 circuits is six seconds more than a single job containing 80 circuits.
+- There is a slight overhead for running each job, so you end up paying a little more for batched jobs. This overhead correlates to the size of the job. For example, the total usage of two jobs, each containing 40 100x100 circuits, is six seconds more than a single job containing 80 circuits.
 - Because batch mode doesn't give you exclusive access to a backend, jobs inside a batch might run with other users' jobs or system calibration jobs.
 - If some jobs fail, you still get results from the completed jobs.
 - You can take action in the middle of a batch workload based on the results of completed jobs. For example, you can cancel the rest of the jobs if the initial results look incorrect.
