@@ -154,7 +154,7 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
   for (const tocModule of tocModules) {
     if (tocModule.children && tocModule.children.length > 0) {
       tocModule.children = [
-        { title: "Overview", url: tocModule.url },
+        { title: "Module overview", url: tocModule.url },
         ...orderEntriesByChildrenAndTitle(tocModule.children),
       ];
       delete tocModule.url;

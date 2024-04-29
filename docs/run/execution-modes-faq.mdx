@@ -1,0 +1,177 @@
+---
+title: Execution modes FAQs
+description: Answers to commonly asked questions about Qiskit Runtime execution modes
+
+---
+# Qiskit Runtime execution modes FAQs
+
+<details>
+  <summary>
+    Does Qiskit Runtime local testing mode support different execution modes?
+  </summary>
+
+Local testing mode supports the syntax for the different execution modes, but because there is no scheduling involved when testing locally, the modes are ignored.
+</details>
+
+<details>
+  <summary>
+    How many jobs can run in parallel for a specific backend?
+  </summary>
+
+The number of jobs running in parallel is based on the degree of parallelism configured for the backend, which is five for most backends today.
+</details>
+
+
+## Sessions
+
+<details>
+  <summary>
+    What happens to my jobs if a session is closed?
+  </summary>
+
+If you are using the `Session` class in `qiskit-ibm-runtime`:
+
+  - `Session.close()` means the session no longer accepts new jobs, but existing jobs run to completion.
+  - `Session.cancel()` cancels all pending session jobs.
+
+If you are using the REST API directly:
+
+  - `PATCH /sessions/{id}` with `accepting_jobs=False` means the session no longer accepts new jobs, but existing jobs run to completion.
+  - `DELETE /sessions/{id}/close` cancels all pending session jobs.
+</details>
+
+<details>
+  <summary>
+    If I am using session mode and expect my experiment to take many hours, is there a way to ask for calibrations to happen?
+  </summary>
+
+No. On-demand calibration is not available.
+</details>
+
+<details>
+  <summary>
+    Is there an interactive timeout (ITTL) with session mode?
+  </summary>
+
+Yes. This reduces unwanted cost if a user forgets to close their session.
+</details>
+
+<details>
+  <summary>
+    How does session usage impact IBM Quantum Network members who are not billed by usage?
+  </summary>
+
+IBM Quantum Network members gain reserved capacity on IBM Quantum&trade; systems. Usage is deducted from this capacity and hubs with lower capacity have longer queueing time.
+</details>
+
+<details>
+  <summary>
+    Do I get the same parallelism in session mode that I get with batch mode?
+  </summary>
+
+Yes. If you submit multiple jobs simultaneously in a session, these jobs will run in parallel.
+</details>
+
+<details>
+  <summary>
+    Can sessions be interrupted by system jobs?
+  </summary>
+
+No.  Sessions run in dedicated mode, which means that the user has total access to the backend.  Sessions are never interrupted by system jobs, such as calibrations or software upgrades.
+</details>
+
+<details>
+  <summary>
+    Is compilation time counted as usage in session mode?
+  </summary>
+
+Yes.  In session mode, usage is the wall clock time the system is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the system is still running a job. Additionally, time after a job completes while the system waits for another session job (the interactive time to live (ITTL)) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
+</details>
+
+## Batch
+
+<details>
+  <summary>
+    How many jobs run in parallel in batch mode?
+  </summary>
+
+The number of jobs running in parallel is based on the degree of parallelism configured for the backend, which is five for most backends. However, the number of concurrent jobs in an active batch could be lower because there could be other jobs already running when the batch becomes active.
+</details>
+
+<details>
+  <summary>
+    How is running _N_ PUBs in job mode different from running _N_ single-PUB jobs in batch mode?
+  </summary>
+
+The main difference is the time and cost tradeoff:
+
+Batch mode:
+
+- The total run time is less because the classical processing might run in parallel.
+- There is a slight overhead for running each job, so you end up paying a little more for batched jobs. This overhead correlates to the size of the job. For example, the total usage of two jobs, each containing 40 100x100 circuits, is six seconds more than a single job containing 80 circuits.
+- Because batch mode doesn't give you exclusive access to a backend, jobs inside a batch might run with other users' jobs or system calibration jobs.
+- If some jobs fail, you still get results from the completed jobs.
+- You can take action in the middle of a batch workload based on the results of completed jobs. For example, you can cancel the rest of the jobs if the initial results look incorrect.
+
+Job mode:
+
+- The total run time is likely to be higher because there is no parallelism.
+- You don't pay for the extra per-job overhead associated with batch workloads.
+- All of your circuits will run together.
+- If this single job fails, you don't get partial results.
+- Your job might hit the system limit if it contains too many circuits or if the circuits are too large.
+
+In general, if your each of your jobs consumes less than a minute of QPU time, consider combining them into a larger job (this applies to all execution modes).
+</details>
+
+<details>
+  <summary>
+    How many jobs I can submit in a batch?
+  </summary>
+
+There are no limits to how many jobs you can submit in a Batch. There are, however, limits on how much usage your jobs can consume based on your plan.
+</details>
+
+<details>
+  <summary>
+    When would my batch mode jobs run in parallel with other users' jobs?
+  </summary>
+
+The degree of parallelism configured for a backend is also called "execution lanes". If there are one or more execution lanes available, and your batch jobs are next in line to be run, the scheduler starts enough jobs to fill the lanes. Similarly, if your batch doesn't have enough jobs to fill the lanes, the scheduler starts other users' jobs.
+
+Example: The backend you choose has five execution lanes, and two of them are currently occupied by other users' jobs. Your batch of six jobs is next in line to be run.
+
+Because there are three available lanes, the scheduler starts three of your six batch jobs. It continues to start jobs in your batch as jobs finish and execution lanes become available. If a lane becomes available and there are no more jobs in your batch, the scheduler starts the next job in line.
+</details>
+
+<details>
+  <summary>
+    Do all of my batch jobs need to wait in the queue?
+  </summary>
+
+Because QPUs are limited and shared resources, all jobs need to wait in the queue. However, when the first job in your batch starts running, all the other jobs in that batch essentially jump to the front of the queue and are prioritized by the scheduler.
+</details>
+
+<details>
+  <summary>
+    Does a batch end automatically when the last associated job ends?
+  </summary>
+
+Yes. However, there is a slight overhead associated with this auto-detection, so you should always close your batch and session.
+</details>
+
+<details>
+  <summary>
+    Can batches be interrupted by system jobs?
+  </summary>
+
+Yes.  Batch workloads might be interrupted by system jobs, such as calibrations or software upgrades.
+</details>
+
+<details>
+  <summary>
+    Is compilation time counted as usage in batch mode?
+  </summary>
+
+No.  In batch mode, only time spent on the quantum hardware counts as usage.
+</details>

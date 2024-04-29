@@ -28,13 +28,15 @@ There are several benefits to using sessions:
 
 The basic workflow for sessions is as follows:
 
-1. The first job in a session enters the normal queue. 
-2. When the first job starts running, the _maximum timeout_ clock starts. 
-2. Subsequent jobs within the session are prioritized over others, reducing wait times.
-3. The _interactive timeout_ runs between the jobs in a session. Every session has an interactive timeout value (ITTL, or interactive time to live). If there are no session jobs queued within the ITTL window, the session is temporarily deactivated and normal job selection resumes. A deactivated session can be resumed for the next job<sup>*</sup> if the session has not reached its maximum timeout value.
-3. If the maximum timeout value is reached, the sessions end and any remaining queued jobs fail.
+1. The first job in a session enters the normal queue.
+2. When the first job starts running, the _maximum timeout_ clock starts.
+2. Subsequent jobs within the session are prioritized over other jobs, reducing wait times.
+3. The _interactive timeout_ runs between the jobs in a session. Every session has an interactive timeout value (ITTL, or interactive time to live). If there are no session jobs queued within the ITTL window, the session is temporarily deactivated and normal job selection resumes. A job can reactivate the deactivated session<sup>*</sup> if the session has not reached its maximum timeout value.
+3. If the maximum timeout value is reached, the session ends and any remaining queued jobs fail. However, any jobs already running will run to completion.
 
-<video title="A line of users is shown. The one in the current session becomes larger than the rest and has rotating arrows around them, indicating that they are the priority. Boxes (jobs) are seen being sent to the QPU (represented by a chandelier) from the current user. Other users begin to pop up during the animation and their jobs appear beneath them as they wait for the prioritized user's session to end. A progress bar appears above the prioritized user to represent the interactive TTL. After the prioritized user's session finishes, the line moves ahead toward the system, and the next person's jobs can begin processing." className="max-w-auto h-auto" controls>
+The following video illustrates the session basic workflow:
+
+<video title="A user starts a session job and becomes the priority user.  They submit jobs to the quantum system while other users wait. After the prioritized user's session finishes, the next person's jobs can begin processing." className="max-w-auto h-auto" controls>
   <source src="/videos/run/sessions/demo.mp4" type="video/mp4"></source>
 </video>
 
@@ -45,7 +47,7 @@ The basic workflow for sessions is as follows:
 To find the maximum session timeout value for a session, follow the instructions in [Determine session details](run-jobs-in-session#session-details).
 
 <Admonition type="note">
-    There might be a limit imposed on the ITTL value depending on whether your hub is Premium, Open, and so on. 
+    There might be a limit imposed on the ITTL value depending on whether your hub is Premium, Open, and so on.
 </Admonition>
 
 For instructions to start a session, see [Run a job in a session](run-jobs-in-session).
@@ -53,15 +55,20 @@ For instructions to start a session, see [Run a job in a session](run-jobs-in-se
 <span id="ends"></span>
 ## End a session
 
-A session can end in the following circumstances: 
+A session ends in the following circumstances:
 
-* The maximum timeout is reached, resulting in the cancelation of all queued jobs. 
+* The maximum timeout is reached, resulting in the cancelation of all queued jobs.
 * The session is manually canceled, resulting in the cancelation of all queued jobs.
 * The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
+* If you use Session as a context manager, that is,  `with Session()`, the session is automatically closed when the context ends (the same behavior as using `session.close()`).
+
+<Admonition type = "note">
+When a session ends, the system finishes running any job that is currently running.
+</Admonition>
 
 ## Usage patterns
 
-Sessions run iteratively.  This is useful for algorithms that require classical post-processing, where jobs submitted within the interactive time-out are processed immediately. If you want to submit jobs in a batch instead, see [Run jobs in a batch.](run-jobs-batch)
+Sessions are especially useful for algorithms that require classical post-processing, where jobs submitted within the interactive time-out are processed immediately. If you want to submit jobs in a batch instead, see [Run jobs in a batch.](run-jobs-batch)
 
 Example: Run an iterative workload that uses the classical SciPy optimizer to minimize a cost function. In this model, SciPy uses the output of the cost function to calculate its next input.
 
@@ -86,6 +93,8 @@ session.close()
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial. 
-  - Review the [Session API](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session) reference.
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial.
+  - Review the [Session API](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session) reference.
+  - Review the execution modes [best practices.](execution-modes#best-practices)
+  - Learn how to [run a job in a session.](run-jobs-in-session)
 </Admonition>
