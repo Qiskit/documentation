@@ -157,7 +157,7 @@ describe("generateToc", () => {
         {
           children: [
             {
-              title: "Overview",
+              title: "Module overview",
               url: "/docs/options",
             },
             {
