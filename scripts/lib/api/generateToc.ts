@@ -30,6 +30,12 @@ type Toc = {
   collapsed: boolean;
 };
 
+function nestModule(id: string): boolean {
+  // For example, nest `qiskit.algorithms.submodule`, but
+  // not `qiskit.algorithms` which should be top-level.
+  return id.split(".").length > 2;
+}
+
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results);
   const tocModules = generateTocModules(modules);
@@ -38,9 +44,22 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
-  const sortedTocModules = pkg.tocGrouping
-    ? groupAndSortModules(pkg.tocGrouping, tocModules, tocModulesByTitle)
-    : orderEntriesByTitle(tocModules);
+  let sortedTocModules;
+  if (pkg.tocGrouping) {
+    sortedTocModules = groupAndSortModules(
+      pkg.tocGrouping,
+      tocModules,
+      tocModulesByTitle,
+    );
+  } else if (pkg.nestModulesInToc) {
+    sortedTocModules = getNestedTocModulesSorted(
+      tocModules,
+      tocModulesByTitle,
+      tocModuleTitles,
+    );
+  } else {
+    sortedTocModules = orderEntriesByTitle(tocModules);
+  }
   generateOverviewPage(tocModules);
 
   return {
@@ -160,6 +179,35 @@ function groupAndSortModules(
     }
   });
   return result;
+}
+
+function getNestedTocModulesSorted(
+  tocModules: TocEntry[],
+  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModuleTitles: string[],
+): TocEntry[] {
+  const nestedTocModules: TocEntry[] = [];
+  for (const tocModule of tocModules) {
+    if (!nestModule(tocModule.title)) {
+      nestedTocModules.push(tocModule);
+      continue;
+    }
+
+    const parentModuleTitle = findClosestParentModules(
+      tocModule.title,
+      tocModuleTitles,
+    );
+
+    if (parentModuleTitle) {
+      const parentModule = tocModulesByTitle[parentModuleTitle];
+      if (!parentModule.children) parentModule.children = [];
+      parentModule.children.push(tocModule);
+    } else {
+      nestedTocModules.push(tocModule);
+    }
+  }
+
+  return orderEntriesByTitle(nestedTocModules);
 }
 
 function generateOverviewPage(tocModules: TocEntry[]): void {

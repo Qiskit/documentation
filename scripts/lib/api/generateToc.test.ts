@@ -122,6 +122,62 @@ describe("generateToc", () => {
     `);
   });
 
+  test("TOC with nested submodules", () => {
+    const toc = generateToc(Pkg.mock({ nestModulesInToc: true }), [
+      {
+        meta: {
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime",
+        },
+        url: "/docs/runtime",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime.options",
+        },
+        url: "/docs/options",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime.options.submodule",
+        },
+        url: "/docs/qiskit_ibm_runtime.options.submodule",
+        ...DEFAULT_ARGS,
+      },
+    ]);
+    expect(toc).toEqual({
+      children: [
+        {
+          title: "qiskit_ibm_runtime",
+          url: "/docs/runtime",
+        },
+        {
+          children: [
+            {
+              title: "Module overview",
+              url: "/docs/options",
+            },
+            {
+              title: "qiskit_ibm_runtime.options.submodule",
+              url: "/docs/qiskit_ibm_runtime.options.submodule",
+            },
+          ],
+          title: "qiskit_ibm_runtime.options",
+        },
+        {
+          title: "Release notes",
+          url: "/api/my-quantum-project/release-notes",
+        },
+      ],
+      collapsed: true,
+      title: "My Quantum Project",
+    });
+  });
+
   test("TOC with grouped modules", () => {
     // This ordering is intentional.
     const topLevelEntries: TocGroupingEntry[] = [

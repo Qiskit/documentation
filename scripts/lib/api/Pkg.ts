@@ -15,7 +15,7 @@ import { join } from "path/posix";
 import { findLegacyReleaseNotes } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
-import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping";
+import { TocGrouping } from "./TocGrouping";
 
 export interface ReleaseNoteEntry {
   title: string;
@@ -36,6 +36,7 @@ export class Pkg {
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
   readonly releaseNoteEntries: ReleaseNoteEntry[];
+  readonly nestModulesInToc: boolean;
   readonly tocGrouping?: TocGrouping;
 
   static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
@@ -49,6 +50,7 @@ export class Pkg {
     versionWithoutPatch: string;
     type: PackageType;
     releaseNoteEntries: ReleaseNoteEntry[];
+    nestModulesInToc?: boolean;
     tocGrouping?: TocGrouping;
   }) {
     this.name = kwargs.name;
@@ -59,6 +61,7 @@ export class Pkg {
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
     this.releaseNoteEntries = kwargs.releaseNoteEntries;
+    this.nestModulesInToc = kwargs.nestModulesInToc ?? false;
     this.tocGrouping = kwargs.tocGrouping;
   }
 
@@ -84,7 +87,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
         releaseNoteEntries,
-        tocGrouping: QISKIT_TOC_GROUPING,
+        nestModulesInToc: true,
       });
     }
 
@@ -122,6 +125,7 @@ export class Pkg {
     versionWithoutPatch?: string;
     type?: PackageType;
     releaseNoteEntries?: ReleaseNoteEntry[];
+    nestModulesInToc?: boolean;
     tocGrouping?: TocGrouping;
   }): Pkg {
     return new Pkg({
@@ -133,6 +137,7 @@ export class Pkg {
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
       releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
+      nestModulesInToc: kwargs.nestModulesInToc ?? false,
       tocGrouping: kwargs.tocGrouping ?? undefined,
     });
   }
