@@ -7,401 +7,68 @@ in_page_toc_max_heading_level: 2
 ---
 
 <span id="migrate-to-qr"></span>
-# Migrate to using Qiskit Runtime primitives
+# Overview
 
 This guide describes key patterns of behavior and use cases with code
-examples to help you migrate code from the legacy `qiskit-ibmq-provider`
-package to use the Qiskit Runtime primitives.
+examples to help you migrate code from the legacy `backend.run()` interface to use the Qiskit Runtime primitives interface (`qiskit-ibm-runtime` package).  
 
-## Overview
-
-There are two methods for accessing IBM Quantum&trade; systems. First, the `qiskit-ibm-provider` package provides the `backend.run()` interface, allowing direct access to IBM Quantum systems with no pre- or post-processing involved. This level of access is suitable for those users who want **precise control** over circuit execution and result processing. This level of access is needed for those at the level of kernel developer who are looking to develop, for example, circuit optimization routines or error mitigation techniques, or who want to characterize quantum systems.
-
-In contrast, Qiskit Runtime is designed to **streamline algorithm and application construction** by removing the need for users to understand technical hardware and low-level software details. Advanced processing techniques for error suppression and mitigation are automatically applied, giving users high-fidelity results without the burden of having to code these routines themselves. Sessions within Qiskit Runtime allow users to run iterative algorithm circuits back to back, or batch collections of circuits without having to re-queue each job. This results in more efficient quantum processor use and reduces the time users spend running complex computations.
-
-<Admonition type="note">backend.run is required for running dynamic circuits.</Admonition>
-
-Primitives are the recommended tool to write quantum algorithms, as they
-encapsulate common device queries seen in application packages and allow
-for managed performance through the Qiskit Runtime service. However, if
-your algorithm requires more granular information, such as pre-shot
-measurements, the primitives might not provide the desired abstraction
-level.
-
-The Qiskit Runtime primitives implement the reference `Sampler` and
-`Estimator` interfaces found in
-[qiskit.primitives](../qiskit/primitives).
-These interfaces let you switch between primitive implementations with
-minimal code changes. Different primitive implementations can be found
-in the `qiskit`, `qiskit_aer`, and `qiskit_ibm_runtime` libraries. Each
-implementation serves a specific purpose:
-
--   The primitives in `qiskit` can perform local state vector
-    simulations - useful for quickly prototyping algorithms.
--   The primitives in `qiskit_aer` give access to the local Aer
-    simulators for tasks such as noisy simulation.
--   The primitives in `qiskit_ibm_runtime` provide access to cloud
-    simulators and real hardware through the Qiskit Runtime service.
-    They include exclusive features such as built-in circuit
-    optimization and error mitigation support.
-
-<Admonition type="note">
-    The **only primitives that provide access to the Qiskit Runtime service** are those imported from `qiskit_ibm_runtime` (Qiskit Runtime Primitives).
+<Admonition type="note" title="Notes">
+- Because `backend.run()` only returned counts, the direct replacement is Qiskit Runtime `SamplerV2`.  However, if you used manual processing with `backend.run()` to return expectation values, you can now use Qiskit Runtime `EstimatorV2` instead.
+- Because both `backend.run()` and the "version 1" primitives are being deprecated, this guide uses only the V2 primitives. 
 </Admonition>
 
+The `qiskit-ibm-runtime` package provides cloud access to the IBM Quantum&trade; systems through the primitives interface. The `backend.run()` interface coexisted with the original (V1) primitives model as the dedicated “direct hardware access” entry point.  With the introduction of the V2 primitives interface, the new `SamplerV2` class now fulfills that role. Consequentially, `backend.run()` is being deprecated, along with `qiskit-ibm-provider`, which only exposed the `backend.run()` interface. 
+
+The Qiskit Runtime primitives implement the reference Sampler V2 and Estimator V2 interfaces found in `qiskit.primitives`, and enable capabilities not available with the legacy `backend.run()` interface. These capabilities include application of advanced processing techniques for error suppression and mitigation in Estimator, the ability to efficiently sweep between arrays of parameter value sets or observables in both Sampler and Estimator, and access to the new local testing mode. Additionally, Qiskit Runtime lets users run iterative algorithm circuits back to back (session mode) or in collections of circuits without having to re-queue each job (batch mode). This results in more efficient quantum processor use and reduces the time spent running complex computations. 
+
+
+## Basic steps to migrate to primitives
+
+### Step 1: Determine which primitive to use
+
 When migrating, the key to writing an equivalent algorithm using
-primitives is to first identify what is the minimal unit of information
+primitives is to first identify what minimal unit of information
 your algorithm is based on:
 
--   If it uses an **expectation value**, you will need an `Estimator`.
--   If it uses a **probability distribution** (from sampling the device), you will need a `Sampler`.
+-   If it uses an **expectation value** of a certain observable with respect to a quantum state (a real number), you will now use Estimator. 
 
-After determining which primitive to use, identify where the algorithm
-accesses the system. Look for the call to `backend.run()`. Next, you
-will replace this call with the respective primitive call, as shown in
-the following examples.
+    An expectation value of an observable could be the target quantity in scenarios where knowing a quantum state is not relevant. This often occurs in optimization problems or chemistry applications. For example, when trying to discover the extremal energy of a system.
+-   If it uses a **probability distribution** from sampling the device, you will now use Sampler. 
 
-This guide is for algorithm developers who need to refactor algorithms to use primitives instead of `backend.run()`. See examples here:
 
-    -   [Update code that performs circuit sampling](qiskit-runtime-examples#sampler-algorithm)
-    -   [Update code that calculates expectation values](qiskit-runtime-examples#estimator-algorithm)
+    A probability distribution is often of interest in optimization problems that return a classical bit string, encoding a certain solution to a problem at hand. In these cases, you might be interested in finding a bit string that corresponds to a ket value with the largest probability of being measured from a quantum state, for example.
 
-The following topics are use cases with code migration examples:
+### Step 2: Change imports as necessary
 
--   [Update parameter values while running](#parm-circ)
--   [Algorithm tuning options (shots, transpilation, error mitigation)](../../run/advanced-runtime-options)
+Follow the steps in the appropriate topic to change your import options and other setup information:
 
-## FAQs
+- [Migrate from `qiskit-ibm-provider`](qiskit-runtime-from-ibm-provider)
+- [Migrate from `qiskit-ibmq-provider`](qiskit-runtime-from-ibmq-provider)
 
-Users might have the following questions when planning to migrate their
-code to Qiskit Runtime:
+### Step 3: Replace the call to `backend.run` with a call to `qiskit_ibm_runtime`.
 
-<details>
-<summary>How do the Qiskit Runtime primitives differ from backend.run?</summary>
+See these topics for instructions:
 
-There are two methods for accessing IBM Quantum systems. First, the qiskit-ibm-provider package provides the backend.run() interface, allowing direct access to IBM Quantum systems with no pre- or post-processing involved. This level of access is suitable for those users who want precise control over circuit execution and result processing. This level of access is needed for those looking to work at the level Kernel developer developing, for example, circuit optimization routines, error mitigation techniques, or characterizing quantum systems.
+-  [Update code that performs circuit sampling](qiskit-runtime-examples#sampler-algorithm)
+-  [Update code that calculates expectation values](qiskit-runtime-examples#estimator-algorithm)
+-  [Common use cases (basic, parameterized, and dynamic circuits)](qiskit-runtime-use-case)
 
-In contrast, Qiskit Runtime is designed to streamline algorithm and application construction by removing the need for users to understand technical hardware and low-level software details. Advanced processing techniques for error suppression and mitigation are automatically applied, giving users high-fidelity results without the burden of having to code these routines themselves. The inclusion of sessions within Qiskit Runtime allows users to run iterative algorithm circuits back to back, or batch collections of circuits without having to re-queue each job. This results in more efficient quantum processor utilization and reduces the total amount of time users spend running complex computations.
 
-</details>
+### Step 3a: replace any `backend.run` options with `qiskit_ibm_runtime` options.  
 
-<details>
-<summary>Which channel should I use?</summary>
+See the following topics for instructions:
 
-After deciding to use Qiskit Runtime primitives, the user must determine
-whether to access Qiskit Runtime through IBM Cloud or IBM Quantum
-Platform. Some information that might help you decide includes:
+- [Migrate options](qiskit-runtime-options)
+- Common use cases [Options section](qiskit-runtime-use-case#migrate-options)
 
-- The available plans:
-   - Qiskit Runtime is available in both the Open (free access) or Premium (contract-based paid access) plan on IBM Quantum Platform. See [IBM Quantum access plans](https://www.ibm.com/quantum/access-plans) for details.
-   - Qiskit Runtime is accessible through the Lite (free access) or Standard (pay-as-you-go access) plan in IBM Cloud. See [Qiskit Runtime plans](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-plans) on IBM Cloud for details.
-- The use case requirements:
-   - IBM Quantum Platform offers a visual circuit composer (Quantum Composer) and a Jupyter Notebook environment (Quantum Lab).
-   - IBM Cloud offers a cloud native service that is ideal if users need to integrate quantum capabilities with other cloud services.
-
-</details>
-
-<details>
-<summary>How do I set up my channel?</summary>
-
-After deciding which channel to use to interact with Qiskit Runtime, you
-can get set up on either platform by following the steps in [Install and set up.](../../start/install)
-
-</details>
-
-<details>
-<summary>Should I modify the Qiskit Terra algorithms?</summary>
-
-As of v0.22, [Qiskit Terra algorithms](https://github.com/Qiskit/qiskit/tree/stable/0.46/qiskit/algorithms) use Qiskit Runtime primitives. Thus, there is no need for users to
-modify amplitude estimators or any other Qiskit Terra algorithms.
-
-</details>
-
-<details>
-<summary>Which primitive should I use?</summary>
-
-When choosing which primitive to use, you first need to understand
-whether the algorithm uses a **quasi-probability distribution** sampled
-from a quantum state (a list of quasi-probabilities), or an
-**expectation value** of a certain observable with respect to a
-quantum state (a real number).
-
-A probability distribution is often of interest in optimization problems
-that return a classical bit string, encoding a certain solution to a
-problem at hand. In these cases, you might be interested in finding a
-bit string that corresponds to a ket value with the largest probability
-of being measured from a quantum state, for example.
-
-An expectation value of an observable could be the target quantity in
-scenarios where knowing a quantum state is not relevant. This often
-occurs in optimization problems or chemistry applications. For example,
-when trying to discover the extremal energy of a system.
-
-</details>
-
-## Migrate setup from qiskit-ibmq-provider
-
-This guide describes how to migrate code from the legacy IBMQ provider
-`qiskit-ibmq-provider` package to use Qiskit Runtime
-`qiskit-ibm-runtime`. This guide includes instructions to
-migrate legacy runtime programs to the new syntax. However, the ability
-to use custom uploaded programs has been deprecated and has been replaced with Quantum Serverless patterns.  For instructions to migrate, see [Converting from Qiskit Runtime Programs.](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html)
-
-### Changes in Class name and location
-
-The classes related to Qiskit Runtime that used to be included in
-`qiskit-ibmq-provider` are now part of `qiskit-ibm-runtime`. Before, the
-provider used to populate the `qiskit.providers.ibmq.runtime` namespace
-with objects for Qiskit Runtime. These now live in the
-`qiskit_ibm_runtime` module.
-
-The module from which the classes are imported has changed. The
-following table contains example access patterns in
-`qiskit.providers.ibmq.runtime` and their new form in
-`qiskit_ibm_runtime`:
-
-| class in qiskit-ibmq-provider                    | class in qiskit-ibm-runtime               | Notes                                                                                                                |
-|--------------------------------------------------|-------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| qiskit.providers.ibmq.runtime.IBMRuntimeService  | qiskit_ibm_runtime.QiskitRuntimeService   | IBMRuntimeService class was removed from qiskit-ibm-runtime 0.6 and replaced by the new class in qiskit-ibm-runtime. |
-| qiskit.providers.ibmq.runtime.RuntimeJob         | qiskit_ibm_runtime.RuntimeJob             |
-| qiskit.providers.ibmq.runtime.RuntimeProgram     | qiskit_ibm_runtime.RuntimeProgram         |
-| qiskit.providers.ibmq.runtime.UserMessenger      | qiskit_ibm_runtime.program.UserMessenger  | New location: qiskit_ibm_runtime.program                                                               |
-| qiskit.providers.ibmq.runtime.ProgramBackend     | qiskit_ibm_runtime.program.ProgramBackend | New location: qiskit_ibm_runtime.program                                                               |
-| qiskit.providers.ibmq.runtime.ResultDecoder      | qiskit_ibm_runtime.program.ResultDecoder  | New location: qiskit_ibm_runtime.program                                                               |
-| qiskit.providers.ibmq.runtime.RuntimeEncoder     | qiskit_ibm_runtime.RuntimeEncoder         |
-| qiskit.providers.ibmq.runtime.RuntimeDecoder     | qiskit_ibm_runtime.RuntimeDecoder         |
-| qiskit.providers.ibmq.runtime.ParameterNamespace | qiskit_ibm_runtime.ParameterNamespace     |
-| qiskit.providers.ibmq.runtime.RuntimeOptions     | qiskit_ibm_runtime.RuntimeOptions         |
-
-
-### Import path
-
-The import path has changed as follows:
-
-**Legacy**
-
-``` python
-from qiskit import IBMQ
-```
-
-**Updated**
-
-``` python
-from qiskit_ibm_runtime import QiskitRuntimeService
-```
-
-### Save accounts
-
-Use the updated code to work save accounts.
-
-**Legacy**
-
-``` python
-IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
-```
-
-**Updated** 
-
-The new syntax accepts credentials for
-Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
-information on retrieving account credentials, see [Install and set up](../../start/install).
-
-``` python
-# IBM Cloud channel
-
-QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", overwrite=True)
-
-# IBM Quantum channel; set to default 
-
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
-```
-
-Additionally, you can now name your saved credentials and load the credentials by name.
-
-
-``` python
-# Save different accounts for open and premium access
-
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h1/g1/p1", name="premium")
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h2/g2/p2", name="open")
-
-# Load the "open" credentials
-
-service = QiskitRuntimeService(name="open")
-```
-
-### Load accounts
-
-Use the updated code to load accounts.
-
-**Legacy**
-
-``` python
-IBMQ.load_account()
-```
-
-**Updated**
-
-The new syntax combines the functionality from `load_account()` and
-`get_provider()` in one statement. The `channel` input parameter is
-optional. If multiple accounts have been saved in one device and no
-`channel` is provided, the default is `"ibm_cloud"`.
-
-``` python
-# To access saved credentials for the IBM cloud channel
-service = QiskitRuntimeService(channel="ibm_cloud")
-
-# To access saved credentials for the IBM quantum channel
-service = QiskitRuntimeService(channel="ibm_quantum")
-```
-
-
-### Channel selection (get a provider)
-
-Use the updated code to select a channel.
-
-**Legacy**
-
-``` python
-provider = IBMQ.get_provider(project="my_project", group="my_group", hub="my_hub")
-```
-
-**Updated**
-
-The new syntax combines the functionality from `load_account()` and
-`get_provider()` in one statement. When using the `ibm_quantum` channel,
-the `hub`, `group`, and `project` are specified through the new
-`instance` keyword.
-
-``` python
-# To access saved credentials for the IBM quantum channel and select an instance
-service = QiskitRuntimeService(channel="ibm_quantum", instance="my_hub/my_group/my_project")
-```
-
-### Get the system or simulator
-
-Use the updated code to view systems and simulators.
-
-**Legacy**
-
-``` python
-provider = IBMQ.get_provider(hub="h1", group="g1", project="p1")
-backend = provider.get_backend("ibm_backend")
-```
-
-**Updated**
-
-``` python
-# You can specify the instance in service.backend() instead of initializing a new service
-backend = service.backend("ibm_backend", instance="h1/g1/p1")
-```
-
-### Upload, view, or delete custom prototype programs
-
-This function has been replaced with Quantum Serverless patterns.  For instructions to migrate, see [Converting from Qiskit Runtime Programs.](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html)
-
-<span id="parm-circ"></span>
-## Parametrized circuits with primitives
-
-Parametrized circuits are a commonly used tool for quantum algorithm
-design. Because `backend.run()` did not accept parametrized
-circuits, the parameter binding step had to be integrated in the
-algorithm workflow. The primitives can perform the parameter binding
-step internally, which results in a simplification of the algorithm-side
-logic.
-
-The following example summarizes the new workflow for managing
-parametrized circuits.
-
-### Example
-
-Let's define a parametrized circuit:
-
-``` python
-from qiskit.circuit import QuantumCircuit, ParameterVector
-
-n = 3
-thetas = ParameterVector('θ',n)
-
-qc = QuantumCircuit(n, 1)
-qc.h(0)
-
-for i in range(n-1):
-    qc.cx(i, i+1)
-
-for i,t in enumerate(thetas):
-    qc.rz(t, i)
-
-for i in reversed(range(n-1)):
-    qc.cx(i, i+1)
-
-qc.h(0)
-qc.measure(0, 0)
-
-qc.draw()
-```
-
-We want to assign the following parameter values to the circuit:
-
-``` python
-import numpy as np
-theta_values = [np.pi/2, np.pi/2, np.pi/2]
-```
-
-### Legacy
-
-Previously, the parameter values had to be bound to their respective
-circuit parameters prior to calling `backend.run()`.
-
-``` python
-from qiskit import Aer
-
-bound_circuit = qc.bind_parameters(theta_values)
-bound_circuit.draw()
-
-backend = Aer.get_backend('aer_simulator')
-job = backend.run(bound_circuit)
-counts = job.result().get_counts()
-print(counts)
-```
-
-### Primitives
-
-Now, the primitives take in parametrized circuits directly, together
-with the parameter values, and the parameter assignment operation can be
-performed more efficiently on the server side of the primitive.
-
-This feature is particularly interesting when working with iterative
-algorithms because the parametrized circuit remains unchanged between
-calls while the parameter values change. The primitives can transpile
-once and then cache the unbound circuit, using classical resources more
-efficiently. Moreover, only the updated parameters are transferred to
-the cloud, saving additional bandwidth.
-
-``` python
-from qiskit.primitives import Sampler
-
-sampler = Sampler()
-job = sampler.run(qc, theta_values)
-result = job.result().quasi_dists
-print(result)
-```
-
-## Algorithm tuning
-
-One of the advantages of the primitives is that they abstract away the
-circuit execution setup so that algorithm developers can focus on the
-pure algorithmic components. However, sometimes, to get the most out of
-an algorithm, you might want to tune certain primitive options. For details, see [Advanced runtime options](../../run/advanced-runtime-options).
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Review some [migration examples](qiskit-runtime-examples).
-    - [Get started with Estimator.](../../run/primitives-get-started#start-estimator)
-    - [Get started with Sampler.](../../run/primitives-get-started#start-sampler)
-    - Explore [sessions.](../../run/sessions)
-    - [Run a primitive in a session.](../../run/run-jobs-in-session)
-    - Experiment with the [Submit pre-transpiled circuits tutorial.](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives)
+    - [Get started with Estimator](../../run/primitives-get-started#start-estimator)
+    - [Get started with Sampler](../../run/primitives-get-started#start-sampler)
+    - Explore [sessions](../../run/sessions)
+    - [Run a primitive in a session](../../run/run-jobs-in-session)
+    - Experiment with the [Submit pre-transpiled circuits tutorial](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives)
 
 </Admonition>
