@@ -33,7 +33,7 @@ To ensure the most efficient use of the execution modes, the following practices
 - Always close your session, either by using a context manager or by specifying `session.close()`.
 - There is a fixed overhead associated with running a job. In general, if each job uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
 
-    A job's QPU time is listed in the **Usage** column on the IQP [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
+    A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`.
 
 - If each of your jobs consume more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, classical processing can be done in parallel. You can take advantage of this by submitting multiple jobs in [batch](#divide) or [session](#two-vqe) execution mode.
 
