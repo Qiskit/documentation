@@ -42,16 +42,17 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const tocModuleTitles = keys(tocModulesByTitle);
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
-  const nestedTocModules = getNestedTocModulesSorted(
-    tocModules,
-    tocModulesByTitle,
-    tocModuleTitles,
-  );
+
+  // Most packages don't nest submodules because their module list is so small,
+  // so it's more useful to show them all and have less nesting.
+  const sortedTocModules = pkg.nestModulesInToc
+    ? getNestedTocModulesSorted(tocModules, tocModulesByTitle, tocModuleTitles)
+    : orderEntriesByTitle(tocModules);
   generateOverviewPage(tocModules);
 
   return {
     title: pkg.title,
-    children: [...nestedTocModules, generateReleaseNotesEntries(pkg)],
+    children: [...sortedTocModules, generateReleaseNotesEntries(pkg)],
     collapsed: true,
   };
 }
@@ -116,7 +117,6 @@ function getNestedTocModulesSorted(
   tocModuleTitles: string[],
 ): TocEntry[] {
   const nestedTocModules: TocEntry[] = [];
-
   for (const tocModule of tocModules) {
     if (!nestModule(tocModule.title)) {
       nestedTocModules.push(tocModule);
@@ -144,7 +144,7 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
   for (const tocModule of tocModules) {
     if (tocModule.children && tocModule.children.length > 0) {
       tocModule.children = [
-        { title: "Overview", url: tocModule.url },
+        { title: "Module overview", url: tocModule.url },
         ...orderEntriesByChildrenAndTitle(tocModule.children),
       ];
       delete tocModule.url;

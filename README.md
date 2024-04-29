@@ -117,8 +117,9 @@ You also need to install a few system dependencies: TeX, Poppler, and graphviz. 
 
 > [!NOTE]
 > If your notebook submits hardware jobs to IBM Quantum, you must add it to the
-> ignore list in `scripts/nb-tester/test-notebooks.py`. This is not needed if
-> you only retrieve information.
+> list `notebooks-that-submit-jobs` in
+> [`scripts/nb-tester/notebooks.toml`](scripts/nb-tester/notebooks.toml). This
+> is not needed if the notebook only retrieves information.
 >
 > If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 > add it to the "Check for notebooks that require LaTeX" step in
@@ -307,9 +308,9 @@ You can also check that API docs and translations render by using any of these a
 
 CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
-## Format TypeScript files
+## Format README and TypeScript files
 
-If you're working on our support code in `scripts/`, run `npm run fmt` to automatically format the files.
+Run `npm run fmt` to automatically format the README, `.github` folder, and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 

@@ -60,6 +60,7 @@ test("qiskit-sphinx-theme", async () => {
     versionWithoutPatch: "0.1",
     type: "latest",
     releaseNoteEntries: [],
+    nestModulesInToc: false,
   });
   const markdownFolder = pkg.outputDir(docsBaseFolder);
 
