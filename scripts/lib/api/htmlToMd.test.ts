@@ -173,7 +173,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       "# DAGCircuit
 
-      <Class id="qiskit.dagcircuit.DAGCircuit" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py" signature="qiskit.dagcircuit.DAGCircuit">
+      <Class id="qiskit.dagcircuit.DAGCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py" signature="qiskit.dagcircuit.DAGCircuit">
         Bases: \`object\`
 
         Quantum circuit as a directed acyclic graph.
