@@ -15,6 +15,7 @@ import { isEmpty, orderBy } from "lodash";
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { Pkg } from "./Pkg";
+import type { TocGrouping, TocGroupingEntry } from "./TocGrouping";
 
 export type TocEntry = {
   title: string;
@@ -45,11 +46,17 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
-  // Most packages don't nest submodules because their module list is so small,
-  // so it's more useful to show them all and have less nesting.
-  const sortedTocModules = pkg.nestModulesInToc
-    ? getNestedTocModulesSorted(tocModulesByTitle, tocModuleTitles)
-    : sortAndTruncateModules(tocModules);
+  let sortedTocModules;
+  if (pkg.tocGrouping) {
+    sortedTocModules = groupAndSortModules(pkg.tocGrouping, tocModulesByTitle);
+  } else if (pkg.nestModulesInToc) {
+    sortedTocModules = getNestedTocModulesSorted(
+      tocModulesByTitle,
+      tocModuleTitles,
+    );
+  } else {
+    sortedTocModules = sortAndTruncateModules(tocModules);
+  }
   generateOverviewPage(tocModules);
 
   return {
@@ -111,6 +118,69 @@ function addItemsToModules(
       itemModule.children.push(itemTocEntry);
     }
   }
+}
+
+/** Group the modules into the user-defined tocGrouping, which defines the order
+ * of the top-level entries in the ToC.
+ *
+ * Within each TocGrouping.Section, this function will also sort the modules alphabetically.
+ */
+function groupAndSortModules(
+  tocGrouping: TocGrouping,
+  tocModulesByTitle: Map<string, TocEntry>,
+): TocEntry[] {
+  // First, record every valid section and top-level module.
+  const topLevelModuleIds = new Set<string>();
+  const sectionsToModules = new Map<string, TocEntry[]>();
+  tocGrouping.entries.forEach((entry) => {
+    if (entry.kind === "module") {
+      topLevelModuleIds.add(entry.moduleId);
+    } else {
+      sectionsToModules.set(entry.name, []);
+    }
+  });
+
+  // Go through each module in use and ensure it is either a top-level module
+  // or assign it to its section.
+  for (const tocModule of tocModulesByTitle.values()) {
+    if (topLevelModuleIds.has(tocModule.title)) continue;
+    const section = tocGrouping.moduleToSection(tocModule.title);
+    if (!section) {
+      throw new Error(
+        `Unrecognized module '${tocModule.title}'. It must either be listed as a module in TocGrouping.entries or be matched in TocGrouping.moduleToSection().`,
+      );
+    }
+    const sectionModules = sectionsToModules.get(section);
+    if (!sectionModules) {
+      throw new Error(
+        `Unknown section '${section}' set for the module '${tocModule.title}'. This means TocGrouping.moduleToSection() is not aligned with TocGrouping.entries`,
+      );
+    }
+    sectionModules.push(tocModule);
+  }
+
+  // Finally, create the ToC by using the ordering from moduleGrouping.entries.
+  // Note that moduleGrouping.entries might be a superset of the modules/sections
+  // actually in use for the API version, so we sometimes skip adding individual
+  // entries to the final result.
+  const result: TocEntry[] = [];
+  tocGrouping.entries.forEach((entry) => {
+    if (entry.kind === "module") {
+      const module = tocModulesByTitle.get(entry.moduleId);
+      if (!module) return;
+      module.title = entry.title;
+      result.push(module);
+    } else {
+      const modules = sectionsToModules.get(entry.name);
+      if (!modules || modules.length === 0) return;
+      result.push({
+        title: entry.name,
+        // Within a section, sort alphabetically.
+        children: orderEntriesByTitle(modules),
+      });
+    }
+  });
+  return result;
 }
 
 /** Nest modules so that only top-level modules like qiskit.circuit are at the top

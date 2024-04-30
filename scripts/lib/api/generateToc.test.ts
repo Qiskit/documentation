@@ -14,6 +14,7 @@ import { describe, expect, test } from "@jest/globals";
 
 import { generateToc } from "./generateToc";
 import { Pkg } from "./Pkg";
+import type { TocGroupingEntry } from "./TocGrouping";
 
 const DEFAULT_ARGS = {
   markdown: "",
@@ -174,6 +175,82 @@ describe("generateToc", () => {
       ],
       collapsed: true,
       title: "My Quantum Project",
+    });
+  });
+
+  test("TOC with grouped modules", () => {
+    // This ordering is intentional.
+    const topLevelEntries: TocGroupingEntry[] = [
+      { moduleId: "my_project", title: "API index", kind: "module" },
+      { name: "Group 2", kind: "section" },
+      { name: "Group 1", kind: "section" },
+      // Ensure we can handle unused entries.
+      { moduleId: "unused_module", title: "unused", kind: "module" },
+      { name: "Unused section", kind: "section" },
+    ];
+    const tocGrouping = {
+      entries: topLevelEntries,
+      moduleToSection: (module: string) =>
+        module == "my_project.module" ? "Group 1" : "Group 2",
+    };
+
+    const toc = generateToc(Pkg.mock({ tocGrouping }), [
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_project",
+        },
+        url: "/docs/my_project",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_project.module",
+        },
+        url: "/docs/my_project.module",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_project.module.submodule",
+        },
+        url: "/docs/my_project.module.submodule",
+        ...DEFAULT_ARGS,
+      },
+    ]);
+    expect(toc).toEqual({
+      collapsed: true,
+      title: "My Quantum Project",
+      children: [
+        {
+          title: "API index",
+          url: "/docs/my_project",
+        },
+        {
+          title: "Group 2",
+          children: [
+            {
+              title: "my_project.module.submodule",
+              url: "/docs/my_project.module.submodule",
+            },
+          ],
+        },
+        {
+          title: "Group 1",
+          children: [
+            {
+              title: "my_project.module",
+              url: "/docs/my_project.module",
+            },
+          ],
+        },
+        {
+          title: "Release notes",
+          url: "/api/my-quantum-project/release-notes",
+        },
+      ],
     });
   });
 
