@@ -123,14 +123,20 @@ function addItemsToModules(
   }
 }
 
+/** Group the modules into the user-defined tocGrouping, which defines the order
+ * of the top-level entries in the ToC.
+ *
+ * Within each TocGrouping.Section, this function will also sort the modules alphabetically.
+ */
 function groupAndSortModules(
-  moduleGrouping: TocGrouping,
+  tocGrouping: TocGrouping,
   tocModules: TocEntry[],
   tocModulesByTitle: Dictionary<TocEntry>,
 ): TocEntry[] {
+  // First, record every valid section and top-level module.
   const topLevelModuleIds = new Set<string>();
   const sectionsToModules = new Map<string, TocEntry[]>();
-  moduleGrouping.entries.forEach((entry) => {
+  tocGrouping.entries.forEach((entry) => {
     if (entry.kind === "module") {
       topLevelModuleIds.add(entry.moduleId);
     } else {
@@ -142,7 +148,7 @@ function groupAndSortModules(
   // or assign it to its section.
   tocModules.forEach((tocModule) => {
     if (topLevelModuleIds.has(tocModule.title)) return;
-    const section = moduleGrouping.moduleToSection(tocModule.title);
+    const section = tocGrouping.moduleToSection(tocModule.title);
     if (!section) {
       throw new Error(
         `Unrecognized module '${tocModule.title}'. It must either be listed as a module in TocGrouping.entries or be matched in TocGrouping.moduleToSection().`,
@@ -162,11 +168,11 @@ function groupAndSortModules(
   // actually in use for the API version, so we sometimes skip adding individual
   // entries to the final result.
   const result: TocEntry[] = [];
-  moduleGrouping.entries.forEach((entry) => {
+  tocGrouping.entries.forEach((entry) => {
     if (entry.kind === "module") {
       const module = tocModulesByTitle[entry.moduleId];
       if (!module) return;
-      module.title = entry.description;
+      module.title = entry.title;
       result.push(module);
     } else {
       const modules = sectionsToModules.get(entry.name);
@@ -181,6 +187,11 @@ function groupAndSortModules(
   return result;
 }
 
+/** Nest modules so that only top-level modules like qiskit.circuit are at the top
+ * and submodules like qiskit.circuit.library are nested.
+ *
+ * This function sorts alphabetically at every level.
+ */
 function getNestedTocModulesSorted(
   tocModules: TocEntry[],
   tocModulesByTitle: Dictionary<TocEntry>,
@@ -210,6 +221,10 @@ function getNestedTocModulesSorted(
   return orderEntriesByTitle(nestedTocModules);
 }
 
+/** Sorts all modules and truncates the package name, e.g. `qiskit_ibm_runtime.options` -> `...options`.
+ *
+ * Returns a flat list of modules without any nesting.
+ */
 function sortAndTruncateModules(entries: TocEntry[]): TocEntry[] {
   const sorted = orderEntriesByTitle(entries);
   sorted.forEach((entry) => {
