@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { Dictionary, isEmpty, keyBy, keys, orderBy } from "lodash";
+import { isEmpty, orderBy } from "lodash";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
@@ -39,21 +39,18 @@ function nestModule(id: string): boolean {
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results);
   const tocModules = generateTocModules(modules);
-  const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
-  const tocModuleTitles = keys(tocModulesByTitle);
+  const tocModulesByTitle = new Map(
+    tocModules.map((entry) => [entry.title, entry]),
+  );
+  const tocModuleTitles = Array.from(tocModulesByTitle.keys());
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
   let sortedTocModules;
   if (pkg.tocGrouping) {
-    sortedTocModules = groupAndSortModules(
-      pkg.tocGrouping,
-      tocModules,
-      tocModulesByTitle,
-    );
+    sortedTocModules = groupAndSortModules(pkg.tocGrouping, tocModulesByTitle);
   } else if (pkg.nestModulesInToc) {
     sortedTocModules = getNestedTocModulesSorted(
-      tocModules,
       tocModulesByTitle,
       tocModuleTitles,
     );
@@ -101,7 +98,7 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
 
 function addItemsToModules(
   items: HtmlToMdResultWithUrl[],
-  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModulesByTitle: Map<string, TocEntry>,
   tocModuleTitles: string[],
 ) {
   for (const item of items) {
@@ -112,7 +109,7 @@ function addItemsToModules(
     );
 
     if (itemModuleTitle) {
-      const itemModule = tocModulesByTitle[itemModuleTitle];
+      const itemModule = tocModulesByTitle.get(itemModuleTitle) as TocEntry;
       if (!itemModule.children) itemModule.children = [];
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
@@ -130,8 +127,7 @@ function addItemsToModules(
  */
 function groupAndSortModules(
   tocGrouping: TocGrouping,
-  tocModules: TocEntry[],
-  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModulesByTitle: Map<string, TocEntry>,
 ): TocEntry[] {
   // First, record every valid section and top-level module.
   const topLevelModuleIds = new Set<string>();
@@ -146,8 +142,8 @@ function groupAndSortModules(
 
   // Go through each module in use and ensure it is either a top-level module
   // or assign it to its section.
-  tocModules.forEach((tocModule) => {
-    if (topLevelModuleIds.has(tocModule.title)) return;
+  for (const tocModule of tocModulesByTitle.values()) {
+    if (topLevelModuleIds.has(tocModule.title)) continue;
     const section = tocGrouping.moduleToSection(tocModule.title);
     if (!section) {
       throw new Error(
@@ -161,7 +157,7 @@ function groupAndSortModules(
       );
     }
     sectionModules.push(tocModule);
-  });
+  }
 
   // Finally, create the ToC by using the ordering from moduleGrouping.entries.
   // Note that moduleGrouping.entries might be a superset of the modules/sections
@@ -170,7 +166,7 @@ function groupAndSortModules(
   const result: TocEntry[] = [];
   tocGrouping.entries.forEach((entry) => {
     if (entry.kind === "module") {
-      const module = tocModulesByTitle[entry.moduleId];
+      const module = tocModulesByTitle.get(entry.moduleId);
       if (!module) return;
       module.title = entry.title;
       result.push(module);
@@ -193,12 +189,11 @@ function groupAndSortModules(
  * This function sorts alphabetically at every level.
  */
 function getNestedTocModulesSorted(
-  tocModules: TocEntry[],
-  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModulesByTitle: Map<string, TocEntry>,
   tocModuleTitles: string[],
 ): TocEntry[] {
   const nestedTocModules: TocEntry[] = [];
-  for (const tocModule of tocModules) {
+  for (const tocModule of tocModulesByTitle.values()) {
     if (!nestModule(tocModule.title)) {
       nestedTocModules.push(tocModule);
       continue;
@@ -210,7 +205,7 @@ function getNestedTocModulesSorted(
     );
 
     if (parentModuleTitle) {
-      const parentModule = tocModulesByTitle[parentModuleTitle];
+      const parentModule = tocModulesByTitle.get(parentModuleTitle) as TocEntry;
       if (!parentModule.children) parentModule.children = [];
       parentModule.children.push(tocModule);
     } else {
