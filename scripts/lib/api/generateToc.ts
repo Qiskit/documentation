@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { Dictionary, isEmpty, keyBy, keys, orderBy } from "lodash";
+import { isEmpty, orderBy } from "lodash";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
@@ -38,15 +38,17 @@ function nestModule(id: string): boolean {
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results);
   const tocModules = generateTocModules(modules);
-  const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
-  const tocModuleTitles = keys(tocModulesByTitle);
+  const tocModulesByTitle = new Map(
+    tocModules.map((entry) => [entry.title, entry]),
+  );
+  const tocModuleTitles = Array.from(tocModulesByTitle.keys());
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
   // Most packages don't nest submodules because their module list is so small,
   // so it's more useful to show them all and have less nesting.
   const sortedTocModules = pkg.nestModulesInToc
-    ? getNestedTocModulesSorted(tocModules, tocModulesByTitle, tocModuleTitles)
+    ? getNestedTocModulesSorted(tocModulesByTitle, tocModuleTitles)
     : sortAndTruncateModules(tocModules);
   generateOverviewPage(tocModules);
 
@@ -89,7 +91,7 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
 
 function addItemsToModules(
   items: HtmlToMdResultWithUrl[],
-  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModulesByTitle: Map<string, TocEntry>,
   tocModuleTitles: string[],
 ) {
   for (const item of items) {
@@ -100,7 +102,7 @@ function addItemsToModules(
     );
 
     if (itemModuleTitle) {
-      const itemModule = tocModulesByTitle[itemModuleTitle];
+      const itemModule = tocModulesByTitle.get(itemModuleTitle) as TocEntry;
       if (!itemModule.children) itemModule.children = [];
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
@@ -111,13 +113,17 @@ function addItemsToModules(
   }
 }
 
+/** Nest modules so that only top-level modules like qiskit.circuit are at the top
+ * and submodules like qiskit.circuit.library are nested.
+ *
+ * This function sorts alphabetically at every level.
+ */
 function getNestedTocModulesSorted(
-  tocModules: TocEntry[],
-  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModulesByTitle: Map<string, TocEntry>,
   tocModuleTitles: string[],
 ): TocEntry[] {
   const nestedTocModules: TocEntry[] = [];
-  for (const tocModule of tocModules) {
+  for (const tocModule of tocModulesByTitle.values()) {
     if (!nestModule(tocModule.title)) {
       nestedTocModules.push(tocModule);
       continue;
@@ -129,7 +135,7 @@ function getNestedTocModulesSorted(
     );
 
     if (parentModuleTitle) {
-      const parentModule = tocModulesByTitle[parentModuleTitle];
+      const parentModule = tocModulesByTitle.get(parentModuleTitle) as TocEntry;
       if (!parentModule.children) parentModule.children = [];
       parentModule.children.push(tocModule);
     } else {
@@ -140,6 +146,10 @@ function getNestedTocModulesSorted(
   return orderEntriesByTitle(nestedTocModules);
 }
 
+/** Sorts all modules and truncates the package name, e.g. `qiskit_ibm_runtime.options` -> `...options`.
+ *
+ * Returns a flat list of modules without any nesting.
+ */
 function sortAndTruncateModules(entries: TocEntry[]): TocEntry[] {
   const sorted = orderEntriesByTitle(entries);
   sorted.forEach((entry) => {
