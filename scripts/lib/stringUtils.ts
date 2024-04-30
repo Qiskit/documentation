@@ -42,3 +42,7 @@ export function getLastPartFromFullIdentifier(fullIdentifierName: string) {
 export function capitalize(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
+
+export function hasPrefix(text: string, prefixes: string[]): boolean {
+  return prefixes.some((prefix) => text.startsWith(prefix));
+}
