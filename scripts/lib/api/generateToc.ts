@@ -58,7 +58,7 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
       tocModuleTitles,
     );
   } else {
-    sortedTocModules = orderEntriesByTitle(tocModules);
+    sortedTocModules = sortAndTruncateModules(tocModules);
   }
   generateOverviewPage(tocModules);
 
@@ -208,6 +208,16 @@ function getNestedTocModulesSorted(
   }
 
   return orderEntriesByTitle(nestedTocModules);
+}
+
+function sortAndTruncateModules(entries: TocEntry[]): TocEntry[] {
+  const sorted = orderEntriesByTitle(entries);
+  sorted.forEach((entry) => {
+    // E.g. qiskit_ibm_runtime.options -> ...options, but ignore
+    // qiskit_ibm_runtime without a `.`.
+    entry.title = entry.title.replace(/^[^.]+\./, "...");
+  });
+  return sorted;
 }
 
 function generateOverviewPage(tocModules: TocEntry[]): void {
