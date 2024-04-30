@@ -15,7 +15,7 @@ import { join } from "path/posix";
 import { findLegacyReleaseNotes } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
-import { TocGrouping } from "./TocGrouping";
+import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping";
 
 export interface ReleaseNoteEntry {
   title: string;
@@ -87,7 +87,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
         releaseNoteEntries,
-        nestModulesInToc: true,
+        tocGrouping: QISKIT_TOC_GROUPING,
       });
     }
 
