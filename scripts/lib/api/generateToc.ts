@@ -59,6 +59,10 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   }
 
   generateOverviewPage(tocModules);
+  const maybeIndexPage = ensureIndexPage(pkg, sortedTocModules);
+  if (maybeIndexPage) {
+    sortedTocModules.unshift(maybeIndexPage);
+  }
 
   return {
     title: pkg.title,
@@ -229,6 +233,25 @@ function sortAndTruncateModules(entries: TocEntry[]): TocEntry[] {
     entry.title = entry.title.replace(/^[^.]+\./, "...");
   });
   return sorted;
+}
+
+/**
+ * Create a new TocEntry pointing to the index page if is not already there.
+ *
+ * Certain APIs like Runtime and Provider do not have the index page included,
+ * whereas Qiskit SDK already does.
+ */
+function ensureIndexPage(
+  pkg: Pkg,
+  tocModules: TocEntry[],
+): TocEntry | undefined {
+  const docsFolder = pkg.outputDir("/");
+  return tocModules.some((entry) => entry.url === docsFolder)
+    ? undefined
+    : {
+        title: "API index",
+        url: docsFolder,
+      };
 }
 
 function generateOverviewPage(tocModules: TocEntry[]): void {
