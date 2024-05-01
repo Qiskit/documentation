@@ -28,50 +28,50 @@ describe("generateToc", () => {
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime",
+          apiName: "my_quantum_project",
         },
-        url: "/docs/runtime",
+        url: "/api/my-quantum-project",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime.options",
+          apiName: "my_quantum_project.options",
         },
-        url: "/docs/options",
+        url: "/api/my-quantum-project/options",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime.options.submodule",
+          apiName: "my_quantum_project.options.submodule",
         },
-        url: "/docs/qiskit_ibm_runtime.options.submodule",
+        url: "/api/my-quantum-project/my_quantum_project.options.submodule",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Sampler" },
-        url: "/docs/qiskit_ibm_runtime.Sampler",
+        url: "/api/my-quantum-project/my_quantum_project.Sampler",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "method", apiName: "Sampler.run" },
-        url: "/docs/qiskit_ibm_runtime.Sampler.run",
+        url: "/api/my-quantum-project/my_quantum_project.Sampler.run",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Estimator" },
-        url: "/docs/qiskit_ibm_runtime.Estimator",
+        url: "/api/my-quantum-project/my_quantum_project.Estimator",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class" },
-        url: "/docs/qiskit_ibm_runtime.NoName",
+        url: "/api/my-quantum-project/my_quantum_project.NoName",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Options" },
-        url: "docs/qiskit_ibm_runtime.options.Options",
+        url: "docs/my-quantum-project/my_quantum_project.options.Options",
         ...DEFAULT_ARGS,
       },
       {
@@ -79,47 +79,45 @@ describe("generateToc", () => {
           apiType: "function",
           apiName: "runSomething",
         },
-        url: "docs/qiskit_ibm_runtime.runSomething",
+        url: "docs/my-quantum-project/my_quantum_project.runSomething",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime.single",
+          apiName: "my_quantum_project.single",
         },
-        url: "/docs/single",
+        url: "/api/my-quantum-project/single",
         ...DEFAULT_ARGS,
       },
     ]);
 
-    expect(toc).toMatchInlineSnapshot(`
-      {
-        "children": [
-          {
-            "title": "qiskit_ibm_runtime",
-            "url": "/docs/runtime",
-          },
-          {
-            "title": "...options",
-            "url": "/docs/options",
-          },
-          {
-            "title": "...options.submodule",
-            "url": "/docs/qiskit_ibm_runtime.options.submodule",
-          },
-          {
-            "title": "...single",
-            "url": "/docs/single",
-          },
-          {
-            "title": "Release notes",
-            "url": "/api/my-quantum-project/release-notes",
-          },
-        ],
-        "collapsed": true,
-        "title": "My Quantum Project",
-      }
-    `);
+    expect(toc).toEqual({
+      children: [
+        {
+          title: "my_quantum_project",
+          url: "/api/my-quantum-project",
+        },
+        {
+          title: "...options",
+          url: "/api/my-quantum-project/options",
+        },
+        {
+          title: "...options.submodule",
+          url: "/api/my-quantum-project/my_quantum_project.options.submodule",
+        },
+        {
+          title: "...single",
+          url: "/api/my-quantum-project/single",
+        },
+        {
+          title: "Release notes",
+          url: "/api/my-quantum-project/release-notes",
+        },
+      ],
+      collapsed: true,
+      title: "My Quantum Project",
+    });
   });
 
   test("TOC with nested submodules", () => {
@@ -127,46 +125,46 @@ describe("generateToc", () => {
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime",
+          apiName: "my_quantum_project",
         },
-        url: "/docs/runtime",
+        url: "/api/my-quantum-project",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime.options",
+          apiName: "my_quantum_project.options",
         },
-        url: "/docs/options",
+        url: "/api/my-quantum-project/options",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "qiskit_ibm_runtime.options.submodule",
+          apiName: "my_quantum_project.options.submodule",
         },
-        url: "/docs/qiskit_ibm_runtime.options.submodule",
+        url: "/api/my-quantum-project/my_quantum_project.options.submodule",
         ...DEFAULT_ARGS,
       },
     ]);
     expect(toc).toEqual({
       children: [
         {
-          title: "qiskit_ibm_runtime",
-          url: "/docs/runtime",
+          title: "my_quantum_project",
+          url: "/api/my-quantum-project",
         },
         {
           children: [
             {
               title: "Module overview",
-              url: "/docs/options",
+              url: "/api/my-quantum-project/options",
             },
             {
-              title: "qiskit_ibm_runtime.options.submodule",
-              url: "/docs/qiskit_ibm_runtime.options.submodule",
+              title: "my_quantum_project.options.submodule",
+              url: "/api/my-quantum-project/my_quantum_project.options.submodule",
             },
           ],
-          title: "qiskit_ibm_runtime.options",
+          title: "my_quantum_project.options",
         },
         {
           title: "Release notes",
@@ -181,9 +179,14 @@ describe("generateToc", () => {
   test("TOC with grouped modules", () => {
     // This ordering is intentional.
     const topLevelEntries: TocGroupingEntry[] = [
-      { moduleId: "my_project", title: "API index", kind: "module" },
+      { moduleId: "my_quantum_project", title: "API index", kind: "module" },
       { name: "Group 2", kind: "section" },
       { name: "Group 1", kind: "section" },
+      {
+        moduleId: "my_quantum_project.another",
+        title: "dedicated module",
+        kind: "module",
+      },
       // Ensure we can handle unused entries.
       { moduleId: "unused_module", title: "unused", kind: "module" },
       { name: "Unused section", kind: "section" },
@@ -191,32 +194,40 @@ describe("generateToc", () => {
     const tocGrouping = {
       entries: topLevelEntries,
       moduleToSection: (module: string) =>
-        module == "my_project.module" ? "Group 1" : "Group 2",
+        module == "my_quantum_project.module" ? "Group 1" : "Group 2",
     };
 
     const toc = generateToc(Pkg.mock({ tocGrouping }), [
       {
         meta: {
           apiType: "module",
-          apiName: "my_project",
+          apiName: "my_quantum_project",
         },
-        url: "/docs/my_project",
+        url: "/api/my-quantum-project",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "my_project.module",
+          apiName: "my_quantum_project.module",
         },
-        url: "/docs/my_project.module",
+        url: "/api/my-quantum-project/my_quantum_project.module",
         ...DEFAULT_ARGS,
       },
       {
         meta: {
           apiType: "module",
-          apiName: "my_project.module.submodule",
+          apiName: "my_quantum_project.module.submodule",
         },
-        url: "/docs/my_project.module.submodule",
+        url: "/api/my-quantum-project/my_quantum_project.module.submodule",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_quantum_project.another",
+        },
+        url: "/api/my-quantum-project/my_quantum_project.another",
         ...DEFAULT_ARGS,
       },
     ]);
@@ -226,14 +237,14 @@ describe("generateToc", () => {
       children: [
         {
           title: "API index",
-          url: "/docs/my_project",
+          url: "/api/my-quantum-project",
         },
         {
           title: "Group 2",
           children: [
             {
-              title: "my_project.module.submodule",
-              url: "/docs/my_project.module.submodule",
+              title: "my_quantum_project.module.submodule",
+              url: "/api/my-quantum-project/my_quantum_project.module.submodule",
             },
           ],
         },
@@ -241,10 +252,14 @@ describe("generateToc", () => {
           title: "Group 1",
           children: [
             {
-              title: "my_project.module",
-              url: "/docs/my_project.module",
+              title: "my_quantum_project.module",
+              url: "/api/my-quantum-project/my_quantum_project.module",
             },
           ],
+        },
+        {
+          title: "dedicated module",
+          url: "/api/my-quantum-project/my_quantum_project.another",
         },
         {
           title: "Release notes",
@@ -258,8 +273,8 @@ describe("generateToc", () => {
     const toc = generateToc(
       Pkg.mock({
         releaseNoteEntries: [
-          { title: "0.39", url: "/docs/runtime/release-notes/0.39" },
-          { title: "0.38", url: "/docs/runtime/release-notes/0.38" },
+          { title: "0.39", url: "/api/my-quantum-project/release-notes/0.39" },
+          { title: "0.38", url: "/api/my-quantum-project/release-notes/0.38" },
         ],
       }),
       [
@@ -267,66 +282,64 @@ describe("generateToc", () => {
           ...DEFAULT_ARGS,
           meta: {
             apiType: "module",
-            apiName: "qiskit_ibm_runtime",
+            apiName: "my_quantum_project",
           },
-          url: "/docs/runtime/qiskit_ibm_runtime",
+          url: "/api/my-quantum-project",
           isReleaseNotes: true,
         },
       ],
     );
 
-    expect(toc).toMatchInlineSnapshot(`
-      {
-        "children": [
-          {
-            "title": "qiskit_ibm_runtime",
-            "url": "/docs/runtime/qiskit_ibm_runtime",
-          },
-          {
-            "children": [
-              {
-                "title": "0.39",
-                "url": "/docs/runtime/release-notes/0.39",
-              },
-              {
-                "title": "0.38",
-                "url": "/docs/runtime/release-notes/0.38",
-              },
-            ],
-            "title": "Release notes",
-          },
-        ],
-        "collapsed": true,
-        "title": "My Quantum Project",
-      }
-    `);
+    expect(toc).toEqual({
+      children: [
+        {
+          title: "my_quantum_project",
+          url: "/api/my-quantum-project",
+        },
+        {
+          children: [
+            {
+              title: "0.39",
+              url: "/api/my-quantum-project/release-notes/0.39",
+            },
+            {
+              title: "0.38",
+              url: "/api/my-quantum-project/release-notes/0.38",
+            },
+          ],
+          title: "Release notes",
+        },
+      ],
+      collapsed: true,
+      title: "My Quantum Project",
+    });
   });
 
   test("generate a toc without modules", () => {
     const toc = generateToc(Pkg.mock({}), [
       {
         meta: { apiType: "class", apiName: "Sampler" },
-        url: "/docs/qiskit_ibm_runtime.Sampler",
+        url: "/api/my-quantum-project/my_quantum_project.Sampler",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "method", apiName: "Sampler.run" },
-        url: "/docs/qiskit_ibm_runtime.Sampler.run",
+        url: "/api/my-quantum-project/my_quantum_project.Sampler.run",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Estimator" },
-        url: "/docs/qiskit_ibm_runtime.Estimator",
+        url: "/api/my-quantum-project/my_quantum_project.Estimator",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class" },
-        url: "/docs/qiskit_ibm_runtime.NoName",
+        url: "/api/my-quantum-project/my_quantum_project.NoName",
         ...DEFAULT_ARGS,
       },
       {
         meta: { apiType: "class", apiName: "Options" },
-        url: "docs/qiskit_ibm_runtime.options.Options",
+        url: "docs/my_quantum_project.options.Options",
         ...DEFAULT_ARGS,
       },
       {
@@ -334,22 +347,20 @@ describe("generateToc", () => {
           apiType: "function",
           apiName: "runSomething",
         },
-        url: "docs/qiskit_ibm_runtime.runSomething",
+        url: "docs/my_quantum_project.runSomething",
         ...DEFAULT_ARGS,
       },
     ]);
 
-    expect(toc).toMatchInlineSnapshot(`
-      {
-        "children": [
-          {
-            "title": "Release notes",
-            "url": "/api/my-quantum-project/release-notes",
-          },
-        ],
-        "collapsed": true,
-        "title": "My Quantum Project",
-      }
-    `);
+    expect(toc).toEqual({
+      children: [
+        {
+          title: "Release notes",
+          url: "/api/my-quantum-project/release-notes",
+        },
+      ],
+      collapsed: true,
+      title: "My Quantum Project",
+    });
   });
 });
