@@ -116,13 +116,10 @@ You also need to install a few system dependencies: TeX, Poppler, and graphviz. 
   ```
 
 > [!NOTE]
-> When testing notebooks, we avoid sending jobs to IBM Quantum by patching
-> `least_busy` to return a fake backend. Try to make sure your notebook works
-> with this patch. To use the patch, add your notebook to the list
-> `notebooks_that_submit_jobs` in
-> [`scripts/nb-tester/notebooks.toml`](scripts/nb-tester/notebooks.toml). If
-> your notebook can't be tested with this patch, you must add it to the list
-> `notebooks_no_mock`.
+> If your notebook submits hardware jobs to Qiskit Runtime, you must add it to
+> [`scripts/nb-tester/notebooks.toml`](scripts/nb-tester/notebooks.toml). If it
+> can be run with simulators, i.e., the circuit is not too large, add it to `notebooks_that_submit_jobs`.
+> Otherwise, add it to `notebooks_no_mock`.
 
 > If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 > add it to the "Check for notebooks that require LaTeX" step in
@@ -133,6 +130,8 @@ can get a version of that notebook that was executed in a uniform environment
 from CI. To do this, click "Show all checks" in the info box at the bottom of
 the pull request page on GitHub, then choose "Details" for the "Test notebooks"
 job. From the job page, click "Summary", then download "Executed notebooks".
+Otherwise, if your notebook does submit jobs, you need to run it locally with
+`tox -- --write --submit-jobs <path/to/notebook.ipynb>`.
 
 ### Ignoring warnings
 
