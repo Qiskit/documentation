@@ -15,7 +15,7 @@ import { isEmpty, orderBy } from "lodash";
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { Pkg } from "./Pkg";
-import type { TocGrouping, TocGroupingEntry } from "./TocGrouping";
+import type { TocGrouping } from "./TocGrouping";
 
 export type TocEntry = {
   title: string;
@@ -57,6 +57,7 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   } else {
     sortedTocModules = sortAndTruncateModules(tocModules);
   }
+
   generateOverviewPage(tocModules);
 
   return {
