@@ -91,12 +91,37 @@ function prepareProps(
     class: () =>
       prepareClassOrExceptionProps($, $main, $child, $dl, githubSourceLink, id),
     property: () =>
-      preparePropertyProps($, $main, $child, $dl, priorApiType, githubSourceLink, id),
+      preparePropertyProps(
+        $,
+        $main,
+        $child,
+        $dl,
+        priorApiType,
+        githubSourceLink,
+        id,
+      ),
     method: () =>
-      prepareMethodProps($, $main, $child, $dl, priorApiType, githubSourceLink, id),
+      prepareMethodProps(
+        $,
+        $main,
+        $child,
+        $dl,
+        priorApiType,
+        githubSourceLink,
+        id,
+      ),
     attribute: () =>
-      prepareAttributeProps($, $main, $child, $dl, priorApiType, githubSourceLink, id),
-    function: () => prepareFunctionProps($, $main, $child, $dl, id, githubSourceLink),
+      prepareAttributeProps(
+        $,
+        $main,
+        $child,
+        $dl,
+        priorApiType,
+        githubSourceLink,
+        id,
+      ),
+    function: () =>
+      prepareFunctionProps($, $main, $child, $dl, id, githubSourceLink),
     exception: () =>
       prepareClassOrExceptionProps($, $main, $child, $dl, githubSourceLink, id),
   };
@@ -135,7 +160,9 @@ function prepareClassOrExceptionProps(
   }
   const headerLevel = getHeaderLevel($, $main, $dl);
   $(
-    `<h${headerLevel} data-header-type="class-header">${getLastPartFromFullIdentifier(id)}</h${headerLevel}>`,
+    `<h${headerLevel} data-header-type="class-header">${getLastPartFromFullIdentifier(
+      id,
+    )}</h${headerLevel}>`,
   ).insertBefore($dl);
   return props;
 }
@@ -166,7 +193,11 @@ function preparePropertyProps(
   }
 
   const headerLevel = getHeaderLevel($, $main, $dl);
-  $(`<h${headerLevel} data-header-type="attribute-header">${getLastPartFromFullIdentifier(id)}</h${headerLevel}>`).insertBefore($dl);
+  $(
+    `<h${headerLevel} data-header-type="attribute-header">${getLastPartFromFullIdentifier(
+      id,
+    )}</h${headerLevel}>`,
+  ).insertBefore($dl);
 
   return props;
 }
@@ -197,7 +228,9 @@ function prepareMethodProps(
     } else if ($child.attr("id")) {
       const headerLevel = getHeaderLevel($, $main, $dl);
       $(
-        `<h${headerLevel} data-header-type="method-header">${getLastPartFromFullIdentifier(id)}</h${headerLevel}>`,
+        `<h${headerLevel} data-header-type="method-header">${getLastPartFromFullIdentifier(
+          id,
+        )}</h${headerLevel}>`,
       ).insertBefore($dl);
     }
   }
@@ -251,7 +284,9 @@ function prepareAttributeProps(
   const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
   const headerLevel = getHeaderLevel($, $main, $dl);
-  $(`<h${headerLevel} data-header-type="attribute-header">${name}</h${headerLevel}>`).insertBefore($dl);
+  $(
+    `<h${headerLevel} data-header-type="attribute-header">${name}</h${headerLevel}>`,
+  ).insertBefore($dl);
 
   return {
     id,
@@ -286,7 +321,9 @@ function prepareFunctionProps(
   }
   const headerLevel = getHeaderLevel($, $main, $dl);
   $(
-    `<h${headerLevel} data-header-type="method-header">${getLastPartFromFullIdentifier(id)}</h${headerLevel}>`,
+    `<h${headerLevel} data-header-type="method-header">${getLastPartFromFullIdentifier(
+      id,
+    )}</h${headerLevel}>`,
   ).insertBefore($dl);
 
   return props;
@@ -405,18 +442,18 @@ export async function htmlSignatureToMd(
     .replace(/`$/, "");
 }
 
-function getHeaderLevel($: CheerioAPI, $main: Cheerio<any>, $dl: Cheerio<any>){
+function getHeaderLevel($: CheerioAPI, $main: Cheerio<any>, $dl: Cheerio<any>) {
   const priorHeaderLevel = getPriorHeaderLevel($, $main, $dl);
-  if (priorHeaderLevel){
-
-    if(+priorHeaderLevel == 6){
+  if (priorHeaderLevel) {
+    if (+priorHeaderLevel == 6) {
       throw new Error("API component cannot set inexisting header: <h7>");
     }
 
     return +priorHeaderLevel + 1;
   }
 
-  // Minimum header possible
+  // Minimum header level for components without a dedicated page. This components are
+  // guaranteed to have an <h1> for the page and <h2> to define the section they belong to.
   return 3;
 }
 
@@ -437,7 +474,11 @@ function getPriorHeaderLevel(
     }
   }
 
-  // If there's no header among the siblings, we look for the prior
-  // inline class becuase the child will be inline
-  return $main.find("[data-header-type=class-header]").last().get(0)?.tagName.substring(1);
+  // If there's no header among the siblings, we look for the prior inline class in some
+  // parent node previously set
+  return $main
+    .find("[data-header-type=class-header]")
+    .last()
+    .get(0)
+    ?.tagName.substring(1);
 }
