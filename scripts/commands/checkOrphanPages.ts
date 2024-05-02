@@ -179,8 +179,6 @@ function apiDocsIgnores(): string[] {
 
   return [
     ...versions.flatMap((vers) => [
-      `/api/qiskit-ibm-runtime/${vers}index`,
-      `/api/qiskit-ibm-provider/${vers}index`,
       `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Estimator`,
       `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Sampler`,
       `/api/qiskit/${vers}aer`,
@@ -195,7 +193,6 @@ function apiDocsIgnores(): string[] {
       `/api/qiskit/${vers}parallel`,
       `/api/qiskit/${vers}transpiler_builtin_plugins`,
     ]),
-    `/api/qiskit/0.19/index`,
     `/api/qiskit/dev/qiskit.primitives.BaseEstimator`,
     `/api/qiskit/dev/qiskit.primitives.BaseSampler`,
   ];
