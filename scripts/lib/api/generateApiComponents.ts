@@ -24,7 +24,6 @@ import {
 
 export type ComponentProps = {
   id?: string;
-  name?: string;
   attributeTypeHint?: string;
   attributeValue?: string;
   githubSourceLink?: string;
@@ -145,7 +144,6 @@ function preparePropertyProps(
   const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
   const props = {
     id,
-    name: getLastPartFromFullIdentifier(id),
     rawSignature,
     githubSourceLink,
   };
@@ -173,7 +171,6 @@ function prepareMethodProps(
 ): ComponentProps {
   const props = {
     id,
-    name: getLastPartFromFullIdentifier(id),
     rawSignature: $child.html()!,
     githubSourceLink,
   };
@@ -241,7 +238,6 @@ function prepareAttributeProps(
 
   return {
     id,
-    name,
     attributeTypeHint,
     attributeValue,
   };
@@ -256,7 +252,6 @@ function prepareFunctionOrExceptionProps(
 ): ComponentProps {
   const props = {
     id,
-    name: getLastPartFromFullIdentifier(id),
     rawSignature: $child.html()!,
     githubSourceLink,
   };
@@ -303,7 +298,6 @@ export async function createOpeningTag(
 
   return `<${tagName} 
     id='${props.id}'
-    name='${props.name}'
     attributeTypeHint='${attributeTypeHint}'
     attributeValue='${attributeValue}'
     isDedicatedPage='${props.isDedicatedPage}'
