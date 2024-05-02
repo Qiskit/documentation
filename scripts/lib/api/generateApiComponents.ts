@@ -89,7 +89,7 @@ function prepareProps(
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
     class: () => prepareClassProps($child, $dl, githubSourceLink, id),
     property: () =>
-      preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
+      preparePropertyProps($, $child, $dl, priorApiType, githubSourceLink, id),
     method: () =>
       prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
     attribute: () =>
@@ -134,6 +134,7 @@ function prepareClassProps(
 }
 
 function preparePropertyProps(
+  $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
@@ -154,6 +155,8 @@ function preparePropertyProps(
       isDedicatedPage: true,
     };
   }
+
+  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
 
   return props;
 }
