@@ -179,7 +179,11 @@ describe("generateToc", () => {
   test("TOC with grouped modules", () => {
     // This ordering is intentional.
     const topLevelEntries: TocGroupingEntry[] = [
-      { moduleId: "my_quantum_project", title: "API index", kind: "module" },
+      {
+        moduleId: "my_quantum_project",
+        title: "API index (custom)",
+        kind: "module",
+      },
       { name: "Group 2", kind: "section" },
       { name: "Group 1", kind: "section" },
       {
@@ -236,7 +240,7 @@ describe("generateToc", () => {
       title: "My Quantum Project",
       children: [
         {
-          title: "API index",
+          title: "API index (custom)",
           url: "/api/my-quantum-project",
         },
         {
@@ -354,6 +358,10 @@ describe("generateToc", () => {
 
     expect(toc).toEqual({
       children: [
+        {
+          title: "API index",
+          url: "/api/my-quantum-project",
+        },
         {
           title: "Release notes",
           url: "/api/my-quantum-project/release-notes",
