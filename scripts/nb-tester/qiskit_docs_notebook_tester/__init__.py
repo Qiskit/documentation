@@ -48,6 +48,10 @@ class Config:
     notebooks_that_submit_jobs: list[str]
     notebooks_no_mock: list[str]
 
+    @property
+    def all_job_submitting_notebooks(self) -> list[str]:
+       return [*self.notebooks_that_submit_jobs, *self.notebooks_no_mock]
+
     @classmethod
     def read(cls, path: str) -> Config:
         """
@@ -85,8 +89,7 @@ def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) ->
             )
             continue
 
-        only_job_submitting_notebooks = config.notebooks_that_submit_jobs+config.notebooks_no_mock
-        if args.only_submit_jobs and not matches(path, only_job_submitting_notebooks):
+        if args.only_submit_jobs and not matches(path, config.all_job_submitting_notebooks):
             print(
                 f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
             )
