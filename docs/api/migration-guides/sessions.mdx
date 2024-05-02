@@ -1,0 +1,97 @@
+---
+title: Execution mode changes
+description: Learn about the changes to execution modes (sessions, batch, and single jobs)
+
+---
+
+<span id="execution-modes"></span>
+
+# Execution modes changes
+
+Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. The improved execution modes provide more flexibility than ever in balancing the cost and time tradeoff to use resources optimally for your workloads.
+
+Workloads can be run as single jobs, sessions, or in a batch:
+
+- Use **session** mode for iterative workloads, or if you need dedicated access to the system
+- Use **batch** mode to submit multiple primitive jobs simultaneously to shorten processing time
+- Use **job** mode to submit a single primitive request for quick testing
+
+The following table summarizes the differences:
+
+|     Mode     |                  Usage                  |                                                                                                        Benefit                                                                                                        |
+|:------------:|:---------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Job mode     | Quantum computation only.               | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
+| Batch mode   | Quantum computation only.               | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch are usually run close together.                                                                     |
+| Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the system during the session active window, and no other users’ or system jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
+
+## Best practices
+
+To ensure the most efficient use of the execution modes, the following practices are recommended:
+
+- Always close your session, either by using a context manager or by specifying `session.close()`.
+- There is a fixed overhead associated with running a job. In general, if each job uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
+
+    A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`.
+
+- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, classical processing can be done in parallel. You can take advantage of this by submitting multiple jobs in [batch](#divide) or [session](#two-vqe) execution mode.
+
+The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because it can reduce wall clock time.
+
+
+## Sessions
+
+Sessions are designed for iterative workloads to avoid queuing delays between each iteration. All sessions now run in *dedicated* mode, so that when running a session, you have exclusive access to the backend.  Because of this, you are now charged for the total wall clock time that the system is reserved for your use. Additionally, sessions are now thread safe. That is, you can run multiple workloads within a session.
+
+<Admonition type="note">
+Session execution mode is not supported in the Open Plan. Jobs will run in job mode instead.
+</Admonition>
+
+<span id="two-vqe"></span>
+### Example: Run two VQE algorithms in a session by using threading
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+from qiskit_ibm_runtime import  Session, EstimatorV2 as Estimator
+
+def minimize_thread(estimator, method):
+    minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method=method)
+
+with Session(backend=backend), ThreadPoolExecutor() as executor:
+    # Add tags to differentiate jobs from different workloads.
+    estimator1.options.environment.job_tags = "cobyla"
+    estimator1.options.environment.job_tags = "nelder-mead"
+
+    cobyla_result = executor.submit(minimize_thread, estimator1, "cobyla").result()
+    nelder_mead_result = executor.submit(minimize_thread, estimator2, "nelder-mead").result()
+```
+
+## Batch
+
+Submit multiple primitive jobs simultaneously. When batching, classical processing is done in parallel. No session jobs, or jobs from another batch, can start when batch jobs are being processed; however, individual jobs might run between batch jobs.
+
+<span id="divide"></span>
+### Example: Partition a 500-circuit job into five 100-circuit jobs and run them in batch
+```python
+from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
+
+max_circuits = 100
+jobs = []
+start_idx = 0
+
+with Batch(backend):
+    sampler = Sampler()
+    while start_idx < len(circuits):
+        end_idx = start_idx + max_circuits
+        jobs.append(sampler.run([(circuits[start_ids:end_idx],)]))
+        start_idx = end_idx
+```
+
+## Sessions versus batch usage
+
+Usage is a measurement of the amount of time the system is locked for your workload.
+
+* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
+* Batch usage is the sum of quantum time of all jobs in the batch.
+* Single job usage is the quantum time the job uses in processing.
+
+![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The system is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the system.  The system is locked for your use from the time the first job reaches the system until the last job is done processing on the system.  There is no gap between jobs where the system is idle.](/images/run/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')

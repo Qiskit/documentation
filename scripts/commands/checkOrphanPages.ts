@@ -143,6 +143,7 @@ function apiDocsIgnores(): string[] {
     "0.7/",
     "0.8/",
     "0.9/",
+    "0.10/",
     "0.14/",
     "0.15/",
     "0.16/",
@@ -151,6 +152,7 @@ function apiDocsIgnores(): string[] {
     "0.19/",
     "0.20/",
     "0.21/",
+    "0.22/",
     "0.24/",
     "0.25/",
     "0.26/",
@@ -177,8 +179,6 @@ function apiDocsIgnores(): string[] {
 
   return [
     ...versions.flatMap((vers) => [
-      `/api/qiskit-ibm-runtime/${vers}index`,
-      `/api/qiskit-ibm-provider/${vers}index`,
       `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Estimator`,
       `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Sampler`,
       `/api/qiskit/${vers}aer`,
@@ -193,7 +193,6 @@ function apiDocsIgnores(): string[] {
       `/api/qiskit/${vers}parallel`,
       `/api/qiskit/${vers}transpiler_builtin_plugins`,
     ]),
-    `/api/qiskit/0.19/index`,
     `/api/qiskit/dev/qiskit.primitives.BaseEstimator`,
     `/api/qiskit/dev/qiskit.primitives.BaseSampler`,
   ];

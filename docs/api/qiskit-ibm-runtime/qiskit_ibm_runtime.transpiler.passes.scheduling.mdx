@@ -24,6 +24,19 @@ A collection of scheduling passes for working with IBM Quantum’s next-generati
   You should not mix these scheduling passes with Qiskit’s builtin scheduling passes as they will negatively interact with the scheduling routines for dynamic circuits. This includes setting `scheduling_method` in `transpile()` or `generate_preset_pass_manager()`.
 </Admonition>
 
+### Classes
+
+|                                                                                                                                                                                                                         |                                                                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder")(\[schedule\_idle\_qubits, ...])                                  | The base class of padding pass.                                                                                                                              |
+| [`ALAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis")(durations\[, ...])                                | Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.                                                                                        |
+| [`ASAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis")(durations\[, ...])                                | Dynamic circuits as-soon-as-possible (ASAP) scheduling analysis pass.                                                                                        |
+| [`DynamicCircuitInstructionDurations`](qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations "qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations")(\[...]) | For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. |
+| [`PadDelay`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay")(durations\[, fill\_very\_end, ...])                                                   | Padding idle time with Delay instructions.                                                                                                                   |
+| [`PadDynamicalDecoupling`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling")(durations, dd\_sequences)                   | Dynamical decoupling insertion pass for IBM dynamic circuit backends.                                                                                        |
+
+### Example usage
+
 Below we demonstrate how to schedule and pad a teleportation circuit with delays for a dynamic circuit backend’s execution model:
 
 ```python
@@ -364,17 +377,4 @@ qc_dd.draw(output="mpl", style="iqp")
 
   ![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_15\_0.png](/images/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling_15_0.png)
 </Admonition>
-
-<span id="scheduling-dynamical-decoupling" />
-
-#### Scheduling & Dynamical Decoupling
-
-|                                                                                                                                                                                                                         |                                                                                                                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder")(\[schedule\_idle\_qubits])                                       | The base class of padding pass.                                                                                                                              |
-| [`ALAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis")(durations)                                        | Dynamic circuits as-late-as-possible (ALAP) scheduling analysis pass.                                                                                        |
-| [`ASAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ASAPScheduleAnalysis")(durations)                                        | Dynamic circuits as-soon-as-possible (ASAP) scheduling analysis pass.                                                                                        |
-| [`DynamicCircuitInstructionDurations`](qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations "qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations")(\[...]) | For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. |
-| [`PadDelay`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay")(durations\[, fill\_very\_end, ...])                                                   | Padding idle time with Delay instructions.                                                                                                                   |
-| [`PadDynamicalDecoupling`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling")(durations, dd\_sequences)                   | Dynamical decoupling insertion pass for IBM dynamic circuit backends.                                                                                        |
 

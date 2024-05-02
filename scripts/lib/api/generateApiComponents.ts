@@ -88,7 +88,7 @@ function prepareProps(
   id: string,
 ): ComponentProps {
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
-    class: () => prepareClassProps($child, githubSourceLink, id),
+    class: () => prepareClassProps($child, $dl, githubSourceLink, id),
     property: () =>
       preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
     method: () =>
@@ -113,14 +113,25 @@ function prepareProps(
 
 function prepareClassProps(
   $child: Cheerio<any>,
+  $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  return {
+  const props = {
     id,
     rawSignature: $child.html()!,
     githubSourceLink,
   };
+
+  const pageHeading = $dl.siblings("h1").text();
+  if (id.endsWith(pageHeading) && pageHeading != "") {
+    // Page is already dedicated to the class
+    return {
+      ...props,
+      isDedicatedPage: true,
+    };
+  }
+  return props;
 }
 
 function preparePropertyProps(
@@ -215,11 +226,13 @@ function prepareAttributeProps(
   }
 
   // The attributes have the following shape: name [: type] [= value]
+  // We skip the first character to leave off the `:` and the `=` in
+  // both type hint and default value
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
   const attributeTypeHint = text
     .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
     .trim();
-  const attributeValue = text.slice(equalIndex, text.length).trim();
+  const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
   $(`<h3>${name}</h3>`).insertBefore($dl);
 

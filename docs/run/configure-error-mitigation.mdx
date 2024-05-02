@@ -15,7 +15,7 @@ The error mitigation techniques built in to primitives are advanced
 resilience options. To specify these options, use the `resilience_level`
 option when submitting your job.
 
-<admonition type="note">Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. See the [Custom error settings](#advanced-options) section for details.</admonition>
+<admonition type="note">Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. See the [Custom error settings](#advanced-error) section for details.</admonition>
 
 The resilience level specifies how much resilience to build against
 errors. Higher levels generate more accurate results, at the expense of
@@ -100,7 +100,7 @@ applied at each resilience level.
 
 ## Configure Estimator V2 with resilience levels
 
-You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-options) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
+You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-error) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
 
 <details>
 <summary>Resilience Level 0</summary>
@@ -378,13 +378,14 @@ sampler = Sampler(backend, options=options)
 ```
 
 <span id="advanced-error"></span>
-## Custom error settings
-
-With Estimator V2, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
-
-<span id="advanced-options"></span>
 ## Custom error settings (V2 primitives)
-With the V2 primitives, you can turn on and off individual error mitigation and suppression methods. See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+
+With the V2 primitives, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
+
+<Admonition type = "note" title = "Notes">
+- Not all options are available for both primitives.   See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+- Dynamical decoupling is not supported when the input circuits are dynamic.
+</Admonition>
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
@@ -415,8 +416,12 @@ from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
 options = sampler.options
 
 options.dynamical_decoupling.enable = True
+# Turn on gate twirling. Requires qiskit_ibm_runtime 0.23.0 or later.
+options.twirling.enable_gates = True
 
 print(f">>> dynamical decoupling is turned on: {sampler.options.dynamical_decoupling.enable}")
+print(f">>> gate twirling is turned on: {sampler.options.twirling.enable_gates}")
+
 ```
   </TabItem>
 </Tabs>
