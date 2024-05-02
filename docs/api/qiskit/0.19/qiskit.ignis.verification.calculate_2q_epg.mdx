@@ -8,7 +8,7 @@ python_api_name: qiskit.ignis.verification.calculate_2q_epg
 
 # calculate\_2q\_epg
 
-<Function id="qiskit.ignis.verification.calculate_2q_epg" name="calculate_2q_epg" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py" signature="calculate_2q_epg(gate_per_cliff, epc_2q, qubit_pair, list_epgs_1q=None, two_qubit_name='cx')">
+<Function id="qiskit.ignis.verification.calculate_2q_epg" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py" signature="calculate_2q_epg(gate_per_cliff, epc_2q, qubit_pair, list_epgs_1q=None, two_qubit_name='cx')">
   Convert error per Clifford (EPC) into error per gate (EPG) of two qubit `cx` gates.
 
   Given that a standard 2Q RB sequences consist of `u1`, `u2`, `u3`, and `cx` gates, the EPG of `cx` gate can be roughly approximated by $EPG_{CX} = EPC/N_{CX}$, where $N_{CX}$ is number of `cx` gates per Clifford which is designed to be 1.5. Because an error from two qubit gates are usually dominant and the contribution of single qubit gates in 2Q RB experiments is thus able to be ignored. If `list_epgs_1q` is not provided, the function returns the EPG calculated based upon this assumption.
