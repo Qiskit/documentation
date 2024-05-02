@@ -85,7 +85,8 @@ def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) ->
             )
             continue
 
-        if args.only_submit_jobs and not matches(path, config.notebooks_that_submit_jobs+config.notebooks_no_mock):
+        only_job_submitting_notebooks = config.notebooks_that_submit_jobs+config.notebooks_no_mock
+        if args.only_submit_jobs and not matches(path, only_job_submitting_notebooks):
             print(
                 f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
             )
