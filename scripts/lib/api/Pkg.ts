@@ -15,6 +15,7 @@ import { join } from "path/posix";
 import { findLegacyReleaseNotes } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
+import { TocGrouping } from "./TocGrouping";
 
 export interface ReleaseNoteEntry {
   title: string;
@@ -36,6 +37,7 @@ export class Pkg {
   readonly type: PackageType;
   readonly releaseNoteEntries: ReleaseNoteEntry[];
   readonly nestModulesInToc: boolean;
+  readonly tocGrouping?: TocGrouping;
 
   static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
 
@@ -48,7 +50,8 @@ export class Pkg {
     versionWithoutPatch: string;
     type: PackageType;
     releaseNoteEntries: ReleaseNoteEntry[];
-    nestModulesInToc: boolean;
+    nestModulesInToc?: boolean;
+    tocGrouping?: TocGrouping;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -58,7 +61,8 @@ export class Pkg {
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
     this.releaseNoteEntries = kwargs.releaseNoteEntries;
-    this.nestModulesInToc = kwargs.nestModulesInToc;
+    this.nestModulesInToc = kwargs.nestModulesInToc ?? false;
+    this.tocGrouping = kwargs.tocGrouping;
   }
 
   static async fromArgs(
@@ -95,7 +99,6 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-runtime",
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
-        nestModulesInToc: false,
       });
     }
 
@@ -107,7 +110,6 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-provider",
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
-        nestModulesInToc: false,
       });
     }
 
@@ -124,6 +126,7 @@ export class Pkg {
     type?: PackageType;
     releaseNoteEntries?: ReleaseNoteEntry[];
     nestModulesInToc?: boolean;
+    tocGrouping?: TocGrouping;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -135,6 +138,7 @@ export class Pkg {
       type: kwargs.type ?? "latest",
       releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
       nestModulesInToc: kwargs.nestModulesInToc ?? false,
+      tocGrouping: kwargs.tocGrouping ?? undefined,
     });
   }
 
