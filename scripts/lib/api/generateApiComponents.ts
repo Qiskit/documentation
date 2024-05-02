@@ -226,11 +226,13 @@ function prepareAttributeProps(
   }
 
   // The attributes have the following shape: name [: type] [= value]
+  // We skip the first character to leave off the `:` and the `=` in
+  // both type hint and default value
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
   const attributeTypeHint = text
     .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
     .trim();
-  const attributeValue = text.slice(equalIndex, text.length).trim();
+  const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
   $(`<h3>${name}</h3>`).insertBefore($dl);
 

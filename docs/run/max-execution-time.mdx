@@ -1,12 +1,12 @@
 ---
 title: Maximum execution time for a Qiskit Runtime job or session
-description: Describes how long a Qiskit Runtime job or session can run.
+description: Describes how long a Qiskit Runtime job can run, regardless of what execution mode is used.
 
 ---
 
 # Maximum execution time for a Qiskit Runtime job or session
 
-To ensure fairness and help control costs, there is a maximum amount of time each Qiskit Runtime job and session can run. If a job exceeds this time limit, it is forcibly canceled and a `RuntimeJobMaxTimeoutError` exception is raised. If a session exceeds its limits, any queued jobs are canceled but any jobs that are already running are not. 
+To ensure fairness and help control costs, there is a maximum amount of time each Qiskit Runtime job can run. If a job exceeds this time limit, it is forcibly canceled and a `RuntimeJobMaxTimeoutError` exception is raised.
 
 <span id="max-job"></span>
 ## Job maximum execution time
@@ -16,11 +16,7 @@ The maximum execution time for a job is the smaller of these values:
 - The value set for max_execution_time
 - The system-determined job timeout value
 
-<Admonition type="note">
-  As of 7 August 2023, the `max_execution_time` value is based on _quantum time_ instead of wall clock time. Quantum time is the duration a quantum system is committed to fulfilling a user request.
-  
-  Simulator jobs continue to use wall clock time because they do not have quantum time.
-</Admonition>
+The `max_execution_time` value is based on _quantum time_, not wall clock time. Quantum time is the time spent by the QPU complex to process the job. Simulator jobs use wall clock time because they do not have quantum time.
 
 Set the maximum execution time (in seconds) on the job options by using one of the following methods:
 
@@ -50,7 +46,7 @@ For example, if you specify `max_execution_time=5000` (approximately 83 minutes)
 
 ## Session maximum execution time
 
-When a session is started, it is assigned a maximum session timeout value. After this timeout is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state.  For instructions to set the session maximum time, see [Specify the session length](run-jobs-in-session#specify-length).
+When a session is started, it is assigned a maximum session timeout value. After this timeout is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state. For instructions to set the session maximum time, see [Specify the session length](run-jobs-in-session#specify-length).
 
 ## Other limitations
 
