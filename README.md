@@ -116,20 +116,22 @@ You also need to install a few system dependencies: TeX, Poppler, and graphviz. 
   ```
 
 > [!NOTE]
-> If your notebook submits hardware jobs to IBM Quantum, you must add it to the
-> list `notebooks-that-submit-jobs` in
-> [`scripts/nb-tester/notebooks.toml`](scripts/nb-tester/notebooks.toml). This
-> is not needed if the notebook only retrieves information.
->
+> If your notebook submits hardware jobs to Qiskit Runtime, you must add it to
+> [`scripts/nb-tester/notebooks.toml`](scripts/nb-tester/notebooks.toml). If it
+> can be run with simulators, i.e., the circuit is not too large, add it to `notebooks_that_submit_jobs`.
+> Otherwise, add it to `notebooks_no_mock`.
+
 > If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 > add it to the "Check for notebooks that require LaTeX" step in
 > `.github/workflows/notebook-test.yml`.
 
-When you make a pull request with a changed notebook, you can get a version of
-that notebook that was executed in a uniform environment from CI. To do this,
-click "Show all checks" in the info box at the bottom of the pull request page
-on GitHub, then choose "Details" for the "Test notebooks" job. From the job
-page, click "Summary", then download "Executed notebooks".
+When you make a pull request changing a notebook that doesn't submit jobs, you
+can get a version of that notebook that was executed in a uniform environment
+from CI. To do this, click "Show all checks" in the info box at the bottom of
+the pull request page on GitHub, then choose "Details" for the "Test notebooks"
+job. From the job page, click "Summary", then download "Executed notebooks".
+Otherwise, if your notebook does submit jobs, you need to run it locally with
+`tox -- --write --submit-jobs <path/to/notebook.ipynb>`.
 
 ### Ignoring warnings
 
