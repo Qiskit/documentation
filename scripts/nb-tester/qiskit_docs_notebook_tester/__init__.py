@@ -17,6 +17,7 @@ import argparse
 import asyncio
 import sys
 import textwrap
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -29,11 +30,27 @@ import tomli
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
+# If not submitting jobs, we mock the real backend by prepending this to each notebook
+MOCKING_CODE = """\
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime.fake_provider import FakeKyoto
+
+def patched_least_busy(self, *args, **kwarg):
+  return FakeKyoto()
+
+QiskitRuntimeService.least_busy = patched_least_busy
+"""
+
 @dataclass
 class Config:
     all_notebooks: str
     notebooks_exclude: list[str]
     notebooks_that_submit_jobs: list[str]
+    notebooks_no_mock: list[str]
+
+    @property
+    def all_job_submitting_notebooks(self) -> list[str]:
+       return [*self.notebooks_that_submit_jobs, *self.notebooks_no_mock]
 
     @classmethod
     def read(cls, path: str) -> Config:
@@ -55,7 +72,6 @@ def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) ->
     """
     Filter out any paths we don't want to run, printing messages.
     """
-    submit_jobs = args.submit_jobs or args.only_submit_jobs
     for path in paths:
         if path.suffix != ".ipynb":
             print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -67,15 +83,15 @@ def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) ->
             )
             continue
 
-        if not submit_jobs and matches(path, config.notebooks_that_submit_jobs):
+        if not args.submit_jobs and matches(path, config.notebooks_no_mock):
             print(
-                f"ℹ️ Skipping {path} as it submits jobs; use the --submit-jobs flag to run it."
+                f"ℹ️ Skipping {path} as it doesn't work with mock hardware; use the --submit-jobs flag to run it."
             )
             continue
 
-        if args.only_submit_jobs and not matches(path, config.notebooks_that_submit_jobs):
+        if args.only_submit_jobs and not matches(path, config.all_job_submitting_notebooks):
             print(
-                f"ℹ️ Skipping {path} as it does not submit jobs and the --only-submit-jobs flag is set."
+                f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
             )
             continue
 
@@ -119,12 +135,33 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
                 )
     return notebook_warnings
 
+@contextmanager
+def patch_runtime(nb: nbformat.NotebookNode, *, should_patch: bool):
+    if should_patch:
+        nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
+    yield
+    if not should_patch:
+         return
+    nb.cells.pop(0)
+    # Reset execution counts (offset by the MOCKING_CODE cell)
+    for cell in nb.cells:
+        if hasattr(cell, "execution_count"):
+            cell.execution_count -= 1
+        if not hasattr(cell, "outputs"):
+            continue
+        for output in cell.outputs:
+            if hasattr(output, "execution_count"):
+                output.execution_count -= 1
 
-async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
+async def execute_notebook(path: Path, args: argparse.Namespace, config: Config) -> bool:
     """
-    Wrapper function for `_execute_notebook` to print status
+    Wrapper function for `_execute_notebook` to print status and write result
     """
-    print(f"▶️ Executing {path}")
+    is_patched = not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
+    if is_patched:
+        print(f"▶️ Executing {path} (with least_busy patched to return FakeKyoto)")
+    else:
+        print(f"▶️ Executing {path}")
     possible_exceptions = (
         nbconvert.preprocessors.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
@@ -143,27 +180,35 @@ async def execute_notebook(path: Path, args: argparse.Namespace) -> bool:
         )
         return False
 
-    print(f"✅ No problems in {path}")
-    return True
+    if not args.write:
+        print(f"✅ No problems in {path}")
+        return True
 
+    if is_patched:
+        print(f"✅ No problems in {path} (not written as tested with mock backend)")
+        return True
+
+    nbformat.write(nb, path)
+    print(f"✅ No problems in {path} (written)")
+    return True
 
 async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
     """
     Use nbconvert to execute notebook.
     """
-    submit_jobs = args.submit_jobs or args.only_submit_jobs
     nb = nbformat.read(filepath, as_version=4)
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
-        timeout=-1 if submit_jobs else 300,
+        timeout=-1 if args.submit_jobs else 300,
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
     # This runs the notebook, including possibly submitting jobs. We run it in a
     # new thread to avoid blocking other notebooks from submitting jobs.
-    await asyncio.to_thread(processor.preprocess, nb)
+    with patch_runtime(nb, should_patch=not args.submit_jobs):
+        await asyncio.to_thread(processor.preprocess, nb)
 
     if not args.write:
         return nb
@@ -172,7 +217,6 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
     nb, _ = clean_notebook(nb)
-    nbformat.write(nb, filepath)
     return nb
 
 
@@ -220,7 +264,7 @@ def cancel_trailing_jobs(start_time: datetime, config_path: str) -> bool:
     return False
 
 
-def create_argument_parser() -> argparse.ArgumentParser:
+def get_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="Notebook executor",
         description="For testing notebooks and updating their outputs",
@@ -252,17 +296,23 @@ def create_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--only-submit-jobs",
         action="store_true",
-        help="Same as --submit-jobs, but also skips notebooks that do not submit jobs to IBM Quantum",
+        help=(
+            "Same as --submit-jobs, but only runs notebooks that submit jobs. "
+            "Setting this option implicitly sets --submit-jobs."
+        )
     )
     parser.add_argument(
         "--config-path",
         help="Path to a TOML file containing the globs for detecting and sorting notebooks",
     )
-    return parser
+    args = parser.parse_args()
+    if args.only_submit_jobs:
+        args.submit_jobs = True
+    return args
 
 
 async def _main() -> None:
-    args = create_argument_parser().parse_args()
+    args = get_args()
     config = Config.read(args.config_path)
     paths = map(Path, args.filenames or find_notebooks(config))
     filtered_paths = filter_paths(paths, args, config)
@@ -270,7 +320,7 @@ async def _main() -> None:
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = await asyncio.gather(*(execute_notebook(path, args) for path in filtered_paths))
+    results = await asyncio.gather(*(execute_notebook(path, args, config) for path in filtered_paths))
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time, args.config_path))
     if not all(results):
