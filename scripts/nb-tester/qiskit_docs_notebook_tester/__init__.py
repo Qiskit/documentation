@@ -85,9 +85,9 @@ def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) ->
             )
             continue
 
-        if args.only_unmockable and not matches(path, config.notebooks_no_mock):
+        if args.only_submit_jobs and not matches(path, config.notebooks_that_submit_jobs+config.notebooks_no_mock):
             print(
-                f"ℹ️ Skipping {path} as it can be tested with a mock backend and the --only-unmockable flag is set."
+                f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
             )
             continue
 
@@ -290,12 +290,11 @@ def get_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
-        "--only-unmockable",
+        "--only-submit-jobs",
         action="store_true",
         help=(
-            "Same as --submit-jobs, but only runs notebooks that can't be "
-            "tested with the fake backend. Setting this option implicitly "
-            "sets --submit-jobs."
+            "Same as --submit-jobs, but only runs notebooks that submit jobs. "
+            "Setting this option implicitly sets --submit-jobs."
         )
     )
     parser.add_argument(
@@ -303,7 +302,7 @@ def get_args() -> argparse.Namespace:
         help="Path to a TOML file containing the globs for detecting and sorting notebooks",
     )
     args = parser.parse_args()
-    if args.only_unmockable:
+    if args.only_submit_jobs:
         args.submit_jobs = True
     return args
 
