@@ -88,17 +88,17 @@ function prepareProps(
   id: string,
 ): ComponentProps {
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
-    class: () => prepareClassProps($child, $dl, githubSourceLink, id),
+    class: () =>
+      prepareClassOrExceptionProps($, $main, $child, $dl, githubSourceLink, id),
     property: () =>
       preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
     method: () =>
-      prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
+      prepareMethodProps($, $main, $child, $dl, priorApiType, githubSourceLink, id),
     attribute: () =>
-      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
-    function: () =>
-      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
+      prepareAttributeProps($, $main, $child, $dl, priorApiType, githubSourceLink, id),
+    function: () => prepareFunctionProps($, $main, $child, $dl, id, githubSourceLink),
     exception: () =>
-      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
+      prepareClassOrExceptionProps($, $main, $child, $dl, githubSourceLink, id),
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
@@ -111,7 +111,9 @@ function prepareProps(
   return preparePropsPerApiType[apiType]();
 }
 
-function prepareClassProps(
+function prepareClassOrExceptionProps(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
@@ -131,6 +133,10 @@ function prepareClassProps(
       isDedicatedPage: true,
     };
   }
+  const headerLevel = getHeaderLevel($, $main, $dl);
+  $(
+    `<h${headerLevel} class="class-header">${getLastPartFromFullIdentifier(id)}</h${headerLevel}>`,
+  ).insertBefore($dl);
   return props;
 }
 
@@ -162,6 +168,7 @@ function preparePropertyProps(
 
 function prepareMethodProps(
   $: CheerioAPI,
+  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
@@ -183,7 +190,10 @@ function prepareMethodProps(
         isDedicatedPage: true,
       };
     } else if ($child.attr("id")) {
-      $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+      const headerLevel = getHeaderLevel($, $main, $dl);
+      $(
+        `<h${headerLevel} class="method-header">${getLastPartFromFullIdentifier(id)}</h${headerLevel}>`,
+      ).insertBefore($dl);
     }
   }
   return props;
@@ -191,6 +201,7 @@ function prepareMethodProps(
 
 function prepareAttributeProps(
   $: CheerioAPI,
+  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
@@ -234,7 +245,8 @@ function prepareAttributeProps(
     .trim();
   const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
-  $(`<h3>${name}</h3>`).insertBefore($dl);
+  const headerLevel = getHeaderLevel($, $main, $dl);
+  $(`<h${headerLevel} class="attribute-header">${name}</h${headerLevel}>`).insertBefore($dl);
 
   return {
     id,
@@ -244,8 +256,9 @@ function prepareAttributeProps(
   };
 }
 
-function prepareFunctionOrExceptionProps(
+function prepareFunctionProps(
   $: CheerioAPI,
+  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   id: string,
@@ -266,7 +279,10 @@ function prepareFunctionOrExceptionProps(
       isDedicatedPage: true,
     };
   }
-  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+  const headerLevel = getHeaderLevel($, $main, $dl);
+  $(
+    `<h${headerLevel} class="method-header">${getLastPartFromFullIdentifier(id)}</h${headerLevel}>`,
+  ).insertBefore($dl);
 
   return props;
 }
@@ -382,4 +398,38 @@ export async function htmlSignatureToMd(
     .replaceAll('"', '\\"')
     .replace(/^`/, "")
     .replace(/`$/, "");
+}
+
+function getHeaderLevel($: CheerioAPI, $main: Cheerio<any>, $dl: Cheerio<any>){
+  const priorHeaderLevel = getPriorHeaderLevel($, $main, $dl);
+  if (priorHeaderLevel){
+    return +priorHeaderLevel + 1;
+  }
+  return 1;
+}
+
+function getPriorHeaderLevel(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  $dl: Cheerio<any>,
+): string | undefined {
+  const siblings = $dl.siblings();
+  for (const sibling of siblings) {
+    const $sibling = $(sibling);
+    if (
+      // todo: probably we need to remove inline classes too
+      $sibling.hasClass("method-header") ||
+      $sibling.hasClass("attribute-header")
+    ) {
+      continue;
+    }
+    const tagName = $sibling.get(0)?.tagName;
+    if (tagName?.startsWith("h") && tagName.length == 2) {
+      return $sibling.get(0)?.tagName.substring(1);
+    }
+  }
+
+  // If there's no header among the siblings, we look for the prior
+  // inline class becuase the child will be inline
+  return $main.find(".class-header").last().get(0)?.tagName.substring(1);
 }
