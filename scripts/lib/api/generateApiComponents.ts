@@ -443,11 +443,11 @@ function getHeaderLevel($: CheerioAPI, $main: Cheerio<any>, $dl: Cheerio<any>) {
       throw new Error("API component cannot set inexisting header: <h7>");
     }
 
-    return +priorHeaderLevel + 1;
+    return Math.max(3, +priorHeaderLevel + 1);
   }
 
-  // Minimum header level for components without a dedicated page. This components are
-  // guaranteed to have an <h1> for the page and <h2> to define the section they belong to.
+  // Minimum header level for components without a dedicated page. This components should
+  // have an <h1> for the page and <h2> to define the section they belong to.
   return 3;
 }
 
