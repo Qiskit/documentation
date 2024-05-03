@@ -427,8 +427,8 @@ function getPriorHeaderLevel(
       continue;
     }
     const tagName = $sibling.get(0)?.tagName;
-    if (tagName?.startsWith("h") && tagName.length == 2) {
-      return $sibling.get(0)?.tagName.substring(1);
+    if (tagName?.match(/h[1-6]/)) {
+      return tagName.substring(1);
     }
   }
 
