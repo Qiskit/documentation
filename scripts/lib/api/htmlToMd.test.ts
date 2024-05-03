@@ -678,6 +678,8 @@ for execution on present day noisy quantum systems.</p>
       "images": [],
       "isReleaseNotes": false,
       "markdown": "# Estimator
+    
+    ### Sampler
 
     <Class id="qiskit_ibm_runtime.Sampler" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/sampler.py" signature="SamplerExample(circuits=None, parameters=None)">
       Class for interacting with Qiskit Runtime Sampler primitive service.
