@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RGate
 
 # RGate
 
-<Class id="qiskit.circuit.library.RGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/r.py#L25-L113" signature="qiskit.circuit.library.RGate(theta, phi, label=None, *, duration=None, unit='dt')">
+<Class id="qiskit.circuit.library.RGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/r.py#L25-L114" signature="qiskit.circuit.library.RGate(theta, phi, label=None, *, duration=None, unit='dt')">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Rotation θ around the cos(φ)x + sin(φ)y axis.
@@ -138,7 +138,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/r.py#L82-L94" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/r.py#L82-L94" signature="inverse(annotated=False)">
     Invert this gate as: $r(θ, φ)^dagger = r(-θ, φ)$
 
     **Parameters**
@@ -156,8 +156,23 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.RGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/r.py#L105-L108" signature="power(exponent)">
-    Raise gate to a power.
+  <Function id="qiskit.circuit.library.RGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/r.py#L107-L109" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 </Class>
 

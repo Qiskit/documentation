@@ -63,17 +63,17 @@ theta3 = [1, 2, 3, 4, 5, 6]
 estimator = Estimator()
 
 # calculate [ <psi1(theta1)|H1|psi1(theta1)> ]
-job = estimator.run([(psi1, hamiltonian1, [theta1])])
+job = estimator.run([(psi1, H1, [theta1])])
 job_result = job.result() # It will block until the job finishes.
-print(f"The primitive-job finished with result {job_result}"))
+print(f"The primitive-job finished with result {job_result}")
 
 # calculate [ [<psi1(theta1)|H1|psi1(theta1)>,
 #              <psi1(theta3)|H3|psi1(theta3)>],
 #             [<psi2(theta2)|H2|psi2(theta2)>] ]
 job2 = estimator.run(
     [
-        (psi1, [hamiltonian1, hamiltonian3], [theta1, theta3]),
-        (psi2, hamiltonian2, theta2)
+        (psi1, [H1, H3], [theta1, theta3]),
+        (psi2, H2, theta2)
     ],
     precision=0.01
 )
@@ -325,7 +325,7 @@ The formal distinction between the Primitives V1 and V2 APIs are the base classe
 |                                                                                                                       |                                                                      |
 | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | [`BitArray`](qiskit.primitives.BitArray "qiskit.primitives.BitArray")(array, num\_bits)                               | Stores an array of bit values.                                       |
-| [`DataBin`](qiskit.primitives.DataBin "qiskit.primitives.DataBin")()                                                  | Base class for data bin containers.                                  |
+| [`DataBin`](qiskit.primitives.DataBin "qiskit.primitives.DataBin")(\*\[, shape])                                      | Namespace for storing data.                                          |
 | [`PrimitiveResult`](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult")(pub\_results\[, metadata]) | A container for multiple pub results and global metadata.            |
 | [`PubResult`](qiskit.primitives.PubResult "qiskit.primitives.PubResult")(data\[, metadata])                           | Result of Primitive Unified Bloc.                                    |
 | [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob")(job\_id, \*\*kwargs)    | Primitive job abstract base class.                                   |
