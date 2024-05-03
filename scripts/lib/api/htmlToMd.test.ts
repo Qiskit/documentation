@@ -989,3 +989,113 @@ By default this is sys.stdout.</p></li>
   `);
   });
 });
+
+test("generate correct heading level", async () => {
+  expect(
+    await toMd(
+      `
+      <div role="main">
+      <h1>Test classes and methods</h1>
+      <dl class="py class">
+      <dt class="sig sig-object py" id="qiskit.test.myClass1">
+      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.test.</span></span><span class="sig-name descname"><span class="pre">myClass1</span></span><span class="sig-paren">()</span></dt>
+      <dd><p>Inline class</p>
+
+      <dl class="py method">
+      <dt class="sig sig-object py" id="qiskit.test.myClass1.method1">
+      <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method1</span></span><span class="sig-paren">()</span></dt>
+      <dd><p>Method 1</p>
+      </dd></dl>
+
+      <dl class="py method">
+      <dt class="sig sig-object py" id="qiskit.test.myClass1.method2">
+      <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method2</span></span><span class="sig-paren">()</span></dt>
+      <dd><p>Method 2</p>
+      </dd></dl>
+      
+      </dd></dl>
+
+      <dl class="py class">
+      <dt class="sig sig-object py" id="qiskit.test.myClass2">
+      <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.test.</span></span><span class="sig-name descname"><span class="pre">myClass2</span></span><span class="sig-paren">()</span></dt>
+      <dd><p>Inline class 2</p>
+
+        <dl class="py class">
+        <dt class="sig sig-object py" id="qiskit.test.myClass2.myClass3">
+        <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.test.</span></span><span class="sig-name descname"><span class="pre">myClass3</span></span><span class="sig-paren">()</span></dt>
+        <dd><p>Inline class inside another class</p>
+
+        <dl class="py method">
+        <dt class="sig sig-object py" id="qiskit.test.myClass2.myClass3.method3">
+        <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method3</span></span><span class="sig-paren">()</span></dt>
+        <dd><p>Method 3</p>
+        </dd></dl>
+
+        <dl class="py method">
+        <dt class="sig sig-object py" id="qiskit.test.myClass2.myClass3.method4">
+        <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method4</span></span><span class="sig-paren">()</span></dt>
+        <dd><p>Method 4</p>
+        </dd></dl>
+        
+        </dd></dl>
+      </dd></dl>
+
+      <dl class="py method">
+      <dt class="sig sig-object py" id="qiskit.test.method5">
+      <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method5</span></span><span class="sig-paren">()</span></dt>
+      <dd><p>Method outside the classes</p>
+      </dd></dl>
+      </div>
+      `,
+    ),
+  ).toEqual(`# Test classes and methods
+
+### myClass1
+
+<Class id="qiskit.test.myClass1" signature="qiskit.test.myClass1()">
+  Inline class
+
+  #### method1
+
+  <Function id="qiskit.test.myClass1.method1" signature="abstract method1()">
+    Method 1
+  </Function>
+
+  #### method2
+
+  <Function id="qiskit.test.myClass1.method2" signature="abstract method2()">
+    Method 2
+  </Function>
+</Class>
+
+### myClass2
+
+<Class id="qiskit.test.myClass2" signature="qiskit.test.myClass2()">
+  Inline class 2
+
+  #### myClass3
+
+  <Class id="qiskit.test.myClass2.myClass3" signature="qiskit.test.myClass3()">
+    Inline class inside another class
+
+    ##### method3
+
+    <Function id="qiskit.test.myClass2.myClass3.method3" signature="abstract method3()">
+      Method 3
+    </Function>
+
+    ##### method4
+
+    <Function id="qiskit.test.myClass2.myClass3.method4" signature="abstract method4()">
+      Method 4
+    </Function>
+  </Class>
+</Class>
+
+### method5
+
+<Function id="qiskit.test.method5" signature="abstract method5()">
+  Method outside the classes
+</Function>
+`);
+});
