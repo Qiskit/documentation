@@ -248,7 +248,7 @@ function prepareAttributeProps(
   }
 
   // Else, the attribute is embedded on the class
-    const headerLevel = getHeaderLevel($, $main, $dl);
+  const headerLevel = getHeaderLevel($, $main, $dl);
   $(
     `<h${headerLevel} data-header-type="attribute-header">${name}</h${headerLevel}>`,
   ).insertBefore($dl);
