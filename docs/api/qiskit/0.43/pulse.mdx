@@ -71,6 +71,8 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule "qiskit.puls
 
 These are all instances of the same base class:
 
+### Instruction
+
 <Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/instructions/instruction.py" signature="Instruction(operands, name=None)">
   The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
@@ -178,6 +180,8 @@ Novel channel types can often utilize the [`ControlChannel`](qiskit.pulse.channe
 
 All channels are children of the same abstract base class:
 
+### Channel
+
 <Class id="qiskit.pulse.channels.Channel" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py" signature="Channel(*args, **kwargs)">
   Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
@@ -230,6 +234,8 @@ The alignment transforms define alignment policies of instructions in [`Schedule
 | [`AlignSequential`](qiskit.pulse.transforms.AlignSequential "qiskit.pulse.transforms.AlignSequential")()         | Align instructions sequentially.                                         |
 
 These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind").
+
+#### AlignmentKind
 
 <Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py" signature="AlignmentKind(context_params)">
   An abstract class for schedule alignment.
@@ -677,6 +683,8 @@ There are 1e-06 seconds in 4500 samples.
 | [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
 
 ## Exceptions
+
+### PulseError
 
 <Class id="qiskit.pulse.PulseError" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/exceptions.py" signature="PulseError(*message)">
   Errors raised by the pulse module.
