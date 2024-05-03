@@ -48,7 +48,7 @@ There are two pathways for constructing expressions. The classes that form [the 
 
 The expression system is based on tree representation. All nodes in the tree are final (uninheritable) instances of the abstract base class:
 
-<Class id="qiskit.circuit.classical.expr.Expr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L48-L80" signature="qiskit.circuit.classical.expr.Expr">
+<Class id="qiskit.circuit.classical.expr.Expr" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L48-L80" signature="qiskit.circuit.classical.expr.Expr">
   Root base class of all nodes in the expression tree. The base case should never be instantiated directly.
 
   This must not be subclassed by users; subclasses form the internal data of the representation of expressions, and it does not make sense to add more outside of Qiskit library code.
@@ -60,7 +60,7 @@ These objects are mutable and should not be reused in a different location witho
 
 The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), which can be either an arbitrarily typed real-time variable, or a wrapper around a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister").
 
-<Class id="qiskit.circuit.classical.expr.Var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L110-L197" signature="final class qiskit.circuit.classical.expr.Var(var, type, *, name=None)">
+<Class id="qiskit.circuit.classical.expr.Var" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L110-L197" signature="final class qiskit.circuit.classical.expr.Var(var, type, *, name=None)">
   A classical variable.
 
   These variables take two forms: a new-style variable that owns its storage location and has an associated name; and an old-style variable that wraps a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instance that is owned by some containing circuit. In general, construction of variables for use in programs should use `Var.new()` or [`QuantumCircuit.add_var()`](qiskit.circuit.QuantumCircuit#add_var "qiskit.circuit.QuantumCircuit.add_var").
@@ -80,15 +80,15 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
   </Attribute>
 </Class>
 
-Similarly, literals used in comparison (such as integers) should be lifted to [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes with associated types.
+Similarly, literals used in expressions (such as integers) should be lifted to [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes with associated types.
 
-<Class id="qiskit.circuit.classical.expr.Value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L200-L217" signature="final class qiskit.circuit.classical.expr.Value(value, type)">
+<Class id="qiskit.circuit.classical.expr.Value" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L200-L217" signature="final class qiskit.circuit.classical.expr.Value(value, type)">
   A single scalar value.
 </Class>
 
 The operations traditionally associated with pre-, post- or infix operators in programming are represented by the [`Unary`](#qiskit.circuit.classical.expr.Unary "qiskit.circuit.classical.expr.Unary") and [`Binary`](#qiskit.circuit.classical.expr.Binary "qiskit.circuit.classical.expr.Binary") nodes as appropriate. These each take an operation type code, which are exposed as enumerations inside each class as [`Unary.Op`](#qiskit.circuit.classical.expr.Unary.Op "qiskit.circuit.classical.expr.Unary.Op") and [`Binary.Op`](#qiskit.circuit.classical.expr.Binary.Op "qiskit.circuit.classical.expr.Binary.Op") respectively.
 
-<Class id="qiskit.circuit.classical.expr.Unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L220-L273" signature="final class qiskit.circuit.classical.expr.Unary(op, operand, type)">
+<Class id="qiskit.circuit.classical.expr.Unary" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L220-L273" signature="final class qiskit.circuit.classical.expr.Unary(op, operand, type)">
   A unary expression.
 
   **Parameters**
@@ -97,7 +97,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
   *   **operand** ([*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – The operand of the operation.
   *   **type** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.types.Type")) – The resolved type of the result.
 
-  <Class id="qiskit.circuit.classical.expr.Unary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L232-L254" signature="Op(value)">
+  <Class id="qiskit.circuit.classical.expr.Unary.Op" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L232-L254" signature="Op(value)">
     Enumeration of the opcodes for unary operations.
 
     The bitwise negation [`BIT_NOT`](#qiskit.circuit.classical.expr.Unary.Op.BIT_NOT "qiskit.circuit.classical.expr.Unary.Op.BIT_NOT") takes a single bit or an unsigned integer of known width, and returns a value of the same type.
@@ -118,7 +118,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
   </Class>
 </Class>
 
-<Class id="qiskit.circuit.classical.expr.Binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L276-L356" signature="final class qiskit.circuit.classical.expr.Binary(op, left, right, type)">
+<Class id="qiskit.circuit.classical.expr.Binary" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L276-L365" signature="final class qiskit.circuit.classical.expr.Binary(op, left, right, type)">
   A binary expression.
 
   **Parameters**
@@ -128,7 +128,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
   *   **right** ([*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – The right-hand operand.
   *   **type** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.types.Type")) – The resolved type of the result.
 
-  <Class id="qiskit.circuit.classical.expr.Binary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L289-L335" signature="Op(value)">
+  <Class id="qiskit.circuit.classical.expr.Binary.Op" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L289-L344" signature="Op(value)">
     Enumeration of the opcodes for binary operations.
 
     The bitwise operations [`BIT_AND`](#qiskit.circuit.classical.expr.Binary.Op.BIT_AND "qiskit.circuit.classical.expr.Binary.Op.BIT_AND"), [`BIT_OR`](#qiskit.circuit.classical.expr.Binary.Op.BIT_OR "qiskit.circuit.classical.expr.Binary.Op.BIT_OR") and [`BIT_XOR`](#qiskit.circuit.classical.expr.Binary.Op.BIT_XOR "qiskit.circuit.classical.expr.Binary.Op.BIT_XOR") apply to two operands of the same type, which must be a single bit or an unsigned integer of fixed width. The resultant type is the same as the two input types.
@@ -136,6 +136,8 @@ The operations traditionally associated with pre-, post- or infix operators in p
     The logical operations [`LOGIC_AND`](#qiskit.circuit.classical.expr.Binary.Op.LOGIC_AND "qiskit.circuit.classical.expr.Binary.Op.LOGIC_AND") and [`LOGIC_OR`](#qiskit.circuit.classical.expr.Binary.Op.LOGIC_OR "qiskit.circuit.classical.expr.Binary.Op.LOGIC_OR") first implicitly coerce their arguments to Booleans, and then apply the logical operation. The resultant type is always Boolean.
 
     The binary mathematical relations [`EQUAL`](#qiskit.circuit.classical.expr.Binary.Op.EQUAL "qiskit.circuit.classical.expr.Binary.Op.EQUAL"), [`NOT_EQUAL`](#qiskit.circuit.classical.expr.Binary.Op.NOT_EQUAL "qiskit.circuit.classical.expr.Binary.Op.NOT_EQUAL"), [`LESS`](#qiskit.circuit.classical.expr.Binary.Op.LESS "qiskit.circuit.classical.expr.Binary.Op.LESS"), [`LESS_EQUAL`](#qiskit.circuit.classical.expr.Binary.Op.LESS_EQUAL "qiskit.circuit.classical.expr.Binary.Op.LESS_EQUAL"), [`GREATER`](#qiskit.circuit.classical.expr.Binary.Op.GREATER "qiskit.circuit.classical.expr.Binary.Op.GREATER") and [`GREATER_EQUAL`](#qiskit.circuit.classical.expr.Binary.Op.GREATER_EQUAL "qiskit.circuit.classical.expr.Binary.Op.GREATER_EQUAL") take unsigned integers (with an implicit cast to make them the same width), and return a Boolean.
+
+    The bitshift operations [`SHIFT_LEFT`](#qiskit.circuit.classical.expr.Binary.Op.SHIFT_LEFT "qiskit.circuit.classical.expr.Binary.Op.SHIFT_LEFT") and [`SHIFT_RIGHT`](#qiskit.circuit.classical.expr.Binary.Op.SHIFT_RIGHT "qiskit.circuit.classical.expr.Binary.Op.SHIFT_RIGHT") can take bit-like container types (e.g. unsigned integers) as the left operand, and any integer type as the right-hand operand. In all cases, the output bit width is the same as the input, and zeros fill in the “exposed” spaces.
 
     ### BIT\_AND
 
@@ -202,14 +204,38 @@ The operations traditionally associated with pre-, post- or infix operators in p
     <Attribute id="qiskit.circuit.classical.expr.Binary.Op.GREATER_EQUAL" attributeValue="11">
       Numeric greater than or equal to. `lhs >= rhs`.
     </Attribute>
+
+    ### SHIFT\_LEFT
+
+    <Attribute id="qiskit.circuit.classical.expr.Binary.Op.SHIFT_LEFT" attributeValue="12">
+      Zero-padding bitshift to the left. `lhs << rhs`.
+    </Attribute>
+
+    ### SHIFT\_RIGHT
+
+    <Attribute id="qiskit.circuit.classical.expr.Binary.Op.SHIFT_RIGHT" attributeValue="13">
+      Zero-padding bitshift to the right. `lhs >> rhs`.
+    </Attribute>
   </Class>
+</Class>
+
+Bit-like types (unsigned integers) can be indexed by integer types, represented by [`Index`](#qiskit.circuit.classical.expr.Index "qiskit.circuit.classical.expr.Index"). The result is a single bit. The resulting expression has an associated memory location (and so can be used as an lvalue for [`Store`](circuit#qiskit.circuit.Store "qiskit.circuit.Store"), etc) if the target is also an lvalue.
+
+<Class id="qiskit.circuit.classical.expr.Index" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L368-L397" signature="final class qiskit.circuit.classical.expr.Index(target, index, type)">
+  An indexing expression.
+
+  **Parameters**
+
+  *   **target** ([*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – The object being indexed.
+  *   **index** ([*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – The expression doing the indexing.
+  *   **type** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.types.Type")) – The resolved type of the result.
 </Class>
 
 When constructing expressions, one must ensure that the types are valid for the operation. Attempts to construct expressions with invalid types will raise a regular Python `TypeError`.
 
 Expressions in this system are defined to act only on certain sets of types. However, values may be cast to a suitable supertype in order to satisfy the typing requirements. In these cases, a node in the expression tree is used to represent the promotion. In all cases where operations note that they “implicitly cast” or “coerce” their arguments, the expression tree must have this node representing the conversion.
 
-<Class id="qiskit.circuit.classical.expr.Cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L83-L107" signature="final class qiskit.circuit.classical.expr.Cast(operand, type, implicit=False)">
+<Class id="qiskit.circuit.classical.expr.Cast" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/expr.py#L83-L107" signature="final class qiskit.circuit.classical.expr.Cast(operand, type, implicit=False)">
   A cast from one type to another, implied by the use of an expression in a different context.
 </Class>
 
@@ -223,7 +249,7 @@ The functions and methods described in this section are a more user-friendly way
 
 ### lift
 
-<Function id="qiskit.circuit.classical.expr.lift" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L94-L147" signature="qiskit.circuit.classical.expr.lift(value, /, type=None)">
+<Function id="qiskit.circuit.classical.expr.lift" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L94-L147" signature="qiskit.circuit.classical.expr.lift(value, /, type=None)">
   Lift the given Python `value` to a [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.expr.Value") or [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var").
 
   If an explicit `type` is given, the typing in the output will reflect that.
@@ -263,7 +289,7 @@ You can manually specify casts in cases where the cast is allowed in explicit fo
 
 ### cast
 
-<Function id="qiskit.circuit.classical.expr.cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L150-L165" signature="qiskit.circuit.classical.expr.cast(operand, type, /)">
+<Function id="qiskit.circuit.classical.expr.cast" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L150-L165" signature="qiskit.circuit.classical.expr.cast(operand, type, /)">
   Create an explicit cast from the given value to the given type.
 
   **Examples**
@@ -286,7 +312,7 @@ There are helper constructor functions for each of the unary operations.
 
 ### bit\_not
 
-<Function id="qiskit.circuit.classical.expr.bit_not" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L168-L183" signature="qiskit.circuit.classical.expr.bit_not(operand, /)">
+<Function id="qiskit.circuit.classical.expr.bit_not" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L168-L183" signature="qiskit.circuit.classical.expr.bit_not(operand, /)">
   Create a bitwise ‘not’ expression node from the given value, resolving any implicit casts and lifting the value into a [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") node if required.
 
   **Examples**
@@ -307,7 +333,7 @@ There are helper constructor functions for each of the unary operations.
 
 ### logic\_not
 
-<Function id="qiskit.circuit.classical.expr.logic_not" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L186-L202" signature="qiskit.circuit.classical.expr.logic_not(operand, /)">
+<Function id="qiskit.circuit.classical.expr.logic_not" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L186-L202" signature="qiskit.circuit.classical.expr.logic_not(operand, /)">
   Create a logical ‘not’ expression node from the given value, resolving any implicit casts and lifting the value into a [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") node if required.
 
   **Examples**
@@ -330,7 +356,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### bit\_and
 
-<Function id="qiskit.circuit.classical.expr.bit_and" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L258-L274" signature="qiskit.circuit.classical.expr.bit_and(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.bit_and" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L258-L274" signature="qiskit.circuit.classical.expr.bit_and(left, right, /)">
   Create a bitwise ‘and’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -351,7 +377,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### bit\_or
 
-<Function id="qiskit.circuit.classical.expr.bit_or" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L277-L293" signature="qiskit.circuit.classical.expr.bit_or(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.bit_or" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L277-L293" signature="qiskit.circuit.classical.expr.bit_or(left, right, /)">
   Create a bitwise ‘or’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -372,7 +398,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### bit\_xor
 
-<Function id="qiskit.circuit.classical.expr.bit_xor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L296-L312" signature="qiskit.circuit.classical.expr.bit_xor(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.bit_xor" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L296-L312" signature="qiskit.circuit.classical.expr.bit_xor(left, right, /)">
   Create a bitwise ‘exclusive or’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -393,7 +419,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### logic\_and
 
-<Function id="qiskit.circuit.classical.expr.logic_and" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L322-L334" signature="qiskit.circuit.classical.expr.logic_and(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.logic_and" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L322-L334" signature="qiskit.circuit.classical.expr.logic_and(left, right, /)">
   Create a logical ‘and’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -414,7 +440,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### logic\_or
 
-<Function id="qiskit.circuit.classical.expr.logic_or" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L337-L349" signature="qiskit.circuit.classical.expr.logic_or(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.logic_or" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L337-L349" signature="qiskit.circuit.classical.expr.logic_or(left, right, /)">
   Create a logical ‘or’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -435,7 +461,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### equal
 
-<Function id="qiskit.circuit.classical.expr.equal" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L360-L375" signature="qiskit.circuit.classical.expr.equal(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.equal" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L360-L375" signature="qiskit.circuit.classical.expr.equal(left, right, /)">
   Create an ‘equal’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -456,7 +482,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### not\_equal
 
-<Function id="qiskit.circuit.classical.expr.not_equal" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L378-L393" signature="qiskit.circuit.classical.expr.not_equal(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.not_equal" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L378-L393" signature="qiskit.circuit.classical.expr.not_equal(left, right, /)">
   Create a ‘not equal’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -477,7 +503,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### less
 
-<Function id="qiskit.circuit.classical.expr.less" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L404-L419" signature="qiskit.circuit.classical.expr.less(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.less" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L404-L419" signature="qiskit.circuit.classical.expr.less(left, right, /)">
   Create a ‘less than’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -498,7 +524,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### less\_equal
 
-<Function id="qiskit.circuit.classical.expr.less_equal" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L422-L437" signature="qiskit.circuit.classical.expr.less_equal(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.less_equal" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L422-L437" signature="qiskit.circuit.classical.expr.less_equal(left, right, /)">
   Create a ‘less than or equal to’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -519,7 +545,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### greater
 
-<Function id="qiskit.circuit.classical.expr.greater" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L440-L455" signature="qiskit.circuit.classical.expr.greater(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.greater" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L440-L455" signature="qiskit.circuit.classical.expr.greater(left, right, /)">
   Create a ‘greater than’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -540,7 +566,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 ### greater\_equal
 
-<Function id="qiskit.circuit.classical.expr.greater_equal" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L458-L473" signature="qiskit.circuit.classical.expr.greater_equal(left, right, /)">
+<Function id="qiskit.circuit.classical.expr.greater_equal" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L458-L473" signature="qiskit.circuit.classical.expr.greater_equal(left, right, /)">
   Create a ‘greater than or equal to’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
   **Examples**
@@ -559,11 +585,89 @@ Similarly, the binary operations and relations have helper functions defined.
   [*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 </Function>
 
+### shift\_left
+
+<Function id="qiskit.circuit.classical.expr.shift_left" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L491-L516" signature="qiskit.circuit.classical.expr.shift_left(left, right, /, type=None)">
+  Create a ‘bitshift left’ expression node from the given two values, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
+
+  If `type` is given, the `left` operand will be coerced to it (if possible).
+
+  **Examples**
+
+  Shift the value of a standalone variable left by some amount:
+
+  ```python
+  >>> from qiskit.circuit.classical import expr, types
+  >>> a = expr.Var.new("a", types.Uint(8))
+  >>> expr.shift_left(a, 4)
+  Binary(Binary.Op.SHIFT_LEFT, Var(<UUID>, Uint(8), name='a'), Value(4, Uint(3)), Uint(8))
+  ```
+
+  Shift an integer literal by a variable amount, coercing the type of the literal:
+
+  ```python
+  >>> expr.shift_left(3, a, types.Uint(16))
+  Binary(Binary.Op.SHIFT_LEFT, Value(3, Uint(16)), Var(<UUID>, Uint(8), name='a'), Uint(16))
+  ```
+
+  **Return type**
+
+  [Expr](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")
+</Function>
+
+### shift\_right
+
+<Function id="qiskit.circuit.classical.expr.shift_right" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L519-L536" signature="qiskit.circuit.classical.expr.shift_right(left, right, /, type=None)">
+  Create a ‘bitshift right’ expression node from the given values, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
+
+  If `type` is given, the `left` operand will be coerced to it (if possible).
+
+  **Examples**
+
+  Shift the value of a classical register right by some amount:
+
+  ```python
+  >>> from qiskit.circuit import ClassicalRegister
+  >>> from qiskit.circuit.classical import expr
+  >>> expr.shift_right(ClassicalRegister(8, "a"), 4)
+  Binary(Binary.Op.SHIFT_RIGHT, Var(ClassicalRegister(8, "a"), Uint(8)), Value(4, Uint(3)), Uint(8))
+  ```
+
+  **Return type**
+
+  [Expr](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")
+</Function>
+
+You can index into unsigned integers and bit-likes using another unsigned integer of any width. This includes in storing operations, if the target of the index is writeable.
+
+### index
+
+<Function id="qiskit.circuit.classical.expr.index" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L539-L556" signature="qiskit.circuit.classical.expr.index(target, index, /)">
+  Index into the `target` with the given integer `index`, lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
+
+  This can be used as the target of a [`Store`](circuit#qiskit.circuit.Store "qiskit.circuit.Store"), if the `target` is itself an lvalue.
+
+  **Examples**
+
+  Index into a classical register with a literal:
+
+  ```python
+  >>> from qiskit.circuit import ClassicalRegister
+  >>> from qiskit.circuit.classical import expr
+  >>> expr.index(ClassicalRegister(8, "a"), 3)
+  Index(Var(ClassicalRegister(8, "a"), Uint(8)), Value(3, Uint(2)), Bool())
+  ```
+
+  **Return type**
+
+  [*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
+</Function>
+
 Qiskit’s legacy method for specifying equality conditions for use in conditionals is to use a two-tuple of a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and an integer. This represents an exact equality condition, and there are no ways to specify any other relations. The helper function [`lift_legacy_condition()`](#qiskit.circuit.classical.expr.lift_legacy_condition "qiskit.circuit.classical.expr.lift_legacy_condition") converts this legacy format into the new expression syntax.
 
 ### lift\_legacy\_condition
 
-<Function id="qiskit.circuit.classical.expr.lift_legacy_condition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/constructors.py#L63-L91" signature="qiskit.circuit.classical.expr.lift_legacy_condition(condition, /)">
+<Function id="qiskit.circuit.classical.expr.lift_legacy_condition" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/constructors.py#L63-L91" signature="qiskit.circuit.classical.expr.lift_legacy_condition(condition, /)">
   Lift a legacy two-tuple equality condition into a new-style [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr").
 
   **Examples**
@@ -590,12 +694,12 @@ Qiskit’s legacy method for specifying equality conditions for use in condition
 
 A typical consumer of the expression tree wants to recursively walk through the tree, potentially statefully, acting on each node differently depending on its type. This is naturally a double-dispatch problem; the logic of ‘what is to be done’ is likely stateful and users should be free to define their own operations, yet each node defines ‘what is being acted on’. We enable this double dispatch by providing a base visitor class for the expression tree.
 
-<Class id="qiskit.circuit.classical.expr.ExprVisitor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L30-L56" signature="qiskit.circuit.classical.expr.ExprVisitor">
+<Class id="qiskit.circuit.classical.expr.ExprVisitor" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L30-L59" signature="qiskit.circuit.classical.expr.ExprVisitor">
   Base class for visitors to the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") tree. Subclasses should override whichever of the `visit_*` methods that they are able to handle, and should be organised such that non-existent methods will never be called.
 
   ### visit\_binary
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L52-L53" signature="visit_binary(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_binary" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L52-L53" signature="visit_binary(node, /)">
     **Return type**
 
     *\_T\_co*
@@ -603,7 +707,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ### visit\_cast
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L55-L56" signature="visit_cast(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_cast" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L55-L56" signature="visit_cast(node, /)">
     **Return type**
 
     *\_T\_co*
@@ -611,7 +715,15 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ### visit\_generic
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_generic" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L40-L41" signature="visit_generic(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_generic" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L40-L41" signature="visit_generic(node, /)">
+    **Return type**
+
+    *\_T\_co*
+  </Function>
+
+  ### visit\_index
+
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_index" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L58-L59" signature="visit_index(node, /)">
     **Return type**
 
     *\_T\_co*
@@ -619,7 +731,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ### visit\_unary
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L49-L50" signature="visit_unary(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_unary" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L49-L50" signature="visit_unary(node, /)">
     **Return type**
 
     *\_T\_co*
@@ -627,7 +739,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ### visit\_value
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L46-L47" signature="visit_value(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_value" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L46-L47" signature="visit_value(node, /)">
     **Return type**
 
     *\_T\_co*
@@ -635,7 +747,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ### visit\_var
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L43-L44" signature="visit_var(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_var" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L43-L44" signature="visit_var(node, /)">
     **Return type**
 
     *\_T\_co*
@@ -648,7 +760,7 @@ For the convenience of simple visitors that only need to inspect the variables i
 
 ### iter\_vars
 
-<Function id="qiskit.circuit.classical.expr.iter_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L82-L99" signature="qiskit.circuit.classical.expr.iter_vars(node)">
+<Function id="qiskit.circuit.classical.expr.iter_vars" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L89-L106" signature="qiskit.circuit.classical.expr.iter_vars(node)">
   Get an iterator over the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") nodes referenced at any level in the given [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr").
 
   **Examples**
@@ -676,7 +788,7 @@ Two expressions can be compared for direct structural equality by using the buil
 
 ### structurally\_equivalent
 
-<Function id="qiskit.circuit.classical.expr.structurally_equivalent" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L168-L217" signature="qiskit.circuit.classical.expr.structurally_equivalent(left, right, left_var_key=None, right_var_key=None)">
+<Function id="qiskit.circuit.classical.expr.structurally_equivalent" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L185-L234" signature="qiskit.circuit.classical.expr.structurally_equivalent(left, right, left_var_key=None, right_var_key=None)">
   Do these two expressions have exactly the same tree structure, up to some key function for the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") objects?
 
   In other words, are these two expressions the exact same trees, except we compare the [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") fields by calling the appropriate `*_var_key` function on them, and comparing that output for equality. This function does not allow any semantic “equivalences” such as asserting that `a == b` is equivalent to `b == a`; the evaluation order of the operands could, in general, cause such a statement to be false (consider hypothetical `extern` functions that access global state).
@@ -723,7 +835,7 @@ Some expressions have associated memory locations, and others may be purely temp
 
 ### is\_lvalue
 
-<Function id="qiskit.circuit.classical.expr.is_lvalue" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L242-L280" signature="qiskit.circuit.classical.expr.is_lvalue(node, /)">
+<Function id="qiskit.circuit.classical.expr.is_lvalue" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/expr/visitors.py#L262-L300" signature="qiskit.circuit.classical.expr.is_lvalue(node, /)">
   Return whether this expression can be used in l-value positions, that is, whether it has a well-defined location in memory, such as one that might be writeable.
 
   Being an l-value is a necessary but not sufficient for this location to be writeable; it is permissible that a larger object containing this memory location may not allow writing from the scope that attempts to write to it. This would be an access property of the containing program, however, and not an inherent property of the expression system.
@@ -783,7 +895,7 @@ The type system of the expression tree is exposed through this module. This is i
 
 All types inherit from an abstract base class:
 
-<Class id="qiskit.circuit.classical.types.Type" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/types.py#L49-L80" signature="qiskit.circuit.classical.types.Type">
+<Class id="qiskit.circuit.classical.types.Type" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/types.py#L49-L80" signature="qiskit.circuit.classical.types.Type">
   Root base class of all nodes in the type tree. The base case should never be instantiated directly.
 
   This must not be subclassed by users; subclasses form the internal data of the representation of expressions, and it does not make sense to add more outside of Qiskit library code.
@@ -793,11 +905,11 @@ Types should be considered immutable objects, and you must not mutate them. It i
 
 The two different types available are for Booleans (corresponding to [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") and the literals `True` and `False`), and unsigned integers (corresponding to [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and Python integers).
 
-<Class id="qiskit.circuit.classical.types.Bool" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/types.py#L83-L96" signature="final class qiskit.circuit.classical.types.Bool">
+<Class id="qiskit.circuit.classical.types.Bool" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/types.py#L83-L96" signature="final class qiskit.circuit.classical.types.Bool">
   The Boolean type. This has exactly two values: `True` and `False`.
 </Class>
 
-<Class id="qiskit.circuit.classical.types.Uint" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/types.py#L99-L117" signature="final class qiskit.circuit.classical.types.Uint(width)">
+<Class id="qiskit.circuit.classical.types.Uint" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/types.py#L99-L117" signature="final class qiskit.circuit.classical.types.Uint(width)">
   An unsigned integer of fixed bit width.
 </Class>
 
@@ -815,7 +927,7 @@ The low-level interface to querying the subtyping relationship is the [`order()`
 
 ### order
 
-<Function id="qiskit.circuit.classical.types.order" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/ordering.py#L76-L93" signature="qiskit.circuit.classical.types.order(left, right, /)">
+<Function id="qiskit.circuit.classical.types.order" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L76-L93" signature="qiskit.circuit.classical.types.order(left, right, /)">
   Get the ordering relationship between the two types as an enumeration value.
 
   **Examples**
@@ -842,7 +954,7 @@ The low-level interface to querying the subtyping relationship is the [`order()`
 
 The return value is an enumeration [`Ordering`](#qiskit.circuit.classical.types.Ordering "qiskit.circuit.classical.types.Ordering") that describes what, if any, subtyping relationship exists between the two types.
 
-<Class id="qiskit.circuit.classical.types.Ordering" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/ordering.py#L38-L55" signature="qiskit.circuit.classical.types.Ordering(value)">
+<Class id="qiskit.circuit.classical.types.Ordering" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L38-L55" signature="qiskit.circuit.classical.types.Ordering(value)">
   Enumeration listing the possible relations between two types. Types only have a partial ordering, so it’s possible for two types to have no sub-typing relationship.
 
   Note that the sub-/supertyping relationship is not the same as whether a type can be explicitly cast from one to another.
@@ -852,7 +964,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
 ### is\_subtype
 
-<Function id="qiskit.circuit.classical.types.is_subtype" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/ordering.py#L96-L116" signature="qiskit.circuit.classical.types.is_subtype(left, right, /, strict=False)">
+<Function id="qiskit.circuit.classical.types.is_subtype" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L96-L116" signature="qiskit.circuit.classical.types.is_subtype(left, right, /, strict=False)">
   Does the relation $\text{left} \le \text{right}$ hold? If there is no ordering relation between the two types, then this returns `False`. If `strict`, then the equality is also forbidden.
 
   **Examples**
@@ -881,7 +993,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
 ### is\_supertype
 
-<Function id="qiskit.circuit.classical.types.is_supertype" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/ordering.py#L119-L139" signature="qiskit.circuit.classical.types.is_supertype(left, right, /, strict=False)">
+<Function id="qiskit.circuit.classical.types.is_supertype" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L119-L139" signature="qiskit.circuit.classical.types.is_supertype(left, right, /, strict=False)">
   Does the relation $\text{left} \ge \text{right}$ hold? If there is no ordering relation between the two types, then this returns `False`. If `strict`, then the equality is also forbidden.
 
   **Examples**
@@ -910,7 +1022,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
 ### greater
 
-<Function id="qiskit.circuit.classical.types.greater" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/ordering.py#L142-L165" signature="qiskit.circuit.classical.types.greater(left, right, /)">
+<Function id="qiskit.circuit.classical.types.greater" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L142-L165" signature="qiskit.circuit.classical.types.greater(left, right, /)">
   Get the greater of the two types, assuming that there is an ordering relation between them. Technically, this is a slightly restricted version of the concept of the ‘meet’ of the two types in that the return value must be one of the inputs. In practice in the type system there is no concept of a ‘sum’ type, so the ‘meet’ exists if and only if there is an ordering between the two types, and is equal to the greater of the two types.
 
   **Returns**
@@ -942,7 +1054,7 @@ It is common to need to cast values of one type to another type. The casting rul
 
 ### cast\_kind
 
-<Function id="qiskit.circuit.classical.types.cast_kind" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/ordering.py#L203-L222" signature="qiskit.circuit.classical.types.cast_kind(from_, to_, /)">
+<Function id="qiskit.circuit.classical.types.cast_kind" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L203-L222" signature="qiskit.circuit.classical.types.cast_kind(from_, to_, /)">
   Determine the sort of cast that is required to move from the left type to the right type.
 
   **Examples**
@@ -966,7 +1078,7 @@ It is common to need to cast values of one type to another type. The casting rul
 
 The return values from this function are an enumeration explaining the types of cast that are allowed from the left type to the right type.
 
-<Class id="qiskit.circuit.classical.types.CastKind" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/types/ordering.py#L168-L184" signature="qiskit.circuit.classical.types.CastKind(value)">
+<Class id="qiskit.circuit.classical.types.CastKind" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L168-L184" signature="qiskit.circuit.classical.types.CastKind(value)">
   A return value indicating the type of cast that can occur from one type to another.
 </Class>
 

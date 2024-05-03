@@ -114,6 +114,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/build/circuit-construction.ipynb",
   "docs/build/pulse.ipynb",
   "docs/start/install.mdx",
+  "docs/start/configure-qiskit-local.mdx",
   "docs/api/qiskit/release-notes/0.44.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/api/qiskit-ibm-provider/index.mdx",

@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
 # UnitaryGate
 
-<Class id="qiskit.circuit.library.UnitaryGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py#L44-L209" signature="qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True)">
+<Class id="qiskit.circuit.library.UnitaryGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/unitary.py#L45-L213" signature="qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True, *, num_qubits=None)">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Class quantum gates specified by a unitary matrix.
@@ -38,6 +38,7 @@ python_api_name: qiskit.circuit.library.UnitaryGate
   *   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unitary name for backend \[Default: `None`].
   *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `False` this asserts the input is known to be unitary and the checking to validate this will be skipped. This should only ever be used if you know the input is unitary, setting this to `False` and passing in a non-unitary matrix will result unexpected behavior and errors.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – If given, the number of qubits in the matrix. If not given, it is inferred.
 
   **Raises**
 
@@ -144,19 +145,19 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### adjoint
 
-  <Function id="qiskit.circuit.library.UnitaryGate.adjoint" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py#L131-L133" signature="adjoint()">
+  <Function id="qiskit.circuit.library.UnitaryGate.adjoint" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/unitary.py#L135-L137" signature="adjoint()">
     Return the adjoint of the unitary.
   </Function>
 
   ### conjugate
 
-  <Function id="qiskit.circuit.library.UnitaryGate.conjugate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py#L127-L129" signature="conjugate()">
+  <Function id="qiskit.circuit.library.UnitaryGate.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/unitary.py#L131-L133" signature="conjugate()">
     Return the conjugate of the unitary.
   </Function>
 
   ### control
 
-  <Function id="qiskit.circuit.library.UnitaryGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py#L157-L195" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.UnitaryGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/unitary.py#L161-L199" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
     Return controlled version of gate.
 
     **Parameters**
@@ -177,19 +178,19 @@ python_api_name: qiskit.circuit.library.UnitaryGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.UnitaryGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py#L123-L125" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.UnitaryGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/unitary.py#L127-L129" signature="inverse(annotated=False)">
     Return the adjoint of the unitary.
   </Function>
 
   ### transpose
 
-  <Function id="qiskit.circuit.library.UnitaryGate.transpose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py#L135-L137" signature="transpose()">
+  <Function id="qiskit.circuit.library.UnitaryGate.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/unitary.py#L139-L141" signature="transpose()">
     Return the transpose of the unitary.
   </Function>
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.UnitaryGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/unitary.py#L204-L209" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.UnitaryGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/unitary.py#L208-L213" signature="validate_parameter(parameter)">
     Unitary gate parameter has to be an ndarray.
   </Function>
 </Class>
