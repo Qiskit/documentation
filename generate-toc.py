@@ -362,8 +362,14 @@ def write_result(folder: str, top_level_entries: list[Entry]) -> None:
     if folder_path.exists():
         shutil.rmtree(folder_path)
     folder_path.mkdir(parents=True)
+
     for entry in top_level_entries:
         entry.ensure_slugs_exist(folder_path)
+
+    # Save markdown view of the organization. This is useful to see how things are structured.
+    Path(f"{folder}.md").write_text(entries_as_markdown_list(top_level_entries))
+
+    # Also write the _toc.json to get live previews.
     result = {
         "title": "Guides",
         "collapsed": True,
