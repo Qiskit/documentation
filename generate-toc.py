@@ -43,6 +43,11 @@ class Entry:
         (base_dir / f"{self.slug}.mdx").write_text(content)
 
 
+def entries_as_markdown_list(entries: list[Entry]) -> str:
+    result = [f"* [{entry.title}](./{entry.slug})" for entry in entries if entry.slug]
+    return "\n".join(result)
+
+
 # ------------------------------------------------------------------------------
 # Sections
 # ------------------------------------------------------------------------------
@@ -265,8 +270,20 @@ SYSTEMS = [
     ),
 ]
 
+OPTIMIZE_FOR_HARDWARE_CHILDREN = [
+    *TRANSPILER,
+    Entry("Verify circuits through simulation", children=SIMULATORS),
+]
+
+EXECUTE_ON_HARDWARE_CHILDREN = [
+    Entry("Introduction", "execute-on-target-hardware"),
+    *PRIMITIVES,
+    *EXECUTION_MODES,
+    *SYSTEMS,
+]
+
 # Note: not used in Tools.
-POSTPROCESS = [
+POSTPROCESS_CHILDREN = [
     Entry("Introduction", "postprocess-results"),
     Entry("Retrieve and save results", "save-jobs"),
     Entry("Visualize results", "visualize-results"),
@@ -281,45 +298,43 @@ PROPOSAL3_WORKFLOW_FOLDER = Entry(
         Entry(
             "Map problem to circuits",
             "map-problem-to-circuits-index",
-            extra_page_content="In the map problem to circuits step, you ...",
+            extra_page_content=(
+                "In the map problem to circuits step, you ...\n\n"
+                + f"Relevant pages:\n\n{entries_as_markdown_list(CIRCUIT_CONSTRUCTION)}"
+            ),
         ),
         Entry(
             "Optimize for hardware",
             "optimize-for-hardware-index",
-            extra_page_content="In the optimize for target hardware step, you ...",
+            extra_page_content=(
+                "In the optimize for target hardware step, you ...\n\n"
+                + f"Relevant pages:\n\n{entries_as_markdown_list(OPTIMIZE_FOR_HARDWARE_CHILDREN)}"
+            ),
         ),
         Entry(
             "Execute on hardware",
             "execute-on-hardware-index",
-            extra_page_content="In the execute on target hardware step, you ...",
+            extra_page_content=(
+                "In the execute on target hardware step, you ...\n\n"
+                + f"Relevant pages:\n\n{entries_as_markdown_list(EXECUTE_ON_HARDWARE_CHILDREN)}"
+            ),
         ),
         Entry(
             "Postprocess results",
             "postprocess-results-index",
-            extra_page_content="Finally, in the postprocess results step, you ...",
+            extra_page_content=(
+                "In the postprocess results step, you ...\n\n"
+                + f"Relevant pages:\n\n{entries_as_markdown_list(POSTPROCESS_CHILDREN)}"
+            ),
         ),
     ],
 )
 
 WORKFLOW_ENTRIES = [
     Entry("Map problem to circuits", children=CIRCUIT_CONSTRUCTION),
-    Entry(
-        "Optimize for hardware",
-        children=[
-            *TRANSPILER,
-            Entry("Verify circuits through simulation", children=SIMULATORS),
-        ],
-    ),
-    Entry(
-        "Excute on hardware",
-        children=[
-            Entry("Introduction", "execute-on-target-hardware"),
-            *PRIMITIVES,
-            *EXECUTION_MODES,
-            *SYSTEMS,
-        ],
-    ),
-    Entry("Postprocess results", children=POSTPROCESS),
+    Entry("Optimize for hardware", children=OPTIMIZE_FOR_HARDWARE_CHILDREN),
+    Entry("Excute on hardware", children=EXECUTE_ON_HARDWARE_CHILDREN),
+    Entry("Postprocess results", children=POSTPROCESS_CHILDREN),
 ]
 
 TOOL_ENTRIES = [
