@@ -67,7 +67,7 @@ GET_STARTED = Entry(
 )
 
 CIRCUIT_CONSTRUCTION = [
-    Entry("Introduction", "map-problem-to-circuits"),
+    Entry("Introduction", "circuit-construction-intro"),
     Entry(
         "Build circuits with Qiskit",
         children=[
@@ -271,14 +271,13 @@ POSTPROCESS = [
 # Note: not used in Workflow.
 SERVERLESS = [Entry("Qiskit Serverless workloads", "qiskit-serverless")]
 
-# TODO: set up index pages here?
 PROPOSAL3_WORKFLOW_FOLDER = Entry(
     "Workflow",
     children=[
-        Entry("Map problem to circuits", "map-problem-to-circuits"),
-        Entry("Optimize for hardware", "optimize-for-hardware"),
-        Entry("Execute on hardware", "execute-on-hardware"),
-        Entry("Postprocess results", "postprocess-results"),
+        Entry("Map problem to circuits", "map-problem-to-circuits-index"),
+        Entry("Optimize for hardware", "optimize-for-hardware-index"),
+        Entry("Execute on hardware", "execute-on-hardware-index"),
+        Entry("Postprocess results", "postprocess-results-index"),
     ],
 )
 
