@@ -55,7 +55,7 @@ and then loading that file will return a list with all the circuits
 
 ### API documentation
 
-### load
+#### load
 
 <Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L210-L340" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
   Load a QPY binary file
@@ -100,7 +100,7 @@ and then loading that file will return a list with all the circuits
   [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
 </Function>
 
-### dump
+#### dump
 
 <Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L76-L207" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=11)">
   Write QPY binary data to a file
@@ -164,7 +164,7 @@ and then loading that file will return a list with all the circuits
 
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
-### QpyError
+#### QpyError
 
 <Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)">
   Errors raised by the qpy module.
@@ -172,7 +172,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
   Set the error message.
 </Class>
 
-### qiskit.qpy.QPY\_VERSION
+#### qiskit.qpy.QPY\_VERSION
 
 <Attribute id="qiskit.qpy.QPY_VERSION">
   The current QPY format version as of this release. This is the default value of the `version` keyword argument on [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") and also the upper bound for accepted values for the same argument. This is also the upper bond on the versions supported by [`qpy.load()`](#qiskit.qpy.load "qiskit.qpy.load").
@@ -182,7 +182,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
   [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 </Attribute>
 
-### qiskit.qpy.QPY\_COMPATIBILITY\_VERSION
+#### qiskit.qpy.QPY\_COMPATIBILITY\_VERSION
 
 <Attribute id="qiskit.qpy.QPY_COMPATIBILITY_VERSION">
   The current minimum compatibility QPY format version. This is the minimum version that [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") will accept for the `version` keyword argument. [`qpy.load()`](#qiskit.qpy.load "qiskit.qpy.load") will be able to load all released format versions of QPY (up until `QPY_VERSION`).
@@ -200,7 +200,7 @@ For example, if you generated a QPY file using qiskit-terra 0.18.1 you could loa
 
 If a feature being loaded is deprecated in the corresponding qiskit release, QPY will raise a [`QPYLoadingDeprecatedFeatureWarning`](#qiskit.qpy.QPYLoadingDeprecatedFeatureWarning "qiskit.qpy.QPYLoadingDeprecatedFeatureWarning") informing of the deprecation period and how the feature will be internally handled.
 
-### QPYLoadingDeprecatedFeatureWarning
+#### QPYLoadingDeprecatedFeatureWarning
 
 <Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L31-L33" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning">
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
