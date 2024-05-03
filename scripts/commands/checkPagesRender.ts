@@ -81,8 +81,9 @@ zxMain(async () => {
   const files = await determineFilePaths(args);
 
   let failures: string[] = [];
-  let numFilesChecked = 1;
+  let numFilesChecked = 0;
   for (const fp of files) {
+    numFilesChecked++;
     const rendered = await canRender(fp);
     if (!rendered) {
       console.error(`❌ Failed to render: ${fp}`);
@@ -93,14 +94,13 @@ zxMain(async () => {
     if (numFilesChecked % 10 == 0) {
       console.log(`Checked ${numFilesChecked} / ${files.length} pages`);
     }
-    numFilesChecked++;
   }
 
   if (failures.length === 0) {
-    console.info("✅ All pages render without crashing");
+    console.info(`✅ All ${files.length} pages render without crashing`);
   } else {
     console.error(
-      "💔 Some pages crash when rendering. This is usually due to invalid syntax, such as forgetting " +
+      `💔 ${failures.length} pages crash when rendering. This is usually due to invalid syntax, such as forgetting ` +
         "the closing component tag, like `</Admonition>`. You can sometimes get a helpful error message " +
         "by previewing the docs locally or in CI. See the README for instructions.\n\n" +
         failures.join("\n"),

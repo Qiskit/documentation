@@ -90,12 +90,15 @@ Sampler V2 example that uses shots in `run()`:
 
 ```python
 # Sample two circuits at 128 shots each.
-sampler.run([(circuit1,), (circuit2,)], shots=128)
+sampler.run([circuit1, circuit2], shots=128)
 
-# Sample two circuits at different amounts of shots. The "None"s are necessary
-# as placeholders
+# Sample two circuits at different amounts of shots.
+# The "None"s are necessary as placeholders
 # for the lack of parameter values in this example.
-sampler.run([(circuit1, None, 123), (circuit2, None, 456)])
+sampler.run([
+  (circuit1, None, 123),
+  (circuit2, None, 456),
+])
 ```
 
 #### Output
@@ -110,7 +113,7 @@ The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) 
    order in which they were measured.  
 * Sampler V2 has convenience methods like `get_counts()` to help with migration.    
 * The Sampler V2 result objects organize data in terms of their **input circuits' classical register names**, for
-   compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with a non-default name, you would use that name to get those results. 
+   compatibility with dynamic circuits.  By default, the classical register name is `meas`, as shown in the following example.  When defining your circuit, if you create one or more classical registers with a non-default name, use that name to get the results. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
 
        ```python
     # Define a quantum circuit with 2 qubits
@@ -226,7 +229,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 sampler = Sampler(backend)
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
 result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
@@ -234,6 +237,7 @@ print(f" >> Counts for the alpha output register: {pub_result.data.alpha.get_cou
 print(f" >> Counts for the beta output register: {pub_result.data.beta.get_counts()}")
 ```
 
+<span id="v2-prim-options"></span>
 ### Options
 
 Options are specified differently in the V2 primitives in these ways:
@@ -309,6 +313,9 @@ sampler = Sampler(backend, options={"default_shots": 4096})
 # Setting options after primitive initialization
 # This uses auto complete.
 sampler.options.dynamical_decoupling.enable = True
+# Turn on gate twirling. Requires qiskit_ibm_runtime 0.23.0 or later.
+options.twirling.enable_gates = True
+
 # This does bulk update.  The value for default_shots is overridden if you specify shots with run() or in the PUB.
 sampler.options.update(default_shots=1024, dynamical_decoupling={"sequence_type": "XpXm"})
 
@@ -368,7 +375,7 @@ backend = service.least_busy(operational=True, simulator=False)
 estimator = Estimator(backend)
 
 # Set resilience_level to 0
-estimator.options. resilience_level = 0
+estimator.options.resilience_level = 0
 
 # Turn on measurement error mitigation
 estimator.options.resilience.measure_mitigation = True
@@ -421,7 +428,7 @@ options.resilience_level = 2
 <span id="transpilation"></span>
 ### Transpilation
 
-V2 primitives support only ISA circuits. Because the primitives do not perform layout, routing, and translation operations, the corresponding transpilation options from V1 are not supported.  For Estimator, you can still use `optimization_level` to indicate how much optimization the primitives should apply to the ISA circuits. The valid values are 0 and 1. 
+V2 primitives support only circuits that adhere to the Instruction Set Architecture (ISA) of a particular backend. Because the primitives do not perform layout, routing, and translation operations, the corresponding transpilation options from V1 are not supported.  For Estimator, you can still use `optimization_level` to indicate how much optimization the primitives should apply to the ISA circuits. The valid values are 0 and 1. 
 
 Dynamical decoupling is no longer automatically added for `optimization_level=1`. You can, however, enable it by using the `dynamical_decoupling` option.
 
@@ -856,6 +863,9 @@ print(f" > Expectation values job 2: {another_result.values}")
   print(f">>> Counts: {pub_result.data.meas.get_counts()}")
   print(f">>> Per-shot measurement: {pub_result.data.meas.get_counts()}")
   ```
+  <Admonition type="note">
+  You need the classical register name to get the results.  By default, it is named `meas` when you use `measure_all()`. When defining your circuit, if you create one or more classical registers with a non-default name, use that name to get the results. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
+  </Admonition>
 
 ## Sampler full examples
 
@@ -871,6 +881,7 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
  
 service = QiskitRuntimeService()
  
@@ -886,7 +897,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
  
 sampler = Sampler(backend)
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
 result = job.result()
 ```  
   </TabItem>
@@ -1109,8 +1120,8 @@ backend = service.least_busy(operational=True, simulator=False, min_num_qubits=1
  
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session) 
-    job = sampler.run([(isa_circuit)]) 
-    another_job = sampler.run([(another_isa_circuit)]) 
+    job = sampler.run([isa_circuit]) 
+    another_job = sampler.run([another_isa_circuit]) 
     result = job.result()
     another_result = another_job.result() 
  

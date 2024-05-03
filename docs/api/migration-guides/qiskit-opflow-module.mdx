@@ -950,7 +950,7 @@ are different `Estimator` implementations, as noted [previously.](#attention_pri
 | Opflow | Alternative |
 | --- | --- |
 | [`qiskit.opflow.expectations.ExpectationFactory`](../qiskit/0.46/qiskit.opflow.expectations.ExpectationFactory) | No direct replacement. This class was used to create instances of one of the classes listed below. |
-| [`qiskit.opflow.expectations.AerPauliExpectation`](../qiskit/0.46/qiskit.opflow.expectations.AerPauliExpectation) | Use [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html)  with `approximation=True`, and then `shots=None` as `run_options`. See example below. |
+| [`qiskit.opflow.expectations.AerPauliExpectation`](../qiskit/0.46/qiskit.opflow.expectations.AerPauliExpectation) | Use [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html). See example below. |
 | [`qiskit.opflow.expectations.MatrixExpectation`](../qiskit/0.46/qiskit.opflow.expectations.MatrixExpectation) | Use [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) primitive. If no shots are set, it performs an exact Statevector calculation. See example below. |
 | [`qiskit.opflow.expectations.PauliExpectation`](../qiskit/0.46/qiskit.opflow.expectations.PauliExpectation) | Use any Estimator primitive. For [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator), set `shots!=None` for a shotbased simulation. For [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html), this is the default. |
 
@@ -989,7 +989,7 @@ from qiskit.quantum_info import SparsePauliOp
 from qiskit import QuantumCircuit
 from qiskit_aer.primitives import Estimator
 
-estimator = Estimator(approximation=True, run_options={"shots": None})
+estimator = Estimator()
 
 op = SparsePauliOp.from_list([("X", 1j)])
 states_op = QuantumCircuit(1)

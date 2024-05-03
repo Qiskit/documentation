@@ -29,6 +29,7 @@ import { updateLinks } from "./updateLinks";
 import { specialCaseResults } from "./specialCaseResults";
 import addFrontMatter from "./addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds";
+import removeMathBlocksIndentation from "./removeMathBlocksIndentation";
 import { Pkg } from "./Pkg";
 import { pathExists } from "../fs";
 import {
@@ -111,7 +112,7 @@ async function convertFilesToMarkdown(
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
       imageDestination: pkg.outputDir("/images"),
-      releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
+      releaseNotesTitle: pkg.releaseNotesTitle(),
     });
 
     // Avoid creating an empty markdown file for HTML files without content
@@ -154,6 +155,7 @@ async function postProcessResults(
   await updateLinks(results, maybeObjectsInv);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
+  removeMathBlocksIndentation(results);
   return results;
 }
 
@@ -191,10 +193,6 @@ async function handleReleaseNotesFile(
   // When the release notes are a single file, only use them if this is the latest version rather
   // than a historical release.
   if (!pkg.hasSeparateReleaseNotes) {
-    // Deal with Reno issue: https://github.com/Qiskit/documentation/issues/978
-    if (pkg.name === "qiskit-ibm-runtime") {
-      result.markdown = result.markdown.replace("# HACK FOR RENO ISSUE", "");
-    }
     return pkg.isLatest();
   }
 

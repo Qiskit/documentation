@@ -1,9 +1,9 @@
 ---
-title: Select and set up an IBM Quantum channel
+title: Set up an IBM Quantum channel
 description: Installation and setup instructions for IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit SDK and Qiskit Runtime jobs
-
 ---
-# Select and set up an IBM Quantum channel
+
+# Set up an IBM Quantum channel
 
 You can access IBM Quantum&trade; systems by using the IBM Quantum Platform or IBM Cloud&reg; _channel_.  _Channel_ is the term used to describe the method you use to access IBM Quantum services. 
 
@@ -101,7 +101,7 @@ service = QiskitRuntimeService()
 backend = service.backend("ibmq_qasm_simulator")
 
 sampler = Sampler(backend)
-job = sampler.run([(example_circuit,)])
+job = sampler.run([example_circuit])
 print(f"job id: {job.job_id()}")
 result = job.result()
 print(result)
@@ -173,7 +173,7 @@ print(result)
     service = QiskitRuntimeService()
     backend = service.backend("ibmq_qasm_simulator")
     sampler = Sampler(backend)
-    job = sampler.run([(example_circuit,)])
+    job = sampler.run([example_circuit])
     print(f"job id: {job.job_id()}")
     result = job.result()
     print(result)

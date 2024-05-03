@@ -20,7 +20,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 </Admonition>
 
 <Admonition type="note">
-    These examples all use the primitives from Qiskit Runtime, but you could use the base primitives instead. 
+    These examples all use the primitives from Qiskit Runtime, but you could use the base primitives instead.
 </Admonition>
 
 ## Estimator examples
@@ -34,7 +34,7 @@ Use Estimator to determine the expectation value of a single circuit-observable 
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-```python 
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -46,25 +46,25 @@ backend = service.least_busy(operational=True, simulator=False, min_num_qubits=1
 estimator = Estimator(backend)
 
 n_qubits = 127
- 
+
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 observable = SparsePauliOp("Z" * n_qubits)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
-isa_observable = observable.apply_layout(isa_circuit.layout) 
+isa_observable = observable.apply_layout(isa_circuit.layout)
 
 job = estimator.run([(isa_circuit, isa_observable)])
 result = job.result()
- 
+
 print(f" > Expectation value: {result[0].data.evs}")
 print(f" > Metadata: {result[0].metadata}")
 ```
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-```python 
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -142,11 +142,11 @@ for idx in range(len(pubs)):
     pub_result = job_result[idx]
     print(f">>> Expectation values for PUB {idx}: {pub_result.data.evs}")
     print(f">>> Standard errors for PUB {idx}: {pub_result.data.stds}")
-```  
+```
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-```python 
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -188,7 +188,7 @@ Use Estimator to run three experiments in a single job, leveraging parameter val
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-```python 
+```python
 import numpy as np
 
 from qiskit.circuit import QuantumCircuit, Parameter
@@ -243,7 +243,7 @@ print(f">>> Metadta: {pub_result.metadata}")
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-```python 
+```python
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -287,9 +287,9 @@ from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator
- 
+
 n_qubits = 127
- 
+
 rng = np.random.default_rng(1234)
 mat = np.real(random_hermitian(n_qubits, seed=rng))
 circuit = IQP(mat)
@@ -297,17 +297,17 @@ mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 observable = SparsePauliOp("X" * n_qubits)
 another_observable = SparsePauliOp("Y" * n_qubits)
- 
+
 pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
- 
+
 service = QiskitRuntimeService()
- 
+
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
- 
+
 with Session(service=service, backend=backend) as session:
     estimator = Estimator(session=session)
 
@@ -326,11 +326,11 @@ with Session(service=service, backend=backend) as session:
     # second job
     print(f" > Another Expectation value: {another_result[0].data.evs}")
     print(f" > More Metadata: {another_result[0].metadata}")
-```  
+```
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
-```python 
+```python
 import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -384,33 +384,34 @@ Generate entire error-mitigated quasi-probability distributions sampled from qua
 ### Run a single experiment
 
 Use Sampler to return the measurement outcome as a quasi-probability distribution (V1) or as **bitstrings** or
-   **counts** (V2) of a single circuit.  
+   **counts** (V2) of a single circuit.
 
 <Tabs>
   <TabItem value="SamplerV2" label="Sampler V2">
 ```python
 import numpy as np
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
- 
+
 service = QiskitRuntimeService()
- 
+
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
- 
+
 n_qubits = 127
- 
+
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
- 
+
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
- 
+
 sampler = Sampler(backend)
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
 result = job.result()
-```  
+```
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
@@ -472,10 +473,10 @@ for circuit in circuits:
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuits = pm.run(circuits)
- 
-sampler = Sampler(backend) 
+
+sampler = Sampler(backend)
 job = sampler.run(isa_circuits)
-result = job.result() 
+result = job.result()
 
 for idx, pub_result in enumerate(result):
     print(f" > Counts for pub {idx}: {pub_result.data.meas.get_counts()}")
@@ -488,7 +489,7 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler 
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
 service = QiskitRuntimeService()
 
@@ -505,9 +506,9 @@ for circuit in circuits:
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuits = pm.run(circuits)
 
-sampler = Sampler(backend) 
+sampler = Sampler(backend)
 job = sampler.run(isa_circuits)
-result = job.result() 
+result = job.result()
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
 ```
@@ -522,7 +523,7 @@ Run several experiments in a single job, leveraging parameter values to increase
 
 <Tabs>
   <TabItem value="SamplerV2" label="Sampler V2">
-```python 
+```python
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -556,7 +557,7 @@ job = sampler.run([(isa_circuit, parameter_values)])
 result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
-# Get counts from the classical register "meas". 
+# Get counts from the classical register "meas".
 print(f" >> Counts for the meas output register: {pub_result.data.meas.get_counts()}")
 ```
   </TabItem>
@@ -584,9 +585,9 @@ parameter_values = [
     rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
 ]
 
-sampler = Sampler(backend) 
-job = sampler.run([isa_circuit] * 3, parameter_values) 
-result = job.result() 
+sampler = Sampler(backend)
+job = sampler.run([isa_circuit] * 3, parameter_values)
+result = job.result()
 
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
 ```
@@ -608,7 +609,7 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler, Session
 
 n_qubits = 127
-  
+
 rng = np.random.default_rng(1234)
 mat = np.real(random_hermitian(n_qubits, seed=rng))
 circuit = IQP(mat)
@@ -618,26 +619,26 @@ another_circuit = IQP(mat)
 another_circuit.measure_all()
 
 service = QiskitRuntimeService()
- 
+
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
- 
-with Session(service=service, backend=backend) as session: 
-    sampler = Sampler(session=session) 
-    job = sampler.run([(isa_circuit)]) 
-    another_job = sampler.run([(another_isa_circuit)]) 
+
+with Session(service=service, backend=backend) as session:
+    sampler = Sampler(session=session)
+    job = sampler.run([isa_circuit])
+    another_job = sampler.run([another_isa_circuit])
     result = job.result()
-    another_result = another_job.result() 
- 
-# first job 
+    another_result = another_job.result()
+
+# first job
 print(f" > Counts for job 1: {result[0].data.meas.get_counts()}")
- 
-# second job 
+
+# second job
 print(f" > Counts for job 2: {another_result[0].data.meas.get_counts()}")
-```  
+```
   </TabItem>
 
   <TabItem value="SamplerV1" label="Sampler (V1)">
@@ -667,21 +668,21 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 
-options = Options() 
-options.optimization_level = 2 
-options.resilience_level = 0 
+options = Options()
+options.optimization_level = 2
+options.resilience_level = 0
 
-with Session(service=service, backend=backend) as session: 
-    sampler = Sampler(session=session, options=options) 
-    job = sampler.run(isa_circuit) 
-    another_job = sampler.run(another_isa_circuit) 
+with Session(service=service, backend=backend) as session:
+    sampler = Sampler(session=session, options=options)
+    job = sampler.run(isa_circuit)
+    another_job = sampler.run(another_isa_circuit)
     result = job.result()
-    another_result = another_job.result() 
+    another_result = another_job.result()
 
-# first job 
-print(f" > Quasi-probability distribution job 1: {result.quasi_dists}") 
+# first job
+print(f" > Quasi-probability distribution job 1: {result.quasi_dists}")
 
-# second job 
+# second job
 print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
 ```
   </TabItem>

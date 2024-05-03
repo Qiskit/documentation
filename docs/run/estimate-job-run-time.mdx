@@ -61,7 +61,7 @@ isa_circuit = pm.run(qc)
 sampler = Sampler(backend)
 
 # Submit the circuit to the sampler
-job = sampler.run([(isa_circuit,)])
+job = sampler.run([isa_circuit])
 
 print(job.usage_estimation)
 ```
