@@ -16,6 +16,7 @@ class Entry:
     slug: str | None = None
     children: list[Entry] = field(default_factory=lambda: [])
     external_url: str | None = None
+    extra_page_content: str | None = None
 
     def __post_init__(self) -> None:
         if self.slug and self.external_url:
@@ -36,7 +37,10 @@ class Entry:
             child.ensure_slugs_exist(base_dir)
         if self.slug is None:
             return
-        (base_dir / f"{self.slug}.mdx").write_text(f"# {self.title}")
+        content = f"# {self.title}"
+        if self.extra_page_content:
+            content += f"\n\n{self.extra_page_content}\n"
+        (base_dir / f"{self.slug}.mdx").write_text(content)
 
 
 # ------------------------------------------------------------------------------
@@ -274,10 +278,26 @@ SERVERLESS = [Entry("Qiskit Serverless workloads", "qiskit-serverless")]
 PROPOSAL3_WORKFLOW_FOLDER = Entry(
     "Workflow",
     children=[
-        Entry("Map problem to circuits", "map-problem-to-circuits-index"),
-        Entry("Optimize for hardware", "optimize-for-hardware-index"),
-        Entry("Execute on hardware", "execute-on-hardware-index"),
-        Entry("Postprocess results", "postprocess-results-index"),
+        Entry(
+            "Map problem to circuits",
+            "map-problem-to-circuits-index",
+            extra_page_content="In the map problem to circuits step, you ...",
+        ),
+        Entry(
+            "Optimize for hardware",
+            "optimize-for-hardware-index",
+            extra_page_content="In the optimize for target hardware step, you ...",
+        ),
+        Entry(
+            "Execute on hardware",
+            "execute-on-hardware-index",
+            extra_page_content="In the execute on target hardware step, you ...",
+        ),
+        Entry(
+            "Postprocess results",
+            "postprocess-results-index",
+            extra_page_content="Finally, in the postprocess results step, you ...",
+        ),
     ],
 )
 
