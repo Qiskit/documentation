@@ -75,10 +75,10 @@ const QISKIT_ENTRIES = [
   { name: _OPFLOW, kind: "section" },
   { name: _SERIALIZATION, kind: "section" },
   { name: _PULSE, kind: "section" },
-  { moduleId: "qiskit.execute", title: "execute function", kind: "module" },
+  { moduleId: "qiskit.execute", title: "qiskit.execute", kind: "module" },
   {
     moduleId: "qiskit.execute_function",
-    title: "execute_function",
+    title: "qiskit.execute_function",
     kind: "module",
   },
   { name: _OTHER, kind: "section" },
