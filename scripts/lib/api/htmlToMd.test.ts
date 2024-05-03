@@ -731,7 +731,7 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# circuits
 
-    <Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true} signature="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]">
+    <Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true}>
       Quantum circuits that represents quantum states.
     </Attribute>
     ",
@@ -793,7 +793,7 @@ for execution on present day noisy quantum systems.</p>
       "isReleaseNotes": false,
       "markdown": "# callback
 
-    <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true} signature="Optional[Callable] = None" />
+    <Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" attributeTypeHint="Optional[Callable]" attributeValue="None" isDedicatedPage={true} />
     ",
       "meta": {
         "apiName": "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
