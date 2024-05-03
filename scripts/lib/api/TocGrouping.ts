@@ -94,69 +94,39 @@ const QISKIT_ENTRIES = [
 ] as const;
 
 function qiskitModuleToSection(module: string): string | undefined {
-  // Note: we intentionally don't use `hasPrefix` with modules in current versions of
-  // Qiskit because we want the TocGrouping code to error when a new module is added
-  // to Qiskit. It's important that this grouping mirrors the grouping in
-  // https://github.com/Qiskit/qiskit/blob/main/docs/apidoc/index.rst. So, when a new
-  // module is added, we want to error so that we know to check which section the
-  // module should go into.
-  //
-  // It's fine to use hasPrefix() for historical modules like qiskit.aqua, though.
-
-  const moduleIncluded = (modules: string[]): boolean =>
-    new Set(modules).has(module);
-
   if (
-    moduleIncluded([
-      "qiskit.circuit",
-      "qiskit.circuit.classical",
-      "qiskit.circuit.classicalfunction",
-      "qiskit.circuit.library",
-      "qiskit.circuit.singleton",
-      "qiskit.extensions",
-    ])
+    hasPrefix(module, ["qiskit.circuit", "qiskit.extensions"]) &&
+    module === "qiskit.circuit.qpy_serialization"
   ) {
     return _CIRCUITS;
   }
 
   if (
-    moduleIncluded([
+    hasPrefix(module, [
       "qiskit.converters",
       "qiskit.dagcircuit",
       "qiskit.passmanager",
       "qiskit.synthesis",
-      "qiskit.synthesis.unitary.aqc",
+      "qiskit.synthesis",
       "qiskit.transpiler",
       "qiskit.transpiler.passes",
-      "qiskit.transpiler.passes.synthesis.plugin",
-      "qiskit.transpiler.preset_passmanagers",
-      "qiskit.transpiler.preset_passmanagers.plugin",
-      "qiskit.transpiler.synthesis.aqc",
     ])
   ) {
     return _TRANSPILATION;
   }
 
   if (
-    moduleIncluded([
-      "qiskit.primitives",
-      "qiskit.providers",
-      "qiskit.providers.basic_provider",
-      "qiskit.providers.basicaer",
-      "qiskit.providers.fake_provider",
-      "qiskit.providers.models",
-    ])
+    hasPrefix(module, ["qiskit.primitives", "qiskit.providers"]) &&
+    !hasPrefix(module, ["qiskit.providers.aer", "qiskit.providers.ibmq"])
   ) {
     return _PRIMITVES;
   }
 
   if (
-    moduleIncluded([
+    hasPrefix(module, [
       "qiskit.result",
       "qiskit.validation",
       "qiskit.visualization",
-      "qiskit.visualization.pulse.interpolation",
-      "qiskit.visualization.pulse.qcstyle",
     ])
   ) {
     return _RESULTS;
@@ -165,45 +135,25 @@ function qiskitModuleToSection(module: string): string | undefined {
   if (hasPrefix(module, ["qiskit.opflow"])) return _OPFLOW;
 
   if (
-    moduleIncluded([
+    hasPrefix(module, [
       "qiskit.circuit.qpy_serialization",
       "qiskit.qpy",
       "qiskit.qasm",
-      "qiskit.qasm2",
-      "qiskit.qasm3",
     ])
   ) {
     return _SERIALIZATION;
   }
 
-  if (
-    moduleIncluded([
-      "qiskit.scheduler",
-      "qiskit.scheduler.methods.basic",
-      "qiskit.scheduler.schedule_circuit",
-      "qiskit.scheduler.utils",
-      "qiskit.pulse",
-      "qiskit.pulse.channels",
-      "qiskit.pulse.instructions",
-      "qiskit.pulse.library",
-      "qiskit.pulse.library.discrete",
-      "qiskit.pulse.pulse_lib",
-      "qiskit.pulse.pulse_lib.discrete",
-    ])
-  ) {
-    return _PULSE;
-  }
+  if (hasPrefix(module, ["qiskit.scheduler", "qiskit.pulse"])) return _PULSE;
 
   if (
-    moduleIncluded([
+    hasPrefix(module, [
       "qiskit.assembler",
       "qiskit.compiler",
       "qiskit.exceptions",
       "qiskit.qobj",
       "qiskit.tools",
-      "qiskit.tools.jupyter",
       "qiskit.utils",
-      "qiskit.utils.mitigation",
     ])
   ) {
     return _OTHER;
