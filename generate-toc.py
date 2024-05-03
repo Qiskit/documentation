@@ -43,8 +43,16 @@ class Entry:
         (base_dir / f"{self.slug}.mdx").write_text(content)
 
 
-def entries_as_markdown_list(entries: list[Entry]) -> str:
-    result = [f"* [{entry.title}](./{entry.slug})" for entry in entries if entry.slug]
+def entries_as_markdown_list(entries: list[Entry], *, indent: str = "") -> str:
+    result = []
+    for entry in entries:
+        if entry.slug:
+            result.append(f"{indent}* [{entry.title}](./{entry.slug})")
+        if entry.external_url:
+            result.append(f"{indent}* [{entry.title}]({entry.external_url})")
+        if entry.children:
+            children = entries_as_markdown_list(entry.children, indent=indent + "  ")
+            result.append(f"{indent}* {entry.title}\n{children}")
     return "\n".join(result)
 
 
@@ -88,7 +96,6 @@ CIRCUIT_CONSTRUCTION = [
                 "classical-feedforward-and-control-flow",
             ),
             Entry("Synthesizing unitary operators", "unitary-synthesis"),
-            Entry("Synthesizing unitary operators", "unitary-synthesis"),
             Entry("Bit-ordering in Qiskit", "bit-ordering"),
             Entry("Save circuits to disk", "save-circuits"),
         ],
@@ -118,7 +125,7 @@ CIRCUIT_CONSTRUCTION = [
                     ),
                     Entry(
                         "OpenQASM 3 and the Qiskit SDK",
-                        "interoperate-qiskit-qasm2",
+                        "interoperate-qiskit-qasm3",
                     ),
                     Entry("OpenQASM 3 feature table", "qasm-feature-table"),
                     Entry(
@@ -225,8 +232,6 @@ EXECUTION_MODES = [
             Entry("Introduction to Qiskit Runtime execution modes", "execution-modes"),
             Entry("Introduction to Qiskit Runtime sessions", "sessions"),
             Entry("Run jobs in a session", "run-jobs-in-session"),
-            Entry("Run jobs in a session", "run-jobs-in-session"),
-            Entry("Run jobs in a batch", "run-jobs-batch"),
             Entry("Run jobs in a batch", "run-jobs-batch"),
             Entry("FAQs", "execution-modes-faq"),
         ],
