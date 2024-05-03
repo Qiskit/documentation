@@ -1,37 +1,43 @@
 # Execute on hardware
 
-In the execute on target hardware step, you ...
+The "execute on hardware" step of a Qiskit pattern involes running you circuits on hardware and produces the outputs of the quantum computation. The ISA circuits produced in the previous step, can be executed using either a Sampler or Estimator Primitive from Qiskit Runtime, initialised locally on your computer or from a cluster or other heterogeneous compute environment. These may be executed in a Batch, which allows parallel transpilation for classical computational efficiency, or a Session, which allows iterative tasks to be implemented efficiently without queuing delays. During this step there is also the option to configure certain error suppression and mitigation techniques provided by Qiskit Runtime.
 
-Relevant pages:
+Depending on whether you are using the Sampler or Estimator primitive, the outcome of this step will be different. If using the Sampler the output will be per-shot measurements in the form of bitstrings. If using the Estimator the output will be expectation values of observables corresponding to physical quantities or cost functions.
 
-* [Introduction](./execute-on-target-hardware)
-* Run with primitives
+There are a number of software tools that could be used for this step, you can check out the following resources:
+
+### Run with primitives
   * [Introduction to primitives](./primitives)
   * [Get started with primitives](./primitives-get-started)
   * [Primitives examples](./primitives-examples)
-* Configure runtime options
+
+### Configure runtime options
   * [Configure runtiem compilation](./configure-runtime-compilation)
   * [Configure runtime error mitigation](./configure-error-mitigation)
   * [Advanced runtime options](./advanced-runtime-options)
-* Execution modes
+
+### Execution modes
   * [Introduction to Qiskit Runtime execution modes](./execution-modes)
   * [Introduction to Qiskit Runtime sessions](./sessions)
   * [Run jobs in a session](./run-jobs-in-session)
   * [Run jobs in a batch](./run-jobs-batch)
   * [FAQs](./execution-modes-faq)
-* Manage jobs
+
+### Manage jobs
   * [Monitor a job](./monitor-job)
   * [Estimate job run time](./estimate-job-run-time)
   * [Minimize job run time](./minimize-time)
   * [Maximum execution time for a Qiskit Runtime job or session](./max-execution-time)
-* Hardware
+
+### Systems and platform information
   * [Processor types](./processor-types)
   * [System information](./system-information)
   * [Get backend information with Qiskit](./get-backend-information)
   * [Native gates and operations](./native-gates)
   * [Retired systems](./retired-systems)
   * [Hardware considerations and limitations for classical feedforward and control flow](./dynamic-circuits-considerations)
-* Understand the platform
   * [Instances](./instances)
   * [Fair-share scheduler](./fair-share-queue)
   * [Manage cost](./manage-cost)
+
+Once this step is completed you can move on to the next - "post-process results"[LINK TO NEXT PAGE]

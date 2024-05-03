@@ -8,13 +8,13 @@
     * [Install the Qiskit SDK from source](./install-qiskit-source)
     * [Configure the Qiskit SDK locally](./configure-qiskit-local)
   * [Latest updates](./latest-updates)
-* Workflow
+* Qiskit Patterns
+  * [Introduction to Qiskit Patterns](./patterns-index)
   * [Map problem to circuits](./map-problem-to-circuits-index)
   * [Optimize for hardware](./optimize-for-hardware-index)
   * [Execute on hardware](./execute-on-hardware-index)
   * [Postprocess results](./postprocess-results-index)
 * Circuits and operators
-  * [Introduction](./circuit-construction-intro)
   * Build circuits with Qiskit
     * [Circuit library](./circuit-library)
     * [Construct circuits](./circuit-construction)
@@ -23,7 +23,7 @@
     * [Synthesizing unitary operators](./unitary-synthesis)
     * [Bit-ordering in Qiskit](./bit-ordering)
     * [Save circuits to disk](./save-circuits)
-  * Build opperators with Qiskit
+  * Build operators with Qiskit
     * [Operators module overview](./operators-overview)
     * [Specifying observables in the Pauli basis](./specify-observables-pauli)
     * [Operators visualization](./operators-visualization)
@@ -36,7 +36,7 @@
       * [OpenQASM 3 feature table](./qasm-feature-table)
       * [OpenQASM 3.x live specification](https://openqasm.com/)
 * Transpiler
-  * [Introduction](./transpile)
+  * [Introduction to transpilation](./transpile)
   * [Transpiler stages](./transpiler-stages)
   * [Transpile with pass managers](./transpile-with-pass-managers)
   * [Transpile with pass managers](./transpile-with-pass-managers)
@@ -54,8 +54,8 @@
   * Qiskit transpiler service
     * [Transpile circuits remotely with the Qiskit transpiler service](./qiskit-transpiler-service)
     * [AI transpiler passes](./ai-transpiler-passes)
-* Debugging tools (simulators)
-  * [Introduction](./verify)
+* Debugging tools
+  * [Introduction to debugging tools](./verify)
   * [Exact simulation with Qiskit primitives](./simulate-with-qiskit-primitives)
   * [Exact and noisy simulation with Qiskit Aer primitives](./simulate-with-qiskit-aer)
   * [Qiskit Runtime local testing mode](./local-testing-mode)

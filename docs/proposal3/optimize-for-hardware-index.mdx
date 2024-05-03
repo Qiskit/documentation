@@ -1,29 +1,37 @@
 # Optimize for hardware
 
-In the optimize for target hardware step, you ...
 
-Relevant pages:
+In the "optimize for target hardware" step of a Qiskit pattern you take the abstract circuits (or operators) produced from the map step and perform a series of optimizations on them. This may include mapping the route and layout of the circuit to physical qubit hardware, converting to basis gates of the hardware, and reducing the number of operations, all designed to optimize the likelihood of success in the later execute step. At this point you may also wish to debug your circuits with a simulator before executiong on real hardware in the next step
 
-* [Introduction](./transpile)
+During this step abstract circuits must be transpiled to Instruction Set Architecture (ISA) circuits. An ISA circuit is one that only consists of gates understood by the target hardware (basis gates), and any multi-qubit gates needed to obey any connectivity constraints (coupling map). Only ISA circuits can be run on IBM hardware using IBM Qiskit Runtime.
+
+
+There are a number of software tools that could be used for this step, you can check out the following resources:
+
+### Get started with the Qiskit transpiler
+* [Introduction to transpilation](./transpile)
 * [Transpiler stages](./transpiler-stages)
 * [Transpile with pass managers](./transpile-with-pass-managers)
-* [Transpile with pass managers](./transpile-with-pass-managers)
-* Configure preset pass managers
+
+### Configure preset pass managers
   * [Default settings and configuration options](./defaults-and-configuration-options)
   * [Set optimization level](./set-optimization)
   * [Commonly used parameters for transpilation](./common-parameters)
   * [Represent quantum computers](./representing-quantum-computers)
+
+### Advanced transpilation resources
 * [Create a pass manager for dynamical decoupling](./dynamical-decoupling-pass-manager)
 * [Write a custom transpiler pass](./custom-transpiler-pass)
 * [Transpile against custom backends](./custom-backend)
-* Transpiler plugins
-  * [Install and use transpiler plugins](./transpiler-plugins)
-  * [Create a transpiler plugin](./create-a-transpiler-plugin)
-* Qiskit transpiler service
+* [Install and use transpiler plugins](./transpiler-plugins)
+* [Create a transpiler plugin](./create-a-transpiler-plugin)
+
+### Qiskit transpiler service
   * [Transpile circuits remotely with the Qiskit transpiler service](./qiskit-transpiler-service)
   * [AI transpiler passes](./ai-transpiler-passes)
-* Verify circuits through simulation
-  * [Introduction](./verify)
+
+### Debugging tools
+  * [Introduction to debugging tools](./verify)
   * [Exact simulation with Qiskit primitives](./simulate-with-qiskit-primitives)
   * [Exact and noisy simulation with Qiskit Aer primitives](./simulate-with-qiskit-aer)
   * [Qiskit Runtime local testing mode](./local-testing-mode)
@@ -33,3 +41,6 @@ Relevant pages:
   * IBM Quantum cloud-based simulators
     * [Using IBM Quantum cloud-based simulators](./using-ibm-quantum-simulators)
     * [Available IBM Quantum simulators](./cloud-based-simulators)
+
+
+Once this step is completed you can move on to the next - "execute on target hardware"[LINK TO NEXT PAGE]

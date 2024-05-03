@@ -298,8 +298,12 @@ POSTPROCESS_CHILDREN = [
 SERVERLESS = [Entry("Qiskit Serverless workloads", "qiskit-serverless")]
 
 PROPOSAL3_WORKFLOW_FOLDER = Entry(
-    "Workflow",
+    "Qiskit Patterns",
     children=[
+        Entry(
+            "Introduction to Qiskit Patterns",
+            "patterns-index",
+        ),
         Entry(
             "Map problem to circuits",
             "map-problem-to-circuits-index",
