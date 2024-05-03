@@ -90,7 +90,7 @@ function prepareProps(
     class: () =>
       prepareClassOrExceptionProps($, $main, $child, $dl, githubSourceLink, id),
     property: () =>
-      preparePropertyProps(
+      prepareAttributeProps(
         $,
         $main,
         $child,
@@ -166,40 +166,6 @@ function prepareClassOrExceptionProps(
   return props;
 }
 
-function preparePropertyProps(
-  $: CheerioAPI,
-  $main: Cheerio<any>,
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  priorApiType: string | undefined,
-  githubSourceLink: string | undefined,
-  id: string,
-): ComponentProps {
-  const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-  const props = {
-    id,
-    rawSignature,
-    githubSourceLink,
-  };
-
-  if (!priorApiType && id) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    return {
-      ...props,
-      isDedicatedPage: true,
-    };
-  }
-
-  const headerLevel = getHeaderLevel($, $main, $dl);
-  $(
-    `<h${headerLevel} data-header-type="attribute-header">${getLastPartFromFullIdentifier(
-      id,
-    )}</h${headerLevel}>`,
-  ).insertBefore($dl);
-
-  return props;
-}
-
 function prepareMethodProps(
   $: CheerioAPI,
   $main: Cheerio<any>,
@@ -243,20 +209,6 @@ function prepareAttributeProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  if (!priorApiType) {
-    if (id) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    }
-    const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-    return {
-      id,
-      rawSignature,
-      githubSourceLink,
-      isDedicatedPage: true,
-    };
-  }
-
-  // Else, the attribute is embedded on the class
   const text = $child.text();
 
   // Index of the default value of the attribute
@@ -280,16 +232,28 @@ function prepareAttributeProps(
     .trim();
   const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
-  const headerLevel = getHeaderLevel($, $main, $dl);
+  const props = {
+    id,
+    attributeTypeHint,
+    attributeValue,
+    githubSourceLink,
+  };
+
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    return {
+      ...props,
+      isDedicatedPage: true,
+    };
+  }
+
+  // Else, the attribute is embedded on the class
+    const headerLevel = getHeaderLevel($, $main, $dl);
   $(
     `<h${headerLevel} data-header-type="attribute-header">${name}</h${headerLevel}>`,
   ).insertBefore($dl);
 
-  return {
-    id,
-    attributeTypeHint,
-    attributeValue,
-  };
+  return props;
 }
 
 function prepareFunctionProps(
