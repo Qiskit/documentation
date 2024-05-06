@@ -121,11 +121,13 @@ export const findLegacyReleaseNotes = async (
 };
 
 function addNewReleaseNotes(pkg: Pkg): void {
-  if (pkg.releaseNoteEntries[0].title === pkg.versionWithoutPatch) {
+  if (
+    pkg.releaseNotesConfig.separatePages[0].title === pkg.versionWithoutPatch
+  ) {
     // Entries already includes most recent release notes
     return;
   }
-  pkg.releaseNoteEntries.unshift({
+  pkg.releaseNotesConfig.separatePages.unshift({
     title: pkg.versionWithoutPatch,
     url: `/api/${pkg.name}/release-notes/${pkg.versionWithoutPatch}`,
   });
@@ -144,7 +146,7 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 ## Release notes by version
 
 `;
-  for (const entry of pkg.releaseNoteEntries) {
+  for (const entry of pkg.releaseNotesConfig.separatePages) {
     markdown += `* [${entry.title}](${entry.url})\n`;
   }
   return markdown;

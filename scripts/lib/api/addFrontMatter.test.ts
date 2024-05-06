@@ -13,7 +13,7 @@
 import { expect, test } from "@jest/globals";
 
 import addFrontMatter from "./addFrontMatter";
-import { Pkg } from "./Pkg";
+import { Pkg, ReleaseNotesConfig } from "./Pkg";
 import { HtmlToMdResult } from "./HtmlToMdResult";
 
 test("addFrontMatter()", () => {
@@ -63,9 +63,11 @@ test("addFrontMatter()", () => {
     },
   ];
   const pkg = Pkg.mock({
-    releaseNoteEntries: [
-      { title: "0.1", url: "/api/my-quantum-project/release-notes/0.1" },
-    ],
+    releaseNotesConfig: new ReleaseNotesConfig({
+      separatePages: [
+        { title: "0.1", url: "/api/my-quantum-project/release-notes/0.1" },
+      ],
+    }),
   });
 
   addFrontMatter(results, pkg);

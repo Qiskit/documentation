@@ -13,7 +13,7 @@
 import { describe, expect, test } from "@jest/globals";
 
 import { generateToc } from "./generateToc";
-import { Pkg } from "./Pkg";
+import { Pkg, ReleaseNotesConfig } from "./Pkg";
 import type { TocGroupingEntry } from "./TocGrouping";
 
 const DEFAULT_ARGS = {
@@ -276,10 +276,18 @@ describe("generateToc", () => {
   test("TOC with distinct release note files", () => {
     const toc = generateToc(
       Pkg.mock({
-        releaseNoteEntries: [
-          { title: "0.39", url: "/api/my-quantum-project/release-notes/0.39" },
-          { title: "0.38", url: "/api/my-quantum-project/release-notes/0.38" },
-        ],
+        releaseNotesConfig: new ReleaseNotesConfig({
+          separatePages: [
+            {
+              title: "0.39",
+              url: "/api/my-quantum-project/release-notes/0.39",
+            },
+            {
+              title: "0.38",
+              url: "/api/my-quantum-project/release-notes/0.38",
+            },
+          ],
+        }),
       }),
       [
         {

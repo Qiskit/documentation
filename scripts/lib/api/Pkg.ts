@@ -22,6 +22,14 @@ export interface ReleaseNoteEntry {
   url: string;
 }
 
+export class ReleaseNotesConfig {
+  readonly separatePages: ReleaseNoteEntry[];
+
+  constructor(kwargs: { separatePages?: ReleaseNoteEntry[] }) {
+    this.separatePages = kwargs.separatePages ?? [];
+  }
+}
+
 type PackageType = "latest" | "historical" | "dev";
 
 /**
@@ -34,7 +42,7 @@ export class Pkg {
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
-  readonly releaseNoteEntries: ReleaseNoteEntry[];
+  readonly releaseNotesConfig: ReleaseNotesConfig;
   readonly nestModulesInToc: boolean;
   readonly tocGrouping?: TocGrouping;
 
@@ -47,7 +55,7 @@ export class Pkg {
     version: string;
     versionWithoutPatch: string;
     type: PackageType;
-    releaseNoteEntries: ReleaseNoteEntry[];
+    releaseNotesConfig?: ReleaseNotesConfig;
     nestModulesInToc?: boolean;
     tocGrouping?: TocGrouping;
   }) {
@@ -57,7 +65,8 @@ export class Pkg {
     this.version = kwargs.version;
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
-    this.releaseNoteEntries = kwargs.releaseNoteEntries;
+    this.releaseNotesConfig =
+      kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
     this.nestModulesInToc = kwargs.nestModulesInToc ?? false;
     this.tocGrouping = kwargs.tocGrouping;
   }
@@ -82,7 +91,9 @@ export class Pkg {
         title: "Qiskit SDK",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
-        releaseNoteEntries,
+        releaseNotesConfig: new ReleaseNotesConfig({
+          separatePages: releaseNoteEntries,
+        }),
         nestModulesInToc: true,
       });
     }
@@ -93,7 +104,6 @@ export class Pkg {
         title: "Qiskit Runtime IBM Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        releaseNoteEntries: [],
       });
     }
 
@@ -103,7 +113,6 @@ export class Pkg {
         title: "Qiskit IBM Provider (deprecated)",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
-        releaseNoteEntries: [],
       });
     }
 
@@ -117,7 +126,7 @@ export class Pkg {
     version?: string;
     versionWithoutPatch?: string;
     type?: PackageType;
-    releaseNoteEntries?: ReleaseNoteEntry[];
+    releaseNotesConfig?: ReleaseNotesConfig;
     nestModulesInToc?: boolean;
     tocGrouping?: TocGrouping;
   }): Pkg {
@@ -128,7 +137,7 @@ export class Pkg {
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
-      releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
+      releaseNotesConfig: kwargs.releaseNotesConfig,
       nestModulesInToc: kwargs.nestModulesInToc ?? false,
       tocGrouping: kwargs.tocGrouping ?? undefined,
     });
@@ -167,7 +176,7 @@ export class Pkg {
   }
 
   hasSeparateReleaseNotes(): boolean {
-    return this.releaseNoteEntries.length > 0;
+    return this.releaseNotesConfig.separatePages.length > 0;
   }
 
   releaseNotesTitle(): string {
