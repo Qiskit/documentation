@@ -1001,6 +1001,12 @@ test("generate correct heading level", async () => {
       <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">qiskit.test.</span></span><span class="sig-name descname"><span class="pre">myClass1</span></span><span class="sig-paren">()</span></dt>
       <dd><p>Inline class</p>
 
+      <dl class="py exception">
+      <dt class="sig sig-object py" id="qiskit.test.myClass1.exception1">
+      <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exception1</span></span><span class="sig-paren">()</span></dt>
+      <dd><p>Exception 1</p>
+      </dd></dl>
+
       <dl class="py method">
       <dt class="sig sig-object py" id="qiskit.test.myClass1.method1">
       <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method1</span></span><span class="sig-paren">()</span></dt>
@@ -1013,6 +1019,12 @@ test("generate correct heading level", async () => {
       <dd><p>Method 2</p>
       </dd></dl>
       
+      </dd></dl>
+
+      <dl class="py attribute">
+      <dt class="sig sig-object py" id="qiskit.test.attribute1">
+      <em class="property"><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attribute1</span></span><span class="sig-paren">: None = None</span></dt>
+      <dd><p>Attribute 1</p>
       </dd></dl>
 
       <dl class="py class">
@@ -1031,6 +1043,12 @@ test("generate correct heading level", async () => {
         <dd><p>Method 3</p>
         </dd></dl>
 
+        <dl class="py exception">
+        <dt class="sig sig-object py" id="qiskit.test.myClass2.myClass3.exception2">
+        <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exception2</span></span><span class="sig-paren">()</span></dt>
+        <dd><p>Exception 2</p>
+        </dd></dl>
+
         <dl class="py method">
         <dt class="sig sig-object py" id="qiskit.test.myClass2.myClass3.method4">
         <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method4</span></span><span class="sig-paren">()</span></dt>
@@ -1040,10 +1058,10 @@ test("generate correct heading level", async () => {
         </dd></dl>
       </dd></dl>
 
-      <dl class="py method">
-      <dt class="sig sig-object py" id="qiskit.test.method5">
-      <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">method5</span></span><span class="sig-paren">()</span></dt>
-      <dd><p>Method outside the classes</p>
+      <dl class="py function">
+      <dt class="sig sig-object py" id="qiskit.test.function1">
+      <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">function1</span></span><span class="sig-paren">()</span></dt>
+      <dd><p>Function 1</p>
       </dd></dl>
       </div>
       `,
@@ -1054,6 +1072,12 @@ test("generate correct heading level", async () => {
 
 <Class id="qiskit.test.myClass1" signature="qiskit.test.myClass1()">
   Inline class
+
+  #### exception1
+
+  <Class id="qiskit.test.myClass1.exception1" signature="exception1()">
+    Exception 1
+  </Class>
 
   #### method1
 
@@ -1067,6 +1091,12 @@ test("generate correct heading level", async () => {
     Method 2
   </Function>
 </Class>
+
+### attribute1
+
+<Attribute id="qiskit.test.attribute1" attributeTypeHint="None" attributeValue="None">
+  Attribute 1
+</Attribute>
 
 ### myClass2
 
@@ -1084,6 +1114,12 @@ test("generate correct heading level", async () => {
       Method 3
     </Function>
 
+    ##### exception2
+
+    <Class id="qiskit.test.myClass2.myClass3.exception2" signature="exception2()">
+      Exception 2
+    </Class>
+
     ##### method4
 
     <Function id="qiskit.test.myClass2.myClass3.method4" signature="abstract method4()">
@@ -1092,10 +1128,10 @@ test("generate correct heading level", async () => {
   </Class>
 </Class>
 
-### method5
+### function1
 
-<Function id="qiskit.test.method5" signature="abstract method5()">
-  Method outside the classes
+<Function id="qiskit.test.function1" signature="abstract function1()">
+  Function 1
 </Function>
 `);
 });

@@ -88,41 +88,16 @@ function prepareProps(
 ): ComponentProps {
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
     class: () =>
-      prepareClassOrExceptionProps($, $main, $child, $dl, githubSourceLink, id),
+      prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id),
     property: () =>
-      prepareAttributeProps(
-        $,
-        $main,
-        $child,
-        $dl,
-        priorApiType,
-        githubSourceLink,
-        id,
-      ),
+      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
     method: () =>
-      prepareMethodProps(
-        $,
-        $main,
-        $child,
-        $dl,
-        priorApiType,
-        githubSourceLink,
-        id,
-      ),
+      prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
     attribute: () =>
-      prepareAttributeProps(
-        $,
-        $main,
-        $child,
-        $dl,
-        priorApiType,
-        githubSourceLink,
-        id,
-      ),
-    function: () =>
-      prepareFunctionProps($, $main, $child, $dl, id, githubSourceLink),
+      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
+    function: () => prepareFunctionProps($, $child, $dl, id, githubSourceLink),
     exception: () =>
-      prepareClassOrExceptionProps($, $main, $child, $dl, githubSourceLink, id),
+      prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id),
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
@@ -137,7 +112,6 @@ function prepareProps(
 
 function prepareClassOrExceptionProps(
   $: CheerioAPI,
-  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
@@ -157,18 +131,17 @@ function prepareClassOrExceptionProps(
       isDedicatedPage: true,
     };
   }
-  const headerLevel = getHeaderLevel($, $main, $dl);
-  $(
-    `<h${headerLevel} data-header-type="class-header">${getLastPartFromFullIdentifier(
-      id,
-    )}</h${headerLevel}>`,
-  ).insertBefore($dl);
+  const headerLevel = getHeaderLevel($, $dl);
+  const name = getLastPartFromFullIdentifier(id);
+  const htag = `h${headerLevel}`;
+  $(`<${htag} data-header-type="class-header">${name}</${htag}>`).insertBefore(
+    $dl,
+  );
   return props;
 }
 
 function prepareMethodProps(
   $: CheerioAPI,
-  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
@@ -181,19 +154,19 @@ function prepareMethodProps(
     githubSourceLink,
   };
 
+  const name = getLastPartFromFullIdentifier(id);
   if (id) {
     if (!priorApiType) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+      $dl.siblings("h1").text(name);
       return {
         ...props,
         isDedicatedPage: true,
       };
     } else if ($child.attr("id")) {
-      const headerLevel = getHeaderLevel($, $main, $dl);
+      const headerLevel = getHeaderLevel($, $dl);
+      const htag = `h${headerLevel}`;
       $(
-        `<h${headerLevel} data-header-type="method-header">${getLastPartFromFullIdentifier(
-          id,
-        )}</h${headerLevel}>`,
+        `<${htag} data-header-type="method-header">${name}</${htag}>`,
       ).insertBefore($dl);
     }
   }
@@ -202,7 +175,6 @@ function prepareMethodProps(
 
 function prepareAttributeProps(
   $: CheerioAPI,
-  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   priorApiType: string | undefined,
@@ -248,9 +220,10 @@ function prepareAttributeProps(
   }
 
   // Else, the attribute is embedded on the class
-  const headerLevel = getHeaderLevel($, $main, $dl);
+  const headerLevel = getHeaderLevel($, $dl);
+  const htag = `h${headerLevel}`;
   $(
-    `<h${headerLevel} data-header-type="attribute-header">${name}</h${headerLevel}>`,
+    `<${htag} data-header-type="attribute-header">${name}</${htag}>`,
   ).insertBefore($dl);
 
   return props;
@@ -258,7 +231,6 @@ function prepareAttributeProps(
 
 function prepareFunctionProps(
   $: CheerioAPI,
-  $main: Cheerio<any>,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
   id: string,
@@ -278,12 +250,12 @@ function prepareFunctionProps(
       isDedicatedPage: true,
     };
   }
-  const headerLevel = getHeaderLevel($, $main, $dl);
-  $(
-    `<h${headerLevel} data-header-type="method-header">${getLastPartFromFullIdentifier(
-      id,
-    )}</h${headerLevel}>`,
-  ).insertBefore($dl);
+  const headerLevel = getHeaderLevel($, $dl);
+  const name = getLastPartFromFullIdentifier(id);
+  const htag = `h${headerLevel}`;
+  $(`<${htag} data-header-type="method-header">${name}</${htag}>`).insertBefore(
+    $dl,
+  );
 
   return props;
 }
@@ -400,30 +372,37 @@ export async function htmlSignatureToMd(
     .replace(/`$/, "");
 }
 
-function getHeaderLevel($: CheerioAPI, $main: Cheerio<any>, $dl: Cheerio<any>) {
-  const priorHeaderLevel = getPriorHeaderLevel($, $main, $dl);
+function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>) {
+  // We don't allow the header to be h1 or h2 because it's too large design-wise for API components.
+  // We try to ensure that the API docs are set up so there is always at least an h2 above the API
+  // component, but this is not always the case, especially with historical API docs. That means that
+  // we sometimes jump from h1 to h3. That's bad, but the tradeoff we're making to avoid using h2 for
+  // API components.
+  const minLevel = 3;
+  const priorHeaderLevel = getPriorHeaderLevel($, $dl);
   if (priorHeaderLevel) {
     if (+priorHeaderLevel == 6) {
       throw new Error("API component cannot set inexisting header: <h7>");
     }
 
-    return Math.max(3, +priorHeaderLevel + 1);
+    return Math.max(minLevel, +priorHeaderLevel + 1);
   }
 
-  // Minimum header level for components without a dedicated page. This components should
-  // have an <h1> for the page and <h2> to define the section they belong to.
-  return 3;
+  return minLevel;
 }
 
 function getPriorHeaderLevel(
   $: CheerioAPI,
-  $main: Cheerio<any>,
   $dl: Cheerio<any>,
 ): string | undefined {
   const siblings = $dl.siblings();
   for (const sibling of siblings) {
     const $sibling = $(sibling);
     if ($sibling.data("header-type")) {
+      // A component usually has other components as siblings in the API docs with their respective
+      // headers previously created by this script. We need to skip the generated headers to avoid cases
+      // where we have multiple methods, attributes, or classes at the same level. Components nested in
+      // a class should search for the previous header in a parent node.
       continue;
     }
     const tagName = $sibling.get(0)?.tagName;
@@ -432,11 +411,8 @@ function getPriorHeaderLevel(
     }
   }
 
-  // If there's no header among the siblings, we look for the prior inline class in some
-  // parent node previously set
-  return $main
-    .find("[data-header-type=class-header]")
-    .last()
-    .get(0)
-    ?.tagName.substring(1);
+  // If there's no header among the siblings, we look for the closest inline class in some ancestor node.
+  // The parent of a component is always a <div>, and the previous element of that <div> is the header
+  // we are looking for.
+  return $dl.closest("class").parent().prev().get(0)?.tagName.substring(1);
 }
