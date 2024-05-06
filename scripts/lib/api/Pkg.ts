@@ -33,7 +33,7 @@ type PackageType = "latest" | "historical" | "dev";
 export class Pkg {
   readonly name: string;
   readonly title: string;
-  readonly githubSlug: string;
+  readonly githubSlug?: string;
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
@@ -46,7 +46,7 @@ export class Pkg {
   constructor(kwargs: {
     name: string;
     title: string;
-    githubSlug: string;
+    githubSlug?: string;
     version: string;
     versionWithoutPatch: string;
     type: PackageType;
@@ -128,7 +128,7 @@ export class Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
       title: kwargs.title ?? "My Quantum Project",
-      githubSlug: kwargs.githubSlug ?? "qiskit/my-quantum-project",
+      githubSlug: kwargs.githubSlug,
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
@@ -189,6 +189,12 @@ export class Pkg {
    * `sphinx.ext.viewcode`, which means we need to deal with its quirks like handling `__init__.py`.
    */
   determineGithubUrlFn(): (fileName: string) => string {
+    if (!this.githubSlug) {
+      throw new Error(
+        `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
+      );
+    }
+
     // For files like `my_module/__init__.py`, `sphinx.ext.viewcode` will title the
     // file `my_module.py`. We need to add back the `/__init__.py` when linking to GitHub.
     const convertToInitPy = new Set([
