@@ -5,6 +5,15 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from page_content import (
+    index_page_content,
+    execute_index_content,
+    map_content,
+    postprocess_index_content,
+    optimize_content,
+    patterns_index_content,
+)
+
 # ------------------------------------------------------------------------------
 # Types
 # ------------------------------------------------------------------------------
@@ -43,16 +52,23 @@ class Entry:
         (base_dir / f"{self.slug}.mdx").write_text(content)
 
 
-def entries_as_markdown_list(entries: list[Entry], *, indent: str = "") -> str:
+def entries_as_markdown_list(entries: list[Entry], *, indent: None | str = None) -> str:
     result = []
     for entry in entries:
         if entry.slug:
-            result.append(f"{indent}* [{entry.title}](./{entry.slug})")
+            result.append(f"{indent or ''}* [{entry.title}](./{entry.slug})")
         if entry.external_url:
-            result.append(f"{indent}* [{entry.title}]({entry.external_url})")
+            result.append(f"{indent or ''}* [{entry.title}]({entry.external_url})")
         if entry.children:
-            children = entries_as_markdown_list(entry.children, indent=indent + "  ")
-            result.append(f"{indent}* {entry.title}\n{children}")
+            if indent is not None:
+                first_line = f"{indent}* {entry.title}"
+                children = entries_as_markdown_list(
+                    entry.children, indent=indent + "  "
+                )
+            else:
+                children = entries_as_markdown_list(entry.children, indent="")
+                first_line = f"\n### {entry.title}"
+            result.append(f"{first_line}\n{children}")
     return "\n".join(result)
 
 
@@ -63,7 +79,9 @@ def entries_as_markdown_list(entries: list[Entry], *, indent: str = "") -> str:
 GET_STARTED = Entry(
     "Get started",
     children=[
-        Entry("Introduction to Qiskit", "index"),
+        Entry(
+            "Introduction to Qiskit", "index", extra_page_content=index_page_content()
+        ),
         Entry(
             "Install",
             children=[
@@ -84,7 +102,6 @@ GET_STARTED = Entry(
 )
 
 CIRCUIT_CONSTRUCTION = [
-    Entry("Introduction", "circuit-construction-intro"),
     Entry(
         "Build circuits with Qiskit",
         children=[
@@ -101,7 +118,7 @@ CIRCUIT_CONSTRUCTION = [
         ],
     ),
     Entry(
-        "Build opperators with Qiskit",
+        "Build operators with Qiskit",
         children=[
             Entry("Operators module overview", "operators-overview"),
             Entry(
@@ -139,10 +156,15 @@ CIRCUIT_CONSTRUCTION = [
 ]
 
 TRANSPILER = [
-    Entry("Introduction", "transpile"),
-    Entry("Transpiler stages", "transpiler-stages"),
-    Entry("Transpile with pass managers", "transpile-with-pass-managers"),
-    Entry("Transpile with pass managers", "transpile-with-pass-managers"),
+    Entry(
+        "Get started with the Qiskit transpiler",
+        children=[
+            Entry("Introduction to transpilation", "transpile"),
+            Entry("Transpiler stages", "transpiler-stages"),
+            Entry("Transpile with pass managers", "transpile-with-pass-managers"),
+            Entry("Transpile with pass managers", "transpile-with-pass-managers"),
+        ],
+    ),
     Entry(
         "Configure preset pass managers",
         children=[
@@ -156,14 +178,14 @@ TRANSPILER = [
         ],
     ),
     Entry(
-        "Create a pass manager for dynamical decoupling",
-        "dynamical-decoupling-pass-manager",
-    ),
-    Entry("Write a custom transpiler pass", "custom-transpiler-pass"),
-    Entry("Transpile against custom backends", "custom-backend"),
-    Entry(
-        "Transpiler plugins",
+        "Advanced transpilation resources",
         children=[
+            Entry(
+                "Create a pass manager for dynamical decoupling",
+                "dynamical-decoupling-pass-manager",
+            ),
+            Entry("Write a custom transpiler pass", "custom-transpiler-pass"),
+            Entry("Transpile against custom backends", "custom-backend"),
             Entry("Install and use transpiler plugins", "transpiler-plugins"),
             Entry("Create a transpiler plugin", "create-a-transpiler-plugin"),
         ],
@@ -181,7 +203,7 @@ TRANSPILER = [
 ]
 
 SIMULATORS = [
-    Entry("Introduction", "verify"),
+    Entry("Introduction to debugging tools", "verify"),
     Entry("Exact simulation with Qiskit primitives", "simulate-with-qiskit-primitives"),
     Entry(
         "Exact and noisy simulation with Qiskit Aer primitives",
@@ -229,7 +251,10 @@ EXECUTION_MODES = [
     Entry(
         "Execution modes",
         children=[
-            Entry("Introduction to Qiskit Runtime execution modes", "execution-modes"),
+            Entry(
+                "Introduction to Qiskit Runtime execution modes",
+                "execution-modes-intro",
+            ),
             Entry("Introduction to Qiskit Runtime sessions", "sessions"),
             Entry("Run jobs in a session", "run-jobs-in-session"),
             Entry("Run jobs in a batch", "run-jobs-batch"),
@@ -250,46 +275,33 @@ EXECUTION_MODES = [
     ),
 ]
 
-SYSTEMS = [
+SYSTEMS_CHILDREN = [
+    Entry("Processor types", "processor-types"),
+    Entry("System information", "system-information"),
+    Entry("Get backend information with Qiskit", "get-backend-information"),
+    Entry("Native gates and operations", "native-gates"),
+    Entry("Retired systems", "retired-systems"),
     Entry(
-        "Hardware",
-        children=[
-            Entry("Processor types", "processor-types"),
-            Entry("System information", "system-information"),
-            Entry("Get backend information with Qiskit", "get-backend-information"),
-            Entry("Native gates and operations", "native-gates"),
-            Entry("Retired systems", "retired-systems"),
-            Entry(
-                "Hardware considerations and limitations for classical feedforward and control flow",
-                "dynamic-circuits-considerations",
-            ),
-        ],
+        "Hardware considerations and limitations for classical feedforward and control flow",
+        "dynamic-circuits-considerations",
     ),
-    Entry(
-        "Understand the platform",
-        children=[
-            Entry("Instances", "instances"),
-            Entry("Fair-share scheduler", "fair-share-queue"),
-            Entry("Manage cost", "manage-cost"),
-        ],
-    ),
+    Entry("Instances", "instances"),
+    Entry("Fair-share scheduler", "fair-share-queue"),
+    Entry("Manage cost", "manage-cost"),
 ]
 
 OPTIMIZE_FOR_HARDWARE_CHILDREN = [
     *TRANSPILER,
-    Entry("Verify circuits through simulation", children=SIMULATORS),
+    Entry("Debugging tools", children=SIMULATORS),
 ]
 
 EXECUTE_ON_HARDWARE_CHILDREN = [
-    Entry("Introduction", "execute-on-target-hardware"),
     *PRIMITIVES,
     *EXECUTION_MODES,
-    *SYSTEMS,
+    Entry("Systems and platform information", children=SYSTEMS_CHILDREN),
 ]
 
-# Note: not used in Tools.
 POSTPROCESS_CHILDREN = [
-    Entry("Introduction", "postprocess-results"),
     Entry("Retrieve and save results", "save-jobs"),
     Entry("Visualize results", "visualize-results"),
 ]
@@ -303,37 +315,34 @@ PROPOSAL3_WORKFLOW_FOLDER = Entry(
         Entry(
             "Introduction to Qiskit Patterns",
             "patterns-index",
+            extra_page_content=patterns_index_content(),
         ),
         Entry(
             "Map problem to circuits",
             "map-problem-to-circuits-index",
-            extra_page_content=(
-                "In the map problem to circuits step, you ...\n\n"
-                + f"Relevant pages:\n\n{entries_as_markdown_list(CIRCUIT_CONSTRUCTION)}"
+            extra_page_content=map_content(
+                entries_as_markdown_list(CIRCUIT_CONSTRUCTION)
             ),
         ),
         Entry(
             "Optimize for hardware",
             "optimize-for-hardware-index",
-            extra_page_content=(
-                "In the optimize for target hardware step, you ...\n\n"
-                + f"Relevant pages:\n\n{entries_as_markdown_list(OPTIMIZE_FOR_HARDWARE_CHILDREN)}"
+            extra_page_content=optimize_content(
+                entries_as_markdown_list(OPTIMIZE_FOR_HARDWARE_CHILDREN)
             ),
         ),
         Entry(
             "Execute on hardware",
             "execute-on-hardware-index",
-            extra_page_content=(
-                "In the execute on target hardware step, you ...\n\n"
-                + f"Relevant pages:\n\n{entries_as_markdown_list(EXECUTE_ON_HARDWARE_CHILDREN)}"
+            extra_page_content=execute_index_content(
+                entries_as_markdown_list(EXECUTE_ON_HARDWARE_CHILDREN)
             ),
         ),
         Entry(
             "Postprocess results",
             "postprocess-results-index",
-            extra_page_content=(
-                "In the postprocess results step, you ...\n\n"
-                + f"Relevant pages:\n\n{entries_as_markdown_list(POSTPROCESS_CHILDREN)}"
+            extra_page_content=postprocess_index_content(
+                entries_as_markdown_list(POSTPROCESS_CHILDREN)
             ),
         ),
     ],
@@ -349,10 +358,10 @@ WORKFLOW_ENTRIES = [
 TOOL_ENTRIES = [
     Entry("Circuits and operators", children=CIRCUIT_CONSTRUCTION),
     Entry("Transpiler", children=TRANSPILER),
-    Entry("Debugging tools (simulators)", children=SIMULATORS),
+    Entry("Debugging tools", children=SIMULATORS),
     Entry("Primitives", children=PRIMITIVES),
     Entry("Execution modes", children=EXECUTION_MODES),
-    Entry("IBM Quantum systems", children=SYSTEMS),
+    Entry("IBM Quantum systems", children=SYSTEMS_CHILDREN),
     Entry("Serverless", children=SERVERLESS),
 ]
 
@@ -370,10 +379,6 @@ def write_result(folder: str, top_level_entries: list[Entry]) -> None:
     for entry in top_level_entries:
         entry.ensure_slugs_exist(folder_path)
 
-    # Save markdown view of the organization. This is useful to see how things are structured.
-    Path(f"{folder}.md").write_text(entries_as_markdown_list(top_level_entries))
-
-    # Also write the _toc.json to get live previews.
     result = {
         "title": "Guides",
         "collapsed": True,
@@ -383,25 +388,25 @@ def write_result(folder: str, top_level_entries: list[Entry]) -> None:
     (folder_path / "_toc.json").write_text(text)
 
 
-write_result(
-    "proposal1",
-    [
-        GET_STARTED,
-        Entry("Workflow", children=WORKFLOW_ENTRIES),
-        Entry("Tools", children=TOOL_ENTRIES),
-    ],
-)
+# write_result(
+#     "proposal1",
+#     [
+#         GET_STARTED,
+#         Entry("Workflow", children=WORKFLOW_ENTRIES),
+#         Entry("Tools", children=TOOL_ENTRIES),
+#     ],
+# )
 
-write_result(
-    "proposal2",
-    [
-        GET_STARTED,
-        Entry("Workflow"),
-        *WORKFLOW_ENTRIES,
-        Entry("Tools"),
-        *TOOL_ENTRIES,
-    ],
-)
+# write_result(
+#     "proposal2",
+#     [
+#         GET_STARTED,
+#         Entry("Workflow"),
+#         *WORKFLOW_ENTRIES,
+#         Entry("Tools"),
+#         *TOOL_ENTRIES,
+#     ],
+# )
 
 write_result(
     "proposal3",
