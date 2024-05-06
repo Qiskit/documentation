@@ -76,30 +76,25 @@ def entries_as_markdown_list(entries: list[Entry], *, indent: None | str = None)
 # Sections
 # ------------------------------------------------------------------------------
 
-GET_STARTED = Entry(
-    "Get started",
-    children=[
-        Entry(
-            "Introduction to Qiskit", "index", extra_page_content=index_page_content()
-        ),
-        Entry(
-            "Install",
-            children=[
-                Entry("Install Qiskit", "install-qiskit"),
-                Entry("Set up an IBM Quantum channel", "setup-channel"),
-            ],
-        ),
-        Entry("Hello world", "hello-world"),
-        Entry(
-            "Advanced setup",
-            children=[
-                Entry("Install the Qiskit SDK from source", "install-qiskit-source"),
-                Entry("Configure the Qiskit SDK locally", "configure-qiskit-local"),
-            ],
-        ),
-        Entry("Latest updates", "latest-updates"),
-    ],
-)
+GET_STARTED_CHILDREN = [
+    Entry("Introduction to Qiskit", "index", extra_page_content=index_page_content()),
+    Entry(
+        "Install",
+        children=[
+            Entry("Install Qiskit", "install-qiskit"),
+            Entry("Set up an IBM Quantum channel", "setup-channel"),
+        ],
+    ),
+    Entry("Hello world", "hello-world"),
+    Entry(
+        "Advanced setup",
+        children=[
+            Entry("Install the Qiskit SDK from source", "install-qiskit-source"),
+            Entry("Configure the Qiskit SDK locally", "configure-qiskit-local"),
+        ],
+    ),
+    Entry("Latest updates", "latest-updates"),
+]
 
 CIRCUIT_CONSTRUCTION = [
     Entry(
@@ -309,44 +304,40 @@ POSTPROCESS_CHILDREN = [
 # Note: not used in Workflow.
 SERVERLESS = [Entry("Qiskit Serverless workloads", "qiskit-serverless")]
 
-PROPOSAL3_WORKFLOW_FOLDER = Entry(
-    "Qiskit Patterns",
-    children=[
-        Entry(
-            "Introduction to Qiskit Patterns",
-            "patterns-index",
-            extra_page_content=patterns_index_content(),
+WORKFLOW_FOLDER_AS_INDEX_CHILDREN = [
+    Entry(
+        "Introduction to Qiskit Patterns",
+        "patterns-index",
+        extra_page_content=patterns_index_content(),
+    ),
+    Entry(
+        "Map problem to circuits",
+        "map-problem-to-circuits-index",
+        extra_page_content=map_content(entries_as_markdown_list(CIRCUIT_CONSTRUCTION)),
+    ),
+    Entry(
+        "Optimize for hardware",
+        "optimize-for-hardware-index",
+        extra_page_content=optimize_content(
+            entries_as_markdown_list(OPTIMIZE_FOR_HARDWARE_CHILDREN)
         ),
-        Entry(
-            "Map problem to circuits",
-            "map-problem-to-circuits-index",
-            extra_page_content=map_content(
-                entries_as_markdown_list(CIRCUIT_CONSTRUCTION)
-            ),
+    ),
+    Entry(
+        "Execute on hardware",
+        "execute-on-hardware-index",
+        extra_page_content=execute_index_content(
+            entries_as_markdown_list(EXECUTE_ON_HARDWARE_CHILDREN)
         ),
-        Entry(
-            "Optimize for hardware",
-            "optimize-for-hardware-index",
-            extra_page_content=optimize_content(
-                entries_as_markdown_list(OPTIMIZE_FOR_HARDWARE_CHILDREN)
-            ),
+    ),
+    Entry(
+        "Postprocess results",
+        "postprocess-results-index",
+        extra_page_content=postprocess_index_content(
+            entries_as_markdown_list(POSTPROCESS_CHILDREN)
         ),
-        Entry(
-            "Execute on hardware",
-            "execute-on-hardware-index",
-            extra_page_content=execute_index_content(
-                entries_as_markdown_list(EXECUTE_ON_HARDWARE_CHILDREN)
-            ),
-        ),
-        Entry(
-            "Postprocess results",
-            "postprocess-results-index",
-            extra_page_content=postprocess_index_content(
-                entries_as_markdown_list(POSTPROCESS_CHILDREN)
-            ),
-        ),
-    ],
-)
+    ),
+]
+
 
 WORKFLOW_ENTRIES = [
     Entry("Map problem to circuits", children=CIRCUIT_CONSTRUCTION),
@@ -411,8 +402,20 @@ def write_result(folder: str, top_level_entries: list[Entry]) -> None:
 write_result(
     "proposal3",
     [
-        GET_STARTED,
-        PROPOSAL3_WORKFLOW_FOLDER,
+        Entry("Get started", children=GET_STARTED_CHILDREN),
+        Entry("Workflow", children=WORKFLOW_FOLDER_AS_INDEX_CHILDREN),
+        *TOOL_ENTRIES,
+    ],
+)
+
+write_result(
+    "proposal4",
+    [
+        Entry("Get started"),
+        *GET_STARTED_CHILDREN,
+        Entry("Workflow"),
+        *WORKFLOW_FOLDER_AS_INDEX_CHILDREN,
+        Entry("Tools"),
         *TOOL_ENTRIES,
     ],
 )

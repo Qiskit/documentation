@@ -1,0 +1,29 @@
+# Map problem to circuits
+
+The "map problem to circuits" step of a Qiskit pattern describes how a user starts with a classical problem and figures out how to map it to a quantum computer. For example, in applications such as chemistry and quantum simulation, this step generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. During this step, for certain problems, it may also be desirable to specify the mapping of the problem onto qubits in the heavy-hex (or gross) lattice of IBM Hardware from the outset if the structure of the problem lends itself to optimization earlier. It is also worth considering at this point what the outcome of the particular algorithm will be in prepartion for the later execute step, e.g. if the desired outcome involves inferring correlation functions using Hadamard tests, you might prepare to use `Sampler` whereas specifying observables would use the `Estimator` and could provide many error mitigation options. The output of this step in a Qiskit pattern is normally a collection of circuits or quantum operators.
+
+There are a number of software tools that could be used for this step, you can check out the following resources:
+
+
+### Build circuits with Qiskit
+* [Circuit library](./circuit-library)
+* [Construct circuits](./circuit-construction)
+* [Visualize circuits](./circuit-visualization)
+* [Classical feedforward and control flow](./classical-feedforward-and-control-flow)
+* [Synthesizing unitary operators](./unitary-synthesis)
+* [Bit-ordering in Qiskit](./bit-ordering)
+* [Save circuits to disk](./save-circuits)
+
+### Build operators with Qiskit
+* [Operators module overview](./operators-overview)
+* [Specifying observables in the Pauli basis](./specify-observables-pauli)
+* [Operators visualization](./operators-visualization)
+
+### Other circuit building tools
+* [Pulse schedules](./pulse)
+* OpenQASM
+  * [Intro to OpenQASM](./introduction-to-qasm)
+  * [OpenQASM 2 and the Qiskit SDK](./interoperate-qiskit-qasm2)
+  * [OpenQASM 3 and the Qiskit SDK](./interoperate-qiskit-qasm3)
+  * [OpenQASM 3 feature table](./qasm-feature-table)
+  * [OpenQASM 3.x live specification](https://openqasm.com/)
