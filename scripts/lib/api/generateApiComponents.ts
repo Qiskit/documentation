@@ -372,7 +372,7 @@ export async function htmlSignatureToMd(
     .replace(/`$/, "");
 }
 
-function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>) {
+function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
   // We don't allow the header to be h1 or h2 because it's too large design-wise for API components.
   // We try to ensure that the API docs are set up so there is always at least an h2 above the API
   // component, but this is not always the case, especially with historical API docs. That means that
