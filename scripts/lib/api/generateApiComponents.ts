@@ -382,7 +382,7 @@ function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
   const priorHeaderLevel = getPriorHeaderLevel($, $dl);
   if (priorHeaderLevel) {
     if (+priorHeaderLevel == 6) {
-      throw new Error("API component cannot set inexisting header: <h7>");
+      throw new Error("API component cannot set non-existent header: <h7>");
     }
 
     return Math.max(minLevel, +priorHeaderLevel + 1);
