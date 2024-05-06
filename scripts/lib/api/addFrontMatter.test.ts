@@ -105,7 +105,7 @@ python_api_name: quantum_software
     `---
 title: My Quantum Project 0.1 release notes
 description: Changes made in My Quantum Project 0.1
-in_page_toc_max_heading_level: 2
+in_page_toc_max_heading_level: 3
 ---
 
 # Some release notes!
