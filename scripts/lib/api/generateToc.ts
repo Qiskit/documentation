@@ -271,7 +271,7 @@ function generateReleaseNotesEntries(pkg: Pkg) {
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (pkg.releaseNoteEntries.length) {
+  if (pkg.hasSeparateReleaseNotes()) {
     releaseNotesEntry.children = pkg.releaseNoteEntries;
   } else {
     releaseNotesEntry.url = releaseNotesUrl;

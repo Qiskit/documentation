@@ -48,7 +48,7 @@ ${markdown}
       let versionStr = "";
       let descriptionSuffix = `to ${pkg.title}`;
       let maxHeadingLevel = 2;
-      if (pkg.hasSeparateReleaseNotes) {
+      if (pkg.hasSeparateReleaseNotes()) {
         versionStr = ` ${pkg.versionWithoutPatch}`;
         descriptionSuffix = `in ${pkg.title}${versionStr}`;
         maxHeadingLevel = 3;

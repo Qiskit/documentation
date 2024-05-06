@@ -31,7 +31,6 @@ export class Pkg {
   readonly name: string;
   readonly title: string;
   readonly githubSlug: string;
-  readonly hasSeparateReleaseNotes: boolean;
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
@@ -45,7 +44,6 @@ export class Pkg {
     name: string;
     title: string;
     githubSlug: string;
-    hasSeparateReleaseNotes: boolean;
     version: string;
     versionWithoutPatch: string;
     type: PackageType;
@@ -56,7 +54,6 @@ export class Pkg {
     this.name = kwargs.name;
     this.title = kwargs.title;
     this.githubSlug = kwargs.githubSlug;
-    this.hasSeparateReleaseNotes = kwargs.hasSeparateReleaseNotes;
     this.version = kwargs.version;
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
@@ -85,7 +82,6 @@ export class Pkg {
         title: "Qiskit SDK",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
-        hasSeparateReleaseNotes: true,
         releaseNoteEntries,
         nestModulesInToc: true,
       });
@@ -97,7 +93,6 @@ export class Pkg {
         title: "Qiskit Runtime IBM Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
       });
     }
@@ -108,7 +103,6 @@ export class Pkg {
         title: "Qiskit IBM Provider (deprecated)",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
-        hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
       });
     }
@@ -120,7 +114,6 @@ export class Pkg {
     name?: string;
     title?: string;
     githubSlug?: string;
-    hasSeparateReleaseNotes?: boolean;
     version?: string;
     versionWithoutPatch?: string;
     type?: PackageType;
@@ -132,7 +125,6 @@ export class Pkg {
       name: kwargs.name ?? "my-quantum-project",
       title: kwargs.title ?? "My Quantum Project",
       githubSlug: kwargs.githubSlug ?? "qiskit/my-quantum-project",
-      hasSeparateReleaseNotes: kwargs.hasSeparateReleaseNotes ?? false,
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
@@ -174,8 +166,12 @@ export class Pkg {
     return this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45;
   }
 
+  hasSeparateReleaseNotes(): boolean {
+    return this.releaseNoteEntries.length > 0;
+  }
+
   releaseNotesTitle(): string {
-    const versionStr = this.hasSeparateReleaseNotes
+    const versionStr = this.hasSeparateReleaseNotes()
       ? ` ${this.versionWithoutPatch}`
       : "";
     return `${this.title}${versionStr} release notes`;

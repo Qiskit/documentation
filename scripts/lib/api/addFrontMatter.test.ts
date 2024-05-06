@@ -63,7 +63,9 @@ test("addFrontMatter()", () => {
     },
   ];
   const pkg = Pkg.mock({
-    hasSeparateReleaseNotes: true,
+    releaseNoteEntries: [
+      { title: "0.1", url: "/api/my-quantum-project/release-notes/0.1" },
+    ],
   });
 
   addFrontMatter(results, pkg);

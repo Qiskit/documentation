@@ -41,7 +41,7 @@ export async function handleReleaseNotesFile(
 
   // When the release notes are a single file, only use them if this is the latest version rather
   // than a historical release.
-  if (!pkg.hasSeparateReleaseNotes) {
+  if (!pkg.hasSeparateReleaseNotes()) {
     return pkg.isLatest();
   }
 
@@ -71,7 +71,7 @@ export async function maybeUpdateReleaseNotesFolder(
   pkg: Pkg,
   markdownPath: string,
 ): Promise<void> {
-  if (!pkg.hasSeparateReleaseNotes || !pkg.isLatest()) {
+  if (!pkg.hasSeparateReleaseNotes() || !pkg.isLatest()) {
     return;
   }
   addNewReleaseNotes(pkg);
@@ -206,7 +206,7 @@ async function writeReleaseNoteForVersion(
   pkg: Pkg,
   releaseNoteMarkdown: string,
 ): Promise<void> {
-  if (!pkg.hasSeparateReleaseNotes) {
+  if (!pkg.hasSeparateReleaseNotes()) {
     throw new Error(
       `The package ${pkg.name} doesn't have separate release notes`,
     );
