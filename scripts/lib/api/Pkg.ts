@@ -12,21 +12,16 @@
 
 import { join } from "path/posix";
 
-import { findLegacyReleaseNotes } from "./releaseNotes";
+import { findSeparateReleaseNotesVersions } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
 import { TocGrouping } from "./TocGrouping";
 
-export interface ReleaseNoteEntry {
-  title: string;
-  url: string;
-}
-
 export class ReleaseNotesConfig {
-  readonly separatePages: ReleaseNoteEntry[];
+  readonly separatePagesVersions: string[];
 
-  constructor(kwargs: { separatePages?: ReleaseNoteEntry[] }) {
-    this.separatePages = kwargs.separatePages ?? [];
+  constructor(kwargs: { separatePagesVersions?: string[] }) {
+    this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
   }
 }
 
@@ -85,14 +80,14 @@ export class Pkg {
     };
 
     if (name === "qiskit") {
-      const releaseNoteEntries = await findLegacyReleaseNotes(name);
+      const releaseNoteEntries = await findSeparateReleaseNotesVersions(name);
       return new Pkg({
         ...args,
         title: "Qiskit SDK",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
         releaseNotesConfig: new ReleaseNotesConfig({
-          separatePages: releaseNoteEntries,
+          separatePagesVersions: releaseNoteEntries,
         }),
         nestModulesInToc: true,
       });
@@ -176,7 +171,7 @@ export class Pkg {
   }
 
   hasSeparateReleaseNotes(): boolean {
-    return this.releaseNotesConfig.separatePages.length > 0;
+    return this.releaseNotesConfig.separatePagesVersions.length > 0;
   }
 
   releaseNotesTitle(): string {

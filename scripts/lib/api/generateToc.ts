@@ -272,7 +272,11 @@ function generateReleaseNotesEntries(pkg: Pkg) {
     title: "Release notes",
   };
   if (pkg.hasSeparateReleaseNotes()) {
-    releaseNotesEntry.children = pkg.releaseNotesConfig.separatePages;
+    releaseNotesEntry.children =
+      pkg.releaseNotesConfig.separatePagesVersions.map((vers) => ({
+        title: vers,
+        url: `${releaseNotesUrl}/${vers}`,
+      }));
   } else {
     releaseNotesEntry.url = releaseNotesUrl;
   }

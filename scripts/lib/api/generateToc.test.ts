@@ -277,16 +277,7 @@ describe("generateToc", () => {
     const toc = generateToc(
       Pkg.mock({
         releaseNotesConfig: new ReleaseNotesConfig({
-          separatePages: [
-            {
-              title: "0.39",
-              url: "/api/my-quantum-project/release-notes/0.39",
-            },
-            {
-              title: "0.38",
-              url: "/api/my-quantum-project/release-notes/0.38",
-            },
-          ],
+          separatePagesVersions: ["0.39", "0.38"],
         }),
       }),
       [

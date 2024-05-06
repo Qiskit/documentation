@@ -64,9 +64,7 @@ test("addFrontMatter()", () => {
   ];
   const pkg = Pkg.mock({
     releaseNotesConfig: new ReleaseNotesConfig({
-      separatePages: [
-        { title: "0.1", url: "/api/my-quantum-project/release-notes/0.1" },
-      ],
+      separatePagesVersions: ["0.1"],
     }),
   });
 

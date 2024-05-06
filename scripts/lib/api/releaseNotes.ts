@@ -17,7 +17,7 @@ import { $ } from "zx";
 import transformLinks from "transform-markdown-links";
 
 import { getRoot, pathExists } from "../fs";
-import type { Pkg, ReleaseNoteEntry } from "./Pkg";
+import type { Pkg } from "./Pkg";
 import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 // ---------------------------------------------------------------------------
@@ -82,13 +82,13 @@ export async function maybeUpdateReleaseNotesFolder(
 }
 
 /**
- * Check for markdown files in `docs/api/package-name/release-notes/
- * then sort them and create entries for the TOC.
+ * Check for markdown files in `docs/api/<pkg-name>/release-notes/,
+ * then sort them and return the list of versions.
  */
-export const findLegacyReleaseNotes = async (
+export const findSeparateReleaseNotesVersions = async (
   pkgName: string,
-): Promise<ReleaseNoteEntry[]> => {
-  const legacyReleaseNoteVersions = (
+): Promise<string[]> => {
+  return (
     await $`ls ${getRoot()}/docs/api/${pkgName}/release-notes`.quiet()
   ).stdout
     .trim()
@@ -109,28 +109,16 @@ export const findLegacyReleaseNotes = async (
       return 0;
     })
     .reverse();
-
-  const legacyReleaseNoteEntries = [];
-  for (let version of legacyReleaseNoteVersions) {
-    legacyReleaseNoteEntries.push({
-      title: version,
-      url: `/api/${pkgName}/release-notes/${version}`,
-    });
-  }
-  return legacyReleaseNoteEntries;
 };
 
 function addNewReleaseNotes(pkg: Pkg): void {
   if (
-    pkg.releaseNotesConfig.separatePages[0].title === pkg.versionWithoutPatch
+    pkg.releaseNotesConfig.separatePagesVersions[0] === pkg.versionWithoutPatch
   ) {
     // Entries already includes most recent release notes
     return;
   }
-  pkg.releaseNotesConfig.separatePages.unshift({
-    title: pkg.versionWithoutPatch,
-    url: `/api/${pkg.name}/release-notes/${pkg.versionWithoutPatch}`,
-  });
+  pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
 function generateReleaseNotesIndex(pkg: Pkg): string {
@@ -146,8 +134,8 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 ## Release notes by version
 
 `;
-  for (const entry of pkg.releaseNotesConfig.separatePages) {
-    markdown += `* [${entry.title}](${entry.url})\n`;
+  for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
+    markdown += `* [${version}](./${version})\n`;
   }
   return markdown;
 }
