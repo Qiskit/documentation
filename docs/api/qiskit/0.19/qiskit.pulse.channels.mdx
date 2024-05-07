@@ -30,6 +30,8 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 | [`RegisterSlot`](#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")(index)       | Classical resister slot channels represent classical registers (low-latency classical memory). |
 | [`SnapshotChannel`](#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")()   | Snapshot channels are used to specify commands for simulators.                                 |
 
+### AcquireChannel
+
 <Class id="qiskit.pulse.channels.AcquireChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="AcquireChannel(index)">
   Acquire channels are used to collect data.
 
@@ -43,7 +45,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.AcquireChannel.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -53,7 +55,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.AcquireChannel.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -63,6 +65,8 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `str`
   </Attribute>
 </Class>
+
+### Channel
 
 <Class id="qiskit.pulse.channels.Channel" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="Channel(index)">
   Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
@@ -77,7 +81,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.Channel.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -87,7 +91,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.Channel.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -97,12 +101,14 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `str`
   </Attribute>
 
-  ### prefix
+  #### prefix
 
   <Attribute id="qiskit.pulse.channels.Channel.prefix" attributeValue="None">
     A shorthand string prefix for characterizing the channel type.
   </Attribute>
 </Class>
+
+### ControlChannel
 
 <Class id="qiskit.pulse.channels.ControlChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="ControlChannel(index)">
   Control channels provide supplementary control over the qubit to the drive channel. These are often associated with multi-qubit gate operations. They may not map trivially to a particular qubit index.
@@ -117,7 +123,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.ControlChannel.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -127,7 +133,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.ControlChannel.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -137,6 +143,8 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `str`
   </Attribute>
 </Class>
+
+### DriveChannel
 
 <Class id="qiskit.pulse.channels.DriveChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="DriveChannel(index)">
   Drive channels transmit signals to qubits which enact gate operations.
@@ -151,7 +159,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.DriveChannel.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -161,7 +169,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.DriveChannel.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -171,6 +179,8 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `str`
   </Attribute>
 </Class>
+
+### MeasureChannel
 
 <Class id="qiskit.pulse.channels.MeasureChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="MeasureChannel(index)">
   Measure channels transmit measurement stimulus pulses for readout.
@@ -185,7 +195,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.MeasureChannel.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -195,7 +205,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.MeasureChannel.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -205,6 +215,8 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `str`
   </Attribute>
 </Class>
+
+### MemorySlot
 
 <Class id="qiskit.pulse.channels.MemorySlot" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="MemorySlot(index)">
   Memory slot channels represent classical memory storage.
@@ -219,7 +231,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.MemorySlot.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -229,7 +241,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.MemorySlot.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -239,6 +251,8 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `str`
   </Attribute>
 </Class>
+
+### PulseChannel
 
 <Class id="qiskit.pulse.channels.PulseChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="PulseChannel(index)">
   Base class of transmit Channels. Pulses can be played on these channels.
@@ -253,7 +267,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.PulseChannel.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -263,7 +277,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.PulseChannel.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -273,6 +287,8 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `str`
   </Attribute>
 </Class>
+
+### RegisterSlot
 
 <Class id="qiskit.pulse.channels.RegisterSlot" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="RegisterSlot(index)">
   Classical resister slot channels represent classical registers (low-latency classical memory).
@@ -287,7 +303,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 
   [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.RegisterSlot.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -297,7 +313,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.RegisterSlot.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
@@ -308,12 +324,14 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
   </Attribute>
 </Class>
 
+### SnapshotChannel
+
 <Class id="qiskit.pulse.channels.SnapshotChannel" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/channels.py" signature="SnapshotChannel">
   Snapshot channels are used to specify commands for simulators.
 
   Create new snapshot channel.
 
-  ### index
+  #### index
 
   <Attribute id="qiskit.pulse.channels.SnapshotChannel.index" attributeTypeHint="int">
     Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -323,7 +341,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
     `int`
   </Attribute>
 
-  ### name
+  #### name
 
   <Attribute id="qiskit.pulse.channels.SnapshotChannel.name" attributeTypeHint="str">
     Return the shorthand alias for this channel, which is based on its type and index.
