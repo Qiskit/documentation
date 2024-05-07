@@ -33,5 +33,5 @@ export async function pathExists(path: string) {
  * Assumes the folder exists, but it's fine if it's empty.
  */
 export async function rmFilesInFolder(dir: string): Promise<void> {
-await $`find ${dir} -maxdepth 1 -type f -path "${dir}/*" | xargs rm -f {}`.quiet();
+  await $`find ${dir} -maxdepth 1 -type f -path "${dir}/*" | xargs rm -f {}`.quiet();
 }
