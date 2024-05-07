@@ -86,18 +86,29 @@ function prepareProps(
   apiType: ApiType,
   id: string,
 ): ComponentProps {
+  const prepClassOrException = () =>
+    prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id);
+  const prepFunction = () =>
+    prepareFunctionProps($, $child, $dl, githubSourceLink, id);
+  const prepMethod = () =>
+    prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id);
+  const prepAttributeOrProperty = () =>
+    prepareAttributeOrPropertyProps(
+      $,
+      $child,
+      $dl,
+      priorApiType,
+      githubSourceLink,
+      id,
+    );
+
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
-    class: () =>
-      prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id),
-    property: () =>
-      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
-    method: () =>
-      prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
-    attribute: () =>
-      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
-    function: () => prepareFunctionProps($, $child, $dl, id, githubSourceLink),
-    exception: () =>
-      prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id),
+    class: prepClassOrException,
+    exception: prepClassOrException,
+    property: prepAttributeOrProperty,
+    attribute: prepAttributeOrProperty,
+    method: prepMethod,
+    function: prepFunction,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
@@ -173,7 +184,7 @@ function prepareMethodProps(
   return props;
 }
 
-function prepareAttributeProps(
+function prepareAttributeOrPropertyProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
@@ -233,8 +244,8 @@ function prepareFunctionProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  id: string,
   githubSourceLink: string | undefined,
+  id: string,
 ): ComponentProps {
   const props = {
     id,
