@@ -17,6 +17,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { zxMain } from "../lib/zx";
+import { Pkg } from "../lib/api/Pkg";
 
 const PORT = 3000;
 
@@ -162,19 +163,11 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     globs.push("docs/**/*.{ipynb,mdx}");
   }
 
+  const allProjects = Pkg.VALID_NAMES.join(",");
   for (const [isIncluded, glob] of [
-    [
-      args.currentApis,
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*.mdx",
-    ],
-    [
-      args.historicalApis,
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*.mdx",
-    ],
-    [
-      args.devApis,
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*.mdx",
-    ],
+    [args.currentApis, `docs/api/{${allProjects}}/*.mdx`],
+    [args.historicalApis, "docs/api/*/[0-9]*/*.mdx"],
+    [args.devApis, "docs/api/*/dev/*.mdx"],
     [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
     [args.translations, "translations/**/*.{ipynb,mdx}"],
   ]) {
