@@ -273,7 +273,7 @@ describe("generateToc", () => {
     });
   });
 
-  test("TOC with distinct release note files", () => {
+  test("TOC with separate release note files", () => {
     const toc = generateToc(
       Pkg.mock({
         releaseNotesConfig: new ReleaseNotesConfig({
@@ -318,52 +318,53 @@ describe("generateToc", () => {
     });
   });
 
-  test("generate a toc without modules", () => {
-    const toc = generateToc(Pkg.mock({}), [
-      {
-        meta: { apiType: "class", apiName: "Sampler" },
-        url: "/api/my-quantum-project/my_quantum_project.Sampler",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "method", apiName: "Sampler.run" },
-        url: "/api/my-quantum-project/my_quantum_project.Sampler.run",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "class", apiName: "Estimator" },
-        url: "/api/my-quantum-project/my_quantum_project.Estimator",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "class" },
-        url: "/api/my-quantum-project/my_quantum_project.NoName",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "class", apiName: "Options" },
-        url: "docs/my_quantum_project.options.Options",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: {
-          apiType: "function",
-          apiName: "runSomething",
+  test("generate a toc without modules and releaes notes", () => {
+    const toc = generateToc(
+      Pkg.mock({
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+      }),
+      [
+        {
+          meta: { apiType: "class", apiName: "Sampler" },
+          url: "/api/my-quantum-project/my_quantum_project.Sampler",
+          ...DEFAULT_ARGS,
         },
-        url: "docs/my_quantum_project.runSomething",
-        ...DEFAULT_ARGS,
-      },
-    ]);
+        {
+          meta: { apiType: "method", apiName: "Sampler.run" },
+          url: "/api/my-quantum-project/my_quantum_project.Sampler.run",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: { apiType: "class", apiName: "Estimator" },
+          url: "/api/my-quantum-project/my_quantum_project.Estimator",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: { apiType: "class" },
+          url: "/api/my-quantum-project/my_quantum_project.NoName",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: { apiType: "class", apiName: "Options" },
+          url: "docs/my_quantum_project.options.Options",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: {
+            apiType: "function",
+            apiName: "runSomething",
+          },
+          url: "docs/my_quantum_project.runSomething",
+          ...DEFAULT_ARGS,
+        },
+      ],
+    );
 
     expect(toc).toEqual({
       children: [
         {
           title: "API index",
           url: "/api/my-quantum-project",
-        },
-        {
-          title: "Release notes",
-          url: "/api/my-quantum-project/release-notes",
         },
       ],
       collapsed: true,
