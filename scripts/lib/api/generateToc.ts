@@ -271,8 +271,12 @@ function generateReleaseNotesEntries(pkg: Pkg) {
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (pkg.releaseNoteEntries.length) {
-    releaseNotesEntry.children = pkg.releaseNoteEntries;
+  if (pkg.hasSeparateReleaseNotes()) {
+    releaseNotesEntry.children =
+      pkg.releaseNotesConfig.separatePagesVersions.map((vers) => ({
+        title: vers,
+        url: `${releaseNotesUrl}/${vers}`,
+      }));
   } else {
     releaseNotesEntry.url = releaseNotesUrl;
   }

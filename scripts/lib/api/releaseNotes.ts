@@ -14,18 +14,81 @@ import { parse } from "path";
 import { readFile, writeFile, readdir } from "fs/promises";
 
 import { $ } from "zx";
+import transformLinks from "transform-markdown-links";
 
 import { getRoot, pathExists } from "../fs";
-import type { Pkg, ReleaseNoteEntry } from "./Pkg";
+import type { Pkg } from "./Pkg";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+
+// ---------------------------------------------------------------------------
+// Generic release notes handling
+// ---------------------------------------------------------------------------
 
 /**
- * Check for markdown files in `docs/api/package-name/release-notes/
- * then sort them and create entries for the TOC.
+ * Determine what to do with release-notes.mdx, such as simply ignoring it.
+ *
+ * @returns true if the release notes file should be written.
  */
-export const findLegacyReleaseNotes = async (
+export async function handleReleaseNotesFile(
+  result: HtmlToMdResultWithUrl,
+  pkg: Pkg,
+): Promise<boolean> {
+  // Dev versions haven't been released yet and we don't want to modify the release notes
+  // of prior versions.
+  if (pkg.isDev()) {
+    return false;
+  }
+
+  // When the release notes are a single file, only use them if this is the latest version rather
+  // than a historical release.
+  if (!pkg.hasSeparateReleaseNotes()) {
+    return pkg.isLatest();
+  }
+
+  // Else, there is a distinct release note per version. So, we use the release note but
+  // have custom logic to handle it.
+  const baseUrl = pkg.isHistorical()
+    ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
+    : `/api/${pkg.name}`;
+  result.markdown = transformLinks(result.markdown, (link, _) =>
+    link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+      ? link
+      : `${baseUrl}/${link}`,
+  );
+  await writeReleaseNoteForVersion(pkg, result.markdown);
+  return false;
+}
+
+// ---------------------------------------------------------------------------
+// Utils for release-note per version
+// ---------------------------------------------------------------------------
+
+/**
+ * If there was a new release notes file, update the release notes index page and _toc.json for
+ * every docs version.
+ */
+export async function maybeUpdateReleaseNotesFolder(
+  pkg: Pkg,
+  markdownPath: string,
+): Promise<void> {
+  if (!pkg.hasSeparateReleaseNotes() || !pkg.isLatest()) {
+    return;
+  }
+  addNewReleaseNotes(pkg);
+  await updateHistoricalTocFiles(pkg);
+  console.log("Generating release-notes/index");
+  const indexMarkdown = generateReleaseNotesIndex(pkg);
+  await writeFile(`${markdownPath}/release-notes/index.mdx`, indexMarkdown);
+}
+
+/**
+ * Check for markdown files in `docs/api/<pkg-name>/release-notes/,
+ * then sort them and return the list of versions.
+ */
+export const findSeparateReleaseNotesVersions = async (
   pkgName: string,
-): Promise<ReleaseNoteEntry[]> => {
-  const legacyReleaseNoteVersions = (
+): Promise<string[]> => {
+  return (
     await $`ls ${getRoot()}/docs/api/${pkgName}/release-notes`.quiet()
   ).stdout
     .trim()
@@ -46,29 +109,19 @@ export const findLegacyReleaseNotes = async (
       return 0;
     })
     .reverse();
-
-  const legacyReleaseNoteEntries = [];
-  for (let version of legacyReleaseNoteVersions) {
-    legacyReleaseNoteEntries.push({
-      title: version,
-      url: `/api/${pkgName}/release-notes/${version}`,
-    });
-  }
-  return legacyReleaseNoteEntries;
 };
 
-export function addNewReleaseNotes(pkg: Pkg): void {
-  if (pkg.releaseNoteEntries[0].title === pkg.versionWithoutPatch) {
+function addNewReleaseNotes(pkg: Pkg): void {
+  if (
+    pkg.releaseNotesConfig.separatePagesVersions[0] === pkg.versionWithoutPatch
+  ) {
     // Entries already includes most recent release notes
     return;
   }
-  pkg.releaseNoteEntries.unshift({
-    title: pkg.versionWithoutPatch,
-    url: `/api/${pkg.name}/release-notes/${pkg.versionWithoutPatch}`,
-  });
+  pkg.releaseNotesConfig.separatePagesVersions.unshift(pkg.versionWithoutPatch);
 }
 
-export function generateReleaseNotesIndex(pkg: Pkg): string {
+function generateReleaseNotesIndex(pkg: Pkg): string {
   let markdown = `---
 title: ${pkg.title} release notes
 description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.
@@ -81,26 +134,17 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
 ## Release notes by version
 
 `;
-  for (const entry of pkg.releaseNoteEntries) {
-    markdown += `* [${entry.title}](${entry.url})\n`;
+  for (const version of pkg.releaseNotesConfig.separatePagesVersions) {
+    markdown += `* [${version}](./${version})\n`;
   }
   return markdown;
-}
-
-/**
- * Path to release notes file for the version we're adding
- */
-export function currentReleaseNotesPath(pkg: Pkg): string {
-  return `${getRoot()}/docs/api/${pkg.name}/release-notes/${
-    pkg.versionWithoutPatch
-  }.mdx`;
 }
 
 /**
  * Adds a new entry for the release notes of the current API version to the _toc.json
  * of all historical API versions.
  */
-export async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
+async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
   console.log("Updating _toc.json files for the historical versions");
 
   const historicalFolders = (
@@ -148,11 +192,11 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
  * Creates the release note file for the minor version found in `pkg`.If the file
  * already exists, it will keep the initial header and overwrite the rest of the content.
  */
-export async function writeReleaseNoteForVersion(
+async function writeReleaseNoteForVersion(
   pkg: Pkg,
   releaseNoteMarkdown: string,
 ): Promise<void> {
-  if (!pkg.hasSeparateReleaseNotes) {
+  if (!pkg.hasSeparateReleaseNotes()) {
     throw new Error(
       `The package ${pkg.name} doesn't have separate release notes`,
     );

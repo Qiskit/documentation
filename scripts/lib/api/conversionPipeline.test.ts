@@ -55,11 +55,9 @@ test("qiskit-sphinx-theme", async () => {
     name: "qiskit-sphinx-theme",
     title: "Qiskit Sphinx Theme",
     githubSlug: "Qiskit/qiskit_sphinx_theme",
-    hasSeparateReleaseNotes: false,
     version: "0.1.1",
     versionWithoutPatch: "0.1",
     type: "latest",
-    releaseNoteEntries: [],
   });
   const markdownFolder = pkg.outputDir(docsBaseFolder);
 
