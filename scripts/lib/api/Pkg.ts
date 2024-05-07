@@ -18,9 +18,11 @@ import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
 import { TocGrouping } from "./TocGrouping";
 
 export class ReleaseNotesConfig {
+  readonly enabled: boolean;
   readonly separatePagesVersions: string[];
 
-  constructor(kwargs: { separatePagesVersions?: string[] }) {
+  constructor(kwargs: { enabled?: boolean; separatePagesVersions?: string[] }) {
+    this.enabled = kwargs.enabled ?? true;
     this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
   }
 }
