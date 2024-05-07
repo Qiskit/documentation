@@ -186,12 +186,6 @@ export class Pkg {
    * `sphinx.ext.viewcode`, which means we need to deal with its quirks like handling `__init__.py`.
    */
   determineGithubUrlFn(): (fileName: string) => string {
-    if (!this.githubSlug) {
-      throw new Error(
-        `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
-      );
-    }
-
     // For files like `my_module/__init__.py`, `sphinx.ext.viewcode` will title the
     // file `my_module.py`. We need to add back the `/__init__.py` when linking to GitHub.
     const convertToInitPy = new Set([
@@ -219,6 +213,12 @@ export class Pkg {
           : `stable/${this.versionWithoutPatch}`;
       const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
       return (fileName) => {
+        if (!this.githubSlug) {
+          throw new Error(
+            `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
+          );
+        }
+
         return `${baseUrl}/${normalizeFile(fileName)}.py`;
       };
     }
