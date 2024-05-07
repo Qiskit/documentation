@@ -96,7 +96,7 @@ const QISKIT_ENTRIES = [
 function qiskitModuleToSection(module: string): string | undefined {
   if (
     hasPrefix(module, ["qiskit.circuit", "qiskit.extensions"]) &&
-    module === "qiskit.circuit.qpy_serialization"
+    module !== "qiskit.circuit.qpy_serialization"
   ) {
     return _CIRCUITS;
   }
@@ -109,7 +109,6 @@ function qiskitModuleToSection(module: string): string | undefined {
       "qiskit.synthesis",
       "qiskit.synthesis",
       "qiskit.transpiler",
-      "qiskit.transpiler.passes",
     ])
   ) {
     return _TRANSPILATION;
