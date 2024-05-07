@@ -120,62 +120,6 @@ describe("generateToc", () => {
     });
   });
 
-  test("TOC with nested submodules", () => {
-    const toc = generateToc(Pkg.mock({ nestModulesInToc: true }), [
-      {
-        meta: {
-          apiType: "module",
-          apiName: "my_quantum_project",
-        },
-        url: "/api/my-quantum-project",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: {
-          apiType: "module",
-          apiName: "my_quantum_project.options",
-        },
-        url: "/api/my-quantum-project/options",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: {
-          apiType: "module",
-          apiName: "my_quantum_project.options.submodule",
-        },
-        url: "/api/my-quantum-project/my_quantum_project.options.submodule",
-        ...DEFAULT_ARGS,
-      },
-    ]);
-    expect(toc).toEqual({
-      children: [
-        {
-          title: "my_quantum_project",
-          url: "/api/my-quantum-project",
-        },
-        {
-          children: [
-            {
-              title: "Module overview",
-              url: "/api/my-quantum-project/options",
-            },
-            {
-              title: "my_quantum_project.options.submodule",
-              url: "/api/my-quantum-project/my_quantum_project.options.submodule",
-            },
-          ],
-          title: "my_quantum_project.options",
-        },
-        {
-          title: "Release notes",
-          url: "/api/my-quantum-project/release-notes",
-        },
-      ],
-      collapsed: true,
-      title: "My Quantum Project",
-    });
-  });
-
   test("TOC with grouped modules", () => {
     // This ordering is intentional.
     const topLevelEntries: TocGroupingEntry[] = [

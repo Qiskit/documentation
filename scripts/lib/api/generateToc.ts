@@ -30,12 +30,6 @@ type Toc = {
   collapsed: boolean;
 };
 
-function nestModule(id: string): boolean {
-  // For example, nest `qiskit.algorithms.submodule`, but
-  // not `qiskit.algorithms` which should be top-level.
-  return id.split(".").length > 2;
-}
-
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results);
   const tocModules = generateTocModules(modules);
@@ -46,32 +40,24 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
-  let orderedModules;
-  if (pkg.tocGrouping) {
-    orderedModules = groupAndSortModules(pkg.tocGrouping, tocModulesByTitle);
-  } else if (pkg.nestModulesInToc) {
-    orderedModules = getNestedTocModulesSorted(
-      tocModulesByTitle,
-      tocModuleTitles,
-    );
-  } else {
-    orderedModules = sortAndTruncateModules(tocModules);
-  }
+  const orderedEntries = pkg.tocGrouping
+    ? groupAndSortModules(pkg.tocGrouping, tocModulesByTitle)
+    : sortAndTruncateModules(tocModules);
 
   generateOverviewPage(tocModules);
-  const maybeIndexPage = ensureIndexPage(pkg, orderedModules);
+  const maybeIndexPage = ensureIndexPage(pkg, orderedEntries);
   if (maybeIndexPage) {
-    orderedModules.unshift(maybeIndexPage);
+    orderedEntries.unshift(maybeIndexPage);
   }
 
   const maybeReleaseNotes = generateReleaseNotesEntry(pkg);
   if (maybeReleaseNotes) {
-    orderedModules.push(maybeReleaseNotes);
+    orderedEntries.push(maybeReleaseNotes);
   }
 
   return {
     title: pkg.title,
-    children: orderedModules,
+    children: orderedEntries,
     collapsed: true,
   };
 }
@@ -191,39 +177,6 @@ function groupAndSortModules(
     }
   });
   return result;
-}
-
-/** Nest modules so that only top-level modules like qiskit.circuit are at the top
- * and submodules like qiskit.circuit.library are nested.
- *
- * This function sorts alphabetically at every level.
- */
-function getNestedTocModulesSorted(
-  tocModulesByTitle: Map<string, TocEntry>,
-  tocModuleTitles: string[],
-): TocEntry[] {
-  const nestedTocModules: TocEntry[] = [];
-  for (const tocModule of tocModulesByTitle.values()) {
-    if (!nestModule(tocModule.title)) {
-      nestedTocModules.push(tocModule);
-      continue;
-    }
-
-    const parentModuleTitle = findClosestParentModules(
-      tocModule.title,
-      tocModuleTitles,
-    );
-
-    if (parentModuleTitle) {
-      const parentModule = tocModulesByTitle.get(parentModuleTitle) as TocEntry;
-      if (!parentModule.children) parentModule.children = [];
-      parentModule.children.push(tocModule);
-    } else {
-      nestedTocModules.push(tocModule);
-    }
-  }
-
-  return orderEntriesByTitle(nestedTocModules);
 }
 
 /** Sorts all modules and truncates the package name, e.g. `qiskit_ibm_runtime.options` -> `...options`.
