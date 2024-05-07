@@ -61,7 +61,18 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // A mapping of files to lists of links that will not be searched.
 type FilesToIgnores = { [id: string]: string[] };
 
-const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
+const _QPY_IGNORES = [
+  "#f1",
+  "#f2",
+  "#f3",
+  "#id2",
+  "#id3",
+  "#id4",
+  "#id5",
+  "#id6",
+  "#id7",
+  "#id8",
+];
 
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
   [
