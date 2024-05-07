@@ -13,6 +13,8 @@
 import fs from "fs/promises";
 import path from "path";
 
+import { $ } from "zx/core";
+
 export function getRoot() {
   return path.normalize(`${__dirname}/../../`);
 }
