@@ -15,7 +15,7 @@ import { join } from "path/posix";
 import { findSeparateReleaseNotesVersions } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
-import { TocGrouping } from "./TocGrouping";
+import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping";
 
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
@@ -91,7 +91,7 @@ export class Pkg {
         releaseNotesConfig: new ReleaseNotesConfig({
           separatePagesVersions: releaseNoteEntries,
         }),
-        nestModulesInToc: true,
+        tocGrouping: QISKIT_TOC_GROUPING,
       });
     }
 
