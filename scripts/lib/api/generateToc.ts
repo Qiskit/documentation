@@ -40,9 +40,9 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
-  const orderedEntries = pkg.tocGrouping
-    ? groupAndSortModules(pkg.tocGrouping, tocModulesByTitle)
-    : sortAndTruncateModules(tocModules);
+  const orderedEntries = pkg.tocConfig.tocGrouping
+    ? groupAndSortModules(pkg.tocConfig.tocGrouping, tocModulesByTitle)
+    : sortAndMaybeTruncateModules(tocModules, pkg.tocConfig.truncate);
 
   generateOverviewPage(tocModules);
   const maybeIndexPage = ensureIndexPage(pkg, orderedEntries);
@@ -179,17 +179,22 @@ function groupAndSortModules(
   return result;
 }
 
-/** Sorts all modules and truncates the package name, e.g. `qiskit_ibm_runtime.options` -> `...options`.
+/** Sorts all modules and possibly truncates the package name, e.g. `qiskit_ibm_runtime.options` -> `...options`.
  *
  * Returns a flat list of modules without any nesting.
  */
-function sortAndTruncateModules(entries: TocEntry[]): TocEntry[] {
+function sortAndMaybeTruncateModules(
+  entries: TocEntry[],
+  truncate: boolean,
+): TocEntry[] {
   const sorted = orderEntriesByTitle(entries);
-  sorted.forEach((entry) => {
-    // E.g. qiskit_ibm_runtime.options -> ...options, but ignore
-    // qiskit_ibm_runtime without a `.`.
-    entry.title = entry.title.replace(/^[^.]+\./, "...");
-  });
+  if (truncate) {
+    sorted.forEach((entry) => {
+      // E.g. qiskit_ibm_runtime.options -> ...options, but ignore
+      // qiskit_ibm_runtime without a `.`.
+      entry.title = entry.title.replace(/^[^.]+\./, "...");
+    });
+  }
   return sorted;
 }
 
