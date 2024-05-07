@@ -40,7 +40,6 @@ export class Pkg {
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
   readonly releaseNotesConfig: ReleaseNotesConfig;
-  readonly nestModulesInToc: boolean;
   readonly tocGrouping?: TocGrouping;
 
   static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
@@ -53,7 +52,6 @@ export class Pkg {
     versionWithoutPatch: string;
     type: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
-    nestModulesInToc?: boolean;
     tocGrouping?: TocGrouping;
   }) {
     this.name = kwargs.name;
@@ -64,7 +62,6 @@ export class Pkg {
     this.type = kwargs.type;
     this.releaseNotesConfig =
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
-    this.nestModulesInToc = kwargs.nestModulesInToc ?? false;
     this.tocGrouping = kwargs.tocGrouping;
   }
 
@@ -124,7 +121,6 @@ export class Pkg {
     versionWithoutPatch?: string;
     type?: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
-    nestModulesInToc?: boolean;
     tocGrouping?: TocGrouping;
   }): Pkg {
     return new Pkg({
@@ -135,7 +131,6 @@ export class Pkg {
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
       releaseNotesConfig: kwargs.releaseNotesConfig,
-      nestModulesInToc: kwargs.nestModulesInToc ?? false,
       tocGrouping: kwargs.tocGrouping ?? undefined,
     });
   }
