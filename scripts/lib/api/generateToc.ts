@@ -46,27 +46,32 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
 
-  let sortedTocModules;
+  let orderedModules;
   if (pkg.tocGrouping) {
-    sortedTocModules = groupAndSortModules(pkg.tocGrouping, tocModulesByTitle);
+    orderedModules = groupAndSortModules(pkg.tocGrouping, tocModulesByTitle);
   } else if (pkg.nestModulesInToc) {
-    sortedTocModules = getNestedTocModulesSorted(
+    orderedModules = getNestedTocModulesSorted(
       tocModulesByTitle,
       tocModuleTitles,
     );
   } else {
-    sortedTocModules = sortAndTruncateModules(tocModules);
+    orderedModules = sortAndTruncateModules(tocModules);
   }
 
   generateOverviewPage(tocModules);
-  const maybeIndexPage = ensureIndexPage(pkg, sortedTocModules);
+  const maybeIndexPage = ensureIndexPage(pkg, orderedModules);
   if (maybeIndexPage) {
-    sortedTocModules.unshift(maybeIndexPage);
+    orderedModules.unshift(maybeIndexPage);
+  }
+
+  const maybeReleaseNotes = generateReleaseNotesEntry(pkg);
+  if (maybeReleaseNotes) {
+    orderedModules.push(maybeReleaseNotes);
   }
 
   return {
     title: pkg.title,
-    children: [...sortedTocModules, generateReleaseNotesEntries(pkg)],
+    children: orderedModules,
     collapsed: true,
   };
 }
@@ -266,17 +271,21 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
   }
 }
 
-function generateReleaseNotesEntries(pkg: Pkg) {
+function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
+  if (!pkg.releaseNotesConfig.enabled) return;
   const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (pkg.releaseNoteEntries.length) {
-    releaseNotesEntry.children = pkg.releaseNoteEntries;
+  if (pkg.hasSeparateReleaseNotes()) {
+    releaseNotesEntry.children =
+      pkg.releaseNotesConfig.separatePagesVersions.map((vers) => ({
+        title: vers,
+        url: `${releaseNotesUrl}/${vers}`,
+      }));
   } else {
     releaseNotesEntry.url = releaseNotesUrl;
   }
-
   return releaseNotesEntry;
 }
 

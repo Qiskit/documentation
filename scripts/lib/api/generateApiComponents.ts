@@ -89,7 +89,7 @@ function prepareProps(
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
     class: () => prepareClassProps($child, $dl, githubSourceLink, id),
     property: () =>
-      preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
+      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
     method: () =>
       prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
     attribute: () =>
@@ -133,31 +133,6 @@ function prepareClassProps(
   return props;
 }
 
-function preparePropertyProps(
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  priorApiType: string | undefined,
-  githubSourceLink: string | undefined,
-  id: string,
-): ComponentProps {
-  const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-  const props = {
-    id,
-    rawSignature,
-    githubSourceLink,
-  };
-
-  if (!priorApiType && id) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    return {
-      ...props,
-      isDedicatedPage: true,
-    };
-  }
-
-  return props;
-}
-
 function prepareMethodProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
@@ -194,20 +169,6 @@ function prepareAttributeProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  if (!priorApiType) {
-    if (id) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    }
-    const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-    return {
-      id,
-      rawSignature,
-      githubSourceLink,
-      isDedicatedPage: true,
-    };
-  }
-
-  // Else, the attribute is embedded on the class
   const text = $child.text();
 
   // Index of the default value of the attribute
@@ -231,13 +192,25 @@ function prepareAttributeProps(
     .trim();
   const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
-  $(`<h3>${name}</h3>`).insertBefore($dl);
-
-  return {
+  const props = {
     id,
     attributeTypeHint,
     attributeValue,
+    githubSourceLink,
   };
+
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    return {
+      ...props,
+      isDedicatedPage: true,
+    };
+  }
+
+  // Else, the attribute is embedded on the class
+  $(`<h3>${name}</h3>`).insertBefore($dl);
+
+  return props;
 }
 
 function prepareFunctionOrExceptionProps(
