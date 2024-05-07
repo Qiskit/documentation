@@ -33,14 +33,5 @@ export async function pathExists(path: string) {
  * Assumes the folder exists, but it's fine if it's empty.
  */
 export async function rmFilesInFolder(dir: string): Promise<void> {
-  const dirMembers = await fs.readdir(dir);
-  await Promise.all(
-    dirMembers.map(async (member) => {
-      const fp = path.join(dir, member);
-      const stat = await fs.stat(fp);
-      if (stat.isFile()) {
-        await fs.unlink(fp);
-      }
-    }),
-  );
+await $`find ${dir} -maxdepth 1 -type f -path "${dir}/*" | xargs rm -f {}`.quiet();
 }
