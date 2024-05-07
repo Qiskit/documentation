@@ -106,8 +106,8 @@ function prepareProps(
     class: prepClassOrException,
     exception: prepClassOrException,
     property: prepAttributeOrProperty,
-    method: prepMethod,
     attribute: prepAttributeOrProperty,
+    method: prepMethod,
     function: prepFunction,
   };
 
