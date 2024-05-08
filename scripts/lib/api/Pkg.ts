@@ -27,6 +27,16 @@ export class ReleaseNotesConfig {
   }
 }
 
+export class TocConfig {
+  readonly truncate: boolean;
+  readonly tocGrouping?: TocGrouping;
+
+  constructor(kwargs: { truncate?: boolean; tocGrouping?: TocGrouping }) {
+    this.truncate = kwargs.truncate ?? false;
+    this.tocGrouping = kwargs.tocGrouping;
+  }
+}
+
 type PackageType = "latest" | "historical" | "dev";
 
 /**
@@ -40,7 +50,7 @@ export class Pkg {
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
   readonly releaseNotesConfig: ReleaseNotesConfig;
-  readonly tocGrouping?: TocGrouping;
+  readonly tocConfig: TocConfig;
 
   static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
 
@@ -52,7 +62,7 @@ export class Pkg {
     versionWithoutPatch: string;
     type: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
-    tocGrouping?: TocGrouping;
+    tocConfig?: TocConfig;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -62,7 +72,7 @@ export class Pkg {
     this.type = kwargs.type;
     this.releaseNotesConfig =
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
-    this.tocGrouping = kwargs.tocGrouping;
+    this.tocConfig = kwargs.tocConfig ?? new TocConfig({});
   }
 
   static async fromArgs(
@@ -88,7 +98,7 @@ export class Pkg {
         releaseNotesConfig: new ReleaseNotesConfig({
           separatePagesVersions: releaseNoteEntries,
         }),
-        tocGrouping: QISKIT_TOC_GROUPING,
+        tocConfig: new TocConfig({ tocGrouping: QISKIT_TOC_GROUPING }),
       });
     }
 
@@ -98,6 +108,7 @@ export class Pkg {
         title: "Qiskit Runtime IBM Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
+        tocConfig: new TocConfig({ truncate: true }),
       });
     }
 
@@ -107,6 +118,7 @@ export class Pkg {
         title: "Qiskit IBM Provider (deprecated)",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
+        tocConfig: new TocConfig({ truncate: true }),
       });
     }
 
@@ -121,7 +133,7 @@ export class Pkg {
     versionWithoutPatch?: string;
     type?: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
-    tocGrouping?: TocGrouping;
+    tocConfig?: TocConfig;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -131,7 +143,7 @@ export class Pkg {
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
       releaseNotesConfig: kwargs.releaseNotesConfig,
-      tocGrouping: kwargs.tocGrouping ?? undefined,
+      tocConfig: kwargs.tocConfig,
     });
   }
 
@@ -186,12 +198,6 @@ export class Pkg {
    * `sphinx.ext.viewcode`, which means we need to deal with its quirks like handling `__init__.py`.
    */
   determineGithubUrlFn(): (fileName: string) => string {
-    if (!this.githubSlug) {
-      throw new Error(
-        `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
-      );
-    }
-
     // For files like `my_module/__init__.py`, `sphinx.ext.viewcode` will title the
     // file `my_module.py`. We need to add back the `/__init__.py` when linking to GitHub.
     const convertToInitPy = new Set([
@@ -219,6 +225,12 @@ export class Pkg {
           : `stable/${this.versionWithoutPatch}`;
       const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
       return (fileName) => {
+        if (!this.githubSlug) {
+          throw new Error(
+            `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
+          );
+        }
+
         return `${baseUrl}/${normalizeFile(fileName)}.py`;
       };
     }
