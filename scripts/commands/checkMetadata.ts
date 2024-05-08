@@ -106,7 +106,7 @@ async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
 }
 
 function isApi(filePath: string): boolean {
-  const apiFolders = Pkg.VALID_NAMES.map((pkg) => `/api/${pkg}`);
+  const apiFolders = Pkg.VALID_NAMES.map((pkg) => `/api/${pkg}/`);
   return apiFolders.some((urlPath) => filePath.startsWith(urlPath));
 }
 
