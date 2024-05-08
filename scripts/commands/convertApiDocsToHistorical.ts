@@ -11,25 +11,21 @@
 // that they have been altered from the originals.
 
 import { $ } from "zx";
-import { zxMain } from "../lib/zx";
 import { globby } from "globby";
-import { pathExists, getRoot } from "../lib/fs";
 import { readFile, writeFile } from "fs/promises";
 import { mkdirp } from "mkdirp";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
 
+import { pathExists, getRoot } from "../lib/fs";
+import { zxMain } from "../lib/zx";
+import { Pkg } from "../lib/api/Pkg";
+
 interface Arguments {
   [x: string]: unknown;
   package: string;
 }
-
-const PACKAGES: string[] = [
-  "qiskit-ibm-runtime",
-  "qiskit-ibm-provider",
-  "qiskit",
-];
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
@@ -37,7 +33,7 @@ const readArgs = (): Arguments => {
     .option("package", {
       alias: "p",
       type: "string",
-      choices: PACKAGES,
+      choices: Pkg.VALID_NAMES,
       demandOption: true,
       description: "Which package to convert",
     })
@@ -47,7 +43,7 @@ const readArgs = (): Arguments => {
 zxMain(async () => {
   const args = readArgs();
 
-  const pkgName = PACKAGES.find((pkgName) => pkgName === args.package);
+  const pkgName = Pkg.VALID_NAMES.find((pkgName) => pkgName === args.package);
   if (pkgName === undefined) {
     throw new Error(`Unrecognized package: ${args.package}`);
   }
