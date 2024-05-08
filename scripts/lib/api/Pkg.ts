@@ -52,7 +52,12 @@ export class Pkg {
   readonly releaseNotesConfig: ReleaseNotesConfig;
   readonly tocConfig: TocConfig;
 
-  static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
+  static VALID_NAMES = [
+    "qiskit",
+    "qiskit-ibm-runtime",
+    "qiskit-ibm-provider",
+    "qiskit-transpiler-service",
+  ];
 
   constructor(kwargs: {
     name: string;
@@ -119,6 +124,16 @@ export class Pkg {
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
         tocConfig: new TocConfig({ truncate: true }),
+      });
+    }
+
+    if (name === "qiskit-transpiler-service") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Transpiler Service Client",
+        name: "qiskit-transpiler-service",
+        githubSlug: undefined,
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
 
