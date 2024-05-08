@@ -17,6 +17,7 @@ import argparse
 import asyncio
 import sys
 import textwrap
+import platform
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
@@ -328,4 +329,6 @@ async def _main() -> None:
     sys.exit(0)
 
 def main():
+    if platform.system() == "Windows":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(_main())
