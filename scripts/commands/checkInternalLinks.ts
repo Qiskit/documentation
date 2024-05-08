@@ -16,6 +16,7 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
+import { Pkg } from "../lib/api/Pkg";
 import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/InternalLink";
 import { FileBatch } from "../lib/links/FileBatch";
@@ -114,6 +115,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/build/circuit-construction.ipynb",
   "docs/build/pulse.ipynb",
   "docs/start/install.mdx",
+  "docs/start/configure-qiskit-local.mdx",
   "docs/api/qiskit/release-notes/0.44.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/api/qiskit-ibm-provider/index.mdx",
@@ -184,10 +186,9 @@ async function determineCurrentDocsFileBatch(
   ];
 
   if (!args.currentApis) {
-    toCheck.push(
-      "!{public,docs}/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*",
-    );
-    toLoad.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
+    const projects = Pkg.VALID_NAMES.join(",");
+    toCheck.push(`!{public,docs}/api/{${projects}}/*`);
+    toLoad.push(`docs/api/{${projects}}/*`);
   }
 
   if (args.qiskitReleaseNotes) {
@@ -221,16 +222,11 @@ async function determineCurrentDocsFileBatch(
 async function determineDevFileBatches(): Promise<FileBatch[]> {
   const projects: [string, string[]][] = [
     ["qiskit", QISKIT_GLOBS_TO_LOAD],
-    ["qiskit-ibm-provider", PROVIDER_GLOBS_TO_LOAD],
     ["qiskit-ibm-runtime", RUNTIME_GLOBS_TO_LOAD],
   ];
 
   const result = [];
   for (const [project, toLoad] of projects) {
-    if (!(await pathExists(`docs/api/${project}/dev`))) {
-      continue;
-    }
-
     const fileBatch = await FileBatch.fromGlobs(
       [`docs/api/${project}/dev/*`, `public/api/${project}/dev/objects.inv`],
       toLoad,

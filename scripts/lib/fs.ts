@@ -10,18 +10,18 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { stat } from "fs/promises";
-import { normalize } from "path";
+import fs from "fs/promises";
+import path from "path";
 
 import { $ } from "zx/core";
 
 export function getRoot() {
-  return normalize(`${__dirname}/../../`);
+  return path.normalize(`${__dirname}/../../`);
 }
 
 export async function pathExists(path: string) {
   try {
-    await stat(path);
+    await fs.stat(path);
     return true;
   } catch (err: any) {
     if (err && err.code === "ENOENT") return false;
@@ -31,7 +31,9 @@ export async function pathExists(path: string) {
 
 /**
  * Deletes all the files in the folder, but preserves subfolders.
+ *
+ * Assumes the folder exists, but it's fine if it's empty.
  */
 export async function rmFilesInFolder(dir: string): Promise<void> {
-  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`.quiet();
+  await $`find ${dir} -maxdepth 1 -type f -path "${dir}/*" | xargs rm -f {}`.quiet();
 }
