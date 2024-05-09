@@ -79,6 +79,18 @@ The preview application does not include the top nav bar. Instead, navigate to t
 
 Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
 
+### API docs authors: How to preview your changes
+
+API docs authors can preview their changes to one of the APIs by following these steps:
+
+1. Go to your `qiskit/documentation` folder
+2. Create a folder named `.sphinx-artifacts/<pkg-name>/<major>.<minor>/artifact` , or use the one that already exists if you have generated that version before.
+5. Move the HTML output of Sphinx, including all the folders (e.g., apidoc and stubs) into the artifact folder
+6. Run `npm run gen-api -- -p qiskit -v 1.1.0 --skip-download`
+7. Open Rancher Desktop (not necessary for Linux)
+8. Execute `./start`
+9. Go to http://localhost:3000
+
 ## Preview the docs in PRs
 
 Contributors with write access to this repository can use live previews of the docs: GitHub will deploy a website using your changes.
