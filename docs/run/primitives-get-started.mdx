@@ -35,15 +35,11 @@ Because Qiskit Runtime `Estimator` is a managed service, you first need to initi
 Follow the steps in the [Install and set up topic](../start/install) if you don't already have an account.
 
 ```python
-from qiskit_ibm_runtime.fake_provider import FakeSherbrooke
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
-# Run the job locally using FakeSherbrooke
-backend = FakeSherbrooke()
-
-# Uncomment the following lines to run on a real system:
-# from qiskit_ibm_runtime import QiskitRuntimeService
-# service = QiskitRuntimeService()
-# backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+estimator = Estimator(backend)
 ```
 
 ### 2. Create a circuit and an observable
@@ -56,9 +52,7 @@ from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 
-# Use fewer qubits when testing locally
-# n_qubits = 127
-n_qubits = 4
+n_qubits = 127
 
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
@@ -67,7 +61,7 @@ print(f">>> Observable: {observable.paulis}")
 ```
 Output
 ```text
->>> Observable: ['ZZZZZZZZZZZZ']
+>>> Observable: ['ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ...']
 ```
     The circuit and observable need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits). We'll use the transpiler to do this.
 
@@ -162,15 +156,10 @@ Because Qiskit Runtime `Sampler` is a managed service, you first need to initial
 Follow the steps in the [Install and set up topic](../start/install) if you don't already have an account set up.
 
 ```python
-from qiskit_ibm_runtime.fake_provider import FakeSherbrooke
+from qiskit_ibm_runtime import QiskitRuntimeService
 
-# Run the job locally using FakeSherbrooke
-backend = FakeSherbrooke()
-
-# Uncomment the following lines to run on a real system:
-# from qiskit_ibm_runtime import QiskitRuntimeService
-# service = QiskitRuntimeService()
-# backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 ```
 
 ### 2. Create a circuit
@@ -183,9 +172,7 @@ from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
 
-# Use fewer qubits when testing locally
-# n_qubits = 127
-n_qubits = 4
+n_qubits = 127
 
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
@@ -275,8 +262,8 @@ print(f"  > Metadata: {result.metadata[0]}")
 <span id="backend"></span>
 ## Get started with the backend primitives
 
-The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler). Likewise, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). Equivalent implementations in V2 are coming soon.   
-  
+The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler). Likewise, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). Equivalent implementations in V2 are coming soon.
+
 Some providers implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#provider) for more details).
 
 ### Example: BackendEstimator
