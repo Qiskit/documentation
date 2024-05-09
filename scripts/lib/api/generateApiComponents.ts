@@ -114,8 +114,9 @@ function prepareProps(
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
 
-  // We don't want to remove the `class` modifier in front of class signatures
-  if (apiType != "class") {
+  // Remove the attributes and properties modifiers as we don't show their signatures,
+  // but we still use them to create their headers
+  if (apiType == "attribute" || apiType == "property") {
     findByText($, $main, "em.property", apiType).remove();
   }
 
