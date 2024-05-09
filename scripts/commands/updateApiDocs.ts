@@ -67,7 +67,7 @@ const readArgs = (): Arguments => {
       implies: "skip-download",
       normalize: true,
       description:
-        "Skip downloading the the artifact from Box and instead use a given directory as the root of the Sphinx HTML output.",
+        "Skip downloading the artifact from Box and instead use the given directory as the root of the Sphinx HTML output.",
     })
     .parseSync();
 };
