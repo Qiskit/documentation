@@ -33,6 +33,7 @@ from squeaky import clean_notebook
 
 # If not submitting jobs, we mock the real backend by prepending this to each notebook
 MOCKING_CODE = """\
+import warnings
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime.fake_provider import FakeKyoto
 
@@ -40,6 +41,9 @@ def patched_least_busy(self, *args, **kwarg):
   return FakeKyoto()
 
 QiskitRuntimeService.least_busy = patched_least_busy
+
+warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
+warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
 
 @dataclass
