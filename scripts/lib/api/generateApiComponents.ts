@@ -28,6 +28,7 @@ export type ComponentProps = {
   attributeValue?: string;
   githubSourceLink?: string;
   rawSignature?: string;
+  modifiers?: string;
   extraRawSignatures?: string[];
   isDedicatedPage?: boolean;
 };
@@ -112,7 +113,11 @@ function prepareProps(
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
-  findByText($, $main, "em.property", apiType).remove();
+
+  // We don't want to remove the `class` modifier in front of class signatures
+  if (apiType != "class") {
+    findByText($, $main, "em.property", apiType).remove();
+  }
 
   if (!(apiType in preparePropsPerApiType)) {
     throw new Error(`Unhandled Python type: ${apiType}`);
@@ -128,10 +133,12 @@ function prepareClassOrExceptionProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
+  const modifiers = getAndRemoveModifiers($child);
   const props = {
     id,
     rawSignature: $child.html()!,
     githubSourceLink,
+    modifiers,
   };
 
   const pageHeading = $dl.siblings("h1").text();
@@ -159,10 +166,12 @@ function prepareMethodProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
+  const modifiers = getAndRemoveModifiers($child);
   const props = {
     id,
     rawSignature: $child.html()!,
     githubSourceLink,
+    modifiers,
   };
 
   const name = getLastPartFromFullIdentifier(id);
@@ -247,10 +256,12 @@ function prepareFunctionProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
+  const modifiers = getAndRemoveModifiers($child);
   const props = {
     id,
     rawSignature: $child.html()!,
     githubSourceLink,
+    modifiers,
   };
 
   const pageHeading = $dl.siblings("h1").text();
@@ -305,6 +316,7 @@ export async function createOpeningTag(
     isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'
     signature='${signature}'
+    modifiers='${props.modifiers}'
     extraSignatures='[${extraSignatures.join(", ")}]'
     >
   `;
@@ -347,6 +359,13 @@ export function findByText(
   text: string,
 ): Cheerio<any> {
   return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
+}
+
+function getAndRemoveModifiers($child: Cheerio<any>): string {
+  const rawModifiers = $child.find("em.property");
+  const modifiers = rawModifiers.text().trim();
+  rawModifiers.remove();
+  return modifiers;
 }
 
 export function addExtraSignatures(
