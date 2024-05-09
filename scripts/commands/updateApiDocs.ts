@@ -128,10 +128,9 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
 
 async function deleteExistingMarkdown(pkg: Pkg): Promise<void> {
   const markdownDir = pkg.outputDir("docs");
-  if (pkg.isLatest() || (await pathExists(markdownDir))) {
-    console.log(
-      `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
-    );
-    await rmFilesInFolder(markdownDir);
-  }
+  if (!(await pathExists(markdownDir))) return;
+  console.log(
+    `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
+  );
+  await rmFilesInFolder(markdownDir);
 }

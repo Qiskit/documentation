@@ -37,7 +37,11 @@ export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
       };
     }
 
-    if (result.url.endsWith("/ibm-runtime")) {
+    if (
+      result.url.endsWith("/ibm-runtime") ||
+      (result.url.endsWith("/index") &&
+        result.url.includes("qiskit-ibm-runtime/"))
+    ) {
       result.meta = {
         hardcodedFrontmatter: RUNTIME_INDEX_META,
       };
