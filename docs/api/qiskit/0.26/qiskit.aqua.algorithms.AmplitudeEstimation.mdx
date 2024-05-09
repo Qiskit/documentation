@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.algorithms.AmplitudeEstimation
 
 # qiskit.aqua.algorithms.AmplitudeEstimation
 
-<Class id="qiskit.aqua.algorithms.AmplitudeEstimation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py" signature="AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)">
+<Class id="qiskit.aqua.algorithms.AmplitudeEstimation" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/ae.py" signature="AmplitudeEstimation(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)">
   The Quantum Phase Estimation-based Amplitude Estimation algorithm.
 
   This class implements the original Quantum Amplitude Estimation (QAE) algorithm, introduced by \[1]. This canonical version uses quantum phase estimation along with a set of $m$ additional evaluation qubits to find an estimate $\tilde{a}$, that is restricted to the grid
@@ -47,7 +47,7 @@ $$
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.__init__" name="__init__" signature="__init__(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.__init__" signature="__init__(num_eval_qubits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, phase_estimation_circuit=None, iqft=None, quantum_instance=None, a_factory=None, q_factory=None, i_objective=None)">
     **Parameters**
 
     *   **num\_eval\_qubits** (`int`) – The number of evaluation qubits.
@@ -91,7 +91,7 @@ $$
 
   ### a\_factory
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.a_factory" name="a_factory" signature="property a_factory">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.a_factory" signature="property a_factory">
     Get the A operator encoding the amplitude a that’s approximated, i.e.
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -109,7 +109,7 @@ $$
 
   ### backend
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.backend" name="backend" signature="property backend">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.backend" signature="property backend">
     Returns backend.
 
     **Return type**
@@ -119,7 +119,7 @@ $$
 
   ### confidence\_interval
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" name="confidence_interval" signature="confidence_interval(alpha, kind='likelihood_ratio')">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.confidence_interval" signature="confidence_interval(alpha, kind='likelihood_ratio')">
     Compute the (1 - alpha) confidence interval.
 
     **Parameters**
@@ -143,7 +143,7 @@ $$
 
   ### construct\_circuit
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" name="construct_circuit" signature="construct_circuit(measurement=False)">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.construct_circuit" signature="construct_circuit(measurement=False)">
     Construct the Amplitude Estimation quantum circuit.
 
     **Parameters**
@@ -161,7 +161,7 @@ $$
 
   ### grover\_operator
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator" name="grover_operator" signature="property grover_operator">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.grover_operator" signature="property grover_operator">
     Get the $\mathcal{Q}$ operator, or Grover operator.
 
     If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
@@ -177,7 +177,7 @@ $$
 
   ### i\_objective
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.i_objective" name="i_objective" signature="property i_objective">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.i_objective" signature="property i_objective">
     Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -197,7 +197,7 @@ $$
 
   ### is\_good\_state
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state" name="is_good_state" signature="is_good_state(measurement)">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.is_good_state" signature="is_good_state(measurement)">
     Determine whether a given state is a good state.
 
     **Parameters**
@@ -219,7 +219,7 @@ $$
 
   ### objective\_qubits
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits" name="objective_qubits" signature="property objective_qubits">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.objective_qubits" signature="property objective_qubits">
     Get the criterion for a measurement outcome to be in a ‘good’ state.
 
     **Return type**
@@ -233,7 +233,7 @@ $$
 
   ### post\_processing
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.post_processing" name="post_processing" signature="post_processing(value)">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.post_processing" signature="post_processing(value)">
     Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
 
     **Parameters**
@@ -251,7 +251,7 @@ $$
 
   ### q\_factory
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.q_factory" name="q_factory" signature="property q_factory">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.q_factory" signature="property q_factory">
     Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
 
 $$
@@ -273,7 +273,7 @@ $$
 
   ### quantum\_instance
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.quantum_instance" signature="property quantum_instance">
     Returns quantum instance.
 
     **Return type**
@@ -283,13 +283,13 @@ $$
 
   ### random
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.random" name="random" signature="property random">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.random" signature="property random">
     Return a numpy random.
   </Function>
 
   ### run
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.run" signature="run(quantum_instance=None, **kwargs)">
     Execute the algorithm with selected backend.
 
     **Parameters**
@@ -312,7 +312,7 @@ $$
 
   ### set\_backend
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.set_backend" signature="set_backend(backend, **kwargs)">
     Sets backend with configuration.
 
     **Return type**
@@ -322,7 +322,7 @@ $$
 
   ### state\_preparation
 
-  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation" name="state_preparation" signature="property state_preparation">
+  <Function id="qiskit.aqua.algorithms.AmplitudeEstimation.state_preparation" signature="property state_preparation">
     Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 
     **Return type**

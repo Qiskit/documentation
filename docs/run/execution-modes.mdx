@@ -1,0 +1,50 @@
+---
+title: Introduction to execution modes
+description: An overview of the available execution modes in Qiskit Runtime; sessions, batch, and single jobs.
+
+---
+# Introduction to Qiskit Runtime execution modes
+
+There are several ways to run workloads, depending on your needs.
+
+**Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer.
+
+[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access. See [Run jobs in a session](run-jobs-in-session) for examples.
+
+[**Batch mode**](run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.
+
+The differences are summarized in the following table:
+
+|     Mode     |                  Usage                  |                                                                                                        Benefit                                                                                                        |
+|:------------:|:---------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Job mode     | Quantum computation only.               | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
+| Batch mode   | Quantum computation only.               | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch are usually run close together.                                                                     |
+| Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the system during the session active window, and no other users’ or system jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
+
+<span id="best-practices"></span>
+## Best practices
+
+To ensure the most efficient use of the execution modes, the following practices are recommended:
+
+- Always close your session, either by using a context manager or by specifying `session.close()`.
+- There is a fixed overhead associated with running a job. In general, if your each of your job uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
+
+    A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
+
+- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#partition) or [session](run-jobs-in-session#two-vqe) execution mode.
+
+The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because it can reduce wall clock time.
+
+## Sessions versus batch usage
+
+Usage is a measurement of the amount of time the system is locked for your workload.
+
+* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
+* Batch usage is the amount of time all jobs spend on the system.
+* Single job usage is the quantum time they use in processing.
+
+To find the usage time for your session or batch, in `qiskit-ibm-runtime` 0.23 or later, run `session.details()["usage_time"]` or `batch.details()["usage_time"]`.
+
+If you are calling the REST API directly, the usage time is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both session and batch workloads.
+
+![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The system is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the system.  The system is locked for your use from the time the first job reaches the system until the last job is done processing on the system.  There is no gap between jobs where the system is idle.](/images/run/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')

@@ -1,12 +1,12 @@
 ---
-title: Advanced runtime options
-description: Specify options when building with Qiskit runtime primitives 
+title: Advanced Qiskit Runtime options
+description: Specify options when building with Qiskit Runtime primitives
 
 ---
 
 # Advanced Qiskit Runtime options
 
-When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See all the available options in the [API reference](../api/qiskit-ibm-runtime/options).
+When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [options classes section](#options-classes) for details.
 
 <Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
@@ -26,10 +26,10 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 ## V2 changes
 Options are specified differently in the V2 primitives in these ways:
 
-- `SamplerV2` and `EstimatorV2` now have separate options classes. You can see the available options and update option values during or after primitive initialization.  
-- Instead of the `set_options()` method, V2 primitive options have the `update()` method that applies changes to the `options` attribute. 
-- If you do not specify a value for an option, it is given a special value of `Unset` and the server defaults are used. 
-- For V2 primitives, the `options` attribute is the `dataclass` Python type.  You can use the built-in `asdict` method to convert it to a dictionary. 
+- `SamplerV2` and `EstimatorV2` now have separate options classes. You can see the available options and update option values during or after primitive initialization.
+- Instead of the `set_options()` method, V2 primitive options have the `update()` method that applies changes to the `options` attribute.
+- If you do not specify a value for an option, it is given a special value of `Unset` and the server defaults are used.
+- For V2 primitives, the `options` attribute is the `dataclass` Python type.  You can use the built-in `asdict` method to convert it to a dictionary.
 
 ## Instantiate the Options class (V1)
 
@@ -41,7 +41,7 @@ from qiskit_ibm_runtime import Options
 options = Options(optimization_level=1, environment={"log_level": "INFO"})
 ```
 
-The `Options` class supports auto-complete. Once you create an instance of the `Options` class, you can use auto-complete to see what options are available. If you choose one of the categories, you can use auto-complete again to see what options are available under that category. 
+The `Options` class supports auto-complete. Once you create an instance of the `Options` class, you can use auto-complete to see what options are available. If you choose one of the categories, you can use auto-complete again to see what options are available under that category.
 
 ```python
 from qiskit_ibm_runtime import Options
@@ -52,13 +52,13 @@ options.execution.shots = 2048
 ```
 ## Pass options to a primitive
 
-### Options class 
+### Options class
 
-When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Example: 
+When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    `SamplerV2` and `EstimatorV2` have separate options classes that do not need to be instantiated.  You can see the available options and update option values during or after primitive initialization.  Those options will then be applied when you use `run()` to perform the calculation.  Example: 
+    `SamplerV2` and `EstimatorV2` have separate options classes that do not need to be instantiated.  You can see the available options and update option values during or after primitive initialization.  Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 ```python
 estimator = Estimator(backend=backend)
@@ -71,7 +71,7 @@ estimator.options.default_shots = 4000
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Example: 
+When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 ```python
 estimator = Estimator(session=backend, options=options)
@@ -81,14 +81,14 @@ print(f">>> Metadata: {result.metadata[0]}")
   </TabItem>
 </Tabs>
 
-### Primitive initialization 
+### Primitive initialization
 
-You can specify options when initializing the primitive. 
+You can specify options when initializing the primitive.
 
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
- ```python 
+ ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
@@ -101,7 +101,7 @@ estimator = Estimator(backend, options={"resilience_level": 2})
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
- ```python 
+ ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import Estimator
 
@@ -116,7 +116,7 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 
 ### Run() method
 
-You can pass in options by using the `run()` method. This overwrites the options you specified when creating the `Estimator` or `Sampler` instance for that particular execution. 
+You can pass in options by using the `run()` method. This overwrites the options you specified when creating the `Estimator` or `Sampler` instance for that particular execution.
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
@@ -129,7 +129,7 @@ sampler.run([circuit1, circuit2], shots=128)
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the category the options are in. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid). 
+You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the options category. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid).
 ```python
 estimator = Estimator(session=backend, options=options)
 result = estimator.run(circuit, observable, shots=1024).result()
@@ -148,7 +148,7 @@ For some algorithms, setting a specific number of shots is a core part of their 
 
 <Tabs>
   <TabItem value="primitivesV2" label="V2 Primitives">
-    ```python 
+    ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 # Setting shots during primitive initialization
@@ -224,7 +224,7 @@ estimator = Estimator(session=backend, options={"optimization_level": 1})
 estimator.options.optimization_level = 1
 ```
 
-To turn off all optional runtime compilation steps, you must set `optimization_level=0`.  V2 primitives do not support any advanced transpilation options. 
+To turn off all optional runtime compilation steps, you must set `optimization_level=0`.  V2 primitives do not support any advanced transpilation options.
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
@@ -271,7 +271,7 @@ algorithm.  These methods can be set through the `resilience_level` option.  For
 
 <Tabs>
   <TabItem value="PrimV2" label="Estimator V2">
-With Estimator V2, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine tuning. 
+With Estimator V2, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine-tuning.
 
 ```python
 estimator = Estimator(backend=backend)
@@ -284,7 +284,7 @@ estimator.options.resilience.zne.noise_factors = [1, 3, 5]
 
   <TabItem value="PrimV1" label="V1 primitives">
 The method selected for each level is
-different for `Sampler` and `Estimator`. 
+different for `Sampler` and `Estimator`.
 
 The configuration is similar to the other options:
 
@@ -303,7 +303,17 @@ estimator = Estimator(session=backend, options=options)
 </TabItem>
 </Tabs>
 
+<span id="options-classes"></span>
+## Options classes
 
+|                                                 Category                                                |                             Description                            |                         Example                        |
+|:-------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------:|:------------------------------------------------------|
+| [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2)                  | Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. Estimator only. | `estimator.options.resilience.measure_mitigation = True` |
+| [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | Options for dynamical decoupling.                                  | `estimator.options.dynamical_decoupling.enable = True`   |
+| [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2)  |  Primitive execution options, including whether to initialize qubits and the repetition delay.   | `estimator.options.execution.init_qubits = False`   |
+| [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)                     | Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.                | `estimator.options.twirling.enable_gates = True`    |
+| [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)                     | Execution environment options such as the logging level to set and job tags to add.         | `estimator.options.environment.log_level = 'ERROR'`      |
+| [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)                       | Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to local testing mode only.  | `estimator.options.simulator.seed_simulator = 42`           |
 
 ## Next steps
 

@@ -18,6 +18,7 @@ import {
   removeSuffix,
   getLastPartFromFullIdentifier,
   capitalize,
+  hasPrefix,
 } from "./stringUtils";
 
 test("removePart()", () => {
@@ -54,4 +55,12 @@ test("getLastPartFromFullIdentifier", () => {
 test("capitalize()", () => {
   const input = "hello world!";
   expect(capitalize(input)).toEqual("Hello world!");
+});
+
+test("hasPrefix()", () => {
+  expect(hasPrefix("abc", ["a", "z"])).toBe(true);
+  expect(hasPrefix("abc", ["x", "z"])).toBe(false);
+  expect(hasPrefix("abc", ["x", "a"])).toBe(true);
+  expect(hasPrefix("abc", [])).toBe(false);
+  expect(hasPrefix("abc", ["abc"])).toBe(true);
 });

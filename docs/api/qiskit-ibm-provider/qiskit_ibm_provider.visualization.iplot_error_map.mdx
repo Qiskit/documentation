@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.visualization.iplot_error_map
 
 # iplot\_error\_map
 
-<Function id="qiskit_ibm_provider.visualization.iplot_error_map" name="iplot_error_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/visualization/interactive/error_map.py#L31-L556" signature="iplot_error_map(backend, figsize=(800, 500), show_title=True, remove_badcal_edges=True, background_color='white', as_widget=False)">
+<Function id="qiskit_ibm_provider.visualization.iplot_error_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.11/qiskit_ibm_provider/visualization/interactive/error_map.py#L31-L554" signature="iplot_error_map(backend, figsize=(800, 500), show_title=True, remove_badcal_edges=True, background_color='white', as_widget=False)">
   Plot the error map of a device.
 
   **Parameters**
@@ -36,6 +36,14 @@ python_api_name: qiskit_ibm_provider.visualization.iplot_error_map
   *   **VisualizationTypeError** – If the specified backend is a simulator.
 
   **Example**
+
+  ```python
+  from qiskit_ibm_provider.test.ibm_provider_mock import mock_get_backend
+  # Generate a mock provider for the sake of this example.
+  # This line will allow the mocked ``IBMProvider`` to return
+  # a fake backend in the following cell.
+  mock_get_backend('FakeOpenPulse2Q')
+  ```
 
   ```python
   from qiskit_ibm_provider import IBMProvider

@@ -116,19 +116,22 @@ You also need to install a few system dependencies: TeX, Poppler, and graphviz. 
   ```
 
 > [!NOTE]
-> If your notebook submits hardware jobs to IBM Quantum, you must add it to the
-> ignore list in `scripts/nb-tester/test-notebooks.py`. This is not needed if
-> you only retrieve information.
->
+> If your notebook submits hardware jobs to Qiskit Runtime, you must add it to
+> [`scripts/nb-tester/notebooks.toml`](scripts/nb-tester/notebooks.toml). If it
+> can be run with simulators, i.e., the circuit is not too large, add it to `notebooks_that_submit_jobs`.
+> Otherwise, add it to `notebooks_no_mock`.
+
 > If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 > add it to the "Check for notebooks that require LaTeX" step in
 > `.github/workflows/notebook-test.yml`.
 
-When you make a pull request with a changed notebook, you can get a version of
-that notebook that was executed in a uniform environment from CI. To do this,
-click "Show all checks" in the info box at the bottom of the pull request page
-on GitHub, then choose "Details" for the "Test notebooks" job. From the job
-page, click "Summary", then download "Executed notebooks".
+When you make a pull request changing a notebook that doesn't submit jobs, you
+can get a version of that notebook that was executed in a uniform environment
+from CI. To do this, click "Show all checks" in the info box at the bottom of
+the pull request page on GitHub, then choose "Details" for the "Test notebooks"
+job. From the job page, click "Summary", then download "Executed notebooks".
+Otherwise, if your notebook does submit jobs, you need to run it locally with
+`tox -- --write --submit-jobs <path/to/notebook.ipynb>`.
 
 ### Ignoring warnings
 
@@ -307,9 +310,9 @@ You can also check that API docs and translations render by using any of these a
 
 CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
-## Format TypeScript files
+## Format README and TypeScript files
 
-If you're working on our support code in `scripts/`, run `npm run fmt` to automatically format the files.
+Run `npm run fmt` to automatically format the README, `.github` folder, and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
@@ -321,7 +324,7 @@ You can regenerate all API docs versions following these steps:
 
 1. Create a dedicated branch for the regeneration other than `main` using `git checkout -b <branch-name>`.
 2. Ensure there are no pending changes by running `git status` and creating a new commit for them if necessary.
-3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, and `qiskit-ibm-runtime`.
+3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, and `qiskit-transpiler-service`.
 
 Each regenerated version will be saved as a distinct commit. If the changes are too large for one single PR, consider splitting it up into multiple PRs by using `git cherry-pick` or `git rebase -i` so each PR only has the commits it wants to target.
 
@@ -329,7 +332,7 @@ If you only want to regenerate the latest stable minor release of each package, 
 
 Alternatively, you can also regenerate one specific version:
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
@@ -343,7 +346,7 @@ In this case, no commit will be automatically created.
 
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
 2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
