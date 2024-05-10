@@ -73,7 +73,10 @@ npm install
 
 ## Preview the docs locally
 
-Run `./start` in your terminal, then open http://localhost:3000 in your browser.
+You can preview the docs locally by following these two steps:
+
+1. Ensure Docker is running. For example, open Rancher Desktop.
+2. Run `./start` in your terminal, and open http://localhost:3000 in your browser.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
@@ -84,9 +87,7 @@ Warning: `./start` does not check if there is a new version of the docs applicat
 API docs authors can preview their changes to one of the APIs by using the `-a` parameter to specify the path to the docs folder:
 
 1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
-2. Open Rancher Desktop (not necessary for Linux).
-3. Execute `./start` as explained in the previous section.
-4. Go to http://localhost:3000 in your browser.
+2. Execute `./start` and open up `http://localhost:3000`, as explained in the prior section.
 
 ## Preview the docs in PRs
 
