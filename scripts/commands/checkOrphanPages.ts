@@ -110,14 +110,10 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
     globs.push("docs/api/*/_toc.json");
   }
   if (args.devApis) {
-    globs.push(
-      "docs/api/{qiskit,qiskit-ibm-runtime,qiskit-ibm-provider}/dev/_toc.json",
-    );
+    globs.push("docs/api/*/dev/_toc.json");
   }
   if (args.historicalApis) {
-    globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/_toc.json",
-    );
+    globs.push("docs/api/*/[0-9]*/_toc.json");
   }
   return await globby(globs);
 }

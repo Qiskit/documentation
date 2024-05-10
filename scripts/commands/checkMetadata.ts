@@ -17,6 +17,8 @@ import { hideBin } from "yargs/helpers";
 import grayMatter from "gray-matter";
 import { globby } from "globby";
 
+import { Pkg } from "../lib/api/Pkg";
+
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
@@ -91,8 +93,8 @@ async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
   const mdGlobs = ["docs/**/*.mdx"];
   const notebookGlobs = ["docs/**/*.ipynb"];
   if (!args.apis) {
-    const apiIgnore =
-      "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/**/*";
+    const projects = Pkg.VALID_NAMES.join(",");
+    const apiIgnore = `!docs/api/{${projects}}/**/*`;
     mdGlobs.push(apiIgnore);
     notebookGlobs.push(apiIgnore);
   }
@@ -104,11 +106,8 @@ async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
 }
 
 function isApi(filePath: string): boolean {
-  return (
-    filePath.includes("/api/qiskit/") ||
-    filePath.includes("/api/qiskit-ibm-runtime/") ||
-    filePath.includes("/api/qiskit-ibm-provider/")
-  );
+  const apiFolders = Pkg.VALID_NAMES.map((pkg) => `/api/${pkg}/`);
+  return apiFolders.some((urlPath) => filePath.startsWith(urlPath));
 }
 
 function handleErrors(mdErrors: string[], notebookErrors: string[]): void {
