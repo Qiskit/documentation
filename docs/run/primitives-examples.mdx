@@ -228,6 +228,7 @@ XX = SparsePauliOp.from_list([("XX", 1)])
 ops = [ZZ, ZX, XZ, XX]
 
 # Step 2: Optimize problem for quantum execution.
+
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 chsh_isa_circuit = pm.run(chsh_circuit)
 isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator in ops]
@@ -608,6 +609,7 @@ parameter_values = [
 ]
 
 # Step 2: Optimize problem for quantum execution.
+
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
@@ -689,7 +691,6 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 
-#with Session(service=service, backend=backend) as session:
 with Session(backend=backend) as session:
     sampler = Sampler(session=session)
     job = sampler.run([isa_circuit])
