@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 # qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
-<Class id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_estimators/mlae.py" signature="MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_estimators/mlae.py" signature="MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)" modifiers="class">
   The Maximum Likelihood Amplitude Estimation algorithm.
 
   This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
@@ -83,7 +83,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### a\_factory
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.a_factory" signature="property a_factory">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.a_factory" signature="a_factory" modifiers="property">
     Get the A operator encoding the amplitude a that’s approximated, i.e.
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -101,7 +101,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### backend
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.backend" signature="property backend">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.backend" signature="backend" modifiers="property">
     Returns backend.
 
     **Return type**
@@ -155,7 +155,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### grover\_operator
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.grover_operator" signature="property grover_operator">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.grover_operator" signature="grover_operator" modifiers="property">
     Get the $\mathcal{Q}$ operator, or Grover operator.
 
     If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
@@ -171,7 +171,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### i\_objective
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.i_objective" signature="property i_objective">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.i_objective" signature="i_objective" modifiers="property">
     Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -213,7 +213,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### objective\_qubits
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.objective_qubits" signature="property objective_qubits">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.objective_qubits" signature="objective_qubits" modifiers="property">
     Get the criterion for a measurement outcome to be in a ‘good’ state.
 
     **Return type**
@@ -245,7 +245,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### q\_factory
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.q_factory" signature="property q_factory">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.q_factory" signature="q_factory" modifiers="property">
     Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
 
 $$
@@ -267,7 +267,7 @@ $$
 
   ### quantum\_instance
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" signature="property quantum_instance">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" signature="quantum_instance" modifiers="property">
     Returns quantum instance.
 
     **Return type**
@@ -277,7 +277,7 @@ $$
 
   ### random
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.random" signature="property random">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.random" signature="random" modifiers="property">
     Return a numpy random.
   </Function>
 
@@ -316,7 +316,7 @@ $$
 
   ### state\_preparation
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.state_preparation" signature="property state_preparation">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.state_preparation" signature="state_preparation" modifiers="property">
     Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 
     **Return type**
