@@ -35,10 +35,10 @@ from squeaky import clean_notebook
 MOCKING_CODE = """\
 import warnings
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime.fake_provider import FakeKyoto
+from qiskit.providers.fake_provider import GenericBackendV2
 
 def patched_least_busy(self, *args, **kwarg):
-  return FakeKyoto()
+  return GenericBackendV2(num_qubits=5, control_flow=True)
 
 QiskitRuntimeService.least_busy = patched_least_busy
 
@@ -146,7 +146,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
     """
     is_patched = not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
     if is_patched:
-        print(f"▶️ Executing {path} (with least_busy patched to return FakeKyoto)")
+        print(f"▶️ Executing {path} (with least_busy patched to return fake backend)")
     else:
         print(f"▶️ Executing {path}")
     possible_exceptions = (
