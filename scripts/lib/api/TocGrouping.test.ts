@@ -53,7 +53,7 @@ function validateTopLevelModuleAssumptions(): void {
       );
     } else if (entry.kind === "section" && entry.name.includes("qiskit.")) {
       throw new Error(
-        "Expected very `section` of QISKIT_TOC_GROUPING.entries to not have 'qiskit.' in the " +
+        "Expected every `section` of QISKIT_TOC_GROUPING.entries to not have 'qiskit.' in the " +
           "name. This will break the tests in this file. Either remove the module name or " +
           `rewrite these tests. Bad entry: ${entry.name}`,
       );
