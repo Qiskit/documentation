@@ -45,13 +45,14 @@ python_api_name: ${result.meta.apiName}
 ${markdown}
 `;
     } else if (result.isReleaseNotes) {
-      const versionStr = pkg.hasSeparateReleaseNotes
-        ? ` ${pkg.versionWithoutPatch}`
-        : "";
-      const descriptionSuffix = pkg.hasSeparateReleaseNotes
-        ? `in ${pkg.title}${versionStr}`
-        : `to ${pkg.title}`;
-      const maxHeadingLevel = pkg.name == "qiskit" ? 3 : 2;
+      let versionStr = "";
+      let descriptionSuffix = `to ${pkg.title}`;
+      let maxHeadingLevel = 2;
+      if (pkg.hasSeparateReleaseNotes()) {
+        versionStr = ` ${pkg.versionWithoutPatch}`;
+        descriptionSuffix = `in ${pkg.title}${versionStr}`;
+        maxHeadingLevel = 3;
+      }
       result.markdown = `---
 title: ${pkg.title}${versionStr} release notes
 description: Changes made ${descriptionSuffix}

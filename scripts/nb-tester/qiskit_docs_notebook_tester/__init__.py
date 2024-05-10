@@ -17,6 +17,7 @@ import argparse
 import asyncio
 import sys
 import textwrap
+import platform
 from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
@@ -32,13 +33,17 @@ from squeaky import clean_notebook
 
 # If not submitting jobs, we mock the real backend by prepending this to each notebook
 MOCKING_CODE = """\
+import warnings
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime.fake_provider import FakeKyoto
+from qiskit.providers.fake_provider import GenericBackendV2
 
 def patched_least_busy(self, *args, **kwarg):
-  return FakeKyoto()
+  return GenericBackendV2(num_qubits=5, control_flow=True)
 
 QiskitRuntimeService.least_busy = patched_least_busy
+
+warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
+warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
 
 @dataclass
@@ -159,7 +164,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
     """
     is_patched = not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
     if is_patched:
-        print(f"▶️ Executing {path} (with least_busy patched to return FakeKyoto)")
+        print(f"▶️ Executing {path} (with least_busy patched to return fake backend)")
     else:
         print(f"▶️ Executing {path}")
     possible_exceptions = (
@@ -328,4 +333,6 @@ async def _main() -> None:
     sys.exit(0)
 
 def main():
+    if platform.system() == "Windows":
+        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(_main())

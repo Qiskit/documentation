@@ -26,6 +26,7 @@ interface Arguments {
   historical: boolean;
   dev: boolean;
   skipDownload: boolean;
+  sphinxArtifactFolder?: string;
 }
 
 const readArgs = (): Arguments => {
@@ -60,6 +61,14 @@ const readArgs = (): Arguments => {
       description:
         "Rather than downloading the artifact from Box, reuse what is already downloaded. This can save time, but it risks using an outdated version of the docs.",
     })
+    .option("sphinx-artifact-folder", {
+      alias: "a",
+      type: "string",
+      implies: "skip-download",
+      normalize: true,
+      description:
+        "Skip downloading the artifact from Box and instead use the given directory as the root of the Sphinx HTML output.",
+    })
     .parseSync();
 };
 
@@ -85,12 +94,7 @@ zxMain(async () => {
   await deleteExistingMarkdown(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
-  await runConversionPipeline(
-    `${sphinxArtifactFolder}/artifact`,
-    "docs",
-    "public",
-    pkg,
-  );
+  await runConversionPipeline(sphinxArtifactFolder, "docs", "public", pkg);
 });
 
 function determineMinorVersion(args: Arguments): string {
@@ -112,6 +116,14 @@ function determineMinorVersion(args: Arguments): string {
 }
 
 async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
+  if (args.sphinxArtifactFolder) {
+    if (!(await pathExists(args.sphinxArtifactFolder))) {
+      throw new Error(
+        `Explicit artifact path '${args.sphinxArtifactFolder}' does not exist.`,
+      );
+    }
+    return args.sphinxArtifactFolder;
+  }
   const sphinxArtifactFolder = pkg.sphinxArtifactFolder();
   if (
     args.skipDownload &&
@@ -123,15 +135,14 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
   } else {
     await downloadSphinxArtifact(pkg, sphinxArtifactFolder);
   }
-  return sphinxArtifactFolder;
+  return `${sphinxArtifactFolder}/artifact`;
 }
 
 async function deleteExistingMarkdown(pkg: Pkg): Promise<void> {
   const markdownDir = pkg.outputDir("docs");
-  if (pkg.isLatest() || (await pathExists(markdownDir))) {
-    console.log(
-      `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
-    );
-    await rmFilesInFolder(markdownDir);
-  }
+  if (!(await pathExists(markdownDir))) return;
+  console.log(
+    `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
+  );
+  await rmFilesInFolder(markdownDir);
 }
