@@ -238,8 +238,6 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 estimator = Estimator(backend)
 
-estimator = Estimator(backend)
-
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 chsh_isa_circuit = pm.run(chsh_circuit)
 isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator in ops]
@@ -249,8 +247,6 @@ isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator i
 # Reshape observable array for broadcasting
 reshaped_ops = np.fromiter(isa_observables, dtype=object)
 reshaped_ops = reshaped_ops.reshape((4, 1))
-
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
 estimator = Estimator(backend, options={"default_shots": int(1e4)})
 job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
@@ -468,15 +464,12 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
 
 n_qubits = 127
 
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
 circuit.measure_all()
-
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
@@ -637,7 +630,6 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
@@ -725,7 +717,6 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 another_isa_circuit = pm.run(another_circuit)
 
-#with Session(service=service, backend=backend) as session:
 with Session(backend=backend) as session:
     sampler = Sampler(session=session)
     job = sampler.run([isa_circuit])
