@@ -322,7 +322,6 @@ function buildApiComponent(h: H, node: any): any {
   };
 
   maybeAddAttribute(hastTree, "id", node.properties.id);
-  maybeAddAttribute(hastTree, "name", node.properties.name);
   maybeAddAttribute(
     hastTree,
     "attributeTypeHint",

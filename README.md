@@ -73,11 +73,21 @@ npm install
 
 ## Preview the docs locally
 
-Run `./start` in your terminal, then open http://localhost:3000 in your browser.
+You can preview the docs locally by following these two steps:
+
+1. Ensure Docker is running. For example, open Rancher Desktop.
+2. Run `./start` in your terminal, and open http://localhost:3000 in your browser.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
 Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
+
+### API docs authors: How to preview your changes
+
+API docs authors can preview their changes to one of the APIs by using the `-a` parameter to specify the path to the docs folder:
+
+1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
+2. Execute `./start` and open up `http://localhost:3000`, as explained in the prior section.
 
 ## Preview the docs in PRs
 
@@ -324,7 +334,7 @@ You can regenerate all API docs versions following these steps:
 
 1. Create a dedicated branch for the regeneration other than `main` using `git checkout -b <branch-name>`.
 2. Ensure there are no pending changes by running `git status` and creating a new commit for them if necessary.
-3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, and `qiskit-ibm-runtime`.
+3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, and `qiskit-transpiler-service`.
 
 Each regenerated version will be saved as a distinct commit. If the changes are too large for one single PR, consider splitting it up into multiple PRs by using `git cherry-pick` or `git rebase -i` so each PR only has the commits it wants to target.
 
@@ -332,7 +342,7 @@ If you only want to regenerate the latest stable minor release of each package, 
 
 Alternatively, you can also regenerate one specific version:
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
@@ -346,7 +356,7 @@ In this case, no commit will be automatically created.
 
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
 2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
