@@ -81,15 +81,12 @@ Warning: `./start` does not check if there is a new version of the docs applicat
 
 ### API docs authors: How to preview your changes
 
-API docs authors can preview their changes to one of the APIs by following these steps:
+API docs authors can preview their changes to one of the APIs by using the `-a` parameter to specify the path to the docs folder:
 
-1. Go to your `qiskit/documentation` folder
-2. Create a folder named `.sphinx-artifacts/<pkg-name>/<major>.<minor>/artifact`, or use the one that already exists if you have generated that version before.
-3. Move the HTML output of Sphinx, including all the folders (e.g., apidoc and stubs) into the artifact folder
-4. Run `npm run gen-api -- -p qiskit -v 1.1.0 --skip-download`
-5. Open Rancher Desktop (not necessary for Linux)
-6. Execute `./start`
-7. Go to http://localhost:3000
+1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
+2. Open Rancher Desktop (not necessary for Linux).
+3. Execute `./start` as explained in the previous section.
+4. Go to http://localhost:3000 in your browser.
 
 ## Preview the docs in PRs
 
