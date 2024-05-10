@@ -122,18 +122,14 @@ print(gate.control(1).to_matrix())  # CX (controlled X) gate
 
 Directives are operations to the quantum stack that are meant to be interpreted by the backend or the transpiler. In general, the transpiler or backend might optionally ignore them if there is no implementation for them.
 
-|                                  |                                                                                                                                                          |
-| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Barrier`(num\_qubits\[, label]) | A directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers. |
+*   [`qiskit.circuit.Barrier`](circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier")
 
 ## Standard Operations
 
 Operations are non-reversible changes in the quantum state of the circuit.
 
-|                                        |                                                           |
-| -------------------------------------- | --------------------------------------------------------- |
-| `Measure`(\*args\[, \_force\_mutable]) | Quantum measurement in the computational basis.           |
-| `Reset`(\*args\[, \_force\_mutable])   | Incoherently reset a qubit to the $\lvert0\rangle$ state. |
+*   [`qiskit.circuit.Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure")
+*   [`qiskit.circuit.Reset`](circuit#qiskit.circuit.Reset "qiskit.circuit.Reset")
 
 ## Generalized Gates
 

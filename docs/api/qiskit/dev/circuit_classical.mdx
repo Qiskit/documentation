@@ -943,15 +943,15 @@ Note that [`Uint`](#qiskit.circuit.classical.types.Uint "qiskit.circuit.classica
 
 ### Working with types
 
-There are some functions on these types exposed here as well. These are mostly expected to be used only in manipulations of the expression tree; users who are building expressions using the [user-facing construction interface](#circuit-classical-expressions-expr-construction) should not need to use these.
+There are some additional functions on these types documented in the subsequent sections. These are mostly expected to be used only in manipulations of the expression tree; users who are building expressions using the [user-facing construction interface](#circuit-classical-expressions-expr-construction) should not need to use these.
 
-#### Partial ordering of types
+### Partial ordering of types
 
 The type system is equipped with a partial ordering, where $a < b$ is interpreted as “$a$ is a strict subtype of $b$”. Note that the partial ordering is a subset of the directed graph that describes the allowed explicit casting operations between types. The partial ordering defines when one type may be lossless directly interpreted as another.
 
 The low-level interface to querying the subtyping relationship is the [`order()`](#qiskit.circuit.classical.types.order "qiskit.circuit.classical.types.order") function.
 
-##### order
+#### order
 
 <Function id="qiskit.circuit.classical.types.order" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L76-L93" signature="qiskit.circuit.classical.types.order(left, right, /)">
   Get the ordering relationship between the two types as an enumeration value.
@@ -980,7 +980,7 @@ The low-level interface to querying the subtyping relationship is the [`order()`
 
 The return value is an enumeration [`Ordering`](#qiskit.circuit.classical.types.Ordering "qiskit.circuit.classical.types.Ordering") that describes what, if any, subtyping relationship exists between the two types.
 
-##### Ordering
+#### Ordering
 
 <Class id="qiskit.circuit.classical.types.Ordering" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L38-L55" signature="qiskit.circuit.classical.types.Ordering(value)">
   Enumeration listing the possible relations between two types. Types only have a partial ordering, so it’s possible for two types to have no sub-typing relationship.
@@ -990,7 +990,7 @@ The return value is an enumeration [`Ordering`](#qiskit.circuit.classical.types.
 
 Some helper methods are then defined in terms of this low-level [`order()`](#qiskit.circuit.classical.types.order "qiskit.circuit.classical.types.order") primitive:
 
-##### is\_subtype
+#### is\_subtype
 
 <Function id="qiskit.circuit.classical.types.is_subtype" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L96-L116" signature="qiskit.circuit.classical.types.is_subtype(left, right, /, strict=False)">
   Does the relation $\text{left} \le \text{right}$ hold? If there is no ordering relation between the two types, then this returns `False`. If `strict`, then the equality is also forbidden.
@@ -1019,7 +1019,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
   [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 </Function>
 
-##### is\_supertype
+#### is\_supertype
 
 <Function id="qiskit.circuit.classical.types.is_supertype" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L119-L139" signature="qiskit.circuit.classical.types.is_supertype(left, right, /, strict=False)">
   Does the relation $\text{left} \ge \text{right}$ hold? If there is no ordering relation between the two types, then this returns `False`. If `strict`, then the equality is also forbidden.
@@ -1048,7 +1048,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
   [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 </Function>
 
-##### greater
+#### greater
 
 <Function id="qiskit.circuit.classical.types.greater" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L142-L165" signature="qiskit.circuit.classical.types.greater(left, right, /)">
   Get the greater of the two types, assuming that there is an ordering relation between them. Technically, this is a slightly restricted version of the concept of the ‘meet’ of the two types in that the return value must be one of the inputs. In practice in the type system there is no concept of a ‘sum’ type, so the ‘meet’ exists if and only if there is an ordering between the two types, and is equal to the greater of the two types.
@@ -1076,11 +1076,11 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
   ```
 </Function>
 
-#### Casting between types
+### Casting between types
 
 It is common to need to cast values of one type to another type. The casting rules for this are embedded into the [`types`](https://docs.python.org/3/library/types.html#module-types "(in Python v3.12)") module. You can query the casting kinds using [`cast_kind()`](#qiskit.circuit.classical.types.cast_kind "qiskit.circuit.classical.types.cast_kind"):
 
-##### cast\_kind
+#### cast\_kind
 
 <Function id="qiskit.circuit.classical.types.cast_kind" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L203-L222" signature="qiskit.circuit.classical.types.cast_kind(from_, to_, /)">
   Determine the sort of cast that is required to move from the left type to the right type.
@@ -1106,7 +1106,7 @@ It is common to need to cast values of one type to another type. The casting rul
 
 The return values from this function are an enumeration explaining the types of cast that are allowed from the left type to the right type.
 
-##### CastKind
+#### CastKind
 
 <Class id="qiskit.circuit.classical.types.CastKind" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classical/types/ordering.py#L168-L184" signature="qiskit.circuit.classical.types.CastKind(value)">
   A return value indicating the type of cast that can occur from one type to another.
