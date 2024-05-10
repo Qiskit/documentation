@@ -39,14 +39,12 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
-
-from qiskit_ibm_runtime import QiskitRuntimeService
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
@@ -56,6 +54,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 
+estimator = Estimator(backend)
 job = estimator.run([(isa_circuit, isa_observable)])
 result = job.result()
 
@@ -77,11 +76,10 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
-service = QiskitRuntimeService()
-
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
@@ -113,14 +111,13 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
-from qiskit_ibm_runtime import QiskitRuntimeService
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
 rng = np.random.default_rng()
 mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
 
@@ -168,12 +165,10 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
+n_qubits = 127
 
 service = QiskitRuntimeService()
-
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-
-n_qubits = 127
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 rng = np.random.default_rng()
 mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
@@ -209,7 +204,7 @@ import numpy as np
 from qiskit.circuit import QuantumCircuit, Parameter
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
 
 # Step 1: Map classical inputs to a quantum problem
@@ -232,13 +227,8 @@ XX = SparsePauliOp.from_list([("XX", 1)])
 ops = [ZZ, ZX, XZ, XX]
 
 # Step 2: Optimize problem for quantum execution.
-
-from qiskit_ibm_runtime import QiskitRuntimeService
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
-estimator = Estimator(backend)
-
-estimator = Estimator(backend)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 chsh_isa_circuit = pm.run(chsh_circuit)
@@ -249,8 +239,6 @@ isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator i
 # Reshape observable array for broadcasting
 reshaped_ops = np.fromiter(isa_observables, dtype=object)
 reshaped_ops = reshaped_ops.reshape((4, 1))
-
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
 estimator = Estimator(backend, options={"default_shots": int(1e4)})
 job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
@@ -312,7 +300,6 @@ from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
 service = QiskitRuntimeService()
-
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 circuit = RealAmplitudes(num_qubits=127, reps=2)
@@ -347,14 +334,12 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import SparsePauliOp, random_hermitian
-from qiskit_ibm_runtime import Session, EstimatorV2 as Estimator
-from qiskit_ibm_runtime import QiskitRuntimeService
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator
 
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 rng = np.random.default_rng(1234)
 mat = np.real(random_hermitian(n_qubits, seed=rng))
@@ -408,6 +393,9 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options
 
 n_qubits = 127
 
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
 rng = np.random.default_rng(1234)
 mat = np.real(random_hermitian(n_qubits, seed=rng))
 circuit = IQP(mat)
@@ -425,10 +413,6 @@ another_isa_observable = another_observable.apply_layout(another_isa_circuit.lay
 options = Options()
 options.optimization_level = 2
 options.resilience_level = 2
-
-service = QiskitRuntimeService()
-
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
     estimator = Estimator(session=session, options=options)
@@ -463,14 +447,12 @@ import numpy as np
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.library import IQP
 from qiskit.quantum_info import random_hermitian
-from qiskit_ibm_runtime import SamplerV2 as Sampler
-from qiskit_ibm_runtime import QiskitRuntimeService
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
@@ -504,11 +486,10 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
-service = QiskitRuntimeService()
-
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 mat = np.real(random_hermitian(n_qubits, seed=1234))
 circuit = IQP(mat)
@@ -539,14 +520,12 @@ import numpy as np
 from qiskit.circuit.library import IQP
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
-from qiskit_ibm_runtime import SamplerV2 as Sampler
-from qiskit_ibm_runtime import QiskitRuntimeService
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 rng = np.random.default_rng()
 mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
@@ -580,11 +559,10 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
-service = QiskitRuntimeService()
-
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 rng = np.random.default_rng()
 mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
@@ -616,6 +594,7 @@ Run several experiments in a single job, leveraging parameter values to increase
 import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
 # Step 1: Map classical inputs to a quantum problem
 
@@ -631,21 +610,13 @@ parameter_values = [
 ]
 
 # Step 2: Optimize problem for quantum execution.
-
-from qiskit_ibm_runtime import SamplerV2 as Sampler
-from qiskit_ibm_runtime import QiskitRuntimeService
-
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 # Step 3: Execute using Qiskit primitives.
-
-from qiskit_ibm_runtime import SamplerV2 as Sampler
-
 sampler = Sampler(backend)
 job = sampler.run([(isa_circuit, parameter_values)])
 result = job.result()
@@ -668,7 +639,6 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
 service = QiskitRuntimeService()
-
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 circuit = RealAmplitudes(num_qubits=127, reps=2)
@@ -707,11 +677,10 @@ from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
-estimator = Estimator(backend)
-
 n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 rng = np.random.default_rng(1234)
 mat = np.real(random_hermitian(n_qubits, seed=rng))
@@ -761,6 +730,9 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Session, Options
 
 n_qubits = 127
 
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
 rng = np.random.default_rng(1234)
 mat = np.real(random_hermitian(n_qubits, seed=rng))
 circuit = IQP(mat)
@@ -768,10 +740,6 @@ circuit.measure_all()
 mat = np.real(random_hermitian(n_qubits, seed=rng))
 another_circuit = IQP(mat)
 another_circuit.measure_all()
-
-service = QiskitRuntimeService()
-
-backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
