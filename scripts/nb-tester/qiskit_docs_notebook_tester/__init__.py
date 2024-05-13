@@ -188,20 +188,16 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace, patch: boo
     4. Execute the notebook inside the kernel
     5. Clean the notebook and return it
     """
-    # 1. Read notebook from file
     nb = nbformat.read(filepath, as_version=4)
 
-    # 2. Create a new kernel
     kernel_manager, kernel = await start_new_async_kernel(
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"],
     )
 
-    # 3. Run some custom code to set up the kernel
     if patch:
         kernel.execute(MOCKING_CODE, store_history=False)
 
-    # 4. Execute the notebook inside the kernel
     notebook_client = nbclient.NotebookClient(
         nb=nb,
         km=kernel_manager,
@@ -211,7 +207,6 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace, patch: boo
     )
     await notebook_client.async_execute()
 
-    # 5. Clean the notebook and return it
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
