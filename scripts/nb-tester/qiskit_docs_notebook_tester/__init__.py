@@ -315,8 +315,7 @@ def get_args() -> argparse.Namespace:
 
 
 async def _main() -> None:
-    args = get_args()
-    config = Config.from_args(args)
+    config = Config.from_args(get_args())
     paths = config.notebooks_to_execute()
 
     # Execute notebooks
@@ -324,7 +323,7 @@ async def _main() -> None:
     print("Executing notebooks:")
     results = await asyncio.gather(*(execute_notebook(path, config) for path in paths))
     print("Checking for trailing jobs...")
-    results.append(cancel_trailing_jobs(start_time, args.config_path))
+    results.append(cancel_trailing_jobs(start_time, config.args.config_path))
     if not all(results):
         sys.exit(1)
     sys.exit(0)
