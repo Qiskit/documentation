@@ -13,7 +13,7 @@
 import { expect, test } from "@jest/globals";
 
 import addFrontMatter from "./addFrontMatter";
-import { Pkg } from "./Pkg";
+import { Pkg, ReleaseNotesConfig } from "./Pkg";
 import { HtmlToMdResult } from "./HtmlToMdResult";
 
 test("addFrontMatter()", () => {
@@ -63,7 +63,9 @@ test("addFrontMatter()", () => {
     },
   ];
   const pkg = Pkg.mock({
-    hasSeparateReleaseNotes: true,
+    releaseNotesConfig: new ReleaseNotesConfig({
+      separatePagesVersions: ["0.1"],
+    }),
   });
 
   addFrontMatter(results, pkg);
@@ -105,7 +107,7 @@ python_api_name: quantum_software
     `---
 title: My Quantum Project 0.1 release notes
 description: Changes made in My Quantum Project 0.1
-in_page_toc_max_heading_level: 2
+in_page_toc_max_heading_level: 3
 ---
 
 # Some release notes!
