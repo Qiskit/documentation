@@ -105,9 +105,7 @@ class Config:
     def should_patch(self, path: Path) -> bool:
         if self.args.submit_jobs:
             return False
-        if matches(path, self.notebooks_that_submit_jobs):
-            return True
-        return False
+        return matches(path, self.notebooks_that_submit_jobs)
 
     def should_skip_writing(self, path: Path) -> bool | str:
         """Returns False or string with reason for skipping"""
