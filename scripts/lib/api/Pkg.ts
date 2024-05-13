@@ -27,16 +27,6 @@ export class ReleaseNotesConfig {
   }
 }
 
-export class TocConfig {
-  readonly truncate: boolean;
-  readonly tocGrouping?: TocGrouping;
-
-  constructor(kwargs: { truncate?: boolean; tocGrouping?: TocGrouping }) {
-    this.truncate = kwargs.truncate ?? false;
-    this.tocGrouping = kwargs.tocGrouping;
-  }
-}
-
 type PackageType = "latest" | "historical" | "dev";
 
 /**
@@ -50,7 +40,7 @@ export class Pkg {
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
   readonly releaseNotesConfig: ReleaseNotesConfig;
-  readonly tocConfig: TocConfig;
+  readonly tocGrouping?: TocGrouping;
 
   static VALID_NAMES = [
     "qiskit",
@@ -67,7 +57,7 @@ export class Pkg {
     versionWithoutPatch: string;
     type: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
-    tocConfig?: TocConfig;
+    tocGrouping?: TocGrouping;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -77,7 +67,7 @@ export class Pkg {
     this.type = kwargs.type;
     this.releaseNotesConfig =
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
-    this.tocConfig = kwargs.tocConfig ?? new TocConfig({});
+    this.tocGrouping = kwargs.tocGrouping;
   }
 
   static async fromArgs(
@@ -103,7 +93,7 @@ export class Pkg {
         releaseNotesConfig: new ReleaseNotesConfig({
           separatePagesVersions: releaseNoteEntries,
         }),
-        tocConfig: new TocConfig({ tocGrouping: QISKIT_TOC_GROUPING }),
+        tocGrouping: QISKIT_TOC_GROUPING,
       });
     }
 
@@ -113,7 +103,6 @@ export class Pkg {
         title: "Qiskit Runtime IBM Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        tocConfig: new TocConfig({ truncate: true }),
       });
     }
 
@@ -123,7 +112,6 @@ export class Pkg {
         title: "Qiskit IBM Provider (deprecated)",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
-        tocConfig: new TocConfig({ truncate: true }),
       });
     }
 
@@ -148,7 +136,7 @@ export class Pkg {
     versionWithoutPatch?: string;
     type?: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
-    tocConfig?: TocConfig;
+    tocGrouping?: TocGrouping;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -158,7 +146,7 @@ export class Pkg {
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
       releaseNotesConfig: kwargs.releaseNotesConfig,
-      tocConfig: kwargs.tocConfig,
+      tocGrouping: kwargs.tocGrouping,
     });
   }
 
