@@ -8,7 +8,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
 # UCCSD
 
-<Class id="qiskit.chemistry.components.variational_forms.UCCSD" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py" signature="UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)">
+<Class id="qiskit.chemistry.components.variational_forms.UCCSD" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/components/variational_forms/uccsd.py" signature="UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)" modifiers="class">
   Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
 
   This trial wavefunction is a Unitary Coupled-Cluster Single and Double excitations variational form. For more information, see [https://arxiv.org/abs/1805.04340](https://arxiv.org/abs/1805.04340) And for the singlet q-UCCD (full) and pair q-UCCD) see: [https://arxiv.org/abs/1911.10864](https://arxiv.org/abs/1911.10864)
@@ -61,7 +61,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
   ### compute\_excitation\_lists
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists" signature="static UCCSD.compute_excitation_lists(num_particles, num_orbitals, active_occ_list=None, active_unocc_list=None, same_spin_doubles=True, method_singles='both', method_doubles='ucc', excitation_type='sd')">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists" signature="UCCSD.compute_excitation_lists(num_particles, num_orbitals, active_occ_list=None, active_unocc_list=None, same_spin_doubles=True, method_singles='both', method_doubles='ucc', excitation_type='sd')" modifiers="static">
     Computes single and double excitation lists.
 
     **Parameters**
@@ -91,7 +91,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
   ### compute\_excitation\_lists\_singlet
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists_singlet" signature="static UCCSD.compute_excitation_lists_singlet(double_exc, num_orbitals)">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists_singlet" signature="UCCSD.compute_excitation_lists_singlet(double_exc, num_orbitals)" modifiers="static">
     Outputs the list of lists of grouped excitation. A single list inside is controlled by the same parameter theta.
 
     **Parameters**
@@ -133,13 +133,13 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.get_entangler_map" signature="static UCCSD.get_entangler_map(map_type, num_qubits, offset=0)">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.get_entangler_map" signature="UCCSD.get_entangler_map(map_type, num_qubits, offset=0)" modifiers="static">
     returns entangler map
   </Function>
 
   ### group\_excitations
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations" signature="static UCCSD.group_excitations(list_de, num_orbitals)">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations" signature="UCCSD.group_excitations(list_de, num_orbitals)" modifiers="static">
     Groups the excitations and gives out the remaining ones in the list\_de\_temp list because those excitations are controlled by the same parameter in full singlet UCCSD unlike in usual UCCSD where every excitation has its own parameter.
 
     **Parameters**
@@ -158,7 +158,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
   ### group\_excitations\_if\_same\_ao
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations_if_same_ao" signature="static UCCSD.group_excitations_if_same_ao(list_de, num_orbitals)">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations_if_same_ao" signature="UCCSD.group_excitations_if_same_ao(list_de, num_orbitals)" modifiers="static">
     Define that, given list of double excitations list\_de and number of spin-orbitals num\_orbitals, which excitations involve the same spatial orbitals for full singlet UCCSD.
 
     **Parameters**
@@ -183,7 +183,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
   ### order\_labels\_for\_hopping\_ops
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.order_labels_for_hopping_ops" signature="static UCCSD.order_labels_for_hopping_ops(double_exc, gde)">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.order_labels_for_hopping_ops" signature="UCCSD.order_labels_for_hopping_ops(double_exc, gde)" modifiers="static">
     Orders the hopping operators according to the grouped excitations for the full singlet UCCSD.
 
     **Parameters**
@@ -218,7 +218,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
   ### same\_ao\_double\_excitation\_block\_spin
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.same_ao_double_excitation_block_spin" signature="static UCCSD.same_ao_double_excitation_block_spin(de_1, de_2, num_orbitals)">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.same_ao_double_excitation_block_spin" signature="UCCSD.same_ao_double_excitation_block_spin(de_1, de_2, num_orbitals)" modifiers="static">
     Regroups the excitations that involve same spatial orbitals for example, with labeling.
 
     2— —5 1— —4 0-o- -o-3
@@ -242,7 +242,7 @@ python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 
   ### validate\_entangler\_map
 
-  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.validate_entangler_map" signature="static UCCSD.validate_entangler_map(entangler_map, num_qubits)">
+  <Function id="qiskit.chemistry.components.variational_forms.UCCSD.validate_entangler_map" signature="UCCSD.validate_entangler_map(entangler_map, num_qubits)" modifiers="static">
     validate entangler map
   </Function>
 
