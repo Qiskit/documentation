@@ -25,9 +25,9 @@ from pathlib import Path
 from typing import Iterator
 
 import nbclient
-import nbconvert
 import nbformat
 import tomli
+from jupyter_client.manager import start_new_async_kernel
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
@@ -157,24 +157,6 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
                 )
     return notebook_warnings
 
-@contextmanager
-def patch_runtime(nb: nbformat.NotebookNode, *, should_patch: bool):
-    if should_patch:
-        nb.cells.insert(0, nbformat.v4.new_code_cell(source=MOCKING_CODE))
-    yield
-    if not should_patch:
-         return
-    nb.cells.pop(0)
-    # Reset execution counts (offset by the MOCKING_CODE cell)
-    for cell in nb.cells:
-        if hasattr(cell, "execution_count"):
-            cell.execution_count -= 1
-        if not hasattr(cell, "outputs"):
-            continue
-        for output in cell.outputs:
-            if hasattr(output, "execution_count"):
-                output.execution_count -= 1
-
 async def execute_notebook(path: Path, config: Config) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status and write result
@@ -184,7 +166,7 @@ async def execute_notebook(path: Path, config: Config) -> bool:
     else:
         print(f"▶️ Executing {path}")
     possible_exceptions = (
-        nbconvert.preprocessors.CellExecutionError,
+        nbclient.exceptions.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
     )
     try:
@@ -211,21 +193,31 @@ async def execute_notebook(path: Path, config: Config) -> bool:
 
 async def _execute_notebook(filepath: Path, config: Config) -> nbformat.NotebookNode:
     """
-    Use nbconvert to execute notebook.
+    Use nbclient to execute notebook. The steps are:
+    1. Read notebook from file
+    2. Create a new kernel
+    3. (Optional) Run some custom code to set up the kernel
+    4. Execute the notebook inside the kernel
+    5. Clean the notebook and return it
     """
     nb = nbformat.read(filepath, as_version=4)
 
-    processor = nbconvert.preprocessors.ExecutePreprocessor(
-        # If submitting jobs, we want to wait forever (-1 means no timeout)
-        timeout=-1 if config.args.submit_jobs else 300,
+    kernel_manager, kernel = await start_new_async_kernel(
         kernel_name="python3",
-        extra_arguments=["--InlineBackend.figure_format='svg'"]
+        extra_arguments=["--InlineBackend.figure_format='svg'"],
     )
 
-    # This runs the notebook, including possibly submitting jobs. We run it in a
-    # new thread to avoid blocking other notebooks from submitting jobs.
-    with patch_runtime(nb, should_patch=not config.args.submit_jobs):
-        await asyncio.to_thread(processor.preprocess, nb)
+    if config.should_patch(filepath):
+        kernel.execute(MOCKING_CODE, store_history=False)
+
+    notebook_client = nbclient.NotebookClient(
+        nb=nb,
+        km=kernel_manager,
+        kc=kernel,
+        # If submitting jobs, we want to wait forever (-1 means no timeout)
+        timeout=-1 if config.args.submit_jobs else 300,
+    )
+    await notebook_client.async_execute()
 
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
