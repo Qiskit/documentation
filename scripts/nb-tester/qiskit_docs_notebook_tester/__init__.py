@@ -72,38 +72,39 @@ class Config:
                 " entries are correct."
             ) from err
 
+    def notebooks_to_execute(self) -> Iterator[Path]:
+        """
+        Yield notebooks to be executed, printing messages for any skipped files.
+        """
+        paths = map(Path, self.args.filenames or find_notebooks(self))
+        for path in paths:
+            if path.suffix != ".ipynb":
+                print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
+                continue
+
+            if matches(path, self.notebooks_exclude):
+                print(
+                    f"ℹ️ Skipping {path}; to run it, edit `notebooks-exclude` in {self.args.config_path}."
+                )
+                continue
+
+            if not self.args.submit_jobs and matches(path, self.notebooks_no_mock):
+                print(
+                    f"ℹ️ Skipping {path} as it doesn't work with mock hardware; use the --submit-jobs flag to run it."
+                )
+                continue
+
+            if self.args.only_submit_jobs and not matches(path, self.all_job_submitting_notebooks):
+                print(
+                    f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
+                )
+                continue
+
+            yield path
+
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
-
-def filter_paths(paths: list[Path], args: argparse.Namespace, config: Config) -> Iterator[Path]:
-    """
-    Filter out any paths we don't want to run, printing messages.
-    """
-    for path in paths:
-        if path.suffix != ".ipynb":
-            print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
-            continue
-
-        if matches(path, config.notebooks_exclude):
-            print(
-                f"ℹ️ Skipping {path}; to run it, edit `notebooks-exclude` in {args.config_path}."
-            )
-            continue
-
-        if not args.submit_jobs and matches(path, config.notebooks_no_mock):
-            print(
-                f"ℹ️ Skipping {path} as it doesn't work with mock hardware; use the --submit-jobs flag to run it."
-            )
-            continue
-
-        if args.only_submit_jobs and not matches(path, config.all_job_submitting_notebooks):
-            print(
-                f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
-            )
-            continue
-
-        yield path
 
 
 @dataclass(frozen=True)
@@ -322,13 +323,12 @@ def get_args() -> argparse.Namespace:
 async def _main() -> None:
     args = get_args()
     config = Config.from_args(args)
-    paths = map(Path, args.filenames or find_notebooks(config))
-    filtered_paths = filter_paths(paths, args, config)
+    paths = config.notebooks_to_execute()
 
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = await asyncio.gather(*(execute_notebook(path, args, config) for path in filtered_paths))
+    results = await asyncio.gather(*(execute_notebook(path, args, config) for path in paths))
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time, args.config_path))
     if not all(results):
