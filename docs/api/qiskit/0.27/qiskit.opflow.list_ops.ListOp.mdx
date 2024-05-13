@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
 # qiskit.opflow\.list\_ops.ListOp
 
-<Class id="qiskit.opflow.list_ops.ListOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/list_ops/list_op.py" signature="ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)">
+<Class id="qiskit.opflow.list_ops.ListOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/list_ops/list_op.py" signature="ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)" modifiers="class">
   A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp`, and `TensoredOp`.
 
   List Operators are classes for storing and manipulating lists of Operators, State functions, or Measurements, and include some rule or `combo_fn` defining how the Operator functions of the list constituents should be combined to form to cumulative Operator function of the `ListOp`. For example, a `SummedOp` has an addition-based `combo_fn`, so once the Operators in its list are evaluated against some bitstring to produce a list of results, we know to add up those results to produce the final result of the `SummedOp`’s evaluation. In theory, this `combo_fn` can be any function over classical complex values, but for convenience we’ve chosen for them to be defined over NumPy arrays and values. This way, large numbers of evaluations, such as after calling `to_matrix` on the list constituents, can be efficiently combined. While the combination function is defined over classical values, it should be understood as the operation by which each Operators’ underlying function is combined to form the underlying Operator function of the `ListOp`. In this way, the `ListOps` are the basis for constructing large and sophisticated Operators, State Functions, and Measurements.
@@ -88,7 +88,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### abelian
 
-  <Function id="qiskit.opflow.list_ops.ListOp.abelian" signature="property abelian">
+  <Function id="qiskit.opflow.list_ops.ListOp.abelian" signature="abelian" modifiers="property">
     Whether the Operators in `oplist` are known to commute with one another.
 
     **Return type**
@@ -162,7 +162,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### coeff
 
-  <Function id="qiskit.opflow.list_ops.ListOp.coeff" signature="property coeff">
+  <Function id="qiskit.opflow.list_ops.ListOp.coeff" signature="coeff" modifiers="property">
     The scalar coefficient multiplying the Operator.
 
     **Return type**
@@ -176,7 +176,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### combo\_fn
 
-  <Function id="qiskit.opflow.list_ops.ListOp.combo_fn" signature="property combo_fn">
+  <Function id="qiskit.opflow.list_ops.ListOp.combo_fn" signature="combo_fn" modifiers="property">
     The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
     **Return type**
@@ -226,7 +226,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### distributive
 
-  <Function id="qiskit.opflow.list_ops.ListOp.distributive" signature="property distributive">
+  <Function id="qiskit.opflow.list_ops.ListOp.distributive" signature="distributive" modifiers="property">
     Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
 
     **Return type**
@@ -294,7 +294,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### grad\_combo\_fn
 
-  <Function id="qiskit.opflow.list_ops.ListOp.grad_combo_fn" signature="property grad_combo_fn">
+  <Function id="qiskit.opflow.list_ops.ListOp.grad_combo_fn" signature="grad_combo_fn" modifiers="property">
     The gradient of `combo_fn`.
 
     **Return type**
@@ -304,7 +304,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### instance\_id
 
-  <Function id="qiskit.opflow.list_ops.ListOp.instance_id" signature="property instance_id">
+  <Function id="qiskit.opflow.list_ops.ListOp.instance_id" signature="instance_id" modifiers="property">
     Return the unique instance id.
 
     **Return type**
@@ -356,7 +356,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### num\_qubits
 
-  <Function id="qiskit.opflow.list_ops.ListOp.num_qubits" signature="property num_qubits">
+  <Function id="qiskit.opflow.list_ops.ListOp.num_qubits" signature="num_qubits" modifiers="property">
     The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
 
     **Return type**
@@ -370,7 +370,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### oplist
 
-  <Function id="qiskit.opflow.list_ops.ListOp.oplist" signature="property oplist">
+  <Function id="qiskit.opflow.list_ops.ListOp.oplist" signature="oplist" modifiers="property">
     The list of `OperatorBases` defining the underlying function of this Operator.
 
     **Return type**
@@ -384,7 +384,7 @@ python_api_name: qiskit.opflow.list_ops.ListOp
 
   ### parameters
 
-  <Function id="qiskit.opflow.list_ops.ListOp.parameters" signature="property parameters">
+  <Function id="qiskit.opflow.list_ops.ListOp.parameters" signature="parameters" modifiers="property">
     Return a set of Parameter objects contained in the Operator.
   </Function>
 

@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
 # SteppableOptimizer
 
-<Class id="qiskit.algorithms.optimizers.SteppableOptimizer" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/steppable_optimizer.py" signature="qiskit.algorithms.optimizers.SteppableOptimizer(maxiter=100)">
+<Class id="qiskit.algorithms.optimizers.SteppableOptimizer" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/steppable_optimizer.py" signature="qiskit.algorithms.optimizers.SteppableOptimizer(maxiter=100)" modifiers="class">
   Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
 
   Base class for a steppable optimizer.
@@ -202,7 +202,7 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
   ### create\_result
 
-  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.create_result" signature="abstract create_result()">
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.create_result" signature="create_result()" modifiers="abstract">
     Returns the result of the optimization.
 
     All the information needed to create such a result should be stored in the optimizer state and will typically contain the best point found, the function value and gradient at that point, the number of function and gradient evaluation and the number of iterations in the optimization.
@@ -218,7 +218,7 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
   ### evaluate
 
-  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.evaluate" signature="abstract evaluate(ask_data)">
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.evaluate" signature="evaluate(ask_data)" modifiers="abstract">
     Evaluates the function according to the instructions contained in `ask_data`.
 
     If the user decides to use [`step()`](#qiskit.algorithms.optimizers.SteppableOptimizer.step "qiskit.algorithms.optimizers.SteppableOptimizer.step") instead of [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") and [`tell()`](#qiskit.algorithms.optimizers.SteppableOptimizer.tell "qiskit.algorithms.optimizers.SteppableOptimizer.tell") this function will contain the logic on how to evaluate the function.
@@ -238,13 +238,13 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
   ### get\_support\_level
 
-  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.get_support_level" signature="abstract get_support_level()">
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.get_support_level" signature="get_support_level()" modifiers="abstract">
     Return support level dictionary
   </Function>
 
   ### gradient\_num\_diff
 
-  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.gradient_num_diff" signature="static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)">
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.gradient_num_diff" signature="gradient_num_diff(x_center, f, epsilon, max_evals_grouped=None)" modifiers="static">
     We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
 
     **Parameters**
@@ -312,7 +312,7 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
   ### start
 
-  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.start" signature="abstract start(fun, x0, jac=None, bounds=None)">
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.start" signature="start(fun, x0, jac=None, bounds=None)" modifiers="abstract">
     Populates the state of the optimizer with the data provided and sets all the counters to 0.
 
     **Parameters**
@@ -346,7 +346,7 @@ python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 
   ### wrap\_function
 
-  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.wrap_function" signature="static wrap_function(function, args)">
+  <Function id="qiskit.algorithms.optimizers.SteppableOptimizer.wrap_function" signature="wrap_function(function, args)" modifiers="static">
     Wrap the function to implicitly inject the args at the call of the function.
 
     **Parameters**

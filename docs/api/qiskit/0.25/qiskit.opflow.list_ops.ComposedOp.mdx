@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
 # qiskit.opflow\.list\_ops.ComposedOp
 
-<Class id="qiskit.opflow.list_ops.ComposedOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/list_ops/composed_op.py" signature="ComposedOp(oplist, coeff=1.0, abelian=False)">
+<Class id="qiskit.opflow.list_ops.ComposedOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/list_ops/composed_op.py" signature="ComposedOp(oplist, coeff=1.0, abelian=False)" modifiers="class">
   A class for lazily representing compositions of Operators. Often Operators cannot be efficiently composed with one another, but may be manipulated further so that they can be composed later. This class holds logic to indicate that the Operators in `oplist` are meant to be composed, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits or matrices, they can be reduced by composition.
 
   **Parameters**
@@ -76,7 +76,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### abelian
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.abelian" signature="property abelian">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.abelian" signature="abelian" modifiers="property">
     Whether the Operators in `oplist` are known to commute with one another.
 
     **Return type**
@@ -150,7 +150,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### coeff
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.coeff" signature="property coeff">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.coeff" signature="coeff" modifiers="property">
     The scalar coefficient multiplying the Operator.
 
     **Return type**
@@ -164,7 +164,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### combo\_fn
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.combo_fn" signature="property combo_fn">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.combo_fn" signature="combo_fn" modifiers="property">
     The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
     **Return type**
@@ -214,7 +214,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### distributive
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.distributive" signature="property distributive">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.distributive" signature="distributive" modifiers="property">
     Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
 
     **Return type**
@@ -282,7 +282,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### grad\_combo\_fn
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.grad_combo_fn" signature="property grad_combo_fn">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.grad_combo_fn" signature="grad_combo_fn" modifiers="property">
     The gradient of `combo_fn`.
 
     **Return type**
@@ -292,7 +292,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### instance\_id
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.instance_id" signature="property instance_id">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.instance_id" signature="instance_id" modifiers="property">
     Return the unique instance id.
 
     **Return type**
@@ -358,7 +358,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### num\_qubits
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.num_qubits" signature="property num_qubits">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.num_qubits" signature="num_qubits" modifiers="property">
     The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
 
     **Return type**
@@ -372,7 +372,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### oplist
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.oplist" signature="property oplist">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.oplist" signature="oplist" modifiers="property">
     The list of `OperatorBases` defining the underlying function of this Operator.
 
     **Return type**
@@ -386,7 +386,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### parameters
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.parameters" signature="property parameters">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.parameters" signature="parameters" modifiers="property">
     Return a set of Parameter objects contained in the Operator.
   </Function>
 
