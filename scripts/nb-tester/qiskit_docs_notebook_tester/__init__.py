@@ -76,7 +76,7 @@ class Config:
         """
         Yield notebooks to be executed, printing messages for any skipped files.
         """
-        paths = map(Path, self.args.filenames or find_notebooks(self))
+        paths = map(Path, self.args.filenames or Path(".").glob(self.all_notebooks))
         for path in paths:
             if path.suffix != ".ipynb":
                 print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -227,19 +227,6 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
         cell.metadata.pop("execution", None)
     nb, _ = clean_notebook(nb)
     return nb
-
-
-def find_notebooks(config: Config) -> list[Path]:
-    """
-    Get paths to notebooks in glob `all-notebooks` that are not excluded by
-    glob `notebooks-exclude`.
-    """
-    all_notebooks = Path(".").glob(config.all_notebooks)
-    return [
-        path
-        for path in all_notebooks
-        if not matches(path, config.notebooks_exclude)
-    ]
 
 
 def cancel_trailing_jobs(start_time: datetime, config_path: str) -> bool:
