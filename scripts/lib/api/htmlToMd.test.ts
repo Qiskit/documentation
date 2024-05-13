@@ -173,7 +173,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       "# DAGCircuit
 
-      <Class id="qiskit.dagcircuit.DAGCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py" signature="qiskit.dagcircuit.DAGCircuit">
+      <Class id="qiskit.dagcircuit.DAGCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py" signature="qiskit.dagcircuit.DAGCircuit" modifiers="class">
         Bases: \`object\`
 
         Quantum circuit as a directed acyclic graph.
@@ -385,7 +385,7 @@ for execution on present day noisy quantum systems.</p>
     ).toMatchInlineSnapshot(`
     "In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-    <Function signature="classmethod _default_options()">
+    <Function signature="_default_options()" modifiers="classmethod">
       Return the default options
 
       This method will return a [\`qiskit.providers.Options\`](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
@@ -681,7 +681,7 @@ for execution on present day noisy quantum systems.</p>
     
     ### Sampler
 
-    <Class id="qiskit_ibm_runtime.Sampler" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/sampler.py" signature="SamplerExample(circuits=None, parameters=None)">
+    <Class id="qiskit_ibm_runtime.Sampler" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/sampler.py" signature="SamplerExample(circuits=None, parameters=None)" modifiers="class">
       Class for interacting with Qiskit Runtime Sampler primitive service.
     </Class>
     ",
@@ -892,7 +892,7 @@ By default this is sys.stdout.</p></li>
 
     # IBMJobError
 
-    <Class id="qiskit_ibm_provider.job.IBMJobError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py" signature="IBMJobError(*message)">
+    <Class id="qiskit_ibm_provider.job.IBMJobError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py" signature="IBMJobError(*message)" modifiers="exception">
       Base class for errors raised by the job modules.
 
       Set the error message.
@@ -1070,24 +1070,24 @@ test("generate correct heading level", async () => {
 
 ### myClass1
 
-<Class id="qiskit.test.myClass1" signature="qiskit.test.myClass1()">
+<Class id="qiskit.test.myClass1" signature="qiskit.test.myClass1()" modifiers="class">
   Inline class
 
   #### exception1
 
-  <Class id="qiskit.test.myClass1.exception1" signature="exception1()">
+  <Class id="qiskit.test.myClass1.exception1" signature="exception1()" modifiers="exception">
     Exception 1
   </Class>
 
   #### method1
 
-  <Function id="qiskit.test.myClass1.method1" signature="abstract method1()">
+  <Function id="qiskit.test.myClass1.method1" signature="method1()" modifiers="abstract">
     Method 1
   </Function>
 
   #### method2
 
-  <Function id="qiskit.test.myClass1.method2" signature="abstract method2()">
+  <Function id="qiskit.test.myClass1.method2" signature="method2()" modifiers="abstract">
     Method 2
   </Function>
 </Class>
@@ -1100,29 +1100,29 @@ test("generate correct heading level", async () => {
 
 ### myClass2
 
-<Class id="qiskit.test.myClass2" signature="qiskit.test.myClass2()">
+<Class id="qiskit.test.myClass2" signature="qiskit.test.myClass2()" modifiers="class">
   Inline class 2
 
   #### myClass3
 
-  <Class id="qiskit.test.myClass2.myClass3" signature="qiskit.test.myClass3()">
+  <Class id="qiskit.test.myClass2.myClass3" signature="qiskit.test.myClass3()" modifiers="class">
     Inline class inside another class
 
     ##### method3
 
-    <Function id="qiskit.test.myClass2.myClass3.method3" signature="abstract method3()">
+    <Function id="qiskit.test.myClass2.myClass3.method3" signature="method3()" modifiers="abstract">
       Method 3
     </Function>
 
     ##### exception2
 
-    <Class id="qiskit.test.myClass2.myClass3.exception2" signature="exception2()">
+    <Class id="qiskit.test.myClass2.myClass3.exception2" signature="exception2()" modifiers="exception">
       Exception 2
     </Class>
 
     ##### method4
 
-    <Function id="qiskit.test.myClass2.myClass3.method4" signature="abstract method4()">
+    <Function id="qiskit.test.myClass2.myClass3.method4" signature="method4()" modifiers="abstract">
       Method 4
     </Function>
   </Class>
@@ -1130,7 +1130,7 @@ test("generate correct heading level", async () => {
 
 ### function1
 
-<Function id="qiskit.test.function1" signature="abstract function1()">
+<Function id="qiskit.test.function1" signature="function1()" modifiers="abstract">
   Function 1
 </Function>
 `);

@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
 # qiskit.aqua.operators.list\_ops.SummedOp
 
-<Class id="qiskit.aqua.operators.list_ops.SummedOp" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/summed_op.py" signature="SummedOp(oplist, coeff=1.0, abelian=False)">
+<Class id="qiskit.aqua.operators.list_ops.SummedOp" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/operators/list_ops/summed_op.py" signature="SummedOp(oplist, coeff=1.0, abelian=False)" modifiers="class">
   A class for lazily representing sums of Operators. Often Operators cannot be efficiently added to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be added together, and therefore if they reach a point in which they can be, such as after evaluation or conversion to matrices, they can be reduced by addition.
 
   **Parameters**
@@ -78,7 +78,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### abelian
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.abelian" signature="property abelian">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.abelian" signature="abelian" modifiers="property">
     Whether the Operators in `oplist` are known to commute with one another.
 
     **Return type**
@@ -156,7 +156,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### coeff
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.coeff" signature="property coeff">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.coeff" signature="coeff" modifiers="property">
     The scalar coefficient multiplying the Operator.
 
     **Return type**
@@ -186,7 +186,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### combo\_fn
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.combo_fn" signature="property combo_fn">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.combo_fn" signature="combo_fn" modifiers="property">
     The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
     **Return type**
@@ -226,7 +226,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### distributive
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.distributive" signature="property distributive">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.distributive" signature="distributive" modifiers="property">
     Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
 
     **Return type**
@@ -308,7 +308,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### grad\_combo\_fn
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.grad_combo_fn" signature="property grad_combo_fn">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.grad_combo_fn" signature="grad_combo_fn" modifiers="property">
     The gradient of `combo_fn`.
 
     **Return type**
@@ -360,7 +360,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### num\_qubits
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.num_qubits" signature="property num_qubits">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.num_qubits" signature="num_qubits" modifiers="property">
     The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
 
     **Return type**
@@ -374,7 +374,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### oplist
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.oplist" signature="property oplist">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.oplist" signature="oplist" modifiers="property">
     The list of `OperatorBases` defining the underlying function of this Operator.
 
     **Return type**
@@ -388,7 +388,7 @@ python_api_name: qiskit.aqua.operators.list_ops.SummedOp
 
   ### parameters
 
-  <Function id="qiskit.aqua.operators.list_ops.SummedOp.parameters" signature="property parameters">
+  <Function id="qiskit.aqua.operators.list_ops.SummedOp.parameters" signature="parameters" modifiers="property">
     Return a set of Parameter objects contained in the Operator.
   </Function>
 
