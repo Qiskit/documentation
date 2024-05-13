@@ -31,6 +31,10 @@ Some IBM Quantum systems allow for dynamic repetition rate execution. These syst
 ## Specify rep_delay for a primitive job
 
 ```python
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+service = QiskitRuntimeService()
+
 # Make sure your backend supports it
 backend = service.least_busy(operational=True, min_num_qubits=100, dynamic_reprate_enabled=True)
 
