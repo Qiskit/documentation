@@ -102,6 +102,21 @@ class Config:
 
             yield path
 
+    def should_patch(self, path: Path) -> bool:
+        if self.args.submit_jobs:
+            return False
+        if matches(path, self.notebooks_that_submit_jobs):
+            return True
+        return False
+
+    def should_skip_writing(self, path: Path) -> bool | str:
+        """Returns False or string with reason for skipping"""
+        if not self.args.write:
+            return "--write arg not set"
+        if self.should_patch(path):
+            return "hardware was mocked"
+        return False
+
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
@@ -162,12 +177,11 @@ def patch_runtime(nb: nbformat.NotebookNode, *, should_patch: bool):
             if hasattr(output, "execution_count"):
                 output.execution_count -= 1
 
-async def execute_notebook(path: Path, args: argparse.Namespace, config: Config) -> bool:
+async def execute_notebook(path: Path, config: Config) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status and write result
     """
-    is_patched = not args.submit_jobs and matches(path, config.notebooks_that_submit_jobs)
-    if is_patched:
+    if config.should_patch(path):
         print(f"▶️ Executing {path} (with least_busy patched to return fake backend)")
     else:
         print(f"▶️ Executing {path}")
@@ -176,7 +190,7 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        nb = await _execute_notebook(path, args)
+        nb = await _execute_notebook(path, config)
     except possible_exceptions as err:
         print(f"❌ Problem in {path}:\n{err}")
         return False
@@ -189,19 +203,15 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
         )
         return False
 
-    if not args.write:
-        print(f"✅ No problems in {path}")
-        return True
-
-    if is_patched:
-        print(f"✅ No problems in {path} (not written as tested with mock backend)")
+    if (skip_reason := config.should_skip_writing(path)):
+        print(f"✅ No problems in {path} (not written as {skip_reason})")
         return True
 
     nbformat.write(nb, path)
     print(f"✅ No problems in {path} (written)")
     return True
 
-async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbformat.NotebookNode:
+async def _execute_notebook(filepath: Path, config: Config) -> nbformat.NotebookNode:
     """
     Use nbconvert to execute notebook.
     """
@@ -209,18 +219,15 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace) -> nbforma
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
         # If submitting jobs, we want to wait forever (-1 means no timeout)
-        timeout=-1 if args.submit_jobs else 300,
+        timeout=-1 if config.args.submit_jobs else 300,
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"]
     )
 
     # This runs the notebook, including possibly submitting jobs. We run it in a
     # new thread to avoid blocking other notebooks from submitting jobs.
-    with patch_runtime(nb, should_patch=not args.submit_jobs):
+    with patch_runtime(nb, should_patch=not config.args.submit_jobs):
         await asyncio.to_thread(processor.preprocess, nb)
-
-    if not args.write:
-        return nb
 
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
@@ -315,7 +322,7 @@ async def _main() -> None:
     # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = await asyncio.gather(*(execute_notebook(path, args, config) for path in paths))
+    results = await asyncio.gather(*(execute_notebook(path, config) for path in paths))
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time, args.config_path))
     if not all(results):
