@@ -48,6 +48,7 @@ warnings.filterwarnings("ignore", message="Session is not supported in local tes
 
 @dataclass
 class Config:
+    args: argparse.Namespace
     all_notebooks: str
     notebooks_exclude: list[str]
     notebooks_that_submit_jobs: list[str]
@@ -58,17 +59,19 @@ class Config:
        return [*self.notebooks_that_submit_jobs, *self.notebooks_no_mock]
 
     @classmethod
-    def read(cls, path: str) -> Config:
+    def from_args(cls, args: argparse.Namespace) -> Config:
         """
-        Load the globs from the TOML file
+        Create config from args, including loading the globs from the TOML file
         """
+        path = Path(args.config_path)
         try:
-            return cls(**tomli.loads(Path(path).read_text()))
+            return cls(args=args, **tomli.loads(path.read_text()))
         except TypeError as err:
             raise ValueError(
                 f"Couldn't read config from {path}; check it exists and the"
                 " entries are correct."
             ) from err
+
 
 def matches(path: Path, glob_list: list[str]) -> bool:
     return any(path.match(glob) for glob in glob_list)
@@ -318,7 +321,7 @@ def get_args() -> argparse.Namespace:
 
 async def _main() -> None:
     args = get_args()
-    config = Config.read(args.config_path)
+    config = Config.from_args(args)
     paths = map(Path, args.filenames or find_notebooks(config))
     filtered_paths = filter_paths(paths, args, config)
 
