@@ -181,18 +181,27 @@ async def execute_notebook(path: Path, args: argparse.Namespace, config: Config)
 
 async def _execute_notebook(filepath: Path, args: argparse.Namespace, patch: bool) -> nbformat.NotebookNode:
     """
-    Use nbclient to execute notebook.
+    Use nbclient to execute notebook. The steps are:
+    1. Read notebook from file
+    2. Create a new kernel
+    3. (Optional) Run some custom code to set up the kernel
+    4. Execute the notebook inside the kernel
+    5. Clean the notebook and return it
     """
+    # 1. Read notebook from file
     nb = nbformat.read(filepath, as_version=4)
 
+    # 2. Create a new kernel
     kernel_manager, kernel = await start_new_async_kernel(
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"],
     )
 
+    # 3. Run some custom code to set up the kernel
     if patch:
         kernel.execute(MOCKING_CODE, store_history=False)
 
+    # 4. Execute the notebook inside the kernel
     notebook_client = nbclient.NotebookClient(
         nb=nb,
         km=kernel_manager,
@@ -200,11 +209,9 @@ async def _execute_notebook(filepath: Path, args: argparse.Namespace, patch: boo
         # If submitting jobs, we want to wait forever (-1 means no timeout)
         timeout=-1 if args.submit_jobs else 300,
     )
-
-    # This runs the notebook, including possibly submitting jobs. We run it in a
-    # new thread to avoid blocking other notebooks from submitting jobs.
     await notebook_client.async_execute()
 
+    # 5. Clean the notebook and return it
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
