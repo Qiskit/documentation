@@ -13,7 +13,7 @@
 import { describe, expect, test } from "@jest/globals";
 
 import { generateToc } from "./generateToc";
-import { Pkg, ReleaseNotesConfig, TocConfig } from "./Pkg";
+import { Pkg, ReleaseNotesConfig } from "./Pkg";
 import type { TocGroupingEntry } from "./TocGrouping";
 
 const DEFAULT_ARGS = {
@@ -120,48 +120,6 @@ describe("generateToc", () => {
     });
   });
 
-  test("truncate module names", () => {
-    const toc = generateToc(
-      Pkg.mock({
-        tocConfig: new TocConfig({ truncate: true }),
-        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
-      }),
-      [
-        {
-          meta: {
-            apiType: "module",
-            apiName: "my_quantum_project",
-          },
-          url: "/api/my-quantum-project",
-          ...DEFAULT_ARGS,
-        },
-        {
-          meta: {
-            apiType: "module",
-            apiName: "my_quantum_project.options",
-          },
-          url: "/api/my-quantum-project/options",
-          ...DEFAULT_ARGS,
-        },
-      ],
-    );
-
-    expect(toc).toEqual({
-      children: [
-        {
-          title: "my_quantum_project",
-          url: "/api/my-quantum-project",
-        },
-        {
-          title: "...options",
-          url: "/api/my-quantum-project/options",
-        },
-      ],
-      collapsed: true,
-      title: "My Quantum Project",
-    });
-  });
-
   test("TOC with grouped modules", () => {
     // This ordering is intentional.
     const topLevelEntries: TocGroupingEntry[] = [
@@ -187,43 +145,40 @@ describe("generateToc", () => {
         module == "my_quantum_project.module" ? "Group 1" : "Group 2",
     };
 
-    const toc = generateToc(
-      Pkg.mock({ tocConfig: new TocConfig({ tocGrouping }) }),
-      [
-        {
-          meta: {
-            apiType: "module",
-            apiName: "my_quantum_project",
-          },
-          url: "/api/my-quantum-project",
-          ...DEFAULT_ARGS,
+    const toc = generateToc(Pkg.mock({ tocGrouping }), [
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_quantum_project",
         },
-        {
-          meta: {
-            apiType: "module",
-            apiName: "my_quantum_project.module",
-          },
-          url: "/api/my-quantum-project/my_quantum_project.module",
-          ...DEFAULT_ARGS,
+        url: "/api/my-quantum-project",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_quantum_project.module",
         },
-        {
-          meta: {
-            apiType: "module",
-            apiName: "my_quantum_project.module.submodule",
-          },
-          url: "/api/my-quantum-project/my_quantum_project.module.submodule",
-          ...DEFAULT_ARGS,
+        url: "/api/my-quantum-project/my_quantum_project.module",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_quantum_project.module.submodule",
         },
-        {
-          meta: {
-            apiType: "module",
-            apiName: "my_quantum_project.another",
-          },
-          url: "/api/my-quantum-project/my_quantum_project.another",
-          ...DEFAULT_ARGS,
+        url: "/api/my-quantum-project/my_quantum_project.module.submodule",
+        ...DEFAULT_ARGS,
+      },
+      {
+        meta: {
+          apiType: "module",
+          apiName: "my_quantum_project.another",
         },
-      ],
-    );
+        url: "/api/my-quantum-project/my_quantum_project.another",
+        ...DEFAULT_ARGS,
+      },
+    ]);
     expect(toc).toEqual({
       collapsed: true,
       title: "My Quantum Project",
