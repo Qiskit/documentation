@@ -71,18 +71,18 @@ async function main() {
   const filesToCheck = await getFilesToCheck();
 
   const missingFiles = [...filesToCheck].filter(
-    (file) => !qiskitBotFiles.has(file), //&& !ALLOWED_OWNERLESS_FILES.has(file),
+    (file) => !qiskitBotFiles.has(file) && !ALLOWED_OWNERLESS_FILES.has(file),
   );
   const leftoverFiles = [...qiskitBotFiles].filter(
-    (file) => !filesToCheck.has(file), //&& !ALLOWED_INEXISTENT_FILES.has(file),
+    (file) => !filesToCheck.has(file) && !ALLOWED_INEXISTENT_FILES.has(file),
   );
 
   if (missingFiles.length > 0) showMissingFilesMessage(missingFiles);
 
-  if (leftoverFiles.length > 0) showLeftoverFIlesMessage(leftoverFiles);
+  if (leftoverFiles.length > 0) showLeftoverFilesMessage(leftoverFiles);
 
   if (missingFiles.length == 0 && leftoverFiles.length == 0)
-    console.log("All files have an owner ✅\n");
+    console.log("All files have an owner in the Qiskit bot config ✅\n");
   else process.exit(1);
 }
 
@@ -117,7 +117,7 @@ function showMissingFilesMessage(missingFiles: string[]): void {
   );
 }
 
-function showLeftoverFIlesMessage(leftoverFiles: string[]): void {
+function showLeftoverFilesMessage(leftoverFiles: string[]): void {
   console.log(
     "The following files don't exist, but they have an entry in `qiskit_bot.yaml`:\n",
   );
