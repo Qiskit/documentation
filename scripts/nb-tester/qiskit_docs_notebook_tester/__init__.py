@@ -49,7 +49,7 @@ warnings.filterwarnings("ignore", message="Session is not supported in local tes
 @dataclass
 class Config:
     args: argparse.Namespace
-    all_notebooks: str
+    notebooks_normal_test: list[str]
     notebooks_exclude: list[str]
     notebooks_that_submit_jobs: list[str]
     notebooks_no_mock: list[str]
@@ -57,6 +57,21 @@ class Config:
     @property
     def all_job_submitting_notebooks(self) -> list[str]:
        return [*self.notebooks_that_submit_jobs, *self.notebooks_no_mock]
+
+    @property
+    def all_notebooks_to_test(self) -> list[str]:
+        return [
+            *self.notebooks_normal_test,
+            *self.notebooks_that_submit_jobs,
+            *self.notebooks_no_mock,
+        ]
+
+    @property
+    def all_notebooks(self) -> list[str]:
+        return [
+            *self.all_notebooks_to_test,
+            *self.notebooks_exclude,
+        ]
 
     @classmethod
     def from_args(cls, args: argparse.Namespace) -> Config:
@@ -76,7 +91,7 @@ class Config:
         """
         Yield notebooks to be executed, printing messages for any skipped files.
         """
-        paths = map(Path, self.args.filenames or Path(".").glob(self.all_notebooks))
+        paths = map(Path, self.args.filenames or self.all_notebooks_to_test)
         for path in paths:
             if path.suffix != ".ipynb":
                 print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
@@ -101,6 +116,19 @@ class Config:
                 continue
 
             yield path
+
+    def check_all_notebooks_are_classified(self) -> None:
+        unclassified = [
+            path for path in Path(".").glob("[!.]*/**/*.ipynb")
+            if not matches(path, self.all_notebooks)
+        ]
+        if unclassified == []:
+            return
+        raise SystemExit(
+            f"\nThe following notebooks are not classified in {self.args.config_path}:\n  "
+            + "\n  ".join(map(str, unclassified))
+            + "\nAdd them to the appropriate group so we know how to test them.\n"
+        )
 
     def should_patch(self, path: Path) -> bool:
         if self.args.submit_jobs:
@@ -306,6 +334,7 @@ def get_args() -> argparse.Namespace:
 
 async def _main() -> None:
     config = Config.from_args(get_args())
+    config.check_all_notebooks_are_classified()
     paths = config.notebooks_to_execute()
 
     # Execute notebooks

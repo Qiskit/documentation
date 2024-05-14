@@ -1,7 +1,36 @@
-# Used to find all notebooks in the repo
-all_notebooks = "[!.]*/**/*.ipynb"
+# For notebooks to be tested "normally" (no mocking)
+notebooks_normal_test = [
+    "docs/build/circuit-construction.ipynb",
+    "docs/build/circuit-library.ipynb",
+    "docs/build/circuit-visualization.ipynb",
+    "docs/build/classical-feedforward-and-control-flow.ipynb",
+    "docs/build/operators-overview.ipynb",
+    "docs/build/pulse.ipynb",
+    "docs/build/save-circuits.ipynb",
+    "docs/run/dynamic-circuits-considerations.ipynb",
+    "docs/run/get-backend-information.ipynb",
+    "docs/run/save-jobs.ipynb",
+    "docs/run/visualize-results.ipynb",
+    "docs/transpile/common-parameters.ipynb",
+    "docs/transpile/create-a-transpiler-plugin.ipynb",
+    "docs/transpile/custom-backend.ipynb",
+    "docs/transpile/custom-transpiler-pass.ipynb",
+    "docs/transpile/defaults-and-configuration-options.ipynb",
+    "docs/transpile/dynamical-decoupling-pass-manager.ipynb",
+    "docs/transpile/representing_quantum_computers.ipynb",
+    "docs/transpile/set-optimization.ipynb",
+    "docs/transpile/transpile-with-pass-managers.ipynb",
+    "docs/transpile/transpiler-plugins.ipynb",
+    "docs/transpile/transpiler-stages.ipynb",
+    "docs/verify/building_noise_models.ipynb",
+    "docs/verify/local-testing-mode.ipynb",
+    "docs/verify/plot-quantum-states.ipynb",
+    "docs/verify/simulate-with-qiskit-aer.ipynb",
+    "docs/verify/stabilizer-circuit-simulation.ipynb",
+    "tutorials/explore-composer/explore-composer.ipynb",
+]
 
-# Always exclude notebooks matching the following patterns
+# Don't test the following notebooks (this section can include glob patterns)
 notebooks_exclude = [
     "scripts/ibm-quantum-learning-uploader/test/template.ipynb",
     "**/.ipynb_checkpoints/**",
@@ -20,6 +49,8 @@ notebooks_that_submit_jobs = [
 ]
 
 # The following notebooks submit jobs that are too big to mock with a simulator
+# A job is "too big" if a cell can't run in under 5 mins, or we run out of
+# memory on a reasonable device.
 notebooks_no_mock = [
     "docs/start/hello-world.ipynb",
 ]
