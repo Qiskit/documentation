@@ -33,8 +33,9 @@ from squeaky import clean_notebook
 
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
-import warnings
-warnings.filterwarnings("ignore", message="Matplotlib is building the font cache; this may take a moment.")
+import matplotlib
+# See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
+matplotlib.set_loglevel("critical")
 """
 
 # If not submitting jobs, we also run this code before notebook execution to mock the real backend
