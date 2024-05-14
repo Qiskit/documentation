@@ -34,6 +34,7 @@ from squeaky import clean_notebook
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
 import matplotlib
+# See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
 matplotlib.set_loglevel("critical")
 """
 
