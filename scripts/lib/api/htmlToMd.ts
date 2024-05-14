@@ -335,6 +335,7 @@ function buildApiComponent(h: H, node: any): any {
   );
   maybeAddAttribute(hastTree, "github", node.properties.github);
   maybeAddAttribute(hastTree, "signature", node.properties.signature);
+  maybeAddAttribute(hastTree, "modifiers", node.properties.modifiers);
   maybeAddExpressionAttribute(
     hastTree,
     "extraSignatures",

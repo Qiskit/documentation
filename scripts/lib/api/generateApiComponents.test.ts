@@ -19,7 +19,6 @@ import {
   addExtraSignatures,
   createOpeningTag,
 } from "./generateApiComponents";
-import { APOSTROPHE_HEX_CODE } from "../stringUtils";
 import { CheerioDoc } from "../testUtils";
 
 const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
@@ -80,6 +79,7 @@ describe("createOpeningTag()", () => {
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
+    modifiers='undefined'
     extraSignatures='[]'
     >
   `);
@@ -100,6 +100,7 @@ describe("createOpeningTag()", () => {
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
+    modifiers='undefined'
     extraSignatures='["Estimator.run(circuits, observables, parameter_values=None, **kwargs)", "Estimator.run(circuits, observables, parameter_values=None, **kwargs)"]'
     >
   `);
@@ -120,6 +121,7 @@ describe("createOpeningTag()", () => {
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
+    modifiers='undefined'
     extraSignatures='[]'
     >
   `);
@@ -138,6 +140,7 @@ describe("createOpeningTag()", () => {
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
+    modifiers='undefined'
     extraSignatures='[]'
     >
   `);
