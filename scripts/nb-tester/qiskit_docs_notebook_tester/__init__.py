@@ -225,6 +225,12 @@ async def execute_notebook(path: Path, config: Config) -> bool:
     print(f"✅ No problems in {path} (written)")
     return True
 
+async def _execute_in_kernel(kernel, code: str) -> None:
+    """Execute code in kernel and raise if it fails"""
+    response = await kernel.execute_interactive(code, store_history=False)
+    if response.get("content", {}).get("status", "") == "error":
+        raise Exception("Error running initialization code")
+
 async def _execute_notebook(filepath: Path, config: Config) -> nbformat.NotebookNode:
     """
     Use nbclient to execute notebook. The steps are:
@@ -241,9 +247,9 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
         extra_arguments=["--InlineBackend.figure_format='svg'"],
     )
 
-    kernel.execute(PRE_EXECUTE_CODE, store_history=False)
+    await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
     if config.should_patch(filepath):
-        kernel.execute(MOCKING_CODE, store_history=False)
+        await _execute_in_kernel(kernel, MOCKING_CODE)
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,
