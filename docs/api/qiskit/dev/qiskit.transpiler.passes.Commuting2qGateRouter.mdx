@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
 # Commuting2qGateRouter
 
-<Class id="qiskit.transpiler.passes.Commuting2qGateRouter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py#L28-L394" signature="qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.Commuting2qGateRouter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py#L28-L394" signature="qiskit.transpiler.passes.Commuting2qGateRouter(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   A class to swap route one or more commuting gates to the coupling map.
@@ -97,14 +97,14 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -112,12 +112,12 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -127,7 +127,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py#L132-L193" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py#L132-L193" signature="run(dag)">
     Run the pass by decomposing the nodes it applies on.
 
     **Parameters**
@@ -151,7 +151,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
   ### swap\_decompose
 
-  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.swap_decompose" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py#L301-L352" signature="swap_decompose(dag, node, current_layout, swap_strategy)">
+  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.swap_decompose" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py#L301-L352" signature="swap_decompose(dag, node, current_layout, swap_strategy)">
     Take an instance of `Commuting2qBlock` and map it to the coupling map.
 
     The mapping is done with the swap strategy.
@@ -159,7 +159,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
     **Parameters**
 
     *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – The dag which contains the `Commuting2qBlock` we route.
-    *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.dagnode.DAGOpNode")) – A node whose operation is a `Commuting2qBlock`.
+    *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit._accelerate.circuit.DAGOpNode")) – A node whose operation is a `Commuting2qBlock`.
     *   **current\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")) – The layout before the swaps are applied. This function will modify the layout so that subsequent gates can be properly composed on the dag.
     *   **swap\_strategy** (*SwapStrategy*) – The swap strategy used to decompose the node.
 
@@ -174,7 +174,7 @@ python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.Commuting2qGateRouter.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
 # RZXCalibrationBuilderNoEcho
 
-<Class id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/calibration/rzx_builder.py#L245-L307" signature="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rzx_builder.py#L245-L307" signature="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho(*args, **kwargs)" modifiers="class">
   Bases: [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder")
 
   Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate.
@@ -49,14 +49,14 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **passmanager\_ir** (*PassManagerIR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -64,12 +64,12 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[PassManagerIR, [PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")]
   </Function>
 
   ### get\_calibration
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/calibration/rzx_builder.py#L259-L307" signature="get_calibration(node_op, qubits)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rzx_builder.py#L259-L307" signature="get_calibration(node_op, qubits)">
     Builds the calibration schedule for the RZXGate(theta) without echos.
 
     **Parameters**
@@ -94,7 +94,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -104,7 +104,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
   ### rescale\_cr\_inst
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.rescale_cr_inst" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/builder.py#L110-L163" signature="rescale_cr_inst(instruction, theta, sample_mult=16)" modifiers="static">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.rescale_cr_inst" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L110-L163" signature="rescale_cr_inst(instruction, theta, sample_mult=16)" modifiers="static">
     A builder macro to play stretched pulse.
 
     **Parameters**
@@ -128,7 +128,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/calibration/base_builder.py#L54-L79" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/base_builder.py#L54-L79" signature="run(dag)">
     Run the calibration adder pass on dag.
 
     **Parameters**
@@ -146,7 +146,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
   ### supported
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.supported" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/passes/calibration/rzx_builder.py#L96-L108" signature="supported(node_op, qubits)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.supported" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rzx_builder.py#L96-L108" signature="supported(node_op, qubits)">
     Determine if a given node supports the calibration.
 
     **Parameters**
@@ -165,7 +165,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

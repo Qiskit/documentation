@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QuadraticForm
 
 # QuadraticForm
 
-<Class id="qiskit.circuit.library.QuadraticForm" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/arithmetic/quadratic_form.py#L24-L198" signature="qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)" modifiers="class">
+<Class id="qiskit.circuit.library.QuadraticForm" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/quadratic_form.py#L24-L198" signature="qiskit.circuit.library.QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   Implements a quadratic form on binary variables encoded in qubit registers.
@@ -57,7 +57,7 @@ $$
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.QuadraticForm.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -71,13 +71,13 @@ $$
   ### clbits
 
   <Attribute id="qiskit.circuit.library.QuadraticForm.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
   <Attribute id="qiskit.circuit.library.QuadraticForm.data">
-    Return the circuit data (instructions and context).
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -91,12 +91,12 @@ $$
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.QuadraticForm.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.QuadraticForm.instances" attributeValue="328" />
+  <Attribute id="qiskit.circuit.library.QuadraticForm.instances" attributeValue="332" />
 
   ### layout
 
@@ -111,9 +111,9 @@ $$
   ### metadata
 
   <Attribute id="qiskit.circuit.library.QuadraticForm.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -253,14 +253,44 @@ $$
   ### qubits
 
   <Attribute id="qiskit.circuit.library.QuadraticForm.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QuadraticForm.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.QuadraticForm.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.QuadraticForm.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.QuadraticForm.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QuadraticForm.unit "qiskit.circuit.library.QuadraticForm.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.QuadraticForm.unit">
+    The unit that [`duration`](#qiskit.circuit.library.QuadraticForm.duration "qiskit.circuit.library.QuadraticForm.duration") is specified in.
   </Attribute>
 
   ## Methods
 
   ### required\_result\_qubits
 
-  <Function id="qiskit.circuit.library.QuadraticForm.required_result_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/arithmetic/quadratic_form.py#L166-L198" signature="required_result_qubits(quadratic, linear, offset)" modifiers="static">
+  <Function id="qiskit.circuit.library.QuadraticForm.required_result_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/quadratic_form.py#L166-L198" signature="required_result_qubits(quadratic, linear, offset)" modifiers="static">
     Get the number of required result qubits.
 
     **Parameters**
