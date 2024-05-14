@@ -25,6 +25,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Exit early on forks
+        if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+        shell: python
+        run: |
+          raise SystemExit(
+            "We can't run this test on pull requests form forks.\n"
+            "When this pull request is ready to merge, merge it to a new branch in Qiskit/documentation,"
+            "then make a pull request from that branch to main to test the notebook works.\n\n"
+            "You can change the branch a pull request merges to by clicking 'edit' on the page,"
+            "then changing the 'base'."
+          )
+
       - name: Get all changed files
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
