@@ -148,19 +148,19 @@ When adding a new notebook, you'll need to tell the testing tools how to handle 
 To do this, add the file path to `scripts/nb-tester/notebooks.toml`. There are
 four categories:
 
-* `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
+- `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
   can't submit jobs as the queue times are too long and it will waste
   resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
   information.
-* `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
+- `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
   enough to run on a 5-qubit simulator. We will test these notebooks in CI by
   patching `least_busy` to return a 5-qubit fake backend.
-* `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
+- `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
   simulator patch. We skip testing these in CI and instead run them twice per
   month. Any notebooks with cells that take more than five minutes to run are
   also deemed too big for CI. Try to avoid adding notebooks to this category if
   possible.
-* `notebooks_exclude`: Notebooks to be ignored.
+- `notebooks_exclude`: Notebooks to be ignored.
 
 If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 also add it to the "Check for notebooks that require LaTeX" step in
