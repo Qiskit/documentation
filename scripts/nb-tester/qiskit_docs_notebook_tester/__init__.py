@@ -31,9 +31,14 @@ from jupyter_client.manager import start_new_async_kernel
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
-# If not submitting jobs, we mock the real backend by prepending this to each notebook
-MOCKING_CODE = """\
+# We always run the following code in the kernel before running the notebook
+PRE_EXECUTE_CODE = """\
 import warnings
+warnings.filterwarnings("ignore", message="Matplotlib is building the font cache; this may take a moment.")
+"""
+
+# If not submitting jobs, we also run this code before notebook execution to mock the real backend
+MOCKING_CODE = """\
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit.providers.fake_provider import GenericBackendV2
 
@@ -235,6 +240,7 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
         extra_arguments=["--InlineBackend.figure_format='svg'"],
     )
 
+    kernel.execute(PRE_EXECUTE_CODE, store_history=False)
     if config.should_patch(filepath):
         kernel.execute(MOCKING_CODE, store_history=False)
 
