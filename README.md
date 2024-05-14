@@ -134,16 +134,6 @@ graphviz`.
   tox -- optional/paths/to/notebooks.ipynb --write
   ```
 
-> [!NOTE]
-> If your notebook submits hardware jobs to Qiskit Runtime, you must add it to
-> [`scripts/nb-tester/notebooks.toml`](scripts/nb-tester/notebooks.toml). If it
-> can be run with simulators, i.e., the circuit is not too large, add it to
-> `notebooks_that_submit_jobs`. Otherwise, add it to `notebooks_no_mock`.
-
-> If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
-> add it to the "Check for notebooks that require LaTeX" step in
-> `.github/workflows/notebook-test.yml`.
-
 When you make a pull request changing a notebook that doesn't submit jobs, you
 can get a version of that notebook that was executed by tox from CI. To do
 this, click "Show all checks" in the info box at the bottom of the pull request
@@ -151,6 +141,30 @@ page on GitHub, then choose "Details" for the "Test notebooks" job. From the
 job page, click "Summary", then download "Executed notebooks". Otherwise, if
 your notebook does submit jobs, you need to run it locally using the steps
 mentioned earlier.
+
+### Adding a new notebook
+
+When adding a new notebook, you'll need to tell the testing tools how to handle it.
+To do this, add the file path to `scripts/nb-tester/notebooks.toml`. There are
+four categories:
+
+* `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
+  can't submit jobs as the queue times are too long and it will waste
+  resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
+  information.
+* `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
+  enough to run on a 5-qubit simulator. We will test these notebooks in CI by
+  patching `least_busy` to return a 5-qubit fake backend.
+* `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
+  simulator patch. We skip testing these in CI and instead run them twice per
+  month. Any notebooks with cells that take more than five minutes to run are
+  also deemed too big for CI. Try to avoid adding notebooks to this category if
+  possible.
+* `notebooks_exclude`: Notebooks to be ignored.
+
+If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
+also add it to the "Check for notebooks that require LaTeX" step in
+`.github/workflows/notebook-test.yml`.
 
 ### Ignoring warnings
 
