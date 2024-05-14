@@ -124,12 +124,11 @@ class Config:
         ]
         if unclassified == []:
             return
-        print(
+        raise SystemExit(
             f"\nThe following notebooks are not classified in {self.args.config_path}:\n  "
             + "\n  ".join(map(str, unclassified))
             + "\nAdd them to the appropriate group so we know how to test them.\n"
         )
-        sys.exit(1)
 
     def should_patch(self, path: Path) -> bool:
         if self.args.submit_jobs:
