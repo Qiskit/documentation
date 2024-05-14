@@ -103,8 +103,7 @@ This staging environment can be useful to see how the docs are rendering before 
 
 ## Execute notebooks
 
-Before submitting a new notebook or code changes to a notebook, you must run the notebook using `tox -- --write <path-to-notebook>` and commit the results.
-This means we can be sure all notebooks work and that users will see the same results when they run using the environment we recommend.
+Before submitting a new notebook or code changes to a notebook, you must run the notebook using `tox -- --write <path-to-notebook>` and commit the results. (If the notebook submits jobs, also use the argument `--submit-jobs`). This means we can be sure all notebooks work and that users will see the same results when they run using the environment we recommend.
 
 To execute notebooks in a fixed Python environment, first install `tox` using
 [pipx](https://pipx.pypa.io/stable/):
