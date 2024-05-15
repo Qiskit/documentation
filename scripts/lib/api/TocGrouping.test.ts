@@ -82,16 +82,27 @@ async function getIndexModuleGroups(fp: string): Promise<ModuleGroup[]> {
   const result: ModuleGroup[] = [];
   let currentGroup: ModuleGroup = [];
   for (const line of rawIndex.split("\n")) {
-    if (line.startsWith("* ")) {
-      if (line.includes("qiskit.")) {
-        const module = extractModuleName(line);
-        currentGroup.push(module);
+    // Each ModuleGroup represents an unordered list of entries starting with `*`.
+    // So, when we stop encountering `*`, we need to start a new ModuleGroup.
+    if (!line.startsWith("* ")) {
+      if (currentGroup.length) {
+        result.push(currentGroup);
+        currentGroup = [];
       }
       continue;
-    } else if (currentGroup.length) {
-      result.push(currentGroup);
-      currentGroup = [];
     }
+
+    // Certain classes like QuantumCircuit in Qiskit 1.1+ have manually
+    // created pages. Those pages show up in index.mdx as top-level entries,
+    // but they are not top-level entries in the left ToC. This is expected.
+    // So, we allow the index to diverge from the left ToC.
+    //
+    // This is looking for e.g. '[`QuantumCircuit` class](qiskit.circuit.QuantumCircuit)'
+    const isDedicatedClassPage = line.includes(" class](");
+    if (isDedicatedClassPage) continue;
+
+    const module = extractModuleName(line);
+    currentGroup.push(module);
   }
   return result;
 }
