@@ -64,7 +64,8 @@ function getHeaders(link: string) {
   };
 
   if (link.startsWith("https://github.com")) {
-    headers["Authorization"] = process.env.GITHUB_TOKEN || "";
+    const ghToken = process.env.GITHUB_TOKEN;
+    headers["Authorization"] = ghToken ? `token ${ghToken}` : "";
   }
 
   return headers;
