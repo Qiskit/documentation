@@ -58,6 +58,7 @@ const GLOBS = [
   "docs/verify/*",
   "docs/run/*",
   "docs/migration-guides/*",
+  "docs/guides/*",
 ];
 
 async function main() {
