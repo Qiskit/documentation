@@ -1,10 +1,10 @@
 ---
-title: System circuit execution
+title: Fixed and dynamic repetition rate execution
 description: Explanatory content on fixed and dynamic repetition rate execution
 
 ---
 
-# System circuit execution
+# Fixed and dynamic repetition rate execution
 
 ## Fixed repetition rate execution
 
@@ -26,4 +26,29 @@ Therefore, each circuit is equal in duration to the longest circuit in the batch
 
 ## Dynamic repetition rate execution
 
-Some IBM Quantum systems allow for dynamic repetition rate execution. These systems are identified in Qiskit using `backend.configuration().dynamic_reprate_enabled`, and return a value of `True`. On these systems, it is possible to manually set the above idle time by setting the `rep_delay` of the submitted job. One can see from the above figures that by reducing the idle time one can potentially see a greater throughput of circuits on the systems that support dynamic repetition rates. See the the next section on conditional reset for more detailed usage examples.
+Some IBM Quantum systems allow for dynamic repetition rate execution. These systems are identified in Qiskit using `backend.configuration().dynamic_reprate_enabled`, and return a value of `True`. On these systems, it is possible to manually set the above idle time by setting the `rep_delay` of the submitted job. One can see from the above figures that by reducing the idle time one can potentially see a greater throughput of circuits on the systems that support dynamic repetition rates.
+
+## Specify rep_delay for a primitive job
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+service = QiskitRuntimeService()
+
+# Make sure your backend supports it
+backend = service.least_busy(operational=True, min_num_qubits=100, dynamic_reprate_enabled=True)
+
+# Determine the allowable range
+backend.rep_delay_range
+sampler = Sampler(backend=backend)
+
+#Specify a value in the supported range
+sampler.options.execution.rep_delay = 0.0005
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial.
+  - Review how to [get started with primitives.](primitives-get-started)
+</Admonition>

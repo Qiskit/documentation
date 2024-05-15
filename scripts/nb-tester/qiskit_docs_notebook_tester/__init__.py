@@ -40,6 +40,7 @@ matplotlib.set_loglevel("critical")
 
 # If not submitting jobs, we also run this code before notebook execution to mock the real backend
 MOCKING_CODE = """\
+import warnings
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit.providers.fake_provider import GenericBackendV2
 
