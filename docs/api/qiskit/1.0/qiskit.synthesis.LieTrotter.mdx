@@ -1,0 +1,75 @@
+---
+title: LieTrotter
+description: API reference for qiskit.synthesis.LieTrotter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.LieTrotter
+---
+
+# LieTrotter
+
+<Class id="qiskit.synthesis.LieTrotter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/evolution/lie_trotter.py#L23-L123" signature="qiskit.synthesis.LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)" modifiers="class">
+  Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
+
+  The Lie-Trotter product formula.
+
+  The Lie-Trotter formula approximates the exponential of two non-commuting operators with products of their exponentials up to a second order error:
+
+$$
+e^{A + B} \approx e^{A}e^{B}.
+$$
+
+  In this implementation, the operators are provided as sum terms of a Pauli operator. For example, we approximate
+
+$$
+e^{-it(XX + ZZ)} = e^{-it XX}e^{-it ZZ} + \mathcal{O}(t^2).
+$$
+
+  **References**
+
+  \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139) \[2]: N. Hatano and M. Suzuki, “Finding Exponential Product Formulas of Higher Orders” (2005). [arXiv:math-ph/0506007](https://arxiv.org/pdf/math-ph/0506007.pdf)
+
+  **Parameters**
+
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of time steps.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to insert barriers between the atomic evolutions.
+  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one.
+  *   **atomic\_evolution** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomposed in a CX chain and a single qubit Z rotation.
+
+  ## Attributes
+
+  ### settings
+
+  <Attribute id="qiskit.synthesis.LieTrotter.settings">
+    Return the settings in a dictionary, which can be used to reconstruct the object.
+
+    **Returns**
+
+    A dictionary containing the settings of this product formula.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If a custom atomic evolution is set, which cannot be serialized.
+  </Attribute>
+
+  ## Methods
+
+  ### synthesize
+
+  <Function id="qiskit.synthesis.LieTrotter.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/evolution/lie_trotter.py#L72-L102" signature="synthesize(evolution)">
+    Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
+
+    **Parameters**
+
+    **evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
+
+    **Returns**
+
+    A circuit implementing the evolution.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
+
