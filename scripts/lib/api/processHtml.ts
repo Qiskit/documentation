@@ -374,6 +374,13 @@ export function updateModuleHeadings(
 }
 
 function getApiType($dl: Cheerio<any>): ApiType | undefined {
+  // Historical versions were generating properties incorrectly as methods.
+  // We can fix this by looking at the modifier before the signature.
+  // See https://github.com/Qiskit/documentation/issues/1352 for more information.
+  if (hasPropertyModifier($dl)) {
+    return "property";
+  }
+
   for (const className of [
     "function",
     "class",
@@ -389,4 +396,10 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
   }
 
   return undefined;
+}
+
+function hasPropertyModifier($dl: Cheerio<any>): boolean {
+  const rawModifiers = $dl.find("dt").find("em.property");
+  const modifiers = rawModifiers.text().trim();
+  return modifiers == "property";
 }
