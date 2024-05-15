@@ -39,7 +39,7 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/run/visualize-results",
 ]);
 
-const ALLOWED_INEXISTENT_FILES = new Set([
+const ALLOWED_NONEXISTENT_FILES = new Set([
   "docs/build/qubit-order",
   "docs/build/operators_overview",
   "docs/run/reserve-system-time",
@@ -50,12 +50,6 @@ const ALLOWED_INEXISTENT_FILES = new Set([
   "docs/migration-guides/qiskit-algorithms-module",
   "docs/migration-guides/qiskit-opflow-module",
 ]);
-
-type qiskitBotConfig = {
-  always_notify: boolean;
-  notification_prelude: string;
-  notifications: { [id: string]: string[] };
-};
 
 const GLOBS = [
   "docs/start/*",
@@ -70,33 +64,36 @@ async function main() {
   const qiskitBotFiles = await getQiskitBotFiles();
   const filesToCheck = await getFilesToCheck();
 
-  const missingFiles = [...filesToCheck].filter(
-    (file) => !qiskitBotFiles.has(file) && !ALLOWED_OWNERLESS_FILES.has(file),
+  const missingFiles = filesToCheck.filter(
+    (file) =>
+      !qiskitBotFiles.includes(file) && !ALLOWED_OWNERLESS_FILES.has(file),
   );
-  const leftoverFiles = [...qiskitBotFiles].filter(
-    (file) => !filesToCheck.has(file) && !ALLOWED_INEXISTENT_FILES.has(file),
+  const leftoverFiles = qiskitBotFiles.filter(
+    (file) =>
+      !filesToCheck.includes(file) && !ALLOWED_NONEXISTENT_FILES.has(file),
   );
 
   if (missingFiles.length > 0) showMissingFilesMessage(missingFiles);
 
   if (leftoverFiles.length > 0) showLeftoverFilesMessage(leftoverFiles);
 
-  if (missingFiles.length == 0 && leftoverFiles.length == 0)
+  if (missingFiles.length == 0 && leftoverFiles.length == 0) {
     console.log("All files have an owner in the Qiskit bot config ✅\n");
-  else process.exit(1);
+  } else {
+    process.exit(1);
+  }
 }
 
-async function getQiskitBotFiles(): Promise<Set<string>> {
+async function getQiskitBotFiles(): Promise<string[]> {
   const qiskitBotConfig = "qiskit_bot.yaml";
-  const yaml = load(
-    await fs.readFile(qiskitBotConfig, "utf8"),
-  ) as qiskitBotConfig;
-  return new Set(Object.keys(yaml.notifications));
+  const yaml = load(await fs.readFile(qiskitBotConfig, "utf8")) as {
+    notifications: { [id: string]: string[] };
+  };
+  return Object.keys(yaml.notifications).sort();
 }
 
-async function getFilesToCheck(): Promise<Set<string>> {
-  const files = (await globby(GLOBS)).map((file) => removeFileExtension(file));
-  return new Set(files);
+async function getFilesToCheck(): Promise<string[]> {
+  return (await globby(GLOBS)).map((file) => removeFileExtension(file)).sort();
 }
 
 function removeFileExtension(file: string): string {
@@ -105,25 +102,25 @@ function removeFileExtension(file: string): string {
 }
 
 function showMissingFilesMessage(missingFiles: string[]): void {
-  console.log(
+  console.error(
     "The following files don't have an owner in `qiskit_bot.yaml`:\n",
   );
-  missingFiles.forEach((file) => console.log(`❌ ${file}`));
+  missingFiles.forEach((file) => console.error(`❌ ${file}`));
 
-  console.log(
+  console.error(
     "\nAdd an owner to the files in qiskit_bot.yaml if they are new, or update the file names in qiskit_bot.yaml if the were renamed.",
     "If you don't want them to be tracked by the qiskit bot, you can append the files to the `ALLOWED_OWNERLESS_FILES` list at the beginning of `scripts/commands/checkQiskitBotFiles.ts`.\n",
   );
 }
 
 function showLeftoverFilesMessage(leftoverFiles: string[]): void {
-  console.log(
+  console.error(
     "The following files don't exist, but they have an entry in `qiskit_bot.yaml`:\n",
   );
-  leftoverFiles.forEach((file) => console.log(`❔ ${file}`));
-  console.log(
+  leftoverFiles.forEach((file) => console.error(`❔ ${file}`));
+  console.error(
     "\nRemove the files from the qiskit_bot.yaml, or rename the file in qiskit_bot.yaml if the file was renamed.",
-    "If the files will exist in the future, you can append the files to the `ALLOWED_INEXISTENT_FILES` list at the beginning of `scripts/commands/checkQiskitBotFiles.ts`.\n",
+    "If the files will exist in the future, you can append the files to the `ALLOWED_NONEXISTENT_FILES` list at the beginning of `scripts/commands/checkQiskitBotFiles.ts`.\n",
   );
 }
 
