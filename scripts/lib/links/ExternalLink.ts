@@ -65,7 +65,9 @@ function getHeaders(link: string) {
 
   if (link.startsWith("https://github.com")) {
     const ghToken = process.env.GITHUB_TOKEN;
-    headers["Authorization"] = ghToken ? `token ${ghToken}` : "";
+    if (ghToken) {
+      headers["Authorization"] = `token ${ghToken}`;
+    }
   }
 
   return headers;
