@@ -112,7 +112,7 @@ function showMissingFilesMessage(missingFiles: string[]): void {
   missingFiles.forEach((file) => console.log(`❌ ${file}`));
 
   console.log(
-    "\nPlease, add an owner to the files if they are new or change their entries in case they have been renamed.",
+    "\nAdd an owner to the files in qiskit_bot.yaml if they are new, or update the file names in qiskit_bot.yaml if the were renamed.",
     "If you don't want them to be tracked by the qiskit bot, you can append the files to the `ALLOWED_OWNERLESS_FILES` list at the beginning of `scripts/commands/checkQiskitBotFiles.ts`.\n",
   );
 }
