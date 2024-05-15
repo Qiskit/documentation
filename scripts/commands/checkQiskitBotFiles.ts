@@ -100,9 +100,8 @@ async function getFilesToCheck(): Promise<Set<string>> {
 }
 
 function removeFileExtension(file: string): string {
-  const dir = path.parse(file).dir;
-  const name = path.parse(file).name;
-  return `${dir}/${name}`;
+  const parsed = path.parse(file);
+  return `${parsed.dir}/${parsed.name}`;
 }
 
 function showMissingFilesMessage(missingFiles: string[]): void {
