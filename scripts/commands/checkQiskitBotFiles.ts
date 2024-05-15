@@ -123,7 +123,7 @@ function showLeftoverFilesMessage(leftoverFiles: string[]): void {
   );
   leftoverFiles.forEach((file) => console.log(`❔ ${file}`));
   console.log(
-    "\nPlease, remove the files' entries from the Qiskit bot yaml file or rename them if their name has changed.",
+    "\nRemove the files from the qiskit_bot.yaml, or rename the file in qiskit_bot.yaml if the file was renamed.",
     "If the files will exist in the future, you can append the files to the `ALLOWED_INEXISTENT_FILES` list at the beginning of `scripts/commands/checkQiskitBotFiles.ts`.\n",
   );
 }
