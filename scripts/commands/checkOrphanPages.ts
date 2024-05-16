@@ -171,6 +171,7 @@ function apiDocsIgnores(): string[] {
     "0.44/",
     "0.45/",
     "0.46/",
+    "1.0/",
   ];
 
   return [
@@ -188,9 +189,9 @@ function apiDocsIgnores(): string[] {
       `/api/qiskit/${vers}qiskit.utils.algorithm_globals`,
       `/api/qiskit/${vers}parallel`,
       `/api/qiskit/${vers}transpiler_builtin_plugins`,
+      `/api/qiskit/${vers}qiskit.primitives.BaseEstimator`,
+      `/api/qiskit/${vers}qiskit.primitives.BaseSampler`,
     ]),
-    `/api/qiskit/dev/qiskit.primitives.BaseEstimator`,
-    `/api/qiskit/dev/qiskit.primitives.BaseSampler`,
   ];
 }
 
