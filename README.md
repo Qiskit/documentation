@@ -153,8 +153,11 @@ four categories:
   resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
   information.
 - `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
-  enough to run on a 5-qubit simulator. We will test these notebooks in CI by
-  patching `least_busy` to return a 5-qubit fake backend.
+  enough to run on a simulator. We will test these notebooks in CI by patching
+  `least_busy` to return a 5-qubit fake backend. If your notebook needs more
+  than five qubits, you can set a custom number of qubits for the mocked
+  backend by setting the `testing_qubits` attribute of the metadata to the
+  number you'd like.
 - `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
   simulator patch. We skip testing these in CI and instead run them twice per
   month. Any notebooks with cells that take more than five minutes to run are

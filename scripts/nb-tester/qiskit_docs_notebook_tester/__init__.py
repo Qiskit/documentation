@@ -45,11 +45,11 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit.providers.fake_provider import GenericBackendV2
 
 def patched_least_busy(self, *args, **kwarg):
-  return GenericBackendV2(num_qubits=5, control_flow=True)
+  return GenericBackendV2(num_qubits={num_qubits}, control_flow=True)
 
 QiskitRuntimeService.least_busy = patched_least_busy
 
-warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
+warnings.filterwarnings("ignore", message="Options {{.*}} have no effect in local testing mode.")
 warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
 
@@ -250,7 +250,8 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
 
     await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
     if config.should_patch(filepath):
-        await _execute_in_kernel(kernel, MOCKING_CODE)
+        num_qubits = nb.metadata.get("testing_qubits", 5)
+        await _execute_in_kernel(kernel, MOCKING_CODE.format(num_qubits=num_qubits))
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,
