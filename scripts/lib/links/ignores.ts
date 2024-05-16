@@ -34,6 +34,7 @@ const _QISKIT_UTILS = [
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+  "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   // StackOverflow rate limits us.
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",

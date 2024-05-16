@@ -19,6 +19,7 @@ import remarkStringify from "remark-stringify";
 import { ApiType } from "./Metadata";
 import {
   getLastPartFromFullIdentifier,
+  removeSuffix,
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils";
 
@@ -117,7 +118,7 @@ function prepareProps(
   // Remove the attributes and properties modifiers as we don't show their signatures,
   // but we still use them to create their headers
   if (apiType == "attribute" || apiType == "property") {
-    findByText($, $main, "em.property", apiType).remove();
+    findByText($, $child, "em.property", apiType).remove();
   }
 
   if (!(apiType in preparePropsPerApiType)) {
@@ -142,7 +143,10 @@ function prepareClassOrExceptionProps(
     modifiers,
   };
 
-  const pageHeading = $dl.siblings("h1").text();
+  let pageHeading = $dl.siblings("h1").text();
+  // Manually created class pages like Qiskit 1.1+'s `QuantumCircuit`
+  // sometimes have ' class' in their h1.
+  pageHeading = removeSuffix(pageHeading, " class");
   if (id.endsWith(pageHeading) && pageHeading != "") {
     // Page is already dedicated to the class
     return {

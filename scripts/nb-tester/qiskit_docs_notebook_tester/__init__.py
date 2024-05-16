@@ -27,11 +27,18 @@ from typing import Iterator
 import nbclient
 import nbformat
 import tomli
-from jupyter_client.manager import start_new_async_kernel
+from jupyter_client.manager import start_new_async_kernel, AsyncKernelClient
 from qiskit_ibm_runtime import QiskitRuntimeService
 from squeaky import clean_notebook
 
-# If not submitting jobs, we mock the real backend by prepending this to each notebook
+# We always run the following code in the kernel before running the notebook
+PRE_EXECUTE_CODE = """\
+import matplotlib
+# See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
+matplotlib.set_loglevel("critical")
+"""
+
+# If not submitting jobs, we also run this code before notebook execution to mock the real backend
 MOCKING_CODE = """\
 import warnings
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -219,6 +226,12 @@ async def execute_notebook(path: Path, config: Config) -> bool:
     print(f"✅ No problems in {path} (written)")
     return True
 
+async def _execute_in_kernel(kernel: AsyncKernelClient, code: str) -> None:
+    """Execute code in kernel and raise if it fails"""
+    response = await kernel.execute_interactive(code, store_history=False)
+    if response.get("content", {}).get("status", "") == "error":
+        raise Exception("Error running initialization code")
+
 async def _execute_notebook(filepath: Path, config: Config) -> nbformat.NotebookNode:
     """
     Use nbclient to execute notebook. The steps are:
@@ -235,8 +248,9 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
         extra_arguments=["--InlineBackend.figure_format='svg'"],
     )
 
+    await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
     if config.should_patch(filepath):
-        kernel.execute(MOCKING_CODE, store_history=False)
+        await _execute_in_kernel(kernel, MOCKING_CODE)
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,

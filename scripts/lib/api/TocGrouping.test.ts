@@ -10,9 +10,9 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
+import { readFile, readdir } from "fs/promises";
 
-import { expect, test } from "@jest/globals";
+import { expect, describe, test } from "@jest/globals";
 
 import { QISKIT_TOC_GROUPING } from "./TocGrouping";
 import type { TocEntry } from "./generateToc";
@@ -82,16 +82,27 @@ async function getIndexModuleGroups(fp: string): Promise<ModuleGroup[]> {
   const result: ModuleGroup[] = [];
   let currentGroup: ModuleGroup = [];
   for (const line of rawIndex.split("\n")) {
-    if (line.startsWith("* ")) {
-      if (line.includes("qiskit.")) {
-        const module = extractModuleName(line);
-        currentGroup.push(module);
+    // Each ModuleGroup represents an unordered list of entries starting with `*`.
+    // So, when we stop encountering `*`, we need to start a new ModuleGroup.
+    if (!line.startsWith("* ")) {
+      if (currentGroup.length) {
+        result.push(currentGroup);
+        currentGroup = [];
       }
       continue;
-    } else if (currentGroup.length) {
-      result.push(currentGroup);
-      currentGroup = [];
     }
+
+    // Certain classes like QuantumCircuit in Qiskit 1.1+ have manually
+    // created pages. Those pages show up in index.mdx as top-level entries,
+    // but they are not top-level entries in the left ToC. This is expected.
+    // So, we allow the index to diverge from the left ToC.
+    //
+    // This is looking for e.g. '[`QuantumCircuit` class](qiskit.circuit.QuantumCircuit)'
+    const isDedicatedClassPage = line.includes(" class](");
+    if (isDedicatedClassPage) continue;
+
+    const module = extractModuleName(line);
+    currentGroup.push(module);
   }
   return result;
 }
@@ -121,13 +132,38 @@ async function getTocModuleGroups(fp: string): Promise<ModuleGroup[]> {
   return result;
 }
 
-test("Qiskit ToC mirrors index page sections", async () => {
-  validateTopLevelModuleAssumptions();
+async function checkFolder(dirName: string): Promise<void> {
   const indexModuleGroups = await getIndexModuleGroups(
-    "docs/api/qiskit/dev/index.mdx",
+    `docs/api/qiskit${dirName}/index.mdx`,
   );
   const tocModuleGroups = await getTocModuleGroups(
-    "docs/api/qiskit/dev/_toc.json",
+    `docs/api/qiskit${dirName}/_toc.json`,
   );
   expect(indexModuleGroups).toEqual(tocModuleGroups);
+}
+
+describe("Qiskit ToC mirrors index page sections", () => {
+  test("validate assumptions", () => {
+    validateTopLevelModuleAssumptions();
+  });
+
+  test("dev", async () => {
+    await checkFolder("/dev");
+  });
+
+  test.failing("latest", async () => {
+    await checkFolder("");
+  });
+
+  test("historical releases (1.1+)", async () => {
+    const folders = (
+      await readdir("docs/api/qiskit", { withFileTypes: true })
+    ).filter(
+      (file) =>
+        file.isDirectory() && file.name.match(/[0-9].*/) && +file.name >= 1.1,
+    );
+    for (const folder of folders) {
+      await checkFolder(`/${folder.name}`);
+    }
+  });
 });
