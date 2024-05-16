@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 
 # PiecewisePolynomialPauliRotations
 
-<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L27-L317" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')" modifiers="class">
+<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L27-L317" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')" modifiers="class">
   Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
   Piecewise-polynomially-controlled Pauli rotations.
@@ -84,7 +84,7 @@ $$
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### basis
@@ -122,7 +122,7 @@ $$
   ### clbits
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### coeffs
@@ -152,12 +152,12 @@ $$
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.instances" attributeValue="206" />
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.instances" attributeValue="256" />
 
   ### layout
 
@@ -182,9 +182,9 @@ $$
   ### metadata
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancilla\_qubits
@@ -203,10 +203,34 @@ $$
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_input_vars "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_clbits
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_captured_vars "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
@@ -227,6 +251,14 @@ $$
     **Returns**
 
     The number of state qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
@@ -256,20 +288,44 @@ $$
   ### qregs
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit "qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit">
+    The unit that [`duration`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration "qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration") is specified in.
   </Attribute>
 
   ## Methods
 
   ### evaluate
 
-  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L210-L224" signature="evaluate(x)">
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L210-L224" signature="evaluate(x)">
     Classically evaluate the piecewise polynomial rotation.
 
     **Parameters**

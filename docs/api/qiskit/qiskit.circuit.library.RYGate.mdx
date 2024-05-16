@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RYGate
 
 # RYGate
 
-<Class id="qiskit.circuit.library.RYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py#L25-L136" signature="qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.library.RYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L25-L137" signature="qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Single-qubit rotation about the Y axis.
@@ -125,7 +125,7 @@ $$
   ### params
 
   <Attribute id="qiskit.circuit.library.RYGate.params">
-    return instruction params.
+    The parameters of this `Instruction`. Ideally these will be gate angles.
   </Attribute>
 
   ### unit
@@ -138,7 +138,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.RYGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py#L74-L104" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.RYGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L74-L104" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
     Return a (multi-)controlled-RY gate.
 
     **Parameters**
@@ -159,7 +159,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py#L106-L120" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L106-L120" signature="inverse(annotated=False)">
     Return inverse RY gate.
 
     $RY(\lambda)^{\dagger} = RY(-\lambda)$
@@ -179,8 +179,23 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.RYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ry.py#L128-L131" signature="power(exponent)">
-    Raise gate to a power.
+  <Function id="qiskit.circuit.library.RYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L130-L132" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 </Class>
 
