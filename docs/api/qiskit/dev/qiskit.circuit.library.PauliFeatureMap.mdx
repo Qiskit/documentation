@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 # PauliFeatureMap
 
-<Class id="qiskit.circuit.library.PauliFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L26-L282" signature="qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')" modifiers="class">
+<Class id="qiskit.circuit.library.PauliFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L26-L282" signature="qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')" modifiers="class">
   Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
   The Pauli Expansion circuit.
@@ -124,7 +124,7 @@ $$
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.PauliFeatureMap.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -138,7 +138,7 @@ $$
   ### clbits
 
   <Attribute id="qiskit.circuit.library.PauliFeatureMap.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
@@ -178,7 +178,7 @@ $$
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.PauliFeatureMap.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### initial\_state
@@ -218,9 +218,9 @@ $$
   ### metadata
 
   <Attribute id="qiskit.circuit.library.PauliFeatureMap.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -380,13 +380,13 @@ $$
   ### qregs
 
   <Attribute id="qiskit.circuit.library.PauliFeatureMap.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
   <Attribute id="qiskit.circuit.library.PauliFeatureMap.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### reps
@@ -409,17 +409,41 @@ $$
     The blocks in the rotation layers.
   </Attribute>
 
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PauliFeatureMap.unit "qiskit.circuit.library.PauliFeatureMap.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PauliFeatureMap.unit">
+    The unit that [`duration`](#qiskit.circuit.library.PauliFeatureMap.duration "qiskit.circuit.library.PauliFeatureMap.duration") is specified in.
+  </Attribute>
+
   ## Methods
 
   ### pauli\_block
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_block" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L241-L245" signature="pauli_block(pauli_string)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_block" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L241-L245" signature="pauli_block(pauli_string)">
     Get the Pauli block for the feature map circuit.
   </Function>
 
   ### pauli\_evolution
 
-  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L247-L282" signature="pauli_evolution(pauli_string, time)">
+  <Function id="qiskit.circuit.library.PauliFeatureMap.pauli_evolution" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/pauli_feature_map.py#L247-L282" signature="pauli_evolution(pauli_string, time)">
     Get the evolution block for the given pauli string.
   </Function>
 </Class>

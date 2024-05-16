@@ -77,7 +77,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### QiskitBackendNotFoundError
 
-<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L30-L33" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
+<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/exceptions.py#L30-L33" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
   Base class for errors raised while looking for a backend.
 
   Set the error message.
@@ -85,7 +85,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### BackendPropertyError
 
-<Class id="qiskit.providers.BackendPropertyError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L36-L39" signature="qiskit.providers.BackendPropertyError(*message)" modifiers="exception">
+<Class id="qiskit.providers.BackendPropertyError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/exceptions.py#L36-L39" signature="qiskit.providers.BackendPropertyError(*message)" modifiers="exception">
   Base class for errors raised while looking for a backend property.
 
   Set the error message.
@@ -93,7 +93,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### JobError
 
-<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L18-L21" signature="qiskit.providers.JobError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/exceptions.py#L18-L21" signature="qiskit.providers.JobError(*message)" modifiers="exception">
   Base class for errors raised by Jobs.
 
   Set the error message.
@@ -101,7 +101,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### JobTimeoutError
 
-<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L24-L27" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/exceptions.py#L24-L27" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
   Base class for timeout errors raised by jobs.
 
   Set the error message.
@@ -109,7 +109,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### BackendConfigurationError
 
-<Class id="qiskit.providers.BackendConfigurationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L42-L45" signature="qiskit.providers.BackendConfigurationError(*message)" modifiers="exception">
+<Class id="qiskit.providers.BackendConfigurationError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/exceptions.py#L42-L45" signature="qiskit.providers.BackendConfigurationError(*message)" modifiers="exception">
   Base class for errors raised by the BackendConfiguration.
 
   Set the error message.
@@ -332,7 +332,35 @@ This snippet of a backend implementation will now have the [`transpile()`](compi
 
 This way if these two compilation steps are **required** for running or providing efficient output on `Mybackend` the transpiler will be able to perform these custom steps without any manual user input.
 
+<span id="providers-guide-real-time-variables" />
+
+#### Real-time variables
+
+The transpiler will automatically handle real-time typed classical variables (see [`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical")) and treat the [`Store`](circuit#qiskit.circuit.Store "qiskit.circuit.Store") instruction as a built-in “directive”, similar to [`Barrier`](circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier"). No special handling from backends is necessary to permit this.
+
+If your backend is *unable* to handle classical variables and storage, we recommend that you comment on this in your documentation, and insert a check into your [`run()`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method (see [Backend.run Method](#providers-guide-backend-run)) to eagerly reject circuits containing them. You can examine [`QuantumCircuit.num_vars`](qiskit.circuit.QuantumCircuit#num_vars "qiskit.circuit.QuantumCircuit.num_vars") for the presence of variables at the top level. If you accept [control-flow operations](circuit#circuit-control-flow-repr), you might need to recursively search the internal [`blocks`](qiskit.circuit.ControlFlowOp#blocks "qiskit.circuit.ControlFlowOp.blocks") of each for scope-local variables with [`QuantumCircuit.num_declared_vars`](qiskit.circuit.QuantumCircuit#num_declared_vars "qiskit.circuit.QuantumCircuit.num_declared_vars").
+
+For example, a function to check for the presence of any manual storage locations, or manual stores to memory:
+
+```python
+from qiskit.circuit import Store, ControlFlowOp, QuantumCircuit
+
+def has_realtime_logic(circuit: QuantumCircuit) -> bool:
+    if circuit.num_vars:
+        return True
+    for instruction in circuit.data:
+        if isinstance(instruction.operation, Store):
+            return True
+        elif isinstance(instruction.operation, ControlFlowOp):
+            for block in instruction.operation.blocks:
+                if has_realtime_logic(block):
+                    return True
+    return False
+```
+
 <span id="backend-run-method" />
+
+<span id="providers-guide-backend-run" />
 
 ### Backend.run Method
 

@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
 # QuantumVolume
 
-<Class id="qiskit.circuit.library.QuantumVolume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/quantum_volume.py#L22-L115" signature="qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True, *, flatten=False)" modifiers="class">
+<Class id="qiskit.circuit.library.QuantumVolume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/quantum_volume.py#L22-L115" signature="qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True, *, flatten=False)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   A quantum volume model circuit.
@@ -35,7 +35,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of active qubits in model circuit.
   *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – layers of SU(4) operations in model circuit.
-  *   **seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Random number generator or generator seed.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)") *| None*) – Random number generator or generator seed.
   *   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use classical permutations at every layer, rather than quantum.
   *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False` (the default), construct a circuit that contains a single instruction, which in turn has the actual volume structure. If `True`, construct the volume structure directly.
 
@@ -44,7 +44,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -58,13 +58,13 @@ python_api_name: qiskit.circuit.library.QuantumVolume
   ### clbits
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.data">
-    Return the circuit data (instructions and context).
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -78,7 +78,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
@@ -98,9 +98,9 @@ python_api_name: qiskit.circuit.library.QuantumVolume
   ### metadata
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -240,7 +240,37 @@ python_api_name: qiskit.circuit.library.QuantumVolume
   ### qubits
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QuantumVolume.unit "qiskit.circuit.library.QuantumVolume.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.unit">
+    The unit that [`duration`](#qiskit.circuit.library.QuantumVolume.duration "qiskit.circuit.library.QuantumVolume.duration") is specified in.
   </Attribute>
 </Class>
 

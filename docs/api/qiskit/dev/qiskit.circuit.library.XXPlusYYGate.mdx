@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.XXPlusYYGate
 
 # XXPlusYYGate
 
-<Class id="qiskit.circuit.library.XXPlusYYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/xx_plus_yy.py#L26-L198" signature="qiskit.circuit.library.XXPlusYYGate(theta, beta=0, label='(XX+YY)', *, duration=None, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.library.XXPlusYYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_plus_yy.py#L26-L200" signature="qiskit.circuit.library.XXPlusYYGate(theta, beta=0, label='(XX+YY)', *, duration=None, unit='dt')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   XX+YY interaction gate.
@@ -50,7 +50,6 @@ $$
     q_1: ┤0              ├
          └───────────────┘
     ```
-  </Admonition>
 
 $$
 \newcommand{\rotationangle}{\frac{\theta}{2}}
@@ -59,11 +58,14 @@ R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
 RZ_1(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_1(\beta) =
 \begin{pmatrix}
 1 & 0 & 0 & 0  \\
-0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right)e^{i\beta} & 0 \\
-0 & -i\sin\left(\rotationangle\right)e^{-i\beta} & \cos\left(\rotationangle\right) & 0 \\
+0 & \cos\left(\rotationangle\right) &
+-i\sin\left(\rotationangle\right)e^{i\beta} & 0 \\
+0 & -i\sin\left(\rotationangle\right)e^{-i\beta} &
+\cos\left(\rotationangle\right) & 0 \\
 0 & 0 & 0 & 1
 \end{pmatrix}
 $$
+  </Admonition>
 
   Create new XX+YY gate.
 
@@ -174,7 +176,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.XXPlusYYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/xx_plus_yy.py#L158-L171" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.XXPlusYYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_plus_yy.py#L160-L173" signature="inverse(annotated=False)">
     Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
 
     **Parameters**
@@ -192,7 +194,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.XXPlusYYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/xx_plus_yy.py#L191-L193" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.XXPlusYYGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_plus_yy.py#L193-L195" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.

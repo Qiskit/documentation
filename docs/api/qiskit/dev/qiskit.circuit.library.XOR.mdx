@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.XOR
 
 # XOR
 
-<Class id="qiskit.circuit.library.XOR" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/boolean_logic/quantum_xor.py#L23-L71" signature="qiskit.circuit.library.XOR(num_qubits, amount=None, seed=None)" modifiers="class">
+<Class id="qiskit.circuit.library.XOR" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/boolean_logic/quantum_xor.py#L23-L71" signature="qiskit.circuit.library.XOR(num_qubits, amount=None, seed=None)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`.
@@ -38,7 +38,7 @@ python_api_name: qiskit.circuit.library.XOR
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.XOR.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -52,13 +52,13 @@ python_api_name: qiskit.circuit.library.XOR
   ### clbits
 
   <Attribute id="qiskit.circuit.library.XOR.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
   <Attribute id="qiskit.circuit.library.XOR.data">
-    Return the circuit data (instructions and context).
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -72,7 +72,7 @@ python_api_name: qiskit.circuit.library.XOR
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.XOR.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
@@ -92,9 +92,9 @@ python_api_name: qiskit.circuit.library.XOR
   ### metadata
 
   <Attribute id="qiskit.circuit.library.XOR.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -234,7 +234,37 @@ python_api_name: qiskit.circuit.library.XOR
   ### qubits
 
   <Attribute id="qiskit.circuit.library.XOR.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.XOR.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.XOR.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.XOR.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.XOR.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.XOR.unit "qiskit.circuit.library.XOR.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.XOR.unit">
+    The unit that [`duration`](#qiskit.circuit.library.XOR.duration "qiskit.circuit.library.XOR.duration") is specified in.
   </Attribute>
 </Class>
 
