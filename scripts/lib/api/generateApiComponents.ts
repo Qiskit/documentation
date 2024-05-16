@@ -118,7 +118,7 @@ function prepareProps(
   // Remove the attributes and properties modifiers as we don't show their signatures,
   // but we still use them to create their headers
   if (apiType == "attribute" || apiType == "property") {
-    findByText($, $main, "em.property", apiType).remove();
+    findByText($, $child, "em.property", apiType).remove();
   }
 
   if (!(apiType in preparePropsPerApiType)) {
