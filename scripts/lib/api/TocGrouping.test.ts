@@ -151,7 +151,7 @@ describe("Qiskit ToC mirrors index page sections", () => {
     await checkFolder("/dev");
   });
 
-  test.failing("latest", async () => {
+  test("latest", async () => {
     await checkFolder("");
   });
 
