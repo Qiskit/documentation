@@ -30,11 +30,17 @@ jobs:
         shell: python
         run: |
           raise SystemExit(
-            "We can't run this test on pull requests form forks.\n"
-            "When this pull request is ready to merge, merge it to a new branch in Qiskit/documentation,"
-            "then make a pull request from that branch to main to test the notebook works.\n\n"
-            "You can change the branch a pull request merges to by clicking 'edit' on the page,"
-            "then changing the 'base'."
+            "We can't run this test on pull requests form forks."
+            "\n\n"
+            "If you have write access to Qiskit/documentation, push to a new "
+            "branch there and make your pull request from that branch instead."
+            "\n\n"
+            "If you don't have write access, you must test out the notebook "
+            "locally using the instructions in "
+            "https://github.com/Qiskit/documentation#execute-notebooks."
+            "When this PR is approved, a maintainer will merge it to a new "
+            "branch in Qiskit/documentation, then make a PR from that branch "
+            "into main so it can pass CI."
           )
 
       - name: Get all changed files
