@@ -437,7 +437,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 ## How to deploy docs
 
-### Docs (content that lives on IBM Quantum Platform)
+### Docs (content that lives on docs.quantum.ibm.com)
 
 See [https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo](https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo).
 
