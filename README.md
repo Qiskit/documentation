@@ -429,6 +429,17 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 [diff "objects_inv"]
   textconv = sh -c 'sphobjinv convert plain "$0" -'
 ```
+## How to deploy docs
+
+### Docs (content that lives on IBM Quantum Platform)
+
+See [https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo](https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo). 
+
+### Tutorials (content that lives on the Learning Platform
+
+If you need to deploy a file from the `/tutorials/` directory to the Learning Platform, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
+
+If you are deploying a file from the learning-enablement-sme repo to the Learning Platform, see the instructions in that repo's [tutorials directory README](https://github.ibm.com/IBM-Q-Software/ibm-quantum-learning-enablement/blob/main/tutorials/README.md).
 
 # How to write the documentation
 
@@ -438,7 +449,6 @@ We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensio
 
 Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on Markdown. The below guide focuses on the other features you can use when writing docs.
 
-If you need to deploy a file from the `/tutorials/` directory to the Learning Platform, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
 
 ## How to add a new page
 
