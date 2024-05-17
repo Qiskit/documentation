@@ -438,7 +438,7 @@ We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensio
 
 Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on Markdown. The below guide focuses on the other features you can use when writing docs.
 
-If you need to deploy a tutorial on the Learning Platform, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
+If you need to deploy a file from the `/tutorials/` directory to the Learning Platform, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
 
 ## How to add a new page
 
