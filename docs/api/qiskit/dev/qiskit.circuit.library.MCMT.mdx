@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.MCMT
 
 # MCMT
 
-<Class id="qiskit.circuit.library.MCMT" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/mcmt.py#L27-L155" signature="qiskit.circuit.library.MCMT(gate, num_ctrl_qubits, num_target_qubits)" modifiers="class">
+<Class id="qiskit.circuit.library.MCMT" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/mcmt.py#L27-L155" signature="qiskit.circuit.library.MCMT(gate, num_ctrl_qubits, num_target_qubits)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.
@@ -48,7 +48,7 @@ python_api_name: qiskit.circuit.library.MCMT
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.MCMT.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -62,13 +62,13 @@ python_api_name: qiskit.circuit.library.MCMT
   ### clbits
 
   <Attribute id="qiskit.circuit.library.MCMT.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
   <Attribute id="qiskit.circuit.library.MCMT.data">
-    Return the circuit data (instructions and context).
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -82,7 +82,7 @@ python_api_name: qiskit.circuit.library.MCMT
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.MCMT.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
@@ -102,9 +102,9 @@ python_api_name: qiskit.circuit.library.MCMT
   ### metadata
 
   <Attribute id="qiskit.circuit.library.MCMT.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancilla\_qubits
@@ -250,20 +250,50 @@ python_api_name: qiskit.circuit.library.MCMT
   ### qubits
 
   <Attribute id="qiskit.circuit.library.MCMT.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.MCMT.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.MCMT.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.MCMT.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.MCMT.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.MCMT.unit "qiskit.circuit.library.MCMT.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.MCMT.unit">
+    The unit that [`duration`](#qiskit.circuit.library.MCMT.duration "qiskit.circuit.library.MCMT.duration") is specified in.
   </Attribute>
 
   ## Methods
 
   ### control
 
-  <Function id="qiskit.circuit.library.MCMT.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/mcmt.py#L145-L151" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.MCMT.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/mcmt.py#L145-L151" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
     Return the controlled version of the MCMT circuit.
   </Function>
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.MCMT.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/mcmt.py#L153-L155" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.MCMT.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/mcmt.py#L153-L155" signature="inverse(annotated=False)">
     Return the inverse MCMT circuit, which is itself.
   </Function>
 </Class>

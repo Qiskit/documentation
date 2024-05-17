@@ -75,6 +75,11 @@ const _QPY_IGNORES = [
   "#id8",
 ];
 
+const _CIRCUIT_MODULE_IGNORES = [
+  "#qiskit.circuit.SessionEquivalenceLibrary",
+  "#qiskit.circuit.StandardEquivalenceLibrary",
+];
+
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
   [
     "",
@@ -101,18 +106,20 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   // Qiskit
   "docs/api/qiskit/release-notes/1.0.mdx": [
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
+    "/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
   ],
   "docs/api/qiskit/qpy.mdx": _QPY_IGNORES,
   "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
-  "docs/api/qiskit/dev/circuit.mdx": [
-    "#qiskit.circuit.SessionEquivalenceLibrary",
-    "#qiskit.circuit.StandardEquivalenceLibrary",
-  ],
+  "docs/api/qiskit/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
+  "docs/api/qiskit/dev/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
   // Runtime
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
+  ],
+  // Provider
+  "docs/api/qiskit-ibm-provider/release-notes.mdx": [
+    "/api/qiskit/qiskit.circuit.Delay",
   ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,
@@ -163,6 +170,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
+    "/api/qiskit/circuit#qiskit.circuit.SessionEquivalenceLibrary",
+    "/api/qiskit/circuit#qiskit.circuit.StandardEquivalenceLibrary",
   ],
   "public/api/qiskit/dev/objects.inv": [
     "/api/qiskit/dev/circuit#qiskit.circuit.CASE_DEFAULT",

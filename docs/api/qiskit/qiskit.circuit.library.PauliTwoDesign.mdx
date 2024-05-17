@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
 
 # PauliTwoDesign
 
-<Class id="qiskit.circuit.library.PauliTwoDesign" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/pauli_two_design.py#L24-L141" signature="qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')" modifiers="class">
+<Class id="qiskit.circuit.library.PauliTwoDesign" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/pauli_two_design.py#L24-L141" signature="qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')" modifiers="class">
   Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
   The Pauli Two-Design ansatz.
@@ -63,7 +63,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.PauliTwoDesign.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -77,7 +77,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
   ### clbits
 
   <Attribute id="qiskit.circuit.library.PauliTwoDesign.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
@@ -113,7 +113,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.PauliTwoDesign.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### initial\_state
@@ -138,7 +138,7 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PauliTwoDesign.instances" attributeValue="207" />
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.instances" attributeValue="189" />
 
   ### layout
 
@@ -153,9 +153,9 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
   ### metadata
 
   <Attribute id="qiskit.circuit.library.PauliTwoDesign.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -164,10 +164,34 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.PauliTwoDesign.num_input_vars "qiskit.circuit.library.PauliTwoDesign.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_clbits
 
   <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.PauliTwoDesign.num_captured_vars "qiskit.circuit.library.PauliTwoDesign.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_layers
@@ -202,6 +226,14 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
     **Returns**
 
     The number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
@@ -277,13 +309,13 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
   ### qregs
 
   <Attribute id="qiskit.circuit.library.PauliTwoDesign.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
   <Attribute id="qiskit.circuit.library.PauliTwoDesign.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### reps
@@ -304,6 +336,30 @@ python_api_name: qiskit.circuit.library.PauliTwoDesign
     **Returns**
 
     The blocks in the rotation layers.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PauliTwoDesign.unit "qiskit.circuit.library.PauliTwoDesign.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.unit">
+    The unit that [`duration`](#qiskit.circuit.library.PauliTwoDesign.duration "qiskit.circuit.library.PauliTwoDesign.duration") is specified in.
   </Attribute>
 </Class>
 
