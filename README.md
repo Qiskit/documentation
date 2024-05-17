@@ -441,7 +441,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 See [https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo](https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo).
 
-### Tutorials (content that lives on the Learning Platform
+### Tutorials (content that lives on the learning.quantum.ibm.com)
 
 If you need to deploy a file from the `/tutorials/` directory to the Learning Platform, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
 
