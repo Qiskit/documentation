@@ -1,6 +1,6 @@
 # Qiskit docs
 
-The documentation content home for [https://docs.quantum.ibm.com](https://docs.quantum.ibm.com) (excluding API reference).
+The documentation content home for <https://docs.quantum.ibm.com> (excluding API reference).
 
 # Improving IBM Quantum & Qiskit Documentation
 
