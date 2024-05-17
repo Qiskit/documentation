@@ -691,10 +691,10 @@ If the subclass is using the singleton machinery, beware that [`_define()`](#qis
 
 Subclasses of [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") will also likely wish to override [the Numpy array-protocol instance method](https://numpy.org/devdocs/user/basics.interoperability.html#the-array-method), `__array__`. This is used by [`Gate.to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix"), and has the signature:
 
-#### array\_\_
+#### \_\_array\_\_
 
-<Function id="array__" signature="__array__(dtype=None, copy=None)">
-  Return a Numpy array representing the gate. This can use the gate’s `params` field, and may assume that these are numeric values (assuming the subclass expects that) and not [compile-time parameters](#circuit-compile-time-parameters).
+<Function id="object.__array__" signature="object.__array__(dtype=None, copy=None)">
+  Return a Numpy array representing the gate. This can use the gate’s [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") field, and may assume that these are numeric values (assuming the subclass expects that) and not [compile-time parameters](#circuit-compile-time-parameters).
 
   For greatest efficiency, the returned array should default to a dtype of [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)").
 </Function>
