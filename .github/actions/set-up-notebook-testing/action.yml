@@ -17,7 +17,7 @@ inputs:
     description: Whether to install extra dependencies
     default: "false"
   ibm-quantum-token:
-    required: true
+    default: ""
   instance:
     # We usually only want the same access as an open user, but occasionally we
     # need higher priority to test notebooks that submit jobs in reasonable
@@ -42,6 +42,7 @@ runs:
         key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
     - name: Save IBM Quantum account
+      if: ${{ inputs.ibm-quantum-token != '' }}
       shell: python
       run: |
         from qiskit_ibm_runtime import QiskitRuntimeService
