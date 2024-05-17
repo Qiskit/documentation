@@ -1,0 +1,309 @@
+---
+title: PauliTwoDesign
+description: API reference for qiskit.circuit.library.PauliTwoDesign
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PauliTwoDesign
+---
+
+# PauliTwoDesign
+
+<Class id="qiskit.circuit.library.PauliTwoDesign" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/pauli_two_design.py#L24-L141" signature="qiskit.circuit.library.PauliTwoDesign(num_qubits=None, reps=3, seed=None, insert_barriers=False, name='PauliTwoDesign')" modifiers="class">
+  Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+
+  The Pauli Two-Design ansatz.
+
+  This class implements a particular form of a 2-design circuit \[1], which is frequently studied in quantum machine learning literature, such as e.g. the investigating of Barren plateaus in variational algorithms \[2].
+
+  The circuit consists of alternating rotation and entanglement layers with an initial layer of $\sqrt{H} = RY(\pi/4)$ gates. The rotation layers contain single qubit Pauli rotations, where the axis is chosen uniformly at random to be X, Y or Z. The entanglement layers is compromised of pairwise CZ gates with a total depth of 2.
+
+  For instance, the circuit could look like this (but note that choosing a different seed yields different Pauli rotations).
+
+  ```python
+       ┌─────────┐┌──────────┐       ░ ┌──────────┐       ░  ┌──────────┐
+  q_0: ┤ RY(π/4) ├┤ RZ(θ[0]) ├─■─────░─┤ RY(θ[4]) ├─■─────░──┤ RZ(θ[8]) ├
+       ├─────────┤├──────────┤ │     ░ ├──────────┤ │     ░  ├──────────┤
+  q_1: ┤ RY(π/4) ├┤ RZ(θ[1]) ├─■──■──░─┤ RY(θ[5]) ├─■──■──░──┤ RX(θ[9]) ├
+       ├─────────┤├──────────┤    │  ░ ├──────────┤    │  ░ ┌┴──────────┤
+  q_2: ┤ RY(π/4) ├┤ RX(θ[2]) ├─■──■──░─┤ RY(θ[6]) ├─■──■──░─┤ RX(θ[10]) ├
+       ├─────────┤├──────────┤ │     ░ ├──────────┤ │     ░ ├───────────┤
+  q_3: ┤ RY(π/4) ├┤ RZ(θ[3]) ├─■─────░─┤ RX(θ[7]) ├─■─────░─┤ RY(θ[11]) ├
+       └─────────┘└──────────┘       ░ └──────────┘       ░ └───────────┘
+  ```
+
+  **Examples**
+
+  ```python
+  from qiskit.circuit.library import PauliTwoDesign
+  circuit = PauliTwoDesign(4, reps=2, seed=5, insert_barriers=True)
+  circuit.draw('mpl')
+  ```
+
+  ![../\_images/qiskit-circuit-library-PauliTwoDesign-1.png](/images/api/qiskit/1.0/qiskit-circuit-library-PauliTwoDesign-1.png)
+
+  **References**
+
+  **\[1]: Nakata et al., Unitary 2-designs from random X- and Z-diagonal unitaries.**
+
+  [arXiv:1502.07514](https://arxiv.org/pdf/1502.07514.pdf)
+
+  **\[2]: McClean et al., Barren plateaus in quantum neural network training landscapes.**
+
+  [arXiv:1803.11173](https://arxiv.org/pdf/1803.11173.pdf)
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits of the Pauli Two-Design circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Specifies how often a block consisting of a rotation layer and entanglement layer is repeated.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The seed for randomly choosing the axes of the Pauli rotations.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.data" />
+
+  ### entanglement
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.entanglement">
+    Get the entanglement strategy.
+
+    **Returns**
+
+    The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+  </Attribute>
+
+  ### entanglement\_blocks
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.entanglement_blocks">
+    The blocks in the entanglement layers.
+
+    **Returns**
+
+    The blocks in the entanglement layers.
+  </Attribute>
+
+  ### flatten
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.flatten">
+    Returns whether the circuit is wrapped in nested gates/instructions or flattened.
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### initial\_state
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.initial_state">
+    Return the initial state that is added in front of the n-local circuit.
+
+    **Returns**
+
+    The initial state.
+  </Attribute>
+
+  ### insert\_barriers
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.insert_barriers">
+    If barriers are inserted in between the layers or not.
+
+    **Returns**
+
+    `True`, if barriers are inserted in between the layers, `False` if not.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.instances" attributeValue="207" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.metadata">
+    The user provided metadata associated with the circuit.
+
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_layers
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_layers">
+    Return the number of layers in the n-local circuit.
+
+    **Returns**
+
+    The number of layers in the circuit.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_parameters" />
+
+  ### num\_parameters\_settable
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_parameters_settable">
+    Return the number of settable parameters.
+
+    **Returns**
+
+    The number of possibly distinct parameters.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.num_qubits">
+    Returns the number of qubits in this circuit.
+
+    **Returns**
+
+    The number of qubits.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### ordered\_parameters
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.ordered_parameters">
+    The parameters used in the underlying circuit.
+
+    This includes float values and duplicates.
+
+    **Examples**
+
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
+
+    **Returns**
+
+    The parameters objects used in the circuit.
+  </Attribute>
+
+  ### parameter\_bounds
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.parameter_bounds">
+    The parameter bounds for the unbound parameters in the circuit.
+
+    **Returns**
+
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If `None` is returned, problem is fully unbounded.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.parameters" />
+
+  ### preferred\_init\_points
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
+
+    **Returns**
+
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.prefix" attributeValue="'circuit'" />
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+
+  ### reps
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.reps">
+    The number of times rotation and entanglement block are repeated.
+
+    **Returns**
+
+    The number of repetitions.
+  </Attribute>
+
+  ### rotation\_blocks
+
+  <Attribute id="qiskit.circuit.library.PauliTwoDesign.rotation_blocks">
+    The blocks in the rotation layers.
+
+    **Returns**
+
+    The blocks in the rotation layers.
+  </Attribute>
+</Class>
+

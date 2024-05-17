@@ -117,9 +117,12 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/start/install.mdx",
   "docs/start/configure-qiskit-local.mdx",
   "docs/api/qiskit/release-notes/0.44.mdx",
+  "docs/api/qiskit/release-notes/0.45.mdx",
+  "docs/api/qiskit/release-notes/0.46.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/api/qiskit-ibm-provider/index.mdx",
   "docs/api/qiskit-ibm-provider/ibm_jupyter.mdx",
+  "docs/api/migration-guides/qiskit-1.0-features.mdx",
 ];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {

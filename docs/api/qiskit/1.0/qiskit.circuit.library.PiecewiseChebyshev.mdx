@@ -1,0 +1,221 @@
+---
+title: PiecewiseChebyshev
+description: API reference for qiskit.circuit.library.PiecewiseChebyshev
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PiecewiseChebyshev
+---
+
+# PiecewiseChebyshev
+
+<Class id="qiskit.circuit.library.PiecewiseChebyshev" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py#L27-L353" signature="qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')" modifiers="class">
+  Bases: `BlueprintCircuit`
+
+  Piecewise Chebyshev approximation to an input function.
+
+  For a given function $f(x)$ and degree $d$, this class implements a piecewise polynomial Chebyshev approximation on $n$ qubits to $f(x)$ on the given intervals. All the polynomials in the approximation are of degree $d$.
+
+  The values of the parameters are calculated according to \[1] and see \[2] for a more detailed explanation of the circuit construction and how it acts on the qubits.
+
+  **Examples**
+
+  ```python
+  import numpy as np
+  from qiskit import QuantumCircuit
+  from qiskit.circuit.library.arithmetic.piecewise_chebyshev import PiecewiseChebyshev
+  f_x, degree, breakpoints, num_state_qubits = lambda x: np.arcsin(1 / x), 2, [2, 4], 2
+  pw_approximation = PiecewiseChebyshev(f_x, degree, breakpoints, num_state_qubits)
+  pw_approximation._build()
+  qc = QuantumCircuit(pw_approximation.num_qubits)
+  qc.h(list(range(num_state_qubits)))
+  qc.append(pw_approximation.to_instruction(), qc.qubits)
+  qc.draw(output='mpl')
+  ```
+
+  ![../\_images/qiskit-circuit-library-PiecewiseChebyshev-1.png](/images/api/qiskit/1.0/qiskit-circuit-library-PiecewiseChebyshev-1.png)
+
+  **References**
+
+  **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
+
+  Optimizing Quantum Circuits for Arithmetic. [arXiv:1805.12445](http://arxiv.org/abs/1805.12445)
+
+  **\[2]: Carrera Vazquez, A., Hiptmair, H., & Woerner, S. (2022).**
+
+  Enhancing the Quantum Linear Systems Algorithm Using Richardson Extrapolation. [ACM Transactions on Quantum Computing 3, 1, Article 2](https://doi.org/10.1145/3490631)
+
+  **Parameters**
+
+  *   **f\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – the function to be approximated. Constant functions should be specified as f\_x = constant.
+  *   **degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – the degree of the polynomials. Defaults to `1`.
+  *   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – the breakpoints to define the piecewise-linear function. Defaults to the full interval.
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – number of qubits representing the state.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
+
+  ### breakpoints
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.breakpoints">
+    The breakpoints for the piecewise approximation.
+
+    **Returns**
+
+    The breakpoints for the piecewise approximation.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.data" />
+
+  ### degree
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.degree">
+    The degree of the polynomials.
+
+    **Returns**
+
+    The degree of the polynomials.
+  </Attribute>
+
+  ### f\_x
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.f_x">
+    The function to be approximated.
+
+    **Returns**
+
+    The function to be approximated.
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.instances" attributeValue="206" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.metadata">
+    The user provided metadata associated with the circuit.
+
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_parameters" />
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_qubits">
+    Return number of qubits.
+  </Attribute>
+
+  ### num\_state\_qubits
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_state_qubits">
+    The number of state qubits representing the state $|x\rangle$.
+
+    **Returns**
+
+    The number of state qubits.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.parameters" />
+
+  ### polynomials
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.polynomials">
+    The polynomials for the piecewise approximation.
+
+    **Returns**
+
+    The polynomials for the piecewise approximation.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input function is not in the correct format.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.prefix" attributeValue="'circuit'" />
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
+

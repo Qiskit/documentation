@@ -1,0 +1,57 @@
+---
+title: Drag
+description: API reference for qiskit.pulse.library.Drag
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.library.Drag
+---
+
+# Drag
+
+<Class id="qiskit.pulse.library.Drag" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py" signature="qiskit.pulse.library.Drag(duration, amp, sigma, beta, angle=0.0, name=None, limit_amplitude=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+
+  The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
+
+  It can be calibrated either to reduce the phase error due to virtual population of the $|2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
+
+$$
+\begin{aligned}
+g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
+g'(x) &= \text{A}\times\frac{g(x)-g(-1)}{1-g(-1)}\\
+f(x) &=  g'(x) \times \Bigl(1 + 1j \times \text{beta} \times            \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)  \Bigr),
+\quad 0 \le x < \text{duration}
+\end{aligned}
+$$
+
+  where $g(x)$ is a standard unlifted Gaussian waveform, $g'(x)$ is the lifted [`Gaussian`](qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian") waveform, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
+
+  **References**
+
+  1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
+
+  2.  [*F. Motzoi, J. M. Gambetta, P. Rebentrost, and F. K. Wilhelm Phys. Rev. Lett. 103, 110501 – Published 8 September 2009.*](https://link.aps.org/doi/10.1103/PhysRevLett.103.110501)
+
+  Create new pulse instance.
+
+  **Parameters**
+
+  *   **duration** – Pulse length in terms of the sampling period dt.
+  *   **amp** – The magnitude of the amplitude of the DRAG envelope.
+  *   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+  *   **beta** – The correction amplitude.
+  *   **angle** – The angle of the complex amplitude of the DRAG envelope. Default value 0.
+  *   **name** – Display name for this pulse envelope.
+  *   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+
+  **Returns**
+
+  ScalableSymbolicPulse instance.
+
+  ## Attributes
+
+  ### alias
+
+  <Attribute id="qiskit.pulse.library.Drag.alias" attributeValue="'Drag'" />
+</Class>
+

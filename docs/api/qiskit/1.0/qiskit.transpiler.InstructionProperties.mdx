@@ -1,0 +1,50 @@
+---
+title: InstructionProperties
+description: API reference for qiskit.transpiler.InstructionProperties
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.InstructionProperties
+---
+
+# InstructionProperties
+
+<Class id="qiskit.transpiler.InstructionProperties" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/transpiler/target.py#L58-L136" signature="qiskit.transpiler.InstructionProperties(duration=None, error=None, calibration=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+
+  A representation of the properties of a gate implementation.
+
+  This class provides the optional properties that a backend can provide about an instruction. These represent the set that the transpiler can currently work with if present. However, if your backend provides additional properties for instructions you should subclass this to add additional custom attributes for those custom/additional properties by the backend.
+
+  Create a new `InstructionProperties` object
+
+  **Parameters**
+
+  *   **duration** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The duration, in seconds, of the instruction on the specified set of qubits
+  *   **error** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The average error rate for the instruction on the specified set of qubits.
+  *   **calibration** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") *| CalibrationEntry | None*) – The pulse representation of the instruction.
+
+  ## Attributes
+
+  ### duration
+
+  <Attribute id="qiskit.transpiler.InstructionProperties.duration" />
+
+  ### error
+
+  <Attribute id="qiskit.transpiler.InstructionProperties.error" />
+
+  ### calibration
+
+  <Attribute id="qiskit.transpiler.InstructionProperties.calibration">
+    The pulse representation of the instruction.
+
+    <Admonition title="Note" type="note">
+      This attribute always returns a Qiskit pulse program, but it is internally wrapped by the `CalibrationEntry` to manage unbound parameters and to uniformly handle different data representation, for example, un-parsed Pulse Qobj JSON that a backend provider may provide.
+
+      This value can be overridden through the property setter in following manner. When you set either [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") this is always treated as a user-defined (custom) calibration and the transpiler may automatically attach the calibration data to the output circuit. This calibration data may appear in the wire format as an inline calibration, which may further update the backend standard instruction set architecture.
+
+      If you are a backend provider who provides a default calibration data that is not needed to be attached to the transpiled quantum circuit, you can directly set `CalibrationEntry` instance to this attribute, in which you should set `user_provided=False` when you define calibration data for the entry. End users can still intentionally utilize the calibration data, for example, to run pulse-level simulation of the circuit. However, such entry doesn’t appear in the wire format, and backend must use own definition to compile the circuit down to the execution format.
+    </Admonition>
+  </Attribute>
+</Class>
+

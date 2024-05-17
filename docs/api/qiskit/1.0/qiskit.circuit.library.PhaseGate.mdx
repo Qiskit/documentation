@@ -1,0 +1,208 @@
+---
+title: PhaseGate
+description: API reference for qiskit.circuit.library.PhaseGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PhaseGate
+---
+
+# PhaseGate
+
+<Class id="qiskit.circuit.library.PhaseGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/p.py#L24-L156" signature="qiskit.circuit.library.PhaseGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Single-qubit rotation about the Z axis.
+
+  This is a diagonal gate. It can be implemented virtually in hardware via framechanges (i.e. at zero error and duration).
+
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`p()`](qiskit.circuit.QuantumCircuit#p "qiskit.circuit.QuantumCircuit.p") method.
+
+  **Circuit symbol:**
+
+  ```python
+       ┌──────┐
+  q_0: ┤ P(λ) ├
+       └──────┘
+  ```
+
+  **Matrix Representation:**
+
+$$
+P(\lambda) =
+\begin{pmatrix}
+1 & 0 \\
+0 & e^{i\lambda}
+\end{pmatrix}
+$$
+
+  **Examples:**
+
+  > $$
+  > P(\lambda = \pi) = Z
+  > $$
+  >
+  > $$
+  > P(\lambda = \pi/2) = S
+  > $$
+  >
+  > $$
+  > P(\lambda = \pi/4) = T
+  > $$
+
+  <Admonition title="See also" type="note">
+    `RZGate`: This gate is equivalent to RZ up to a phase factor.
+
+    > $$
+    > P(\lambda) = e^{i{\lambda}/2} RZ(\lambda)
+    > $$
+
+    Reference for virtual Z gate implementation: [1612.00858](https://arxiv.org/abs/1612.00858)
+  </Admonition>
+
+  Create new Phase gate.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.PhaseGate.base_class "qiskit.circuit.library.PhaseGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.condition">
+    The classical condition on the instruction.
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.condition_bits">
+    Get Clbits in condition.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.duration">
+    Get the duration.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.params">
+    return instruction params.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PhaseGate.unit">
+    Get the time unit of duration.
+  </Attribute>
+
+  ## Methods
+
+  ### control
+
+  <Function id="qiskit.circuit.library.PhaseGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/p.py#L94-L127" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+    Return a (multi-)controlled-Phase gate.
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
+    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g. `'110'`), or `None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
+
+    **Returns**
+
+    controlled version of this gate.
+
+    **Return type**
+
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.PhaseGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/p.py#L129-L141" signature="inverse(annotated=False)">
+    Return inverted Phase gate ($Phase(\lambda)^{\dagger} = Phase(-\lambda)$)
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always another `PGate` with an inverse parameter value.
+
+    **Returns**
+
+    inverse gate.
+
+    **Return type**
+
+    PGate
+  </Function>
+
+  ### power
+
+  <Function id="qiskit.circuit.library.PhaseGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/p.py#L148-L151" signature="power(exponent)">
+    Raise gate to a power.
+  </Function>
+</Class>
+

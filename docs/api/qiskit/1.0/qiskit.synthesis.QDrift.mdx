@@ -1,0 +1,64 @@
+---
+title: QDrift
+description: API reference for qiskit.synthesis.QDrift
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.QDrift
+---
+
+# QDrift
+
+<Class id="qiskit.synthesis.QDrift" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/evolution/qdrift.py#L24-L102" signature="qiskit.synthesis.QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, seed=None)" modifiers="class">
+  Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
+
+  The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in Ref. \[1].
+
+  **References**
+
+  \[1]: E. Campbell, “A random compiler for fast Hamiltonian simulation” (2018). [arXiv:quant-ph/1811.08017](https://arxiv.org/abs/1811.08017)
+
+  **Parameters**
+
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the Trotterization circuit.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to insert barriers between the atomic evolutions.
+  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one.
+  *   **atomic\_evolution** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomposed in a CX chain and a single qubit Z rotation.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – An optional seed for reproducibility of the random sampling process.
+
+  ## Attributes
+
+  ### settings
+
+  <Attribute id="qiskit.synthesis.QDrift.settings">
+    Return the settings in a dictionary, which can be used to reconstruct the object.
+
+    **Returns**
+
+    A dictionary containing the settings of this product formula.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If a custom atomic evolution is set, which cannot be serialized.
+  </Attribute>
+
+  ## Methods
+
+  ### synthesize
+
+  <Function id="qiskit.synthesis.QDrift.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/evolution/qdrift.py#L60-L102" signature="synthesize(evolution)">
+    Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
+
+    **Parameters**
+
+    **evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
+
+    **Returns**
+
+    A circuit implementing the evolution.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
+

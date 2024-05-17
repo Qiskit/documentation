@@ -1,0 +1,41 @@
+---
+title: Constant
+description: API reference for qiskit.pulse.library.Constant
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.library.Constant
+---
+
+# Constant
+
+<Class id="qiskit.pulse.library.Constant" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/pulse/library/symbolic_pulses.py" signature="qiskit.pulse.library.Constant(duration, amp, angle=0.0, name=None, limit_amplitude=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+
+  A simple constant pulse, with an amplitude value and a duration:
+
+$$
+f(x) = \text{amp}\times\exp\left(i\text{angle}\right)    ,  0 <= x < duration
+f(x) = 0      ,  elsewhere
+$$
+
+  Create new pulse instance.
+
+  **Parameters**
+
+  *   **duration** – Pulse length in terms of the sampling period dt.
+  *   **amp** – The magnitude of the amplitude of the square envelope.
+  *   **angle** – The angle of the complex amplitude of the square envelope. Default value 0.
+  *   **name** – Display name for this pulse envelope.
+  *   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+
+  **Returns**
+
+  ScalableSymbolicPulse instance.
+
+  ## Attributes
+
+  ### alias
+
+  <Attribute id="qiskit.pulse.library.Constant.alias" attributeValue="'Constant'" />
+</Class>
+
