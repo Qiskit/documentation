@@ -385,7 +385,7 @@ In this case, no commit will be automatically created.
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
-2. Determine the full version, such as by looking at <https://github.com/Qiskit/qiskit/releases>
+2. Determine the full version, such as by looking at [https://github.com/Qiskit/qiskit/releases](https://github.com/Qiskit/qiskit/releases)
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
    2. Open up the "Details" for the relevant workflow.
@@ -441,7 +441,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 See [https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo](https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo).
 
-### Tutorials (content that lives on the learning.quantum.ibm.com)
+### Tutorials (content that lives on learning.quantum.ibm.com)
 
 If you need to deploy a file from the `/tutorials/` directory to the Learning Platform, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
 
