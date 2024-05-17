@@ -76,7 +76,7 @@ npm install
 You can preview the docs locally by following these two steps:
 
 1. Ensure Docker is running. For example, open Rancher Desktop.
-2. Run `./start` in your terminal, and open [http://localhost:3000](http://localhost:3000) in your browser.
+2. Run `./start` in your terminal, and open <http://localhost:3000> in your browser.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
@@ -87,7 +87,7 @@ Warning: `./start` does not check if there is a new version of the docs applicat
 API docs authors can preview their changes to one of the APIs by using the `-a` parameter to specify the path to the docs folder:
 
 1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
-2. Execute `./start` and open up[http://localhost:3000](http://localhost:3000), as explained in the prior section.
+2. Execute `./start` and open up <http://localhost:3000>, as explained in the prior section.
 
 ## Preview the docs in PRs
 
@@ -97,7 +97,7 @@ To use live previews, push your branch to `upstream` rather than your fork. GitH
 
 ## Staging
 
-We also re-deploy the docs every time we merge into `main` at the site [https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud](https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud).
+We also re-deploy the docs every time we merge into `main` at the site <https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud>.
 
 This staging environment can be useful to see how the docs are rendering before we push it live to production.
 
@@ -385,7 +385,7 @@ In this case, no commit will be automatically created.
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
-2. Determine the full version, such as by looking at [https://github.com/Qiskit/qiskit/releases](https://github.com/Qiskit/qiskit/releases)
+2. Determine the full version, such as by looking at <https://github.com/Qiskit/qiskit/releases>
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
    2. Open up the "Details" for the relevant workflow.
@@ -439,7 +439,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 ### Docs (content that lives on docs.quantum.ibm.com)
 
-See [https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo](https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo).
+See <https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo>.
 
 ### Tutorials (content that lives on learning.quantum.ibm.com)
 
