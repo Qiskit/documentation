@@ -1,6 +1,6 @@
 # Qiskit docs
 
-The documentation content home for https://docs.quantum.ibm.com (excluding API reference).
+The documentation content home for [https://docs.quantum.ibm.com](https://docs.quantum.ibm.com) (excluding API reference).
 
 # Improving IBM Quantum & Qiskit Documentation
 
@@ -76,7 +76,7 @@ npm install
 You can preview the docs locally by following these two steps:
 
 1. Ensure Docker is running. For example, open Rancher Desktop.
-2. Run `./start` in your terminal, and open http://localhost:3000 in your browser.
+2. Run `./start` in your terminal, and open `http://localhost:3000` in your browser.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
@@ -97,7 +97,7 @@ To use live previews, push your branch to `upstream` rather than your fork. GitH
 
 ## Staging
 
-We also re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
+We also re-deploy the docs every time we merge into `main` at the site `https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud`.
 
 This staging environment can be useful to see how the docs are rendering before we push it live to production.
 
@@ -122,14 +122,19 @@ you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils
 graphviz`.
 
 - To execute all notebooks, run tox.
+
   ```sh
   tox
   ```
+
 - To only execute specific notebooks, pass them as arguments.
+
   ```sh
   tox -- path/to/notebook.ipynb path/to/another-notbook.ipynb
   ```
+
 - To write the execution results to the file, pass the `--write` argument.
+
   ```sh
   tox -- optional/paths/to/notebooks.ipynb --write
   ```
@@ -380,7 +385,7 @@ In this case, no commit will be automatically created.
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
-2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
+2. Determine the full version, such as by looking at <https://github.com/Qiskit/qiskit/releases>
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
    2. Open up the "Details" for the relevant workflow.
@@ -391,7 +396,7 @@ This is useful when new docs content is published, usually corresponding to new 
    4. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
    5. Download the artifact by clicking on its name.
 4. Rename the downloaded zip file with its version number, e.g. `0.45.zip` for an artifact from `qiskit v0.45.2`.
-5. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622
+5. Upload the renamed zip file to <https://ibm.ent.box.com/folder/246867452622>
 6. Share the file by clicking the `Copy shared link` button
 7. Select `People with the link` and go to `Link Settings`.
 8. Under `Link Expiration` select `Disable Shared Link on` and set an expiration date of ~10 years into the future.
@@ -429,11 +434,12 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 [diff "objects_inv"]
   textconv = sh -c 'sphobjinv convert plain "$0" -'
 ```
+
 ## How to deploy docs
 
 ### Docs (content that lives on IBM Quantum Platform)
 
-See [https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo](https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo). 
+See [https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo](https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo).
 
 ### Tutorials (content that lives on the Learning Platform
 
@@ -448,7 +454,6 @@ Refer to our [style guide](./style-guide.md) for technical writing guidance.
 We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensions for custom components we have.
 
 Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on Markdown. The below guide focuses on the other features you can use when writing docs.
-
 
 ## How to add a new page
 
@@ -514,11 +519,11 @@ $$
 
 ## Tables
 
-Tables are supported: https://www.markdownguide.org/extended-syntax/.
+Tables are supported: <https://www.markdownguide.org/extended-syntax/>.
 
 ## Comments
 
-Example comment: {/_ Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html _/}
+Example comment: {/_Comes from <https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html>_/}
 
 ## Collapsible sections
 
@@ -697,6 +702,7 @@ Some companies require a special attribution notice. View a list of the companie
 - IBM&reg;
 - IBM Cloud&reg;
 - IBM Quantum&trade;
+
 </details>
 
 **Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
