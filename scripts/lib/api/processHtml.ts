@@ -58,6 +58,7 @@ export async function processHtml(options: {
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
   preserveMathBlockWhitespace($, $main);
+  maybeAddMembersListSection($, $main);
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta);
@@ -347,6 +348,17 @@ export function preserveMathBlockWhitespace(
       const $el = $(el);
       $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
+}
+
+export function maybeAddMembersListSection(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  const lastTable = $main.find("table").last();
+  const previousElement = lastTable.prev().text();
+  if (previousElement == "Attributes" || previousElement == "Methods") {
+    $(`<h2>Member implementations</h2>`).insertAfter(lastTable);
+  }
 }
 
 export function updateModuleHeadings(

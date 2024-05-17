@@ -74,6 +74,12 @@ export async function mergeClassMembers(
                 return;
               }
 
+              // Historical versions of qiskit have a section header for all the methods and attributes.
+              // This section needs to be removed when we inline members.
+              if (attributesAndProps.length > 0 || methods.length > 0) {
+                removeMembersListSection(mdxClassElement);
+              }
+
               for (const node of mdxClassElement.children) {
                 await replaceMembersAfterTitle(
                   mdxClassElement,
@@ -166,4 +172,18 @@ async function parseMarkdownIncreasingHeading(
   const root = pipeline.parse(md);
   const changedTree = pipeline.run(root);
   return changedTree;
+}
+
+function removeMembersListSection(root: MdxJsxFlowElement) {
+  const headers = root.children.find(
+    (node) =>
+      node.type == "heading" &&
+      node.children.find(
+        (child) =>
+          child.type == "text" && child.value == "Member implementations",
+      ),
+  );
+  if (headers) {
+    root.children.splice(root.children.indexOf(headers), 1);
+  }
 }
