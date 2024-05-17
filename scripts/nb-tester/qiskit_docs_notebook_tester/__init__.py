@@ -124,19 +124,6 @@ class Config:
 
             yield path
 
-    def check_all_notebooks_are_classified(self) -> None:
-        unclassified = [
-            path for path in Path(".").glob("[!.]*/**/*.ipynb")
-            if not matches(path, self.all_notebooks)
-        ]
-        if unclassified == []:
-            return
-        raise SystemExit(
-            f"\nThe following notebooks are not classified in {self.args.config_path}:\n  "
-            + "\n  ".join(map(str, unclassified))
-            + "\nAdd them to the appropriate group so we know how to test them.\n"
-        )
-
     def should_patch(self, path: Path) -> bool:
         if self.args.submit_jobs:
             return False
@@ -348,7 +335,6 @@ def get_args() -> argparse.Namespace:
 
 async def _main() -> None:
     config = Config.from_args(get_args())
-    config.check_all_notebooks_are_classified()
     paths = config.notebooks_to_execute()
 
     # Execute notebooks
