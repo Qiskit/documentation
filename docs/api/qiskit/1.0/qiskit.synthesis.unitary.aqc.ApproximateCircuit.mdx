@@ -1,0 +1,217 @@
+---
+title: ApproximateCircuit
+description: API reference for qiskit.synthesis.unitary.aqc.ApproximateCircuit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.unitary.aqc.ApproximateCircuit
+---
+
+# ApproximateCircuit
+
+<Class id="qiskit.synthesis.unitary.aqc.ApproximateCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/approximate.py#L21-L52" signature="qiskit.synthesis.unitary.aqc.ApproximateCircuit(num_qubits, name=None)" modifiers="class">
+  Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
+
+  A base class that represents an approximate circuit.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubit this circuit will span.
+  *   **name** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – a name of the circuit.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.data">
+    Return the circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.instances" attributeValue="158" />
+
+  ### layout
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.metadata">
+    The user provided metadata associated with the circuit.
+
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.num_qubits">
+    Return number of qubits.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.prefix" attributeValue="'circuit'" />
+
+  ### qubits
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+
+  ### thetas
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.thetas">
+    The property is not implemented and raises a `NotImplementedException` exception.
+
+    **Returns**
+
+    a vector of parameters of this circuit.
+  </Attribute>
+
+  ## Methods
+
+  ### build
+
+  <Function id="qiskit.synthesis.unitary.aqc.ApproximateCircuit.build" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/approximate.py#L43-L52" signature="build(thetas)" modifiers="abstract">
+    **Constructs this circuit out of the parameters(thetas). Parameter values must be set before**
+
+    constructing the circuit.
+
+    **Parameters**
+
+    **thetas** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a vector of parameters to be set in this circuit.
+  </Function>
+</Class>
+

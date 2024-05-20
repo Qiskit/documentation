@@ -110,14 +110,10 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
     globs.push("docs/api/*/_toc.json");
   }
   if (args.devApis) {
-    globs.push(
-      "docs/api/{qiskit,qiskit-ibm-runtime,qiskit-ibm-provider}/dev/_toc.json",
-    );
+    globs.push("docs/api/*/dev/_toc.json");
   }
   if (args.historicalApis) {
-    globs.push(
-      "docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/_toc.json",
-    );
+    globs.push("docs/api/*/[0-9]*/_toc.json");
   }
   return await globby(globs);
 }
@@ -175,6 +171,7 @@ function apiDocsIgnores(): string[] {
     "0.44/",
     "0.45/",
     "0.46/",
+    "1.0/",
   ];
 
   return [
@@ -192,9 +189,9 @@ function apiDocsIgnores(): string[] {
       `/api/qiskit/${vers}qiskit.utils.algorithm_globals`,
       `/api/qiskit/${vers}parallel`,
       `/api/qiskit/${vers}transpiler_builtin_plugins`,
+      `/api/qiskit/${vers}qiskit.primitives.BaseEstimator`,
+      `/api/qiskit/${vers}qiskit.primitives.BaseSampler`,
     ]),
-    `/api/qiskit/dev/qiskit.primitives.BaseEstimator`,
-    `/api/qiskit/dev/qiskit.primitives.BaseSampler`,
   ];
 }
 

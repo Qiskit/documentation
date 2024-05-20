@@ -1,0 +1,325 @@
+---
+title: QAOAAnsatz
+description: API reference for qiskit.circuit.library.QAOAAnsatz
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QAOAAnsatz
+---
+
+# QAOAAnsatz
+
+<Class id="qiskit.circuit.library.QAOAAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/qaoa_ansatz.py#L28-L289" signature="qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)" modifiers="class">
+  Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.n_local.evolved_operator_ansatz.EvolvedOperatorAnsatz")
+
+  A generalized QAOA quantum circuit with a support of custom initial states and mixers.
+
+  **References**
+
+  **\[1]: Farhi et al., A Quantum Approximate Optimization Algorithm.**
+
+  [arXiv:1411.4028](https://arxiv.org/pdf/1411.4028)
+
+  **Parameters**
+
+  *   **cost\_operator** (*BaseOperator or OperatorBase, optional*) – The operator representing the cost of the optimization problem, denoted as $U(C, \gamma)$ in the original paper. Must be set either in the constructor or via property setter.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The integer parameter p, which determines the depth of the circuit, as specified in the original paper, default is 1.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, optional*) – An optional initial state to use. If None is passed then a set of Hadamard gates is applied as an initial state to all qubits.
+  *   **mixer\_operator** (*BaseOperator or OperatorBase or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, optional*) – An optional custom mixer to use instead of the global X-rotations, denoted as $U(B, \beta)$ in the original paper. Can be an operator or an optionally parameterized quantum circuit.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A name of the circuit, default ‘qaoa’
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
+
+  ### cost\_operator
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.cost_operator">
+    Returns an operator representing the cost of the optimization problem.
+
+    **Returns**
+
+    cost operator.
+
+    **Return type**
+
+    BaseOperator or OperatorBase
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.data" />
+
+  ### entanglement
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.entanglement">
+    Get the entanglement strategy.
+
+    **Returns**
+
+    The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
+  </Attribute>
+
+  ### entanglement\_blocks
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.entanglement_blocks">
+    The blocks in the entanglement layers.
+
+    **Returns**
+
+    The blocks in the entanglement layers.
+  </Attribute>
+
+  ### evolution
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.evolution">
+    The evolution converter used to compute the evolution.
+
+    **Returns**
+
+    The evolution converter used to compute the evolution.
+
+    **Return type**
+
+    [EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
+  </Attribute>
+
+  ### flatten
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.flatten">
+    Returns whether the circuit is wrapped in nested gates/instructions or flattened.
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### initial\_state
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.initial_state">
+    Returns an optional initial state as a circuit
+  </Attribute>
+
+  ### insert\_barriers
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.insert_barriers">
+    If barriers are inserted in between the layers or not.
+
+    **Returns**
+
+    `True`, if barriers are inserted in between the layers, `False` if not.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.instances" attributeValue="266" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.metadata">
+    The user provided metadata associated with the circuit.
+
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
+
+  ### mixer\_operator
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.mixer_operator">
+    Returns an optional mixer operator expressed as an operator or a quantum circuit.
+
+    **Returns**
+
+    mixer operator or circuit.
+
+    **Return type**
+
+    BaseOperator or OperatorBase or [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), optional
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_layers
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_layers">
+    Return the number of layers in the n-local circuit.
+
+    **Returns**
+
+    The number of layers in the circuit.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_parameters" />
+
+  ### num\_parameters\_settable
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_parameters_settable">
+    The number of total parameters that can be set to distinct values.
+
+    This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+
+    **Returns**
+
+    The number of parameters originally available in the circuit.
+
+    <Admonition title="Note" type="note">
+      This quantity does not require the circuit to be built yet.
+    </Admonition>
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_qubits" />
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### operators
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.operators">
+    The operators that are evolved in this circuit.
+
+    **Returns**
+
+    **The operators to be evolved**
+
+    (and circuits) in this ansatz.
+
+    **Return type**
+
+    List\[Union\[BaseOperator, OperatorBase, [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
+  </Attribute>
+
+  ### ordered\_parameters
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.ordered_parameters">
+    The parameters used in the underlying circuit.
+
+    This includes float values and duplicates.
+
+    **Examples**
+
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
+
+    **Returns**
+
+    The parameters objects used in the circuit.
+  </Attribute>
+
+  ### parameter\_bounds
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.parameter_bounds">
+    The parameter bounds for the unbound parameters in the circuit.
+
+    **Returns**
+
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.parameters" />
+
+  ### preferred\_init\_points
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.preferred_init_points">
+    Getter of preferred initial points based on the given initial state.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.prefix" attributeValue="'circuit'" />
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+
+  ### reps
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.reps">
+    Returns the reps parameter, which determines the depth of the circuit.
+  </Attribute>
+
+  ### rotation\_blocks
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.rotation_blocks">
+    The blocks in the rotation layers.
+
+    **Returns**
+
+    The blocks in the rotation layers.
+  </Attribute>
+</Class>
+

@@ -147,11 +147,7 @@ When mapping to hardware, virtual qubits must be assigned to *hardware qubits*. 
 
 <span id="circuit-module-api" />
 
-## API overview of
-
-<span id="module-qiskit.circuit" />
-
-`qiskit.circuit`
+## API overview of qiskit.circuit
 
 All objects here are described in more detail, and in their greater context in the following sections. This section provides an overview of the API elements documented here.
 
@@ -247,17 +243,15 @@ Finally, the circuit module has its own exception class, to indicate when things
 
 The main user-facing class for representing circuits is [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). This can be either an abstract circuit or a physical circuit. There is much more information about the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class itself and the multitude of available methods on it in its class documentation.
 
-|                                                                                                                        |                       |
-| ---------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")(\*regs\[, name, global\_phase, ...]) | Create a new circuit. |
-
 Internally, a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") contains the qubits, classical bits, compile-time parameters, real-time variables, and other tracking information about the data it acts on and how it is parametrized. It then contains a sequence of [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s, which contain the particular operation (gate, measurement, etc) and its operands (the qubits and classical bits).
 
 ### Bits and registers
 
 Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit") type, which is just intended to be a “type tag”; the classes have no behavior other than being immutable objects:
 
-<Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/bit.py#L21-L94" signature="qiskit.circuit.Bit(register=None, index=None)">
+#### Bit
+
+<Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/bit.py#L21-L94" signature="qiskit.circuit.Bit(register=None, index=None)" modifiers="class">
   Implement a generic bit.
 
   <Admonition title="Note" type="note">
@@ -267,13 +261,17 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
   Create a new generic bit.
 </Class>
 
-<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L26-L47" signature="qiskit.circuit.Qubit(register=None, index=None)">
+#### Qubit
+
+<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L26-L47" signature="qiskit.circuit.Qubit(register=None, index=None)" modifiers="class">
   Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
 
   Implement a quantum bit.
 </Class>
 
-<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalregister.py#L26-L47" signature="qiskit.circuit.Clbit(register=None, index=None)">
+#### Clbit
+
+<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalregister.py#L26-L47" signature="qiskit.circuit.Clbit(register=None, index=None)" modifiers="class">
   Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
 
   Implement a classical bit.
@@ -281,7 +279,9 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 
 Qubits and clbits are instantiated by users with no arguments, such as by `Qubit()`. Bits compare equal if they are the same Python object, or if they were both created by a register of the same name and size, and they refer to the same index within that register. There is also a special type tag for “ancilla” qubits, but this is little used in the current state of Qiskit:
 
-<Class id="qiskit.circuit.AncillaQubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L60-L65" signature="qiskit.circuit.AncillaQubit(register=None, index=None)">
+#### AncillaQubit
+
+<Class id="qiskit.circuit.AncillaQubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L60-L65" signature="qiskit.circuit.AncillaQubit(register=None, index=None)" modifiers="class">
   Bases: [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")
 
   A qubit used as ancillary qubit.
@@ -289,7 +289,9 @@ Qubits and clbits are instantiated by users with no arguments, such as by `Qubit
 
 A collection bits of the same type can be encapsulated in a register of the matching type. The base functionality is in a base class that is not directly instantiated:
 
-<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L26-L235" signature="qiskit.circuit.Register(size=None, name=None, bits=None)">
+#### Register
+
+<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L26-L235" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
   Implement a generic register.
 
   <Admonition title="Note" type="note">
@@ -314,36 +316,46 @@ A collection bits of the same type can be encapsulated in a register of the matc
   *   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained duplicated bits.
   *   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained bits of an incorrect type.
 
-  ### index
+  ##### index
 
-  <Function id="qiskit.circuit.Register.index" name="index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L183-L191" signature="index(bit)">
+  <Function id="qiskit.circuit.Register.index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L183-L191" signature="index(bit)">
     Find the index of the provided bit within this register.
   </Function>
 
-  <Attribute id="qiskit.circuit.Register.name" name="name">
+  ##### name
+
+  <Attribute id="qiskit.circuit.Register.name">
     Get the register name.
   </Attribute>
 
-  <Attribute id="qiskit.circuit.Register.size" name="size">
+  ##### size
+
+  <Attribute id="qiskit.circuit.Register.size">
     Get the register size.
   </Attribute>
 </Class>
 
 Each of the defined bit subtypes has an associated register, which have the same constructor signatures, methods and properties as the base class:
 
-<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L50-L57" signature="qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)">
+#### QuantumRegister
+
+<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L50-L57" signature="qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
 
   Implement a quantum register.
 </Class>
 
-<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalregister.py#L50-L57" signature="qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)">
+#### ClassicalRegister
+
+<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalregister.py#L50-L57" signature="qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
 
   Implement a classical register.
 </Class>
 
-<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L68-L75" signature="qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)">
+#### AncillaRegister
+
+<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L68-L75" signature="qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
 
   Implement an ancilla register.
@@ -351,7 +363,7 @@ Each of the defined bit subtypes has an associated register, which have the same
 
 A common way to instantiate several bits at once is to create a register, such as by `QuantumRegister("my_qreg", 5)`. This has the advantage that you can give that collection of bits a name, which will appear during circuit visualizations ([`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw")) and exports to interchange languages (see [`qasm2`](qasm2#module-qiskit.qasm2 "qiskit.qasm2") and [`qasm3`](qasm3#module-qiskit.qasm3 "qiskit.qasm3")). You can also pass a name and a list of pre-constructed bits, but this creates an “aliasing register”, which are very poorly supported on hardware.
 
-Circuits track registers, but registers themselves impart almost no behavioral differences on circuits. The only exception is that [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s can be implicitly cast to unsigned integers for use in conditional comparisons of [control flow operations](#circuit-control-flow).
+Circuits track registers, but registers themselves impart almost no behavioral differences on circuits. The only exception is that [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s can be implicitly cast to unsigned integers for use in conditional comparisons of [control flow operations](#circuit-control-flow-repr).
 
 Classical registers and bits were the original way of representing classical data in Qiskit, and remain the most supported currently. Longer term, the data model is moving towards a more complete and strongly typed representation of a range of classical data (see [Real-time classical computation](#circuit-repr-real-time-classical)), but you will still very commonly use classical bits in current Qiskit.
 
@@ -372,6 +384,8 @@ The [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCirc
 | [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")(\*\[, resource\_requester]) | Instruction collection, and their contexts. |
 
 This [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") is now little used in Qiskit. It provides a very minimal set of methods to perform post-append mutations on instructions (which *will* be propagated to the circuit), but these are now discouraged and you should use the alternatives noted in those methods.
+
+<span id="circuit-operations-instructions" />
 
 ### Operations, instructions and gates
 
@@ -417,15 +431,21 @@ Each of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") are:
 
-<Class id="qiskit.circuit.InverseModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L32-L36" signature="qiskit.circuit.InverseModifier">
+#### InverseModifier
+
+<Class id="qiskit.circuit.InverseModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L32-L36" signature="qiskit.circuit.InverseModifier" modifiers="class">
   Inverse modifier: specifies that the operation is inverted.
 </Class>
 
-<Class id="qiskit.circuit.ControlModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L39-L49" signature="qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)">
+#### ControlModifier
+
+<Class id="qiskit.circuit.ControlModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L39-L49" signature="qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)" modifiers="class">
   Control modifier: specifies that the operation is controlled by `num_ctrl_qubits` and has control state `ctrl_state`.
 </Class>
 
-<Class id="qiskit.circuit.PowerModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L52-L56" signature="qiskit.circuit.PowerModifier(power)">
+#### PowerModifier
+
+<Class id="qiskit.circuit.PowerModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L52-L56" signature="qiskit.circuit.PowerModifier(power)" modifiers="class">
   Power modifier: specifies that the operation is raised to the power `power`.
 </Class>
 
@@ -437,7 +457,9 @@ Qiskit contains a few [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit
 
 Measurements in Qiskit are of a single [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") into a single [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit"). These are the two that the instruction is applied to. Measurements are in the computational basis.
 
-<Class id="qiskit.circuit.Measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/measure.py#L21-L44" signature="qiskit.circuit.Measure(label=None)">
+#### Measure
+
+<Class id="qiskit.circuit.Measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/measure.py#L21-L44" signature="qiskit.circuit.Measure(label=None)" modifiers="class">
   Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 
   Quantum measurement in the computational basis.
@@ -449,7 +471,9 @@ Measurements in Qiskit are of a single [`Qubit`](#qiskit.circuit.Qubit "qiskit.c
 
 Related to measurements, there is a [`Reset`](#qiskit.circuit.Reset "qiskit.circuit.Reset") operation, which produces no classical data but instructs hardware to return the qubit to the $\lvert0\rangle$ state. This is assumed to happen incoherently and to collapse any entanglement.
 
-<Class id="qiskit.circuit.Reset" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/reset.py#L20-L34" signature="qiskit.circuit.Reset(label=None)">
+#### Reset
+
+<Class id="qiskit.circuit.Reset" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/reset.py#L20-L34" signature="qiskit.circuit.Reset(label=None)" modifiers="class">
   Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 
   Incoherently reset a qubit to the $\lvert0\rangle$ state.
@@ -461,7 +485,9 @@ Related to measurements, there is a [`Reset`](#qiskit.circuit.Reset "qiskit.circ
 
 Hardware can be instructed to apply a real-time idle period on a given qubit. A scheduled circuit (see [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler")) will include all the idle times on qubits explicitly in terms of this [`Delay`](#qiskit.circuit.Delay "qiskit.circuit.Delay").
 
-<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L23-L108" signature="qiskit.circuit.Delay(duration, unit='dt')">
+#### Delay
+
+<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L24-L106" signature="qiskit.circuit.Delay(duration, unit='dt')" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Do nothing and just delay/wait/idle for a specified duration.
@@ -485,7 +511,9 @@ qc.x(0)
 
 it is forbidden for the optimizer to cancel out the two $X$ instructions.
 
-<Class id="qiskit.circuit.Barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/barrier.py#L25-L48" signature="qiskit.circuit.Barrier(num_qubits, label=None)">
+#### Barrier
+
+<Class id="qiskit.circuit.Barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/barrier.py#L25-L48" signature="qiskit.circuit.Barrier(num_qubits, label=None)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   A directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers.
@@ -500,7 +528,9 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
 
 The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is particularly special, in that it allows writing the result of a [real-time classical computation expression](#circuit-repr-real-time-classical) (an [`expr.Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) in a local classical variable (a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")). It takes *neither* [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") nor [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") operands, but has an explicit [`lvalue`](#qiskit.circuit.Store.lvalue "qiskit.circuit.Store.lvalue") and [`rvalue`](#qiskit.circuit.Store.rvalue "qiskit.circuit.Store.rvalue").
 
-<Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/store.py#L55-L92" signature="qiskit.circuit.Store(lvalue, rvalue)">
+#### Store
+
+<Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/store.py#L55-L95" signature="qiskit.circuit.Store(lvalue, rvalue)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   A manual storage of some classical value to a classical memory location.
@@ -512,11 +542,15 @@ The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is parti
   *   **lvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the memory location being stored into.
   *   **rvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the expression result being stored.
 
-  <Attribute id="qiskit.circuit.Store.lvalue" name="lvalue">
+  ##### lvalue
+
+  <Attribute id="qiskit.circuit.Store.lvalue">
     Get the l-value [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being stored to.
   </Attribute>
 
-  <Attribute id="qiskit.circuit.Store.rvalue" name="rvalue">
+  ##### rvalue
+
+  <Attribute id="qiskit.circuit.Store.rvalue">
     Get the r-value [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being written into the l-value.
   </Attribute>
 </Class>
@@ -525,10 +559,14 @@ The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is parti
 
 ### Real-time classical computation
 
-<Admonition title="Note" type="note">
-  The primary documentation for real-time classical computation is in the module-level documentation of [`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical").
+<Admonition title="See also" type="note">
+  **[`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical")**
 
-  You might also want to read about the circuit methods for working with real-time variables on the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class page.
+  Module-level documentation for how the variable-, expression- and type-systems work, the objects used to represent them, and the classical operations available.
+
+  **[Working with real-time typed classical data](qiskit.circuit.QuantumCircuit#circuit-real-time-methods)**
+
+  The [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods for working with these variables in the context of a single circuit.
 </Admonition>
 
 Qiskit has rudimentary low-level support for representing real-time classical computations, which happen during the QPU execution and affect the results. We are still relatively early into hardware support for these concepts as well, so beware that you will need to work closely with your hardware provider’s documentation to get the best use out of any real-time classical computation.
@@ -562,7 +600,7 @@ You may want to use many parameters that are related to each other. To make this
 | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length]) | ParameterVector class to quickly generate lists of parameters. |
 
-<span id="circuit-control-flow" />
+<span id="circuit-control-flow-repr" />
 
 ### Control flow in circuits
 
@@ -596,6 +634,8 @@ In addition to the block-structure control-flow operations, there are also two s
 
 <Admonition title="Note" type="note">
   The classes representations are documented here, but please note that manually constructing these classes is a low-level operation that we do not expect users to need to do frequently.
+
+  Users should read [Adding control flow to circuits](qiskit.circuit.QuantumCircuit#circuit-control-flow-methods) for the recommended workflows for building control-flow-enabled circuits.
 </Admonition>
 
 Since [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") subclasses are also [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclasses, this means that the way they are stored in [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") instances has them “applied” to a sequence of qubits and clbits in its [`qubits`](qiskit.circuit.CircuitInstruction#qubits "qiskit.circuit.CircuitInstruction.qubits") and [`clbits`](qiskit.circuit.CircuitInstruction#clbits "qiskit.circuit.CircuitInstruction.clbits") attributes. This can lead to subtle data-coherence problems: the [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") and [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") objects used inside the subcircuit blocks of the control-flow ops will not necessarily be identical to the corresponding objects in the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction"). Any code that consumes control-flow operations in Qiskit needs to be aware of this; within a subcircuit, you should treat `subcircuit.qubits[i]` as if it were really `outer_instruction.qubits[i]`, and so on. You can generate an easy lookup table for this by doing:
@@ -619,6 +659,8 @@ Any [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.Clas
 
 When the low-level construction is being used the inner [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") blocks must manually close over any outer-scope [real-time classical computation variables](#circuit-repr-real-time-classical) that they use. This is marked by these being in the [`iter_captured_vars()`](qiskit.circuit.QuantumCircuit#iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") iterator for that block. Libraries constructing these blocks manually will need to track these captures when building control-flow circuit blocks and add them to the block using [`add_capture()`](qiskit.circuit.QuantumCircuit#add_capture "qiskit.circuit.QuantumCircuit.add_capture") (or the `captures` constructor argument), but user code will typically use the control-flow builder interface, which handles this automatically.
 
+Consult [the control-flow construction documentation](qiskit.circuit.QuantumCircuit#circuit-control-flow-methods) for more information on how to build circuits with control flow.
+
 <span id="circuit-custom-gates" />
 
 ## Creating custom instructions
@@ -635,9 +677,9 @@ Subclasses should typically define a default constructor that calls the :class\`
 
 Subclasses of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") (or one of its subclasses) should implement the private [`Instruction._define()`](#qiskit.circuit.Instruction._define "qiskit.circuit.Instruction._define") method, which lazily populates the hidden `_definition` cache that backs the public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") method.
 
-### \_define
+#### \_define
 
-<Function id="qiskit.circuit.Instruction._define" name="_define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L270-L277" signature="Instruction._define()">
+<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L270-L277" signature="Instruction._define()">
   Populate the cached `_definition` field of this [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
 
   Subclasses should implement this method to provide lazy construction of their public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and not return a value.
@@ -649,9 +691,9 @@ If the subclass is using the singleton machinery, beware that [`_define()`](#qis
 
 Subclasses of [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") will also likely wish to override [the Numpy array-protocol instance method](https://numpy.org/devdocs/user/basics.interoperability.html#the-array-method), `__array__`. This is used by [`Gate.to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix"), and has the signature:
 
-### array\_\_
+#### array\_\_
 
-<Function id="array__" name="array__" signature="__array__(dtype=None)">
+<Function id="array__" signature="__array__(dtype=None, copy=None)">
   Return a Numpy array representing the gate. This can use the gate’s `params` field, and may assume that these are numeric values (assuming the subclass expects that) and not [compile-time parameters](#circuit-compile-time-parameters).
 
   For greatest efficiency, the returned array should default to a dtype of [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)").
@@ -686,7 +728,9 @@ class RXZGate(Gate):
         # Also we have an efficient representation of power.
         return RXZGate(exponent * self.params[0])
 
-    def __array__(self, dtype=None):
+    def __array__(self, dtype=None, copy=None):
+        if copy is False:
+            raise ValueError("unable to avoid copy while creating an array as requested")
         cos = math.cos(0.5 * self.params[0])
         isin = 1j * math.sin(0.5 * self.params[0])
         return np.array([
@@ -722,93 +766,6 @@ After this, for the duration of the Python interpreter session, translators like
 
 ## Working with circuit-level objects
 
-### Circuit properties
-
-When constructing quantum circuits, there are several properties that help quantify the “size” of the circuits, and their ability to be run on a noisy quantum device. Some of these, like number of qubits, are straightforward to understand, while others like depth and number of tensor components require a bit more explanation. Here we will explain all of these properties, and, in preparation for understanding how circuits change when run on actual devices, highlight the conditions under which they change.
-
-Consider the following circuit:
-
-```python
-from qiskit import QuantumCircuit
-qc = QuantumCircuit(12)
-for idx in range(5):
-   qc.h(idx)
-   qc.cx(idx, idx+5)
-
-qc.cx(1, 7)
-qc.x(8)
-qc.cx(1, 9)
-qc.x(7)
-qc.cx(1, 11)
-qc.swap(6, 11)
-qc.swap(6, 9)
-qc.swap(6, 10)
-qc.x(6)
-qc.draw('mpl')
-```
-
-![../\_images/circuit-2.png](/images/api/qiskit/dev/circuit-2.png)
-
-From the plot, it is easy to see that this circuit has 12 qubits, and a collection of Hadamard, CNOT, X, and SWAP gates. But how to quantify this programmatically? Because we can do single-qubit gates on all the qubits simultaneously, the number of qubits in this circuit is equal to the **width** of the circuit:
-
-```python
-qc.width()
-```
-
-```python
-12
-```
-
-We can also just get the number of qubits directly:
-
-```python
-qc.num_qubits
-```
-
-```python
-12
-```
-
-<Admonition title="Important" type="danger">
-  For a quantum circuit composed from just qubits, the circuit width is equal to the number of qubits. This is the definition used in quantum computing. However, for more complicated circuits with classical registers, and classically controlled gates, this equivalence breaks down. As such, from now on we will not refer to the number of qubits in a quantum circuit as the width.
-</Admonition>
-
-It is also straightforward to get the number and type of the gates in a circuit using [`QuantumCircuit.count_ops()`](qiskit.circuit.QuantumCircuit#count_ops "qiskit.circuit.QuantumCircuit.count_ops"):
-
-```python
-qc.count_ops()
-```
-
-```python
-OrderedDict([('cx', 8), ('h', 5), ('x', 3), ('swap', 3)])
-```
-
-We can also get just the raw count of operations by computing the circuits [`QuantumCircuit.size()`](qiskit.circuit.QuantumCircuit#size "qiskit.circuit.QuantumCircuit.size"):
-
-```python
-qc.size()
-```
-
-```python
-19
-```
-
-A particularly important circuit property is known as the circuit **depth**. The depth of a quantum circuit is a measure of how many “layers” of quantum gates, executed in parallel, it takes to complete the computation defined by the circuit. Because quantum gates take time to implement, the depth of a circuit roughly corresponds to the amount of time it takes the quantum computer to execute the circuit. Thus, the depth of a circuit is one important quantity used to measure if a quantum circuit can be run on a device.
-
-The depth of a quantum circuit has a mathematical definition as the longest path in a directed acyclic graph (DAG). However, such a definition is a bit hard to grasp, even for experts. Fortunately, the depth of a circuit can be easily understood by anyone familiar with playing [Tetris](https://en.wikipedia.org/wiki/Tetris). Lets see how to compute this graphically:
-
-![../\_images/depth.gif](/images/api/qiskit/dev/depth.gif)
-
-We can verify our graphical result using [`QuantumCircuit.depth()`](qiskit.circuit.QuantumCircuit#depth "qiskit.circuit.QuantumCircuit.depth"):
-
-```python
-qc.depth()
-```
-
-```python
-9
-```
-
 <span id="circuit-abstract-to-physical" />
 
 ### Converting abstract circuits to physical circuits
@@ -831,7 +788,7 @@ For a more backend-like simulation experience, there are simulator-backed implem
 
 *   [`BasicProvider`](qiskit.providers.basic_provider.BasicProvider "qiskit.providers.basic_provider.BasicProvider") and the raw backends it can return to you.
 *   `StatevectorSimulator` for a backend-like wrapper around [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
-*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.14.0)") for full, high-performance simulation capabilities.
+*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.14.1)") for full, high-performance simulation capabilities.
 *   [`StatevectorSampler`](qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") for simulator-backed reference implementations of the [Qiskit Primitives](primitives#qiskit-primitives).
 
 ### Defining equivalence relationships
@@ -856,9 +813,9 @@ The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary
 
 ### Generating random circuits
 
-### random\_circuit
+#### random\_circuit
 
-<Function id="qiskit.circuit.random.random_circuit" name="random_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L23-L209" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)">
+<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L23-L209" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)">
   Generate random circuit of arbitrary size and form.
 
   This function will generate a random circuit by randomly selecting gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
@@ -870,7 +827,7 @@ The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary
   circ.draw(output='mpl')
   ```
 
-  ![../\_images/circuit-3.png](/images/api/qiskit/dev/circuit-3.png)
+  ![../\_images/circuit-2.png](/images/api/qiskit/dev/circuit-2.png)
 
   **Parameters**
 
@@ -901,7 +858,7 @@ Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.c
 
 ### CircuitError
 
-<Class id="qiskit.circuit.CircuitError" name="CircuitError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/exceptions.py#L18-L19" signature="qiskit.circuit.CircuitError(*message)">
+<Class id="qiskit.circuit.CircuitError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/exceptions.py#L18-L19" signature="qiskit.circuit.CircuitError(*message)" modifiers="exception">
   Base class for errors raised while processing a circuit.
 
   Set the error message.
@@ -947,7 +904,7 @@ If we draw this circuit, we will see that Qiskit places the zeroth qubit on the 
 qc.draw("mpl")
 ```
 
-![../\_images/circuit-5.png](/images/api/qiskit/dev/circuit-5.png)
+![../\_images/circuit-4.png](/images/api/qiskit/dev/circuit-4.png)
 
 ### Matrix representations
 
