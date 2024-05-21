@@ -72,7 +72,7 @@ steps.
       `https://learning-api.quantum.ibm.com/admin/content/`). The copied URL
       should be of the form `tutorials/a00eed3f-fdba-416d-8f22-7a2522de02bc`.
 
-   2. \*\*Update `tutorials/learning-api.conf.yaml`
+   2. **Update `tutorials/learning-api.conf.yaml`**
 
       Next, make a new entry in the `learning-api.conf.yaml` file in this
       folder. Set the `path` attribute to the name of the tutorial folder in
