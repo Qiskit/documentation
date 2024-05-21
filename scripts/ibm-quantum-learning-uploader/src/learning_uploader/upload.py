@@ -79,8 +79,7 @@ class API:
               state: 'working'|'fail'|'complete'
             """
             emoji = { "working": "🔄", "fail": "❌", "complete": "✅" }[state]
-            text = f"{emoji} {base_msg}: {msg}".ljust(50)
-            print(text, end="\r" if state == "working" else "\n")
+            print(f"{emoji} {base_msg}: {msg}")
 
         try:
             web_page = self._push(lesson, _log_fn)
