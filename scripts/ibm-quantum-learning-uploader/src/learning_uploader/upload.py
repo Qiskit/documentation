@@ -6,8 +6,6 @@ from getpass import getpass
 import random
 import requests
 import sys
-from yaspin import yaspin
-from yaspin.spinners import Spinners
 
 
 class Lesson:
@@ -73,28 +71,30 @@ class API:
         Wrapper for `_push` to handle spinner and Exceptions
         """
         base_msg = f"Push \033[1m{lesson.name}\033[0m"
-        spinner = yaspin(Spinners.dots12, text=base_msg, color="blue")
-        spinner.start()
 
-        def _log_fn(msg):
-            spinner.text = f"{base_msg}: {msg}"
+        def _log_fn(msg, state="working"):
+            """
+            Display event to terminal
+              msg: Event message
+              state: 'working'|'fail'|'complete'
+            """
+            emoji = { "working": "🔄", "fail": "❌", "complete": "✅" }[state]
+            print(f"{emoji} {base_msg}: {msg}")
 
         try:
             web_page = self._push(lesson, _log_fn)
 
         except KeyboardInterrupt:
-            _log_fn("Cancelled by user")
-            spinner.fail("❌")
+            _log_fn("Cancelled by user", state="fail")
             lesson.delete_zip()
             sys.exit()
 
         except Exception as err:
-            spinner.fail("❌")
+            _log_fn("Something went wrong", state="fail")
             lesson.delete_zip()
             raise err
 
-        spinner.text = base_msg
-        spinner.ok("✅")
+        _log_fn("Complete!", state="complete")
 
         if not self.hide_urls:
             print(f"   \033[30m╷\033[0m Web page: \033[96m{web_page}\033[0m")
