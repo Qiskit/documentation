@@ -17,7 +17,6 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../lib/api/Pkg";
-import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/InternalLink";
 import { FileBatch } from "../lib/links/FileBatch";
 
@@ -26,6 +25,7 @@ import { FileBatch } from "../lib/links/FileBatch";
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
+  "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx"
 ];
 
 interface Arguments {
@@ -186,6 +186,7 @@ async function determineCurrentDocsFileBatch(
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
+    "docs/api/qiskit/release-notes/1.1.mdx",
   ];
 
   if (!args.currentApis) {
