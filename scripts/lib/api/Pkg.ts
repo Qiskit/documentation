@@ -118,7 +118,7 @@ export class Pkg {
     if (name === "qiskit-transpiler-service") {
       return new Pkg({
         ...args,
-        title: "Qiskit Transpiler Service Client",
+        title: "Qiskit Transpiler Service Client (beta)",
         name: "qiskit-transpiler-service",
         githubSlug: undefined,
         releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
