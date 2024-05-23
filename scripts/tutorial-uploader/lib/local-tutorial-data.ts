@@ -10,6 +10,9 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import yaml from "js-yaml";
+import { readFile } from "fs/promises";
+
 /* Information specified in the YAML file */
 export interface LocalTutorialData {
   title: string;
@@ -22,8 +25,14 @@ export interface LocalTutorialData {
   catalog_featured: boolean;
 }
 
+export async function readTutorialData(path: string): Promise<LocalTutorialData[]> {
+  const raw = await readFile(path, "utf8");
+  const parsed = yaml.load(raw) as any[];
+  return parsed.map(i => verifyLocalTutorialData(i));
+}
+
 /* Runtime type-checking to make sure YAML file is valid */
-export function verifyLocalTutorialData(obj: any): LocalTutorialData {
+function verifyLocalTutorialData(obj: any): LocalTutorialData {
   for (let [attr, type] of [
     ["title", "string"],
     ["short_description", "string"],
@@ -37,7 +46,7 @@ export function verifyLocalTutorialData(obj: any): LocalTutorialData {
     if (typeof obj[attr] !== type) {
       throw new Error(
         "The following entry in `learning-api.conf.yaml` is invalid.\n\n"
-        + JSON.stringify(obj)
+        + yaml.dump(obj)
         + `\n\nAttribute '${attr}' should exist and be of type '${type}'.\n`
       )
     }

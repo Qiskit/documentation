@@ -10,10 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
-import yaml from "js-yaml";
-import { API } from "./api";
-import { type LocalTutorialData, verifyLocalTutorialData } from './local-tutorial-data';
+import { API } from "./lib/api";
+import { readTutorialData } from './lib/local-tutorial-data';
 
 const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
 
@@ -24,11 +22,6 @@ const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
  *   [ ] More helpful console logging
  */
 
-async function readConfig(path: string): Promise<LocalTutorialData[]> {
-  const raw = await readFile(path, "utf8");
-  return yaml.load(raw) as LocalTutorialData[];
-}
-
 async function main() {
   // @ts-ignore // TODO: Throw if undefined
   const api = new API(
@@ -36,9 +29,7 @@ async function main() {
     process.env.LEARNING_API_TOKEN!,
   );
 
-  const localTutorialData = (await readConfig(CONFIG_PATH)).map(x => verifyLocalTutorialData(x))
-
-  for (const tutorial of localTutorialData) {
+  for (const tutorial of await readTutorialData(CONFIG_PATH)) {
     await api.upsertTutorial(tutorial);
   }
 }
