@@ -25,7 +25,8 @@ import {
 /* To do:
  *
  *   [x] Get URL from environment
- *   [ ] Get auth from environment
+ *   [x] Get auth from environment
+ *   [ ] Handle "topics" field
  *   [ ] Zip file automatically
  *   [ ] Use temp folder for zipping
  *   [ ] Fix types
@@ -39,7 +40,7 @@ export interface LocalTutorialData {
   short_description: string;
   slug: string;
   status: string;
-  notebook_path: string;
+  local_path: string;
   category: string;
   reading_time?: number;
   catalog_featured?: boolean;
@@ -102,7 +103,7 @@ export class API {
     tutorial: LocalTutorialData,
   ) {
     const temporalFileId = await this.uploadZipFromDisk(
-      tutorial.notebook_path!,
+      tutorial.local_path!,
     );
     const translationId = await this.getEnglishTranslationId(tutorialId);
     const newData = {
