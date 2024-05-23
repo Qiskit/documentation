@@ -339,13 +339,6 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = [
 ]
 
 
-WORKFLOW_ENTRIES = [
-    Entry("Map problem to circuits", children=CIRCUIT_CONSTRUCTION),
-    Entry("Optimize for hardware", children=OPTIMIZE_FOR_HARDWARE_CHILDREN),
-    Entry("Excute on hardware", children=EXECUTE_ON_HARDWARE_CHILDREN),
-    Entry("Postprocess results", children=POSTPROCESS_CHILDREN),
-]
-
 TOOL_ENTRIES = [
     Entry("Circuits and operators", children=CIRCUIT_CONSTRUCTION),
     Entry("Transpiler", children=TRANSPILER),
@@ -379,37 +372,8 @@ def write_result(folder: str, top_level_entries: list[Entry]) -> None:
     (folder_path / "_toc.json").write_text(text)
 
 
-# write_result(
-#     "proposal1",
-#     [
-#         GET_STARTED,
-#         Entry("Workflow", children=WORKFLOW_ENTRIES),
-#         Entry("Tools", children=TOOL_ENTRIES),
-#     ],
-# )
-
-# write_result(
-#     "proposal2",
-#     [
-#         GET_STARTED,
-#         Entry("Workflow"),
-#         *WORKFLOW_ENTRIES,
-#         Entry("Tools"),
-#         *TOOL_ENTRIES,
-#     ],
-# )
-
 write_result(
-    "proposal3",
-    [
-        Entry("Get started", children=GET_STARTED_CHILDREN),
-        Entry("Workflow", children=WORKFLOW_FOLDER_AS_INDEX_CHILDREN),
-        *TOOL_ENTRIES,
-    ],
-)
-
-write_result(
-    "proposal4",
+    "guides",
     [
         Entry("Get started"),
         *GET_STARTED_CHILDREN,
