@@ -11,6 +11,8 @@
 // that they have been altered from the originals.
 
 import { readFile } from "fs/promises";
+import { $ } from 'zx';
+import { tmpdir } from 'os'
 import {
   createDirectus,
   rest,
@@ -27,8 +29,8 @@ import {
  *   [x] Get URL from environment
  *   [x] Get auth from environment
  *   [ ] Handle "topics" field
- *   [ ] Zip file automatically
- *   [ ] Use temp folder for zipping
+ *   [x] Zip file automatically
+ *   [x] Use temp folder for zipping
  *   [ ] Fix types
  *   [ ] Throw correctly on request failures
  *   [ ] More helpful console logging
@@ -87,13 +89,20 @@ export class API {
   }
 
   /* Returns the file's ID */
-  async uploadZipFromDisk(zippedFilePath: string): Promise<string> {
+  async uploadLocalFolder(path: string): Promise<string> {
+    // Zip folder
+    const zippedFilePath = `${tmpdir()}/${path}.zip`
+    await $`(cd tutorials && zip -qr ${zippedFilePath} ${path})`
+
+    // Build form
     const file = new Blob([await readFile(zippedFilePath)], {
       type: "application/zip",
     });
     const formData = new FormData();
     formData.append("title", zippedFilePath);
     formData.append("file", file, zippedFilePath);
+
+    // Upload form
     const response = await this.client.request(uploadFiles(formData));
     return response.id;
   }
@@ -102,7 +111,7 @@ export class API {
     tutorialId: string,
     tutorial: LocalTutorialData,
   ) {
-    const temporalFileId = await this.uploadZipFromDisk(
+    const temporalFileId = await this.uploadLocalFolder(
       tutorial.local_path!,
     );
     const translationId = await this.getEnglishTranslationId(tutorialId);
