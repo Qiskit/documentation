@@ -11,12 +11,12 @@
 // that they have been altered from the originals.
 
 import { readFile } from 'fs/promises';
-import { createDirectus, rest, authentication, readItems, readItem, updateItem, createItem, uploadFiles } from '@directus/sdk';
+import { createDirectus, rest, staticToken, readItems, readItem, updateItem, createItem, uploadFiles } from '@directus/sdk';
 
 
 /* To do:
  * 
- *   [ ] Get URL from environment
+ *   [x] Get URL from environment
  *   [ ] Get auth from environment
  *   [ ] Zip file automatically
  *   [ ] Use temp folder for zipping
@@ -53,11 +53,8 @@ class API {
   constructor(url: string) {
     this.client = createDirectus(url)
       .with(rest())
-      .with(authentication());
-  }
-
-  async login() {
-    await this.client.login("admin@example.com", "password")
+      // @ts-ignore  // TODO: Throw if undefined
+      .with(staticToken(process.env.IBM_QUANTUM_LEARNING_TOKEN));
   }
 
   async getTutorialId(slug: string): Promise<string|null> {
@@ -152,9 +149,8 @@ class API {
 
 
 async function main() {
-  const api = new API("http://0.0.0.0:8055")
-  await api.login()
-
+  // @ts-ignore // TODO: Throw if undefined
+  const api = new API(process.env.IBM_QUANTUM_LEARNING_API_URL)
   await api.upsertTutorial(testTutorial)
 }
 
