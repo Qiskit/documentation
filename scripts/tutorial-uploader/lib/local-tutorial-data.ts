@@ -21,6 +21,7 @@ export interface LocalTutorialData {
   status: string;
   local_path: string;
   category: string;
+  topics: string[];
   reading_time: number;
   catalog_featured: boolean;
 }
@@ -31,23 +32,30 @@ export async function readTutorialData(path: string): Promise<LocalTutorialData[
   return parsed.map(i => verifyLocalTutorialData(i));
 }
 
+const isString = (x: any) => { return (typeof x === "string") }
+const isNumber = (x: any) => { return (typeof x === "number") }
+const isBoolean = (x: any) => { return (typeof x === "boolean") }
+
 /* Runtime type-checking to make sure YAML file is valid */
 function verifyLocalTutorialData(obj: any): LocalTutorialData {
-  for (let [attr, type] of [
-    ["title", "string"],
-    ["short_description", "string"],
-    ["slug", "string"],
-    ["status", "string"],
-    ["local_path", "string"],
-    ["category", "string"],
-    ["reading_time", "number"],
-    ["catalog_featured", "boolean"],
+  for (let [attr, isCorrectType] of [
+    ["title", isString],
+    ["short_description", isString],
+    ["slug", isString],
+    ["status", isString],
+    ["local_path", isString],
+    ["category", isString],
+    ["topics", Array.isArray],
+    ["reading_time", isNumber],
+    ["catalog_featured", isBoolean],
   ]) {
-    if (typeof obj[attr] !== type) {
+    // @ts-ignore
+    if (!isCorrectType(obj[attr])) {
       throw new Error(
         "The following entry in `learning-api.conf.yaml` is invalid.\n\n"
         + yaml.dump(obj)
-        + `\n\nAttribute '${attr}' should exist and be of type '${type}'.\n`
+        + `\n\nAttribute '${attr}' should exist and be of correct type.\n`
+        + `Problem with attribute '${attr}'.\n`
       )
     }
   } 

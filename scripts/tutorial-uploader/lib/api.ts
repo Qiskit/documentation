@@ -21,6 +21,7 @@ import {
   readItem,
   updateItem,
   createItem,
+  deleteItem,
   uploadFiles,
 } from "@directus/sdk";
 
@@ -30,7 +31,7 @@ import { type LocalTutorialData } from './local-tutorial-data';
  *
  *   [x] Get URL from environment
  *   [x] Get auth from environment
- *   [ ] Handle "topics" field
+ *   [x] Handle "topics" field
  *   [x] Zip file automatically
  *   [x] Use temp folder for zipping
  *   [ ] Fix types
@@ -78,6 +79,66 @@ export class API {
     return match.id;
   }
 
+  async getTopicId(topicName: string): Promise<string> {
+    // TODO: Maybe DRY with getCategoryId
+    const response = await this.client.request(
+      // @ts-ignore
+      readItems("tutorials_topics", { fields: ["id", "name"] }),
+    );
+    const match = response.find(
+      (item: { name: string }) => item.name === topicName,
+    );
+    if (!match) {
+      // TODO: Throw correctly
+      console.log(`No topic with name "${topicName}"`);
+    }
+    return match.id;
+  }
+  
+  async getTopicRelationId(tutorialId: string, topicId: string | null): Promise<string> {
+    const response = await this.client.request(
+      // @ts-ignore
+      readItems("tutorials_tutorials_topics"),
+    );
+    const match = response.find(
+      (item: { tutorials_id: string, tutorials_topics_id: string }) => {
+        (item.tutorials_id === tutorialId) && (item.tutorials_topics_id === topicId)
+      }
+    );
+    if (!match) {
+      // TODO: Throw correctly
+      console.log(`No tutorial/tutorial_topic relation with name "${topicId}"`);
+    }
+    return match.id;
+  }
+
+
+  async clearTopics(tutorialId: string) {
+    // "tutorials_tutorials_topics" is mapping of tutorial to topics
+    const response = await this.client.request(
+      // @ts-ignore
+      readItems("tutorials_tutorials_topics"),
+    );
+    const matches = response.filter(
+      (item: { tutorials_id: string }) => item.tutorials_id === tutorialId
+    );
+    for (const m of matches) {
+      // @ts-ignore
+      await this.client.request(deleteItem("tutorials_tutorials_topics", m.id)).catch((err) => console.log(err))
+    }
+  }
+
+  async updateTutorialTopics(tutorialId: string, topicNames: string[]) {
+    await this.clearTopics(tutorialId)
+    for (const name of topicNames) {
+      const id = await this.getTopicId(name);
+      await this.client.request(
+        // @ts-ignore
+        createItem("tutorials_tutorials_topics", { tutorials_id: tutorialId, tutorials_topics_id: id })
+      )
+    }
+  }
+
   /* Returns the file's ID */
   async uploadLocalFolder(path: string): Promise<string> {
     // Zip folder
@@ -101,9 +162,7 @@ export class API {
     tutorialId: string,
     tutorial: LocalTutorialData,
   ) {
-    const temporalFileId = await this.uploadLocalFolder(
-      tutorial.local_path,
-    );
+    const temporalFileId = await this.uploadLocalFolder(tutorial.local_path,);
     const translationId = await this.getEnglishTranslationId(tutorialId);
     const newData = {
       reading_time: tutorial.reading_time,
@@ -121,6 +180,7 @@ export class API {
 
     // @ts-ignore
     await this.client.request(updateItem("tutorials", tutorialId, newData));
+    await this.updateTutorialTopics(tutorialId, tutorial.topics)
   }
 
   /*

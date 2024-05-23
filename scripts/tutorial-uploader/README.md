@@ -37,3 +37,14 @@ developing this script:
   fails if these categories don't exist. To create a category:
   1. Go to <http://0.0.0.0:8055/admin/content/tutorials_categories/+>
   2. Add the name and click the tick in the top-right corner to save
+
+* Create the following tutorial topics at <http://0.0.0.0:8055/admin/content/tutorials_topics>.
+  > TODO: Can we automate this?
+   * Chemistry
+   * Dynamic circuits
+   * Error mitigation
+   * Optimization
+   * Qiskit patterns
+   * Scheduling
+   * Scheduling
+   * Transpilation
