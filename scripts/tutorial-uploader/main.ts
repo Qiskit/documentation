@@ -12,7 +12,8 @@
 
 import { readFile } from "fs/promises";
 import yaml from "js-yaml";
-import { API, type LocalTutorialData } from "./api";
+import { API } from "./api";
+import { type LocalTutorialData, verifyLocalTutorialData } from './local-tutorial-data';
 
 const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
 
@@ -35,7 +36,9 @@ async function main() {
     process.env.LEARNING_API_TOKEN!,
   );
 
-  for (const tutorial of await readConfig(CONFIG_PATH)) {
+  const localTutorialData = (await readConfig(CONFIG_PATH)).map(x => verifyLocalTutorialData(x))
+
+  for (const tutorial of localTutorialData) {
     await api.upsertTutorial(tutorial);
   }
 }

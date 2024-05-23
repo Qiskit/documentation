@@ -24,6 +24,8 @@ import {
   uploadFiles,
 } from "@directus/sdk";
 
+import { type LocalTutorialData } from './local-tutorial-data';
+
 /* To do:
  *
  *   [x] Get URL from environment
@@ -35,18 +37,6 @@ import {
  *   [ ] Throw correctly on request failures
  *   [ ] More helpful console logging
  */
-
-/* Information specified in the YAML file */
-export interface LocalTutorialData {
-  title: string;
-  short_description: string;
-  slug: string;
-  status: string;
-  local_path: string;
-  category: string;
-  reading_time?: number;
-  catalog_featured?: boolean;
-}
 
 export class API {
   client: any; // TODO: Work out how to set this correctly
@@ -112,7 +102,7 @@ export class API {
     tutorial: LocalTutorialData,
   ) {
     const temporalFileId = await this.uploadLocalFolder(
-      tutorial.local_path!,
+      tutorial.local_path,
     );
     const translationId = await this.getEnglishTranslationId(tutorialId);
     const newData = {
