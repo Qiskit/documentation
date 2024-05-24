@@ -1,0 +1,391 @@
+---
+title: Sampler Primitive with REST APIs
+description: How to use the Sampler primitive with Qiskit Runtime REST APIs.
+
+---
+
+# Sampler Primitive with REST APIs
+
+The steps in this topic describes how to set up primitives with REST APIs, explore the options you can use to configure them, and invoke them in any program of your choice.
+
+<Admonition type="note">
+    This documentation utilizes the `requests` module of python to demonstrate the Qiskit Runtime REST APIs. However, this workflow can be executed using any language/framework that supports working with REST APIs. 
+</Admonition>
+
+
+<span id="start-sampler"></span>
+## Get started with Sampler
+
+### 1. Initialize the account
+
+Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
+
+[Optional] Obtain a temporary Access token by supplying the API token from the IBM Quantum Platform. This is especially useful if you would like control over tokens, such as token invalidation. Alternatively, you can work directly with your IBM Quantum Platform API token.
+
+```python
+import requests
+
+with open('token') as file:
+    token=file.read()
+
+url = 'https://auth.quantum-computing.ibm.com/api/users/loginWithToken'
+input={'apiToken': token}
+auth_response = requests.post(url, json=input)
+auth_id=auth_response.json()['id']
+```
+
+Let's view your available backends
+
+```python
+url_backends = 'https://api.quantum-computing.ibm.com/runtime/backends'
+headers = {'Content-Type': 'application/json',
+            'x-access-token':auth_id}
+
+backends_response = requests.get(url_backends, headers=headers)
+
+print(backends_response.json()['devices'][:5],"...")
+```
+
+
+### 2. Create a QASM circuit
+
+You need at least one circuit as the input to the `Sampler` primitive.
+
+
+* Define a QASM quantum circuit e.g. 
+
+```python
+qasm_string='''
+OPENQASM 3;
+include "stdgates.inc";
+qreg q[2];
+creg c[2];
+x q[0];
+c[0] = measure q[0]; 
+c[1] = measure q[1];
+'''   
+```
+
+
+### 3. Invoke the Transpiler
+
+The circuit provided will need to be mapped to instructions fitting to the hardware basis instructions of the QPU, which is a process known as Transpilation
+
+* transpile [locally via Qiskit](https://docs.quantum.ibm.com/transpile/defaults-and-configuration-options) before generating the QASM string, or:
+
+* Use the Cloud Transpiler API. See general documentation at https://cloud-transpiler.quantum.ibm.com/docs 
+
+Query the cloud Transpilation service at https://cloud-transpiler.quantum-computing.ibm.com/docs . See more details and documentation at https://docs.quantum.ibm.com/transpile/qiskit-transpiler-service . Note that [transpilation is now necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum backends. 
+
+```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "use_ai": False,
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+```
+
+Request the transpilation service results using the `task_id`
+
+```python
+task_id=resp.json()['task_id']
+res = requests.get(url=f"https://cloud-transpiler.quantum.ibm.com/transpile/{task_id}", headers=headers)
+
+if res.json().get("state") == "SUCCESS":
+    resulting_qasm=res.json().get("result")[0].get("qasm")
+
+print(resulting_qasm)
+```
+Output
+```text
+OPENQASM 3.0; include "stdgates.inc"; bit[2] c; x $0; c[0] = measure $0; c[1] = measure $1;
+```
+
+### 3. Run the Quantum Circuit using SamplerV2 API
+
+
+<Admonition type="note">
+    The jobs below use [Qiskit Runtime V2 primitives](https://docs.quantum.ibm.com/api/migration-guides/v2-primitives). Both SamplerV2 and EstimatorV2 take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
+</Admonition>
+
+
+```python
+import requests
+
+url = 'https://api.quantum-computing.ibm.com/runtime/jobs'
+headers = {
+    'Content-Type': 'application/json',
+    'x-access-token':auth_id,
+    'x-qx-client-application': 'qiskit-version-2/0.39.2/'+'your_application' # specifying the application you might be running from. For an actual Integration project, this option is invaluable to know where jobs are coming from. At this time the "qiskit-version-2/0.39.2/" string is a necessary prefix.
+    }
+job_input = {
+    'program_id': 'sampler',
+    "backend": backend, 
+    "hub": "ibm-q",
+    "group": "open",
+    "project": "main",
+    "start_session": "False", # set to False if you just need to run a single job.  
+    "params": {
+        "pubs": [[resulting_qasm],[resulting_qasm,None,500]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+}}
+
+response = requests.post(url, headers=headers, json=job_input)
+
+if response.status_code == 200:
+    job_id = response.json().get('id')
+    print("Job created:",response.text)
+else:
+    print(f"Error: {response.status_code}")
+```
+
+
+### 4. Check Job Status and Get Results
+
+Next, pass the job ID to the API:
+
+```python
+response_status_singlejob= requests.get(url+'/'+job_id, headers=headers)
+response_status_singlejob.json().get('state')
+```
+Output
+
+```text
+>>> Job ID: 58223448-5100-4dec-a47a-942fb30edced
+>>> Job Status: JobStatus.RUNNING
+```
+
+Get job results:
+```python
+response_result= requests.get(url+'/'+job_id+'/results', headers=headers)
+
+res_dict=response_result.json()
+
+# Get results for the first PUB
+counts=res_dict['results'][0]['data']['c']['samples']
+
+print(counts[:20])
+```
+Output
+```text
+['0x3', '0x0', '0x2', '0x1', '0x0', '0x3', '0x0', '0x3', '0x1', '0x2', '0x2', '0x0', '0x2', '0x0', '0x3', '0x3', '0x2', '0x0', '0x1', '0x0']
+```
+
+### 5. Working with Runtime Options
+
+<Tabs>
+  <TabItem value="Transpilation Optimization" label="Transpilation Optimization">
+
+```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "use_ai": False,
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+```
+
+  </TabItem>
+
+  <TabItem value="Dynamical Decoupling" label="Dynamical Decoupling">
+
+  ```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "use_ai": False,
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+```
+
+  </TabItem>
+
+  <TabItem value="Twirling" label="Twirling">
+
+  ```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "use_ai": False,
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+```
+
+
+  </TabItem>
+</Tabs>
+
+### 6. Submitting Jobs in a Session
+
+You begin with creating a session and obtaining a Session ID. More details about Sessions can be found in the [documentation](https://docs.quantum.ibm.com/api/runtime).
+
+```python
+import json
+ 
+sessionsUrl = "https://api.quantum-computing.ibm.com/runtime/sessions"
+ 
+headersList = {
+  "Accept": "application/json",
+  # "Authorization": "Bearer "+token,
+  'x-access-token':auth_id,
+  "Content-Type": "application/json" 
+}
+ 
+payload = json.dumps({
+  "backend": backend,
+  "instance": "ibm-q/open/main"
+})
+ 
+response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
+ 
+sessionId = response.json()['id']
+ 
+print(response.json())
+```
+Output
+```text
+{'id': 'crw9s7cdbt40008jxesg'}
+```
+
+One or more `Sampler` jobs can be submitted to the same `session` by specifying the session ID. 
+
+<Tabs>
+  <TabItem value="1 circuit, 3 parameter sets" label="1 circuit, 3 parameter sets">
+  
+
+
+  </TabItem>
+
+  <TabItem value="2 circuits, 1 parameter set" label="2 circuits, 1 parameter set">
+  </TabItem>
+</Tabs>
+
+
+It is very good practice to close a `Session` when all jobs are done. This will reduce wait time for subsequent users.
+
+```python
+closureURL="https://api.quantum-computing.ibm.com/runtime/sessions/"+sessionId+"/close"
+
+headersList = {
+  "Accept": "application/json",
+  # "Authorization": "Bearer "+token,
+  'x-access-token':auth_id,
+}
+ 
+closure_response = requests.request(
+    "DELETE",
+    closureURL, 
+    headers=headersList)
+
+print("Session closure response ok?:",closure_response.ok,closure_response.text)
+```
+Output
+```text
+Session closure response ok?: True 
+```
+
+### (Optional) Invalidate Token and test Token Invalidation
+
+```python
+logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
+headers = {'x-access-token':auth_id}
+logout_response = requests.post(logout_url, headers=headers)
+print("response ok?:",logout_response.ok,logout_response.text)
+```
+
+This should yield an Authoritzation error (Error 401) once access token is invalidated.
+
+```python
+logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
+headers = {'x-access-token':auth_id}
+logout_response = requests.post(logout_url, headers=headers)
+
+if logout_response.status_code == 200:
+    job_id = logout_response.json().get('id')
+    print("Job created:",logout_response.text)
+elif logout_response.status_code == 401:
+    print("invalid credentials. Access token should be successfully invalidated.")
+else:
+    print(logout_response.text,"\n")
+    print(f"Error: {logout_response.status_code}")
+```
+Output
+```text
+invalid credentials. Access token should be successfully invalidated.
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn how to [test locally](../verify/local-testing-mode) before running on quantum computers.
+    - Review detailed [primitives examples.](primitives-examples)
+    - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+    - Learn how to transpile locally in the [Transpile](../transpile/) section.
+    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+</Admonition>
