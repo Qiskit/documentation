@@ -110,14 +110,14 @@ maybeDescribe("Tutorial uploader API", () => {
     const topicIds = await Promise.all(
       simpleTutorial.topics
         .map((name) => api.getId("tutorials_topics", "name", name))
-    )
+    ) as string[]
     expect(retrievedTutorial).toMatchObject({
       "slug": simpleTutorial.slug,
       "status": simpleTutorial.status,
       "reading_time": simpleTutorial.reading_time,
       "catalog_featured": simpleTutorial.catalog_featured,
       "category": await api.getId("tutorials_categories", "name", simpleTutorial.category),
-      "topics": topicIds.map((name: any) => { return { "tutorials_topics_id": name } }),
+      "topics": topicIds.map((name) => { return { "tutorials_topics_id": name } }),
       "editors": [],
       "allowed_email_domains": null,
       "required_instance_access": null,

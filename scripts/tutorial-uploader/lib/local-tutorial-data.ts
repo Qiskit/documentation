@@ -36,7 +36,7 @@ export async function readTutorialData(
   path: string,
 ): Promise<LocalTutorialData[]> {
   const raw = await readFile(path, "utf8");
-  const parsed = yaml.load(raw) as any[];
+  const parsed = yaml.load(raw) as unknown[];
   return parsed
     .map((i) => verifyLocalTutorialData(i))
     .map((i) => relativiseLocalPath(i, path))
