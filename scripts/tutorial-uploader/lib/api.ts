@@ -46,72 +46,24 @@ export class API {
     this.client = createDirectus(url).with(rest()).with(staticToken(token));
   }
 
-  async getTutorialId(slug: string): Promise<string | null> {
+  async getId(collection: string, field: string, value: any ): Promise<string | null> {
     // TODO: Work out how to filter requests on server side
     const response = await this.client.request(
       // @ts-ignore
-      readItems("tutorials", { fields: ["id", "slug"] }),
+      readItems(collection, { fields: ["id", field] }),
     );
-    const match = response.find((item: { slug: string }) => item.slug === slug);
+    const match = response.find((item: any) => item[field] === value);
     return match ? match.id : null;
   }
 
   async getEnglishTranslationId(tutorialId: string): Promise<string> {
+    // TODO: This assumes the only translation is english (currently true)
     const response = await this.client.request(
     // @ts-ignore
       readItem("tutorials", tutorialId, { fields: ["translations"] }),
     );
     return response.translations[0];
   }
-
-  async getCategoryId(categoryName: string): Promise<string> {
-    const response = await this.client.request(
-      // @ts-ignore
-      readItems("tutorials_categories", { fields: ["id", "name"] }),
-    );
-    const match = response.find(
-      (item: { name: string }) => item.name === categoryName,
-    );
-    if (!match) {
-      // TODO: Throw correctly
-      console.log(`No category with name "${categoryName}"`);
-    }
-    return match.id;
-  }
-
-  async getTopicId(topicName: string): Promise<string> {
-    // TODO: Maybe DRY with getCategoryId
-    const response = await this.client.request(
-      // @ts-ignore
-      readItems("tutorials_topics", { fields: ["id", "name"] }),
-    );
-    const match = response.find(
-      (item: { name: string }) => item.name === topicName,
-    );
-    if (!match) {
-      // TODO: Throw correctly
-      console.log(`No topic with name "${topicName}"`);
-    }
-    return match.id;
-  }
-  
-  async getTopicRelationId(tutorialId: string, topicId: string | null): Promise<string> {
-    const response = await this.client.request(
-      // @ts-ignore
-      readItems("tutorials_tutorials_topics"),
-    );
-    const match = response.find(
-      (item: { tutorials_id: string, tutorials_topics_id: string }) => {
-        (item.tutorials_id === tutorialId) && (item.tutorials_topics_id === topicId)
-      }
-    );
-    if (!match) {
-      // TODO: Throw correctly
-      console.log(`No tutorial/tutorial_topic relation with name "${topicId}"`);
-    }
-    return match.id;
-  }
-
 
   async clearTopics(tutorialId: string) {
     // "tutorials_tutorials_topics" is mapping of tutorial to topics
@@ -131,7 +83,7 @@ export class API {
   async updateTutorialTopics(tutorialId: string, topicNames: string[]) {
     await this.clearTopics(tutorialId)
     for (const name of topicNames) {
-      const id = await this.getTopicId(name);
+      const id = await this.getId("tutorials_topics", "name", name);
       await this.client.request(
         // @ts-ignore
         createItem("tutorials_tutorials_topics", { tutorials_id: tutorialId, tutorials_topics_id: id })
@@ -198,7 +150,7 @@ export class API {
       createItem("tutorials_translations", translationData),
     );
     const tutorialData = {
-      category: await this.getCategoryId(tutorial.category),
+      category: await this.getId("tutorials_categories", "name", tutorial.category),
       translations: [translation.id],
       slug: tutorial.slug,
     };
@@ -210,7 +162,7 @@ export class API {
   }
 
   async upsertTutorial(tutorial: LocalTutorialData) {
-    let id = await this.getTutorialId(tutorial.slug);
+    let id = await this.getId("tutorials", "slug", tutorial.slug);
     if (!id) {
       id = await this.createTutorial(tutorial);
     }
