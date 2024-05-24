@@ -46,14 +46,26 @@ export class API {
     this.client = createDirectus(url).with(rest()).with(staticToken(token));
   }
 
-  async getId(collection: string, field: string, value: any ): Promise<string | null> {
+  async getIds(collection: string, field: string, value: any): Promise<string[]> {
     // TODO: Work out how to filter requests on server side
     const response = await this.client.request(
       // @ts-ignore
       readItems(collection, { fields: ["id", field] }),
     );
-    const match = response.find((item: any) => item[field] === value);
-    return match ? match.id : null;
+    const matchingIds = response
+      .filter((item: any) => item[field] === value)
+      .map((item: any) => item.id)
+    return matchingIds
+  }
+
+  async getId(collection: string, field: string, value: any): Promise<string | null> {
+    const ids = (await this.getIds(collection, field, value))
+    if (ids.length === 0) { return null }
+    if (ids.length === 1) { return ids[0] }
+    throw new Error(
+      `Found ${ids.length} items for getId('${collection}', '${field}', '${value}'. `
+    + `Expected one or none.`
+    )
   }
 
   async getEnglishTranslationId(tutorialId: string): Promise<string> {
@@ -67,16 +79,10 @@ export class API {
 
   async clearTopics(tutorialId: string) {
     // "tutorials_tutorials_topics" is mapping of tutorial to topics
-    const response = await this.client.request(
+    const ids = await this.getIds("tutorials_tutorials_topics", "tutorials_id", tutorialId)
+    for (const id of ids) {
       // @ts-ignore
-      readItems("tutorials_tutorials_topics"),
-    );
-    const matches = response.filter(
-      (item: { tutorials_id: string }) => item.tutorials_id === tutorialId
-    );
-    for (const m of matches) {
-      // @ts-ignore
-      await this.client.request(deleteItem("tutorials_tutorials_topics", m.id)).catch((err) => console.log(err))
+      await this.client.request(deleteItem("tutorials_tutorials_topics", id)).catch((err) => console.log(err))
     }
   }
 
