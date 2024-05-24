@@ -17,6 +17,7 @@ import { randomBytes } from "crypto";
 
 import { $ } from "zx";
 import {
+  type RestClient,
   createDirectus,
   rest,
   staticToken,
@@ -28,29 +29,31 @@ import {
   uploadFiles,
 } from "@directus/sdk";
 
+import { type LearningApiSchema } from "./schema";
 import { type LocalTutorialData } from "./local-tutorial-data";
 
 /* To do:
- *   [ ] Fix types
+ *   [x] Fix types
  *   [ ] Throw correctly on request failures
  *   [ ] More helpful console logging
  */
 
 export class API {
-  client: any; // TODO: Work out how to set this correctly
+  client: RestClient<LearningApiSchema>;
 
   constructor(url: string, token: string) {
-    this.client = createDirectus(url).with(rest()).with(staticToken(token));
+    this.client = createDirectus<LearningApiSchema>(url)
+      .with(rest())
+      .with(staticToken(token));
   }
 
   async getIds(
-    collection: string,
-    field: string,
+    collection: keyof LearningApiSchema,
+    field: any,
     value: any,
   ): Promise<string[]> {
     // TODO: Work out how to filter requests on server side
     const response = await this.client.request(
-      // @ts-ignore
       readItems(collection, { fields: ["id", field] }),
     );
     const matchingIds = response
@@ -60,7 +63,7 @@ export class API {
   }
 
   async getId(
-    collection: string,
+    collection: keyof LearningApiSchema,
     field: string,
     value: any,
   ): Promise<string | null> {
@@ -77,13 +80,15 @@ export class API {
     );
   }
 
-  async getEnglishTranslationId(tutorialId: string): Promise<string> {
+  async getEnglishTranslationId(tutorialId: string): Promise<number> {
     // TODO: This assumes the only translation is english (currently true)
     const response = await this.client.request(
-      // @ts-ignore
       readItem("tutorials", tutorialId, { fields: ["translations"] }),
     );
-    return response.translations[0];
+    if (!response.translations) {
+      throw new Error(`No translations for tutorial ${tutorialId}`)
+    }
+    return response.translations[0] as number;
   }
 
   async clearTopics(tutorialId: string) {
@@ -94,9 +99,7 @@ export class API {
       tutorialId,
     );
     for (const id of ids) {
-      // @ts-ignore
       await this.client
-        // @ts-ignore
         .request(deleteItem("tutorials_tutorials_topics", id))
         .catch((err: any) => console.log(err));
     }
@@ -106,8 +109,8 @@ export class API {
     await this.clearTopics(tutorialId);
     for (const name of topicNames) {
       const id = await this.getId("tutorials_topics", "name", name);
+      if (id === null) throw new Error(`No topic with name '${name}'`)
       await this.client.request(
-        // @ts-ignore
         createItem("tutorials_tutorials_topics", {
           tutorials_id: tutorialId,
           tutorials_topics_id: id,
@@ -169,7 +172,6 @@ export class API {
       ],
     };
 
-    // @ts-ignore
     await this.client.request(updateItem("tutorials", tutorialId, newData));
     await this.updateTutorialTopics(tutorialId, tutorial.topics);
   }
@@ -184,20 +186,17 @@ export class API {
       languages_code: "en-US",
     };
     const translation = await this.client.request(
-      // @ts-ignore
       createItem("tutorials_translations", translationData),
     );
+    const category = await this.getId("tutorials_categories", "name", tutorial.category)
+    if (category === null) throw new Error(`No category with name '${tutorial.category}'`)
+
     const tutorialData = {
-      category: await this.getId(
-        "tutorials_categories",
-        "name",
-        tutorial.category,
-      ),
+      category,
       translations: [translation.id],
       slug: tutorial.slug,
     };
     const newTutorial = await this.client.request(
-      // @ts-ignore
       createItem("tutorials", tutorialData),
     );
     return newTutorial.id;
@@ -205,7 +204,7 @@ export class API {
 
   async upsertTutorial(tutorial: LocalTutorialData) {
     let id = await this.getId("tutorials", "slug", tutorial.slug);
-    if (!id) {
+    if (id === null) {
       id = await this.createTutorial(tutorial);
     }
     await this.updateExistingTutorial(id, tutorial);
@@ -213,8 +212,7 @@ export class API {
 
   async deleteTutorial(tutorialSlug: string) {
     const id = await this.getId("tutorials", "slug", tutorialSlug);
-    if (!id) return;
-    // @ts-ignore
+    if (id === null) return;
     await this.client.request(deleteItem("tutorials", id));
   }
 }
