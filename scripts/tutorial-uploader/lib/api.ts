@@ -11,8 +11,11 @@
 // that they have been altered from the originals.
 
 import { readFile } from "fs/promises";
-import { $ } from "zx";
 import { tmpdir } from "os";
+import { dirname, basename } from "path";
+import { randomBytes } from "crypto";
+
+import { $ } from "zx";
 import {
   createDirectus,
   rest,
@@ -116,8 +119,9 @@ export class API {
   /* Returns the file's ID */
   async uploadLocalFolder(path: string): Promise<string> {
     // Zip folder
-    const zippedFilePath = `${tmpdir()}/${path}.zip`;
-    await $`(cd tutorials && zip -qr ${zippedFilePath} ${path})`;
+    const zippedFilePath = `${tmpdir()}/${randomBytes(8).toString("hex")}/tutorial.zip`;
+    await $`mkdir -p ${dirname(zippedFilePath)}`
+    await $`(cd ${dirname(path)} && zip -qr ${zippedFilePath} ${basename(path)})`;
 
     // Build form
     const file = new Blob([await readFile(zippedFilePath)], {
@@ -192,5 +196,12 @@ export class API {
       id = await this.createTutorial(tutorial);
     }
     await this.updateExistingTutorial(id, tutorial);
+  }
+
+  async deleteTutorial(tutorialSlug: string) {
+    const id = await this.getId("tutorials", "slug", tutorialSlug)
+    if (!id) return
+    // @ts-ignore
+    await this.client.request(deleteItem("tutorials", id))
   }
 }

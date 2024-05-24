@@ -12,6 +12,7 @@
 
 import yaml from "js-yaml";
 import { readFile } from "fs/promises";
+import { dirname, join } from "path";
 
 /* Information specified in the YAML file */
 export interface LocalTutorialData {
@@ -26,12 +27,19 @@ export interface LocalTutorialData {
   catalog_featured: boolean;
 }
 
+function relativiseLocalPath(tutorial: LocalTutorialData, path: string): LocalTutorialData {
+  tutorial.local_path = join(dirname(path), tutorial.local_path)
+  return tutorial;
+}
+
 export async function readTutorialData(
   path: string,
 ): Promise<LocalTutorialData[]> {
   const raw = await readFile(path, "utf8");
   const parsed = yaml.load(raw) as any[];
-  return parsed.map((i) => verifyLocalTutorialData(i));
+  return parsed
+    .map((i) => verifyLocalTutorialData(i))
+    .map((i) => relativiseLocalPath(i, path))
 }
 
 const isString = (x: any) => {
