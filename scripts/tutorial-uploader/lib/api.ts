@@ -143,6 +143,11 @@ export class API {
     const temporalFileId = await this.uploadLocalFolder(tutorial.local_path);
     const translationId = await this.getEnglishTranslationId(tutorialId);
     const newData = {
+      category: await this.getId(
+        "tutorials_categories",
+        "name",
+        tutorial.category,
+      ),
       reading_time: tutorial.reading_time,
       catalog_featured: tutorial.catalog_featured,
       status: tutorial.status,
