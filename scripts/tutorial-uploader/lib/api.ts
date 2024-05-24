@@ -133,6 +133,10 @@ export class API {
 
     // Upload form
     const response = await this.client.request(uploadFiles(formData));
+
+    // Clean up
+    await $`rm -r ${dirname(zippedFilePath)}`
+
     return response.id;
   }
 
