@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { API } from "./lib/api";
-import { readTutorialData } from './lib/local-tutorial-data';
+import { readTutorialData } from "./lib/local-tutorial-data";
 
 const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
 

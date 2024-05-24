@@ -10,12 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readTutorialData } from './lib/local-tutorial-data';
+import { readTutorialData } from "./lib/local-tutorial-data";
 
 const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
 
 async function main() {
-  await readTutorialData(CONFIG_PATH)
+  await readTutorialData(CONFIG_PATH);
 }
 
 main().then(() => process.exit());

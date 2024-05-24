@@ -11,8 +11,8 @@
 // that they have been altered from the originals.
 
 import { readFile } from "fs/promises";
-import { $ } from 'zx';
-import { tmpdir } from 'os'
+import { $ } from "zx";
+import { tmpdir } from "os";
 import {
   createDirectus,
   rest,
@@ -25,15 +25,9 @@ import {
   uploadFiles,
 } from "@directus/sdk";
 
-import { type LocalTutorialData } from './local-tutorial-data';
+import { type LocalTutorialData } from "./local-tutorial-data";
 
 /* To do:
- *
- *   [x] Get URL from environment
- *   [x] Get auth from environment
- *   [x] Handle "topics" field
- *   [x] Zip file automatically
- *   [x] Use temp folder for zipping
  *   [ ] Fix types
  *   [ ] Throw correctly on request failures
  *   [ ] More helpful console logging
@@ -46,7 +40,11 @@ export class API {
     this.client = createDirectus(url).with(rest()).with(staticToken(token));
   }
 
-  async getIds(collection: string, field: string, value: any): Promise<string[]> {
+  async getIds(
+    collection: string,
+    field: string,
+    value: any,
+  ): Promise<string[]> {
     // TODO: Work out how to filter requests on server side
     const response = await this.client.request(
       // @ts-ignore
@@ -54,24 +52,32 @@ export class API {
     );
     const matchingIds = response
       .filter((item: any) => item[field] === value)
-      .map((item: any) => item.id)
-    return matchingIds
+      .map((item: any) => item.id);
+    return matchingIds;
   }
 
-  async getId(collection: string, field: string, value: any): Promise<string | null> {
-    const ids = (await this.getIds(collection, field, value))
-    if (ids.length === 0) { return null }
-    if (ids.length === 1) { return ids[0] }
+  async getId(
+    collection: string,
+    field: string,
+    value: any,
+  ): Promise<string | null> {
+    const ids = await this.getIds(collection, field, value);
+    if (ids.length === 0) {
+      return null;
+    }
+    if (ids.length === 1) {
+      return ids[0];
+    }
     throw new Error(
-      `Found ${ids.length} items for getId('${collection}', '${field}', '${value}'. `
-    + `Expected one or none.`
-    )
+      `Found ${ids.length} items for getId('${collection}', '${field}', '${value}'. ` +
+        `Expected one or none.`,
+    );
   }
 
   async getEnglishTranslationId(tutorialId: string): Promise<string> {
     // TODO: This assumes the only translation is english (currently true)
     const response = await this.client.request(
-    // @ts-ignore
+      // @ts-ignore
       readItem("tutorials", tutorialId, { fields: ["translations"] }),
     );
     return response.translations[0];
@@ -79,29 +85,39 @@ export class API {
 
   async clearTopics(tutorialId: string) {
     // "tutorials_tutorials_topics" is mapping of tutorial to topics
-    const ids = await this.getIds("tutorials_tutorials_topics", "tutorials_id", tutorialId)
+    const ids = await this.getIds(
+      "tutorials_tutorials_topics",
+      "tutorials_id",
+      tutorialId,
+    );
     for (const id of ids) {
       // @ts-ignore
-      await this.client.request(deleteItem("tutorials_tutorials_topics", id)).catch((err) => console.log(err))
+      await this.client
+        // @ts-ignore
+        .request(deleteItem("tutorials_tutorials_topics", id))
+        .catch((err: any) => console.log(err));
     }
   }
 
   async updateTutorialTopics(tutorialId: string, topicNames: string[]) {
-    await this.clearTopics(tutorialId)
+    await this.clearTopics(tutorialId);
     for (const name of topicNames) {
       const id = await this.getId("tutorials_topics", "name", name);
       await this.client.request(
         // @ts-ignore
-        createItem("tutorials_tutorials_topics", { tutorials_id: tutorialId, tutorials_topics_id: id })
-      )
+        createItem("tutorials_tutorials_topics", {
+          tutorials_id: tutorialId,
+          tutorials_topics_id: id,
+        }),
+      );
     }
   }
 
   /* Returns the file's ID */
   async uploadLocalFolder(path: string): Promise<string> {
     // Zip folder
-    const zippedFilePath = `${tmpdir()}/${path}.zip`
-    await $`(cd tutorials && zip -qr ${zippedFilePath} ${path})`
+    const zippedFilePath = `${tmpdir()}/${path}.zip`;
+    await $`(cd tutorials && zip -qr ${zippedFilePath} ${path})`;
 
     // Build form
     const file = new Blob([await readFile(zippedFilePath)], {
@@ -120,7 +136,7 @@ export class API {
     tutorialId: string,
     tutorial: LocalTutorialData,
   ) {
-    const temporalFileId = await this.uploadLocalFolder(tutorial.local_path,);
+    const temporalFileId = await this.uploadLocalFolder(tutorial.local_path);
     const translationId = await this.getEnglishTranslationId(tutorialId);
     const newData = {
       reading_time: tutorial.reading_time,
@@ -138,7 +154,7 @@ export class API {
 
     // @ts-ignore
     await this.client.request(updateItem("tutorials", tutorialId, newData));
-    await this.updateTutorialTopics(tutorialId, tutorial.topics)
+    await this.updateTutorialTopics(tutorialId, tutorial.topics);
   }
 
   /*
@@ -149,19 +165,22 @@ export class API {
     const translationData = {
       title: tutorial.title,
       languages_code: "en-US",
-      short_description: tutorial.short_description,
     };
     const translation = await this.client.request(
-    // @ts-ignore
+      // @ts-ignore
       createItem("tutorials_translations", translationData),
     );
     const tutorialData = {
-      category: await this.getId("tutorials_categories", "name", tutorial.category),
+      category: await this.getId(
+        "tutorials_categories",
+        "name",
+        tutorial.category,
+      ),
       translations: [translation.id],
       slug: tutorial.slug,
     };
     const newTutorial = await this.client.request(
-    // @ts-ignore
+      // @ts-ignore
       createItem("tutorials", tutorialData),
     );
     return newTutorial.id;
