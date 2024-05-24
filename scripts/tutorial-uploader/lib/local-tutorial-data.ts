@@ -27,8 +27,11 @@ export interface LocalTutorialData {
   catalog_featured: boolean;
 }
 
-function relativiseLocalPath(tutorial: LocalTutorialData, path: string): LocalTutorialData {
-  tutorial.local_path = join(dirname(path), tutorial.local_path)
+function relativiseLocalPath(
+  tutorial: LocalTutorialData,
+  path: string,
+): LocalTutorialData {
+  tutorial.local_path = join(dirname(path), tutorial.local_path);
   return tutorial;
 }
 
@@ -39,7 +42,7 @@ export async function readTutorialData(
   const parsed = yaml.load(raw) as unknown[];
   return parsed
     .map((i) => verifyLocalTutorialData(i))
-    .map((i) => relativiseLocalPath(i, path))
+    .map((i) => relativiseLocalPath(i, path));
 }
 
 const isString = (x: any) => {

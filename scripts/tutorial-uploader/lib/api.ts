@@ -119,9 +119,13 @@ export class API {
   /* Returns the file's ID */
   async uploadLocalFolder(path: string): Promise<string> {
     // Zip folder
-    const zippedFilePath = `${tmpdir()}/${randomBytes(8).toString("hex")}/tutorial.zip`;
-    await $`mkdir -p ${dirname(zippedFilePath)}`
-    await $`(cd ${dirname(path)} && zip -qr ${zippedFilePath} ${basename(path)})`;
+    const zippedFilePath = `${tmpdir()}/${randomBytes(8).toString(
+      "hex",
+    )}/tutorial.zip`;
+    await $`mkdir -p ${dirname(zippedFilePath)}`;
+    await $`(cd ${dirname(path)} && zip -qr ${zippedFilePath} ${basename(
+      path,
+    )})`;
 
     // Build form
     const file = new Blob([await readFile(zippedFilePath)], {
@@ -135,7 +139,7 @@ export class API {
     const response = await this.client.request(uploadFiles(formData));
 
     // Clean up
-    await $`rm -r ${dirname(zippedFilePath)}`
+    await $`rm -r ${dirname(zippedFilePath)}`;
 
     return response.id;
   }
@@ -208,9 +212,9 @@ export class API {
   }
 
   async deleteTutorial(tutorialSlug: string) {
-    const id = await this.getId("tutorials", "slug", tutorialSlug)
-    if (!id) return
+    const id = await this.getId("tutorials", "slug", tutorialSlug);
+    if (!id) return;
     // @ts-ignore
-    await this.client.request(deleteItem("tutorials", id))
+    await this.client.request(deleteItem("tutorials", id));
   }
 }
