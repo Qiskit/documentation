@@ -86,7 +86,7 @@ export class API {
       readItem("tutorials", tutorialId, { fields: ["translations"] }),
     );
     if (!response.translations) {
-      throw new Error(`No translations for tutorial ${tutorialId}`)
+      throw new Error(`No translations for tutorial ${tutorialId}`);
     }
     return response.translations[0] as number;
   }
@@ -109,7 +109,7 @@ export class API {
     await this.clearTopics(tutorialId);
     for (const name of topicNames) {
       const id = await this.getId("tutorials_topics", "name", name);
-      if (id === null) throw new Error(`No topic with name '${name}'`)
+      if (id === null) throw new Error(`No topic with name '${name}'`);
       await this.client.request(
         createItem("tutorials_tutorials_topics", {
           tutorials_id: tutorialId,
@@ -188,8 +188,13 @@ export class API {
     const translation = await this.client.request(
       createItem("tutorials_translations", translationData),
     );
-    const category = await this.getId("tutorials_categories", "name", tutorial.category)
-    if (category === null) throw new Error(`No category with name '${tutorial.category}'`)
+    const category = await this.getId(
+      "tutorials_categories",
+      "name",
+      tutorial.category,
+    );
+    if (category === null)
+      throw new Error(`No category with name '${tutorial.category}'`);
 
     const tutorialData = {
       category,

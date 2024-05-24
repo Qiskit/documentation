@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 export interface LearningApiSchema {
-  tutorials:  Tutorial[];
+  tutorials: Tutorial[];
   tutorials_translations: Translation[];
   tutorials_topics: Topic[];
   tutorials_categories: Category[];
@@ -23,7 +23,7 @@ interface Tutorial {
   slug: string;
   status: "draft" | "published" | "archived";
   reading_time: number;
-  category: string;  // ID
+  category: string; // ID
   catalog_featured: boolean;
   translations: number[] | Translation[];
 }
@@ -48,7 +48,7 @@ interface Category {
 }
 
 interface TutorialsTopicsRelation {
-  id: number,
+  id: number;
   tutorials_id: string | Tutorial;
   tutorials_topics_id: string | Topic;
 }
