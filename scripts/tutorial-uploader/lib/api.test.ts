@@ -19,9 +19,8 @@ import { API } from "./api";
 import { type LocalTutorialData } from "./local-tutorial-data";
 
 /* Skip tests if environment is not set */
-const maybeDescribe = (process.env.JEST_TEST_TUTORIAL_UPLOADER === "true")
-  ? describe
-  : describe.skip;
+const maybeDescribe =
+  process.env.JEST_TEST_TUTORIAL_UPLOADER === "true" ? describe : describe.skip;
 
 /* Create test data */
 const createdSlugs: string[] = []; // To teardown afterwards
