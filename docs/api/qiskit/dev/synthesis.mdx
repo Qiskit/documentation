@@ -35,7 +35,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_cnot\_count\_full\_pmh
 
-<Function id="qiskit.synthesis.synth_cnot_count_full_pmh" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/cnot_synth.py#L26-L74" signature="qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)">
+<Function id="qiskit.synthesis.synth_cnot_count_full_pmh" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/cnot_synth.py#L26-L72" signature="qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)">
   Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
 
   This function is an implementation of the Patel, Markov and Hayes algorithm from \[1] for optimal synthesis of linear reversible circuits for all-to-all architecture, as specified by an $n \times n$ matrix.
@@ -43,7 +43,7 @@ python_api_name: qiskit.synthesis
   **Parameters**
 
   *   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – $n \times n$ boolean invertible matrix, describing the state of the input circuit
-  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The size of each section, used in the Patel–Markov–Hayes algorithm \[1]. `section_size` must be a factor of the number of qubits.
+  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The size of each section in the Patel–Markov–Hayes algorithm \[1].
 
   **Returns**
 
@@ -94,7 +94,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_cz\_depth\_line\_mr
 
-<Function id="qiskit.synthesis.synth_cz_depth_line_mr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cz_depth_lnn.py#L135-L208" signature="qiskit.synthesis.synth_cz_depth_line_mr(mat)">
+<Function id="qiskit.synthesis.synth_cz_depth_line_mr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cz_depth_lnn.py#L121-L194" signature="qiskit.synthesis.synth_cz_depth_line_mr(mat)">
   Synthesis of a CZ circuit for linear nearest neighbour (LNN) connectivity, based on Maslov and Roetteler.
 
   Note that this method *reverts* the order of qubits in the circuit, and returns a circuit containing [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
@@ -262,6 +262,30 @@ python_api_name: qiskit.synthesis
 
   1.  N. Alon, F. R. K. Chung, and R. L. Graham. *Routing Permutations on Graphs Via Matchings.*, Proceedings of the Twenty-Fifth Annual ACM Symposium on Theory of Computing(1993). Pages 583–591. [(Extended abstract) 10.1145/167088.167239](https://doi.org/10.1145/167088.167239)
   2.  N. Alon, F. R. K. Chung, and R. L. Graham. *Routing Permutations on Graphs Via Matchings.*, [(Full paper)](https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf)
+</Function>
+
+### synth\_permutation\_reverse\_lnn\_kms
+
+<Function id="qiskit.synthesis.synth_permutation_reverse_lnn_kms" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/permutation/permutation_reverse_lnn.py#L66-L90" signature="qiskit.synthesis.synth_permutation_reverse_lnn_kms(num_qubits)">
+  Synthesize reverse permutation for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
+
+  Synthesis algorithm for reverse permutation from \[1], section 5. This algorithm synthesizes the reverse permutation on $n$ qubits over a linear nearest-neighbor architecture using CX gates with depth $2 * n + 2$.
+
+  **Parameters**
+
+  **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits.
+
+  **Returns**
+
+  The synthesized quantum circuit.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  **References**
+
+  1.  Kutin, S., Moulton, D. P., Smithline, L., *Computation at a distance*, Chicago J. Theor. Comput. Sci., vol. 2007, (2007), [arXiv:quant-ph/0701194](https://arxiv.org/abs/quant-ph/0701194)
 </Function>
 
 ## Clifford Synthesis
@@ -659,7 +683,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_qft\_line
 
-<Function id="qiskit.synthesis.synth_qft_line" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/qft/qft_decompose_lnn.py#L21-L74" signature="qiskit.synthesis.synth_qft_line(num_qubits, do_swaps=True, approximation_degree=0)">
+<Function id="qiskit.synthesis.synth_qft_line" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/qft/qft_decompose_lnn.py#L21-L70" signature="qiskit.synthesis.synth_qft_line(num_qubits, do_swaps=True, approximation_degree=0)">
   Synthesis of a QFT circuit for a linear nearest neighbor connectivity. Based on Fig 2.b in Fowler et al. \[1].
 
   Note that this method *reverts* the order of qubits in the circuit, compared to the original [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") code. Hence, the default value of the `do_swaps` parameter is `True` since it produces a circuit with fewer CX gates.
@@ -741,11 +765,7 @@ $$
   1.  Shende, Bullock, Markov, *Synthesis of Quantum Logic Circuits*, [arXiv:0406176 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0406176)
 </Function>
 
-The Approximate Quantum Compiler is available here:
-
-|                                                                                                                                   |                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`qiskit.synthesis.unitary.aqc`](qiskit.synthesis.unitary.aqc#module-qiskit.synthesis.unitary.aqc "qiskit.synthesis.unitary.aqc") | Approximate Quantum Compiler (qiskit.synthesis.unitary.aqc) |
+The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.unitary.aqc`](qiskit.synthesis.unitary.aqc#module-qiskit.synthesis.unitary.aqc "qiskit.synthesis.unitary.aqc").
 
 ## One-Qubit Synthesis
 

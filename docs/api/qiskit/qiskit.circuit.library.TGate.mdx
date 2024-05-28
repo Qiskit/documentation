@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.TGate
 
 # TGate
 
-<Class id="qiskit.circuit.library.TGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/t.py#L26-L100" signature="qiskit.circuit.library.TGate(*args, _force_mutable=False, **kwargs)">
+<Class id="qiskit.circuit.library.TGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/t.py#L26-L99" signature="qiskit.circuit.library.TGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
   Single qubit T gate (Z\*\*0.25).
@@ -128,7 +128,7 @@ $$
   ### params
 
   <Attribute id="qiskit.circuit.library.TGate.params">
-    return instruction params.
+    The parameters of this `Instruction`. Ideally these will be gate angles.
   </Attribute>
 
   ### unit
@@ -141,7 +141,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.TGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/t.py#L81-L93" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.TGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/t.py#L81-L93" signature="inverse(annotated=False)">
     Return inverse T gate (i.e. Tdg).
 
     **Parameters**
@@ -159,8 +159,23 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.TGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/t.py#L95-L97" signature="power(exponent)">
-    Raise gate to a power.
+  <Function id="qiskit.circuit.library.TGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/t.py#L95-L96" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 </Class>
 

@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.operators.converters.CircuitSampler
 
 # qiskit.aqua.operators.converters.CircuitSampler
 
-<Class id="qiskit.aqua.operators.converters.CircuitSampler" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/converters/circuit_sampler.py" signature="CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False)">
+<Class id="qiskit.aqua.operators.converters.CircuitSampler" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/converters/circuit_sampler.py" signature="CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False)" modifiers="class">
   The CircuitSampler traverses an Operator and converts any CircuitStateFns into approximations of the state function by a DictStateFn or VectorStateFn using a quantum backend. Note that in order to approximate the value of the CircuitStateFn, it must 1) send state function through a depolarizing channel, which will destroy all phase information and 2) replace the sampled frequencies with **square roots** of the frequency, rather than the raw probability of sampling (which would be the equivalent of sampling the **square** of the state function, per the Born rule.
 
   The CircuitSampler aggressively caches transpiled circuits to handle re-parameterization of the same circuit efficiently. If you are converting multiple different Operators, you are better off using a different CircuitSampler for each Operator to avoid cache thrashing.
@@ -57,7 +57,7 @@ python_api_name: qiskit.aqua.operators.converters.CircuitSampler
 
   ### backend
 
-  <Function id="qiskit.aqua.operators.converters.CircuitSampler.backend" signature="property backend">
+  <Attribute id="qiskit.aqua.operators.converters.CircuitSampler.backend">
     Returns the backend.
 
     **Return type**
@@ -67,7 +67,7 @@ python_api_name: qiskit.aqua.operators.converters.CircuitSampler
     **Returns**
 
     The backend used by the CircuitSampler
-  </Function>
+  </Attribute>
 
   ### convert
 
@@ -94,7 +94,7 @@ python_api_name: qiskit.aqua.operators.converters.CircuitSampler
 
   ### quantum\_instance
 
-  <Function id="qiskit.aqua.operators.converters.CircuitSampler.quantum_instance" signature="property quantum_instance">
+  <Attribute id="qiskit.aqua.operators.converters.CircuitSampler.quantum_instance">
     Returns the quantum instance.
 
     **Return type**
@@ -104,7 +104,7 @@ python_api_name: qiskit.aqua.operators.converters.CircuitSampler
     **Returns**
 
     The QuantumInstance used by the CircuitSampler
-  </Function>
+  </Attribute>
 
   ### sample\_circuits
 

@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
 # QSVM
 
-<Class id="qiskit.aqua.algorithms.QSVM" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py" signature="QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.QSVM" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py" signature="QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, quantum_instance=None)" modifiers="class">
   Quantum SVM algorithm.
 
   A key concept in classification methods is that of a kernel. Data cannot typically be separated by a hyperplane in its original space. A common technique used to find such a hyperplane consists on applying a non-linear transformation function to the data. This function is called a *feature map*, as it transforms the raw features, or measurable properties, of the phenomenon or subject under study. Classifying in this new feature space – and, as a matter of fact, also in any other space, including the raw original one – is nothing more than seeing how close data points are to each other. This is the same as computing the inner product for each pair of data in the set. In fact we do not need to compute the non-linear feature map for each datum, but only the inner product of each pair of data points in the new feature space. This collection of inner products is called the **kernel** and it is perfectly possible to have feature maps that are hard to compute but whose kernels are not.
@@ -36,11 +36,11 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### BATCH\_SIZE
 
-  <Attribute id="qiskit.aqua.algorithms.QSVM.BATCH_SIZE" signature="= 1000" />
+  <Attribute id="qiskit.aqua.algorithms.QSVM.BATCH_SIZE" attributeValue="1000" />
 
   ### backend
 
-  <Attribute id="qiskit.aqua.algorithms.QSVM.backend" signature="qiskit.providers.basebackend.BaseBackend">
+  <Attribute id="qiskit.aqua.algorithms.QSVM.backend" attributeTypeHint="qiskit.providers.basebackend.BaseBackend">
     Returns backend.
 
     **Return type**
@@ -50,7 +50,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### quantum\_instance
 
-  <Attribute id="qiskit.aqua.algorithms.QSVM.quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+  <Attribute id="qiskit.aqua.algorithms.QSVM.quantum_instance" attributeTypeHint="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
     Returns quantum instance.
 
     **Return type**
@@ -124,7 +124,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### get\_kernel\_matrix
 
-  <Function id="qiskit.aqua.algorithms.QSVM.get_kernel_matrix" signature="static QSVM.get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None)">
+  <Function id="qiskit.aqua.algorithms.QSVM.get_kernel_matrix" signature="QSVM.get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None)" modifiers="static">
     Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
 
     **Notes**

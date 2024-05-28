@@ -13,7 +13,7 @@
 import { describe, expect, test } from "@jest/globals";
 
 import { generateToc } from "./generateToc";
-import { Pkg } from "./Pkg";
+import { Pkg, ReleaseNotesConfig } from "./Pkg";
 import type { TocGroupingEntry } from "./TocGrouping";
 
 const DEFAULT_ARGS = {
@@ -99,72 +99,16 @@ describe("generateToc", () => {
           url: "/api/my-quantum-project",
         },
         {
-          title: "...options",
+          title: "my_quantum_project.options",
           url: "/api/my-quantum-project/options",
         },
         {
-          title: "...options.submodule",
+          title: "my_quantum_project.options.submodule",
           url: "/api/my-quantum-project/my_quantum_project.options.submodule",
         },
         {
-          title: "...single",
+          title: "my_quantum_project.single",
           url: "/api/my-quantum-project/single",
-        },
-        {
-          title: "Release notes",
-          url: "/api/my-quantum-project/release-notes",
-        },
-      ],
-      collapsed: true,
-      title: "My Quantum Project",
-    });
-  });
-
-  test("TOC with nested submodules", () => {
-    const toc = generateToc(Pkg.mock({ nestModulesInToc: true }), [
-      {
-        meta: {
-          apiType: "module",
-          apiName: "my_quantum_project",
-        },
-        url: "/api/my-quantum-project",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: {
-          apiType: "module",
-          apiName: "my_quantum_project.options",
-        },
-        url: "/api/my-quantum-project/options",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: {
-          apiType: "module",
-          apiName: "my_quantum_project.options.submodule",
-        },
-        url: "/api/my-quantum-project/my_quantum_project.options.submodule",
-        ...DEFAULT_ARGS,
-      },
-    ]);
-    expect(toc).toEqual({
-      children: [
-        {
-          title: "my_quantum_project",
-          url: "/api/my-quantum-project",
-        },
-        {
-          children: [
-            {
-              title: "Module overview",
-              url: "/api/my-quantum-project/options",
-            },
-            {
-              title: "my_quantum_project.options.submodule",
-              url: "/api/my-quantum-project/my_quantum_project.options.submodule",
-            },
-          ],
-          title: "my_quantum_project.options",
         },
         {
           title: "Release notes",
@@ -273,13 +217,12 @@ describe("generateToc", () => {
     });
   });
 
-  test("TOC with distinct release note files", () => {
+  test("TOC with separate release note files", () => {
     const toc = generateToc(
       Pkg.mock({
-        releaseNoteEntries: [
-          { title: "0.39", url: "/api/my-quantum-project/release-notes/0.39" },
-          { title: "0.38", url: "/api/my-quantum-project/release-notes/0.38" },
-        ],
+        releaseNotesConfig: new ReleaseNotesConfig({
+          separatePagesVersions: ["0.39", "0.38"],
+        }),
       }),
       [
         {
@@ -319,52 +262,53 @@ describe("generateToc", () => {
     });
   });
 
-  test("generate a toc without modules", () => {
-    const toc = generateToc(Pkg.mock({}), [
-      {
-        meta: { apiType: "class", apiName: "Sampler" },
-        url: "/api/my-quantum-project/my_quantum_project.Sampler",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "method", apiName: "Sampler.run" },
-        url: "/api/my-quantum-project/my_quantum_project.Sampler.run",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "class", apiName: "Estimator" },
-        url: "/api/my-quantum-project/my_quantum_project.Estimator",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "class" },
-        url: "/api/my-quantum-project/my_quantum_project.NoName",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: { apiType: "class", apiName: "Options" },
-        url: "docs/my_quantum_project.options.Options",
-        ...DEFAULT_ARGS,
-      },
-      {
-        meta: {
-          apiType: "function",
-          apiName: "runSomething",
+  test("generate a toc without modules and releaes notes", () => {
+    const toc = generateToc(
+      Pkg.mock({
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+      }),
+      [
+        {
+          meta: { apiType: "class", apiName: "Sampler" },
+          url: "/api/my-quantum-project/my_quantum_project.Sampler",
+          ...DEFAULT_ARGS,
         },
-        url: "docs/my_quantum_project.runSomething",
-        ...DEFAULT_ARGS,
-      },
-    ]);
+        {
+          meta: { apiType: "method", apiName: "Sampler.run" },
+          url: "/api/my-quantum-project/my_quantum_project.Sampler.run",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: { apiType: "class", apiName: "Estimator" },
+          url: "/api/my-quantum-project/my_quantum_project.Estimator",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: { apiType: "class" },
+          url: "/api/my-quantum-project/my_quantum_project.NoName",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: { apiType: "class", apiName: "Options" },
+          url: "docs/my_quantum_project.options.Options",
+          ...DEFAULT_ARGS,
+        },
+        {
+          meta: {
+            apiType: "function",
+            apiName: "runSomething",
+          },
+          url: "docs/my_quantum_project.runSomething",
+          ...DEFAULT_ARGS,
+        },
+      ],
+    );
 
     expect(toc).toEqual({
       children: [
         {
           title: "API index",
           url: "/api/my-quantum-project",
-        },
-        {
-          title: "Release notes",
-          url: "/api/my-quantum-project/release-notes",
         },
       ],
       collapsed: true,

@@ -251,18 +251,18 @@ python_api_name: qiskit.utils
   Checks whether the current process is the main one
 </Function>
 
-A helper function for calling a custom function with python [`ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor "(in Python v3.12)"). Tasks can be executed in parallel using this function.
+A helper function for calling a custom function with Python [`ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor "(in Python v3.12)"). Tasks can be executed in parallel using this function.
 
 ### parallel\_map
 
-<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L104-L182" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)">
+<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L121-L191" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)">
   Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
   ```python
   result = [task(value, *task_args, **task_kwargs) for value in values]
   ```
 
-  On Windows this function defaults to a serial implementation to avoid the overhead from spawning processes in Windows.
+  This will parallelise the results if the number of `values` is greater than one, and the current system configuration permits parallelization.
 
   **Parameters**
 
@@ -274,11 +274,7 @@ A helper function for calling a custom function with python [`ProcessPoolExecuto
 
   **Returns**
 
-  **The result list contains the value of**
-
-  **`task(value, *task_args, **task_kwargs)` for**
-
-  each value in `values`.
+  The result list contains the value of `task(value, *task_args, **task_kwargs)` for each value in `values`.
 
   **Return type**
 
@@ -363,7 +359,9 @@ Each of the lazy checkers is an instance of [`LazyDependencyManager`](#qiskit.ut
 from qiskit.utils import LazyImportTester
 ```
 
-<Class id="qiskit.utils.LazyDependencyManager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L44-L238" signature="qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)">
+#### LazyDependencyManager
+
+<Class id="qiskit.utils.LazyDependencyManager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L44-L238" signature="qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)" modifiers="class">
   A mananger for some optional features that are expensive to import, or to verify the existence of.
 
   These objects can be used as Booleans, such as `if x`, and will evaluate `True` if the dependency they test for is available, and `False` if not. The presence of the dependency will only be tested when the Boolean is evaluated, so it can be used as a runtime test in functions and methods without requiring an import-time test.
@@ -401,9 +399,9 @@ from qiskit.utils import LazyImportTester
   *   **install** – how to install this optional dependency. Passed to [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") as the `pip_install` parameter.
   *   **msg** – an extra message to include in the error raised if this is required.
 
-  ### \_is\_available
+  ##### \_is\_available
 
-  <Function id="qiskit.utils.LazyDependencyManager._is_available" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L104-L112" signature="abstract _is_available()">
+  <Function id="qiskit.utils.LazyDependencyManager._is_available" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L104-L112" signature="_is_available()" modifiers="abstract">
     Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.LazyDependencyManager") should override this method to implement the actual test of availability. This method should return a Boolean, where `True` indicates that the dependency was available. This method will only ever be called once.
 
     **Return type**
@@ -411,13 +409,13 @@ from qiskit.utils import LazyImportTester
     [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
   </Function>
 
-  ### disable\_locally
+  ##### disable\_locally
 
   <Function id="qiskit.utils.LazyDependencyManager.disable_locally" signature="disable_locally()">
     Create a context, during which the value of the dependency manager will be `False`. This means that within the context, any calls to this object will behave as if the dependency is not available, including raising errors. It is valid to call this method whether or not the dependency has already been evaluated. This is most useful in tests.
   </Function>
 
-  ### require\_in\_call
+  ##### require\_in\_call
 
   <Function id="qiskit.utils.LazyDependencyManager.require_in_call" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L127-L167" signature="require_in_call(feature_or_callable: Callable) → Callable" extraSignatures={["require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]"]}>
     Create a decorator for callables that requires that the dependency is available when the decorated function or method is called.
@@ -435,7 +433,7 @@ from qiskit.utils import LazyImportTester
     Callable
   </Function>
 
-  ### require\_in\_instance
+  ##### require\_in\_instance
 
   <Function id="qiskit.utils.LazyDependencyManager.require_in_instance" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L175-L207" signature="require_in_instance(feature_or_class: Type) → Type" extraSignatures={["require_in_instance(feature_or_class: str) → Callable[[Type], Type]"]}>
     A class decorator that requires the dependency is available when the class is initialised. This decorator can be used even if the class does not define an `__init__` method.
@@ -453,7 +451,7 @@ from qiskit.utils import LazyImportTester
     Callable
   </Function>
 
-  ### require\_now
+  ##### require\_now
 
   <Function id="qiskit.utils.LazyDependencyManager.require_now" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L209-L223" signature="require_now(feature)">
     Eagerly attempt to import the dependencies in this object, and raise an exception if they cannot be imported.
@@ -468,7 +466,9 @@ from qiskit.utils import LazyImportTester
   </Function>
 </Class>
 
-<Class id="qiskit.utils.LazyImportTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L241-L323" signature="qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)">
+#### LazyImportTester
+
+<Class id="qiskit.utils.LazyImportTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L241-L323" signature="qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
   A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
   **Parameters**
@@ -480,7 +480,9 @@ from qiskit.utils import LazyImportTester
   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if no modules are given.
 </Class>
 
-<Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L326-L363" signature="qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)">
+#### LazySubprocessTester
+
+<Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L326-L363" signature="qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
   A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 
   **Parameters**

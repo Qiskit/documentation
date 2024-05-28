@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.OR
 
 # OR
 
-<Class id="qiskit.circuit.library.OR" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/boolean_logic/quantum_or.py#L22-L98" signature="qiskit.circuit.library.OR(num_variable_qubits, flags=None, mcx_mode='noancilla')">
+<Class id="qiskit.circuit.library.OR" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/boolean_logic/quantum_or.py#L22-L98" signature="qiskit.circuit.library.OR(num_variable_qubits, flags=None, mcx_mode='noancilla')" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   A circuit implementing the logical OR operation on a number of qubits.
@@ -36,7 +36,7 @@ python_api_name: qiskit.circuit.library.OR
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.OR.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -50,13 +50,13 @@ python_api_name: qiskit.circuit.library.OR
   ### clbits
 
   <Attribute id="qiskit.circuit.library.OR.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
   <Attribute id="qiskit.circuit.library.OR.data">
-    Return the circuit data (instructions and context).
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -70,12 +70,12 @@ python_api_name: qiskit.circuit.library.OR
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.OR.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.OR.instances" attributeValue="181" />
+  <Attribute id="qiskit.circuit.library.OR.instances" attributeValue="183" />
 
   ### layout
 
@@ -90,9 +90,9 @@ python_api_name: qiskit.circuit.library.OR
   ### metadata
 
   <Attribute id="qiskit.circuit.library.OR.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -232,7 +232,37 @@ python_api_name: qiskit.circuit.library.OR
   ### qubits
 
   <Attribute id="qiskit.circuit.library.OR.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.OR.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.OR.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.OR.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.OR.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.OR.unit "qiskit.circuit.library.OR.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.OR.unit">
+    The unit that [`duration`](#qiskit.circuit.library.OR.duration "qiskit.circuit.library.OR.duration") is specified in.
   </Attribute>
 </Class>
 

@@ -59,7 +59,9 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 Both of these exporter functions are single-use wrappers around the main [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") class. For more complex exporting needs, including dumping multiple circuits in a single session, it may be more convenient or faster to use the complete interface.
 
-<Class id="qiskit.qasm3.Exporter" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exporter.py" signature="Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')">
+### Exporter
+
+<Class id="qiskit.qasm3.Exporter" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exporter.py" signature="Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')" modifiers="class">
   QASM3 exporter main class.
 
   **Parameters**
@@ -70,13 +72,13 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
   *   **alias\_classical\_registers** (`bool`) – If `True`, then classical bit and classical register declarations will look similar to quantum declarations, where the whole set of bits will be declared in a flat array, and the registers will just be aliases to collections of these bits. This is inefficient for running OpenQASM 3 programs, however, and may not be well supported on backends. Instead, the default behaviour of `False` means that individual classical registers will gain their own `bit[size] register;` declarations, and loose [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")s will go onto their own declaration. In this form, each [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") must be in either zero or one [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s.
   *   **indent** (`str`) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
 
-  ### dump
+  #### dump
 
   <Function id="qiskit.qasm3.Exporter.dump" signature="dump(circuit, stream)">
     Convert the circuit to QASM 3, dumping the result to a file or text stream.
   </Function>
 
-  ### dumps
+  #### dumps
 
   <Function id="qiskit.qasm3.Exporter.dumps" signature="dumps(circuit)">
     Convert the circuit to QASM 3, returning the result as a string.
@@ -87,7 +89,7 @@ All of these interfaces will raise [`QASM3ExporterError`](#qiskit.qasm3.QASM3Exp
 
 ### QASM3ExporterError
 
-<Class id="qiskit.qasm3.QASM3ExporterError" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py" signature="QASM3ExporterError(*message)">
+<Class id="qiskit.qasm3.QASM3ExporterError" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py" signature="QASM3ExporterError(*message)" modifiers="exception">
   An error raised during running the OpenQASM 3 exporter.
 
   Set the error message.
@@ -155,7 +157,7 @@ Both of these two functions raise [`QASM3ImporterError`](#qiskit.qasm3.QASM3Impo
 
 ### QASM3ImporterError
 
-<Class id="qiskit.qasm3.QASM3ImporterError" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py" signature="QASM3ImporterError(*message)">
+<Class id="qiskit.qasm3.QASM3ImporterError" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm3/exceptions.py" signature="QASM3ImporterError(*message)" modifiers="exception">
   An error raised during the OpenQASM 3 importer.
 
   Set the error message.

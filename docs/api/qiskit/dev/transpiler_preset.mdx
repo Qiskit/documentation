@@ -56,7 +56,7 @@ This module contains functions for generating the preset pass managers for the t
 
   *   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
 
-  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Initial position of virtual qubits on physical qubits.
 
   *   **layout\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The `Pass` to use for choosing initial qubit placement. Valid choices are `'trivial'`, `'dense'`, and `'sabre'`, representing [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"), [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout") and [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") respectively. This can also be the external plugin name to use for the `layout` stage of the output [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager"). You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"layout"` for the `stage_name` argument.
 

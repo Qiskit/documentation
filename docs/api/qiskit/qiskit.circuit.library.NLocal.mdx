@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
 # NLocal
 
-<Class id="qiskit.circuit.library.NLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/n_local.py#L33-L980" signature="qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)">
+<Class id="qiskit.circuit.library.NLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/n_local.py#L41-L1006" signature="qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)" modifiers="class">
   Bases: `BlueprintCircuit`
 
   The n-local circuit class.
@@ -65,7 +65,7 @@ python_api_name: qiskit.circuit.library.NLocal
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.NLocal.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -79,7 +79,7 @@ python_api_name: qiskit.circuit.library.NLocal
   ### clbits
 
   <Attribute id="qiskit.circuit.library.NLocal.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
@@ -115,7 +115,7 @@ python_api_name: qiskit.circuit.library.NLocal
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.NLocal.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### initial\_state
@@ -140,7 +140,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.NLocal.instances" attributeValue="198" />
+  <Attribute id="qiskit.circuit.library.NLocal.instances" attributeValue="180" />
 
   ### layout
 
@@ -155,9 +155,9 @@ python_api_name: qiskit.circuit.library.NLocal
   ### metadata
 
   <Attribute id="qiskit.circuit.library.NLocal.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -166,10 +166,34 @@ python_api_name: qiskit.circuit.library.NLocal
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.NLocal.num_input_vars "qiskit.circuit.library.NLocal.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_clbits
 
   <Attribute id="qiskit.circuit.library.NLocal.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.NLocal.num_captured_vars "qiskit.circuit.library.NLocal.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_layers
@@ -210,6 +234,14 @@ python_api_name: qiskit.circuit.library.NLocal
     **Returns**
 
     The number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
@@ -285,13 +317,13 @@ python_api_name: qiskit.circuit.library.NLocal
   ### qregs
 
   <Attribute id="qiskit.circuit.library.NLocal.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
   <Attribute id="qiskit.circuit.library.NLocal.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### reps
@@ -314,11 +346,35 @@ python_api_name: qiskit.circuit.library.NLocal
     The blocks in the rotation layers.
   </Attribute>
 
+  ### name
+
+  <Attribute id="qiskit.circuit.library.NLocal.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.NLocal.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.NLocal.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.NLocal.unit "qiskit.circuit.library.NLocal.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.NLocal.unit">
+    The unit that [`duration`](#qiskit.circuit.library.NLocal.duration "qiskit.circuit.library.NLocal.duration") is specified in.
+  </Attribute>
+
   ## Methods
 
   ### add\_layer
 
-  <Function id="qiskit.circuit.library.NLocal.add_layer" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/n_local.py#L730-L793" signature="add_layer(other, entanglement=None, front=False)">
+  <Function id="qiskit.circuit.library.NLocal.add_layer" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/n_local.py#L749-L809" signature="add_layer(other, entanglement=None, front=False)">
     Append another layer to the NLocal.
 
     **Parameters**
@@ -342,7 +398,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### assign\_parameters
 
-  <Function id="qiskit.circuit.library.NLocal.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/n_local.py#L795-L823" signature="assign_parameters(parameters, inplace=False, **kwargs)">
+  <Function id="qiskit.circuit.library.NLocal.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/n_local.py#L811-L839" signature="assign_parameters(parameters, inplace=False, **kwargs)">
     Assign parameters to the n-local circuit.
 
     This method also supports passing a list instead of a dictionary. If a list is passed, the list must have the same length as the number of unbound parameters in the circuit. The parameters are assigned in the order of the parameters in [`ordered_parameters()`](#qiskit.circuit.library.NLocal.ordered_parameters "qiskit.circuit.library.NLocal.ordered_parameters").
@@ -362,7 +418,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.circuit.library.NLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/n_local.py#L563-L683" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+  <Function id="qiskit.circuit.library.NLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/n_local.py#L582-L702" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
     Get the entangler map for in the repetition `rep_num` and the block `block_num`.
 
     The entangler map for the current block is derived from the value of `self.entanglement`. Below the different cases are listed, where `i` and `j` denote the repetition number and the block number, respectively, and `n` the number of qubits in the block.
@@ -403,7 +459,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### get\_unentangled\_qubits
 
-  <Function id="qiskit.circuit.library.NLocal.get_unentangled_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/n_local.py#L454-L467" signature="get_unentangled_qubits()">
+  <Function id="qiskit.circuit.library.NLocal.get_unentangled_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/n_local.py#L473-L486" signature="get_unentangled_qubits()">
     Get the indices of unentangled qubits in a set.
 
     **Returns**
@@ -417,7 +473,7 @@ python_api_name: qiskit.circuit.library.NLocal
 
   ### print\_settings
 
-  <Function id="qiskit.circuit.library.NLocal.print_settings" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/n_local/n_local.py#L539-L551" signature="print_settings()">
+  <Function id="qiskit.circuit.library.NLocal.print_settings" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/n_local.py#L558-L570" signature="print_settings()">
     Returns information about the setting.
 
     **Returns**

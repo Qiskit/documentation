@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.operators.primitive_ops.PrimitiveOp
 
 # PrimitiveOp
 
-<Class id="qiskit.aqua.operators.primitive_ops.PrimitiveOp" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/primitive_op.py" signature="PrimitiveOp(primitive=None, coeff=1.0)">
+<Class id="qiskit.aqua.operators.primitive_ops.PrimitiveOp" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/primitive_ops/primitive_op.py" signature="PrimitiveOp(primitive=None, coeff=1.0)" modifiers="class">
   A class for representing basic Operators, backed by Operator primitives from Terra. This class (and inheritors) primarily serves to allow the underlying primitives to “flow” - i.e. interoperability and adherence to the Operator formalism - while the core computational logic mostly remains in the underlying primitives. For example, we would not produce an interface in Terra in which `QuantumCircuit1 + QuantumCircuit2` equaled the Operator sum of the circuit unitaries, rather than simply appending the circuits. However, within the Operator flow summing the unitaries is the expected behavior.
 
   Note that all mathematical methods are not in-place, meaning that they return a new object, but the underlying primitives are not copied.
@@ -29,7 +29,7 @@ python_api_name: qiskit.aqua.operators.primitive_ops.PrimitiveOp
 
   ### coeff
 
-  <Attribute id="qiskit.aqua.operators.primitive_ops.PrimitiveOp.coeff" signature="Union[int, float, complex, qiskit.circuit.parameterexpression.ParameterExpression]">
+  <Attribute id="qiskit.aqua.operators.primitive_ops.PrimitiveOp.coeff" attributeTypeHint="Union[int, float, complex, qiskit.circuit.parameterexpression.ParameterExpression]">
     The scalar coefficient multiplying the Operator.
 
     **Return type**
@@ -43,7 +43,7 @@ python_api_name: qiskit.aqua.operators.primitive_ops.PrimitiveOp
 
   ### num\_qubits
 
-  <Attribute id="qiskit.aqua.operators.primitive_ops.PrimitiveOp.num_qubits" signature="int">
+  <Attribute id="qiskit.aqua.operators.primitive_ops.PrimitiveOp.num_qubits" attributeTypeHint="int">
     The number of qubits over which the Operator is defined. If `op.num_qubits == 5`, then `op.eval('1' * 5)` will be valid, but `op.eval('11')` will not.
 
     **Return type**
@@ -57,7 +57,7 @@ python_api_name: qiskit.aqua.operators.primitive_ops.PrimitiveOp
 
   ### primitive
 
-  <Attribute id="qiskit.aqua.operators.primitive_ops.PrimitiveOp.primitive" signature="Union[qiskit.circuit.instruction.Instruction, qiskit.circuit.quantumcircuit.QuantumCircuit, list, numpy.ndarray, scipy.sparse.base.spmatrix, qiskit.quantum_info.operators.operator.Operator, qiskit.quantum_info.operators.pauli.Pauli]">
+  <Attribute id="qiskit.aqua.operators.primitive_ops.PrimitiveOp.primitive" attributeTypeHint="Union[qiskit.circuit.instruction.Instruction, qiskit.circuit.quantumcircuit.QuantumCircuit, list, numpy.ndarray, scipy.sparse.base.spmatrix, qiskit.quantum_info.operators.operator.Operator, qiskit.quantum_info.operators.pauli.Pauli]">
     The primitive defining the underlying function of the Operator.
 
     **Return type**

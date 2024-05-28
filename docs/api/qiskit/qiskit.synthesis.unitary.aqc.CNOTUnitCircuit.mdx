@@ -8,7 +8,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
 
 # CNOTUnitCircuit
 
-<Class id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py#L24-L103" signature="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)">
+<Class id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py#L24-L103" signature="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)" modifiers="class">
   Bases: [`ApproximateCircuit`](qiskit.synthesis.unitary.aqc.ApproximateCircuit "qiskit.synthesis.unitary.aqc.approximate.ApproximateCircuit")
 
   A class that represents an approximate circuit based on CNOT unit blocks.
@@ -29,7 +29,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
   ### ancillas
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -43,13 +43,13 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
   ### clbits
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.data">
-    Return the circuit data (instructions and context).
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -63,12 +63,12 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
   ### global\_phase
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.instances" attributeValue="158" />
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.instances" attributeValue="160" />
 
   ### layout
 
@@ -83,9 +83,9 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
   ### metadata
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -94,10 +94,34 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_input_vars "qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_clbits
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_captured_vars "qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
@@ -110,6 +134,14 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_qubits">
     Return number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
@@ -193,7 +225,7 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
   ### qubits
 
   <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### thetas
@@ -206,11 +238,41 @@ python_api_name: qiskit.synthesis.unitary.aqc.CNOTUnitCircuit
     Parameters of the rotation gates in this circuit.
   </Attribute>
 
+  ### name
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.unit "qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.unit">
+    The unit that [`duration`](#qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.duration "qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.duration") is specified in.
+  </Attribute>
+
   ## Methods
 
   ### build
 
-  <Function id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.build" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py#L68-L103" signature="build(thetas)">
+  <Function id="qiskit.synthesis.unitary.aqc.CNOTUnitCircuit.build" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/synthesis/unitary/aqc/cnot_unit_circuit.py#L68-L103" signature="build(thetas)">
     **Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a**
 
     parameter value is less in absolute value than the specified tolerance then the corresponding rotation gate will be skipped in the circuit.

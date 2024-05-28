@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 # ZZFeatureMap
 
-<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/data_preparation/zz_feature_map.py#L20-L114" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')">
+<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/zz_feature_map.py#L20-L114" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')" modifiers="class">
   Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
   Second-order Pauli-Z evolution circuit.
@@ -96,7 +96,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -110,7 +110,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   ### clbits
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
@@ -150,7 +150,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### initial\_state
@@ -175,7 +175,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.instances" attributeValue="162" />
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.instances" attributeValue="164" />
 
   ### layout
 
@@ -190,9 +190,9 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   ### metadata
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -201,10 +201,34 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.ZZFeatureMap.num_input_vars "qiskit.circuit.library.ZZFeatureMap.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_clbits
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.ZZFeatureMap.num_captured_vars "qiskit.circuit.library.ZZFeatureMap.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_layers
@@ -235,6 +259,14 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
     **Returns**
 
     The number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
@@ -320,13 +352,13 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   ### qregs
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### reps
@@ -347,6 +379,30 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
     **Returns**
 
     The blocks in the rotation layers.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.ZZFeatureMap.unit "qiskit.circuit.library.ZZFeatureMap.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.unit">
+    The unit that [`duration`](#qiskit.circuit.library.ZZFeatureMap.duration "qiskit.circuit.library.ZZFeatureMap.duration") is specified in.
   </Attribute>
 </Class>
 

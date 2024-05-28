@@ -8,12 +8,18 @@ python_api_name: qiskit.circuit.library.Initialize
 
 # Initialize
 
-<Class id="qiskit.circuit.library.Initialize" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L32-L96" signature="qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)">
+<Class id="qiskit.circuit.library.Initialize" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L32-L104" signature="qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Complex amplitude initialization.
 
   Class that initializes some flexible collection of qubit registers, implemented by calling the [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") class. Note that `Initialize` is an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") and not a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") since it contains a reset instruction, which is not unitary.
+
+  The initial state is prepared based on the [`Isometry`](qiskit.circuit.library.Isometry "qiskit.circuit.library.Isometry") synthesis described in \[1].
+
+  **References**
+
+  1.  Iten et al., Quantum circuits for isometries (2016). [Phys. Rev. A 93, 032318](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318).
 
   **Parameters**
 
@@ -130,7 +136,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.Initialize.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L95-L96" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.Initialize.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L103-L104" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -149,7 +155,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### gates\_to\_uncompute
 
-  <Function id="qiskit.circuit.library.Initialize.gates_to_uncompute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L77-L83" signature="gates_to_uncompute()">
+  <Function id="qiskit.circuit.library.Initialize.gates_to_uncompute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L85-L91" signature="gates_to_uncompute()">
     Call to create a circuit with gates that take the desired vector to zero.
 
     **Returns**

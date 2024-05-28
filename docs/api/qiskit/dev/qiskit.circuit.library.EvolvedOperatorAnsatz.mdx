@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
 # EvolvedOperatorAnsatz
 
-<Class id="qiskit.circuit.library.EvolvedOperatorAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L30-L223" signature="qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)">
+<Class id="qiskit.circuit.library.EvolvedOperatorAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L29-L224" signature="qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)" modifiers="class">
   Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
   The evolved operator ansatz.
@@ -29,7 +29,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
   ### ancillas
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
@@ -43,7 +43,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
   ### clbits
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.clbits">
-    Returns a list of classical bits in the order that the registers were added.
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
@@ -93,7 +93,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.global_phase">
-    Return the global phase of the current circuit scope in radians.
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### initial\_state
@@ -118,7 +118,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.instances" attributeValue="158" />
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.instances" attributeValue="160" />
 
   ### layout
 
@@ -133,9 +133,9 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
   ### metadata
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.metadata">
-    The user provided metadata associated with the circuit.
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
@@ -305,13 +305,13 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
   ### qregs
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### reps
@@ -332,6 +332,30 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
     **Returns**
 
     The blocks in the rotation layers.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.EvolvedOperatorAnsatz.unit "qiskit.circuit.library.EvolvedOperatorAnsatz.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.unit">
+    The unit that [`duration`](#qiskit.circuit.library.EvolvedOperatorAnsatz.duration "qiskit.circuit.library.EvolvedOperatorAnsatz.duration") is specified in.
   </Attribute>
 </Class>
 

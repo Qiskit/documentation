@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.QPE
 
 # qiskit.aqua.algorithms.QPE
 
-<Class id="qiskit.aqua.algorithms.QPE" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py" signature="QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.QPE" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py" signature="QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)" modifiers="class">
   The Quantum Phase Estimation algorithm.
 
   QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two quantum registers, **control** and **target**, where the control consists of several qubits initially put in uniform superposition, and the target a set of qubits prepared in an eigenstate (often a guess of the eigenstate) of the unitary operator of a quantum system. QPE then evolves the target under the control using dynamics on the unitary operator. The information of the corresponding eigenvalue is then ‘kicked-back’ into the phases of the control register, which can then be deconvoluted by an Inverse Quantum Fourier Transform (IQFT), and measured for read-out in binary decimal format. QPE also requires a reasonably good estimate of the eigen wave function to start the process. For example, when estimating molecular ground energies in chemistry, the Hartree-Fock method could be used to provide such trial eigen wave functions.
@@ -66,23 +66,23 @@ python_api_name: qiskit.aqua.algorithms.QPE
 
   ### aux\_operators
 
-  <Function id="qiskit.aqua.algorithms.QPE.aux_operators" signature="property aux_operators">
+  <Attribute id="qiskit.aqua.algorithms.QPE.aux_operators">
     Returns aux operators
 
     **Return type**
 
     `Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`]]]
-  </Function>
+  </Attribute>
 
   ### backend
 
-  <Function id="qiskit.aqua.algorithms.QPE.backend" signature="property backend">
+  <Attribute id="qiskit.aqua.algorithms.QPE.backend">
     Returns backend.
 
     **Return type**
 
     `Union`\[`Backend`, `BaseBackend`]
-  </Function>
+  </Attribute>
 
   ### compute\_minimum\_eigenvalue
 
@@ -123,29 +123,29 @@ python_api_name: qiskit.aqua.algorithms.QPE
 
   ### operator
 
-  <Function id="qiskit.aqua.algorithms.QPE.operator" signature="property operator">
+  <Attribute id="qiskit.aqua.algorithms.QPE.operator">
     Returns operator
 
     **Return type**
 
     `Optional`\[`LegacyBaseOperator`]
-  </Function>
+  </Attribute>
 
   ### quantum\_instance
 
-  <Function id="qiskit.aqua.algorithms.QPE.quantum_instance" signature="property quantum_instance">
+  <Attribute id="qiskit.aqua.algorithms.QPE.quantum_instance">
     Returns quantum instance.
 
     **Return type**
 
     `Optional`\[`QuantumInstance`]
-  </Function>
+  </Attribute>
 
   ### random
 
-  <Function id="qiskit.aqua.algorithms.QPE.random" signature="property random">
+  <Attribute id="qiskit.aqua.algorithms.QPE.random">
     Return a numpy random.
-  </Function>
+  </Attribute>
 
   ### run
 
@@ -182,7 +182,7 @@ python_api_name: qiskit.aqua.algorithms.QPE
 
   ### supports\_aux\_operators
 
-  <Function id="qiskit.aqua.algorithms.QPE.supports_aux_operators" signature="classmethod supports_aux_operators()">
+  <Function id="qiskit.aqua.algorithms.QPE.supports_aux_operators" signature="supports_aux_operators()" modifiers="classmethod">
     Whether computing the expectation value of auxiliary operators is supported.
 
     If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
