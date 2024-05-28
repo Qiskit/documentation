@@ -17,7 +17,6 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../lib/api/Pkg";
-import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/InternalLink";
 import { FileBatch } from "../lib/links/FileBatch";
 
@@ -26,6 +25,7 @@ import { FileBatch } from "../lib/links/FileBatch";
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
+  "docs/api/qiskit-transpiler-service-rest/index.mdx",
 ];
 
 interface Arguments {
