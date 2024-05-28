@@ -564,8 +564,18 @@ TOOL_ENTRIES = [
     Entry("Serverless", children=SERVERLESS),
 ]
 
+
+top_level_entries = [
+    Entry("Get started"),
+    *GET_STARTED_CHILDREN,
+    Entry("Workflow"),
+    *WORKFLOW_FOLDER_AS_INDEX_CHILDREN,
+    Entry("Tools"),
+    *TOOL_ENTRIES,
+]
+
 # ------------------------------------------------------------------------------
-# Proposals
+# Results
 # ------------------------------------------------------------------------------
 
 
@@ -586,44 +596,26 @@ def write_result(folder: str, top_level_entries: list[Entry]) -> None:
     text = json.dumps(result, indent=2)
     (folder_path / "_toc.json").write_text(text)
 
+
 def get_redirects(top_level_entries: list[Entry]) -> list[str]:
     redirects = []
-
     for entry in top_level_entries:
         if entry.from_file and entry.from_file != "__unset__" and entry.slug:
-            old_url = Path(entry.from_file).with_suffix('')
-            redirects.append('["%s", "%s"],' % (old_url, entry.slug))
-
-        if entry.children:
-            for child in entry.children:
-                child_redirects = get_redirects([child])
-                redirects += child_redirects
-
+            old_url = Path(entry.from_file).with_suffix("")
+            redirects.append(f'["{old_url}", "{entry.slug}"],')
+        redirects.extend(get_redirects([entry.children]))
     return redirects
 
+
 def gen_redirects_file(top_level_entries: list[Entry]) -> None:
-    redirects_file = Path("redirects.txt")
-    # Create the file or remove the previous content
-    redirects_file.write_text("[\n")
-
+    fp = Path("redirects.txt")
+    fp.write_text("[\n")
     redirects = get_redirects(top_level_entries)
-
-    with redirects_file.open("a") as file:
+    with fp.open("a") as file:
         for redirect in redirects:
-            file.write("  ")
-            file.write(redirect)
-            file.write("\n")
+            file.write(f"  {redirect}\n")
         file.write("]")
 
-
-top_level_entries = [
-        Entry("Get started"),
-        *GET_STARTED_CHILDREN,
-        Entry("Workflow"),
-        *WORKFLOW_FOLDER_AS_INDEX_CHILDREN,
-        Entry("Tools"),
-        *TOOL_ENTRIES,
-    ]
 
 write_result("guides", top_level_entries)
 gen_redirects_file(top_level_entries)
