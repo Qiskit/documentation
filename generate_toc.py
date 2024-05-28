@@ -592,7 +592,7 @@ def get_redirects(top_level_entries: list[Entry]) -> list[str]:
     for entry in top_level_entries:
         if entry.from_file and entry.from_file != "__unset__" and entry.slug:
             old_url = Path(entry.from_file).with_suffix('')
-            redirects.append('["%s", "%s"]' % (old_url, entry.slug))
+            redirects.append('["%s", "%s"],' % (old_url, entry.slug))
 
         if entry.children:
             for child in entry.children:
@@ -604,14 +604,16 @@ def get_redirects(top_level_entries: list[Entry]) -> list[str]:
 def gen_redirects_file(top_level_entries: list[Entry]) -> None:
     redirects_file = Path("redirects.txt")
     # Create the file or remove the previous content
-    redirects_file.write_text("")
+    redirects_file.write_text("[\n")
 
     redirects = get_redirects(top_level_entries)
 
     with redirects_file.open("a") as file:
         for redirect in redirects:
+            file.write("  ")
             file.write(redirect)
             file.write("\n")
+        file.write("]")
 
 
 top_level_entries = [
