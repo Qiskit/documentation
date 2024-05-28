@@ -10,6 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+// Like keyof but can only be string (not number or Symbol)
+export type StringKeyOf<T extends object> = Extract<keyof T, string>;
+
+// To extract type of array
+export type ElementType<T extends any[]> = T extends (infer U)[] ? U : never;
+
 export interface LearningApiSchema {
   tutorials: Tutorial[];
   tutorials_translations: Translation[];

@@ -29,7 +29,7 @@ import {
   uploadFiles,
 } from "@directus/sdk";
 
-import { type LearningApiSchema } from "./schema";
+import { type LearningApiSchema, StringKeyOf, ElementType } from "./schema";
 import { type LocalTutorialData } from "./local-tutorial-data";
 
 /* To do:
@@ -47,13 +47,25 @@ export class API {
       .with(staticToken(token));
   }
 
-  async getIds(
-    collection: keyof LearningApiSchema,
-    field: any,
-    value: any,
+  /**
+   * Get IDs of all items in `collection` that match a field value.
+   * Roughly: "SELECT * FROM collection WHERE field=value".
+   */
+  async getIds<
+    CollectionName extends StringKeyOf<LearningApiSchema>,
+    FieldName extends StringKeyOf<
+      ElementType<LearningApiSchema[CollectionName]>
+    >,
+    FieldValue extends ElementType<
+      LearningApiSchema[CollectionName]
+    >[FieldName],
+  >(
+    collection: CollectionName,
+    field: FieldName,
+    value: FieldValue,
   ): Promise<string[]> {
-    // TODO: Work out how to filter requests on server side
     const response = await this.client.request(
+      // @ts-ignore
       readItems(collection, { fields: ["id", field] }),
     );
     const matchingIds = response
@@ -62,10 +74,22 @@ export class API {
     return matchingIds;
   }
 
-  async getId(
-    collection: keyof LearningApiSchema,
-    field: string,
-    value: any,
+  /**
+   * Like getIds (plural) but expects at most one match.
+   * Throws if more than one match is found.
+   */
+  async getId<
+    CollectionName extends StringKeyOf<LearningApiSchema>,
+    FieldName extends StringKeyOf<
+      ElementType<LearningApiSchema[CollectionName]>
+    >,
+    FieldValue extends ElementType<
+      LearningApiSchema[CollectionName]
+    >[FieldName],
+  >(
+    collection: CollectionName,
+    field: FieldName,
+    value: FieldValue,
   ): Promise<string | null> {
     const ids = await this.getIds(collection, field, value);
     if (ids.length === 0) {
@@ -80,6 +104,9 @@ export class API {
     );
   }
 
+  /**
+   * Tutorials can have many translations, but we only use English at the moment.
+   */
   async getEnglishTranslationId(tutorialId: string): Promise<number> {
     // TODO: This assumes the only translation is english (currently true)
     const response = await this.client.request(
@@ -91,6 +118,12 @@ export class API {
     return response.translations[0] as number;
   }
 
+  /**
+   * Remove all topics from a tutorial.
+   * This works by deleting appropriate entries of
+   * "tutorials_tutorials_topics": a collection of one-to-many mappings of
+   * "tutorials" to "tutorials_topics".
+   */
   async clearTopics(tutorialId: string) {
     // "tutorials_tutorials_topics" is mapping of tutorial to topics
     const ids = await this.getIds(
@@ -149,40 +182,38 @@ export class API {
 
   async updateExistingTutorial(
     tutorialId: string,
-    tutorial: LocalTutorialData,
+    localData: LocalTutorialData,
   ) {
-    const temporalFileId = await this.uploadLocalFolder(tutorial.local_path);
-    const translationId = await this.getEnglishTranslationId(tutorialId);
-    const newData = {
+    const newTutorial = {
       category: await this.getId(
         "tutorials_categories",
         "name",
-        tutorial.category,
+        localData.category,
       ),
-      reading_time: tutorial.reading_time,
-      catalog_featured: tutorial.catalog_featured,
-      status: tutorial.status,
+      reading_time: localData.reading_time,
+      catalog_featured: localData.catalog_featured,
+      status: localData.status,
       translations: [
         {
-          title: tutorial.title,
-          id: translationId,
-          temporal_file: temporalFileId,
-          short_description: tutorial.short_description,
+          title: localData.title,
+          id: await this.getEnglishTranslationId(tutorialId),
+          temporal_file: await this.uploadLocalFolder(localData.local_path),
+          short_description: localData.short_description,
         },
       ],
     };
 
-    await this.client.request(updateItem("tutorials", tutorialId, newData));
-    await this.updateTutorialTopics(tutorialId, tutorial.topics);
+    await this.client.request(updateItem("tutorials", tutorialId, newTutorial));
+    await this.updateTutorialTopics(tutorialId, localData.topics);
   }
 
   /*
    * Only sets minimum data required for API to accept the creation request
-   * updateExistingTutorial is called immediately after
+   * updateExistingTutorial should be called immediately after
    */
-  async createTutorial(tutorial: LocalTutorialData): Promise<string> {
+  async createTutorial(localData: LocalTutorialData): Promise<string> {
     const translationData = {
-      title: tutorial.title,
+      title: localData.title,
       languages_code: "en-US",
     };
     const translation = await this.client.request(
@@ -191,30 +222,36 @@ export class API {
     const category = await this.getId(
       "tutorials_categories",
       "name",
-      tutorial.category,
+      localData.category,
     );
     if (category === null)
-      throw new Error(`No category with name '${tutorial.category}'`);
+      throw new Error(`No category with name '${localData.category}'`);
 
-    const tutorialData = {
+    const tutorial = {
       category,
       translations: [translation.id],
-      slug: tutorial.slug,
+      slug: localData.slug,
     };
-    const newTutorial = await this.client.request(
-      createItem("tutorials", tutorialData),
+    const response = await this.client.request(
+      createItem("tutorials", tutorial),
     );
-    return newTutorial.id;
+    return response.id;
   }
 
-  async upsertTutorial(tutorial: LocalTutorialData) {
-    let id = await this.getId("tutorials", "slug", tutorial.slug);
+  /**
+   * Update tutorial if it exists, otherwise create new
+   */
+  async upsertTutorial(localData: LocalTutorialData) {
+    let id = await this.getId("tutorials", "slug", localData.slug);
     if (id === null) {
-      id = await this.createTutorial(tutorial);
+      id = await this.createTutorial(localData);
     }
-    await this.updateExistingTutorial(id, tutorial);
+    await this.updateExistingTutorial(id, localData);
   }
 
+  /**
+   * For testing
+   */
   async deleteTutorial(tutorialSlug: string) {
     const id = await this.getId("tutorials", "slug", tutorialSlug);
     if (id === null) return;
