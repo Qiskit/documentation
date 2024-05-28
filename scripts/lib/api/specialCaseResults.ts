@@ -42,14 +42,18 @@ export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
 
     if (
       result.url.endsWith("/ibm-runtime") ||
-      result.url.endsWith("qiskit-ibm-runtime/index")
+      (result.url.endsWith("/index") &&
+        result.url.includes("qiskit-ibm-runtime/"))
     ) {
       result.meta = {
         hardcodedFrontmatter: RUNTIME_INDEX_META,
       };
     }
 
-    if (result.url.endsWith("qiskit-transpiler-service/index")) {
+    if (
+      result.url.endsWith("/index") &&
+      result.url.includes("qiskit-transpiler-service/")
+    ) {
       result.meta = {
         hardcodedFrontmatter: TRANSPILER_SERVICE_INDEX_META,
       };
