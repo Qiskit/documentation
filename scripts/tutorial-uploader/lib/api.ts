@@ -123,13 +123,16 @@ export class API {
         fields: ["translations.id", "translations.languages_code"],
       }),
     );
-    const englishTranslations = response.translations?.filter(
-      (x: Translation) => x.languages_code === "en-US",
-    ) as Translation[] | undefined;
-    if (!englishTranslations?.length) {
-      throw new Error(`No english translations for tutorial ${tutorialId}`);
+    if (!response.translations) {
+      throw new Error(`Something went wrong getting translations for tutorial ${tutorialId}`);
     }
-    return englishTranslations[0].id;
+    const englishTranslation = (response.translations as Translation[]).find(
+      (x: Translation) => x.languages_code === "en-US",
+    );
+    if (!englishTranslation) {
+      throw new Error(`No english translation for tutorial ${tutorialId}`);
+    }
+    return englishTranslation.id;
   }
 
   /**
