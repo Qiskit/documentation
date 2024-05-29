@@ -13,6 +13,7 @@
 import yaml from "js-yaml";
 import { readFile } from "fs/promises";
 import { dirname, join } from "path";
+import { isString, isNumber, isBoolean } from "lodash";
 
 /* Information specified in the YAML file */
 export interface LocalTutorialData {
@@ -44,16 +45,6 @@ export async function readTutorialData(
     .map((i) => verifyLocalTutorialData(i))
     .map((i) => relativiseLocalPath(i, path));
 }
-
-const isString = (x: any) => {
-  return typeof x === "string";
-};
-const isNumber = (x: any) => {
-  return typeof x === "number";
-};
-const isBoolean = (x: any) => {
-  return typeof x === "boolean";
-};
 
 /* Runtime type-checking to make sure YAML file is valid */
 function verifyLocalTutorialData(obj: any): LocalTutorialData {
