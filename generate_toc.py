@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import shutil
 import json
+import dataclasses
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -19,11 +21,11 @@ from page_content import (
 # ------------------------------------------------------------------------------
 
 
-@dataclass
+@dataclass(frozen=True)
 class Entry:
     title: str
     slug: str | None = field(default=None, kw_only=True)
-    children: list[Entry] = field(default_factory=lambda: [], kw_only=True)
+    children: tuple[Entry, ...] = field(default_factory=lambda: (), kw_only=True)
     external_url: str | None = field(default=None, kw_only=True)
     from_file: str | None = field(default="__unset__", kw_only=True)
     extra_page_content: str | None = field(default=None, kw_only=True)
@@ -64,7 +66,9 @@ class Entry:
         (base_dir / f"{self.slug}.mdx").write_text(content)
 
 
-def entries_as_markdown_list(entries: list[Entry], *, indent: None | str = None) -> str:
+def entries_as_markdown_list(
+    entries: Sequence[Entry], *, indent: None | str = None
+) -> str:
     result = []
     for entry in entries:
         if entry.slug:
@@ -84,14 +88,19 @@ def entries_as_markdown_list(entries: list[Entry], *, indent: None | str = None)
     return "\n".join(result)
 
 
-def filter_entries(entries: list[Entry], *, ignore: list[Entry]) -> list[Entry]:
+def filter_entries(
+    entries: Sequence[Entry], *, ignore: Sequence[Entry]
+) -> tuple[Entry, ...]:
     result = []
     for entry in entries:
         if entry in ignore:
             continue
-        entry.children = filter_entries(entry.children, ignore=ignore)
-        result.append(entry)
-    return result
+        result.append(
+            dataclasses.replace(
+                entry, children=filter_entries(entry.children, ignore=ignore)
+            )
+        )
+    return tuple(result)
 
 
 # ------------------------------------------------------------------------------
@@ -142,7 +151,7 @@ GET_STARTED_CHILDREN = [
     ),
     Entry(
         "Install",
-        children=[
+        children=(
             Entry(
                 "Install Qiskit", slug="install-qiskit", from_file="start/install.mdx"
             ),
@@ -151,12 +160,12 @@ GET_STARTED_CHILDREN = [
                 slug="setup-channel",
                 from_file="start/setup-channel.mdx",
             ),
-        ],
+        ),
     ),
     Entry("Hello world", slug="hello-world", from_file="start/hello-world.ipynb"),
     Entry(
         "Advanced setup",
-        children=[
+        children=(
             Entry(
                 "Install the Qiskit SDK from source",
                 slug="install-qiskit-source",
@@ -167,7 +176,7 @@ GET_STARTED_CHILDREN = [
                 slug="configure-qiskit-local",
                 from_file="start/configure-qiskit-local.mdx",
             ),
-        ],
+        ),
     ),
     Entry("Latest updates", slug="latest-updates", from_file=None),
 ]
@@ -175,7 +184,7 @@ GET_STARTED_CHILDREN = [
 CIRCUIT_CONSTRUCTION = [
     Entry(
         "Build circuits with the Qiskit SDK",
-        children=[
+        children=(
             Entry(
                 "Circuit library",
                 slug="circuit-library",
@@ -207,11 +216,11 @@ CIRCUIT_CONSTRUCTION = [
                 slug="save-circuits",
                 from_file="build/save-circuits.ipynb",
             ),
-        ],
+        ),
     ),
     Entry(
         "Build operators with the Qiskit SDK",
-        children=[
+        children=(
             Entry(
                 "Operators module overview",
                 slug="operators-overview",
@@ -222,15 +231,15 @@ CIRCUIT_CONSTRUCTION = [
                 slug="specify-observables-pauli",
                 from_file="build/specify-observables-pauli.mdx",
             ),
-        ],
+        ),
     ),
     Entry(
         "Other circuit building tools",
-        children=[
+        children=(
             Entry("Pulse schedules", slug="pulse", from_file="build/pulse.ipynb"),
             Entry(
                 "OpenQASM",
-                children=[
+                children=(
                     Entry(
                         "Intro to OpenQASM",
                         slug="introduction-to-qasm",
@@ -255,16 +264,16 @@ CIRCUIT_CONSTRUCTION = [
                         "OpenQASM 3.x live specification",
                         external_url="https://openqasm.com/",
                     ),
-                ],
+                ),
             ),
-        ],
+        ),
     ),
 ]
 
-TRANSPILER = [
+TRANSPILER = (
     Entry(
         "Get started with the Qiskit transpiler",
-        children=[
+        children=(
             Entry(
                 "Introduction to transpilation",
                 slug="transpile",
@@ -280,11 +289,11 @@ TRANSPILER = [
                 slug="transpile-with-pass-managers",
                 from_file="transpile/transpile-with-pass-managers.ipynb",
             ),
-        ],
+        ),
     ),
     Entry(
         "Configure preset pass managers",
-        children=[
+        children=(
             Entry(
                 "Default settings and configuration options",
                 slug="defaults-and-configuration-options",
@@ -305,11 +314,11 @@ TRANSPILER = [
                 slug="representing-quantum-computers",
                 from_file="transpile/representing_quantum_computers.ipynb",
             ),
-        ],
+        ),
     ),
     Entry(
         "Advanced transpilation resources",
-        children=[
+        children=(
             Entry(
                 "Create a pass manager for dynamical decoupling",
                 slug="dynamical-decoupling-pass-manager",
@@ -335,11 +344,11 @@ TRANSPILER = [
                 slug="create-a-transpiler-plugin",
                 from_file="transpile/create-a-transpiler-plugin.ipynb",
             ),
-        ],
+        ),
     ),
     Entry(
         "Qiskit transpiler service",
-        children=[
+        children=(
             Entry(
                 "Transpile circuits remotely with the Qiskit transpiler service",
                 slug="qiskit-transpiler-service",
@@ -350,11 +359,11 @@ TRANSPILER = [
                 slug="ai-transpiler-passes",
                 from_file="transpile/ai-transpiler-passes.mdx",
             ),
-        ],
+        ),
     ),
-]
+)
 
-SIMULATORS = [
+SIMULATORS = (
     Entry(
         "Introduction to debugging tools",
         slug="verify",
@@ -386,12 +395,12 @@ SIMULATORS = [
         slug="stabilizer-circuit-simulation",
         from_file="verify/stabilizer-circuit-simulation.ipynb",
     ),
-]
+)
 
-PRIMITIVES = [
+PRIMITIVES = (
     Entry(
         "Run with primitives",
-        children=[
+        children=(
             Entry(
                 "Introduction to primitives",
                 slug="primitives",
@@ -407,11 +416,11 @@ PRIMITIVES = [
                 slug="primitives-examples",
                 from_file="run/primitives-examples.mdx",
             ),
-        ],
+        ),
     ),
     Entry(
         "Configure runtime options",
-        children=[
+        children=(
             Entry(
                 "Configure runtime compilation",
                 slug="configure-runtime-compilation",
@@ -427,11 +436,11 @@ PRIMITIVES = [
                 slug="advanced-runtime-options",
                 from_file="run/advanced-runtime-options.mdx",
             ),
-        ],
+        ),
     ),
-]
+)
 
-EXECUTION_MODES = [
+EXECUTION_MODES = (
     Entry(
         "Introduction to execution modes",
         slug="execution-modes-intro",
@@ -454,7 +463,7 @@ EXECUTION_MODES = [
     ),
     Entry(
         "Manage jobs",
-        children=[
+        children=(
             Entry(
                 "Monitor or cancel a job",
                 slug="monitor-job",
@@ -476,16 +485,16 @@ EXECUTION_MODES = [
                 from_file="run/max-execution-time.mdx",
             ),
             RETRIEVE_RESULTS_PAGE,
-        ],
+        ),
     ),
     Entry(
         "Execution modes FAQs",
         slug="execution-modes-faq",
         from_file="run/execution-modes-faq.mdx",
     ),
-]
+)
 
-SYSTEMS_CHILDREN = [
+SYSTEMS_CHILDREN = (
     Entry(
         "Processor types", slug="processor-types", from_file="run/processor-types.mdx"
     ),
@@ -519,9 +528,9 @@ SYSTEMS_CHILDREN = [
         from_file="run/fair-share-queue.mdx",
     ),
     Entry("Manage cost", slug="manage-cost", from_file="run/manage-cost.mdx"),
-]
+)
 
-WORKFLOW_FOLDER_AS_INDEX_CHILDREN = [
+WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
     Entry(
         "Introduction to Qiskit Patterns",
         slug="intro-to-patterns",
@@ -558,7 +567,7 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = [
                             children=SYSTEMS_CHILDREN,
                         ),
                     ],
-                    ignore=[],
+                    ignore=[RETRIEVE_RESULTS_PAGE],
                 )
             )
         ),
@@ -570,10 +579,10 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = [
             entries_as_markdown_list([RETRIEVE_RESULTS_PAGE, VISUALIZE_RESULTS_PAGE])
         ),
     ),
-]
+)
 
 
-TOOL_ENTRIES = [
+TOOL_ENTRIES = (
     Entry(
         "Circuits and operators",
         children=filter_entries(CIRCUIT_CONSTRUCTION, ignore=[VISUALIZE_CIRCUITS_PAGE]),
@@ -588,31 +597,31 @@ TOOL_ENTRIES = [
     Entry("IBM Quantum systems", children=SYSTEMS_CHILDREN),
     Entry(
         "Visualization",
-        children=[
+        children=(
             VISUALIZE_CIRCUITS_PAGE,
             PLOT_QUANTUM_STATES_PAGE,
             VISUALIZE_RESULTS_PAGE,
-        ],
+        ),
     ),
     SERVERLESS_PAGE,
-]
+)
 
 
-TOP_LEVEL_ENTRIES = [
+TOP_LEVEL_ENTRIES = (
     Entry("Get started"),
     *GET_STARTED_CHILDREN,
     Entry("Workflow"),
     *WORKFLOW_FOLDER_AS_INDEX_CHILDREN,
     Entry("Tools"),
     *TOOL_ENTRIES,
-]
+)
 
 # ------------------------------------------------------------------------------
 # Results
 # ------------------------------------------------------------------------------
 
 
-def write_result(folder: str, entries: list[Entry]) -> None:
+def write_result(folder: str, entries: tuple[Entry, ...]) -> None:
     folder_path = Path("docs", folder)
     if folder_path.exists():
         shutil.rmtree(folder_path)
@@ -630,7 +639,7 @@ def write_result(folder: str, entries: list[Entry]) -> None:
     (folder_path / "_toc.json").write_text(text)
 
 
-def get_redirects(entries: list[Entry]) -> list[str]:
+def get_redirects(entries: tuple[Entry, ...]) -> list[str]:
     redirects = []
     for entry in entries:
         if entry.from_file and entry.from_file != "__unset__" and entry.slug:
@@ -640,7 +649,7 @@ def get_redirects(entries: list[Entry]) -> list[str]:
     return sorted(redirects)
 
 
-def gen_redirects_file(entries: list[Entry]) -> None:
+def gen_redirects_file(entries: tuple[Entry, ...]) -> None:
     fp = Path("redirects.txt")
     fp.write_text("[\n")
     redirects = get_redirects(entries)
