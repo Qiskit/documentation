@@ -5,7 +5,7 @@ description: Migrate from using the IBM Quantum cloud simulators to using Qiskit
 
 # Migrate from cloud simulators to local simulators
 
-In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; will retire its cloud simulators on 15 May 2024. This guide explains in more detail why this is happening, and how to migrate from [cloud based simulators](/verify/cloud-based-simulators), such as `ibmq_qasm_simulator`, to local simulators. 
+In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; cloud simulators were retired on 15 May 2024. This guide explains the retirement in more detail, and how to migrate from cloud-based simulators, such as `ibmq_qasm_simulator`, to local simulators.
 
 ## Why are the cloud simulators being retired?
 
@@ -25,7 +25,7 @@ Simulators can be useful, but they are too limited to use for research or experi
 <details>
 <summary><a>Using quantum hardware builds unique skills</a></summary>
 
-Interacting with quantum hardware grows skills and experience unattainable by only using simulators: 
+Interacting with quantum hardware grows skills and experience unattainable by only using simulators:
 
 - Direct interaction with quantum hardware builds skills because you must implement or use error mitigation or suppression techniques, for reliable computation.
 
@@ -48,28 +48,30 @@ Successful quantum algorithms must be adapted to exploit the capabilities of qua
 
 ## When should simulators be used?
 
-Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.  Clifford circuits can be simulated very efficiently, and results can be verified, which is a useful way to gain confidence in an experiment. 
+Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.  Clifford circuits can be simulated very efficiently, and results can be verified, which is a useful way to gain confidence in an experiment.
 
 <Admonition type="note">
-Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explicitly. See [Configure error mitigation for Qiskit Runtime](/run/configure-error-mitigation) for details. 
+Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explicitly. See [Configure error mitigation for Qiskit Runtime](/run/configure-error-mitigation) for details.
 </Admonition>
 
 ## Migrate to local simulators
 
-With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session. 
-  
+With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.
+
 
 ### Fake backends
- 
-The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM Quantum systems by using system snapshots. The system snapshots contain important information about the quantum system, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the system.  The noise model from the snapshot is automatically applied during simulation. 
+
+The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM Quantum systems by using system snapshots. The system snapshots contain important information about the quantum system, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the system.  The noise model from the snapshot is automatically applied during simulation.
 
 ```python
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import SamplerV2 as Sampler
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+from qiskit_ibm_runtime import SamplerV2 as Sampler, QiskitRuntimeService
+
+service = QiskitRuntimeService()
 
 # Bell Circuit
 qc = QuantumCircuit(2)
@@ -82,16 +84,16 @@ fake_manila = FakeManilaV2()
 pm = generate_preset_pass_manager(backend=fake_manila, optimization_level=1)
 isa_qc = pm.run(qc)
 
-# You can use a fixed seed to get fixed results. 
+# You can use a fixed seed to get fixed results.
 options = {"simulator": {"seed_simulator": 42}}
 sampler = Sampler(backend=fake_manila, options=options)
 
 result = sampler.run([isa_qc]).result()
-```        
+```
 
 ### AerSimulator
 
-You can use local testing mode with simulators from [Qiskit Aer](/verify/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/verify/building_noise_models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits. 
+You can use local testing mode with simulators from [Qiskit Aer](/verify/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/verify/building_noise_models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
 
 Example with sessions, without noise:
 
@@ -101,7 +103,9 @@ from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, QiskitRuntimeService
+
+service = QiskitRuntimeService()
 
 # Bell Circuit
 qc = QuantumCircuit(2)
@@ -121,7 +125,7 @@ with Session(backend=aer_sim) as session:
 
 To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/verify/building_noise_models).
 
-Example with noise: 
+Example with noise:
 
 ```python
 from qiskit_aer import AerSimulator
@@ -129,7 +133,10 @@ from qiskit.circuit.library import RealAmplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit_ibm_runtime import SamplerV2 as Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+service = QiskitRuntimeService()
+
 
 # Bell Circuit
 qc = QuantumCircuit(2)
@@ -160,12 +167,14 @@ Example:
 ```python
 import numpy as np
 from qiskit.circuit.library import EfficientSU2
-from qiskit_ibm_runtime import SamplerV2 as Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
-n_qubits = 500  # <---- note this uses 500 qubits! 
+service = QiskitRuntimeService()
+
+n_qubits = 500  # <---- note this uses 500 qubits!
 circuit = EfficientSU2(n_qubits)
 circuit.measure_all()
- 
+
 rng = np.random.default_rng(1234)
 params = rng.choice(
     [0, np.pi / 2, np.pi, 3 * np.pi / 2],

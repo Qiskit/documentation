@@ -1,0 +1,91 @@
+---
+title: AIPermutationSynthesis
+description: API reference for qiskit_transpiler_service.ai.AIPermutationSynthesis
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_transpiler_service.ai.AIPermutationSynthesis
+---
+
+# AIPermutationSynthesis
+
+<Class id="qiskit_transpiler_service.ai.AIPermutationSynthesis" isDedicatedPage={true} signature="qiskit_transpiler_service.ai.AIPermutationSynthesis(backend_name: str, replace_only_if_better: bool = True, max_threads: int | None = None)" modifiers="class">
+  Bases: `AISynthesis`
+
+  Synthesis for Permutation circuits (blocks of SWAP gates). Currently available for 65, 33, and 27 qubit blocks.
+
+  **Parameters**
+
+  *   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of the backend used for doing the AI Linear Function synthesis.
+  *   **replace\_only\_if\_better** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*, optional*) – Determine if replace the original circuit with the synthesized one if it’s better, defaults to True.
+  *   **max\_threads** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, optional*) – Set the number of requests to send in parallel.
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit_transpiler_service.ai.AIPermutationSynthesis.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_transpiler_service.ai.AIPermutationSynthesis.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_transpiler_service.ai.AIPermutationSynthesis.run" signature="run(dag)">
+    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.1)")) – the dag on which the pass is run.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – when this is left unimplemented for a pass.
+  </Function>
+
+  ### synth\_node
+
+  <Function id="qiskit_transpiler_service.ai.AIPermutationSynthesis.synth_node" signature="synth_node(node)" />
+
+  ### update\_status
+
+  <Function id="qiskit_transpiler_service.ai.AIPermutationSynthesis.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")
+  </Function>
+</Class>
+
