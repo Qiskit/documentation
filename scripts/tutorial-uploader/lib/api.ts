@@ -124,7 +124,9 @@ export class API {
       }),
     );
     if (!response.translations) {
-      throw new Error(`Something went wrong getting translations for tutorial ${tutorialId}`);
+      throw new Error(
+        `Something went wrong getting translations for tutorial ${tutorialId}`,
+      );
     }
     const englishTranslation = (response.translations as Translation[]).find(
       (x: Translation) => x.languages_code === "en-US",
