@@ -29,7 +29,7 @@ interface Tutorial {
   slug: string;
   status: "draft" | "published" | "archived";
   reading_time: number;
-  category: string; // ID
+  category: string; // This is the uuid of the category.
   catalog_featured: boolean;
   translations: number[] | Translation[];
 }
