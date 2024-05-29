@@ -11,7 +11,6 @@
 # been altered from the originals.
 
 from models import Entry, entries_as_markdown_list, filter_entries
-
 from page_content import (
     index_page_content,
     execute_index_content,

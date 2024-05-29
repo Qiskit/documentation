@@ -36,12 +36,6 @@ class Entry:
                 "Must set `from_file` or `page_content` when `slug` is set."
             )
 
-    def get_redirects(self) -> dict[str, str]:
-        if self.slug is None or self.from_file is None:
-            return
-        old_url = PurePath(self.from_file).with_suffix("")
-        return old_url, f"guides/{self.slug}"
-
     def to_json(self, folder_name: str) -> dict:
         result: dict = {"title": self.title}
         if self.slug is not None:
