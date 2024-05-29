@@ -33,7 +33,9 @@ const MOCK_TUTORIAL: LocalTutorialData = {
 
 /* Just to be sure */
 if (/learning-api\.quantum\.ibm\.com/.test(process.env.LEARNING_API_URL!)) {
-  throw new Error("Tried to run tests against production! Set the env var LEARNING_API_URL to either staging or local (see tutorial-uploader/README.md)");
+  throw new Error(
+    "Tried to run tests against production! Set the env var LEARNING_API_URL to either staging or local (see tutorial-uploader/README.md)",
+  );
 }
 
 describe("Tutorial uploader API", () => {
