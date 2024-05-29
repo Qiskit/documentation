@@ -118,8 +118,8 @@ export class API {
    */
   async getEnglishTranslationId(tutorialId: string): Promise<number> {
     const response = await this.client.request(
-      // @ts-ignore
       readItem("tutorials", tutorialId, {
+        // @ts-ignore
         fields: ["translations.id", "translations.languages_code"],
       }),
     );

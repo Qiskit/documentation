@@ -26,7 +26,7 @@ export interface LearningApiSchema {
   tutorials_tutorials_topics: TutorialsTopicsRelation[];
 }
 
-interface Tutorial {
+export interface Tutorial {
   id: string;
   slug: string;
   status: "draft" | "published" | "archived";
@@ -38,7 +38,7 @@ interface Tutorial {
   translations: number[] | Translation[];
 }
 
-interface Translation {
+export interface Translation {
   id: number;
   title: string;
   short_description: string;
@@ -47,12 +47,12 @@ interface Translation {
   temporal_file: string | null;
 }
 
-interface Topic {
+export interface Topic {
   id: string;
   name: string;
 }
 
-interface Category {
+export interface Category {
   id: string;
   name: string;
 }
@@ -62,7 +62,7 @@ interface Category {
  * A tutorial can be linked to many topics.
  * https://docs.directus.io/guides/sdk/types.html#adding-relational-fields
  */
-interface TutorialsTopicsRelation {
+export interface TutorialsTopicsRelation {
   id: number;
   // API can return either the UUIDs or the objects depending on the request.
   tutorials_id: string | Tutorial;
