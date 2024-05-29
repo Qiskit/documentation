@@ -43,7 +43,7 @@ def write_guides_dir() -> None:
 def write_redirects_file() -> None:
     fp = Path("scripts/patterns-reorg/redirects.json")
     redirects = determine_redirects(TOP_LEVEL_ENTRIES)
-    text = json.dumps(redirects, indent=2)
+    text = json.dumps(redirects, indent=2) + "\n"
     fp.write_text(text)
 
 
