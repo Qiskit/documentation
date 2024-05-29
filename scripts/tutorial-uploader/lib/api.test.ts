@@ -45,10 +45,10 @@ describe("Tutorial uploader API", () => {
   );
 
   test("upload new tutorial", async () => {
-    expect(await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug)).toBeNull();
+    expect(await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug)).toBeNull();
 
     await api.upsertTutorial(MOCK_TUTORIAL);
-    const tutorialId = await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug);
+    const tutorialId = await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug);
     expect(tutorialId).toBeTruthy();
 
     const retrievedTutorial = await api.client.request(
@@ -84,7 +84,7 @@ describe("Tutorial uploader API", () => {
   test("update existing tutorial", async () => {
     // Upload tutorial
     await api.upsertTutorial(MOCK_TUTORIAL);
-    const tutorialId = await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug);
+    const tutorialId = await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug);
 
     // Mutate tutorial data and re-upload
     const modifiedTutorial = {
@@ -145,7 +145,7 @@ describe("Tutorial uploader API", () => {
   });
 
   beforeAll(async () => {
-    if (await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug)) {
+    if (await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug)) {
       await api.deleteTutorial(MOCK_TUTORIAL.slug);
     }
   });

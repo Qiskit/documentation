@@ -109,6 +109,10 @@ export class API {
     );
   }
 
+  async getTutorialIdBySlug(slug: string): Promise<string | null> {
+    return await this.getId("tutorials", "slug", slug);
+  }
+
   /**
    * Tutorials can have many translations, but we only use English at the moment.
    */
@@ -254,7 +258,7 @@ export class API {
    * Update tutorial if it exists, otherwise create new
    */
   async upsertTutorial(localData: LocalTutorialData) {
-    let id = await this.getId("tutorials", "slug", localData.slug);
+    let id = await this.getTutorialIdBySlug(localData.slug);
     if (id === null) {
       id = await this.createTutorial(localData);
     }
@@ -265,7 +269,7 @@ export class API {
    * For testing
    */
   async deleteTutorial(tutorialSlug: string) {
-    const id = await this.getId("tutorials", "slug", tutorialSlug);
+    const id = await this.getTutorialIdBySlug(tutorialSlug);
     if (id === null) return;
     await this.client.request(deleteItem("tutorials", id));
   }
