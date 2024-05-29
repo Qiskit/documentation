@@ -70,9 +70,7 @@ SERVERLESS_PAGE = Entry(
 # ------------------------------------------------------------------------------
 
 GET_STARTED_CHILDREN = [
-    Entry(
-        "Introduction to Qiskit", slug="index", extra_page_content=index_page_content()
-    ),
+    Entry("Introduction to Qiskit", slug="index", page_content=index_page_content()),
     Entry(
         "Install",
         children=(
@@ -102,7 +100,6 @@ GET_STARTED_CHILDREN = [
             ),
         ),
     ),
-    Entry("Latest updates", slug="latest-updates", from_file=None),
 ]
 
 CIRCUIT_CONSTRUCTION = [
@@ -458,17 +455,17 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
     Entry(
         "Introduction to Qiskit Patterns",
         slug="intro-to-patterns",
-        extra_page_content=patterns_index_content(),
+        page_content=patterns_index_content(),
     ),
     Entry(
         "Map problem to circuits",
         slug="map-problem-to-circuits",
-        extra_page_content=map_content(entries_as_markdown_list(CIRCUIT_CONSTRUCTION)),
+        page_content=map_content(entries_as_markdown_list(CIRCUIT_CONSTRUCTION)),
     ),
     Entry(
         "Optimize for hardware",
         slug="optimize-for-hardware",
-        extra_page_content=optimize_content(
+        page_content=optimize_content(
             entries_as_markdown_list(
                 [
                     *TRANSPILER,
@@ -480,7 +477,7 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
     Entry(
         "Execute on hardware",
         slug="execute-on-hardware",
-        extra_page_content=execute_index_content(
+        page_content=execute_index_content(
             entries_as_markdown_list(
                 filter_entries(
                     [
@@ -497,9 +494,9 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
         ),
     ),
     Entry(
-        "Postprocess results",
+        "Post-process results",
         slug="postprocess-results",
-        extra_page_content=postprocess_index_content(
+        page_content=postprocess_index_content(
             entries_as_markdown_list([RETRIEVE_RESULTS_PAGE, VISUALIZE_RESULTS_PAGE])
         ),
     ),

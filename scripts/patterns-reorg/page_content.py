@@ -15,6 +15,7 @@ from textwrap import dedent
 
 def map_content(index: str) -> str:
     return (
+        "# Map problem to circuits\n\n"
         'The "map problem to circuits" step of a Qiskit pattern describes how a user starts with a classical '
         "problem and figures out how to map it to a quantum computer. For example, in applications such as "
         "chemistry and quantum simulation, this step generally involves constructing a quantum circuit "
@@ -27,12 +28,13 @@ def map_content(index: str) -> str:
         "specifying observables would use the `Estimator` and could provide many error mitigation options. "
         "The output of this step in a Qiskit pattern is normally a collection of circuits or quantum operators.\n\n"
         "There are a number of software tools that could be used for this step, you can check out the "
-        f"following resources:\n\n{index}"
+        f"following resources:\n\n{index}\n"
     )
 
 
 def postprocess_index_content(index: str) -> str:
     return (
+        "# Post-process results\n\n"
         'This final "post-process results" step of a Qiskit pattern involves stitching the outputs from '
         "the prior step back together to obtain the desired result. This can involve a range of classical "
         "data processing steps such as visualising results, readout error mitigation techniques, marginalizing "
@@ -40,12 +42,13 @@ def postprocess_index_content(index: str) -> str:
         "properties of the problem, such as total spin, parity, or particle conservation by removing "
         "unphysical observables.\n\n"
         "There are a number of software tools that could be used for this step, you can check out the "
-        f"following resources:\n\n{index}"
+        f"following resources:\n\n{index}\n"
     )
 
 
 def optimize_content(index: str) -> str:
     return (
+        "# Optimize for target hardware\n\n"
         'In the "optimize for target hardware" step of a Qiskit pattern you take the abstract circuits '
         "(or operators) produced from the map step and perform a series of optimizations on them. This "
         "may include mapping the route and layout of the circuit to physical qubit hardware, converting "
@@ -57,22 +60,25 @@ def optimize_content(index: str) -> str:
         "any multi-qubit gates needed to obey any connectivity constraints (coupling map). Only ISA circuits "
         "can be run on IBM hardware using IBM Qiskit Runtime.\n\n"
         "There are a number of software tools that could be used for this step, you can check out the "
-        f"following resources:\n\n{index}"
+        f"following resources:\n\n{index}\n"
     )
 
 
 def execute_index_content(index: str) -> str:
     return (
+        "# Execute on hardware\n\n"
         'The "execute on hardware" step of a Qiskit pattern involes running you circuits on hardware and produces the outputs of the quantum computation. The ISA circuits produced in the previous step, can be executed using either a Sampler or Estimator Primitive from Qiskit Runtime, initialised locally on your computer or from a cluster or other heterogeneous compute environment. These may be executed in a Batch, which allows parallel transpilation for classical computational efficiency, or a Session, which allows iterative tasks to be implemented efficiently without queuing delays. During this step there is also the option to configure certain error suppression and mitigation techniques provided by Qiskit Runtime.\n\n'
         "Depending on whether you are using the Sampler or Estimator primitive, the outcome of this step will be different. If using the Sampler the output will be per-shot measurements in the form of bitstrings. If using the Estimator the output will be expectation values of observables corresponding to physical quantities or cost functions.\n\n"
         "There are a number of software tools that could be used for this step, you can check out the "
-        f"following resources:\n\n{index}"
+        f"following resources:\n\n{index}\n"
     )
 
 
 def patterns_index_content() -> str:
     return dedent(
         """\
+# Introduction to Qiskit Patterns
+
 Qiskit Patterns is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit Patterns allows domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
 
 
@@ -115,13 +121,16 @@ This final step involves stitching the outputs from the prior step back together
 ---
 
 
-As we move from bespoke circuit construction to utility-scale workflows, the flexibility and ease with which Qiskit Patterns allows one to compose the different steps of the pattern opens quantum computing to a wide variety of applications and techniques for easy use by quantum computational scientists."""
+As we move from bespoke circuit construction to utility-scale workflows, the flexibility and ease with which Qiskit Patterns allows one to compose the different steps of the pattern opens quantum computing to a wide variety of applications and techniques for easy use by quantum computational scientists.
+"""
     )
 
 
 def index_page_content() -> str:
     return dedent(
         """\
+# Introduction to Qiskit
+
 [INSERT BIG PATTERNS AND TOOLS IMAGE]
 
 

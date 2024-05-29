@@ -24,18 +24,17 @@ class Entry:
     slug: str | None = field(default=None, kw_only=True)
     children: tuple[Entry, ...] = field(default_factory=lambda: (), kw_only=True)
     external_url: str | None = field(default=None, kw_only=True)
-    from_file: str | None = field(default="__unset__", kw_only=True)
-    extra_page_content: str | None = field(default=None, kw_only=True)
+    from_file: str | None = field(default=None, kw_only=True)
+    page_content: str | None = field(default=None, kw_only=True)
 
     def __post_init__(self) -> None:
-        from_file_set = self.from_file != "__unset__"
         if self.slug and self.external_url:
             raise ValueError("Cannot specify both `slug` and `external_url`")
-        if self.extra_page_content and from_file_set:
-            raise ValueError("Cannot specify both `from_file` and `extra_page_content`")
-        if self.slug and not from_file_set and not self.extra_page_content:
+        if self.page_content and self.from_file:
+            raise ValueError("Cannot specify both `from_file` and `page_content`")
+        if self.slug and not self.from_file and not self.page_content:
             raise ValueError(
-                "Must set `from_file` when `slug` is set. Set it to `None` if this is a new page."
+                "Must set `from_file` or `page_content` when `slug` is set."
             )
 
     def to_json(self, folder_name: str) -> dict:
@@ -54,15 +53,13 @@ class Entry:
         if self.slug is None:
             return
 
-        extension = ".mdx"
-        if self.from_file and self.from_file != "__unset__":
+        if self.from_file:
             from_file = Path("docs", self.from_file)
             content = from_file.read_text()
             extension = from_file.suffix
         else:
-            content = f"# {self.title}"
-            if self.extra_page_content:
-                content += f"\n\n{self.extra_page_content}\n"
+            content = self.page_content
+            extension = ".mdx"
         (base_dir / f"{self.slug}{extension}").write_text(content)
 
 
