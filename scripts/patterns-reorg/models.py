@@ -13,7 +13,6 @@
 from __future__ import annotations
 
 import dataclasses
-from collections.abc import Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -38,7 +37,7 @@ class Entry:
             )
 
     def to_json(self, folder_name: str) -> dict:
-        result = {"title": self.title}
+        result: dict = {"title": self.title}
         if self.slug is not None:
             result["url"] = f"/{folder_name}/{self.slug}"
         if self.external_url is not None:
@@ -58,13 +57,14 @@ class Entry:
             content = from_file.read_text()
             extension = from_file.suffix
         else:
+            assert self.page_content is not None
             content = self.page_content
             extension = ".mdx"
         (base_dir / f"{self.slug}{extension}").write_text(content)
 
 
 def entries_as_markdown_list(
-    entries: Sequence[Entry], *, indent: None | str = None
+    entries: tuple[Entry, ...], *, indent: None | str = None
 ) -> str:
     result = []
     for entry in entries:
@@ -86,15 +86,14 @@ def entries_as_markdown_list(
 
 
 def filter_entries(
-    entries: Sequence[Entry], *, ignore: Sequence[Entry]
+    entries: tuple[Entry, ...], *, ignore: set[Entry]
 ) -> tuple[Entry, ...]:
     result = []
     for entry in entries:
         if entry in ignore:
             continue
-        result.append(
-            dataclasses.replace(
-                entry, children=filter_entries(entry.children, ignore=ignore)
-            )
+        new_entry = dataclasses.replace(
+            entry, children=filter_entries(entry.children, ignore=ignore)
         )
+        result.append(new_entry)
     return tuple(result)

@@ -102,7 +102,7 @@ GET_STARTED_CHILDREN = [
     ),
 ]
 
-CIRCUIT_CONSTRUCTION = [
+CIRCUIT_CONSTRUCTION = (
     Entry(
         "Build circuits with the Qiskit SDK",
         children=(
@@ -189,7 +189,7 @@ CIRCUIT_CONSTRUCTION = [
             ),
         ),
     ),
-]
+)
 
 TRANSPILER = (
     Entry(
@@ -467,10 +467,10 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
         slug="optimize-for-hardware",
         page_content=optimize_content(
             entries_as_markdown_list(
-                [
+                (
                     *TRANSPILER,
                     Entry("Debugging tools", children=SIMULATORS),
-                ]
+                )
             )
         ),
     ),
@@ -480,15 +480,15 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
         page_content=execute_index_content(
             entries_as_markdown_list(
                 filter_entries(
-                    [
+                    (
                         *PRIMITIVES,
                         *EXECUTION_MODES,
                         Entry(
                             "Systems and platform information",
                             children=SYSTEMS_CHILDREN,
                         ),
-                    ],
-                    ignore=[RETRIEVE_RESULTS_PAGE],
+                    ),
+                    ignore={RETRIEVE_RESULTS_PAGE},
                 )
             )
         ),
@@ -497,7 +497,7 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
         "Post-process results",
         slug="postprocess-results",
         page_content=postprocess_index_content(
-            entries_as_markdown_list([RETRIEVE_RESULTS_PAGE, VISUALIZE_RESULTS_PAGE])
+            entries_as_markdown_list((RETRIEVE_RESULTS_PAGE, VISUALIZE_RESULTS_PAGE))
         ),
     ),
 )
@@ -506,12 +506,12 @@ WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
 TOOL_ENTRIES = (
     Entry(
         "Circuits and operators",
-        children=filter_entries(CIRCUIT_CONSTRUCTION, ignore=[VISUALIZE_CIRCUITS_PAGE]),
+        children=filter_entries(CIRCUIT_CONSTRUCTION, ignore={VISUALIZE_CIRCUITS_PAGE}),
     ),
     Entry("Transpiler", children=TRANSPILER),
     Entry(
         "Debugging tools",
-        children=filter_entries(SIMULATORS, ignore=[PLOT_QUANTUM_STATES_PAGE]),
+        children=filter_entries(SIMULATORS, ignore={PLOT_QUANTUM_STATES_PAGE}),
     ),
     Entry("Primitives", children=PRIMITIVES),
     Entry("Execution modes", children=EXECUTION_MODES),
