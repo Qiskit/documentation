@@ -37,11 +37,7 @@ import {
 } from "./schema";
 import type { LocalTutorialData } from "./local-tutorial-data";
 
-/* To do:
- *   [x] Fix types
- *   [ ] Throw correctly on request failures
- *   [ ] More helpful console logging
- */
+$.verbose = false;
 
 export class API {
   readonly client: RestClient<LearningApiSchema>;
@@ -205,6 +201,7 @@ export class API {
     tutorialId: string,
     localData: LocalTutorialData,
   ) {
+    console.log(`Updating tutorial '${localData.slug}'...`);
     const newTutorial = {
       category: await this.getId(
         "tutorials_categories",
@@ -233,6 +230,7 @@ export class API {
    * updateExistingTutorial should be called immediately after
    */
   async createTutorial(localData: LocalTutorialData): Promise<string> {
+    console.log(`Creating new tutorial '${localData.slug}'...`);
     const translationData = {
       title: localData.title,
       languages_code: "en-US",
@@ -275,7 +273,10 @@ export class API {
    */
   async deleteTutorial(tutorialSlug: string) {
     const id = await this.getTutorialIdBySlug(tutorialSlug);
-    if (id === null) return;
+    if (id === null) {
+      throw new Error(`Can't delete tutorial '${tutorialSlug}' as no tutorial exists with that slug.`);
+    };
+    console.log(`Deleting tutorial '${tutorialSlug}'`);
     await this.client.request(deleteItem("tutorials", id));
   }
 }
