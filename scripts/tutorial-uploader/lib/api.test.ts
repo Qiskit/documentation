@@ -19,23 +19,17 @@ import { API } from "./api";
 import { type LocalTutorialData } from "./local-tutorial-data";
 
 /* Create test data */
-const createdSlugs: string[] = []; // To teardown afterwards
-function generateTutorialData(): LocalTutorialData {
-  const testId = "test-" + randomBytes(4).toString("hex");
-  const slug = `${testId}-my-tutorial-slug`;
-  createdSlugs.push(slug);
-  return {
-    title: `My tutorial (${testId})`,
-    short_description: `My short tutorial description (${testId})`,
-    slug,
-    status: "published",
-    local_path: "scripts/tutorial-uploader/lib/test-data/simple-tutorial",
-    category: "Workflow example",
-    topics: [],
-    reading_time: 50,
-    catalog_featured: false,
-  };
-}
+const MOCK_TUTORIAL: LocalTutorialData = {
+  title: "Mock tutorial for testing",
+  short_description: "A mock tutorial for testing with Jest",
+  slug: "mock-tutorial",
+  status: "published",
+  local_path: "scripts/tutorial-uploader/lib/test-data/simple-tutorial",
+  category: "Workflow example",
+  topics: [],
+  reading_time: 50,
+  catalog_featured: false,
+};
 
 /* Just to be sure */
 if (/learning-api\.quantum\.ibm\.com/.test(process.env.LEARNING_API_URL!)) {
@@ -49,18 +43,10 @@ describe("Tutorial uploader API", () => {
   );
 
   test("upload new tutorial", async () => {
-    const simpleTutorial = generateTutorialData();
+    expect(await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug)).toBeNull();
 
-    expect(
-      await api.getId("tutorials", "slug", simpleTutorial.slug),
-    ).toBeNull();
-
-    await api.upsertTutorial(simpleTutorial);
-    const tutorialId = await api.getId(
-      "tutorials",
-      "slug",
-      simpleTutorial.slug,
-    );
+    await api.upsertTutorial(MOCK_TUTORIAL);
+    const tutorialId = await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug);
     expect(tutorialId).toBeTruthy();
 
     const retrievedTutorial = await api.client.request(
@@ -68,14 +54,14 @@ describe("Tutorial uploader API", () => {
       readItem("tutorials", tutorialId, { fields: ["*", "translations.*"] }),
     );
     expect(retrievedTutorial).toMatchObject({
-      slug: simpleTutorial.slug,
-      status: simpleTutorial.status,
-      reading_time: simpleTutorial.reading_time,
-      catalog_featured: simpleTutorial.catalog_featured,
+      slug: MOCK_TUTORIAL.slug,
+      status: MOCK_TUTORIAL.status,
+      reading_time: MOCK_TUTORIAL.reading_time,
+      catalog_featured: MOCK_TUTORIAL.catalog_featured,
       category: await api.getId(
         "tutorials_categories",
         "name",
-        simpleTutorial.category,
+        MOCK_TUTORIAL.category,
       ),
       topics: [],
       editors: [],
@@ -84,8 +70,8 @@ describe("Tutorial uploader API", () => {
       sort: null,
       translations: [
         {
-          title: simpleTutorial.title,
-          short_description: simpleTutorial.short_description,
+          title: MOCK_TUTORIAL.title,
+          short_description: MOCK_TUTORIAL.short_description,
           content: "Here's some basic content.\n",
           languages_code: "en-US",
         },
@@ -94,25 +80,22 @@ describe("Tutorial uploader API", () => {
   });
 
   test("update existing tutorial", async () => {
-    const simpleTutorial = generateTutorialData();
-
     // Upload tutorial
-    await api.upsertTutorial(simpleTutorial);
-    const tutorialId = await api.getId(
-      "tutorials",
-      "slug",
-      simpleTutorial.slug,
-    );
+    await api.upsertTutorial(MOCK_TUTORIAL);
+    const tutorialId = await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug);
 
     // Mutate tutorial data and re-upload
-    simpleTutorial.title = "A new tutorial title";
-    simpleTutorial.short_description = "A modified short description";
-    simpleTutorial.status = "draft";
-    simpleTutorial.category = "How-to";
-    simpleTutorial.reading_time = 33;
-    simpleTutorial.topics = ["Scheduling", "Transpilation"];
-    simpleTutorial.catalog_featured = false;
-    await api.upsertTutorial(simpleTutorial);
+    const modifiedTutorial = {
+      ...MOCK_TUTORIAL,
+      title: "A new tutorial title",
+      short_description: "A modified short description",
+      status: "draft",
+      category: "How-to",
+      reading_time: 33,
+      topics: ["Scheduling", "Transpilation"],
+      catalog_featured: false,
+    };
+    await api.upsertTutorial(modifiedTutorial);
 
     // Retrieve and check
     const retrievedTutorial = await api.client.request(
@@ -120,19 +103,19 @@ describe("Tutorial uploader API", () => {
       readItem("tutorials", tutorialId, { fields: ["*", "topics.*"] }),
     );
     const topicIds = (await Promise.all(
-      simpleTutorial.topics.map((name) =>
+      modifiedTutorial.topics.map((name) =>
         api.getId("tutorials_topics", "name", name),
       ),
     )) as string[];
     expect(retrievedTutorial).toMatchObject({
-      slug: simpleTutorial.slug,
-      status: simpleTutorial.status,
-      reading_time: simpleTutorial.reading_time,
-      catalog_featured: simpleTutorial.catalog_featured,
+      slug: modifiedTutorial.slug,
+      status: modifiedTutorial.status,
+      reading_time: modifiedTutorial.reading_time,
+      catalog_featured: modifiedTutorial.catalog_featured,
       category: await api.getId(
         "tutorials_categories",
         "name",
-        simpleTutorial.category,
+        modifiedTutorial.category,
       ),
       topics: topicIds.map((name) => {
         return { tutorials_topics_id: name };
@@ -151,17 +134,21 @@ describe("Tutorial uploader API", () => {
     ).translations;
     expect(retrievedTranslation).toMatchObject([
       {
-        title: simpleTutorial.title,
-        short_description: simpleTutorial.short_description,
+        title: modifiedTutorial.title,
+        short_description: modifiedTutorial.short_description,
         content: "Here's some basic content.\n",
         languages_code: "en-US",
       },
     ]);
   });
 
-  afterAll(async () => {
-    for (const slug of createdSlugs) {
-      await api.deleteTutorial(slug);
+  beforeAll(async () => {
+    if (await api.getId("tutorials", "slug", MOCK_TUTORIAL.slug)) {
+      await api.deleteTutorial(MOCK_TUTORIAL.slug);
     }
+  });
+
+  afterEach(async () => {
+    await api.deleteTutorial(MOCK_TUTORIAL.slug);
   });
 });
