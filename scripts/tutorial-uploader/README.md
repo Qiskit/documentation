@@ -9,12 +9,8 @@ To work on this script, you'll need to set up the `saiba-api` project locally.
 There are some extra steps you'll need to take to set up `saiba-api` for
 developing this script:
 
-- Add the following line to the end of `docker-compose.yaml`. Do not commit
-  this change.
-
-  ```
-  PUBLIC_URL: 'https://learning.www-dev.quantum-computing.ibm.com/'
-  ```
+- Follow instruction in the README in the saiba-api repo. Don't forget the
+  instructions to add the `PUBLIC_URL` entry to your `docker-compose.yaml`.
 
 - Login into the local CMS (<http://0.0.0.0:8055/admin/>) using
 
