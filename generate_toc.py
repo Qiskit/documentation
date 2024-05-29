@@ -57,13 +57,16 @@ class Entry:
         if self.slug is None:
             return
 
+        extension = ".mdx"
         if self.from_file and self.from_file != "__unset__":
-            content = Path("docs", self.from_file).read_text()
+            from_file = Path("docs", self.from_file)
+            content = from_file.read_text()
+            extension = from_file.suffix
         else:
             content = f"# {self.title}"
             if self.extra_page_content:
                 content += f"\n\n{self.extra_page_content}\n"
-        (base_dir / f"{self.slug}.mdx").write_text(content)
+        (base_dir / f"{self.slug}{extension}").write_text(content)
 
 
 def entries_as_markdown_list(
