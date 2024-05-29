@@ -471,6 +471,37 @@ job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1]
 psi1_H1 = job.result()
 ```
 
+<span id="no-error-mit"></span>
+## Turn off all error mitigation and error suppression
+
+Many researchers want total control over their experiments and don't want the primitives to transform their circuits. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, only measurement twirling is enabled by default. So one needs to set `options.twirling.enable_measure = False`.
+
+Examples:
+
+Turn off all error mitigation and suppression in EstimatorV2.
+
+```python
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
+
+options = estimator.options
+
+# Turn off all error mitigation and suppression
+options.resilience_level = 0
+options.optimization_level = 0
+```
+
+Turn off all error mitigation and suppression in SamplerV2.
+
+```python
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
+
+options = sampler.options
+
+# Turn off all error mitigation and suppression
+options.twirling.enable_measure = False
+```
+
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
