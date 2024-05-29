@@ -471,7 +471,7 @@ job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1]
 psi1_H1 = job.result()
 ```
 
-<span id="no-error-mit"></span>
+<span id="no-error-mitigation"></span>
 ## Turn off all error mitigation and error suppression
 
 Many researchers want total control over their experiments and don't want the primitives to transform their circuits. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, only measurement twirling is enabled by default. So one needs to set `options.twirling.enable_measure = False`.
