@@ -18,10 +18,6 @@ import { readItem } from "@directus/sdk";
 import { API } from "./api";
 import { type LocalTutorialData } from "./local-tutorial-data";
 
-/* Skip tests if environment is not set */
-const maybeDescribe =
-  process.env.JEST_TEST_TUTORIAL_UPLOADER === "true" ? describe : describe.skip;
-
 /* Create test data */
 const createdSlugs: string[] = []; // To teardown afterwards
 function generateTutorialData(): LocalTutorialData {
@@ -46,7 +42,7 @@ if (/learning-api\.quantum\.ibm\.com/.test(process.env.LEARNING_API_URL!)) {
   throw new Error("Tried to run tests against production!");
 }
 
-maybeDescribe("Tutorial uploader API", () => {
+describe("Tutorial uploader API", () => {
   const api = new API(
     process.env.LEARNING_API_URL!,
     process.env.LEARNING_API_TOKEN!,
