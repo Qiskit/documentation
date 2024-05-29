@@ -168,11 +168,11 @@ async function determineCurrentDocsFileBatch(
     "docs/**/*.{ipynb,mdx}",
     "public/api/*/objects.inv",
     // Ignore historical versions
-    "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
-    "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+    "!docs/api/*/[0-9]*/*",
+    "!public/api/*/[0-9]*/*",
     // Ignore dev version
-    "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
-    "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
+    "!docs/api/*/dev/*",
+    "!public/api/*/dev/*",
     // Ignore Qiskit release notes
     "!docs/api/qiskit/release-notes/*",
   ];
