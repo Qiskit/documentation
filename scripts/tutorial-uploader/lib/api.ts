@@ -289,8 +289,10 @@ export class API {
   async deleteTutorial(tutorialSlug: string) {
     const id = await this.getTutorialIdBySlug(tutorialSlug);
     if (id === null) {
-      throw new Error(`Can't delete tutorial '${tutorialSlug}' as no tutorial exists with that slug.`);
-    };
+      throw new Error(
+        `Can't delete tutorial '${tutorialSlug}' as no tutorial exists with that slug.`,
+      );
+    }
     console.log(`Deleting tutorial '${tutorialSlug}'`);
     await this.client.request(deleteItem("tutorials", id));
   }

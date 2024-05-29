@@ -15,13 +15,6 @@ import { readTutorialData } from "./lib/local-tutorial-data";
 
 const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
 
-/* To do:
- *
- *   [x] Read from YAML file
- *   [ ] Throw correctly
- *   [ ] More helpful console logging
- */
-
 async function main() {
   const api = new API();
 

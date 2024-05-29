@@ -10,8 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { randomBytes } from "crypto";
-
 import { describe, expect, test } from "@jest/globals";
 import { readItem } from "@directus/sdk";
 
