@@ -11,9 +11,11 @@
 // that they have been altered from the originals.
 
 // Like keyof but can only be string (not number or Symbol)
+// From https://stackoverflow.com/a/65420892
 export type StringKeyOf<T extends object> = Extract<keyof T, string>;
 
 // To extract type of array
+// From https://stackoverflow.com/a/52331580
 export type ElementType<T extends any[]> = T extends (infer U)[] ? U : never;
 
 export interface LearningApiSchema {
