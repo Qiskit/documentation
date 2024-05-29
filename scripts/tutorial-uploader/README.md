@@ -32,19 +32,9 @@ developing this script:
      ```
      Consider using [direnv](https://direnv.net/) to handle this.
 
-- Create two categories with names `Workflow example` and `How-to`; our script
-  fails if these categories don't exist. To create a category:
+- With the local database running, run the following command to add the topics
+  and categories that we expect to exist.
 
-  1. Go to <http://0.0.0.0:8055/admin/content/tutorials_categories/+>
-  2. Add the name and click the tick in the top-right corner to save
-
-- Create the following tutorial topics at <http://0.0.0.0:8055/admin/content/tutorials_topics>.
-  > TODO: Can we automate this?
-  - Chemistry
-  - Dynamic circuits
-  - Error mitigation
-  - Optimization
-  - Qiskit patterns
-  - Scheduling
-  - Scheduling
-  - Transpilation
+  ```
+  npm run tutorial:setup-testing
+  ```
