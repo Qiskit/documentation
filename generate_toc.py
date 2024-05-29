@@ -84,9 +84,57 @@ def entries_as_markdown_list(entries: list[Entry], *, indent: None | str = None)
     return "\n".join(result)
 
 
+def filter_entries(entries: list[Entry], *, ignore: list[Entry]) -> list[Entry]:
+    result = []
+    for entry in entries:
+        if entry in ignore:
+            continue
+        entry.children = filter_entries(entry.children, ignore=ignore)
+        result.append(entry)
+    return result
+
+
 # ------------------------------------------------------------------------------
 # Sections
 # ------------------------------------------------------------------------------
+
+# These pages are standalone variables so that we have better control of
+# where they show up in Tools vs the Workflow index page. For example,
+# `save-jobs` is in the `Execution Modes` tool, which normally gets added
+# to `execute-on-hardware.mdx`; however, we put the page
+# on `postprocess-results.mdx` instead.
+
+# Workflow: Post-Process, Tool: Execution Modes (manage jobs)
+RETRIEVE_RESULTS_PAGE = Entry(
+    "Retrieve and save results",
+    slug="save-jobs",
+    from_file="run/save-jobs.ipynb",
+)
+# Workflow: Post-process, Tool: Visualization
+VISUALIZE_RESULTS_PAGE = Entry(
+    "Visualize results",
+    slug="visualize-results",
+    from_file="run/visualize-results.ipynb",
+)
+# Workflow: Map problem (build circuits), Tool: Visualization
+VISUALIZE_CIRCUITS_PAGE = Entry(
+    "Visualize circuits",
+    slug="circuit-visualization",
+    from_file="build/circuit-visualization.ipynb",
+)
+# Workflow: Optimize for hardware (simulators), Tool: Visualization
+PLOT_QUANTUM_STATES_PAGE = Entry(
+    "Plot quantum states",
+    slug="plot-quantum-states",
+    from_file="verify/plot-quantum-states.ipynb",
+)
+
+# Note: not used in Workflow.
+SERVERLESS_PAGE = Entry(
+    "Qiskit Serverless workloads",
+    slug="qiskit-serverless",
+    from_file="run/quantum-serverless.mdx",
+)
 
 GET_STARTED_CHILDREN = [
     Entry(
@@ -126,7 +174,7 @@ GET_STARTED_CHILDREN = [
 
 CIRCUIT_CONSTRUCTION = [
     Entry(
-        "Build circuits with Qiskit",
+        "Build circuits with the Qiskit SDK",
         children=[
             Entry(
                 "Circuit library",
@@ -138,23 +186,19 @@ CIRCUIT_CONSTRUCTION = [
                 slug="circuit-construction",
                 from_file="build/circuit-construction.ipynb",
             ),
-            Entry(
-                "Visualize circuits",
-                slug="circuit-visualization",
-                from_file="build/circuit-visualization.ipynb",
-            ),
+            VISUALIZE_CIRCUITS_PAGE,
             Entry(
                 "Classical feedforward and control flow",
                 slug="classical-feedforward-and-control-flow",
                 from_file="build/classical-feedforward-and-control-flow.ipynb",
             ),
             Entry(
-                "Synthesizing unitary operators",
+                "Synthesize unitary operators",
                 slug="unitary-synthesis",
                 from_file="build/unitary-synthesis.mdx",
             ),
             Entry(
-                "Bit-ordering in Qiskit",
+                "Bit-ordering in the Qiskit SDK",
                 slug="bit-ordering",
                 from_file="build/bit-ordering.mdx",
             ),
@@ -166,7 +210,7 @@ CIRCUIT_CONSTRUCTION = [
         ],
     ),
     Entry(
-        "Build operators with Qiskit",
+        "Build operators with the Qiskit SDK",
         children=[
             Entry(
                 "Operators module overview",
@@ -177,11 +221,6 @@ CIRCUIT_CONSTRUCTION = [
                 "Specifying observables in the Pauli basis",
                 slug="specify-observables-pauli",
                 from_file="build/specify-observables-pauli.mdx",
-            ),
-            Entry(
-                "Operators visualization",
-                slug="operators-visualization",
-                from_file=None,
             ),
         ],
     ),
@@ -322,8 +361,8 @@ SIMULATORS = [
         from_file="verify/index.mdx",
     ),
     Entry(
-        "Exact simulation with Qiskit primitives",
-        slug="simulate-with-qiskit-primitives",
+        "Exact simulation with Qiskit SDK primitives",
+        slug="simulate-with-qiskit-sdk-primitives",
         from_file="verify/simulate-with-qiskit-primitives.mdx",
     ),
     Entry(
@@ -341,11 +380,7 @@ SIMULATORS = [
         slug="building-noise-models",
         from_file="verify/building_noise_models.ipynb",
     ),
-    Entry(
-        "Plot quantum states",
-        slug="plot-quantum-states",
-        from_file="verify/plot-quantum-states.ipynb",
-    ),
+    PLOT_QUANTUM_STATES_PAGE,
     Entry(
         "Efficient simulation of stabilizer circuits with Qiskit Aer primitives",
         slug="stabilizer-circuit-simulation",
@@ -378,7 +413,7 @@ PRIMITIVES = [
         "Configure runtime options",
         children=[
             Entry(
-                "Configure runtiem compilation",
+                "Configure runtime compilation",
                 slug="configure-runtime-compilation",
                 from_file="run/configure-runtime-compilation.mdx",
             ),
@@ -398,39 +433,33 @@ PRIMITIVES = [
 
 EXECUTION_MODES = [
     Entry(
-        "Execution modes",
-        children=[
-            Entry(
-                "Introduction to Qiskit Runtime execution modes",
-                slug="execution-modes-intro",
-                from_file="run/execution-modes.mdx",
-            ),
-            Entry(
-                "Introduction to Qiskit Runtime sessions",
-                slug="sessions",
-                from_file="run/sessions.mdx",
-            ),
-            Entry(
-                "Run jobs in a session",
-                slug="run-jobs-in-session",
-                from_file="run/run-jobs-in-session.mdx",
-            ),
-            Entry(
-                "Run jobs in a batch",
-                slug="run-jobs-batch",
-                from_file="run/run-jobs-batch.mdx",
-            ),
-            Entry(
-                "FAQs",
-                slug="execution-modes-faq",
-                from_file="run/execution-modes-faq.mdx",
-            ),
-        ],
+        "Introduction to execution modes",
+        slug="execution-modes-intro",
+        from_file="run/execution-modes.mdx",
+    ),
+    Entry(
+        "Introduction to sessions",
+        slug="sessions",
+        from_file="run/sessions.mdx",
+    ),
+    Entry(
+        "Run jobs in a session",
+        slug="run-jobs-in-session",
+        from_file="run/run-jobs-in-session.mdx",
+    ),
+    Entry(
+        "Run jobs in a batch",
+        slug="run-jobs-batch",
+        from_file="run/run-jobs-batch.mdx",
     ),
     Entry(
         "Manage jobs",
         children=[
-            Entry("Monitor a job", slug="monitor-job", from_file="run/monitor-job.mdx"),
+            Entry(
+                "Monitor or cancel a job",
+                slug="monitor-job",
+                from_file="run/monitor-job.mdx",
+            ),
             Entry(
                 "Estimate job run time",
                 slug="estimate-job-run-time",
@@ -442,11 +471,17 @@ EXECUTION_MODES = [
                 from_file="run/minimize-time.mdx",
             ),
             Entry(
-                "Maximum execution time for a Qiskit Runtime job or session",
+                "Maximum execution time",
                 slug="max-execution-time",
                 from_file="run/max-execution-time.mdx",
             ),
+            RETRIEVE_RESULTS_PAGE,
         ],
+    ),
+    Entry(
+        "Execution modes FAQs",
+        slug="execution-modes-faq",
+        from_file="run/execution-modes-faq.mdx",
     ),
 ]
 
@@ -486,86 +521,84 @@ SYSTEMS_CHILDREN = [
     Entry("Manage cost", slug="manage-cost", from_file="run/manage-cost.mdx"),
 ]
 
-OPTIMIZE_FOR_HARDWARE_CHILDREN = [
-    *TRANSPILER,
-    Entry("Debugging tools", children=SIMULATORS),
-]
-
-EXECUTE_ON_HARDWARE_CHILDREN = [
-    *PRIMITIVES,
-    *EXECUTION_MODES,
-    Entry("Systems and platform information", children=SYSTEMS_CHILDREN),
-]
-
-POSTPROCESS_CHILDREN = [
-    Entry(
-        "Retrieve and save results",
-        slug="save-jobs",
-        from_file="run/save-jobs.ipynb",
-    ),
-    Entry(
-        "Visualize results",
-        slug="visualize-results",
-        from_file="run/visualize-results.ipynb",
-    ),
-]
-
-# Note: not used in Workflow.
-SERVERLESS = [
-    Entry(
-        "Qiskit Serverless workloads",
-        slug="qiskit-serverless",
-        from_file="run/quantum-serverless.mdx",
-    )
-]
-
 WORKFLOW_FOLDER_AS_INDEX_CHILDREN = [
     Entry(
         "Introduction to Qiskit Patterns",
-        slug="patterns-index",
+        slug="intro-to-patterns",
         extra_page_content=patterns_index_content(),
     ),
     Entry(
         "Map problem to circuits",
-        slug="map-problem-to-circuits-index",
+        slug="map-problem-to-circuits",
         extra_page_content=map_content(entries_as_markdown_list(CIRCUIT_CONSTRUCTION)),
     ),
     Entry(
         "Optimize for hardware",
-        slug="optimize-for-hardware-index",
+        slug="optimize-for-hardware",
         extra_page_content=optimize_content(
-            entries_as_markdown_list(OPTIMIZE_FOR_HARDWARE_CHILDREN)
+            entries_as_markdown_list(
+                [
+                    *TRANSPILER,
+                    Entry("Debugging tools", children=SIMULATORS),
+                ]
+            )
         ),
     ),
     Entry(
         "Execute on hardware",
-        slug="execute-on-hardware-index",
+        slug="execute-on-hardware",
         extra_page_content=execute_index_content(
-            entries_as_markdown_list(EXECUTE_ON_HARDWARE_CHILDREN)
+            entries_as_markdown_list(
+                filter_entries(
+                    [
+                        *PRIMITIVES,
+                        *EXECUTION_MODES,
+                        Entry(
+                            "Systems and platform information",
+                            children=SYSTEMS_CHILDREN,
+                        ),
+                    ],
+                    ignore=[],
+                )
+            )
         ),
     ),
     Entry(
         "Postprocess results",
-        slug="postprocess-results-index",
+        slug="postprocess-results",
         extra_page_content=postprocess_index_content(
-            entries_as_markdown_list(POSTPROCESS_CHILDREN)
+            entries_as_markdown_list([RETRIEVE_RESULTS_PAGE, VISUALIZE_RESULTS_PAGE])
         ),
     ),
 ]
 
 
 TOOL_ENTRIES = [
-    Entry("Circuits and operators", children=CIRCUIT_CONSTRUCTION),
+    Entry(
+        "Circuits and operators",
+        children=filter_entries(CIRCUIT_CONSTRUCTION, ignore=[VISUALIZE_CIRCUITS_PAGE]),
+    ),
     Entry("Transpiler", children=TRANSPILER),
-    Entry("Debugging tools", children=SIMULATORS),
+    Entry(
+        "Debugging tools",
+        children=filter_entries(SIMULATORS, ignore=[PLOT_QUANTUM_STATES_PAGE]),
+    ),
     Entry("Primitives", children=PRIMITIVES),
     Entry("Execution modes", children=EXECUTION_MODES),
     Entry("IBM Quantum systems", children=SYSTEMS_CHILDREN),
-    Entry("Serverless", children=SERVERLESS),
+    Entry(
+        "Visualization",
+        children=[
+            VISUALIZE_CIRCUITS_PAGE,
+            PLOT_QUANTUM_STATES_PAGE,
+            VISUALIZE_RESULTS_PAGE,
+        ],
+    ),
+    SERVERLESS_PAGE,
 ]
 
 
-top_level_entries = [
+TOP_LEVEL_ENTRIES = [
     Entry("Get started"),
     *GET_STARTED_CHILDREN,
     Entry("Workflow"),
@@ -579,43 +612,43 @@ top_level_entries = [
 # ------------------------------------------------------------------------------
 
 
-def write_result(folder: str, top_level_entries: list[Entry]) -> None:
+def write_result(folder: str, entries: list[Entry]) -> None:
     folder_path = Path("docs", folder)
     if folder_path.exists():
         shutil.rmtree(folder_path)
     folder_path.mkdir(parents=True)
 
-    for entry in top_level_entries:
+    for entry in entries:
         entry.ensure_slugs_exist(folder_path)
 
     result = {
         "title": "Guides",
         "collapsed": True,
-        "children": [entry.to_json(folder) for entry in top_level_entries],
+        "children": [entry.to_json(folder) for entry in entries],
     }
     text = json.dumps(result, indent=2)
     (folder_path / "_toc.json").write_text(text)
 
 
-def get_redirects(top_level_entries: list[Entry]) -> list[str]:
+def get_redirects(entries: list[Entry]) -> list[str]:
     redirects = []
-    for entry in top_level_entries:
+    for entry in entries:
         if entry.from_file and entry.from_file != "__unset__" and entry.slug:
             old_url = Path(entry.from_file).with_suffix("")
             redirects.append(f'["{old_url}", "{entry.slug}"],')
-        redirects.extend(get_redirects([entry.children]))
-    return redirects
+        redirects.extend(get_redirects(entry.children))
+    return sorted(redirects)
 
 
-def gen_redirects_file(top_level_entries: list[Entry]) -> None:
+def gen_redirects_file(entries: list[Entry]) -> None:
     fp = Path("redirects.txt")
     fp.write_text("[\n")
-    redirects = get_redirects(top_level_entries)
+    redirects = get_redirects(entries)
     with fp.open("a") as file:
         for redirect in redirects:
             file.write(f"  {redirect}\n")
         file.write("]")
 
 
-write_result("guides", top_level_entries)
-gen_redirects_file(top_level_entries)
+write_result("guides", TOP_LEVEL_ENTRIES)
+gen_redirects_file(TOP_LEVEL_ENTRIES)

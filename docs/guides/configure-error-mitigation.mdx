@@ -55,18 +55,18 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    In V2, Estimator supports the following resilience levels.  Sampler does not support resilience levels. 
+    In V2, Estimator supports the following resilience levels.  Sampler does not support resilience levels.
 
 | Resilience Level | Definition                                                                                            | Technique                                                                 |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | 0                | No mitigation                                                                                         | None                                                                      |
 | 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX) measurement twirling             |
-| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and gate twirling 
+| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and gate twirling
 
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-    Resilience levels in V1 primitives: 
+    Resilience levels in V1 primitives:
 
 | Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler                                |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------|
@@ -91,7 +91,7 @@ applied at each resilience level.
 
 <Admonition type="note">
   If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
-  
+
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
   execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
   Setting other options will likewise not impact performance, and it may result in a
@@ -389,7 +389,7 @@ With the V2 primitives, you can turn on and off individual error mitigation and 
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-    ```python 
+    ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
@@ -409,7 +409,7 @@ print(f">>> measurement error mitigation is turned on: {estimator.options.resili
   </TabItem>
 
   <TabItem value="Sampler V2" label="Sampler V2">
-```python 
+```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
 
 # Estimator and Sampler now have different options
@@ -464,7 +464,7 @@ options.resilience_level = 2
 options.resilience.noise_factors = (1, 2, 3, 4)
 options.resilience.noise_amplifier = 'CxAmplifier'
 options.resilience.extrapolator = 'QuadraticExtrapolator'
-backend = service.backend("ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
 
 estimator = Estimator(options=options, backend=backend)
 job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
