@@ -169,6 +169,8 @@ export class API {
       "hex",
     )}/tutorial.zip`;
     await $`mkdir -p ${dirname(zippedFilePath)}`;
+    // We cd into the parent dir to avoid including the full directory
+    // structure in the zip
     await $`(cd ${dirname(path)} && zip -qr ${zippedFilePath} ${basename(
       path,
     )})`;
