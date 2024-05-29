@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import dataclasses
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import PurePath, Path
 
 
 @dataclass(frozen=True)
@@ -35,6 +35,12 @@ class Entry:
             raise ValueError(
                 "Must set `from_file` or `page_content` when `slug` is set."
             )
+
+    def get_redirects(self) -> dict[str, str]:
+        if self.slug is None or self.from_file is None:
+            return
+        old_url = PurePath(self.from_file).with_suffix("")
+        return old_url, f"guides/{self.slug}"
 
     def to_json(self, folder_name: str) -> dict:
         result: dict = {"title": self.title}
@@ -97,3 +103,13 @@ def filter_entries(
         )
         result.append(new_entry)
     return tuple(result)
+
+
+def determine_redirects(entries: tuple[Entry, ...], *, prefix: str = "") -> dict[str, str]:
+    result = {}
+    for entry in entries:
+        if entry.slug and entry.from_file:
+            old_url = str(PurePath(entry.from_file).with_suffix(""))
+            result[old_url] = f"{prefix}{entry.slug}"
+        result.update(determine_redirects(entry.children))
+    return result

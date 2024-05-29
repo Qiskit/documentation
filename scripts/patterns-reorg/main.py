@@ -18,51 +18,38 @@ import shutil
 import json
 from pathlib import Path
 
-from models import Entry
+from models import determine_redirects
 from entries import TOP_LEVEL_ENTRIES
 
 
-def write_result(folder: str, entries: tuple[Entry, ...]) -> None:
-    folder_path = Path("docs", folder)
+def write_guides_dir() -> None:
+    folder_path = Path("docs", "guides")
     if folder_path.exists():
         shutil.rmtree(folder_path)
     folder_path.mkdir(parents=True)
 
-    for entry in entries:
+    for entry in TOP_LEVEL_ENTRIES:
         entry.ensure_slugs_exist(folder_path)
 
     result = {
         "title": "Guides",
         "collapsed": True,
-        "children": [entry.to_json(folder) for entry in entries],
+        "children": [entry.to_json("guides") for entry in TOP_LEVEL_ENTRIES],
     }
     text = json.dumps(result, indent=2)
     (folder_path / "_toc.json").write_text(text)
 
 
-def get_redirects(entries: tuple[Entry, ...]) -> list[str]:
-    redirects = []
-    for entry in entries:
-        if entry.from_file and entry.from_file != "__unset__" and entry.slug:
-            old_url = Path(entry.from_file).with_suffix("")
-            redirects.append(f'["{old_url}", "{entry.slug}"],')
-        redirects.extend(get_redirects(entry.children))
-    return sorted(redirects)
-
-
-def gen_redirects_file(entries: tuple[Entry, ...]) -> None:
-    fp = Path("scripts/patterns-reorg/redirects.txt")
-    fp.write_text("[\n")
-    redirects = get_redirects(entries)
-    with fp.open("a") as file:
-        for redirect in redirects:
-            file.write(f"  {redirect}\n")
-        file.write("]")
+def write_redirects_file() -> None:
+    fp = Path("scripts/patterns-reorg/redirects.json")
+    redirects = determine_redirects(TOP_LEVEL_ENTRIES)
+    text = json.dumps(redirects, indent=2)
+    fp.write_text(text)
 
 
 def main() -> None:
-    write_result("guides", TOP_LEVEL_ENTRIES)
-    gen_redirects_file(TOP_LEVEL_ENTRIES)
+    write_guides_dir()
+    write_redirects_file()
 
 
 if __name__ == "__main__":
