@@ -39,10 +39,7 @@ if (/learning-api\.quantum\.ibm\.com/.test(process.env.LEARNING_API_URL!)) {
 }
 
 describe("Tutorial uploader API", () => {
-  const api = new API(
-    process.env.LEARNING_API_URL!,
-    process.env.LEARNING_API_TOKEN!,
-  );
+  const api = new API();
 
   test("upload new tutorial", async () => {
     expect(await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug)).toBeNull();

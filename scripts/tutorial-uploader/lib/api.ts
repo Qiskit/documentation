@@ -39,10 +39,25 @@ import type { LocalTutorialData } from "./local-tutorial-data";
 
 $.verbose = false;
 
+function getLearningEnvironment(): [string, string] {
+  if (!process.env.LEARNING_API_URL) {
+    throw new Error(
+      "environment variable 'LEARNING_API_URL' is not set (see tutorial-uploader/README.md)",
+    );
+  }
+  if (!process.env.LEARNING_API_TOKEN) {
+    throw new Error(
+      "environment variable 'LEARNING_API_TOKEN' is not set (see tutorial-uploader/README.md)",
+    );
+  }
+  return [process.env.LEARNING_API_URL, process.env.LEARNING_API_TOKEN];
+}
+
 export class API {
   readonly client: RestClient<LearningApiSchema>;
 
-  constructor(url: string, token: string) {
+  constructor() {
+    const [url, token] = getLearningEnvironment();
     this.client = createDirectus<LearningApiSchema>(url)
       .with(rest())
       .with(staticToken(token));

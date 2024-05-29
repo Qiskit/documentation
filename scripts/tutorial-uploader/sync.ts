@@ -23,11 +23,7 @@ const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
  */
 
 async function main() {
-  // @ts-ignore // TODO: Throw if undefined
-  const api = new API(
-    process.env.LEARNING_API_URL!,
-    process.env.LEARNING_API_TOKEN!,
-  );
+  const api = new API();
 
   for (const tutorial of await readTutorialData(CONFIG_PATH)) {
     await api.upsertTutorial(tutorial);
