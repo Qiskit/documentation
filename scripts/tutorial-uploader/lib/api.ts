@@ -39,7 +39,7 @@ import { type LocalTutorialData } from "./local-tutorial-data";
  */
 
 export class API {
-  client: RestClient<LearningApiSchema>;
+  readonly client: RestClient<LearningApiSchema>;
 
   constructor(url: string, token: string) {
     this.client = createDirectus<LearningApiSchema>(url)
