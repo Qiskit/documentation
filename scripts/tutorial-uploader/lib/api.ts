@@ -29,8 +29,13 @@ import {
   uploadFiles,
 } from "@directus/sdk";
 
-import { type LearningApiSchema, StringKeyOf, ElementType } from "./schema";
-import { type LocalTutorialData } from "./local-tutorial-data";
+import {
+  LearningApiSchema,
+  Translation,
+  StringKeyOf,
+  ElementType,
+} from "./schema";
+import type { LocalTutorialData } from "./local-tutorial-data";
 
 /* To do:
  *   [x] Fix types
@@ -108,14 +113,19 @@ export class API {
    * Tutorials can have many translations, but we only use English at the moment.
    */
   async getEnglishTranslationId(tutorialId: string): Promise<number> {
-    // TODO: This assumes the only translation is english (currently true)
     const response = await this.client.request(
-      readItem("tutorials", tutorialId, { fields: ["translations"] }),
+      // @ts-ignore
+      readItem("tutorials", tutorialId, {
+        fields: ["translations.id", "translations.languages_code"],
+      }),
     );
-    if (!response.translations) {
-      throw new Error(`No translations for tutorial ${tutorialId}`);
+    const englishTranslations = response.translations?.filter(
+      (x: Translation) => x.languages_code === "en-US",
+    ) as Translation[] | undefined;
+    if (!englishTranslations?.length) {
+      throw new Error(`No english translations for tutorial ${tutorialId}`);
     }
-    return response.translations[0] as number;
+    return englishTranslations[0].id;
   }
 
   /**
