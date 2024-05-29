@@ -33,6 +33,8 @@ interface Tutorial {
   reading_time: number;
   category: string; // This is the uuid of the category.
   catalog_featured: boolean;
+  // API can return either the translation IDs or the translation objects
+  // depending on the request.
   translations: number[] | Translation[];
 }
 
@@ -55,8 +57,14 @@ interface Category {
   name: string;
 }
 
+/**
+ * This object links a tutorial to a topics.
+ * A tutorial can be linked to many topics.
+ * https://docs.directus.io/guides/sdk/types.html#adding-relational-fields
+ */
 interface TutorialsTopicsRelation {
   id: number;
+  // API can return either the UUIDs or the objects depending on the request.
   tutorials_id: string | Tutorial;
   tutorials_topics_id: string | Topic;
 }
