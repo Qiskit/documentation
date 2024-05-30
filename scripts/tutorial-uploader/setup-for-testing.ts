@@ -24,7 +24,7 @@ const TOPICS = [
   "Dynamic circuits",
   "Error mitigation",
   "Optimization",
-  "Qiskit patterns",
+  "Qiskit Patterns",
   "Scheduling",
   "Transpilation",
 ];
@@ -34,7 +34,6 @@ const CATEGORIES = ["Workflow example", "How-to"];
 async function main() {
   const api = new API();
 
-  const promises = [];
   for (const topicName of TOPICS) {
     if (!(await api.getId("tutorials_topics", "name", topicName))) {
       console.log(`Creating tutorial topic '${topicName}'...`);
