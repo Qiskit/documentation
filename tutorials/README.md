@@ -22,7 +22,7 @@ which also contains the tutorials' metadata.
 ## Adding new tutorials
 
 To create a new tutorial, add a new notebook to the `tutorials/` folder and
-make new entry to `learning-api.conf.yaml`. The next time the deploy action is
+make a new entry to `learning-api.conf.yaml`. The next time the deploy action is
 run, the tutorial will be created on the platform, so make sure to only merge
 the change to `main` when you're ready for the tutorial to go live.
 

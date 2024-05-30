@@ -9,7 +9,7 @@ To work on this script, you'll need to set up the `saiba-api` project locally.
 There are some extra steps you'll need to take to set up `saiba-api` for
 developing this script:
 
-- Follow instruction in the README in the saiba-api repo. Don't forget the
+- Follow the instructions in the README in the saiba-api repo. Don't forget the
   instructions to add the `PUBLIC_URL` entry to your `docker-compose.yaml`.
 
 - Login into the local CMS (<http://0.0.0.0:8055/admin/>) using
@@ -24,7 +24,7 @@ developing this script:
   3. Create a new user with the "Content creator admin" role and generate a new
      static token. Copy the token to your clipboard. Then click the tick on the
      top-right of the page to save the user.
-  4. To test the script in this repo, export the following envrionment
+  4. To test the script in this repo, export the following environment
      variables.
      ```
      export LEARNING_API_URL=http://0.0.0.0:8055
