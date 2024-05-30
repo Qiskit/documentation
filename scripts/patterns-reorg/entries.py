@@ -528,7 +528,7 @@ TOOL_ENTRIES = (
 
 
 TOP_LEVEL_ENTRIES = (
-    Entry("Get started", label=True, children=GET_STARTED_CHILDREN),
+    Entry("Get started", children=GET_STARTED_CHILDREN),
     Entry("Workflow", label=True, children=PATTERNS_CHILDREN),
     Entry("Tools", label=True, children=TOOL_ENTRIES),
 )
