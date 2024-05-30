@@ -41,13 +41,14 @@ export async function readTutorialData(
 ): Promise<LocalTutorialData[]> {
   const raw = await readFile(path, "utf8");
   const parsed = yaml.load(raw) as unknown[];
-  return parsed
-    .map((i) => verifyLocalTutorialData(i))
-    .map((i) => relativiseLocalPath(i, path));
+  parsed.forEach((i) => assertIsLocalTutorialData(i));
+  return parsed.map((i) => relativiseLocalPath(i as LocalTutorialData, path));
 }
 
 /* Runtime type-checking to make sure YAML file is valid */
-function verifyLocalTutorialData(obj: any): LocalTutorialData {
+function assertIsLocalTutorialData(
+  obj: unknown,
+): asserts obj is LocalTutorialData {
   for (let [attr, isCorrectType] of [
     ["title", isString],
     ["short_description", isString],
@@ -69,5 +70,4 @@ function verifyLocalTutorialData(obj: any): LocalTutorialData {
       );
     }
   }
-  return obj as LocalTutorialData;
 }
