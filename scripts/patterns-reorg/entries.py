@@ -450,7 +450,7 @@ SYSTEMS_CHILDREN = (
     Entry("Manage cost", slug="manage-cost", from_file="run/manage-cost.mdx"),
 )
 
-WORKFLOW_FOLDER_AS_INDEX_CHILDREN = (
+PATTERNS_CHILDREN = (
     Entry(
         "Introduction to Qiskit Patterns",
         slug="intro-to-patterns",
@@ -528,10 +528,7 @@ TOOL_ENTRIES = (
 
 
 TOP_LEVEL_ENTRIES = (
-    Entry("Get started"),
-    *GET_STARTED_CHILDREN,
-    Entry("Workflow"),
-    *WORKFLOW_FOLDER_AS_INDEX_CHILDREN,
-    Entry("Tools"),
-    *TOOL_ENTRIES,
+    Entry("Get started", label=True, children=GET_STARTED_CHILDREN),
+    Entry("Workflow", label=True, children=PATTERNS_CHILDREN),
+    Entry("Tools", label=True, children=TOOL_ENTRIES),
 )
