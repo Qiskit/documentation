@@ -275,7 +275,7 @@ export class API {
   /**
    * Update tutorial if it exists, otherwise create new
    */
-  async upsertTutorial(localData: LocalTutorialData) {
+  async upsertTutorial(localData: LocalTutorialData): Promise<void> {
     let id = await this.getTutorialIdBySlug(localData.slug);
     if (id === null) {
       id = await this.createTutorial(localData);
@@ -286,7 +286,7 @@ export class API {
   /**
    * For testing
    */
-  async deleteTutorial(tutorialSlug: string) {
+  async deleteTutorial(tutorialSlug: string): Promise<void> {
     const id = await this.getTutorialIdBySlug(tutorialSlug);
     if (id === null) {
       throw new Error(
