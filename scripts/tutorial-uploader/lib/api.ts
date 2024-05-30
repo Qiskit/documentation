@@ -215,7 +215,7 @@ export class API {
   async updateExistingTutorial(
     tutorialId: string,
     localData: LocalTutorialData,
-  ) {
+  ): Promise<void> {
     console.log(`Updating tutorial '${localData.slug}'...`);
     const newTutorial = {
       category: await this.getId(
