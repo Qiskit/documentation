@@ -30,12 +30,12 @@ exports[`qiskit-sphinx-theme: _toc 1`] = `
         {
           "title": "my_function",
           "url": "/api/qiskit-sphinx-theme/api_example.my_function"
-        },
-        {
-          "title": "SimpleInlineClass",
-          "url": "/api/qiskit-sphinx-theme/inline_classes"
         }
       ]
+    },
+    {
+      "title": "api_example.inline_classes",
+      "url": "/api/qiskit-sphinx-theme/inline_classes"
     }
   ],
   "collapsed": true
@@ -196,14 +196,26 @@ python_api_name: api_example.my_function
 "
 `;
 
+exports[`qiskit-sphinx-theme: index 1`] = `
+"# API reference
+
+*   [API example (\`api_example\`)](module)
+*   [Inline classes](inline_classes)
+"
+`;
+
 exports[`qiskit-sphinx-theme: inline_classes 1`] = `
 "---
-title: SimpleInlineClass
-description: API reference for api_example.inline_classes.SimpleInlineClass
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: api_example.inline_classes.SimpleInlineClass
+title: inline_classes
+description: API reference for api_example.inline_classes
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: api_example.inline_classes
 ---
+
+<span id="module-api_example.inline_classes" />
+
+<span id="api-example-inline-classes" />
 
 # Inline classes
 
@@ -223,19 +235,14 @@ Every time you use this program, you’ll want to create an instance of [\`api_e
 
 It can be useful to use free functions rather than the class:
 
-###
+### inline\\_function
 
-<Function github="https://github.com/Qiskit/qiskit_sphinx_theme/tree/stable/0.1/api_example.py" signature="api_example.my_function(input1, input2, input3=None, **kwargs)">
+<Function id="api_example.inline_classes.inline_function" github="https://github.com/Qiskit/qiskit_sphinx_theme/tree/stable/0.1/api_example/inline_classes.py" signature="api_example.inline_classes.inline_function(input1, input2)">
   A function that does awesome stuff.
 
   **Returns**
 
   Did the function work.
-
-  **Raises**
-
-  *   **ValueError** – If the inputs are not the correct values.
-  *   **TypeError** – If the inputs are not strings.
 
   **Return type**
 
@@ -253,19 +260,15 @@ Sometimes, you even need to use a really complex class!
 
   Note how the methods and attributes are rendered and indented when this class is inlined on the docs page.
 
-  ## Attributes
-
-  ### CLASS\\_ATTRIBUTE
+  #### CLASS\\_ATTRIBUTE
 
   <Attribute id="api_example.inline_classes.InlineClassWithMethods.CLASS_ATTRIBUTE" attributeTypeHint="str" attributeValue="'An important part of any API.'" />
 
-  ### interest\\_rate
+  #### interest\\_rate
 
   <Attribute id="api_example.inline_classes.InlineClassWithMethods.interest_rate" />
 
-  ## Methods
-
-  ### method1
+  #### method1
 
   <Function id="api_example.inline_classes.InlineClassWithMethods.method1" signature="method1()">
     A simple method.
@@ -275,7 +278,7 @@ Sometimes, you even need to use a really complex class!
     int
   </Function>
 
-  ### method2
+  #### method2
 
   <Function id="api_example.inline_classes.InlineClassWithMethods.method2" signature="method2(arg1, arg2, description)">
     A method with a lot of args!
