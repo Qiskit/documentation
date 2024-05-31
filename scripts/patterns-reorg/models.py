@@ -25,6 +25,7 @@ class Entry:
     external_url: str | None = field(default=None, kw_only=True)
     from_file: str | None = field(default=None, kw_only=True)
     page_content: str | None = field(default=None, kw_only=True)
+    label: bool = field(default=False, kw_only=True)
 
     def __post_init__(self) -> None:
         if self.slug and self.external_url:
@@ -44,6 +45,8 @@ class Entry:
             result["url"] = self.external_url
         if self.children:
             result["children"] = [child.to_json(folder_name) for child in self.children]
+        if self.label:
+            result["collapsible"] = False
         return result
 
     def ensure_slugs_exist(self, base_dir: Path) -> None:
@@ -99,7 +102,9 @@ def filter_entries(
     return tuple(result)
 
 
-def determine_redirects(entries: tuple[Entry, ...], *, prefix: str = "") -> dict[str, str]:
+def determine_redirects(
+    entries: tuple[Entry, ...], *, prefix: str = ""
+) -> dict[str, str]:
     result = {}
     for entry in entries:
         if entry.slug and entry.from_file:
