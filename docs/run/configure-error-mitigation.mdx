@@ -474,16 +474,14 @@ psi1_H1 = job.result()
 <span id="no-error-mitigation"></span>
 ## Turn off all error mitigation and error suppression
 
-You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, turn off measurement twirling.
+You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, no changes are necessary because no error mitigation or suppression options are enabled by default.
 
-Examples:
+Example:
 
-<Tabs>
-  <TabItem value="Estimator" label="EstimatorV2">
 Turn off all error mitigation and suppression in EstimatorV2.
 
 ```python
-from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options
 
 options = estimator.options
 
@@ -491,20 +489,6 @@ options = estimator.options
 options.resilience_level = 0
 options.optimization_level = 0
 ```
-  </TabItem>
-  <TabItem value="Sampler" label="SamplerV2">
-Turn off all error mitigation and suppression in SamplerV2.
-
-```python
-from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
-
-options = sampler.options
-
-# Turn off all error mitigation and suppression
-options.twirling.enable_measure = False
-```
-  </TabItem>
-</Tabs>
 
 ## Next steps
 
