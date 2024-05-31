@@ -33,7 +33,7 @@ the problem onto qubits in the heavy-hex (or gross) lattice of IBM Hardware from
 outset if the structure of the problem lends itself to optimization earlier. 
 
 It is also worth considering at this point what the outcome of the particular algorithm will be
-in prepartion for the later execute step, e.g. if the desired outcome involves
+in preparation for the later execute step, e.g. if the desired outcome involves
 inferring correlation functions using Hadamard tests, you might prepare to use `Sampler` whereas
 specifying observables would use the `Estimator` and could provide many error mitigation options.
 
@@ -52,6 +52,8 @@ def postprocess_index_content(index: str) -> str:
 title: Post-process results
 description: TODO - 50+ characters long to ignore metadata check for now!
 ---
+
+# Post-process results
 
 This final "post-process results" step of a Qiskit pattern involves stitching the outputs from
 the prior step back together to obtain the desired result. This can involve a range of classical
@@ -81,7 +83,7 @@ In the "optimize for target hardware" step of a Qiskit pattern, you take the abs
 may include mapping the route and layout of the circuit to physical qubit hardware, converting
 to basis gates of the hardware, and reducing the number of operations, all designed to optimize
 the likelihood of success in the later execute step. At this point you may also wish to debug
-your circuits with a simulator before executiong on real hardware in the next step.
+your circuits with a simulator before executing on real hardware in the next step.
 
 During this step, abstract circuits must be transpiled to Instruction Set Architecture (ISA) circuits.
 An ISA circuit is one that only consists of gates understood by the target hardware (basis gates), and
@@ -104,7 +106,7 @@ description: TODO - 50+ characters long to ignore metadata check for now!
 
 # Execute on hardware
 
-The "execute on hardware" step of a Qiskit pattern involes running you circuits on hardware
+The "execute on hardware" step of a Qiskit pattern involves running your circuits on hardware
 and produces the outputs of the quantum computation. The ISA circuits produced in
 the previous step, can be executed using either a Sampler or Estimator Primitive from
 Qiskit Runtime, initialised locally on your computer or from a cluster or other
