@@ -360,7 +360,34 @@ PRIMITIVES = (
     ),
 )
 
-EXECUTION_MODES = (
+MANAGE_JOBS_FOLDER = Entry(
+    "Manage jobs",
+    children=(
+        Entry(
+            "Monitor or cancel a job",
+            slug="monitor-job",
+            from_file="run/monitor-job.mdx",
+        ),
+        Entry(
+            "Estimate job run time",
+            slug="estimate-job-run-time",
+            from_file="run/estimate-job-run-time.mdx",
+        ),
+        Entry(
+            "Minimize job run time",
+            slug="minimize-time",
+            from_file="run/minimize-time.mdx",
+        ),
+        Entry(
+            "Maximum execution time",
+            slug="max-execution-time",
+            from_file="run/max-execution-time.mdx",
+        ),
+        RETRIEVE_RESULTS_PAGE,
+    ),
+)
+
+EXECUTION_MODES_CHILDREN = (
     Entry(
         "Introduction to execution modes",
         slug="execution-modes-intro",
@@ -381,32 +408,7 @@ EXECUTION_MODES = (
         slug="run-jobs-batch",
         from_file="run/run-jobs-batch.mdx",
     ),
-    Entry(
-        "Manage jobs",
-        children=(
-            Entry(
-                "Monitor or cancel a job",
-                slug="monitor-job",
-                from_file="run/monitor-job.mdx",
-            ),
-            Entry(
-                "Estimate job run time",
-                slug="estimate-job-run-time",
-                from_file="run/estimate-job-run-time.mdx",
-            ),
-            Entry(
-                "Minimize job run time",
-                slug="minimize-time",
-                from_file="run/minimize-time.mdx",
-            ),
-            Entry(
-                "Maximum execution time",
-                slug="max-execution-time",
-                from_file="run/max-execution-time.mdx",
-            ),
-            RETRIEVE_RESULTS_PAGE,
-        ),
-    ),
+    MANAGE_JOBS_FOLDER,
     Entry(
         "Execution modes FAQs",
         slug="execution-modes-faq",
@@ -478,16 +480,21 @@ PATTERNS_CHILDREN = (
         slug="execute-on-hardware",
         page_content=execute_index_content(
             entries_as_markdown_list(
-                filter_entries(
-                    (
-                        *PRIMITIVES,
-                        *EXECUTION_MODES,
-                        Entry(
-                            "Systems and platform information",
-                            children=SYSTEMS_CHILDREN,
+                (
+                    *PRIMITIVES,
+                    Entry(
+                        "Execution modes",
+                        children=filter_entries(
+                            EXECUTION_MODES_CHILDREN, ignore={MANAGE_JOBS_FOLDER}
                         ),
                     ),
-                    ignore={RETRIEVE_RESULTS_PAGE},
+                    *filter_entries(
+                        (MANAGE_JOBS_FOLDER,), ignore={RETRIEVE_RESULTS_PAGE}
+                    ),
+                    Entry(
+                        "Systems and platform information",
+                        children=SYSTEMS_CHILDREN,
+                    ),
                 )
             )
         ),
@@ -513,7 +520,7 @@ TOOL_ENTRIES = (
         children=filter_entries(SIMULATORS, ignore={PLOT_QUANTUM_STATES_PAGE}),
     ),
     Entry("Primitives", children=PRIMITIVES),
-    Entry("Execution modes", children=EXECUTION_MODES),
+    Entry("Execution modes", children=EXECUTION_MODES_CHILDREN),
     Entry("IBM Quantum systems", children=SYSTEMS_CHILDREN),
     Entry(
         "Visualization",
