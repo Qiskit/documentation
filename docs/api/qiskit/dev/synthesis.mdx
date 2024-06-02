@@ -95,7 +95,7 @@ python_api_name: qiskit.synthesis
 ### synth\_cz\_depth\_line\_mr
 
 <Function id="qiskit.synthesis.synth_cz_depth_line_mr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cz_depth_lnn.py#L121-L194" signature="qiskit.synthesis.synth_cz_depth_line_mr(mat)">
-  Synthesis of a CZ circuit for linear nearest neighbour (LNN) connectivity, based on Maslov and Roetteler.
+  Synthesis of a CZ circuit for linear nearest neighbor (LNN) connectivity, based on Maslov and Roetteler.
 
   Note that this method *reverts* the order of qubits in the circuit, and returns a circuit containing [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
 
@@ -119,7 +119,7 @@ python_api_name: qiskit.synthesis
 ### synth\_cx\_cz\_depth\_line\_my
 
 <Function id="qiskit.synthesis.synth_cx_cz_depth_line_my" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cx_cz_depth_lnn.py#L218-L262" signature="qiskit.synthesis.synth_cx_cz_depth_line_my(mat_x, mat_z)">
-  Joint synthesis of a -CZ-CX- circuit for linear nearest neighbour (LNN) connectivity, with 2-qubit depth at most 5n, based on Maslov and Yang. This method computes the CZ circuit inside the CX circuit via phase gate insertions.
+  Joint synthesis of a -CZ-CX- circuit for linear nearest neighbor (LNN) connectivity, with 2-qubit depth at most 5n, based on Maslov and Yang. This method computes the CZ circuit inside the CX circuit via phase gate insertions.
 
   **Parameters**
 
@@ -143,7 +143,7 @@ python_api_name: qiskit.synthesis
 ### synth\_cnot\_phase\_aam
 
 <Function id="qiskit.synthesis.synth_cnot_phase_aam" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cnot_phase_synth.py#L27-L188" signature="qiskit.synthesis.synth_cnot_phase_aam(cnots, angles, section_size=2)">
-  This function is an implementation of the GraySynth algorithm of Amy, Azimadeh and Mosca.
+  This function is an implementation of the GraySynth algorithm of Amy, Azimzadeh and Mosca.
 
   GraySynth is a heuristic algorithm from \[1] for synthesizing small parity networks. It is inspired by Gray codes. Given a set of binary strings $S$ (called `cnots` bellow), the algorithm synthesizes a parity network for $S$ by repeatedly choosing an index $i$ to expand and then effectively recursing on the co-factors $S_0$ and $S_1$, consisting of the strings $y \in S$, with $y_i = 0$ or $1$ respectively. As a subset $S$ is recursively expanded, `cx` gates are applied so that a designated target bit contains the (partial) parity $\chi_y(x)$ where $y_i = 1$ if and only if $y'_i = 1$ for all $y' \in S$. If $S$ contains a single element $\{y'\}$, then $y = y'$, and the target bit contains the value $\chi_{y'}(x)$ as desired.
 
@@ -443,7 +443,7 @@ python_api_name: qiskit.synthesis
 ### synth\_clifford\_depth\_lnn
 
 <Function id="qiskit.synthesis.synth_clifford_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L414-L444" signature="qiskit.synthesis.synth_clifford_depth_lnn(cliff)">
-  Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers for linear-nearest neighbour connectivity.
+  Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers for linear-nearest neighbor connectivity.
 
   The depth of the synthesized n-qubit circuit is bounded by $7n+2$, which is not optimal. It should be replaced by a better algorithm that provides depth bounded by $7n-4$ \[3].
 
@@ -599,7 +599,7 @@ python_api_name: qiskit.synthesis
 ### synth\_stabilizer\_depth\_lnn
 
 <Function id="qiskit.synthesis.synth_stabilizer_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L168-L193" signature="qiskit.synthesis.synth_stabilizer_depth_lnn(stab)">
-  Synthesis of an n-qubit stabilizer state for linear-nearest neighbour connectivity, in 2-qubit depth $2n+2$ and two distinct CX layers, using [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
+  Synthesis of an n-qubit stabilizer state for linear-nearest neighbor connectivity, in 2-qubit depth $2n+2$ and two distinct CX layers, using [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
 
   **Parameters**
 
@@ -704,7 +704,7 @@ python_api_name: qiskit.synthesis
 
   **References**
 
-  1.  A. G. Fowler, S. J. Devitt, and L. C. L. Hollenberg, *Implementation of Shor’s algorithm on a linear nearest neighbour qubit array*, Quantum Info. Comput. 4, 4 (July 2004), 237–251. [arXiv:quant-ph/0402196 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0402196)
+  1.  A. G. Fowler, S. J. Devitt, and L. C. L. Hollenberg, *Implementation of Shor’s algorithm on a linear nearest neighbor qubit array*, Quantum Info. Comput. 4, 4 (July 2004), 237–251. [arXiv:quant-ph/0402196 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0402196)
 </Function>
 
 ## Unitary Synthesis
