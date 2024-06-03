@@ -10,7 +10,7 @@ The AI-powered transpiler passes are experimental passes that work as a drop-in 
 
 <Admonition type="note">
     This is an experimental feature available only to the IBM Quantum Premium Plan.
-    The AI-powered transpiler passes are in alpha release status, subject to change.
+    The AI-powered transpiler passes are in beta release status, subject to change.
     If you have feedback or want to contact the developer team, please use this [Qiskit Slack Workspace channel](https://qiskit.slack.com/archives/C06KF8YHUAU).
 </Admonition>
 
@@ -100,4 +100,9 @@ The following custom collection passes for Cliffords, Linear Functions and Permu
 - *CollectLinearFunctions*: Collects blocks of `SWAP` and `CX` as `LinearFunction` objects and stores the original sub-circuit to compare against it after synthesis.
 - *CollectPermutations*: Collects blocks of `SWAP` circuits as `Permutations`.
 
-These custom collection passes limit the sizes of the collected sub-circuits so that they are supported by the AI synthesis passes, so it is recommended to use them after the routing passes and before the synthesis passes for a better overall optimization.
+These custom collection passes limit the sizes of the collected sub-circuits so they are supported by the AI-powered synthesis passes. Therefore, it is recommended to use them after the routing passes and before the synthesis passes for a better overall optimization.
+
+
+## Citation
+
+If you use any AI-powered feature from the Qiskit transpiler service in your research, use [the recommended citation](./qiskit-transpiler-service#citation).

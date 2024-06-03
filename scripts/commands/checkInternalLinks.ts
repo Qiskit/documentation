@@ -17,7 +17,6 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../lib/api/Pkg";
-import { pathExists } from "../lib/fs";
 import { File } from "../lib/links/InternalLink";
 import { FileBatch } from "../lib/links/FileBatch";
 
@@ -26,6 +25,7 @@ import { FileBatch } from "../lib/links/FileBatch";
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
+  "docs/api/qiskit-transpiler-service-rest/index.mdx",
 ];
 
 interface Arguments {
@@ -168,11 +168,11 @@ async function determineCurrentDocsFileBatch(
     "docs/**/*.{ipynb,mdx}",
     "public/api/*/objects.inv",
     // Ignore historical versions
-    "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
-    "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+    "!docs/api/*/[0-9]*/*",
+    "!public/api/*/[0-9]*/*",
     // Ignore dev version
-    "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
-    "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/dev/*",
+    "!docs/api/*/dev/*",
+    "!public/api/*/dev/*",
     // Ignore Qiskit release notes
     "!docs/api/qiskit/release-notes/*",
   ];
