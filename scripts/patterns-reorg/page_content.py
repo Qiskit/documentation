@@ -18,7 +18,7 @@ def map_content(index: str) -> str:
         """\
 ---
 title: Map problem to circuits
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Take a classical problem and map it to run on a quantum computer.
 ---
 
 # Map problem to circuits
@@ -50,7 +50,7 @@ def postprocess_index_content(index: str) -> str:
         """\
 ---
 title: Post-process results
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Post-process the results obtained by running on a quantum computer.
 ---
 
 # Post-process results
@@ -73,7 +73,7 @@ def optimize_content(index: str) -> str:
         """\
 ---
 title: Optimize for target hardware
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Optimize abstract circuits and operators so they can run on quantum hardware. 
 ---
 
 # Optimize for target hardware
@@ -101,7 +101,7 @@ def execute_index_content(index: str) -> str:
         """\
 ---
 title: Execute on hardware
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Run circuits on hardware and return output from a quantum computer. 
 ---
 
 # Execute on hardware
@@ -132,16 +132,16 @@ def patterns_index_content() -> str:
     return dedent(
         """\
 ---
-title: Introduction to Qiskit Patterns
-description: TODO - 50+ characters long to ignore metadata check for now!
+title: Introduction to Qiskit patterns
+description: Qiskit patterns are the broad steps employed when running a domain-specific problem on quantum hardware. 
 ---
 
-# Introduction to Qiskit Patterns
+# Introduction to Qiskit patterns
 
-Qiskit Patterns is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit Patterns allows domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
+A Qiskit pattern is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit patterns allow domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
 
 
-The four steps of a Qiskit Pattern are as follows:
+The four steps of a Qiskit pattern are as follows:
 - **Map** problem to quantum circuits and operators
 - **Optimize** for target hardware
 - **Execute** on target hardware
