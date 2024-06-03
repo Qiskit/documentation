@@ -4,29 +4,3 @@ description: How to run quantum computing jobs in batch mode.
 
 ---
 
-# Run jobs in batch mode with REST API
-
-Alternatively, you can also submit a batch job by specifying the `session_mode` in the request payload.
-
-```python
-import json
- 
-sessionsUrl = "https://api.quantum-computing.ibm.com/runtime/sessions"
- 
-headersList = {
-  "Accept": "application/json",
-  # "Authorization": "Bearer "+token,
-  'x-access-token':auth_id,
-  "Content-Type": "application/json" 
-}
- 
-payload = json.dumps({
-  "backend": backend,
-  "instance": "ibm-q/open/main",
-  "session_mode": "batch"
-})
- 
-response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
- 
-sessionId = response.json()['id']
-```

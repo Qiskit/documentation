@@ -18,8 +18,9 @@ The steps in this topic describe how to set up primitives with REST APIs, explor
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
+Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value. You can then select the IBM Quantum Compute resource of your choice to run your calculations on. 
 
+Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](rest-api-initialize-account).
 
 ### 2. Create a QASM circuit
 
@@ -44,7 +45,15 @@ c[1] = measure q[1];
 
 ### 3. Invoke the Qiskit Transpiler Service
 
-Optionally, you could invoke the Qiskit Transpiler service to transpile your QASM string to a form that can efficiently run on your target backend. 
+[Transpilation is necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum backends. The circuit provided will need to be mapped to instructions fitting to the hardware basis instructions of the QPU, which is a process known as transpilation.
+
+* You can either transpile [locally via Qiskit](https://docs.quantum.ibm.com/transpile/defaults-and-configuration-options) before generating the QASM string, or:
+
+* Use the [Cloud Transpiler API](https://cloud-transpiler.quantum.ibm.com/docs)
+
+Detailed instructions on how to use the Cloud Transpiler API can be found in this [topic](rest-api-transpilation).
+
+The code snippets given below assume that the `qasm_string` has been transpiled to a new string `resulting_qasm` as per this [topic](rest-api-transpilation).
 
 ### 4. Run the Quantum Circuit using the EstimatorV2 API
 
@@ -66,9 +75,9 @@ headers = {
 job_input = {
     'program_id': 'estimator',
     "backend": backend, 
-    "hub": "ibm-q",
-    "group": "open",
-    "project": "main",
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
@@ -91,7 +100,7 @@ else:
 
 ### 5. Check Job Status and Get Results
 
-Next, pass the job ID to the API:
+Next, pass the `job_id` to the API:
 
 ```python
 response_status_singlejob= requests.get(url+'/'+job_id, headers=headers)
@@ -100,7 +109,7 @@ response_status_singlejob.json().get('state')
 Output
 
 ```text
->>> Job ID: 58223448-5100-4dec-a47a-942fb30edced
+>>> Job ID: 58223448-5100-4dec-a47a-942fb30edcad
 >>> Job Status: JobStatus.RUNNING
 ```
 
@@ -123,7 +132,6 @@ Output
 Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
 
 The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the resilience_level option when submitting your job.
-Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. 
 
 You will see examples of three such error mitigation / suppression techniques when used with the Estimator Primitive. The examples given below demonstrate the default options for error mitigation / suppression techniques but more options for [Dynamical decoupling](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/dynamical_decoupling_options.py), [Twirling](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/twirling_options.py) and [TREX + ZNE](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/resilience_options.py) can be further explored. 
 
@@ -143,9 +151,9 @@ headers = {
 job_input = {
     'program_id': 'estimator',
     "backend": backend, 
-    "hub": "ibm-q",
-    "group": "open",
-    "project": "main",
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
@@ -195,9 +203,9 @@ headers = {
 job_input = {
     'program_id': 'estimator',
     "backend": backend, 
-    "hub": "ibm-q",
-    "group": "open",
-    "project": "main",
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
@@ -242,9 +250,9 @@ headers = {
 job_input = {
     'program_id': 'estimator',
     "backend": backend, 
-    "hub": "ibm-q",
-    "group": "open",
-    "project": "main",
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
@@ -278,9 +286,11 @@ else:
   </TabItem>
 </Tabs>
 
-### 7. Submitting Jobs in a Session
+### 7. Submitting jobs in a session/batch
 
-One or more `Estimator` jobs can be submitted to the same `session` by specifying the session ID. 
+There are several ways to run workloads, depending on your needs: job mode, session mode and batch mode. Learn how to work with session mode and batch mode by following this [topic](rest-api-execution-modes).
+
+Once a session is setup: one or more `Estimator` jobs can be submitted to the same session by specifying the session ID. 
 
 
 <Admonition type="note">
@@ -294,9 +304,9 @@ One or more `Estimator` jobs can be submitted to the same `session` by specifyin
     job_input = {
     'program_id': 'estimator',
     "backend": backend, 
-    "hub": "ibm-q",
-    "group": "open",
-    "project": "main",
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session 
     "params": {
         "pubs": [[resulting_qasm, [obs1, obs2, obs3, obs4]]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
@@ -318,9 +328,9 @@ One or more `Estimator` jobs can be submitted to the same `session` by specifyin
     job_input = {
     'program_id': 'estimator',
     "backend": backend, 
-    "hub": "ibm-q",
-    "group": "open",
-    "project": "main",
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session 
     "params": {
         "pubs": [[resulting_qasm, [[obs1], [obs2], [obs3], [obs4]], [[vals1], [vals2]]]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
@@ -341,9 +351,9 @@ One or more `Estimator` jobs can be submitted to the same `session` by specifyin
     job_input = {
     'program_id': 'estimator',
     "backend": backend, 
-    "hub": "ibm-q",
-    "group": "open",
-    "project": "main",
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session 
     "params": {
         "pubs": [[resulting_qasm, obs1],[resulting_qasm, obs2]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
@@ -367,10 +377,10 @@ One or more `Estimator` jobs can be submitted to the same `session` by specifyin
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Learn how to [test locally](../verify/local-testing-mode) before running on quantum computers.
-    - Review detailed [primitives examples.](primitives-examples)
+    - Learn how to [initialize your account](rest-api-initialize-account) with REST APIs.
+    - Review detailed [Sampler](rest-api-sampler) and [Estimator](rest-api-estimator) primitives examples.
+    - Learn how to transpile circuits using the [Cloud Transpiler API](rest-api-transpilation).
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
     - Learn how to transpile locally in the [Transpile](../transpile/) section.
-    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
