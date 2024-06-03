@@ -10,13 +10,15 @@ The circuit provided will need to be mapped to instructions fitting to the hardw
 
 * transpile [locally via Qiskit](https://docs.quantum.ibm.com/transpile/defaults-and-configuration-options) before generating the QASM string, or:
 
-* Use the Cloud Transpiler API. See general documentation at https://cloud-transpiler.quantum.ibm.com/docs 
+* Use the [Cloud Transpiler API](https://cloud-transpiler.quantum.ibm.com/docs)
 
 <Admonition type="note">
-    [Transpilation is now necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum backends. 
+    [Transpilation is necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum backends. 
 </Admonition>
 
-Query the cloud Transpilation service at https://cloud-transpiler.quantum-computing.ibm.com/docs . See more details and documentation at https://docs.quantum.ibm.com/transpile/qiskit-transpiler-service . 
+### Query the Cloud Transpilation service
+
+Query the [Cloud Transpilation service](https://cloud-transpiler.quantum-computing.ibm.com/docs) and provide your QASM string as input. See more details and documentation [here](https://docs.quantum.ibm.com/transpile/qiskit-transpiler-service). 
 
 <Tabs>
     <TabItem value="Qiskit Transpiler" label="Qiskit Transpiler">
@@ -82,6 +84,8 @@ resp = requests.post(
     Since there may be cases where it’s better to forego the use of AI-powered passes, we’ve developed a third option for the ai parameter that gives users the best of both worlds. Set the ai parameter to ai=auto, and this will enable the system to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes based on the particulars of your circuit.
 </Admonition>
 
+### Request results based on the `task_id`
+
 Request the transpilation service results using the `task_id`
 
 ```python
@@ -95,5 +99,5 @@ print(resulting_qasm)
 ```
 Output
 ```text
-OPENQASM 3.0; include "stdgates.inc"; bit[2] c; x $0; c[0] = measure $0; c[1] = measure $1;
+OPENQASM 3.0; include "stdgates.inc"; gate rzx_140040114706704(_gate_p_0) _gate_q_0, _gate_q_1 {   h _gate_q_1;   cx _gate_q_0, _gate_q_1;   rz(pi/4) _gate_q_1;   cx _gate_q_0, _gate_q_1;   h _gate_q_1; } gate rzx_140040024191376(_gate_p_0) _gate_q_0, _gate_q_1 {   h _gate_q_1;   cx _gate_q_0, _gate_q_1;   rz(-pi/4) _gate_q_1;   cx _gate_q_0, _gate_q_1;   h _gate_q_1; } gate ecr _gate_q_0, _gate_q_1 {   rzx_140040114706704(pi/4) _gate_q_0, _gate_q_1;   x _gate_q_0;   rzx_140040024191376(-pi/4) _gate_q_0, _gate_q_1; } bit[2] c; rz(-pi) $0; sx $0; rz(pi/2) $0; rz(-pi/2) $1; sx $1; rz(-pi) $1; ecr $1, $0; rz(-pi/2) $0; sx $0; rz(pi/2) $0; rz(pi/2) $1; sx $1; rz(pi/2) $1; barrier $0, $1; c[0] = measure $0; c[1] = measure $1;
 ```
