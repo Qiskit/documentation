@@ -6,9 +6,11 @@ description: How to initialize Qiskit Runtime Service using REST APIs.
 
 # Initialize account using REST API
 
-Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
+Because Qiskit Runtime `Sampler` and `Estimator` are managed services, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
 
-[Optional] Obtain a temporary Access token by supplying the API token from the IBM Quantum Platform. This is especially useful if you would like control over tokens, such as token invalidation. Alternatively, you can work directly with your IBM Quantum Platform API token.
+### Setup temporary access token 
+
+Obtain a temporary Access token by supplying the API token from the IBM Quantum Platform. This is especially useful if you would like control over tokens, such as token invalidation. Alternatively, you can work directly with your IBM Quantum Platform API token.
 
 ```python
 import requests
@@ -34,8 +36,12 @@ backends_response = requests.get(url_backends, headers=headers)
 print(backends_response.json()['devices'][:5],"...")
 ```
 
+### Transpile and execute circuits
 
-### (Optional) Invalidate Token and test Token Invalidation
+You can then transpile circuits using the [Qiskit transpiler service](rest-api-transpilation) and run them using either the [Sampler](rest-api-sampler) Primitive or the [Estimator](rest-api-estimator) Primitive.   
+
+
+### Invalidate Token and test Token Invalidation
 
 ```python
 logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
