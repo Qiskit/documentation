@@ -1,0 +1,99 @@
+---
+title: Qiskit Transpiler Service using REST API
+description: How to run a quantum computing job in a Qiskit Runtime session.
+
+---
+
+# Qiskit transpiler service using REST API
+
+The circuit provided will need to be mapped to instructions fitting to the hardware basis instructions of the QPU, which is a process known as Transpilation
+
+* transpile [locally via Qiskit](https://docs.quantum.ibm.com/transpile/defaults-and-configuration-options) before generating the QASM string, or:
+
+* Use the Cloud Transpiler API. See general documentation at https://cloud-transpiler.quantum.ibm.com/docs 
+
+<Admonition type="note">
+    [Transpilation is now necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum backends. 
+</Admonition>
+
+Query the cloud Transpilation service at https://cloud-transpiler.quantum-computing.ibm.com/docs . See more details and documentation at https://docs.quantum.ibm.com/transpile/qiskit-transpiler-service . 
+
+<Tabs>
+    <TabItem value="Qiskit Transpiler" label="Qiskit Transpiler">
+        ```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "ai": False,
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+        ```
+    </TabItem>
+
+    <TabItem value="AI Transpiler" label="AI Transpiler">
+        ```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "ai": True,
+        "coupling_map": [],
+        "qiskit_transpile_options": [],
+        "ai_layout_mode": 'OPTIMIZE', # 'KEEP', 'OPTIMIZE', 'IMPROVE'
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+        ```
+    </TabItem>
+</Tabs>
+
+
+<Admonition type="note">
+    Since there may be cases where it’s better to forego the use of AI-powered passes, we’ve developed a third option for the ai parameter that gives users the best of both worlds. Set the ai parameter to ai=auto, and this will enable the system to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes based on the particulars of your circuit.
+</Admonition>
+
+Request the transpilation service results using the `task_id`
+
+```python
+task_id=resp.json()['task_id']
+res = requests.get(url=f"https://cloud-transpiler.quantum.ibm.com/transpile/{task_id}", headers=headers)
+
+if res.json().get("state") == "SUCCESS":
+    resulting_qasm=res.json().get("result")[0].get("qasm")
+
+print(resulting_qasm)
+```
+Output
+```text
+OPENQASM 3.0; include "stdgates.inc"; bit[2] c; x $0; c[0] = measure $0; c[1] = measure $1;
+```
