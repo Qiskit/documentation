@@ -138,10 +138,10 @@ description: Qiskit patterns are the broad steps employed when running a domain-
 
 # Introduction to Qiskit patterns
 
-Qiskit patterns is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit Patterns allows domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
+A Qiskit pattern is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit patterns allow domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
 
 
-The four steps of a Qiskit Pattern are as follows:
+The four steps of a Qiskit pattern are as follows:
 - **Map** problem to quantum circuits and operators
 - **Optimize** for target hardware
 - **Execute** on target hardware
