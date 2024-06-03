@@ -46,7 +46,7 @@ VISUALIZE_RESULTS_PAGE = Entry(
 # Workflow: Map problem (build circuits), Tool: Visualization
 VISUALIZE_CIRCUITS_PAGE = Entry(
     "Visualize circuits",
-    slug="circuit-visualization",
+    slug="visualize-circuits",
     from_file="build/circuit-visualization.ipynb",
 )
 # Workflow: Optimize for hardware (simulators), Tool: Visualization
@@ -112,7 +112,7 @@ CIRCUIT_CONSTRUCTION = (
             ),
             Entry(
                 "Construct circuits",
-                slug="circuit-construction",
+                slug="construct-circuits",
                 from_file="build/circuit-construction.ipynb",
             ),
             VISUALIZE_CIRCUITS_PAGE,
@@ -123,7 +123,7 @@ CIRCUIT_CONSTRUCTION = (
             ),
             Entry(
                 "Synthesize unitary operators",
-                slug="unitary-synthesis",
+                slug="synthesize-unitary-operators",
                 from_file="build/unitary-synthesis.mdx",
             ),
             Entry(
@@ -231,7 +231,7 @@ TRANSPILER = (
             ),
             Entry(
                 "Represent quantum computers",
-                slug="representing-quantum-computers",
+                slug="represent-quantum-computers",
                 from_file="transpile/representing_quantum_computers.ipynb",
             ),
         ),
@@ -261,7 +261,7 @@ TRANSPILER = (
             ),
             Entry(
                 "Create a transpiler plugin",
-                slug="create-a-transpiler-plugin",
+                slug="create-transpiler-plugin",
                 from_file="transpile/create-a-transpiler-plugin.ipynb",
             ),
         ),
@@ -286,7 +286,7 @@ TRANSPILER = (
 SIMULATORS = (
     Entry(
         "Introduction to debugging tools",
-        slug="verify",
+        slug="debugging-tools",
         from_file="verify/index.mdx",
     ),
     Entry(
@@ -306,13 +306,13 @@ SIMULATORS = (
     ),
     Entry(
         "Build noise models",
-        slug="building-noise-models",
+        slug="build-noise-models",
         from_file="verify/building_noise_models.ipynb",
     ),
     PLOT_QUANTUM_STATES_PAGE,
     Entry(
         "Efficient simulation of stabilizer circuits with Qiskit Aer primitives",
-        slug="stabilizer-circuit-simulation",
+        slug="simulate-stabilizer-circuits",
         from_file="verify/stabilizer-circuit-simulation.ipynb",
     ),
 )
@@ -328,7 +328,7 @@ PRIMITIVES = (
             ),
             Entry(
                 "Get started with primitives",
-                slug="primitives-get-started",
+                slug="get-started-with-primitives",
                 from_file="run/primitives-get-started.mdx",
             ),
             Entry(
@@ -390,7 +390,7 @@ MANAGE_JOBS_FOLDER = Entry(
 EXECUTION_MODES_CHILDREN = (
     Entry(
         "Introduction to execution modes",
-        slug="execution-modes-intro",
+        slug="execution-modes",
         from_file="run/execution-modes.mdx",
     ),
     Entry(
@@ -400,7 +400,7 @@ EXECUTION_MODES_CHILDREN = (
     ),
     Entry(
         "Run jobs in a session",
-        slug="run-jobs-in-session",
+        slug="run-jobs-session",
         from_file="run/run-jobs-in-session.mdx",
     ),
     Entry(
@@ -446,7 +446,7 @@ SYSTEMS_CHILDREN = (
     Entry("Instances", slug="instances", from_file="run/instances.mdx"),
     Entry(
         "Fair-share scheduler",
-        slug="fair-share-queue",
+        slug="fair-share-scheduler",
         from_file="run/fair-share-queue.mdx",
     ),
     Entry("Manage cost", slug="manage-cost", from_file="run/manage-cost.mdx"),
