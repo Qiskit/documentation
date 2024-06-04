@@ -69,7 +69,9 @@ class Entry:
     def relative_path_from_slug(self) -> str | None:
         if self.slug is None:
             return
-        return (self.slug if self.slug != "" else "/index").removeprefix("/")
+        if self.slug == "":
+            return "index"
+        return self.slug.removeprefix("/")
 
 
 def entries_as_markdown_list(
