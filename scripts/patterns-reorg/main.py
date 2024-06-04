@@ -16,10 +16,21 @@ from __future__ import annotations
 
 import shutil
 import json
+from argparse import ArgumentParser
 from pathlib import Path
 
 from models import determine_redirects
 from entries import TOP_LEVEL_ENTRIES
+
+
+def create_parser() -> ArgumentParser:
+    parser = ArgumentParser()
+    parser.add_argument(
+        "--delete-existing",
+        action="store_true",
+        help="If true, delete the original guides.",
+    )
+    return parser
 
 
 def write_guides_dir() -> None:
@@ -47,9 +58,19 @@ def write_redirects_file() -> None:
     fp.write_text(text)
 
 
+def delete_existing_guides() -> None:
+    for d in ["start", "run", "verify", "transpile", "build"]:
+        shutil.rmtree(Path("docs", d))
+
+
 def main() -> None:
+    args = create_parser().parse_args()
+
     write_guides_dir()
     write_redirects_file()
+
+    if args.delete_existing:
+        delete_existing_guides()
 
 
 if __name__ == "__main__":
