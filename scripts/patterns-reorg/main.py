@@ -37,7 +37,6 @@ def write_guides_dir() -> None:
         "children": [entry.to_json("guides") for entry in TOP_LEVEL_ENTRIES],
     }
     text = json.dumps(result, indent=2)
-    text = text.replace('"url": "/guides/index"', '"url": "/guides"')
     (folder_path / "_toc.json").write_text(text)
 
 
