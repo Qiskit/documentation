@@ -471,6 +471,34 @@ job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1]
 psi1_H1 = job.result()
 ```
 
+<span id="no-error-mitigation"></span>
+## Turn off all error mitigation and error suppression
+
+You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, no changes are necessary because no error mitigation or suppression options are enabled by default.
+
+Example:
+
+Turn off all error mitigation and suppression in EstimatorV2.
+
+```python
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options, QiskitRuntimeService
+
+# Define the service.  This allows you to access IBM Quantum systems.
+service = QiskitRuntimeService()
+
+# Get a backend
+backend = service.least_busy(operational=True, simulator=False)
+
+# Define Estimator
+estimator = Estimator(backend)
+
+options = estimator.options
+
+# Turn off all error mitigation and suppression
+options.resilience_level = 0
+options.optimization_level = 0
+```
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
