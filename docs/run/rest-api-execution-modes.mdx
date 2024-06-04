@@ -1,0 +1,114 @@
+---
+title: Run jobs in a session with REST API
+description: How to run a quantum computing job in a Qiskit Runtime session.
+---
+
+# Qiskit Runtime execution modes using REST APIs
+
+There are several ways to run workloads, depending on your needs.
+
+**Job mode:** A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. See how to run a quatum circuit using [Estimator](rest-api-estimator#4-run-the-quantum-circuit-using-the-estimatorv2-api) and [Sampler](rest-api-sampler#4-run-the-quantum-circuit-using-samplerv2-api) for some examples. 
+
+**Session mode:** A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access. 
+
+**Batch mode:** A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously. See [Sessions vs Batch usage](execution-modes#sessions-versus-batch-usage) for more information on their differences.  
+
+## Run jobs in session mode with REST APIs
+
+A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources.
+
+### Start a Session 
+
+You begin with creating a session and obtaining a Session ID. More details about Sessions can be found in the [documentation](https://docs.quantum.ibm.com/api/runtime).
+
+```python
+import json
+ 
+sessionsUrl = "https://api.quantum-computing.ibm.com/runtime/sessions"
+ 
+headersList = {
+  "Accept": "application/json",
+  # "Authorization": "Bearer "+token,
+  'x-access-token':auth_id,
+  "Content-Type": "application/json" 
+}
+ 
+payload = json.dumps({
+  "backend": backend,
+  "instance": "hub1/group1/project1",
+})
+ 
+response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
+ 
+sessionId = response.json()['id']
+ 
+print(response.json())
+```
+Output
+```text
+{'id': 'crw9s7cdbt40008jxesg'}
+```
+
+
+### Close a Session 
+
+It is very good practice to close a `Session` when all jobs are done. This will reduce wait time for subsequent users.
+
+```python
+closureURL="https://api.quantum-computing.ibm.com/runtime/sessions/"+sessionId+"/close"
+
+headersList = {
+  "Accept": "application/json",
+  # "Authorization": "Bearer "+token,
+  'x-access-token':auth_id,
+}
+ 
+closure_response = requests.request(
+    "DELETE",
+    closureURL, 
+    headers=headersList)
+
+print("Session closure response ok?:",closure_response.ok,closure_response.text)
+```
+Output
+```text
+Session closure response ok?: True 
+```
+
+
+## Run jobs in batch mode with REST APIs
+
+Alternatively, you can also submit a batch job by specifying the `mode` in the request payload.
+
+```python
+import json
+ 
+sessionsUrl = "https://api.quantum-computing.ibm.com/runtime/sessions"
+ 
+headersList = {
+  "Accept": "application/json",
+  # "Authorization": "Bearer "+token,
+  'x-access-token':auth_id,
+  "Content-Type": "application/json" 
+}
+ 
+payload = json.dumps({
+  "backend": backend,
+  "instance": "hub1/group1/project1",
+  "mode": "batch"
+})
+ 
+response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
+ 
+sessionId = response.json()['id']
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review detailed [Sampler](rest-api-sampler) and [Estimator](rest-api-estimator) primitives examples.
+    - Learn how to transpile circuits using the [Cloud Transpiler API](rest-api-transpilation).
+    - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+    - Learn how to transpile locally in the [Transpile](../transpile/) section.
+</Admonition>
