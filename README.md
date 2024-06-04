@@ -436,7 +436,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 This content lives on https://docs.quantum.ibm.com.
 
-See https://github.ibm.com/IBM-Q-Software/iqp-channel-docs#syncing-content-with-open-source-repo.
+See the section "Syncing content with open source repo" in the internal docs repo's README.
 
 ### Deploy tutorials
 
@@ -444,7 +444,7 @@ This content lives on https://learning.quantum.ibm.com.
 
 To deploy a file from the `tutorials/` directory in this repository, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
 
-To deploy a file from the ibm-quantum-learning-enablement repository, see the instructions in that repo's [tutorials directory README](https://github.ibm.com/IBM-Q-Software/ibm-quantum-learning-enablement/blob/main/tutorials/README.md).
+To deploy a file from the ibm-quantum-learning-enablement repository, see the instructions in the internal tutorial repo's tutorials directory README.
 
 # How to write the documentation
 
