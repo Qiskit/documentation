@@ -408,6 +408,11 @@ EXECUTION_MODES_CHILDREN = (
         slug="/run-jobs-batch",
         from_file="run/run-jobs-batch.mdx",
     ),
+    Entry(
+        "Fixed and dynamic repetition rate execution",
+        slug="/circuit-execution",
+        from_file="run/circuit-execution.mdx",
+    ),
     MANAGE_JOBS_FOLDER,
     Entry(
         "Execution modes FAQs",
