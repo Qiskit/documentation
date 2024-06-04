@@ -63,7 +63,8 @@ class Entry:
             assert self.page_content is not None
             content = self.page_content
             extension = ".mdx"
-        Path(base_dir / f"{self.get_relative_path_from_slug()}{extension}").write_text(content)
+        dest = base_dir / f"{self.relative_path_from_slug()}{extension}"
+        dest.write_text(content)
 
     def relative_path_from_slug(self) -> str | None:
         if self.slug is None:
