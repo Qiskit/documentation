@@ -65,7 +65,7 @@ class Entry:
             extension = ".mdx"
         Path(base_dir / f"{self.get_relative_path_from_slug()}{extension}").write_text(content)
 
-    def get_relative_path_from_slug(self):
+    def relative_path_from_slug(self) -> str | None:
         if self.slug is None:
             return
         return (self.slug if self.slug != "" else "/index").removeprefix("/")
