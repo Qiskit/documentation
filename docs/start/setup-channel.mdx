@@ -150,8 +150,14 @@ print(result)
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # Save account to disk.
-    # Use `overwrite=True` if you're updating your token.
-    QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", name="<account-name>", overwrite=True)
+    QiskitRuntimeService.save_account(
+        channel="ibm_cloud",
+        token="<IBM Cloud API key>",
+        instance="<IBM Cloud CRN>",
+        name="<account-name>",
+        # Use `overwrite=True` if you're updating your token.
+        overwrite=True,
+    )
 
     # Load saved credentials
     service = QiskitRuntimeService(name="<account-name>")
