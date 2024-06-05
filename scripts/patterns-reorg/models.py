@@ -115,14 +115,14 @@ def filter_entries(
         result.append(new_entry)
     return tuple(result)
 
-def add_redirect_to_dict(dict: dict[str, str], old_url: str, redirect_to: str)-> None:
-    dict[old_url] = redirect_to
+def _add_redirect_to_dict(redirects: dict[str, str], old_url: str, redirect_to: str)-> None:
+    redirects[old_url] = redirect_to
     # We need to add two links for each index entry because we can
     # have two links possible. For example, `/run/index` and `/run`
     # point to the same page.
     old_folder, old_file_name = old_url.split('/')
     if old_file_name == "index":
-        dict[f"{old_folder}"] = redirect_to
+        redirects[f"{old_folder}"] = redirect_to
 
 
 def determine_redirects(
@@ -138,10 +138,10 @@ def determine_redirects(
             
             old_url = str(PurePath(entry.from_file).with_suffix(""))
             redirect_to = f"{prefix}{entry.slug.removeprefix('/')}"
-            add_redirect_to_dict(result, old_url, redirect_to)
+            _add_redirect_to_dict(result, old_url, redirect_to)
 
         elif isinstance(entry, DeletedPage):    
             redirect_to = f"{prefix}{entry.redirect_to.removeprefix('/')}"
-            add_redirect_to_dict(result, entry.old_slug, redirect_to)
+            _add_redirect_to_dict(result, entry.old_slug, redirect_to)
     
     return result
