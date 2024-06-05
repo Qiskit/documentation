@@ -23,6 +23,8 @@ from models import determine_redirects
 from entries import TOP_LEVEL_ENTRIES
 from deleted_entries import DELETED_PAGES
 
+OLD_FOLDERS = ["start", "run", "verify", "transpile", "build"]
+
 
 def create_parser() -> ArgumentParser:
     parser = ArgumentParser()
@@ -52,15 +54,19 @@ def write_guides_dir() -> None:
     (folder_path / "_toc.json").write_text(text)
 
 
+def generate_redirects() -> dict[str, str]:
+    return determine_redirects((*TOP_LEVEL_ENTRIES, *DELETED_PAGES))
+
+
 def write_redirects_file() -> None:
     fp = Path("scripts/patterns-reorg/redirects.json")
-    redirects = determine_redirects((*TOP_LEVEL_ENTRIES, *DELETED_PAGES))
+    redirects = generate_redirects()
     text = json.dumps(redirects, indent=2) + "\n"
     fp.write_text(text)
 
 
 def delete_existing_guides() -> None:
-    for d in ["start", "run", "verify", "transpile", "build"]:
+    for d in OLD_FOLDERS:
         shutil.rmtree(Path("docs", d))
 
 
