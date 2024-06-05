@@ -66,7 +66,8 @@ Available plans:
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # Save an IBM Quantum account and set it as your default account.
-    QiskitRuntimeService.save_account(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>", set_as_default=True)
+    # Use `overwrite=True` if you're updating your token.
+    QiskitRuntimeService.save_account(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>", set_as_default=True, overwrite=True)
 
     # Load saved credentials
     service = QiskitRuntimeService()
@@ -144,7 +145,8 @@ print(result)
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # Save account to disk.
-    QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", name="<account-name>")
+    # Use `overwrite=True` if you're updating your token.
+    QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", name="<account-name>", overwrite=True)
 
     # Load saved credentials
     service = QiskitRuntimeService(name="<account-name>")
