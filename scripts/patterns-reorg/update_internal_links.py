@@ -17,13 +17,10 @@ from __future__ import annotations
 import re
 import glob
 from pathlib import Path
-from models import determine_redirects
 from main import OLD_FOLDERS, REDIRECTS
 
 
-def update_link(
-    markdown: str, folder: str, link: str, redirects: dict[str, str]
-) -> str:
+def update_link(markdown: str, folder: str, link: str) -> str:
     anchor_index = link.find("#")
 
     if link.startswith("http") or anchor_index == 0:
@@ -42,24 +39,23 @@ def update_link(
     else:
         search_key = f"{folder}/{link_split[-1]}"
 
-    if search_key not in redirects:
+    if search_key not in REDIRECTS:
         return markdown
 
-    new_link = redirects[search_key]
+    new_link = REDIRECTS[search_key]
     if new_link == "":
         new_link = "/guides"
-    
+
     redirect_to = f"{new_link}{anchor}"
     # If the link doesn't change we return without changing anything
     if link == redirect_to:
         return markdown
-    
+
     return markdown.replace(link, f"./{redirect_to}")
 
 
 def main() -> None:
     inline_link_re = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
-    redirects = determine_redirects(REDIRECTS)
 
     for folder in OLD_FOLDERS:
         for file_path in glob.glob(f"docs/{folder}/*"):
@@ -67,7 +63,7 @@ def main() -> None:
             markdown = file.read_text()
             markdown = re.sub(
                 inline_link_re,
-                lambda m: update_link(m[0], folder, m[2], redirects),
+                lambda m: update_link(m[0], folder, m[2]),
                 markdown,
             )
             file.write_text(markdown)
