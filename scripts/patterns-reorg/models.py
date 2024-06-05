@@ -121,18 +121,22 @@ def determine_redirects(
 ) -> dict[str, str]:
     result = {}
     for entry in entries:
-        if entry.slug is not None and entry.from_file:
-            old_url = str(PurePath(entry.from_file).with_suffix(""))
-            result[old_url] = f"{prefix}{entry.slug.removeprefix('/')}"
-
-            # We need to add two links for each index entry because we can
-            # have two links possible. For example, `/run/index` and `/run`
-            # point to the same page.
-            old_folder, old_file_name = old_url.split('/')
-            if old_file_name == "index":
-                result[f"{old_folder}/"] = f"{prefix}{entry.slug.removeprefix('/')}"
-
         if isinstance(entry, Entry):
             result.update(determine_redirects(entry.children))
+    
+        if entry.slug is None or not entry.from_file:
+            continue
+        
+        old_url = str(PurePath(entry.from_file).with_suffix(""))
+        result[old_url] = f"{prefix}{entry.slug.removeprefix('/')}"
+
+        # We need to add two links for each index entry because we can
+        # have two links possible. For example, `/run/index` and `/run`
+        # point to the same page.
+        old_folder, old_file_name = old_url.split('/')
+        if old_file_name == "index":
+            result[f"{old_folder}/"] = f"{prefix}{entry.slug.removeprefix('/')}"
+
+
     
     return result
