@@ -17,7 +17,8 @@ from __future__ import annotations
 import re
 import glob
 from pathlib import Path
-from main import OLD_FOLDERS, generate_redirects
+from models import determine_redirects
+from main import OLD_FOLDERS, REDIRECTS
 
 
 def update_link(
@@ -46,13 +47,13 @@ def update_link(
 
     new_link = redirects[search_key]
     if new_link == "":
-        new_link = "/guides/"
+        new_link = "/guides"
     return markdown.replace(link, f"{new_link}{anchor}")
 
 
 def main() -> None:
     inline_link_re = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
-    redirects = generate_redirects()
+    redirects = determine_redirects(REDIRECTS)
 
     for folder in OLD_FOLDERS:
         for file_path in glob.glob(f"docs/{folder}/*"):

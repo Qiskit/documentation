@@ -24,7 +24,7 @@ from entries import TOP_LEVEL_ENTRIES
 from deleted_entries import DELETED_PAGES
 
 OLD_FOLDERS = ["start", "run", "verify", "transpile", "build"]
-
+REDIRECTS = (*TOP_LEVEL_ENTRIES, *DELETED_PAGES)
 
 def create_parser() -> ArgumentParser:
     parser = ArgumentParser()
@@ -54,13 +54,9 @@ def write_guides_dir() -> None:
     (folder_path / "_toc.json").write_text(text)
 
 
-def generate_redirects() -> dict[str, str]:
-    return determine_redirects((*TOP_LEVEL_ENTRIES, *DELETED_PAGES))
-
-
 def write_redirects_file() -> None:
     fp = Path("scripts/patterns-reorg/redirects.json")
-    redirects = generate_redirects()
+    redirects = determine_redirects(REDIRECTS)
     text = json.dumps(redirects, indent=2) + "\n"
     fp.write_text(text)
 
