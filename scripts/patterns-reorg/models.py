@@ -126,7 +126,7 @@ def determine_redirects(
             result[old_url] = f"{prefix}{entry.slug.removeprefix('/')}"
 
             # We need to add two links for each index entry because we can
-            # have two links possible. For example, `/run/index` and `/run/`
+            # have two links possible. For example, `/run/index` and `/run`
             # point to the same page.
             old_url_split = old_url.split('/')
             old_file_name = old_url_split[-1]
