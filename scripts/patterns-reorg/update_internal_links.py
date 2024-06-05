@@ -40,7 +40,7 @@ def update_link(markdown: str, folder: str, link: str, redirects: dict[str, str]
         anchor = link[anchor_index:]
 
     link_split = link_without_anchor.split('/')
-    if link_without_anchor.startswith("/") or link_without_anchor.startswith("../"):
+    if link.startswith("/") or link.startswith("../"):
         search_key = f"{link_split[-2]}/{link_split[-1]}"
     else:
         search_key = f"{folder}/{link_split[-1]}"
