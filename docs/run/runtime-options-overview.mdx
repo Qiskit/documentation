@@ -6,7 +6,8 @@ description: Specify options when building with Qiskit Runtime primitives
 
 # Advanced Qiskit Runtime options
 
-When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [options classes section](#options-classes) for details.
+ You can pass options to primitives to customize them to meet your needs. This section focuses on Qiskit Runtime primitive options. While most of the `primitives` interface is common across implementations, most options are not. Consult the corresponding API references for information about the `qiskit.primitives` and `qiskit_aer.primitives` options.
+
 
 <Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
@@ -18,10 +19,100 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 ```
 </Admonition>
 
-<Admonition type="info" title="Attention">
-    This section focuses on Qiskit Runtime primitive options. While most of the `primitives` interface is common across implementations, most options are not. Consult the
-    corresponding API references for information about the `qiskit.primitives` and `qiskit_aer.primitives` options.
-</Admonition>
+<span id="options-structure"></span>
+## Structure
+
+When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`.
+
+<span id="options-defaults"></span>
+## Defaults
+
+client default (Unset) and where to find server defaults
+
+<span id="options-precedence"></span>
+## Precedence rules
+
+option precedence rules
+
+<span id="options-classes"></span>
+## Options classes
+
+<Tabs>
+  <TabItem value="Estimatorv2" label="Estimator V2">
+| Category                                                                                                | Description                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2)                  | Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. **Estimator only**. |
+|                                                                                                         | `estimator.options.resilience.measure_mitigation = True`                                                                          |
+| [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | Options for dynamical decoupling.                                                                                                 |
+|                                                                                                         | `estimator.options.dynamical_decoupling.enable = True`                                                                            |
+| [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2)                    | Primitive execution options, including whether to initialize qubits and the repetition delay.                                     |
+|                                                                                                         | `estimator.options.execution.init_qubits = False`                                                                                 |
+| [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)                        | Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.         |
+|                                                                                                         | `estimator.options.twirling.enable_gates = True`                                                                                  |
+| [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)                  | Execution environment options such as the logging level to set and job tags to add.                                               |
+|                                                                                                         | `estimator.options.environment.log_level = 'ERROR'`                                                                               |
+| [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)                      | Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.             |
+|                                                                                                         | `estimator.options.simulator.seed_simulator = 42`                                                                                 |
+
+  </TabItem>
+
+  <TabItem value="Samplerv2" label="Sampler V2">
+| Category                                                                                                | Description                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | Options for dynamical decoupling.                                                                                                 |
+|                                                                                                         | `estimator.options.dynamical_decoupling.enable = True`                                                                            |
+| [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2)                    | Primitive execution options, including whether to initialize qubits and the repetition delay.                                     |
+|                                                                                                         | `estimator.options.execution.init_qubits = False`                                                                                 |
+| [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)                        | Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.         |
+|                                                                                                         | `estimator.options.twirling.enable_gates = True`                                                                                  |
+| [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)                  | Execution environment options such as the logging level to set and job tags to add.                                               |
+|                                                                                                         | `estimator.options.environment.log_level = 'ERROR'`                                                                               |
+| [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)                      | Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.             |
+|                                                                                                         | `estimator.options.simulator.seed_simulator = 42`                                                                                 |
+
+  </TabItem>
+
+  <TabItem value="Estimatorv1" label="Estimator (V1)">
+| Category                                                                                                | Description                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions)                  | Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. **Estimator only**. |
+|                                                                                                         | `estimator.options.resilience.measure_mitigation = True`                                                                          |
+| [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | Options for dynamical decoupling.                                                                                                 |
+|                                                                                                         | `estimator.options.dynamical_decoupling.enable = True`                                                                            |
+| [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions)                    | Primitive execution options, including whether to initialize qubits and the repetition delay.                                     |
+|                                                                                                         | `estimator.options.execution.init_qubits = False`                                                                                 |
+| [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)                        | Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.         |
+|                                                                                                         | `estimator.options.twirling.enable_gates = True`                                                                                  |
+| [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)                  | Execution environment options such as the logging level to set and job tags to add.                                               |
+|                                                                                                         | `estimator.options.environment.log_level = 'ERROR'`                                                                               |
+| [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)                      | Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.             |
+|                                                                                                         | `estimator.options.simulator.seed_simulator = 42`                                                                                 |
+
+  </TabItem>
+
+  <TabItem value="Samplerv1" label="Sampler (V1)">
+| Category                                                                                                | Description                                                                                                                       |
+|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions)                  | Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. **Estimator only**. |
+|                                                                                                         | `estimator.options.resilience.measure_mitigation = True`                                                                          |
+| [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | Options for dynamical decoupling.                                                                                                 |
+|                                                                                                         | `estimator.options.dynamical_decoupling.enable = True`                                                                            |
+| [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions)                    | Primitive execution options, including whether to initialize qubits and the repetition delay.                                     |
+|                                                                                                         | `estimator.options.execution.init_qubits = False`                                                                                 |
+| [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)                        | Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.         |
+|                                                                                                         | `estimator.options.twirling.enable_gates = True`                                                                                  |
+| [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)                  | Execution environment options such as the logging level to set and job tags to add.                                               |
+|                                                                                                         | `estimator.options.environment.log_level = 'ERROR'`                                                                               |
+| [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)                      | Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.             |
+|                                                                                                         | `estimator.options.simulator.seed_simulator = 42`                                                                                 |
+
+  </TabItem>
+
+
+</Tabs>
+
+
+
 
 ## V2 changes
 Options are specified differently in the V2 primitives in these ways:
@@ -303,23 +394,6 @@ estimator = Estimator(session=backend, options=options)
 </TabItem>
 </Tabs>
 
-<span id="options-classes"></span>
-## Options classes
-
-| Category                                                                                                | Description                                                                                                                       |
-|---------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2)                  | Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. **Estimator only**. |
-|                                                                                                         | `estimator.options.resilience.measure_mitigation = True`                                                                          |
-| [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | Options for dynamical decoupling.                                                                                                 |
-|                                                                                                         | `estimator.options.dynamical_decoupling.enable = True`                                                                            |
-| [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2)                    | Primitive execution options, including whether to initialize qubits and the repetition delay.                                     |
-|                                                                                                         | `estimator.options.execution.init_qubits = False`                                                                                 |
-| [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)                        | Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.         |
-|                                                                                                         | `estimator.options.twirling.enable_gates = True`                                                                                  |
-| [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)                  | Execution environment options such as the logging level to set and job tags to add.                                               |
-|                                                                                                         | `estimator.options.environment.log_level = 'ERROR'`                                                                               |
-| [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)                      | Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.             |
-|                                                                                                         | `estimator.options.simulator.seed_simulator = 42`                                                                                 |
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
