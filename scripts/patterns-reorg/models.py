@@ -134,7 +134,7 @@ def determine_redirects(
             if old_file_name == "index":
                 result[f"{old_folder}/"] = f"{prefix}{entry.slug.removeprefix('/')}"
 
-        if type(entry) is Entry:
+        if isinstance(entry, Entry):
             result.update(determine_redirects(entry.children))
     
     return result
