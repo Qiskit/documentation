@@ -88,6 +88,12 @@ def entries_as_markdown_list(
     return "\n".join(result)
 
 
+@dataclass(frozen=True)
+class DeletedPage:
+    slug: str
+    from_file: str
+
+
 def filter_entries(
     entries: tuple[Entry, ...], *, ignore: set[Entry]
 ) -> tuple[Entry, ...]:
@@ -103,12 +109,23 @@ def filter_entries(
 
 
 def determine_redirects(
-    entries: tuple[Entry, ...], *, prefix: str = ""
+    entries: tuple[Entry, ...] | tuple[DeletedPage, ...], *, prefix: str = ""
 ) -> dict[str, str]:
     result = {}
     for entry in entries:
-        if entry.slug and entry.from_file:
+        if entry.slug is not None and entry.from_file:
             old_url = str(PurePath(entry.from_file).with_suffix(""))
             result[old_url] = f"{prefix}{entry.slug}"
-        result.update(determine_redirects(entry.children))
+
+            # We need to add two links for each index entry because we can
+            # have two links possible. For example, `/run/index` and `/run/`
+            # point to the same page.
+            old_url_split = old_url.split('/')
+            old_file_name = old_url_split[-1]
+            old_folder = old_url_split[-2]
+            if old_file_name == "index":
+                result[f"{old_folder}/"] = f"{prefix}{entry.slug}"
+
+        if type(entry) is Entry:
+            result.update(determine_redirects(entry.children))
     return result
