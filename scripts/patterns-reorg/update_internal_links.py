@@ -48,7 +48,13 @@ def update_link(
     new_link = redirects[search_key]
     if new_link == "":
         new_link = "/guides"
-    return markdown.replace(link, f"{new_link}{anchor}")
+    
+    redirect_to = f"{new_link}{anchor}"
+    # If the link doesn't change we return without changing anything
+    if link == redirect_to:
+        return markdown
+    
+    return markdown.replace(link, f"./{redirect_to}")
 
 
 def main() -> None:
