@@ -40,7 +40,7 @@ class Entry:
     def to_json(self, folder_name: str) -> dict:
         result: dict = {"title": self.title}
         if self.slug is not None:
-            result["url"] = f"/{folder_name}/{self.slug}"
+            result["url"] = f"/{folder_name}{self.slug}"
         if self.external_url is not None:
             result["url"] = self.external_url
         if self.children:
@@ -63,7 +63,15 @@ class Entry:
             assert self.page_content is not None
             content = self.page_content
             extension = ".mdx"
-        (base_dir / f"{self.slug}{extension}").write_text(content)
+        dest = base_dir / f"{self.relative_path_from_slug()}{extension}"
+        dest.write_text(content)
+
+    def relative_path_from_slug(self) -> str | None:
+        if self.slug is None:
+            return
+        if self.slug == "":
+            return "index"
+        return self.slug.removeprefix("/")
 
 
 def entries_as_markdown_list(
@@ -72,7 +80,7 @@ def entries_as_markdown_list(
     result = []
     for entry in entries:
         if entry.slug:
-            result.append(f"{indent or ''}* [{entry.title}](./{entry.slug})")
+            result.append(f"{indent or ''}* [{entry.title}](.{entry.slug})")
         if entry.external_url:
             result.append(f"{indent or ''}* [{entry.title}]({entry.external_url})")
         if entry.children:
@@ -115,7 +123,7 @@ def determine_redirects(
     for entry in entries:
         if entry.slug is not None and entry.from_file:
             old_url = str(PurePath(entry.from_file).with_suffix(""))
-            result[old_url] = f"{prefix}{entry.slug}"
+            result[old_url] = f"{prefix}{entry.slug.removeprefix('/')}"
 
             # We need to add two links for each index entry because we can
             # have two links possible. For example, `/run/index` and `/run/`
@@ -124,8 +132,9 @@ def determine_redirects(
             old_file_name = old_url_split[-1]
             old_folder = old_url_split[-2]
             if old_file_name == "index":
-                result[f"{old_folder}/"] = f"{prefix}{entry.slug}"
+                result[f"{old_folder}/"] = f"{prefix}{entry.slug.removeprefix('/')}"
 
         if type(entry) is Entry:
             result.update(determine_redirects(entry.children))
+    
     return result
