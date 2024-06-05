@@ -128,14 +128,15 @@ def determine_redirects(
             continue
         
         old_url = str(PurePath(entry.from_file).with_suffix(""))
-        result[old_url] = f"{prefix}{entry.slug.removeprefix('/')}"
+        redirect_to = f"{prefix}{entry.slug.removeprefix('/')}"
+        result[old_url] = redirect_to
 
         # We need to add two links for each index entry because we can
         # have two links possible. For example, `/run/index` and `/run`
         # point to the same page.
         old_folder, old_file_name = old_url.split('/')
         if old_file_name == "index":
-            result[f"{old_folder}/"] = f"{prefix}{entry.slug.removeprefix('/')}"
+            result[f"{old_folder}/"] = redirect_to
 
 
     
