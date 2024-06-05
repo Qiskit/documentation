@@ -126,7 +126,7 @@ def add_redirect_to_dict(dict: dict[str, str], old_url: str, redirect_to: str)->
 
 
 def determine_redirects(
-    entries: tuple[Entry, ...] | tuple[DeletedPage, ...], *, prefix: str = ""
+    entries: tuple[Entry | DeletedPage, ...], *, prefix: str = ""
 ) -> dict[str, str]:
     result = {}
     for entry in entries:
