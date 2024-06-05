@@ -1,7 +1,7 @@
 from models import DeletedPage
 
 DELETED_PAGES = (
-    DeletedPage(slug="/map-problem-to-circuits", from_file="build/index"),
-    DeletedPage(slug="/execute-on-hardware", from_file="run/index"),
-    DeletedPage(slug="", from_file="start/index"),
+    DeletedPage(redirect_to="/map-problem-to-circuits", old_slug="build/index"),
+    DeletedPage(redirect_to="/execute-on-hardware", old_slug="run/index"),
+    DeletedPage(redirect_to="", old_slug="start/index"),
 )

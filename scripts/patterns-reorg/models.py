@@ -98,8 +98,8 @@ def entries_as_markdown_list(
 
 @dataclass(frozen=True)
 class DeletedPage:
-    slug: str
-    from_file: str
+    redirect_to: str
+    old_slug: str
 
 
 def filter_entries(
@@ -115,6 +115,15 @@ def filter_entries(
         result.append(new_entry)
     return tuple(result)
 
+def add_redirect_to_dict(dict: dict[str, str], old_url: str, redirect_to: str)-> None:
+    dict[old_url] = redirect_to
+    # We need to add two links for each index entry because we can
+    # have two links possible. For example, `/run/index` and `/run`
+    # point to the same page.
+    old_folder, old_file_name = old_url.split('/')
+    if old_file_name == "index":
+        dict[f"{old_folder}"] = redirect_to
+
 
 def determine_redirects(
     entries: tuple[Entry, ...] | tuple[DeletedPage, ...], *, prefix: str = ""
@@ -124,20 +133,15 @@ def determine_redirects(
         if isinstance(entry, Entry):
             result.update(determine_redirects(entry.children))
     
-        if entry.slug is None or not entry.from_file:
-            continue
-        
-        old_url = str(PurePath(entry.from_file).with_suffix(""))
-        redirect_to = f"{prefix}{entry.slug.removeprefix('/')}"
-        result[old_url] = redirect_to
+            if entry.slug is None or not entry.from_file:
+                continue
+            
+            old_url = str(PurePath(entry.from_file).with_suffix(""))
+            redirect_to = f"{prefix}{entry.slug.removeprefix('/')}"
+            add_redirect_to_dict(result, old_url, redirect_to)
 
-        # We need to add two links for each index entry because we can
-        # have two links possible. For example, `/run/index` and `/run`
-        # point to the same page.
-        old_folder, old_file_name = old_url.split('/')
-        if old_file_name == "index":
-            result[f"{old_folder}/"] = redirect_to
-
-
+        elif isinstance(entry, DeletedPage):    
+            redirect_to = f"{prefix}{entry.redirect_to.removeprefix('/')}"
+            add_redirect_to_dict(result, entry.old_slug, redirect_to)
     
     return result
