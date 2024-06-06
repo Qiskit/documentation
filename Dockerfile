@@ -11,6 +11,12 @@
 # that they have been altered from the originals.
 
 # This Dockerfile is used to preview the docs in pull requests via GitHub Actions.
+#
+# To test it out locally:
+#
+#   1. ❯ docker build -t qiskit-docs-preview .
+#   2. ❯ docker run --rm -p 3000:3000 -t qiskit-docs-preview
+#   3. Open up http://localhost:3000
 
 FROM qiskit/documentation
 
