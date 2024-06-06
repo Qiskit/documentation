@@ -19,18 +19,20 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 ```
 </Admonition>
 
+## Overview
+
 <span id="options-structure"></span>
-## Structure
+### Structure
 
 When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`.
 
 <span id="options-defaults"></span>
-## Defaults
+### Defaults
 
 client default (Unset) and where to find server defaults
 
 <span id="options-precedence"></span>
-## Precedence rules
+### Precedence rules
 
 option precedence rules
 
@@ -293,11 +295,11 @@ For more information about the primitive options, refer to the
 
 
 
-### Runtime compilation
+### Error suppression
 
 The Qiskit Runtime primitives expect to be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled their circuits to respect the native gate set and connectivity constraints of the target system.
 
-The Qiskit Runtime primitives may perform additional runtime compilation to optimize circuits, with the degree of optimization controlled by an optimization level option. The optimization level you choose affects the compilation strategy, with higher levels invoking more expensive or aggressive optimizations.
+The Qiskit Runtime primitives may perform additional error suppression to optimize circuits, with the degree of optimization controlled by an optimization level option. The optimization level you choose affects the error suppression strategy, with higher levels invoking more expensive or aggressive optimizations.
 
 See the Optimization level table in the
 [Configure error suppression topic](configure-error-suppression#set-the-optimization-level) for further details.
@@ -314,13 +316,11 @@ estimator = Estimator(session=backend, options={"optimization_level": 1})
 # or..
 estimator.options.optimization_level = 1
 ```
-
-To turn off all optional runtime compilation steps, you must set `optimization_level=0`.  V2 primitives do not support any advanced transpilation options.
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
     <Admonition>
-    In the currently deployed Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+    In original (V1) Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
 
 The optimization level option is a "first-level option", and can be set as follows:
@@ -333,17 +333,6 @@ options = Options(optimization_level=1)
 # or..
 options = Options()
 options.optimization_level = 1
-
-estimator = Estimator(session=backend, options=options)
-```
-
-Turning off all optional runtime compilation steps requires a "second-level option", as follows:
-
-```python
-from qiskit_ibm_runtime import Estimator, Options
-
-options = Options()
-options.transpilation.skip_transpilation = True
 
 estimator = Estimator(session=backend, options=options)
 ```
@@ -393,6 +382,35 @@ estimator = Estimator(session=backend, options=options)
 ```
 </TabItem>
 </Tabs>
+
+<span id="no-error-mitigation"></span>
+## Turn off all error mitigation and error suppression
+
+You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, no changes are necessary because no error mitigation or suppression options are enabled by default.
+
+Example:
+
+Turn off all error mitigation and suppression in EstimatorV2.
+
+```python
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options, QiskitRuntimeService
+
+# Define the service.  This allows you to access IBM Quantum systems.
+service = QiskitRuntimeService()
+
+# Get a backend
+backend = service.least_busy(operational=True, simulator=False)
+
+# Define Estimator
+estimator = Estimator(backend)
+
+options = estimator.options
+
+# Turn off all error mitigation and suppression
+options.resilience_level = 0
+options.optimization_level = 0
+```
+
 
 ## Next steps
 
