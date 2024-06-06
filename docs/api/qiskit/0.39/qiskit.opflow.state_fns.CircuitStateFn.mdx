@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
 # CircuitStateFn
 
-<Class id="qiskit.opflow.state_fns.CircuitStateFn" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/state_fns/circuit_state_fn.py" signature="CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)">
+<Class id="qiskit.opflow.state_fns.CircuitStateFn" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/state_fns/circuit_state_fn.py" signature="CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)" modifiers="class">
   Bases: [`qiskit.opflow.state_fns.state_fn.StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 
   A class for state functions and measurements which are defined by the action of a QuantumCircuit starting from |0⟩, and stored using Terra’s `QuantumCircuit` class.
@@ -28,7 +28,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### add
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.add" name="add" signature="CircuitStateFn.add(other)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.add" signature="CircuitStateFn.add(other)">
     Return Operator addition of self and other, overloaded by `+`.
 
     **Parameters**
@@ -46,7 +46,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### adjoint
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.adjoint" name="adjoint" signature="CircuitStateFn.adjoint()">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.adjoint" signature="CircuitStateFn.adjoint()">
     Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
     **Return type**
@@ -60,7 +60,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### assign\_parameters
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.assign_parameters" name="assign_parameters" signature="CircuitStateFn.assign_parameters(param_dict)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.assign_parameters" signature="CircuitStateFn.assign_parameters(param_dict)">
     Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
     **Parameters**
@@ -78,7 +78,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### compose
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.compose" name="compose" signature="CircuitStateFn.compose(other, permutation=None, front=False)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.compose" signature="CircuitStateFn.compose(other, permutation=None, front=False)">
     Composition (Linear algebra-style: A\@B(x) = A(B(x))) is not well defined for states in the binary function model, but is well defined for measurements.
 
     **Parameters**
@@ -102,7 +102,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### eval
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.eval" name="eval" signature="CircuitStateFn.eval(front=None)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.eval" signature="CircuitStateFn.eval(front=None)">
     Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
     If `front` is None, the matrix-representation of the operator is returned.
@@ -122,7 +122,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### from\_dict
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.from_dict" name="from_dict" signature="static CircuitStateFn.from_dict(density_dict)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.from_dict" signature="CircuitStateFn.from_dict(density_dict)" modifiers="static">
     Construct the CircuitStateFn from a dict mapping strings to probability densities.
 
     **Parameters**
@@ -140,7 +140,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### from\_vector
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.from_vector" name="from_vector" signature="static CircuitStateFn.from_vector(statevector)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.from_vector" signature="CircuitStateFn.from_vector(statevector)" modifiers="static">
     Construct the CircuitStateFn from a vector representing the statevector.
 
     **Parameters**
@@ -158,7 +158,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### permute
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.permute" name="permute" signature="CircuitStateFn.permute(permutation)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.permute" signature="CircuitStateFn.permute(permutation)">
     Permute the qubits of the circuit.
 
     **Parameters**
@@ -176,7 +176,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### primitive\_strings
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.primitive_strings" name="primitive_strings" signature="CircuitStateFn.primitive_strings()">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.primitive_strings" signature="CircuitStateFn.primitive_strings()">
     Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
     **Return type**
@@ -190,7 +190,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### reduce
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.reduce" name="reduce" signature="CircuitStateFn.reduce()">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.reduce" signature="CircuitStateFn.reduce()">
     Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
     **Return type**
@@ -204,7 +204,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### sample
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.sample" name="sample" signature="CircuitStateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.sample" signature="CircuitStateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
     Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
     **Return type**
@@ -214,7 +214,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### tensor
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.tensor" name="tensor" signature="CircuitStateFn.tensor(other)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.tensor" signature="CircuitStateFn.tensor(other)">
     Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like:
 
     > |0⟩– |+⟩–
@@ -236,7 +236,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### to\_circuit
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_circuit" name="to_circuit" signature="CircuitStateFn.to_circuit(meas=False)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_circuit" signature="CircuitStateFn.to_circuit(meas=False)">
     Return QuantumCircuit representing StateFn
 
     **Return type**
@@ -246,7 +246,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### to\_circuit\_op
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_circuit_op" name="to_circuit_op" signature="CircuitStateFn.to_circuit_op()">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_circuit_op" signature="CircuitStateFn.to_circuit_op()">
     Return `StateFnCircuit` corresponding to this StateFn.
 
     **Return type**
@@ -256,7 +256,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### to\_density\_matrix
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_density_matrix" name="to_density_matrix" signature="CircuitStateFn.to_density_matrix(massive=False)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_density_matrix" signature="CircuitStateFn.to_density_matrix(massive=False)">
     Return numpy matrix of density operator, warn if more than 16 qubits to force the user to set massive=True if they want such a large matrix. Generally big methods like this should require the use of a converter, but in this case a convenience method for quick hacking and access to classical tools is appropriate.
 
     **Return type**
@@ -266,13 +266,13 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### to\_instruction
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_instruction" name="to_instruction" signature="CircuitStateFn.to_instruction()">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_instruction" signature="CircuitStateFn.to_instruction()">
     Return Instruction corresponding to primitive.
   </Function>
 
   ### to\_matrix
 
-  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_matrix" name="to_matrix" signature="CircuitStateFn.to_matrix(massive=False)">
+  <Function id="qiskit.opflow.state_fns.CircuitStateFn.to_matrix" signature="CircuitStateFn.to_matrix(massive=False)">
     Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
     **Return type**
@@ -288,11 +288,11 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### INDENTATION
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.INDENTATION" attributeValue="'  '" />
 
   ### coeff
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.coeff" name="coeff">
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.coeff">
     A coefficient by which the state function is multiplied.
 
     **Return type**
@@ -302,7 +302,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### instance\_id
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.instance_id" name="instance_id">
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.instance_id">
     Return the unique instance id.
 
     **Return type**
@@ -312,7 +312,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### is\_measurement
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.is_measurement" name="is_measurement">
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.is_measurement">
     Whether the StateFn object is a measurement Operator.
 
     **Return type**
@@ -322,7 +322,7 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### num\_qubits
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.num_qubits">
     **Return type**
 
     `int`
@@ -330,17 +330,17 @@ python_api_name: qiskit.opflow.state_fns.CircuitStateFn
 
   ### parameters
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.parameters" name="parameters" />
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.parameters" />
 
   ### primitive
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.primitive" name="primitive" attributeTypeHint="qiskit.circuit.quantumcircuit.QuantumCircuit">
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.primitive" attributeTypeHint="qiskit.circuit.quantumcircuit.QuantumCircuit">
     The primitive which defines the behavior of the underlying State function.
   </Attribute>
 
   ### settings
 
-  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.settings" name="settings">
+  <Attribute id="qiskit.opflow.state_fns.CircuitStateFn.settings">
     Return settings.
 
     **Return type**

@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
 # MatrixOp
 
-<Class id="qiskit.opflow.primitive_ops.MatrixOp" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/primitive_ops/matrix_op.py" signature="qiskit.opflow.primitive_ops.MatrixOp(*args, **kwargs)">
+<Class id="qiskit.opflow.primitive_ops.MatrixOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/opflow/primitive_ops/matrix_op.py" signature="qiskit.opflow.primitive_ops.MatrixOp(*args, **kwargs)" modifiers="class">
   Bases: [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 
   Deprecated: Class for Operators represented by matrices, backed by Terra’s `Operator` module.
@@ -31,11 +31,11 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### INDENTATION
 
-  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
+  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.INDENTATION" attributeValue="'  '" />
 
   ### coeff
 
-  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.coeff" name="coeff">
+  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.coeff">
     The scalar coefficient multiplying the Operator.
 
     **Returns**
@@ -45,21 +45,21 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### instance\_id
 
-  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.instance_id" name="instance_id">
+  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.instance_id">
     Return the unique instance id.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.num_qubits" name="num_qubits" />
+  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.num_qubits" />
 
   ### parameters
 
-  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.parameters" name="parameters" />
+  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.parameters" />
 
   ### primitive
 
-  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.primitive" name="primitive" attributeTypeHint="Operator">
+  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.primitive" attributeTypeHint="Operator">
     The primitive defining the underlying function of the Operator.
 
     **Returns**
@@ -69,7 +69,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### settings
 
-  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.settings" name="settings">
+  <Attribute id="qiskit.opflow.primitive_ops.MatrixOp.settings">
     Return operator settings.
   </Attribute>
 
@@ -77,7 +77,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### add
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.add" name="add" signature="add(other)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.add" signature="add(other)">
     Return Operator addition of self and other, overloaded by `+`.
 
     **Parameters**
@@ -95,7 +95,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### adjoint
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.adjoint" name="adjoint" signature="adjoint()">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.adjoint" signature="adjoint()">
     Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
     **Returns**
@@ -109,7 +109,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### compose
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.compose" name="compose" signature="compose(other, permutation=None, front=False)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.compose" signature="compose(other, permutation=None, front=False)">
     Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
     Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
@@ -135,7 +135,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### equals
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.equals" name="equals" signature="equals(other)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.equals" signature="equals(other)">
     Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
     **Parameters**
@@ -153,7 +153,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### eval
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.eval" name="eval" signature="eval(front=None)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.eval" signature="eval(front=None)">
     Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
     If `front` is None, the matrix-representation of the operator is returned.
@@ -173,7 +173,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### exp\_i
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.exp_i" name="exp_i" signature="exp_i()">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.exp_i" signature="exp_i()">
     Return a `CircuitOp` equivalent to e^-iH for this operator H
 
     **Return type**
@@ -183,7 +183,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### permute
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.permute" name="permute" signature="permute(permutation=None)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.permute" signature="permute(permutation=None)">
     Creates a new MatrixOp that acts on the permuted qubits.
 
     **Parameters**
@@ -205,7 +205,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### primitive\_strings
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.primitive_strings" name="primitive_strings" signature="primitive_strings()">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.primitive_strings" signature="primitive_strings()">
     Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
     **Returns**
@@ -219,7 +219,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### tensor
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.tensor" name="tensor" signature="tensor(other)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.tensor" signature="tensor(other)">
     Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
     > -\[Y]- -\[X]-
@@ -241,7 +241,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### to\_instruction
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.to_instruction" name="to_instruction" signature="to_instruction()">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.to_instruction" signature="to_instruction()">
     Returns an `Instruction` equivalent to this Operator.
 
     **Return type**
@@ -251,7 +251,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### to\_matrix
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.to_matrix" name="to_matrix" signature="to_matrix(massive=False)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.to_matrix" signature="to_matrix(massive=False)">
     Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
     **Returns**
@@ -265,7 +265,7 @@ python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 
   ### to\_matrix\_op
 
-  <Function id="qiskit.opflow.primitive_ops.MatrixOp.to_matrix_op" name="to_matrix_op" signature="to_matrix_op(massive=False)">
+  <Function id="qiskit.opflow.primitive_ops.MatrixOp.to_matrix_op" signature="to_matrix_op(massive=False)">
     Returns a `MatrixOp` equivalent to this Operator.
 
     **Return type**

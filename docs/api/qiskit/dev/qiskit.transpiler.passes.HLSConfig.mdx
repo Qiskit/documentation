@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.HLSConfig
 
 # HLSConfig
 
-<Class id="qiskit.transpiler.passes.HLSConfig" github="https://github.com/qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py" signature="qiskit.transpiler.passes.HLSConfig(use_default_on_unspecified=True, **kwargs)">
+<Class id="qiskit.transpiler.passes.HLSConfig" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L183-L266" signature="qiskit.transpiler.passes.HLSConfig(use_default_on_unspecified=True, plugin_selection='sequential', plugin_evaluation_fn=None, **kwargs)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
   The high-level-synthesis config allows to specify a list of “methods” used by [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transformation pass to synthesize different types of higher-level objects.
@@ -50,13 +50,15 @@ python_api_name: qiskit.transpiler.passes.HLSConfig
   **Parameters**
 
   *   **use\_default\_on\_unspecified** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, every higher-level-object without an explicitly specified list of methods will be synthesized using the “default” algorithm if it exists.
+  *   **plugin\_selection** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – if set to `"sequential"` (default), for every higher-level-object the synthesis pass will consider the specified methods sequentially, stopping at the first method that is able to synthesize the object. If set to `"all"`, all the specified methods will be considered, and the best synthesized circuit, according to `plugin_evaluation_fn` will be chosen.
+  *   **plugin\_evaluation\_fn** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – a callable that evaluates the quality of the synthesized quantum circuit; a smaller value means a better circuit. If `None`, the quality of the circuit its size (i.e. the number of gates that it contains).
   *   **kwargs** – a dictionary mapping higher-level-objects to lists of synthesis methods.
 
   ## Methods
 
   ### set\_methods
 
-  <Function id="qiskit.transpiler.passes.HLSConfig.set_methods" name="set_methods" signature="set_methods(hls_name, hls_methods)">
+  <Function id="qiskit.transpiler.passes.HLSConfig.set_methods" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L263-L266" signature="set_methods(hls_name, hls_methods)">
     Sets the list of synthesis methods for a given higher-level-object. This overwrites the lists of methods if also set previously.
   </Function>
 </Class>

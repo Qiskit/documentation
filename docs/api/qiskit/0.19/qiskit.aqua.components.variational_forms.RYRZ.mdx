@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
 # RYRZ
 
-<Class id="qiskit.aqua.components.variational_forms.RYRZ" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ryrz.py" signature="RYRZ(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, entanglement_gate='cz', skip_unentangled_qubits=False)">
+<Class id="qiskit.aqua.components.variational_forms.RYRZ" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/variational_forms/ryrz.py" signature="RYRZ(num_qubits, depth=3, entangler_map=None, entanglement='full', initial_state=None, entanglement_gate='cz', skip_unentangled_qubits=False)" modifiers="class">
   DEPRECATED. The RYRZ Variational Form.
 
   The RYRZ trial wave function is layers of $y$ plus $z$ rotations with entanglements. When none of qubits are unentangled to other qubits, the number of optimizer parameters this form creates and uses is given by $q \times (d + 1) \times 2$, where $q$ is the total number of qubits and $d$ is the depth of the circuit. Nonetheless, in some cases, if an entangler\_map does not include all qubits, that is, some qubits are not entangled by other qubits. The number of parameters is reduced by $d \times q' \times 2$ where $q'$ is the number of unentangled qubits. This is because adding more parameters to the unentangled qubits only introduce overhead without bringing any benefit; furthermore, theoretically, applying multiple Ry and Rz gates in a row can be reduced to a single Ry gate and one Rz gate with the summed rotation angles.
@@ -29,7 +29,7 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
   ### num\_parameters
 
-  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.num_parameters" name="num_parameters">
+  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.num_parameters">
     Number of parameters of the variational form.
 
     **Returns**
@@ -43,7 +43,7 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
   ### num\_qubits
 
-  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.num_qubits">
     Number of qubits of the variational form.
 
     **Returns**
@@ -57,7 +57,7 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
   ### parameter\_bounds
 
-  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.parameter_bounds" name="parameter_bounds">
+  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.parameter_bounds">
     Parameter bounds.
 
     **Returns**
@@ -71,7 +71,7 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
   ### preferred\_init\_points
 
-  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.preferred_init_points" name="preferred_init_points">
+  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.preferred_init_points">
     Return preferred init points.
 
     If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
@@ -79,11 +79,11 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
   ### setting
 
-  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.setting" name="setting" />
+  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.setting" />
 
   ### support\_parameterized\_circuit
 
-  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.support_parameterized_circuit" name="support_parameterized_circuit">
+  <Attribute id="qiskit.aqua.components.variational_forms.RYRZ.support_parameterized_circuit">
     Whether or not the sub-class support parameterized circuit.
 
     **Returns**
@@ -99,7 +99,7 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
   ### construct\_circuit
 
-  <Function id="qiskit.aqua.components.variational_forms.RYRZ.construct_circuit" name="construct_circuit" signature="RYRZ.construct_circuit(parameters, q=None)">
+  <Function id="qiskit.aqua.components.variational_forms.RYRZ.construct_circuit" signature="RYRZ.construct_circuit(parameters, q=None)">
     Construct the variational form, given its parameters.
 
     **Parameters**
@@ -122,13 +122,13 @@ python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.aqua.components.variational_forms.RYRZ.get_entangler_map" name="get_entangler_map" signature="static RYRZ.get_entangler_map(map_type, num_qubits, offset=0)">
+  <Function id="qiskit.aqua.components.variational_forms.RYRZ.get_entangler_map" signature="RYRZ.get_entangler_map(map_type, num_qubits, offset=0)" modifiers="static">
     returns entangler map
   </Function>
 
   ### validate\_entangler\_map
 
-  <Function id="qiskit.aqua.components.variational_forms.RYRZ.validate_entangler_map" name="validate_entangler_map" signature="static RYRZ.validate_entangler_map(entangler_map, num_qubits)">
+  <Function id="qiskit.aqua.components.variational_forms.RYRZ.validate_entangler_map" signature="RYRZ.validate_entangler_map(entangler_map, num_qubits)" modifiers="static">
     validate entangler map
   </Function>
 </Class>

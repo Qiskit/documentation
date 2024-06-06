@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
 # qiskit.algorithms.EstimationProblem
 
-<Class id="qiskit.algorithms.EstimationProblem" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/estimation_problem.py" signature="EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)">
+<Class id="qiskit.algorithms.EstimationProblem" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/estimation_problem.py" signature="EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)" modifiers="class">
   The estimation problem is the input to amplitude estimation algorithm.
 
   This class contains all problem-specific information required to run an amplitude estimation algorithm. That means, it minimally contains the state preparation and the specification of the good state. It can further hold some post processing on the estimation of the amplitude or a custom Grover operator.
@@ -23,7 +23,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.algorithms.EstimationProblem.__init__" name="__init__" signature="__init__(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)">
+  <Function id="qiskit.algorithms.EstimationProblem.__init__" signature="__init__(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)">
     **Parameters**
 
     *   **state\_preparation** (`QuantumCircuit`) – A circuit preparing the input state, referred to as $\mathcal{A}$.
@@ -52,7 +52,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
   ### grover\_operator
 
-  <Function id="qiskit.algorithms.EstimationProblem.grover_operator" name="grover_operator" signature="property grover_operator">
+  <Attribute id="qiskit.algorithms.EstimationProblem.grover_operator">
     Get the $\mathcal{Q}$ operator, or Grover operator.
 
     If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
@@ -64,11 +64,11 @@ python_api_name: qiskit.algorithms.EstimationProblem
     **Returns**
 
     The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
-  </Function>
+  </Attribute>
 
   ### is\_good\_state
 
-  <Function id="qiskit.algorithms.EstimationProblem.is_good_state" name="is_good_state" signature="property is_good_state">
+  <Attribute id="qiskit.algorithms.EstimationProblem.is_good_state">
     Checks whether a bitstring represents a good state.
 
     **Return type**
@@ -78,11 +78,11 @@ python_api_name: qiskit.algorithms.EstimationProblem
     **Returns**
 
     Handle to the `is_good_state` callable.
-  </Function>
+  </Attribute>
 
   ### objective\_qubits
 
-  <Function id="qiskit.algorithms.EstimationProblem.objective_qubits" name="objective_qubits" signature="property objective_qubits">
+  <Attribute id="qiskit.algorithms.EstimationProblem.objective_qubits">
     Get the criterion for a measurement outcome to be in a ‘good’ state.
 
     **Return type**
@@ -92,11 +92,11 @@ python_api_name: qiskit.algorithms.EstimationProblem
     **Returns**
 
     The criterion as list of qubit indices.
-  </Function>
+  </Attribute>
 
   ### post\_processing
 
-  <Function id="qiskit.algorithms.EstimationProblem.post_processing" name="post_processing" signature="property post_processing">
+  <Attribute id="qiskit.algorithms.EstimationProblem.post_processing">
     Apply post processing to the input value.
 
     **Return type**
@@ -106,11 +106,11 @@ python_api_name: qiskit.algorithms.EstimationProblem
     **Returns**
 
     A handle to the post processing function. Acts as identity by default.
-  </Function>
+  </Attribute>
 
   ### rescale
 
-  <Function id="qiskit.algorithms.EstimationProblem.rescale" name="rescale" signature="rescale(scaling_factor)">
+  <Function id="qiskit.algorithms.EstimationProblem.rescale" signature="rescale(scaling_factor)">
     Rescale the good state amplitude in the estimation problem.
 
     **Parameters**
@@ -128,7 +128,7 @@ python_api_name: qiskit.algorithms.EstimationProblem
 
   ### state\_preparation
 
-  <Function id="qiskit.algorithms.EstimationProblem.state_preparation" name="state_preparation" signature="property state_preparation">
+  <Attribute id="qiskit.algorithms.EstimationProblem.state_preparation">
     Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 
     **Return type**
@@ -138,6 +138,6 @@ python_api_name: qiskit.algorithms.EstimationProblem
     **Returns**
 
     The $\mathcal{A}$ operator as QuantumCircuit.
-  </Function>
+  </Attribute>
 </Class>
 

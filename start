@@ -38,24 +38,24 @@ def main() -> None:
         + "`docker pull qiskit/documentation` to check for updates.",
         file=sys.stderr,
     )
-    subprocess.run(
-        # Keep this aligned with the Dockerfile at the root of the repository.
-        [
-            "docker",
-            "run",
-            "-v",
-            f"{PWD}/docs:/home/node/app/docs",
-            *translation_volume_mounts(),
-            "-v",
-            f"{PWD}/public:/home/node/app/packages/preview/public",
-            "-p",
-            "3000:3000",
-            "-p",
-            "5001:5001",
-            "qiskit/documentation",
-        ],
-        check=True,
-    )
+    # Keep this aligned with the Dockerfile at the root of the repository.
+    cmd = [
+        "docker",
+        "run",
+        "-v",
+        f"{PWD}/docs:/home/node/app/docs",
+        *translation_volume_mounts(),
+        "-v",
+        f"{PWD}/public:/home/node/app/packages/preview/public",
+        "-p",
+        "3000:3000",
+        "-p",
+        "5001:5001",
+        # Needed for ctrl-c to shut down the container.
+        "--init",
+        "qiskit/documentation",
+    ]
+    subprocess.run(cmd, check=True)
 
 
 if __name__ == "__main__":

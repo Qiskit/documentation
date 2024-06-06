@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.PVQD
 
 # PVQD
 
-<Class id="qiskit.algorithms.PVQD" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py" signature="PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)">
+<Class id="qiskit.algorithms.PVQD" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/algorithms/time_evolvers/pvqd/pvqd.py" signature="PVQD(fidelity, ansatz, initial_parameters, estimator=None, optimizer=None, num_timesteps=None, evolution=None, use_parameter_shift=True, initial_guess=None)" modifiers="class">
   Bases: [`qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver`](qiskit.algorithms.RealTimeEvolver "qiskit.algorithms.time_evolvers.real_time_evolver.RealTimeEvolver")
 
   The projected Variational Quantum Dynamics (p-VQD) Algorithm.
@@ -19,7 +19,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### ansatz
 
-  <Attribute id="qiskit.algorithms.PVQD.ansatz" name="ansatz">
+  <Attribute id="qiskit.algorithms.PVQD.ansatz">
     The parameterized circuit representing the time-evolved state.
 
     **Type**
@@ -29,7 +29,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### initial\_parameters
 
-  <Attribute id="qiskit.algorithms.PVQD.initial_parameters" name="initial_parameters">
+  <Attribute id="qiskit.algorithms.PVQD.initial_parameters">
     The parameters of the ansatz at time 0.
 
     **Type**
@@ -39,7 +39,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### optimizer
 
-  <Attribute id="qiskit.algorithms.PVQD.optimizer" name="optimizer">
+  <Attribute id="qiskit.algorithms.PVQD.optimizer">
     The classical optimization routine used to maximize the fidelity of the Trotter step and ansatz.
 
     **Type**
@@ -49,7 +49,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### num\_timesteps
 
-  <Attribute id="qiskit.algorithms.PVQD.num_timesteps" name="num_timesteps">
+  <Attribute id="qiskit.algorithms.PVQD.num_timesteps">
     The number of timesteps to take. If None, it is automatically selected to achieve a timestep of approximately 0.01.
 
     **Type**
@@ -59,7 +59,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### evolution
 
-  <Attribute id="qiskit.algorithms.PVQD.evolution" name="evolution">
+  <Attribute id="qiskit.algorithms.PVQD.evolution">
     The method to perform the Trotter step. Defaults to first-order Lie-Trotter evolution.
 
     **Type**
@@ -69,7 +69,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### use\_parameter\_shift
 
-  <Attribute id="qiskit.algorithms.PVQD.use_parameter_shift" name="use_parameter_shift">
+  <Attribute id="qiskit.algorithms.PVQD.use_parameter_shift">
     If True, use the parameter shift rule for loss function gradients (if the ansatz supports).
 
     **Type**
@@ -79,7 +79,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### initial\_guess
 
-  <Attribute id="qiskit.algorithms.PVQD.initial_guess" name="initial_guess">
+  <Attribute id="qiskit.algorithms.PVQD.initial_guess">
     The starting point for the first classical optimization run, at time 0. Defaults to random values in $[-0.01, 0.01]$.
 
     **Type**
@@ -154,7 +154,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### evolve
 
-  <Function id="qiskit.algorithms.PVQD.evolve" name="evolve" signature="PVQD.evolve(evolution_problem)">
+  <Function id="qiskit.algorithms.PVQD.evolve" signature="PVQD.evolve(evolution_problem)">
     Perform real time evolution $\exp(-i t H)|\Psi\rangle$.
 
     Evolves an initial state $|\Psi\rangle$ for a time $t$ under a Hamiltonian $H$, as provided in the `evolution_problem`.
@@ -179,7 +179,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### get\_loss
 
-  <Function id="qiskit.algorithms.PVQD.get_loss" name="get_loss" signature="PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)">
+  <Function id="qiskit.algorithms.PVQD.get_loss" signature="PVQD.get_loss(hamiltonian, ansatz, dt, current_parameters)">
     Get a function to evaluate the infidelity between Trotter step and ansatz.
 
     **Parameters**
@@ -202,7 +202,7 @@ python_api_name: qiskit.algorithms.PVQD
 
   ### step
 
-  <Function id="qiskit.algorithms.PVQD.step" name="step" signature="PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)">
+  <Function id="qiskit.algorithms.PVQD.step" signature="PVQD.step(hamiltonian, ansatz, theta, dt, initial_guess)">
     Perform a single time step.
 
     **Parameters**

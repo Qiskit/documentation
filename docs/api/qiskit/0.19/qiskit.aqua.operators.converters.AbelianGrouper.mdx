@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.operators.converters.AbelianGrouper
 
 # AbelianGrouper
 
-<Class id="qiskit.aqua.operators.converters.AbelianGrouper" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/converters/abelian_grouper.py" signature="AbelianGrouper(traverse=True)">
+<Class id="qiskit.aqua.operators.converters.AbelianGrouper" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/operators/converters/abelian_grouper.py" signature="AbelianGrouper(traverse=True)" modifiers="class">
   The AbelianGrouper converts SummedOps into a sum of Abelian sums. Meaning, it will traverse the Operator, and when it finds a SummedOp, it will evaluate which of the summed sub-Operators commute with one another. It will then convert each of the groups of commuting Operators into their own SummedOps, and return the sum-of-commuting-SummedOps. This is particularly useful for cases where mutually commuting groups can be handled similarly, as in the case of Pauli Expectations, where commuting Paulis have the same diagonalizing circuit rotation, or Pauli Evolutions, where commuting Paulis can be diagonalized together.
 
   **Parameters**
@@ -19,7 +19,7 @@ python_api_name: qiskit.aqua.operators.converters.AbelianGrouper
 
   ### convert
 
-  <Function id="qiskit.aqua.operators.converters.AbelianGrouper.convert" name="convert" signature="AbelianGrouper.convert(operator)">
+  <Function id="qiskit.aqua.operators.converters.AbelianGrouper.convert" signature="AbelianGrouper.convert(operator)">
     Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
 
     **Parameters**
@@ -37,7 +37,7 @@ python_api_name: qiskit.aqua.operators.converters.AbelianGrouper
 
   ### group\_subops
 
-  <Function id="qiskit.aqua.operators.converters.AbelianGrouper.group_subops" name="group_subops" signature="AbelianGrouper.group_subops(list_op)">
+  <Function id="qiskit.aqua.operators.converters.AbelianGrouper.group_subops" signature="AbelianGrouper.group_subops(list_op)">
     Given a ListOp, attempt to group into Abelian ListOps of the same type.
 
     **Parameters**

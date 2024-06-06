@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 # Pauli
 
-<Class id="qiskit.quantum_info.Pauli" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/quantum_info/operators/symplectic/pauli.py" signature="qiskit.quantum_info.Pauli(data=None)">
+<Class id="qiskit.quantum_info.Pauli" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L39-L745" signature="qiskit.quantum_info.Pauli(data=None)" modifiers="class">
   Bases: `BasePauli`
 
   N-qubit Pauli operator.
@@ -88,13 +88,13 @@ $$
   For example
 
   ```python
-  p = Pauli('-iXYZ')
+  P = Pauli('-iXYZ')
 
   print('P[0] =', repr(P[0]))
   print('P[1] =', repr(P[1]))
   print('P[2] =', repr(P[2]))
   print('P[:] =', repr(P[:]))
-  print('P[::-1] =, repr(P[::-1]))
+  print('P[::-1] =', repr(P[::-1]))
   ```
 
   Initialize the Pauli.
@@ -113,55 +113,55 @@ $$
 
   ### dim
 
-  <Attribute id="qiskit.quantum_info.Pauli.dim" name="dim">
+  <Attribute id="qiskit.quantum_info.Pauli.dim">
     Return tuple (input\_shape, output\_shape).
   </Attribute>
 
   ### name
 
-  <Attribute id="qiskit.quantum_info.Pauli.name" name="name">
+  <Attribute id="qiskit.quantum_info.Pauli.name">
     Unique string identifier for operation type.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.quantum_info.Pauli.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.quantum_info.Pauli.num_clbits">
     Number of classical bits.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.quantum_info.Pauli.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.quantum_info.Pauli.num_qubits">
     Return the number of qubits if a N-qubit operator or None otherwise.
   </Attribute>
 
   ### phase
 
-  <Attribute id="qiskit.quantum_info.Pauli.phase" name="phase">
+  <Attribute id="qiskit.quantum_info.Pauli.phase">
     Return the group phase exponent for the Pauli.
   </Attribute>
 
   ### qargs
 
-  <Attribute id="qiskit.quantum_info.Pauli.qargs" name="qargs">
+  <Attribute id="qiskit.quantum_info.Pauli.qargs">
     Return the qargs for the operator.
   </Attribute>
 
   ### settings
 
-  <Attribute id="qiskit.quantum_info.Pauli.settings" name="settings">
+  <Attribute id="qiskit.quantum_info.Pauli.settings">
     Return settings.
   </Attribute>
 
   ### x
 
-  <Attribute id="qiskit.quantum_info.Pauli.x" name="x">
+  <Attribute id="qiskit.quantum_info.Pauli.x">
     The x vector for the Pauli.
   </Attribute>
 
   ### z
 
-  <Attribute id="qiskit.quantum_info.Pauli.z" name="z">
+  <Attribute id="qiskit.quantum_info.Pauli.z">
     The z vector for the Pauli.
   </Attribute>
 
@@ -169,13 +169,13 @@ $$
 
   ### adjoint
 
-  <Function id="qiskit.quantum_info.Pauli.adjoint" name="adjoint" signature="adjoint()">
+  <Function id="qiskit.quantum_info.Pauli.adjoint" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L520-L521" signature="adjoint()">
     Return the adjoint of the Operator.
   </Function>
 
   ### anticommutes
 
-  <Function id="qiskit.quantum_info.Pauli.anticommutes" name="anticommutes" signature="anticommutes(other, qargs=None)">
+  <Function id="qiskit.quantum_info.Pauli.anticommutes" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L550-L560" signature="anticommutes(other, qargs=None)">
     Return True if other Pauli anticommutes with self.
 
     **Parameters**
@@ -192,9 +192,28 @@ $$
     [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
   </Function>
 
+  ### apply\_layout
+
+  <Function id="qiskit.quantum_info.Pauli.apply_layout" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L702-L745" signature="apply_layout(layout, num_qubits=None)">
+    Apply a transpiler layout to this [`Pauli`](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+
+    **Parameters**
+
+    *   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout"), a list of integers or None. If both layout and num\_qubits are none, a copy of the operator is returned.
+    *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion. If layout is None, the operator will be expanded to the given number of qubits.
+
+    **Returns**
+
+    A new [`Pauli`](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") with the provided layout applied
+
+    **Return type**
+
+    [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+  </Function>
+
   ### commutes
 
-  <Function id="qiskit.quantum_info.Pauli.commutes" name="commutes" signature="commutes(other, qargs=None)">
+  <Function id="qiskit.quantum_info.Pauli.commutes" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L531-L548" signature="commutes(other, qargs=None)">
     Return True if the Pauli commutes with other.
 
     **Parameters**
@@ -213,7 +232,7 @@ $$
 
   ### compose
 
-  <Function id="qiskit.quantum_info.Pauli.compose" name="compose" signature="compose(other, qargs=None, front=False, inplace=False)">
+  <Function id="qiskit.quantum_info.Pauli.compose" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L451-L485" signature="compose(other, qargs=None, front=False, inplace=False)">
     Return the operator composition with another Pauli.
 
     **Parameters**
@@ -244,19 +263,19 @@ $$
 
   ### conjugate
 
-  <Function id="qiskit.quantum_info.Pauli.conjugate" name="conjugate" signature="conjugate()">
+  <Function id="qiskit.quantum_info.Pauli.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L514-L515" signature="conjugate()">
     Return the conjugate of each Pauli in the list.
   </Function>
 
   ### copy
 
-  <Function id="qiskit.quantum_info.Pauli.copy" name="copy" signature="copy()">
+  <Function id="qiskit.quantum_info.Pauli.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/base_pauli.py#L61-L70" signature="copy()">
     Make a deep copy of current operator.
   </Function>
 
   ### delete
 
-  <Function id="qiskit.quantum_info.Pauli.delete" name="delete" signature="delete(qubits)">
+  <Function id="qiskit.quantum_info.Pauli.delete" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L327-L353" signature="delete(qubits)">
     Return a Pauli with qubits deleted.
 
     **Parameters**
@@ -278,7 +297,7 @@ $$
 
   ### dot
 
-  <Function id="qiskit.quantum_info.Pauli.dot" name="dot" signature="dot(other, qargs=None, inplace=False)">
+  <Function id="qiskit.quantum_info.Pauli.dot" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L487-L499" signature="dot(other, qargs=None, inplace=False)">
     Return the right multiplied operator self \* other.
 
     **Parameters**
@@ -298,7 +317,7 @@ $$
 
   ### equiv
 
-  <Function id="qiskit.quantum_info.Pauli.equiv" name="equiv" signature="equiv(other)">
+  <Function id="qiskit.quantum_info.Pauli.equiv" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L250-L264" signature="equiv(other)">
     Return True if Pauli’s are equivalent up to group phase.
 
     **Parameters**
@@ -316,7 +335,7 @@ $$
 
   ### evolve
 
-  <Function id="qiskit.quantum_info.Pauli.evolve" name="evolve" signature="evolve(other, qargs=None, frame='h')">
+  <Function id="qiskit.quantum_info.Pauli.evolve" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L562-L601" signature="evolve(other, qargs=None, frame='h')">
     Performs either Heisenberg (default) or Schrödinger picture evolution of the Pauli by a Clifford and returns the evolved Pauli.
 
     Schrödinger picture evolution can be chosen by passing parameter `frame='s'`. This option yields a faster calculation.
@@ -347,7 +366,7 @@ $$
 
   ### expand
 
-  <Function id="qiskit.quantum_info.Pauli.expand" name="expand" signature="expand(other)">
+  <Function id="qiskit.quantum_info.Pauli.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L506-L509" signature="expand(other)">
     Return the reverse-order tensor product with another Pauli.
 
     **Parameters**
@@ -367,13 +386,13 @@ $$
 
   ### input\_dims
 
-  <Function id="qiskit.quantum_info.Pauli.input_dims" name="input_dims" signature="input_dims(qargs=None)">
+  <Function id="qiskit.quantum_info.Pauli.input_dims" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/base_operator.py#L135-L137" signature="input_dims(qargs=None)">
     Return tuple of input dimension for specified subsystems.
   </Function>
 
   ### insert
 
-  <Function id="qiskit.quantum_info.Pauli.insert" name="insert" signature="insert(qubits, value)">
+  <Function id="qiskit.quantum_info.Pauli.insert" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L355-L393" signature="insert(qubits, value)">
     Insert a Pauli at specific qubit value.
 
     **Parameters**
@@ -396,19 +415,19 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.quantum_info.Pauli.inverse" name="inverse" signature="inverse()">
+  <Function id="qiskit.quantum_info.Pauli.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L523-L525" signature="inverse()">
     Return the inverse of the Pauli.
   </Function>
 
   ### output\_dims
 
-  <Function id="qiskit.quantum_info.Pauli.output_dims" name="output_dims" signature="output_dims(qargs=None)">
+  <Function id="qiskit.quantum_info.Pauli.output_dims" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/base_operator.py#L139-L141" signature="output_dims(qargs=None)">
     Return tuple of output dimension for specified subsystems.
   </Function>
 
   ### power
 
-  <Function id="qiskit.quantum_info.Pauli.power" name="power" signature="power(n)">
+  <Function id="qiskit.quantum_info.Pauli.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/mixins/group.py#L151-L171" signature="power(n)">
     Return the compose of a operator with itself n times.
 
     **Parameters**
@@ -430,7 +449,7 @@ $$
 
   ### reshape
 
-  <Function id="qiskit.quantum_info.Pauli.reshape" name="reshape" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
+  <Function id="qiskit.quantum_info.Pauli.reshape" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/base_operator.py#L106-L133" signature="reshape(input_dims=None, output_dims=None, num_qubits=None)">
     Return a shallow copy with reshaped input and output subsystem dimensions.
 
     **Parameters**
@@ -454,7 +473,7 @@ $$
 
   ### set\_truncation
 
-  <Function id="qiskit.quantum_info.Pauli.set_truncation" name="set_truncation" signature="classmethod set_truncation(val)">
+  <Function id="qiskit.quantum_info.Pauli.set_truncation" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L231-L242" signature="set_truncation(val)" modifiers="classmethod">
     Set the max number of Pauli characters to display before truncation/
 
     **Parameters**
@@ -468,7 +487,7 @@ $$
 
   ### tensor
 
-  <Function id="qiskit.quantum_info.Pauli.tensor" name="tensor" signature="tensor(other)">
+  <Function id="qiskit.quantum_info.Pauli.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L501-L504" signature="tensor(other)">
     Return the tensor product with another Pauli.
 
     **Parameters**
@@ -492,13 +511,13 @@ $$
 
   ### to\_instruction
 
-  <Function id="qiskit.quantum_info.Pauli.to_instruction" name="to_instruction" signature="to_instruction()">
+  <Function id="qiskit.quantum_info.Pauli.to_instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L428-L445" signature="to_instruction()">
     Convert to Pauli circuit instruction.
   </Function>
 
   ### to\_label
 
-  <Function id="qiskit.quantum_info.Pauli.to_label" name="to_label" signature="to_label()">
+  <Function id="qiskit.quantum_info.Pauli.to_label" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L403-L414" signature="to_label()">
     Convert a Pauli to a string label.
 
     <Admonition title="Note" type="note">
@@ -516,7 +535,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.quantum_info.Pauli.to_matrix" name="to_matrix" signature="to_matrix(sparse=False)">
+  <Function id="qiskit.quantum_info.Pauli.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L416-L426" signature="to_matrix(sparse=False)">
     Convert to a Numpy array or sparse CSR matrix.
 
     **Parameters**
@@ -534,7 +553,7 @@ $$
 
   ### transpose
 
-  <Function id="qiskit.quantum_info.Pauli.transpose" name="transpose" signature="transpose()">
+  <Function id="qiskit.quantum_info.Pauli.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/quantum_info/operators/symplectic/pauli.py#L517-L518" signature="transpose()">
     Return the transpose of each Pauli in the list.
   </Function>
 </Class>

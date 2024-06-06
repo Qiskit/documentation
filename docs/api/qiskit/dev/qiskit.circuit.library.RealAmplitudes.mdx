@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
 # RealAmplitudes
 
-<Class id="qiskit.circuit.library.RealAmplitudes" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/real_amplitudes.py" signature="qiskit.circuit.library.RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes', flatten=None)">
+<Class id="qiskit.circuit.library.RealAmplitudes" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/real_amplitudes.py#L25-L186" signature="qiskit.circuit.library.RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes', flatten=None)" modifiers="class">
   Bases: [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
   The real-amplitudes 2-local circuit.
@@ -116,13 +116,13 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -130,17 +130,17 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.data" name="data" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.data" />
 
   ### entanglement
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.entanglement" name="entanglement">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.entanglement">
     Get the entanglement strategy.
 
     **Returns**
@@ -150,7 +150,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### entanglement\_blocks
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.entanglement_blocks" name="entanglement_blocks">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.entanglement_blocks">
     The blocks in the entanglement layers.
 
     **Returns**
@@ -160,19 +160,19 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### flatten
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.flatten" name="flatten">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.flatten">
     Returns whether the circuit is wrapped in nested gates/instructions or flattened.
   </Attribute>
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### initial\_state
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.initial_state" name="initial_state">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.initial_state">
     Return the initial state that is added in front of the n-local circuit.
 
     **Returns**
@@ -182,7 +182,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### insert\_barriers
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.insert_barriers" name="insert_barriers">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.insert_barriers">
     If barriers are inserted in between the layers or not.
 
     **Returns**
@@ -192,11 +192,11 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.instances" name="instances" attributeValue="= 412" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.instances" attributeValue="186" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -206,51 +206,51 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_ancillas">
     Return the number of ancilla qubits.
   </Attribute>
 
   ### num\_captured\_vars
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_captured_vars" name="num_captured_vars">
-    The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
 
     This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.RealAmplitudes.num_input_vars "qiskit.circuit.library.RealAmplitudes.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_clbits">
     Return number of classical bits.
   </Attribute>
 
   ### num\_declared\_vars
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_declared_vars" name="num_declared_vars">
-    The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
   </Attribute>
 
   ### num\_input\_vars
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_input_vars" name="num_input_vars">
-    The number of runtime classical variables in the circuit marked as circuit inputs.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
 
     This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.RealAmplitudes.num_captured_vars "qiskit.circuit.library.RealAmplitudes.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_layers
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_layers" name="num_layers">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_layers">
     Return the number of layers in the n-local circuit.
 
     **Returns**
@@ -260,11 +260,11 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_parameters" name="num_parameters" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_parameters" />
 
   ### num\_parameters\_settable
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_parameters_settable" name="num_parameters_settable">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_parameters_settable">
     The number of total parameters that can be set to distinct values.
 
     This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
@@ -280,7 +280,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_qubits">
     Returns the number of qubits in this circuit.
 
     **Returns**
@@ -290,15 +290,15 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### num\_vars
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_vars" name="num_vars">
-    The number of runtime classical variables in the circuit.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.num_vars">
+    The number of real-time classical variables in the circuit.
 
     This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -314,7 +314,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### ordered\_parameters
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.ordered_parameters" name="ordered_parameters">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.ordered_parameters">
     The parameters used in the underlying circuit.
 
     This includes float values and duplicates.
@@ -340,7 +340,7 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### parameter\_bounds
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.parameter_bounds" name="parameter_bounds">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.parameter_bounds">
     Return the parameter bounds.
 
     **Returns**
@@ -350,11 +350,11 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.parameters" name="parameters" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.parameters" />
 
   ### preferred\_init\_points
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.preferred_init_points" name="preferred_init_points">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.preferred_init_points">
     The initial points for the parameters. Can be stored as initial guess in optimization.
 
     **Returns**
@@ -364,23 +364,23 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.prefix" attributeValue="'circuit'" />
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### reps
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.reps" name="reps">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.reps">
     The number of times rotation and entanglement block are repeated.
 
     **Returns**
@@ -390,12 +390,36 @@ python_api_name: qiskit.circuit.library.RealAmplitudes
 
   ### rotation\_blocks
 
-  <Attribute id="qiskit.circuit.library.RealAmplitudes.rotation_blocks" name="rotation_blocks">
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.rotation_blocks">
     The blocks in the rotation layers.
 
     **Returns**
 
     The blocks in the rotation layers.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.RealAmplitudes.unit "qiskit.circuit.library.RealAmplitudes.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.RealAmplitudes.unit">
+    The unit that [`duration`](#qiskit.circuit.library.RealAmplitudes.duration "qiskit.circuit.library.RealAmplitudes.duration") is specified in.
   </Attribute>
 </Class>
 

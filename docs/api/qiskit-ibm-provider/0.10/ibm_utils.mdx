@@ -1,0 +1,106 @@
+---
+title: utils
+description: API reference for qiskit_ibm_provider.utils
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_ibm_provider.utils
+---
+
+<span id="utilities-qiskit-ibm-provider-utils" />
+
+<span id="module-qiskit_ibm_provider.utils" />
+
+<span id="qiskit-ibm-provider-utils" />
+
+# Utilities
+
+<span id="module-qiskit_ibm_provider.utils" />
+
+`qiskit_ibm_provider.utils`
+
+Utility functions related to the IBM Quantum Provider.
+
+## Conversion
+
+|                                                                                                                                 |                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`seconds_to_duration`](qiskit_ibm_provider.utils.seconds_to_duration "qiskit_ibm_provider.utils.seconds_to_duration")(seconds) | Converts seconds in a datetime delta to a duration.                       |
+| [`utc_to_local`](qiskit_ibm_provider.utils.utc_to_local "qiskit_ibm_provider.utils.utc_to_local")(utc\_dt)                      | Convert a UTC `datetime` object or string to a local timezone `datetime`. |
+
+## Misc Functions
+
+|                                                                                                                                        |                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`to_python_identifier`](qiskit_ibm_provider.utils.to_python_identifier "qiskit_ibm_provider.utils.to_python_identifier")(name)        | Convert a name to a valid Python identifier. |
+| [`validate_job_tags`](qiskit_ibm_provider.utils.validate_job_tags "qiskit_ibm_provider.utils.validate_job_tags")(job\_tags, exception) | Validates input job tags.                    |
+
+<span id="module-qiskit_ibm_provider.utils.pubsub" />
+
+<span id="publisher-subscriber-model" />
+
+## Publisher/subscriber model
+
+Message broker for the Publisher / Subscriber mechanism
+
+### Publisher
+
+<Class id="qiskit_ibm_provider.utils.pubsub.Publisher" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L140-L155" signature="Publisher" modifiers="class">
+  Represents a “publisher”.
+
+  Every component (class) can become a [`Publisher`](#qiskit_ibm_provider.utils.pubsub.Publisher "qiskit_ibm_provider.utils.pubsub.Publisher") and send events by inheriting this class. Functions can call this class like:
+
+  ```python
+  Publisher().publish("event", args, ... )
+  ```
+
+  #### publish
+
+  <Function id="qiskit_ibm_provider.utils.pubsub.Publisher.publish" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L152-L155" signature="publish(event, *args, **kwargs)">
+    Triggers an event, and associates some data to it, so if there are any subscribers, their callback will be called synchronously.
+
+    **Return type**
+
+    `None`
+  </Function>
+</Class>
+
+### Subscriber
+
+<Class id="qiskit_ibm_provider.utils.pubsub.Subscriber" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L158-L182" signature="Subscriber" modifiers="class">
+  Represents a “subscriber”.
+
+  Every component (class) can become a [`Subscriber`](#qiskit_ibm_provider.utils.pubsub.Subscriber "qiskit_ibm_provider.utils.pubsub.Subscriber") and subscribe to events, that will call callback functions when they are emitted.
+
+  #### clear
+
+  <Function id="qiskit_ibm_provider.utils.pubsub.Subscriber.clear" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L180-L182" signature="clear()">
+    Unsubscribe everything
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  #### subscribe
+
+  <Function id="qiskit_ibm_provider.utils.pubsub.Subscriber.subscribe" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L168-L173" signature="subscribe(event, callback)">
+    Subscribes to an event, associating a callback function to that event, so when the event occurs, the callback will be called.
+
+    This is a blocking call, so try to keep callbacks as lightweight as possible.
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  #### unsubscribe
+
+  <Function id="qiskit_ibm_provider.utils.pubsub.Subscriber.unsubscribe" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/utils/pubsub.py#L175-L178" signature="unsubscribe(event, callback)">
+    Unsubscribe a pair event-callback, so the callback will not be called anymore when the event occurs.
+
+    **Return type**
+
+    `bool`
+  </Function>
+</Class>
+

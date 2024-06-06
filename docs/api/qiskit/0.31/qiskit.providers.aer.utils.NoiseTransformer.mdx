@@ -8,7 +8,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
 # NoiseTransformer
 
-<Class id="qiskit.providers.aer.utils.NoiseTransformer" github="https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/utils/noise_transformation.py" signature="NoiseTransformer">
+<Class id="qiskit.providers.aer.utils.NoiseTransformer" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/utils/noise_transformation.py" signature="NoiseTransformer" modifiers="class">
   Bases: `object`
 
   Transforms one quantum channel to another based on a specified criteria.
@@ -17,7 +17,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### channel\_matrix\_representation
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.channel_matrix_representation" name="channel_matrix_representation" signature="NoiseTransformer.channel_matrix_representation(operators)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.channel_matrix_representation" signature="NoiseTransformer.channel_matrix_representation(operators)">
     We convert the operators to a matrix by applying the channel to the four basis elements of the 2x2 matrix space representing density operators; this is standard linear algebra
 
     **Parameters**
@@ -35,7 +35,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### compute\_P
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_P" name="compute_P" signature="NoiseTransformer.compute_P(As)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_P" signature="NoiseTransformer.compute_P(As)">
     This method creates the matrix P in the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the channel matrices :type As: list
 
     **Returns**
@@ -49,7 +49,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### compute\_channel\_operation
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_channel_operation" name="compute_channel_operation" signature="static NoiseTransformer.compute_channel_operation(rho, operators)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_channel_operation" signature="NoiseTransformer.compute_channel_operation(rho, operators)" modifiers="static">
     Given a quantum state’s density function rho, the effect of the channel on this state is: rho -> sum\_\{i=1}^n E\_i \* rho \* E\_i^dagger
 
     **Parameters**
@@ -68,7 +68,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### compute\_q
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_q" name="compute_q" signature="NoiseTransformer.compute_q(As, C)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.compute_q" signature="NoiseTransformer.compute_q(As, C)">
     This method creates the vector q for the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the quadratic program :type As: list :param C: matrix representing the the constant channel matrix :type C: matrix
 
     **Returns**
@@ -82,13 +82,13 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### fidelity
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.fidelity" name="fidelity" signature="static NoiseTransformer.fidelity(channel)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.fidelity" signature="NoiseTransformer.fidelity(channel)" modifiers="static">
     Calculates channel fidelity
   </Function>
 
   ### flatten\_matrix
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.flatten_matrix" name="flatten_matrix" signature="static NoiseTransformer.flatten_matrix(m)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.flatten_matrix" signature="NoiseTransformer.flatten_matrix(m)" modifiers="static">
     **Parameters**
 
     **m** (*Matrix*) – The matrix to flatten
@@ -104,7 +104,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### generate\_channel\_matrices
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_matrices" name="generate_channel_matrices" signature="NoiseTransformer.generate_channel_matrices(transform_channel_operators_list)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_matrices" signature="NoiseTransformer.generate_channel_matrices(transform_channel_operators_list)">
     Generate symbolic channel matrices.
 
     Generates a list of 4x4 symbolic matrices describing the channel defined from the given operators. The identity matrix is assumed to be the first element in the list:
@@ -144,7 +144,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### generate\_channel\_quadratic\_programming\_matrices
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_quadratic_programming_matrices" name="generate_channel_quadratic_programming_matrices" signature="NoiseTransformer.generate_channel_quadratic_programming_matrices(channel, symbols)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_quadratic_programming_matrices" signature="NoiseTransformer.generate_channel_quadratic_programming_matrices(channel, symbols)">
     Generate matrices for quadratic program.
 
     **Parameters**
@@ -163,7 +163,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### get\_const\_matrix\_from\_channel
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.get_const_matrix_from_channel" name="get_const_matrix_from_channel" signature="static NoiseTransformer.get_const_matrix_from_channel(channel, symbols)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.get_const_matrix_from_channel" signature="NoiseTransformer.get_const_matrix_from_channel(channel, symbols)" modifiers="static">
     Extract the numeric constant matrix.
 
     **Parameters**
@@ -186,7 +186,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### get\_matrix\_from\_channel
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.get_matrix_from_channel" name="get_matrix_from_channel" signature="static NoiseTransformer.get_matrix_from_channel(channel, symbol)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.get_matrix_from_channel" signature="NoiseTransformer.get_matrix_from_channel(channel, symbol)" modifiers="static">
     Extract the numeric parameter matrix.
 
     **Parameters**
@@ -209,7 +209,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### operator\_circuit
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.operator_circuit" name="operator_circuit" signature="NoiseTransformer.operator_circuit(operator)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.operator_circuit" signature="NoiseTransformer.operator_circuit(operator)">
     Converts an operator representation to noise circuit.
 
     **Parameters**
@@ -227,7 +227,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### operator\_matrix
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.operator_matrix" name="operator_matrix" signature="NoiseTransformer.operator_matrix(operator)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.operator_matrix" signature="NoiseTransformer.operator_matrix(operator)">
     Converts an operator representation to Kraus matrix representation
 
     **Parameters**
@@ -245,7 +245,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### prepare\_channel\_operator\_list
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.prepare_channel_operator_list" name="prepare_channel_operator_list" signature="static NoiseTransformer.prepare_channel_operator_list(ops_list)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.prepare_channel_operator_list" signature="NoiseTransformer.prepare_channel_operator_list(ops_list)" modifiers="static">
     Prepares a list of channel operators.
 
     **Parameters**
@@ -263,7 +263,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### prepare\_honesty\_constraint
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.prepare_honesty_constraint" name="prepare_honesty_constraint" signature="NoiseTransformer.prepare_honesty_constraint(transform_channel_operators_list)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.prepare_honesty_constraint" signature="NoiseTransformer.prepare_honesty_constraint(transform_channel_operators_list)">
     Prepares the honesty constraint.
 
     **Parameters**
@@ -274,7 +274,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### solve\_quadratic\_program
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.solve_quadratic_program" name="solve_quadratic_program" signature="NoiseTransformer.solve_quadratic_program(P, q)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.solve_quadratic_program" signature="NoiseTransformer.solve_quadratic_program(P, q)">
     Solve the quadratic program optimization problem.
 
     This function solved the quadratic program to minimize the objective function f(x) = 1/2(x\*P\*x)+q\*x subject to the additional constraints Gx \<= h
@@ -296,7 +296,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### transform\_by\_given\_channel
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel" name="transform_by_given_channel" signature="NoiseTransformer.transform_by_given_channel(channel_matrices, const_channel_matrix)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel" signature="NoiseTransformer.transform_by_given_channel(channel_matrices, const_channel_matrix)">
     Transform by by quantum channels.
 
     This method creates objective function representing the Hilbert-Schmidt norm of the matrix (A-B) obtained as the difference of the input noise channel and the output channel we wish to determine.
@@ -319,7 +319,7 @@ python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 
   ### transform\_by\_operator\_list
 
-  <Function id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list" name="transform_by_operator_list" signature="NoiseTransformer.transform_by_operator_list(transform_channel_operators, noise_kraus_operators)">
+  <Function id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list" signature="NoiseTransformer.transform_by_operator_list(transform_channel_operators, noise_kraus_operators)">
     Transform input Kraus operators.
 
     Allows approximating a set of input Kraus operators as in terms of a different set of Kraus matrices.

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Schedule
 
 # qiskit.pulse.Schedule
 
-<Class id="qiskit.pulse.Schedule" github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/schedule.py" signature="Schedule(*schedules, name=None)">
+<Class id="qiskit.pulse.Schedule" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/schedule.py" signature="Schedule(*schedules, name=None)" modifiers="class">
   A quantum program *schedule* with exact time constraints for its instructions, operating over all input signal *channels* and supporting special syntaxes for building.
 
   Create an empty schedule.
@@ -22,7 +22,7 @@ python_api_name: qiskit.pulse.Schedule
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.pulse.Schedule.__init__" name="__init__" signature="__init__(*schedules, name=None)">
+  <Function id="qiskit.pulse.Schedule.__init__" signature="__init__(*schedules, name=None)">
     Create an empty schedule.
 
     **Parameters**
@@ -65,7 +65,7 @@ python_api_name: qiskit.pulse.Schedule
 
   ### append
 
-  <Function id="qiskit.pulse.Schedule.append" name="append" signature="append(schedule, name=None, inplace=False)">
+  <Function id="qiskit.pulse.Schedule.append" signature="append(schedule, name=None, inplace=False)">
     Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 $$
@@ -86,7 +86,7 @@ $$
 
   ### assign\_parameters
 
-  <Function id="qiskit.pulse.Schedule.assign_parameters" name="assign_parameters" signature="assign_parameters(value_dict)">
+  <Function id="qiskit.pulse.Schedule.assign_parameters" signature="assign_parameters(value_dict)">
     Assign the parameters in this schedule according to the input.
 
     **Parameters**
@@ -104,7 +104,7 @@ $$
 
   ### ch\_duration
 
-  <Function id="qiskit.pulse.Schedule.ch_duration" name="ch_duration" signature="ch_duration(*channels)">
+  <Function id="qiskit.pulse.Schedule.ch_duration" signature="ch_duration(*channels)">
     Return the time of the end of the last instruction over the supplied channels.
 
     **Parameters**
@@ -118,7 +118,7 @@ $$
 
   ### ch\_start\_time
 
-  <Function id="qiskit.pulse.Schedule.ch_start_time" name="ch_start_time" signature="ch_start_time(*channels)">
+  <Function id="qiskit.pulse.Schedule.ch_start_time" signature="ch_start_time(*channels)">
     Return the time of the start of the first instruction over the supplied channels.
 
     **Parameters**
@@ -132,7 +132,7 @@ $$
 
   ### ch\_stop\_time
 
-  <Function id="qiskit.pulse.Schedule.ch_stop_time" name="ch_stop_time" signature="ch_stop_time(*channels)">
+  <Function id="qiskit.pulse.Schedule.ch_stop_time" signature="ch_stop_time(*channels)">
     Return maximum start time over supplied channels.
 
     **Parameters**
@@ -146,17 +146,17 @@ $$
 
   ### channels
 
-  <Function id="qiskit.pulse.Schedule.channels" name="channels" signature="property channels">
+  <Attribute id="qiskit.pulse.Schedule.channels">
     Returns channels that this schedule uses.
 
     **Return type**
 
     `Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
-  </Function>
+  </Attribute>
 
   ### draw
 
-  <Function id="qiskit.pulse.Schedule.draw" name="draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=False, plot_range=None, interactive=False, table=False, label=False, framechange=True, channels=None, show_framechange_channels=True)">
+  <Function id="qiskit.pulse.Schedule.draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=False, plot_range=None, interactive=False, table=False, label=False, framechange=True, channels=None, show_framechange_channels=True)">
     Plot the schedule.
 
     **Parameters**
@@ -198,17 +198,17 @@ $$
 
   ### duration
 
-  <Function id="qiskit.pulse.Schedule.duration" name="duration" signature="property duration">
+  <Attribute id="qiskit.pulse.Schedule.duration">
     Duration of this schedule component.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### exclude
 
-  <Function id="qiskit.pulse.Schedule.exclude" name="exclude" signature="exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)">
+  <Function id="qiskit.pulse.Schedule.exclude" signature="exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)">
     Return a Schedule with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of `self.filter`, so that:
 
     ```python
@@ -230,7 +230,7 @@ $$
 
   ### filter
 
-  <Function id="qiskit.pulse.Schedule.filter" name="filter" signature="filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)">
+  <Function id="qiskit.pulse.Schedule.filter" signature="filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)">
     Return a new `Schedule` with only the instructions from this `Schedule` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
 
     If no arguments are provided, `self` is returned.
@@ -250,7 +250,7 @@ $$
 
   ### flatten
 
-  <Function id="qiskit.pulse.Schedule.flatten" name="flatten" signature="flatten()">
+  <Function id="qiskit.pulse.Schedule.flatten" signature="flatten()">
     Return a new schedule which is the flattened schedule contained all `instructions`.
 
     **Return type**
@@ -260,7 +260,7 @@ $$
 
   ### insert
 
-  <Function id="qiskit.pulse.Schedule.insert" name="insert" signature="insert(start_time, schedule, name=None, inplace=False)">
+  <Function id="qiskit.pulse.Schedule.insert" signature="insert(start_time, schedule, name=None, inplace=False)">
     Return a new schedule with `schedule` inserted into `self` at `start_time`.
 
     **Parameters**
@@ -277,27 +277,27 @@ $$
 
   ### instructions
 
-  <Function id="qiskit.pulse.Schedule.instructions" name="instructions" signature="property instructions">
+  <Attribute id="qiskit.pulse.Schedule.instructions">
     Get the time-ordered instructions from self.
 
     **ReturnType:**
 
     Tuple\[Tuple\[int, Instruction], …]
-  </Function>
+  </Attribute>
 
   ### name
 
-  <Function id="qiskit.pulse.Schedule.name" name="name" signature="property name">
+  <Attribute id="qiskit.pulse.Schedule.name">
     Name of ScheduleComponent.
 
     **Return type**
 
     `str`
-  </Function>
+  </Attribute>
 
   ### replace
 
-  <Function id="qiskit.pulse.Schedule.replace" name="replace" signature="replace(old, new, inplace=False)">
+  <Function id="qiskit.pulse.Schedule.replace" signature="replace(old, new, inplace=False)">
     Return a schedule with the `old` instruction replaced with a `new` instruction.
 
     The replacment matching is based on an instruction equality check.
@@ -356,7 +356,7 @@ $$
 
   ### shift
 
-  <Function id="qiskit.pulse.Schedule.shift" name="shift" signature="shift(time, name=None, inplace=False)">
+  <Function id="qiskit.pulse.Schedule.shift" signature="shift(time, name=None, inplace=False)">
     Return a schedule shifted forward by `time`.
 
     **Parameters**
@@ -372,32 +372,32 @@ $$
 
   ### start\_time
 
-  <Function id="qiskit.pulse.Schedule.start_time" name="start_time" signature="property start_time">
+  <Attribute id="qiskit.pulse.Schedule.start_time">
     Starting time of this schedule component.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### stop\_time
 
-  <Function id="qiskit.pulse.Schedule.stop_time" name="stop_time" signature="property stop_time">
+  <Attribute id="qiskit.pulse.Schedule.stop_time">
     Stopping time of this schedule component.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### timeslots
 
-  <Function id="qiskit.pulse.Schedule.timeslots" name="timeslots" signature="property timeslots">
+  <Attribute id="qiskit.pulse.Schedule.timeslots">
     Time keeping attribute.
 
     **Return type**
 
     `Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
-  </Function>
+  </Attribute>
 </Class>
 

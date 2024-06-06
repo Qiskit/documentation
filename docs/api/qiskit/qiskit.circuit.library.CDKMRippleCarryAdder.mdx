@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
 # CDKMRippleCarryAdder
 
-<Class id="qiskit.circuit.library.CDKMRippleCarryAdder" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py" signature="qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')">
+<Class id="qiskit.circuit.library.CDKMRippleCarryAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/arithmetic/adders/cdkm_ripple_carry_adder.py#L20-L159" signature="qiskit.circuit.library.CDKMRippleCarryAdder(num_state_qubits, kind='full', name='CDKMRippleCarryAdder')" modifiers="class">
   Bases: `Adder`
 
   A ripple-carry circuit to perform in-place addition on two qubit registers.
@@ -81,13 +81,13 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -95,14 +95,14 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.data" name="data">
-    Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.data">
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -115,17 +115,17 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.instances" name="instances" attributeValue="= 166" />
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.instances" attributeValue="206" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -135,39 +135,63 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_ancillas">
     Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.CDKMRippleCarryAdder.num_input_vars "qiskit.circuit.library.CDKMRippleCarryAdder.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.CDKMRippleCarryAdder.num_captured_vars "qiskit.circuit.library.CDKMRippleCarryAdder.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_parameters" name="num_parameters">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_parameters">
     The number of parameter objects in the circuit.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_qubits">
     Return number of qubits.
   </Attribute>
 
   ### num\_state\_qubits
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_state_qubits" name="num_state_qubits">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_state_qubits">
     The number of state qubits, i.e. the number of bits in each input register.
 
     **Returns**
@@ -175,9 +199,17 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
     The number of state qubits.
   </Attribute>
 
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
+
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -193,7 +225,7 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.parameters" name="parameters">
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.parameters">
     The parameters defined in the circuit.
 
     This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
@@ -251,12 +283,42 @@ python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.prefix" attributeValue="'circuit'" />
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.CDKMRippleCarryAdder.unit "qiskit.circuit.library.CDKMRippleCarryAdder.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.CDKMRippleCarryAdder.unit">
+    The unit that [`duration`](#qiskit.circuit.library.CDKMRippleCarryAdder.duration "qiskit.circuit.library.CDKMRippleCarryAdder.duration") is specified in.
   </Attribute>
 </Class>
 

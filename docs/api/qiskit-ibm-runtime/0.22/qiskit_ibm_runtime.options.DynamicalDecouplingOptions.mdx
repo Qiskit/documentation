@@ -1,0 +1,55 @@
+---
+title: DynamicalDecouplingOptions
+description: API reference for qiskit_ibm_runtime.options.DynamicalDecouplingOptions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
+---
+
+# DynamicalDecouplingOptions
+
+<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.22/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L50" signature="DynamicalDecouplingOptions(*args, **kwargs)" modifiers="class">
+  Options for dynamical decoupling (DD).
+
+  **Parameters**
+
+  *   **enable** – Whether to enable DD as specified by the other options in this class. Default: False.
+
+  *   **sequence\_type** –
+
+      Which dynamical decoupling sequence to use. Default: “XX”.
+
+      *   `"XX"`: use the sequence `tau/2 - (+X) - tau - (+X) - tau/2`
+      *   `"XpXm"`: use the sequence `tau/2 - (+X) - tau - (-X) - tau/2`
+      *   `"XY4"`: : use the sequence `tau/2 - (+X) - tau - (+Y) - tau (-X) - tau - (-Y) - tau/2`
+
+  *   **extra\_slack\_distribution** –
+
+      Where to put extra timing delays due to rounding issues. Rounding issues arise because the discrete time step `dt` of the system cannot be divided. This option takes following values. Default: “middle”.
+
+      *   `"middle"`: Put the extra slack to the interval at the middle of the sequence.
+      *   `"edges"`: Divide the extra slack as evenly as possible into intervals at beginning and end of the sequence.
+
+  *   **scheduling\_method** – Whether to schedule gates as soon as (“asap”) or as late as (“alap”) possible. Default: “alap”.
+
+  ## Attributes
+
+  ### enable
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.enable" attributeTypeHint="UnsetType | bool" attributeValue="Unset" />
+
+  ### extra\_slack\_distribution
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.extra_slack_distribution" attributeTypeHint="UnsetType | Literal['middle', 'edges']" attributeValue="Unset" />
+
+  ### scheduling\_method
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.scheduling_method" attributeTypeHint="UnsetType | Literal['alap', 'asap']" attributeValue="Unset" />
+
+  ### sequence\_type
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.sequence_type" attributeTypeHint="UnsetType | Literal['XX', 'XpXm', 'XY4']" attributeValue="Unset" />
+
+  ## Methods
+</Class>
+

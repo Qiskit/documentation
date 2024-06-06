@@ -1,0 +1,340 @@
+---
+title: IBMProvider
+description: API reference for qiskit_ibm_provider.IBMProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_provider.IBMProvider
+---
+
+# IBMProvider
+
+<Class id="qiskit_ibm_provider.IBMProvider" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L46-L671" signature="IBMProvider(token=None, url=None, name=None, instance=None, proxies=None, verify=None)" modifiers="class">
+  Provides access to the IBM Quantum services available to an account.
+
+  Authenticate against IBM Quantum for use from saved credentials or during session.
+
+  Credentials can be saved to disk by calling the save\_account() method:
+
+  ```python
+  from qiskit_ibm_provider import IBMProvider
+  IBMProvider.save_account(token=<INSERT_IBM_QUANTUM_TOKEN>)
+  ```
+
+  You can set the default project using the hub, group, and project keywords in save\_account(). Once credentials are saved you can simply instantiate the provider like below to load the saved account and default project:
+
+  ```python
+  from qiskit_ibm_provider import IBMProvider
+  provider = IBMProvider()
+  ```
+
+  Instead of saving credentials to disk, you can also set the environment variables QISKIT\_IBM\_TOKEN, QISKIT\_IBM\_URL and QISKIT\_IBM\_INSTANCE and then instantiate the provider as below:
+
+  ```python
+  from qiskit_ibm_provider import IBMProvider
+  provider = IBMProvider()
+  ```
+
+  You can also enable an account just for the current session by instantiating the provider with the API token:
+
+  ```python
+  from qiskit_ibm_provider import IBMProvider
+  provider = IBMProvider(token=<INSERT_IBM_QUANTUM_TOKEN>)
+  ```
+
+  token is the only required attribute that needs to be set using one of the above methods. If no url is set, it defaults to ‘[https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api)’.
+
+  <Admonition title="Note" type="note">
+    The hub/group/project is selected based on the below selection order, in decreasing order of priority.
+
+    *   The hub/group/project you explicity specify when calling a service. Ex: provider.get\_backend(), etc.
+    *   The hub/group/project required for the service.
+    *   The default hub/group/project you set using save\_account().
+    *   A premium hub/group/project in your account.
+    *   An open access hub/group/project.
+  </Admonition>
+
+  The IBMProvider offers the [`IBMBackendService`](qiskit_ibm_provider.IBMBackendService "qiskit_ibm_provider.ibm_backend_service.IBMBackendService") which gives access to the IBM Quantum devices and simulators.
+
+  You can obtain an instance of the service as an attribute of the `IBMProvider` instance. For example:
+
+  ```python
+  backend_service = provider.backend
+  ```
+
+  Since [`IBMBackendService`](qiskit_ibm_provider.IBMBackendService "qiskit_ibm_provider.ibm_backend_service.IBMBackendService") is the main service, some of the backend-related methods are available through this class for convenience.
+
+  The [`backends()`](#qiskit_ibm_provider.IBMProvider.backends "qiskit_ibm_provider.IBMProvider.backends") method returns all the backends available to this account:
+
+  ```python
+  backends = provider.backends()
+  ```
+
+  The [`get_backend()`](#qiskit_ibm_provider.IBMProvider.get_backend "qiskit_ibm_provider.IBMProvider.get_backend") method returns a backend that matches the filters passed as argument. An example of retrieving a backend that matches a specified name:
+
+  ```python
+  simulator_backend = provider.get_backend('ibmq_qasm_simulator')
+  ```
+
+  IBMBackend’s are uniquely identified by their name. If you invoke [`get_backend()`](#qiskit_ibm_provider.IBMProvider.get_backend "qiskit_ibm_provider.IBMProvider.get_backend") twice, you will get the same IBMBackend instance, and any previously updated options will be reset to the default values.
+
+  It is also possible to use the `backend` attribute to reference a backend. As an example, to retrieve the same backend from the example above:
+
+  ```python
+  simulator_backend = provider.backend.ibmq_qasm_simulator
+  ```
+
+  <Admonition title="Note" type="note">
+    The `backend` attribute can be used to autocomplete the names of backends available to this account. To autocomplete, press `tab` after `provider.backend.`. This feature may not be available if an error occurs during backend discovery. Also note that this feature is only available in interactive sessions, such as in Jupyter Notebook and the Python interpreter.
+  </Admonition>
+
+  IBMProvider constructor
+
+  **Parameters**
+
+  *   **token** (`Optional`\[`str`]) – IBM Quantum API token.
+  *   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api).
+  *   **name** (`Optional`\[`str`]) – Name of the account to load.
+  *   **instance** (`Optional`\[`str`]) – Provider in the hub/group/project format.
+  *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+  *   **verify** (`Optional`\[`bool`]) – Whether to verify the server’s TLS certificate.
+
+  **Returns**
+
+  An instance of IBMProvider
+
+  **Raises**
+
+  **IBMInputValueError** – If an input is invalid.
+
+  ## Attributes
+
+  ### backend
+
+  <Attribute id="qiskit_ibm_provider.IBMProvider.backend">
+    Return the backend service.
+
+    **Return type**
+
+    [`IBMBackendService`](qiskit_ibm_provider.IBMBackendService "qiskit_ibm_provider.ibm_backend_service.IBMBackendService")
+
+    **Returns**
+
+    The backend service instance.
+  </Attribute>
+
+  ### version
+
+  <Attribute id="qiskit_ibm_provider.IBMProvider.version" attributeValue="1" />
+
+  ## Methods
+
+  ### active\_account
+
+  <Function id="qiskit_ibm_provider.IBMProvider.active_account" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L426-L435" signature="active_account()">
+    Return the IBM Quantum account currently in use for the session.
+
+    **Return type**
+
+    `Optional`\[`Dict`\[`str`, `str`]]
+
+    **Returns**
+
+    A dictionary with information about the account currently in the session.
+  </Function>
+
+  ### backends
+
+  <Function id="qiskit_ibm_provider.IBMProvider.backends" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L523-L567" signature="backends(name=None, filters=None, min_num_qubits=None, instance=None, **kwargs)">
+    Return all backends accessible via this account, subject to optional filtering.
+
+    **Parameters**
+
+    *   **name** (`Optional`\[`str`]) – Backend name to filter by.
+
+    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend must have.
+
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]], `bool`]]) –
+
+        More complex filters, such as lambda functions. For example:
+
+        ```python
+        IBMProvider.backends(filters=lambda b: b.max_shots > 50000)
+        IBMProvider.backends(filters=lambda x: ("rz" in x.basis_gates )
+        ```
+
+    *   **\*\*kwargs** –
+
+        Simple filters that require a specific value for an attribute in backend configuration, backend status, or provider credentials. Examples:
+
+        ```python
+        # Get the operational real backends
+        IBMProvider.backends(simulator=False, operational=True)
+        # Get the backends with at least 127 qubits
+        IBMProvider.backends(min_num_qubits=127)
+        # Get the backends that support OpenPulse
+        IBMProvider.backends(open_pulse=True)
+        ```
+
+        For the full list of backend attributes, see the IBMBackend class documentation \<[api/qiskit/providers\_models](/api/qiskit/providers_models)>
+
+    **Return type**
+
+    `List`\[[`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.ibm_backend.IBMBackend")]
+
+    **Returns**
+
+    The list of available backends that match the filter.
+  </Function>
+
+  ### delete\_account
+
+  <Function id="qiskit_ibm_provider.IBMProvider.delete_account" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L445-L456" signature="delete_account(name=None)" modifiers="static">
+    Delete a saved account from disk.
+
+    **Parameters**
+
+    **name** (`Optional`\[`str`]) – Name of the saved account to delete.
+
+    **Return type**
+
+    `bool`
+
+    **Returns**
+
+    True if the account was deleted. False if no account was found.
+  </Function>
+
+  ### get\_backend
+
+  <Function id="qiskit_ibm_provider.IBMProvider.get_backend" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L637-L668" signature="get_backend(name=None, instance=None, **kwargs)">
+    Return a single backend matching the specified filtering.
+
+    **Parameters**
+
+    *   **name** (*str*) – Name of the backend.
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+    *   **\*\*kwargs** – Dict used for filtering.
+
+    **Returns**
+
+    a backend matching the filtering.
+
+    **Return type**
+
+    Backend
+
+    **Raises**
+
+    *   **QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
+    *   [**IBMProviderValueError**](qiskit_ibm_provider.IBMProviderValueError "qiskit_ibm_provider.IBMProviderValueError") – If only one or two parameters from hub, group, project are specified.
+  </Function>
+
+  ### instances
+
+  <Function id="qiskit_ibm_provider.IBMProvider.instances" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L437-L443" signature="instances()">
+    Return the IBM Quantum instances list currently in use for the session.
+
+    **Return type**
+
+    `List`\[`str`]
+
+    **Returns**
+
+    A list with instances currently in the session.
+  </Function>
+
+  ### jobs
+
+  <Function id="qiskit_ibm_provider.IBMProvider.jobs" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L569-L624" signature="jobs(limit=10, skip=0, backend_name=None, status=None, start_datetime=None, end_datetime=None, job_tags=None, descending=True, instance=None, legacy=False)">
+    Return a list of jobs, subject to optional filtering.
+
+    Retrieve jobs that match the given filters and paginate the results if desired. Note that the server has a limit for the number of jobs returned in a single call. As a result, this function might involve making several calls to the server.
+
+    **Parameters**
+
+    *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
+    *   **skip** (`int`) – Starting index for the job retrieval.
+    *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
+    *   **status** (`Optional`\[`Literal`\[‘pending’, ‘completed’]]) – Filter jobs with either “pending” or “completed” status.
+    *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
+    *   **end\_datetime** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
+    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
+    *   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
+    *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
+    *   **legacy** (`bool`) – If `True`, only retrieve jobs run from the deprecated `qiskit-ibmq-provider`.
+    *   **Otherwise** –
+    *   **qiskit-ibm-provider.** (*only retrieve jobs run from*) –
+
+    **Return type**
+
+    `List`\[`IBMJob`]
+
+    **Returns**
+
+    A list of `IBMJob` instances.
+  </Function>
+
+  ### retrieve\_job
+
+  <Function id="qiskit_ibm_provider.IBMProvider.retrieve_job" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L626-L635" signature="retrieve_job(job_id)">
+    Return a single job.
+
+    **Parameters**
+
+    **job\_id** (`str`) – The ID of the job to retrieve.
+
+    **Return type**
+
+    `IBMJob`
+
+    **Returns**
+
+    The job with the given id.
+  </Function>
+
+  ### save\_account
+
+  <Function id="qiskit_ibm_provider.IBMProvider.save_account" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L458-L494" signature="save_account(token=None, url=None, instance=None, name=None, proxies=None, verify=None, overwrite=False)" modifiers="static">
+    Save the account to disk for future use.
+
+    **Parameters**
+
+    *   **token** (`Optional`\[`str`]) – IBM Quantum API token.
+    *   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api)
+    *   **instance** (`Optional`\[`str`]) – The hub/group/project.
+    *   **name** (`Optional`\[`str`]) – Name of the account to save.
+    *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+    *   **verify** (`Optional`\[`bool`]) – Verify the server’s TLS certificate.
+    *   **overwrite** (`Optional`\[`bool`]) – `True` if the existing account is to be overwritten.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### saved\_accounts
+
+  <Function id="qiskit_ibm_provider.IBMProvider.saved_accounts" github="https://github.com/Qiskit/qiskit-ibm-provider/tree/stable/0.10/qiskit_ibm_provider/ibm_provider.py#L496-L521" signature="saved_accounts(default=None, name=None)" modifiers="static">
+    List the accounts saved on disk.
+
+    **Parameters**
+
+    *   **default** (`Optional`\[`bool`]) – If set to True, only default accounts are returned.
+    *   **name** (`Optional`\[`str`]) – If set, only accounts with the given name are returned.
+
+    **Return type**
+
+    `dict`
+
+    **Returns**
+
+    A dictionary with information about the accounts saved on disk.
+
+    **Raises**
+
+    **ValueError** – If an invalid account is found on disk.
+  </Function>
+</Class>
+

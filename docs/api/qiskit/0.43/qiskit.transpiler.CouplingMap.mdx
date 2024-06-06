@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 # CouplingMap
 
-<Class id="qiskit.transpiler.CouplingMap" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/coupling.py" signature="CouplingMap(couplinglist=None, description=None)">
+<Class id="qiskit.transpiler.CouplingMap" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/coupling.py" signature="CouplingMap(couplinglist=None, description=None)" modifiers="class">
   Bases: `object`
 
   Directed graph specifying fixed coupling.
@@ -28,7 +28,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### add\_edge
 
-  <Function id="qiskit.transpiler.CouplingMap.add_edge" name="add_edge" signature="CouplingMap.add_edge(src, dst)">
+  <Function id="qiskit.transpiler.CouplingMap.add_edge" signature="CouplingMap.add_edge(src, dst)">
     Add directed edge to coupling graph.
 
     src (int): source physical qubit dst (int): destination physical qubit
@@ -38,7 +38,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### add\_physical\_qubit
 
-  <Function id="qiskit.transpiler.CouplingMap.add_physical_qubit" name="add_physical_qubit" signature="CouplingMap.add_physical_qubit(physical_qubit)">
+  <Function id="qiskit.transpiler.CouplingMap.add_physical_qubit" signature="CouplingMap.add_physical_qubit(physical_qubit)">
     Add a physical qubit to the coupling graph as a node.
 
     physical\_qubit (int): An integer representing a physical qubit.
@@ -52,7 +52,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### compute\_distance\_matrix
 
-  <Function id="qiskit.transpiler.CouplingMap.compute_distance_matrix" name="compute_distance_matrix" signature="CouplingMap.compute_distance_matrix()">
+  <Function id="qiskit.transpiler.CouplingMap.compute_distance_matrix" signature="CouplingMap.compute_distance_matrix()">
     Compute the full distance matrix on pairs of nodes.
 
     The distance map self.\_dist\_matrix is computed from the graph using all\_pairs\_shortest\_path\_length. This is normally handled internally by the [`distance_matrix`](qiskit.transpiler.CouplingMap#distance_matrix "qiskit.transpiler.CouplingMap.distance_matrix") attribute or the [`distance()`](qiskit.transpiler.CouplingMap#distance "qiskit.transpiler.CouplingMap.distance") method but can be called if you’re accessing the distance matrix outside of those or want to pre-generate it.
@@ -62,7 +62,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### connected\_components
 
-  <Function id="qiskit.transpiler.CouplingMap.connected_components" name="connected_components" signature="CouplingMap.connected_components()">
+  <Function id="qiskit.transpiler.CouplingMap.connected_components" signature="CouplingMap.connected_components()">
     Separate a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") into subgraph [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") for each connected component.
 
     The connected components of a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") are the subgraphs that are not part of any larger subgraph. For example, if you had a coupling map that looked like:
@@ -120,7 +120,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### distance
 
-  <Function id="qiskit.transpiler.CouplingMap.distance" name="distance" signature="CouplingMap.distance(physical_qubit1, physical_qubit2)">
+  <Function id="qiskit.transpiler.CouplingMap.distance" signature="CouplingMap.distance(physical_qubit1, physical_qubit2)">
     Returns the undirected distance between physical\_qubit1 and physical\_qubit2.
 
     **Parameters**
@@ -145,7 +145,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### draw
 
-  <Function id="qiskit.transpiler.CouplingMap.draw" name="draw" signature="CouplingMap.draw()">
+  <Function id="qiskit.transpiler.CouplingMap.draw" signature="CouplingMap.draw()">
     Draws the coupling map.
 
     This function calls the [`graphviz_draw()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.13.1)") function from the `rustworkx` package to draw the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
@@ -163,7 +163,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### from\_full
 
-  <Function id="qiskit.transpiler.CouplingMap.from_full" name="from_full" signature="classmethod CouplingMap.from_full(num_qubits, bidirectional=True)">
+  <Function id="qiskit.transpiler.CouplingMap.from_full" signature="CouplingMap.from_full(num_qubits, bidirectional=True)" modifiers="classmethod">
     Return a fully connected coupling map on n qubits.
 
     **Return type**
@@ -175,7 +175,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### from\_grid
 
-  <Function id="qiskit.transpiler.CouplingMap.from_grid" name="from_grid" signature="classmethod CouplingMap.from_grid(num_rows, num_columns, bidirectional=True)">
+  <Function id="qiskit.transpiler.CouplingMap.from_grid" signature="CouplingMap.from_grid(num_rows, num_columns, bidirectional=True)" modifiers="classmethod">
     Return a coupling map of qubits connected on a grid of num\_rows x num\_columns.
 
     **Return type**
@@ -187,7 +187,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### from\_heavy\_hex
 
-  <Function id="qiskit.transpiler.CouplingMap.from_heavy_hex" name="from_heavy_hex" signature="classmethod CouplingMap.from_heavy_hex(distance, bidirectional=True)">
+  <Function id="qiskit.transpiler.CouplingMap.from_heavy_hex" signature="CouplingMap.from_heavy_hex(distance, bidirectional=True)" modifiers="classmethod">
     Return a heavy hexagon graph coupling map.
 
     A heavy hexagon graph is described in:
@@ -212,7 +212,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### from\_heavy\_square
 
-  <Function id="qiskit.transpiler.CouplingMap.from_heavy_square" name="from_heavy_square" signature="classmethod CouplingMap.from_heavy_square(distance, bidirectional=True)">
+  <Function id="qiskit.transpiler.CouplingMap.from_heavy_square" signature="CouplingMap.from_heavy_square(distance, bidirectional=True)" modifiers="classmethod">
     Return a heavy square graph coupling map.
 
     A heavy square graph is described in:
@@ -237,7 +237,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### from\_hexagonal\_lattice
 
-  <Function id="qiskit.transpiler.CouplingMap.from_hexagonal_lattice" name="from_hexagonal_lattice" signature="classmethod CouplingMap.from_hexagonal_lattice(rows, cols, bidirectional=True)">
+  <Function id="qiskit.transpiler.CouplingMap.from_hexagonal_lattice" signature="CouplingMap.from_hexagonal_lattice(rows, cols, bidirectional=True)" modifiers="classmethod">
     Return a hexagonal lattice graph coupling map.
 
     **Parameters**
@@ -259,7 +259,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### from\_line
 
-  <Function id="qiskit.transpiler.CouplingMap.from_line" name="from_line" signature="classmethod CouplingMap.from_line(num_qubits, bidirectional=True)">
+  <Function id="qiskit.transpiler.CouplingMap.from_line" signature="CouplingMap.from_line(num_qubits, bidirectional=True)" modifiers="classmethod">
     Return a coupling map of n qubits connected in a line.
 
     **Return type**
@@ -271,7 +271,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### from\_ring
 
-  <Function id="qiskit.transpiler.CouplingMap.from_ring" name="from_ring" signature="classmethod CouplingMap.from_ring(num_qubits, bidirectional=True)">
+  <Function id="qiskit.transpiler.CouplingMap.from_ring" signature="CouplingMap.from_ring(num_qubits, bidirectional=True)" modifiers="classmethod">
     Return a coupling map of n qubits connected to each of their neighbors in a ring.
 
     **Return type**
@@ -283,7 +283,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### get\_edges
 
-  <Function id="qiskit.transpiler.CouplingMap.get_edges" name="get_edges" signature="CouplingMap.get_edges()">
+  <Function id="qiskit.transpiler.CouplingMap.get_edges" signature="CouplingMap.get_edges()">
     Gets the list of edges in the coupling graph.
 
     **Returns**
@@ -299,7 +299,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### is\_connected
 
-  <Function id="qiskit.transpiler.CouplingMap.is_connected" name="is_connected" signature="CouplingMap.is_connected()">
+  <Function id="qiskit.transpiler.CouplingMap.is_connected" signature="CouplingMap.is_connected()">
     Test if the graph is connected.
 
     Return True if connected, False otherwise
@@ -309,7 +309,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### largest\_connected\_component
 
-  <Function id="qiskit.transpiler.CouplingMap.largest_connected_component" name="largest_connected_component" signature="CouplingMap.largest_connected_component()">
+  <Function id="qiskit.transpiler.CouplingMap.largest_connected_component" signature="CouplingMap.largest_connected_component()">
     Return a set of qubits in the largest connected component.
   </Function>
 
@@ -317,7 +317,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### make\_symmetric
 
-  <Function id="qiskit.transpiler.CouplingMap.make_symmetric" name="make_symmetric" signature="CouplingMap.make_symmetric()">
+  <Function id="qiskit.transpiler.CouplingMap.make_symmetric" signature="CouplingMap.make_symmetric()">
     Convert uni-directional edges into bi-directional.
   </Function>
 
@@ -325,7 +325,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### neighbors
 
-  <Function id="qiskit.transpiler.CouplingMap.neighbors" name="neighbors" signature="CouplingMap.neighbors(physical_qubit)">
+  <Function id="qiskit.transpiler.CouplingMap.neighbors" signature="CouplingMap.neighbors(physical_qubit)">
     Return the nearest neighbors of a physical qubit.
 
     Directionality matters, i.e. a neighbor must be reachable by going one hop in the direction of an edge.
@@ -335,7 +335,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### reduce
 
-  <Function id="qiskit.transpiler.CouplingMap.reduce" name="reduce" signature="CouplingMap.reduce(mapping)">
+  <Function id="qiskit.transpiler.CouplingMap.reduce" signature="CouplingMap.reduce(mapping)">
     Returns a reduced coupling map that corresponds to the subgraph of qubits selected in the mapping.
 
     **Parameters**
@@ -359,7 +359,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### shortest\_undirected\_path
 
-  <Function id="qiskit.transpiler.CouplingMap.shortest_undirected_path" name="shortest_undirected_path" signature="CouplingMap.shortest_undirected_path(physical_qubit1, physical_qubit2)">
+  <Function id="qiskit.transpiler.CouplingMap.shortest_undirected_path" signature="CouplingMap.shortest_undirected_path(physical_qubit1, physical_qubit2)">
     Returns the shortest undirected path between physical\_qubit1 and physical\_qubit2.
 
     **Parameters**
@@ -384,7 +384,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### size
 
-  <Function id="qiskit.transpiler.CouplingMap.size" name="size" signature="CouplingMap.size()">
+  <Function id="qiskit.transpiler.CouplingMap.size" signature="CouplingMap.size()">
     Return the number of physical qubits in this graph.
   </Function>
 
@@ -392,7 +392,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### subgraph
 
-  <Function id="qiskit.transpiler.CouplingMap.subgraph" name="subgraph" signature="CouplingMap.subgraph(nodelist)">
+  <Function id="qiskit.transpiler.CouplingMap.subgraph" signature="CouplingMap.subgraph(nodelist)">
     Return a CouplingMap object for a subgraph of self.
 
     nodelist (list): list of integer node labels
@@ -406,15 +406,15 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### description
 
-  <Attribute id="qiskit.transpiler.CouplingMap.description" name="description" />
+  <Attribute id="qiskit.transpiler.CouplingMap.description" />
 
   ### graph
 
-  <Attribute id="qiskit.transpiler.CouplingMap.graph" name="graph" />
+  <Attribute id="qiskit.transpiler.CouplingMap.graph" />
 
   ### distance\_matrix
 
-  <Attribute id="qiskit.transpiler.CouplingMap.distance_matrix" name="distance_matrix">
+  <Attribute id="qiskit.transpiler.CouplingMap.distance_matrix">
     Return the distance matrix for the coupling map.
 
     For any qubits where there isn’t a path available between them the value in this position of the distance matrix will be `math.inf`.
@@ -422,7 +422,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### is\_symmetric
 
-  <Attribute id="qiskit.transpiler.CouplingMap.is_symmetric" name="is_symmetric">
+  <Attribute id="qiskit.transpiler.CouplingMap.is_symmetric">
     Test if the graph is symmetric.
 
     Return True if symmetric, False otherwise
@@ -430,7 +430,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
   ### physical\_qubits
 
-  <Attribute id="qiskit.transpiler.CouplingMap.physical_qubits" name="physical_qubits">
+  <Attribute id="qiskit.transpiler.CouplingMap.physical_qubits">
     Returns a sorted list of physical\_qubits
   </Attribute>
 </Class>

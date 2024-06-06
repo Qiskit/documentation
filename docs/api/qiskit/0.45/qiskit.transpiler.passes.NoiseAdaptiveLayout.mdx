@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
 # NoiseAdaptiveLayout
 
-<Class id="qiskit.transpiler.passes.NoiseAdaptiveLayout" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/layout/noise_adaptive_layout.py" signature="qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)">
+<Class id="qiskit.transpiler.passes.NoiseAdaptiveLayout" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/layout/noise_adaptive_layout.py" signature="qiskit.transpiler.passes.NoiseAdaptiveLayout(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Choose a noise-adaptive Layout based on current calibration data for the backend.
@@ -17,35 +17,19 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
   >
   > The pass implements the qubit mapping method from: Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers Prakash Murali, Jonathan M. Baker, Ali Javadi-Abhari, Frederic T. Chong, Margaret R. Martonosi ASPLOS 2019 (arXiv:1901.11054).
 
-  <Function signature="Ordering of edges" />
-
-  <Function signature="Map qubits edge-by-edge in the order of decreasing frequency of occurrence in the program dag." />
+  <Function signature="Ordering of edges">
+    Map qubits edge-by-edge in the order of decreasing frequency of occurrence in the program dag.
+  </Function>
 
   ### Initialization
 
-  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.Initialization" name="Initialization" signature="Initialization()" />
-
-  <Function signature="If an edge exists with both endpoints unmapped," />
-
-  <Function signature="pick the best available hardware cx to execute this edge." />
-
-  <Function signature="Iterative step" />
-
-  <Function signature="When an edge exists with one endpoint unmapped," />
-
-  <Function signature="map that endpoint to a location which allows" />
-
-  <Function signature="maximum reliability for CNOTs with previously mapped qubits." />
-
-  <Function signature="In the end if there are unmapped qubits (which don't" />
-
-  <Function signature="participate in any CNOT), map them to any available" />
-
-  <Function signature="hardware qubit." />
+  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.Initialization" signature="Initialization()">
+    If an edge exists with both endpoints unmapped, pick the best available hardware cx to execute this edge. Iterative step: When an edge exists with one endpoint unmapped, map that endpoint to a location which allows maximum reliability for CNOTs with previously mapped qubits. In the end if there are unmapped qubits (which don't participate in any CNOT), map them to any available hardware qubit.
+  </Function>
 
   ### Notes
 
-  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.Notes" name="Notes" signature="Notes()">
+  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.Notes" signature="Notes()">
     even though a layout is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in property\_set.
   </Function>
 
@@ -64,7 +48,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
   ### is\_analysis\_pass
 
-  <Attribute id="qiskit.transpiler.passes.NoiseAdaptiveLayout.is_analysis_pass" name="is_analysis_pass">
+  <Attribute id="qiskit.transpiler.passes.NoiseAdaptiveLayout.is_analysis_pass">
     Check if the pass is an analysis pass.
 
     If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
@@ -72,7 +56,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
   ### is\_transformation\_pass
 
-  <Attribute id="qiskit.transpiler.passes.NoiseAdaptiveLayout.is_transformation_pass" name="is_transformation_pass">
+  <Attribute id="qiskit.transpiler.passes.NoiseAdaptiveLayout.is_transformation_pass">
     Check if the pass is a transformation pass.
 
     If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
@@ -82,7 +66,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.execute" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -102,7 +86,7 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.name" name="name" signature="name()">
+  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.name" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -112,13 +96,13 @@ python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.run" name="run" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.run" signature="run(dag)">
     Run the NoiseAdaptiveLayout pass on dag.
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.update_status" name="update_status" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.NoiseAdaptiveLayout.update_status" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

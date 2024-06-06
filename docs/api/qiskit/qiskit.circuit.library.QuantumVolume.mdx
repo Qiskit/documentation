@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
 # QuantumVolume
 
-<Class id="qiskit.circuit.library.QuantumVolume" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/quantum_volume.py" signature="qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)">
+<Class id="qiskit.circuit.library.QuantumVolume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/quantum_volume.py#L22-L115" signature="qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True, *, flatten=False)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   A quantum volume model circuit.
@@ -37,18 +37,19 @@ python_api_name: qiskit.circuit.library.QuantumVolume
   *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – layers of SU(4) operations in model circuit.
   *   **seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Random number generator or generator seed.
   *   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use classical permutations at every layer, rather than quantum.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False` (the default), construct a circuit that contains a single instruction, which in turn has the actual volume structure. If `True`, construct the volume structure directly.
 
   ## Attributes
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.QuantumVolume.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -56,14 +57,14 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.QuantumVolume.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.data" name="data">
-    Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.QuantumVolume.data">
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -76,17 +77,17 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.QuantumVolume.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.instances" name="instances" attributeValue="= 281" />
+  <Attribute id="qiskit.circuit.library.QuantumVolume.instances" attributeValue="162" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -96,39 +97,71 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.QuantumVolume.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_ancillas">
     Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.QuantumVolume.num_input_vars "qiskit.circuit.library.QuantumVolume.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.QuantumVolume.num_captured_vars "qiskit.circuit.library.QuantumVolume.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.num_parameters" name="num_parameters">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_parameters">
     The number of parameter objects in the circuit.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_qubits">
     Return number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -144,7 +177,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.parameters" name="parameters">
+  <Attribute id="qiskit.circuit.library.QuantumVolume.parameters">
     The parameters defined in the circuit.
 
     This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
@@ -202,12 +235,42 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.QuantumVolume.prefix" attributeValue="'circuit'" />
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.QuantumVolume.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QuantumVolume.unit "qiskit.circuit.library.QuantumVolume.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.unit">
+    The unit that [`duration`](#qiskit.circuit.library.QuantumVolume.duration "qiskit.circuit.library.QuantumVolume.duration") is specified in.
   </Attribute>
 </Class>
 

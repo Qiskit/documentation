@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
 # VBERippleCarryAdder
 
-<Class id="qiskit.circuit.library.VBERippleCarryAdder" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py" signature="qiskit.circuit.library.VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')">
+<Class id="qiskit.circuit.library.VBERippleCarryAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py#L22-L165" signature="qiskit.circuit.library.VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')" modifiers="class">
   Bases: `Adder`
 
   The VBE ripple carry adder \[1].
@@ -53,13 +53,13 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -67,14 +67,14 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.data" name="data">
-    Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.data">
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -87,17 +87,17 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.instances" name="instances" attributeValue="= 158" />
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.instances" attributeValue="186" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -107,63 +107,63 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_ancillas">
     Return the number of ancilla qubits.
   </Attribute>
 
   ### num\_captured\_vars
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_captured_vars" name="num_captured_vars">
-    The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
 
     This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.VBERippleCarryAdder.num_input_vars "qiskit.circuit.library.VBERippleCarryAdder.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_clbits">
     Return number of classical bits.
   </Attribute>
 
   ### num\_declared\_vars
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_declared_vars" name="num_declared_vars">
-    The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
   </Attribute>
 
   ### num\_input\_vars
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_input_vars" name="num_input_vars">
-    The number of runtime classical variables in the circuit marked as circuit inputs.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
 
     This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.VBERippleCarryAdder.num_captured_vars "qiskit.circuit.library.VBERippleCarryAdder.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_parameters" name="num_parameters">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_parameters">
     The number of parameter objects in the circuit.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_qubits">
     Return number of qubits.
   </Attribute>
 
   ### num\_state\_qubits
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_state_qubits" name="num_state_qubits">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_state_qubits">
     The number of state qubits, i.e. the number of bits in each input register.
 
     **Returns**
@@ -173,15 +173,15 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   ### num\_vars
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_vars" name="num_vars">
-    The number of runtime classical variables in the circuit.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.num_vars">
+    The number of real-time classical variables in the circuit.
 
     This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -197,7 +197,7 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.parameters" name="parameters">
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.parameters">
     The parameters defined in the circuit.
 
     This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
@@ -255,12 +255,42 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.prefix" attributeValue="'circuit'" />
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.VBERippleCarryAdder.unit "qiskit.circuit.library.VBERippleCarryAdder.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.VBERippleCarryAdder.unit">
+    The unit that [`duration`](#qiskit.circuit.library.VBERippleCarryAdder.duration "qiskit.circuit.library.VBERippleCarryAdder.duration") is specified in.
   </Attribute>
 </Class>
 

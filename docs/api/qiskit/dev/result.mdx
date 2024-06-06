@@ -18,15 +18,19 @@ python_api_name: qiskit.result
 
 `qiskit.result`
 
+## Core classes
+
 |                                                                                                       |                                                            |
 | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | [`Result`](qiskit.result.Result "qiskit.result.Result")(backend\_name, backend\_version, ...\[, ...]) | Model for Results.                                         |
 | [`ResultError`](qiskit.result.ResultError "qiskit.result.ResultError")(error)                         | Exceptions raised due to errors in result output.          |
 | [`Counts`](qiskit.result.Counts "qiskit.result.Counts")(data\[, time\_taken, creg\_sizes, ...])       | A class to store a counts result from a circuit execution. |
 
+## Marginalization
+
 ### marginal\_counts
 
-<Function id="qiskit.result.marginal_counts" name="marginal_counts" github="https://github.com/qiskit/qiskit/tree/main/qiskit/result/utils.py" signature="qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)">
+<Function id="qiskit.result.marginal_counts" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/utils.py#L33-L99" signature="qiskit.result.marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)">
   Marginalize counts from an experiment over some indices of interest.
 
   **Parameters**
@@ -54,7 +58,7 @@ python_api_name: qiskit.result
 
 ### marginal\_distribution
 
-<Function id="qiskit.result.marginal_distribution" name="marginal_distribution" github="https://github.com/qiskit/qiskit/tree/main/qiskit/result/utils.py" signature="qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)">
+<Function id="qiskit.result.marginal_distribution" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/utils.py#L199-L243" signature="qiskit.result.marginal_distribution(counts, indices=None, format_marginal=False)">
   Marginalize counts from an experiment over some indices of interest.
 
   Unlike [`marginal_counts()`](#qiskit.result.marginal_counts "qiskit.result.marginal_counts") this function respects the order of the input `indices`. If the input `indices` list is specified then the order the bit indices are specified will be the output order of the bitstrings in the marginalized output.
@@ -81,7 +85,7 @@ python_api_name: qiskit.result
 
 ### marginal\_memory
 
-<Function id="qiskit.result.marginal_memory" name="marginal_memory" github="https://github.com/qiskit/qiskit/tree/main/qiskit/result/utils.py" signature="qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)">
+<Function id="qiskit.result.marginal_memory" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/utils.py#L128-L196" signature="qiskit.result.marginal_memory(memory, indices=None, int_return=False, hex_return=False, avg_data=False, parallel_threshold=1000)">
   Marginalize shot memory
 
   This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
@@ -119,7 +123,7 @@ python_api_name: qiskit.result
 
 ### sampled\_expectation\_value
 
-<Function id="qiskit.result.sampled_expectation_value" name="sampled_expectation_value" github="https://github.com/qiskit/qiskit/tree/main/qiskit/result/sampled_expval.py" signature="qiskit.result.sampled_expectation_value(dist, oper)">
+<Function id="qiskit.result.sampled_expectation_value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/result/sampled_expval.py#L26-L75" signature="qiskit.result.sampled_expectation_value(dist, oper)">
   Computes expectation value from a sampled distribution
 
   Note that passing a raw dict requires bit-string keys.

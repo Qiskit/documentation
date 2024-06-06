@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RYYGate
 
 # RYYGate
 
-<Class id="qiskit.circuit.library.RYYGate" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/standard_gates/ryy.py" signature="qiskit.circuit.library.RYYGate(theta, label=None, *, duration=None, unit='dt')">
+<Class id="qiskit.circuit.library.RYYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ryy.py#L22-L144" signature="qiskit.circuit.library.RYYGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY).
@@ -67,7 +67,7 @@ $$
 
   ### base\_class
 
-  <Attribute id="qiskit.circuit.library.RYYGate.base_class" name="base_class">
+  <Attribute id="qiskit.circuit.library.RYYGate.base_class">
     Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
     The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RYYGate.base_class "qiskit.circuit.library.RYYGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
@@ -88,43 +88,43 @@ $$
 
   ### condition
 
-  <Attribute id="qiskit.circuit.library.RYYGate.condition" name="condition">
+  <Attribute id="qiskit.circuit.library.RYYGate.condition">
     The classical condition on the instruction.
   </Attribute>
 
   ### condition\_bits
 
-  <Attribute id="qiskit.circuit.library.RYYGate.condition_bits" name="condition_bits">
+  <Attribute id="qiskit.circuit.library.RYYGate.condition_bits">
     Get Clbits in condition.
   </Attribute>
 
   ### decompositions
 
-  <Attribute id="qiskit.circuit.library.RYYGate.decompositions" name="decompositions">
+  <Attribute id="qiskit.circuit.library.RYYGate.decompositions">
     Get the decompositions of the instruction from the SessionEquivalenceLibrary.
   </Attribute>
 
   ### definition
 
-  <Attribute id="qiskit.circuit.library.RYYGate.definition" name="definition">
+  <Attribute id="qiskit.circuit.library.RYYGate.definition">
     Return definition in terms of other basic gates.
   </Attribute>
 
   ### duration
 
-  <Attribute id="qiskit.circuit.library.RYYGate.duration" name="duration">
+  <Attribute id="qiskit.circuit.library.RYYGate.duration">
     Get the duration.
   </Attribute>
 
   ### label
 
-  <Attribute id="qiskit.circuit.library.RYYGate.label" name="label">
+  <Attribute id="qiskit.circuit.library.RYYGate.label">
     Return instruction label
   </Attribute>
 
   ### mutable
 
-  <Attribute id="qiskit.circuit.library.RYYGate.mutable" name="mutable">
+  <Attribute id="qiskit.circuit.library.RYYGate.mutable">
     Is this instance is a mutable unique instance or not.
 
     If this attribute is `False` the gate instance is a shared singleton and is not mutable.
@@ -132,31 +132,31 @@ $$
 
   ### name
 
-  <Attribute id="qiskit.circuit.library.RYYGate.name" name="name">
+  <Attribute id="qiskit.circuit.library.RYYGate.name">
     Return the name.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.RYYGate.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.RYYGate.num_clbits">
     Return the number of clbits.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.RYYGate.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.RYYGate.num_qubits">
     Return the number of qubits.
   </Attribute>
 
   ### params
 
-  <Attribute id="qiskit.circuit.library.RYYGate.params" name="params">
-    return instruction params.
+  <Attribute id="qiskit.circuit.library.RYYGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
   </Attribute>
 
   ### unit
 
-  <Attribute id="qiskit.circuit.library.RYYGate.unit" name="unit">
+  <Attribute id="qiskit.circuit.library.RYYGate.unit">
     Get the time unit of duration.
   </Attribute>
 
@@ -164,7 +164,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RYYGate.inverse" name="inverse" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RYYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ryy.py#L111-L123" signature="inverse(annotated=False)">
     Return inverse RYY gate (i.e. with the negative rotation angle).
 
     **Parameters**
@@ -182,8 +182,23 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.RYYGate.power" name="power" signature="power(exponent)">
-    Raise gate to a power.
+  <Function id="qiskit.circuit.library.RYYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ryy.py#L137-L139" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
   </Function>
 </Class>
 

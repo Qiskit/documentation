@@ -8,7 +8,7 @@ python_api_name: qiskit.providers.BackendV1
 
 # qiskit.providers.BackendV1
 
-<Class id="qiskit.providers.BackendV1" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/backend.py" signature="BackendV1(configuration, provider=None, **fields)">
+<Class id="qiskit.providers.BackendV1" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/backend.py" signature="BackendV1(configuration, provider=None, **fields)" modifiers="class">
   Abstract class for Backends
 
   This abstract class is to be used for all Backend objects created by a provider. There are several classes of information contained in a Backend. The first are the attributes of the class itself. These should be used to defined the immutable characteristics of the backend. The `options` attribute of the backend is used to contain the dynamic user configurable options of the backend. It should be used more for runtime options that configure how the backend is used. For example, something like a `shots` field for a backend that runs experiments which would contain an int for how many shots to execute. The `properties` attribute is optionally defined [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object and is used to return measured properties, or properties of a backend that may change over time. The simplest example of this would be a version string, which will change as a backend is updated, but also could be something like noise parameters for backends that run experiments.
@@ -29,7 +29,7 @@ python_api_name: qiskit.providers.BackendV1
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.providers.BackendV1.__init__" name="__init__" signature="__init__(configuration, provider=None, **fields)">
+  <Function id="qiskit.providers.BackendV1.__init__" signature="__init__(configuration, provider=None, **fields)">
     Initialize a backend class
 
     **Parameters**
@@ -65,7 +65,7 @@ python_api_name: qiskit.providers.BackendV1
 
   ### configuration
 
-  <Function id="qiskit.providers.BackendV1.configuration" name="configuration" signature="configuration()">
+  <Function id="qiskit.providers.BackendV1.configuration" signature="configuration()">
     Return the backend configuration.
 
     **Returns**
@@ -79,7 +79,7 @@ python_api_name: qiskit.providers.BackendV1
 
   ### name
 
-  <Function id="qiskit.providers.BackendV1.name" name="name" signature="name()">
+  <Function id="qiskit.providers.BackendV1.name" signature="name()">
     Return the backend name.
 
     **Returns**
@@ -93,15 +93,15 @@ python_api_name: qiskit.providers.BackendV1
 
   ### options
 
-  <Function id="qiskit.providers.BackendV1.options" name="options" signature="property options">
+  <Attribute id="qiskit.providers.BackendV1.options">
     Return the options for the backend
 
     The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.BackendV1.run "qiskit.providers.BackendV1.run") method.
-  </Function>
+  </Attribute>
 
   ### properties
 
-  <Function id="qiskit.providers.BackendV1.properties" name="properties" signature="properties()">
+  <Function id="qiskit.providers.BackendV1.properties" signature="properties()">
     Return the backend properties.
 
     **Returns**
@@ -115,7 +115,7 @@ python_api_name: qiskit.providers.BackendV1
 
   ### provider
 
-  <Function id="qiskit.providers.BackendV1.provider" name="provider" signature="provider()">
+  <Function id="qiskit.providers.BackendV1.provider" signature="provider()">
     Return the backend Provider.
 
     **Returns**
@@ -129,7 +129,7 @@ python_api_name: qiskit.providers.BackendV1
 
   ### run
 
-  <Function id="qiskit.providers.BackendV1.run" name="run" signature="abstract run(run_input, **options)">
+  <Function id="qiskit.providers.BackendV1.run" signature="run(run_input, **options)" modifiers="abstract">
     Run on the backend.
 
     This method that will return a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that run circuits. Depending on the backend this may be either an async or sync call. It is the discretion of the provider to decide whether running should block until the execution is finished or not. The Job class can handle either situation.
@@ -150,7 +150,7 @@ python_api_name: qiskit.providers.BackendV1
 
   ### set\_options
 
-  <Function id="qiskit.providers.BackendV1.set_options" name="set_options" signature="set_options(**fields)">
+  <Function id="qiskit.providers.BackendV1.set_options" signature="set_options(**fields)">
     Set the options fields for the backend
 
     This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
@@ -166,7 +166,7 @@ python_api_name: qiskit.providers.BackendV1
 
   ### status
 
-  <Function id="qiskit.providers.BackendV1.status" name="status" signature="status()">
+  <Function id="qiskit.providers.BackendV1.status" signature="status()">
     Return the backend status.
 
     **Returns**

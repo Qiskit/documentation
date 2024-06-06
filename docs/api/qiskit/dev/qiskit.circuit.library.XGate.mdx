@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.XGate
 
 # XGate
 
-<Class id="qiskit.circuit.library.XGate" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py" signature="qiskit.circuit.library.XGate(*args, _force_mutable=False, **kwargs)">
+<Class id="qiskit.circuit.library.XGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L26-L148" signature="qiskit.circuit.library.XGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
   The single-qubit Pauli-X gate ($\sigma_x$).
@@ -59,7 +59,7 @@ $$
 
   ### base\_class
 
-  <Attribute id="qiskit.circuit.library.XGate.base_class" name="base_class">
+  <Attribute id="qiskit.circuit.library.XGate.base_class">
     Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
     The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.XGate.base_class "qiskit.circuit.library.XGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
@@ -80,43 +80,43 @@ $$
 
   ### condition
 
-  <Attribute id="qiskit.circuit.library.XGate.condition" name="condition">
+  <Attribute id="qiskit.circuit.library.XGate.condition">
     The classical condition on the instruction.
   </Attribute>
 
   ### condition\_bits
 
-  <Attribute id="qiskit.circuit.library.XGate.condition_bits" name="condition_bits">
+  <Attribute id="qiskit.circuit.library.XGate.condition_bits">
     Get Clbits in condition.
   </Attribute>
 
   ### decompositions
 
-  <Attribute id="qiskit.circuit.library.XGate.decompositions" name="decompositions">
+  <Attribute id="qiskit.circuit.library.XGate.decompositions">
     Get the decompositions of the instruction from the SessionEquivalenceLibrary.
   </Attribute>
 
   ### definition
 
-  <Attribute id="qiskit.circuit.library.XGate.definition" name="definition">
+  <Attribute id="qiskit.circuit.library.XGate.definition">
     Return definition in terms of other basic gates.
   </Attribute>
 
   ### duration
 
-  <Attribute id="qiskit.circuit.library.XGate.duration" name="duration">
+  <Attribute id="qiskit.circuit.library.XGate.duration">
     Get the duration.
   </Attribute>
 
   ### label
 
-  <Attribute id="qiskit.circuit.library.XGate.label" name="label">
+  <Attribute id="qiskit.circuit.library.XGate.label">
     Return instruction label
   </Attribute>
 
   ### mutable
 
-  <Attribute id="qiskit.circuit.library.XGate.mutable" name="mutable">
+  <Attribute id="qiskit.circuit.library.XGate.mutable">
     Is this instance is a mutable unique instance or not.
 
     If this attribute is `False` the gate instance is a shared singleton and is not mutable.
@@ -124,31 +124,31 @@ $$
 
   ### name
 
-  <Attribute id="qiskit.circuit.library.XGate.name" name="name">
+  <Attribute id="qiskit.circuit.library.XGate.name">
     Return the name.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.XGate.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.XGate.num_clbits">
     Return the number of clbits.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.XGate.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.XGate.num_qubits">
     Return the number of qubits.
   </Attribute>
 
   ### params
 
-  <Attribute id="qiskit.circuit.library.XGate.params" name="params">
-    return instruction params.
+  <Attribute id="qiskit.circuit.library.XGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
   </Attribute>
 
   ### unit
 
-  <Attribute id="qiskit.circuit.library.XGate.unit" name="unit">
+  <Attribute id="qiskit.circuit.library.XGate.unit">
     Get the time unit of duration.
   </Attribute>
 
@@ -156,7 +156,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.XGate.control" name="control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.XGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L95-L131" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
     Return a (multi-)controlled-X gate.
 
     One control returns a CX gate. Two controls returns a CCX gate.
@@ -165,7 +165,7 @@ $$
 
     *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g. `'110'`), or `None`. If `None`, use all 1s.
     *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
 
     **Returns**
@@ -179,12 +179,12 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.XGate.inverse" name="inverse" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.XGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L133-L145" signature="inverse(annotated=False)">
     Return inverted X gate (itself).
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an `AnnotatedOperation` with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
 
     **Returns**
 

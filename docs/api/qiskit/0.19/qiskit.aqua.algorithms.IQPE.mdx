@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
 # IQPE
 
-<Class id="qiskit.aqua.algorithms.IQPE" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/iqpe.py" signature="IQPE(operator=None, state_in=None, num_time_slices=1, num_iterations=1, expansion_mode='suzuki', expansion_order=2, shallow_circuit_concat=False, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.IQPE" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/minimum_eigen_solvers/iqpe.py" signature="IQPE(operator=None, state_in=None, num_time_slices=1, num_iterations=1, expansion_mode='suzuki', expansion_order=2, shallow_circuit_concat=False, quantum_instance=None)" modifiers="class">
   The Iterative Quantum Phase Estimation algorithm.
 
   IQPE, as its name suggests, iteratively computes the phase so as to require fewer qubits. It takes has the same set of parameters as [`QPE`](qiskit.aqua.algorithms.QPE "qiskit.aqua.algorithms.QPE"), except for the number of ancillary qubits *num\_ancillae*, being replaced by *num\_iterations* and that an Inverse Quantum Fourier Transform (IQFT) is not used for IQPE.
@@ -34,7 +34,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### aux\_operators
 
-  <Attribute id="qiskit.aqua.algorithms.IQPE.aux_operators" name="aux_operators" signature="Optional[List[Union[qiskit.aqua.operators.operator_base.OperatorBase, qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator]]]">
+  <Attribute id="qiskit.aqua.algorithms.IQPE.aux_operators" attributeTypeHint="Optional[List[Union[qiskit.aqua.operators.operator_base.OperatorBase, qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator]]]">
     Returns aux operators
 
     **Return type**
@@ -44,7 +44,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### backend
 
-  <Attribute id="qiskit.aqua.algorithms.IQPE.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+  <Attribute id="qiskit.aqua.algorithms.IQPE.backend" attributeTypeHint="qiskit.providers.basebackend.BaseBackend">
     Returns backend.
 
     **Return type**
@@ -54,7 +54,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### operator
 
-  <Attribute id="qiskit.aqua.algorithms.IQPE.operator" name="operator" signature="Optional[Union[qiskit.aqua.operators.operator_base.OperatorBase, qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator]]">
+  <Attribute id="qiskit.aqua.algorithms.IQPE.operator" attributeTypeHint="Optional[Union[qiskit.aqua.operators.operator_base.OperatorBase, qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator]]">
     Returns operator
 
     **Return type**
@@ -64,7 +64,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### quantum\_instance
 
-  <Attribute id="qiskit.aqua.algorithms.IQPE.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+  <Attribute id="qiskit.aqua.algorithms.IQPE.quantum_instance" attributeTypeHint="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
     Returns quantum instance.
 
     **Return type**
@@ -74,7 +74,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### random
 
-  <Attribute id="qiskit.aqua.algorithms.IQPE.random" name="random">
+  <Attribute id="qiskit.aqua.algorithms.IQPE.random">
     Return a numpy random.
   </Attribute>
 
@@ -82,7 +82,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### compute\_minimum\_eigenvalue
 
-  <Function id="qiskit.aqua.algorithms.IQPE.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="IQPE.compute_minimum_eigenvalue(operator=None, aux_operators=None)">
+  <Function id="qiskit.aqua.algorithms.IQPE.compute_minimum_eigenvalue" signature="IQPE.compute_minimum_eigenvalue(operator=None, aux_operators=None)">
     Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
     **Parameters**
@@ -101,7 +101,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### construct\_circuit
 
-  <Function id="qiskit.aqua.algorithms.IQPE.construct_circuit" name="construct_circuit" signature="IQPE.construct_circuit(k=None, omega=0, measurement=False)">
+  <Function id="qiskit.aqua.algorithms.IQPE.construct_circuit" signature="IQPE.construct_circuit(k=None, omega=0, measurement=False)">
     Construct the kth iteration Quantum Phase Estimation circuit.
 
     For details of parameters, please see Fig. 2 in [https://arxiv.org/pdf/quant-ph/0610214.pdf](https://arxiv.org/pdf/quant-ph/0610214.pdf).
@@ -123,7 +123,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### run
 
-  <Function id="qiskit.aqua.algorithms.IQPE.run" name="run" signature="IQPE.run(quantum_instance=None, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.IQPE.run" signature="IQPE.run(quantum_instance=None, **kwargs)">
     Execute the algorithm with selected backend.
 
     **Parameters**
@@ -146,7 +146,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### set\_backend
 
-  <Function id="qiskit.aqua.algorithms.IQPE.set_backend" name="set_backend" signature="IQPE.set_backend(backend, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.IQPE.set_backend" signature="IQPE.set_backend(backend, **kwargs)">
     Sets backend with configuration.
 
     **Return type**
@@ -156,7 +156,7 @@ python_api_name: qiskit.aqua.algorithms.IQPE
 
   ### supports\_aux\_operators
 
-  <Function id="qiskit.aqua.algorithms.IQPE.supports_aux_operators" name="supports_aux_operators" signature="IQPE.supports_aux_operators()">
+  <Function id="qiskit.aqua.algorithms.IQPE.supports_aux_operators" signature="IQPE.supports_aux_operators()">
     Whether computing the expectation value of auxiliary operators is supported.
 
     If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.

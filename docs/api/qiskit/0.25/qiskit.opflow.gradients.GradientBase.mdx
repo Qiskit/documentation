@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.gradients.GradientBase
 
 # qiskit.opflow\.gradients.GradientBase
 
-<Class id="qiskit.opflow.gradients.GradientBase" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/gradient_base.py" signature="GradientBase(grad_method='param_shift', **kwargs)">
+<Class id="qiskit.opflow.gradients.GradientBase" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/gradients/gradient_base.py" signature="GradientBase(grad_method='param_shift', **kwargs)" modifiers="class">
   Base class for first-order operator gradient.
 
   Convert an operator expression to the first-order gradient.
@@ -24,7 +24,7 @@ python_api_name: qiskit.opflow.gradients.GradientBase
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.opflow.gradients.GradientBase.__init__" name="__init__" signature="__init__(grad_method='param_shift', **kwargs)">
+  <Function id="qiskit.opflow.gradients.GradientBase.__init__" signature="__init__(grad_method='param_shift', **kwargs)">
     **Parameters**
 
     *   **grad\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state/probability gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`. Ignored for gradients w\.r.t observable parameters.
@@ -52,7 +52,7 @@ python_api_name: qiskit.opflow.gradients.GradientBase
 
   ### convert
 
-  <Function id="qiskit.opflow.gradients.GradientBase.convert" name="convert" signature="abstract convert(operator, params=None)">
+  <Function id="qiskit.opflow.gradients.GradientBase.convert" signature="convert(operator, params=None)" modifiers="abstract">
     **Parameters**
 
     *   **operator** (`OperatorBase`) – The operator we are taking the gradient, Hessian or QFI of
@@ -73,7 +73,7 @@ python_api_name: qiskit.opflow.gradients.GradientBase
 
   ### grad\_method
 
-  <Function id="qiskit.opflow.gradients.GradientBase.grad_method" name="grad_method" signature="property grad_method">
+  <Attribute id="qiskit.opflow.gradients.GradientBase.grad_method">
     Returns `CircuitGradient`.
 
     **Return type**
@@ -83,11 +83,11 @@ python_api_name: qiskit.opflow.gradients.GradientBase
     **Returns**
 
     `CircuitGradient`.
-  </Function>
+  </Attribute>
 
   ### gradient\_wrapper
 
-  <Function id="qiskit.opflow.gradients.GradientBase.gradient_wrapper" name="gradient_wrapper" signature="gradient_wrapper(operator, bind_params, grad_params=None, backend=None)">
+  <Function id="qiskit.opflow.gradients.GradientBase.gradient_wrapper" signature="gradient_wrapper(operator, bind_params, grad_params=None, backend=None)">
     Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
 
     **Parameters**
@@ -108,7 +108,7 @@ python_api_name: qiskit.opflow.gradients.GradientBase
 
   ### parameter\_expression\_grad
 
-  <Function id="qiskit.opflow.gradients.GradientBase.parameter_expression_grad" name="parameter_expression_grad" signature="static parameter_expression_grad(param_expr, param)">
+  <Function id="qiskit.opflow.gradients.GradientBase.parameter_expression_grad" signature="parameter_expression_grad(param_expr, param)" modifiers="static">
     Get the derivative of a parameter expression w\.r.t. the given parameter.
 
     **Parameters**

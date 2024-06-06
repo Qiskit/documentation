@@ -8,7 +8,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
 # PotentialBase
 
-<Class id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py" signature="PotentialBase(molecule)">
+<Class id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/potentials/potential_base.py" signature="PotentialBase(molecule)" modifiers="class">
   Bases: `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.EnergySurfaceBase`, `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.VibronicStructureBase`
 
   Class to hold prescribed 1D potentials (e.g. Morse/Harmonic) over a degree of freedom.
@@ -17,7 +17,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### dissociation\_energy
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.dissociation_energy" name="dissociation_energy" signature="abstract PotentialBase.dissociation_energy(scaling=1.0)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.dissociation_energy" signature="PotentialBase.dissociation_energy(scaling=1.0)" modifiers="abstract">
     Returns the dissociation energy (scaled by ‘scaling’)
 
     **Return type**
@@ -27,7 +27,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### eval
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.eval" name="eval" signature="abstract PotentialBase.eval(x)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.eval" signature="PotentialBase.eval(x)" modifiers="abstract">
     After fitting the data to the fit function, predict the energy at a point x.
 
     **Parameters**
@@ -45,7 +45,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### fit
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.fit" name="fit" signature="abstract PotentialBase.fit(xdata, ydata, initial_vals=None, bounds_list=None)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.fit" signature="PotentialBase.fit(xdata, ydata, initial_vals=None, bounds_list=None)" modifiers="abstract">
     Fits surface to data
 
     **Parameters**
@@ -62,7 +62,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### get\_equilibrium\_geometry
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_equilibrium_geometry" name="get_equilibrium_geometry" signature="abstract PotentialBase.get_equilibrium_geometry(scaling=1.0)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_equilibrium_geometry" signature="PotentialBase.get_equilibrium_geometry(scaling=1.0)" modifiers="abstract">
     Get the equilibrium energy.
 
     Returns the geometry for the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are Angstroms. Scale by 1E-10 to get meters.
@@ -82,7 +82,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### get\_maximum\_trusted\_level
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_maximum_trusted_level" name="get_maximum_trusted_level" signature="PotentialBase.get_maximum_trusted_level(n=0)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_maximum_trusted_level" signature="PotentialBase.get_maximum_trusted_level(n=0)">
     Returns the maximum energy level for which the particular implementation still provides a good approximation of reality. Default value of 100. Redefined where needed (see e.g. Morse).
 
     **Parameters**
@@ -100,7 +100,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### get\_minimal\_energy
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_minimal_energy" name="get_minimal_energy" signature="abstract PotentialBase.get_minimal_energy(scaling=1.0)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_minimal_energy" signature="PotentialBase.get_minimal_energy(scaling=1.0)" modifiers="abstract">
     Get the minimal energy.
 
     Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol. Scale appropriately for Hartrees.
@@ -120,7 +120,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### get\_num\_modes
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_num_modes" name="get_num_modes" signature="PotentialBase.get_num_modes()">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_num_modes" signature="PotentialBase.get_num_modes()">
     This (1D) potential represents a single vibrational mode
 
     **Return type**
@@ -130,7 +130,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### get\_trust\_region
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_trust_region" name="get_trust_region" signature="PotentialBase.get_trust_region()">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.get_trust_region" signature="PotentialBase.get_trust_region()">
     The potential will usually be well-defined (even if not useful) for arbitrary x so we return a fairly large interval here. Redefine in derived classes if needed.
 
     **Return type**
@@ -140,7 +140,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### update\_molecule
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.update_molecule" name="update_molecule" signature="PotentialBase.update_molecule(molecule)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.update_molecule" signature="PotentialBase.update_molecule(molecule)">
     Wipe state if molecule changes, and check validity of molecule for potential.
 
     **Parameters**
@@ -158,7 +158,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.PotentialBase
 
   ### vibrational\_energy\_level
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.vibrational_energy_level" name="vibrational_energy_level" signature="abstract PotentialBase.vibrational_energy_level(n)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.PotentialBase.vibrational_energy_level" signature="PotentialBase.vibrational_energy_level(n)" modifiers="abstract">
     Returns the n-th vibrational energy level for a given mode.
 
     **Parameters**

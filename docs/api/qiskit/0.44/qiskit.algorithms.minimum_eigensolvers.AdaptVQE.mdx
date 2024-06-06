@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
 # AdaptVQE
 
-<Class id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE" github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py" signature="qiskit.algorithms.minimum_eigensolvers.AdaptVQE(solver, *, gradient_threshold=1e-05, eigenvalue_threshold=1e-05, max_iterations=None, threshold=None)">
+<Class id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py" signature="qiskit.algorithms.minimum_eigensolvers.AdaptVQE(solver, *, gradient_threshold=1e-05, eigenvalue_threshold=1e-05, max_iterations=None, threshold=None)" modifiers="class">
   Bases: `VariationalAlgorithm`, [`MinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolver")
 
   The Adaptive Variational Quantum Eigensolver algorithm.
@@ -38,25 +38,25 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
   ### solver
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.solver" name="solver">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.solver">
     a [`VQE`](qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE") instance used internally to compute the minimum eigenvalues. It is a requirement that the [`ansatz`](qiskit.algorithms.minimum_eigensolvers.VQE#ansatz "qiskit.algorithms.minimum_eigensolvers.VQE.ansatz") of this solver is of type [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz").
   </Attribute>
 
   ### gradient\_threshold
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.gradient_threshold" name="gradient_threshold">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.gradient_threshold">
     once all gradients have an absolute value smaller than this threshold, the algorithm has converged and terminates.
   </Attribute>
 
   ### eigenvalue\_threshold
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.eigenvalue_threshold" name="eigenvalue_threshold">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.eigenvalue_threshold">
     once the eigenvalue has changed by less than this threshold from one iteration to the next, the algorithm has converged and terminates. When this case occurs, the excitation included in the final iteration did not result in a significant improvement of the eigenvalue and, thus, the results from this iteration are not considered.
   </Attribute>
 
   ### max\_iterations
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.max_iterations" name="max_iterations">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.max_iterations">
     the maximum number of iterations for the adaptive loop. If `None`, the algorithm is not bound in its number of iterations.
   </Attribute>
 
@@ -76,13 +76,13 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
   ### initial\_point
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.initial_point" name="initial_point">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.initial_point">
     Returns the initial point of the internal [`VQE`](qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE") solver.
   </Attribute>
 
   ### threshold
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.threshold" name="threshold">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.threshold">
     The threshold for the gradients.
 
     Once all gradients have an absolute value smaller than this threshold, the algorithm has converged and terminates.
@@ -96,7 +96,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
   ### compute\_minimum\_eigenvalue
 
-  <Function id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator, aux_operators=None)">
+  <Function id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator, aux_operators=None)">
     Computes the minimum eigenvalue.
 
     **Parameters**
@@ -120,7 +120,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQE
 
   ### supports\_aux\_operators
 
-  <Function id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+  <Function id="qiskit.algorithms.minimum_eigensolvers.AdaptVQE.supports_aux_operators" signature="supports_aux_operators()" modifiers="classmethod">
     Whether computing the expectation value of auxiliary operators is supported.
 
     If the minimum eigensolver computes an eigenvalue of the main `operator` then it can compute the expectation value of the `aux_operators` for that state. Otherwise they will be ignored.

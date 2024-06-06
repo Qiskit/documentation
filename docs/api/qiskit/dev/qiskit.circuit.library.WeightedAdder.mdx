@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 # WeightedAdder
 
-<Class id="qiskit.circuit.library.WeightedAdder" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/weighted_adder.py" signature="qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')">
+<Class id="qiskit.circuit.library.WeightedAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/weighted_adder.py#L23-L337" signature="qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')" modifiers="class">
   Bases: `BlueprintCircuit`
 
   A circuit to compute the weighted sum of qubit registers.
@@ -66,13 +66,13 @@ $$
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -80,27 +80,27 @@ $$
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.data" name="data" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.data" />
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.instances" name="instances" attributeValue="= 158" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.instances" attributeValue="160" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -110,29 +110,29 @@ $$
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_ancillas">
     Return the number of ancilla qubits.
   </Attribute>
 
   ### num\_captured\_vars
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_captured_vars" name="num_captured_vars">
-    The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
 
     This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.WeightedAdder.num_input_vars "qiskit.circuit.library.WeightedAdder.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_carry\_qubits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_carry_qubits" name="num_carry_qubits">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_carry_qubits">
     The number of carry qubits required to compute the sum.
 
     Note that this is not necessarily equal to the number of ancilla qubits, these can be queried using `num_ancilla_qubits`.
@@ -144,13 +144,13 @@ $$
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_clbits">
     Return number of classical bits.
   </Attribute>
 
   ### num\_control\_qubits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_control_qubits" name="num_control_qubits">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_control_qubits">
     The number of additional control qubits required.
 
     Note that the total number of ancilla qubits can be obtained by calling the method `num_ancilla_qubits`.
@@ -162,33 +162,33 @@ $$
 
   ### num\_declared\_vars
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_declared_vars" name="num_declared_vars">
-    The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
   </Attribute>
 
   ### num\_input\_vars
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_input_vars" name="num_input_vars">
-    The number of runtime classical variables in the circuit marked as circuit inputs.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
 
     This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.WeightedAdder.num_captured_vars "qiskit.circuit.library.WeightedAdder.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_parameters" name="num_parameters" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_parameters" />
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_qubits">
     Return number of qubits.
   </Attribute>
 
   ### num\_state\_qubits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_state_qubits" name="num_state_qubits">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_state_qubits">
     The number of qubits to be summed.
 
     **Returns**
@@ -198,7 +198,7 @@ $$
 
   ### num\_sum\_qubits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_sum_qubits" name="num_sum_qubits">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_sum_qubits">
     The number of sum qubits in the circuit.
 
     **Returns**
@@ -208,15 +208,15 @@ $$
 
   ### num\_vars
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.num_vars" name="num_vars">
-    The number of runtime classical variables in the circuit.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_vars">
+    The number of real-time classical variables in the circuit.
 
     This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -232,32 +232,56 @@ $$
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.parameters" name="parameters" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.parameters" />
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.prefix" attributeValue="'circuit'" />
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### weights
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.weights" name="weights">
+  <Attribute id="qiskit.circuit.library.WeightedAdder.weights">
     The weights for the qubit states.
 
     **Returns**
 
     The weight for the qubit states.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.WeightedAdder.unit "qiskit.circuit.library.WeightedAdder.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.unit">
+    The unit that [`duration`](#qiskit.circuit.library.WeightedAdder.duration "qiskit.circuit.library.WeightedAdder.duration") is specified in.
   </Attribute>
 </Class>
 

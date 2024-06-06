@@ -8,7 +8,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
 # TensoredExpvalMeasMitigator
 
-<Class id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/tensored_mitigator.py" signature="TensoredExpvalMeasMitigator(amats)">
+<Class id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/mitigation/expval/tensored_mitigator.py" signature="TensoredExpvalMeasMitigator(amats)" modifiers="class">
   Bases: `qiskit.ignis.mitigation.expval.base_meas_mitigator.BaseExpvalMeasMitigator`
 
   1-qubit tensor product measurement error mitigator.
@@ -27,7 +27,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### assignment\_fidelity
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity" name="assignment_fidelity" signature="TensoredExpvalMeasMitigator.assignment_fidelity(qubits=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_fidelity" signature="TensoredExpvalMeasMitigator.assignment_fidelity(qubits=None)">
     Return the measurement assignment fidelity on the specified qubits.
 
     The assignment fidelity on N-qubits is defined as $\sum_{x\in\{0, 1\}^n} P(x|x) / 2^n$, where $P(x|x) = \rangle x|A|x\langle$, and $A$ is the [`assignment_matrix()`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator#assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix").
@@ -47,7 +47,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### assignment\_matrix
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix" name="assignment_matrix" signature="TensoredExpvalMeasMitigator.assignment_matrix(qubits=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix" signature="TensoredExpvalMeasMitigator.assignment_matrix(qubits=None)">
     Return the measurement assignment matrix for specified qubits.
 
     The assignment matrix is the stochastic matrix $A$ which assigns a noisy measurement probability distribution to an ideal input measurement distribution: $P(i|j) = \langle i | A | j \rangle$.
@@ -67,7 +67,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### expectation\_value
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value" name="expectation_value" signature="TensoredExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.expectation_value" signature="TensoredExpvalMeasMitigator.expectation_value(counts, diagonal=None, qubits=None, clbits=None)">
     Compute the mitigated expectation value of a diagonal observable.
 
     This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]$ of a diagonal observable $O = \sum_{x\in\{0, 1\}^n} O(x)|x\rangle\!\langle x|$.
@@ -96,7 +96,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### mitigation\_matrix
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix" name="mitigation_matrix" signature="TensoredExpvalMeasMitigator.mitigation_matrix(qubits=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_matrix" signature="TensoredExpvalMeasMitigator.mitigation_matrix(qubits=None)">
     Return the measurement mitigation matrix for the specified qubits.
 
     The mitigation matrix $A^{-1}$ is defined as the inverse of the [`assignment_matrix()`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator#assignment_matrix "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.assignment_matrix") $A$.
@@ -116,7 +116,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### mitigation\_overhead
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead" name="mitigation_overhead" signature="TensoredExpvalMeasMitigator.mitigation_overhead(qubits=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead" signature="TensoredExpvalMeasMitigator.mitigation_overhead(qubits=None)">
     Return the mitigation overhead for expectation value estimation.
 
     This is the multiplicative factor of extra shots required for estimating a mitigated expectation value with the same accuracy as an unmitigated expectation value.
@@ -136,7 +136,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### plot\_assignment\_matrix
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix" name="plot_assignment_matrix" signature="TensoredExpvalMeasMitigator.plot_assignment_matrix(qubits=None, ax=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_assignment_matrix" signature="TensoredExpvalMeasMitigator.plot_assignment_matrix(qubits=None, ax=None)">
     Matrix plot of the readout error assignment matrix.
 
     **Parameters**
@@ -159,7 +159,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### plot\_mitigation\_matrix
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix" name="plot_mitigation_matrix" signature="TensoredExpvalMeasMitigator.plot_mitigation_matrix(qubits=None, ax=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.plot_mitigation_matrix" signature="TensoredExpvalMeasMitigator.plot_mitigation_matrix(qubits=None, ax=None)">
     Matrix plot of the readout error mitigation matrix.
 
     **Parameters**
@@ -182,7 +182,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### required\_shots
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots" name="required_shots" signature="TensoredExpvalMeasMitigator.required_shots(delta, qubits=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.required_shots" signature="TensoredExpvalMeasMitigator.required_shots(delta, qubits=None)">
     Return the number of shots required for expectation value estimation.
 
     This is the number of shots required so that $|\langle O \rangle_{est} - \langle O \rangle_{true}| < \delta$ with high probability (at least 2/3) and is given by $4\delta^2 \Gamma^2$ where $\Gamma^2$ is the [`mitigation_overhead()`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator#mitigation_overhead "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.mitigation_overhead").
@@ -203,7 +203,7 @@ python_api_name: qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
   ### stddev\_upper\_bound
 
-  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound" name="stddev_upper_bound" signature="TensoredExpvalMeasMitigator.stddev_upper_bound(shots=1, qubits=None)">
+  <Function id="qiskit.ignis.mitigation.TensoredExpvalMeasMitigator.stddev_upper_bound" signature="TensoredExpvalMeasMitigator.stddev_upper_bound(shots=1, qubits=None)">
     Return an upper bound on standard deviation of expval estimator.
 
     **Parameters**

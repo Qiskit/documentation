@@ -34,6 +34,8 @@ const _QISKIT_UTILS = [
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+  "http://www.satcompetition.org/2009/format-benchmarks2009.html",
+  "https://qiskit.slack.com/archives/C06KF8YHUAU",
   // StackOverflow rate limits us.
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
@@ -61,19 +63,43 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // A mapping of files to lists of links that will not be searched.
 type FilesToIgnores = { [id: string]: string[] };
 
-const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
+const _QPY_IGNORES = [
+  "#f1",
+  "#f2",
+  "#f3",
+  "#id2",
+  "#id3",
+  "#id4",
+  "#id5",
+  "#id6",
+  "#id7",
+  "#id8",
+];
+
+const _CIRCUIT_MODULE_IGNORES = [
+  "#qiskit.circuit.SessionEquivalenceLibrary",
+  "#qiskit.circuit.StandardEquivalenceLibrary",
+];
 
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
-  ["", "dev/", "0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/"].map(
-    (vers) => [
-      `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
-      [
-        `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
-        `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-        `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
-      ],
+  [
+    "",
+    "dev/",
+    "0.16/",
+    "0.17/",
+    "0.18/",
+    "0.19/",
+    "0.20/",
+    "0.21/",
+    "0.22/",
+  ].map((vers) => [
+    `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+    [
+      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
+      `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
+      `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
     ],
-  ),
+  ]),
 );
 
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
@@ -81,14 +107,20 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   // Qiskit
   "docs/api/qiskit/release-notes/1.0.mdx": [
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
+    "/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
   ],
   "docs/api/qiskit/qpy.mdx": _QPY_IGNORES,
   "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
+  "docs/api/qiskit/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
+  "docs/api/qiskit/dev/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
   // Runtime
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
+  ],
+  // Provider
+  "docs/api/qiskit-ibm-provider/release-notes.mdx": [
+    "/api/qiskit/qiskit.circuit.Delay",
   ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,
@@ -139,6 +171,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
+    "/api/qiskit/circuit#qiskit.circuit.SessionEquivalenceLibrary",
+    "/api/qiskit/circuit#qiskit.circuit.StandardEquivalenceLibrary",
   ],
   "public/api/qiskit/dev/objects.inv": [
     "/api/qiskit/dev/circuit#qiskit.circuit.CASE_DEFAULT",
@@ -187,6 +221,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
     "/api/qiskit/dev/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
+    "/api/qiskit/dev/circuit#qiskit.circuit.SessionEquivalenceLibrary",
+    "/api/qiskit/dev/circuit#qiskit.circuit.StandardEquivalenceLibrary",
   ],
 };
 

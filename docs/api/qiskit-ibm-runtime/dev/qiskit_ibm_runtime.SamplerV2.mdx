@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
 # SamplerV2
 
-<Class id="qiskit_ibm_runtime.SamplerV2" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L46-L136" signature="SamplerV2(backend=None, session=None, options=None)">
+<Class id="qiskit_ibm_runtime.SamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L50-L172" signature="SamplerV2(mode=None, backend=None, session=None, options=None)" modifiers="class">
   Class for interacting with Qiskit Runtime Sampler primitive service.
 
   This class supports version 2 of the Sampler interface, which uses different input and output formats than version 1.
@@ -21,7 +21,17 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   **Parameters**
 
-  *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
+  *   **mode** (`Union`\[`BackendV1`, `BackendV2`, [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `str`, `None`]) –
+
+      The execution mode used to make the primitive query. It can be:
+
+      *   A `Backend` if you are using job mode.
+      *   A [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") if you are using session execution mode.
+      *   A [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch") if you are using batch execution mode.
+
+      Refer to the [Qiskit Runtime documentation](/run). for more information about the `Execution modes`.
+
+  *   **backend** (`Union`\[`str`, `BackendV1`, `BackendV2`, `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
   *   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
 
@@ -37,9 +47,23 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   ## Attributes
 
+  ### mode
+
+  <Attribute id="qiskit_ibm_runtime.SamplerV2.mode">
+    Return the execution mode used by this primitive.
+
+    **Return type**
+
+    Optional\[[Session](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") | [Batch](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")]
+
+    **Returns**
+
+    Mode used by this primitive, or `None` if an execution mode is not used.
+  </Attribute>
+
   ### options
 
-  <Attribute id="qiskit_ibm_runtime.SamplerV2.options" name="options" attributeTypeHint="SamplerOptions">
+  <Attribute id="qiskit_ibm_runtime.SamplerV2.options" attributeTypeHint="SamplerOptions">
     Return options
 
     **Return type**
@@ -49,7 +73,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   ### session
 
-  <Attribute id="qiskit_ibm_runtime.SamplerV2.session" name="session">
+  <Attribute id="qiskit_ibm_runtime.SamplerV2.session">
     Return session used by this primitive.
 
     **Return type**
@@ -63,13 +87,13 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   ### version
 
-  <Attribute id="qiskit_ibm_runtime.SamplerV2.version" name="version" attributeValue="= 2" />
+  <Attribute id="qiskit_ibm_runtime.SamplerV2.version" attributeValue="2" />
 
   ## Methods
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.SamplerV2.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L96-L123" signature="run(pubs, *, shots=None)">
+  <Function id="qiskit_ibm_runtime.SamplerV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L129-L156" signature="run(pubs, *, shots=None)">
     Submit a request to the sampler primitive.
 
     **Parameters**

@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 # MaximumLikelihoodAmplitudeEstimation
 
-<Class id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/mlae.py" signature="MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/algorithms/amplitude_estimators/mlae.py" signature="MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)" modifiers="class">
   The Maximum Likelihood Amplitude Estimation algorithm.
 
   This class implements the an quantum amplitude estimation (QAE) algorithm without phase estimation, according to [https://arxiv.org/abs/1904.10246](https://arxiv.org/abs/1904.10246). In comparison to the original QAE algorithm ([https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)), this implementation relies solely on different powers of the Grover algorithm and does not require ancilla qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named MaximumLikelihoodAmplitudeEstimation.
@@ -26,7 +26,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### a\_factory
 
-  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.a_factory" name="a_factory">
+  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.a_factory">
     Get the A operator encoding the amplitude a that’s approximated, i.e.
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -44,7 +44,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### backend
 
-  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.backend" name="backend" signature="qiskit.providers.basebackend.BaseBackend">
+  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.backend" attributeTypeHint="qiskit.providers.basebackend.BaseBackend">
     Returns backend.
 
     **Return type**
@@ -54,7 +54,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### i\_objective
 
-  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.i_objective" name="i_objective">
+  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.i_objective">
     Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -74,7 +74,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### q\_factory
 
-  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.q_factory" name="q_factory">
+  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.q_factory">
     Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
 
     > Q = -A S\_0 A^\{-1} S\_psi0,
@@ -94,7 +94,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### quantum\_instance
 
-  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" name="quantum_instance" signature="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
+  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" attributeTypeHint="Union[None, qiskit.aqua.quantum_instance.QuantumInstance]">
     Returns quantum instance.
 
     **Return type**
@@ -104,7 +104,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### random
 
-  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.random" name="random">
+  <Attribute id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.random">
     Return a numpy random.
   </Attribute>
 
@@ -112,7 +112,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### confidence\_interval
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval" name="confidence_interval" signature="MaximumLikelihoodAmplitudeEstimation.confidence_interval(alpha, kind='fisher')">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval" signature="MaximumLikelihoodAmplitudeEstimation.confidence_interval(alpha, kind='fisher')">
     Compute the alpha confidence interval using the method kind.
 
     The confidence level is (1 - alpha) and supported kinds are ‘fisher’, ‘likelihood\_ratio’ and ‘observed\_fisher’ with shorthand notations ‘fi’, ‘lr’ and ‘oi’, respectively.
@@ -138,7 +138,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### construct\_circuits
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" name="construct_circuits" signature="MaximumLikelihoodAmplitudeEstimation.construct_circuits(measurement=False)">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" signature="MaximumLikelihoodAmplitudeEstimation.construct_circuits(measurement=False)">
     Construct the Amplitude Estimation w/o QPE quantum circuits.
 
     **Parameters**
@@ -156,7 +156,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### run
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.run" name="run" signature="MaximumLikelihoodAmplitudeEstimation.run(quantum_instance=None, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.run" signature="MaximumLikelihoodAmplitudeEstimation.run(quantum_instance=None, **kwargs)">
     Execute the algorithm with selected backend.
 
     **Parameters**
@@ -179,7 +179,7 @@ python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### set\_backend
 
-  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.set_backend" name="set_backend" signature="MaximumLikelihoodAmplitudeEstimation.set_backend(backend, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.set_backend" signature="MaximumLikelihoodAmplitudeEstimation.set_backend(backend, **kwargs)">
     Sets backend with configuration.
 
     **Return type**

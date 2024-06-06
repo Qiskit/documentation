@@ -1,0 +1,24 @@
+[build-system]
+requires = [ "hatchling",]
+build-backend = "hatchling.build"
+
+[project]
+name = "qiskit-docs-notebook-tester"
+version = "0.0.1"
+description = "Tool for the Qiskit docs team to test their notebooks"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+dependencies = [
+  "qiskit-ibm-runtime",
+  "nbclient~=0.10.0",
+  "nbformat~=5.10.4",
+  "ipykernel~=6.29.2",
+  "squeaky==0.7.0",
+  "tomli==2.0.1",
+]
+
+[[project.authors]]
+name = "Qiskit docs team"
+
+[project.scripts]
+test-docs-notebooks = "qiskit_docs_notebook_tester:main"

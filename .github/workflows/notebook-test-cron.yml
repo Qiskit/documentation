@@ -26,10 +26,26 @@ jobs:
         uses: ./.github/actions/set-up-notebook-testing
         with:
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
-          instance: "ibm-q-internal/deployed/default"
+          instance: "client-enablement/documentation/qiskit-documenta"
 
       - name: Execute notebooks
-        run: tox -- --only-submit-jobs
+        timeout-minutes: 350
+        run: tox -- --write --only-submit-jobs
+
+      - name: Detect changed notebooks
+        id: changed-notebooks
+        if: "!cancelled()"
+        run: |
+          echo "CHANGED_NOTEBOOKS<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Upload executed notebooks
+        if: "!cancelled()"
+        uses: actions/upload-artifact@v4
+        with:
+          name: Executed notebooks
+          path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS }}
 
   make_issue:
     name: Make issue on failure

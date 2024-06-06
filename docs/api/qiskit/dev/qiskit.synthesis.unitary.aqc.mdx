@@ -10,11 +10,9 @@ python_api_name: qiskit.synthesis.unitary.aqc
 
 <span id="qiskit-synthesis-unitary-aqc" />
 
-# qiskit.synthesis.unitary.aqc
-
 <span id="approximate-quantum-compiler-qiskit-synthesis-unitary-aqc" />
 
-## Approximate Quantum Compiler
+# Approximate Quantum Compiler
 
 <span id="module-qiskit.synthesis.unitary.aqc" />
 
@@ -22,7 +20,7 @@ python_api_name: qiskit.synthesis.unitary.aqc
 
 Implementation of Approximate Quantum Compiler as described in the paper \[1].
 
-### Interface
+## Interface
 
 The main public interface of this module is reached by passing `unitary_synthesis_method='aqc'` to [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"). This will swap the synthesis method to use `AQCSynthesisPlugin`. The individual classes are:
 
@@ -36,7 +34,7 @@ The main public interface of this module is reached by passing `unitary_synthesi
 | [`DefaultCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective "qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective")(num\_qubits, cnots) | A naive implementation of the objective function based on CNOT units.                                                                  |
 | [`FastCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective "qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective")(num\_qubits, cnots)          | Implementation of objective function and gradient calculator, which is similar to `DefaultCNOTUnitObjective` but several times faster. |
 
-### Mathematical Detail
+## Mathematical Detail
 
 We are interested in compiling a quantum circuit, which we formalize as finding the best circuit representation in terms of an ordered gate sequence of a target unitary matrix $U\in U(d)$, with some additional hardware constraints. In particular, we look at representations that could be constrained in terms of hardware connectivity, as well as gate depth, and we choose a gate basis in terms of CNOT and rotation gates. We recall that the combination of CNOT and rotation gates is universal in $SU(d)$ and therefore it does not limit compilation.
 
@@ -83,7 +81,7 @@ A basic usage of the AQC algorithm should consist of the following steps:
 unitary = ...
 
 # Define a number of qubits for the algorithm, at least 3 qubits
-num_qubits = int(round(np.log2(unitary.shape[0])))
+num_qubits = round(math.log2(unitary.shape[0]))
 
 # Choose a layout of the CNOT structure for the approximate circuit, e.g. ``spin`` for
 # a linear layout.
@@ -129,7 +127,7 @@ This uses a helper function, [`make_cnot_network`](#qiskit.synthesis.unitary.aqc
 
 ### make\_cnot\_network
 
-<Function id="qiskit.synthesis.unitary.aqc.make_cnot_network" name="make_cnot_network" github="https://github.com/qiskit/qiskit/tree/main/qiskit/synthesis/unitary/aqc/cnot_structures.py" signature="qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)">
+<Function id="qiskit.synthesis.unitary.aqc.make_cnot_network" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/aqc/cnot_structures.py#L42-L111" signature="qiskit.synthesis.unitary.aqc.make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)">
   Generates a network consisting of building blocks each containing a CNOT gate and possibly some single-qubit ones. This network models a quantum operator in question. Note, each building block has 2 input and outputs corresponding to a pair of qubits. What we actually return here is a chain of indices of qubit pairs shared by every building block in a row.
 
   **Parameters**

@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.VQE
 
 # VQE
 
-<Class id="qiskit.algorithms.minimum_eigensolvers.VQE" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/vqe.py" signature="qiskit.algorithms.minimum_eigensolvers.VQE(estimator, ansatz, optimizer, *, gradient=None, initial_point=None, callback=None)">
+<Class id="qiskit.algorithms.minimum_eigensolvers.VQE" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/minimum_eigensolvers/vqe.py" signature="qiskit.algorithms.minimum_eigensolvers.VQE(estimator, ansatz, optimizer, *, gradient=None, initial_point=None, callback=None)" modifiers="class">
   Bases: `VariationalAlgorithm`, [`MinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.MinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.minimum_eigensolver.MinimumEigensolver")
 
   The variational quantum eigensolver (VQE) algorithm.
@@ -57,7 +57,7 @@ $$
 
   ### estimator
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.estimator" name="estimator">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.estimator">
     The estimator primitive to compute the expectation value of the Hamiltonian operator.
 
     **Type**
@@ -67,7 +67,7 @@ $$
 
   ### ansatz
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.ansatz" name="ansatz">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.ansatz">
     A parameterized quantum circuit to prepare the trial state.
 
     **Type**
@@ -77,7 +77,7 @@ $$
 
   ### optimizer
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.optimizer" name="optimizer">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.optimizer">
     A classical optimizer to find the minimum energy. This can either be a Qiskit [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") or a callable implementing the [`Minimizer`](qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol.
 
     **Type**
@@ -87,7 +87,7 @@ $$
 
   ### gradient
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.gradient" name="gradient">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.gradient">
     An optional estimator gradient to be used with the optimizer.
 
     **Type**
@@ -97,7 +97,7 @@ $$
 
   ### callback
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.callback" name="callback">
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.callback">
     A callback that can access the intermediate data at each optimization step. These data are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean, and the metadata dictionary.
 
     **Type**
@@ -124,13 +124,13 @@ $$
 
   ### initial\_point
 
-  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.initial_point" name="initial_point" />
+  <Attribute id="qiskit.algorithms.minimum_eigensolvers.VQE.initial_point" />
 
   ## Methods
 
   ### compute\_minimum\_eigenvalue
 
-  <Function id="qiskit.algorithms.minimum_eigensolvers.VQE.compute_minimum_eigenvalue" name="compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator, aux_operators=None)">
+  <Function id="qiskit.algorithms.minimum_eigensolvers.VQE.compute_minimum_eigenvalue" signature="compute_minimum_eigenvalue(operator, aux_operators=None)">
     Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
     **Parameters**
@@ -149,7 +149,7 @@ $$
 
   ### supports\_aux\_operators
 
-  <Function id="qiskit.algorithms.minimum_eigensolvers.VQE.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+  <Function id="qiskit.algorithms.minimum_eigensolvers.VQE.supports_aux_operators" signature="supports_aux_operators()" modifiers="classmethod">
     Whether computing the expectation value of auxiliary operators is supported.
 
     If the minimum eigensolver computes an eigenvalue of the main `operator` then it can compute the expectation value of the `aux_operators` for that state. Otherwise they will be ignored.

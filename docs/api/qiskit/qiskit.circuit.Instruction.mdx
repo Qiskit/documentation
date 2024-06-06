@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.Instruction
 
 # Instruction
 
-<Class id="qiskit.circuit.Instruction" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/instruction.py" signature="qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)">
+<Class id="qiskit.circuit.Instruction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L55-L658" signature="qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)" modifiers="class">
   Bases: [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 
   Generic quantum instruction.
@@ -34,7 +34,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### base\_class
 
-  <Attribute id="qiskit.circuit.Instruction.base_class" name="base_class">
+  <Attribute id="qiskit.circuit.Instruction.base_class">
     Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
     The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.Instruction.base_class "qiskit.circuit.Instruction.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
@@ -55,43 +55,43 @@ python_api_name: qiskit.circuit.Instruction
 
   ### condition
 
-  <Attribute id="qiskit.circuit.Instruction.condition" name="condition">
+  <Attribute id="qiskit.circuit.Instruction.condition">
     The classical condition on the instruction.
   </Attribute>
 
   ### condition\_bits
 
-  <Attribute id="qiskit.circuit.Instruction.condition_bits" name="condition_bits">
+  <Attribute id="qiskit.circuit.Instruction.condition_bits">
     Get Clbits in condition.
   </Attribute>
 
   ### decompositions
 
-  <Attribute id="qiskit.circuit.Instruction.decompositions" name="decompositions">
+  <Attribute id="qiskit.circuit.Instruction.decompositions">
     Get the decompositions of the instruction from the SessionEquivalenceLibrary.
   </Attribute>
 
   ### definition
 
-  <Attribute id="qiskit.circuit.Instruction.definition" name="definition">
+  <Attribute id="qiskit.circuit.Instruction.definition">
     Return definition in terms of other basic gates.
   </Attribute>
 
   ### duration
 
-  <Attribute id="qiskit.circuit.Instruction.duration" name="duration">
+  <Attribute id="qiskit.circuit.Instruction.duration">
     Get the duration.
   </Attribute>
 
   ### label
 
-  <Attribute id="qiskit.circuit.Instruction.label" name="label">
+  <Attribute id="qiskit.circuit.Instruction.label">
     Return instruction label
   </Attribute>
 
   ### mutable
 
-  <Attribute id="qiskit.circuit.Instruction.mutable" name="mutable">
+  <Attribute id="qiskit.circuit.Instruction.mutable">
     Is this instance is a mutable unique instance or not.
 
     If this attribute is `False` the gate instance is a shared singleton and is not mutable.
@@ -99,31 +99,31 @@ python_api_name: qiskit.circuit.Instruction
 
   ### name
 
-  <Attribute id="qiskit.circuit.Instruction.name" name="name">
+  <Attribute id="qiskit.circuit.Instruction.name">
     Return the name.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.Instruction.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.Instruction.num_clbits">
     Return the number of clbits.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.Instruction.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.Instruction.num_qubits">
     Return the number of qubits.
   </Attribute>
 
   ### params
 
-  <Attribute id="qiskit.circuit.Instruction.params" name="params">
-    return instruction params.
+  <Attribute id="qiskit.circuit.Instruction.params">
+    The parameters of this [`Instruction`](#qiskit.circuit.Instruction "qiskit.circuit.Instruction"). Ideally these will be gate angles.
   </Attribute>
 
   ### unit
 
-  <Attribute id="qiskit.circuit.Instruction.unit" name="unit">
+  <Attribute id="qiskit.circuit.Instruction.unit">
     Get the time unit of duration.
   </Attribute>
 
@@ -131,19 +131,19 @@ python_api_name: qiskit.circuit.Instruction
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.Instruction.add_decomposition" name="add_decomposition" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.Instruction.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L332-L337" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### assemble
 
-  <Function id="qiskit.circuit.Instruction.assemble" name="assemble" signature="assemble()">
+  <Function id="qiskit.circuit.Instruction.assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L359-L379" signature="assemble()">
     Assemble a QasmQobjInstruction
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.Instruction.broadcast_arguments" name="broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.Instruction.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L528-L557" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -162,7 +162,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### c\_if
 
-  <Function id="qiskit.circuit.Instruction.c_if" name="c_if" signature="c_if(classical, val)">
+  <Function id="qiskit.circuit.Instruction.c_if" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L484-L502" signature="c_if(classical, val)">
     Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
     <Admonition title="Note" type="note">
@@ -172,7 +172,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### copy
 
-  <Function id="qiskit.circuit.Instruction.copy" name="copy" signature="copy(name=None)">
+  <Function id="qiskit.circuit.Instruction.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L504-L519" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -190,7 +190,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### inverse
 
-  <Function id="qiskit.circuit.Instruction.inverse" name="inverse" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.Instruction.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L427-L482" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -214,14 +214,16 @@ python_api_name: qiskit.circuit.Instruction
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.Instruction.is_parameterized" name="is_parameterized" signature="is_parameterized()">
-    Return True .IFF. instruction is parameterized else False
+  <Function id="qiskit.circuit.Instruction.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L297-L302" signature="is_parameterized()">
+    Return whether the [`Instruction`](#qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
   ### repeat
 
-  <Function id="qiskit.circuit.Instruction.repeat" name="repeat" signature="repeat(n)">
-    Creates an instruction with gate repeated n amount of times.
+  <Function id="qiskit.circuit.Instruction.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L567-L609" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
+
+    If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
 
     **Parameters**
 
@@ -242,7 +244,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.Instruction.reverse_ops" name="reverse_ops" signature="reverse_ops()">
+  <Function id="qiskit.circuit.Instruction.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L401-L425" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -260,7 +262,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.Instruction.soft_compare" name="soft_compare" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.Instruction.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L228-L268" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -278,7 +280,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.Instruction.to_mutable" name="to_mutable" signature="to_mutable()">
+  <Function id="qiskit.circuit.Instruction.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L150-L158" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -286,7 +288,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.Instruction.validate_parameter" name="validate_parameter" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.Instruction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L293-L295" signature="validate_parameter(parameter)">
     Instruction parameters has no validation or normalization.
   </Function>
 </Class>

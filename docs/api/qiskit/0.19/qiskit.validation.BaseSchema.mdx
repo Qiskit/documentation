@@ -8,7 +8,7 @@ python_api_name: qiskit.validation.BaseSchema
 
 # BaseSchema
 
-<Class id="qiskit.validation.BaseSchema" github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py" signature="BaseSchema(*, only=None, exclude=(), many=False, context=None, load_only=(), dump_only=(), partial=False, unknown=None)">
+<Class id="qiskit.validation.BaseSchema" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/validation/base.py" signature="BaseSchema(*, only=None, exclude=(), many=False, context=None, load_only=(), dump_only=(), partial=False, unknown=None)" modifiers="class">
   Base class for Schemas for validated Qiskit classes.
 
   Provides convenience functionality for the Qiskit common use case:
@@ -18,7 +18,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### model\_cls
 
-  <Attribute id="qiskit.validation.BaseSchema.model_cls" name="model_cls">
+  <Attribute id="qiskit.validation.BaseSchema.model_cls">
     class used to instantiate the instance. The
 
     **Type**
@@ -26,19 +26,19 @@ python_api_name: qiskit.validation.BaseSchema
     type
   </Attribute>
 
-  ###
+  ### constructor is passed all named parameters from deserialization.
 
-  <Attribute name="constructor is passed all named parameters from deserialization." />
+  <Attribute />
 
   ## Attributes
 
   ### TYPE\_MAPPING
 
-  <Attribute id="qiskit.validation.BaseSchema.TYPE_MAPPING" signature="= {: , : , : , : , : , : , : , : , : , : , : , : , : , : }" />
+  <Attribute id="qiskit.validation.BaseSchema.TYPE_MAPPING" attributeValue="{<class 'str'>: <class 'marshmallow.fields.String'>, <class 'bytes'>: <class 'marshmallow.fields.String'>, <class 'datetime.datetime'>: <class 'marshmallow.fields.DateTime'>, <class 'float'>: <class 'marshmallow.fields.Float'>, <class 'bool'>: <class 'marshmallow.fields.Boolean'>, <class 'tuple'>: <class 'marshmallow.fields.Raw'>, <class 'list'>: <class 'marshmallow.fields.Raw'>, <class 'set'>: <class 'marshmallow.fields.Raw'>, <class 'int'>: <class 'marshmallow.fields.Integer'>, <class 'uuid.UUID'>: <class 'marshmallow.fields.UUID'>, <class 'datetime.time'>: <class 'marshmallow.fields.Time'>, <class 'datetime.date'>: <class 'marshmallow.fields.Date'>, <class 'datetime.timedelta'>: <class 'marshmallow.fields.TimeDelta'>, <class 'decimal.Decimal'>: <class 'marshmallow.fields.Decimal'>}" />
 
   ### dict\_class
 
-  <Attribute id="qiskit.validation.BaseSchema.dict_class" name="dict_class" signature="type">
+  <Attribute id="qiskit.validation.BaseSchema.dict_class" attributeTypeHint="type">
     **Return type**
 
     `type`
@@ -46,17 +46,17 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### error\_messages
 
-  <Attribute id="qiskit.validation.BaseSchema.error_messages" signature="= {}">
+  <Attribute id="qiskit.validation.BaseSchema.error_messages" attributeValue="{}">
     Overrides for default schema-level error messages
   </Attribute>
 
   ### opts
 
-  <Attribute id="qiskit.validation.BaseSchema.opts" signature="=" />
+  <Attribute id="qiskit.validation.BaseSchema.opts" attributeValue="<marshmallow.schema.SchemaOpts object>" />
 
   ### set\_class
 
-  <Attribute id="qiskit.validation.BaseSchema.set_class" name="set_class" signature="type">
+  <Attribute id="qiskit.validation.BaseSchema.set_class" attributeTypeHint="type">
     **Return type**
 
     `type`
@@ -66,7 +66,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### dump
 
-  <Function id="qiskit.validation.BaseSchema.dump" name="dump" signature="BaseSchema.dump(obj, *, many=None)">
+  <Function id="qiskit.validation.BaseSchema.dump" signature="BaseSchema.dump(obj, *, many=None)">
     Serialize an object to native Python data types according to this Schema’s fields.
 
     **Parameters**
@@ -87,7 +87,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### dump\_additional\_data
 
-  <Function id="qiskit.validation.BaseSchema.dump_additional_data" name="dump_additional_data" signature="BaseSchema.dump_additional_data(valid_data, original_data, **kwargs)">
+  <Function id="qiskit.validation.BaseSchema.dump_additional_data" signature="BaseSchema.dump_additional_data(valid_data, original_data, **kwargs)">
     Include unknown fields after dumping.
 
     Unknown fields are added with no processing at all.
@@ -111,7 +111,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### dumps
 
-  <Function id="qiskit.validation.BaseSchema.dumps" name="dumps" signature="BaseSchema.dumps(obj, *args, many=None, **kwargs)">
+  <Function id="qiskit.validation.BaseSchema.dumps" signature="BaseSchema.dumps(obj, *args, many=None, **kwargs)">
     Same as [`dump()`](qiskit.validation.BaseSchema#dump "qiskit.validation.BaseSchema.dump"), except return a JSON-encoded string.
 
     **Parameters**
@@ -130,7 +130,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### from\_dict
 
-  <Function id="qiskit.validation.BaseSchema.from_dict" name="from_dict" signature="classmethod BaseSchema.from_dict(fields, *, name='GeneratedSchema')">
+  <Function id="qiskit.validation.BaseSchema.from_dict" signature="BaseSchema.from_dict(fields, *, name='GeneratedSchema')" modifiers="classmethod">
     Generate a Schema class given a dictionary of fields.
 
     ```python
@@ -156,7 +156,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### get\_attribute
 
-  <Function id="qiskit.validation.BaseSchema.get_attribute" name="get_attribute" signature="BaseSchema.get_attribute(obj, attr, default)">
+  <Function id="qiskit.validation.BaseSchema.get_attribute" signature="BaseSchema.get_attribute(obj, attr, default)">
     Defines how to pull values from an object to serialize.
 
     New in version 2.0.0.
@@ -166,7 +166,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### handle\_error
 
-  <Function id="qiskit.validation.BaseSchema.handle_error" name="handle_error" signature="BaseSchema.handle_error(error, data, *, many, **kwargs)">
+  <Function id="qiskit.validation.BaseSchema.handle_error" signature="BaseSchema.handle_error(error, data, *, many, **kwargs)">
     Custom error handler function for the schema.
 
     **Parameters**
@@ -183,7 +183,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### load
 
-  <Function id="qiskit.validation.BaseSchema.load" name="load" signature="BaseSchema.load(data, *, many=None, partial=None, unknown=None)">
+  <Function id="qiskit.validation.BaseSchema.load" signature="BaseSchema.load(data, *, many=None, partial=None, unknown=None)">
     Deserialize a data structure to an object defined by this Schema’s fields.
 
     **Parameters**
@@ -204,7 +204,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### loads
 
-  <Function id="qiskit.validation.BaseSchema.loads" name="loads" signature="BaseSchema.loads(json_data, *, many=None, partial=None, unknown=None, **kwargs)">
+  <Function id="qiskit.validation.BaseSchema.loads" signature="BaseSchema.loads(json_data, *, many=None, partial=None, unknown=None, **kwargs)">
     Same as [`load()`](qiskit.validation.BaseSchema#load "qiskit.validation.BaseSchema.load"), except it takes a JSON string as input.
 
     **Parameters**
@@ -225,13 +225,13 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### make\_model
 
-  <Function id="qiskit.validation.BaseSchema.make_model" name="make_model" signature="BaseSchema.make_model(data, **_)">
+  <Function id="qiskit.validation.BaseSchema.make_model" signature="BaseSchema.make_model(data, **_)">
     Make `load` return a `model_cls` instance instead of a dict.
   </Function>
 
   ### on\_bind\_field
 
-  <Function id="qiskit.validation.BaseSchema.on_bind_field" name="on_bind_field" signature="BaseSchema.on_bind_field(field_name, field_obj)">
+  <Function id="qiskit.validation.BaseSchema.on_bind_field" signature="BaseSchema.on_bind_field(field_name, field_obj)">
     Hook to modify a field when it is bound to the Schema.
 
     No-op by default.
@@ -243,7 +243,7 @@ python_api_name: qiskit.validation.BaseSchema
 
   ### validate
 
-  <Function id="qiskit.validation.BaseSchema.validate" name="validate" signature="BaseSchema.validate(data, *, many=None, partial=None)">
+  <Function id="qiskit.validation.BaseSchema.validate" signature="BaseSchema.validate(data, *, many=None, partial=None)">
     Validate data against the schema, returning a dictionary of validation errors.
 
     **Parameters**

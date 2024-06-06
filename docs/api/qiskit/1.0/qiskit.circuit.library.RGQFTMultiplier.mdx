@@ -1,0 +1,235 @@
+---
+title: RGQFTMultiplier
+description: API reference for qiskit.circuit.library.RGQFTMultiplier
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RGQFTMultiplier
+---
+
+# RGQFTMultiplier
+
+<Class id="qiskit.circuit.library.RGQFTMultiplier" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py#L25-L101" signature="qiskit.circuit.library.RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')" modifiers="class">
+  Bases: `Multiplier`
+
+  A QFT multiplication circuit to store product of two input registers out-of-place.
+
+  Multiplication in this circuit is implemented using the procedure of Fig. 3 in \[1], where weighted sum rotations are implemented as given in Fig. 5 in \[1]. QFT is used on the output register and is followed by rotations controlled by input registers. The rotations transform the state into the product of two input registers in QFT base, which is reverted from QFT base using inverse QFT. As an example, a circuit that performs a modular QFT multiplication on two 2-qubit sized input registers with an output register of 2 qubits, is as follows:
+
+  ```python
+    a_0: ────────────────────────────────────────■───────■──────■──────■────────────────
+                                                 │       │      │      │
+    a_1: ─────────■───────■───────■───────■──────┼───────┼──────┼──────┼────────────────
+                  │       │       │       │      │       │      │      │
+    b_0: ─────────┼───────┼───────■───────■──────┼───────┼──────■──────■────────────────
+                  │       │       │       │      │       │      │      │
+    b_1: ─────────■───────■───────┼───────┼──────■───────■──────┼──────┼────────────────
+         ┌──────┐ │P(4π)  │       │P(2π)  │      │P(2π)  │      │P(π)  │       ┌───────┐
+  out_0: ┤0     ├─■───────┼───────■───────┼──────■───────┼──────■──────┼───────┤0      ├
+         │  qft │         │P(2π)          │P(π)          │P(π)         │P(π/2) │  iqft │
+  out_1: ┤1     ├─────────■───────────────■──────────────■─────────────■───────┤1      ├
+         └──────┘                                                              └───────┘
+  ```
+
+  **References:**
+
+  \[1] Ruiz-Perez et al., Quantum arithmetic with the Quantum Fourier Transform, 2017. [arXiv:1411.5949](https://arxiv.org/pdf/1411.5949.pdf)
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
+  *   **num\_result\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of result qubits to limit the output to. If number of result qubits is $n$, multiplication modulo $2^n$ is performed to limit the output to the specified number of qubits. Default value is `2 * num_state_qubits` to represent any possible result from the multiplication of the two inputs.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.data">
+    Return the circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.instances" attributeValue="412" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.metadata">
+    The user provided metadata associated with the circuit.
+
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.num_qubits">
+    Return number of qubits.
+  </Attribute>
+
+  ### num\_result\_qubits
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.num_result_qubits">
+    The number of result qubits to limit the output to.
+
+    **Returns**
+
+    The number of result qubits.
+  </Attribute>
+
+  ### num\_state\_qubits
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.num_state_qubits">
+    The number of state qubits, i.e. the number of bits in each input register.
+
+    **Returns**
+
+    The number of state qubits.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.prefix" attributeValue="'circuit'" />
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.RGQFTMultiplier.qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+</Class>
+

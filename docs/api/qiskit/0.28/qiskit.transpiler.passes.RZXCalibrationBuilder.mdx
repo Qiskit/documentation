@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
 # qiskit.transpiler.passes.RZXCalibrationBuilder
 
-<Class id="qiskit.transpiler.passes.RZXCalibrationBuilder" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py" signature="RZXCalibrationBuilder(backend)">
+<Class id="qiskit.transpiler.passes.RZXCalibrationBuilder" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/transpiler/passes/scheduling/calibration_creators.py" signature="RZXCalibrationBuilder(backend)" modifiers="class">
   Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. This is done by retrieving (for a given pair of qubits) the CX schedule in the instruction schedule map of the backend defaults. The CX schedule must be an echoed cross-resonance gate optionally with rotary tones. The cross-resonance drive tones and rotary pulses must be Gaussian square pulses. The width of the Gaussian square pulse is adjusted so as to match the desired rotation angle. If the rotation angle is small such that the width disappears then the amplitude of the zero width Gaussian square pulse (i.e. a Gaussian) is reduced to reach the target rotation angle. Additional details can be found in [https://arxiv.org/abs/2012.11660](https://arxiv.org/abs/2012.11660).
 
   Initializes a RZXGate calibration builder.
@@ -23,7 +23,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.__init__" name="__init__" signature="__init__(backend)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.__init__" signature="__init__(backend)">
     Initializes a RZXGate calibration builder.
 
     **Parameters**
@@ -55,7 +55,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
   ### get\_calibration
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.get_calibration" name="get_calibration" signature="get_calibration(params, qubits)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.get_calibration" signature="get_calibration(params, qubits)">
     **Parameters**
 
     *   **params** (`List`) – Parameters of the RZXGate(theta). I.e. params\[0] is theta.
@@ -76,29 +76,29 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
   ### is\_analysis\_pass
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.is_analysis_pass" name="is_analysis_pass" signature="property is_analysis_pass">
+  <Attribute id="qiskit.transpiler.passes.RZXCalibrationBuilder.is_analysis_pass">
     Check if the pass is an analysis pass.
 
     If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-  </Function>
+  </Attribute>
 
   ### is\_transformation\_pass
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.is_transformation_pass" name="is_transformation_pass" signature="property is_transformation_pass">
+  <Attribute id="qiskit.transpiler.passes.RZXCalibrationBuilder.is_transformation_pass">
     Check if the pass is a transformation pass.
 
     If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
-  </Function>
+  </Attribute>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.name" name="name" signature="name()">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.name" signature="name()">
     Return the name of the pass.
   </Function>
 
   ### rescale\_cr\_inst
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.rescale_cr_inst" name="rescale_cr_inst" signature="static rescale_cr_inst(instruction, theta, sample_mult=16)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.rescale_cr_inst" signature="rescale_cr_inst(instruction, theta, sample_mult=16)" modifiers="static">
     **Parameters**
 
     *   **instruction** (`Play`) – The instruction from which to create a new shortened or lengthened pulse.
@@ -122,7 +122,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.run" name="run" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.run" signature="run(dag)">
     Run the calibration adder pass on dag.
 
     **Parameters**
@@ -140,7 +140,7 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 
   ### supported
 
-  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.supported" name="supported" signature="supported(node_op)">
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilder.supported" signature="supported(node_op)">
     **Parameters**
 
     **node\_op** (`DAGNode`) – The node from the dag dep.

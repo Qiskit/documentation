@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
 # EstimatorV2
 
-<Class id="qiskit_ibm_runtime.EstimatorV2" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L48-L176" signature="EstimatorV2(backend=None, session=None, options=None)">
+<Class id="qiskit_ibm_runtime.EstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L53-L215" signature="EstimatorV2(mode=None, backend=None, session=None, options=None)" modifiers="class">
   Class for interacting with Qiskit Runtime Estimator primitive service.
 
   Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
@@ -53,7 +53,17 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   **Parameters**
 
-  *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
+  *   **mode** (`Union`\[`BackendV1`, `BackendV2`, [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `str`, `None`]) –
+
+      The execution mode used to make the primitive query. It can be:
+
+      *   A `Backend` if you are using job mode.
+      *   A [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") if you are using session execution mode.
+      *   A [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch") if you are using batch execution mode.
+
+      Refer to the [Qiskit Runtime documentation](/run). for more information about the `Execution modes`.
+
+  *   **backend** (`Union`\[`str`, `BackendV1`, `BackendV2`, `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
   *   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
 
@@ -69,9 +79,23 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   ## Attributes
 
+  ### mode
+
+  <Attribute id="qiskit_ibm_runtime.EstimatorV2.mode">
+    Return the execution mode used by this primitive.
+
+    **Return type**
+
+    Optional\[[Session](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") | [Batch](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")]
+
+    **Returns**
+
+    Mode used by this primitive, or `None` if an execution mode is not used.
+  </Attribute>
+
   ### options
 
-  <Attribute id="qiskit_ibm_runtime.EstimatorV2.options" name="options">
+  <Attribute id="qiskit_ibm_runtime.EstimatorV2.options">
     Return options
 
     **Return type**
@@ -81,7 +105,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   ### session
 
-  <Attribute id="qiskit_ibm_runtime.EstimatorV2.session" name="session">
+  <Attribute id="qiskit_ibm_runtime.EstimatorV2.session">
     Return session used by this primitive.
 
     **Return type**
@@ -95,13 +119,13 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   ### version
 
-  <Attribute id="qiskit_ibm_runtime.EstimatorV2.version" name="version" attributeValue="= 2" />
+  <Attribute id="qiskit_ibm_runtime.EstimatorV2.version" attributeValue="2" />
 
   ## Methods
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.EstimatorV2.run" name="run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L136-L153" signature="run(pubs, *, precision=None)">
+  <Function id="qiskit_ibm_runtime.EstimatorV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L170-L187" signature="run(pubs, *, precision=None)">
     Submit a request to the estimator primitive.
 
     **Parameters**

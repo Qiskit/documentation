@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
 # Z2Symmetries
 
-<Class id="qiskit.opflow.primitive_ops.Z2Symmetries" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py" signature="Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, tol=1e-14)">
+<Class id="qiskit.opflow.primitive_ops.Z2Symmetries" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/primitive_ops/tapered_pauli_sum_op.py" signature="Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, tol=1e-14)" modifiers="class">
   Bases: `object`
 
   Z2 Symmetries
@@ -29,7 +29,7 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
   ### consistent\_tapering
 
-  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.consistent_tapering" name="consistent_tapering" signature="Z2Symmetries.consistent_tapering(operator)">
+  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.consistent_tapering" signature="Z2Symmetries.consistent_tapering(operator)">
     Tapering the operator with the same manner of how this tapered operator is created. i.e., using the same Cliffords and tapering values.
 
     **Parameters**
@@ -51,7 +51,7 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
   ### convert\_clifford
 
-  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford" name="convert_clifford" signature="Z2Symmetries.convert_clifford(operator)">
+  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford" signature="Z2Symmetries.convert_clifford(operator)">
     This method operates the first part of the tapering. It converts the operator by composing it with the clifford unitaries defined in the current symmetry.
 
     **Parameters**
@@ -73,13 +73,13 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
   ### copy
 
-  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.copy" name="copy" signature="Z2Symmetries.copy()">
+  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.copy" signature="Z2Symmetries.copy()">
     Get a copy of self. :rtype: [`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.tapered_pauli_sum_op.Z2Symmetries") :returns: copy
   </Function>
 
   ### find\_Z2\_symmetries
 
-  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.find_Z2_symmetries" name="find_Z2_symmetries" signature="classmethod Z2Symmetries.find_Z2_symmetries(operator)">
+  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.find_Z2_symmetries" signature="Z2Symmetries.find_Z2_symmetries(operator)" modifiers="classmethod">
     Finds Z2 Pauli-type symmetries of an Operator.
 
     **Return type**
@@ -93,13 +93,13 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
   ### is\_empty
 
-  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.is_empty" name="is_empty" signature="Z2Symmetries.is_empty()">
+  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.is_empty" signature="Z2Symmetries.is_empty()">
     Check the z2\_symmetries is empty or not. :rtype: `bool` :returns: Empty or not
   </Function>
 
   ### taper
 
-  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.taper" name="taper" signature="Z2Symmetries.taper(operator)">
+  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.taper" signature="Z2Symmetries.taper(operator)">
     Taper an operator based on the z2\_symmetries info and sector defined by tapering\_values. The tapering\_values will be stored into the resulted operator for a record.
 
     The tapering is a two-step algorithm which first converts the operator into a [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp") with same eigenvalues but where some qubits are only acted upon with the Pauli operators I or X. The number M of these redundant qubits is equal to the number M of identified symmetries.
@@ -125,7 +125,7 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
   ### taper\_clifford
 
-  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.taper_clifford" name="taper_clifford" signature="Z2Symmetries.taper_clifford(operator)">
+  <Function id="qiskit.opflow.primitive_ops.Z2Symmetries.taper_clifford" signature="Z2Symmetries.taper_clifford(operator)">
     This method operates the second part of the tapering. This function assumes that the input operators have already been transformed using [`convert_clifford()`](qiskit.opflow.primitive_ops.Z2Symmetries#convert_clifford "qiskit.opflow.primitive_ops.Z2Symmetries.convert_clifford"). The redundant qubits due to the symmetries are dropped and replaced by their two possible eigenvalues. The tapering\_values will be stored into the resulted operator for a record.
 
     **Parameters**
@@ -149,13 +149,13 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
   ### cliffords
 
-  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.cliffords" name="cliffords">
+  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.cliffords">
     Get clifford operators, build based on symmetries and single-qubit X. :rtype: `List`\[[`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")] :returns: a list of unitaries used to diagonalize the Hamiltonian.
   </Attribute>
 
   ### settings
 
-  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.settings" name="settings">
+  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.settings">
     Return operator settings.
 
     **Return type**
@@ -165,31 +165,31 @@ python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 
   ### sq\_list
 
-  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.sq_list" name="sq_list">
+  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.sq_list">
     returns sq list
   </Attribute>
 
   ### sq\_paulis
 
-  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.sq_paulis" name="sq_paulis">
+  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.sq_paulis">
     returns sq paulis
   </Attribute>
 
   ### symmetries
 
-  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.symmetries" name="symmetries">
+  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.symmetries">
     return symmetries
   </Attribute>
 
   ### tapering\_values
 
-  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.tapering_values" name="tapering_values">
+  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.tapering_values">
     returns tapering values
   </Attribute>
 
   ### tol
 
-  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.tol" name="tol">
+  <Attribute id="qiskit.opflow.primitive_ops.Z2Symmetries.tol">
     Tolerance threshold for ignoring real and complex parts of a coefficient.
   </Attribute>
 </Class>

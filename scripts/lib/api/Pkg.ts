@@ -12,13 +12,19 @@
 
 import { join } from "path/posix";
 
-import { findLegacyReleaseNotes } from "./releaseNotes";
+import { findSeparateReleaseNotesVersions } from "./releaseNotes";
 import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
+import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping";
 
-export interface ReleaseNoteEntry {
-  title: string;
-  url: string;
+export class ReleaseNotesConfig {
+  readonly enabled: boolean;
+  readonly separatePagesVersions: string[];
+
+  constructor(kwargs: { enabled?: boolean; separatePagesVersions?: string[] }) {
+    this.enabled = kwargs.enabled ?? true;
+    this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
+  }
 }
 
 type PackageType = "latest" | "historical" | "dev";
@@ -29,33 +35,39 @@ type PackageType = "latest" | "historical" | "dev";
 export class Pkg {
   readonly name: string;
   readonly title: string;
-  readonly githubSlug: string;
-  readonly hasSeparateReleaseNotes: boolean;
+  readonly githubSlug?: string;
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly type: PackageType;
-  readonly releaseNoteEntries: ReleaseNoteEntry[];
+  readonly releaseNotesConfig: ReleaseNotesConfig;
+  readonly tocGrouping?: TocGrouping;
 
-  static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
+  static VALID_NAMES = [
+    "qiskit",
+    "qiskit-ibm-runtime",
+    "qiskit-ibm-provider",
+    "qiskit-transpiler-service",
+  ];
 
   constructor(kwargs: {
     name: string;
     title: string;
-    githubSlug: string;
-    hasSeparateReleaseNotes: boolean;
+    githubSlug?: string;
     version: string;
     versionWithoutPatch: string;
     type: PackageType;
-    releaseNoteEntries: ReleaseNoteEntry[];
+    releaseNotesConfig?: ReleaseNotesConfig;
+    tocGrouping?: TocGrouping;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
     this.githubSlug = kwargs.githubSlug;
-    this.hasSeparateReleaseNotes = kwargs.hasSeparateReleaseNotes;
     this.version = kwargs.version;
     this.versionWithoutPatch = kwargs.versionWithoutPatch;
     this.type = kwargs.type;
-    this.releaseNoteEntries = kwargs.releaseNoteEntries;
+    this.releaseNotesConfig =
+      kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
+    this.tocGrouping = kwargs.tocGrouping;
   }
 
   static async fromArgs(
@@ -72,14 +84,16 @@ export class Pkg {
     };
 
     if (name === "qiskit") {
-      const releaseNoteEntries = await findLegacyReleaseNotes(name);
+      const releaseNoteEntries = await findSeparateReleaseNotesVersions(name);
       return new Pkg({
         ...args,
         title: "Qiskit SDK",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
-        hasSeparateReleaseNotes: true,
-        releaseNoteEntries,
+        releaseNotesConfig: new ReleaseNotesConfig({
+          separatePagesVersions: releaseNoteEntries,
+        }),
+        tocGrouping: QISKIT_TOC_GROUPING,
       });
     }
 
@@ -89,19 +103,25 @@ export class Pkg {
         title: "Qiskit Runtime IBM Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        hasSeparateReleaseNotes: false,
-        releaseNoteEntries: [],
       });
     }
 
     if (name === "qiskit-ibm-provider") {
       return new Pkg({
         ...args,
-        title: "Qiskit IBM Provider",
+        title: "Qiskit IBM Provider (deprecated)",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
-        hasSeparateReleaseNotes: false,
-        releaseNoteEntries: [],
+      });
+    }
+
+    if (name === "qiskit-transpiler-service") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Transpiler Service Client",
+        name: "qiskit-transpiler-service",
+        githubSlug: undefined,
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
 
@@ -112,21 +132,21 @@ export class Pkg {
     name?: string;
     title?: string;
     githubSlug?: string;
-    hasSeparateReleaseNotes?: boolean;
     version?: string;
     versionWithoutPatch?: string;
     type?: PackageType;
-    releaseNoteEntries?: ReleaseNoteEntry[];
+    releaseNotesConfig?: ReleaseNotesConfig;
+    tocGrouping?: TocGrouping;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
       title: kwargs.title ?? "My Quantum Project",
-      githubSlug: kwargs.githubSlug ?? "qiskit/my-quantum-project",
-      hasSeparateReleaseNotes: kwargs.hasSeparateReleaseNotes ?? false,
+      githubSlug: kwargs.githubSlug,
       version: kwargs.version ?? "0.1.0",
       versionWithoutPatch: kwargs.versionWithoutPatch ?? "0.1",
       type: kwargs.type ?? "latest",
-      releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
+      releaseNotesConfig: kwargs.releaseNotesConfig,
+      tocGrouping: kwargs.tocGrouping,
     });
   }
 
@@ -160,6 +180,17 @@ export class Pkg {
 
   hasObjectsInv(): boolean {
     return this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45;
+  }
+
+  hasSeparateReleaseNotes(): boolean {
+    return this.releaseNotesConfig.separatePagesVersions.length > 0;
+  }
+
+  releaseNotesTitle(): string {
+    const versionStr = this.hasSeparateReleaseNotes()
+      ? ` ${this.versionWithoutPatch}`
+      : "";
+    return `${this.title}${versionStr} release notes`;
   }
 
   /**
@@ -197,6 +228,12 @@ export class Pkg {
           : `stable/${this.versionWithoutPatch}`;
       const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
       return (fileName) => {
+        if (!this.githubSlug) {
+          throw new Error(
+            `Encountered sphinx.ext.viewcode link, but Pkg.githubSlug is not set for ${this.name}`,
+          );
+        }
+
         return `${baseUrl}/${normalizeFile(fileName)}.py`;
       };
     }

@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
 # qiskit.aqua.algorithms.QSVM
 
-<Class id="qiskit.aqua.algorithms.QSVM" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py" signature="QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.QSVM" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/classifiers/qsvm/qsvm.py" signature="QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)" modifiers="class">
   Quantum SVM algorithm.
 
   A key concept in classification methods is that of a kernel. Data cannot typically be separated by a hyperplane in its original space. A common technique used to find such a hyperplane consists on applying a non-linear transformation function to the data. This function is called a *feature map*, as it transforms the raw features, or measurable properties, of the phenomenon or subject under study. Classifying in this new feature space – and, as a matter of fact, also in any other space, including the raw original one – is nothing more than seeing how close data points are to each other. This is the same as computing the inner product for each pair of data in the set. In fact we do not need to compute the non-linear feature map for each datum, but only the inner product of each pair of data points in the new feature space. This collection of inner products is called the **kernel** and it is perfectly possible to have feature maps that are hard to compute but whose kernels are not.
@@ -35,7 +35,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.aqua.algorithms.QSVM.__init__" name="__init__" signature="__init__(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)">
+  <Function id="qiskit.aqua.algorithms.QSVM.__init__" signature="__init__(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)">
     **Parameters**
 
     *   **feature\_map** (`Union`\[`QuantumCircuit`, `FeatureMap`]) – Feature map module, used to transform data
@@ -82,17 +82,17 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### backend
 
-  <Function id="qiskit.aqua.algorithms.QSVM.backend" name="backend" signature="property backend">
+  <Attribute id="qiskit.aqua.algorithms.QSVM.backend">
     Returns backend.
 
     **Return type**
 
     `Union`\[`Backend`, `BaseBackend`]
-  </Function>
+  </Attribute>
 
   ### construct\_circuit
 
-  <Function id="qiskit.aqua.algorithms.QSVM.construct_circuit" name="construct_circuit" signature="construct_circuit(x1, x2, measurement=False)">
+  <Function id="qiskit.aqua.algorithms.QSVM.construct_circuit" signature="construct_circuit(x1, x2, measurement=False)">
     Generate inner product of x1 and x2 with the given feature map.
 
     The dimension of x1 and x2 must be the same.
@@ -114,7 +114,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### construct\_kernel\_matrix
 
-  <Function id="qiskit.aqua.algorithms.QSVM.construct_kernel_matrix" name="construct_kernel_matrix" signature="construct_kernel_matrix(x1_vec, x2_vec=None, quantum_instance=None)">
+  <Function id="qiskit.aqua.algorithms.QSVM.construct_kernel_matrix" signature="construct_kernel_matrix(x1_vec, x2_vec=None, quantum_instance=None)">
     Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
 
     **Notes**
@@ -142,7 +142,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### get\_kernel\_matrix
 
-  <Function id="qiskit.aqua.algorithms.QSVM.get_kernel_matrix" name="get_kernel_matrix" signature="static get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None, enforce_psd=True)">
+  <Function id="qiskit.aqua.algorithms.QSVM.get_kernel_matrix" signature="get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None, enforce_psd=True)" modifiers="static">
     Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
 
     **Notes**
@@ -168,7 +168,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### load\_model
 
-  <Function id="qiskit.aqua.algorithms.QSVM.load_model" name="load_model" signature="load_model(file_path)">
+  <Function id="qiskit.aqua.algorithms.QSVM.load_model" signature="load_model(file_path)">
     Load a model from a file path.
 
     **Parameters**
@@ -178,7 +178,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### predict
 
-  <Function id="qiskit.aqua.algorithms.QSVM.predict" name="predict" signature="predict(data, quantum_instance=None)">
+  <Function id="qiskit.aqua.algorithms.QSVM.predict" signature="predict(data, quantum_instance=None)">
     Predict using the svm.
 
     **Parameters**
@@ -201,29 +201,29 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### quantum\_instance
 
-  <Function id="qiskit.aqua.algorithms.QSVM.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+  <Attribute id="qiskit.aqua.algorithms.QSVM.quantum_instance">
     Returns quantum instance.
 
     **Return type**
 
     `Optional`\[`QuantumInstance`]
-  </Function>
+  </Attribute>
 
   ### random
 
-  <Function id="qiskit.aqua.algorithms.QSVM.random" name="random" signature="property random">
+  <Attribute id="qiskit.aqua.algorithms.QSVM.random">
     Return a numpy random.
-  </Function>
+  </Attribute>
 
   ### ret
 
-  <Function id="qiskit.aqua.algorithms.QSVM.ret" name="ret" signature="property ret">
+  <Attribute id="qiskit.aqua.algorithms.QSVM.ret">
     returns result
-  </Function>
+  </Attribute>
 
   ### run
 
-  <Function id="qiskit.aqua.algorithms.QSVM.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.QSVM.run" signature="run(quantum_instance=None, **kwargs)">
     Execute the algorithm with selected backend.
 
     **Parameters**
@@ -246,7 +246,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### save\_model
 
-  <Function id="qiskit.aqua.algorithms.QSVM.save_model" name="save_model" signature="save_model(file_path)">
+  <Function id="qiskit.aqua.algorithms.QSVM.save_model" signature="save_model(file_path)">
     Save the model to a file path.
 
     **Parameters**
@@ -256,7 +256,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### set\_backend
 
-  <Function id="qiskit.aqua.algorithms.QSVM.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.QSVM.set_backend" signature="set_backend(backend, **kwargs)">
     Sets backend with configuration.
 
     **Return type**
@@ -266,7 +266,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### setup\_datapoint
 
-  <Function id="qiskit.aqua.algorithms.QSVM.setup_datapoint" name="setup_datapoint" signature="setup_datapoint(datapoints)">
+  <Function id="qiskit.aqua.algorithms.QSVM.setup_datapoint" signature="setup_datapoint(datapoints)">
     Setup data points, if the data were there, they would be overwritten.
 
     **Parameters**
@@ -276,7 +276,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### setup\_test\_data
 
-  <Function id="qiskit.aqua.algorithms.QSVM.setup_test_data" name="setup_test_data" signature="setup_test_data(test_dataset)">
+  <Function id="qiskit.aqua.algorithms.QSVM.setup_test_data" signature="setup_test_data(test_dataset)">
     Setup test data, if the data were there, they would be overwritten.
 
     **Parameters**
@@ -286,7 +286,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### setup\_training\_data
 
-  <Function id="qiskit.aqua.algorithms.QSVM.setup_training_data" name="setup_training_data" signature="setup_training_data(training_dataset)">
+  <Function id="qiskit.aqua.algorithms.QSVM.setup_training_data" signature="setup_training_data(training_dataset)">
     Setup training data, if the data were there, they would be overwritten.
 
     **Parameters**
@@ -296,7 +296,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### test
 
-  <Function id="qiskit.aqua.algorithms.QSVM.test" name="test" signature="test(data, labels, quantum_instance=None)">
+  <Function id="qiskit.aqua.algorithms.QSVM.test" signature="test(data, labels, quantum_instance=None)">
     Test the svm.
 
     **Parameters**
@@ -320,7 +320,7 @@ python_api_name: qiskit.aqua.algorithms.QSVM
 
   ### train
 
-  <Function id="qiskit.aqua.algorithms.QSVM.train" name="train" signature="train(data, labels, quantum_instance=None)">
+  <Function id="qiskit.aqua.algorithms.QSVM.train" signature="train(data, labels, quantum_instance=None)">
     Train the svm.
 
     **Parameters**

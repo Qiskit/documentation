@@ -11,7 +11,7 @@ The Qiskit transpiler service offers a Python library to seamlessly integrate th
 
 <Admonition type="note">
     This experimental service is only available for IBM Quantum Premium Plan users.
-    The service is an alpha release, subject to change.
+    The service is a beta release, subject to change.
     If you have feedback or want to contact the developer team, please use this [Qiskit Slack Workspace channel](https://qiskit.slack.com/archives/C06KF8YHUAU).
 </Admonition>
 
@@ -26,16 +26,17 @@ pip install qiskit-transpiler-service
 
 By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`).
 
-*Note*: This package requires Qiskit SDK 1.0 by default.
+*Note*: This package requires Qiskit SDK v1.X.
 
 ## qiskit-transpiler-service transpile options
 
 - `backend_name` (optional, str) - A backend name as it would be expected by QiskitRuntimeService (for example, `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `backend_name` settings are overridden.
 - `coupling_map` (optional, List[List[int]]) - A valid coupling map list (for example, [[0,1],[1,2]]). If this is set, the transpile method uses this coupling map for the transpilation operation. If defined, it overrides any value specified for `target`.
 - `optimization_level` (int) - The potential optimization level to apply during the transpilation process. Valid values are [1,2,3], where 1 is the least optimization (and fastest), and 3 the most optimization (and most time-intensive).
-- `ai` (bool) - Whether to use AI capabilities during transpilation. The AI capabilities available can be for `AIRouting` transpiling passes or other AI synthesis methods. If this value is `True`, the service applies different AI-powered transpiling passes depending on the `optimization_level` requested.
+- `ai` ("true", "false", "auto") - Whether to use AI-powered capabilities during transpilation. The AI-powered capabilities available can be for `AIRouting` transpiling passes or other AI-powered synthesis methods. If this value is `"true"`, the service applies different AI-powered transpiling passes depending on the `optimization_level` requested. If  `"false"`, it uses the latest Qiskit transpiling features without AI. Finally, if `"auto"`, the service decides whether to apply the standard Qiskit heuristic passes or the AI-powered passes based on your circuit.
 - `qiskit_transpile_options` (dict) - A Python dictionary object that can include any other option that is valid in the [Qiskit `transpile()` method](defaults-and-configuration-options). If the `qiskit_transpile_options` input includes `optimization_level`, it is discarded in favor of the `optimization_level` specified as parameter input. If the `qiskit_transpile_options` includes any option not recognized by the Qiskit `transpile()` method, the library raises an error.
 
+For more information about the available `qiskit-transpiler-service` methods, see the [qiskit-transpiler-service API reference](/api/qiskit-transpiler-service). To learn more about the service API, see the [Qiskit Transpiler Service REST API documentation.](/api/qiskit-transpiler-service-rest)
 
 ## Examples
 
@@ -51,7 +52,7 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
 
     cloud_transpiler_service = TranspilerService(
         backend_name="ibm_sherbrooke",
-        ai=False,
+        ai="false",
         optimization_level=3,
     )
     transpiled_circuit = cloud_transpiler_service.run(circuit)
@@ -68,11 +69,41 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
 
     cloud_transpiler_service = TranspilerService(
         backend_name="ibm_sherbrooke",
-        ai=True,
+        ai="true",
         optimization_level=1,
     )
     transpiled_circuit = cloud_transpiler_service.run(circuit)
     ```
+
+3. Produce a similar circuit and transpile it while letting the service to decide whether to use the AI-powered transpiling passes.
+
+
+    ```python
+    from qiskit.circuit.library import EfficientSU2
+    from qiskit_transpiler_service.transpiler_service import TranspilerService
+
+    circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
+
+    cloud_transpiler_service = TranspilerService(
+        backend_name="ibm_sherbrooke",
+        ai="auto",
+        optimization_level=1,
+    )
+    transpiled_circuit = cloud_transpiler_service.run(circuit)
+    ```
+
+## Citation
+
+If you use any AI-powered feature from the Qiskit transpiler service in your research, use the following recommended citation:
+
+```
+@misc{2405.13196,
+Author = {David Kremer and Victor Villar and Hanhee Paik and Ivan Duran and Ismael Faro and Juan Cruz-Benito},
+Title = {Practical and efficient quantum circuit synthesis and transpiling with Reinforcement Learning},
+Year = {2024},
+Eprint = {arXiv:2405.13196},
+}
+```
 
 ## Next steps
 

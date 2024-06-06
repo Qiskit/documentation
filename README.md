@@ -73,11 +73,21 @@ npm install
 
 ## Preview the docs locally
 
-Run `./start` in your terminal, then open http://localhost:3000 in your browser.
+You can preview the docs locally by following these two steps:
+
+1. Ensure Docker is running. For example, open Rancher Desktop.
+2. Run `./start` in your terminal, and open http://localhost:3000 in your browser.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
 Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
+
+### API docs authors: How to preview your changes
+
+API docs authors can preview their changes to one of the APIs by using the `-a` parameter to specify the path to the docs folder:
+
+1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
+2. Execute `./start` and open up `http://localhost:3000`, as explained in the prior section.
 
 ## Preview the docs in PRs
 
@@ -93,6 +103,12 @@ This staging environment can be useful to see how the docs are rendering before 
 
 ## Execute notebooks
 
+Before submitting a new notebook or code changes to a notebook, you must run
+the notebook using `tox -- --write <path-to-notebook>` and commit the results.
+If the notebook submits jobs, also use the argument `--submit-jobs`. This means
+we can be sure all notebooks work and that users will see the same results when
+they run using the environment we recommend.
+
 To execute notebooks in a fixed Python environment, first install `tox` using
 [pipx](https://pipx.pypa.io/stable/):
 
@@ -100,7 +116,10 @@ To execute notebooks in a fixed Python environment, first install `tox` using
 pipx install tox
 ```
 
-You also need to install a few system dependencies: TeX, Poppler, and graphviz. On macOS, you can run `brew install mactex-no-gui poppler graphviz`. On Ubuntu, you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils graphviz`.
+You also need to install a few system dependencies: TeX, Poppler, and graphviz.
+On macOS, you can run `brew install mactex-no-gui poppler graphviz`. On Ubuntu,
+you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils
+graphviz`.
 
 - To execute all notebooks, run tox.
   ```sh
@@ -115,20 +134,37 @@ You also need to install a few system dependencies: TeX, Poppler, and graphviz. 
   tox -- optional/paths/to/notebooks.ipynb --write
   ```
 
-> [!NOTE]
-> If your notebook submits hardware jobs to IBM Quantum, you must add it to the
-> ignore list in `scripts/nb-tester/test-notebooks.py`. This is not needed if
-> you only retrieve information.
->
-> If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
-> add it to the "Check for notebooks that require LaTeX" step in
-> `.github/workflows/notebook-test.yml`.
+When you make a pull request changing a notebook that doesn't submit jobs, you
+can get a version of that notebook that was executed by tox from CI. To do
+this, click "Show all checks" in the info box at the bottom of the pull request
+page on GitHub, then choose "Details" for the "Test notebooks" job. From the
+job page, click "Summary", then download "Executed notebooks". Otherwise, if
+your notebook does submit jobs, you need to run it locally using the steps
+mentioned earlier.
 
-When you make a pull request with a changed notebook, you can get a version of
-that notebook that was executed in a uniform environment from CI. To do this,
-click "Show all checks" in the info box at the bottom of the pull request page
-on GitHub, then choose "Details" for the "Test notebooks" job. From the job
-page, click "Summary", then download "Executed notebooks".
+### Adding a new notebook
+
+When adding a new notebook, you'll need to tell the testing tools how to handle it.
+To do this, add the file path to `scripts/nb-tester/notebooks.toml`. There are
+four categories:
+
+- `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
+  can't submit jobs as the queue times are too long and it will waste
+  resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
+  information.
+- `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
+  enough to run on a 5-qubit simulator. We will test these notebooks in CI by
+  patching `least_busy` to return a 5-qubit fake backend.
+- `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
+  simulator patch. We skip testing these in CI and instead run them twice per
+  month. Any notebooks with cells that take more than five minutes to run are
+  also deemed too big for CI. Try to avoid adding notebooks to this category if
+  possible.
+- `notebooks_exclude`: Notebooks to be ignored.
+
+If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
+also add it to the "Check for notebooks that require LaTeX" step in
+`.github/workflows/notebook-test.yml`.
 
 ### Ignoring warnings
 
@@ -307,9 +343,9 @@ You can also check that API docs and translations render by using any of these a
 
 CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
-## Format TypeScript files
+## Format README and TypeScript files
 
-If you're working on our support code in `scripts/`, run `npm run fmt` to automatically format the files.
+Run `npm run fmt` to automatically format the README, `.github` folder, and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
 
 To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
 
@@ -321,7 +357,7 @@ You can regenerate all API docs versions following these steps:
 
 1. Create a dedicated branch for the regeneration other than `main` using `git checkout -b <branch-name>`.
 2. Ensure there are no pending changes by running `git status` and creating a new commit for them if necessary.
-3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, and `qiskit-ibm-runtime`.
+3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, and `qiskit-transpiler-service`.
 
 Each regenerated version will be saved as a distinct commit. If the changes are too large for one single PR, consider splitting it up into multiple PRs by using `git cherry-pick` or `git rebase -i` so each PR only has the commits it wants to target.
 
@@ -329,7 +365,7 @@ If you only want to regenerate the latest stable minor release of each package, 
 
 Alternatively, you can also regenerate one specific version:
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
@@ -343,7 +379,7 @@ In this case, no commit will be automatically created.
 
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-provider`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
 2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
@@ -393,6 +429,22 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 [diff "objects_inv"]
   textconv = sh -c 'sphobjinv convert plain "$0" -'
 ```
+
+# How to deploy docs
+
+## Deploy guides & API docs
+
+This content lives on https://docs.quantum.ibm.com.
+
+See the section "Syncing content with open source repo" in the internal docs repo's README.
+
+### Deploy tutorials
+
+This content lives on https://learning.quantum.ibm.com.
+
+To deploy a file from the `tutorials/` directory in this repository, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
+
+To deploy a file from the ibm-quantum-learning-enablement repository, see the instructions in the internal tutorial repo's tutorials directory README.
 
 # How to write the documentation
 

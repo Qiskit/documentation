@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
 # DictStateFn
 
-<Class id="qiskit.opflow.state_fns.DictStateFn" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/state_fns/dict_state_fn.py" signature="DictStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)">
+<Class id="qiskit.opflow.state_fns.DictStateFn" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/state_fns/dict_state_fn.py" signature="DictStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)" modifiers="class">
   Bases: [`qiskit.opflow.state_fns.state_fn.StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 
   A class for state functions and measurements which are defined by a lookup table, stored in a dict.
@@ -28,7 +28,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### add
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.add" name="add" signature="DictStateFn.add(other)">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.add" signature="DictStateFn.add(other)">
     Return Operator addition of self and other, overloaded by `+`.
 
     **Parameters**
@@ -46,7 +46,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### adjoint
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.adjoint" name="adjoint" signature="DictStateFn.adjoint()">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.adjoint" signature="DictStateFn.adjoint()">
     Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
     **Return type**
@@ -60,7 +60,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### eval
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.eval" name="eval" signature="DictStateFn.eval(front=None)">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.eval" signature="DictStateFn.eval(front=None)">
     Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
     If `front` is None, the matrix-representation of the operator is returned.
@@ -80,7 +80,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### permute
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.permute" name="permute" signature="DictStateFn.permute(permutation)">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.permute" signature="DictStateFn.permute(permutation)">
     Permute the qubits of the state function.
 
     **Parameters**
@@ -98,7 +98,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### primitive\_strings
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.primitive_strings" name="primitive_strings" signature="DictStateFn.primitive_strings()">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.primitive_strings" signature="DictStateFn.primitive_strings()">
     Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
     **Return type**
@@ -112,7 +112,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### sample
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.sample" name="sample" signature="DictStateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.sample" signature="DictStateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
     Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
     **Parameters**
@@ -132,7 +132,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### tensor
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.tensor" name="tensor" signature="DictStateFn.tensor(other)">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.tensor" signature="DictStateFn.tensor(other)">
     Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
 
     > |0⟩– |+⟩–
@@ -154,7 +154,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### to\_circuit\_op
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.to_circuit_op" name="to_circuit_op" signature="DictStateFn.to_circuit_op()">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.to_circuit_op" signature="DictStateFn.to_circuit_op()">
     Convert this state function to a `CircuitStateFn`.
 
     **Return type**
@@ -164,7 +164,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### to\_density\_matrix
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.to_density_matrix" name="to_density_matrix" signature="DictStateFn.to_density_matrix(massive=False)">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.to_density_matrix" signature="DictStateFn.to_density_matrix(massive=False)">
     Return matrix representing product of StateFn evaluated on pairs of basis states. Overridden by child classes.
 
     **Parameters**
@@ -186,7 +186,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### to\_matrix
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.to_matrix" name="to_matrix" signature="DictStateFn.to_matrix(massive=False)">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.to_matrix" signature="DictStateFn.to_matrix(massive=False)">
     Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
     **Return type**
@@ -200,7 +200,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### to\_spmatrix
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.to_spmatrix" name="to_spmatrix" signature="DictStateFn.to_spmatrix()">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.to_spmatrix" signature="DictStateFn.to_spmatrix()">
     Same as to\_matrix, but returns csr sparse matrix.
 
     **Return type**
@@ -218,7 +218,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### to\_spmatrix\_op
 
-  <Function id="qiskit.opflow.state_fns.DictStateFn.to_spmatrix_op" name="to_spmatrix_op" signature="DictStateFn.to_spmatrix_op()">
+  <Function id="qiskit.opflow.state_fns.DictStateFn.to_spmatrix_op" signature="DictStateFn.to_spmatrix_op()">
     Convert this state function to a `SparseVectorStateFn`.
 
     **Return type**
@@ -230,11 +230,11 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### INDENTATION
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.INDENTATION" attributeValue="'  '" />
 
   ### coeff
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.coeff" name="coeff">
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.coeff">
     A coefficient by which the state function is multiplied.
 
     **Return type**
@@ -244,7 +244,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### instance\_id
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.instance_id" name="instance_id">
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.instance_id">
     Return the unique instance id.
 
     **Return type**
@@ -254,7 +254,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### is\_measurement
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.is_measurement" name="is_measurement">
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.is_measurement">
     Whether the StateFn object is a measurement Operator.
 
     **Return type**
@@ -264,7 +264,7 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### num\_qubits
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.num_qubits">
     **Return type**
 
     `int`
@@ -272,17 +272,17 @@ python_api_name: qiskit.opflow.state_fns.DictStateFn
 
   ### parameters
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.parameters" name="parameters" />
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.parameters" />
 
   ### primitive
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.primitive" name="primitive" attributeTypeHint="Dict[str, complex]">
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.primitive" attributeTypeHint="Dict[str, complex]">
     The primitive which defines the behavior of the underlying State function.
   </Attribute>
 
   ### settings
 
-  <Attribute id="qiskit.opflow.state_fns.DictStateFn.settings" name="settings">
+  <Attribute id="qiskit.opflow.state_fns.DictStateFn.settings">
     Return settings.
 
     **Return type**

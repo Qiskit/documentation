@@ -8,7 +8,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolat
 
 # DifferentialExtrapolator
 
-<Class id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py" signature="DifferentialExtrapolator(degree=1, model=None)">
+<Class id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py" signature="DifferentialExtrapolator(degree=1, model=None)" modifiers="class">
   Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
 
   An extrapolator based on treating each param set as a point in space, and fitting a Hamiltonian which evolves each point to the next. The user specifies the type of regression model to perform fitting, and a degree which adds derivatives to the values in the point vector; serving as features for the regression model. WARNING: Should only be used with window. Using no window includes points after the point being extrapolated in the data window.
@@ -24,7 +24,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolat
 
   ### extrapolate
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate" name="extrapolate" signature="DifferentialExtrapolator.extrapolate(points, param_dict)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate" signature="DifferentialExtrapolator.extrapolate(points, param_dict)">
     Extrapolate at specified point of interest given a set of variational parameters. Each parameter list and list of numerical gradients is treated as a single point in vector space. The regression model tries to fit a Hamiltonian that describes the evolution from one parameter set (and its gradient features) at point r, to another parameter set at point, r + epsilon. The regression model is then used to predict the parameter set at the point of interest. Note that this extrapolation technique does not explicitly use the spacing of the points (step size) but rather infers it from the list of parameter values.
 
     **Parameters**
@@ -44,7 +44,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolat
 
   ### factory
 
-  <Function id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory" name="factory" signature="static DifferentialExtrapolator.factory(mode, **kwargs)">
+  <Function id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory" signature="DifferentialExtrapolator.factory(mode, **kwargs)" modifiers="static">
     Factory method for constructing extrapolators.
 
     **Parameters**

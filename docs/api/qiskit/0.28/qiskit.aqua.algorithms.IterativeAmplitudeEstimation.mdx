@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
 # qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
-<Class id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/iqae.py" signature="IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_estimators/iqae.py" signature="IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)" modifiers="class">
   The Iterative Amplitude Estimation algorithm.
 
   This class implements the Iterative Quantum Amplitude Estimation (IQAE) algorithm, proposed in \[1]. The output of the algorithm is an estimate that, with at least probability $1 - \alpha$, differs by epsilon to the target value, where both alpha and epsilon can be specified.
@@ -49,7 +49,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.__init__" name="__init__" signature="__init__(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)">
+  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.__init__" signature="__init__(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)">
     The output of the algorithm is an estimate for the amplitude a, that with at least probability 1 - alpha has an error of epsilon. The number of A operator calls scales linearly in 1/epsilon (up to a logarithmic factor).
 
     **Parameters**
@@ -101,7 +101,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
   ### a\_factory
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.a_factory" name="a_factory" signature="property a_factory">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.a_factory">
     Get the A operator encoding the amplitude a that’s approximated, i.e.
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -115,21 +115,21 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
     **Return type**
 
     [CircuitFactory](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
-  </Function>
+  </Attribute>
 
   ### backend
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.backend" name="backend" signature="property backend">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.backend">
     Returns backend.
 
     **Return type**
 
     `Union`\[`Backend`, `BaseBackend`]
-  </Function>
+  </Attribute>
 
   ### construct\_circuit
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.construct_circuit" name="construct_circuit" signature="construct_circuit(k, measurement=False)">
+  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.construct_circuit" signature="construct_circuit(k, measurement=False)">
     Construct the circuit Q^k A |0>.
 
     The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
@@ -150,7 +150,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
   ### grover\_operator
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.grover_operator" name="grover_operator" signature="property grover_operator">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.grover_operator">
     Get the $\mathcal{Q}$ operator, or Grover operator.
 
     If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
@@ -162,11 +162,11 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
     **Returns**
 
     The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
-  </Function>
+  </Attribute>
 
   ### i\_objective
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.i_objective" name="i_objective" signature="property i_objective">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.i_objective">
     Get the index of the objective qubit. The objective qubit marks the |psi\_0> state (called ‘bad states’ in [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)) with |0> and |psi\_1> (‘good’ states) with |1>. If the A operator performs the mapping
 
     > A |0>\_n |0> = sqrt\{1 - a} |psi\_0>\_n |0> + sqrt\{a} |psi\_1>\_n |1>
@@ -182,11 +182,11 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
     **Return type**
 
     int
-  </Function>
+  </Attribute>
 
   ### is\_good\_state
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.is_good_state" name="is_good_state" signature="is_good_state(measurement)">
+  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.is_good_state" signature="is_good_state(measurement)">
     Determine whether a given state is a good state.
 
     **Parameters**
@@ -208,7 +208,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
   ### objective\_qubits
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.objective_qubits" name="objective_qubits" signature="property objective_qubits">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.objective_qubits">
     Get the criterion for a measurement outcome to be in a ‘good’ state.
 
     **Return type**
@@ -218,11 +218,11 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
     **Returns**
 
     The criterion as list of qubit indices.
-  </Function>
+  </Attribute>
 
   ### post\_processing
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.post_processing" name="post_processing" signature="post_processing(value)">
+  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.post_processing" signature="post_processing(value)">
     Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
 
     **Parameters**
@@ -240,7 +240,7 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
   ### precision
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.precision" name="precision" signature="property precision">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.precision">
     Returns the target precision epsilon of the algorithm.
 
     **Return type**
@@ -250,11 +250,11 @@ python_api_name: qiskit.aqua.algorithms.IterativeAmplitudeEstimation
     **Returns**
 
     The target precision (which is half the width of the confidence interval).
-  </Function>
+  </Attribute>
 
   ### q\_factory
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.q_factory" name="q_factory" signature="property q_factory">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.q_factory">
     Get the Q operator, or Grover-operator for the Amplitude Estimation algorithm, i.e.
 
 $$
@@ -272,27 +272,27 @@ $$
     **Return type**
 
     QFactory
-  </Function>
+  </Attribute>
 
   ### quantum\_instance
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.quantum_instance">
     Returns quantum instance.
 
     **Return type**
 
     `Optional`\[`QuantumInstance`]
-  </Function>
+  </Attribute>
 
   ### random
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random" name="random" signature="property random">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random">
     Return a numpy random.
-  </Function>
+  </Attribute>
 
   ### run
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.run" signature="run(quantum_instance=None, **kwargs)">
     Execute the algorithm with selected backend.
 
     **Parameters**
@@ -315,7 +315,7 @@ $$
 
   ### set\_backend
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.set_backend" signature="set_backend(backend, **kwargs)">
     Sets backend with configuration.
 
     **Return type**
@@ -325,7 +325,7 @@ $$
 
   ### state\_preparation
 
-  <Function id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation" name="state_preparation" signature="property state_preparation">
+  <Attribute id="qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation">
     Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 
     **Return type**
@@ -335,6 +335,6 @@ $$
     **Returns**
 
     The $\mathcal{A}$ operator as QuantumCircuit.
-  </Function>
+  </Attribute>
 </Class>
 

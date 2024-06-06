@@ -10,7 +10,7 @@ python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
 # qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
-<Class id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/orbital_optimization_vqe.py" signature="OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)">
+<Class id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/ground_state_solvers/orbital_optimization_vqe.py" signature="OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)" modifiers="class">
   A ground state calculation employing the OOVQE algorithm. The Variational Quantum Eigensolver (VQE) algorithm enhanced with the Orbital Optimization (OO). The core of the approach resides in the optimization of orbitals through the AO-to-MO coefficients matrix C. In the usual VQE, the latter remains constant throughout the simulation. Here, its elements are modified according to C=Ce^(-kappa) where kappa is an anti-hermitian matrix. This transformation preserves the spectrum but modifies the amplitudes of the ground state of given operator such that in the end a given ansatz can be closest to that ground state, producing larger overlap and lower eigenvalue than conventional VQE. Kappa is parametrized and optimized inside the OOVQE in the same way as the gate angles. Therefore, at each step of OOVQE the coefficient matrix C is modified and the operator is recomputed, unlike usual VQE where operator remains constant. Iterative OO refers to optimization in two steps, first the wavefunction and then the orbitals. It allows for faster optimization as the operator is not recomputed when wavefunction is optimized. It is recommended to use the iterative method on real device/qasm simulator with noise to facilitate the convergence of the classical optimizer. For more details of this method refer to: [https://aip.scitation.org/doi/10.1063/1.5141835](https://aip.scitation.org/doi/10.1063/1.5141835)
 
   **Parameters**
@@ -29,7 +29,7 @@ python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.__init__" name="__init__" signature="__init__(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)">
+  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.__init__" signature="__init__(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)">
     **Parameters**
 
     *   **transformation** (`FermionicTransformation`) – a fermionic driver to operator transformation strategy.
@@ -63,7 +63,7 @@ python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
   ### evaluate\_operators
 
-  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators" name="evaluate_operators" signature="evaluate_operators(state, operators)">
+  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators" signature="evaluate_operators(state, operators)">
     Evaluates additional operators at the given state.
 
     **Parameters**
@@ -82,7 +82,7 @@ python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
   ### returns\_groundstate
 
-  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate" name="returns_groundstate" signature="returns_groundstate()">
+  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate" signature="returns_groundstate()">
     Whether the eigensolver returns the ground state or only ground state energy.
 
     **Return type**
@@ -92,7 +92,7 @@ python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
   ### solve
 
-  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve" name="solve" signature="solve(driver, aux_operators=None)">
+  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve" signature="solve(driver, aux_operators=None)">
     Compute Ground State properties.
 
     **Parameters**
@@ -115,22 +115,22 @@ python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
   ### solver
 
-  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver" name="solver" signature="property solver">
+  <Attribute id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver">
     Returns the minimum eigensolver or factory.
 
     **Return type**
 
     `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
-  </Function>
+  </Attribute>
 
   ### transformation
 
-  <Function id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation" name="transformation" signature="property transformation">
+  <Attribute id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation">
     Returns the transformation used to obtain a qubit operator from the molecule.
 
     **Return type**
 
     `Transformation`
-  </Function>
+  </Attribute>
 </Class>
 

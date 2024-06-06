@@ -70,7 +70,9 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule "qiskit.puls
 
 These are all instances of the same base class:
 
-<Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py" signature="qiskit.pulse.instructions.Instruction(operands, name=None)">
+### Instruction
+
+<Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L36-L269" signature="qiskit.pulse.instructions.Instruction(operands, name=None)" modifiers="class">
   The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
   Instruction initializer.
@@ -161,7 +163,9 @@ Novel channel types can often utilize the [`ControlChannel`](qiskit.pulse.channe
 
 All channels are children of the same abstract base class:
 
-<Class id="qiskit.pulse.channels.Channel" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/channels.py" signature="qiskit.pulse.channels.Channel(*args, **kwargs)">
+### Channel
+
+<Class id="qiskit.pulse.channels.Channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/channels.py#L63-L162" signature="qiskit.pulse.channels.Channel(*args, **kwargs)" modifiers="class">
   Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
   When serialized channels are identified by their serialized name `<prefix><index>`. The type of the channel is interpreted from the prefix, and the index often (but not always) maps to the qubit index. All concrete channel classes must have a `prefix` class attribute (and instances of that class have an index attribute). Base classes which have `prefix` set to `None` are prevented from being instantiated.
@@ -214,7 +218,9 @@ The alignment transforms define alignment policies of instructions in [`Schedule
 
 These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind").
 
-<Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/alignments.py" signature="qiskit.pulse.transforms.AlignmentKind(context_params)">
+#### AlignmentKind
+
+<Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/alignments.py#L25-L87" signature="qiskit.pulse.transforms.AlignmentKind(context_params)" modifiers="class">
   An abstract class for schedule alignment.
 
   Create new context.
@@ -226,9 +232,9 @@ These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.puls
 
 The canonicalization transforms convert schedules to a form amenable for execution on OpenPulse backends.
 
-### add\_implicit\_acquires
+#### add\_implicit\_acquires
 
-<Function id="qiskit.pulse.transforms.add_implicit_acquires" name="add_implicit_acquires" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.add_implicit_acquires(schedule, meas_map)">
+<Function id="qiskit.pulse.transforms.add_implicit_acquires" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L384-L433" signature="qiskit.pulse.transforms.add_implicit_acquires(schedule, meas_map)">
   Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.
 
   <Admonition title="Warning" type="caution">
@@ -249,9 +255,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 </Function>
 
-### align\_measures
+#### align\_measures
 
-<Function id="qiskit.pulse.transforms.align_measures" name="align_measures" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)">
+<Function id="qiskit.pulse.transforms.align_measures" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L227-L381" signature="qiskit.pulse.transforms.align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)">
   Return new schedules where measurements occur at the same physical time.
 
   This transformation will align the first [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") on every channel to occur at the same time.
@@ -316,9 +322,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")]
 </Function>
 
-### block\_to\_schedule
+#### block\_to\_schedule
 
-<Function id="qiskit.pulse.transforms.block_to_schedule" name="block_to_schedule" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.block_to_schedule(block)">
+<Function id="qiskit.pulse.transforms.block_to_schedule" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L34-L82" signature="qiskit.pulse.transforms.block_to_schedule(block)">
   Convert `ScheduleBlock` to `Schedule`.
 
   **Parameters**
@@ -343,9 +349,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   </Admonition>
 </Function>
 
-### compress\_pulses
+#### compress\_pulses
 
-<Function id="qiskit.pulse.transforms.compress_pulses" name="compress_pulses" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.compress_pulses(schedules)">
+<Function id="qiskit.pulse.transforms.compress_pulses" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L85-L118" signature="qiskit.pulse.transforms.compress_pulses(schedules)">
   Optimization pass to replace identical pulses.
 
   **Parameters**
@@ -361,9 +367,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.schedule.Schedule](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
 </Function>
 
-### flatten
+#### flatten
 
-<Function id="qiskit.pulse.transforms.flatten" name="flatten" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.flatten(program)">
+<Function id="qiskit.pulse.transforms.flatten" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L121-L139" signature="qiskit.pulse.transforms.flatten(program)">
   Flatten (inline) any called nodes into a Schedule tree with no nested children.
 
   **Parameters**
@@ -383,9 +389,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 </Function>
 
-### inline\_subroutines
+#### inline\_subroutines
 
-<Function id="qiskit.pulse.transforms.inline_subroutines" name="inline_subroutines" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.inline_subroutines(program)">
+<Function id="qiskit.pulse.transforms.inline_subroutines" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L142-L162" signature="qiskit.pulse.transforms.inline_subroutines(program)">
   Recursively remove call instructions and inline the respective subroutine instructions.
 
   Assigned parameter values, which are stored in the parameter table, are also applied. The subroutine is copied before the parameter assignment to avoid mutation problem.
@@ -407,9 +413,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule") | [ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")
 </Function>
 
-### pad
+#### pad
 
-<Function id="qiskit.pulse.transforms.pad" name="pad" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.pad(schedule, channels=None, until=None, inplace=False, pad_with=None)">
+<Function id="qiskit.pulse.transforms.pad" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L436-L498" signature="qiskit.pulse.transforms.pad(schedule, channels=None, until=None, inplace=False, pad_with=None)">
   Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`.
 
   **Parameters**
@@ -433,9 +439,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 </Function>
 
-### remove\_directives
+#### remove\_directives
 
-<Function id="qiskit.pulse.transforms.remove_directives" name="remove_directives" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.remove_directives(schedule)">
+<Function id="qiskit.pulse.transforms.remove_directives" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L199-L208" signature="qiskit.pulse.transforms.remove_directives(schedule)">
   Remove directives.
 
   **Parameters**
@@ -451,9 +457,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
   [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 </Function>
 
-### remove\_trivial\_barriers
+#### remove\_trivial\_barriers
 
-<Function id="qiskit.pulse.transforms.remove_trivial_barriers" name="remove_trivial_barriers" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py" signature="qiskit.pulse.transforms.remove_trivial_barriers(schedule)">
+<Function id="qiskit.pulse.transforms.remove_trivial_barriers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L211-L224" signature="qiskit.pulse.transforms.remove_trivial_barriers(schedule)">
   Remove trivial barriers with 0 or 1 channels.
 
   **Parameters**
@@ -475,9 +481,9 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
 The DAG transforms create DAG representation of input program. This can be used for optimization of instructions and equality checks.
 
-### block\_to\_dag
+#### block\_to\_dag
 
-<Function id="qiskit.pulse.transforms.block_to_dag" name="block_to_dag" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/dag.py" signature="qiskit.pulse.transforms.block_to_dag(block)">
+<Function id="qiskit.pulse.transforms.block_to_dag" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/dag.py#L27-L75" signature="qiskit.pulse.transforms.block_to_dag(block)">
   Convert schedule block instruction into DAG.
 
   `ScheduleBlock` can be represented as a DAG as needed. For example, equality of two programs are efficiently checked on DAG representation.
@@ -533,9 +539,9 @@ The DAG transforms create DAG representation of input program. This can be used 
 
 A sequence of transformations to generate a target code.
 
-### target\_qobj\_transform
+#### target\_qobj\_transform
 
-<Function id="qiskit.pulse.transforms.target_qobj_transform" name="target_qobj_transform" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/transforms/base_transforms.py" signature="qiskit.pulse.transforms.target_qobj_transform(sched, remove_directives=True)">
+<Function id="qiskit.pulse.transforms.target_qobj_transform" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/base_transforms.py#L25-L55" signature="qiskit.pulse.transforms.target_qobj_transform(sched, remove_directives=True)">
   A basic pulse program transformation for OpenPulse API execution.
 
   **Parameters**
@@ -752,7 +758,7 @@ The above is just a small taste of what is possible with the builder. See the re
 
 ### build
 
-<Function id="qiskit.pulse.builder.build" name="build" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.build(backend=None, schedule=None, name=None, default_alignment='left')">
+<Function id="qiskit.pulse.builder.build" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L777-L824" signature="qiskit.pulse.builder.build(backend=None, schedule=None, name=None, default_alignment='left')">
   Create a context manager for launching the imperative pulse builder DSL.
 
   To enter a building context and starting building a pulse program:
@@ -810,9 +816,9 @@ with pulse.build(backend) as drive_sched:
 DriveChannel(0)
 ```
 
-### acquire\_channel
+#### acquire\_channel
 
-<Function id="qiskit.pulse.builder.acquire_channel" name="acquire_channel" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.acquire_channel(qubit)">
+<Function id="qiskit.pulse.builder.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1428-L1448" signature="qiskit.pulse.builder.acquire_channel(qubit)">
   Return `AcquireChannel` for `qubit` on the active builder backend.
 
   Examples:
@@ -836,9 +842,9 @@ DriveChannel(0)
   [*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
 </Function>
 
-### control\_channels
+#### control\_channels
 
-<Function id="qiskit.pulse.builder.control_channels" name="control_channels" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.control_channels(*qubits)">
+<Function id="qiskit.pulse.builder.control_channels" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1451-L1481" signature="qiskit.pulse.builder.control_channels(*qubits)">
   Return `ControlChannel` for `qubit` on the active builder backend.
 
   Return the secondary drive channel for the given qubit – typically utilized for controlling multi-qubit interactions.
@@ -871,9 +877,9 @@ DriveChannel(0)
   [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
 </Function>
 
-### drive\_channel
+#### drive\_channel
 
-<Function id="qiskit.pulse.builder.drive_channel" name="drive_channel" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.drive_channel(qubit)">
+<Function id="qiskit.pulse.builder.drive_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1382-L1402" signature="qiskit.pulse.builder.drive_channel(qubit)">
   Return `DriveChannel` for `qubit` on the active builder backend.
 
   Examples:
@@ -897,9 +903,9 @@ DriveChannel(0)
   [*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
 </Function>
 
-### measure\_channel
+#### measure\_channel
 
-<Function id="qiskit.pulse.builder.measure_channel" name="measure_channel" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.measure_channel(qubit)">
+<Function id="qiskit.pulse.builder.measure_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1405-L1425" signature="qiskit.pulse.builder.measure_channel(qubit)">
   Return `MeasureChannel` for `qubit` on the active builder backend.
 
   Examples:
@@ -956,9 +962,9 @@ drive_sched.draw()
 
 ![../\_images/pulse-4.png](/images/api/qiskit/dev/pulse-4.png)
 
-### acquire
+#### acquire
 
-<Function id="qiskit.pulse.builder.acquire" name="acquire" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.acquire(duration, qubit_or_channel, register, **metadata)">
+<Function id="qiskit.pulse.builder.acquire" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1540-L1590" signature="qiskit.pulse.builder.acquire(duration, qubit_or_channel, register, **metadata)">
   Acquire for a `duration` on a `channel` and store the result in a `register`.
 
   Examples:
@@ -993,9 +999,9 @@ drive_sched.draw()
   [**exceptions.PulseError**](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError") – If the register type is not supported.
 </Function>
 
-### barrier
+#### barrier
 
-<Function id="qiskit.pulse.builder.barrier" name="barrier" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.barrier(*channels_or_qubits, name=None)">
+<Function id="qiskit.pulse.builder.barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1926-L1995" signature="qiskit.pulse.builder.barrier(*channels_or_qubits, name=None)">
   Barrier directive for a set of channels and qubits.
 
   This directive prevents the compiler from moving instructions across the barrier. Consider the case where we want to enforce that one pulse happens after another on separate channels, this can be done with:
@@ -1060,9 +1066,9 @@ drive_sched.draw()
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name for the barrier
 </Function>
 
-### call
+#### call
 
-<Function id="qiskit.pulse.builder.call" name="call" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.call(target, name=None, value_dict=None, **kw_params)">
+<Function id="qiskit.pulse.builder.call" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1706-L1897" signature="qiskit.pulse.builder.call(target, name=None, value_dict=None, **kw_params)">
   Call the subroutine within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 
   <Admonition title="Note" type="note">
@@ -1229,9 +1235,9 @@ drive_sched.draw()
   *   **kw\_params** (*ParameterValueType*) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
 </Function>
 
-### delay
+#### delay
 
-<Function id="qiskit.pulse.builder.delay" name="delay" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.delay(duration, channel, name=None)">
+<Function id="qiskit.pulse.builder.delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1485-L1504" signature="qiskit.pulse.builder.delay(duration, channel, name=None)">
   Delay on a `channel` for a `duration`.
 
   Examples:
@@ -1252,9 +1258,9 @@ drive_sched.draw()
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 </Function>
 
-### play
+#### play
 
-<Function id="qiskit.pulse.builder.play" name="play" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.play(pulse, channel, name=None)">
+<Function id="qiskit.pulse.builder.play" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1507-L1529" signature="qiskit.pulse.builder.play(pulse, channel, name=None)">
   Play a `pulse` on a `channel`.
 
   Examples:
@@ -1275,9 +1281,9 @@ drive_sched.draw()
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the pulse.
 </Function>
 
-### reference
+#### reference
 
-<Function id="qiskit.pulse.builder.reference" name="reference" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.reference(name, *extra_keys)">
+<Function id="qiskit.pulse.builder.reference" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1900-L1922" signature="qiskit.pulse.builder.reference(name, *extra_keys)">
   Refer to undefined subroutine by string keys.
 
   A [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction is implicitly created and a schedule can be separately registered to the reference at a later stage.
@@ -1300,9 +1306,9 @@ drive_sched.draw()
   *   **extra\_keys** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Helper keys to uniquely specify the subroutine.
 </Function>
 
-### set\_frequency
+#### set\_frequency
 
-<Function id="qiskit.pulse.builder.set_frequency" name="set_frequency" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.set_frequency(frequency, channel, name=None)">
+<Function id="qiskit.pulse.builder.set_frequency" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1593-L1612" signature="qiskit.pulse.builder.set_frequency(frequency, channel, name=None)">
   Set the `frequency` of a pulse `channel`.
 
   Examples:
@@ -1323,9 +1329,9 @@ drive_sched.draw()
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 </Function>
 
-### set\_phase
+#### set\_phase
 
-<Function id="qiskit.pulse.builder.set_phase" name="set_phase" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.set_phase(phase, channel, name=None)">
+<Function id="qiskit.pulse.builder.set_phase" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1638-L1660" signature="qiskit.pulse.builder.set_phase(phase, channel, name=None)">
   Set the `phase` of a pulse `channel`.
 
   Examples:
@@ -1348,9 +1354,9 @@ drive_sched.draw()
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 </Function>
 
-### shift\_frequency
+#### shift\_frequency
 
-<Function id="qiskit.pulse.builder.shift_frequency" name="shift_frequency" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.shift_frequency(frequency, channel, name=None)">
+<Function id="qiskit.pulse.builder.shift_frequency" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1615-L1635" signature="qiskit.pulse.builder.shift_frequency(frequency, channel, name=None)">
   Shift the `frequency` of a pulse `channel`.
 
   Examples:
@@ -1371,9 +1377,9 @@ drive_sched.draw()
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 </Function>
 
-### shift\_phase
+#### shift\_phase
 
-<Function id="qiskit.pulse.builder.shift_phase" name="shift_phase" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.shift_phase(phase, channel, name=None)">
+<Function id="qiskit.pulse.builder.shift_phase" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1663-L1684" signature="qiskit.pulse.builder.shift_phase(phase, channel, name=None)">
   Shift the `phase` of a pulse `channel`.
 
   Examples:
@@ -1396,9 +1402,9 @@ drive_sched.draw()
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 </Function>
 
-### snapshot
+#### snapshot
 
-<Function id="qiskit.pulse.builder.snapshot" name="snapshot" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.snapshot(label, snapshot_type='statevector')">
+<Function id="qiskit.pulse.builder.snapshot" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1687-L1703" signature="qiskit.pulse.builder.snapshot(label, snapshot_type='statevector')">
   Simulator snapshot.
 
   Examples:
@@ -1438,9 +1444,9 @@ pulse_prog.draw()
 
 ![../\_images/pulse-5.png](/images/api/qiskit/dev/pulse-5.png)
 
-### align\_equispaced
+#### align\_equispaced
 
-<Function id="qiskit.pulse.builder.align_equispaced" name="align_equispaced" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.align_equispaced(duration)">
+<Function id="qiskit.pulse.builder.align_equispaced" signature="qiskit.pulse.builder.align_equispaced(duration)">
   Equispaced alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled with the same interval spacing such that the total length of the context block is `duration`. If the total free `duration` cannot be evenly divided by the number of instructions within the context, the modulo is split and then prepended and appended to the returned schedule. Delay instructions are automatically inserted in between pulses.
@@ -1484,9 +1490,9 @@ pulse_prog.draw()
   The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the equispaced context for each channel, you should use the context independently for channels.
 </Function>
 
-### align\_func
+#### align\_func
 
-<Function id="qiskit.pulse.builder.align_func" name="align_func" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.align_func(duration, func)">
+<Function id="qiskit.pulse.builder.align_func" signature="qiskit.pulse.builder.align_func(duration, func)">
   Callback defined alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled at the location specified by arbitrary callback function position that takes integer index and returns the associated fractional location within \[0, 1]. Delay instruction is automatically inserted in between pulses.
@@ -1536,9 +1542,9 @@ pulse_prog.draw()
   The scheduling is performed for sub-schedules within the context rather than channel-wise. If you want to apply the numerical context for each channel, you need to apply the context independently to channels.
 </Function>
 
-### align\_left
+#### align\_left
 
-<Function id="qiskit.pulse.builder.align_left" name="align_left" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.align_left()">
+<Function id="qiskit.pulse.builder.align_left" signature="qiskit.pulse.builder.align_left()">
   Left alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled as early as possible by shifting them left to the earliest available time.
@@ -1571,9 +1577,9 @@ pulse_prog.draw()
   [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
 </Function>
 
-### align\_right
+#### align\_right
 
-<Function id="qiskit.pulse.builder.align_right" name="align_right" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.align_right()">
+<Function id="qiskit.pulse.builder.align_right" signature="qiskit.pulse.builder.align_right()">
   Right alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled as late as possible by shifting them right to the latest available time.
@@ -1606,9 +1612,9 @@ pulse_prog.draw()
   [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
 </Function>
 
-### align\_sequential
+#### align\_sequential
 
-<Function id="qiskit.pulse.builder.align_sequential" name="align_sequential" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.align_sequential()">
+<Function id="qiskit.pulse.builder.align_sequential" signature="qiskit.pulse.builder.align_sequential()">
   Sequential alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled sequentially in time such that no two instructions will be played at the same time.
@@ -1641,9 +1647,9 @@ pulse_prog.draw()
   [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
 </Function>
 
-### frequency\_offset
+#### frequency\_offset
 
-<Function id="qiskit.pulse.builder.frequency_offset" name="frequency_offset" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.frequency_offset(frequency, *channels, compensate_phase=False)">
+<Function id="qiskit.pulse.builder.frequency_offset" signature="qiskit.pulse.builder.frequency_offset(frequency, *channels, compensate_phase=False)">
   Shift the frequency of inputs channels on entry into context and undo on exit.
 
   Examples:
@@ -1685,9 +1691,9 @@ pulse_prog.draw()
   [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
 </Function>
 
-### phase\_offset
+#### phase\_offset
 
-<Function id="qiskit.pulse.builder.phase_offset" name="phase_offset" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.phase_offset(phase, *channels)">
+<Function id="qiskit.pulse.builder.phase_offset" signature="qiskit.pulse.builder.phase_offset(phase, *channels)">
   Shift the phase of input channels on entry into context and undo on exit.
 
   Examples:
@@ -1739,9 +1745,9 @@ with pulse.build(backend) as measure_sched:
 MemorySlot(0)
 ```
 
-### measure
+#### measure
 
-<Function id="qiskit.pulse.builder.measure" name="measure" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.measure(qubits, registers=None)">
+<Function id="qiskit.pulse.builder.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2055-L2140" signature="qiskit.pulse.builder.measure(qubits, registers=None)">
   Measure a qubit within the currently active builder context.
 
   At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](#qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](#qiskit.pulse.builder.play "qiskit.pulse.builder.play").
@@ -1794,9 +1800,9 @@ MemorySlot(0)
   [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[StorageLocation] | StorageLocation
 </Function>
 
-### measure\_all
+#### measure\_all
 
-<Function id="qiskit.pulse.builder.measure_all" name="measure_all" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.measure_all()">
+<Function id="qiskit.pulse.builder.measure_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2143-L2183" signature="qiskit.pulse.builder.measure_all()">
   Measure all qubits within the currently active builder context.
 
   A simple macro function to measure all of the qubits in the device at the same time. This is useful for handling device `meas_map` and single measurement constraints.
@@ -1827,9 +1833,9 @@ MemorySlot(0)
   [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.MemorySlot](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
 </Function>
 
-### delay\_qubits
+#### delay\_qubits
 
-<Function id="qiskit.pulse.builder.delay_qubits" name="delay_qubits" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.delay_qubits(duration, *qubits)">
+<Function id="qiskit.pulse.builder.delay_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2186-L2213" signature="qiskit.pulse.builder.delay_qubits(duration, *qubits)">
   Insert delays on all the `channels.Channel`s that correspond to the input `qubits` at the same time.
 
   Examples:
@@ -1884,9 +1890,9 @@ There are 160 samples in 3.5555555555555554e-08 seconds
 There are 1e-06 seconds in 4500 samples.
 ```
 
-### active\_backend
+#### active\_backend
 
-<Function id="qiskit.pulse.builder.active_backend" name="active_backend" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.active_backend()">
+<Function id="qiskit.pulse.builder.active_backend" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L850-L865" signature="qiskit.pulse.builder.active_backend()">
   Get the backend of the currently active builder context.
 
   **Returns**
@@ -1904,9 +1910,9 @@ There are 1e-06 seconds in 4500 samples.
   [**exceptions.BackendNotSet**](#qiskit.pulse.BackendNotSet "qiskit.pulse.exceptions.BackendNotSet") – If the builder does not have a backend set.
 </Function>
 
-### num\_qubits
+#### num\_qubits
 
-<Function id="qiskit.pulse.builder.num_qubits" name="num_qubits" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.num_qubits()">
+<Function id="qiskit.pulse.builder.num_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L900-L923" signature="qiskit.pulse.builder.num_qubits()">
   Return number of qubits in the currently active backend.
 
   Examples:
@@ -1934,9 +1940,9 @@ There are 1e-06 seconds in 4500 samples.
   [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 </Function>
 
-### qubit\_channels
+#### qubit\_channels
 
-<Function id="qiskit.pulse.builder.qubit_channels" name="qubit_channels" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.qubit_channels(qubit)">
+<Function id="qiskit.pulse.builder.qubit_channels" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L957-L1007" signature="qiskit.pulse.builder.qubit_channels(qubit)">
   Returns the set of channels associated with a qubit.
 
   Examples:
@@ -1968,9 +1974,9 @@ There are 1e-06 seconds in 4500 samples.
   [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[[qiskit.pulse.channels.Channel](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 </Function>
 
-### samples\_to\_seconds
+#### samples\_to\_seconds
 
-<Function id="qiskit.pulse.builder.samples_to_seconds" name="samples_to_seconds" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.samples_to_seconds(samples)">
+<Function id="qiskit.pulse.builder.samples_to_seconds" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L944-L954" signature="qiskit.pulse.builder.samples_to_seconds(samples)">
   Obtain the time in seconds that will elapse for the input number of samples on the active backend.
 
   **Parameters**
@@ -1986,9 +1992,9 @@ There are 1e-06 seconds in 4500 samples.
   [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | np.ndarray
 </Function>
 
-### seconds\_to\_samples
+#### seconds\_to\_samples
 
-<Function id="qiskit.pulse.builder.seconds_to_samples" name="seconds_to_samples" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/builder.py" signature="qiskit.pulse.builder.seconds_to_samples(seconds)">
+<Function id="qiskit.pulse.builder.seconds_to_samples" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L926-L941" signature="qiskit.pulse.builder.seconds_to_samples(seconds)">
   Obtain the number of samples that will elapse in `seconds` on the active backend.
 
   Rounds down.
@@ -2016,7 +2022,7 @@ There are 1e-06 seconds in 4500 samples.
 
 ### PulseError
 
-<Class id="qiskit.pulse.PulseError" name="PulseError" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py" signature="qiskit.pulse.PulseError(*message)">
+<Class id="qiskit.pulse.PulseError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L17-L27" signature="qiskit.pulse.PulseError(*message)" modifiers="exception">
   Errors raised by the pulse module.
 
   Set the error message.
@@ -2024,7 +2030,7 @@ There are 1e-06 seconds in 4500 samples.
 
 ### BackendNotSet
 
-<Class id="qiskit.pulse.BackendNotSet" name="BackendNotSet" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py" signature="qiskit.pulse.BackendNotSet(*message)">
+<Class id="qiskit.pulse.BackendNotSet" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L30-L31" signature="qiskit.pulse.BackendNotSet(*message)" modifiers="exception">
   Raised if the builder context does not have a backend.
 
   Set the error message.
@@ -2032,7 +2038,7 @@ There are 1e-06 seconds in 4500 samples.
 
 ### NoActiveBuilder
 
-<Class id="qiskit.pulse.NoActiveBuilder" name="NoActiveBuilder" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py" signature="qiskit.pulse.NoActiveBuilder(*message)">
+<Class id="qiskit.pulse.NoActiveBuilder" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L34-L35" signature="qiskit.pulse.NoActiveBuilder(*message)" modifiers="exception">
   Raised if no builder context is active.
 
   Set the error message.
@@ -2040,7 +2046,7 @@ There are 1e-06 seconds in 4500 samples.
 
 ### UnassignedDurationError
 
-<Class id="qiskit.pulse.UnassignedDurationError" name="UnassignedDurationError" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py" signature="qiskit.pulse.UnassignedDurationError(*message)">
+<Class id="qiskit.pulse.UnassignedDurationError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L38-L39" signature="qiskit.pulse.UnassignedDurationError(*message)" modifiers="exception">
   Raised if instruction duration is unassigned.
 
   Set the error message.
@@ -2048,7 +2054,7 @@ There are 1e-06 seconds in 4500 samples.
 
 ### UnassignedReferenceError
 
-<Class id="qiskit.pulse.UnassignedReferenceError" name="UnassignedReferenceError" github="https://github.com/qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py" signature="qiskit.pulse.UnassignedReferenceError(*message)">
+<Class id="qiskit.pulse.UnassignedReferenceError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L42-L43" signature="qiskit.pulse.UnassignedReferenceError(*message)" modifiers="exception">
   Raised if subroutine is unassigned.
 
   Set the error message.

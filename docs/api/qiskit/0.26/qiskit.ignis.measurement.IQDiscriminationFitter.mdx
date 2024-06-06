@@ -8,7 +8,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
 # qiskit.ignis.measurement.IQDiscriminationFitter
 
-<Class id="qiskit.ignis.measurement.IQDiscriminationFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py" signature="IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)">
+<Class id="qiskit.ignis.measurement.IQDiscriminationFitter" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/measurement/discriminator/iq_discriminators.py" signature="IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)" modifiers="class">
   Abstract discriminator that implements the data formatting for IQ level 1 data.
 
   **Parameters**
@@ -21,7 +21,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.__init__" name="__init__" signature="__init__(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.__init__" signature="__init__(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)">
     **Parameters**
 
     *   **cal\_results** (*Union\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*, List\[*[*Result*](qiskit.result.Result "qiskit.result.Result")*]]*) – calibration results, Result or list of Result used to fit the discriminator.
@@ -56,7 +56,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### add\_data
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.add_data" name="add_data" signature="add_data(result, expected_states, refit=True, schedules=None)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.add_data" signature="add_data(result, expected_states, refit=True, schedules=None)">
     **Parameters**
 
     *   **result** (`Result`) – a Result containing new data to be used to train the discriminator.
@@ -67,7 +67,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### discriminate
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.discriminate" name="discriminate" signature="abstract discriminate(x_data)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.discriminate" signature="discriminate(x_data)" modifiers="abstract">
     Applies the discriminator to x\_data.
 
     **Parameters**
@@ -85,25 +85,25 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### expected\_states
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.expected_states" name="expected_states" signature="property expected_states">
+  <Attribute id="qiskit.ignis.measurement.IQDiscriminationFitter.expected_states">
     Returns the expected states used to train the discriminator.
-  </Function>
+  </Attribute>
 
   ### fit
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.fit" name="fit" signature="abstract fit()">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.fit" signature="fit()" modifiers="abstract">
     Fits the discriminator using self.\_xdata and self.\_ydata.
   </Function>
 
   ### fitted
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.fitted" name="fitted" signature="property fitted">
+  <Attribute id="qiskit.ignis.measurement.IQDiscriminationFitter.fitted">
     True if the discriminator has been fitted to calibration data.
-  </Function>
+  </Attribute>
 
   ### format\_iq\_data
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.format_iq_data" name="format_iq_data" signature="format_iq_data(iq_data)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.format_iq_data" signature="format_iq_data(iq_data)">
     Takes IQ data obtained from get\_memory(), applies the qubit mask and formats the data as a list of lists. Each sub list is IQ data where the first half of the list is the I data and the second half of the list is the Q data.
 
     **Parameters**
@@ -125,7 +125,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### get\_xdata
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.get_xdata" name="get_xdata" signature="get_xdata(results, schedule_type_to_get, schedules=None)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.get_xdata" signature="get_xdata(results, schedule_type_to_get, schedules=None)">
     Retrieves feature data (xdata) for the discriminator.
 
     **Parameters**
@@ -149,7 +149,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### get\_ydata
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.get_ydata" name="get_ydata" signature="get_ydata(results, schedule_type_to_get, schedules=None)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.get_ydata" signature="get_ydata(results, schedule_type_to_get, schedules=None)">
     Retrieves the expected states (ydata) for the discriminator.
 
     **Parameters**
@@ -171,7 +171,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### is\_calibration
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.is_calibration" name="is_calibration" signature="is_calibration(result_name)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.is_calibration" signature="is_calibration(result_name)">
     Identify if a name corresponds to a calibration name identified by the regex pattern self.\_cal\_pattern.
 
     **Parameters**
@@ -191,7 +191,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### plot
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.plot" name="plot" signature="plot(axs=None, show_boundary=False, show_fitting_data=True, flag_misclassified=False, qubits_to_plot=None, title=True)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.plot" signature="plot(axs=None, show_boundary=False, show_fitting_data=True, flag_misclassified=False, qubits_to_plot=None, title=True)">
     Creates a plot of the data used to fit the discriminator.
 
     **Parameters**
@@ -220,7 +220,7 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### plot\_xdata
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.plot_xdata" name="plot_xdata" signature="plot_xdata(axs, results, color=None)">
+  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.plot_xdata" signature="plot_xdata(axs, results, color=None)">
     Add the relevant IQ data from the Qiskit Result, or list thereof, to the given axes as a scatter plot.
 
     **Parameters**
@@ -236,8 +236,8 @@ python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 
   ### schedules
 
-  <Function id="qiskit.ignis.measurement.IQDiscriminationFitter.schedules" name="schedules" signature="property schedules">
+  <Attribute id="qiskit.ignis.measurement.IQDiscriminationFitter.schedules">
     Returns the schedules with which the discriminator was fitted.
-  </Function>
+  </Attribute>
 </Class>
 

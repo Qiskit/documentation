@@ -8,7 +8,7 @@ python_api_name: qiskit.primitives.BitArray
 
 # BitArray
 
-<Class id="qiskit.primitives.BitArray" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/containers/bit_array.py" signature="qiskit.primitives.BitArray(array, num_bits)">
+<Class id="qiskit.primitives.BitArray" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L59-L640" signature="qiskit.primitives.BitArray(array, num_bits)" modifiers="class">
   Bases: `ShapedMixin`
 
   Stores an array of bit values.
@@ -29,17 +29,17 @@ python_api_name: qiskit.primitives.BitArray
 
   ### array
 
-  <Attribute id="qiskit.primitives.BitArray.array" name="array">
+  <Attribute id="qiskit.primitives.BitArray.array">
     The raw NumPy array of data.
   </Attribute>
 
   ### ndim
 
-  <Attribute id="qiskit.primitives.BitArray.ndim" name="ndim" />
+  <Attribute id="qiskit.primitives.BitArray.ndim" />
 
   ### num\_bits
 
-  <Attribute id="qiskit.primitives.BitArray.num_bits" name="num_bits">
+  <Attribute id="qiskit.primitives.BitArray.num_bits">
     The number of bits in the register that this array stores data for.
 
     For example, a `ClassicalRegister(5, "meas")` would result in `num_bits=5`.
@@ -47,7 +47,7 @@ python_api_name: qiskit.primitives.BitArray
 
   ### num\_shots
 
-  <Attribute id="qiskit.primitives.BitArray.num_shots" name="num_shots">
+  <Attribute id="qiskit.primitives.BitArray.num_shots">
     The number of shots sampled from the register in each configuration.
 
     More precisely, the length of the second last axis of [`array`](#qiskit.primitives.BitArray.array "qiskit.primitives.BitArray.array").
@@ -55,17 +55,17 @@ python_api_name: qiskit.primitives.BitArray
 
   ### shape
 
-  <Attribute id="qiskit.primitives.BitArray.shape" name="shape" />
+  <Attribute id="qiskit.primitives.BitArray.shape" />
 
   ### size
 
-  <Attribute id="qiskit.primitives.BitArray.size" name="size" />
+  <Attribute id="qiskit.primitives.BitArray.size" />
 
   ## Methods
 
   ### bitcount
 
-  <Function id="qiskit.primitives.BitArray.bitcount" name="bitcount" signature="bitcount()">
+  <Function id="qiskit.primitives.BitArray.bitcount" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L180-L186" signature="bitcount()">
     Compute the number of ones appearing in the binary representation of each shot.
 
     **Returns**
@@ -77,9 +77,118 @@ python_api_name: qiskit.primitives.BitArray
     [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")\[*uint64*]]
   </Function>
 
+  ### concatenate
+
+  <Function id="qiskit.primitives.BitArray.concatenate" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L512-L561" signature="concatenate(bit_arrays, axis=0)" modifiers="static">
+    Join a sequence of bit arrays along an existing axis.
+
+    **Parameters**
+
+    *   **bit\_arrays** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")*]*) – The bit arrays must have (1) the same number of bits, (2) the same number of shots, and (3) the same shape, except in the dimension corresponding to axis (the first, by default).
+    *   **axis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The axis along which the arrays will be joined. Default is 0.
+
+    **Returns**
+
+    The concatenated bit array.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the sequence of bit arrays is empty.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If any bit arrays has a different number of bits.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If any bit arrays has a different number of shots.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If any bit arrays has a different number of dimensions.
+
+    **Return type**
+
+    [*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+  </Function>
+
+  ### concatenate\_bits
+
+  <Function id="qiskit.primitives.BitArray.concatenate_bits" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L599-L640" signature="concatenate_bits(bit_arrays)" modifiers="static">
+    Join a sequence of bit arrays along the bits axis.
+
+    <Admonition title="Note" type="note">
+      This method is equivalent to per-shot bitstring concatenation.
+    </Admonition>
+
+    **Parameters**
+
+    **bit\_arrays** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")*]*) – Bit arrays that have (1) the same number of shots, and (2) the same shape.
+
+    **Returns**
+
+    The stacked bit array.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the sequence of bit arrays is empty.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If any bit arrays has a different number of shots.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If any bit arrays has a different shape.
+
+    **Return type**
+
+    [*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+  </Function>
+
+  ### concatenate\_shots
+
+  <Function id="qiskit.primitives.BitArray.concatenate_shots" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L563-L597" signature="concatenate_shots(bit_arrays)" modifiers="static">
+    Join a sequence of bit arrays along the shots axis.
+
+    **Parameters**
+
+    **bit\_arrays** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")*]*) – The bit arrays must have (1) the same number of bits, and (2) the same shape.
+
+    **Returns**
+
+    The stacked bit array.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the sequence of bit arrays is empty.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If any bit arrays has a different number of bits.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If any bit arrays has a different shape.
+
+    **Return type**
+
+    [*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+  </Function>
+
+  ### expectation\_values
+
+  <Function id="qiskit.primitives.BitArray.expectation_values" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L468-L510" signature="expectation_values(observables)">
+    Compute the expectation values of the provided observables, broadcasted against this bit array.
+
+    <Admonition title="Note" type="note">
+      This method returns the real part of the expectation value even if the operator has complex coefficients due to the specification of [`sampled_expectation_value()`](result#qiskit.result.sampled_expectation_value "qiskit.result.sampled_expectation_value").
+    </Admonition>
+
+    **Parameters**
+
+    *   **observables** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")  *|*[*Mapping*](https://docs.python.org/3/library/typing.html#typing.Mapping "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*]]] |* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.12)") *| \_NestedSequence\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*bytes*](https://docs.python.org/3/library/stdtypes.html#bytes "(in Python v3.12)")*]*) – The observable(s) to take the expectation value of.
+    *   **and** (*Must have a shape broadcastable with with this bit array*) –
+    *   **array.** (*the same number of qubits as the number of bits of this bit*) –
+    *   **diagonal** (*The observables must be*) –
+
+    **Returns**
+
+    An array of expectation values whose shape is the broadcast shape of `observables` and this bit array.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the provided observables does not have a shape broadcastable with this bit array.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the provided observables does not have the same number of qubits as the number of bits of this bit array.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the provided observables are not diagonal.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v1.26)")\[*float64*]]
+  </Function>
+
   ### from\_bool\_array
 
-  <Function id="qiskit.primitives.BitArray.from_bool_array" name="from_bool_array" signature="static from_bool_array(array, order='big')">
+  <Function id="qiskit.primitives.BitArray.from_bool_array" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L188-L219" signature="from_bool_array(array, order='big')" modifiers="static">
     Construct a new bit array from an array of bools.
 
     **Parameters**
@@ -98,7 +207,7 @@ python_api_name: qiskit.primitives.BitArray
 
   ### from\_counts
 
-  <Function id="qiskit.primitives.BitArray.from_counts" name="from_counts" signature="static from_counts(counts, num_bits=None)">
+  <Function id="qiskit.primitives.BitArray.from_counts" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L221-L262" signature="from_counts(counts, num_bits=None)" modifiers="static">
     Construct a new bit array from one or more `Counts`-like objects.
 
     The `counts` can have keys that are (uniformly) integers, hexstrings, or bitstrings. Their values represent numbers of occurrences of that value.
@@ -124,7 +233,7 @@ python_api_name: qiskit.primitives.BitArray
 
   ### from\_samples
 
-  <Function id="qiskit.primitives.BitArray.from_samples" name="from_samples" signature="static from_samples(samples, num_bits=None)">
+  <Function id="qiskit.primitives.BitArray.from_samples" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L264-L305" signature="from_samples(samples, num_bits=None)" modifiers="static">
     Construct a new bit array from an iterable of bitstrings, hexstrings, or integers.
 
     All samples are assumed to be integers if the first one is. Strings are all assumed to be bitstrings whenever the first string doesn’t start with `"0x"`.
@@ -151,7 +260,7 @@ python_api_name: qiskit.primitives.BitArray
 
   ### get\_bitstrings
 
-  <Function id="qiskit.primitives.BitArray.get_bitstrings" name="get_bitstrings" signature="get_bitstrings(loc=None)">
+  <Function id="qiskit.primitives.BitArray.get_bitstrings" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L335-L348" signature="get_bitstrings(loc=None)">
     Return a list of bitstrings.
 
     **Parameters**
@@ -169,7 +278,7 @@ python_api_name: qiskit.primitives.BitArray
 
   ### get\_counts
 
-  <Function id="qiskit.primitives.BitArray.get_counts" name="get_counts" signature="get_counts(loc=None)">
+  <Function id="qiskit.primitives.BitArray.get_counts" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L307-L319" signature="get_counts(loc=None)">
     Return a counts dictionary with bitstring keys.
 
     **Parameters**
@@ -187,7 +296,7 @@ python_api_name: qiskit.primitives.BitArray
 
   ### get\_int\_counts
 
-  <Function id="qiskit.primitives.BitArray.get_int_counts" name="get_int_counts" signature="get_int_counts(loc=None)">
+  <Function id="qiskit.primitives.BitArray.get_int_counts" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L321-L333" signature="get_int_counts(loc=None)">
     Return a counts dictionary, where bitstrings are stored as `int`s.
 
     **Parameters**
@@ -205,7 +314,7 @@ python_api_name: qiskit.primitives.BitArray
 
   ### reshape
 
-  <Function id="qiskit.primitives.BitArray.reshape" name="reshape" signature="reshape(*shape)">
+  <Function id="qiskit.primitives.BitArray.reshape" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L350-L376" signature="reshape(*shape)">
     Return a new reshaped bit array.
 
     The [`num_shots`](#qiskit.primitives.BitArray.num_shots "qiskit.primitives.BitArray.num_shots") axis is either included or excluded from the reshaping procedure depending on which picture the new shape is compatible with. For example, for a bit array with shape `(20, 5)` and `64` shots, a reshape to `(100,)` would leave the number of shots intact, whereas a reshape to `(200, 32)` would change the number of shots to `32`.
@@ -225,6 +334,79 @@ python_api_name: qiskit.primitives.BitArray
     **Return type**
 
     [*BitArray*](#qiskit.primitives.BitArray "qiskit.primitives.containers.bit_array.BitArray")
+  </Function>
+
+  ### slice\_bits
+
+  <Function id="qiskit.primitives.BitArray.slice_bits" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L408-L443" signature="slice_bits(indices)">
+    Return a bit array sliced along the bit axis of some indices of interest.
+
+    <Admonition title="Note" type="note">
+      The convention used by this method is that the index `0` corresponds to the least-significant bit in the [`array`](#qiskit.primitives.BitArray.array "qiskit.primitives.BitArray.array"), or equivalently the right-most bitstring entry as returned by [`get_counts()`](#qiskit.primitives.BitArray.get_counts "qiskit.primitives.BitArray.get_counts") or [`get_bitstrings()`](#qiskit.primitives.BitArray.get_bitstrings "qiskit.primitives.BitArray.get_bitstrings"), etc.
+
+      If this bit array was produced by a sampler, then an index `i` corresponds to the [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") location `creg[i]`.
+    </Admonition>
+
+    **Parameters**
+
+    **indices** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The bit positions of interest to slice along.
+
+    **Returns**
+
+    A bit array sliced along the bit axis.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If there are any invalid indices of the bit axis.
+
+    **Return type**
+
+    [BitArray](#qiskit.primitives.BitArray "qiskit.primitives.BitArray")
+  </Function>
+
+  ### slice\_shots
+
+  <Function id="qiskit.primitives.BitArray.slice_shots" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L445-L466" signature="slice_shots(indices)">
+    Return a bit array sliced along the shots axis of some indices of interest.
+
+    **Parameters**
+
+    **indices** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| Sequence\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The shots positions of interest to slice along.
+
+    **Returns**
+
+    A bit array sliced along the shots axis.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If there are any invalid indices of the shots axis.
+
+    **Return type**
+
+    [BitArray](#qiskit.primitives.BitArray "qiskit.primitives.BitArray")
+  </Function>
+
+  ### transpose
+
+  <Function id="qiskit.primitives.BitArray.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/bit_array.py#L378-L406" signature="transpose(*axes)">
+    Return a bit array with axes transposed.
+
+    **Parameters**
+
+    **axes** – None, tuple of ints or n ints. See [ndarray.transpose](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.transpose.html#numpy.ndarray.transpose) for the details.
+
+    **Returns**
+
+    A bit array with axes permuted.
+
+    **Return type**
+
+    [BitArray](#qiskit.primitives.BitArray "qiskit.primitives.BitArray")
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `axes` don’t match this bit array.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `axes` includes any indices that are out of bounds.
   </Function>
 </Class>
 

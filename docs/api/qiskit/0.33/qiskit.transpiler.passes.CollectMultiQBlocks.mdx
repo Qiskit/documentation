@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
 # CollectMultiQBlocks
 
-<Class id="qiskit.transpiler.passes.CollectMultiQBlocks" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py" signature="CollectMultiQBlocks(*args, **kwargs)">
+<Class id="qiskit.transpiler.passes.CollectMultiQBlocks" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py" signature="CollectMultiQBlocks(*args, **kwargs)" modifiers="class">
   Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
   Collect sequences of uninterrupted gates acting on groups of qubits. max\_block\_size specifies the maximum number of qubits that can be acted upon by any single group of gates
@@ -27,19 +27,19 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### find\_set
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.find_set" name="find_set" signature="CollectMultiQBlocks.find_set(index)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.find_set" signature="CollectMultiQBlocks.find_set(index)">
     DSU function for finding root of set of items If my parent is myself, I am the root. Otherwise we recursively find the root for my parent. After that, we assign my parent to be my root, saving recursion in the future.
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.name" name="name" signature="CollectMultiQBlocks.name()">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.name" signature="CollectMultiQBlocks.name()">
     Return the name of the pass.
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.run" name="run" signature="CollectMultiQBlocks.run(dag)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.run" signature="CollectMultiQBlocks.run(dag)">
     Run the CollectMultiQBlocks pass on dag.
 
     The blocks contain “op” nodes in topological sort order such that all gates in a block act on the same set of qubits and are adjacent in the circuit.
@@ -51,7 +51,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### union\_set
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.union_set" name="union_set" signature="CollectMultiQBlocks.union_set(set1, set2)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.union_set" signature="CollectMultiQBlocks.union_set(set1, set2)">
     DSU function for unioning two sets together Find the roots of each set. Then assign one to have the other as its parent, thus liking the sets. Merges smaller set into larger set in order to have better runtime
   </Function>
 
@@ -59,7 +59,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### is\_analysis\_pass
 
-  <Attribute id="qiskit.transpiler.passes.CollectMultiQBlocks.is_analysis_pass" name="is_analysis_pass">
+  <Attribute id="qiskit.transpiler.passes.CollectMultiQBlocks.is_analysis_pass">
     Check if the pass is an analysis pass.
 
     If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
@@ -67,7 +67,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### is\_transformation\_pass
 
-  <Attribute id="qiskit.transpiler.passes.CollectMultiQBlocks.is_transformation_pass" name="is_transformation_pass">
+  <Attribute id="qiskit.transpiler.passes.CollectMultiQBlocks.is_transformation_pass">
     Check if the pass is a transformation pass.
 
     If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).

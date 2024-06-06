@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
 # PadDynamicalDecoupling
 
-<Class id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling" github="https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/transpiler/passes/scheduling/dynamical_decoupling.py" signature="PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)">
+<Class id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.8/qiskit_ibm_provider/transpiler/passes/scheduling/dynamical_decoupling.py" signature="PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False)" modifiers="class">
   Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
   This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods. As a special case, the pass allows a length-1 sequence (e.g. \[XGate()]). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo. This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
@@ -173,7 +173,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
   ### is\_analysis\_pass
 
-  <Attribute id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.is_analysis_pass" name="is_analysis_pass">
+  <Attribute id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.is_analysis_pass">
     Check if the pass is an analysis pass.
 
     If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
@@ -181,7 +181,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
   ### is\_transformation\_pass
 
-  <Attribute id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.is_transformation_pass" name="is_transformation_pass">
+  <Attribute id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.is_transformation_pass">
     Check if the pass is a transformation pass.
 
     If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
@@ -191,7 +191,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
   ### \_\_call\_\_
 
-  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.__call__" name="__call__" signature="__call__(circuit, property_set=None)">
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.__call__" signature="__call__(circuit, property_set=None)">
     Runs the pass on circuit.
 
     **Parameters**
@@ -210,7 +210,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
   ### execute
 
-  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.execute" name="execute" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.execute" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -230,7 +230,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
   ### name
 
-  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.name" name="name" signature="name()">
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.name" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -240,7 +240,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
   ### run
 
-  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.run" name="run" signature="run(dag)">
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.run" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
@@ -262,7 +262,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDe
 
   ### update\_status
 
-  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.update_status" name="update_status" signature="update_status(state, run_state)">
+  <Function id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDynamicalDecoupling.update_status" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

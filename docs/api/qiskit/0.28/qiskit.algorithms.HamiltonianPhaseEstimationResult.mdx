@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
 # qiskit.algorithms.HamiltonianPhaseEstimationResult
 
-<Class id="qiskit.algorithms.HamiltonianPhaseEstimationResult" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py" signature="HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)">
+<Class id="qiskit.algorithms.HamiltonianPhaseEstimationResult" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py" signature="HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)" modifiers="class">
   Store and manipulate results from running HamiltonianPhaseEstimation.
 
   This API of this class is nearly the same as PhaseEstimatorResult, differing only in the presence of an additional keyword argument in the methods. If scaled is False, then the phases are not translated and scaled to recover the eigenvalues of the Hamiltonian. Instead phi in $[0, 1)$ is returned, as is the case when then unitary is not derived from a Hamiltonian.
@@ -23,7 +23,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__" name="__init__" signature="__init__(phase_estimation_result, phase_estimation_scale, id_coefficient)">
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.__init__" signature="__init__(phase_estimation_result, phase_estimation_scale, id_coefficient)">
     **Parameters**
 
     *   **phase\_estimation\_result** (`PhaseEstimationResult`) – The result object returned by PhaseEstimation.estimate.
@@ -49,7 +49,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
   ### combine
 
-  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.combine" name="combine" signature="combine(result)">
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.combine" signature="combine(result)">
     Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
 
     **Raises**
@@ -63,7 +63,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
   ### filter\_phases
 
-  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" name="filter_phases" signature="filter_phases(cutoff=0.0, scaled=True, as_float=True)">
+  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" signature="filter_phases(cutoff=0.0, scaled=True, as_float=True)">
     Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
 
     **Parameters**
@@ -87,7 +87,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
   ### most\_likely\_eigenvalue
 
-  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue" name="most_likely_eigenvalue" signature="property most_likely_eigenvalue">
+  <Attribute id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue">
     The most likely eigenvalue of the Hamiltonian.
 
     This method calls most\_likely\_phase and scales the result to obtain an eigenvalue.
@@ -99,11 +99,11 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
     **Returns**
 
     The most likely eigenvalue of the Hamiltonian.
-  </Function>
+  </Attribute>
 
   ### most\_likely\_phase
 
-  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase" name="most_likely_phase" signature="property most_likely_phase">
+  <Attribute id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase">
     DEPRECATED - The most likely phase of the unitary corresponding to the Hamiltonian.
 
     **Return type**
@@ -113,11 +113,11 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
     **Returns**
 
     The most likely phase.
-  </Function>
+  </Attribute>
 
   ### phase
 
-  <Function id="qiskit.algorithms.HamiltonianPhaseEstimationResult.phase" name="phase" signature="property phase">
+  <Attribute id="qiskit.algorithms.HamiltonianPhaseEstimationResult.phase">
     The most likely phase of the unitary corresponding to the Hamiltonian.
 
     **Return type**
@@ -127,6 +127,6 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
     **Returns**
 
     The most likely phase.
-  </Function>
+  </Attribute>
 </Class>
 

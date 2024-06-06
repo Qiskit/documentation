@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.HHL
 
 # qiskit.algorithms.HHL
 
-<Class id="qiskit.algorithms.HHL" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/hhl.py" signature="HHL(epsilon=0.01, expectation=None, quantum_instance=None)">
+<Class id="qiskit.algorithms.HHL" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/linear_solvers/hhl.py" signature="HHL(epsilon=0.01, expectation=None, quantum_instance=None)" modifiers="class">
   Systems of linear equations arise naturally in many real-life applications in a wide range of areas, such as in the solution of Partial Differential Equations, the calibration of financial models, fluid simulation or numerical field calculation. The problem can be defined as, given a matrix $A\in\mathbb{C}^{N\times N}$ and a vector $\vec{b}\in\mathbb{C}^{N}$, find $\vec{x}\in\mathbb{C}^{N}$ satisfying $A\vec{x}=\vec{b}$.
 
   A system of linear equations is called $s$-sparse if $A$ has at most $s$ non-zero entries per row or column. Solving an $s$-sparse system of size $N$ with a classical computer requires $\mathcal{ O }(Ns\kappa\log(1/\epsilon))$ running time using the conjugate gradient method. Here $\kappa$ denotes the condition number of the system and $\epsilon$ the accuracy of the approximation.
@@ -53,7 +53,7 @@ python_api_name: qiskit.algorithms.HHL
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.algorithms.HHL.__init__" name="__init__" signature="__init__(epsilon=0.01, expectation=None, quantum_instance=None)">
+  <Function id="qiskit.algorithms.HHL.__init__" signature="__init__(epsilon=0.01, expectation=None, quantum_instance=None)">
     **Parameters**
 
     *   **epsilon** (`float`) – Error tolerance of the approximation to the solution, i.e. if $x$ is the exact solution and $\tilde{x}$ the one calculated by the algorithm, then $||x - \tilde{x}|| \le epsilon$.
@@ -79,7 +79,7 @@ python_api_name: qiskit.algorithms.HHL
 
   ### construct\_circuit
 
-  <Function id="qiskit.algorithms.HHL.construct_circuit" name="construct_circuit" signature="construct_circuit(matrix, vector)">
+  <Function id="qiskit.algorithms.HHL.construct_circuit" signature="construct_circuit(matrix, vector)">
     Construct the HHL circuit.
 
     **Parameters**
@@ -103,17 +103,17 @@ python_api_name: qiskit.algorithms.HHL
 
   ### expectation
 
-  <Function id="qiskit.algorithms.HHL.expectation" name="expectation" signature="property expectation">
+  <Attribute id="qiskit.algorithms.HHL.expectation">
     The expectation value algorithm used to construct the expectation measurement from the observable.
 
     **Return type**
 
     `ExpectationBase`
-  </Function>
+  </Attribute>
 
   ### quantum\_instance
 
-  <Function id="qiskit.algorithms.HHL.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+  <Attribute id="qiskit.algorithms.HHL.quantum_instance">
     Get the quantum instance.
 
     **Return type**
@@ -123,21 +123,21 @@ python_api_name: qiskit.algorithms.HHL
     **Returns**
 
     The quantum instance used to run this algorithm.
-  </Function>
+  </Attribute>
 
   ### scaling
 
-  <Function id="qiskit.algorithms.HHL.scaling" name="scaling" signature="property scaling">
+  <Attribute id="qiskit.algorithms.HHL.scaling">
     The scaling of the solution vector.
 
     **Return type**
 
     `float`
-  </Function>
+  </Attribute>
 
   ### solve
 
-  <Function id="qiskit.algorithms.HHL.solve" name="solve" signature="solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)">
+  <Function id="qiskit.algorithms.HHL.solve" signature="solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)">
     Tries to solve the given linear system of equations.
 
     **Parameters**

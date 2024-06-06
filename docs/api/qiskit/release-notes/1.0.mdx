@@ -15,39 +15,41 @@ Qiskit 1.0.2 is a minor bugfix release for the 1.0 series.
 
 <span id="relnotes-1-0-2-bug-fixes" />
 
+<span id="id2" />
+
 ### Bug Fixes
 
-*   Fixed an issue with [`convert_to_target()`](/api/qiskit/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") where the converter would incorrectly ignore control flow instructions if they were specified in the `BackendConfiguration.supported_instructions` attribute, which is the typical location that control flow instructions are specified in a [`BackendConfiguration`](/api/qiskit/qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object. Fixed [#11872](https://github.com/Qiskit/qiskit/issues/11872).
+*   Fixed an issue with [`convert_to_target()`](/api/qiskit/1.0/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") where the converter would incorrectly ignore control flow instructions if they were specified in the `BackendConfiguration.supported_instructions` attribute, which is the typical location that control flow instructions are specified in a [`BackendConfiguration`](/api/qiskit/1.0/qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object. Fixed [#11872](https://github.com/Qiskit/qiskit/issues/11872).
 
-*   Calling [`EquivalenceLibrary.set_entry()`](/api/qiskit/qiskit.circuit.EquivalenceLibrary#set_entry "qiskit.circuit.EquivalenceLibrary.set_entry") will now correctly update the internal graph object of the library. Previously, the metadata would be updated, but the graph structure would be unaltered, meaning that users like [`BasisTranslator`](/api/qiskit/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") would still use the old rules. Fixed [#11958](https://github.com/Qiskit/qiskit/issues/11958).
+*   Calling [`EquivalenceLibrary.set_entry()`](/api/qiskit/1.0/qiskit.circuit.EquivalenceLibrary#set_entry "qiskit.circuit.EquivalenceLibrary.set_entry") will now correctly update the internal graph object of the library. Previously, the metadata would be updated, but the graph structure would be unaltered, meaning that users like [`BasisTranslator`](/api/qiskit/1.0/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") would still use the old rules. Fixed [#11958](https://github.com/Qiskit/qiskit/issues/11958).
 
-*   The [`EvolvedOperatorAnsatz`](/api/qiskit/qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") now correctly handles the case where the `operators` argument is an empty list. Previously, this would result in an error.
+*   The [`EvolvedOperatorAnsatz`](/api/qiskit/1.0/qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") now correctly handles the case where the `operators` argument is an empty list. Previously, this would result in an error.
 
-*   Fixed a consistency issue with [`EvolvedOperatorAnsatz`](/api/qiskit/qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") instances with zero qubits. Previously, such instances would contain a single [`QuantumRegister`](/api/qiskit/qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") in [`qregs`](/api/qiskit/qiskit.circuit.library.EvolvedOperatorAnsatz#qregs "qiskit.circuit.library.EvolvedOperatorAnsatz.qregs") with zero qubits, but now no registers are created. This behavior aligns more consistently with its superclass [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+*   Fixed a consistency issue with [`EvolvedOperatorAnsatz`](/api/qiskit/1.0/qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") instances with zero qubits. Previously, such instances would contain a single [`QuantumRegister`](/api/qiskit/1.0/qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") in [`qregs`](/api/qiskit/1.0/qiskit.circuit.library.EvolvedOperatorAnsatz#qregs "qiskit.circuit.library.EvolvedOperatorAnsatz.qregs") with zero qubits, but now no registers are created. This behavior aligns more consistently with its superclass [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
-*   Fixed a crash in [`convert_to_target()`](/api/qiskit/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") which would occur when qubit properties (either T1, T2 or frequency) were missing. The missing property values in [`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") are now filled with `None`.
+*   Fixed a crash in [`convert_to_target()`](/api/qiskit/1.0/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") which would occur when qubit properties (either T1, T2 or frequency) were missing. The missing property values in [`QubitProperties`](/api/qiskit/1.0/qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") are now filled with `None`.
 
-*   Fixed a performance issue in the [`qpy.load()`](/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load") function when deserializing QPY payloads with large numbers of qubits or clbits in a circuit.
+*   Fixed a performance issue in the [`qpy.load()`](/api/qiskit/1.0/qpy#qiskit.qpy.load "qiskit.qpy.load") function when deserializing QPY payloads with large numbers of qubits or clbits in a circuit.
 
 *   Fixed a bug where `EstimatorPub.coerce()` and `SamplerPub.coerce()` improperly handled a parameter of type `BindingsArray`. Previously a `ValueError` exception was falsely raised.
 
-*   The preset pass managers used by [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") will no longer fail on circuits with control flow when no hardware target or basis-gate set is specified. They will now treat such abstract targets as permitting all control-flow operations. Fixed [#11906](https://github.com/Qiskit/qiskit/issues/11906).
+*   The preset pass managers used by [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") will no longer fail on circuits with control flow when no hardware target or basis-gate set is specified. They will now treat such abstract targets as permitting all control-flow operations. Fixed [#11906](https://github.com/Qiskit/qiskit/issues/11906).
 
 *   Fixed `coerce()` so that it returns a 0-d array when the input is a single, unnested observable. Previously, it erroneously upgraded to a single dimension, with shape `(1,)`.
 
-*   [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "qiskit.circuit.Parameter") was updated so that instances that compare equal always have the same hash. Previously, only the [`Parameter.uuid`](/api/qiskit/qiskit.circuit.Parameter#uuid "qiskit.circuit.Parameter.uuid") was compared, so [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances with different names could compare equal if they had been constructed using a common value for the `uuid` parameter (which is usually not passed explicitly).
+*   [`Parameter`](/api/qiskit/1.0/qiskit.circuit.Parameter "qiskit.circuit.Parameter") was updated so that instances that compare equal always have the same hash. Previously, only the [`Parameter.uuid`](/api/qiskit/1.0/qiskit.circuit.Parameter#uuid "qiskit.circuit.Parameter.uuid") was compared, so [`Parameter`](/api/qiskit/1.0/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances with different names could compare equal if they had been constructed using a common value for the `uuid` parameter (which is usually not passed explicitly).
 
-*   Fixed bug in [`QuantumCircuit.draw()`](/api/qiskit/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") that was causing custom style dictionaries for the Matplotlib drawer to be modified upon execution.
+*   Fixed bug in [`QuantumCircuit.draw()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") that was causing custom style dictionaries for the Matplotlib drawer to be modified upon execution.
 
 <span id="relnotes-1-0-1" />
 
-<span id="id2" />
+<span id="id3" />
 
 ## 1.0.1
 
 <span id="relnotes-1-0-1-prelude" />
 
-<span id="id3" />
+<span id="id4" />
 
 ### Prelude
 
@@ -55,27 +57,27 @@ Qiskit 1.0.1 is a patch release fixing a small number of bugs identified in the 
 
 <span id="relnotes-1-0-1-bug-fixes" />
 
-<span id="id4" />
+<span id="id5" />
 
 ### Bug Fixes
 
-*   Fixed a bug in the conversion of custom pulse instructions to the legacy [`qiskit.qobj`](/api/qiskit/qobj#module-qiskit.qobj "qiskit.qobj") format. The bug was introduced in Qiskit 1.0.0 and caused conversion of instructions with custom pulse shapes to raise an error. After the fix, the conversion is carried out correctly, and the custom pulse is converted to a `pulse.Waveform` as it should. Fixed [#11828](https://github.com/Qiskit/qiskit/issues/11828).
+*   Fixed a bug in the conversion of custom pulse instructions to the legacy [`qiskit.qobj`](/api/qiskit/1.0/qobj#module-qiskit.qobj "qiskit.qobj") format. The bug was introduced in Qiskit 1.0.0 and caused conversion of instructions with custom pulse shapes to raise an error. After the fix, the conversion is carried out correctly, and the custom pulse is converted to a `pulse.Waveform` as it should. Fixed [#11828](https://github.com/Qiskit/qiskit/issues/11828).
 
-*   Fixed an issue in the [`InverseCancellation`](/api/qiskit/qiskit.transpiler.passes.InverseCancellation "qiskit.transpiler.passes.InverseCancellation") transpiler pass where in some cases it would incorrectly cancel a self-inverse parameterized gate even if the parameter value didn’t match. Fixed [#11815](https://github.com/Qiskit/qiskit/issues/11815).
+*   Fixed an issue in the [`InverseCancellation`](/api/qiskit/1.0/qiskit.transpiler.passes.InverseCancellation "qiskit.transpiler.passes.InverseCancellation") transpiler pass where in some cases it would incorrectly cancel a self-inverse parameterized gate even if the parameter value didn’t match. Fixed [#11815](https://github.com/Qiskit/qiskit/issues/11815).
 
-*   [`BasePassManager.run()`](/api/qiskit/qiskit.passmanager.BasePassManager#run "qiskit.passmanager.BasePassManager.run") will no longer leak the previous [`PropertySet`](/api/qiskit/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") into new workflows when called more than once. Previously, the same [`PropertySet`](/api/qiskit/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") as before would be used to initialize follow-on runs, which could mean that invalid property information was being given to tasks. The behavior now matches that of Qiskit 0.44. Fixed [#11784](https://github.com/Qiskit/qiskit/issues/11784).
+*   [`BasePassManager.run()`](/api/qiskit/1.0/qiskit.passmanager.BasePassManager#run "qiskit.passmanager.BasePassManager.run") will no longer leak the previous [`PropertySet`](/api/qiskit/1.0/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") into new workflows when called more than once. Previously, the same [`PropertySet`](/api/qiskit/1.0/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") as before would be used to initialize follow-on runs, which could mean that invalid property information was being given to tasks. The behavior now matches that of Qiskit 0.44. Fixed [#11784](https://github.com/Qiskit/qiskit/issues/11784).
 
 *   A bug has been fixed in `convert_durations_to_dt()` where the function assumed its inputs were all in seconds, rather than reading the actual unit. This could lead to wrong orders of magnitude in the reported circuit durations.
 
 <span id="relnotes-1-0-0" />
 
-<span id="id5" />
+<span id="id6" />
 
 ## 1.0.0
 
 <span id="relnotes-1-0-0-prelude" />
 
-<span id="id6" />
+<span id="id7" />
 
 ### Prelude
 
@@ -89,9 +91,9 @@ Also of key importance in this release is the change in packaging. Since the Qis
 
 As with all of our major releases, Qiskit 1.0.0 also has a plethora of new features, the highlights for this release are:
 
-> *   The [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class’s internal [`data`](/api/qiskit/qiskit.circuit.QuantumCircuit#data "qiskit.circuit.QuantumCircuit.data") structure has been rewritten in Rust to greatly improve the memory efficiency of the [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects by caching the arguments of the instructions.
-> *   A new version of the primitives interface definition in [`qiskit.primitives`](/api/qiskit/primitives#module-qiskit.primitives "qiskit.primitives") with the [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") and [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") abstract classes. This new version of the interface adds support for performing vectorized calls to the primitive so that sweeps over parameter value sets and observables can be efficiently specified.
-> *   A new experimental native OpenQASM 3 parser [`qiskit.qasm3.loads_experimental()`](/api/qiskit/qasm3#qiskit.qasm3.loads_experimental "qiskit.qasm3.loads_experimental") and [`qiskit.qasm3.load_experimental()`](/api/qiskit/qasm3#qiskit.qasm3.load_experimental "qiskit.qasm3.load_experimental"). This new parser is still under development and still has several limitations and is still experimental. However, for where it is usable, the new parser is significantly faster and has better diagnostic error message that allows to debug where an OpenQASM 3 program is invalid. This new parser is written in Rust and based on a newly developed Rust library for parsing OpenQASM3 which can be found here: [https://github.com/Qiskit/openqasm3\_parser](https://github.com/Qiskit/openqasm3_parser)
+> *   The [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class’s internal [`data`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#data "qiskit.circuit.QuantumCircuit.data") structure has been rewritten in Rust to greatly improve the memory efficiency of the [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects by caching the arguments of the instructions.
+> *   A new version of the primitives interface definition in [`qiskit.primitives`](/api/qiskit/1.0/primitives#module-qiskit.primitives "qiskit.primitives") with the [`BaseSamplerV2`](/api/qiskit/1.0/qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") and [`BaseEstimatorV2`](/api/qiskit/1.0/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") abstract classes. This new version of the interface adds support for performing vectorized calls to the primitive so that sweeps over parameter value sets and observables can be efficiently specified.
+> *   A new experimental native OpenQASM 3 parser [`qiskit.qasm3.loads_experimental()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.loads_experimental "qiskit.qasm3.loads_experimental") and [`qiskit.qasm3.load_experimental()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.load_experimental "qiskit.qasm3.load_experimental"). This new parser is still under development and still has several limitations and is still experimental. However, for where it is usable, the new parser is significantly faster and has better diagnostic error message that allows to debug where an OpenQASM 3 program is invalid. This new parser is written in Rust and based on a newly developed Rust library for parsing OpenQASM3 which can be found here: [https://github.com/Qiskit/openqasm3\_parser](https://github.com/Qiskit/openqasm3_parser)
 
 Finally, the Qiskit 1.0.0 release was an opportunity to clean up some technical debt accumulated over the past 7 years of development. You’ll notice that the Qiskit 1.0.0 release is virtually free of `DeprecationWarning`s being emitted, and, at the same time, the upgrade section of the 1.0.0 release notes is longer than usual. These are direct consequences of the technical debt cleanup. To help with the migration from 0.46.x to 1.0.0, besides the release notes, we have also published a dedicated migration guide which can be found here:
 
@@ -103,27 +105,27 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 ### Circuits Features
 
-*   Added a new argument, `annotated`, to the methods [`QuantumCircuit.inverse()`](/api/qiskit/qiskit.circuit.QuantumCircuit#inverse "qiskit.circuit.QuantumCircuit.inverse"), [`circuit.Instruction.inverse()`](/api/qiskit/qiskit.circuit.Instruction#inverse "qiskit.circuit.Instruction.inverse") and `.inverse()` methods of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclasses (such as [`SwapGate`](/api/qiskit/qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate") or [`SGate`](/api/qiskit/qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")) to optionally return an [`AnnotatedOperation`](/api/qiskit/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"). The default value of `annotated` is `False` and corresponds to the pre-existing behavior of the method. Furthermore, for standard gates with an explicitly defined `inverse` method, the argument `annotated` has no effect, for example, both:
+*   Added a new argument, `annotated`, to the methods [`QuantumCircuit.inverse()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#inverse "qiskit.circuit.QuantumCircuit.inverse"), [`circuit.Instruction.inverse()`](/api/qiskit/1.0/qiskit.circuit.Instruction#inverse "qiskit.circuit.Instruction.inverse") and `.inverse()` methods of [`Instruction`](/api/qiskit/1.0/qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclasses (such as [`SwapGate`](/api/qiskit/1.0/qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate") or [`SGate`](/api/qiskit/1.0/qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")) to optionally return an [`AnnotatedOperation`](/api/qiskit/1.0/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"). The default value of `annotated` is `False` and corresponds to the pre-existing behavior of the method. Furthermore, for standard gates with an explicitly defined `inverse` method, the argument `annotated` has no effect, for example, both:
 
     ```python
     SwapGate().inverse(annotated=False)
     SwapGate().inverse(annotated=True)
     ```
 
-    return a [`SwapGate`](/api/qiskit/qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), and both:
+    return a [`SwapGate`](/api/qiskit/1.0/qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate"), and both:
 
     ```python
     SGate().inverse(annotated=False)
     SGate().inverse(annotated=True)
     ```
 
-    return an [`SdgGate`](/api/qiskit/qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"). The difference manifests for custom instructions without an explicitly defined inverse. With `annotated=False`, the method returns a fresh instruction with the recursively inverted definition, just as before. While `annotated=True` returns an [`AnnotatedOperation`](/api/qiskit/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") that represents the instruction modified with the [`InverseModifier`](/api/qiskit/qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier").
+    return an [`SdgGate`](/api/qiskit/1.0/qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate"). The difference manifests for custom instructions without an explicitly defined inverse. With `annotated=False`, the method returns a fresh instruction with the recursively inverted definition, just as before. While `annotated=True` returns an [`AnnotatedOperation`](/api/qiskit/1.0/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") that represents the instruction modified with the [`InverseModifier`](/api/qiskit/1.0/qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier").
 
-*   Added a commutation library to the [`CommutationChecker`](/api/qiskit/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker"). This library stores all the commutation relations of unparameterizable standard gates into a dictionary that allows for efficient lookup at runtime. This speeds up the execution of the [`CommutationChecker`](/api/qiskit/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker") class and, by extension, the [`CommutationAnalysis`](/api/qiskit/qiskit.transpiler.passes.CommutationAnalysis "qiskit.transpiler.passes.CommutationAnalysis") transpiler pass, as instead of computing whether two unparameterizable standard gates commute it just has to look it up from the library.
+*   Added a commutation library to the [`CommutationChecker`](/api/qiskit/1.0/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker"). This library stores all the commutation relations of unparameterizable standard gates into a dictionary that allows for efficient lookup at runtime. This speeds up the execution of the [`CommutationChecker`](/api/qiskit/1.0/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker") class and, by extension, the [`CommutationAnalysis`](/api/qiskit/1.0/qiskit.transpiler.passes.CommutationAnalysis "qiskit.transpiler.passes.CommutationAnalysis") transpiler pass, as instead of computing whether two unparameterizable standard gates commute it just has to look it up from the library.
 
-    Additionally, the [`CommutationChecker`](/api/qiskit/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker") was refactored and now has an upper limit set on the number of cached commutation relations that are not in the commutation library. This addressed: [#8020](https://github.com/Qiskit/qiskit/issues/8020) and [#7101](https://github.com/Qiskit/qiskit/issues/7101)
+    Additionally, the [`CommutationChecker`](/api/qiskit/1.0/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker") was refactored and now has an upper limit set on the number of cached commutation relations that are not in the commutation library. This addressed: [#8020](https://github.com/Qiskit/qiskit/issues/8020) and [#7101](https://github.com/Qiskit/qiskit/issues/7101)
 
-*   [`QuantumCircuit.assign_parameters()`](/api/qiskit/qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters") now accepts string keys in the mapping form of input. These names are used to look up the corresponding [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance using [`get_parameter()`](/api/qiskit/qiskit.circuit.QuantumCircuit#get_parameter "qiskit.circuit.QuantumCircuit.get_parameter"). This lets you do:
+*   [`QuantumCircuit.assign_parameters()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters") now accepts string keys in the mapping form of input. These names are used to look up the corresponding [`Parameter`](/api/qiskit/1.0/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance using [`get_parameter()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#get_parameter "qiskit.circuit.QuantumCircuit.get_parameter"). This lets you do:
 
     ```python
     from qiskit.circuit import QuantumCircuit, Parameter
@@ -135,35 +137,35 @@ This guide is meant to complement the release notes and have a targeted advice f
     qc.assign_parameters({"a": 1}) == qc.assign_parameters({a: 1})
     ```
 
-*   [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") has two new methods, [`get_parameter()`](/api/qiskit/qiskit.circuit.QuantumCircuit#get_parameter "qiskit.circuit.QuantumCircuit.get_parameter") and [`has_parameter()`](/api/qiskit/qiskit.circuit.QuantumCircuit#has_parameter "qiskit.circuit.QuantumCircuit.has_parameter"), which respectively retrieve a [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance used in the circuit by name, and return a boolean of whether a parameter with a matching name (or the exact instance given) are used in the circuit.
+*   [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") has two new methods, [`get_parameter()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#get_parameter "qiskit.circuit.QuantumCircuit.get_parameter") and [`has_parameter()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#has_parameter "qiskit.circuit.QuantumCircuit.has_parameter"), which respectively retrieve a [`Parameter`](/api/qiskit/1.0/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instance used in the circuit by name, and return a boolean of whether a parameter with a matching name (or the exact instance given) are used in the circuit.
 
-*   A [`uuid`](/api/qiskit/qiskit.circuit.Parameter#uuid "qiskit.circuit.Parameter.uuid") property was added to the [`qiskit.circuit.Parameter`](/api/qiskit/qiskit.circuit.Parameter "qiskit.circuit.Parameter") class. In advanced use cases, this property can be used for creating [`qiskit.circuit.Parameter`](/api/qiskit/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances that compare equal to each other.
+*   A [`uuid`](/api/qiskit/1.0/qiskit.circuit.Parameter#uuid "qiskit.circuit.Parameter.uuid") property was added to the [`qiskit.circuit.Parameter`](/api/qiskit/1.0/qiskit.circuit.Parameter "qiskit.circuit.Parameter") class. In advanced use cases, this property can be used for creating [`qiskit.circuit.Parameter`](/api/qiskit/1.0/qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances that compare equal to each other.
 
-*   Added a new method, [`ParameterExpression.numeric()`](/api/qiskit/qiskit.circuit.ParameterExpression#numeric "qiskit.circuit.ParameterExpression.numeric"), which converts a fully bound parameter expression into the most restrictive built-in Python numeric type that accurately describes the result of the symbolic evaluation. For example, a symbolic integer will become an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), while a symbolic real number will become a [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") and a complex number will become a [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"). This method includes several workarounds for peculiarities of the evaluation contexts of `symengine`, which can sometimes lead to spurious results when calling [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)") or [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") on an expression directly.
+*   Added a new method, [`ParameterExpression.numeric()`](/api/qiskit/1.0/qiskit.circuit.ParameterExpression#numeric "qiskit.circuit.ParameterExpression.numeric"), which converts a fully bound parameter expression into the most restrictive built-in Python numeric type that accurately describes the result of the symbolic evaluation. For example, a symbolic integer will become an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), while a symbolic real number will become a [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") and a complex number will become a [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)"). This method includes several workarounds for peculiarities of the evaluation contexts of `symengine`, which can sometimes lead to spurious results when calling [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)") or [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") on an expression directly.
 
 <span id="relnotes-1-0-0-primitives-features" />
 
 ### Primitives Features
 
-*   Version 2 of the primitives is introduced via a new base class for both the sampler and the estimator, along with new types for their inputs and outputs. The emphasis of this new version is on performing vectorized calls to the primitive `run()` methods, so that sweeps over parameter value sets and observables can be efficiently specified. See [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") for reference implementations of the V2 primitives.
+*   Version 2 of the primitives is introduced via a new base class for both the sampler and the estimator, along with new types for their inputs and outputs. The emphasis of this new version is on performing vectorized calls to the primitive `run()` methods, so that sweeps over parameter value sets and observables can be efficiently specified. See [`StatevectorSampler`](/api/qiskit/1.0/qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](/api/qiskit/1.0/qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") for reference implementations of the V2 primitives.
 
-    Moreover, the estimator has gained a `precision` argument in the [`run()`](/api/qiskit/qiskit.primitives.BaseEstimatorV2#run "qiskit.primitives.BaseEstimatorV2.run") method that specifies the targeted precision of the expectation value estimates. Analogously, the sampler has moved `shots` out of the options and into the arguments of the [`run()`](/api/qiskit/qiskit.primitives.BaseSamplerV2#run "qiskit.primitives.BaseSamplerV2.run") method. The sampler has also been changed to return the outputs (e.g. bitstrings) from every shot, rather than providing a [`Counts`](/api/qiskit/qiskit.result.Counts "qiskit.result.Counts")-like return, and also to store data from separate [`ClassicalRegister`](/api/qiskit/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s . This enables derived classes to implement sampler support for circuits with classical control flow.
+    Moreover, the estimator has gained a `precision` argument in the [`run()`](/api/qiskit/1.0/qiskit.primitives.BaseEstimatorV2#run "qiskit.primitives.BaseEstimatorV2.run") method that specifies the targeted precision of the expectation value estimates. Analogously, the sampler has moved `shots` out of the options and into the arguments of the [`run()`](/api/qiskit/1.0/qiskit.primitives.BaseSamplerV2#run "qiskit.primitives.BaseSamplerV2.run") method. The sampler has also been changed to return the outputs (e.g. bitstrings) from every shot, rather than providing a [`Counts`](/api/qiskit/1.0/qiskit.result.Counts "qiskit.result.Counts")-like return, and also to store data from separate [`ClassicalRegister`](/api/qiskit/1.0/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s . This enables derived classes to implement sampler support for circuits with classical control flow.
 
     The primitive V2 base classes are:
 
-    *   [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2")
-    *   [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2")
+    *   [`BaseSamplerV2`](/api/qiskit/1.0/qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2")
+    *   [`BaseEstimatorV2`](/api/qiskit/1.0/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2")
 
     The new types which are used for inputs and outputs are:
 
     *   `SamplerPubLike`: primitive unified bloc (PUB) of sampler inputs; a union type of allowed inputs to a sampler
     *   `EstimatorPubLike`: Primitive unified bloc (PUB) of estimator inputs; a union type of allowed inputs to an estimator
-    *   [`PubResult`](/api/qiskit/qiskit.primitives.PubResult "qiskit.primitives.PubResult"): the data and metadata resulting from a single PUB’s execution
-    *   [`DataBin`](/api/qiskit/qiskit.primitives.DataBin "qiskit.primitives.DataBin"): A namespace to hold data from a single PUB’s execution
-    *   [`BitArray`](/api/qiskit/qiskit.primitives.BitArray "qiskit.primitives.BitArray"): an array-valued collection of bit values in a dense format
-    *   [`PrimitiveResult`](/api/qiskit/qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult"): an iterable of [`PubResult`](/api/qiskit/qiskit.primitives.PubResult "qiskit.primitives.PubResult")s along with metadata
+    *   [`PubResult`](/api/qiskit/1.0/qiskit.primitives.PubResult "qiskit.primitives.PubResult"): the data and metadata resulting from a single PUB’s execution
+    *   [`DataBin`](/api/qiskit/1.0/qiskit.primitives.DataBin "qiskit.primitives.DataBin"): A namespace to hold data from a single PUB’s execution
+    *   [`BitArray`](/api/qiskit/1.0/qiskit.primitives.BitArray "qiskit.primitives.BitArray"): an array-valued collection of bit values in a dense format
+    *   [`PrimitiveResult`](/api/qiskit/1.0/qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult"): an iterable of [`PubResult`](/api/qiskit/1.0/qiskit.primitives.PubResult "qiskit.primitives.PubResult")s along with metadata
 
-*   The reference implementation [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") of [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") was added. As seen in the example below, this estimator (and all V2 estimators) supports providing arrays of observables and/or arrays of parameter value sets that are attached to particular circuits.
+*   The reference implementation [`StatevectorEstimator`](/api/qiskit/1.0/qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") of [`BaseEstimatorV2`](/api/qiskit/1.0/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") was added. As seen in the example below, this estimator (and all V2 estimators) supports providing arrays of observables and/or arrays of parameter value sets that are attached to particular circuits.
 
     Each tuple of `(circuit, observables, <optional> parameter values, <optional> precision)`, called an estimator primitive unified bloc (PUB), produces its own array-based result. The `run()` method can be given many pubs at once.
 
@@ -226,7 +228,7 @@ This guide is meant to complement the release notes and have a targeted advice f
     plt.legend()
     ```
 
-*   The reference implementation [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") of [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") was added. As seen in the example below, this sampler (and all V2 samplers) supports providing arrays of parameter value sets to bind against a single circuit.
+*   The reference implementation [`StatevectorSampler`](/api/qiskit/1.0/qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") of [`BaseSamplerV2`](/api/qiskit/1.0/qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") was added. As seen in the example below, this sampler (and all V2 samplers) supports providing arrays of parameter value sets to bind against a single circuit.
 
     Each tuple of `(circuit, <optional> parameter values, <optional> shots)`, called a sampler primitive unified bloc (PUB), produces its own array-based result. The `run()` method can be given many pubs at once.
 
@@ -300,7 +302,7 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 ### Providers Features
 
-*   Added a new class, [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2"), to the [`qiskit.providers.fake_provider`](/api/qiskit/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") module. This class is configurable, and builds a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") backend instance that can be run locally (in the spirit of fake backends). Users can configure the number of qubits, basis gates, coupling map, ability to run dynamic circuits (control flow instructions), instruction calibrations and measurement timestep of the backend without having to deal with manual target construction. Qubit and gate properties (duration, error) are generated by randomly sampling from default ranges. The seed for this random generation can be fixed to ensure the reproducibility of the backend output. It’s important to note that this backend only supports gates in the standard library. If you need a more flexible backend, there is always the option to directly instantiate a [`Target`](/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") object to use for transpilation.
+*   Added a new class, [`GenericBackendV2`](/api/qiskit/1.0/qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2"), to the [`qiskit.providers.fake_provider`](/api/qiskit/1.0/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") module. This class is configurable, and builds a [`BackendV2`](/api/qiskit/1.0/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") backend instance that can be run locally (in the spirit of fake backends). Users can configure the number of qubits, basis gates, coupling map, ability to run dynamic circuits (control flow instructions), instruction calibrations and measurement timestep of the backend without having to deal with manual target construction. Qubit and gate properties (duration, error) are generated by randomly sampling from default ranges. The seed for this random generation can be fixed to ensure the reproducibility of the backend output. It’s important to note that this backend only supports gates in the standard library. If you need a more flexible backend, there is always the option to directly instantiate a [`Target`](/api/qiskit/1.0/qiskit.transpiler.Target "qiskit.transpiler.Target") object to use for transpilation.
 
     Example usage 1:
 
@@ -354,20 +356,20 @@ This guide is meant to complement the release notes and have a targeted advice f
     ```
 
     <Admonition title="Note" type="note">
-      The noise properties generated by these class do not mimic any concrete quantum device, and should not be used to measure any concrete behaviors. They are “reasonable defaults” that can be used to test backend-interfacing functionality not tied specific noise values of real quantum systems. For a more accurate simulation of existing devices, you can manually build a noise model from the real backend using the functionality offered in [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.13.3)").
+      The noise properties generated by these class do not mimic any concrete quantum device, and should not be used to measure any concrete behaviors. They are “reasonable defaults” that can be used to test backend-interfacing functionality not tied specific noise values of real quantum systems. For a more accurate simulation of existing devices, you can manually build a noise model from the real backend using the functionality offered in [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.14.0)").
     </Admonition>
 
-*   The [`qiskit.providers.fake_provider`](/api/qiskit/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") module now includes a series of generic fake backends following the [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") interface. They have been introduced as an alternative to the snapshot-based fake backends exposed in the deprecated `FakeProvider` (`FakeVigo`, `FakeTokyo`, etc). The list of new fake backends includes:
+*   The [`qiskit.providers.fake_provider`](/api/qiskit/1.0/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") module now includes a series of generic fake backends following the [`BackendV1`](/api/qiskit/1.0/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") interface. They have been introduced as an alternative to the snapshot-based fake backends exposed in the deprecated `FakeProvider` (`FakeVigo`, `FakeTokyo`, etc). The list of new fake backends includes:
 
     > *   Backends without pulse capabilities:
     >
-    >     *   [`Fake5QV1`](/api/qiskit/qiskit.providers.fake_provider.Fake5QV1 "qiskit.providers.fake_provider.Fake5QV1")
-    >     *   [`Fake20QV1`](/api/qiskit/qiskit.providers.fake_provider.Fake20QV1 "qiskit.providers.fake_provider.Fake20QV1")
+    >     *   [`Fake5QV1`](/api/qiskit/1.0/qiskit.providers.fake_provider.Fake5QV1 "qiskit.providers.fake_provider.Fake5QV1")
+    >     *   [`Fake20QV1`](/api/qiskit/1.0/qiskit.providers.fake_provider.Fake20QV1 "qiskit.providers.fake_provider.Fake20QV1")
     > *   Backends with pulse capabilities:
     >
-    >     *   [`Fake7QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake7QPulseV1 "qiskit.providers.fake_provider.Fake7QPulseV1")
-    >     *   [`Fake27QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake27QPulseV1 "qiskit.providers.fake_provider.Fake27QPulseV1")
-    >     *   [`Fake127QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake127QPulseV1 "qiskit.providers.fake_provider.Fake127QPulseV1")
+    >     *   [`Fake7QPulseV1`](/api/qiskit/1.0/qiskit.providers.fake_provider.Fake7QPulseV1 "qiskit.providers.fake_provider.Fake7QPulseV1")
+    >     *   [`Fake27QPulseV1`](/api/qiskit/1.0/qiskit.providers.fake_provider.Fake27QPulseV1 "qiskit.providers.fake_provider.Fake27QPulseV1")
+    >     *   [`Fake127QPulseV1`](/api/qiskit/1.0/qiskit.providers.fake_provider.Fake127QPulseV1 "qiskit.providers.fake_provider.Fake127QPulseV1")
 
     They can be imported following the pattern: `from qiskit.providers.fake_provider import Fake5QV1`. More details on the backend properties can be found on each backend’s API documentation.
 
@@ -375,9 +377,9 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 ### OpenQASM Features
 
-*   The [`qiskit.qasm3`](/api/qiskit/qasm3#module-qiskit.qasm3 "qiskit.qasm3") package now contains a built-in, Rust-based parser for reading OpenQASM 3 programs into [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")s, found at [`qiskit.qasm3.load_experimental()`](/api/qiskit/qasm3#qiskit.qasm3.load_experimental "qiskit.qasm3.load_experimental") and [`loads_experimental()`](/api/qiskit/qasm3#qiskit.qasm3.loads_experimental "qiskit.qasm3.loads_experimental"). These are typically several times faster than the existing, pure Python [`load()`](/api/qiskit/qasm3#qiskit.qasm3.load "qiskit.qasm3.load") and [`loads()`](/api/qiskit/qasm3#qiskit.qasm3.loads "qiskit.qasm3.loads") functions, which additionally require `qiskit-qasm3-import` to be installed.
+*   The [`qiskit.qasm3`](/api/qiskit/1.0/qasm3#module-qiskit.qasm3 "qiskit.qasm3") package now contains a built-in, Rust-based parser for reading OpenQASM 3 programs into [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")s, found at [`qiskit.qasm3.load_experimental()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.load_experimental "qiskit.qasm3.load_experimental") and [`loads_experimental()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.loads_experimental "qiskit.qasm3.loads_experimental"). These are typically several times faster than the existing, pure Python [`load()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.load "qiskit.qasm3.load") and [`loads()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.loads "qiskit.qasm3.loads") functions, which additionally require `qiskit-qasm3-import` to be installed.
 
-    For example, we can create a 20,000-instruction entangling [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"):
+    For example, we can create a 20,000-instruction entangling [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"):
 
     ```python
     import numpy as np
@@ -389,13 +391,13 @@ This guide is meant to complement the release notes and have a targeted advice f
     oq3 = qiskit.qasm3.dumps(qc)
     ```
 
-    The old [`qasm3.loads()`](/api/qiskit/qasm3#qiskit.qasm3.loads "qiskit.qasm3.loads") took about 7.3s to load the resulting OpenQASM 3 program, whereas [`qasm3.loads_experimental()`](/api/qiskit/qasm3#qiskit.qasm3.loads_experimental "qiskit.qasm3.loads_experimental") took under 300ms on a consumer Macbook Pro (i7, 2020)–a speedup of 25x!
+    The old [`qasm3.loads()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.loads "qiskit.qasm3.loads") took about 7.3s to load the resulting OpenQASM 3 program, whereas [`qasm3.loads_experimental()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.loads_experimental "qiskit.qasm3.loads_experimental") took under 300ms on a consumer Macbook Pro (i7, 2020)–a speedup of 25x!
 
     The supported feature set of the experimental parser is very limited in this preview version, but this will expand as both the Qiskit side and [the native Rust-based parser](https://github.com/Qiskit/openqasm3_parser) improve.
 
     One of our main goals with this new parser, alongside the huge speed improvements, is to provide top-quality error diagnostics. As with other parts of the parser, these are a work in progress, but you’ll start to see much higher quality error messages displayed when parsing invalid OpenQASM 3 programs with the experimental parser.
 
-*   The OpenQASM 3 exporter (see [`dump()`](/api/qiskit/qasm3#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](/api/qiskit/qasm3#qiskit.qasm3.dumps "qiskit.qasm3.dumps") functions in [`qiskit.qasm3`](/api/qiskit/qasm3#module-qiskit.qasm3 "qiskit.qasm3")) now supports the stabilized syntax of the `switch` statement in OpenQASM 3 by default. The pre-certification syntax of the `switch` statement is still available by using the [`ExperimentalFeatures.SWITCH_CASE_V1`](/api/qiskit/qasm3#qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1 "qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1") flag in the `experimental` argument of the exporter. There is no feature flag required for the stabilized syntax, but if you are interfacing with other tooling that is not yet updated, you may need to pass the experimental flag.
+*   The OpenQASM 3 exporter (see [`dump()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.dumps "qiskit.qasm3.dumps") functions in [`qiskit.qasm3`](/api/qiskit/1.0/qasm3#module-qiskit.qasm3 "qiskit.qasm3")) now supports the stabilized syntax of the `switch` statement in OpenQASM 3 by default. The pre-certification syntax of the `switch` statement is still available by using the [`ExperimentalFeatures.SWITCH_CASE_V1`](/api/qiskit/1.0/qasm3#qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1 "qiskit.qasm3.ExperimentalFeatures.SWITCH_CASE_V1") flag in the `experimental` argument of the exporter. There is no feature flag required for the stabilized syntax, but if you are interfacing with other tooling that is not yet updated, you may need to pass the experimental flag.
 
     The syntax of the stabilized form is slightly different with regards to terminating `break` statements (no longer required nor permitted), and multiple cases are now combined into a single `case` line, rather than using C-style fall-through. For more detail, see [the OpenQASM 3 documentation on the switch-case construct](https://openqasm.com/language/classical.html#the-switch-statement).
 
@@ -403,15 +405,15 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 ### QPY Features
 
-*   Added a new warning class, [`QPYLoadingDeprecatedFeatureWarning`](/api/qiskit/qpy#qiskit.qpy.QPYLoadingDeprecatedFeatureWarning "qiskit.qpy.QPYLoadingDeprecatedFeatureWarning"), to the QPY module. This class allows for deprecation warnings to surface even if the deprecated feature is accessed at a variable point in the call stack, as is the case for many QPY loading functions that are called recursively.
+*   Added a new warning class, [`QPYLoadingDeprecatedFeatureWarning`](/api/qiskit/1.0/qpy#qiskit.qpy.QPYLoadingDeprecatedFeatureWarning "qiskit.qpy.QPYLoadingDeprecatedFeatureWarning"), to the QPY module. This class allows for deprecation warnings to surface even if the deprecated feature is accessed at a variable point in the call stack, as is the case for many QPY loading functions that are called recursively.
 
-*   Added a new flag, `version`, to the [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") function. This allows [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") to optionally take an integer value for the [QPY Format](/api/qiskit/qpy#qpy-format) version to emit. This is useful if you need to generate a QPY file that will be loaded by an older version of Qiskit. However, the supported versions to emit are limited, only versions between the latest QPY version (which is the default), and the compatibility QPY version which is [Version 10](/api/qiskit/qpy#qpy-version-10) (which was introduced in Qiskit 0.45.0) can be used. The compatibility version will remain fixed for the entire 1.x.y major version release series. This does not change the backwards compatibility guarantees of the QPY format when calling [`qpy.load()`](/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load"), it just enables users to emit an older version of QPY to maintain compatibility and interoperability between the 0.x and 1.x release series.
+*   Added a new flag, `version`, to the [`qpy.dump()`](/api/qiskit/1.0/qpy#qiskit.qpy.dump "qiskit.qpy.dump") function. This allows [`qpy.dump()`](/api/qiskit/1.0/qpy#qiskit.qpy.dump "qiskit.qpy.dump") to optionally take an integer value for the [QPY Format](/api/qiskit/1.0/qpy#qpy-format) version to emit. This is useful if you need to generate a QPY file that will be loaded by an older version of Qiskit. However, the supported versions to emit are limited, only versions between the latest QPY version (which is the default), and the compatibility QPY version which is [Version 10](/api/qiskit/1.0/qpy#qpy-version-10) (which was introduced in Qiskit 0.45.0) can be used. The compatibility version will remain fixed for the entire 1.x.y major version release series. This does not change the backwards compatibility guarantees of the QPY format when calling [`qpy.load()`](/api/qiskit/1.0/qpy#qiskit.qpy.load "qiskit.qpy.load"), it just enables users to emit an older version of QPY to maintain compatibility and interoperability between the 0.x and 1.x release series.
 
 <span id="relnotes-1-0-0-quantum-information-features" />
 
 ### Quantum Information Features
 
-*   Added a [`qiskit.quantum_info.StabilizerState.from_stabilizer_list()`](/api/qiskit/qiskit.quantum_info.StabilizerState#from_stabilizer_list "qiskit.quantum_info.StabilizerState.from_stabilizer_list") method that generates a stabilizer state from a list of stabilizers:
+*   Added a [`qiskit.quantum_info.StabilizerState.from_stabilizer_list()`](/api/qiskit/1.0/qiskit.quantum_info.StabilizerState#from_stabilizer_list "qiskit.quantum_info.StabilizerState.from_stabilizer_list") method that generates a stabilizer state from a list of stabilizers:
 
     ```python
     from qiskit.quantum_info import StabilizerState
@@ -420,27 +422,27 @@ This guide is meant to complement the release notes and have a targeted advice f
     stab = StabilizerState.from_stabilizer_list(stabilizer_list)
     ```
 
-*   [`SparsePauliOp.from_operator()`](/api/qiskit/qiskit.quantum_info.SparsePauliOp#from_operator "qiskit.quantum_info.SparsePauliOp.from_operator") now uses an implementation of the “tensorized Pauli decomposition algorithm” presented in [Hatznko, Binkowski and Gupta (2023)](https://arxiv.org/abs/2310.13421). The method is now several orders of magnitude faster; for example, it is possible to decompose a random 10-qubit operator in around 250ms on a consumer Macbook Pro (Intel i7, 2020).
+*   [`SparsePauliOp.from_operator()`](/api/qiskit/1.0/qiskit.quantum_info.SparsePauliOp#from_operator "qiskit.quantum_info.SparsePauliOp.from_operator") now uses an implementation of the “tensorized Pauli decomposition algorithm” presented in [Hatznko, Binkowski and Gupta (2023)](https://arxiv.org/abs/2310.13421). The method is now several orders of magnitude faster; for example, it is possible to decompose a random 10-qubit operator in around 250ms on a consumer Macbook Pro (Intel i7, 2020).
 
 <span id="relnotes-1-0-0-synthesis-features" />
 
 ### Synthesis Features
 
-*   Added a [`qiskit.synthesis.synth_circuit_from_stabilizers()`](/api/qiskit/synthesis#qiskit.synthesis.synth_circuit_from_stabilizers "qiskit.synthesis.synth_circuit_from_stabilizers") function that returns a circuit that outputs the state stabilized by a series of given stabilizers.
+*   Added a [`qiskit.synthesis.synth_circuit_from_stabilizers()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_circuit_from_stabilizers "qiskit.synthesis.synth_circuit_from_stabilizers") function that returns a circuit that outputs the state stabilized by a series of given stabilizers.
 
 *   The AQC unitary synthesis plugin method now uses a faster objective function evaluation by default, which results in substantial improvement in synthesis time.
 
-*   Add a new synthesis method [`synth_qft_line()`](/api/qiskit/synthesis#qiskit.synthesis.synth_qft_line "qiskit.synthesis.synth_qft_line") of a QFT circuit for linear nearest-neighbor connectivity, which significantly reduces the number of SWAPs for large numbers of qubits compared to SABRE.
+*   Add a new synthesis method [`synth_qft_line()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_qft_line "qiskit.synthesis.synth_qft_line") of a QFT circuit for linear nearest-neighbor connectivity, which significantly reduces the number of SWAPs for large numbers of qubits compared to SABRE.
 
-*   The class [`TwoQubitWeylDecomposition`](/api/qiskit/qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition") has been added to the public API in [`qiskit.synthesis`](/api/qiskit/synthesis#module-qiskit.synthesis "qiskit.synthesis"). This class allows to apply the Weyl decomposition of two-qubit unitaries. If you were previously importing this while it was a non-public class in the now-removed `qiskit.quantum_info.synthesis` module, you should update your import paths.
+*   The class [`TwoQubitWeylDecomposition`](/api/qiskit/1.0/qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition") has been added to the public API in [`qiskit.synthesis`](/api/qiskit/1.0/synthesis#module-qiskit.synthesis "qiskit.synthesis"). This class allows to apply the Weyl decomposition of two-qubit unitaries. If you were previously importing this while it was a non-public class in the now-removed `qiskit.quantum_info.synthesis` module, you should update your import paths.
 
 <span id="relnotes-1-0-0-transpiler-features" />
 
 ### Transpiler Features
 
-*   Added a new exception class: [`InvalidLayoutError`](/api/qiskit/transpiler#qiskit.transpiler.InvalidLayoutError "qiskit.transpiler.InvalidLayoutError"). This is a [`TranspilerError`](/api/qiskit/transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") subclass which is raised when a user provided layout is invalid (mismatched size, duplicate qubits, etc).
+*   Added a new exception class: [`InvalidLayoutError`](/api/qiskit/1.0/transpiler#qiskit.transpiler.InvalidLayoutError "qiskit.transpiler.InvalidLayoutError"). This is a [`TranspilerError`](/api/qiskit/1.0/transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") subclass which is raised when a user provided layout is invalid (mismatched size, duplicate qubits, etc).
 
-*   Added a new keyword argument, `num_processes`, to [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and the [`PassManager.run()`](/api/qiskit/qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") method. This allows for overriding both `QISKIT_NUM_PROCS` and the `num_processes` field in user configuration files on a per-transpile basis. For example:
+*   Added a new keyword argument, `num_processes`, to [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and the [`PassManager.run()`](/api/qiskit/1.0/qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") method. This allows for overriding both `QISKIT_NUM_PROCS` and the `num_processes` field in user configuration files on a per-transpile basis. For example:
 
     ```python
     from qiskit import transpile, QuantumCircuit
@@ -453,9 +455,9 @@ This guide is meant to complement the release notes and have a targeted advice f
     transpile([qc]*10, basis_gates=['u', 'cz'], num_processes=2)
     ```
 
-    will run the transpile over the 10 input circuits using only 2 processes and will override the system default, environment variable, or user configuration file for that [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") call.
+    will run the transpile over the 10 input circuits using only 2 processes and will override the system default, environment variable, or user configuration file for that [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") call.
 
-*   Added a new transpiler pass, [`OptimizeAnnotated`](/api/qiskit/qiskit.transpiler.passes.OptimizeAnnotated "qiskit.transpiler.passes.OptimizeAnnotated"), that optimizes annotated operations on a quantum circuit.
+*   Added a new transpiler pass, [`OptimizeAnnotated`](/api/qiskit/1.0/qiskit.transpiler.passes.OptimizeAnnotated "qiskit.transpiler.passes.OptimizeAnnotated"), that optimizes annotated operations on a quantum circuit.
 
     Consider the following example:
 
@@ -502,11 +504,11 @@ This guide is meant to complement the release notes and have a targeted advice f
     assert qc_optimized == qc_expected
     ```
 
-    In the case of `gate1`, the modifiers of the annotated swap gate are brought into the canonical form: the two [`InverseModifier`](/api/qiskit/qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier")s cancel out, and the two [`ControlModifier`](/api/qiskit/qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier")s are combined. In the case of `gate2`, all the modifiers get removed and the annotated operation is replaced by its base operation. In the case of `gate3`, multiple layers of annotations are combined into one.
+    In the case of `gate1`, the modifiers of the annotated swap gate are brought into the canonical form: the two [`InverseModifier`](/api/qiskit/1.0/qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier")s cancel out, and the two [`ControlModifier`](/api/qiskit/1.0/qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier")s are combined. In the case of `gate2`, all the modifiers get removed and the annotated operation is replaced by its base operation. In the case of `gate3`, multiple layers of annotations are combined into one.
 
-    The constructor of the [`OptimizeAnnotated`](/api/qiskit/qiskit.transpiler.passes.OptimizeAnnotated "qiskit.transpiler.passes.OptimizeAnnotated") pass accepts optional arguments `target`, `equivalence_library`, `basis_gates` and `recurse`. When `recurse` is `True` (the default value) and when either `target` or `basis_gates` are specified, the pass recursively descends into the gate’s `definition` circuits, with the exception of gates that are already supported by the target or that belong to the equivalence library. On the other hand, when neither `target` nor `basis_gates` are specified, or when `recurse` is set to `False`, the pass synthesizes only the “top-level” annotated operations, i.e. does not recursively descend into the `definition` circuits. This behavior is consistent with that of the [`HighLevelSynthesis`](/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transpiler pass, which needs to be called in order to “unroll” the annotated operations into 1-qubit and 2-qubits gates.
+    The constructor of the [`OptimizeAnnotated`](/api/qiskit/1.0/qiskit.transpiler.passes.OptimizeAnnotated "qiskit.transpiler.passes.OptimizeAnnotated") pass accepts optional arguments `target`, `equivalence_library`, `basis_gates` and `recurse`. When `recurse` is `True` (the default value) and when either `target` or `basis_gates` are specified, the pass recursively descends into the gate’s `definition` circuits, with the exception of gates that are already supported by the target or that belong to the equivalence library. On the other hand, when neither `target` nor `basis_gates` are specified, or when `recurse` is set to `False`, the pass synthesizes only the “top-level” annotated operations, i.e. does not recursively descend into the `definition` circuits. This behavior is consistent with that of the [`HighLevelSynthesis`](/api/qiskit/1.0/qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transpiler pass, which needs to be called in order to “unroll” the annotated operations into 1-qubit and 2-qubits gates.
 
-*   Added a new [`HighLevelSynthesisPlugin`](/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") for [`PermutationGate`](/api/qiskit/qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects based on Qiskit’s token swapper algorithm. To use this plugin, specify `token_swapper` when defining high-level-synthesis config.
+*   Added a new [`HighLevelSynthesisPlugin`](/api/qiskit/1.0/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin") for [`PermutationGate`](/api/qiskit/1.0/qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") objects based on Qiskit’s token swapper algorithm. To use this plugin, specify `token_swapper` when defining high-level-synthesis config.
 
     This synthesis plugin is able to run before or after the layout is set. When synthesis succeeds, the plugin outputs a quantum circuit consisting only of swap gates. When synthesis does not succeed, the plugin outputs `None`.
 
@@ -543,7 +545,7 @@ This guide is meant to complement the release notes and have a targeted advice f
     qc_transpiled = pm.run(qc)
     ```
 
-*   Added two new arguments, `matrix_based` and `max_qubits`, to the constructor of the [`CommutativeInverseCancellation`](/api/qiskit/qiskit.transpiler.passes.CommutativeInverseCancellation "qiskit.transpiler.passes.CommutativeInverseCancellation") transpiler pass. When `matrix_based` is `True`, the pass uses matrix representations to check whether two operations are the inverse of each other. This makes the checks more powerful, and in addition allows for cancelling pairs of operations that are inverse up to a phase, while updating the global phase of the circuit accordingly. This generally leads to more reductions at the expense of increased runtime. The argument `max_qubits` limits the number of qubits in matrix-based commutativity and inverse checks. For example:
+*   Added two new arguments, `matrix_based` and `max_qubits`, to the constructor of the [`CommutativeInverseCancellation`](/api/qiskit/1.0/qiskit.transpiler.passes.CommutativeInverseCancellation "qiskit.transpiler.passes.CommutativeInverseCancellation") transpiler pass. When `matrix_based` is `True`, the pass uses matrix representations to check whether two operations are the inverse of each other. This makes the checks more powerful, and in addition allows for cancelling pairs of operations that are inverse up to a phase, while updating the global phase of the circuit accordingly. This generally leads to more reductions at the expense of increased runtime. The argument `max_qubits` limits the number of qubits in matrix-based commutativity and inverse checks. For example:
 
     ```python
     import numpy as np
@@ -561,13 +563,13 @@ This guide is meant to complement the release notes and have a targeted advice f
 
     The pass is able to cancel the `RZ` and `P` gates, while adjusting the circuit’s global phase to $\frac{15 \pi}{8}$.
 
-*   Added a new function, [`high_level_synthesis_plugin_names()`](/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names"), that can be used to get the list of installed high level synthesis plugins for a given operation name.
+*   Added a new function, [`high_level_synthesis_plugin_names()`](/api/qiskit/1.0/qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names"), that can be used to get the list of installed high level synthesis plugins for a given operation name.
 
 <span id="relnotes-1-0-0-visualization-features" />
 
 ### Visualization Features
 
-*   The `text` and `mpl` outputs for the [`QuantumCircuit.draw()`](/api/qiskit/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") and [`circuit_drawer()`](/api/qiskit/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") circuit drawer functions will now display detailed information for operations of [`AnnotatedOperation`](/api/qiskit/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"). If the `AnnotatedOperation.modifiers` contains a [`ControlModifier`](/api/qiskit/qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier"), the operation will be displayed the same way as controlled gates. If the [`InverseModifier`](/api/qiskit/qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier") or [`PowerModifier`](/api/qiskit/qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier") is used, these will be indicated with the base operation name. For example:
+*   The `text` and `mpl` outputs for the [`QuantumCircuit.draw()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") and [`circuit_drawer()`](/api/qiskit/1.0/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") circuit drawer functions will now display detailed information for operations of [`AnnotatedOperation`](/api/qiskit/1.0/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"). If the `AnnotatedOperation.modifiers` contains a [`ControlModifier`](/api/qiskit/1.0/qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier"), the operation will be displayed the same way as controlled gates. If the [`InverseModifier`](/api/qiskit/1.0/qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier") or [`PowerModifier`](/api/qiskit/1.0/qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier") is used, these will be indicated with the base operation name. For example:
 
     ```python
     from qiskit.circuit import (
@@ -591,23 +593,23 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 ### Misc. Features
 
-*   Added a new warning base class, [`QiskitWarning`](/api/qiskit/exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning"). While Qiskit will continue to use built-in Python warnings (such as [`DeprecationWarning`](https://docs.python.org/3/library/exceptions.html#DeprecationWarning "(in Python v3.12)")) when those are most appropriate, for cases that are more specific to Qiskit, the warnings will be subclasses of [`QiskitWarning`](/api/qiskit/exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning").
+*   Added a new warning base class, [`QiskitWarning`](/api/qiskit/1.0/exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning"). While Qiskit will continue to use built-in Python warnings (such as [`DeprecationWarning`](https://docs.python.org/3/library/exceptions.html#DeprecationWarning "(in Python v3.12)")) when those are most appropriate, for cases that are more specific to Qiskit, the warnings will be subclasses of [`QiskitWarning`](/api/qiskit/1.0/exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning").
 
-*   The optional-functionality testers ([`qiskit.utils.optionals`](/api/qiskit/utils#module-qiskit.utils.optionals "qiskit.utils.optionals")) will now distinguish an optional dependency that was completely not found (a normal situation) with one that was found, but triggered errors during its import. In the latter case, they will now issue an [`OptionalDependencyImportWarning`](/api/qiskit/exceptions#qiskit.exceptions.OptionalDependencyImportWarning "qiskit.exceptions.OptionalDependencyImportWarning") telling you what happened, since it might indicate a failed installation or an incompatible version.
+*   The optional-functionality testers ([`qiskit.utils.optionals`](/api/qiskit/1.0/utils#module-qiskit.utils.optionals "qiskit.utils.optionals")) will now distinguish an optional dependency that was completely not found (a normal situation) with one that was found, but triggered errors during its import. In the latter case, they will now issue an [`OptionalDependencyImportWarning`](/api/qiskit/1.0/exceptions#qiskit.exceptions.OptionalDependencyImportWarning "qiskit.exceptions.OptionalDependencyImportWarning") telling you what happened, since it might indicate a failed installation or an incompatible version.
 
 <span id="relnotes-1-0-0-upgrade-notes" />
 
 ### Upgrade Notes
 
-*   Qiskit 1.0 now requires version 0.14.0 of `rustworkx`. The minimum version requirement was raised to support the new `token_swapper` [`PermutationGate`](/api/qiskit/qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") synthesis plugin for [`HighLevelSynthesisPlugin`](/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin").
+*   Qiskit 1.0 now requires version 0.14.0 of `rustworkx`. The minimum version requirement was raised to support the new `token_swapper` [`PermutationGate`](/api/qiskit/1.0/qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate") synthesis plugin for [`HighLevelSynthesisPlugin`](/api/qiskit/1.0/qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin").
 
 *   The minimum supported Rust version for building Qiskit from source is now 1.70. This has been raised from the previous minimum supported Rust version of 1.64 in the Qiskit 0.45.x and 0.46.0 release series.
 
-*   The dependency on [psutil](https://pypi.org/project/psutil/) has been removed. The psutil library was previously only used for detecting the number of physical CPUs and total system memory, however this information provided does not add sufficient value to justify the additional dependencies and overhead so it has been removed. This does mean that the default number of processes used by [`parallel_map()`](/api/qiskit/utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") and functions that internally can use [`parallel_map()`](/api/qiskit/utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") such as [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and [`PassManager.run()`](/api/qiskit/qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") may use more or less parallel processes than in previous releases. If you’d like to adjust the number of processes used you can use the new `num_processes` argument to those functions, or the `QISKIT_NUM_PROCS` environment variable or `num_processes` field in a user configuration file (see the [local configuration guide](/start/configure-qiskit-local) for more details) if you need to adjust the number of processes that Qiskit potentially uses.
+*   The dependency on [psutil](https://pypi.org/project/psutil/) has been removed. The psutil library was previously only used for detecting the number of physical CPUs and total system memory, however this information provided does not add sufficient value to justify the additional dependencies and overhead so it has been removed. This does mean that the default number of processes used by [`parallel_map()`](/api/qiskit/1.0/utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") and functions that internally can use [`parallel_map()`](/api/qiskit/1.0/utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") such as [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and [`PassManager.run()`](/api/qiskit/1.0/qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") may use more or less parallel processes than in previous releases. If you’d like to adjust the number of processes used you can use the new `num_processes` argument to those functions, or the `QISKIT_NUM_PROCS` environment variable or `num_processes` field in a user configuration file (see the [local configuration guide](/start/configure-qiskit-local) for more details) if you need to adjust the number of processes that Qiskit potentially uses.
 
-*   The `scoped_parameters` and `search_parameters` methods have been removed from the [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") class. These methods returned [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects that partially linked to the parameters in the [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") instance but assigning values using these objects did not work correctly. Users should use [`ScheduleBlock.parameters`](/api/qiskit/qiskit.pulse.ScheduleBlock#parameters "qiskit.pulse.ScheduleBlock.parameters") instead and iterate through [`ScheduleBlock.references`](/api/qiskit/qiskit.pulse.ScheduleBlock#references "qiskit.pulse.ScheduleBlock.references") and compare to the [`Schedule.parameters`](/api/qiskit/qiskit.pulse.Schedule#parameters "qiskit.pulse.Schedule.parameters") attributes of the subreferences when needing to distinguish which subroutine a parameter is used in. See [#11654](https://github.com/Qiskit/qiskit/issues/11654) for more information.
+*   The `scoped_parameters` and `search_parameters` methods have been removed from the [`ScheduleBlock`](/api/qiskit/1.0/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") class. These methods returned [`Parameter`](/api/qiskit/1.0/qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects that partially linked to the parameters in the [`ScheduleBlock`](/api/qiskit/1.0/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") instance but assigning values using these objects did not work correctly. Users should use [`ScheduleBlock.parameters`](/api/qiskit/1.0/qiskit.pulse.ScheduleBlock#parameters "qiskit.pulse.ScheduleBlock.parameters") instead and iterate through [`ScheduleBlock.references`](/api/qiskit/1.0/qiskit.pulse.ScheduleBlock#references "qiskit.pulse.ScheduleBlock.references") and compare to the [`Schedule.parameters`](/api/qiskit/1.0/qiskit.pulse.Schedule#parameters "qiskit.pulse.Schedule.parameters") attributes of the subreferences when needing to distinguish which subroutine a parameter is used in. See [#11654](https://github.com/Qiskit/qiskit/issues/11654) for more information.
 
-*   Removed logic for injecting [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`Gate`](/api/qiskit/qiskit.circuit.Gate "qiskit.circuit.Gate") operations into the pulse context (such as in [`pulse.builder.call()`](/api/qiskit/pulse#qiskit.pulse.builder.call "qiskit.pulse.builder.call")), which was legacy behavior deprecated in Qiskit 0.46. Pulse schedules should be built up as a full schedule context; circuits and gates are a higher level of abstraction.
+*   Removed logic for injecting [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`Gate`](/api/qiskit/1.0/qiskit.circuit.Gate "qiskit.circuit.Gate") operations into the pulse context (such as in [`pulse.builder.call()`](/api/qiskit/1.0/pulse#qiskit.pulse.builder.call "qiskit.pulse.builder.call")), which was legacy behavior deprecated in Qiskit 0.46. Pulse schedules should be built up as a full schedule context; circuits and gates are a higher level of abstraction.
 
     This includes the removal of the related functions:
 
@@ -622,7 +624,7 @@ This guide is meant to complement the release notes and have a targeted advice f
     *   `pulse.builder.transpiler_settings`
     *   `pulse.builder.circuit_scheduler_settings`
 
-    The `default_transpiler_settings` and `default_circuit_scheduler_settings` arguments to [`pulse.builder.build()`](/api/qiskit/pulse#qiskit.pulse.builder.build "qiskit.pulse.builder.build") are similarly removed.
+    The `default_transpiler_settings` and `default_circuit_scheduler_settings` arguments to [`pulse.builder.build()`](/api/qiskit/1.0/pulse#qiskit.pulse.builder.build "qiskit.pulse.builder.build") are similarly removed.
 
     ```python
     from qiskit import transpile, schedule, QuantumCircuit, pulse
@@ -654,33 +656,33 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 ### Circuits Upgrade Notes
 
-*   Removed the `Instruction.qasm` method, which was deprecated in Qiskit 0.45.0. Use [`qiskit.qasm2.dump()`](/api/qiskit/qasm2#qiskit.qasm2.dump "qiskit.qasm2.dump") with a complete [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") instead.
+*   Removed the `Instruction.qasm` method, which was deprecated in Qiskit 0.45.0. Use [`qiskit.qasm2.dump()`](/api/qiskit/1.0/qasm2#qiskit.qasm2.dump "qiskit.qasm2.dump") with a complete [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") instead.
 
-*   The properties `Bit.register` and `Bit.index` are removed. They were deprecated in Qiskit 0.25 (released in 2021-04). The qubits and bits now live only in the context of a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The alternative to the properties is to use [`QuantumCircuit.find_bit()`](/api/qiskit/qiskit.circuit.QuantumCircuit#find_bit "qiskit.circuit.QuantumCircuit.find_bit") to find all the containing registers within a circuit and the index of the bit within the circuit.
+*   The properties `Bit.register` and `Bit.index` are removed. They were deprecated in Qiskit 0.25 (released in 2021-04). The qubits and bits now live only in the context of a [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The alternative to the properties is to use [`QuantumCircuit.find_bit()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#find_bit "qiskit.circuit.QuantumCircuit.find_bit") to find all the containing registers within a circuit and the index of the bit within the circuit.
 
-*   The method `QuantumCircuit.bind_parameters` has been removed, following its deprecation in Qiskit 0.45. You can use [`QuantumCircuit.assign_parameters()`](/api/qiskit/qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters") as a drop-in replacement with all its defaults, and it also exposes additional features over the old method.
+*   The method `QuantumCircuit.bind_parameters` has been removed, following its deprecation in Qiskit 0.45. You can use [`QuantumCircuit.assign_parameters()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters") as a drop-in replacement with all its defaults, and it also exposes additional features over the old method.
 
-*   Importing `Int1`, `Int2`, `BooleanFunction`, `classical_function()` from [`qiskit.circuit`](/api/qiskit/circuit#module-qiskit.circuit "qiskit.circuit") is now disabled. Instead, import the objects from the [`qiskit.circuit.classicalfunction`](/api/qiskit/classicalfunction#module-qiskit.circuit.classicalfunction "qiskit.circuit.classicalfunction") submodule, which requires the `tweedledum` package.
+*   Importing `Int1`, `Int2`, `BooleanFunction`, `classical_function()` from [`qiskit.circuit`](/api/qiskit/1.0/circuit#module-qiskit.circuit "qiskit.circuit") is now disabled. Instead, import the objects from the [`qiskit.circuit.classicalfunction`](/api/qiskit/1.0/classicalfunction#module-qiskit.circuit.classicalfunction "qiskit.circuit.classicalfunction") submodule, which requires the `tweedledum` package.
 
-*   The `header` and `extension_lib` data-only attributes from [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") are removed following their deprecation in Qiskit 0.45. These were internal details of the OpenQASM 2 exporter which are no longer used.
+*   The `header` and `extension_lib` data-only attributes from [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") are removed following their deprecation in Qiskit 0.45. These were internal details of the OpenQASM 2 exporter which are no longer used.
 
-*   Removed the `qiskit.extensions` module, which has been pending deprecation since the 0.45 release and has been fully deprecated in the 0.46 release. The following operations from this module are available in [`qiskit.circuit.library`](/api/qiskit/circuit_library#module-qiskit.circuit.library "qiskit.circuit.library"):
+*   Removed the `qiskit.extensions` module, which has been pending deprecation since the 0.45 release and has been fully deprecated in the 0.46 release. The following operations from this module are available in [`qiskit.circuit.library`](/api/qiskit/1.0/circuit_library#module-qiskit.circuit.library "qiskit.circuit.library"):
 
-    > *   [`DiagonalGate`](/api/qiskit/qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate"),
+    > *   [`DiagonalGate`](/api/qiskit/1.0/qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate"),
     > *   `HamiltonianGateGate`,
-    > *   [`Initialize`](/api/qiskit/qiskit.circuit.library.Initialize "qiskit.circuit.library.Initialize"),
-    > *   [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry "qiskit.circuit.library.Isometry"),
+    > *   [`Initialize`](/api/qiskit/1.0/qiskit.circuit.library.Initialize "qiskit.circuit.library.Initialize"),
+    > *   [`Isometry`](/api/qiskit/1.0/qiskit.circuit.library.Isometry "qiskit.circuit.library.Isometry"),
     > *   `MCGupDiag`,
-    > *   [`UCGate`](/api/qiskit/qiskit.circuit.library.UCGate "qiskit.circuit.library.UCGate"),
-    > *   [`UCPauliRotGate`](/api/qiskit/qiskit.circuit.library.UCPauliRotGate "qiskit.circuit.library.UCPauliRotGate"),
-    > *   [`UCRXGate`](/api/qiskit/qiskit.circuit.library.UCRXGate "qiskit.circuit.library.UCRXGate"),
-    > *   [`UCRYGate`](/api/qiskit/qiskit.circuit.library.UCRYGate "qiskit.circuit.library.UCRYGate"),
-    > *   [`UCRZGate`](/api/qiskit/qiskit.circuit.library.UCRZGate "qiskit.circuit.library.UCRZGate"),
-    > *   [`UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate").
+    > *   [`UCGate`](/api/qiskit/1.0/qiskit.circuit.library.UCGate "qiskit.circuit.library.UCGate"),
+    > *   [`UCPauliRotGate`](/api/qiskit/1.0/qiskit.circuit.library.UCPauliRotGate "qiskit.circuit.library.UCPauliRotGate"),
+    > *   [`UCRXGate`](/api/qiskit/1.0/qiskit.circuit.library.UCRXGate "qiskit.circuit.library.UCRXGate"),
+    > *   [`UCRYGate`](/api/qiskit/1.0/qiskit.circuit.library.UCRYGate "qiskit.circuit.library.UCRYGate"),
+    > *   [`UCRZGate`](/api/qiskit/1.0/qiskit.circuit.library.UCRZGate "qiskit.circuit.library.UCRZGate"),
+    > *   [`UnitaryGate`](/api/qiskit/1.0/qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate").
 
     The following objects have been removed:
 
-    > *   `SingleQubitUnitary` (instead use [`library.UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")),
+    > *   `SingleQubitUnitary` (instead use [`library.UnitaryGate`](/api/qiskit/1.0/qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")),
     > *   `Snapshot` (superseded by Aer’s save instructions),
     > *   `ExtensionError`,
 
@@ -698,15 +700,15 @@ This guide is meant to complement the release notes and have a targeted advice f
 
     These operations can still be performed by appending the appropriate instruction to a quantum circuit.
 
-*   Removed deprecated, duplicated [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods. These include:
+*   Removed deprecated, duplicated [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods. These include:
 
-    > *   `QuantumCircuit.cnot`, instead use [`QuantumCircuit.cx()`](/api/qiskit/qiskit.circuit.QuantumCircuit#cx "qiskit.circuit.QuantumCircuit.cx"),
-    > *   `QuantumCircuit.toffoli`, instead use [`QuantumCircuit.ccx()`](/api/qiskit/qiskit.circuit.QuantumCircuit#ccx "qiskit.circuit.QuantumCircuit.ccx"),
-    > *   `QuantumCircuit.fredkin`, instead use [`QuantumCircuit.cswap()`](/api/qiskit/qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap"),
-    > *   `QuantumCircuit.mct`, instead use [`QuantumCircuit.mcx()`](/api/qiskit/qiskit.circuit.QuantumCircuit#mcx "qiskit.circuit.QuantumCircuit.mcx"),
-    > *   `QuantumCircuit.i`, instead use [`QuantumCircuit.id()`](/api/qiskit/qiskit.circuit.QuantumCircuit#id "qiskit.circuit.QuantumCircuit.id").
+    > *   `QuantumCircuit.cnot`, instead use [`QuantumCircuit.cx()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#cx "qiskit.circuit.QuantumCircuit.cx"),
+    > *   `QuantumCircuit.toffoli`, instead use [`QuantumCircuit.ccx()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#ccx "qiskit.circuit.QuantumCircuit.ccx"),
+    > *   `QuantumCircuit.fredkin`, instead use [`QuantumCircuit.cswap()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#cswap "qiskit.circuit.QuantumCircuit.cswap"),
+    > *   `QuantumCircuit.mct`, instead use [`QuantumCircuit.mcx()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#mcx "qiskit.circuit.QuantumCircuit.mcx"),
+    > *   `QuantumCircuit.i`, instead use [`QuantumCircuit.id()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#id "qiskit.circuit.QuantumCircuit.id").
 
-*   You can no longer set [`QuantumCircuit.metadata`](/api/qiskit/qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") to be `None`, following deprecation in Qiskit 0.43.0. Its type is [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)"), so to clear it, set it to `{}`.
+*   You can no longer set [`QuantumCircuit.metadata`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") to be `None`, following deprecation in Qiskit 0.43.0. Its type is [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)"), so to clear it, set it to `{}`.
 
 *   The attribute `.Register.name_format` has been removed following its deprecation in Qiskit 0.40.0. There is no restriction on register names any more, and the regular expression there was simply `[a-z][a-zA-Z0-9_]*`.
 
@@ -714,29 +716,29 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 ### Primitives Upgrade Notes
 
-*   Added the [`BasePrimitiveJob`](/api/qiskit/qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") class as an abstract job class for primitives and made [`PrimitiveJob`](/api/qiskit/qiskit.primitives.PrimitiveJob "qiskit.primitives.PrimitiveJob") inherit [`BasePrimitiveJob`](/api/qiskit/qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") instead of [`JobV1`](/api/qiskit/qiskit.providers.JobV1 "qiskit.providers.JobV1").
+*   Added the [`BasePrimitiveJob`](/api/qiskit/1.0/qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") class as an abstract job class for primitives and made [`PrimitiveJob`](/api/qiskit/1.0/qiskit.primitives.PrimitiveJob "qiskit.primitives.PrimitiveJob") inherit [`BasePrimitiveJob`](/api/qiskit/1.0/qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") instead of [`JobV1`](/api/qiskit/1.0/qiskit.providers.JobV1 "qiskit.providers.JobV1").
 
 <span id="relnotes-1-0-0-providers-upgrade-notes" />
 
 ### Providers Upgrade Notes
 
-*   Changed default value of two arguments (`add_delay` and `filter_faulty`) in the [`convert_to_target()`](/api/qiskit/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") function. This conversion function now adds delay instructions and removes faulty instructions by default.
+*   Changed default value of two arguments (`add_delay` and `filter_faulty`) in the [`convert_to_target()`](/api/qiskit/1.0/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") function. This conversion function now adds delay instructions and removes faulty instructions by default.
 
-*   The [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`PulseDefaults`](/api/qiskit/qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") model objects used by the [`FakeOpenPulse2Q`](/api/qiskit/qiskit.providers.fake_provider.FakeOpenPulse2Q "qiskit.providers.fake_provider.FakeOpenPulse2Q") have been updated to be internally consistent and add missing instructions. If you were relying on the previous model objects as a compilation target you can use the backend with Qiskit 0.46 and export a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") generated with [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and serialize it using `qpy.dump` to access it in this release.
+*   The [`BackendProperties`](/api/qiskit/1.0/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`PulseDefaults`](/api/qiskit/1.0/qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") model objects used by the [`FakeOpenPulse2Q`](/api/qiskit/1.0/qiskit.providers.fake_provider.FakeOpenPulse2Q "qiskit.providers.fake_provider.FakeOpenPulse2Q") have been updated to be internally consistent and add missing instructions. If you were relying on the previous model objects as a compilation target you can use the backend with Qiskit 0.46 and export a [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") generated with [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and serialize it using `qpy.dump` to access it in this release.
 
-*   The `qiskit.providers.basicaer` module, exposed as `qiskit.BasicAer`, has been removed following it deprecation on the 0.46 release. Its functionality has been replaced by the [`qiskit.quantum_info`](/api/qiskit/quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") module and the new [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider#module-qiskit.providers.basic_provider "qiskit.providers.basic_provider") module.
+*   The `qiskit.providers.basicaer` module, exposed as `qiskit.BasicAer`, has been removed following it deprecation on the 0.46 release. Its functionality has been replaced by the [`qiskit.quantum_info`](/api/qiskit/1.0/quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") module and the new [`qiskit.providers.basic_provider`](/api/qiskit/1.0/providers_basic_provider#module-qiskit.providers.basic_provider "qiskit.providers.basic_provider") module.
 
-    The migration from using `qiskit.providers.basicaer` (`qiskit.BasicAer`) to [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider#module-qiskit.providers.basic_provider "qiskit.providers.basic_provider") can be performed as follows:
+    The migration from using `qiskit.providers.basicaer` (`qiskit.BasicAer`) to [`qiskit.providers.basic_provider`](/api/qiskit/1.0/providers_basic_provider#module-qiskit.providers.basic_provider "qiskit.providers.basic_provider") can be performed as follows:
 
     | Migrate from                | Replace with                                                                                                              |
     | --------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
     | `qiskit.BasicAer`           | The new provider doesn’t have a global instance, imports should be from `qiskit.providers.basic_provider`                 |
-    | `qiskit.providers.basicaer` | [`basic_provider`](/api/qiskit/providers_basic_provider#module-qiskit.providers.basic_provider "qiskit.providers.basic_provider")     |
-    | `BasicAerProvider`          | [`BasicProvider`](/api/qiskit/qiskit.providers.basic_provider.BasicProvider "qiskit.providers.basic_provider.BasicProvider")          |
-    | `BasicAerJob`               | [`BasicProviderJob`](/api/qiskit/qiskit.providers.basic_provider.BasicProviderJob "qiskit.providers.basic_provider.BasicProviderJob") |
-    | `QasmSimulatorPy`           | [`BasicSimulator`](/api/qiskit/qiskit.providers.basic_provider.BasicSimulator "qiskit.providers.basic_provider.BasicSimulator")       |
-    | `UnitarySimulatorPy`        | use [`Operator`](/api/qiskit/qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")                                             |
-    | `StatevectorSimulatorPy`    | use [`Statevector`](/api/qiskit/qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")                                    |
+    | `qiskit.providers.basicaer` | [`basic_provider`](/api/qiskit/1.0/providers_basic_provider#module-qiskit.providers.basic_provider "qiskit.providers.basic_provider")     |
+    | `BasicAerProvider`          | [`BasicProvider`](/api/qiskit/1.0/qiskit.providers.basic_provider.BasicProvider "qiskit.providers.basic_provider.BasicProvider")          |
+    | `BasicAerJob`               | [`BasicProviderJob`](/api/qiskit/1.0/qiskit.providers.basic_provider.BasicProviderJob "qiskit.providers.basic_provider.BasicProviderJob") |
+    | `QasmSimulatorPy`           | [`BasicSimulator`](/api/qiskit/1.0/qiskit.providers.basic_provider.BasicSimulator "qiskit.providers.basic_provider.BasicSimulator")       |
+    | `UnitarySimulatorPy`        | use [`Operator`](/api/qiskit/1.0/qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")                                             |
+    | `StatevectorSimulatorPy`    | use [`Statevector`](/api/qiskit/1.0/qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")                                    |
 
     A notable difference is that the new provider is no longer exposed through a global instance (like `BasicAer`), so it will not be valid to do `from qiskit import BasicProvider`. Instead, the provider class must be imported from its submodule and instantiated manually:
 
@@ -812,9 +814,9 @@ This guide is meant to complement the release notes and have a targeted advice f
         result = backend.run(qc).result()
         ```
 
-*   Removed the `ConfigurableFakeBackend` class deprecated in Qiskit 0.46.0. Instead, a suitable [`FakeBackend`](/api/qiskit/providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.FakeBackend") can be used.
+*   Removed the `ConfigurableFakeBackend` class deprecated in Qiskit 0.46.0. Instead, a suitable [`FakeBackend`](/api/qiskit/1.0/providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.FakeBackend") can be used.
 
-*   The deprecated [`qiskit.providers.fake_provider`](/api/qiskit/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") module has been migrated to the `qiskit-ibm-runtime` Python package. For this reason, the following elements in the [`qiskit.providers.fake_provider`](/api/qiskit/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") have been removed following their deprecation in Qiskit 0.46:
+*   The deprecated [`qiskit.providers.fake_provider`](/api/qiskit/1.0/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") module has been migrated to the `qiskit-ibm-runtime` Python package. For this reason, the following elements in the [`qiskit.providers.fake_provider`](/api/qiskit/1.0/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") have been removed following their deprecation in Qiskit 0.46:
 
     > *   `qiskit.providers.fake_provider.FakeProvider`
     > *   `qiskit.providers.fake_provider.FakeProviderForBackendV2`
@@ -840,14 +842,14 @@ This guide is meant to complement the release notes and have a targeted advice f
     backend2 = FakeSherbrooke()
     ```
 
-    Additionally, the following fake backends designed for special testing purposes have been superseded by the new [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") class, and are also removed following their deprecation in Qiskit 0.46:
+    Additionally, the following fake backends designed for special testing purposes have been superseded by the new [`GenericBackendV2`](/api/qiskit/1.0/qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") class, and are also removed following their deprecation in Qiskit 0.46:
 
     > *   `qiskit.providers.fake_provider.fake_backend_v2.FakeBackendV2`
     > *   `` `qiskit.providers.fake_provider.fake_backend_v2.FakeBackendV2LegacyQubitProps ``
     > *   `qiskit.providers.fake_provider.fake_backend_v2.FakeBackend5QV2`
     > *   `qiskit.providers.fake_provider.fake_backend_v2.FakeBackendSimple`
 
-    Migration example to the new [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") class:
+    Migration example to the new [`GenericBackendV2`](/api/qiskit/1.0/qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") class:
 
     ```python
     # Legacy path
@@ -891,49 +893,49 @@ This guide is meant to complement the release notes and have a targeted advice f
 
     These public methods are all replaced with protected ones which are implicitly called from the single entry point, i.e. calling the class as like a function.
 
-*   The class `qiskit.pulse.library.ParametricPulse` and all subclasses are removed. These were deprecated since Qiskit 0.39 (with qiskit-terra 0.22), released in 2022-10. Instead, use [`SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") and check its documentation for details.
+*   The class `qiskit.pulse.library.ParametricPulse` and all subclasses are removed. These were deprecated since Qiskit 0.39 (with qiskit-terra 0.22), released in 2022-10. Instead, use [`SymbolicPulse`](/api/qiskit/1.0/qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") and check its documentation for details.
 
 <span id="relnotes-1-0-0-openqasm-upgrade-notes" />
 
 ### OpenQASM Upgrade Notes
 
-*   The `qasm()` methods of the classes [`QuantumRegister`](/api/qiskit/qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and [`ClassicalRegister`](/api/qiskit/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") have been removed. There is no replacement necessary; these were an internal detail of a legacy implementation of the OpenQASM 2 exporter. To export a program to OpenQASM 2, use [`qasm2.dump()`](/api/qiskit/qasm2#qiskit.qasm2.dump "qiskit.qasm2.dump") or [`qasm2.dumps()`](/api/qiskit/qasm2#qiskit.qasm2.dumps "qiskit.qasm2.dumps").
+*   The `qasm()` methods of the classes [`QuantumRegister`](/api/qiskit/1.0/qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") and [`ClassicalRegister`](/api/qiskit/1.0/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") have been removed. There is no replacement necessary; these were an internal detail of a legacy implementation of the OpenQASM 2 exporter. To export a program to OpenQASM 2, use [`qasm2.dump()`](/api/qiskit/1.0/qasm2#qiskit.qasm2.dump "qiskit.qasm2.dump") or [`qasm2.dumps()`](/api/qiskit/1.0/qasm2#qiskit.qasm2.dumps "qiskit.qasm2.dumps").
 
 <span id="relnotes-1-0-0-qpy-upgrade-notes" />
 
 ### QPY Upgrade Notes
 
-*   The latest format version of QPY is now [Version 11](/api/qiskit/qpy#qpy-version-11) and this is what is emitted by default when running [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump").
+*   The latest format version of QPY is now [Version 11](/api/qiskit/1.0/qpy#qpy-version-11) and this is what is emitted by default when running [`qpy.dump()`](/api/qiskit/1.0/qpy#qiskit.qpy.dump "qiskit.qpy.dump").
 
-*   The module path `qiskit.circuit.qpy_serialization` has been removed, following its deprecation in Qiskit 0.40.0. For QPY serialization, use [`qiskit.qpy`](/api/qiskit/qpy#module-qiskit.qpy "qiskit.qpy"), which is the new location.
+*   The module path `qiskit.circuit.qpy_serialization` has been removed, following its deprecation in Qiskit 0.40.0. For QPY serialization, use [`qiskit.qpy`](/api/qiskit/1.0/qpy#module-qiskit.qpy "qiskit.qpy"), which is the new location.
 
 <span id="relnotes-1-0-0-quantum-information-upgrade-notes" />
 
 ### Quantum Information Upgrade Notes
 
-*   Removed the deprecated `__getitem__`/`__setitem__` magic methods of [`Clifford`](/api/qiskit/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford"). The methods were deprecated since Qiskit 0.44, released in 2023-07. Instead, index or iterate through the `Clifford.tableau` attribute.
+*   Removed the deprecated `__getitem__`/`__setitem__` magic methods of [`Clifford`](/api/qiskit/1.0/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford"). The methods were deprecated since Qiskit 0.44, released in 2023-07. Instead, index or iterate through the `Clifford.tableau` attribute.
 
-*   Removed the `qiskit.quantum_info.synthesis` module, which has been deprecated since the 0.46 release. The following objects have been moved to [`qiskit.synthesis`](/api/qiskit/synthesis#module-qiskit.synthesis "qiskit.synthesis"):
+*   Removed the `qiskit.quantum_info.synthesis` module, which has been deprecated since the 0.46 release. The following objects have been moved to [`qiskit.synthesis`](/api/qiskit/1.0/synthesis#module-qiskit.synthesis "qiskit.synthesis"):
 
-    *   [`OneQubitEulerDecomposer`](/api/qiskit/qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") has been moved to `qiskit.synthesis.one_qubit`
-    *   [`TwoQubitBasisDecomposer`](/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer") has been moved to `qiskit.synthesis.two_qubits`
-    *   [`XXDecomposer`](/api/qiskit/qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer") has been moved to `qiskit.synthesis.two_qubits`
-    *   [`two_qubit_cnot_decompose()`](/api/qiskit/synthesis#qiskit.synthesis.two_qubit_cnot_decompose "qiskit.synthesis.two_qubit_cnot_decompose") has been moved to `qiskit.synthesis.two_qubits`
+    *   [`OneQubitEulerDecomposer`](/api/qiskit/1.0/qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") has been moved to `qiskit.synthesis.one_qubit`
+    *   [`TwoQubitBasisDecomposer`](/api/qiskit/1.0/qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer") has been moved to `qiskit.synthesis.two_qubits`
+    *   [`XXDecomposer`](/api/qiskit/1.0/qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer") has been moved to `qiskit.synthesis.two_qubits`
+    *   [`two_qubit_cnot_decompose()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.two_qubit_cnot_decompose "qiskit.synthesis.two_qubit_cnot_decompose") has been moved to `qiskit.synthesis.two_qubits`
 
     This function was removed, since it has already been deprecated in the 0.46 release: \* `cnot_rxx_decompose`
 
-    These functions were removed, since they have already been deprecated in a previous release: \* `decompose_clifford` (use [`synth_clifford_full()`](/api/qiskit/synthesis#qiskit.synthesis.synth_clifford_full "qiskit.synthesis.synth_clifford_full") instead) \* `decompose_cnotdihedral` (use [`synth_cnotdihedral_full()`](/api/qiskit/synthesis#qiskit.synthesis.synth_cnotdihedral_full "qiskit.synthesis.synth_cnotdihedral_full") instead)
+    These functions were removed, since they have already been deprecated in a previous release: \* `decompose_clifford` (use [`synth_clifford_full()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_clifford_full "qiskit.synthesis.synth_clifford_full") instead) \* `decompose_cnotdihedral` (use [`synth_cnotdihedral_full()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_cnotdihedral_full "qiskit.synthesis.synth_cnotdihedral_full") instead)
 
-*   The functions [`process_fidelity()`](/api/qiskit/quantum_info#qiskit.quantum_info.process_fidelity "qiskit.quantum_info.process_fidelity"), [`average_gate_fidelity()`](/api/qiskit/quantum_info#qiskit.quantum_info.average_gate_fidelity "qiskit.quantum_info.average_gate_fidelity"), [`gate_error()`](/api/qiskit/quantum_info#qiskit.quantum_info.gate_error "qiskit.quantum_info.gate_error") and [`diamond_norm()`](/api/qiskit/quantum_info#qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm") will no longer attempt to coerce arbitrary inputs to their marked expected types, following the deprecation in Qiskit 0.25.0. Pass inputs of the marked types to each argument directly.
+*   The functions [`process_fidelity()`](/api/qiskit/1.0/quantum_info#qiskit.quantum_info.process_fidelity "qiskit.quantum_info.process_fidelity"), [`average_gate_fidelity()`](/api/qiskit/1.0/quantum_info#qiskit.quantum_info.average_gate_fidelity "qiskit.quantum_info.average_gate_fidelity"), [`gate_error()`](/api/qiskit/1.0/quantum_info#qiskit.quantum_info.gate_error "qiskit.quantum_info.gate_error") and [`diamond_norm()`](/api/qiskit/1.0/quantum_info#qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm") will no longer attempt to coerce arbitrary inputs to their marked expected types, following the deprecation in Qiskit 0.25.0. Pass inputs of the marked types to each argument directly.
 
 <span id="relnotes-1-0-0-synthesis-upgrade-notes" />
 
 ### Synthesis Upgrade Notes
 
-*   The following deprecated functions previously in [`qiskit.quantum_info`](/api/qiskit/quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") have been removed. These functions were marked as deprecated in the Qiskit 0.40.0 release in 2023-01.
+*   The following deprecated functions previously in [`qiskit.quantum_info`](/api/qiskit/1.0/quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") have been removed. These functions were marked as deprecated in the Qiskit 0.40.0 release in 2023-01.
 
-    > *   `decompose_clifford`: you should use the [`qiskit.synthesis.synth_clifford_full()`](/api/qiskit/synthesis#qiskit.synthesis.synth_clifford_full "qiskit.synthesis.synth_clifford_full") function instead.
-    > *   `decompose_cnotdihedral`: you should use the [`qiskit.synthesis.synth_cnotdihedral_full()`](/api/qiskit/synthesis#qiskit.synthesis.synth_cnotdihedral_full "qiskit.synthesis.synth_cnotdihedral_full") function instead.
+    > *   `decompose_clifford`: you should use the [`qiskit.synthesis.synth_clifford_full()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_clifford_full "qiskit.synthesis.synth_clifford_full") function instead.
+    > *   `decompose_cnotdihedral`: you should use the [`qiskit.synthesis.synth_cnotdihedral_full()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_cnotdihedral_full "qiskit.synthesis.synth_cnotdihedral_full") function instead.
 
 <span id="relnotes-1-0-0-transpiler-upgrade-notes" />
 
@@ -943,13 +945,13 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 *   Removed deprecated function `qiskit.transpiler.preset_passmanagers.common.get_vf2_call_limit`. Instead, use `get_vf2_limits()`.
 
-*   The implicit use of `approximation_degree!=1.0` by default in the [`generate_preset_pass_manager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") function has been disabled. The previous default could cause undue and unexpected approximations, especially in workloads involving Trotterization or similar runs of operations that are close, but decidedly not equal, to the identity.
+*   The implicit use of `approximation_degree!=1.0` by default in the [`generate_preset_pass_manager()`](/api/qiskit/1.0/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") function has been disabled. The previous default could cause undue and unexpected approximations, especially in workloads involving Trotterization or similar runs of operations that are close, but decidedly not equal, to the identity.
 
-    This change brings the inner pass-manager generation defaults in line with [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"), which was always the intention. See [#8595](https://github.com/Qiskit/qiskit/pull/8595) for more detail.
+    This change brings the inner pass-manager generation defaults in line with [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"), which was always the intention. See [#8595](https://github.com/Qiskit/qiskit/pull/8595) for more detail.
 
-*   Removed the deprecated `Unroller` class in `qiskit.transpiler.passes.basis`. This class was deprecated in Qiskit 0.45 and use of it can be replaced by the combination usage of [`BasisTranslator`](/api/qiskit/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") and [`UnrollCustomDefinitions`](/api/qiskit/qiskit.transpiler.passes.UnrollCustomDefinitions "qiskit.transpiler.passes.UnrollCustomDefinitions").
+*   Removed the deprecated `Unroller` class in `qiskit.transpiler.passes.basis`. This class was deprecated in Qiskit 0.45 and use of it can be replaced by the combination usage of [`BasisTranslator`](/api/qiskit/1.0/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") and [`UnrollCustomDefinitions`](/api/qiskit/1.0/qiskit.transpiler.passes.UnrollCustomDefinitions "qiskit.transpiler.passes.UnrollCustomDefinitions").
 
-    Note that [`BasisTranslator`](/api/qiskit/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") and [`UnrollCustomDefinitions`](/api/qiskit/qiskit.transpiler.passes.UnrollCustomDefinitions "qiskit.transpiler.passes.UnrollCustomDefinitions") take different arguments than `Unroller`, as they requires a `EquivalenceLibrary` object to be passed in.
+    Note that [`BasisTranslator`](/api/qiskit/1.0/qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") and [`UnrollCustomDefinitions`](/api/qiskit/1.0/qiskit.transpiler.passes.UnrollCustomDefinitions "qiskit.transpiler.passes.UnrollCustomDefinitions") take different arguments than `Unroller`, as they requires a `EquivalenceLibrary` object to be passed in.
 
     Where previously `Unroller(basis_gates)` could be used, you can now use:
 
@@ -964,24 +966,24 @@ This guide is meant to complement the release notes and have a targeted advice f
     translated = pm.run(circuit)
     ```
 
-*   The deprecated `NoiseAdaptiveLayout` transpiler pass has been removed. It was marked as deprecated in Qiskit 0.46.0. This pass has been largely superseded by [`VF2Layout`](/api/qiskit/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") and [`VF2PostLayout`](/api/qiskit/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") which will set a layout based on the reported noise characteristics of a backend. Along with the pass, the `layout_method` plugin `"noise_adaptive"` has been removed.
+*   The deprecated `NoiseAdaptiveLayout` transpiler pass has been removed. It was marked as deprecated in Qiskit 0.46.0. This pass has been largely superseded by [`VF2Layout`](/api/qiskit/1.0/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") and [`VF2PostLayout`](/api/qiskit/1.0/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") which will set a layout based on the reported noise characteristics of a backend. Along with the pass, the `layout_method` plugin `"noise_adaptive"` has been removed.
 
-*   The deprecated `CrosstalkAdaptiveSchedule` transpiler pass has been removed. It was marked as deprecated in Qiskit 0.46.0. This pass was not usable any longer because its internal operation was dependent on custom properties being set in the [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") payload of a [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") instance. As no backends are setting these fields, the pass was removed. If you depend on the pass for a custom workflow you can use the version in Qiskit 0.46.x.
+*   The deprecated `CrosstalkAdaptiveSchedule` transpiler pass has been removed. It was marked as deprecated in Qiskit 0.46.0. This pass was not usable any longer because its internal operation was dependent on custom properties being set in the [`BackendProperties`](/api/qiskit/1.0/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") payload of a [`BackendV1`](/api/qiskit/1.0/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") instance. As no backends are setting these fields, the pass was removed. If you depend on the pass for a custom workflow you can use the version in Qiskit 0.46.x.
 
 *   Removed the `qiskit.transpiler.synthesis` module, which has been deprecated since the 0.46 release. The following objects have been moved:
 
-    *   `qiskit.transpiler.synthesis.aqc` has been moved to [`qiskit.synthesis.unitary.aqc`](/api/qiskit/qiskit.synthesis.unitary.aqc#module-qiskit.synthesis.unitary.aqc "qiskit.synthesis.unitary.aqc") (except of `qiskit.synthesis.unitary.aqc.AQCSynthesisPlugin`).
+    *   `qiskit.transpiler.synthesis.aqc` has been moved to [`qiskit.synthesis.unitary.aqc`](/api/qiskit/1.0/qiskit.synthesis.unitary.aqc#module-qiskit.synthesis.unitary.aqc "qiskit.synthesis.unitary.aqc") (except of `qiskit.synthesis.unitary.aqc.AQCSynthesisPlugin`).
     *   `qiskit.synthesis.unitary.aqc.AQCSynthesisPlugin` has been moved to `qiskit.transpiler.passes.synthesis.AQCSynthesisPlugin`.
-    *   `qiskit.transpiler.synthesis.graysynth()` has been moved to [`qiskit.synthesis.synth_cnot_phase_aam()`](/api/qiskit/synthesis#qiskit.synthesis.synth_cnot_phase_aam "qiskit.synthesis.synth_cnot_phase_aam").
-    *   `qiskit.transpiler.synthesis.cnot_synth()` has been moved to [`qiskit.synthesis.synth_cnot_count_full_pmh()`](/api/qiskit/synthesis#qiskit.synthesis.synth_cnot_count_full_pmh "qiskit.synthesis.synth_cnot_count_full_pmh").
+    *   `qiskit.transpiler.synthesis.graysynth()` has been moved to [`qiskit.synthesis.synth_cnot_phase_aam()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_cnot_phase_aam "qiskit.synthesis.synth_cnot_phase_aam").
+    *   `qiskit.transpiler.synthesis.cnot_synth()` has been moved to [`qiskit.synthesis.synth_cnot_count_full_pmh()`](/api/qiskit/1.0/synthesis#qiskit.synthesis.synth_cnot_count_full_pmh "qiskit.synthesis.synth_cnot_count_full_pmh").
 
-*   The `target` keyword alias when calling [`TwoQubitBasisDecomposer`](/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer") instances as functions has been removed following its deprecation in Qiskit 0.40.0. You should pass the argument positionally as the first argument, or use the new name `unitary`.
+*   The `target` keyword alias when calling [`TwoQubitBasisDecomposer`](/api/qiskit/1.0/qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer") instances as functions has been removed following its deprecation in Qiskit 0.40.0. You should pass the argument positionally as the first argument, or use the new name `unitary`.
 
-*   The specialized transpiler pass `LinearFunctionsSynthesis` has been removed following its deprecation in Qiskit 0.40.0. Since its deprecation it just has been a very thin wrapper around [`HighLevelSynthesis`](/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis"), which you should use instead.
+*   The specialized transpiler pass `LinearFunctionsSynthesis` has been removed following its deprecation in Qiskit 0.40.0. Since its deprecation it just has been a very thin wrapper around [`HighLevelSynthesis`](/api/qiskit/1.0/qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis"), which you should use instead.
 
-*   The import path `qiskit.transpiler.passes.scheduling.calibration_creators` is removed. The transpiler passes it housed, [`RZXCalibrationBuilder`](/api/qiskit/qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder") and [`RZXCalibrationBuilderNoEcho`](/api/qiskit/qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho") can be imported directly from [`qiskit.transpiler.passes`](/api/qiskit/transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
+*   The import path `qiskit.transpiler.passes.scheduling.calibration_creators` is removed. The transpiler passes it housed, [`RZXCalibrationBuilder`](/api/qiskit/1.0/qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder") and [`RZXCalibrationBuilderNoEcho`](/api/qiskit/1.0/qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho") can be imported directly from [`qiskit.transpiler.passes`](/api/qiskit/1.0/transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
 
-*   The import path `qiskit.transpiler.passes.scheduling.rzx_templates` is removed. You should import [`rzx_templates()`](/api/qiskit/transpiler_passes#qiskit.transpiler.passes.rzx_templates "qiskit.transpiler.passes.rzx_templates") from [`qiskit.transpiler.passes`](/api/qiskit/transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes") directly.
+*   The import path `qiskit.transpiler.passes.scheduling.rzx_templates` is removed. You should import [`rzx_templates()`](/api/qiskit/1.0/transpiler_passes#qiskit.transpiler.passes.rzx_templates "qiskit.transpiler.passes.rzx_templates") from [`qiskit.transpiler.passes`](/api/qiskit/1.0/transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes") directly.
 
 *   A pattern for the pass piepline construction was upgraded. The syntactic sugar shown below for instantiation of flow controller was removed.
 
@@ -1026,7 +1028,7 @@ This guide is meant to complement the release notes and have a targeted advice f
 
     The task pipeline in a flow controller is frozen, and it must be passed when the controller instance is created.
 
-*   Removed the `passess` methods of [`PassManager`](/api/qiskit/qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") and [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") that returned a representation of included passes in the form of list of dictionaries. However, this format doesn’t efficiently represent more complicated pass pipeline, which may include conditional branching and nested conditions. Instead of using this representation, please use following pattern
+*   Removed the `passess` methods of [`PassManager`](/api/qiskit/1.0/qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") and [`StagedPassManager`](/api/qiskit/1.0/qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") that returned a representation of included passes in the form of list of dictionaries. However, this format doesn’t efficiently represent more complicated pass pipeline, which may include conditional branching and nested conditions. Instead of using this representation, please use following pattern
 
     ```python
     pm = PassManager(...)
@@ -1035,7 +1037,7 @@ This guide is meant to complement the release notes and have a targeted advice f
 
     This directly returns a linearized base task instances in tuple format.
 
-*   The `max_iteration` argument was removed from [`PassManager.append()`](/api/qiskit/qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append") and [`PassManager.replace()`](/api/qiskit/qiskit.transpiler.PassManager#replace "qiskit.transpiler.PassManager.replace").
+*   The `max_iteration` argument was removed from [`PassManager.append()`](/api/qiskit/1.0/qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append") and [`PassManager.replace()`](/api/qiskit/1.0/qiskit.transpiler.PassManager#replace "qiskit.transpiler.PassManager.replace").
 
 *   The following legacy classes were removed from the pass manager and transpiler modules following their deprecation in Qiskit 0.46:
 
@@ -1053,7 +1055,7 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 *   The deprecated module `qiskit.visualization.qcstyle` has been removed. This module has been marked as deprecated since Qiskit 0.39.0. Instead you should use the `qiskit.visualization.circuit.qcstyle`.
 
-*   The deprecated support for passing a [`QuasiDistribution`](/api/qiskit/qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution"), [`ProbDistribution`](/api/qiskit/qiskit.result.ProbDistribution "qiskit.result.ProbDistribution"), or a distribution dictionary to the `data` argument of the [`plot_histogram()`](/api/qiskit/qiskit.visualization.plot_histogram "qiskit.visualization.plot_histogram") visualization has been removed. This functionality was marked as deprecated in the Qiskit 0.39.0 release (2022-10). Instead if you would like to plot a histogram from a [`QuasiDistribution`](/api/qiskit/qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution"), [`ProbDistribution`](/api/qiskit/qiskit.result.ProbDistribution "qiskit.result.ProbDistribution"), or a distribution dictionary you should use the [`plot_distribution()`](/api/qiskit/qiskit.visualization.plot_distribution "qiskit.visualization.plot_distribution") function instead.
+*   The deprecated support for passing a [`QuasiDistribution`](/api/qiskit/1.0/qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution"), [`ProbDistribution`](/api/qiskit/1.0/qiskit.result.ProbDistribution "qiskit.result.ProbDistribution"), or a distribution dictionary to the `data` argument of the [`plot_histogram()`](/api/qiskit/1.0/qiskit.visualization.plot_histogram "qiskit.visualization.plot_histogram") visualization has been removed. This functionality was marked as deprecated in the Qiskit 0.39.0 release (2022-10). Instead if you would like to plot a histogram from a [`QuasiDistribution`](/api/qiskit/1.0/qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution"), [`ProbDistribution`](/api/qiskit/1.0/qiskit.result.ProbDistribution "qiskit.result.ProbDistribution"), or a distribution dictionary you should use the [`plot_distribution()`](/api/qiskit/1.0/qiskit.visualization.plot_distribution "qiskit.visualization.plot_distribution") function instead.
 
 *   The `link_interval_dt` key of `QiskitTimelineStyle` has been removed. You should use the new name `link_interval_percent`.
 
@@ -1067,7 +1069,7 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 *   Pulse jobs are no longer supported in fake backends, following the deprecation and removal of the underlying simulation functionality in Aer. For pulse-level simulation, outside the context of circuit objects, consider using a special-purpose library such as [Qiskit Dynamics](https://qiskit.org/ecosystem/dynamics/).
 
-*   Qiskit’s `execute()` function is removed. This function served as a high-level wrapper around transpiling a circuit with some transpile options and running it on a backend with some run options. To do the same thing, you can explicitly use the [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function (with appropriate transpile options) followed by `backend.run()` (with appropriate run options).
+*   Qiskit’s `execute()` function is removed. This function served as a high-level wrapper around transpiling a circuit with some transpile options and running it on a backend with some run options. To do the same thing, you can explicitly use the [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function (with appropriate transpile options) followed by `backend.run()` (with appropriate run options).
 
     For example, instead of running:
 
@@ -1084,7 +1086,7 @@ This guide is meant to complement the release notes and have a targeted advice f
     job = backend.run(new_circuit)
     ```
 
-    Alternatively, the `Sampler` primitive is semantically equivalent to the deprecated `execute()` function. The class [`BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler") is a generic wrapper for backends that do not support primitives:
+    Alternatively, the `Sampler` primitive is semantically equivalent to the deprecated `execute()` function. The class [`BackendSampler`](/api/qiskit/1.0/qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler") is a generic wrapper for backends that do not support primitives:
 
     ```python
     from qiskit.primitives import BackendSampler
@@ -1096,17 +1098,17 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 *   Removed the deprecated module `qiskit.tools.jupyter` which previously included Jupyter magics and widgets for interactively visualizing some data from Qiskit. This module was deprecated in Qiskit 0.46.0. Most of this functionality was directly tied to the legacy `qiskit-ibmq-provider` package and was no longer valid so the module was removed. Similar functionality is available from the `qiskit_ibm_provider.jupyter` module in the [qiskit-ibm-provider](https://github.com/Qiskit/qiskit-ibm-provider) package.
 
-*   Removed the deprecated module `qiskit.tools.monitor` which previously included tools for tracking [`JobV1`](/api/qiskit/qiskit.providers.JobV1 "qiskit.providers.JobV1") job instances, primarily from the legacy `qiskit-ibm-provider` package. This module was marked as deprecated in Qiskit 0.46.0. It is being removed because it was directly tied to the legacy `qiskit-ibm-provider` package.
+*   Removed the deprecated module `qiskit.tools.monitor` which previously included tools for tracking [`JobV1`](/api/qiskit/1.0/qiskit.providers.JobV1 "qiskit.providers.JobV1") job instances, primarily from the legacy `qiskit-ibm-provider` package. This module was marked as deprecated in Qiskit 0.46.0. It is being removed because it was directly tied to the legacy `qiskit-ibm-provider` package.
 
-*   Removed the deprecated import path `qiskit.test.mock` which previously was used to redirect imports for the mock backends to their newer location in the [`qiskit.providers.fake_provider`](/api/qiskit/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider"). This module was marked as deprecated in Qiskit 0.37.0. If you were using this module you should update your imports from `qiskit.test.mock` to [`qiskit.providers.fake_provider`](/api/qiskit/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") instead.
+*   Removed the deprecated import path `qiskit.test.mock` which previously was used to redirect imports for the mock backends to their newer location in the [`qiskit.providers.fake_provider`](/api/qiskit/1.0/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider"). This module was marked as deprecated in Qiskit 0.37.0. If you were using this module you should update your imports from `qiskit.test.mock` to [`qiskit.providers.fake_provider`](/api/qiskit/1.0/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") instead.
 
 *   The `qiskit.test` module is no longer a public module. This was never intended to be public, nor used outside of Qiskit’s own test suite. All functionality was specific to Qiskit and no alternative is provided; if you needed similar functionality, you should include it in your own test harnesses.
 
-*   The deprecated `qiskit.tools.visualization` module has removed. This module was deprecated in the Qiskit 0.46.0 release. This module was a legacy redirect from the original location of Qiskit’s visualization module and was moved to [`qiskit.visualization`](/api/qiskit/visualization#module-qiskit.visualization "qiskit.visualization") in Qiskit 0.8.0. If you’re still using this path you can just update your imports from `qiskit.tools.visualization` to [`qiskit.visualization`](/api/qiskit/visualization#module-qiskit.visualization "qiskit.visualization").
+*   The deprecated `qiskit.tools.visualization` module has removed. This module was deprecated in the Qiskit 0.46.0 release. This module was a legacy redirect from the original location of Qiskit’s visualization module and was moved to [`qiskit.visualization`](/api/qiskit/1.0/visualization#module-qiskit.visualization "qiskit.visualization") in Qiskit 0.8.0. If you’re still using this path you can just update your imports from `qiskit.tools.visualization` to [`qiskit.visualization`](/api/qiskit/1.0/visualization#module-qiskit.visualization "qiskit.visualization").
 
 *   The deprecated `qiskit.tools.events` module and the corresponding `qiskit.tools.progressbar` utility it exposed has been removed. It was deprecated in the Qiskit 0.46.0 release. This module’s functionality was not widely used and better covered by dedicated packages such as [tqdm](https://github.com/tqdm/tqdm).
 
-*   The `qiskit.tools` module has been removed. This module was deprecated in Qiskit 0.46.0. All the contents from this module have been removed except for the `qiskit.tools.parallel_map` function which now can be used from [`qiskit.utils.parallel_map()`](/api/qiskit/utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") instead.
+*   The `qiskit.tools` module has been removed. This module was deprecated in Qiskit 0.46.0. All the contents from this module have been removed except for the `qiskit.tools.parallel_map` function which now can be used from [`qiskit.utils.parallel_map()`](/api/qiskit/1.0/utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") instead.
 
 <span id="relnotes-1-0-0-primitives-deprecations" />
 
@@ -1116,33 +1118,33 @@ This guide is meant to complement the release notes and have a targeted advice f
 
 <span id="relnotes-1-0-0-bug-fixes" />
 
-<span id="id7" />
+<span id="id8" />
 
 ### Bug Fixes
 
 *   Fixed the return of improper measurement schedules when only a subset of qubits was requested. Previously, a measurement schedule for all qubits would be returned.
 
-*   Fixed an issue in the `text` circuit drawer when displaying operations that were not [`circuit.instruction.Instruction`](/api/qiskit/qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") class. These operations would cause the drawer to fail. Examples were [`Clifford`](/api/qiskit/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") and [`AnnotatedOperation`](/api/qiskit/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+*   Fixed an issue in the `text` circuit drawer when displaying operations that were not [`circuit.instruction.Instruction`](/api/qiskit/1.0/qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") class. These operations would cause the drawer to fail. Examples were [`Clifford`](/api/qiskit/1.0/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") and [`AnnotatedOperation`](/api/qiskit/1.0/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
 
-*   Fixed an issue with the [`SetLayout`](/api/qiskit/qiskit.transpiler.passes.SetLayout "qiskit.transpiler.passes.SetLayout") transpiler pass where an invalid integer list input that contained duplicate entries which would result in an invalid [`Layout`](/api/qiskit/qiskit.transpiler.Layout "qiskit.transpiler.Layout") being generated and subsequent transpiler passes would fail with a cryptic error. This is now caught when [`SetLayout.run()`](/api/qiskit/qiskit.transpiler.passes.SetLayout#run "qiskit.transpiler.passes.SetLayout.run") is called an [`InvalidLayoutError`](/api/qiskit/transpiler#qiskit.transpiler.InvalidLayoutError "qiskit.transpiler.InvalidLayoutError") error will be raised indicating there are duplicate entries in the integer list.
+*   Fixed an issue with the [`SetLayout`](/api/qiskit/1.0/qiskit.transpiler.passes.SetLayout "qiskit.transpiler.passes.SetLayout") transpiler pass where an invalid integer list input that contained duplicate entries which would result in an invalid [`Layout`](/api/qiskit/1.0/qiskit.transpiler.Layout "qiskit.transpiler.Layout") being generated and subsequent transpiler passes would fail with a cryptic error. This is now caught when [`SetLayout.run()`](/api/qiskit/1.0/qiskit.transpiler.passes.SetLayout#run "qiskit.transpiler.passes.SetLayout.run") is called an [`InvalidLayoutError`](/api/qiskit/1.0/transpiler#qiskit.transpiler.InvalidLayoutError "qiskit.transpiler.InvalidLayoutError") error will be raised indicating there are duplicate entries in the integer list.
 
-*   QPY (using [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") and [`qpy.load()`](/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load")) will now correctly serialize and deserialize quantum circuits with annotated operations ([`AnnotatedOperation`](/api/qiskit/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
+*   QPY (using [`qpy.dump()`](/api/qiskit/1.0/qpy#qiskit.qpy.dump "qiskit.qpy.dump") and [`qpy.load()`](/api/qiskit/1.0/qpy#qiskit.qpy.load "qiskit.qpy.load")) will now correctly serialize and deserialize quantum circuits with annotated operations ([`AnnotatedOperation`](/api/qiskit/1.0/qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
 
-*   Calling [`copy()`](/api/qiskit/qiskit.circuit.QuantumCircuit#copy "qiskit.circuit.QuantumCircuit.copy") or [`copy_empty_like()`](/api/qiskit/qiskit.circuit.QuantumCircuit#copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like") on a `BlueprintCircuit` will now correctly propagate the [`global_phase`](/api/qiskit/qiskit.circuit.QuantumCircuit#global_phase "qiskit.circuit.QuantumCircuit.global_phase") to the copy. Previously, the global phase would always be zero after the copy.
+*   Calling [`copy()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#copy "qiskit.circuit.QuantumCircuit.copy") or [`copy_empty_like()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like") on a `BlueprintCircuit` will now correctly propagate the [`global_phase`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#global_phase "qiskit.circuit.QuantumCircuit.global_phase") to the copy. Previously, the global phase would always be zero after the copy.
 
-*   [`QuantumCircuit.compose()`](/api/qiskit/qiskit.circuit.QuantumCircuit#compose "qiskit.circuit.QuantumCircuit.compose") will now correctly raise a [`CircuitError`](/api/qiskit/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") when there are duplicates in the `qubits` or `clbits` arguments.
+*   [`QuantumCircuit.compose()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#compose "qiskit.circuit.QuantumCircuit.compose") will now correctly raise a [`CircuitError`](/api/qiskit/1.0/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") when there are duplicates in the `qubits` or `clbits` arguments.
 
-*   QPY (using [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") and [`qpy.load()`](/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load")) will now correctly serialize and deserialize quantum circuits with Clifford operators ([`Clifford`](/api/qiskit/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")).
+*   QPY (using [`qpy.dump()`](/api/qiskit/1.0/qpy#qiskit.qpy.dump "qiskit.qpy.dump") and [`qpy.load()`](/api/qiskit/1.0/qpy#qiskit.qpy.load "qiskit.qpy.load")) will now correctly serialize and deserialize quantum circuits with Clifford operators ([`Clifford`](/api/qiskit/1.0/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")).
 
-*   Fixed an issue in the `mpl` circuit drawer where the text would print beyond the end of the box for a [`SwitchCaseOp`](/api/qiskit/qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") if the default case was empty.
+*   Fixed an issue in the `mpl` circuit drawer where the text would print beyond the end of the box for a [`SwitchCaseOp`](/api/qiskit/1.0/qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") if the default case was empty.
 
-*   The qubit-argument broadcasting of [`QuantumCircuit.delay()`](/api/qiskit/qiskit.circuit.QuantumCircuit#delay "qiskit.circuit.QuantumCircuit.delay") now correctly produces individual [`Delay`](/api/qiskit/qiskit.circuit.Delay "qiskit.circuit.Delay") instructions for each qubit, as intended. Previously, when given certain iterables (such as [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")s), it would instead silently produce an invalid circuit that might fail in unusual locations.
+*   The qubit-argument broadcasting of [`QuantumCircuit.delay()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#delay "qiskit.circuit.QuantumCircuit.delay") now correctly produces individual [`Delay`](/api/qiskit/1.0/qiskit.circuit.Delay "qiskit.circuit.Delay") instructions for each qubit, as intended. Previously, when given certain iterables (such as [`set`](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")s), it would instead silently produce an invalid circuit that might fail in unusual locations.
 
-*   Fixed an issue when using [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or running a preset pass manager (such as generated by [`generate_preset_pass_manager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager")) when targeting a backend that has disjoint connectivity adding extra barriers to the output [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). In some cases several single qubit [`Barrier`](/api/qiskit/qiskit.circuit.library.Barrier "qiskit.circuit.library.Barrier") directives would be included in the output circuit right before any final measurements in the circuit. This was internal state generated by the internal processing for disjoint connectivity that was incorrectly being added into the output circuit. Fixed [#11649](https://github.com/Qiskit/qiskit/issues/11649)
+*   Fixed an issue when using [`transpile()`](/api/qiskit/1.0/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or running a preset pass manager (such as generated by [`generate_preset_pass_manager()`](/api/qiskit/1.0/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager")) when targeting a backend that has disjoint connectivity adding extra barriers to the output [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). In some cases several single qubit [`Barrier`](/api/qiskit/1.0/qiskit.circuit.library.Barrier "qiskit.circuit.library.Barrier") directives would be included in the output circuit right before any final measurements in the circuit. This was internal state generated by the internal processing for disjoint connectivity that was incorrectly being added into the output circuit. Fixed [#11649](https://github.com/Qiskit/qiskit/issues/11649)
 
-*   Fixed an error when a user tries to load calibration data of a gate from a [`Target`](/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") in a particular situation. This occurs when the backend reports only partial calibration data, for example referencing a waveform pulse in a command definition but not including that waveform pulse in the pulse library. In this situation, the Qiskit pulse object could not be built, resulting in a failure to build the pulse schedule for the calibration. Now when calibration data is incomplete the [`Target`](/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") treats it as equivalent to no calibration being reported at all and does not raise an exception.
+*   Fixed an error when a user tries to load calibration data of a gate from a [`Target`](/api/qiskit/1.0/qiskit.transpiler.Target "qiskit.transpiler.Target") in a particular situation. This occurs when the backend reports only partial calibration data, for example referencing a waveform pulse in a command definition but not including that waveform pulse in the pulse library. In this situation, the Qiskit pulse object could not be built, resulting in a failure to build the pulse schedule for the calibration. Now when calibration data is incomplete the [`Target`](/api/qiskit/1.0/qiskit.transpiler.Target "qiskit.transpiler.Target") treats it as equivalent to no calibration being reported at all and does not raise an exception.
 
-*   The [`Operator.power()`](/api/qiskit/qiskit.quantum_info.Operator#power "qiskit.quantum_info.Operator.power") method now works with floating-point exponents, matching the documented description.
+*   The [`Operator.power()`](/api/qiskit/1.0/qiskit.quantum_info.Operator#power "qiskit.quantum_info.Operator.power") method now works with floating-point exponents, matching the documented description.
 
 *   Fixed an issue with the `OptimizeSwapBeforeMeasure` pass where it would incorrectly optimize circuits involving swap and measure instructions. For example:
 
@@ -1188,23 +1190,23 @@ This guide is meant to complement the release notes and have a targeted advice f
           0  0
     ```
 
-*   Fixed an issue with the QPY serialization when a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") contained multiple custom instructions instances that have the same [`name`](/api/qiskit/qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute. In QPY format versions before [Version 11](/api/qiskit/qpy#qpy-version-11) the QPY payload did not differentiate between these instances and would only serialize the properties of the first instance in a circuit. This could potentially cause an incorrect deserialization if the other properties of the custom instruction were different but the names were the same. This has been fixed in QPY [Version 11](/api/qiskit/qpy#qpy-version-11) so that each instance of a custom instruction is serialized individually and there will no longer be a potential conflict with overlapping names. Fixes [#8941](https://github.com/Qiskit/qiskit/issues/8941).
+*   Fixed an issue with the QPY serialization when a [`QuantumCircuit`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") contained multiple custom instructions instances that have the same [`name`](/api/qiskit/1.0/qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute. In QPY format versions before [Version 11](/api/qiskit/1.0/qpy#qpy-version-11) the QPY payload did not differentiate between these instances and would only serialize the properties of the first instance in a circuit. This could potentially cause an incorrect deserialization if the other properties of the custom instruction were different but the names were the same. This has been fixed in QPY [Version 11](/api/qiskit/1.0/qpy#qpy-version-11) so that each instance of a custom instruction is serialized individually and there will no longer be a potential conflict with overlapping names. Fixes [#8941](https://github.com/Qiskit/qiskit/issues/8941).
 
-*   Fixed an issue with the [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") function where, when the `use_symengine` flag was set to a truthy object that evaluated to `True` but was not actually the boolean `True`, the generated QPY payload would be corrupt. For example, if you set `use_symengine` to [`HAS_SYMENGINE`](/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE "qiskit.utils.optionals.HAS_SYMENGINE"), this object evaluates to `True` when cast as a bool, but isn’t actually `True`.
+*   Fixed an issue with the [`qpy.dump()`](/api/qiskit/1.0/qpy#qiskit.qpy.dump "qiskit.qpy.dump") function where, when the `use_symengine` flag was set to a truthy object that evaluated to `True` but was not actually the boolean `True`, the generated QPY payload would be corrupt. For example, if you set `use_symengine` to [`HAS_SYMENGINE`](/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE "qiskit.utils.optionals.HAS_SYMENGINE"), this object evaluates to `True` when cast as a bool, but isn’t actually `True`.
 
-*   Fix a bug in the [`StabilizerState`](/api/qiskit/qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState") string representation.
+*   Fix a bug in the [`StabilizerState`](/api/qiskit/1.0/qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState") string representation.
 
-*   A bug where [`convert_to_target()`](/api/qiskit/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") and [`BackendV2Converter`](/api/qiskit/qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") raised an unexpected error was solved. The bug occurred when the backend to convert included calibrations for a gate that didn’t have a definition in the backend properties. Such gate is now broadcast to all qubits as an ideal error-free instruction, even when calibrations for a finite set of qubits are reported.
+*   A bug where [`convert_to_target()`](/api/qiskit/1.0/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") and [`BackendV2Converter`](/api/qiskit/1.0/qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") raised an unexpected error was solved. The bug occurred when the backend to convert included calibrations for a gate that didn’t have a definition in the backend properties. Such gate is now broadcast to all qubits as an ideal error-free instruction, even when calibrations for a finite set of qubits are reported.
 
-*   Fixed an issue with the [`circuit_drawer()`](/api/qiskit/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") function and [`QuantumCircuit.draw()`](/api/qiskit/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") method when loading a matplotlib style via the user configuration file.
+*   Fixed an issue with the [`circuit_drawer()`](/api/qiskit/1.0/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") function and [`QuantumCircuit.draw()`](/api/qiskit/1.0/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") method when loading a matplotlib style via the user configuration file.
 
-*   [`InstructionDurations.from_backend()`](/api/qiskit/qiskit.transpiler.InstructionDurations#from_backend "qiskit.transpiler.InstructionDurations.from_backend") now returns an instance of any subclass of [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") instead of the base class.
+*   [`InstructionDurations.from_backend()`](/api/qiskit/1.0/qiskit.transpiler.InstructionDurations#from_backend "qiskit.transpiler.InstructionDurations.from_backend") now returns an instance of any subclass of [`InstructionDurations`](/api/qiskit/1.0/qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") instead of the base class.
 
-*   The [`UnitarySynthesis`](/api/qiskit/qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") transpiler pass will now generate an error on initialization when a nonexistent synthesis plugin is specified, rather than waiting until runtime to raise. Fixed [#11355](https://github.com/Qiskit/qiskit/issues/11355).
+*   The [`UnitarySynthesis`](/api/qiskit/1.0/qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") transpiler pass will now generate an error on initialization when a nonexistent synthesis plugin is specified, rather than waiting until runtime to raise. Fixed [#11355](https://github.com/Qiskit/qiskit/issues/11355).
 
-*   The OpenQASM 3 exporters [`qasm3.dump()`](/api/qiskit/qasm3#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](/api/qiskit/qasm3#qiskit.qasm3.dumps "qiskit.qasm3.dumps") will now correctly output files claiming to be version `3.0` rather than the unqualified `3`, since the OpenQASM 3 project has now standardized on versioning.
+*   The OpenQASM 3 exporters [`qasm3.dump()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](/api/qiskit/1.0/qasm3#qiskit.qasm3.dumps "qiskit.qasm3.dumps") will now correctly output files claiming to be version `3.0` rather than the unqualified `3`, since the OpenQASM 3 project has now standardized on versioning.
 
-*   The parametric form of [`XXPlusYYGate`](/api/qiskit/qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate") and [`XXMinusYYGate`](/api/qiskit/qiskit.circuit.library.XXMinusYYGate "qiskit.circuit.library.XXMinusYYGate") returned from `get_standard_gate_name_mapping()` now correctly includes the $\beta$ parameter as well as the initial $\theta$ rotation.
+*   The parametric form of [`XXPlusYYGate`](/api/qiskit/1.0/qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate") and [`XXMinusYYGate`](/api/qiskit/1.0/qiskit.circuit.library.XXMinusYYGate "qiskit.circuit.library.XXMinusYYGate") returned from `get_standard_gate_name_mapping()` now correctly includes the $\beta$ parameter as well as the initial $\theta$ rotation.
 
-*   The [`TemplateOptimization`](/api/qiskit/qiskit.transpiler.passes.TemplateOptimization "qiskit.transpiler.passes.TemplateOptimization") pass will now return parametric expressions using the native symbolic expression format of [`ParameterExpression`](/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"), rather than always using Sympy. For most supported platforms, this means that the expressions will be Symengine objects. Previously, the pass could return mismatched objects, which could lead to later failures in parameter-handling code.
+*   The [`TemplateOptimization`](/api/qiskit/1.0/qiskit.transpiler.passes.TemplateOptimization "qiskit.transpiler.passes.TemplateOptimization") pass will now return parametric expressions using the native symbolic expression format of [`ParameterExpression`](/api/qiskit/1.0/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"), rather than always using Sympy. For most supported platforms, this means that the expressions will be Symengine objects. Previously, the pass could return mismatched objects, which could lead to later failures in parameter-handling code.
 

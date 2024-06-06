@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QFT
 
 # QFT
 
-<Class id="qiskit.circuit.library.QFT" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/basis_change/qft.py" signature="qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)">
+<Class id="qiskit.circuit.library.QFT" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/basis_change/qft.py#L24-L295" signature="qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)" modifiers="class">
   Bases: `BlueprintCircuit`
 
   Quantum Fourier Transform Circuit.
@@ -50,13 +50,13 @@ $$
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.QFT.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.QFT.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### approximation\_degree
 
-  <Attribute id="qiskit.circuit.library.QFT.approximation_degree" name="approximation_degree">
+  <Attribute id="qiskit.circuit.library.QFT.approximation_degree">
     The approximation degree of the QFT.
 
     **Returns**
@@ -66,7 +66,7 @@ $$
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.QFT.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.QFT.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -74,17 +74,17 @@ $$
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.QFT.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.QFT.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.QFT.data" name="data" />
+  <Attribute id="qiskit.circuit.library.QFT.data" />
 
   ### do\_swaps
 
-  <Attribute id="qiskit.circuit.library.QFT.do_swaps" name="do_swaps">
+  <Attribute id="qiskit.circuit.library.QFT.do_swaps">
     Whether the final swaps of the QFT are applied or not.
 
     **Returns**
@@ -94,13 +94,13 @@ $$
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.QFT.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.QFT.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### insert\_barriers
 
-  <Attribute id="qiskit.circuit.library.QFT.insert_barriers" name="insert_barriers">
+  <Attribute id="qiskit.circuit.library.QFT.insert_barriers">
     Whether barriers are inserted for better visualization or not.
 
     **Returns**
@@ -110,11 +110,11 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.QFT.instances" name="instances" attributeValue="= 164" />
+  <Attribute id="qiskit.circuit.library.QFT.instances" attributeValue="214" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.QFT.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.QFT.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -124,31 +124,55 @@ $$
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.QFT.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.QFT.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.QFT.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.QFT.num_ancillas">
     Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.QFT.num_input_vars "qiskit.circuit.library.QFT.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.QFT.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.QFT.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.QFT.num_captured_vars "qiskit.circuit.library.QFT.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.QFT.num_parameters" name="num_parameters" />
+  <Attribute id="qiskit.circuit.library.QFT.num_parameters" />
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.QFT.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.QFT.num_qubits">
     The number of qubits in the QFT circuit.
 
     **Returns**
@@ -156,9 +180,17 @@ $$
     The number of qubits in the circuit.
   </Attribute>
 
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
+
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.QFT.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.QFT.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -174,29 +206,53 @@ $$
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.QFT.parameters" name="parameters" />
+  <Attribute id="qiskit.circuit.library.QFT.parameters" />
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.QFT.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.QFT.prefix" attributeValue="'circuit'" />
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.QFT.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+  <Attribute id="qiskit.circuit.library.QFT.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.QFT.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.QFT.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QFT.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.QFT.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.QFT.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QFT.unit "qiskit.circuit.library.QFT.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.QFT.unit">
+    The unit that [`duration`](#qiskit.circuit.library.QFT.duration "qiskit.circuit.library.QFT.duration") is specified in.
   </Attribute>
 
   ## Methods
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.QFT.inverse" name="inverse" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.QFT.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/basis_change/qft.py#L206-L234" signature="inverse(annotated=False)">
     Invert this circuit.
 
     **Parameters**
@@ -214,7 +270,7 @@ $$
 
   ### is\_inverse
 
-  <Function id="qiskit.circuit.library.QFT.is_inverse" name="is_inverse" signature="is_inverse()">
+  <Function id="qiskit.circuit.library.QFT.is_inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/basis_change/qft.py#L198-L204" signature="is_inverse()">
     Whether the inverse Fourier transform is implemented.
 
     **Returns**

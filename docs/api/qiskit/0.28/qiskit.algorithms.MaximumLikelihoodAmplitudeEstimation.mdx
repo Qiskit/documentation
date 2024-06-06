@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 # qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
-<Class id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/mlae.py" signature="MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)">
+<Class id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/algorithms/amplitude_estimators/mlae.py" signature="MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)" modifiers="class">
   The Maximum Likelihood Amplitude Estimation algorithm.
 
   This class implements the quantum amplitude estimation (QAE) algorithm without phase estimation, as introduced in \[1]. In comparison to the original QAE algorithm \[2], this implementation relies solely on different powers of the Grover operator and does not require additional evaluation qubits. Finally, the estimate is determined via a maximum likelihood estimation, which is why this class in named `MaximumLikelihoodAmplitudeEstimation`.
@@ -35,7 +35,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.__init__" name="__init__" signature="__init__(evaluation_schedule, minimizer=None, quantum_instance=None)">
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.__init__" signature="__init__(evaluation_schedule, minimizer=None, quantum_instance=None)">
     **Parameters**
 
     *   **evaluation\_schedule** (`Union`\[`List`\[`int`], `int`]) – If a list, the powers applied to the Grover operator. The list element must be non-negative. If a non-negative integer, an exponential schedule is used where the highest power is 2 to the integer minus 1: \[id, Q^2^0, …, Q^2^(evaluation\_schedule-1)].
@@ -65,7 +65,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### compute\_confidence\_interval
 
-  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval" name="compute_confidence_interval" signature="static compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)">
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval" signature="compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)" modifiers="static">
     Compute the alpha confidence interval using the method kind.
 
     The confidence level is (1 - alpha) and supported kinds are ‘fisher’, ‘likelihood\_ratio’ and ‘observed\_fisher’ with shorthand notations ‘fi’, ‘lr’ and ‘oi’, respectively.
@@ -93,7 +93,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### compute\_mle
 
-  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle" name="compute_mle" signature="compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)">
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle" signature="compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)">
     Compute the MLE via a grid-search.
 
     This is a stable approach if sufficient gridpoints are used.
@@ -116,7 +116,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### construct\_circuits
 
-  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" name="construct_circuits" signature="construct_circuits(estimation_problem, measurement=False)">
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" signature="construct_circuits(estimation_problem, measurement=False)">
     Construct the Amplitude Estimation w/o QPE quantum circuits.
 
     **Parameters**
@@ -135,7 +135,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### estimate
 
-  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate" name="estimate" signature="estimate(estimation_problem)">
+  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate" signature="estimate(estimation_problem)">
     Run the amplitude estimation algorithm.
 
     **Parameters**
@@ -149,7 +149,7 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
   ### quantum\_instance
 
-  <Function id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+  <Attribute id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance">
     Get the quantum instance.
 
     **Return type**
@@ -159,6 +159,6 @@ python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
     **Returns**
 
     The quantum instance used to run this algorithm.
-  </Function>
+  </Attribute>
 </Class>
 

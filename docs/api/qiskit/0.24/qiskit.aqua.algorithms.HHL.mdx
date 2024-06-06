@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.algorithms.HHL
 
 # qiskit.aqua.algorithms.HHL
 
-<Class id="qiskit.aqua.algorithms.HHL" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/hhl.py" signature="HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)">
+<Class id="qiskit.aqua.algorithms.HHL" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/linear_solvers/hhl.py" signature="HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)" modifiers="class">
   The HHL algorithm.
 
   The HHL algorithm (after the author’s surnames Harrow-Hassidim-Lloyd) is a quantum algorithm to solve systems of linear equations $A\overrightarrow{x}=\overrightarrow{b}$. Using Quantum Phase Estimation, the linear system is transformed into diagonal form in which the matrix $A$ is easily invertible. The inversion is achieved by rotating an ancillary qubit by an angle $\arcsin{ \frac{C}{\lambda_\mathrm{i}}}$ around the y-axis where $\lambda_\mathrm{i}$ are the eigenvalues of $A$. After uncomputing the register storing the eigenvalues using the inverse QPE, one measures the ancillary qubit. A measurement of 1 indicates that the matrix inversion succeeded. This leaves the system in a state proportional to the solution vector $|x\rangle$. In many cases one is not interested in the single vector elements of $|x\rangle$ but only on certain properties. These are accessible by using problem-specific operators. Another use-case is the implementation in a larger quantum program.
@@ -54,7 +54,7 @@ $$
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.aqua.algorithms.HHL.__init__" name="__init__" signature="__init__(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)">
+  <Function id="qiskit.aqua.algorithms.HHL.__init__" signature="__init__(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)">
     **Parameters**
 
     *   **matrix** (`ndarray`) – The input matrix of linear system of equations
@@ -96,17 +96,17 @@ $$
 
   ### backend
 
-  <Function id="qiskit.aqua.algorithms.HHL.backend" name="backend" signature="property backend">
+  <Attribute id="qiskit.aqua.algorithms.HHL.backend">
     Returns backend.
 
     **Return type**
 
     `Union`\[`Backend`, `BaseBackend`]
-  </Function>
+  </Attribute>
 
   ### construct\_circuit
 
-  <Function id="qiskit.aqua.algorithms.HHL.construct_circuit" name="construct_circuit" signature="construct_circuit(measurement=False)">
+  <Function id="qiskit.aqua.algorithms.HHL.construct_circuit" signature="construct_circuit(measurement=False)">
     Construct the HHL circuit.
 
     **Parameters**
@@ -124,7 +124,7 @@ $$
 
   ### expand\_to\_hermitian
 
-  <Function id="qiskit.aqua.algorithms.HHL.expand_to_hermitian" name="expand_to_hermitian" signature="static expand_to_hermitian(matrix, vector)">
+  <Function id="qiskit.aqua.algorithms.HHL.expand_to_hermitian" signature="expand_to_hermitian(matrix, vector)" modifiers="static">
     Expand a non-hermitian matrix A to a hermitian matrix by \[\[0, A.H], \[A, 0]] and expand vector b to \[b.conj, b].
 
     **Parameters**
@@ -143,7 +143,7 @@ $$
 
   ### expand\_to\_powerdim
 
-  <Function id="qiskit.aqua.algorithms.HHL.expand_to_powerdim" name="expand_to_powerdim" signature="static expand_to_powerdim(matrix, vector)">
+  <Function id="qiskit.aqua.algorithms.HHL.expand_to_powerdim" signature="expand_to_powerdim(matrix, vector)" modifiers="static">
     Expand a matrix to the next-larger 2\*\*n dimensional matrix with ones on the diagonal and zeros on the off-diagonal and expand the vector with zeros accordingly.
 
     **Parameters**
@@ -162,7 +162,7 @@ $$
 
   ### matrix\_resize
 
-  <Function id="qiskit.aqua.algorithms.HHL.matrix_resize" name="matrix_resize" signature="static matrix_resize(matrix, vector)">
+  <Function id="qiskit.aqua.algorithms.HHL.matrix_resize" signature="matrix_resize(matrix, vector)" modifiers="static">
     Resizes matrix if necessary
 
     **Parameters**
@@ -185,23 +185,23 @@ $$
 
   ### quantum\_instance
 
-  <Function id="qiskit.aqua.algorithms.HHL.quantum_instance" name="quantum_instance" signature="property quantum_instance">
+  <Attribute id="qiskit.aqua.algorithms.HHL.quantum_instance">
     Returns quantum instance.
 
     **Return type**
 
     `Optional`\[`QuantumInstance`]
-  </Function>
+  </Attribute>
 
   ### random
 
-  <Function id="qiskit.aqua.algorithms.HHL.random" name="random" signature="property random">
+  <Attribute id="qiskit.aqua.algorithms.HHL.random">
     Return a numpy random.
-  </Function>
+  </Attribute>
 
   ### run
 
-  <Function id="qiskit.aqua.algorithms.HHL.run" name="run" signature="run(quantum_instance=None, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.HHL.run" signature="run(quantum_instance=None, **kwargs)">
     Execute the algorithm with selected backend.
 
     **Parameters**
@@ -224,7 +224,7 @@ $$
 
   ### set\_backend
 
-  <Function id="qiskit.aqua.algorithms.HHL.set_backend" name="set_backend" signature="set_backend(backend, **kwargs)">
+  <Function id="qiskit.aqua.algorithms.HHL.set_backend" signature="set_backend(backend, **kwargs)">
     Sets backend with configuration.
 
     **Return type**

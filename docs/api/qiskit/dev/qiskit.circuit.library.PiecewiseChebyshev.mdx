@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
 # PiecewiseChebyshev
 
-<Class id="qiskit.circuit.library.PiecewiseChebyshev" github="https://github.com/qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py" signature="qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')">
+<Class id="qiskit.circuit.library.PiecewiseChebyshev" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/piecewise_chebyshev.py#L27-L353" signature="qiskit.circuit.library.PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')" modifiers="class">
   Bases: `BlueprintCircuit`
 
   Piecewise Chebyshev approximation to an input function.
@@ -56,13 +56,13 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### breakpoints
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.breakpoints" name="breakpoints">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.breakpoints">
     The breakpoints for the piecewise approximation.
 
     **Returns**
@@ -72,7 +72,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -80,17 +80,17 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.data" name="data" />
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.data" />
 
   ### degree
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.degree" name="degree">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.degree">
     The degree of the polynomials.
 
     **Returns**
@@ -100,7 +100,7 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### f\_x
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.f_x" name="f_x">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.f_x">
     The function to be approximated.
 
     **Returns**
@@ -110,17 +110,17 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.instances" name="instances" attributeValue="= 206" />
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.instances" attributeValue="256" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -130,61 +130,61 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_ancillas">
     Return the number of ancilla qubits.
   </Attribute>
 
   ### num\_captured\_vars
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_captured_vars" name="num_captured_vars">
-    The number of runtime classical variables in the circuit marked as captured from an enclosing scope.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
 
     This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.PiecewiseChebyshev.num_input_vars "qiskit.circuit.library.PiecewiseChebyshev.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_clbits">
     Return number of classical bits.
   </Attribute>
 
   ### num\_declared\_vars
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_declared_vars" name="num_declared_vars">
-    The number of runtime classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
   </Attribute>
 
   ### num\_input\_vars
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_input_vars" name="num_input_vars">
-    The number of runtime classical variables in the circuit marked as circuit inputs.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
 
     This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.PiecewiseChebyshev.num_captured_vars "qiskit.circuit.library.PiecewiseChebyshev.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_parameters" name="num_parameters" />
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_parameters" />
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_qubits">
     Return number of qubits.
   </Attribute>
 
   ### num\_state\_qubits
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_state_qubits" name="num_state_qubits">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_state_qubits">
     The number of state qubits representing the state $|x\rangle$.
 
     **Returns**
@@ -194,15 +194,15 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### num\_vars
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_vars" name="num_vars">
-    The number of runtime classical variables in the circuit.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.num_vars">
+    The number of real-time classical variables in the circuit.
 
     This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -218,11 +218,11 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.parameters" name="parameters" />
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.parameters" />
 
   ### polynomials
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.polynomials" name="polynomials">
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.polynomials">
     The polynomials for the piecewise approximation.
 
     **Returns**
@@ -236,18 +236,42 @@ python_api_name: qiskit.circuit.library.PiecewiseChebyshev
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.prefix" attributeValue="'circuit'" />
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PiecewiseChebyshev.unit "qiskit.circuit.library.PiecewiseChebyshev.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PiecewiseChebyshev.unit">
+    The unit that [`duration`](#qiskit.circuit.library.PiecewiseChebyshev.duration "qiskit.circuit.library.PiecewiseChebyshev.duration") is specified in.
   </Attribute>
 </Class>
 

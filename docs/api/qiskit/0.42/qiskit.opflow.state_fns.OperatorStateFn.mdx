@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
 # OperatorStateFn
 
-<Class id="qiskit.opflow.state_fns.OperatorStateFn" github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/operator_state_fn.py" signature="OperatorStateFn(primitive, coeff=1.0, is_measurement=False)">
+<Class id="qiskit.opflow.state_fns.OperatorStateFn" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/state_fns/operator_state_fn.py" signature="OperatorStateFn(primitive, coeff=1.0, is_measurement=False)" modifiers="class">
   Bases: [`qiskit.opflow.state_fns.state_fn.StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")
 
   A class for state functions and measurements which are defined by a density Operator, stored using an `OperatorBase`.
@@ -23,7 +23,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### add
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.add" name="add" signature="OperatorStateFn.add(other)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.add" signature="OperatorStateFn.add(other)">
     Return Operator addition of self and other, overloaded by `+`.
 
     **Parameters**
@@ -41,7 +41,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### adjoint
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.adjoint" name="adjoint" signature="OperatorStateFn.adjoint()">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.adjoint" signature="OperatorStateFn.adjoint()">
     Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
     **Return type**
@@ -55,7 +55,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### eval
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.eval" name="eval" signature="OperatorStateFn.eval(front=None)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.eval" signature="OperatorStateFn.eval(front=None)">
     Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
     If `front` is None, the matrix-representation of the operator is returned.
@@ -75,7 +75,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### permute
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.permute" name="permute" signature="OperatorStateFn.permute(permutation)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.permute" signature="OperatorStateFn.permute(permutation)">
     Permute the qubits of the state function.
 
     **Parameters**
@@ -93,7 +93,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### primitive\_strings
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.primitive_strings" name="primitive_strings" signature="OperatorStateFn.primitive_strings()">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.primitive_strings" signature="OperatorStateFn.primitive_strings()">
     Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
     **Return type**
@@ -107,7 +107,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### sample
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.sample" name="sample" signature="OperatorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.sample" signature="OperatorStateFn.sample(shots=1024, massive=False, reverse_endianness=False)">
     Sample the state function as a normalized probability distribution. Returns dict of bitstrings in order of probability, with values being probability.
 
     **Parameters**
@@ -123,7 +123,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### tensor
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.tensor" name="tensor" signature="OperatorStateFn.tensor(other)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.tensor" signature="OperatorStateFn.tensor(other)">
     Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, Plus.tensor(Zero) produces a |+⟩ on qubit 0 and a |0⟩ on qubit 1, or |+⟩⨂|0⟩, but would produce a QuantumCircuit like
 
     > |0⟩– |+⟩–
@@ -145,13 +145,13 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### to\_circuit\_op
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_circuit_op" name="to_circuit_op" signature="OperatorStateFn.to_circuit_op()">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_circuit_op" signature="OperatorStateFn.to_circuit_op()">
     Return `StateFnCircuit` corresponding to this StateFn. Ignore for now because this is undefined. TODO maybe call to\_pauli\_op and diagonalize here, but that could be very inefficient, e.g. splitting one Stabilizer measurement into hundreds of 1 qubit Paulis.
   </Function>
 
   ### to\_density\_matrix
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_density_matrix" name="to_density_matrix" signature="OperatorStateFn.to_density_matrix(massive=False)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_density_matrix" signature="OperatorStateFn.to_density_matrix(massive=False)">
     Return numpy matrix of density operator, warn if more than 16 qubits to force the user to set massive=True if they want such a large matrix. Generally big methods like this should require the use of a converter, but in this case a convenience method for quick hacking and access to classical tools is appropriate.
 
     **Return type**
@@ -161,7 +161,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### to\_matrix
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_matrix" name="to_matrix" signature="OperatorStateFn.to_matrix(massive=False)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_matrix" signature="OperatorStateFn.to_matrix(massive=False)">
     Note: this does not return a density matrix, it returns a classical matrix containing the quantum or classical vector representing the evaluation of the state function on each binary basis state. Do not assume this is is a normalized quantum or classical probability vector. If we allowed this to return a density matrix, then we would need to change the definition of composition to be \~Op @ StateFn @ Op for those cases, whereas by this methodology we can ensure that composition always means Op @ StateFn.
 
     Return numpy vector of state vector, warn if more than 16 qubits to force the user to set massive=True if they want such a large vector.
@@ -185,7 +185,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### to\_matrix\_op
 
-  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_matrix_op" name="to_matrix_op" signature="OperatorStateFn.to_matrix_op(massive=False)">
+  <Function id="qiskit.opflow.state_fns.OperatorStateFn.to_matrix_op" signature="OperatorStateFn.to_matrix_op(massive=False)">
     Return a MatrixOp for this operator.
 
     **Return type**
@@ -197,11 +197,11 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### INDENTATION
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.INDENTATION" attributeValue="'  '" />
 
   ### coeff
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.coeff" name="coeff">
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.coeff">
     A coefficient by which the state function is multiplied.
 
     **Return type**
@@ -211,7 +211,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### instance\_id
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.instance_id" name="instance_id">
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.instance_id">
     Return the unique instance id.
 
     **Return type**
@@ -221,7 +221,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### is\_measurement
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.is_measurement" name="is_measurement">
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.is_measurement">
     Whether the StateFn object is a measurement Operator.
 
     **Return type**
@@ -231,7 +231,7 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### num\_qubits
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.num_qubits">
     **Return type**
 
     `int`
@@ -239,17 +239,17 @@ python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 
   ### parameters
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.parameters" name="parameters" />
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.parameters" />
 
   ### primitive
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.primitive" name="primitive" attributeTypeHint="qiskit.opflow.operator_base.OperatorBase">
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.primitive" attributeTypeHint="qiskit.opflow.operator_base.OperatorBase">
     The primitive which defines the behavior of the underlying State function.
   </Attribute>
 
   ### settings
 
-  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.settings" name="settings">
+  <Attribute id="qiskit.opflow.state_fns.OperatorStateFn.settings">
     Return settings.
 
     **Return type**

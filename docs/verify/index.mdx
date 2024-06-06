@@ -1,23 +1,33 @@
 ---
-title: Introduction
-description: Introduction to verifying quantum circuits in Qiskit.
+title: Introduction to debugging tools
+description: Introduction to testing and debugging quantum circuits in Qiskit.
 ---
-# Introduction
+# Introduction to debugging tools
 
-In the verify phase, you test your quantum programs by running them on simulated devices and exploring their performance under realistic device noise models. This allows you to validate them before sending them to a physical system.
+You can test your quantum programs by running them on simulated devices and exploring their performance under realistic device noise models. This allows you to debug them before sending them to a physical system.
 
-Quantum simulators can be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.  
+Quantum simulators can be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.
 
-Because the cost of classically simulating quantum circuits scales exponentially with the number of qubits, circuits that are larger than 50 qubits or so generally cannot be directly verified. For such circuits, you can:
+Because the cost of classically simulating quantum circuits scales exponentially with the number of qubits, circuits that are larger than 50 qubits or so generally cannot run on simulators. For such circuits, you can:
 
 - Test smaller versions of the circuits that can be simulated classically.
-- Modify the circuits so that they become classically simulable and test these modified circuits.
+- Modify the circuits so that they become classically simulable, although less accurate.
 
 Stabilizer circuits, also known as Clifford circuits, are a useful tool for accomplishing this latter goal. These are a restricted class of quantum circuits that can be efficiently simulated classically. Specialized simulators can easily simulate stabilizer circuits with thousands of qubits. See [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](stabilizer-circuit-simulation) for more information.
 
-For general quantum circuits, the following tools are available to verify your quantum programs:
+For general quantum circuits, the following tools are available to test and debug your quantum programs:
 
-- For simulating circuits when using Qiskit Runtime, use its [local testing mode.](local-testing-mode) 
+- For simulating circuits when using Qiskit Runtime, use its [local testing mode](local-testing-mode).
 - For exact simulation of small quantum circuits, you can use the reference primitives included with Qiskit. See [Exact simulation with Qiskit primitives](simulate-with-qiskit-primitives).
-- For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, use [Qiskit Aer](https://qiskit.org/ecosystem/aer/), a project that is part of the [Qiskit Ecosystem](https://qiskit.github.io/ecosystem/). See [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer) (V1 primitive support only). For V2 primitive support, use the [Qiskit Runtime local testing mode](local-testing-mode) with a Qiskit Aer backend.
+- For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, use [Qiskit Aer](https://qiskit.org/ecosystem/aer/), a project that is part of the [Qiskit Ecosystem](https://qiskit.github.io/ecosystem/). See [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
 - To build custom noise models, use the [`noise`](https://qiskit.org/ecosystem/aer/apidocs/aer_noise.html) module of Qiskit Aer. See [Building noise models](building_noise_models).
+
+## Hardware considerations
+
+Several factors impact how much memory quantum simulation requires, so there are no exact hardware requirements for simulation, but there are some guidelines you can follow.
+
+- The only requirement to run Qiskit is a functioning Python environment.  For details, see the [Operating system support](../start/install#operating-system-support) section.
+- Because the requirements for simulating quantum circuits scale exponentially with the number of qubits, the available hardware limits the number of qubits that can be simulated. For example, a system with 4GB RAM can simulate approximately 27 qubits.
+- More or less available memory will not result in more or less accurate results (assuming results are returned), although more memory might return results faster or let you simulate more qubits.
+- To get the most benefit out of your hardware, use local stabilizer (Clifford) circuit simulation when possible.  See [Clifford simulation with Qiskit Runtime local testing mode](local-testing-mode#clifford-simulation) or [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](stabilizer-circuit-simulation) for examples.
+- You can increase your computing power by following these instructions to [run with multiple GPUs, nodes, or both](https://qiskit.github.io/qiskit-aer/howtos/running_gpu.html).

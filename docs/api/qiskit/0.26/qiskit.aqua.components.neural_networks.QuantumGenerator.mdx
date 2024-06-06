@@ -8,7 +8,7 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
 # qiskit.aqua.components.neural\_networks.QuantumGenerator
 
-<Class id="qiskit.aqua.components.neural_networks.QuantumGenerator" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/quantum_generator.py" signature="QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)">
+<Class id="qiskit.aqua.components.neural_networks.QuantumGenerator" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/neural_networks/quantum_generator.py" signature="QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)" modifiers="class">
   Quantum Generator.
 
   The quantum generator is a parametrized quantum circuit which can be trained with the [`QGAN`](qiskit.aqua.algorithms.QGAN "qiskit.aqua.algorithms.QGAN") algorithm to generate a quantum state which approximates the probability distribution of given training data. At the beginning of the training the parameters will be set randomly, thus, the output will is random. Throughout the training the quantum generator learns to represent the target distribution. Eventually, the trained generator can be used for state preparation e.g. in QAE.
@@ -29,7 +29,7 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.__init__" name="__init__" signature="__init__(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)">
+  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.__init__" signature="__init__(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)">
     **Parameters**
 
     *   **bounds** (`ndarray`) – k min/max data values \[\[min\_1,max\_1],…,\[min\_k,max\_k]], given input data dim k
@@ -68,7 +68,7 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
   ### construct\_circuit
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.construct_circuit" name="construct_circuit" signature="construct_circuit(params=None)">
+  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.construct_circuit" signature="construct_circuit(params=None)">
     Construct generator circuit.
 
     **Parameters**
@@ -86,17 +86,17 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
   ### discriminator
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.discriminator" name="discriminator" signature="property discriminator">
+  <Attribute id="qiskit.aqua.components.neural_networks.QuantumGenerator.discriminator">
     Get discriminator.
 
     **Return type**
 
     `DiscriminativeNetwork`
-  </Function>
+  </Attribute>
 
   ### get\_output
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.get_output" name="get_output" signature="get_output(quantum_instance, params=None, shots=None)">
+  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.get_output" signature="get_output(quantum_instance, params=None, shots=None)">
     Get classical data samples from the generator. Running the quantum generator circuit results in a quantum state. To train this generator with a classical discriminator, we need to sample classical outputs by measuring the quantum state and mapping them to feature space defined by the training data.
 
     **Parameters**
@@ -116,7 +116,7 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
   ### loss
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.loss" name="loss" signature="loss(x, weights)">
+  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.loss" signature="loss(x, weights)">
     Loss function for training the generator’s parameters.
 
     **Parameters**
@@ -135,17 +135,17 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
   ### optimizer
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.optimizer" name="optimizer" signature="property optimizer">
+  <Attribute id="qiskit.aqua.components.neural_networks.QuantumGenerator.optimizer">
     Get optimizer.
 
     **Return type**
 
     `Optimizer`
-  </Function>
+  </Attribute>
 
   ### parameter\_values
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.parameter_values" name="parameter_values" signature="property parameter_values">
+  <Attribute id="qiskit.aqua.components.neural_networks.QuantumGenerator.parameter_values">
     Get parameter values from the quantum generator
 
     **Return type**
@@ -155,21 +155,21 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
     **Returns**
 
     Current parameter values
-  </Function>
+  </Attribute>
 
   ### seed
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.seed" name="seed" signature="property seed">
+  <Attribute id="qiskit.aqua.components.neural_networks.QuantumGenerator.seed">
     Get seed.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### set\_discriminator
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.set_discriminator" name="set_discriminator" signature="set_discriminator(discriminator)">
+  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.set_discriminator" signature="set_discriminator(discriminator)">
     Set discriminator network.
 
     **Parameters**
@@ -183,7 +183,7 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
   ### set\_seed
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed" name="set_seed" signature="set_seed(seed)">
+  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed" signature="set_seed(seed)">
     Set seed.
 
     **Parameters**
@@ -197,7 +197,7 @@ python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 
   ### train
 
-  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.train" name="train" signature="train(quantum_instance=None, shots=None)">
+  <Function id="qiskit.aqua.components.neural_networks.QuantumGenerator.train" signature="train(quantum_instance=None, shots=None)">
     Perform one training step w\.r.t to the generator’s parameters
 
     **Parameters**

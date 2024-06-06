@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
 # ZFeatureMap
 
-<Class id="qiskit.circuit.library.ZFeatureMap" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/data_preparation/z_feature_map.py" signature="qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')">
+<Class id="qiskit.circuit.library.ZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/z_feature_map.py#L21-L104" signature="qiskit.circuit.library.ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')" modifiers="class">
   Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
   The first order Pauli Z-evolution circuit.
@@ -80,7 +80,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### alpha
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.alpha" name="alpha">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.alpha">
     The Pauli rotation factor (alpha).
 
     **Returns**
@@ -90,13 +90,13 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -104,17 +104,17 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.data" name="data" />
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.data" />
 
   ### entanglement
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.entanglement" name="entanglement">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.entanglement">
     Get the entanglement strategy.
 
     **Returns**
@@ -124,11 +124,11 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### entanglement\_blocks
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.entanglement_blocks" name="entanglement_blocks" />
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.entanglement_blocks" />
 
   ### feature\_dimension
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.feature_dimension" name="feature_dimension">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.feature_dimension">
     Returns the feature dimension (which is equal to the number of qubits).
 
     **Returns**
@@ -138,19 +138,19 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### flatten
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.flatten" name="flatten">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.flatten">
     Returns whether the circuit is wrapped in nested gates/instructions or flattened.
   </Attribute>
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### initial\_state
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.initial_state" name="initial_state">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.initial_state">
     Return the initial state that is added in front of the n-local circuit.
 
     **Returns**
@@ -160,7 +160,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### insert\_barriers
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.insert_barriers" name="insert_barriers">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.insert_barriers">
     If barriers are inserted in between the layers or not.
 
     **Returns**
@@ -170,11 +170,11 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.instances" name="instances" attributeValue="= 162" />
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.instances" attributeValue="164" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -184,27 +184,51 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_ancillas">
     Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.ZFeatureMap.num_input_vars "qiskit.circuit.library.ZFeatureMap.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.ZFeatureMap.num_captured_vars "qiskit.circuit.library.ZFeatureMap.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_layers
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_layers" name="num_layers">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_layers">
     Return the number of layers in the n-local circuit.
 
     **Returns**
@@ -214,17 +238,17 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_parameters" name="num_parameters" />
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_parameters" />
 
   ### num\_parameters\_settable
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_parameters_settable" name="num_parameters_settable">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_parameters_settable">
     The number of distinct parameters.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_qubits">
     Returns the number of qubits in this circuit.
 
     **Returns**
@@ -232,9 +256,17 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
     The number of qubits.
   </Attribute>
 
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
+
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -250,7 +282,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### ordered\_parameters
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.ordered_parameters" name="ordered_parameters">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.ordered_parameters">
     The parameters used in the underlying circuit.
 
     This includes float values and duplicates.
@@ -276,7 +308,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### parameter\_bounds
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.parameter_bounds" name="parameter_bounds">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.parameter_bounds">
     The parameter bounds for the unbound parameters in the circuit.
 
     **Returns**
@@ -286,11 +318,11 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.parameters" name="parameters" />
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.parameters" />
 
   ### paulis
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.paulis" name="paulis">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.paulis">
     The Pauli strings used in the entanglement of the qubits.
 
     **Returns**
@@ -300,7 +332,7 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### preferred\_init\_points
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.preferred_init_points" name="preferred_init_points">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.preferred_init_points">
     The initial points for the parameters. Can be stored as initial guess in optimization.
 
     **Returns**
@@ -310,23 +342,23 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.prefix" attributeValue="'circuit'" />
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.qregs" name="qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the quantum registers associated with the circuit.
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### reps
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.reps" name="reps">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.reps">
     The number of times rotation and entanglement block are repeated.
 
     **Returns**
@@ -336,12 +368,36 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
   ### rotation\_blocks
 
-  <Attribute id="qiskit.circuit.library.ZFeatureMap.rotation_blocks" name="rotation_blocks">
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.rotation_blocks">
     The blocks in the rotation layers.
 
     **Returns**
 
     The blocks in the rotation layers.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.ZFeatureMap.unit "qiskit.circuit.library.ZFeatureMap.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.ZFeatureMap.unit">
+    The unit that [`duration`](#qiskit.circuit.library.ZFeatureMap.duration "qiskit.circuit.library.ZFeatureMap.duration") is specified in.
   </Attribute>
 </Class>
 

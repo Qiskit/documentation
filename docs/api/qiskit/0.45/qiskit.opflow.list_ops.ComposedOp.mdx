@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
 # ComposedOp
 
-<Class id="qiskit.opflow.list_ops.ComposedOp" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/list_ops/composed_op.py" signature="qiskit.opflow.list_ops.ComposedOp(oplist, coeff=1.0, abelian=False)">
+<Class id="qiskit.opflow.list_ops.ComposedOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/list_ops/composed_op.py" signature="qiskit.opflow.list_ops.ComposedOp(oplist, coeff=1.0, abelian=False)" modifiers="class">
   Bases: [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
 
   Deprecated: A class for lazily representing compositions of Operators. Often Operators cannot be efficiently composed with one another, but may be manipulated further so that they can be composed later. This class holds logic to indicate that the Operators in `oplist` are meant to be composed, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits or matrices, they can be reduced by composition.
@@ -27,11 +27,11 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### INDENTATION
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.INDENTATION" attributeValue="'  '" />
 
   ### abelian
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.abelian" name="abelian">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.abelian">
     Whether the Operators in `oplist` are known to commute with one another.
 
     **Returns**
@@ -41,7 +41,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### coeff
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.coeff" name="coeff">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.coeff">
     The scalar coefficient multiplying the Operator.
 
     **Returns**
@@ -51,13 +51,13 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### coeffs
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.coeffs" name="coeffs">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.coeffs">
     Return a list of the coefficients of the operators listed. Raises exception for nested Listops.
   </Attribute>
 
   ### combo\_fn
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.combo_fn" name="combo_fn">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.combo_fn">
     The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
     **Returns**
@@ -67,27 +67,27 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### distributive
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.distributive" name="distributive" />
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.distributive" />
 
   ### grad\_combo\_fn
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.grad_combo_fn" name="grad_combo_fn">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.grad_combo_fn">
     The gradient of `combo_fn`.
   </Attribute>
 
   ### instance\_id
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.instance_id" name="instance_id">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.instance_id">
     Return the unique instance id.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.num_qubits" name="num_qubits" />
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.num_qubits" />
 
   ### oplist
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.oplist" name="oplist">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.oplist">
     The list of `OperatorBases` defining the underlying function of this Operator.
 
     **Returns**
@@ -97,11 +97,11 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### parameters
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.parameters" name="parameters" />
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.parameters" />
 
   ### settings
 
-  <Attribute id="qiskit.opflow.list_ops.ComposedOp.settings" name="settings">
+  <Attribute id="qiskit.opflow.list_ops.ComposedOp.settings">
     Return settings.
   </Attribute>
 
@@ -109,7 +109,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### adjoint
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.adjoint" name="adjoint" signature="adjoint()">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.adjoint" signature="adjoint()">
     Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
     **Returns**
@@ -123,7 +123,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### compose
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.compose" name="compose" signature="compose(other, permutation=None, front=False)">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.compose" signature="compose(other, permutation=None, front=False)">
     Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
     Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
@@ -149,7 +149,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### eval
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.eval" name="eval" signature="eval(front=None)">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.eval" signature="eval(front=None)">
     Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
     ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
@@ -175,7 +175,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### non\_distributive\_reduce
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.non_distributive_reduce" name="non_distributive_reduce" signature="non_distributive_reduce()">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.non_distributive_reduce" signature="non_distributive_reduce()">
     Reduce without attempting to expand all distributive compositions.
 
     **Returns**
@@ -189,7 +189,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### reduce
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.reduce" name="reduce" signature="reduce()">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.reduce" signature="reduce()">
     Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
     **Returns**
@@ -203,7 +203,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### to\_circuit
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.to_circuit" name="to_circuit" signature="to_circuit()">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.to_circuit" signature="to_circuit()">
     Returns the quantum circuit, representing the composed operator.
 
     **Returns**
@@ -221,7 +221,7 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
   ### to\_matrix
 
-  <Function id="qiskit.opflow.list_ops.ComposedOp.to_matrix" name="to_matrix" signature="to_matrix(massive=False)">
+  <Function id="qiskit.opflow.list_ops.ComposedOp.to_matrix" signature="to_matrix(massive=False)">
     Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
     **Returns**

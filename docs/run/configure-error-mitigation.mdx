@@ -15,7 +15,7 @@ The error mitigation techniques built in to primitives are advanced
 resilience options. To specify these options, use the `resilience_level`
 option when submitting your job.
 
-<admonition type="note">Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. See the [Custom error settings](#advanced-options) section for details.</admonition>
+<admonition type="note">Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. See the [Custom error settings](#advanced-error) section for details.</admonition>
 
 The resilience level specifies how much resilience to build against
 errors. Higher levels generate more accurate results, at the expense of
@@ -55,18 +55,18 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    In V2, Estimator supports the following resilience levels.  Sampler does not support resilience levels. 
+    In V2, Estimator supports the following resilience levels.  Sampler does not support resilience levels.
 
 | Resilience Level | Definition                                                                                            | Technique                                                                 |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | 0                | No mitigation                                                                                         | None                                                                      |
 | 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX) measurement twirling             |
-| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and gate twirling 
+| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Level 1 + Zero Noise Extrapolation (ZNE) and gate twirling
 
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-    Resilience levels in V1 primitives: 
+    Resilience levels in V1 primitives:
 
 | Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler                                |
 |------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------|
@@ -91,7 +91,7 @@ applied at each resilience level.
 
 <Admonition type="note">
   If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
-  
+
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
   execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
   Setting other options will likewise not impact performance, and it may result in a
@@ -100,7 +100,7 @@ applied at each resilience level.
 
 ## Configure Estimator V2 with resilience levels
 
-You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-options) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
+You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-error) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
 
 <details>
 <summary>Resilience Level 0</summary>
@@ -378,17 +378,18 @@ sampler = Sampler(backend, options=options)
 ```
 
 <span id="advanced-error"></span>
-## Custom error settings
-
-With Estimator V2, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
-
-<span id="advanced-options"></span>
 ## Custom error settings (V2 primitives)
-With the V2 primitives, you can turn on and off individual error mitigation and suppression methods. See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+
+With the V2 primitives, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
+
+<Admonition type = "note" title = "Notes">
+- Not all options are available for both primitives.   See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
+- Dynamical decoupling is not supported when the input circuits are dynamic.
+</Admonition>
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-    ```python 
+    ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
@@ -408,15 +409,19 @@ print(f">>> measurement error mitigation is turned on: {estimator.options.resili
   </TabItem>
 
   <TabItem value="Sampler V2" label="Sampler V2">
-```python 
+```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
 
 # Estimator and Sampler now have different options
 options = sampler.options
 
 options.dynamical_decoupling.enable = True
+# Turn on gate twirling. Requires qiskit_ibm_runtime 0.23.0 or later.
+options.twirling.enable_gates = True
 
 print(f">>> dynamical decoupling is turned on: {sampler.options.dynamical_decoupling.enable}")
+print(f">>> gate twirling is turned on: {sampler.options.twirling.enable_gates}")
+
 ```
   </TabItem>
 </Tabs>
@@ -459,11 +464,39 @@ options.resilience_level = 2
 options.resilience.noise_factors = (1, 2, 3, 4)
 options.resilience.noise_amplifier = 'CxAmplifier'
 options.resilience.extrapolator = 'QuadraticExtrapolator'
-backend = service.backend("ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
 
 estimator = Estimator(options=options, backend=backend)
 job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
 psi1_H1 = job.result()
+```
+
+<span id="no-error-mitigation"></span>
+## Turn off all error mitigation and error suppression
+
+You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, no changes are necessary because no error mitigation or suppression options are enabled by default.
+
+Example:
+
+Turn off all error mitigation and suppression in EstimatorV2.
+
+```python
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options, QiskitRuntimeService
+
+# Define the service.  This allows you to access IBM Quantum systems.
+service = QiskitRuntimeService()
+
+# Get a backend
+backend = service.least_busy(operational=True, simulator=False)
+
+# Define Estimator
+estimator = Estimator(backend)
+
+options = estimator.options
+
+# Turn off all error mitigation and suppression
+options.resilience_level = 0
+options.optimization_level = 0
 ```
 
 ## Next steps

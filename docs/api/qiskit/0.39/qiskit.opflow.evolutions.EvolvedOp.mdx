@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
 # EvolvedOp
 
-<Class id="qiskit.opflow.evolutions.EvolvedOp" github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/evolved_op.py" signature="EvolvedOp(primitive, coeff=1.0)">
+<Class id="qiskit.opflow.evolutions.EvolvedOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/opflow/evolutions/evolved_op.py" signature="EvolvedOp(primitive, coeff=1.0)" modifiers="class">
   Bases: [`qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp")
 
   Class for wrapping Operator Evolutions for compilation (`convert`) by an EvolutionBase method later, essentially acting as a placeholder. Note that EvolvedOp is a weird case of PrimitiveOp. It happens to be that it fits into the PrimitiveOp interface nearly perfectly, and it essentially represents a placeholder for a PrimitiveOp later, even though it doesn’t actually hold a primitive object. We could have chosen for it to be an OperatorBase, but would have ended up copying and pasting a lot of code from PrimitiveOp.
@@ -22,7 +22,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### add
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.add" name="add" signature="EvolvedOp.add(other)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.add" signature="EvolvedOp.add(other)">
     Return Operator addition of self and other, overloaded by `+`.
 
     **Parameters**
@@ -40,7 +40,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### adjoint
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.adjoint" name="adjoint" signature="EvolvedOp.adjoint()">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.adjoint" signature="EvolvedOp.adjoint()">
     Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
     **Return type**
@@ -54,7 +54,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### assign\_parameters
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.assign_parameters" name="assign_parameters" signature="EvolvedOp.assign_parameters(param_dict)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.assign_parameters" signature="EvolvedOp.assign_parameters(param_dict)">
     Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
     **Parameters**
@@ -72,7 +72,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### compose
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.compose" name="compose" signature="EvolvedOp.compose(other, permutation=None, front=False)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.compose" signature="EvolvedOp.compose(other, permutation=None, front=False)">
     Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
     Note: You must be conscious of Quantum Circuit vs. Linear Algebra ordering conventions. Meaning, X.compose(Y) produces an X∘Y on qubit 0, but would produce a QuantumCircuit which looks like
@@ -98,7 +98,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### equals
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.equals" name="equals" signature="EvolvedOp.equals(other)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.equals" signature="EvolvedOp.equals(other)">
     Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
     **Parameters**
@@ -116,7 +116,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### eval
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.eval" name="eval" signature="EvolvedOp.eval(front=None)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.eval" signature="EvolvedOp.eval(front=None)">
     Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
     If `front` is None, the matrix-representation of the operator is returned.
@@ -136,7 +136,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### log\_i
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.log_i" name="log_i" signature="EvolvedOp.log_i(massive=False)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.log_i" signature="EvolvedOp.log_i(massive=False)">
     Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated.
 
     **Return type**
@@ -146,7 +146,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### permute
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.permute" name="permute" signature="EvolvedOp.permute(permutation)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.permute" signature="EvolvedOp.permute(permutation)">
     Permutes the qubits of the operator.
 
     **Parameters**
@@ -168,7 +168,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### primitive\_strings
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.primitive_strings" name="primitive_strings" signature="EvolvedOp.primitive_strings()">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.primitive_strings" signature="EvolvedOp.primitive_strings()">
     Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
     **Return type**
@@ -182,7 +182,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### reduce
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.reduce" name="reduce" signature="EvolvedOp.reduce()">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.reduce" signature="EvolvedOp.reduce()">
     Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
     **Return type**
@@ -196,7 +196,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### tensor
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.tensor" name="tensor" signature="EvolvedOp.tensor(other)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.tensor" signature="EvolvedOp.tensor(other)">
     Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
     > -\[Y]- -\[X]-
@@ -218,7 +218,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### to\_instruction
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.to_instruction" name="to_instruction" signature="EvolvedOp.to_instruction(massive=False)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.to_instruction" signature="EvolvedOp.to_instruction(massive=False)">
     Returns an `Instruction` equivalent to this Operator.
 
     **Return type**
@@ -228,7 +228,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### to\_matrix
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.to_matrix" name="to_matrix" signature="EvolvedOp.to_matrix(massive=False)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.to_matrix" signature="EvolvedOp.to_matrix(massive=False)">
     Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
     **Return type**
@@ -242,7 +242,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### to\_matrix\_op
 
-  <Function id="qiskit.opflow.evolutions.EvolvedOp.to_matrix_op" name="to_matrix_op" signature="EvolvedOp.to_matrix_op(massive=False)">
+  <Function id="qiskit.opflow.evolutions.EvolvedOp.to_matrix_op" signature="EvolvedOp.to_matrix_op(massive=False)">
     Returns a `MatrixOp` equivalent to this Operator.
 
     **Return type**
@@ -254,11 +254,11 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### INDENTATION
 
-  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
+  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.INDENTATION" attributeValue="'  '" />
 
   ### coeff
 
-  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.coeff" name="coeff">
+  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.coeff">
     The scalar coefficient multiplying the Operator.
 
     **Return type**
@@ -272,7 +272,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### instance\_id
 
-  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.instance_id" name="instance_id">
+  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.instance_id">
     Return the unique instance id.
 
     **Return type**
@@ -282,7 +282,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### num\_qubits
 
-  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.num_qubits">
     **Return type**
 
     `int`
@@ -290,11 +290,11 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### parameters
 
-  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.parameters" name="parameters" />
+  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.parameters" />
 
   ### primitive
 
-  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.primitive" name="primitive" attributeTypeHint="qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp">
+  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.primitive" attributeTypeHint="qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp">
     The primitive defining the underlying function of the Operator.
 
     **Return type**
@@ -308,7 +308,7 @@ python_api_name: qiskit.opflow.evolutions.EvolvedOp
 
   ### settings
 
-  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.settings" name="settings">
+  <Attribute id="qiskit.opflow.evolutions.EvolvedOp.settings">
     Return operator settings.
 
     **Return type**

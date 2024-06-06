@@ -8,7 +8,7 @@ python_api_name: qiskit.pulse.Call
 
 # qiskit.pulse.Call
 
-<Class id="qiskit.pulse.Call" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/call.py" signature="Call(subroutine, value_dict=None, name=None)">
+<Class id="qiskit.pulse.Call" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/instructions/call.py" signature="Call(subroutine, value_dict=None, name=None)" modifiers="class">
   Pulse `Call` instruction.
 
   The `Call` instruction represents the calling of a referenced subroutine (schedule). It enables code reuse both within the pulse representation and hardware (if supported).
@@ -31,7 +31,7 @@ python_api_name: qiskit.pulse.Call
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.pulse.Call.__init__" name="__init__" signature="__init__(subroutine, value_dict=None, name=None)">
+  <Function id="qiskit.pulse.Call.__init__" signature="__init__(subroutine, value_dict=None, name=None)">
     Define new subroutine.
 
     <Admonition title="Note" type="note">
@@ -85,7 +85,7 @@ python_api_name: qiskit.pulse.Call
 
   ### append
 
-  <Function id="qiskit.pulse.Call.append" name="append" signature="append(schedule, name=None)">
+  <Function id="qiskit.pulse.Call.append" signature="append(schedule, name=None)">
     Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
     **Parameters**
@@ -104,17 +104,17 @@ python_api_name: qiskit.pulse.Call
 
   ### arguments
 
-  <Function id="qiskit.pulse.Call.arguments" name="arguments" signature="property arguments">
+  <Attribute id="qiskit.pulse.Call.arguments">
     Parameters dictionary to be assigned to subroutine.
 
     **Return type**
 
     `Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]
-  </Function>
+  </Attribute>
 
   ### assign\_parameters
 
-  <Function id="qiskit.pulse.Call.assign_parameters" name="assign_parameters" signature="assign_parameters(value_dict)">
+  <Function id="qiskit.pulse.Call.assign_parameters" signature="assign_parameters(value_dict)">
     Store parameters which will be later assigned to the subroutine.
 
     Parameter values are not immediately assigned. The subroutine with parameters assigned according to the populated parameter table will be generated only when `inline_subroutines()` function is applied to this instruction. Note that parameter assignment logic creates a copy of subroutine to avoid the mutation problem. This function is usually applied by the Qiskit compiler when the program is submitted to the backend.
@@ -134,7 +134,7 @@ python_api_name: qiskit.pulse.Call
 
   ### assigned\_subroutine
 
-  <Function id="qiskit.pulse.Call.assigned_subroutine" name="assigned_subroutine" signature="assigned_subroutine()">
+  <Function id="qiskit.pulse.Call.assigned_subroutine" signature="assigned_subroutine()">
     Returns this subroutine with the parameters assigned.
 
     <Admonition title="Note" type="note">
@@ -152,7 +152,7 @@ python_api_name: qiskit.pulse.Call
 
   ### ch\_duration
 
-  <Function id="qiskit.pulse.Call.ch_duration" name="ch_duration" signature="ch_duration(*channels)">
+  <Function id="qiskit.pulse.Call.ch_duration" signature="ch_duration(*channels)">
     Return duration of the supplied channels in this Instruction.
 
     **Parameters**
@@ -166,7 +166,7 @@ python_api_name: qiskit.pulse.Call
 
   ### ch\_start\_time
 
-  <Function id="qiskit.pulse.Call.ch_start_time" name="ch_start_time" signature="ch_start_time(*channels)">
+  <Function id="qiskit.pulse.Call.ch_start_time" signature="ch_start_time(*channels)">
     Return minimum start time for supplied channels.
 
     **Parameters**
@@ -180,7 +180,7 @@ python_api_name: qiskit.pulse.Call
 
   ### ch\_stop\_time
 
-  <Function id="qiskit.pulse.Call.ch_stop_time" name="ch_stop_time" signature="ch_stop_time(*channels)">
+  <Function id="qiskit.pulse.Call.ch_stop_time" signature="ch_stop_time(*channels)">
     Return maximum start time for supplied channels.
 
     **Parameters**
@@ -194,17 +194,17 @@ python_api_name: qiskit.pulse.Call
 
   ### channels
 
-  <Function id="qiskit.pulse.Call.channels" name="channels" signature="property channels">
+  <Attribute id="qiskit.pulse.Call.channels">
     Returns the channels that this schedule uses.
 
     **Return type**
 
     `Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
-  </Function>
+  </Attribute>
 
   ### draw
 
-  <Function id="qiskit.pulse.Call.draw" name="draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
+  <Function id="qiskit.pulse.Call.draw" signature="draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)">
     Plot the instruction.
 
     **Parameters**
@@ -233,17 +233,17 @@ python_api_name: qiskit.pulse.Call
 
   ### duration
 
-  <Function id="qiskit.pulse.Call.duration" name="duration" signature="property duration">
+  <Attribute id="qiskit.pulse.Call.duration">
     Duration of this instruction.
 
     **Return type**
 
     `Union`\[`int`, `ParameterExpression`]
-  </Function>
+  </Attribute>
 
   ### flatten
 
-  <Function id="qiskit.pulse.Call.flatten" name="flatten" signature="flatten()">
+  <Function id="qiskit.pulse.Call.flatten" signature="flatten()">
     Return itself as already single instruction.
 
     **Return type**
@@ -253,17 +253,17 @@ python_api_name: qiskit.pulse.Call
 
   ### id
 
-  <Function id="qiskit.pulse.Call.id" name="id" signature="property id">
+  <Attribute id="qiskit.pulse.Call.id">
     Unique identifier for this instruction.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### insert
 
-  <Function id="qiskit.pulse.Call.insert" name="insert" signature="insert(start_time, schedule, name=None)">
+  <Function id="qiskit.pulse.Call.insert" signature="insert(start_time, schedule, name=None)">
     Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
     **Parameters**
@@ -283,17 +283,17 @@ python_api_name: qiskit.pulse.Call
 
   ### instructions
 
-  <Function id="qiskit.pulse.Call.instructions" name="instructions" signature="property instructions">
+  <Attribute id="qiskit.pulse.Call.instructions">
     Iterable for getting instructions from Schedule tree.
 
     **Return type**
 
     `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-  </Function>
+  </Attribute>
 
   ### is\_parameterized
 
-  <Function id="qiskit.pulse.Call.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+  <Function id="qiskit.pulse.Call.is_parameterized" signature="is_parameterized()">
     Return True iff the instruction is parameterized.
 
     **Return type**
@@ -303,37 +303,37 @@ python_api_name: qiskit.pulse.Call
 
   ### name
 
-  <Function id="qiskit.pulse.Call.name" name="name" signature="property name">
+  <Attribute id="qiskit.pulse.Call.name">
     Name of this instruction.
 
     **Return type**
 
     `str`
-  </Function>
+  </Attribute>
 
   ### operands
 
-  <Function id="qiskit.pulse.Call.operands" name="operands" signature="property operands">
+  <Attribute id="qiskit.pulse.Call.operands">
     Return instruction operands.
 
     **Return type**
 
     `Tuple`
-  </Function>
+  </Attribute>
 
   ### parameters
 
-  <Function id="qiskit.pulse.Call.parameters" name="parameters" signature="property parameters">
+  <Attribute id="qiskit.pulse.Call.parameters">
     Unassigned parameters which determine the instruction behavior.
 
     **Return type**
 
     `Set`
-  </Function>
+  </Attribute>
 
   ### shift
 
-  <Function id="qiskit.pulse.Call.shift" name="shift" signature="shift(time, name=None)">
+  <Function id="qiskit.pulse.Call.shift" signature="shift(time, name=None)">
     Return a new schedule shifted forward by time.
 
     **Parameters**
@@ -352,27 +352,27 @@ python_api_name: qiskit.pulse.Call
 
   ### start\_time
 
-  <Function id="qiskit.pulse.Call.start_time" name="start_time" signature="property start_time">
+  <Attribute id="qiskit.pulse.Call.start_time">
     Relative begin time of this instruction.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### stop\_time
 
-  <Function id="qiskit.pulse.Call.stop_time" name="stop_time" signature="property stop_time">
+  <Attribute id="qiskit.pulse.Call.stop_time">
     Relative end time of this instruction.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### subroutine
 
-  <Function id="qiskit.pulse.Call.subroutine" name="subroutine" signature="property subroutine">
+  <Attribute id="qiskit.pulse.Call.subroutine">
     Return attached subroutine.
 
     **Returns**
@@ -382,6 +382,6 @@ python_api_name: qiskit.pulse.Call
     **Return type**
 
     program (Union\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), [ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")])
-  </Function>
+  </Attribute>
 </Class>
 

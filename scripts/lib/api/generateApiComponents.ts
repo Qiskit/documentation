@@ -19,16 +19,17 @@ import remarkStringify from "remark-stringify";
 import { ApiType } from "./Metadata";
 import {
   getLastPartFromFullIdentifier,
+  removeSuffix,
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils";
 
 export type ComponentProps = {
   id?: string;
-  name?: string;
   attributeTypeHint?: string;
   attributeValue?: string;
   githubSourceLink?: string;
   rawSignature?: string;
+  modifiers?: string;
   extraRawSignatures?: string[];
   isDedicatedPage?: boolean;
 };
@@ -87,22 +88,38 @@ function prepareProps(
   apiType: ApiType,
   id: string,
 ): ComponentProps {
+  const prepClassOrException = () =>
+    prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id);
+  const prepFunction = () =>
+    prepareFunctionProps($, $child, $dl, githubSourceLink, id);
+  const prepMethod = () =>
+    prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id);
+  const prepAttributeOrProperty = () =>
+    prepareAttributeOrPropertyProps(
+      $,
+      $child,
+      $dl,
+      priorApiType,
+      githubSourceLink,
+      id,
+    );
+
   const preparePropsPerApiType: Record<string, () => ComponentProps> = {
-    class: () => prepareClassProps($child, githubSourceLink, id),
-    property: () =>
-      preparePropertyProps($child, $dl, priorApiType, githubSourceLink, id),
-    method: () =>
-      prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id),
-    attribute: () =>
-      prepareAttributeProps($, $child, $dl, priorApiType, githubSourceLink, id),
-    function: () =>
-      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
-    exception: () =>
-      prepareFunctionOrExceptionProps($, $child, $dl, id, githubSourceLink),
+    class: prepClassOrException,
+    exception: prepClassOrException,
+    property: prepAttributeOrProperty,
+    attribute: prepAttributeOrProperty,
+    method: prepMethod,
+    function: prepFunction,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
-  findByText($, $main, "em.property", apiType).remove();
+
+  // Remove the attributes and properties modifiers as we don't show their signatures,
+  // but we still use them to create their headers
+  if (apiType == "attribute" || apiType == "property") {
+    findByText($, $child, "em.property", apiType).remove();
+  }
 
   if (!(apiType in preparePropsPerApiType)) {
     throw new Error(`Unhandled Python type: ${apiType}`);
@@ -111,41 +128,38 @@ function prepareProps(
   return preparePropsPerApiType[apiType]();
 }
 
-function prepareClassProps(
+function prepareClassOrExceptionProps(
+  $: CheerioAPI,
   $child: Cheerio<any>,
+  $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  return {
+  const modifiers = getAndRemoveModifiers($child);
+  const props = {
     id,
     rawSignature: $child.html()!,
     githubSourceLink,
-  };
-}
-
-function preparePropertyProps(
-  $child: Cheerio<any>,
-  $dl: Cheerio<any>,
-  priorApiType: string | undefined,
-  githubSourceLink: string | undefined,
-  id: string,
-): ComponentProps {
-  const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-  const props = {
-    id,
-    name: getLastPartFromFullIdentifier(id),
-    rawSignature,
-    githubSourceLink,
+    modifiers,
   };
 
-  if (!priorApiType && id) {
-    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+  let pageHeading = $dl.siblings("h1").text();
+  // Manually created class pages like Qiskit 1.1+'s `QuantumCircuit`
+  // sometimes have ' class' in their h1.
+  pageHeading = removeSuffix(pageHeading, " class");
+  if (id.endsWith(pageHeading) && pageHeading != "") {
+    // Page is already dedicated to the class
     return {
       ...props,
       isDedicatedPage: true,
     };
   }
-
+  const headerLevel = getHeaderLevel($, $dl);
+  const name = getLastPartFromFullIdentifier(id);
+  const htag = `h${headerLevel}`;
+  $(`<${htag} data-header-type="class-header">${name}</${htag}>`).insertBefore(
+    $dl,
+  );
   return props;
 }
 
@@ -157,28 +171,34 @@ function prepareMethodProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
+  const modifiers = getAndRemoveModifiers($child);
   const props = {
     id,
-    name: getLastPartFromFullIdentifier(id),
     rawSignature: $child.html()!,
     githubSourceLink,
+    modifiers,
   };
 
+  const name = getLastPartFromFullIdentifier(id);
   if (id) {
     if (!priorApiType) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+      $dl.siblings("h1").text(name);
       return {
         ...props,
         isDedicatedPage: true,
       };
     } else if ($child.attr("id")) {
-      $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+      const headerLevel = getHeaderLevel($, $dl);
+      const htag = `h${headerLevel}`;
+      $(
+        `<${htag} data-header-type="method-header">${name}</${htag}>`,
+      ).insertBefore($dl);
     }
   }
   return props;
 }
 
-function prepareAttributeProps(
+function prepareAttributeOrPropertyProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
@@ -186,20 +206,6 @@ function prepareAttributeProps(
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
-  if (!priorApiType) {
-    if (id) {
-      $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-    }
-    const rawSignature = $child.find("em").text()?.replace(/^:\s+/, "");
-    return {
-      id,
-      rawSignature,
-      githubSourceLink,
-      isDedicatedPage: true,
-    };
-  }
-
-  // Else, the attribute is embedded on the class
   const text = $child.text();
 
   // Index of the default value of the attribute
@@ -214,34 +220,53 @@ function prepareAttributeProps(
     colonIndex = text.length;
   }
 
-  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
   // The attributes have the following shape: name [: type] [= value]
+  // We skip the first character to leave off the `:` and the `=` in
+  // both type hint and default value
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
   const attributeTypeHint = text
     .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
     .trim();
-  const attributeValue = text.slice(equalIndex, text.length).trim();
+  const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
-  return {
+  const props = {
     id,
-    name,
     attributeTypeHint,
     attributeValue,
+    githubSourceLink,
   };
+
+  if (!priorApiType && id) {
+    $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+    return {
+      ...props,
+      isDedicatedPage: true,
+    };
+  }
+
+  // Else, the attribute is embedded on the class
+  const headerLevel = getHeaderLevel($, $dl);
+  const htag = `h${headerLevel}`;
+  $(
+    `<${htag} data-header-type="attribute-header">${name}</${htag}>`,
+  ).insertBefore($dl);
+
+  return props;
 }
 
-function prepareFunctionOrExceptionProps(
+function prepareFunctionProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  id: string,
   githubSourceLink: string | undefined,
+  id: string,
 ): ComponentProps {
+  const modifiers = getAndRemoveModifiers($child);
   const props = {
     id,
-    name: getLastPartFromFullIdentifier(id),
     rawSignature: $child.html()!,
     githubSourceLink,
+    modifiers,
   };
 
   const pageHeading = $dl.siblings("h1").text();
@@ -252,7 +277,12 @@ function prepareFunctionOrExceptionProps(
       isDedicatedPage: true,
     };
   }
-  $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+  const headerLevel = getHeaderLevel($, $dl);
+  const name = getLastPartFromFullIdentifier(id);
+  const htag = `h${headerLevel}`;
+  $(`<${htag} data-header-type="method-header">${name}</${htag}>`).insertBefore(
+    $dl,
+  );
 
   return props;
 }
@@ -286,12 +316,12 @@ export async function createOpeningTag(
 
   return `<${tagName} 
     id='${props.id}'
-    name='${props.name}'
     attributeTypeHint='${attributeTypeHint}'
     attributeValue='${attributeValue}'
     isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'
     signature='${signature}'
+    modifiers='${props.modifiers}'
     extraSignatures='[${extraSignatures.join(", ")}]'
     >
   `;
@@ -336,6 +366,13 @@ export function findByText(
   return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
 
+function getAndRemoveModifiers($child: Cheerio<any>): string {
+  const rawModifiers = $child.find("em.property");
+  const modifiers = rawModifiers.text().trim();
+  rawModifiers.remove();
+  return modifiers;
+}
+
 export function addExtraSignatures(
   componentProps: ComponentProps,
   extraRawSignatures: ComponentProps[],
@@ -368,4 +405,49 @@ export async function htmlSignatureToMd(
     .replaceAll('"', '\\"')
     .replace(/^`/, "")
     .replace(/`$/, "");
+}
+
+function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
+  // We don't allow the header to be h1 or h2 because it's too large design-wise for API components.
+  // We try to ensure that the API docs are set up so there is always at least an h2 above the API
+  // component, but this is not always the case, especially with historical API docs. That means that
+  // we sometimes jump from h1 to h3. That's bad, but the tradeoff we're making to avoid using h2 for
+  // API components.
+  const minLevel = 3;
+  const priorHeaderLevel = getPriorHeaderLevel($, $dl);
+  if (priorHeaderLevel) {
+    if (+priorHeaderLevel == 6) {
+      throw new Error("API component cannot set non-existent header: <h7>");
+    }
+
+    return Math.max(minLevel, +priorHeaderLevel + 1);
+  }
+
+  return minLevel;
+}
+
+function getPriorHeaderLevel(
+  $: CheerioAPI,
+  $dl: Cheerio<any>,
+): string | undefined {
+  const siblings = $dl.siblings();
+  for (const sibling of siblings) {
+    const $sibling = $(sibling);
+    if ($sibling.data("header-type")) {
+      // A component usually has other components as siblings in the API docs with their respective
+      // headers previously created by this script. We need to skip the generated headers to avoid cases
+      // where we have multiple methods, attributes, or classes at the same level. Components nested in
+      // a class should search for the previous header in a parent node.
+      continue;
+    }
+    const tagName = $sibling.get(0)?.tagName;
+    if (tagName?.match(/h[1-6]/)) {
+      return tagName.substring(1);
+    }
+  }
+
+  // If there's no header among the siblings, we look for the closest inline class in some ancestor node.
+  // The parent of a component is always a <div>, and the previous element of that <div> is the header
+  // we are looking for.
+  return $dl.closest("class").parent().prev().get(0)?.tagName.substring(1);
 }

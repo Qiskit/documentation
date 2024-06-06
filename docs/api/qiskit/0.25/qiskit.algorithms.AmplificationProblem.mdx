@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.AmplificationProblem
 
 # qiskit.algorithms.AmplificationProblem
 
-<Class id="qiskit.algorithms.AmplificationProblem" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_amplifiers/amplification_problem.py" signature="AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)">
+<Class id="qiskit.algorithms.AmplificationProblem" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_amplifiers/amplification_problem.py" signature="AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)" modifiers="class">
   The amplification problem is the input to amplitude amplification algorithms, like Grover.
 
   This class contains all problem-specific information required to run an amplitude amplification algorithm. It minimally contains the Grover operator. It can further hold some post processing on the optimal bitstring.
@@ -24,7 +24,7 @@ python_api_name: qiskit.algorithms.AmplificationProblem
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.algorithms.AmplificationProblem.__init__" name="__init__" signature="__init__(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)">
+  <Function id="qiskit.algorithms.AmplificationProblem.__init__" signature="__init__(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)">
     **Parameters**
 
     *   **oracle** (`QuantumCircuit`) – The oracle reflecting about the bad states.
@@ -54,7 +54,7 @@ python_api_name: qiskit.algorithms.AmplificationProblem
 
   ### grover\_operator
 
-  <Function id="qiskit.algorithms.AmplificationProblem.grover_operator" name="grover_operator" signature="property grover_operator">
+  <Attribute id="qiskit.algorithms.AmplificationProblem.grover_operator">
     Get the $\mathcal{Q}$ operator, or Grover operator.
 
     If the Grover operator is not set, we try to build it from the $\mathcal{A}$ operator and objective\_qubits. This only works if objective\_qubits is a list of integers.
@@ -66,11 +66,11 @@ python_api_name: qiskit.algorithms.AmplificationProblem
     **Returns**
 
     The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
-  </Function>
+  </Attribute>
 
   ### is\_good\_state
 
-  <Function id="qiskit.algorithms.AmplificationProblem.is_good_state" name="is_good_state" signature="property is_good_state">
+  <Attribute id="qiskit.algorithms.AmplificationProblem.is_good_state">
     Check whether a provided bitstring is a good state or not.
 
     **Return type**
@@ -80,11 +80,11 @@ python_api_name: qiskit.algorithms.AmplificationProblem
     **Returns**
 
     A callable that takes in a bitstring and returns True if the measurement is a good state, False otherwise.
-  </Function>
+  </Attribute>
 
   ### objective\_qubits
 
-  <Function id="qiskit.algorithms.AmplificationProblem.objective_qubits" name="objective_qubits" signature="property objective_qubits">
+  <Attribute id="qiskit.algorithms.AmplificationProblem.objective_qubits">
     The indices of the objective qubits.
 
     **Return type**
@@ -94,11 +94,11 @@ python_api_name: qiskit.algorithms.AmplificationProblem
     **Returns**
 
     The indices of the objective qubits as list of integers.
-  </Function>
+  </Attribute>
 
   ### oracle
 
-  <Function id="qiskit.algorithms.AmplificationProblem.oracle" name="oracle" signature="property oracle">
+  <Attribute id="qiskit.algorithms.AmplificationProblem.oracle">
     Return the oracle.
 
     **Return type**
@@ -108,11 +108,11 @@ python_api_name: qiskit.algorithms.AmplificationProblem
     **Returns**
 
     The oracle.
-  </Function>
+  </Attribute>
 
   ### post\_processing
 
-  <Function id="qiskit.algorithms.AmplificationProblem.post_processing" name="post_processing" signature="property post_processing">
+  <Attribute id="qiskit.algorithms.AmplificationProblem.post_processing">
     Apply post processing to the input value.
 
     **Return type**
@@ -122,11 +122,11 @@ python_api_name: qiskit.algorithms.AmplificationProblem
     **Returns**
 
     A handle to the post processing function. Acts as identity by default.
-  </Function>
+  </Attribute>
 
   ### state\_preparation
 
-  <Function id="qiskit.algorithms.AmplificationProblem.state_preparation" name="state_preparation" signature="property state_preparation">
+  <Attribute id="qiskit.algorithms.AmplificationProblem.state_preparation">
     Get the state preparation operator $\mathcal{A}$.
 
     **Return type**
@@ -136,6 +136,6 @@ python_api_name: qiskit.algorithms.AmplificationProblem
     **Returns**
 
     The $\mathcal{A}$ operator as QuantumCircuit.
-  </Function>
+  </Attribute>
 </Class>
 

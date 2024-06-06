@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.GRZ
 
 # GRZ
 
-<Class id="qiskit.circuit.library.GRZ" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/generalized_gates/gr.py" signature="qiskit.circuit.library.GRZ(num_qubits, phi)">
+<Class id="qiskit.circuit.library.GRZ" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/generalized_gates/gr.py#L169-L215" signature="qiskit.circuit.library.GRZ(num_qubits, phi)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   Global RZ gate.
@@ -48,13 +48,13 @@ $$
 
   ### ancillas
 
-  <Attribute id="qiskit.circuit.library.GRZ.ancillas" name="ancillas">
-    Returns a list of ancilla bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.GRZ.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### calibrations
 
-  <Attribute id="qiskit.circuit.library.GRZ.calibrations" name="calibrations">
+  <Attribute id="qiskit.circuit.library.GRZ.calibrations">
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
@@ -62,14 +62,14 @@ $$
 
   ### clbits
 
-  <Attribute id="qiskit.circuit.library.GRZ.clbits" name="clbits">
-    Returns a list of classical bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.GRZ.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.GRZ.data" name="data">
-    Return the circuit data (instructions and context).
+  <Attribute id="qiskit.circuit.library.GRZ.data">
+    The circuit data (instructions and context).
 
     **Returns**
 
@@ -82,17 +82,17 @@ $$
 
   ### global\_phase
 
-  <Attribute id="qiskit.circuit.library.GRZ.global_phase" name="global_phase">
-    Return the global phase of the current circuit scope in radians.
+  <Attribute id="qiskit.circuit.library.GRZ.global_phase">
+    The global phase of the current circuit scope in radians.
   </Attribute>
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.GRZ.instances" name="instances" attributeValue="= 167" />
+  <Attribute id="qiskit.circuit.library.GRZ.instances" attributeValue="191" />
 
   ### layout
 
-  <Attribute id="qiskit.circuit.library.GRZ.layout" name="layout">
+  <Attribute id="qiskit.circuit.library.GRZ.layout">
     Return any associated layout information about the circuit
 
     This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
@@ -102,39 +102,71 @@ $$
 
   ### metadata
 
-  <Attribute id="qiskit.circuit.library.GRZ.metadata" name="metadata">
-    The user provided metadata associated with the circuit.
+  <Attribute id="qiskit.circuit.library.GRZ.metadata">
+    Arbitrary user-defined metadata for the circuit.
 
-    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
   </Attribute>
 
   ### num\_ancillas
 
-  <Attribute id="qiskit.circuit.library.GRZ.num_ancillas" name="num_ancillas">
+  <Attribute id="qiskit.circuit.library.GRZ.num_ancillas">
     Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.GRZ.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.GRZ.num_input_vars "qiskit.circuit.library.GRZ.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit.circuit.library.GRZ.num_clbits" name="num_clbits">
+  <Attribute id="qiskit.circuit.library.GRZ.num_clbits">
     Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.GRZ.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.GRZ.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.GRZ.num_captured_vars "qiskit.circuit.library.GRZ.num_captured_vars") must be zero.
   </Attribute>
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.GRZ.num_parameters" name="num_parameters">
+  <Attribute id="qiskit.circuit.library.GRZ.num_parameters">
     The number of parameter objects in the circuit.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit.circuit.library.GRZ.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.circuit.library.GRZ.num_qubits">
     Return number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.GRZ.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
   </Attribute>
 
   ### op\_start\_times
 
-  <Attribute id="qiskit.circuit.library.GRZ.op_start_times" name="op_start_times">
+  <Attribute id="qiskit.circuit.library.GRZ.op_start_times">
     Return a list of operation start times.
 
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
@@ -150,7 +182,7 @@ $$
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.GRZ.parameters" name="parameters">
+  <Attribute id="qiskit.circuit.library.GRZ.parameters">
     The parameters defined in the circuit.
 
     This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
@@ -208,12 +240,42 @@ $$
 
   ### prefix
 
-  <Attribute id="qiskit.circuit.library.GRZ.prefix" name="prefix" attributeValue="= 'circuit'" />
+  <Attribute id="qiskit.circuit.library.GRZ.prefix" attributeValue="'circuit'" />
 
   ### qubits
 
-  <Attribute id="qiskit.circuit.library.GRZ.qubits" name="qubits">
-    Returns a list of quantum bits in the order that the registers were added.
+  <Attribute id="qiskit.circuit.library.GRZ.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.GRZ.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.GRZ.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.GRZ.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.GRZ.duration" attributeTypeHint="int | float | None">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.GRZ.unit "qiskit.circuit.library.GRZ.unit").
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.GRZ.unit">
+    The unit that [`duration`](#qiskit.circuit.library.GRZ.duration "qiskit.circuit.library.GRZ.duration") is specified in.
   </Attribute>
 </Class>
 

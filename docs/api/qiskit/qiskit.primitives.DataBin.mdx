@@ -8,11 +8,75 @@ python_api_name: qiskit.primitives.DataBin
 
 # DataBin
 
-<Class id="qiskit.primitives.DataBin" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/primitives/containers/data_bin.py" signature="qiskit.primitives.DataBin">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+<Class id="qiskit.primitives.DataBin" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/data_bin.py#L32-L143" signature="qiskit.primitives.DataBin(*, shape=(), **data)" modifiers="class">
+  Bases: `ShapedMixin`
 
-  Base class for data bin containers.
+  Namespace for storing data.
 
-  Subclasses are typically made via `make_data_bin`, which is a specialization of `make_dataclass`.
+  ```python
+  data = DataBin(
+      alpha=BitArray.from_bitstrings(["0010"]),
+      beta=np.array([1.2])
+  )
+
+  print("alpha data:", data.alpha)
+  print("beta data:", data.beta)
+  ```
+
+  **Parameters**
+
+  *   **data** – Name/value data to place in the data bin.
+  *   **shape** (*ShapeInput*) – The leading shape common to all entries in the data bin. This defaults to the trivial leading shape of `()` that is compatible with all objects.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If a name overlaps with a method name on this class.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If some value is inconsistent with the provided shape.
+
+  ## Attributes
+
+  ### ndim
+
+  <Attribute id="qiskit.primitives.DataBin.ndim" />
+
+  ### shape
+
+  <Attribute id="qiskit.primitives.DataBin.shape" />
+
+  ### size
+
+  <Attribute id="qiskit.primitives.DataBin.size" />
+
+  ## Methods
+
+  ### items
+
+  <Function id="qiskit.primitives.DataBin.items" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/data_bin.py#L125-L127" signature="items()">
+    Return a view of field names and values
+
+    **Return type**
+
+    [*ItemsView*](https://docs.python.org/3/library/typing.html#typing.ItemsView "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")]
+  </Function>
+
+  ### keys
+
+  <Function id="qiskit.primitives.DataBin.keys" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/data_bin.py#L117-L119" signature="keys()">
+    Return a view of field names.
+
+    **Return type**
+
+    [*KeysView*](https://docs.python.org/3/library/typing.html#typing.KeysView "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
+  </Function>
+
+  ### values
+
+  <Function id="qiskit.primitives.DataBin.values" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/containers/data_bin.py#L121-L123" signature="values()">
+    Return a view of values.
+
+    **Return type**
+
+    [*ValuesView*](https://docs.python.org/3/library/typing.html#typing.ValuesView "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")]
+  </Function>
 </Class>
 

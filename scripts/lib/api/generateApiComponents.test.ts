@@ -19,7 +19,6 @@ import {
   addExtraSignatures,
   createOpeningTag,
 } from "./generateApiComponents";
-import { APOSTROPHE_HEX_CODE } from "../stringUtils";
 import { CheerioDoc } from "../testUtils";
 
 const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
@@ -69,19 +68,18 @@ describe("createOpeningTag()", () => {
   test("Create Function tag with some props", async () => {
     const componentProps = {
       id: "qiskit_ibm_runtime.Estimator.run",
-      name: "run",
       rawSignature: RAW_SIGNATURE_EXAMPLE,
     };
 
     const tag = await createOpeningTag("Function", componentProps);
     expect(tag).toEqual(`<Function 
     id='qiskit_ibm_runtime.Estimator.run'
-    name='run'
     attributeTypeHint='undefined'
     attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
+    modifiers='undefined'
     extraSignatures='[]'
     >
   `);
@@ -90,7 +88,6 @@ describe("createOpeningTag()", () => {
   test("Create Function tag with overloaded signatures", async () => {
     const componentProps = {
       id: "qiskit_ibm_runtime.Estimator.run",
-      name: "run",
       rawSignature: RAW_SIGNATURE_EXAMPLE,
       extraRawSignatures: [RAW_SIGNATURE_EXAMPLE, RAW_SIGNATURE_EXAMPLE],
     };
@@ -98,12 +95,12 @@ describe("createOpeningTag()", () => {
     const tag = await createOpeningTag("Function", componentProps);
     expect(tag).toEqual(`<Function 
     id='qiskit_ibm_runtime.Estimator.run'
-    name='run'
     attributeTypeHint='undefined'
     attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
+    modifiers='undefined'
     extraSignatures='["Estimator.run(circuits, observables, parameter_values=None, **kwargs)", "Estimator.run(circuits, observables, parameter_values=None, **kwargs)"]'
     >
   `);
@@ -112,7 +109,6 @@ describe("createOpeningTag()", () => {
   test("Create Attribute tag with default value and type hint", async () => {
     const componentProps = {
       id: "qiskit.circuit.QuantumCircuit.instance",
-      name: "instance",
       attributeTypeHint: "str | None",
       attributeValue: "None",
     };
@@ -120,12 +116,12 @@ describe("createOpeningTag()", () => {
     const tag = await createOpeningTag("Attribute", componentProps);
     expect(tag).toEqual(`<Attribute 
     id='qiskit.circuit.QuantumCircuit.instance'
-    name='instance'
     attributeTypeHint='str | None'
     attributeValue='None'
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
+    modifiers='undefined'
     extraSignatures='[]'
     >
   `);
@@ -139,12 +135,12 @@ describe("createOpeningTag()", () => {
     const tag = await createOpeningTag("Class", componentProps);
     expect(tag).toEqual(`<Class 
     id='qiskit.circuit.Sampler'
-    name='undefined'
     attributeTypeHint='undefined'
     attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
+    modifiers='undefined'
     extraSignatures='[]'
     >
   `);

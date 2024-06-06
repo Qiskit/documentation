@@ -10,8 +10,16 @@ python_api_name: qiskit.visualization.timeline_drawer
 
 # qiskit.visualization.timeline\_drawer
 
-<Function id="qiskit.visualization.timeline_drawer" name="timeline_drawer" isDedicatedPage={true} signature="qiskit.visualization.timeline_drawer(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)">
+<Function id="qiskit.visualization.timeline_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/utils/deprecation.py#L31-L424" signature="qiskit.visualization.timeline_drawer(program, style=None, time_range=None, disable_bits=None, show_clbits=None, idle_wires=None, plot_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None, *, show_idle=None, show_barriers=None)">
   Generate visualization data for scheduled circuit programs.
+
+  <Admonition title="Deprecated since version 1.1.0_pending" type="danger">
+    `qiskit.visualization.timeline.interface.draw()`’s argument `show_barriers` is pending deprecation as of qiskit 1.1.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use the argument `plot_barriers`, which behaves identically.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.1.0_pending" type="danger">
+    `qiskit.visualization.timeline.interface.draw()`’s argument `show_idle` is pending deprecation as of qiskit 1.1.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead, use the argument `idle_wires`, which behaves identically.
+  </Admonition>
 
   **Parameters**
 
@@ -19,15 +27,15 @@ python_api_name: qiskit.visualization.timeline_drawer
 
   *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
 
-  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit.
+  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Set horizontal axis limit.
 
-  *   **disable\_bits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[Bits] | None*) – List of qubits of classical bits not shown in the output image.
+  *   **disable\_bits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[Bits]*) – List of qubits of classical bits not shown in the output image.
 
   *   **show\_clbits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show classical bits. Set True to show classical bits.
 
-  *   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show idle timeline. Set True to show timeline without gates.
+  *   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show idle timeline. Set True to show timeline without gates.
 
-  *   **show\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show barrier instructions. Set True to show barrier instructions.
+  *   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show barrier instructions. Set True to show barrier instructions.
 
   *   **show\_delays** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show delay instructions. Set True to show delay instructions.
 
@@ -48,6 +56,10 @@ python_api_name: qiskit.visualization.timeline_drawer
   *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters uses given axis instead of internally initializing a figure object. This object format depends on the plotter. See plotters section for details.
 
   *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If provided the output image is dumped into a file under the filename.
+
+  *   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – DEPRECATED.
+
+  *   **show\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – DEPRECATED.
 
   **Returns**
 

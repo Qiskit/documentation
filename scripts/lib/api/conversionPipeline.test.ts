@@ -18,7 +18,7 @@ import { globby } from "globby";
 import { expect, test } from "@jest/globals";
 
 import { runConversionPipeline } from "./conversionPipeline";
-import { Pkg } from "./Pkg";
+import { Pkg, ReleaseNotesConfig } from "./Pkg";
 
 // This test uses snapshot testing (https://jestjs.io/docs/snapshot-testing#updating-snapshots). If the tests fail and the changes
 // are valid, run `npm test -- --updateSnapshot`.
@@ -55,11 +55,10 @@ test("qiskit-sphinx-theme", async () => {
     name: "qiskit-sphinx-theme",
     title: "Qiskit Sphinx Theme",
     githubSlug: "Qiskit/qiskit_sphinx_theme",
-    hasSeparateReleaseNotes: false,
     version: "0.1.1",
     versionWithoutPatch: "0.1",
     type: "latest",
-    releaseNoteEntries: [],
+    releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
   });
   const markdownFolder = pkg.outputDir(docsBaseFolder);
 

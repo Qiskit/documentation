@@ -8,7 +8,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
 # VQD
 
-<Class id="qiskit.algorithms.eigensolvers.VQD" github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/eigensolvers/vqd.py" signature="qiskit.algorithms.eigensolvers.VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)">
+<Class id="qiskit.algorithms.eigensolvers.VQD" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/algorithms/eigensolvers/vqd.py" signature="qiskit.algorithms.eigensolvers.VQD(estimator, fidelity, ansatz, optimizer, *, k=2, betas=None, initial_point=None, callback=None)" modifiers="class">
   Bases: `VariationalAlgorithm`, [`Eigensolver`](qiskit.algorithms.eigensolvers.Eigensolver "qiskit.algorithms.eigensolvers.eigensolver.Eigensolver")
 
   The Variational Quantum Deflation algorithm. Implementation using primitives.
@@ -27,7 +27,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### estimator
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.estimator" name="estimator">
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.estimator">
     The primitive instance used to perform the expectation estimation as indicated in the VQD paper.
 
     **Type**
@@ -37,7 +37,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### fidelity
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.fidelity" name="fidelity">
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.fidelity">
     The fidelity class instance used to compute the overlap estimation as indicated in the VQD paper.
 
     **Type**
@@ -47,7 +47,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### ansatz
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.ansatz" name="ansatz">
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.ansatz">
     A parameterized circuit used as ansatz for the wave function.
 
     **Type**
@@ -57,23 +57,17 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### optimizer
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.optimizer" name="optimizer">
-    A classical optimizer or a list of optimizers,
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.optimizer">
+    A classical optimizer or a list of optimizers, one for every k-th eigenvalue. Can either be a Qiskit optimizer or a callable that takes an array as input and returns a Qiskit or SciPy optimization result.
 
     **Type**
 
     [Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | Sequence\[[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")]
   </Attribute>
 
-  ###
-
-  <Attribute name="one for every k-th eigenvalue. Can either be a Qiskit optimizer or a callable">
-    that takes an array as input and returns a Qiskit or SciPy optimization result.
-  </Attribute>
-
   ### k
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.k" name="k">
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.k">
     the number of eigenvalues to return. Returns the lowest k eigenvalues.
 
     **Type**
@@ -83,7 +77,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### betas
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.betas" name="betas">
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.betas">
     Beta parameters in the VQD paper. Should have length k - 1, with k the number of excited states. These hyper-parameters balance the contribution of each overlap term to the cost function and have a default value computed as the mean square sum of the coefficients of the observable.
 
     **Type**
@@ -91,19 +85,9 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
     [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]
   </Attribute>
 
-  ###
-
-  <Attribute name="initial point">
-    An optional initial point (i.e. initial parameter values) or a list of initial points (one for every k-th eigenvalue) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.
-
-    **Type**
-
-    Sequence\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")] | Sequence\[Sequence\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]] | None
-  </Attribute>
-
   ### callback
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.callback" name="callback">
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.callback">
     A callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer: the evaluation count, the optimizer parameters for the ansatz, the estimated value, the estimation metadata, and the current step.
 
     **Type**
@@ -127,7 +111,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### initial\_point
 
-  <Attribute id="qiskit.algorithms.eigensolvers.VQD.initial_point" name="initial_point">
+  <Attribute id="qiskit.algorithms.eigensolvers.VQD.initial_point">
     Returns initial point.
   </Attribute>
 
@@ -135,7 +119,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### compute\_eigenvalues
 
-  <Function id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" name="compute_eigenvalues" signature="compute_eigenvalues(operator, aux_operators=None)">
+  <Function id="qiskit.algorithms.eigensolvers.VQD.compute_eigenvalues" signature="compute_eigenvalues(operator, aux_operators=None)">
     Computes the minimum eigenvalue. The `operator` and `aux_operators` are supplied here. While an `operator` is required by algorithms, `aux_operators` are optional.
 
     **Parameters**
@@ -154,7 +138,7 @@ python_api_name: qiskit.algorithms.eigensolvers.VQD
 
   ### supports\_aux\_operators
 
-  <Function id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" name="supports_aux_operators" signature="classmethod supports_aux_operators()">
+  <Function id="qiskit.algorithms.eigensolvers.VQD.supports_aux_operators" signature="supports_aux_operators()" modifiers="classmethod">
     Whether computing the expectation value of auxiliary operators is supported.
 
     If the eigensolver computes the eigenvalues of the main operator, then it can compute the expectation value of the `aux_operators` for that state. Otherwise they will be ignored.

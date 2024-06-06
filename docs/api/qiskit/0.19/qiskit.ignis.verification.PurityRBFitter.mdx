@@ -8,7 +8,7 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
 # PurityRBFitter
 
-<Class id="qiskit.ignis.verification.PurityRBFitter" github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/fitters.py" signature="PurityRBFitter(purity_result, npurity, cliff_lengths, rb_pattern=None)">
+<Class id="qiskit.ignis.verification.PurityRBFitter" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.3/qiskit/ignis/verification/randomized_benchmarking/fitters.py" signature="PurityRBFitter(purity_result, npurity, cliff_lengths, rb_pattern=None)" modifiers="class">
   Class for fitter for purity RB.
 
   Derived from RBFitterBase class.
@@ -24,49 +24,49 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
   ### cliff\_lengths
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.cliff_lengths" name="cliff_lengths">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.cliff_lengths">
     Return clifford lengths.
   </Attribute>
 
   ### fit
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.fit" name="fit">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.fit">
     Return the purity fit parameters.
   </Attribute>
 
   ### raw\_data
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.raw_data" name="raw_data">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.raw_data">
     Return raw data.
   </Attribute>
 
   ### rb\_fit\_fun
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.rb_fit_fun" name="rb_fit_fun">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.rb_fit_fun">
     Return the fit function rb\_fit\_fun.
   </Attribute>
 
   ### rbfit\_pur
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.rbfit_pur" name="rbfit_pur">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.rbfit_pur">
     Return the purity RB fitter.
   </Attribute>
 
   ### results
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.results" name="results">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.results">
     Return all the results.
   </Attribute>
 
   ### seeds
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.seeds" name="seeds">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.seeds">
     Return the number of loaded seeds.
   </Attribute>
 
   ### ydata
 
-  <Attribute id="qiskit.ignis.verification.PurityRBFitter.ydata" name="ydata">
+  <Attribute id="qiskit.ignis.verification.PurityRBFitter.ydata">
     Return ydata (means and std devs).
   </Attribute>
 
@@ -74,13 +74,13 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
   ### F234
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.F234" name="F234" signature="static PurityRBFitter.F234(n, a, b)">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.F234" signature="PurityRBFitter.F234(n, a, b)" modifiers="static">
     Function than maps: 2^n x 3^n –> 4^n , namely: (a,b) –> c where a in 2^n, b in 3^n, c in 4^n
   </Function>
 
   ### add\_data
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.add_data" name="add_data" signature="PurityRBFitter.add_data(new_purity_result, rerun_fit=True)">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.add_data" signature="PurityRBFitter.add_data(new_purity_result, rerun_fit=True)">
     Add a new result.
 
     **Parameters**
@@ -95,13 +95,13 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
   ### add\_zdict\_ops
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.add_zdict_ops" name="add_zdict_ops" signature="PurityRBFitter.add_zdict_ops()">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.add_zdict_ops" signature="PurityRBFitter.add_zdict_ops()">
     Creating all Z-correlators in order to compute the expectation values.
   </Function>
 
   ### calc\_data
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.calc_data" name="calc_data" signature="PurityRBFitter.calc_data()">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.calc_data" signature="PurityRBFitter.calc_data()">
     Retrieve probabilities of success from execution results.
 
     Measure the purity calculation into an internal variable \_raw\_data which is a 3-dimensional list, where item (i,j,k) is the purity of the set of qubits in pattern “i” for seed no. j and vector length self.\_cliff\_lengths\[i]\[k].
@@ -113,7 +113,7 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
   ### calc\_statistics
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.calc_statistics" name="calc_statistics" signature="PurityRBFitter.calc_statistics()">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.calc_statistics" signature="PurityRBFitter.calc_statistics()">
     Extract averages and std dev from the raw data (self.\_raw\_data).
 
     Assumes that self.\_calc\_data has been run. Output into internal \_ydata variable. ydata is a list of dictionaries (length number of patterns):
@@ -126,7 +126,7 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
   ### fit\_data
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.fit_data" name="fit_data" signature="PurityRBFitter.fit_data()">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.fit_data" signature="PurityRBFitter.fit_data()">
     Fit the Purity RB results to an exponential curve.
 
     Use the data to construct guess values for the fits.
@@ -141,7 +141,7 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
   ### fit\_data\_pattern
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.fit_data_pattern" name="fit_data_pattern" signature="PurityRBFitter.fit_data_pattern(patt_ind, fit_guess)">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.fit_data_pattern" signature="PurityRBFitter.fit_data_pattern(patt_ind, fit_guess)">
     Fit the RB results of a particular pattern to an exponential curve.
 
     **Parameters**
@@ -157,7 +157,7 @@ python_api_name: qiskit.ignis.verification.PurityRBFitter
 
   ### plot\_rb\_data
 
-  <Function id="qiskit.ignis.verification.PurityRBFitter.plot_rb_data" name="plot_rb_data" signature="PurityRBFitter.plot_rb_data(pattern_index=0, ax=None, add_label=True, show_plt=True)">
+  <Function id="qiskit.ignis.verification.PurityRBFitter.plot_rb_data" signature="PurityRBFitter.plot_rb_data(pattern_index=0, ax=None, add_label=True, show_plt=True)">
     Plot purity RB data of a single pattern.
   </Function>
 </Class>

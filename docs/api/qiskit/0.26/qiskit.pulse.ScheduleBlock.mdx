@@ -8,7 +8,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
 # qiskit.pulse.ScheduleBlock
 
-<Class id="qiskit.pulse.ScheduleBlock" github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/schedule.py" signature="ScheduleBlock(name=None, metadata=None, alignment_context=None)">
+<Class id="qiskit.pulse.ScheduleBlock" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/schedule.py" signature="ScheduleBlock(name=None, metadata=None, alignment_context=None)" modifiers="class">
   A `ScheduleBlock` is a time-ordered sequence of instructions and transform macro to manage their relative timing. The relative position of the instructions is managed by the `context_alignment`. This allows `ScheduleBlock` to support instructions with a parametric duration and allows the lazy scheduling of instructions, i.e. allocating the instruction time just before execution.
 
   `ScheduleBlock` s should be initialized with one of the following alignment contexts:
@@ -68,7 +68,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.pulse.ScheduleBlock.__init__" name="__init__" signature="__init__(name=None, metadata=None, alignment_context=None)">
+  <Function id="qiskit.pulse.ScheduleBlock.__init__" signature="__init__(name=None, metadata=None, alignment_context=None)">
     Create an empty schedule block.
 
     **Parameters**
@@ -121,13 +121,13 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### alignment\_context
 
-  <Function id="qiskit.pulse.ScheduleBlock.alignment_context" name="alignment_context" signature="property alignment_context">
+  <Attribute id="qiskit.pulse.ScheduleBlock.alignment_context">
     Return alignment instance that allocates block component to generate schedule.
-  </Function>
+  </Attribute>
 
   ### append
 
-  <Function id="qiskit.pulse.ScheduleBlock.append" name="append" signature="append(block, name=None, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.append" signature="append(block, name=None, inplace=True)">
     Return a new schedule block with `block` appended to the context block. The execution time is automatically assigned when the block is converted into schedule.
 
     **Parameters**
@@ -151,7 +151,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### assign\_parameters
 
-  <Function id="qiskit.pulse.ScheduleBlock.assign_parameters" name="assign_parameters" signature="assign_parameters(value_dict, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.assign_parameters" signature="assign_parameters(value_dict, inplace=True)">
     Assign the parameters in this schedule according to the input.
 
     **Parameters**
@@ -170,7 +170,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### ch\_duration
 
-  <Function id="qiskit.pulse.ScheduleBlock.ch_duration" name="ch_duration" signature="ch_duration(*channels)">
+  <Function id="qiskit.pulse.ScheduleBlock.ch_duration" signature="ch_duration(*channels)">
     Return the time of the end of the last instruction over the supplied channels.
 
     **Parameters**
@@ -184,7 +184,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### ch\_start\_time
 
-  <Function id="qiskit.pulse.ScheduleBlock.ch_start_time" name="ch_start_time" signature="ch_start_time(*channels)">
+  <Function id="qiskit.pulse.ScheduleBlock.ch_start_time" signature="ch_start_time(*channels)">
     Return the time of the start of the first instruction over the supplied channels.
 
     **Parameters**
@@ -198,7 +198,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### ch\_stop\_time
 
-  <Function id="qiskit.pulse.ScheduleBlock.ch_stop_time" name="ch_stop_time" signature="ch_stop_time(*channels)">
+  <Function id="qiskit.pulse.ScheduleBlock.ch_stop_time" signature="ch_stop_time(*channels)">
     Return maximum start time over supplied channels.
 
     **Parameters**
@@ -212,17 +212,17 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### channels
 
-  <Function id="qiskit.pulse.ScheduleBlock.channels" name="channels" signature="property channels">
+  <Attribute id="qiskit.pulse.ScheduleBlock.channels">
     Returns channels that this schedule clock uses.
 
     **Return type**
 
     `Tuple`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel")]
-  </Function>
+  </Attribute>
 
   ### draw
 
-  <Function id="qiskit.pulse.ScheduleBlock.draw" name="draw" signature="draw(dt=None, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=None, plot_range=None, interactive=None, table=None, label=None, framechange=None, channels=None, show_framechange_channels=None, draw_title=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)">
+  <Function id="qiskit.pulse.ScheduleBlock.draw" signature="draw(dt=None, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=None, plot_range=None, interactive=None, table=None, label=None, framechange=None, channels=None, show_framechange_channels=None, draw_title=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)">
     Plot the schedule.
 
     **Parameters**
@@ -294,17 +294,17 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### duration
 
-  <Function id="qiskit.pulse.ScheduleBlock.duration" name="duration" signature="property duration">
+  <Attribute id="qiskit.pulse.ScheduleBlock.duration">
     Duration of this schedule block.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### exclude
 
-  <Function id="qiskit.pulse.ScheduleBlock.exclude" name="exclude" signature="exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.exclude" signature="exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)">
     Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
 
     ```python
@@ -335,7 +335,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### filter
 
-  <Function id="qiskit.pulse.ScheduleBlock.filter" name="filter" signature="filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.filter" signature="filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)">
     Return a new `Schedule` with only the instructions from this `ScheduleBlock` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
 
     If no arguments are provided, `self` is returned.
@@ -364,7 +364,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### get\_parameters
 
-  <Function id="qiskit.pulse.ScheduleBlock.get_parameters" name="get_parameters" signature="get_parameters(parameter_name)">
+  <Function id="qiskit.pulse.ScheduleBlock.get_parameters" signature="get_parameters(parameter_name)">
     Get parameter object bound to this schedule by string name.
 
     Because different `Parameter` objects can have the same name, this method returns a list of `Parameter` s for the provided name.
@@ -384,7 +384,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### insert
 
-  <Function id="qiskit.pulse.ScheduleBlock.insert" name="insert" signature="insert(start_time, block, name=None, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.insert" signature="insert(start_time, block, name=None, inplace=True)">
     This method will be removed. Temporarily added for backward compatibility.
 
     <Admonition title="Note" type="note">
@@ -405,17 +405,17 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### instructions
 
-  <Function id="qiskit.pulse.ScheduleBlock.instructions" name="instructions" signature="property instructions">
+  <Attribute id="qiskit.pulse.ScheduleBlock.instructions">
     Get the time-ordered instructions from self.
 
     **Return type**
 
     `Tuple`\[`Union`\[`ScheduleBlock`, `Instruction`]]
-  </Function>
+  </Attribute>
 
   ### is\_parameterized
 
-  <Function id="qiskit.pulse.ScheduleBlock.is_parameterized" name="is_parameterized" signature="is_parameterized()">
+  <Function id="qiskit.pulse.ScheduleBlock.is_parameterized" signature="is_parameterized()">
     Return True iff the instruction is parameterized.
 
     **Return type**
@@ -425,7 +425,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### is\_schedulable
 
-  <Function id="qiskit.pulse.ScheduleBlock.is_schedulable" name="is_schedulable" signature="is_schedulable()">
+  <Function id="qiskit.pulse.ScheduleBlock.is_schedulable" signature="is_schedulable()">
     Return `True` if all durations are assigned.
 
     **Return type**
@@ -435,7 +435,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### metadata
 
-  <Function id="qiskit.pulse.ScheduleBlock.metadata" name="metadata" signature="property metadata">
+  <Attribute id="qiskit.pulse.ScheduleBlock.metadata">
     The user provided metadata associated with the schedule.
 
     User provided `dict` of metadata for the schedule. The metadata contents do not affect the semantics of the program but are used to influence the execution of the schedule. It is expected to be passed between all transforms of the schedule and that providers will associate any schedule metadata with the results it returns from the execution of that schedule.
@@ -443,31 +443,31 @@ python_api_name: qiskit.pulse.ScheduleBlock
     **Return type**
 
     `Dict`\[`str`, `Any`]
-  </Function>
+  </Attribute>
 
   ### name
 
-  <Function id="qiskit.pulse.ScheduleBlock.name" name="name" signature="property name">
+  <Attribute id="qiskit.pulse.ScheduleBlock.name">
     Name of this Schedule
 
     **Return type**
 
     `str`
-  </Function>
+  </Attribute>
 
   ### parameters
 
-  <Function id="qiskit.pulse.ScheduleBlock.parameters" name="parameters" signature="property parameters">
+  <Attribute id="qiskit.pulse.ScheduleBlock.parameters">
     Parameters which determine the schedule behavior.
 
     **Return type**
 
     `Set`
-  </Function>
+  </Attribute>
 
   ### replace
 
-  <Function id="qiskit.pulse.ScheduleBlock.replace" name="replace" signature="replace(old, new, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.replace" signature="replace(old, new, inplace=True)">
     Return a `ScheduleBlock` with the `old` component replaced with a `new` component.
 
     **Parameters**
@@ -487,7 +487,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### shift
 
-  <Function id="qiskit.pulse.ScheduleBlock.shift" name="shift" signature="shift(time, name=None, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.shift" signature="shift(time, name=None, inplace=True)">
     This method will be removed. Temporarily added for backward compatibility.
 
     <Admonition title="Note" type="note">
@@ -507,32 +507,32 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### start\_time
 
-  <Function id="qiskit.pulse.ScheduleBlock.start_time" name="start_time" signature="property start_time">
+  <Attribute id="qiskit.pulse.ScheduleBlock.start_time">
     Starting time of this schedule block.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### stop\_time
 
-  <Function id="qiskit.pulse.ScheduleBlock.stop_time" name="stop_time" signature="property stop_time">
+  <Attribute id="qiskit.pulse.ScheduleBlock.stop_time">
     Stopping time of this schedule block.
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### timeslots
 
-  <Function id="qiskit.pulse.ScheduleBlock.timeslots" name="timeslots" signature="property timeslots">
+  <Attribute id="qiskit.pulse.ScheduleBlock.timeslots">
     Time keeping attribute.
 
     **Return type**
 
     `Dict`\[[`Channel`](qiskit.pulse.channels#channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
-  </Function>
+  </Attribute>
 </Class>
 

@@ -8,7 +8,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
 # TensoredOp
 
-<Class id="qiskit.opflow.list_ops.TensoredOp" github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/tensored_op.py" signature="TensoredOp(oplist, coeff=1.0, abelian=False)">
+<Class id="qiskit.opflow.list_ops.TensoredOp" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/opflow/list_ops/tensored_op.py" signature="TensoredOp(oplist, coeff=1.0, abelian=False)" modifiers="class">
   Bases: `qiskit.opflow.list_ops.list_op.ListOp`
 
   A class for lazily representing tensor products of Operators. Often Operators cannot be efficiently tensored to one another, but may be manipulated further so that they can be later. This class holds logic to indicate that the Operators in `oplist` are meant to be tensored together, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits, they can be reduced by tensor product.
@@ -23,7 +23,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### eval
 
-  <Function id="qiskit.opflow.list_ops.TensoredOp.eval" name="eval" signature="TensoredOp.eval(front=None)">
+  <Function id="qiskit.opflow.list_ops.TensoredOp.eval" signature="TensoredOp.eval(front=None)">
     Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
     ListOp’s eval recursively evaluates each Operator in `oplist`, and combines the results using the recombination function `combo_fn`.
@@ -49,7 +49,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### reduce
 
-  <Function id="qiskit.opflow.list_ops.TensoredOp.reduce" name="reduce" signature="TensoredOp.reduce()">
+  <Function id="qiskit.opflow.list_ops.TensoredOp.reduce" signature="TensoredOp.reduce()">
     Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
     **Return type**
@@ -63,7 +63,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### tensor
 
-  <Function id="qiskit.opflow.list_ops.TensoredOp.tensor" name="tensor" signature="TensoredOp.tensor(other)">
+  <Function id="qiskit.opflow.list_ops.TensoredOp.tensor" signature="TensoredOp.tensor(other)">
     Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
     > -\[Y]- -\[X]-
@@ -85,7 +85,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### to\_circuit
 
-  <Function id="qiskit.opflow.list_ops.TensoredOp.to_circuit" name="to_circuit" signature="TensoredOp.to_circuit()">
+  <Function id="qiskit.opflow.list_ops.TensoredOp.to_circuit" signature="TensoredOp.to_circuit()">
     Returns the quantum circuit, representing the tensored operator.
 
     **Return type**
@@ -105,11 +105,11 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### INDENTATION
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.INDENTATION" name="INDENTATION" attributeValue="= '  '" />
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.INDENTATION" attributeValue="'  '" />
 
   ### abelian
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.abelian" name="abelian">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.abelian">
     Whether the Operators in `oplist` are known to commute with one another.
 
     **Return type**
@@ -123,7 +123,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### coeff
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.coeff" name="coeff">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.coeff">
     The scalar coefficient multiplying the Operator.
 
     **Return type**
@@ -137,7 +137,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### combo\_fn
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.combo_fn" name="combo_fn">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.combo_fn">
     The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
 
     **Return type**
@@ -151,7 +151,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### distributive
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.distributive" name="distributive">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.distributive">
     **Return type**
 
     `bool`
@@ -159,7 +159,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### grad\_combo\_fn
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.grad_combo_fn" name="grad_combo_fn">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.grad_combo_fn">
     The gradient of `combo_fn`.
 
     **Return type**
@@ -169,7 +169,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### instance\_id
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.instance_id" name="instance_id">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.instance_id">
     Return the unique instance id.
 
     **Return type**
@@ -179,7 +179,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### num\_qubits
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.num_qubits" name="num_qubits">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.num_qubits">
     **Return type**
 
     `int`
@@ -187,7 +187,7 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### oplist
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.oplist" name="oplist">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.oplist">
     The list of `OperatorBases` defining the underlying function of this Operator.
 
     **Return type**
@@ -201,11 +201,11 @@ python_api_name: qiskit.opflow.list_ops.TensoredOp
 
   ### parameters
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.parameters" name="parameters" />
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.parameters" />
 
   ### settings
 
-  <Attribute id="qiskit.opflow.list_ops.TensoredOp.settings" name="settings">
+  <Attribute id="qiskit.opflow.list_ops.TensoredOp.settings">
     Return settings.
 
     **Return type**

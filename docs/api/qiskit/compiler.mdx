@@ -22,7 +22,7 @@ python_api_name: qiskit.compiler
 
 ### assemble
 
-<Function id="qiskit.compiler.assemble" name="assemble" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/compiler/assembler.py" signature="qiskit.compiler.assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)">
+<Function id="qiskit.compiler.assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/compiler/assembler.py#L42-L220" signature="qiskit.compiler.assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)">
   Assemble a list of circuits or pulse schedules into a `Qobj`.
 
   This function serializes the payloads, which could be either circuits or schedules, to create `Qobj` “experiments”. It further annotates the experiment payload with header and configurations.
@@ -66,7 +66,7 @@ python_api_name: qiskit.compiler
       *   `single` returns information from every shot.
       *   `avg` returns average measurement output (averaged over number of shots).
 
-  *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")*]] | None*) – List of lists, containing qubits that must be measured together.
+  *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")*]] | None*) – List of lists, containing qubits that must be measured together.
 
   *   **memory\_slot\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Size of each memory slot if the output is Level 0.
 
@@ -103,7 +103,7 @@ python_api_name: qiskit.compiler
 
 ### schedule
 
-<Function id="qiskit.compiler.schedule" name="schedule" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/compiler/scheduler.py" signature="qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)">
+<Function id="qiskit.compiler.schedule" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/compiler/scheduler.py#L38-L107" signature="qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)">
   Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in `qiskit.scheduler.schedule_circuit`.
 
   **Parameters**
@@ -130,10 +130,22 @@ python_api_name: qiskit.compiler
 
 ### transpile
 
-<Function id="qiskit.compiler.transpile" name="transpile" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/compiler/transpiler.py" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None)">
+<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/compiler/transpiler.py#L44-L428" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None)">
   Transpile one or more circuits, according to some desired transpilation targets.
 
-  Transpilation is potentially done in parallel using multiprocessing when `circuits` is a list with > 1 [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object depending on the local environment and configuration.
+  Transpilation is potentially done in parallel using multiprocessing when `circuits` is a list with > 1 [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object, depending on the local environment and configuration.
+
+  The prioritization of transpilation target constraints works as follows: if a `target` input is provided, it will take priority over any `backend` input or loose constraints (`basis_gates`, `inst_map`, `coupling_map`, `backend_properties`, `instruction_durations`, `dt` or `timing_constraints`). If a `backend` is provided together with any loose constraint from the list above, the loose constraint will take priority over the corresponding backend constraint. This behavior is independent of whether the `backend` instance is of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") or [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"), as summarized in the table below. The first column in the table summarizes the potential user-provided constraints, and each cell shows whether the priority is assigned to that specific constraint input or another input (target/backend(V1)/backend(V2)).
+
+  | User Provided              | target | backend(V1)            | backend(V2)            |
+  | -------------------------- | ------ | ---------------------- | ---------------------- |
+  | **basis\_gates**           | target | basis\_gates           | basis\_gates           |
+  | **coupling\_map**          | target | coupling\_map          | coupling\_map          |
+  | **instruction\_durations** | target | instruction\_durations | instruction\_durations |
+  | **inst\_map**              | target | inst\_map              | inst\_map              |
+  | **dt**                     | target | dt                     | dt                     |
+  | **timing\_constraints**    | target | timing\_constraints    | timing\_constraints    |
+  | **backend\_properties**    | target | backend\_properties    | backend\_properties    |
 
   **Parameters**
 
@@ -278,7 +290,7 @@ python_api_name: qiskit.compiler
 
 ### sequence
 
-<Function id="qiskit.compiler.sequence" name="sequence" github="https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/compiler/sequencer.py" signature="qiskit.compiler.sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)">
+<Function id="qiskit.compiler.sequence" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/compiler/sequencer.py#L26-L69" signature="qiskit.compiler.sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)">
   Schedule a scheduled circuit to a pulse `Schedule`, using the backend.
 
   **Parameters**

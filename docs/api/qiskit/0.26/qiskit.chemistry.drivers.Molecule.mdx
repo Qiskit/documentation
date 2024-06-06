@@ -8,7 +8,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
 # qiskit.chemistry.drivers.Molecule
 
-<Class id="qiskit.chemistry.drivers.Molecule" github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py" signature="Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)">
+<Class id="qiskit.chemistry.drivers.Molecule" isDedicatedPage={true} github="https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/molecule.py" signature="Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)" modifiers="class">
   Driver-independent Molecule definition.
 
   This module implements an interface for a driver-independent, i.e. generic molecule definition. It defines the composing atoms (with properties like masses), and allows for changing the molecular geometry through given degrees of freedom (e.g. bond-stretching, angle-bending, etc.). The geometry as provided in the constructor can be affected, through setting perturbations, and it is this perturbed geometry that is supplied by the geometry getter. Setting perturbations to None will cause the original geometry to be returned, and there is a getter to get this value directly if its needed.
@@ -27,7 +27,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### \_\_init\_\_
 
-  <Function id="qiskit.chemistry.drivers.Molecule.__init__" name="__init__" signature="__init__(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)">
+  <Function id="qiskit.chemistry.drivers.Molecule.__init__" signature="__init__(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)">
     **Parameters**
 
     *   **geometry** (`List`\[`Tuple`\[`str`, `List`\[`float`]]]) – A list of atoms defining a given molecule where each item in the list is an atom name together with a list of 3 floats representing the x,y and z Cartesian coordinates of the atom’s position in units of **Angstrom**.
@@ -66,7 +66,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### absolute\_angle
 
-  <Function id="qiskit.chemistry.drivers.Molecule.absolute_angle" name="absolute_angle" signature="classmethod absolute_angle(angle, geometry, atom_trio)">
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_angle" signature="absolute_angle(angle, geometry, atom_trio)" modifiers="classmethod">
     **Parameters**
 
     *   **angle** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
@@ -84,7 +84,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### absolute\_bending
 
-  <Function id="qiskit.chemistry.drivers.Molecule.absolute_bending" name="absolute_bending" signature="classmethod absolute_bending(bend, geometry, atom_trio)">
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_bending" signature="absolute_bending(bend, geometry, atom_trio)" modifiers="classmethod">
     **Parameters**
 
     *   **bend** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
@@ -102,7 +102,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### absolute\_distance
 
-  <Function id="qiskit.chemistry.drivers.Molecule.absolute_distance" name="absolute_distance" signature="classmethod absolute_distance(distance, geometry, atom_pair)">
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_distance" signature="absolute_distance(distance, geometry, atom_pair)" modifiers="classmethod">
     **Parameters**
 
     *   **distance** (`float`) – The (new) distance between the two atoms.
@@ -120,7 +120,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### absolute\_stretching
 
-  <Function id="qiskit.chemistry.drivers.Molecule.absolute_stretching" name="absolute_stretching" signature="classmethod absolute_stretching(perturbation, geometry, atom_pair)">
+  <Function id="qiskit.chemistry.drivers.Molecule.absolute_stretching" signature="absolute_stretching(perturbation, geometry, atom_pair)" modifiers="classmethod">
     **Parameters**
 
     *   **perturbation** (`float`) – The magnitude of the stretch. (New distance = stretch + old distance)
@@ -138,57 +138,57 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### charge
 
-  <Function id="qiskit.chemistry.drivers.Molecule.charge" name="charge" signature="property charge">
+  <Attribute id="qiskit.chemistry.drivers.Molecule.charge">
     Get charge
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### geometry
 
-  <Function id="qiskit.chemistry.drivers.Molecule.geometry" name="geometry" signature="property geometry">
+  <Attribute id="qiskit.chemistry.drivers.Molecule.geometry">
     Get geometry accounting for any perturbations
 
     **Return type**
 
     `List`\[`Tuple`\[`str`, `List`\[`float`]]]
-  </Function>
+  </Attribute>
 
   ### masses
 
-  <Function id="qiskit.chemistry.drivers.Molecule.masses" name="masses" signature="property masses">
+  <Attribute id="qiskit.chemistry.drivers.Molecule.masses">
     Get masses
 
     **Return type**
 
     `Optional`\[`List`\[`float`]]
-  </Function>
+  </Attribute>
 
   ### multiplicity
 
-  <Function id="qiskit.chemistry.drivers.Molecule.multiplicity" name="multiplicity" signature="property multiplicity">
+  <Attribute id="qiskit.chemistry.drivers.Molecule.multiplicity">
     Get multiplicity
 
     **Return type**
 
     `int`
-  </Function>
+  </Attribute>
 
   ### perturbations
 
-  <Function id="qiskit.chemistry.drivers.Molecule.perturbations" name="perturbations" signature="property perturbations">
+  <Attribute id="qiskit.chemistry.drivers.Molecule.perturbations">
     Get perturbations
 
     **Return type**
 
     `Optional`\[`List`\[`float`]]
-  </Function>
+  </Attribute>
 
   ### relative\_bending
 
-  <Function id="qiskit.chemistry.drivers.Molecule.relative_bending" name="relative_bending" signature="classmethod relative_bending(bend, geometry, atom_trio)">
+  <Function id="qiskit.chemistry.drivers.Molecule.relative_bending" signature="relative_bending(bend, geometry, atom_trio)" modifiers="classmethod">
     **Parameters**
 
     *   **bend** (`float`) – The magnitude of the perturbation in **radians**. **Positive bend is always in the direction toward Atom3.** the direction of increasing the starting angle.\*\*
@@ -206,7 +206,7 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### relative\_stretching
 
-  <Function id="qiskit.chemistry.drivers.Molecule.relative_stretching" name="relative_stretching" signature="classmethod relative_stretching(perturbation, geometry, atom_pair)">
+  <Function id="qiskit.chemistry.drivers.Molecule.relative_stretching" signature="relative_stretching(perturbation, geometry, atom_pair)" modifiers="classmethod">
     **Parameters**
 
     *   **perturbation** (`float`) – The magnitude of the stretch. (New distance = stretch \* old distance)
@@ -224,8 +224,8 @@ python_api_name: qiskit.chemistry.drivers.Molecule
 
   ### units
 
-  <Function id="qiskit.chemistry.drivers.Molecule.units" name="units" signature="property units">
+  <Attribute id="qiskit.chemistry.drivers.Molecule.units">
     The geometry coordinate units
-  </Function>
+  </Attribute>
 </Class>
 

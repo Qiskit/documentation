@@ -8,7 +8,7 @@ description: How to configure runtime compilation in Qiskit Runtime.
 
 Runtime compilation techniques optimize and transform your circuit to minimize errors. Runtime compilation adds some classical pre-processing overhead to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
 
-Primitives let you employ runtime compilation by by choosing advanced runtime compilation options and, for Estimator V2, by setting the optimization level (`optimization_level`) option.
+Primitives let you employ runtime compilation by choosing advanced runtime compilation options and, for Estimator V2, by setting the optimization level (`optimization_level`) option. If you don't want any processing done to minimize errors, follow the instructions in the [Turn off all error mitigation and error suppression](configure-error-mitigation#no-error-mitigation) section.
 
 <admonition type="note">Estimator V2 supports optimization levels 0 and 1 only. Sampler V2 does not support setting the optimization level.</admonition>
 
@@ -27,7 +27,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
 
 <Admonition>
-  In primitive version 1, optimization levels 2 and 3 behave identically to level 1.  Estimator V2 does not accept levels higher than 1.
+  In primitive version 1, optimization levels 2 and 3 behave identically to level 1.  Estimator V2 does not accept levels higher than 1 and Sampler V2 does not support setting the optimization level.
 </Admonition>
 
 <Table>
@@ -59,7 +59,7 @@ The `optimization_level` setting specifies how much optimization to perform on t
 
 <Admonition type="note">
   If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
-  
+
   Q-CTRL defaults to `optimization_level=3` and `resilience_level=1`.
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
   execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
@@ -95,7 +95,7 @@ estimator.options.optimization_level = 1
 job = estimator.run([(psi, H, theta)])
 
 psi1_H1 = job.result()[0]
-  ```  
+  ```
   </TabItem>
 
   <TabItem value="EstimatorV1" label="Estimator (V1)">
@@ -106,7 +106,7 @@ from qiskit.circuit.library import RealAmplitudes
 from qiskit.quantum_info import SparsePauliOp
 
 service = QiskitRuntimeService()
-backend = service.backend("ibmq_qasm_simulator")
+backend = service.least_busy(operational=True, simulator=False)
 options = Options(optimization_level=1)
 
 psi = RealAmplitudes(num_qubits=2, reps=2)
@@ -136,7 +136,11 @@ psi1_H1 = job.result()
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    In the V2 primitives, you can explicitly enable and disable individual error mitigation/suppression methods, such as dynamical decoupling. 
+    In the V2 primitives, you can explicitly enable and disable individual error mitigation/suppression methods, such as dynamical decoupling.
+
+    <Admonition type = "note">
+    Dynamical decoupling is not supported when the input circuits are dynamic.
+    </Admonition>
 ```python
 
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -152,11 +156,11 @@ sampler.options.dynamical_decoupling.enable = True
 sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 
 print(f">>> dynamical decoupling sequence to use: {sampler.options.dynamical_decoupling.sequence_type}")
-``` 
+```
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-    Because all input must be ISA, options.transpilation.xxx will be ignored. 
+    Because all input must be ISA, options.transpilation.xxx will be ignored.
   </TabItem>
 </Tabs>
 
