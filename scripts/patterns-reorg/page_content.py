@@ -18,7 +18,7 @@ def map_content(index: str) -> str:
         """\
 ---
 title: Map problem to circuits
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Take a classical problem and map it to run on a quantum computer.
 ---
 
 # Map problem to circuits
@@ -50,7 +50,7 @@ def postprocess_index_content(index: str) -> str:
         """\
 ---
 title: Post-process results
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Post-process the results obtained by running on a quantum computer.
 ---
 
 # Post-process results
@@ -73,7 +73,7 @@ def optimize_content(index: str) -> str:
         """\
 ---
 title: Optimize for target hardware
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Optimize abstract circuits and operators so they can run on quantum hardware. 
 ---
 
 # Optimize for target hardware
@@ -101,7 +101,7 @@ def execute_index_content(index: str) -> str:
         """\
 ---
 title: Execute on hardware
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: Run circuits on hardware and return output from a quantum computer. 
 ---
 
 # Execute on hardware
@@ -132,16 +132,16 @@ def patterns_index_content() -> str:
     return dedent(
         """\
 ---
-title: Introduction to Qiskit Patterns
-description: TODO - 50+ characters long to ignore metadata check for now!
+title: Introduction to Qiskit patterns
+description: Qiskit patterns are the broad steps employed when running a domain-specific problem on quantum hardware. 
 ---
 
-# Introduction to Qiskit Patterns
+# Introduction to Qiskit patterns
 
-Qiskit Patterns is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit Patterns allows domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
+A Qiskit pattern is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit patterns allow domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
 
 
-The four steps of a Qiskit Pattern are as follows:
+The four steps of a Qiskit pattern are as follows:
 - **Map** problem to quantum circuits and operators
 - **Optimize** for target hardware
 - **Execute** on target hardware
@@ -210,47 +210,47 @@ The Qiskit SDK (package name [`qiskit`](https://pypi.org/project/qiskit/)) is an
 Some of the most useful features of the Qiskit SDK include:
 
 ### Circuit building tools 
-([`qiskit.circuit`](https://docs.quantum.ibm.com/api/qiskit/circuit))
+([`qiskit.circuit`](/api/qiskit/circuit))
 For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects. 
 
 ### Circuit library 
-([`qiskit.circuit.library`](https://docs.quantum.ibm.com/api/qiskit/circuit_library)) 
+([`qiskit.circuit.library`](/api/qiskit/circuit_library)) 
 A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
 
 ### Quantum Information
-([`qiskit.quantum_info`](https://docs.quantum.ibm.com/api/qiskit/quantum_info))
+([`qiskit.quantum_info`](/api/qiskit/quantum_info))
 A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyse fidelity of outputs from primitives queries.
 
 ### Transpiler 
-([`qiskit.transpiler`](https://docs.quantum.ibm.com/api/qiskit/transpiler))
+([`qiskit.transpiler`](/api/qiskit/transpiler))
 For transforming and adapting quantum circuits to suit specific device topology and/or optimizing for execution on real quantum systems.
 
 ### Primitives 
-([`qiskit.primitives`](https://docs.quantum.ibm.com/api/qiskit/primitives))
-The module that contains the base definitions and reference implementations of the `Sampler` and `Estimator` primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](https://docs.quantum.ibm.com/run/primitives).
+([`qiskit.primitives`](/api/qiskit/primitives))
+The module that contains the base definitions and reference implementations of the `Sampler` and `Estimator` primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
 
 
 ## Qiskit Runtime
 
-Qiskit Runtime is a cloud-based service for executing quantum computations on IBM Quantum&trade; hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider. The Qiskit Runtime service streamlines quantum computations and provides optimal implementations of the Qiskit primitives for IBM Quantum hardware. To get started with Qiskit Runtime primitives, visit the [documentation](https://docs.quantum.ibm.com/run/primitives-get-started). 
+Qiskit Runtime is a cloud-based service for executing quantum computations on IBM Quantum&trade; hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider. The Qiskit Runtime service streamlines quantum computations and provides optimal implementations of the Qiskit primitives for IBM Quantum hardware. To get started with Qiskit Runtime primitives, visit the [documentation](./get-started-with-primitives). 
 
-With Qiskit Runtime you can choose to run your quantum programs on IBM Quantum hardware through the IBM Quantum Platform or IBM Cloud&reg;. See more information on selecting an IBM Quantum channel [in the documentation](https://docs.quantum.ibm.com/start/setup-channel).
+With Qiskit Runtime you can choose to run your quantum programs on IBM Quantum hardware through the IBM Quantum Platform or IBM Cloud&reg;. See more information on selecting an IBM Quantum channel [in the documentation](./setup-channel).
 
-Qiskit Runtime is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](https://docs.quantum.ibm.com/run/configure-error-mitigation) page.
+Qiskit Runtime is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](./configure-error-mitigation) page.
 
 
-Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: _Job_, _Session_, and _Batch_, each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. [Sessions](https://docs.quantum.ibm.com/run/sessions) allow you to efficiently run multiple jobs in iterative workloads on quantum computers. [Batch mode](https://docs.quantum.ibm.com/run/run-jobs-batch) allows you to submit all your jobs at once for parallel processing.
+Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: _Job_, _Session_, and _Batch_, each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. [Sessions](./sessions) allow you to efficiently run multiple jobs in iterative workloads on quantum computers. [Batch mode](./run-jobs-batch) allows you to submit all your jobs at once for parallel processing.
 
 ### Is Qiskit Runtime open-source?
 The short answer is, _not all of it_. The Qiskit Runtime service software that handles the technicalities of running your quantum program on an IBM Quantum device (including any error mitigation and suppression) is **not** open-source. However, the Qiskit Runtime client (the interface for users to access the Qiskit Runtime service), the Qiskit SDK running on the server side, and some of the software used for error mitigation, **are** open-source.  To get involved with the Qiskit open-source efforts, visit our GitHub organization at [github.com/Qiskit](https://github.com/Qiskit) and [github.com/Qiskit-Extensions](https://github.com/Qiskit-Extensions/).
 
 
 ## Qiskit Serverless
-Creating utility-scale quantum applications generally requires a variety of compute resource requirements. Premium users can use Qiskit Serverless (package name `qiskit-serverless`) to easily submit quantum workflows for remote, managed execution. See more information [here](https://docs.quantum.ibm.com/run/quantum-serverless) about how to use this collection of tools.
+Creating utility-scale quantum applications generally requires a variety of compute resource requirements. Premium users can use Qiskit Serverless (package name `qiskit-serverless`) to easily submit quantum workflows for remote, managed execution. See more information [here](./qiskit-serverless) about how to use this collection of tools.
 
 
 ## Qiskit Transpiler as a Service
-The Qiskit transpiler service ([package name `qiskit-transpiler-service`](https://pypi.org/project/qiskit-transpiler-service/)) is a new experimental service that provides remote transpilation capabilities on the cloud to IBM Quantum Premium Plan users. In addition to the local Qiskit SDK transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum cloud resources and AI-powered transpiler passes using this service. To learn more about how to integrate cloud-based transpilation into your Qiskit workflow you can [check out the documentation](https://docs.quantum.ibm.com/transpile/qiskit-transpiler-service).
+The Qiskit transpiler service ([package name `qiskit-transpiler-service`](https://pypi.org/project/qiskit-transpiler-service/)) is a new experimental service that provides remote transpilation capabilities on the cloud to IBM Quantum Premium Plan users. In addition to the local Qiskit SDK transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum cloud resources and AI-powered transpiler passes using this service. To learn more about how to integrate cloud-based transpilation into your Qiskit workflow you can [check out the documentation](./qiskit-transpiler-service).
 
 
 ## The Qiskit Ecosystem
@@ -264,6 +264,6 @@ Some popular projects in the Qiskit ecosystem include:
 - **mthree** `mthree` - a package for implementing M3 (Matrix-free Measurement Mitigation), a measurement mitigation technique that solves for corrected measurement probabilities using a dimensionality reduction step followed by either direct LU factorization or a preconditioned iterative method that nominally converges in O(1) steps, and can be computed in parallel. Maintained by IBM Quantum.
 - **Qiskit TOQM** `qiskit-toqm` - a transpiler plugin for a routing method that uses the Time-Optimal Qubit Mapping (TOQM) algorithm. Maintained by IBM Quantum.
 
-You can find a catalogue of projects in the [Qiskit ecosystem page](https://qiskit.github.io/ecosystem/), as well as information about how to nominate your own project.
+You can find a catalog of projects in the [Qiskit ecosystem page](https://qiskit.github.io/ecosystem/), as well as information about how to nominate your own project.
 """
     )
