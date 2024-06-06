@@ -430,6 +430,22 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
   textconv = sh -c 'sphobjinv convert plain "$0" -'
 ```
 
+# How to deploy docs
+
+## Deploy guides & API docs
+
+This content lives on https://docs.quantum.ibm.com.
+
+See the section "Syncing content with open source repo" in the internal docs repo's README.
+
+### Deploy tutorials
+
+This content lives on https://learning.quantum.ibm.com.
+
+To deploy a file from the `tutorials/` directory in this repository, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
+
+To deploy a file from the ibm-quantum-learning-enablement repository, see the instructions in the internal tutorial repo's tutorials directory README.
+
 # How to write the documentation
 
 Refer to our [style guide](./style-guide.md) for technical writing guidance.
