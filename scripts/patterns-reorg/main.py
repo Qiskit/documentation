@@ -16,10 +16,25 @@ from __future__ import annotations
 
 import shutil
 import json
+from argparse import ArgumentParser
 from pathlib import Path
 
 from models import determine_redirects
 from entries import TOP_LEVEL_ENTRIES
+from deleted_entries import DELETED_PAGES
+
+OLD_FOLDERS = ["start", "run", "verify", "transpile", "build"]
+REDIRECTS = determine_redirects((*TOP_LEVEL_ENTRIES, *DELETED_PAGES))
+
+
+def create_parser() -> ArgumentParser:
+    parser = ArgumentParser()
+    parser.add_argument(
+        "--delete-existing",
+        action="store_true",
+        help="If true, delete the original guides.",
+    )
+    return parser
 
 
 def write_guides_dir() -> None:
@@ -42,14 +57,23 @@ def write_guides_dir() -> None:
 
 def write_redirects_file() -> None:
     fp = Path("scripts/patterns-reorg/redirects.json")
-    redirects = determine_redirects(TOP_LEVEL_ENTRIES)
-    text = json.dumps(redirects, indent=2) + "\n"
+    text = json.dumps(REDIRECTS, indent=2) + "\n"
     fp.write_text(text)
 
 
+def delete_existing_guides() -> None:
+    for d in OLD_FOLDERS:
+        shutil.rmtree(Path("docs", d))
+
+
 def main() -> None:
+    args = create_parser().parse_args()
+
     write_guides_dir()
     write_redirects_file()
+
+    if args.delete_existing:
+        delete_existing_guides()
 
 
 if __name__ == "__main__":
