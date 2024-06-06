@@ -40,7 +40,7 @@ class Entry:
     def to_json(self, folder_name: str) -> dict:
         result: dict = {"title": self.title}
         if self.slug is not None:
-            result["url"] = f"/{folder_name}/{self.slug}"
+            result["url"] = f"/{folder_name}{self.slug}"
         if self.external_url is not None:
             result["url"] = self.external_url
         if self.children:
@@ -63,7 +63,15 @@ class Entry:
             assert self.page_content is not None
             content = self.page_content
             extension = ".mdx"
-        (base_dir / f"{self.slug}{extension}").write_text(content)
+        dest = base_dir / f"{self.relative_path_from_slug()}{extension}"
+        dest.write_text(content)
+
+    def relative_path_from_slug(self) -> str | None:
+        if self.slug is None:
+            return
+        if self.slug == "":
+            return "index"
+        return self.slug.removeprefix("/")
 
 
 def entries_as_markdown_list(
@@ -72,7 +80,7 @@ def entries_as_markdown_list(
     result = []
     for entry in entries:
         if entry.slug:
-            result.append(f"{indent or ''}* [{entry.title}](./{entry.slug})")
+            result.append(f"{indent or ''}* [{entry.title}](.{entry.slug})")
         if entry.external_url:
             result.append(f"{indent or ''}* [{entry.title}]({entry.external_url})")
         if entry.children:
@@ -86,6 +94,12 @@ def entries_as_markdown_list(
                 first_line = f"\n### {entry.title}"
             result.append(f"{first_line}\n{children}")
     return "\n".join(result)
+
+
+@dataclass(frozen=True)
+class DeletedPage:
+    redirect_to: str
+    old_slug: str
 
 
 def filter_entries(
@@ -102,13 +116,35 @@ def filter_entries(
     return tuple(result)
 
 
+def _add_redirect_to_dict(
+    redirects: dict[str, str], old_url: str, redirect_to: str
+) -> None:
+    redirects[old_url] = redirect_to
+    # We need to add two links for each index entry because we can
+    # have two links possible. For example, `/run/index` and `/run`
+    # point to the same page.
+    old_folder, old_file_name = old_url.split("/")
+    if old_file_name == "index":
+        redirects[f"{old_folder}"] = redirect_to
+
+
 def determine_redirects(
-    entries: tuple[Entry, ...], *, prefix: str = ""
+    entries: tuple[Entry | DeletedPage, ...], *, prefix: str = ""
 ) -> dict[str, str]:
     result = {}
     for entry in entries:
-        if entry.slug and entry.from_file:
+        if isinstance(entry, Entry):
+            result.update(determine_redirects(entry.children))
+
+            if entry.slug is None or not entry.from_file:
+                continue
+
             old_url = str(PurePath(entry.from_file).with_suffix(""))
-            result[old_url] = f"{prefix}{entry.slug}"
-        result.update(determine_redirects(entry.children))
+            redirect_to = f"{prefix}{entry.slug.removeprefix('/')}"
+            _add_redirect_to_dict(result, old_url, redirect_to)
+
+        elif isinstance(entry, DeletedPage):
+            redirect_to = f"{prefix}{entry.redirect_to.removeprefix('/')}"
+            _add_redirect_to_dict(result, entry.old_slug, redirect_to)
+
     return result
