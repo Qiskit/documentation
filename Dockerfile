@@ -37,4 +37,4 @@ COPY docs/ /home/node/app/docs
 COPY translations/ /home/node/app/docs
 COPY public/ /home/node/app/packages/web/public/
 
-EXPOSE 3000
+EXPOSE 3000 5001
