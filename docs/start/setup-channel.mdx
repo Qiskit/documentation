@@ -51,7 +51,7 @@ Available plans:
 
 1. Retrieve your IBM Quantum token from the [IBM Quantum account page](https://quantum.ibm.com/account).
 
-1. Authenticate to the service by calling `QiskitRuntimeService` with your IBM Quantum API key and CRN:
+1. <span id="save-account"></span>Authenticate to the service by calling `QiskitRuntimeService` with your IBM Quantum API key and CRN:
 
    ```python
    from qiskit_ibm_runtime import QiskitRuntimeService
@@ -66,13 +66,19 @@ Available plans:
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # Save an IBM Quantum account and set it as your default account.
-    QiskitRuntimeService.save_account(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>", set_as_default=True)
+    QiskitRuntimeService.save_account(
+        channel="ibm_quantum",
+        token="<MY_IBM_QUANTUM_TOKEN>",
+        set_as_default=True,
+        # Use `overwrite=True` if you're updating your token.
+        overwrite=True,
+    )
 
     # Load saved credentials
     service = QiskitRuntimeService()
     ```
 
-    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
+    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types.
     * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
     * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
     * If you don't save your credentials, you must specify them every time you start a new session.
@@ -126,6 +132,7 @@ print(result)
     1. Find your API key. From the [API keys page](https://cloud.ibm.com/iam/apikeys), view or create your API key, then copy it to a secure location so you can use it for authentication.
     2. Find your Cloud Resource Name (CRN). Open the [Instances page](https://cloud.ibm.com/quantum/instances) and click your instance. In the page that opens, click the icon to copy your CRN. Save it in a secure location so you can use it for authentication.
 
+<span id="cloud-save"></span>
 1. Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN:
 
    ```python
@@ -144,7 +151,14 @@ print(result)
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # Save account to disk.
-    QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", name="<account-name>")
+    QiskitRuntimeService.save_account(
+        channel="ibm_cloud",
+        token="<IBM Cloud API key>",
+        instance="<IBM Cloud CRN>",
+        name="<account-name>",
+        # Use `overwrite=True` if you're updating your token.
+        overwrite=True,
+    )
 
     # Load saved credentials
     service = QiskitRuntimeService(name="<account-name>")
