@@ -3,7 +3,7 @@
 This folder contains the content for our tutorials, which appear on [IBM
 Quantum Learning](https://learning.quantum.ibm.com/catalog/tutorials).
 
-## Deploying tutorials
+## Edit existing tutorials and deploy
 
 To deploy changes to tutorials, run the [Deploy
 tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
@@ -33,7 +33,7 @@ writers' convenience. If you want to change the title of a notebook, find the
 page on https://learning-api.quantum.ibm.com/admin and change its title
 there. Make sure to update the title in the notebook too.
 
-## Adding new tutorials
+## Add new tutorials and deploy
 
 Each tutorial has its own folder in `tutorials/`. Within that folder is the content notebook
 (ending in `.ipynb`) and an optional `images` folder.
