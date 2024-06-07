@@ -20,10 +20,19 @@ name: Preview
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, closed]
-    paths:
+    types: [opened, reopened, synchronize]
+    paths: &changed-file-paths
       - "docs/**/*"
       - "public/images/**/*"
+
+  # WARNING: This event type uses secrets even when triggered by an untrusted PR.
+  # Do NOT checkout the PR or access any user-defined inputs (such as the title) as it could be untrusted.
+  # For more information, see https://securitylab.github.com/research/github-actions-preventing-pwn-requests/.
+  # This event type runs on the _target_ branch (rather than a merge commit of
+  # the PR), so you'll need to test it out in a fork.
+  pull_request_target:
+    types: [closed]
+    paths: *changed-file-paths
 
 jobs:
   setup:
