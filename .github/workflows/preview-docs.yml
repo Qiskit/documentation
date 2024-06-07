@@ -21,7 +21,7 @@ name: Preview
 on:
   pull_request:
     types: [opened, reopened, synchronize]
-    paths: &changed-file-paths
+    paths:
       - "docs/**/*"
       - "public/images/**/*"
 
@@ -32,7 +32,9 @@ on:
   # the PR), so you'll need to test it out in a fork.
   pull_request_target:
     types: [closed]
-    paths: *changed-file-paths
+    paths:
+      - "docs/**/*"
+      - "public/images/**/*"
 
 jobs:
   setup:
