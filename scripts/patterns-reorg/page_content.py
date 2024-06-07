@@ -147,6 +147,8 @@ The four steps of a Qiskit pattern are as follows:
 - **Execute** on target hardware
 - **Postprocess** results
 
+![../\_images/patterns.svg](/images/patterns.svg)
+
 Let's review each of these steps in more detail:
 
 ## Map problem to quantum circuits and operators
@@ -195,12 +197,12 @@ description: TODO - 50+ characters long to ignore metadata check for now!
 
 # Introduction to Qiskit
 
-[INSERT BIG PATTERNS AND TOOLS IMAGE]
-
 
 The name "Qiskit" is a general term referring to a collection of software for executing programs on quantum computers. Most notably among these software tools is the open-source Qiskit SDK, and the runtime environment (accessed using Qiskit Runtime) through which you can execute workloads on IBM&reg; quantum computers. As quantum technology evolves, so does Qiskit, with new capabilities released every year which expand this core collection of quantum software. 
 
 In addition, there are many open-source projects that are part of the broader Qiskit ecosystem. These software tools are not part of Qiskit itself, but rather interface with Qiskit and can provide valuable additional functionality.
+
+![../\_images/patterns.svg](/images/patterns.svg)
 
 
 ## The Qiskit SDK
@@ -209,25 +211,15 @@ The Qiskit SDK (package name [`qiskit`](https://pypi.org/project/qiskit/)) is an
 
 Some of the most useful features of the Qiskit SDK include:
 
-### Circuit building tools 
-([`qiskit.circuit`](/api/qiskit/circuit))
-For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects. 
+- Circuit building tools ([`qiskit.circuit`](/api/qiskit/circuit)) - For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects. 
 
-### Circuit library 
-([`qiskit.circuit.library`](/api/qiskit/circuit_library)) 
-A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
+- Circuit library ([`qiskit.circuit.library`](/api/qiskit/circuit_library)) - A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
 
-### Quantum Information
-([`qiskit.quantum_info`](/api/qiskit/quantum_info))
-A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyse fidelity of outputs from primitives queries.
+- Quantum Information ([`qiskit.quantum_info`](/api/qiskit/quantum_info)) - A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyse fidelity of outputs from primitives queries.
 
-### Transpiler 
-([`qiskit.transpiler`](/api/qiskit/transpiler))
-For transforming and adapting quantum circuits to suit specific device topology and/or optimizing for execution on real quantum systems.
+- Transpiler ([`qiskit.transpiler`](/api/qiskit/transpiler)) - For transforming and adapting quantum circuits to suit specific device topology and/or optimizing for execution on real quantum systems.
 
-### Primitives 
-([`qiskit.primitives`](/api/qiskit/primitives))
-The module that contains the base definitions and reference implementations of the `Sampler` and `Estimator` primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
+- Primitives ([`qiskit.primitives`](/api/qiskit/primitives)) - The module that contains the base definitions and reference implementations of the `Sampler` and `Estimator` primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
 
 
 ## Qiskit Runtime
