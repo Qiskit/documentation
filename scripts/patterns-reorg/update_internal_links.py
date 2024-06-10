@@ -16,11 +16,12 @@ from __future__ import annotations
 
 import re
 import glob
+import yaml
 from pathlib import Path
 from main import OLD_FOLDERS, REDIRECTS
 
 
-def update_link(markdown: str, folder: str, link: str) -> str:
+def update_link(markdown: str, folder: str, link: str, prefix: str) -> str:
     anchor_index = link.find("#")
 
     if link.startswith("http") or anchor_index == 0:
@@ -35,9 +36,22 @@ def update_link(markdown: str, folder: str, link: str) -> str:
 
     link_split = link_without_anchor.split("/")
     if link.startswith("/") or link.startswith("../"):
-        search_key = f"{link_split[-2]}/{link_split[-1]}"
+        if(link_split[-2] == ".."):
+            # Match links to a folder like '../../transpile'
+            search_key = link_split[-1]
+        else:
+            if link_split[-1] == "":
+                # Match links like '../transpile/'
+                search_key = link_split[-2]
+            else:
+                # Match links like '../transpile/index'
+                search_key = f"{link_split[-2]}/{link_split[-1]}"
     else:
-        search_key = f"{folder}/{link_split[-1]}"
+        if link_without_anchor == "./":
+            # Match links with anchors to the index page, e.g. './#example-1'
+            search_key = f"{folder}"
+        else:
+            search_key = f"{folder}/{link_split[-1]}"
 
     if search_key not in REDIRECTS:
         return markdown
@@ -51,23 +65,52 @@ def update_link(markdown: str, folder: str, link: str) -> str:
     if link == redirect_to:
         return markdown
 
-    return markdown.replace(link, f"./{redirect_to}")
+    return markdown.replace(link, f"{prefix}{redirect_to}")
 
-
-def main() -> None:
+def update_old_files_links()-> None:
     inline_link_re = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 
-    for folder in OLD_FOLDERS:
+    for folder in [*OLD_FOLDERS,"api/migration-guides"]:
+        prefix = "/guides/" if folder == "api/migration-guides" else "./"
         for file_path in glob.glob(f"docs/{folder}/*"):
             file = Path(file_path)
             markdown = file.read_text()
             markdown = re.sub(
                 inline_link_re,
-                lambda m: update_link(m[0], folder, m[2]),
+                lambda m: update_link(m[0], folder, m[2], prefix),
                 markdown,
             )
             file.write_text(markdown)
 
+
+def update_qiskit_bot_files()-> None:
+    qiskit_bot_file = "qiskit_bot.yaml"
+
+    with open(qiskit_bot_file, 'r') as file:
+        data = yaml.load(file, Loader=yaml.SafeLoader)
+        new_entries = {}
+        for file_path in data["notifications"]:
+            file_path_split = file_path.split("/")
+            search_key = f"{file_path_split[-2]}/{file_path_split[-1]}"
+
+            if search_key in REDIRECTS:
+                new_file = REDIRECTS[search_key]
+                if new_file == "":
+                    new_file = "index"
+                new_entries[f"docs/guides/{new_file}"] = data["notifications"][file_path]
+            elif file_path_split[-2] not in OLD_FOLDERS:
+                # We don't want to modify the migration guides
+                new_entries[file_path] = data["notifications"][file_path]
+
+        data["notifications"] = new_entries
+
+    with open(qiskit_bot_file, 'w') as file:
+        file.write("---\n")
+        yaml.dump(data, file, default_flow_style=False)
+
+def main() -> None:
+    update_old_files_links()
+    update_qiskit_bot_files()
 
 if __name__ == "__main__":
     main()

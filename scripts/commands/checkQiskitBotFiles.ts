@@ -16,6 +16,28 @@ import { load } from "js-yaml";
 import { globby } from "globby";
 
 const ALLOWED_OWNERLESS_FILES = new Set([
+  "docs/guides/_toc",
+  "docs/guides/bit-ordering",
+  "docs/guides/operators-overview",
+  "docs/guides/save-circuits",
+  "docs/guides/create-a-transpiler-plugin",
+  "docs/guides/custom-backend",
+  "docs/guides/transpiler-plugins",
+  "docs/guides/local-testing-mode",
+  "docs/guides/plot-quantum-states",
+  "docs/guides/using-ibm-quantum-simulators",
+  "docs/guides/circuit-execution",
+  "docs/guides/configure-runtime-compilation",
+  "docs/guides/execution-modes-faq",
+  "docs/guides/execution-modes",
+  "docs/guides/native-gates",
+  "docs/guides/save-jobs",
+  "docs/guides/visualize-results",
+  "docs/guides/create-transpiler-plugin",
+  "docs/guides/intro-to-patterns",
+  "docs/guides/optimize-for-hardware",
+  "docs/guides/postprocess-results",
+  // Todo: remove the following old paths
   "docs/start/_toc",
   "docs/build/_toc",
   "docs/build/bit-ordering",
@@ -40,25 +62,27 @@ const ALLOWED_OWNERLESS_FILES = new Set([
 ]);
 
 const ALLOWED_NONEXISTENT_FILES = new Set([
-  "docs/build/qubit-order",
-  "docs/build/operators_overview",
-  "docs/run/reserve-system-time",
   "docs/migration-guides/index",
   "docs/migration-guides/qiskit-runtime",
   "docs/migration-guides/qiskit-runtime-examples",
   "docs/migration-guides/qiskit-quantum-instance",
   "docs/migration-guides/qiskit-algorithms-module",
   "docs/migration-guides/qiskit-opflow-module",
+  // Todo: remove or rename the following old paths
+  "docs/build/qubit-order",
+  "docs/build/operators_overview",
+  "docs/run/reserve-system-time",
 ]);
 
 const GLOBS = [
+  "docs/migration-guides/*",
+  "docs/guides/*",
+  // Todo: remove the following old globs
   "docs/start/*",
   "docs/build/*",
   "docs/transpile/*",
   "docs/verify/*",
   "docs/run/*",
-  "docs/migration-guides/*",
-  "docs/guides/*",
 ];
 
 async function main() {
