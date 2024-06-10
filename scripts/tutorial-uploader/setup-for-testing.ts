@@ -19,6 +19,7 @@ if (/learning-api\.quantum\.ibm\.com/.test(process.env.LEARNING_API_URL!)) {
   );
 }
 
+/* If these change, make sure to update tutorials/learning-api.conf.yaml */
 const TOPICS = [
   "Chemistry",
   "Dynamic circuits",
