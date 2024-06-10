@@ -32,20 +32,19 @@ const _QISKIT_UTILS = [
 ];
 
 const _PATTERNS_REORG_IGNORES = [
-  '/run/primitives-examples',
-  '/run/sessions',
-  '/build/circuit-construction',
-  '/start/configure-qiskit-local#environment-variables',
-  '/build/pulse',
-  '/run',
-  '/transpile',
-  '/run/max-execution-time',
-  '/run/configure-runtime-compilation',
-  '/run/configure-error-mitigation',
-  '/start/install#qiskit-versioning',
-  '/start/configure-qiskit-local',
-]
-
+  "/run/primitives-examples",
+  "/run/sessions",
+  "/build/circuit-construction",
+  "/start/configure-qiskit-local#environment-variables",
+  "/build/pulse",
+  "/run",
+  "/transpile",
+  "/run/max-execution-time",
+  "/run/configure-runtime-compilation",
+  "/run/configure-error-mitigation",
+  "/start/install#qiskit-versioning",
+  "/start/configure-qiskit-local",
+];
 
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
