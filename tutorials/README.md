@@ -33,8 +33,9 @@ tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tuto
 workflow. This will push the notebooks and their metadata from the main branch
 to the environment you select.
 
-You should always start with deploying to "Learning platform (staging)". And
-check that your tutorial renders properly.
+You should always start with deploying to "Learning platform (staging)", and
+check that your tutorial renders properly. Ask a teammate for the staging link
+if you need it.
 
 Once you are happy with staging, rerun the [Deploy
 tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
