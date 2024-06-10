@@ -1,0 +1,59 @@
+---
+title: Monitor or cancel a job
+description: How to monitor or cancel a job submitted to IBM Quantum Platform or IBM Quantum on IBM Cloud
+
+---
+
+# Monitor or cancel a job
+
+Jobs are listed on the Jobs page for your quantum service channel:
+
+*   IBM Cloud&reg; channel: From the IBM Cloud console quantum [Instances page](https://cloud.ibm.com/quantum/instances), click the name of your instance, then click the Jobs tab.
+*   IBM Quantum&trade; channel: In IBM Quantum Platform, open the [Jobs page](https://quantum.ibm.com/jobs).
+
+## Monitor a job
+
+Use the job instance to check the job status or retrieve the results by calling the appropriate command:
+
+|                               |                                                                                                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| job.result()                  | Review job results immediately after the job completes. Job results are available after the job completes. Therefore, job.result() is a blocking call until the job completes.                               |
+| job.job\_id()                 | Return the ID that uniquely identifies that job. Retrieving the job results at a later time requires the job ID. Therefore, it is recommended that you save the IDs of jobs you might want to retrieve later. |
+| job.status()                  | Check the job status.                                                                                                                                                                                        |
+| job = service.job(\<job\_id>) | Retrieve a job you previously submitted. This call requires the job ID.                                                                                                                                      |
+
+<span id="retrieve-later"></span>
+## Retrieve job results at a later time
+
+Call `service.job(\<job\_id>)` to retrieve a job you previously submitted. If you don’t have the job ID, or if you want to retrieve multiple jobs at once; including jobs from retired systems, call `service.jobs()` with optional filters instead. See [QiskitRuntimeService.jobs](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs).
+
+<Admonition type="note">
+  service.jobs() returns only Qiskit Runtime jobs. To retrieve other jobs, use [qiskit-ibm-provider](../api/qiskit-ibm-provider/qiskit_ibm_provider.IBMBackend#ibmbackend) instead.
+</Admonition>
+
+### Example
+
+This example returns the 10 most recent runtime jobs that were run on `my_backend`:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# Initialize the account first.
+service = QiskitRuntimeService()
+
+service.jobs(backend_name=my_backend)
+```
+
+## Cancel a job
+
+You can cancel a job from the IBM Quantum Platform dashboard either on the Jobs page or the details page for a specific job. Click the menu with three vertical dots (at the end of the row on the Jobs page, or the top of the page on the Job details page), and select Cancel.
+
+In Qiskit, use `job.cancel()` to cancel a job.
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
+    - View the [`job_monitor` documentation](/api/qiskit-ibm-provider/qiskit_ibm_provider.job.job_monitor) in the Qiskit IBM Provider API reference.
+</Admonition>
