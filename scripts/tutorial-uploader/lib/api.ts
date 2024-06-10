@@ -67,7 +67,7 @@ export class API {
    * Get IDs of all items in `collection` that match a field value.
    * Roughly: "SELECT * FROM collection WHERE field=value".
    */
-  async getIds<
+  async #getIds<
     CollectionName extends StringKeyOf<LearningApiSchema>,
     FieldName extends StringKeyOf<
       ElementType<LearningApiSchema[CollectionName]>
@@ -107,7 +107,7 @@ export class API {
     field: FieldName,
     value: FieldValue,
   ): Promise<string | null> {
-    const ids = await this.getIds(collection, field, value);
+    const ids = await this.#getIds(collection, field, value);
     if (ids.length === 0) {
       return null;
     }
@@ -127,7 +127,7 @@ export class API {
   /**
    * Tutorials can have many translations, but we only use English at the moment.
    */
-  async getEnglishTranslationId(tutorialId: string): Promise<number> {
+  async #getEnglishTranslationId(tutorialId: string): Promise<number> {
     const response = await this.client.request(
       readItem("tutorials", tutorialId, {
         // @ts-ignore
@@ -154,9 +154,9 @@ export class API {
    * "tutorials_tutorials_topics": a collection of one-to-many mappings of
    * "tutorials" to "tutorials_topics".
    */
-  async clearTopics(tutorialId: string) {
+  async #clearTopics(tutorialId: string) {
     // "tutorials_tutorials_topics" is mapping of tutorial to topics
-    const ids = await this.getIds(
+    const ids = await this.#getIds(
       "tutorials_tutorials_topics",
       "tutorials_id",
       tutorialId,
@@ -168,8 +168,8 @@ export class API {
     }
   }
 
-  async updateTutorialTopics(tutorialId: string, topicNames: string[]) {
-    await this.clearTopics(tutorialId);
+  async #updateTutorialTopics(tutorialId: string, topicNames: string[]) {
+    await this.#clearTopics(tutorialId);
     for (const name of topicNames) {
       const id = await this.getId("tutorials_topics", "name", name);
       if (id === null) throw new Error(`No topic with name '${name}'`);
@@ -183,7 +183,7 @@ export class API {
   }
 
   /* Returns the file's ID */
-  async uploadLocalFolder(path: string): Promise<string> {
+  async #uploadLocalFolder(path: string): Promise<string> {
     // Zip folder
     const zippedFilePath = `${tmpdir()}/${randomBytes(8).toString(
       "hex",
@@ -200,7 +200,7 @@ export class API {
       type: "application/zip",
     });
     const formData = new FormData();
-    formData.append("title", zippedFilePath);
+    formData.append("title", zippedFilePath); // Name is not important as file is temporary
     formData.append("file", file, zippedFilePath);
 
     // Upload form
@@ -212,7 +212,7 @@ export class API {
     return response.id;
   }
 
-  async updateExistingTutorial(
+  async #updateExistingTutorial(
     tutorialId: string,
     localData: LocalTutorialData,
   ) {
@@ -229,22 +229,22 @@ export class API {
       translations: [
         {
           title: localData.title,
-          id: await this.getEnglishTranslationId(tutorialId),
-          temporal_file: await this.uploadLocalFolder(localData.local_path),
+          id: await this.#getEnglishTranslationId(tutorialId),
+          temporal_file: await this.#uploadLocalFolder(localData.local_path),
           short_description: localData.short_description,
         },
       ],
     };
 
     await this.client.request(updateItem("tutorials", tutorialId, newTutorial));
-    await this.updateTutorialTopics(tutorialId, localData.topics);
+    await this.#updateTutorialTopics(tutorialId, localData.topics);
   }
 
   /*
    * Only sets minimum data required for API to accept the creation request
    * updateExistingTutorial should be called immediately after
    */
-  async createTutorial(localData: LocalTutorialData): Promise<string> {
+  async #createTutorial(localData: LocalTutorialData): Promise<string> {
     console.log(`Creating new tutorial '${localData.slug}'...`);
     const translationData = {
       title: localData.title,
@@ -278,9 +278,9 @@ export class API {
   async upsertTutorial(localData: LocalTutorialData) {
     let id = await this.getTutorialIdBySlug(localData.slug);
     if (id === null) {
-      id = await this.createTutorial(localData);
+      id = await this.#createTutorial(localData);
     }
-    await this.updateExistingTutorial(id, localData);
+    await this.#updateExistingTutorial(id, localData);
   }
 
   /**
