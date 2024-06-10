@@ -93,9 +93,9 @@ from qiskit_serverless import IBMServerlessClient
 serverless = IBMServerlessClient("YOUR_IBM_QUANTUM_TOKEN")
 
 # Deploy the pattern
-from qiskit_serverless import QiskitPattern
+from qiskit_serverless import QiskitFunction
 serverless.upload(
-    QiskitPattern(
+    QiskitFunction(
         title="My-Qiskit-Pattern",
         entrypoint="my_qiskit_pattern.py",
         working_dir="./source_files/"
@@ -109,7 +109,8 @@ Finally, the pattern is ready to run remotely.
 
 ```python
 # Run pattern remotely
-job = serverless.run("My-Qiskit-Pattern")
+pattern = serverless.get("My-Qiskit-Pattern")
+pattern.run()
 
 # Retrieve status, logs, results
 job.status()
