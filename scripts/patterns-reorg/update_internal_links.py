@@ -16,9 +16,7 @@ from __future__ import annotations
 
 import re
 import glob
-import yaml
 from pathlib import Path
-from textwrap import dedent
 from main import OLD_FOLDERS, REDIRECTS
 
 
@@ -69,7 +67,7 @@ def update_link(markdown: str, folder: str, link: str, prefix: str) -> str:
     return markdown.replace(link, f"{prefix}{redirect_to}")
 
 
-def update_old_files_links() -> None:
+def main() -> None:
     inline_link_re = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 
     for folder in [*OLD_FOLDERS, "api/migration-guides"]:
@@ -83,76 +81,6 @@ def update_old_files_links() -> None:
                 markdown,
             )
             file.write_text(markdown)
-
-
-def get_new_qiskit_bot_notifications(qiskit_bot_file: str) -> None:
-    with open(qiskit_bot_file, "r") as file:
-        data = yaml.load(file, Loader=yaml.SafeLoader)
-        new_entries = {}
-        for file_path in data["notifications"]:
-            file_path_split = file_path.split("/")
-            search_key = f"{file_path_split[-2]}/{file_path_split[-1]}"
-
-            if search_key in REDIRECTS:
-                new_file = REDIRECTS[search_key]
-                if new_file == "":
-                    new_file = "index"
-                new_entries[f"docs/guides/{new_file}"] = data["notifications"][
-                    file_path
-                ]
-            elif file_path_split[-2] not in OLD_FOLDERS:
-                # We don't want to modify the migration guides
-                new_entries[file_path] = data["notifications"][file_path]
-
-        return new_entries
-
-
-def replace_indentation_placeholder(qiskit_bot_file: str) -> None:
-    file = Path(qiskit_bot_file)
-    data = file.read_text()
-    data = data.replace('"INDENTATION":', "notifications:")
-    file.write_text(data)
-
-
-def generate_new_qiskit_bot_file(
-    qiskit_bot_file: str, notifications: dict[str, str]
-) -> None:
-    with open(qiskit_bot_file, "w") as file:
-        file.write(
-            dedent(
-                """\
----
-always_notify: true
-notification_prelude: |
-  Thanks for contributing to Qiskit documentation!
-
-  Before your PR can be merged, it will first need to pass continuous integration tests and be reviewed. Sometimes the review process can be slow, so please be patient. Thanks! 🙌
-
-# We use backticks around users who don`t want a GitHub notification, but whom
-# we still want their name in the Qiskit Bot message so people know they are
-# relevant.
-"""
-            )
-        )
-        # Use a placeholder to have the correct indentation for the notifications
-        yaml.dump(
-            {"INDENTATION": notifications},
-            file,
-            default_flow_style=False,
-            default_style='"',
-        )
-        replace_indentation_placeholder(qiskit_bot_file)
-
-
-def update_qiskit_bot_files() -> None:
-    qiskit_bot_file = "qiskit_bot.yaml"
-    notifications = get_new_qiskit_bot_notifications(qiskit_bot_file)
-    generate_new_qiskit_bot_file(qiskit_bot_file, notifications)
-
-
-def main() -> None:
-    update_old_files_links()
-    update_qiskit_bot_files()
 
 
 if __name__ == "__main__":
