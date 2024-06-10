@@ -1,10 +1,10 @@
 ---
-title: Advanced Qiskit Runtime options
+title: Advanced Qiskit Runtime options 2
 description: Specify options when building with Qiskit Runtime primitives
 
 ---
 
-# Advanced Qiskit Runtime options
+# Advanced Qiskit Runtime options 2
 
  You can pass options to primitives to customize them to meet your needs. This section focuses on Qiskit Runtime primitive options. While most of the `primitives` interface is common across implementations, most options are not. Consult the corresponding API references for information about the `qiskit.primitives` and `qiskit_aer.primitives` options.
 
@@ -80,91 +80,59 @@ Specify options as follows:  `primitive.options.option.sub-option.sub-sub-option
 
 Example: `estimator.options.dynamical_decoupling.enable = True`
 
+### option = resilience
+
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-| Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
-|----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| default_shots        |                          |                         |                                                                                           | `4096`                      |
-| optimization_level   |                          |                         | `0`/`1`                                                                                       | `1`                         |
-| resilience_level     |                          |                         | `0`/`1`/`2`                                                                                     | `1`                         |
-| dynamical_decoupling | enable                   |                         |`True`/`False`                                                                                           |`False`                           |
-|                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
-|                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                          | `'middle'`                  |
-|                      | scheduling_method        |                         | `'asap'`/`'alap'`                                                                            | `'alap'`                    |
-| resilience           | measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
-|                      | measure_noise_learning   | num_randomizations      |                                                                                           | `32`                      |
-|                      |                          | shots_per_randomization |                                                                                           | 'auto'                    |
-|                      | zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
-|                      | zne                      | noise_factors           |                                                                                           | `(1, 3, 5)`                 |
-|                      |                          | extrapolator            | `'exponential'`/<br>`'linear'`/<br>`'double_exponential'`/<br>`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
-| twirling             | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
-|                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
-|                      | num_randomizations       |                         |                                                                                           | `'auto'`                    |
-|                      | shots_per_randomization  |                         |                                                                                           | `'auto'`                    |
-|                      | strategy                 |                         | `'active'`/<br>`'active-circuit'`/<br>`'active-accum'`/<br>`'all'`                                | `'active-accum'`            |
+| Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
+|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
+| measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
+| measure_noise_learning   | num_randomizations      |                                                                                           | `32`                      |
+|                          | shots_per_randomization |                                                                                           | 'auto'                    |
+| zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
+| zne                      | noise_factors           |                                                                                           | `(1, 3, 5)`                 |
+|                          | extrapolator            | `'exponential'`/<br>`'linear'`/<br>`'double_exponential'`/<br>`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
   </TabItem>
-
   <TabItem value="SamplerV2" label="Sampler V2">
-| Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
-|----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| default_shots        |                          |                         |                                                                                           | `4096`                      |
-| optimization_level   |                          |                         | `0`/`1`                                                                                       | `1`                         |
-| dynamical_decoupling | enable                   |                         |`True`/`False`                                                                                           |`False`                           |
-|                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
-|                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                          | `'middle'`                  |
-|                      | scheduling_method        |                         | `'asap'`/`'alap'`                                                                            | `'alap'`                    |
-| twirling             | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
-|                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
-|                      | num_randomizations       |                         |                                                                                           | `'auto'`                    |
-|                      | shots_per_randomization  |                         |                                                                                           | `'auto'`                    |
-|                      | strategy                 |                         | `'active'`/<br>`'active-circuit'`/<br>`'active-accum'`/<br>`'all'`                                | `'active-accum'`            |
-
+| Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
+|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
+| measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
+| measure_noise_learning   | num_randomizations      |                                                                                           | `32`                      |
+|                          | shots_per_randomization |                                                                                           | 'auto'                    |
+| zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
+| zne                      | noise_factors           |                                                                                           | `(1, 3, 5)`                 |
+|                          | extrapolator            | `'exponential'`/<br>`'linear'`/<br>`'double_exponential'`/<br>`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
   </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-| Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
-|----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| default_shots        |                          |                         |                                                                                           | `4096`                      |
-| optimization_level   |                          |                         | `0`/`1`                                                                                       | `1`                         |
-| resilience_level     |                          |                         | `0`/`1`/`2`                                                                                     | `1`                         |
-| dynamical_decoupling | enable                   |                         |`True`/`False`                                                                                           |`False`                           |
-|                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
-|                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                          | `'middle'`                  |
-|                      | scheduling_method        |                         | `'asap'`/`'alap'`                                                                            | `'alap'`                    |
-| resilience           | measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
-|                      | measure_noise_learning   | num_randomizations      |                                                                                           | `32`                      |
-|                      |                          | shots_per_randomization |                                                                                           | 'auto'                    |
-|                      | zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
-|                      | zne                      | noise_factors           |                                                                                           | `(1, 3, 5)`                 |
-|                      |                          | extrapolator            | `'exponential'`/<br>`'linear'`/<br>`'double_exponential'`/<br>`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
-| twirling             | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
-|                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
-|                      | num_randomizations       |                         |                                                                                           | `'auto'`                    |
-|                      | shots_per_randomization  |                         |                                                                                           | `'auto'`                    |
-|                      | strategy                 |                         | `'active'`/<br>`'active-circuit'`/<br>`'active-accum'`/<br>`'all'`                                | `'active-accum'`            |
-
+    <TabItem value="EstimatorV1" label="Estimator (V1)">
+| Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
+|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
+| measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
+| measure_noise_learning   | num_randomizations      |                                                                                           | `32`                      |
+|                          | shots_per_randomization |                                                                                           | 'auto'                    |
+| zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
+| zne                      | noise_factors           |                                                                                           | `(1, 3, 5)`                 |
+|                          | extrapolator            | `'exponential'`/<br>`'linear'`/<br>`'double_exponential'`/<br>`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
   </TabItem>
-
   <TabItem value="SamplerV1" label="Sampler (V1)">
-| Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
-|----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| default_shots        |                          |                         |                                                                                           | `4096`                      |
-| optimization_level   |                          |                         | `0`/`1`                                                                                       | `1`                         |
-| dynamical_decoupling | enable                   |                         |`True`/`False`                                                                                           |`False`                           |
-|                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
-|                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                          | `'middle'`                  |
-|                      | scheduling_method        |                         | `'asap'`/`'alap'`                                                                            | `'alap'`                    |
-| twirling             | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
-|                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
-|                      | num_randomizations       |                         |                                                                                           | `'auto'`                    |
-|                      | shots_per_randomization  |                         |                                                                                           | `'auto'`                    |
-|                      | strategy                 |                         | `'active'`/<br>`'active-circuit'`/<br>`'active-accum'`/<br>`'all'`                                | `'active-accum'`            |
-
+| Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
+|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
+| measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
+| measure_noise_learning   | num_randomizations      |                                                                                           | `32`                      |
+|                          | shots_per_randomization |                                                                                           | 'auto'                    |
+| zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
+| zne                      | noise_factors           |                                                                                           | `(1, 3, 5)`                 |
+|                          | extrapolator            | `'exponential'`/<br>`'linear'`/<br>`'double_exponential'`/<br>`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
   </TabItem>
-
 
 </Tabs>
 
+### option = default_shots
+
+### option = resilience_level
+
+### option = dynamical_decoupling
+
+### option = twirling
 
 
 
