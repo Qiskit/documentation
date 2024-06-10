@@ -1,0 +1,50 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2023.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+# WARNING: This event type uses secrets even when triggered by an untrusted PR.
+# Do NOT checkout the PR or access any user-defined inputs (such as the title) as it could be untrusted.
+# For more information, see https://securitylab.github.com/research/github-actions-preventing-pwn-requests/.
+# This event type runs on the target branch (rather than a merge commit of the
+# target and PR branches), so you'll need to test it out in a fork.
+
+name: Preview teardown
+
+on:
+  pull_request_target:
+    types: [closed]
+    paths:
+      - "docs/**/*"
+      - "public/images/**/*"
+
+jobs:
+  teardown:
+    # Do not edit or modify the repo name condition; see warning above
+    if: |
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/set-up-ibm-cloud
+        id: set-up-cloud
+        with:
+          env_name: Preview
+          ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
+          ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
+      - name: Remove Code Engine preview application
+        run: |
+          ibmcloud ce project select -n qiskit-docs-preview
+          ibmcloud ce application delete \
+            --name "${{ steps.set-up-cloud.outputs.app_name }}" \
+            --wait \
+            --ignore-not-found \
+            --force
