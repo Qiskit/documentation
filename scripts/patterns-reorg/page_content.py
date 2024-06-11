@@ -17,13 +17,15 @@ def map_content(index: str) -> str:
     intro = dedent(
         """\
 ---
-title: Map problem to circuits
+title: Map problem to quantum circuits and operators
 description: Take a classical problem and map it to run on a quantum computer.
 ---
 
-# Map problem to circuits
+# Map problem to quantum circuits and operators
 
-The "map problem to circuits" step of a Qiskit pattern describes how a user starts with a classical
+![../\_images/pattern-1.svg](/images/pattern-1.svg)
+
+The "map problem to quantum circuits and operators" step of a Qiskit pattern describes how a user starts with a classical
 problem and figures out how to map it to a quantum computer.
 
 For example, in applications such as chemistry and quantum simulation, this step generally involves 
@@ -39,7 +41,7 @@ specifying observables would use the `Estimator` and could provide many error mi
 
 The output of this step in a Qiskit pattern is normally a collection of circuits or quantum operators.
 
-## Guides
+## Guides for mapping problems to quantum circuits and operators 
 """
     )
     return f"{intro}{index}\n"
@@ -55,6 +57,8 @@ description: Post-process the results obtained by running on a quantum computer.
 
 # Post-process results
 
+![../\_images/pattern-4.svg](/images/pattern-4.svg)
+
 This final "post-process results" step of a Qiskit pattern involves stitching the outputs from
 the prior step back together to obtain the desired result. This can involve a range of classical
 data processing steps such as visualising results, readout error mitigation techniques, marginalizing
@@ -62,7 +66,7 @@ quasi-probability distributions to ascertain results on smaller sets of qubits o
 properties of the problem, such as total spin, parity, or particle conservation by removing
 unphysical observables.
 
-## Guides
+## Guides for post-processing results
 """
     )
     return f"{intro}{index}\n"
@@ -78,6 +82,8 @@ description: Optimize abstract circuits and operators so they can run on quantum
 
 # Optimize for target hardware
 
+![../\_images/pattern-2.svg](/images/pattern-2.svg)
+
 In the "optimize for target hardware" step of a Qiskit pattern, you take the abstract circuits
 (or operators) produced from the map step and perform a series of optimizations on them. This
 may include mapping the route and layout of the circuit to physical qubit hardware, converting
@@ -90,7 +96,7 @@ An ISA circuit is one that only consists of gates understood by the target hardw
 any multi-qubit gates needed to obey any connectivity constraints (coupling map). Only ISA circuits
 can be run on IBM hardware using IBM Qiskit Runtime.
 
-## Guides
+## Guides for optimizing for target hardware
 """
     )
     return f"{intro}{index}\n"
@@ -105,6 +111,8 @@ description: Run circuits on hardware and return output from a quantum computer.
 ---
 
 # Execute on hardware
+
+![../\_images/pattern-3.svg](/images/pattern-3.svg)
 
 The "execute on hardware" step of a Qiskit pattern involves running your circuits on hardware
 and produces the outputs of the quantum computation. The ISA circuits produced in
@@ -122,7 +130,7 @@ will be different. If using the Sampler, the output will be per-shot measurement
 in the form of bitstrings. If using the Estimator, the output will be
 expectation values of observables corresponding to physical quantities or cost functions.
 
-## Guides
+## Guides for executing on hardware
 """
     )
     return f"{intro}{index}\n"
@@ -169,7 +177,7 @@ During this step abstract circuits must be transpiled to Instruction Set Archite
 
 ## Execute on target hardware
 
-This step involes running you circuits on hardware and produces the outputs of the quantum computation. The ISA circuits produced in the previous step, can be executed using either a Sampler or Estimator Primitive from Qiskit Runtime, initialised locally on your computer or from a cluster or other heterogeneous compute environment. These may be executed in a Batch, which allows parallel transpilation for classical computational efficiency, or a Session, which allows iterative tasks to be implemented efficiently without queuing delays. During this step there is also the option to configure certain error suppression and mitigation techniques provided by Qiskit Runtime.
+This step involes running your circuits on hardware and produces the outputs of the quantum computation. The ISA circuits produced in the previous step, can be executed using either a Sampler or Estimator Primitive from Qiskit Runtime, initialised locally on your computer or from a cluster or other heterogeneous compute environment. These may be executed in a Batch, which allows parallel transpilation for classical computational efficiency, or a Session, which allows iterative tasks to be implemented efficiently without queuing delays. During this step there is also the option to configure certain error suppression and mitigation techniques provided by Qiskit Runtime.
 
 Depending on whether you are using the Sampler or Estimator primitive, the outcome of this step will be different. If using the Sampler the output will be per-shot measurements in the form of bitstrings. If using the Estimator the output will be expectation values of observables corresponding to physical quantities or cost functions.
 
@@ -183,6 +191,14 @@ This final step involves stitching the outputs from the prior step back together
 
 
 As we move from bespoke circuit construction to utility-scale workflows, the flexibility and ease with which Qiskit Patterns allows one to compose the different steps of the pattern opens quantum computing to a wide variety of applications and techniques for easy use by quantum computational scientists.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  Explore each step in a Qiskit pattern in more detail, starting with [Map problem to quantum circuits and operators](/map-problem-to-circuits).
+  -  Run a full example of a Qiskit pattern in the [CHSH Inequality tutorial](https://learning.quantum.ibm.com/tutorial/chsh-inequality)
+</Admonition>
+
 """
     )
 
@@ -192,7 +208,7 @@ def index_page_content() -> str:
         """\
 ---
 title: Introduction to Qiskit
-description: TODO - 50+ characters long to ignore metadata check for now!
+description: What is Qiskit? This document provides an introduction to the Qiskit stack.
 ---
 
 # Introduction to Qiskit
@@ -211,15 +227,15 @@ The Qiskit SDK (package name [`qiskit`](https://pypi.org/project/qiskit/)) is an
 
 Some of the most useful features of the Qiskit SDK include:
 
-- Circuit building tools ([`qiskit.circuit`](/api/qiskit/circuit)) - For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects. 
+- **Circuit building tools** ([`qiskit.circuit`](/api/qiskit/circuit)) - For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects. 
 
-- Circuit library ([`qiskit.circuit.library`](/api/qiskit/circuit_library)) - A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
+- **Circuit library** ([`qiskit.circuit.library`](/api/qiskit/circuit_library)) - A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
 
-- Quantum Information ([`qiskit.quantum_info`](/api/qiskit/quantum_info)) - A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyse fidelity of outputs from primitives queries.
+- **Quantum Info library** ([`qiskit.quantum_info`](/api/qiskit/quantum_info)) - A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyse fidelity of outputs from primitives queries.
 
-- Transpiler ([`qiskit.transpiler`](/api/qiskit/transpiler)) - For transforming and adapting quantum circuits to suit specific device topology and/or optimizing for execution on real quantum systems.
+- **Transpiler** ([`qiskit.transpiler`](/api/qiskit/transpiler)) - For transforming and adapting quantum circuits to suit specific device topology and/or optimizing for execution on real quantum systems.
 
-- Primitives ([`qiskit.primitives`](/api/qiskit/primitives)) - The module that contains the base definitions and reference implementations of the `Sampler` and `Estimator` primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
+- **Primitives** ([`qiskit.primitives`](/api/qiskit/primitives)) - The module that contains the base definitions and reference implementations of the `Sampler` and `Estimator` primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
 
 
 ## Qiskit Runtime
@@ -257,5 +273,12 @@ Some popular projects in the Qiskit ecosystem include:
 - **Qiskit TOQM** `qiskit-toqm` - a transpiler plugin for a routing method that uses the Time-Optimal Qubit Mapping (TOQM) algorithm. Maintained by IBM Quantum.
 
 You can find a catalog of projects in the [Qiskit ecosystem page](https://qiskit.github.io/ecosystem/), as well as information about how to nominate your own project.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  [Install the Qiskit SDK and Qiskit Runtime](/guides/install-qiskit).
+  -  Run your first quantum program with the [Hello World](/guides/hello-world) guide.
+</Admonition>
 """
     )
