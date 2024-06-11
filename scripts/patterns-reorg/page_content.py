@@ -214,9 +214,9 @@ description: What is Qiskit? This document provides an introduction to the Qiski
 # Introduction to Qiskit
 
 
-The name "Qiskit" is a general term referring to a collection of software for executing programs on quantum computers. Most notably among these software tools is the open-source Qiskit SDK, and the runtime environment (accessed using Qiskit Runtime) through which you can execute workloads on IBM&reg; quantum computers. As quantum technology evolves, so does Qiskit, with new capabilities released every year which expand this core collection of quantum software. 
+The name "Qiskit" is a general term referring to a collection of software for executing programs on quantum computers. Most notably among these software tools is the open-source Qiskit SDK, and the runtime environment (accessed using Qiskit Runtime) through which you can execute workloads on IBM&reg; quantum computers. As quantum technology evolves, so does Qiskit, with new capabilities released every year that expand this core collection of quantum software. 
 
-In addition, there are many open-source projects that are part of the broader Qiskit ecosystem. These software tools are not part of Qiskit itself, but rather interface with Qiskit and can provide valuable additional functionality.
+In addition, many open-source projects are part of the broader Qiskit ecosystem. These software tools are not part of Qiskit itself, but rather interface with Qiskit and can provide valuable additional functionality.
 
 ![../\_images/patterns.svg](/images/patterns.svg)
 
