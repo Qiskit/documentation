@@ -227,13 +227,13 @@ The Qiskit SDK (package name [`qiskit`](https://pypi.org/project/qiskit/)) is an
 
 Some of the most useful features of the Qiskit SDK include:
 
-- **Circuit building tools** ([`qiskit.circuit`](/api/qiskit/circuit)) - For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects. 
+- **Circuit-building tools** ([`qiskit.circuit`](/api/qiskit/circuit)) - For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects. 
 
 - **Circuit library** ([`qiskit.circuit.library`](/api/qiskit/circuit_library)) - A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
 
-- **Quantum Info library** ([`qiskit.quantum_info`](/api/qiskit/quantum_info)) - A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyse fidelity of outputs from primitives queries.
+- **Quantum info library** ([`qiskit.quantum_info`](/api/qiskit/quantum_info)) - A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyse fidelity of outputs from primitives queries.
 
-- **Transpiler** ([`qiskit.transpiler`](/api/qiskit/transpiler)) - For transforming and adapting quantum circuits to suit specific device topology and/or optimizing for execution on real quantum systems.
+- **Transpiler** ([`qiskit.transpiler`](/api/qiskit/transpiler)) - For transforming and adapting quantum circuits to suit specific device topology, and optimizing for execution on real quantum systems.
 
 - **Primitives** ([`qiskit.primitives`](/api/qiskit/primitives)) - The module that contains the base definitions and reference implementations of the `Sampler` and `Estimator` primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
 
