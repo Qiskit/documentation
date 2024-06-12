@@ -24,25 +24,43 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 <span id="options-structure"></span>
 ### Structure
 
-When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`.
-
-
-
+When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [Pass options to a primitive](#pass-options) section for full details.
 
 <span id="options-defaults"></span>
 ### Defaults
 
-The tables in the [Options classes summary section](#options-classes) lists the default values.
+For V2 primitives, if you do not specify a value for an option, it is given a special value of `Unset` and the server default value is used. Thus, the default value will be the same regardless of your code version.
+For V1 primitives, if you do not specify a value for an option, the Qiskit Runtime client's default value is used. In V1, the default value was dependant on the code version.
 
-For V2 primitives, if you do not specify a value for an option, it is given a special value of `Unset` and the server default value is used. Thus, the default value will be the same, regardless of your code version.
-For V1 primitives, if you do not specify a value for an option, the Qiskit Runtime client's default value is used.
+The tables in the [Options classes summary section](#options-classes) lists the default values.
 
 <span id="options-precedence"></span>
 ### Precedence rules
 
-option precedence rules
+There are several ways to set options.  If you set different values for the same option in multiple places, this is the order of precedence:
 
-**Some settings override other settings.  For example; if you set default_shots, it overrides any value set for default_precision.  Do we want to get into that much detail? **
+1. Any options set in `run()` are used for that execution. See the [Run() method](#run-method) section for full details.
+2. Any options set after primitive initialization.
+3. Any options set during primitive initialization.
+
+In the following example, these values would be used for the `estimator.run` job: `shots = 128` and `optimization_level = 1`.
+
+``` python
+# Setting options during primitive initialization
+estimator = Estimator(backend, options={"optimization_level": 0})
+
+# Setting options after primitive initialization
+# This uses auto complete.
+estimator.options.optimization_level = 1
+estimator.options.default_shots = 4000
+
+# Sample two circuits at 128 shots each.
+estimator.run([circuit1, circuit2], shots=128)
+```
+
+<Admonition type="note">
+Some settings override other settings.  For example; if you set `default_shots`, it overrides any value set for `default_precision`. See the [API documentation](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options) for the details about every option.
+</Admonition>
 
 <span id="options-classes"></span>
 ## Options classes summary
@@ -106,7 +124,7 @@ Scroll to see the full table.
 | execution            |                          |                         |                                                                                                         |                           |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.                                | Given by `backend.default_rep_delay`.|
-| max_execution_time   |                          |                         |                                                                                         | `Unset`                         |
+| max_execution_time   |                          |                         | integer number of seconds in the range (0, 5000]                                                                   | `10800` (3 hours)                         |
 | optimization_level   |                          |                         | `0`/`1`                                                                                       | `1`                         |
 | resilience           | LayerNoiseLearning       |                         | `True`/`False`                                                                                | `True`                      |
 |                      |                          | max_layers_to_learn     |  `None`/ integer                                                                            | `4`                    |
@@ -114,8 +132,8 @@ Scroll to see the full table.
 |                      |                          | num_randomizations      |   integer                                                                                |  `32`                    |
 |                      |                          | layer_pair_depths       |                                                                                           | `(0, 1, 2, 4, 16, 32)`              |
 |                      | measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
-|                      | measure_noise_learning   | num_randomizations      |                                                                                           | `32`                      |
-|                      |                          | shots_per_randomization |                                                                                           | 'auto'                    |
+|                      | measure_noise_learning   | num_randomizations      |  integer                                                                             | `32`                      |
+|                      |                          | shots_per_randomization |  integer                                                                                 | 'auto'                    |
 |                      | pec                      | max_overhead            |  `None`/ integer                                                                          | `100`                      |
 |                      |                          | noise_gain              |  `auto`/ float in the range `[0, 1)`                                                     | `auto`                    |
 |                      | pec_mitigation           |                         | `True`/`False`                                                                           | `False`                      |
@@ -127,12 +145,17 @@ Scroll to see the full table.
 | simulator            |                          |                         |                                                                                   |                     |
 |                      | noise_model              |                         |                                                                                           | `Unset`                      |
 |                      | seed_simulator           |                         |                                                                                           | `Unset`                    |
-|                      | coupling_map             |                         |                                                                                           | `Unset`                    |
-|                      | basis_gates              |                         |                                                                                          | `Unset`            |
+|                      | coupling_map             |                         |  List where each entry specifies a directed two-qubit interaction, for example: [[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]     | `Unset`                    |
+|                      | basis_gates              |                         |  Set of single- and two-qubit gates that provide a universal gates set, meaning that any quantum operation can be decomposed into those gates. Example: `['ecr', 'x', 'sx', 'rz']` | Click the appropriate system on the [Systems page](https://quantum.ibm.com/services/resources) to open its details page. |
+| transpilation        | skip_transpilation       |                         | `True`/`False`                                                                                      | `False`                     |
+|                      | initial_layout           |                         |                                                                                         |                         |
+|                      | layout_method            |                         |  `trivial`/`dense`/`noise_adaptive`/`sabre`                                        | `Unset`                    |
+|                      | routing_method           |                         |   `basic`/`lookahead`/`stochastic`/`sabre`/`none`                                       | `Unset`                    |
+|                      | approximation_degree     |                         | float in the range [0, 1]                               | `Unset`            |
 | twirling             | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
 |                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
-|                      | num_randomizations       |                         |                                                                                           | `'auto'`                    |
-|                      | shots_per_randomization  |                         |                                                                                           | `'auto'`                    |
+|                      | num_randomizations       |                         |  `auto`/ integer                                                                             | `'auto'`                    |
+|                      | shots_per_randomization  |                         |   `auto`/ integer                                                                           | `'auto'`                    |
 |                      | strategy                 |                         | `'active'`<br />`'active-circuit'`<br />`'active-accum'`<br />`'all'`                                | `'active-accum'`            |
   </TabItem>
 
@@ -225,6 +248,7 @@ options = Options()
 options.resilience_level = 1
 options.execution.shots = 2048
 ```
+<span id="pass-options"></span>
 ## Pass options to a primitive
 
 ### Options class
@@ -291,6 +315,7 @@ estimator = Estimator(backend, options={"resilience_level": 2})
   </TabItem>
 </Tabs>
 
+<span id="run-method"></span>
 ### Run() method
 
 You can pass in options by using the `run()` method. This overwrites the options you specified when creating the `Estimator` or `Sampler` instance for that particular execution.
