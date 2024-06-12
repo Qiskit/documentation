@@ -92,6 +92,7 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
     "0.20/",
     "0.21/",
     "0.22/",
+    "0.23/",
   ].map((vers) => [
     `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
     [
