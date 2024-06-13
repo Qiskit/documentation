@@ -58,9 +58,29 @@ estimator.options.default_shots = 4000
 estimator.run([circuit1, circuit2], shots=128)
 ```
 
-<Admonition type="note">
-Some settings override other settings.  For example; if you set `default_shots`, it overrides any value set for `default_precision`. See the [API documentation](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options) for the details about every option.
-</Admonition>
+#### Special cases
+
+The `default_shots` and `resilience_level` options require special consideration:
+
+If you set `default_shots`, it overrides any value set for `default_precision`.
+
+The `resilience_level` is used to set a base configuration on any relevant options, and than any other user-specified options override that configuration. So it would be possible to undo the effect of setting the resilience level by reversing all of its settings manually.
+
+In the following example, setting the resilience level to 0 does not turn off zne_mitigation because `estimator.options.resilience.zne_mitigation = True` overrides the relevent setup from `estimator.options.resilience_level = 0`.
+
+``` python
+from qiskit_ibm_runtime import EstimatorV2, QiskitRuntimeService
+from qiskit import QuantumCircuit
+
+service = QiskitRuntimeService()
+backend = service.backend("ibm_auckland")
+
+estimator = EstimatorV2(backend)
+
+estimator.options.default_shots = 100
+estimator.options.resilience_level = 0
+estimator.options.resilience.zne_mitigation = True
+```
 
 <span id="options-classes"></span>
 ## Options classes summary
