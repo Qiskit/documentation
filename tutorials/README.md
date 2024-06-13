@@ -31,7 +31,7 @@ One potential gotcha is that the learning platform ignores the top-level
 heading of the notebook. These headings are only included in the notebook for
 writers' convenience. If you want to change the title of a notebook, find the
 page on https://learning-api.quantum.ibm.com/admin and change its title
-there. Make sure to update the title in the notebook too.
+there. Make sure to update the title in the notebook too.  Because the title determines the URL, inform someone on the infrastructure team so they can create a redirect. 
 
 ## Add new tutorials and deploy
 
