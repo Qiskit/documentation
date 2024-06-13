@@ -24,7 +24,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 <span id="options-structure"></span>
 ### Structure
 
-When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [Pass options to a primitive](#pass-options) section for full details.
+When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [Set primitive options](#pass-options) section for full details.
 
 <span id="options-defaults"></span>
 ### Defaults
@@ -150,7 +150,7 @@ Scroll to see the full table.
 |                      |                          | max_layers_to_learn     |  `None`/ integer                                                                            | `4`                    |
 |                      |                          | shots_per_randomization |  integer                                                                         |  `128`                    |
 |                      |                          | num_randomizations      |   integer                                                                                |  `32`                    |
-|                      |                          | layer_pair_depths       |                                                                                           | `(0, 1, 2, 4, 16, 32)`              |
+|                      |                          | layer_pair_depths       |  list[int] of 2-10 values in the range [0, 200]                                              | `(0, 1, 2, 4, 16, 32)`              |
 |                      | measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
 |                      | measure_noise_learning   | num_randomizations      |  integer                                                                             | `32`                      |
 |                      |                          | shots_per_randomization |  integer                                                                                 | 'auto'                    |
@@ -266,7 +266,9 @@ options.resilience_level = 1
 options.execution.shots = 2048
 ```
 <span id="pass-options"></span>
-## Pass options to a primitive
+## Set primitive options
+
+You can set optitons in an options class, when initializing the primitive, when calling the `run()` method, or any combination of those.
 
 ### Options class
 
@@ -417,8 +419,6 @@ For more information about the primitive options, refer to the
 [Options class API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options).
 </TabItem>
 </Tabs>
-
-
 
 
 ### Error suppression
