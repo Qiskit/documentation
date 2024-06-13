@@ -99,7 +99,6 @@ GET_STARTED_CHILDREN = [
             ),
         ),
     ),
-    Entry("Latest updates", external_url="/announcements/product-updates"),
 ]
 
 CIRCUIT_CONSTRUCTION = (
