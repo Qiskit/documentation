@@ -44,6 +44,8 @@ const _PATTERNS_REORG_IGNORES = [
   "/run/configure-error-mitigation",
   "/start/install#qiskit-versioning",
   "/start/configure-qiskit-local",
+  "/run/primitives-get-started#3-initialize-the-qiskit-runtime-sampler",
+  "/run/primitives-get-started#3-initialize-qiskit-runtime-estimator",
 ];
 
 const ALWAYS_IGNORED_URLS__EXPECTED = [
