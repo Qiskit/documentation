@@ -130,8 +130,10 @@ export class API {
   async #getEnglishTranslationId(tutorialId: string): Promise<number> {
     const response = await this.client.request(
       readItem("tutorials", tutorialId, {
-        // @ts-ignore
-        fields: ["translations.id", "translations.languages_code"],
+        fields: [
+          { translations: ["id"] },
+          { translations: ["languages_code"] },
+        ],
       }),
     );
     if (!response.translations) {

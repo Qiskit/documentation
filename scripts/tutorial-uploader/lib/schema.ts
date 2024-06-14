@@ -33,6 +33,7 @@ export interface Tutorial {
   reading_time: number;
   category: string; // This is the uuid of the category.
   catalog_featured: boolean;
+  topics: number | TutorialsTopicsRelation;
   // API can return either the translation IDs or the translation objects
   // depending on the request.
   translations: number[] | Translation[];

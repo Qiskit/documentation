@@ -47,8 +47,9 @@ describe("Tutorial uploader API", () => {
     expect(tutorialId).toBeTruthy();
 
     const retrievedTutorial = await api.client.request(
-      // @ts-ignore
-      readItem("tutorials", tutorialId, { fields: ["*", "translations.*"] }),
+      readItem("tutorials", tutorialId as string, {
+        fields: ["*", { translations: ["*"] }],
+      }),
     );
     expect(retrievedTutorial).toMatchObject({
       slug: MOCK_TUTORIAL.slug,
@@ -96,8 +97,9 @@ describe("Tutorial uploader API", () => {
 
     // Retrieve and check
     const retrievedTutorial = await api.client.request(
-      // @ts-ignore
-      readItem("tutorials", tutorialId, { fields: ["*", "topics.*"] }),
+      readItem("tutorials", tutorialId as string, {
+        fields: ["*", { topics: ["*"] }],
+      }),
     );
     const topicIds = (await Promise.all(
       modifiedTutorial.topics.map((name) =>
@@ -114,8 +116,8 @@ describe("Tutorial uploader API", () => {
         "name",
         modifiedTutorial.category,
       ),
-      topics: topicIds.map((name) => {
-        return { tutorials_topics_id: name };
+      topics: topicIds.map((id) => {
+        return { tutorials_topics_id: id };
       }),
       editors: [],
       allowed_email_domains: null,
@@ -125,8 +127,9 @@ describe("Tutorial uploader API", () => {
 
     const retrievedTranslation = (
       await api.client.request(
-        // @ts-ignore
-        readItem("tutorials", tutorialId, { fields: ["translations.*"] }),
+        readItem("tutorials", tutorialId as string, {
+          fields: [{ translations: ["*"] }],
+        }),
       )
     ).translations;
     expect(retrievedTranslation).toMatchObject([

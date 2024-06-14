@@ -46,10 +46,8 @@ export async function readTutorialData(
 }
 
 /* Runtime type-checking to make sure YAML file is valid */
-function assertIsLocalTutorialData(
-  obj: unknown,
-): asserts obj is LocalTutorialData {
-  for (let [attr, isCorrectType] of [
+function assertIsLocalTutorialData(obj: any): asserts obj is LocalTutorialData {
+  let propertyValidators: [string, (value?: any) => value is any][] = [
     ["title", isString],
     ["short_description", isString],
     ["slug", isString],
@@ -59,8 +57,8 @@ function assertIsLocalTutorialData(
     ["topics", Array.isArray],
     ["reading_time", isNumber],
     ["catalog_featured", isBoolean],
-  ]) {
-    // @ts-ignore
+  ];
+  for (let [attr, isCorrectType] of propertyValidators) {
     if (!isCorrectType(obj[attr])) {
       throw new Error(
         "The following entry in `learning-api.conf.yaml` is invalid.\n\n" +
