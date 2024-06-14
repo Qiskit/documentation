@@ -122,6 +122,9 @@ estimator.options.resilience.zne_mitigation = True
 
 </Tabs>
 
+<span id="options-table"></span>
+### Available options
+
 <Admonition type="caution" title="Important">
 Scroll to see the full table.
 </Admonition>
@@ -236,7 +239,26 @@ Scroll to see the full table.
 </Tabs>
 
 
+<span id="options-compatibility-table"></span>
+### Options compatibility
 
+Due to differences in the device compilation process, certain runtime features cannot be used together in a single job. See the following table for details on which features are compatible with each other:
+
+Key:
+- ![Incompatible](/images/run/runtime-options-overview/error.svg) - These features cannot be used together.
+- ![Compatible](/images/run/runtime-options-overview/checkmark.svg) - These features can be used together.
+- ![Limitations](/images/run/runtime-options-overview/warning.svg) - - These features can be used together but with limitations.
+
+|                          | fractional gates | dynamic circuits                                                | Gate-folding ZNE                   | PEA | PEC                                                             | dynamical decoupling                                              | pulse gates (Eagle only)                                                                            | gate twirling                                                        |
+|--------------------------|------------------|-----------------------------------------------------------------|------------------------------------|-----|-----------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|----------------------------------------------------------------------|
+| fractional gates         |                  | ![Incompatible](/images/run/runtime-options-overview/error.svg) | ✅ IH comment                       | 🚫   | 🚫                                                               | ✅                                                                 | ✅                                                                                                   | 🚫                                                                    |
+| dynamic circuits         | 🚫                |                                                                 | 🚫                                  | 🚫   | 🚫                                                               | 🚫                                                                 | 🚫                                                                                                   | ✅ (non conditional gates only)                                       |
+| Gate-folding ZNE         | ✅                | 🚫                                                               |                                    | 🚫   | ![Incompatible](/images/run/runtime-options-overview/error.svg) | ![Compatible](/images/run/runtime-options-overview/checkmark.svg) | ![Limitations](/images/run/runtime-options-overview/warning.svg) - Might not work with custom gates | ![Compatible](/images/run/runtime-options-overview/checkmark.svg)    |
+| PEA                      | 🚫                | 🚫                                                               | 🚫                                  |     | 🚫                                                               | ✅                                                                 | 🚫                                                                                                   | ✅                                                                    |
+| PEC                      | 🚫                | 🚫                                                               | 🚫                                  | 🚫   |                                                                 | ✅                                                                 | 🚫                                                                                                   | ✅                                                                    |
+| dynamical decoupling     | ✅                | 🚫                                                               | ✅                                  | ✅   | ✅                                                               |                                                                   | ✅                                                                                                   | ✅                                                                    |
+| pulse gates (Eagle only) | ✅                | 🚫                                                               | ⚠️ (may not work with custom gates) | 🚫   | 🚫                                                               | ✅                                                                 |                                                                                                     | ~✅ IH comment~<br><br>⚠️ (does not work with non-Clifford entanglers) |
+| gate twirling            | 🚫                | ✅ (non conditional gates only)                                  | ✅                                  | ✅   | ✅                                                               | ✅                                                                 | ⚠️ (does not work with non-Clifford entanglers)                                                      |                                                                      |
 
 ## V2 changes
 Options are specified differently in the V2 primitives in these ways:
