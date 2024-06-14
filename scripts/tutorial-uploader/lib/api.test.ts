@@ -62,7 +62,6 @@ describe("Tutorial uploader API", () => {
         MOCK_TUTORIAL.category,
       ),
       topics: [],
-      editors: [],
       allowed_email_domains: null,
       required_instance_access: null,
       sort: null,
@@ -119,7 +118,6 @@ describe("Tutorial uploader API", () => {
       topics: topicIds.map((id) => {
         return { tutorials_topics_id: id };
       }),
-      editors: [],
       allowed_email_domains: null,
       required_instance_access: null,
       sort: null,
