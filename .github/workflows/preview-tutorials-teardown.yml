@@ -1,0 +1,47 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+# WARNING: This event type uses secrets even when triggered by an untrusted PR.
+# Do NOT checkout the PR or access any user-defined inputs (such as the title) as it could be untrusted.
+# For more information, see https://securitylab.github.com/research/github-actions-preventing-pwn-requests/.
+# This event type runs on the target branch (rather than a merge commit of the
+# target and PR branches), so you'll need to test it out in a fork.
+
+name: Tutorial preview teardown
+
+on:
+  pull_request_target:
+    types: [closed]
+    paths:
+      - "tutorials/**/*"
+
+jobs:
+  teardown:
+    # Do not edit or modify the repo name condition; see warning above
+    if: |
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    environment: "Learning platform (production)"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Delete tutorial previews
+        run: npm run tutorial:teardown-preview -- --prNumber ${{ github.event.number }}
+        env:
+          LEARNING_API_TOKEN: ${{ secrets.LEARNING_API_TOKEN }}
+          LEARNING_API_URL: ${{ vars.LEARNING_API_URL }}

@@ -26,6 +26,7 @@ export interface LocalTutorialData {
   topics: string[];
   reading_time: number;
   catalog_featured: boolean;
+  required_instance_access?: string;  // should only be set by PR preview script
 }
 
 function relativiseLocalPath(

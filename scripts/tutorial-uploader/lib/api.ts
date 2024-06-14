@@ -236,6 +236,7 @@ export class API {
           short_description: localData.short_description,
         },
       ],
+      required_instance_access: localData.required_instance_access
     };
 
     await this.client.request(updateItem("tutorials", tutorialId, newTutorial));
