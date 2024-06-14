@@ -131,7 +131,7 @@ Scroll to see the full table.
 | Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
 |----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
 | default_shots        |                          |                         |  integer in the range[0, `backend.max_shots`]                                             | `4096`                      |
-| default_precision    |                          |                         |                                                                                           | `0.015625 (1 / sqrt(4096))`     |
+| default_precision    |                          |                         |  float > 0                                                                                        | `0.015625 (1 / sqrt(4096))`     |
 | dynamical_decoupling |                          |                         |                                                                                           |   `FieldInfo(annotation=Union[DynamicalDecouplingOptions, Dict], required=False, default_factory=DynamicalDecouplingOptions)`                         |
 |                      | enable                   |                         | `True`/`False`                                                             |    `False`           |
 |                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
@@ -147,18 +147,18 @@ Scroll to see the full table.
 | max_execution_time   |                          |                         | integer number of seconds in the range (0, 5000]                                                                   | `10800` (3 hours)                         |
 | optimization_level   |                          |                         | `0`/`1`                                                                                       | `1`                         |
 | resilience           | LayerNoiseLearning       |                         | `True`/`False`                                                                                | `True`                      |
-|                      |                          | max_layers_to_learn     |  `None`/ integer                                                                            | `4`                    |
-|                      |                          | shots_per_randomization |  integer                                                                         |  `128`                    |
-|                      |                          | num_randomizations      |   integer                                                                                |  `32`                    |
+|                      |                          | max_layers_to_learn     |  `None`/ integer >= 1                                                                            | `4`                    |
+|                      |                          | shots_per_randomization |  integer >= 1                                                                         |  `128`                    |
+|                      |                          | num_randomizations      |   integer >= 1                                                                                |  `32`                    |
 |                      |                          | layer_pair_depths       |  list[int] of 2-10 values in the range [0, 200]                                              | `(0, 1, 2, 4, 16, 32)`              |
 |                      | measure_mitigation       |                         | `True`/`False`                                                                                | `True`                      |
-|                      | measure_noise_learning   | num_randomizations      |  integer                                                                             | `32`                      |
+|                      | measure_noise_learning   | num_randomizations      |  integer >= 1 (Note that this value strongly influences execution time.)                                                                             | `32`                      |
 |                      |                          | shots_per_randomization |  integer                                                                                 | 'auto'                    |
-|                      | pec                      | max_overhead            |  `None`/ integer                                                                          | `100`                      |
+|                      | pec                      | max_overhead            |  `None`/ integer >1                                                                      | `100`                      |
 |                      |                          | noise_gain              |  `auto`/ float in the range `[0, 1)`                                                     | `auto`                    |
 |                      | pec_mitigation           |                         | `True`/`False`                                                                           | `False`                      |
 |                      | zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
-|                      | zne                      | noise_factors           |                                                                                           | `(1, 3, 5)`                 |
+|                      | zne                      | noise_factors           |   list of floats; each float >= 1                                                                   | `(1, 3, 5)`                 |
 |                      |                          | extrapolator            | `'exponential'`<br />`'linear'`<br />`'double_exponential'`<br />`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
 | resilience_level     |                          |                         | `0`/`1`/`2`                                                                                     | `1`                         |
 | seed_estimator       |                          |                         |  integer                                                                                |     `None`               |
@@ -171,8 +171,8 @@ Scroll to see the full table.
 |                      | initial_layout           |                         |                                                                                         |                         |
 | twirling             | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
 |                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
-|                      | num_randomizations       |                         |  `auto`/ integer                                                                             | `'auto'`                    |
-|                      | shots_per_randomization  |                         |   `auto`/ integer                                                                           | `'auto'`                    |
+|                      | num_randomizations       |                         |  `auto`/ integer >= 1 (Note that this value strongly influences execution time.)            | `'auto'`                    |
+|                      | shots_per_randomization  |                         |   `auto`/ integer >= 1.  The maximum depends on the maximum shots allowed by the system. To find this value, run `backend.max_shots`.                                                                      | `'auto'`                    |
 |                      | strategy                 |                         | `'active'`<br />`'active-circuit'`<br />`'active-accum'`<br />`'all'`                                | `'active-accum'`            |
   </TabItem>
 
