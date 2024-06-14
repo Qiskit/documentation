@@ -33,9 +33,9 @@ async function getIndexEntries(indexPage: string): Promise<string[]> {
       continue;
     }
 
-    const module = extractPageSlug(line);
-    if (module) {
-      result.push(module);
+    const slug = extractPageSlug(line);
+    if (slug) {
+      result.push(slug);
     }
   }
 
@@ -47,7 +47,8 @@ function extractPageSlug(text: string): string | undefined {
   // Ex: '* [Circuit library](./circuit-library)'.
   const match = re.exec(text);
   if (!match) {
-    return;
+    // Nested sections don't have any link
+    return undefined;
   }
   const pageSlug = match[1];
   if (pageSlug.startsWith("http") || pageSlug.startsWith("/")) {
@@ -78,21 +79,54 @@ async function getToolsTocEntriesToCheck(): Promise<string[]> {
   return toolsPages.filter((page) => !IGNORE_URL.includes(page));
 }
 
-async function deduplicateEntriesAndGetErrors(
+async function getDeduplicateEntriesAndAddErrors(
   src: string,
-  entries: string[],
-): Promise<[string[], string[]]> {
-  const toolsPages: string[] = [];
-  const errors = [];
+  errors: string[],
+): Promise<string[]> {
+  const entries =
+    src == TOC_PATH
+      ? await getToolsTocEntriesToCheck()
+      : await getIndexEntries(src);
+  const deduplicatedPages: string[] = [];
+
   for (const entry of entries) {
-    if (toolsPages.includes(entry)) {
+    if (deduplicatedPages.includes(entry)) {
       errors.push(`❌ ${src}: The entry ${entry} is duplicated`);
     } else {
-      toolsPages.push(entry);
+      deduplicatedPages.push(entry);
     }
   }
 
-  return [toolsPages, errors];
+  return deduplicatedPages;
+}
+
+function addExtraIndexPagesErrors(
+  indexPage: string,
+  indexEntries: string[],
+  toolsEntries: string[],
+  errors: string[],
+): void {
+  const ExtraIndexPages = indexEntries.filter(
+    (page) => !toolsEntries.includes(page),
+  );
+  if (ExtraIndexPages.length > 0) {
+    ExtraIndexPages.forEach((page) =>
+      errors.push(
+        `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
+      ),
+    );
+  }
+}
+
+function addExtraToolsEntriesErrors(
+  toolsEntries: string[],
+  errors: string[],
+): void {
+  if (toolsEntries.length > 0) {
+    toolsEntries.forEach((page) =>
+      errors.push(`❌ The entry ${page} is not present on any index page`),
+    );
+  }
 }
 
 function maybePrintErrorsAndFail(
@@ -100,16 +134,20 @@ function maybePrintErrorsAndFail(
   extraIndexEntriesErrors: string[],
   extraToolsEntriesErrors: string[],
 ): void {
+  let allGood = true;
+
   if (duplicatesErrors.length > 0) {
     duplicatesErrors.forEach((error) => console.error(error));
     console.error(`\nRemove all duplicated entries on the indices.`);
     console.error("--------\n");
+    allGood = false;
   }
 
   if (extraIndexEntriesErrors.length > 0) {
     extraIndexEntriesErrors.forEach((error) => console.error(error));
     console.error(`\nMake sure all pages have an entry in the Tools menu.`);
     console.error("--------\n");
+    allGood = false;
   }
 
   if (extraToolsEntriesErrors.length > 0) {
@@ -118,13 +156,10 @@ function maybePrintErrorsAndFail(
       "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORE_URL` list at the beginning of `/scripts/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
     );
     INDEX_PAGES.forEach((index) => console.error(`\t➡️  ${index}`));
+    allGood = false;
   }
 
-  if (
-    duplicatesErrors.length > 0 ||
-    extraIndexEntriesErrors.length > 0 ||
-    extraToolsEntriesErrors.length > 0
-  ) {
+  if (!allGood) {
     process.exit(1);
   }
 }
@@ -143,43 +178,28 @@ async function main() {
   const extraIndexEntriesErrors: string[] = [];
   const extraToolsEntriesErrors: string[] = [];
 
-  const allToolsEntries = await getToolsTocEntriesToCheck();
-  let [toolsEntries, toolsErrors] = await deduplicateEntriesAndGetErrors(
+  let toolsEntries = await getDeduplicateEntriesAndAddErrors(
     TOC_PATH,
-    allToolsEntries,
+    duplicatesErrors,
   );
-  duplicatesErrors.push(...toolsErrors);
 
   for (const indexPage of INDEX_PAGES) {
-    const allIndexEntries = await getIndexEntries(indexPage);
-    let [indexEntries, indexErrors] = await deduplicateEntriesAndGetErrors(
+    const indexEntries = await getDeduplicateEntriesAndAddErrors(
       indexPage,
-      allIndexEntries,
+      duplicatesErrors,
     );
-    duplicatesErrors.push(...indexErrors);
-
-    const ExtraIndexPages = indexEntries.filter(
-      (page) => !toolsEntries.includes(page),
+    addExtraIndexPagesErrors(
+      indexPage,
+      indexEntries,
+      toolsEntries,
+      extraIndexEntriesErrors,
     );
-    if (ExtraIndexPages.length > 0) {
-      ExtraIndexPages.forEach((page) =>
-        extraIndexEntriesErrors.push(
-          `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
-        ),
-      );
-    }
 
     // Remove index entries from the tools entries list
     toolsEntries = toolsEntries.filter((page) => !indexEntries.includes(page));
   }
 
-  if (toolsEntries.length > 0) {
-    toolsEntries.forEach((page) =>
-      extraToolsEntriesErrors.push(
-        `❌ The entry ${page} is not present on any index page`,
-      ),
-    );
-  }
+  addExtraToolsEntriesErrors(toolsEntries, extraToolsEntriesErrors);
 
   maybePrintErrorsAndFail(
     duplicatesErrors,
