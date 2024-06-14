@@ -11,6 +11,7 @@
 // that they have been altered from the originals.
 
 import { readFile } from "fs/promises";
+import { pathExists } from "../lib/fs";
 
 const IGNORE_URL = ["/guides/qiskit-serverless"];
 
@@ -94,7 +95,7 @@ async function deduplicateEntriesAndGetErrors(
   return [toolsPages, errors];
 }
 
-function printErrors(
+function maybePrintErrorsAndFail(
   duplicatesErrors: string[],
   extraIndexEntriesErrors: string[],
   extraToolsEntriesErrors: string[],
@@ -129,6 +130,15 @@ function printErrors(
 }
 
 async function main() {
+  // Todo: Remove this conditional once the migration is done. This is used only to avoid
+  // the script crashing if the file's structure doesn't exist.
+  if (!(await pathExists(TOC_PATH))) {
+    console.log(
+      `🚧 Check skipped because the migration hasn't been completed.\n`,
+    );
+    process.exit(0);
+  }
+
   const duplicatesErrors: string[] = [];
   const extraIndexEntriesErrors: string[] = [];
   const extraToolsEntriesErrors: string[] = [];
@@ -171,7 +181,7 @@ async function main() {
     );
   }
 
-  printErrors(
+  maybePrintErrorsAndFail(
     duplicatesErrors,
     extraIndexEntriesErrors,
     extraToolsEntriesErrors,
