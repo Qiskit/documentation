@@ -23,7 +23,7 @@ const INDEX_PAGES = [
 
 const TOC_PATH = `docs/guides/_toc.json`;
 
-async function getIndexPages(indexPage: string): Promise<string[]> {
+async function getIndexEntries(indexPage: string): Promise<string[]> {
   const rawIndex = await readFile(indexPage, "utf-8");
   const result: string[] = [];
   for (const line of rawIndex.split("\n")) {
@@ -77,7 +77,7 @@ async function getToolsTocEntriesToCheck(): Promise<string[]> {
   return toolsPages.filter((page) => !IGNORE_URL.includes(page));
 }
 
-async function getPagesAndDuplicatesErrors(
+async function deduplicateEntriesAndGetErrors(
   src: string,
   entries: string[],
 ): Promise<[string[], string[]]> {
@@ -133,23 +133,23 @@ async function main() {
   const extraIndexEntriesErrors: string[] = [];
   const extraToolsEntriesErrors: string[] = [];
 
-  const toolsEntries = await getToolsTocEntriesToCheck();
-  let [toolsPages, toolsErrors] = await getPagesAndDuplicatesErrors(
+  const allToolsEntries = await getToolsTocEntriesToCheck();
+  let [toolsEntries, toolsErrors] = await deduplicateEntriesAndGetErrors(
     TOC_PATH,
-    toolsEntries,
+    allToolsEntries,
   );
   duplicatesErrors.push(...toolsErrors);
 
   for (const indexPage of INDEX_PAGES) {
-    const indexEntries = await getIndexPages(indexPage);
-    let [indexPages, indexErrors] = await getPagesAndDuplicatesErrors(
+    const allIndexEntries = await getIndexEntries(indexPage);
+    let [indexEntries, indexErrors] = await deduplicateEntriesAndGetErrors(
       indexPage,
-      indexEntries,
+      allIndexEntries,
     );
     duplicatesErrors.push(...indexErrors);
 
-    const ExtraIndexPages = indexPages.filter(
-      (page) => !toolsPages.includes(page),
+    const ExtraIndexPages = indexEntries.filter(
+      (page) => !toolsEntries.includes(page),
     );
     if (ExtraIndexPages.length > 0) {
       ExtraIndexPages.forEach((page) =>
@@ -159,11 +159,12 @@ async function main() {
       );
     }
 
-    toolsPages = toolsPages.filter((page) => !indexPages.includes(page));
+    // Remove index entries from the tools entries list
+    toolsEntries = toolsEntries.filter((page) => !indexEntries.includes(page));
   }
 
-  if (toolsPages.length > 0) {
-    toolsPages.forEach((page) =>
+  if (toolsEntries.length > 0) {
+    toolsEntries.forEach((page) =>
       extraToolsEntriesErrors.push(
         `❌ The entry ${page} is not present on any index page`,
       ),
