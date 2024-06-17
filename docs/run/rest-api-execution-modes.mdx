@@ -1,24 +1,24 @@
 ---
-title: Execution modes using REST APIs
+title: Execution modes using REST API
 description: How to run a quantum computing job in a Qiskit Runtime session.
 ---
 
-# Execution modes using REST APIs
+# Execution modes using REST API
 
 There are several ways to run your Qiskit Primitive workloads using REST APIs, depending on your needs. The three modes: job, session and batch are explained below. 
 
 
-## Job mode with REST APIs
+## Job mode with REST API
 
-In job mode, a single primitive request of the estimator or the sampler made without a context manager. See how to run a quatum circuit using [Estimator](rest-api-primitives#estimator-primitive-with-rest-apis) and [Sampler](rest-api-primitives#sampler-primitive-with-rest-apis) for some examples. 
+In job mode, a single primitive request of the estimator or the sampler made without a context manager. See how to run a quatum circuit using [Estimator](rest-api-primitives#estimator-primitive-with-rest-api) and [Sampler](rest-api-primitives#sampler-primitive-with-rest-api) for some examples. 
 
-## Session mode with REST APIs
+## Session mode with REST API
 
-A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources.
+A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources. More details about Sessions can be found in the [documentation](https://docs.quantum.ibm.com/run/sessions).
 
 ### Start a Session 
 
-You begin with creating a session and obtaining a Session ID. More details about Sessions can be found in the [documentation](https://docs.quantum.ibm.com/api/runtime).
+You begin with creating a session and obtaining a Session ID. 
 
 ```python
 import json
@@ -75,7 +75,7 @@ Session closure response ok?: True
 ```
 
 
-## Batch mode with REST APIs
+## Batch mode with REST API
 
 Alternatively, you can also submit a batch job by specifying the `mode` in the request payload.
 
@@ -102,15 +102,15 @@ response = requests.request("POST", sessionsUrl, data=payload,  headers=headersL
 sessionId = response.json()['id']
 ```
 
-## Examples of jobs submitted in a session/batch
+## Examples of jobs submitted in a session
 
-Once a session is setup: one or more `Estimator` jobs can be submitted to the same session by specifying the session ID. 
+Once a session is setup: one or more `Sampler`/ `Estimator` jobs can be submitted to the same session by specifying the session ID. 
 
 <Admonition type="note">
     The `<parameter values>` in a `PUB` can either be a single parameter or a list of parameters. It also supports `numpy` broadcasting. 
 </Admonition>
 
-### Estimator jobs in session/batch mode
+### Estimator jobs in session mode
 
 <Tabs>
   <TabItem value="1 circuit, 4 observables" label="1 circuit, 4 observables">
@@ -183,7 +183,7 @@ Once a session is setup: one or more `Estimator` jobs can be submitted to the sa
   </TabItem>
 </Tabs>
 
-### Sampler jobs in session/batch mode
+### Sampler jobs in session mode
 
 <Tabs>
   <TabItem value="1 circuit, no parameters" label="1 circuit, no parameters">
@@ -256,11 +256,13 @@ Once a session is setup: one or more `Estimator` jobs can be submitted to the sa
   </TabItem>
 </Tabs>
 
+
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Review detailed [Sampler and Estimator](rest-api-primitives) primitives examples using REST APIs.
-    - Learn how to [transpile circuits using REST APIs](/transpile/rest-api-transpilation).
+    - Review detailed [Sampler and Estimator](rest-api-primitives) primitives examples using REST API.
+    - Learn how to [transpile circuits using REST API](/transpile/rest-api-transpilation).
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
     - Learn how to transpile locally in the [Transpile](../transpile/) section.

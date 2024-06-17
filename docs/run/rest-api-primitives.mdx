@@ -1,24 +1,24 @@
 ---
-title: Primitives with REST APIs
-description: How to use the Sampler and Estimator primitives with Qiskit Runtime REST APIs.
+title: Primitives using REST API
+description: How to use the Sampler and Estimator primitives with Qiskit Runtime REST API.
 ---
 
-# Primitives with REST APIs
+# Primitives using REST API
 
-The steps in this topic describe how to set up primitives with REST APIs, explore the options you can use to configure them, and invoke them in any program of your choice.
+The steps in this topic describe how to run primitives workloads with REST API, explore the options you can use to configure them, and invoke them in any program of your choice.
 
 <Admonition type="note">
-    This documentation utilizes the `requests` module of python to demonstrate the Qiskit Runtime REST APIs. However, this workflow can be executed using any language/framework that supports working with REST APIs. The official documentation for the API Reference can be found [here](https://docs.quantum.ibm.com/api/runtime/tags/jobs).
+    This documentation utilizes the `requests` module of python to demonstrate the Qiskit Runtime REST API. However, this workflow can be executed using any language/framework that supports working with REST APIs. The official documentation for the API Reference can be found [here](https://docs.quantum.ibm.com/api/runtime/tags/jobs).
 </Admonition>
 
 <span id="start-estimator"></span>
-## Estimator Primitive with REST APIs
+## Estimator Primitive with REST API
 
 ### 1. Initialize the account
 
 Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value. You can then select the IBM Quantum Compute resource of your choice to run your calculations on. 
 
-Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](/start/setup-channel#set-up-account-using-rest-apis).
+Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](/start/setup-channel#set-up-account-using-rest-api).
 
 ### 2. Create a QASM circuit
 
@@ -118,9 +118,9 @@ Output
 
 Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
 
-The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the resilience_level option when submitting your job.
+The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the `resilience_level` option when submitting your job.
 
-You will see examples of three such error mitigation / suppression techniques when used with the Estimator Primitive. The examples given below demonstrate the default options for error mitigation / suppression techniques but more options for [Dynamical decoupling](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/dynamical_decoupling_options.py), [Twirling](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/twirling_options.py) and [TREX + ZNE](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/resilience_options.py) can be further explored. 
+You will see examples of three such error mitigation / suppression techniques when used with the Estimator Primitive. The examples given below demonstrate the default options for Dynamical decoupling, Twirling and TREX + ZNE. More options and further details can be found [here](https://docs.quantum.ibm.com/run/error-mitigation-explanation).
 
 <Tabs>
 
@@ -275,13 +275,13 @@ else:
 
 
 <span id="start-sampler"></span>
-## Sampler Primitive with REST APIs
+## Sampler Primitive with REST API
 
 ### 1. Initialize the account
 
 Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value. You can then select the IBM Quantum Compute resource of your choice to run your calculations on. 
 
-Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](/start/setup-channel#set-up-account-using-rest-apis).
+Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](/start/setup-channel#set-up-account-using-rest-api).
 
 
 ### 2. Create a QASM circuit
@@ -382,10 +382,10 @@ Output
 
 Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
 
-The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the resilience_level option when submitting your job.
+The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the `resilience_level` option when submitting your job.
 Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. 
 
-You will see examples of two such error mitigation / suppression techniques when used with the Sampler Primitive. The examples given below demonstrate the default options for error mitigation / suppression techniques but more options for [Dynamical decoupling](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/dynamical_decoupling_options.py) and [Twirling](https://github.com/Qiskit/qiskit-ibm-runtime/blob/main/qiskit_ibm_runtime/options/twirling_options.py) can be further explored. 
+You will see examples of two such error mitigation / suppression techniques when used with the Sampler Primitive. The examples given below demonstrate the default options for Dynamical decoupling and Twirling. More options and further details can be found [here](https://docs.quantum.ibm.com/run/error-mitigation-explanation).   
 
 <Tabs>
 
@@ -482,8 +482,8 @@ else:
 
 <Admonition type="tip" title="Recommendations">
     - There are several ways to run workloads, depending on your needs: job mode, session mode and batch mode. Learn how to work with session mode and batch mode by following this [topic](rest-api-execution-modes).
-    - Learn how to [initialize your account](/start/setup-channel#set-up-account-using-rest-apis) with REST APIs.
-    - Learn how to [transpile circuits using REST APIs](/transpile/rest-api-transpilation).
+    - Learn how to [initialize your account](/start/setup-channel#set-up-account-using-rest-api) with REST API.
+    - Learn how to [transpile circuits using REST API](/transpile/rest-api-transpilation).
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
     - Learn how to transpile locally in the [Transpile](../transpile/) section.
