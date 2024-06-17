@@ -20,7 +20,7 @@ name: Preview
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, closed]
+    types: [opened, reopened, synchronize]
     paths:
       - "docs/**/*"
       - "public/images/**/*"
@@ -36,25 +36,3 @@ jobs:
     secrets:
       ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
       ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
-
-  teardown:
-    if: |
-      github.event.action == 'closed' &&
-      github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/set-up-ibm-cloud
-        id: set-up-cloud
-        with:
-          env_name: Preview
-          ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
-          ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
-      - name: Remove Code Engine preview application
-        run: |
-          ibmcloud ce project select -n qiskit-docs-preview
-          ibmcloud ce application delete \
-            --name "${{ steps.set-up-cloud.outputs.app_name }}" \
-            --wait \
-            --ignore-not-found \
-            --force

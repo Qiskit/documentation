@@ -171,6 +171,7 @@ The output of this step is normally a collection of circuits or quantum operator
 
 In this step you take the abstract circuits (or operators) produced from the map step and perform a series of optimizations on them. This may include mapping the route and layout of the circuit to physical qubit hardware, converting to basis gates of the hardware, and reducing the number of operations, all designed to optimize the likelihood of success in the later execute step. At this point you may also wish to test out your circuits with a simulator before executiong on real hardware in the next step.
 
+
 During this step, abstract circuits must be transpiled to Instruction Set Architecture (ISA) circuits. An ISA circuit is one that only consists of gates understood by the target hardware (basis gates), and any multi-qubit gates needed to obey any connectivity constraints (coupling map). Only ISA circuits can be run on IBM hardware using IBM Qiskit Runtime.
 
 
@@ -185,6 +186,7 @@ Depending on whether you are using the Sampler or Estimator primitive, the outco
 ## Post-process results
 
 This final step involves stitching the outputs from the prior step back together to obtain the desired result. This can involve a range of classical data-processing steps such as visualizing results, readout error mitigation techniques, marginalizing quasi-probability distributions to ascertain results on smaller sets of qubits, or post-selection on inherent properties of the problem, such as total spin, parity, or particle conservation by removing unphysical observables.
+
 
 
 ---
