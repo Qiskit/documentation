@@ -263,7 +263,7 @@ Creating utility-scale quantum applications generally requires a variety of comp
 The Qiskit transpiler service ([package name `qiskit-transpiler-service`](https://pypi.org/project/qiskit-transpiler-service/)) is a new experimental service that provides remote transpilation capabilities on the cloud to IBM Quantum Premium Plan users. In addition to the local Qiskit SDK transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum cloud resources and AI-powered transpiler passes using this service. To learn more about how to integrate cloud-based transpilation into your Qiskit workflow you can [check out the documentation](./qiskit-transpiler-service).
 
 
-## The Qiskit Ecosystem
+## The Qiskit ecosystem
 
 Beyond Qiskit there are many open-source projects that use the "Qiskit" name but are not part of Qiskit itself; rather, they interface with Qiskit and can provide valuable additional functionality to supplement the core Qiskit workflow. Some of these projects are maintained by IBM Quantum teams, whereas others are supported by the broader open-source community. The Qiskit SDK is designed in a modular, extensible way to make it easy for developers to create projects like these that extend its capabilities.
 
