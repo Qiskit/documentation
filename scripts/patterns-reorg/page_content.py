@@ -118,7 +118,7 @@ The "execute on hardware" step of a Qiskit pattern involves running your circuit
 and produces the outputs of the quantum computation. The ISA circuits produced in
 the previous step can be executed using either a Sampler or Estimator primitive from
 Qiskit Runtime, initialized locally on your computer or from a cluster or other
-heterogeneous compute environment. These may be executed in a Batch, which allows
+heterogeneous compute environment. These can be executed in a Batch, which allows
 parallel transpilation for classical computational efficiency - or a Session,
 which allows iterative tasks to be implemented efficiently without queuing delays.
 
