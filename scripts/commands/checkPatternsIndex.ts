@@ -210,5 +210,3 @@ async function main() {
 }
 
 main().then(() => process.exit());
-
-// TODO: Allow that the guides/ folder don't exist
