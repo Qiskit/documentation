@@ -30,13 +30,13 @@ problem and figures out how to map it to a quantum computer.
 
 For example, in applications such as chemistry and quantum simulation, this step generally involves 
 constructing a quantum circuit representing the Hamiltonian you are attempting to solve.
-During this step, for certain problems, it may also be desirable to specify the mapping of
-the problem onto qubits in the heavy-hex (or gross) lattice of IBM Hardware from the
+During this step, for certain problems, it might also be desirable to specify the mapping of
+the problem onto qubits in the heavy-hex (or gross) lattice of IBM&reg; hardware from the
 outset if the structure of the problem lends itself to optimization earlier. 
 
 It is also worth considering at this point what the outcome of the particular algorithm will be
-in preparation for the later execute step, e.g. if the desired outcome involves
-inferring correlation functions using Hadamard tests, you might prepare to use `Sampler` whereas
+in preparation for the later execute step - for example, if the desired outcome involves
+inferring correlation functions using Hadamard tests, you might prepare to use `Sampler`, whereas
 specifying observables would use the `Estimator` and could provide many error mitigation options.
 
 The output of this step in a Qiskit pattern is normally a collection of circuits or quantum operators.
@@ -61,8 +61,8 @@ description: Post-process the results obtained by running on a quantum computer.
 
 This final "post-process results" step of a Qiskit pattern involves stitching the outputs from
 the prior step back together to obtain the desired result. This can involve a range of classical
-data processing steps such as visualising results, readout error mitigation techniques, marginalizing
-quasi-probability distributions to ascertain results on smaller sets of qubits or post-selection on inherent
+data-processing steps such as visualizing results, readout error mitigation techniques, marginalizing
+quasi-probability distributions to ascertain results on smaller sets of qubits, or post-selection on inherent
 properties of the problem, such as total spin, parity, or particle conservation by removing
 unphysical observables.
 
@@ -86,15 +86,15 @@ description: Optimize abstract circuits and operators so they can run on quantum
 
 In the "optimize for target hardware" step of a Qiskit pattern, you take the abstract circuits
 (or operators) produced from the map step and perform a series of optimizations on them. This
-may include mapping the route and layout of the circuit to physical qubit hardware, converting
+can include mapping the route and layout of the circuit to physical qubit hardware, converting
 to basis gates of the hardware, and reducing the number of operations, all designed to optimize
-the likelihood of success in the later execute step. At this point you may also wish to debug
+the likelihood of success in the later execute step. At this point you might also wish to debug
 your circuits with a simulator before executing on real hardware in the next step.
 
 During this step, abstract circuits must be transpiled to Instruction Set Architecture (ISA) circuits.
 An ISA circuit is one that only consists of gates understood by the target hardware (basis gates), and
 any multi-qubit gates needed to obey any connectivity constraints (coupling map). Only ISA circuits
-can be run on IBM hardware using IBM Qiskit Runtime.
+can be run on IBM&reg; hardware using IBM Qiskit Runtime.
 
 ## Guides for optimizing for target hardware
 """
@@ -116,10 +116,10 @@ description: Run circuits on hardware and return output from a quantum computer.
 
 The "execute on hardware" step of a Qiskit pattern involves running your circuits on hardware
 and produces the outputs of the quantum computation. The ISA circuits produced in
-the previous step, can be executed using either a Sampler or Estimator Primitive from
-Qiskit Runtime, initialised locally on your computer or from a cluster or other
+the previous step can be executed using either a Sampler or Estimator primitive from
+Qiskit Runtime, initialized locally on your computer or from a cluster or other
 heterogeneous compute environment. These may be executed in a Batch, which allows
-parallel transpilation for classical computational efficiency, or a Session,
+parallel transpilation for classical computational efficiency - or a Session,
 which allows iterative tasks to be implemented efficiently without queuing delays.
 
 During this step, there is also the option to configure certain error suppression and
@@ -146,57 +146,57 @@ description: Qiskit patterns are the broad steps employed when running a domain-
 
 # Introduction to Qiskit patterns
 
-A Qiskit pattern is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit patterns allow domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern, then that pattern could be executed locally, through cloud services, or deployed with Quantum Serverless.
+A Qiskit pattern is a general framework for breaking down domain-specific problems and contextualizing required capabilities in stages. This allows for the seamless composability of new capabilities developed by IBM Quantum&trade; researchers (and others) and enables a future in which quantum computing tasks are performed by powerful heterogenous (CPU/GPU/QPU) computing infrastructure. Blocks or groups of blocks perform the steps of a pattern, with the Qiskit SDK providing an important foundational layer, supported by other tools or services developed by IBM Quantum or the quantum open-source community. Qiskit patterns allow domain experts to specify a problem and compose the tooling (blocks) that achieves a Qiskit pattern. That pattern can then be executed locally, through cloud services, or deployed with Quantum Serverless.
 
 
 The four steps of a Qiskit pattern are as follows:
 - **Map** problem to quantum circuits and operators
 - **Optimize** for target hardware
 - **Execute** on target hardware
-- **Postprocess** results
+- **Post-process** results
 
 ![../\_images/patterns.svg](/images/patterns.svg)
 
-Let's review each of these steps in more detail:
+Each step is detailed in the sections below.
 
 ## Map problem to quantum circuits and operators
 
 
-This step describes how a user starts with a classical problem and figures out how to map it to a quantum computer. For example, in applications such as chemistry and quantum simulation, this step generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. During this step, for certain problems, it may also be desirable to specify the mapping of the problem onto qubits in the heavy-hex (or gross) lattice of IBM Hardware from the outset if the structure of the problem lends itself to optimization earlier. It is also worth considering at this point what the outcome of the particular algorithm will be in prepartion for the later execute step, e.g. if the desired outcome involves inferring correlation functions using Hadamard tests, you might prepare to use `Sampler` whereas specifying observables would use the `Estimator` and could provide many error mitigation options.
+This step describes how a user starts with a classical problem and figures out how to map it to a quantum computer. For example, in applications such as chemistry and quantum simulation, this step generally involves constructing a quantum circuit representing the Hamiltonian you are attempting to solve. During this step, for certain problems, it may also be desirable to specify the mapping of the problem onto qubits in the heavy-hex (or gross) lattice of IBM;reg; hardware from the outset if the structure of the problem lends itself to optimization earlier. It is also worth considering at this point what the outcome of the particular algorithm will be in prepartion for the later execute step - for example, if the desired outcome involves inferring correlation functions using Hadamard tests, you might prepare to use `Sampler`, whereas specifying observables would use the `Estimator` and could provide many error mitigation options.
 
 The output of this step is normally a collection of circuits or quantum operators that can be optimized for hardware in the next step.
 
 
 ## Optimize for target hardware
 
-In this step you take the abstract circuits (or operators) produced from the map step and perform a series of optimizations on them. This may include mapping the route and layout of the circuit to physical qubit hardware, converting to basis gates of the hardware, and reducing the number of operations, all designed to optimize the likelihood of success in the later execute step. At this point you may also wish to test out your circuits with a simulator before executiong on real hardware in the next step
+In this step you take the abstract circuits (or operators) produced from the map step and perform a series of optimizations on them. This may include mapping the route and layout of the circuit to physical qubit hardware, converting to basis gates of the hardware, and reducing the number of operations, all designed to optimize the likelihood of success in the later execute step. At this point you may also wish to test out your circuits with a simulator before executiong on real hardware in the next step.
 
-During this step abstract circuits must be transpiled to Instruction Set Architecture (ISA) circuits. An ISA circuit is one that only consists of gates understood by the target hardware (basis gates), and any multi-qubit gates needed to obey any connectivity constraints (coupling map). Only ISA circuits can be run on IBM hardware using IBM Qiskit Runtime.
+During this step, abstract circuits must be transpiled to Instruction Set Architecture (ISA) circuits. An ISA circuit is one that only consists of gates understood by the target hardware (basis gates), and any multi-qubit gates needed to obey any connectivity constraints (coupling map). Only ISA circuits can be run on IBM hardware using IBM Qiskit Runtime.
 
 
 
 ## Execute on target hardware
 
-This step involes running your circuits on hardware and produces the outputs of the quantum computation. The ISA circuits produced in the previous step, can be executed using either a Sampler or Estimator Primitive from Qiskit Runtime, initialised locally on your computer or from a cluster or other heterogeneous compute environment. These may be executed in a Batch, which allows parallel transpilation for classical computational efficiency, or a Session, which allows iterative tasks to be implemented efficiently without queuing delays. During this step there is also the option to configure certain error suppression and mitigation techniques provided by Qiskit Runtime.
+This step involes running your circuits on hardware and produces the outputs of the quantum computation. The ISA circuits produced in the previous step can be executed using either a Sampler or Estimator primitive from Qiskit Runtime, initialized locally on your computer or from a cluster or other heterogeneous compute environment. These may be executed in a Batch, which allows parallel transpilation for classical computational efficiency - or a Session, which allows iterative tasks to be implemented efficiently without queuing delays. During this step, there is also the option to configure certain error suppression and mitigation techniques provided by Qiskit Runtime.
 
-Depending on whether you are using the Sampler or Estimator primitive, the outcome of this step will be different. If using the Sampler the output will be per-shot measurements in the form of bitstrings. If using the Estimator the output will be expectation values of observables corresponding to physical quantities or cost functions.
+Depending on whether you are using the Sampler or Estimator primitive, the outcome of this step will be different. If using the Sampler, the output will be per-shot measurements in the form of bitstrings. If using the Estimator, the output will be expectation values of observables corresponding to physical quantities or cost functions.
 
 
 ## Post-process results
 
-This final step involves stitching the outputs from the prior step back together to obtain the desired result. This can involve a range of classical data processing steps such as visualising results, readout error mitigation techniques, marginalizing quasi-probability distributions to ascertain results on smaller sets of qubits or post-selection on inherent properties of the problem, such as total spin, parity, or particle conservation by removing unphysical observables.
+This final step involves stitching the outputs from the prior step back together to obtain the desired result. This can involve a range of classical data-processing steps such as visualizing results, readout error mitigation techniques, marginalizing quasi-probability distributions to ascertain results on smaller sets of qubits, or post-selection on inherent properties of the problem, such as total spin, parity, or particle conservation by removing unphysical observables.
 
 
 ---
 
 
-As we move from bespoke circuit construction to utility-scale workflows, the flexibility and ease with which Qiskit Patterns allows one to compose the different steps of the pattern opens quantum computing to a wide variety of applications and techniques for easy use by quantum computational scientists.
+As the field moves from bespoke circuit construction to utility-scale workflows, the flexibility and ease with which Qiskit patterns allow users to compose the different steps of the pattern opens quantum computing to a wide variety of applications and techniques for easy use by quantum computational scientists.
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
   -  Explore each step in a Qiskit pattern in more detail, starting with [Map problem to quantum circuits and operators](/map-problem-to-circuits).
-  -  Run a full example of a Qiskit pattern in the [CHSH Inequality tutorial](https://learning.quantum.ibm.com/tutorial/chsh-inequality)
+  -  Run a full example of a Qiskit pattern in the [CHSH Inequality tutorial](https://learning.quantum.ibm.com/tutorial/chsh-inequality).
 </Admonition>
 
 """
