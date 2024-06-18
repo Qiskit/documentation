@@ -151,6 +151,11 @@ CIRCUIT_CONSTRUCTION = (
                 slug="/specify-observables-pauli",
                 from_file="build/specify-observables-pauli.mdx",
             ),
+            Entry(
+                "The Operator class",
+                slug="/operator-class",
+                from_file="build/operator-class.ipynb",
+            ),
         ),
     ),
     Entry(
@@ -356,6 +361,11 @@ PRIMITIVES = (
                 slug="/advanced-runtime-options",
                 from_file="run/advanced-runtime-options.mdx",
             ),
+            Entry(
+                "Error mitigation and suppression techniques",
+                slug="/error-mitigation-and-suppression-techniques",
+                from_file="run/error-mitigation-explanation.ipynb",
+            ),
         ),
     ),
 )
@@ -407,6 +417,11 @@ EXECUTION_MODES_CHILDREN = (
         "Run jobs in a batch",
         slug="/run-jobs-batch",
         from_file="run/run-jobs-batch.mdx",
+    ),
+    Entry(
+        "Fixed and dynamic repetition rate execution",
+        slug="/repetition-rate-execution",
+        from_file="run/circuit-execution.mdx",
     ),
     MANAGE_JOBS_FOLDER,
     Entry(
