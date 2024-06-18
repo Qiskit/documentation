@@ -12,8 +12,9 @@
 
 import { readFile } from "fs/promises";
 import { pathExists } from "../lib/fs";
+import type { TocEntry } from "../lib/api/generateToc";
 
-const IGNORE_URL = ["/guides/qiskit-serverless"];
+const IGNORED_URLS = ["/guides/qiskit-serverless"];
 
 const INDEX_PAGES = [
   "docs/guides/map-problem-to-circuits.mdx",
@@ -22,13 +23,15 @@ const INDEX_PAGES = [
   "docs/guides/postprocess-results.mdx",
 ];
 
-const TOC_PATH = `docs/guides/_toc.json`;
+const TOC_PATH = "docs/guides/_toc.json";
 
-async function getIndexEntries(indexPage: string): Promise<string[]> {
-  const rawIndex = await readFile(indexPage, "utf-8");
+async function getIndexEntries(indexPath: string): Promise<string[]> {
+  const rawIndex = await readFile(indexPath, "utf-8");
   const result: string[] = [];
+  // The index page has several unordered lists starting with *, each with links to other pages.
+  // We want to get every slug from those lists. Note that we don't care which list the slugs show
+  // up in - we only care if the slug shows up at all anywhere.
   for (const line of rawIndex.split("\n")) {
-    // The index represents an unordered list of entries starting with `*`.
     if (!line.trimStart().startsWith("* ")) {
       continue;
     }
@@ -54,10 +57,11 @@ function extractPageSlug(text: string): string | undefined {
   if (pageSlug.startsWith("http") || pageSlug.startsWith("/")) {
     return pageSlug;
   }
-  return `/guides/${pageSlug.split("/").pop()}`;
+  const page = pageSlug.split("/").pop();
+  return `/guides/${page}`;
 }
 
-function getTocSectionPageNames(sectionNode: any): string[] {
+function getTocSectionPageNames(sectionNode: TocEntry): string[] {
   let results = [];
   if (sectionNode.url) {
     results.push(sectionNode.url);
@@ -74,59 +78,50 @@ function getTocSectionPageNames(sectionNode: any): string[] {
 
 async function getToolsTocEntriesToCheck(): Promise<string[]> {
   const toc = JSON.parse(await readFile(TOC_PATH, "utf-8"));
-  const toolsNode = toc.children.find((child: any) => child.title == "Tools");
+  const toolsNode = toc.children.find(
+    (child: TocEntry) => child.title == "Tools",
+  );
   const toolsPages = getTocSectionPageNames(toolsNode);
-  return toolsPages.filter((page) => !IGNORE_URL.includes(page));
+  return toolsPages.filter((page) => !IGNORED_URLS.includes(page));
 }
 
-async function getDeduplicateEntriesAndAddErrors(
+async function deduplicateEntries(
   src: string,
-  errors: string[],
-): Promise<string[]> {
-  const entries =
-    src == TOC_PATH
-      ? await getToolsTocEntriesToCheck()
-      : await getIndexEntries(src);
-  const deduplicatedPages: string[] = [];
+  entries: string[],
+): Promise<[Set<string>, string[]]> {
+  const deduplicatedPages: Set<string> = new Set();
+  const errors: string[] = [];
 
   for (const entry of entries) {
-    if (deduplicatedPages.includes(entry)) {
+    if (deduplicatedPages.has(entry)) {
       errors.push(`❌ ${src}: The entry ${entry} is duplicated`);
     } else {
-      deduplicatedPages.push(entry);
+      deduplicatedPages.add(entry);
     }
   }
 
-  return deduplicatedPages;
+  return [deduplicatedPages, errors];
 }
 
-function addExtraIndexPagesErrors(
+function getExtraIndexPagesErrors(
   indexPage: string,
-  indexEntries: string[],
-  toolsEntries: string[],
-  errors: string[],
-): void {
-  const ExtraIndexPages = indexEntries.filter(
-    (page) => !toolsEntries.includes(page),
+  indexEntries: Set<string>,
+  toolsEntries: Set<string>,
+): string[] {
+  const extraIndexPages = [...indexEntries].filter(
+    (page) => !toolsEntries.has(page),
   );
-  if (ExtraIndexPages.length > 0) {
-    ExtraIndexPages.forEach((page) =>
-      errors.push(
-        `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
-      ),
-    );
-  }
+
+  return extraIndexPages.map(
+    (page) =>
+      `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
+  );
 }
 
-function addExtraToolsEntriesErrors(
-  toolsEntries: string[],
-  errors: string[],
-): void {
-  if (toolsEntries.length > 0) {
-    toolsEntries.forEach((page) =>
-      errors.push(`❌ The entry ${page} is not present on any index page`),
-    );
-  }
+function getExtraToolsEntriesErrors(toolsEntries: Set<string>): string[] {
+  return [...toolsEntries].map(
+    (page) => `❌ The entry ${page} is not present on any index page`,
+  );
 }
 
 function maybePrintErrorsAndFail(
@@ -138,7 +133,9 @@ function maybePrintErrorsAndFail(
 
   if (duplicatesErrors.length > 0) {
     duplicatesErrors.forEach((error) => console.error(error));
-    console.error(`\nRemove all duplicated entries on the indices.`);
+    console.error(
+      `\nRemove all duplicated entries on the indices and Tools menu, which is set in docs/guides/_toc.json.`,
+    );
     console.error("--------\n");
     allGood = false;
   }
@@ -153,7 +150,7 @@ function maybePrintErrorsAndFail(
   if (extraToolsEntriesErrors.length > 0) {
     extraToolsEntriesErrors.forEach((error) => console.error(error));
     console.error(
-      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORE_URL` list at the beginning of `/scripts/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
+      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
     );
     INDEX_PAGES.forEach((index) => console.error(`\t➡️  ${index}`));
     allGood = false;
@@ -174,32 +171,33 @@ async function main() {
     process.exit(0);
   }
 
-  const duplicatesErrors: string[] = [];
-  const extraIndexEntriesErrors: string[] = [];
-  const extraToolsEntriesErrors: string[] = [];
-
-  let toolsEntries = await getDeduplicateEntriesAndAddErrors(
+  const toolsAllEntries = await getToolsTocEntriesToCheck();
+  let [toolsEntries, duplicatesErrors] = await deduplicateEntries(
     TOC_PATH,
-    duplicatesErrors,
+    toolsAllEntries,
   );
 
+  let extraIndexEntriesErrors: string[] = [];
   for (const indexPage of INDEX_PAGES) {
-    const indexEntries = await getDeduplicateEntriesAndAddErrors(
+    const indexAllEntries = await getIndexEntries(indexPage);
+    let [indexEntries, indexDuplicatedErrors] = await deduplicateEntries(
       indexPage,
-      duplicatesErrors,
+      indexAllEntries,
     );
-    addExtraIndexPagesErrors(
-      indexPage,
-      indexEntries,
-      toolsEntries,
-      extraIndexEntriesErrors,
-    );
+    duplicatesErrors = [...duplicatesErrors, ...indexDuplicatedErrors];
+
+    extraIndexEntriesErrors = [
+      ...extraIndexEntriesErrors,
+      ...getExtraIndexPagesErrors(indexPage, indexEntries, toolsEntries),
+    ];
 
     // Remove index entries from the tools entries list
-    toolsEntries = toolsEntries.filter((page) => !indexEntries.includes(page));
+    toolsEntries = new Set(
+      [...toolsEntries].filter((page) => !indexEntries.has(page)),
+    );
   }
 
-  addExtraToolsEntriesErrors(toolsEntries, extraToolsEntriesErrors);
+  const extraToolsEntriesErrors = getExtraToolsEntriesErrors(toolsEntries);
 
   maybePrintErrorsAndFail(
     duplicatesErrors,
