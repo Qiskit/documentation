@@ -69,7 +69,7 @@ function getTocSectionPageNames(sectionNode: TocEntry): string[] {
 
   if (sectionNode.children) {
     for (const child of sectionNode.children) {
-      results = [...results, ...getTocSectionPageNames(child)];
+      results.push(...getTocSectionPageNames(child));
     }
   }
 
@@ -86,7 +86,7 @@ async function getToolsTocEntriesToCheck(): Promise<string[]> {
 }
 
 async function deduplicateEntries(
-  src: string,
+  filePath: string,
   entries: string[],
 ): Promise<[Set<string>, string[]]> {
   const deduplicatedPages: Set<string> = new Set();
@@ -94,7 +94,7 @@ async function deduplicateEntries(
 
   for (const entry of entries) {
     if (deduplicatedPages.has(entry)) {
-      errors.push(`❌ ${src}: The entry ${entry} is duplicated`);
+      errors.push(`❌ ${filePath}: The entry ${entry} is duplicated`);
     } else {
       deduplicatedPages.add(entry);
     }
@@ -108,18 +108,18 @@ function getExtraIndexPagesErrors(
   indexEntries: Set<string>,
   toolsEntries: Set<string>,
 ): string[] {
-  const extraIndexPages = [...indexEntries].filter(
-    (page) => !toolsEntries.has(page),
-  );
-
-  return extraIndexPages.map(
-    (page) =>
-      `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
-  );
+  return [...indexEntries]
+    .filter((page) => !toolsEntries.has(page))
+    .map(
+      (page) =>
+        `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
+    );
 }
 
-function getExtraToolsEntriesErrors(toolsEntries: Set<string>): string[] {
-  return [...toolsEntries].map(
+function getExtraToolsEntriesErrors(
+  remainingToolsEntries: Set<string>,
+): string[] {
+  return [...remainingToolsEntries].map(
     (page) => `❌ The entry ${page} is not present on any index page`,
   );
 }
@@ -186,12 +186,11 @@ async function main() {
       indexPage,
       indexAllEntries,
     );
-    duplicatesErrors = [...duplicatesErrors, ...indexDuplicatedErrors];
+    duplicatesErrors.push(...indexDuplicatedErrors);
 
-    extraIndexEntriesErrors = [
-      ...extraIndexEntriesErrors,
+    extraIndexEntriesErrors.push(
       ...getExtraIndexPagesErrors(indexPage, indexEntries, toolsEntries),
-    ];
+    );
 
     // Remove index entries from the tools entries list
     toolsEntries = new Set(
