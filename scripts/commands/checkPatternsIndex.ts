@@ -134,7 +134,7 @@ function maybePrintErrorsAndFail(
   if (duplicatesErrors.length > 0) {
     duplicatesErrors.forEach((error) => console.error(error));
     console.error(
-      `\nRemove all duplicated entries on the indices and Tools menu, which is set in docs/guides/_toc.json.`,
+      `\nRemove all duplicated entries on the indices and in the Tools menu, which is set in docs/guides/_toc.json.`,
     );
     console.error("--------\n");
     allGood = false;
