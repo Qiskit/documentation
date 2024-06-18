@@ -192,10 +192,11 @@ async function main() {
       ...getExtraIndexPagesErrors(indexPage, indexEntries, toolsEntries),
     );
 
-    // Remove index entries from the tools entries list
-    toolsEntries = new Set(
-      [...toolsEntries].filter((page) => !indexEntries.has(page)),
-    );
+    toolsEntries.forEach((page) => {
+      if (indexEntries.has(page)) {
+        toolsEntries.delete(page);
+      }
+    });
   }
 
   const extraToolsEntriesErrors = getExtraToolsEntriesErrors(toolsEntries);
