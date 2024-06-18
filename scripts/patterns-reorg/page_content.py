@@ -23,7 +23,7 @@ description: Take a classical problem and map it to run on a quantum computer.
 
 # Map problem to quantum circuits and operators
 
-![../\_images/pattern-1.svg](/images/pattern-1.svg)
+![../\_images/pattern-1.svg](/images/qiskit-patterns/pattern-1.svg)
 
 The "map problem to quantum circuits and operators" step of a Qiskit pattern describes how a user starts with a classical
 problem and figures out how to map it to a quantum computer.
@@ -57,7 +57,7 @@ description: Post-process the results obtained by running on a quantum computer.
 
 # Post-process results
 
-![../\_images/pattern-4.svg](/images/pattern-4.svg)
+![../\_images/pattern-4.svg](/images/qiskit-patterns/pattern-4.svg)
 
 This final "post-process results" step of a Qiskit pattern involves stitching the outputs from
 the prior step back together to obtain the desired result. This can involve a range of classical
@@ -82,7 +82,7 @@ description: Optimize abstract circuits and operators so they can run on quantum
 
 # Optimize for target hardware
 
-![../\_images/pattern-2.svg](/images/pattern-2.svg)
+![../\_images/pattern-2.svg](/images/qiskit-patterns/pattern-2.svg)
 
 In the "optimize for target hardware" step of a Qiskit pattern, you take the abstract circuits
 (or operators) produced from the map step and perform a series of optimizations on them. This
@@ -106,13 +106,13 @@ def execute_index_content(index: str) -> str:
     intro = dedent(
         """\
 ---
-title: Execute on hardware
+title: Execute on target hardware
 description: Run circuits on hardware and return output from a quantum computer. 
 ---
 
-# Execute on hardware
+# Execute on target hardware
 
-![../\_images/pattern-3.svg](/images/pattern-3.svg)
+![../\_images/pattern-3.svg](/images/qiskit-patterns/pattern-3.svg)
 
 The "execute on hardware" step of a Qiskit pattern involves running your circuits on hardware
 and produces the outputs of the quantum computation. The ISA circuits produced in
@@ -150,12 +150,12 @@ A Qiskit pattern is a general framework for breaking down domain-specific proble
 
 
 The four steps of a Qiskit pattern are as follows:
-- **Map** problem to quantum circuits and operators
-- **Optimize** for target hardware
-- **Execute** on target hardware
-- **Post-process** results
+- [**Map** problem to quantum circuits and operators](./map-problem-to-circuits)
+- [**Optimize** for target hardware](./optimize-for-hardware)
+- [**Execute** on target hardware](./execute-on-hardware)
+- [**Post-process** results](./post-process-results)
 
-![../\_images/patterns.svg](/images/patterns.svg)
+![../\_images/patterns.svg](/images/qiskit-patterns/patterns.svg)
 
 Each step is detailed in the sections below.
 
@@ -220,7 +220,7 @@ The name "Qiskit" is a general term referring to a collection of software for ex
 
 In addition, many open-source projects are part of the broader Qiskit ecosystem. These software tools are not part of Qiskit itself, but rather interface with Qiskit and can provide valuable additional functionality.
 
-![../\_images/patterns.svg](/images/patterns.svg)
+![../\_images/patterns.svg](/images/qiskit-patterns/patterns.svg)
 
 
 ## The Qiskit SDK
