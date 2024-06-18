@@ -151,6 +151,11 @@ CIRCUIT_CONSTRUCTION = (
                 slug="/specify-observables-pauli",
                 from_file="build/specify-observables-pauli.mdx",
             ),
+            Entry(
+                "The Operator class",
+                slug="/operator-class",
+                from_file="build/operator-class.ipynb",
+            ),
         ),
     ),
     Entry(
@@ -355,6 +360,11 @@ PRIMITIVES = (
                 "Advanced runtime options",
                 slug="/advanced-runtime-options",
                 from_file="run/advanced-runtime-options.mdx",
+            ),
+            Entry(
+                "Error mitigation and suppression techniques",
+                slug="/error-mitigation-and-suppression-techniques",
+                from_file="run/error-mitigation-explanation.ipynb",
             ),
         ),
     ),
