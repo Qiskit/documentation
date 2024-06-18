@@ -420,7 +420,7 @@ EXECUTION_MODES_CHILDREN = (
     ),
     Entry(
         "Fixed and dynamic repetition rate execution",
-        slug="/circuit-execution",
+        slug="/repetition-rate-execution",
         from_file="run/circuit-execution.mdx",
     ),
     MANAGE_JOBS_FOLDER,
