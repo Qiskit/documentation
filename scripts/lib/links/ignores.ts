@@ -31,6 +31,23 @@ const _QISKIT_UTILS = [
   "https://github.com/python-constraint/python-constraint%3E__",
 ];
 
+const _PATTERNS_REORG_IGNORES = [
+  "/run/primitives-examples",
+  "/run/sessions",
+  "/build/circuit-construction",
+  "/start/configure-qiskit-local#environment-variables",
+  "/build/pulse",
+  "/run",
+  "/transpile",
+  "/run/max-execution-time",
+  "/run/configure-runtime-compilation",
+  "/run/configure-error-mitigation",
+  "/start/install#qiskit-versioning",
+  "/start/configure-qiskit-local",
+  "/run/primitives-get-started#3-initialize-the-qiskit-runtime-sampler",
+  "/run/primitives-get-started#3-initialize-qiskit-runtime-estimator",
+];
+
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
@@ -49,6 +66,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX = [
   // Bad anchor in qiskit_ibm_runtime.options.Options.md for 0.14 - 0.16.
   "/run/max-execution-time#maximum-execution-time",
   ..._QISKIT_UTILS,
+  ..._PATTERNS_REORG_IGNORES,
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -92,6 +110,7 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
     "0.20/",
     "0.21/",
     "0.22/",
+    "0.23/",
   ].map((vers) => [
     `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
     [
