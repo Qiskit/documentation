@@ -142,7 +142,9 @@ function maybePrintErrorsAndFail(
 
   if (extraIndexEntriesErrors.length > 0) {
     extraIndexEntriesErrors.forEach((error) => console.error(error));
-    console.error(`\nMake sure all pages have an entry in the Tools menu, which is set in docs/guides/_toc.json.`);
+    console.error(
+      `\nMake sure all pages have an entry in the Tools menu, which is set in docs/guides/_toc.json.`,
+    );
     console.error("--------\n");
     allGood = false;
   }
