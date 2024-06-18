@@ -10,20 +10,21 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import path from 'path';
-import { writeFile } from "fs/promises";
+import { createPreviews } from "./lib/previews";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import { API } from "./lib/api";
-import { LocalTutorialData, readTutorialData } from "./lib/local-tutorial-data";
 
 const CONFIG_PATH = "tutorials/learning-api.conf.yaml";
-const ACCESSIBLE_TO_INSTANCE = "client-enablement/documentation/qiskit-documenta";
+const ACCESSIBLE_TO_INSTANCE =
+  "client-enablement/documentation/qiskit-documenta";
 
 interface Arguments {
   prNumber: number;
   changedFiles: string[];
+  configPath: string;
+  accessibleToInstance: string;
 }
 
 const readArgs = (): Arguments => {
@@ -40,38 +41,25 @@ const readArgs = (): Arguments => {
       demandOption: true,
       description: "List of changed tutorial files",
     })
+    .option("configPath", {
+      string: true,
+      demandOption: false,
+      description: "Path to `learning-api.conf.yaml`",
+      default: CONFIG_PATH,
+    })
+    .option("accessibleToInstance", {
+      string: true,
+      demandOption: false,
+      description: "IBM Quantum instance that can access the preview pages.",
+      default: ACCESSIBLE_TO_INSTANCE,
+    })
     .parseSync();
 };
-
-async function getChangedTutorials(args: Arguments): Promise<LocalTutorialData[]> {
-  const changedDirectories = args.changedFiles.map(x => path.dirname(x));
-  const allTutorials = await readTutorialData(CONFIG_PATH);
-  const changedTutorials = allTutorials.filter(t => changedDirectories.includes(t.local_path))
-  return changedTutorials;
-}
-
-function modifyTutorialForPr(tutorial: LocalTutorialData, args: Arguments): LocalTutorialData {
-  tutorial.title = `Preview (PR#${args.prNumber}): ${tutorial.title}`;
-  tutorial.slug = `pr-${args.prNumber}-${tutorial.slug}`;
-  tutorial.required_instance_access = JSON.stringify([ACCESSIBLE_TO_INSTANCE]);
-  return tutorial;
-}
-
-function buildPrComment(tutorialPreviews: LocalTutorialData[]): string {
-  const listItems = tutorialPreviews.map(
-    t => ` * [${t.title}](https://learning.quantum.ibm.com/tutorial/${t.slug})`
-  );
-  return "Previews available:\n" + listItems.join("\n")
-}
 
 async function main() {
   const args = readArgs();
   const api = new API();
-  const tutorialPreviews = (await getChangedTutorials(args)).map(t => modifyTutorialForPr(t, args));
-  for (const tutorial of tutorialPreviews) {
-    await api.upsertTutorial(tutorial)
-  }
-  await writeFile("pr_message.md", buildPrComment(tutorialPreviews));
+  await createPreviews(args, api);
 }
 
 main().then(() => process.exit());

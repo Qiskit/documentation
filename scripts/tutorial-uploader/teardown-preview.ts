@@ -31,21 +31,24 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-async function getPreviewTutorialSlugs(api: API, prNumber: number): Promise<string[]> {
+async function getPreviewTutorialSlugs(
+  api: API,
+  prNumber: number,
+): Promise<string[]> {
   const allTutorials = await api.client.request(
-    readItems("tutorials", { fields: ["slug"] })
-  )
-  const previewIds = allTutorials
-    .map(t => t.slug)
-    .filter(slug => slug.startsWith(`pr-${prNumber}-`))
-  return previewIds;
+    readItems("tutorials", { fields: ["slug"] }),
+  );
+  const previewSlugs = allTutorials
+    .map((t) => t.slug)
+    .filter((slug) => slug.startsWith(`pr-${prNumber}-`));
+  return previewSlugs;
 }
 
 async function main() {
   const prNumber = readArgs().prNumber;
   const api = new API();
   for (const slug of await getPreviewTutorialSlugs(api, prNumber)) {
-    await api.deleteTutorial(slug)
+    await api.deleteTutorial(slug);
   }
 }
 

@@ -28,6 +28,7 @@ const TOPICS = [
   "Qiskit Patterns",
   "Scheduling",
   "Transpilation",
+  "PR preview", // For PR previews only; do not add to tutorials/learning-api.conf.yaml
 ];
 
 const CATEGORIES = ["Workflow example", "How-to"];
