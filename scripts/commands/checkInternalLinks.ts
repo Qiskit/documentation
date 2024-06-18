@@ -25,11 +25,8 @@ import { FileBatch } from "../lib/links/FileBatch";
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
-<<<<<<< FH/latest-updates
-  "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx"
-=======
+  "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
->>>>>>> main
 ];
 
 interface Arguments {
