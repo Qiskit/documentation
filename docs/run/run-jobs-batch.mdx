@@ -48,6 +48,6 @@ The following example shows how you can partition a long list of circuits into m
  ```
 
 
-<Admonition type="note">
-    If you set `backend=backend` in a v2 primitive it will run the program in job mode, even if it's inside a batch/session context. So, preferred way to use it is `sampler = SamplerV2()` when running in batch mode.
+<Admonition type="caution">
+    If you set `backend=backend` in a V2 primitive it will run the program in job mode, even if it's inside a batch/session context. Avoid setting the backend parameter if you want to run in batch/session mode.
 </Admonition>
