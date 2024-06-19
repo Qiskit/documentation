@@ -41,18 +41,18 @@ For more details on any of the topics covered in the blog, be sure to check [the
 
 #### New features
 
-- The ZneOptions.amplifier option was added, which can be one of: "gate_folding" (default), "gate_folding_front", and "gate_folding_back". See the API reference for more details.
+- The [`ZneOptions.amplifier`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions#amplifier) option was added, which can be one of: `gate_folding` (default), `gate_folding_front`, and `gate_folding_back`. See the [API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions#zneoptions) for more details.
 - You can now use the experimental option in [`qiskit_ibm_runtime.options.EstimatorOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) to enable the Probabilistic Error Amplification (PEA) error mitigation method.
 
 #### Upgrade Notes
 
-- Qiskit version 1.1 is now supported and required.
+- Qiskit SDK v1.1 is now supported and required.
 
 #### Bug Fixes
 
-- Fixed an issue where retrieved jobs would only return RuntimeJob instances, even if the job was run with a V2 primitive. Now, V2 primitive jobs will be returned correctly as `RuntimeJobV2` instances.
-- Fixed the combination of `insert_multiple_cycles` and `coupling_map` options in [`PadDynamicalDecoupling`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling). This combination allows to select staggered dynamical decoupling with multiple sequence cycles in each delay that crosses the threshold set by sequence_min_length_ratios.
-- Fixed measurement twirling docstring which incorrectly indicated it’s enabled by default for Sampler.
+- Fixed an issue where retrieved jobs would only return `RuntimeJob` instances, even if the job was run with a V2 primitive. Now, V2 primitive jobs will be returned correctly as `RuntimeJobV2` instances.
+- Fixed the combination of `insert_multiple_cycles` and `coupling_map` options in [`PadDynamicalDecoupling`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling). This combination allows to select staggered dynamical decoupling with multiple sequence cycles in each delay that crosses the threshold set by `sequence_min_length_ratios`.
+- Fixed measurement twirling docstring that incorrectly indicated it’s enabled by default for Sampler.
 - Fixed issues related to target generation and calibration data.
 
 See the full [0.24.0 release notes](/api/qiskit-ibm-runtime/release-notes#0240-2024-06-10).
