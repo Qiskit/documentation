@@ -334,7 +334,7 @@ options.resilience_level = 2
 options.optimization_level = 1
 backend = service.least_busy(operational=True, simulator=False)
 
-estimator = Estimator(options=options, backend=backend)
+estimator = Estimator(options=options, mode=backend)
 ```
 
 <Admonition type="info" title="Note">
@@ -466,7 +466,7 @@ options.resilience.noise_amplifier = 'CxAmplifier'
 options.resilience.extrapolator = 'QuadraticExtrapolator'
 backend = service.least_busy(operational=True, simulator=False)
 
-estimator = Estimator(options=options, backend=backend)
+estimator = Estimator(options=options, mode=backend)
 job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1])
 psi1_H1 = job.result()
 ```

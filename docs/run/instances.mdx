@@ -69,8 +69,8 @@ backend1 = service.backend("ibmq_manila")
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
 backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
 
-sampler1 = SamplerV2(backend=backend1)    # this will use hub1/group1/project1
-sampler2 = SamplerV2(backend=backend2)    # this will use hub2/group2/project2
+sampler1 = SamplerV2(mode=backend1)    # this will use hub1/group1/project1
+sampler2 = SamplerV2(mode=backend2)    # this will use hub2/group2/project2
 ```
   </TabItem>
 
@@ -88,8 +88,8 @@ backend1 = service.backend("ibmq_manila")
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
 backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
 
-sampler1 = Sampler(backend=backend1)    # this will use hub1/group1/project1
-sampler2 = Sampler(backend=backend2)    # this will use hub2/group2/project2
+sampler1 = Sampler(mode=backend1)    # this will use hub1/group1/project1
+sampler2 = Sampler(mode=backend2)    # this will use hub2/group2/project2
 ```
   </TabItem>
 </Tabs>
