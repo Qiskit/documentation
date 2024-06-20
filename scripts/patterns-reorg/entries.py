@@ -84,6 +84,7 @@ GET_STARTED_CHILDREN = [
         ),
     ),
     Entry("Hello world", slug="/hello-world", from_file="start/hello-world.ipynb"),
+    Entry("Latest updates", slug="/latest-updates", from_file="start/lates-updates.mdx"),
     Entry(
         "Advanced setup",
         children=(
