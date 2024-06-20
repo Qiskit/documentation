@@ -83,7 +83,7 @@ x0 = 2 * np.pi * np.random.random(num_params)
 
 session = Session(backend=backend)
 
-estimator = Estimator(session=session, options={"shots": int(1e4)})
+estimator = Estimator(mode=session, options={"shots": int(1e4)})
 res = minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method="cobyla")
 
 # Close the session because we didn't use a context manager.
