@@ -41,8 +41,8 @@ from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Est
 
 backend = service.least_busy(operational=True, simulator=False)
 session = Session(service=service, backend=backend)
-estimator = Estimator(session=session)
-sampler = Sampler(session=session)
+estimator = Estimator(mode=session)
+sampler = Sampler(mode=session)
 ```
   </TabItem>
 
@@ -52,8 +52,8 @@ from qiskit_ibm_runtime import Session, Sampler, Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
 session = Session(service=service, backend=backend)
-estimator = Estimator(session=session)
-sampler = Sampler(session=session)
+estimator = Estimator(mode=session)
+sampler = Sampler(mode=session)
 ```
   </TabItem>
 </Tabs>
@@ -132,7 +132,7 @@ If you are not using a context manager, manually close the session to avoid unwa
 
 ``` python
 session = Session(backend=backend)
-estimator = Estimator(session=session)
+estimator = Estimator(mode=session)
 job1 = estimator.run(...)
 job2 = estimator.run(...)
 print(f"Result1: {job1.result()}")

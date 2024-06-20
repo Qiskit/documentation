@@ -61,7 +61,7 @@ When creating an instance of the `Estimator` or `Sampler` class, you can pass in
     `SamplerV2` and `EstimatorV2` have separate options classes that do not need to be instantiated.  You can see the available options and update option values during or after primitive initialization.  Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 ```python
-estimator = Estimator(backend=backend)
+estimator = Estimator(mode=backend)
 
 # Setting options after primitive initialization
 # This uses auto complete.
@@ -74,7 +74,7 @@ estimator.options.default_shots = 4000
 When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 ```python
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(mode=backend, options=options)
 result = estimator.run(circuit, observable).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
@@ -131,7 +131,7 @@ sampler.run([circuit1, circuit2], shots=128)
   <TabItem value="PrimV1" label="V1 primitives">
 You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the options category. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid).
 ```python
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(mode=backend, options=options)
 result = estimator.run(circuit, observable, shots=1024).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
@@ -176,7 +176,7 @@ from qiskit_ibm_runtime import Estimator, Options
 options = Options()
 options.execution.shots = 1024
 
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(mode=backend, options=options)
 ```
 
 If you need to modify the number of shots set between iterations (primitive calls), you can set the
@@ -185,7 +185,7 @@ shots directly in the `run()` method. This overwrites the initial `shots` settin
 ```python
 from qiskit_ibm_runtime import Estimator
 
-estimator = Estimator(session=backend)
+estimator = Estimator(mode=backend)
 
 estimator.run(circuits=circuits, observables=observables, shots=50)
 
@@ -218,7 +218,7 @@ See the Optimization level table in the
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
-estimator = Estimator(session=backend, options={"optimization_level": 1})
+estimator = Estimator(mode=backend, options={"optimization_level": 1})
 
 # or..
 estimator.options.optimization_level = 1
@@ -243,7 +243,7 @@ options = Options(optimization_level=1)
 options = Options()
 options.optimization_level = 1
 
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(mode=backend, options=options)
 ```
 
 Turning off all optional runtime compilation steps requires a "second-level option", as follows:
@@ -254,7 +254,7 @@ from qiskit_ibm_runtime import Estimator, Options
 options = Options()
 options.transpilation.skip_transpilation = True
 
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(mode=backend, options=options)
 ```
 
 For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
@@ -274,7 +274,7 @@ algorithm.  These methods can be set through the `resilience_level` option.  For
 With Estimator V2, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine-tuning.
 
 ```python
-estimator = Estimator(backend=backend)
+estimator = Estimator(mode=backend)
 
 estimator.options.resilience_level = 2
 estimator.options.resilience.zne_mitigation = True
@@ -298,7 +298,7 @@ options = Options(resilience_level = 2)
 options = Options()
 options.resilience_level = 2
 
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(mode=backend, options=options)
 ```
 </TabItem>
 </Tabs>
