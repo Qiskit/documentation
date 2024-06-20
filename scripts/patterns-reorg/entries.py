@@ -516,7 +516,7 @@ PATTERNS_CHILDREN = (
     ),
     Entry(
         "Post-process results",
-        slug="/postprocess-results",
+        slug="/post-process-results",
         page_content=postprocess_index_content(
             entries_as_markdown_list((RETRIEVE_RESULTS_PAGE, VISUALIZE_RESULTS_PAGE))
         ),
