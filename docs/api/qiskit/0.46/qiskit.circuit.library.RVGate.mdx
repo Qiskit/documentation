@@ -11,7 +11,7 @@ python_api_name: qiskit.circuit.library.RVGate
 <Class id="qiskit.circuit.library.RVGate" isDedicatedPage={true} github="https://github.com/qiskit/qiskit/tree/stable/0.46/qiskit/circuit/library/generalized_gates/rv.py" signature="qiskit.circuit.library.RVGate(v_x, v_y, v_z, basis='U')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
-  Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
+  Rotation around arbitrary rotation axis $\vec{v}$ where $\|\vec{v}\|_2$ is angle of rotation in radians.
 
   Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`rv()`](qiskit.circuit.QuantumCircuit#rv "qiskit.circuit.QuantumCircuit.rv") method.
 
@@ -26,14 +26,17 @@ python_api_name: qiskit.circuit.library.RVGate
   **Matrix Representation:**
 
 $$
-\newcommand{\rotationangle}{|\vec{v}|}
-\newcommand{\sinc}{\text{sinc}}
-R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma}} =
+\newcommand{\rotationangle}{\frac{\|\vec{v}\|_2}{2}}
+R(\vec{v}) = e^{-i \vec{v}\cdot\vec{\sigma} / 2} =
 \begin{pmatrix}
-\cos\left(\rotationangle\right) -i v_z \sinc\left(\rotationangle\right)
-& -(i v_x + v_y) \sinc\left(\rotationangle\right) \\
--(i v_x - v_y) \sinc\left(\rotationangle\right)
-& \cos\left(\rotationangle\right) + i v_z \sinc\left(\rotationangle\right)
+\cos\left(\rotationangle\right)
+-i \frac{v_z}{\|\vec{v}\|_2} \sin\left(\rotationangle\right)
+& -(i \frac{v_x}{\|\vec{v}\|_2}
++ \frac{v_y}{\|\vec{v}\|_2}) \sin\left(\rotationangle\right) \\
+-(i \frac{v_x}{\|\vec{v}\|_2}
+- \frac{v_y}{\|\vec{v}\|_2}) \sin\left(\rotationangle\right)
+& \cos\left(\rotationangle\right)
++ i \frac{v_z}{\|\vec{v}\|_2} \sin\left(\rotationangle\right)
 \end{pmatrix}
 $$
 

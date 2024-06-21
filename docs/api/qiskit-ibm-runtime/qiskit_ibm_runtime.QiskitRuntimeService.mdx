@@ -84,7 +84,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/qiskit_runtime_service.py#L734-L783" signature="backend(name=None, instance=None, use_fractional_gates=True)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/qiskit_runtime_service.py#L734-L783" signature="backend(name=None, instance=None, use_fractional_gates=False)">
     Return a single backend matching the specified filtering.
 
     **Parameters**
@@ -108,7 +108,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backends
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/qiskit_runtime_service.py#L453-L564" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=True, **kwargs)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/qiskit_runtime_service.py#L453-L564" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=False, **kwargs)">
     Return all backends accessible via this account, subject to optional filtering.
 
     **Parameters**
@@ -132,7 +132,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
             filters=lambda x: ("rz" in x.basis_gates )
         ```
 
-    *   **use\_fractional\_gates** (`Optional`\[`bool`]) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with the dynamic circuits, PEC, or PEA. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously.
+    *   **use\_fractional\_gates** (`bool`) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with the dynamic circuits, PEC, or PEA. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously.
 
     *   **\*\*kwargs** –
 

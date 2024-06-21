@@ -71,7 +71,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – A boolean invertible matrix.
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – A boolean invertible matrix.
 
   **Returns**
 
@@ -101,7 +101,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – an upper-diagonal matrix representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – an upper-diagonal matrix representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate
 
   **Returns**
 
@@ -123,8 +123,8 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  *   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean symmetric matrix representing a CZ circuit. `mat_z[i][j]=1` represents a `cz(i,j)` gate
-  *   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean invertible matrix representing a CX circuit.
+  *   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – a boolean symmetric matrix representing a CZ circuit. `mat_z[i][j]=1` represents a `cz(i,j)` gate
+  *   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – a boolean invertible matrix representing a CX circuit.
 
   **Returns**
 
@@ -575,7 +575,7 @@ python_api_name: qiskit.synthesis
   **Parameters**
 
   *   **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.states.stabilizerstate.StabilizerState")) – A stabilizer state.
-  *   **cz\_synth\_func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – A function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+  *   **cz\_synth\_func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – A function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
   *   **cz\_func\_reverse\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – `True` only if `cz_synth_func` is [`synth_cz_depth_line_mr()`](#qiskit.synthesis.synth_cz_depth_line_mr "qiskit.synthesis.synth_cz_depth_line_mr"), since this function returns a circuit that reverts the order of qubits.
   *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, validates the synthesis process.
 
