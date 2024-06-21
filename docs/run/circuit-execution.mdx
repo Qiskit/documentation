@@ -40,7 +40,7 @@ backend = service.least_busy(operational=True, min_num_qubits=100, dynamic_repra
 
 # Determine the allowable range
 backend.rep_delay_range
-sampler = Sampler(backend=backend)
+sampler = Sampler(mode=backend)
 
 #Specify a value in the supported range
 sampler.options.execution.rep_delay = 0.0005
