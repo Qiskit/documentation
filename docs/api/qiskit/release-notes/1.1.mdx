@@ -14,9 +14,43 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.1.1
+
+<span id="relnotes-1-1-1-prelude" />
+
+### Prelude
+
+Qiskit 1.1.1 is a minor bugfix release for the 1.1 series.
+
+<span id="relnotes-1-1-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fix a bug in [`Isometry`](/api/qiskit/qiskit.circuit.library.Isometry "qiskit.circuit.library.Isometry") due to an unnecessary assertion, that led to an error in [`UnitaryGate.control()`](/api/qiskit/qiskit.circuit.library.UnitaryGate#control "qiskit.circuit.library.UnitaryGate.control") when [`UnitaryGate`](/api/qiskit/qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate") had more that two qubits.
+
+*   [`QuantumCircuit.depth()`](/api/qiskit/qiskit.circuit.QuantumCircuit#depth "qiskit.circuit.QuantumCircuit.depth") will now correctly handle operations that do not have operands, such as [`GlobalPhaseGate`](/api/qiskit/qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate").
+
+*   [`QuantumCircuit.depth()`](/api/qiskit/qiskit.circuit.QuantumCircuit#depth "qiskit.circuit.QuantumCircuit.depth") will now count the variables and clbits used in real-time expressions as part of the depth calculation.
+
+*   Fixed a bug in `qiskit.visualization.pulse_v2.interface.draw()` that didn’t draw pulse schedules when the draw function was called with a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") argument. Because the V2 backend doesn’t report hardware channel frequencies, the generated drawing will show ‘no freq.’ below each channel label.
+
+*   The [`VF2Layout`](/api/qiskit/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") pass would raise an exception when provided with a [`Target`](/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") instance without connectivity constraints. This would be the case with targets from Aer 0.13. The issue is now fixed.
+
+*   [`ParameterExpression`](/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") was updated so that fully bound instances that compare equal to instances of Python’s built-in numeric types (like `float` and `int`) also have hash values that match those of the other instances. This change ensures that these types can be used interchangeably as dictionary keys. See [#12488](https://github.com/Qiskit/qiskit/pull/12488).
+
+*   Custom gates (those stemming from a `gate` statement) in imported OpenQASM 2 programs will now have a [`Gate.to_matrix()`](/api/qiskit/qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix") implementation. Previously they would have no matrix definition, meaning that roundtrips through OpenQASM 2 could needlessly lose the ability to derive the gate matrix. Note, though, that the matrix is calculated by recursively finding the matrices of the inner gate definitions, as [`Operator`](/api/qiskit/qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") does, which might be less performant than before the round-trip.
+
+*   [`Target.has_calibration()`](/api/qiskit/qiskit.transpiler.Target#has_calibration "qiskit.transpiler.Target.has_calibration") has been updated so that it does not raise an exception for an instruction that has been added to the target with `None` for its instruction properties. Fixes [#12525](https://github.com/Qiskit/qiskit/issues/12525).
+
+<span id="relnotes-1-1-0" />
+
+<span id="id2" />
+
 ## 1.1.0
 
 <span id="relnotes-1-1-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -741,6 +775,8 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 <span id="relnotes-1-1-0-bug-fixes" />
 
+<span id="id4" />
+
 ### Bug Fixes
 
 *   Fixed an issue with the [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") function where, when the `use_symengine` flag was set to a truthy object that evaluated to `True` but was not actually the boolean `True`, the generated QPY payload would be corrupt. For example, if you set `use_symengine` to [`HAS_SYMENGINE`](/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE "qiskit.utils.optionals.HAS_SYMENGINE"), this object evaluates to `True` when cast as a bool, but isn’t actually `True`.
@@ -836,9 +872,9 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 ### Other Notes
 
-*   Support for the arm64 macOS platform has been promoted from Tier 3 to Tier 1. Previously the platform was at Tier 3 because there was no available CI environment for testing Qiskit on the platform. Now that Github has made an arm64 macOS environment available to open source projects [\[1\]](#id3) we’re testing the platform along with the other Tier 1 supported platforms.
+*   Support for the arm64 macOS platform has been promoted from Tier 3 to Tier 1. Previously the platform was at Tier 3 because there was no available CI environment for testing Qiskit on the platform. Now that Github has made an arm64 macOS environment available to open source projects [\[1\]](#id6) we’re testing the platform along with the other Tier 1 supported platforms.
 
-    \[[1](#id2)]
+    \[[1](#id5)]
 
     [https://github.blog/changelog/2024-01-30-github-actions-introducing-the-new-m1-macos-runner-available-to-open-source/](https://github.blog/changelog/2024-01-30-github-actions-introducing-the-new-m1-macos-runner-available-to-open-source/)
 
@@ -850,7 +886,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 <span id="relnotes-1-0-0rc1-providers-upgrade-notes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Providers Upgrade Notes
 

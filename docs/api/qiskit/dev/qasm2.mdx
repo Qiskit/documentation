@@ -21,7 +21,7 @@ python_api_name: qiskit.qasm2
 Qiskit has support for interoperation with OpenQASM 2.0 programs, both [parsing into Qiskit formats](#qasm2-parse) and [exporting back to OpenQASM 2](#qasm2-export).
 
 <Admonition title="Note" type="note">
-  OpenQASM 2 is a simple language, and not suitable for general serialisation of Qiskit objects. See [some discussion of alternatives below](#qasm2-alternatives), if that is what you are looking for.
+  OpenQASM 2 is a simple language, and not suitable for general serialization of Qiskit objects. See [some discussion of alternatives below](#qasm2-alternatives), if that is what you are looking for.
 </Admonition>
 
 <span id="qasm2-parse" />
@@ -85,7 +85,7 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
 #### CustomInstruction
 
-<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/parse.py#L77-L97" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
+<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm2/parse.py#L80-L100" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
   Information about a custom instruction that should be defined during the parse.
 
   The `name`, `num_params` and `num_qubits` fields are self-explanatory. The `constructor` field should be a callable object with signature `*args -> Instruction`, where each of the `num_params` `args` is a floating-point value. Most of the built-in Qiskit gate classes have this form.
@@ -119,7 +119,7 @@ Both of the loader functions have an optional “strict” mode. By default, thi
 
 ## Exporting API
 
-Similar to other serialisation modules in Python, this module offers two public functions: [`dump()`](#qiskit.qasm2.dump "qiskit.qasm2.dump") and [`dumps()`](#qiskit.qasm2.dumps "qiskit.qasm2.dumps"), which take a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and write out a representative OpenQASM 2 program to a file-like object or return a string, respectively.
+Similar to other serialization modules in Python, this module offers two public functions: [`dump()`](#qiskit.qasm2.dump "qiskit.qasm2.dump") and [`dumps()`](#qiskit.qasm2.dumps "qiskit.qasm2.dumps"), which take a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and write out a representative OpenQASM 2 program to a file-like object or return a string, respectively.
 
 ### dump
 
@@ -427,7 +427,7 @@ Operator([[1.000000e+00+0.j, 0.000000e+00+0.j],
 
 ## Legacy Compatibility
 
-[`QuantumCircuit.from_qasm_str()`](qiskit.circuit.QuantumCircuit#from_qasm_str "qiskit.circuit.QuantumCircuit.from_qasm_str") and [`from_qasm_file()`](qiskit.circuit.QuantumCircuit#from_qasm_file "qiskit.circuit.QuantumCircuit.from_qasm_file") used to make a few additions on top of the raw specification. Qiskit originally tried to use OpenQASM 2 as a sort of serialisation format, and expanded its behaviour as Qiskit expanded. The new parser under all its defaults implements the specification more strictly.
+[`QuantumCircuit.from_qasm_str()`](qiskit.circuit.QuantumCircuit#from_qasm_str "qiskit.circuit.QuantumCircuit.from_qasm_str") and [`from_qasm_file()`](qiskit.circuit.QuantumCircuit#from_qasm_file "qiskit.circuit.QuantumCircuit.from_qasm_file") used to make a few additions on top of the raw specification. Qiskit originally tried to use OpenQASM 2 as a sort of serialization format, and expanded its behavior as Qiskit expanded. The new parser under all its defaults implements the specification more strictly.
 
 In particular, in the legacy importers:
 
@@ -480,7 +480,7 @@ In particular, in the legacy importers:
 
 *   the parsed grammar is effectively the same as [the strict mode of the new importers](#qasm2-strict-mode).
 
-You can emulate this behaviour in [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") by setting include\_path appropriately (try inspecting the variable `qiskit.__file__` to find the installed location), and by passing a list of [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") instances for each of the custom gates you care about. To make things easier we make three tuples available, which each contain one component of a configuration that is equivalent to Qiskit’s legacy converter behaviour.
+You can emulate this behavior in [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") by setting include\_path appropriately (try inspecting the variable `qiskit.__file__` to find the installed location), and by passing a list of [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") instances for each of the custom gates you care about. To make things easier we make three tuples available, which each contain one component of a configuration that is equivalent to Qiskit’s legacy converter behavior.
 
 **qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS**
 
@@ -494,7 +494,7 @@ A tuple containing the extra custom\_classical functions that Qiskit’s legacy 
 
 A tuple containing the exact include\_path used by the legacy Qiskit converter.
 
-On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behaviour with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
+On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behavior with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
 
 <Admonition title="Note" type="note">
   Circuits imported with [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") with the above legacy-compatibility settings should compare equal to those created by Qiskit’s legacy importer, provided no non-`qelib1.inc` user gates are defined. User-defined gates are handled slightly differently in the new importer, and while they should have equivalent [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") fields on inspection, this module uses a custom class to lazily load the definition when it is requested (like most Qiskit objects), rather than eagerly creating it during the parse. Qiskit’s comparison rules for gates will see these two objects as unequal, although any pass through [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") for a particular backend should produce the same output circuits.

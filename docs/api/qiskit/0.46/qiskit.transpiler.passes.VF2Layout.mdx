@@ -43,7 +43,7 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
   *   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The total time limit in seconds to run `VF2Layout`
   *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
   *   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger) if no other limits are set. If set to a value \<= 0 no limit on the number of trials will be set.
-  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `properties` and `coupling_map` if the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") contains connectivity constraints. If the value of `target` models an ideal backend without any constraints then the value of `coupling_map` will be used.
 
   **Raises**
 

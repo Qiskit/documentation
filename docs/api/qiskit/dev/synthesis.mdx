@@ -35,7 +35,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_cnot\_count\_full\_pmh
 
-<Function id="qiskit.synthesis.synth_cnot_count_full_pmh" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/cnot_synth.py#L26-L72" signature="qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)">
+<Function id="qiskit.synthesis.synth_cnot_count_full_pmh" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/cnot_synth.py#L26-L71" signature="qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)">
   Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
 
   This function is an implementation of the Patel, Markov and Hayes algorithm from \[1] for optimal synthesis of linear reversible circuits for all-to-all architecture, as specified by an $n \times n$ matrix.
@@ -71,7 +71,7 @@ python_api_name: qiskit.synthesis
 
   **Parameters**
 
-  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – A boolean invertible matrix.
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – A boolean invertible matrix.
 
   **Returns**
 
@@ -95,13 +95,13 @@ python_api_name: qiskit.synthesis
 ### synth\_cz\_depth\_line\_mr
 
 <Function id="qiskit.synthesis.synth_cz_depth_line_mr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cz_depth_lnn.py#L121-L194" signature="qiskit.synthesis.synth_cz_depth_line_mr(mat)">
-  Synthesis of a CZ circuit for linear nearest neighbour (LNN) connectivity, based on Maslov and Roetteler.
+  Synthesis of a CZ circuit for linear nearest neighbor (LNN) connectivity, based on Maslov and Roetteler.
 
   Note that this method *reverts* the order of qubits in the circuit, and returns a circuit containing [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
 
   **Parameters**
 
-  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – an upper-diagonal matrix representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate
+  **mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – an upper-diagonal matrix representing the CZ circuit. `mat[i][j]=1 for i<j` represents a `cz(i,j)` gate
 
   **Returns**
 
@@ -119,12 +119,12 @@ python_api_name: qiskit.synthesis
 ### synth\_cx\_cz\_depth\_line\_my
 
 <Function id="qiskit.synthesis.synth_cx_cz_depth_line_my" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear_phase/cx_cz_depth_lnn.py#L218-L262" signature="qiskit.synthesis.synth_cx_cz_depth_line_my(mat_x, mat_z)">
-  Joint synthesis of a -CZ-CX- circuit for linear nearest neighbour (LNN) connectivity, with 2-qubit depth at most 5n, based on Maslov and Yang. This method computes the CZ circuit inside the CX circuit via phase gate insertions.
+  Joint synthesis of a -CZ-CX- circuit for linear nearest neighbor (LNN) connectivity, with 2-qubit depth at most 5n, based on Maslov and Yang. This method computes the CZ circuit inside the CX circuit via phase gate insertions.
 
   **Parameters**
 
-  *   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean symmetric matrix representing a CZ circuit. `mat_z[i][j]=1` represents a `cz(i,j)` gate
-  *   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean invertible matrix representing a CX circuit.
+  *   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – a boolean symmetric matrix representing a CZ circuit. `mat_z[i][j]=1` represents a `cz(i,j)` gate
+  *   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – a boolean invertible matrix representing a CX circuit.
 
   **Returns**
 
@@ -443,7 +443,7 @@ python_api_name: qiskit.synthesis
 ### synth\_clifford\_depth\_lnn
 
 <Function id="qiskit.synthesis.synth_clifford_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L414-L444" signature="qiskit.synthesis.synth_clifford_depth_lnn(cliff)">
-  Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers for linear-nearest neighbour connectivity.
+  Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers for linear-nearest neighbor connectivity.
 
   The depth of the synthesized n-qubit circuit is bounded by $7n+2$, which is not optimal. It should be replaced by a better algorithm that provides depth bounded by $7n-4$ \[3].
 
@@ -490,7 +490,7 @@ python_api_name: qiskit.synthesis
   **References**
 
   1.  Shelly Garion and Andrew W. Cross, *Synthesis of CNOT-Dihedral circuits with optimal number of two qubit gates*, [Quantum 4(369), 2020](https://quantum-journal.org/papers/q-2020-12-07-369/)
-  2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
+  2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomized benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
 </Function>
 
 ### synth\_cnotdihedral\_two\_qubits
@@ -544,7 +544,7 @@ python_api_name: qiskit.synthesis
 
   **References**
 
-  1.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
+  1.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomized benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
 </Function>
 
 ## Stabilizer State Synthesis
@@ -575,7 +575,7 @@ python_api_name: qiskit.synthesis
   **Parameters**
 
   *   **stab** ([*StabilizerState*](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.states.stabilizerstate.StabilizerState")) – A stabilizer state.
-  *   **cz\_synth\_func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – A function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+  *   **cz\_synth\_func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – A function to decompose the CZ sub-circuit. It gets as input a boolean symmetric matrix, and outputs a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
   *   **cz\_func\_reverse\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – `True` only if `cz_synth_func` is [`synth_cz_depth_line_mr()`](#qiskit.synthesis.synth_cz_depth_line_mr "qiskit.synthesis.synth_cz_depth_line_mr"), since this function returns a circuit that reverts the order of qubits.
   *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, validates the synthesis process.
 
@@ -599,7 +599,7 @@ python_api_name: qiskit.synthesis
 ### synth\_stabilizer\_depth\_lnn
 
 <Function id="qiskit.synthesis.synth_stabilizer_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L168-L193" signature="qiskit.synthesis.synth_stabilizer_depth_lnn(stab)">
-  Synthesis of an n-qubit stabilizer state for linear-nearest neighbour connectivity, in 2-qubit depth $2n+2$ and two distinct CX layers, using [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
+  Synthesis of an n-qubit stabilizer state for linear-nearest neighbor connectivity, in 2-qubit depth $2n+2$ and two distinct CX layers, using [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
 
   **Parameters**
 
