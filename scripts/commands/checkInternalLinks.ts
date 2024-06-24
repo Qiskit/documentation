@@ -25,6 +25,7 @@ import { FileBatch } from "../lib/links/FileBatch";
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
+  "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
 ];
 
@@ -186,6 +187,7 @@ async function determineCurrentDocsFileBatch(
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
+    "docs/api/qiskit/release-notes/1.1.mdx",
   ];
 
   if (!args.currentApis) {
