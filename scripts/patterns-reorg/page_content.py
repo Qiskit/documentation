@@ -272,7 +272,6 @@ Some popular projects in the Qiskit ecosystem include:
 - **Qiskit Aer** (`qiskit-aer`) - a package for quantum computing simulators with realistic noise models. It provides interfaces to run quantum circuits with or without noise using multiple different simulation methods. Maintained by IBM Quantum.
 - **Qiskit Nature** (`qiskit-nature`) - a package that supports solving quantum mechanical natural science problems using quantum computing algorithms, including finding ground and excited states of electronic and vibrational structure problems, measuring the dipole moments of molecular systems and solving the Ising and Fermi-Hubbard models on lattices.  Initially written by IBM Quantum and currently maintained by Algorithmiq.
 - **mthree** `mthree` - a package for implementing M3 (Matrix-free Measurement Mitigation), a measurement mitigation technique that solves for corrected measurement probabilities using a dimensionality reduction step followed by either direct LU factorization or a preconditioned iterative method that nominally converges in O(1) steps, and can be computed in parallel. Maintained by IBM Quantum.
-- **Qiskit TOQM** `qiskit-toqm` - a transpiler plugin for a routing method that uses the Time-Optimal Qubit Mapping (TOQM) algorithm. Maintained by IBM Quantum.
 
 You can find a catalog of projects in the [Qiskit ecosystem page](https://qiskit.github.io/ecosystem/), as well as information about how to nominate your own project.
 
