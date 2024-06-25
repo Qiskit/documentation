@@ -281,7 +281,7 @@ options.execution.shots = 2048
 <span id="pass-options"></span>
 ## Set primitive options
 
-You can set options in an options class, when initializing the primitive, when calling the `run()` method, or any combination of those.
+You can set options in an options class, when initializing the primitive, or both.
 
 ### Options class
 
@@ -350,11 +350,12 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 <span id="run-method"></span>
 ### Run() method
 
-You can pass in options by using the `run()` method. This overwrites the options you specified when creating the `Estimator` or `Sampler` instance for that particular execution.
+The run() method accepts options in V1 only.
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-In V2, the only options you can pass to `run()` are options defined in the interface.  That is, `shots` for Sampler and `precision` for Estimator.
+In V2, the only values you can pass to `run()` are those defined in the interface.  That is, `shots` for Sampler and `precision` for Estimator. This overwrites any value set for `default_shots` or `default_precision` for the current run.
+
 ```python
 # Sample two circuits at 128 shots each.
 sampler.run([circuit1, circuit2], shots=128)
@@ -382,6 +383,21 @@ For some algorithms, setting a specific number of shots is a core part of their 
 
 <Tabs>
   <TabItem value="primitivesV2" label="V2 Primitives">
+Shots (or precision) can be specified in multiple places in V2.  They are prioritized as follows:
+
+* For any Sampler pub:
+
+1. Int-valued shots contained in the pub
+2. The `run(...,shots=val)` value
+3. The `options.default_shots` value
+
+* For any Estimator pub:
+
+1. Float-valued precision contained in the pub
+2. The `run(...,precision=val)` value
+3. The `options.default_shots` value
+4. The `options.default_precision` value
+
     ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
