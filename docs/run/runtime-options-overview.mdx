@@ -39,9 +39,12 @@ The tables in the [Options classes summary section](#options-classes) lists the 
 
 There are several ways to set options.  If you set different values for the same option in multiple places, this is the order of precedence:
 
-1. Any options set in `run()` are used for that execution. See the [Run() method](#run-method) section for full details.
 2. Any options set after primitive initialization.
 3. Any options set during primitive initialization.
+
+<Admonition type="caution" title="Important">
+Shots (Sampler) or precision (Estimator) set in `run()` are not considered options, but take precidence over values set for `default_shots`or `default_precision`. See the [Run() method](#run-method) section for full details.
+</Admonition>
 
 In the following example, these values would be used for the `estimator.run` job: `shots = 128` and `optimization_level = 1`.
 
@@ -134,8 +137,8 @@ Scroll to see the full table.
 | Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
 |----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
 | default_shots        |                          |                         |  integer in the range[0, `backend.max_shots`]                                             | `4096`                      |
-| default_precision    |                          |                         |  float > 0                                                                                        | `0.015625, or 1 / sqrt(4096)`     |
-| dynamical_decoupling |                          |                         |                                                                                           |   `FieldInfo(annotation=Union[DynamicalDecouplingOptions, Dict], required=False, default_factory=DynamicalDecouplingOptions)`                         |
+| default_precision    |                          |                         |  float > 0                                                                                        | `0.015625 (1 / sqrt(4096))`     |
+| dynamical_decoupling |                          |                         |                                                                                           |                                              |
 |                      | enable                   |                         | `True`/`False`                                                             |    `False`           |
 |                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
 |                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                          | `'middle'`                  |
@@ -147,7 +150,7 @@ Scroll to see the full table.
 | execution            |                          |                         |                                                                                                         |                           |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.                                | Given by `backend.default_rep_delay`.|
-| max_execution_time   |                          |                         | integer number of seconds in the range (0, 5000]                                                                   | `10800` (3 hours)                         |
+| max_execution_time   |                          |                         | integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
 | optimization_level   |                          |                         | `0`/`1`                                                                                       | `1`                         |
 | resilience           | LayerNoiseLearning       |                         | `True`/`False`                                                                                | `True`                      |
 |                      |                          | max_layers_to_learn     |  `None`/ integer >= 1                                                                            | `4`                    |
@@ -162,20 +165,21 @@ Scroll to see the full table.
 |                      | pec_mitigation           |                         | `True`/`False`                                                                           | `False`                      |
 |                      | zne_mitigation           |                         | `True`/`False`                                                                                | `False`                     |
 |                      | zne                      | noise_factors           |   list of floats; each float >= 1                                                                   | `(1, 3, 5)`                 |
-|                      |                          | extrapolator            | `'exponential'`<br />`'linear'`<br />`'double_exponential'`<br />`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
+|                      |                          | amplifier               | `gate_folding`, `gate_folding_front`, `gate_folding_back                                 `  | `gate_folding` |
+|                      |                          | extrapolator            | one or more of `'exponential'`<br />`'linear'`<br />`'double_exponential'`<br />`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |
 | resilience_level     |                          |                         | `0`/`1`/`2`                                                                                     | `1`                         |
 | seed_estimator       |                          |                         |  integer                                                                                |     `None`               |
 | simulator            |                          |                         |                                                                                   |                     |
 |                      | noise_model              |                         |   [Qiskit Aer NoiseModel](../verify/building_noise_models), or its representation        | `None`                      |
 |                      | seed_simulator           |                         |   integer                                                                               | `None`                    |
-|                      | coupling_map             |                         |  List where each entry specifies a directed two-qubit interaction, for example: [[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]     | full connectivity                   |
-|                      | basis_gates              |                         |  Set of single- and two-qubit gates that provide a universal gates set, meaning that any quantum operation can be decomposed into those gates. Example: `['ecr', 'x', 'sx', 'rz']` | The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html) |
+|                      | coupling_map             |                         |  List of directed two-qubit interactions                                                | full connectivity                   |
+|                      | basis_gates              |                         |  List of basis gate names to unroll to                                                  | The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html) |
 | transpilation        | skip_transpilation       |                         | `True`/`False`                                                                                      | `False`                     |
 |                      | initial_layout           |                         |                                                                                         |                         |
 | twirling             | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
 |                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
 |                      | num_randomizations       |                         |  `auto`/ integer >= 1 (Note that this value strongly influences execution time.)            | `'auto'`                    |
-|                      | shots_per_randomization  |                         |   `auto`/ integer >= 1.  The maximum depends on the maximum shots allowed by the system. To find this value, run `backend.max_shots`.                                                                      | `'auto'`                    |
+|                      | shots_per_randomization  |                         |   `auto`/ integer >= 1 and <= `backend.max_shots`.                                                                      | `'auto'`                    |
 |                      | strategy                 |                         | `'active'`<br />`'active-circuit'`<br />`'active-accum'`<br />`'all'`                                | `'active-accum'`            |
   </TabItem>
 
