@@ -248,7 +248,65 @@ Scroll to see the full table.
 
 Due to differences in the device compilation process, certain runtime features cannot be used together in a single job. See the following table for details on which features are compatible with each other:
 
-Key:
+<Tabs>
+  <TabItem value="Dynamic" label="Dynamic circuits">
+  Incompatible with:
+  - Gate-folding ZNE
+  - PEA
+  - PEC
+  - Dynamical decoupling
+  - Pulse gates
+
+  Can be used with gate twirling for non-conditional gates.
+  </TabItem>
+
+  <TabItem value="ZNE" label="Gate-folding ZNE">
+    Incompatible with:
+  - Dynamic circuits
+  - PEA
+  - PEC
+
+  Can be used with pulse gates, but it might not work when using custom gates.
+  </TabItem>
+
+  <TabItem value="PEA" label="PEA">
+    Incompatible with:
+  - Dynamic circuits
+  - Gate-folding ZNE
+  - PEC
+  - Pulse gates
+  </TabItem>
+
+  <TabItem value="PEC" label="PEC">
+    Incompatible with:
+  - Dynamic circuits
+  - Gate-folding ZNE
+  - PEA
+  - Pulse gates
+  </TabItem>
+  <TabItem value="DD" label="Dynamical decoupling">
+  Incompatible with dynamic circuits.
+
+  </TabItem>
+  <TabItem value="Pulse" label="Pulse gates (Eagle only)">
+  Incompatible with:
+  - Dynamic circuits
+  - PEA
+  - PEC
+  - Dynamical decoupling
+
+  Other notes:
+  - Can be used with gate-folding ZNE, but it might not work with custom gates.
+  - Can be used with gate twirling, but it does not work with non-Clifford entanglers.
+  </TabItem>
+  <TabItem value="Twirling" label="Gate twirling">
+  Compatibile with all other features, with the following conditions:
+  - Can be used with dynamic circuits with non-conditional gates.
+  - Can be used with pulse gates, but it does not work with non-Clifford entanglers.
+
+  </TabItem>
+
+</Tabs>
 
 
 ## V2 changes
