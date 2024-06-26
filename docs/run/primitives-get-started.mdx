@@ -73,7 +73,7 @@ isa_observable = observable.apply_layout(isa_circuit.layout)
 
 ### 3. Initialize Qiskit Runtime Estimator
 
-When you initialize the Estimator, pass in the system or simulator you previously selected as the target.
+When you initialize the `Estimator`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` for job execution mode. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
 To use the Estimator V2, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
 
@@ -188,7 +188,7 @@ isa_circuit = pm.run(circuit)
 
 ### 3. Initialize the Qiskit Runtime Sampler
 
-When you initialize the `Sampler`, pass in the simulator or system you previously selected as the target.
+When you initialize the `Sampler`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` for job execution mode. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
 To use the Sampler V2, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backward compatibility.
 
