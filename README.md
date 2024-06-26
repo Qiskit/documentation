@@ -89,18 +89,6 @@ API docs authors can preview their changes to one of the APIs by using the `-a` 
 1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
 2. Execute `./start` and open up `http://localhost:3000`, as explained in the prior section.
 
-## Preview the docs in PRs
-
-Contributors with write access to this repository can use live previews of the docs: GitHub will deploy a website using your changes.
-
-To use live previews, push your branch to `upstream` rather than your fork. GitHub will leave a comment with the link to the site. Please prefix your branch name with your initials, e.g. `EA/fix-build-typo`, for good Git hygiene.
-
-## Staging
-
-We also re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
-
-This staging environment can be useful to see how the docs are rendering before we push it live to production.
-
 ## Execute notebooks
 
 Before submitting a new notebook or code changes to a notebook, you must run
