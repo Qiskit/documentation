@@ -123,7 +123,7 @@ def _add_redirect_to_dict(
     # We need to add two links for each index entry because we can
     # have two links possible. For example, `/run/index` and `/run`
     # point to the same page.
-    old_folder, old_file_name = old_url.split("/")
+    old_folder, old_file_name = old_url.rsplit("/",1)
     if old_file_name == "index":
         redirects[f"{old_folder}"] = redirect_to
 
@@ -134,17 +134,17 @@ def determine_redirects(
     result = {}
     for entry in entries:
         if isinstance(entry, Entry):
-            result.update(determine_redirects(entry.children))
+            result.update(determine_redirects(entry.children, prefix=prefix))
 
             if entry.slug is None or not entry.from_file:
                 continue
 
-            old_url = str(PurePath(entry.from_file).with_suffix(""))
-            redirect_to = f"{prefix}{entry.slug.removeprefix('/')}"
+            old_url = f"/{str(PurePath(entry.from_file).with_suffix(''))}"
+            redirect_to = f"{prefix}{entry.slug}"
             _add_redirect_to_dict(result, old_url, redirect_to)
 
         elif isinstance(entry, DeletedPage):
-            redirect_to = f"{prefix}{entry.redirect_to.removeprefix('/')}"
-            _add_redirect_to_dict(result, entry.old_slug, redirect_to)
+            redirect_to = f"{prefix}{entry.redirect_to}"
+            _add_redirect_to_dict(result, f"/{entry.old_slug}", redirect_to)
 
     return result
