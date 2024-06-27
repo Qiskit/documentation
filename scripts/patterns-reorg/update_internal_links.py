@@ -52,10 +52,11 @@ def update_link(markdown: str, folder: str, link: str, prefix: str) -> str:
         else:
             search_key = f"{folder}/{link_split[-1]}"
 
+    search_key = f"/{search_key.removeprefix('/')}"
     if search_key not in REDIRECTS:
         return markdown
 
-    new_link = REDIRECTS[search_key]
+    new_link = REDIRECTS[search_key].removeprefix("/guides/")
     if new_link == "":
         new_link = "/guides"
 
