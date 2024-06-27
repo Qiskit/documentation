@@ -23,7 +23,7 @@ description: Take a classical problem and map it to run on a quantum computer.
 
 # Map problem to quantum circuits and operators
 
-![../\_images/pattern-1.svg](/images/qiskit-patterns/pattern-1.svg)
+![../\_images/map-problem.svg](/images/qiskit-patterns/map-problem.svg)
 
 The "map problem to quantum circuits and operators" step of a Qiskit pattern describes how a user starts with a classical
 problem and figures out how to map it to a quantum computer.
@@ -57,7 +57,7 @@ description: Post-process the results obtained by running on a quantum computer.
 
 # Post-process results
 
-![../\_images/pattern-4.svg](/images/qiskit-patterns/pattern-4.svg)
+![../\_images/post-process-results.svg](/images/qiskit-patterns/post-process-results.svg)
 
 This final "post-process results" step of a Qiskit pattern involves stitching the outputs from
 the prior step back together to obtain the desired result. This can involve a range of classical
@@ -82,7 +82,7 @@ description: Optimize abstract circuits and operators so they can run on quantum
 
 # Optimize for target hardware
 
-![../\_images/pattern-2.svg](/images/qiskit-patterns/pattern-2.svg)
+![../\_images/optimize.svg](/images/qiskit-patterns/optimize.svg)
 
 In the "optimize for target hardware" step of a Qiskit pattern, you take the abstract circuits
 (or operators) produced from the map step and perform a series of optimizations on them. This
@@ -112,7 +112,7 @@ description: Run circuits on hardware and return output from a quantum computer.
 
 # Execute on target hardware
 
-![../\_images/pattern-3.svg](/images/qiskit-patterns/pattern-3.svg)
+![../\_images/execute.svg](/images/qiskit-patterns/execute.svg)
 
 The "execute on hardware" step of a Qiskit pattern involves running your circuits on hardware
 and produces the outputs of the quantum computation. The ISA circuits produced in
@@ -197,7 +197,7 @@ As the field moves from bespoke circuit construction to utility-scale workflows,
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  -  Explore each step in a Qiskit pattern in more detail, starting with [Map problem to quantum circuits and operators](/map-problem-to-circuits).
+  -  Explore each step in a Qiskit pattern in more detail, starting with [Map problem to quantum circuits and operators](./map-problem-to-circuits).
   -  Run a full example of a Qiskit pattern in the [CHSH Inequality tutorial](https://learning.quantum.ibm.com/tutorial/chsh-inequality).
 </Admonition>
 
