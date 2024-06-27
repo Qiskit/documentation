@@ -119,7 +119,7 @@ aer_sim = AerSimulator()
 pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
 isa_qc = pm.run(qc)
 with Session(backend=aer_sim) as session:
-    sampler = Sampler(session=session)
+    sampler = Sampler()
     result = sampler.run([isa_qc]).result()
 ```
 
