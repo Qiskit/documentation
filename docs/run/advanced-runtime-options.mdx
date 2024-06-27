@@ -206,10 +206,11 @@ For more information about the primitive options, refer to the
 
 The Qiskit Runtime primitives expect to be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled their circuits to respect the native gate set and connectivity constraints of the target system.
 
-V2 primitives do not support any advanced transpilation options.
-  </TabItem>
+V2 primitives do not support any advanced transpilation options. For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
+[Runtime compilation topic](configure-runtime-compilation#transpilation-table).
 
-  <TabItem value="PrimV1" label="V1 primitives">
+### V1 primitives
+
     <Admonition>
     In the currently deployed Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
@@ -239,10 +240,8 @@ options.transpilation.skip_transpilation = True
 estimator = Estimator(mode=backend, options=options)
 ```
 
-For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
-[Runtime compilation topic](configure-runtime-compilation#transpilation-table).
-  </TabItem>
-</Tabs>
+
+
 
 ### Error mitigation
 
