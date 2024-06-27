@@ -24,7 +24,7 @@ from entries import TOP_LEVEL_ENTRIES
 from deleted_entries import DELETED_PAGES
 
 OLD_FOLDERS = ["start", "run", "verify", "transpile", "build"]
-REDIRECTS = determine_redirects((*TOP_LEVEL_ENTRIES, *DELETED_PAGES))
+REDIRECTS = determine_redirects((*TOP_LEVEL_ENTRIES, *DELETED_PAGES), prefix="/guides")
 
 
 def create_parser() -> ArgumentParser:
