@@ -197,7 +197,7 @@ As the field moves from bespoke circuit construction to utility-scale workflows,
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  -  Explore each step in a Qiskit pattern in more detail, starting with [Map problem to quantum circuits and operators](/map-problem-to-circuits).
+  -  Explore each step in a Qiskit pattern in more detail, starting with [Map problem to quantum circuits and operators](./map-problem-to-circuits).
   -  Run a full example of a Qiskit pattern in the [CHSH Inequality tutorial](https://learning.quantum.ibm.com/tutorial/chsh-inequality).
 </Admonition>
 
