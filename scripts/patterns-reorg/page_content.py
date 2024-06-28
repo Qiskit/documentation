@@ -211,6 +211,7 @@ def index_page_content() -> str:
 ---
 title: Introduction to Qiskit
 description: What is Qiskit? This document provides an introduction to the Qiskit stack.
+in_page_toc_show: false
 ---
 
 # Introduction to Qiskit
