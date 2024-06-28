@@ -227,9 +227,9 @@ Scroll to see the full table.
 | [transpilation](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions)             |      |                         |                                              |                     |
 |                      | skip_transpilation       |                         | `True`/`False`                                                                                      | `False`                     |
 |                      | initial_layout           |                         | layout instance, dictionary, list, or None.  See [qiskit.compiler.](../api/qiskit/compiler#transpile)          | `None`                      |
-|                      | layout_method            |                         |   `trivial`/`dense`/`noise_adaptive`/`sabre`                                                |                      |
-|                      | routing_method           |                         |   `Basic`/`lookahead`/`stochastic`/`none`                                                 |                     |
-|                      | approximation_degree     |                         | Float in the range 0 - 1                                |            |
+|                      | layout_method            |                         |   `trivial`/`dense`/`noise_adaptive`/`sabre`/`none`                                            | `None`                     |
+|                      | routing_method           |                         |   `Basic`/`lookahead`/`stochastic`/`none`                                                 |                     | `None`
+|                      | approximation_degree     |                         | Float in the range 0 - 1 / `None`                                |        `None`    |
 | [execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions)            |                          |                         |                                                                                                         |                           |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
 |                      | shots                    |                         | integer no larger than `backend.max_shots`.                                | 4000|
@@ -248,19 +248,33 @@ Scroll to see the full table.
   <TabItem value="SamplerV1" label="Sampler (V1)">
 | Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
 |----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
+| Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
+|----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
 | [optimization_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | `0`/`1`                                                                                       | `1`                         |
-| [dynamical_decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) | enable                   |                         |`True`/`False`                                                                                           |`False`                           |
-|                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
-|                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                          | `'middle'`                  |
-|                      | scheduling_method        |                         | `'asap'`/`'alap'`                                                                            | `'alap'`                    |
+| [resilience_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)     |                          |                         | `0`/`1`/`2`                                                                                     | `1`                         |
 | [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
-| [resilience_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)           |                                    |                         |     Integer (0 - 3)                                                                           | 1                     |
-| [twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions)             |      |                         |                                              |                     |
-|                      | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
-|                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
-|                      | num_randomizations       |                         |                                                                                           | `'auto'`                    |
-|                      | shots_per_randomization  |                         |                                                                                           | `'auto'`                    |
-|                      | strategy                 |                         | `'active'`<br />`'active-circuit'`<br />`'active-accum'`<br />`'all'`                                | `'active-accum'`            |
+| [resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions)           |                          |                         |                                                                         |                     |
+|                      | extrapolator             |                         | `LinearExtrapolator`/`QuadraticExtrapolator`/`CubicExtrapolator`/`QuarticExtrapolator`    | `None`, or `LinearExtrapolator` if `resilience_level=2`.  |
+|                      | noise_amplifier          |                         |                                                                                           |                      |
+|                      | noise_factors            |                         |  Applies only for `resilience_level=2`. List of real valued noise factors.                | `(1, 3, 5)`                 |
+| [transpilation](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions)             |      |                         |                                              |                     |
+|                      | skip_transpilation       |                         | `True`/`False`                                                                                      | `False`                     |
+|                      | initial_layout           |                         | layout instance, dictionary, list, or None.  See [qiskit.compiler.](../api/qiskit/compiler#transpile)          | `None`                      |
+|                      | layout_method            |                         |   `trivial`/`dense`/`noise_adaptive`/`sabre`/`none`                                            | `None`                     |
+|                      | routing_method           |                         |   `Basic`/`lookahead`/`stochastic`/`none`                                                 |                     | `None`
+|                      | approximation_degree     |                         | Float in the range 0 - 1 / `None`                                |        `None`    |
+| [execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions)            |                          |                         |                                                                                                         |                           |
+|                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
+|                      | shots                    |                         | integer no larger than `backend.max_shots`.                                | 4000|
+| [environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)          |                          |                         |                                                                                                         |                                  |
+|                      | log_level                |                         |`DEBUG`/`INFO`/`WARNING`/`ERROR`/`CRITICAL`                                                              |`WARNING`                          |
+|                      | callback                 |                         |Callable function that receives Job ID and Job result.                                                   |`None`                           |
+|                      | job_tags                 |                         |List of tags                                                                                             |`None`                           |
+| [simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)            |                          |                         |                                                                                   |                     |
+|                      | noise_model              |                         |   [Qiskit Aer NoiseModel](../verify/building_noise_models), or its representation        | `None`                      |
+|                      | seed_simulator           |                         |   integer                                                                               | `None`                    |
+|                      | coupling_map             |                         |  List of directed two-qubit interactions                                                | full connectivity                   |
+|                      | basis_gates              |                         |  List of basis gate names to unroll to                                                  | The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html) |
 
   </TabItem>
 
