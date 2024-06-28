@@ -348,9 +348,14 @@ PRIMITIVES = (
         "Configure runtime options",
         children=(
             Entry(
-                "Configure runtime compilation",
-                slug="/configure-runtime-compilation",
-                from_file="run/configure-runtime-compilation.mdx",
+                "Qiskit Runtime options overview",
+                slug="/runtime-options-overview",
+                from_file="run/runtime-options-overview.mdx",
+            ),
+            Entry(
+                "Configure error suppression",
+                slug="/configure-error-suppression",
+                from_file="run/configure-error-suppression.mdx",
             ),
             Entry(
                 "Configure runtime error mitigation",
