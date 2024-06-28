@@ -10,7 +10,7 @@ Access to IBM Quantum&trade; Platform services is controlled by the **instances*
   IBM Cloud&reg; instances are different from IBM Quantum Platform instances.  IBM Cloud does not use the hub/group/project structure for user management. This section describes instances in IBM Quantum Platform. To view and create IBM Cloud instances, visit the [IBM Cloud Quantum Instances page](https://cloud.ibm.com/quantum/instances). Click the name of an instance to see details such as your CRN for that instance, what compute resources (programs, systems, and simulators) are available to you by using that instance, and what jobs you have run on that instance. 
 </Admonition>
 
-![Alice, Bob, and Charlie are all in Hub A.  Hub A has Group 1 and 2.  Alice and Bob are in Group 1.  Charlie is in Group 2.  Group 1 has Project X and Y.  Alice is in both projects.  Bob is only in project X.  Group 2 has Project Z.  Charlie is in project Z.  Therefore, Charlie's instance is Hub-A/Group-2/Project-Z.](/images/run/providers1.jpg "Hub / group / project hierarchy")
+![Alice, Bob, and Charlie are all in Hub A.  Hub A has Group 1 and 2.  Alice and Bob are in Group 1.  Charlie is in Group 2.  Group 1 has Project X and Y.  Alice is in both projects.  Bob is only in project X.  Group 2 has Project Z.  Charlie is in project Z.  Therefore, Charlie's instance is Hub-A/Group-2/Project-Z.](/images/guides/providers1.jpg "Hub / group / project hierarchy")
 
 The hub/group/project hierarchy that makes up an IBM Quantum instance.
 
@@ -18,7 +18,7 @@ Users with a public account automatically belong to the ibm-q/open/main [open pl
 
 To see the instances to which you have access, look at the bottom of your [Account page](https://quantum.ibm.com/account).
 
-![Screenshot of the Account page.](/images/run/find-providers1.png "Instances on the Account page")
+![Screenshot of the Account page.](/images/guides/find-providers1.png "Instances on the Account page")
 
 ## Find your instances
 
@@ -69,8 +69,8 @@ backend1 = service.backend("ibmq_manila")
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
 backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
 
-sampler1 = SamplerV2(backend=backend1)    # this will use hub1/group1/project1
-sampler2 = SamplerV2(backend=backend2)    # this will use hub2/group2/project2
+sampler1 = SamplerV2(mode=backend1)    # this will use hub1/group1/project1
+sampler2 = SamplerV2(mode=backend2)    # this will use hub2/group2/project2
 ```
   </TabItem>
 
@@ -88,8 +88,8 @@ backend1 = service.backend("ibmq_manila")
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
 backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
 
-sampler1 = Sampler(backend=backend1)    # this will use hub1/group1/project1
-sampler2 = Sampler(backend=backend2)    # this will use hub2/group2/project2
+sampler1 = Sampler(mode=backend1)    # this will use hub1/group1/project1
+sampler2 = Sampler(mode=backend2)    # this will use hub2/group2/project2
 ```
   </TabItem>
 </Tabs>
@@ -120,7 +120,7 @@ If you do not specify an instance, the code will select one in the following ord
 
 To leave an instance, visit the instance list on your [Account page.](https://quantum.ibm.com/account) Select the instance you wish to leave, then select the overflow menu and choose *Leave instance*.
 
-![Screenshot of the Account page.](/images/run/leaving1.png "Leave instance")
+![Screenshot of the Account page.](/images/guides/leaving1.png "Leave instance")
 
 ## Next steps
 

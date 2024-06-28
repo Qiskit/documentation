@@ -20,7 +20,7 @@ from pathlib import Path
 from main import OLD_FOLDERS, REDIRECTS
 
 
-def update_link(markdown: str, folder: str, link: str) -> str:
+def update_link(markdown: str, folder: str, link: str, prefix: str) -> str:
     anchor_index = link.find("#")
 
     if link.startswith("http") or anchor_index == 0:
@@ -35,14 +35,28 @@ def update_link(markdown: str, folder: str, link: str) -> str:
 
     link_split = link_without_anchor.split("/")
     if link.startswith("/") or link.startswith("../"):
-        search_key = f"{link_split[-2]}/{link_split[-1]}"
+        if link_split[-2] == "..":
+            # Match links to a folder like '../../transpile'
+            search_key = link_split[-1]
+        else:
+            if link_split[-1] == "":
+                # Match links like '../transpile/'
+                search_key = link_split[-2]
+            else:
+                # Match links like '../transpile/index'
+                search_key = f"{link_split[-2]}/{link_split[-1]}"
     else:
-        search_key = f"{folder}/{link_split[-1]}"
+        if link_without_anchor == "./":
+            # Match links with anchors to the index page, e.g. './#example-1'
+            search_key = f"{folder}"
+        else:
+            search_key = f"{folder}/{link_split[-1]}"
 
+    search_key = f"/{search_key.removeprefix('/')}"
     if search_key not in REDIRECTS:
         return markdown
 
-    new_link = REDIRECTS[search_key]
+    new_link = REDIRECTS[search_key].removeprefix("/guides/")
     if new_link == "":
         new_link = "/guides"
 
@@ -51,19 +65,20 @@ def update_link(markdown: str, folder: str, link: str) -> str:
     if link == redirect_to:
         return markdown
 
-    return markdown.replace(link, f"./{redirect_to}")
+    return markdown.replace(link, f"{prefix}{redirect_to}")
 
 
 def main() -> None:
     inline_link_re = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 
-    for folder in OLD_FOLDERS:
+    for folder in [*OLD_FOLDERS, "api/migration-guides"]:
+        prefix = "/guides/" if folder == "api/migration-guides" else "./"
         for file_path in glob.glob(f"docs/{folder}/*"):
             file = Path(file_path)
             markdown = file.read_text()
             markdown = re.sub(
                 inline_link_re,
-                lambda m: update_link(m[0], folder, m[2]),
+                lambda m: update_link(m[0], folder, m[2], prefix),
                 markdown,
             )
             file.write_text(markdown)

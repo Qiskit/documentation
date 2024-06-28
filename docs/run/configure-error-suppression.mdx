@@ -88,7 +88,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 psi = pm.run(psi)
 H = H.apply_layout(psi.layout)
 
-estimator = Estimator(backend=backend)
+estimator = Estimator(mode=backend)
 
 estimator.options.optimization_level = 1
 
@@ -117,7 +117,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 psi = pm.run(psi)
 H = H.apply_layout(psi.layout)
 
-estimator = Estimator (options=options, backend=backend)
+estimator = Estimator(options=options, mode=backend)
 
 job = estimator.run(circuits=[psi], observables=[H], parameter_values=[theta])
 psi1_H1 = job.result()

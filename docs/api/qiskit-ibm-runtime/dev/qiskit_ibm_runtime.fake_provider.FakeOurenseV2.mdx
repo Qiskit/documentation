@@ -215,7 +215,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurenseV2
 
   ### acquire\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.acquire_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L266-L279" signature="acquire_channel(qubit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.acquire_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L279-L292" signature="acquire_channel(qubit)">
     Return the acquisition channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -231,7 +231,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurenseV2
 
   ### control\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.control_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L281-L301" signature="control_channel(qubits)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.control_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L294-L314" signature="control_channel(qubits)">
     Return the secondary drive channel for the given qubit
 
     This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
@@ -253,7 +253,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurenseV2
 
   ### drive\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.drive_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L236-L249" signature="drive_channel(qubit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.drive_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L249-L262" signature="drive_channel(qubit)">
     Return the drive channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -269,7 +269,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurenseV2
 
   ### measure\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.measure_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L251-L264" signature="measure_channel(qubit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.measure_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L264-L277" signature="measure_channel(qubit)">
     Return the measure stimulus channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -307,9 +307,33 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeOurenseV2
     **NotImplementedError** – if the backend doesn’t support querying the qubit properties
   </Function>
 
+  ### refresh
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L465-L522" signature="refresh(service)">
+    Update the data files from its real counterpart
+
+    This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation: \* ../fake\_provider/backends/\{backend\_name}/conf\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/defs\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/props\_\{backend\_name}.json
+
+    **The new data files will persist through sessions so the files will stay updated unless they**
+
+    are manually reverted locally or when qiskit-ibm-runtime is upgraded/reinstalled.
+
+    **Parameters**
+
+    **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+
+    **Raises**
+
+    **Exception** – If the real target doesn’t exist or can’t be accessed
+
+    **Return type**
+
+    `None`
+  </Function>
+
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L303-L364" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeOurenseV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L316-L377" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
     This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicSimulator or Aer simulator and returns a `Job` object.

@@ -29,7 +29,19 @@ This module contains functions for generating the preset pass managers for the t
 <Function id="qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager" github="https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/preset_passmanagers/__init__.py" signature="qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager(optimization_level, backend=None, target=None, basis_gates=None, inst_map=None, coupling_map=None, instruction_durations=None, backend_properties=None, timing_constraints=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, approximation_degree=None, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, init_method=None, optimization_method=None, *, _skip_target=False)">
   Generate a preset [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
-  This function is used to quickly generate a preset pass manager. A preset pass manager are the default pass managers used by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function. This function provides a convenient and simple method to construct a standalone [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") object that mirrors what the transpile
+  This function is used to quickly generate a preset pass manager. Preset pass managers are the default pass managers used by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function. This function provides a convenient and simple method to construct a standalone [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") object that mirrors what the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function internally builds and uses.
+
+  The target constraints for the pass manager construction can be specified through a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instance, a [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") or [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") instance, or via loose constraints (`basis_gates`, `inst_map`, `coupling_map`, `backend_properties`, `instruction_durations`, `dt` or `timing_constraints`). The order of priorities for target constraints works as follows: if a `target` input is provided, it will take priority over any `backend` input or loose constraints. If a `backend` is provided together with any loose constraint from the list above, the loose constraint will take priority over the corresponding backend constraint. This behavior is independent of whether the `backend` instance is of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") or [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"), as summarized in the table below. The first column in the table summarizes the potential user-provided constraints, and each cell shows whether the priority is assigned to that specific constraint input or another input (target/backend(V1)/backend(V2)).
+
+  | User Provided              | target | backend(V1)            | backend(V2)            |
+  | -------------------------- | ------ | ---------------------- | ---------------------- |
+  | **basis\_gates**           | target | basis\_gates           | basis\_gates           |
+  | **coupling\_map**          | target | coupling\_map          | coupling\_map          |
+  | **instruction\_durations** | target | instruction\_durations | instruction\_durations |
+  | **inst\_map**              | target | inst\_map              | inst\_map              |
+  | **dt**                     | target | dt                     | dt                     |
+  | **timing\_constraints**    | target | timing\_constraints    | timing\_constraints    |
+  | **backend\_properties**    | target | backend\_properties    | backend\_properties    |
 
   **Parameters**
 

@@ -84,6 +84,7 @@ GET_STARTED_CHILDREN = [
         ),
     ),
     Entry("Hello world", slug="/hello-world", from_file="start/hello-world.ipynb"),
+    Entry("Latest updates", slug="/latest-updates", from_file="start/latest-updates.mdx"),
     Entry(
         "Advanced setup",
         children=(
@@ -150,6 +151,11 @@ CIRCUIT_CONSTRUCTION = (
                 "Specifying observables in the Pauli basis",
                 slug="/specify-observables-pauli",
                 from_file="build/specify-observables-pauli.mdx",
+            ),
+            Entry(
+                "The Operator class",
+                slug="/operator-class",
+                from_file="build/operator-class.ipynb",
             ),
         ),
     ),
@@ -356,6 +362,16 @@ PRIMITIVES = (
                 slug="/configure-error-mitigation",
                 from_file="run/configure-error-mitigation.mdx",
             ),
+            Entry(
+                "Advanced runtime options",
+                slug="/advanced-runtime-options",
+                from_file="run/advanced-runtime-options.mdx",
+            ),
+            Entry(
+                "Error mitigation and suppression techniques",
+                slug="/error-mitigation-and-suppression-techniques",
+                from_file="run/error-mitigation-explanation.ipynb",
+            ),
         ),
     ),
 )
@@ -407,6 +423,11 @@ EXECUTION_MODES_CHILDREN = (
         "Run jobs in a batch",
         slug="/run-jobs-batch",
         from_file="run/run-jobs-batch.mdx",
+    ),
+    Entry(
+        "Fixed and dynamic repetition rate execution",
+        slug="/repetition-rate-execution",
+        from_file="run/circuit-execution.mdx",
     ),
     MANAGE_JOBS_FOLDER,
     Entry(
@@ -501,7 +522,7 @@ PATTERNS_CHILDREN = (
     ),
     Entry(
         "Post-process results",
-        slug="/postprocess-results",
+        slug="/post-process-results",
         page_content=postprocess_index_content(
             entries_as_markdown_list((RETRIEVE_RESULTS_PAGE, VISUALIZE_RESULTS_PAGE))
         ),

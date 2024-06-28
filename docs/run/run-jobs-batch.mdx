@@ -21,7 +21,7 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
     When batching, jobs are not guaranteed to run in the order they are submitted. Also, while your batch jobs will run as closely together as possible, they don't get exclusive access to the backend. Therefore, your batch jobs might run in parallel with other users' jobs if there is enough processing capacity on the system. Additionally, system calibration jobs could run between the batched jobs.
 </Admonition>
 
-![This diagram illustrates jobs submitted in a batch.  It shows five jobs, numbered 0 through 4, in a queue. The jobs are a mix of Estimator and Sampler.](/images/run/batch.png 'Figure 1: Batch execution')
+![This diagram illustrates jobs submitted in a batch.  It shows five jobs, numbered 0 through 4, in a queue. The jobs are a mix of Estimator and Sampler.](/images/guides/batch.png 'Figure 1: Batch execution')
 
 There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching.
 
@@ -46,3 +46,8 @@ The following example shows how you can partition a long list of circuits into m
          job = sampler.run(partitioned_circuits)
          jobs.append(job)
  ```
+
+
+<Admonition type="caution">
+    If you set `backend=backend` in a V2 primitive it will run the program in job mode, even if it's inside a batch/session context. Avoid setting the backend parameter if you want to run in batch/session mode.
+</Admonition>

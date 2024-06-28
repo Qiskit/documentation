@@ -14,24 +14,24 @@ Try out the tutorials in [IBM Quantum Learning](https://learning.quantum.ibm.com
     This is an experimental feature, subject to change.
 </Admonition>
 
-## Building Qiskit Patterns with Qiskit Serverless
+## Building Qiskit patterns with Qiskit Serverless
 
-Creating utility-scale quantum applications generally requires a variety of compute resource requirements. You can use Qiskit Serverless to easily submit quantum workflows for remote, managed execution on IBM Quantum Platform. These quantum workflows can typically be implemented within a common pattern, called a Qiskit Pattern. A Qiskit Pattern is an intuitive, repeatable set of steps for implementing a quantum computing workflow.
+Creating utility-scale quantum applications generally requires a variety of compute resource requirements. You can use Qiskit Serverless to easily submit quantum workflows for remote, managed execution on IBM Quantum Platform. These quantum workflows can typically be implemented within a common pattern, called a Qiskit pattern. A Qiskit pattern is an intuitive, repeatable set of steps for implementing a quantum computing workflow.
 
-Steps in a Qiskit Pattern:
+Steps in a Qiskit pattern:
 
 1. Map classical inputs to a quantum problem
 2. Optimize problem for quantum execution
 3. Execute using Qiskit Runtime primitives
 4. Post-process, return result in classical format
 
-Once you have built a Qiskit Pattern, you can use Qiskit Serverless to deploy it and submit it for managed execution. Overall, the process of creating quantum software and submitting it for managed execution on a remote cluster can be broken down into three steps:
+Once you have built a Qiskit pattern, you can use Qiskit Serverless to deploy it and submit it for managed execution. Overall, the process of creating quantum software and submitting it for managed execution on a remote cluster can be broken down into three steps:
 
-1. Build the Qiskit Pattern
+1. Build the Qiskit pattern
 2. Deploy to the Qiskit Serverless
 3. Run remotely on Qiskit Serverless
 
-## Build a Qiskit Pattern
+## Build a Qiskit pattern
 
 Here is an example of computing the expectation value using the Qiskit Runtime Estimator primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
 
@@ -83,19 +83,19 @@ print(result)
 save_result(result[0].data.evs)
 ```
 
-Please refer to our guides on how to configure your pattern to [accept input arguments](https://qiskit.github.io/qiskit-serverless/getting_started/basic/02_arguments_and_results.html) and [handle external python dependencies](https://qiskit.github.io/qiskit-serverless/getting_started/basic/03_dependencies.html).
+Please refer to our guides on how to configure your pattern to [accept input arguments](https://qiskit.github.io/qiskit-serverless/getting_started/basic/02_arguments_and_results.html) and [handle external Python dependencies](https://qiskit.github.io/qiskit-serverless/getting_started/basic/03_dependencies.html).
 
-After creating a workflow, authenticate to the `IBMServerlessProvider` with your IBM Quantum token, which can be obtained from your [IBM Quantum account](https://quantum.ibm.com/account), and upload the script.
+After creating a workflow, authenticate to the `IBMServerlessClient` with your IBM Quantum token, which can be obtained from your [IBM Quantum account](https://quantum.ibm.com/account), and upload the script.
 
 ```python
-# Authenticate to the IBM serverless provider
-from qiskit_serverless import IBMServerlessProvider
-serverless = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
+# Authenticate to the IBM serverless client
+from qiskit_serverless import IBMServerlessClient
+serverless = IBMServerlessClient("YOUR_IBM_QUANTUM_TOKEN")
 
 # Deploy the pattern
-from qiskit_serverless import QiskitPattern
+from qiskit_serverless import QiskitFunction
 serverless.upload(
-    QiskitPattern(
+    QiskitFunction(
         title="My-Qiskit-Pattern",
         entrypoint="my_qiskit_pattern.py",
         working_dir="./source_files/"
@@ -103,13 +103,14 @@ serverless.upload(
 )
 ```
 
-## Run a Qiskit Pattern remotely on Qiskit Serverless
+## Run a Qiskit pattern remotely on Qiskit Serverless
 
 Finally, the pattern is ready to run remotely.
 
 ```python
 # Run pattern remotely
-job = serverless.run("My-Qiskit-Pattern")
+pattern = serverless.get("My-Qiskit-Pattern")
+pattern.run()
 
 # Retrieve status, logs, results
 job.status()
@@ -125,9 +126,9 @@ Qiskit Runtime custom programs can be easily migrated to Qiskit Serverless via t
 
 Premium Plan users have access to an alpha release of resource management functionality through Qiskit Serverless. This enables automatic selection of quantum hardware for your workloads.
 
-The example below demonstrates how to use `IBMQPUSelector` to automate the process of selecting which qubits will be used from a set of available systems. This illustrates how the selectors can be used within a four-step Qiskit Pattern. 
+The example below demonstrates how to use `IBMQPUSelector` to automate the process of selecting which qubits will be used from a set of available systems. This illustrates how the selectors can be used within a four-step Qiskit pattern. 
 
-Instead of manually selecting a system, step 2 of the Qiskit Pattern optimizes the circuits for execution by using the QPU selectors from Qiskit Serverless to automatically allocate a system according to desired criteria. Here, `IBMLeastNoisyQPUSelector` finds the system, among the ones available to you through your IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. You can also use the `IBMLeastBusyQPUSelector` to find a system that can support the circuit width but with the shortest queue.
+Instead of manually selecting a system, step 2 of the Qiskit pattern optimizes the circuits for execution by using the QPU selectors from Qiskit Serverless to automatically allocate a system according to desired criteria. Here, `IBMLeastNoisyQPUSelector` finds the system, among the ones available to you through your IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. You can also use the `IBMLeastBusyQPUSelector` to find a system that can support the circuit width but with the shortest queue.
 
 For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSelectors` require Qiskit Runtime credentials. The `IBMLeastNoisyQPUSelector` requires a circuit and transpile options specifying how the circuit should be optimized for each system when determining the most optimal QPU and qubit layout. All `IBMQPUSelector`s implement a `get_backend` method, which retrieves the optimal system with respect to the given context. The `get_backend` method also allows for additional filtering of the systems. It is implemented using the same interface as the [QiskitRuntimeService.backends method](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
 
@@ -165,7 +166,7 @@ target_circuit = selector.optimized_circuit
 # target_circuit = pm.run(abstract_circuit)
 
 # Step 3: Execute the target circuit
-sampler = Sampler(backend=backend, options={"default_shots": 1024})
+sampler = Sampler(mode=backend, options={"default_shots": 1024})
 job = sampler.run([target_circuit])
 result = job.result()
     

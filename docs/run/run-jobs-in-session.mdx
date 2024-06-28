@@ -41,8 +41,8 @@ from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Est
 
 backend = service.least_busy(operational=True, simulator=False)
 session = Session(service=service, backend=backend)
-estimator = Estimator(session=session)
-sampler = Sampler(session=session)
+estimator = Estimator(mode=session)
+sampler = Sampler(mode=session)
 ```
   </TabItem>
 
@@ -52,8 +52,8 @@ from qiskit_ibm_runtime import Session, Sampler, Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
 session = Session(service=service, backend=backend)
-estimator = Estimator(session=session)
-sampler = Sampler(session=session)
+estimator = Estimator(mode=session)
+sampler = Sampler(mode=session)
 ```
   </TabItem>
 </Tabs>
@@ -132,7 +132,7 @@ If you are not using a context manager, manually close the session to avoid unwa
 
 ``` python
 session = Session(backend=backend)
-estimator = Estimator(session=session)
+estimator = Estimator(mode=session)
 job1 = estimator.run(...)
 job2 = estimator.run(...)
 print(f"Result1: {job1.result()}")
@@ -203,20 +203,29 @@ with Session(backend=backend):
 ## Run two VQE algorithms in a session by using threading
 
 You can get more out of a session by running multiple workloads simultaneously. The following example shows how you can run two VQE algorithms, each using a different classical optimizer, simultaneously inside a single session. Job tags are also used to differentiate jobs from each workload.
+
 ```python
 from concurrent.futures import ThreadPoolExecutor
-from qiskit_ibm_runtime import  Session, EstimatorV2 as Estimator
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
 def minimize_thread(estimator, method):
-    minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method=method)
+    return minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method=method)
 
 with Session(backend=backend), ThreadPoolExecutor() as executor:
-    # Add tags to differentiate jobs from different workloads.
-    estimator1.options.environment.job_tags = "cobyla"
-    estimator1.options.environment.job_tags = "nelder-mead"
+    estimator1 = Estimator()
+    estimator2 = Estimator()
 
-    cobyla_result = executor.submit(minimize_thread, estimator1, "cobyla").result()
-    nelder_mead_result = executor.submit(minimize_thread, estimator2, "nelder-mead").result()
+    # Use different tags to differentiate the jobs.
+    estimator1.options.environment.job_tags = ["cobyla"]
+    estimator2.options.environment.job_tags = ["nelder-mead"]
+
+    # Submit the two workloads.
+    cobyla_future = executor.submit(minimize_thread, estimator1, "cobyla")
+    nelder_mead_future = executor.submit(minimize_thread, estimator2, "nelder-mead")
+
+    # Get workload results.
+    cobyla_result = cobyla_future.result()
+    nelder_mead_result = nelder_mead_future.result()
 ```
 
 <span id="session-status"></span>
