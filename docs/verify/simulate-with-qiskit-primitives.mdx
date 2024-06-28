@@ -56,7 +56,7 @@ parameter_values = [[0], [np.pi/6], [np.pi/2]]
 ```
 
 <Admonition type="tip" title="Transpile to ISA circuits and observables">
-  The Qiskit Runtime primitives workflow requires circuits and observables to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables). The reference primitives still accept abstract instructions, as they rely on local statevector simulations, but transpiling the circuit might still be beneficial in terms of circuit optimization. 
+  The Qiskit Runtime primitives workflow requires circuits and observables to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables). The reference primitives still accept abstract instructions, as they rely on local statevector simulations, but transpiling the circuit might still be beneficial in terms of circuit optimization.
 
   ```python
   # Generate a pass manager without providing a backend
@@ -191,7 +191,7 @@ instead of the number of `shots` used in the V1 interface.
 
       The sampling overhead is now called `precision`, and is defined exclusively at the `.run()`
       method level. This allows for a more finely-grained tuning of the option all the way to the PUB level.
-      
+
       This example assumes you have defined two circuits, each with its own array of observables.
 
     ```python
@@ -251,7 +251,7 @@ Any quantum circuit passed to a Sampler **must** include measurements.
 </Admonition>
 
 <Admonition type="tip" title="Transpile to ISA circuits and observables">
-  The Qiskit Runtime primitives workflow requires circuits to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits). The reference primitives still accept abstract instructions, as they rely on local statevector simulations, but transpiling the circuit might still be beneficial in terms of circuit optimization. 
+  The Qiskit Runtime primitives workflow requires circuits to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits). The reference primitives still accept abstract instructions, as they rely on local statevector simulations, but transpiling the circuit might still be beneficial in terms of circuit optimization.
 
   ```python
   # Generate a pass manager without providing a backend
@@ -293,7 +293,7 @@ sampler = Sampler()
   <TabItem value="SamplerV2" label="StatevectorSampler (V2)">
     ```python
    # execute 1 circuit with Sampler V2
-    job = sampler.run([isa_circuit]) 
+    job = sampler.run([isa_circuit])
     pub_result = job.result()[0]
     print(f" > Result class: {type(pub_result)}")
     ```
@@ -306,12 +306,12 @@ sampler = Sampler()
 
     ```python
     from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-    
+
     # create two circuits
     circuit1 = qc.copy()
     circuit2 = qc.copy()
-    
-    # transpile circuits 
+
+    # transpile circuits
     pm = generate_preset_pass_manager(optimization_level=1)
     isa_circuit1 = pm.run(circuit1)
     isa_circuit2 = pm.run(circuit2)
@@ -416,13 +416,13 @@ Negative quasi-probabilities may appear when using error mitigation techniques.
     circuit.draw()
     ```
     ```text
-                ┌───┐      ░ ┌─┐   
+                ┌───┐      ░ ┌─┐
       q_0: ┤ H ├──■───░─┤M├───
             └───┘┌─┴─┐ ░ └╥┘┌─┐
       q_1: ─────┤ X ├─░──╫─┤M├
                 └───┘ ░  ║ └╥┘
     meas: 2/══════════════╩══╩═
-                          0  1 
+                          0  1
     ```
 
     ```python
@@ -502,5 +502,5 @@ For a full example, see the [Primitives examples](/run/primitives-examples#sampl
   - To learn how to use Quantum Composer for simulation, try the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
   - Read the [Qiskit Estimator API](/api/qiskit/qiskit.primitives.Estimator) reference.
   - Read the [Qiskit Sampler API](/api/qiskit/qiskit.primitives.Sampler) reference.
-  - Learn how to run on a physical system in the [Run](../run) section.
+  - Learn how to run on a QPU in the [Run](../run) section.
 </Admonition>

@@ -30,7 +30,7 @@ The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execut
 <Admonition type="caution">
   **Background on the Qiskit primitives**
 
-  The Qiskit primitives are algorithmic abstractions that encapsulate system or simulator access for easy integration into algorithm workflows.
+  The Qiskit primitives are algorithmic abstractions that encapsulate QPU or simulator access for easy integration into algorithm workflows.
 
   There are two types of primitives: Sampler and Estimator.
 
@@ -47,7 +47,7 @@ The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execut
   - *Reference primitives* -  [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) are reference implementations that come with Qiskit.
   - *Aer primitives* - The [Aer](https://qiskit.org/ecosystem/aer) primitive implementations [`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html) and [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html).
   - *Qiskit Runtime primitives* - The Qiskit Runtime primitive implementations [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator).
-  - *`Backend` primitives* - Instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator). These allow any system to implement primitive interfaces.
+  - *`Backend` primitives* - Instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator). These allow any QPU to implement primitive interfaces.
 
 </Admonition>
 
@@ -79,17 +79,17 @@ yourself two questions:
 2. How do you want to run your circuits?
 
    This question is not new. In the legacy algorithm workflow, you would set up a
-   [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) with either a real system from a provider, or a simulator.
-   For this migration, this "system selection" process is translated to **where** do you import your primitives from:
+   [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) with either a QPU from a provider, or a simulator.
+   For this migration, this "QPU selection" process is translated to **where** do you import your primitives from:
    
    * Using **local** statevector simulators for quick prototyping: **Reference primitives**
    * Using **local** noisy simulations for finer algorithm tuning: **Aer primitives**
-   * Accessing **runtime-enabled systems** (or cloud simulators): **Qiskit Runtime primitives**
-   * Accessing **non runtime-enabled systems** : **`Backend` primitives**
+   * Accessing **runtime-enabled QPUs** (or cloud simulators): **Qiskit Runtime primitives**
+   * Accessing **non runtime-enabled QPUs** : **`Backend` primitives**
 
 Arguably, the `Sampler` is the closest primitive to [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance), as they
 both execute circuits and provide a result. However, with the [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance),
-the result data was system-dependent (it could be a counts `dict`, a `numpy.array` for
+the result data was QPU-dependent (it could be a counts `dict`, a `numpy.array` for
 statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to 
 return a [`qiskit.result.QuasiDistribution`](../qiskit/qiskit.result.QuasiDistribution) object with the resulting quasi-probability distribution.
 
@@ -337,7 +337,7 @@ print(expectation_value)
 [-0.04101562]
 ```
 
-### Example 3: Circuit sampling on IBM system with error mitigation
+### Example 3: Circuit sampling on IBM QPU with error mitigation
 
 **QuantumInstance**
 
