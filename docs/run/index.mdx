@@ -8,45 +8,15 @@ description: Overview of the Run section, where you'll find information on IBM Q
 
 IBM Quantum&trade; maintains the world’s most advanced fleet of quantum systems, with seven [utility-scale](https://www.ibm.com/blog/announcement/new-ibm-quantum-systems-on-the-ibm-cloud/) quantum systems, and more on the way. These systems demonstrate unparalleled reliability, with >95% uptime across the fleet of quantum systems - and unmatched stability, with two-qubit gate error fluctuations no larger than 0.001 over timescales measured in months[^1].
 
-This section provides information about IBM Quantum hardware and how to connect to the instances that provide access to quantum systems, which is primarily handled by the Qiskit Runtime package. You can find details about estimating job run time and cost, running within a session, and more. 
+## The run phase
 
-The steps involved in executing workloads on IBM Quantum hardware include:
+In the run phase, you send your quantum program to be executed on a quantum system. This section provides information about IBM Quantum hardware and how to connect to the instances that provide access to quantum systems. You can find details about estimating job run time and cost, running within a session, and more. 
+
+The steps during the run phase are:
 
 1. Using your account credentials, authenticate to the channel of your choice ([IBM Quantum Platform](../start/setup-channel#ibm-quantum-platform) or [IBM Cloud&reg;](../start/setup-channel#ibm-cloud)).
 2. Choose a system or simulator.
 3. Send a job to a system or simulator.
 4. View job results.
-
-
-## Overview of Qiskit primitives
-
-Computing systems are built on multiple layers of abstraction. Abstractions allow one to focus on a particular level of detail relevant to the task at hand. The closer you get to the hardware, the lower the level of abstraction you need (for example, you might want to manipulate electrical signals), and vice versa. The more complex the task you want to perform, the higher-level the abstractions will be (for example, you could be using a programming library to perform algebraic calculations). In this context, a [primitive](../api/qiskit/primitives) is the smallest processing instruction, the simplest building block from which one can create something useful for a given abstraction level.
-
-The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
-As we move toward larger systems and more complex workflows, the focus shifts from interacting with individual
-qubit signals to viewing quantum devices as systems that perform tasks we need.
-
-The two most common tasks quantum computers are used for are sampling quantum states and calculating expectation values. These tasks motivated the design of the Qiskit primitives: **Sampler** and **Estimator**.
-
-In short, the computational model introduced by the Qiskit primitives moves quantum programming one step closer to where classical programming is today, where the focus is less on the hardware details and more on the results you are trying to achieve.
-
-### Benefits of Qiskit primitives
-
-For Qiskit users, primitives let you write quantum code for a specific system without having to explicitly manage every detail such as implementing error suppression techniques like dynamical decoupling or post-processing probability distributions into expectation values of observables. This abstraction additionally allows one to more easil access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives, you can leverage the latest advancements in error mitigation and suppression by toggling options such as `optimization_level` and `resilience_level`, rather than building your own implementation of these techniques.
-
-For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box” way to access your hardware features. It is therefore easier for your users to benefit from your hardware's best capabilities.
-
-### Implementation of Qiskit primitives
-
-The Qiskit primitives are defined by open-source primitive base-classes, from which different providers can derive their own `Sampler` and `Estimator` implementations. Among the implementations using Qiskit, you can find reference primitive implementations for local simulation in the `qiskit.primitives` module. Providers like Qiskit Runtime enable access to appropriate systems through native implementations of their own primitives.
-
-## Next steps
-
-<Admonition type="tip" title="Recommendations">
-  -  Start executing circuits 
-  -  See an example of circuits being used in the [Grover's Algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-  -  Work with simple circuits in the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
-</Admonition>
-
 
 [^1]: Median 2Q gate errors measured over all accessible Eagle processors from July 20 to September 20, 2023.
