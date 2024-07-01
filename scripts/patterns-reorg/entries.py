@@ -349,7 +349,7 @@ PRIMITIVES = (
         children=(
             Entry(
                 "Configure runtime compilation",
-                slug="/configure-runtime-compilation",
+                slug="/configure-error-suppression",
                 from_file="run/configure-runtime-compilation.mdx",
             ),
             Entry(
@@ -359,7 +359,7 @@ PRIMITIVES = (
             ),
             Entry(
                 "Advanced runtime options",
-                slug="/advanced-runtime-options",
+                slug="/runtime-options-overview",
                 from_file="run/advanced-runtime-options.mdx",
             ),
             Entry(
