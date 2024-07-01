@@ -78,9 +78,9 @@ On the IBM Quantum blog, we take a deep dive into the new beta release with a sp
 
 This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (using qiskit-ibm-runtime or otherwise), or which version of the client SDK you use.
 
-### 1 July 2024
+### 2 July 2024
 
-The following endpoints are deprecated and will be removed on or after 1 October 2024: `GET /stream/jobs` and `GET /stream/jobs/{id}`. This removal has the following impacts:
+The following endpoints are deprecated and will be removed on or after 2 October 2024: [`GET /stream/jobs`](/api/runtime/tags/jobs#tags__jobs__operations__get_stream_job_logs_jid) and [`GET /stream/jobs/{id}`](/api/runtime/tags/jobs#tags__jobs__operations__get_stream_job_logs_jid). This removal has the following impacts:
 
 - After the endpoints are removed, `job.stream_results()` and `job.interim_results()` will be removed from the [qiskit-ibm-runtime](/api/qiskit-ibm-runtime) client.
 - Additional methods, such as `job.result()` currently use the deprecated endpoints.  Upgrade to `qiskit_ibm_runtime` 0.25 or later before the endpoints are removed to avoid disruption.
