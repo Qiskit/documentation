@@ -1,0 +1,773 @@
+---
+title: Primitives examples
+description: Practical examples of using primitives in Qiskit Runtime.
+
+---
+
+# Primitives examples
+
+The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](./install-qiskit)
+
+<Admonition type="caution" title="Important">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+
+*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
+
+``` python
+service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
+```
+
+</Admonition>
+
+<Admonition type="note">
+    These examples all use the primitives from Qiskit Runtime, but you could use the base primitives instead.
+</Admonition>
+
+## Estimator examples
+
+Efficiently calculate and interpret expectation values of the quantum operators required for many algorithms with Estimator. Explore uses in molecular modeling, machine learning, and complex optimization problems.
+
+### Run a single experiment
+
+Use Estimator to determine the expectation value of a single circuit-observable pair.
+
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="Estimator V2">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
+estimator = Estimator(backend)
+job = estimator.run([(isa_circuit, isa_observable)])
+result = job.result()
+
+print(f" > Expectation value: {result[0].data.evs}")
+print(f" > Metadata: {result[0].metadata}")
+```
+Output:
+```text
+ > Expectation value: 0.123046875
+ > Metadata: {'target_precision': 0.015625}
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
+estimator = Estimator(backend)
+job = estimator.run(isa_circuit, isa_observable)
+result = job.result()
+
+print(f" > Observable: {observable.paulis}")
+print(f" > Expectation value: {result.values}")
+print(f" > Metadata: {result.metadata}")
+```
+  </TabItem>
+</Tabs>
+
+### Run multiple experiments in a single job
+
+Use Estimator to determine the expectation values of multiple circuit-observable pairs.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="Estimator V2">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng()
+mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
+
+pubs = []
+circuits = [IQP(mat) for mat in mats]
+observables = [
+    SparsePauliOp("X" * n_qubits),
+    SparsePauliOp("Y" * n_qubits),
+    SparsePauliOp("Z" * n_qubits),
+]
+
+# Get ISA circuits
+pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
+
+for qc, obs in zip(circuits, observables):
+    isa_circuit = pm.run(qc)
+    isa_obs = obs.apply_layout(isa_circuit.layout)
+    pubs.append((isa_circuit, isa_obs))
+
+estimator = Estimator(backend)
+job = estimator.run(pubs)
+job_result = job.result()
+
+for idx in range(len(pubs)):
+    pub_result = job_result[idx]
+    print(f">>> Expectation values for PUB {idx}: {pub_result.data.evs}")
+    print(f">>> Standard errors for PUB {idx}: {pub_result.data.stds}")
+```
+Output:
+```text
+>>> Expectation values for PUB 0: -0.0263671875
+>>> Standard errors for PUB 0: 0.015619567582387688
+>>> Expectation values for PUB 1: -0.017578125
+>>> Standard errors for PUB 1: 0.015622585825382946
+>>> Expectation values for PUB 2: 0.33349609375
+>>> Standard errors for PUB 2: 0.014730491894982241
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng()
+mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
+circuits = [IQP(mat) for mat in mats]
+observables = [
+    SparsePauliOp("X" * n_qubits),
+    SparsePauliOp("Y" * n_qubits),
+    SparsePauliOp("Z" * n_qubits),
+]
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuits = pm.run(circuits)
+isa_observables = [ob.apply_layout(isa_circuits[0].layout) for ob in observables]
+
+estimator = Estimator(backend)
+job = estimator.run(isa_circuits, isa_observables)
+result = job.result()
+
+print(f" > Expectation values: {result.values}")
+```
+  </TabItem>
+</Tabs>
+
+### Run parameterized circuits
+
+Use Estimator to run three experiments in a single job, leveraging parameter values to increase circuit reusability.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="Estimator V2">
+```python
+import numpy as np
+
+from qiskit.circuit import QuantumCircuit, Parameter
+from qiskit.quantum_info import SparsePauliOp
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+# Step 1: Map classical inputs to a quantum problem
+theta = Parameter("θ")
+
+chsh_circuit = QuantumCircuit(2)
+chsh_circuit.h(0)
+chsh_circuit.cx(0, 1)
+chsh_circuit.ry(theta, 0)
+
+number_of_phases = 21
+phases = np.linspace(0, 2 * np.pi, number_of_phases)
+individual_phases = [[ph] for ph in phases]
+
+ZZ = SparsePauliOp.from_list([("ZZ", 1)])
+ZX = SparsePauliOp.from_list([("ZX", 1)])
+XZ = SparsePauliOp.from_list([("XZ", 1)])
+XX = SparsePauliOp.from_list([("XX", 1)])
+ops = [ZZ, ZX, XZ, XX]
+
+# Step 2: Optimize problem for quantum execution.
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+chsh_isa_circuit = pm.run(chsh_circuit)
+isa_observables = [operator.apply_layout(chsh_isa_circuit.layout) for operator in ops]
+
+# Step 3: Execute using Qiskit primitives.
+
+# Reshape observable array for broadcasting
+reshaped_ops = np.fromiter(isa_observables, dtype=object)
+reshaped_ops = reshaped_ops.reshape((4, 1))
+
+estimator = Estimator(backend, options={"default_shots": int(1e4)})
+job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
+# Get results for the first (and only) PUB
+pub_result = job.result()[0]
+print(f">>> Expectation values: {pub_result.data.evs}")
+print(f">>> Standard errors: {pub_result.data.stds}")
+print(f">>> Metadta: {pub_result.metadata}")
+```
+<details>
+<summary>
+Output
+</summary>
+```text
+>>> Expectation values: [[ 0.88525391  0.83837891  0.70458984  0.52880859  0.29150391 -0.00146484
+  -0.28271484 -0.52587891 -0.71777344 -0.83300781 -0.88916016 -0.83935547
+  -0.71826172 -0.53613281 -0.24560547 -0.00830078  0.28320312  0.515625
+   0.72460938  0.83935547  0.89013672]
+ [-0.00390625  0.25683594  0.515625    0.71337891  0.83691406  0.87548828
+   0.83105469  0.70605469  0.54150391  0.28222656  0.01269531 -0.27636719
+  -0.52539062 -0.73388672 -0.83203125 -0.88134766 -0.83984375 -0.71386719
+  -0.50390625 -0.25292969  0.02001953]
+ [-0.01464844 -0.26660156 -0.51757812 -0.72216797 -0.83398438 -0.89013672
+  -0.84472656 -0.72070312 -0.52001953 -0.26660156  0.00244141  0.26074219
+   0.51123047  0.7109375   0.83886719  0.86865234  0.86669922  0.71435547
+   0.52587891  0.27636719 -0.01025391]
+ [ 0.88525391  0.85986328  0.72509766  0.54101562  0.28125     0.00878906
+  -0.27539062 -0.52636719 -0.71533203 -0.84130859 -0.8828125  -0.83740234
+  -0.72998047 -0.51513672 -0.26171875  0.00537109  0.26660156  0.52636719
+   0.69677734  0.84521484  0.87353516]]
+>>> Standard errors: [[0.00726731 0.008517   0.01108773 0.01326158 0.0149464  0.01562498
+  0.01498756 0.01328999 0.01087932 0.00864471 0.00714994 0.00849348
+  0.01087145 0.01318959 0.0151464  0.01562446 0.01498531 0.01338772
+  0.01076812 0.00849348 0.00712021]
+ [0.01562488 0.01510086 0.01338772 0.01094966 0.0085521  0.00755061
+  0.00869048 0.01106496 0.01313591 0.01498981 0.01562374 0.01501644
+  0.01329471 0.01061362 0.00866764 0.00738232 0.00848169 0.01094189
+  0.01349622 0.01511695 0.01562187]
+ [0.01562332 0.01505948 0.01336931 0.01080809 0.00862169 0.00712021
+  0.00836247 0.01083193 0.01334616 0.01505948 0.01562495 0.01508451
+  0.01342881 0.01098836 0.00850525 0.00774097 0.00779424 0.01093411
+  0.01328999 0.01501644 0.01562418]
+ [0.00726731 0.00797694 0.01076009 0.01314082 0.01499429 0.0156244
+  0.01502082 0.01328527 0.01091851 0.00844617 0.00733946 0.00854042
+  0.01067919 0.01339231 0.01508038 0.01562477 0.01505948 0.01328527
+  0.01120762 0.00835042 0.00760564]]
+>>> Metadta: {'target_precision': 0.015625}
+```
+</details>
+
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+
+circuit = RealAmplitudes(num_qubits=127, reps=2)
+# Define three sets of parameters for the circuit
+rng = np.random.default_rng(1234)
+parameter_values = [
+    rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
+]
+observable = SparsePauliOp("Z" * 127)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+
+estimator = Estimator(backend)
+job = estimator.run([isa_circuit] * 3, [isa_observable] * 3, parameter_values)
+result = job.result()
+
+print(f" > Expectation values: {result.values}")
+```
+  </TabItem>
+</Tabs>
+
+### Use sessions and advanced options
+
+Explore sessions and advanced options to optimize circuit performance on quantum systems.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="Estimator V2">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng(1234)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+circuit = IQP(mat)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+another_circuit = IQP(mat)
+observable = SparsePauliOp("X" * n_qubits)
+another_observable = SparsePauliOp("Y" * n_qubits)
+
+pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
+
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator(mode=session)
+
+    estimator.options.optimization_level = 1
+    estimator.options.resilience_level = 1
+
+    job = estimator.run([(isa_circuit, isa_observable)])
+    another_job = estimator.run([(another_isa_circuit, another_isa_observable)])
+    result = job.result()
+    another_result = another_job.result()
+
+    # first job
+    print(f" > Expectation value: {result[0].data.evs}")
+    print(f" > Metadata: {result[0].metadata}")
+
+    # second job
+    print(f" > Another Expectation value: {another_result[0].data.evs}")
+    print(f" > More Metadata: {another_result[0].metadata}")
+```
+Output:
+```text
+ > Expectation value: 0.0048828125
+ > Metadata: {'target_precision': 0.015625}
+ > Another Expectation value: -0.03857421875
+ > More Metadata: {'target_precision': 0.015625}
+ ```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng(1234)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+circuit = IQP(mat)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+another_circuit = IQP(mat)
+observable = SparsePauliOp("X" * n_qubits)
+another_observable = SparsePauliOp("Y" * n_qubits)
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
+
+options = Options()
+options.optimization_level = 2
+options.resilience_level = 2
+
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator(mode=session, options=options)
+    job = estimator.run(isa_circuit, isa_observable)
+    another_job = estimator.run(another_isa_circuit, another_isa_observable)
+    result = job.result()
+    another_result = another_job.result()
+
+# first job
+print(f" > Expectation values job 1: {result.values}")
+
+# second job
+print(f" > Expectation values job 2: {another_result.values}")
+```
+  </TabItem>
+</Tabs>
+
+<span id="sampler-examples"></span>
+## Sampler examples
+
+Generate entire error-mitigated quasi-probability distributions sampled from quantum circuit outputs. Leverage Sampler’s capabilities for search and classification algorithms like Grover’s and QVSM.
+
+### Run a single experiment
+
+Use Sampler to return the measurement outcome as a quasi-probability distribution (V1) or as **bitstrings** or
+   **counts** (V2) of a single circuit.
+
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+sampler = Sampler(backend)
+job = sampler.run([isa_circuit])
+result = job.result()
+
+# Get results for the first (and only) PUB
+pub_result = result[0]
+
+print(f" > Counts: {pub_result.data.meas.get_counts()}")
+```
+Output
+```text
+ > Counts: {'0101': 103, '0100': 195, '0011': 142, '0000': 237, '1010': 26, '0001': 92, '0110': 18, '1111': 19, '0010': 36, '1100': 5, '0111': 42, '1110': 31, '1011': 27, '1101': 18, '1001': 13, '1000': 20}
+ ```
+   </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+sampler = Sampler(backend)
+job = sampler.run(isa_circuit)
+result = job.result()
+
+print(f" > Quasi-probability distribution: {result.quasi_dists}")
+print(f" > Metadata: {result.metadata}")
+```
+  </TabItem>
+</Tabs>
+
+### Run multiple experiments in a single job
+
+Use Sampler to return the measurement outcome as a quasi-probability distribution (V1) or as **bitstrings** or
+   **counts** (V2) of multiple circuits in one job.
+
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng()
+mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
+circuits = [IQP(mat) for mat in mats]
+for circuit in circuits:
+    circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuits = pm.run(circuits)
+
+sampler = Sampler(backend)
+job = sampler.run(isa_circuits)
+result = job.result()
+
+for idx, pub_result in enumerate(result):
+    print(f" > Counts for pub {idx}: {pub_result.data.meas.get_counts()}")
+```
+Output
+```text
+ > Counts for pub 0: {'0001': 120, '0000': 671, '0101': 21, '0011': 18, '0010': 91, '1001': 7, '1000': 23, '0100': 29, '1110': 2, '0110': 28, '1010': 3, '1111': 2, '1100': 4, '1011': 3, '0111': 2}
+ > Counts for pub 1: {'1001': 31, '1100': 122, '0100': 263, '0101': 86, '1101': 69, '1000': 96, '0001': 51, '1011': 7, '0110': 21, '0000': 163, '0011': 17, '1010': 26, '0010': 48, '1110': 13, '0111': 10, '1111': 1}
+ > Counts for pub 2: {'0000': 694, '0010': 78, '0100': 61, '0011': 21, '0001': 58, '0111': 6, '1000': 26, '0110': 50, '1001': 9, '1010': 3, '1100': 10, '1011': 2, '0101': 4, '1110': 1, '1111': 1}
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng()
+mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
+circuits = [IQP(mat) for mat in mats]
+for circuit in circuits:
+    circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuits = pm.run(circuits)
+
+sampler = Sampler(backend)
+job = sampler.run(isa_circuits)
+result = job.result()
+
+print(f" > Quasi-probability distribution: {result.quasi_dists}")
+```
+  </TabItem>
+</Tabs>
+
+
+### Run parameterized circuits
+
+Run several experiments in a single job, leveraging parameter values to increase circuit reusability.
+
+
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+```python
+import numpy as np
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+# Step 1: Map classical inputs to a quantum problem
+circuit = RealAmplitudes(num_qubits=n_qubits, reps=2)
+circuit.measure_all()
+
+# Define three sets of parameters for the circuit
+rng = np.random.default_rng(1234)
+parameter_values = [
+    rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
+]
+
+# Step 2: Optimize problem for quantum execution.
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+# Step 3: Execute using Qiskit primitives.
+sampler = Sampler(backend)
+job = sampler.run([(isa_circuit, parameter_values)])
+result = job.result()
+# Get results for the first (and only) PUB
+pub_result = result[0]
+# Get counts from the classical register "meas".
+print(f" >> Counts for the meas output register: {pub_result.data.meas.get_counts()}")
+```
+Output
+```text
+>> Counts for the meas output register: {'1000': 449, '0100': 183, '0110': 475, '1110': 249, '0101': 167, '0111': 116, '1100': 227, '0011': 111, '1101': 123, '1001': 252, '1010': 229, '0001': 37, '0010': 123, '1011': 120, '1111': 156, '0000': 55}
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import RealAmplitudes
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+
+circuit = RealAmplitudes(num_qubits=127, reps=2)
+circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+
+# Define three sets of parameters for the circuit
+rng = np.random.default_rng(1234)
+parameter_values = [
+    rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
+]
+
+sampler = Sampler(backend)
+job = sampler.run([isa_circuit] * 3, parameter_values)
+result = job.result()
+
+print(f" > Quasi-probability distribution: {result.quasi_dists}")
+```
+  </TabItem>
+</Tabs>
+
+
+### Use sessions and advanced options
+
+Explore sessions and advanced options to optimize circuit performance on quantum systems.
+
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import random_hermitian
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng(1234)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+circuit = IQP(mat)
+circuit.measure_all()
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+another_circuit = IQP(mat)
+another_circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+
+with Session(backend=backend) as session:
+    sampler = Sampler(mode=session)
+    job = sampler.run([isa_circuit])
+    another_job = sampler.run([another_isa_circuit])
+    result = job.result()
+    another_result = another_job.result()
+
+# first job
+print(f" > Counts for job 1: {result[0].data.meas.get_counts()}")
+```
+Output
+```text
+ > Counts for job 1: {'1110': 39, '0100': 164, '0000': 274, '0010': 40, '0001': 101, '0011': 138, '1101': 20, '1010': 26, '1100': 7, '0101': 83, '0111': 43, '1011': 15, '1001': 14, '1000': 34, '0110': 12, '1111': 14}
+```
+```python
+# second job
+print(f" > Counts for job 2: {another_result[0].data.meas.get_counts()}")
+```
+Output
+```text
+ > Counts for job 2: {'0000': 285, '0100': 128, '0111': 29, '0110': 147, '0011': 15, '0010': 277, '1110': 10, '1010': 25, '1011': 15, '1000': 32, '0001': 21, '1111': 6, '1100': 10, '1101': 5, '1001': 15, '0101': 4}
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import random_hermitian
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Session, Options
+
+n_qubits = 127
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=n_qubits)
+
+rng = np.random.default_rng(1234)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+circuit = IQP(mat)
+circuit.measure_all()
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+another_circuit = IQP(mat)
+another_circuit.measure_all()
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(circuit)
+another_isa_circuit = pm.run(another_circuit)
+
+options = Options()
+options.optimization_level = 2
+options.resilience_level = 0
+
+with Session(service=service, backend=backend) as session:
+    sampler = Sampler(mode=session, options=options)
+    job = sampler.run(isa_circuit)
+    another_job = sampler.run(another_isa_circuit)
+    result = job.result()
+    another_result = another_job.result()
+
+# first job
+print(f" > Quasi-probability distribution job 1: {result.quasi_dists}")
+
+# second job
+print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
+```
+  </TabItem>
+</Tabs>
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
+    - [Specify advanced runtime options.](./runtime-options-overview)
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+</Admonition>
