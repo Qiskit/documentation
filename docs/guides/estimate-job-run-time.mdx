@@ -1,0 +1,131 @@
+---
+title: Estimate job run time
+description: Estimate how long a job that uses a primitive will take to run
+
+---
+
+# Estimate job run time
+
+After submitting a job to the IBM Quantum&trade; channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Alternatively, you can [view this information on the IBM Quantum Platform user interface](#view-usage).
+
+Quantum time is the duration, in seconds, a quantum system is committed to fulfilling a user request.
+
+<Admonition type="note" title="Notes">
+    - This only applies to jobs that use primitives.
+    - This is not yet available on the Qiskit Runtime on IBM Cloud&reg; channel. 
+</Admonition>
+
+<Admonition type="caution" title="Important">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+
+*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
+
+``` python
+service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
+```
+</Admonition>
+
+Example:
+
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+    ```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+service = QiskitRuntimeService()
+
+# Create a new circuit with two qubits (first argument) and two classical
+# bits (second argument)
+qc = QuantumCircuit(2, 2)
+
+# Add a Hadamard gate to qubit 0
+qc.h(0)
+
+# Perform a controlled-X gate on qubit 1, controlled by qubit 0
+qc.cx(0, 1)
+
+# Measure qubit 0 to cbit 0, and qubit 1 to cbit 1
+qc.measure(0, 0)
+qc.measure(1, 1)
+
+# Run on the least-busy system you have access to
+backend = service.least_busy(simulator=False,operational=True)
+
+# Generate ISA circuits
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(qc)
+
+# Create a Sampler object
+sampler = Sampler(backend)
+
+# Submit the circuit to the sampler
+job = sampler.run([isa_circuit])
+
+print(job.usage_estimation)
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+
+service = QiskitRuntimeService()
+
+# Create a new circuit with two qubits (first argument) and two classical
+# bits (second argument)
+qc = QuantumCircuit(2, 2)
+
+# Add a Hadamard gate to qubit 0
+qc.h(0)
+
+# Perform a controlled-X gate on qubit 1, controlled by qubit 0
+qc.cx(0, 1)
+
+# Measure qubit 0 to cbit 0, and qubit 1 to cbit 1
+qc.measure(0, 0)
+qc.measure(1, 1)
+
+# Run on the least-busy system you have access to
+backend = service.least_busy(simulator=False,operational=True)
+
+# Generate ISA circuits
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
+isa_circuit = pm.run(qc)
+
+# Create a Sampler object
+sampler = Sampler(backend)
+
+# Submit the circuit to the sampler
+job = sampler.run(isa_circuit)
+
+print(job.usage_estimation)
+```
+  </TabItem>
+</Tabs>
+
+Output:
+
+```python
+{'quantum_seconds': 4.1058720028432445}
+```
+
+<span id="view-usage"></span>
+## View the estimated job usage on IBM Quantum Platform
+
+You can view the estimated usage (how much quantum time the job will take to run) in two places on IBM Quantum Platform:
+
+- On the [Jobs table](https://quantum.ibm.com/jobs) in the Usage column.  From the Home page, click *View all* on the Recent jobs table.  The Usage column shows the estimated usage for pending jobs, or actual usage for completed jobs. 
+- On the job's details page. From the [Dashboard](https://quantum.ibm.com/) or [Jobs table](https://quantum.ibm.com/jobs), click the job ID to open the job details page.  The estimated usage is shown in the Status Timeline. 
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review these tips: [Minimize job run time](minimize-time).
+    - Set the [Maximum execution time](max-execution-time).
+    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+</Admonition>

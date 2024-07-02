@@ -1,0 +1,300 @@
+---
+title: Get started with primitives
+description: How to use the Estimator and Sampler primitives in Qiskit Runtime.
+
+---
+
+# Get started with primitives
+
+The steps in this topic describes how to set up primitives, explore the options you can use to configure them, and invoke them in a program.
+
+<Admonition type="caution" title="Important">
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+
+*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
+
+``` python
+service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
+```
+
+</Admonition>
+
+<Admonition type="note">
+    While this documentation uses the primitives from Qiskit Runtime, which allow you to use IBM&reg; backends, the primitives can be run on any provider by using the [backend primitives](#backend) instead.  Additionally, you can use the *reference* primitives to run on a local statevector simulator.  See [Exact simulation with Qiskit primitives](./simulate-with-qiskit-sdk-primitives) for details.
+</Admonition>
+
+<span id="start-estimator"></span>
+## Get started with Estimator
+
+{/*Verified the v2 examples 2/29 */}
+
+### 1. Initialize the account
+
+Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
+
+Follow the steps in the [Install and set up topic](./install-qiskit) if you don't already have an account.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+estimator = Estimator(mode=backend)
+```
+
+### 2. Create a circuit and an observable
+
+You need at least one circuit and one observable as inputs to the `Estimator` primitive.
+
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+
+n_qubits = 127
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+print(f">>> Observable: {observable.paulis}")
+```
+Output
+```text
+>>> Observable: ['ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ...']
+```
+    The circuit and observable need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits). We'll use the transpiler to do this.
+
+```python
+pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
+isa_circuit = pm.run(circuit)
+isa_observable = observable.apply_layout(isa_circuit.layout)
+```
+
+### 3. Initialize Qiskit Runtime Estimator
+
+When you initialize the Estimator, pass in the system or simulator you previously selected as the target.
+
+To use the Estimator V2, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="Estimator V2">
+
+```python
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+estimator = Estimator(mode=backend)
+ ```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+```python
+from qiskit_ibm_runtime import Estimator
+
+estimator = Estimator(mode=backend)
+```
+  </TabItem>
+</Tabs>
+
+
+### 4. Invoke the Estimator and get results
+
+Next, invoke the `run()` method to calculate expectation values for the input circuits and observables.
+
+For Estimator V2, the circuit, observable, and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
+
+<Tabs>
+  <TabItem value="EstimatorV2" label="Estimator V2">
+```python
+job = estimator.run([(isa_circuit, isa_observable)])
+print(f">>> Job ID: {job.job_id()}")
+print(f">>> Job Status: {job.status()}")
+```
+Output
+```text
+>>> Job ID: 8874203f-f5a0-4491-b093-3f29a1adcae4
+>>> Job Status: JobStatus.RUNNING
+```
+
+```python
+result = job.result()
+print(f">>> {result}")
+print(f"  > Expectation value: {result[0].data.evs}")
+print(f"  > Metadata: {result[0].metadata}")
+```
+Output
+```text
+>>> PrimitiveResult([PubResult(data=DataBin<>(evs=0.013671875, stds=0.0156235396179561), metadata={'target_precision': 0.015625})], metadata={})
+  > Expectation value: 0.013671875
+  > Metadata: {'target_precision': 0.015625}
+```
+  </TabItem>
+
+  <TabItem value="EstimatorV1" label="Estimator (V1)">
+    ```python
+job = estimator.run(isa_circuit, isa_observable)
+print(f">>> Job ID: {job.job_id()}")
+print(f">>> Job Status: {job.status()}")
+```
+
+```python
+result = job.result()
+print(f">>> {result}")
+print(f"  > Expectation value: {result.values[0]}")
+print(f"  > Metadata: {result.metadata[0]}")
+```
+  </TabItem>
+</Tabs>
+
+<span id="start-sampler"></span>
+## Get started with Sampler
+
+### 1. Initialize the account
+
+Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
+
+Follow the steps in the [Install and set up topic](./install-qiskit) if you don't already have an account set up.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
+```
+
+### 2. Create a circuit
+
+You need at least one circuit as the input to the `Sampler` primitive.
+
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.quantum_info import random_hermitian
+
+n_qubits = 127
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+circuit.measure_all()
+```
+
+Again, we use the transpiler to get an ISA circuit.
+
+```python
+pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
+isa_circuit = pm.run(circuit)
+```
+
+### 3. Initialize the Qiskit Runtime Sampler
+
+When you initialize the `Sampler`, pass in the simulator or system you previously selected as the target.
+
+To use the Sampler V2, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backward compatibility.
+
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+    ```python
+from qiskit_ibm_runtime import SamplerV2 as Sampler
+
+sampler = Sampler(mode=backend)
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
+from qiskit_ibm_runtime import Sampler
+
+sampler = Sampler(mode=backend)
+```
+  </TabItem>
+</Tabs>
+
+
+### 4. Invoke the Sampler and get results
+
+Next, invoke the `run()` method to generate the output.
+
+For Sampler V2, the circuit and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
+
+<Tabs>
+  <TabItem value="SamplerV2" label="Sampler V2">
+
+```python
+job = sampler.run([isa_circuit])
+print(f">>> Job ID: {job.job_id()}")
+print(f">>> Job Status: {job.status()}")
+```
+Output
+
+```text
+>>> Job ID: 58223448-5100-4dec-a47a-942fb30edced
+>>> Job Status: JobStatus.RUNNING
+```
+```python
+result = job.result()
+
+# Get results for the first (and only) PUB
+pub_result = result[0]
+print(f"Counts for the meas output register: {pub_result.data.meas.get_counts()}")
+```
+Output
+```text
+Counts for the meas output register: {'0111': 50, '0000': 243, '0001': 101, '0101': 93, '0100': 188, '0011': 128, '1011': 22, '0110': 13, '1100': 10, '1000': 24, '0010': 29, '1010': 26, '1101': 20, '1110': 45, '1001': 16, '1111': 16}
+```
+  </TabItem>
+
+  <TabItem value="SamplerV1" label="Sampler (V1)">
+    ```python
+job = sampler.run(isa_circuit)
+print(f">>> Job ID: {job.job_id()}")
+print(f">>> Job Status: {job.status()}")
+```
+```python
+result = job.result()
+print(f">>> {result}")
+print(f"  > Quasi-probability distribution: {result.quasi_dists[0]}")
+print(f"  > Metadata: {result.metadata[0]}")
+```
+  </TabItem>
+</Tabs>
+
+<span id="backend"></span>
+## Get started with the backend primitives
+
+The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler). Likewise, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). Equivalent implementations in V2 are coming soon.
+
+Some providers implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#provider) for more details).
+
+### Example: BackendEstimator
+
+```python
+from qiskit.primitives import BackendEstimator
+from <some_qiskit_provider> import QiskitProvider
+
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+estimator = BackendEstimator(backend)
+```
+
+### Example: BackendSampler
+
+```python
+from qiskit.primitives import BackendSampler
+from <some_qiskit_provider> import QiskitProvider
+
+provider = QiskitProvider()
+backend = provider.get_backend('backend_name')
+sampler = BackendSampler(backend)
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn how to [test locally](./local-testing-mode) before running on quantum computers.
+    - Review detailed [primitives examples.](primitives-examples)
+    - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+</Admonition>
