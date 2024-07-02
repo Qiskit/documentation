@@ -25,13 +25,13 @@ def get_new_qiskit_bot_notifications(qiskit_bot_file_path: str) -> None:
     new_entries = {}
     for file_path in data["notifications"]:
         file_path_split = file_path.split("/")
-        search_key = f"{file_path_split[-2]}/{file_path_split[-1]}"
+        search_key = f"/{file_path_split[-2]}/{file_path_split[-1]}"
 
         if search_key in REDIRECTS:
             new_file = REDIRECTS[search_key]
-            if new_file == "":
-                new_file = "index"
-            new_entries[f"docs/guides/{new_file}"] = data["notifications"][file_path]
+            if new_file == "/guides":
+                new_file = "/guides/index"
+            new_entries[f"docs{new_file}"] = data["notifications"][file_path]
         elif file_path_split[-2] not in OLD_FOLDERS:
             # We don't want to modify the migration guides
             new_entries[file_path] = data["notifications"][file_path]
