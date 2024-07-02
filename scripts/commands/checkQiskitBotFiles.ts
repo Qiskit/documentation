@@ -36,7 +36,9 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/create-transpiler-plugin",
   "docs/guides/intro-to-patterns",
   "docs/guides/optimize-for-hardware",
-  "docs/guides/postprocess-results",
+  "docs/guides/post-process-results",
+  "docs/guides/configure-error-suppression",
+  "docs/guides/repetition-rate-execution",
   // Todo: remove the following old paths
   "docs/start/_toc",
   "docs/build/_toc",
