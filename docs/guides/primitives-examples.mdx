@@ -6,10 +6,10 @@ description: Practical examples of using primitives in Qiskit Runtime.
 
 # Primitives examples
 
-The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](./install-qiskit)
+The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](../start/install)
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -765,8 +765,8 @@ print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
 
 <Admonition type="tip" title="Recommendations">
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
-    - [Specify advanced runtime options.](./runtime-options-overview)
+    - [Specify advanced runtime options.](advanced-runtime-options)
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
-    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Learn how to transpile locally in the [Transpile](./transpile/) section.
     - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
