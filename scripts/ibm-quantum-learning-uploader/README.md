@@ -18,13 +18,13 @@ To sync your lessons automatically with the API, you'll need to add a
 `learning-platform.conf.yaml` to the root of your content folder.
 
 ```yaml
-# learning-platform.conf.yaml
+# learning-api.conf.yaml
 # This goes in the root of your content folder
 lessons:
   - path: path/to/folder # path to folder containing the lesson
-    # Lesson IDs in the API:
-    idStaging: 4e85c04a-c2fb-4bfc-9077-b75bf1b73a25
-    idProduction: 5026731b-5e7b-4585-8cf2-f24482819e21
+    # Lesson URLs in the API:
+    urlStaging: tutorials/4e85c04a-c2fb-4bfc-9077-b75bf1b73a25
+    urlProduction: tutorials/5026731b-5e7b-4585-8cf2-f24482819e21
 ```
 
 To upload lessons using our script:

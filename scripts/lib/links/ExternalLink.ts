@@ -37,7 +37,7 @@ export class ExternalLink {
     let error: string = "";
     try {
       const response = await fetch(this.value, {
-        headers: { "User-Agent": "qiskit-documentation-broken-links-finder" },
+        headers: getHeaders(this.value),
         method: "HEAD",
       });
       if (response.status >= 300) {
@@ -56,4 +56,19 @@ export class ExternalLink {
       .map((originFile) => `    ${originFile}`);
     return `❌ ${error}. Appears in:\n${fileList.join("\n")}`;
   }
+}
+
+function getHeaders(link: string) {
+  const headers: HeadersInit = {
+    "User-Agent": "qiskit-documentation-broken-links-finder",
+  };
+
+  if (link.startsWith("https://github.com")) {
+    const ghToken = process.env.GITHUB_TOKEN;
+    if (ghToken) {
+      headers["Authorization"] = `token ${ghToken}`;
+    }
+  }
+
+  return headers;
 }

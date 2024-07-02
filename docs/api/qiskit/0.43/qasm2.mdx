@@ -30,7 +30,7 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 ### load
 
-<Function id="qiskit.qasm2.load" name="load" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py" signature="load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)">
+<Function id="qiskit.qasm2.load" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py" signature="load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)">
   Parse an OpenQASM 2 program from a file into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The given path should be ASCII or UTF-8 encoded, and contain the OpenQASM 2 program.
 
   **Parameters**
@@ -53,7 +53,7 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 ### loads
 
-<Function id="qiskit.qasm2.loads" name="loads" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py" signature="loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)">
+<Function id="qiskit.qasm2.loads" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/__init__.py" signature="loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)">
   Parse an OpenQASM 2 program from a string into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
   **Parameters**
@@ -81,7 +81,9 @@ Both of these loading functions also take an argument `include_path`, which is a
 
 You can extend the quantum components of the OpenQASM 2 language by passing an iterable of information on custom instructions as the argument `custom_instructions`. In files that have compatible definitions for these instructions, the given `constructor` will be used in place of whatever other handling [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2") would have done. These instructions may optionally be marked as `builtin`, which causes them to not require an `opaque` or `gate` declaration, but they will silently ignore a compatible declaration. Either way, it is an error to provide a custom instruction that has a different number of parameters or qubits as a defined instruction in a parsed program. Each element of the argument iterable should be a particular data class:
 
-<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/parse.py" signature="CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)">
+#### CustomInstruction
+
+<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/parse.py" signature="CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
   Information about a custom instruction that should be defined during the parse.
 
   The `name`, `num_params` and `num_qubits` fields are self-explanatory. The `constructor` field should be a callable object with signature `*args -> Instruction`, where each of the `num_params` `args` is a floating-point value. Most of the built-in Qiskit gate classes have this form.
@@ -95,7 +97,9 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
 Similar to the quantum extensions above, you can also extend the processing done to classical expressions (arguments to gates) by passing an iterable to the argument `custom_classical` to either loader. This needs the `name` (a valid OpenQASM 2 identifier), the number `num_params` of parameters it takes, and a Python callable that implements the function. The Python callable must be able to accept `num_params` positional floating-point arguments, and must return a float or integer (which will be converted to a float). Builtin functions cannot be overridden.
 
-<Class id="qiskit.qasm2.CustomClassical" signature="CustomClassical(name, num_params, callable, /)">
+#### CustomClassical
+
+<Class id="qiskit.qasm2.CustomClassical" signature="CustomClassical(name, num_params, callable, /)" modifiers="class">
   Information about a custom classical function that should be defined in mathematical expressions.
 
   The given callable must be a Python function that takes num\_params floats, and returns a float. The name is the identifier that refers to it in the OpenQASM 2 program. This cannot clash with any defined gates.
@@ -113,7 +117,7 @@ This module defines a generic error type that derives from `QiskitError` that ca
 
 ### QASM2Error
 
-<Class id="qiskit.qasm2.QASM2Error" name="QASM2Error" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py" signature="QASM2Error(*message)">
+<Class id="qiskit.qasm2.QASM2Error" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py" signature="QASM2Error(*message)" modifiers="exception">
   A general error raised by the OpenQASM 2 interoperation layer.
 
   Set the error message.
@@ -123,7 +127,7 @@ In cases where the lexer or parser fails due to an invalid OpenQASM 2 file, the 
 
 ### QASM2ParseError
 
-<Class id="qiskit.qasm2.QASM2ParseError" name="QASM2ParseError" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py" signature="QASM2ParseError(*message)">
+<Class id="qiskit.qasm2.QASM2ParseError" github="https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/qasm2/exceptions.py" signature="QASM2ParseError(*message)" modifiers="exception">
   An error raised because of a failure to parse an OpenQASM 2 file.
 
   Set the error message.

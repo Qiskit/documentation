@@ -1,0 +1,97 @@
+---
+title: Estimator
+description: API reference for qiskit.primitives.Estimator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.Estimator
+---
+
+# Estimator
+
+<Class id="qiskit.primitives.Estimator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/primitives/estimator.py#L38-L158" signature="qiskit.primitives.Estimator(*, options=None)" modifiers="class">
+  Bases: [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.base.base_estimator.BaseEstimatorV1")\[[`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.primitive_job.PrimitiveJob")\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
+
+  Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator").
+
+  **Run Options**
+
+  *   **shots** (None or int) – The number of shots. If None, it calculates the exact expectation values. Otherwise, it samples from normal distributions with standard errors as standard deviations using normal distribution approximation.
+  *   **seed** (np.random.Generator or int) – Set a fixed seed or generator for the normal distribution. If shots is None, this option is ignored.
+
+  **Parameters**
+
+  **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if some classical bits are not used for measurements.
+
+  ## Attributes
+
+  ### options
+
+  <Attribute id="qiskit.primitives.Estimator.options">
+    Return options values for the estimator.
+
+    **Returns**
+
+    options
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.primitives.Estimator.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_estimator.py#L123-L180" signature="run(circuits, observables, parameter_values=None, **run_options)">
+    Run the job of the estimation of expectation value(s).
+
+    `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
+
+    ```python
+    obs = observables[i]
+    ```
+
+    for the state prepared by
+
+    ```python
+    circ = circuits[i]
+    ```
+
+    with bound parameters
+
+    ```python
+    values = parameter_values[i].
+    ```
+
+    **Parameters**
+
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – one or more circuit objects.
+    *   **observables** (*Sequence\[BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – concrete parameters to be bound.
+    *   **run\_options** – runtime options used for circuit execution.
+
+    **Returns**
+
+    The job object of EstimatorResult.
+
+    **Raises**
+
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Invalid argument type given.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid argument values given.
+
+    **Return type**
+
+    T
+  </Function>
+
+  ### set\_options
+
+  <Function id="qiskit.primitives.Estimator.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/primitives/base/base_primitive.py#L39-L45" signature="set_options(**fields)">
+    Set options values for the estimator.
+
+    **Parameters**
+
+    **\*\*fields** – The fields to update the options
+  </Function>
+</Class>
+

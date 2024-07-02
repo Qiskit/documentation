@@ -25,6 +25,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Exit early on forks
+        if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+        shell: python
+        run: |
+          raise SystemExit(
+            "We can't run this test on pull requests from forks."
+            "\n\n"
+            "If you have write access to Qiskit/documentation, push to a new "
+            "branch there and make your pull request from that branch instead."
+            "\n\n"
+            "If you don't have write access, you must test out the notebook "
+            "locally using the instructions in "
+            "https://github.com/Qiskit/documentation#execute-notebooks."
+            "When this PR is approved, a maintainer will merge it to a new "
+            "branch in Qiskit/documentation, then make a PR from that branch "
+            "into main so it can pass CI."
+          )
+
       - name: Get all changed files
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
@@ -38,6 +56,11 @@ jobs:
         with:
           # Add your notebook to this list if it needs latex or graphviz to run
           files: |
+            docs/guides/visualize-circuits.ipynb
+            docs/guides/custom-backend.ipynb
+            docs/guides/transpiler-stages.ipynb
+            docs/guides/represent-quantum-computers.ipynb
+            docs/guides/common-parameters.ipynb
             docs/build/circuit-visualization.ipynb
             docs/build-new/circuit-visualization.ipynb
             docs/transpile/common-parameters.ipynb

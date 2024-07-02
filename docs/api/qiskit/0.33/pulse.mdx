@@ -64,7 +64,9 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule "qiskit.puls
 
 These are all instances of the same base class:
 
-<Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/instruction.py" signature="Instruction(operands, name=None)">
+### Instruction
+
+<Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/instructions/instruction.py" signature="Instruction(operands, name=None)" modifiers="class">
   The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
   Instruction initializer.
@@ -137,7 +139,9 @@ Novel channel types can often utilize the [`ControlChannel`](qiskit.pulse.channe
 
 All channels are children of the same abstract base class:
 
-<Class id="qiskit.pulse.channels.Channel" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/channels.py" signature="Channel(index)">
+### Channel
+
+<Class id="qiskit.pulse.channels.Channel" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/channels.py" signature="Channel(index)" modifiers="class">
   Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
   When serialized channels are identified by their serialized name `<prefix><index>`. The type of the channel is interpreted from the prefix, and the index often (but not always) maps to the qubit index. All concrete channel classes must have a `prefix` class attribute (and instances of that class have an index attribute). Base classes which have `prefix` set to `None` are prevented from being instantiated.
@@ -186,7 +190,9 @@ The alignment transforms define alignment policies of instructions in [`Schedule
 
 These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind").
 
-<Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py" signature="AlignmentKind">
+#### AlignmentKind
+
+<Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/transforms/alignments.py" signature="AlignmentKind" modifiers="class">
   An abstract class for schedule alignment.
 
   Create new context.
@@ -626,7 +632,9 @@ There are 1e-06 seconds in 4500 samples.
 
 ## Exceptions
 
-<Class id="qiskit.pulse.PulseError" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/exceptions.py" signature="PulseError(*message)">
+### PulseError
+
+<Class id="qiskit.pulse.PulseError" github="https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/pulse/exceptions.py" signature="PulseError(*message)" modifiers="class">
   Errors raised by the pulse module.
 
   Set the error message.

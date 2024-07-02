@@ -30,6 +30,10 @@ jobs:
         run: npm run check:metadata
       - name: Spellcheck
         run: npm run check:spelling
+      - name: Check Qiskit bot config
+        run: npm run check:qiskit-bot
+      - name: Check Patterns index
+        run: npm run check:patterns-index
       - name: Internal link checker
         run: npm run check:internal-links
       - name: Check orphaned pages
@@ -57,3 +61,8 @@ jobs:
         run: |
           echo "${{ steps.changed-docs-files.outputs.all_changed_files }}" > changed.txt
           npm run check:pages-render -- --from-file changed.txt
+
+      - name: Setup Python environment
+        uses: ./.github/actions/set-up-notebook-testing
+      - name: nb-tester tests
+        run: tox -e nb-tester

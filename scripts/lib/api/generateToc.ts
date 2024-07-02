@@ -10,11 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { Dictionary, isEmpty, keyBy, keys, orderBy } from "lodash";
+import { isEmpty, orderBy } from "lodash";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { Pkg } from "./Pkg";
+import type { TocGrouping } from "./TocGrouping";
 
 export type TocEntry = {
   title: string;
@@ -29,29 +30,34 @@ type Toc = {
   collapsed: boolean;
 };
 
-function nestModule(id: string): boolean {
-  // For example, nest `qiskit.algorithms.submodule`, but
-  // not `qiskit.algorithms` which should be top-level.
-  return id.split(".").length > 2;
-}
-
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results);
   const tocModules = generateTocModules(modules);
-  const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
-  const tocModuleTitles = keys(tocModulesByTitle);
+  const tocModulesByTitle = new Map(
+    tocModules.map((entry) => [entry.title, entry]),
+  );
+  const tocModuleTitles = Array.from(tocModulesByTitle.keys());
 
   addItemsToModules(items, tocModulesByTitle, tocModuleTitles);
-  const nestedTocModules = getNestedTocModulesSorted(
-    tocModules,
-    tocModulesByTitle,
-    tocModuleTitles,
-  );
+
+  const orderedEntries = pkg.tocGrouping
+    ? groupAndSortModules(pkg.tocGrouping, tocModulesByTitle)
+    : orderEntriesByTitle(tocModules);
+
   generateOverviewPage(tocModules);
+  const maybeIndexPage = ensureIndexPage(pkg, orderedEntries);
+  if (maybeIndexPage) {
+    orderedEntries.unshift(maybeIndexPage);
+  }
+
+  const maybeReleaseNotes = generateReleaseNotesEntry(pkg);
+  if (maybeReleaseNotes) {
+    orderedEntries.push(maybeReleaseNotes);
+  }
 
   return {
     title: pkg.title,
-    children: [...nestedTocModules, generateReleaseNotesEntries(pkg)],
+    children: orderedEntries,
     collapsed: true,
   };
 }
@@ -88,7 +94,7 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
 
 function addItemsToModules(
   items: HtmlToMdResultWithUrl[],
-  tocModulesByTitle: Dictionary<TocEntry>,
+  tocModulesByTitle: Map<string, TocEntry>,
   tocModuleTitles: string[],
 ) {
   for (const item of items) {
@@ -99,7 +105,7 @@ function addItemsToModules(
     );
 
     if (itemModuleTitle) {
-      const itemModule = tocModulesByTitle[itemModuleTitle];
+      const itemModule = tocModulesByTitle.get(itemModuleTitle) as TocEntry;
       if (!itemModule.children) itemModule.children = [];
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
@@ -110,41 +116,93 @@ function addItemsToModules(
   }
 }
 
-function getNestedTocModulesSorted(
-  tocModules: TocEntry[],
-  tocModulesByTitle: Dictionary<TocEntry>,
-  tocModuleTitles: string[],
+/** Group the modules into the user-defined tocGrouping, which defines the order
+ * of the top-level entries in the ToC.
+ *
+ * Within each TocGrouping.Section, this function will also sort the modules alphabetically.
+ */
+function groupAndSortModules(
+  tocGrouping: TocGrouping,
+  tocModulesByTitle: Map<string, TocEntry>,
 ): TocEntry[] {
-  const nestedTocModules: TocEntry[] = [];
-
-  for (const tocModule of tocModules) {
-    if (!nestModule(tocModule.title)) {
-      nestedTocModules.push(tocModule);
-      continue;
-    }
-
-    const parentModuleTitle = findClosestParentModules(
-      tocModule.title,
-      tocModuleTitles,
-    );
-
-    if (parentModuleTitle) {
-      const parentModule = tocModulesByTitle[parentModuleTitle];
-      if (!parentModule.children) parentModule.children = [];
-      parentModule.children.push(tocModule);
+  // First, record every valid section and top-level module.
+  const topLevelModuleIds = new Set<string>();
+  const sectionsToModules = new Map<string, TocEntry[]>();
+  tocGrouping.entries.forEach((entry) => {
+    if (entry.kind === "module") {
+      topLevelModuleIds.add(entry.moduleId);
     } else {
-      nestedTocModules.push(tocModule);
+      sectionsToModules.set(entry.name, []);
     }
+  });
+
+  // Go through each module in use and ensure it is either a top-level module
+  // or assign it to its section.
+  for (const tocModule of tocModulesByTitle.values()) {
+    if (topLevelModuleIds.has(tocModule.title)) continue;
+    const section = tocGrouping.moduleToSection(tocModule.title);
+    if (!section) {
+      throw new Error(
+        `Unrecognized module '${tocModule.title}'. It must either be listed as a module in TocGrouping.entries or be matched in TocGrouping.moduleToSection().`,
+      );
+    }
+    const sectionModules = sectionsToModules.get(section);
+    if (!sectionModules) {
+      throw new Error(
+        `Unknown section '${section}' set for the module '${tocModule.title}'. This means TocGrouping.moduleToSection() is not aligned with TocGrouping.entries`,
+      );
+    }
+    sectionModules.push(tocModule);
   }
 
-  return orderEntriesByTitle(nestedTocModules);
+  // Finally, create the ToC by using the ordering from moduleGrouping.entries.
+  // Note that moduleGrouping.entries might be a superset of the modules/sections
+  // actually in use for the API version, so we sometimes skip adding individual
+  // entries to the final result.
+  const result: TocEntry[] = [];
+  tocGrouping.entries.forEach((entry) => {
+    if (entry.kind === "module") {
+      const module = tocModulesByTitle.get(entry.moduleId);
+      if (!module) return;
+      module.title = entry.title;
+      result.push(module);
+    } else {
+      const modules = sectionsToModules.get(entry.name);
+      if (!modules || modules.length === 0) return;
+      result.push({
+        title: entry.name,
+        // Within a section, sort alphabetically.
+        children: orderEntriesByTitle(modules),
+      });
+    }
+  });
+  return result;
+}
+
+/**
+ * Create a new TocEntry pointing to the index page if is not already there.
+ *
+ * Certain APIs like Runtime and Provider do not have the index page included,
+ * whereas Qiskit SDK already does.
+ */
+function ensureIndexPage(
+  pkg: Pkg,
+  tocModules: TocEntry[],
+): TocEntry | undefined {
+  const docsFolder = pkg.outputDir("/");
+  return tocModules.some((entry) => entry.url === docsFolder)
+    ? undefined
+    : {
+        title: "API index",
+        url: docsFolder,
+      };
 }
 
 function generateOverviewPage(tocModules: TocEntry[]): void {
   for (const tocModule of tocModules) {
     if (tocModule.children && tocModule.children.length > 0) {
       tocModule.children = [
-        { title: "Overview", url: tocModule.url },
+        { title: "Module overview", url: tocModule.url },
         ...orderEntriesByChildrenAndTitle(tocModule.children),
       ];
       delete tocModule.url;
@@ -152,17 +210,21 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
   }
 }
 
-function generateReleaseNotesEntries(pkg: Pkg) {
+function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
+  if (!pkg.releaseNotesConfig.enabled) return;
   const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (pkg.releaseNoteEntries.length) {
-    releaseNotesEntry.children = pkg.releaseNoteEntries;
+  if (pkg.hasSeparateReleaseNotes()) {
+    releaseNotesEntry.children =
+      pkg.releaseNotesConfig.separatePagesVersions.map((vers) => ({
+        title: vers,
+        url: `${releaseNotesUrl}/${vers}`,
+      }));
   } else {
     releaseNotesEntry.url = releaseNotesUrl;
   }
-
   return releaseNotesEntry;
 }
 

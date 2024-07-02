@@ -1,0 +1,175 @@
+---
+title: IntegerComparator
+description: API reference for qiskit.circuit.library.IntegerComparator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.IntegerComparator
+---
+
+# IntegerComparator
+
+<Class id="qiskit.circuit.library.IntegerComparator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/circuit/library/arithmetic/integer_comparator.py#L25-L243" signature="qiskit.circuit.library.IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')" modifiers="class">
+  Bases: `BlueprintCircuit`
+
+  Integer Comparator.
+
+  Operator compares basis states $|i\rangle_n$ against a classically given integer $L$ of fixed value and flips a target qubit if $i \geq L$ (or $<$ depending on the parameter `geq`):
+
+$$
+|i\rangle_n |0\rangle \mapsto |i\rangle_n |i \geq L\rangle
+$$
+
+  This operation is based on two’s complement implementation of binary subtraction but only uses carry bits and no actual result bits. If the most significant carry bit (the results bit) is 1, the $\geq$ condition is `True` otherwise it is `False`.
+
+  Create a new fixed value comparator circuit.
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Number of state qubits. If this is set it will determine the number of qubits required for the circuit.
+  *   **value** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The fixed value to compare with.
+  *   **geq** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, evaluate a `>=` condition, else `<`.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of the circuit.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.ancillas">
+    Returns a list of ancilla bits in the order that the registers were added.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.clbits">
+    Returns a list of classical bits in the order that the registers were added.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.data" />
+
+  ### geq
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.geq">
+    Return whether the comparator compares greater or less equal.
+
+    **Returns**
+
+    True, if the comparator compares `>=`, False if `<`.
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.global_phase">
+    Return the global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.instances" attributeValue="196" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.metadata">
+    The user provided metadata associated with the circuit.
+
+    The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_parameters" />
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_qubits">
+    Return number of qubits.
+  </Attribute>
+
+  ### num\_state\_qubits
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_state_qubits">
+    The number of qubits encoding the state for the comparison.
+
+    **Returns**
+
+    The number of state qubits.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.parameters" />
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.prefix" attributeValue="'circuit'" />
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the quantum registers associated with the circuit.
+  </Attribute>
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.qubits">
+    Returns a list of quantum bits in the order that the registers were added.
+  </Attribute>
+
+  ### value
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.value">
+    The value to compare the qubit register to.
+
+    **Returns**
+
+    The value against which the value of the qubit register is compared.
+  </Attribute>
+</Class>
+

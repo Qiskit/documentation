@@ -31,9 +31,28 @@ const _QISKIT_UTILS = [
   "https://github.com/python-constraint/python-constraint%3E__",
 ];
 
+const _PATTERNS_REORG_IGNORES = [
+  "/run/primitives-examples",
+  "/run/sessions",
+  "/build/circuit-construction",
+  "/start/configure-qiskit-local#environment-variables",
+  "/build/pulse",
+  "/run",
+  "/transpile",
+  "/run/max-execution-time",
+  "/run/configure-runtime-compilation",
+  "/run/configure-error-mitigation",
+  "/start/install#qiskit-versioning",
+  "/start/configure-qiskit-local",
+  "/run/primitives-get-started#3-initialize-the-qiskit-runtime-sampler",
+  "/run/primitives-get-started#3-initialize-qiskit-runtime-estimator",
+];
+
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
+  "http://www.satcompetition.org/2009/format-benchmarks2009.html",
+  "https://qiskit.slack.com/archives/C06KF8YHUAU",
   // StackOverflow rate limits us.
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
@@ -47,6 +66,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX = [
   // Bad anchor in qiskit_ibm_runtime.options.Options.md for 0.14 - 0.16.
   "/run/max-execution-time#maximum-execution-time",
   ..._QISKIT_UTILS,
+  ..._PATTERNS_REORG_IGNORES,
 ];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -61,7 +81,23 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // A mapping of files to lists of links that will not be searched.
 type FilesToIgnores = { [id: string]: string[] };
 
-const _QPY_IGNORES = ["#f1", "#f2", "#f3", "#id2", "#id4", "#id6", "#id8"];
+const _QPY_IGNORES = [
+  "#f1",
+  "#f2",
+  "#f3",
+  "#id2",
+  "#id3",
+  "#id4",
+  "#id5",
+  "#id6",
+  "#id7",
+  "#id8",
+];
+
+const _CIRCUIT_MODULE_IGNORES = [
+  "#qiskit.circuit.SessionEquivalenceLibrary",
+  "#qiskit.circuit.StandardEquivalenceLibrary",
+];
 
 const _RUNTIME_OBJECT_INV = Object.fromEntries(
   [
@@ -74,6 +110,7 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
     "0.20/",
     "0.21/",
     "0.22/",
+    "0.23/",
   ].map((vers) => [
     `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
     [
@@ -89,18 +126,20 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = {};
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   // Qiskit
   "docs/api/qiskit/release-notes/1.0.mdx": [
-    "/api/qiskit/utils#qiskit.utils.optionals.HAS_SYMENGINE",
+    "/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
   ],
   "docs/api/qiskit/qpy.mdx": _QPY_IGNORES,
   "docs/api/qiskit/dev/qpy.mdx": _QPY_IGNORES,
-  "docs/api/qiskit/dev/circuit.mdx": [
-    "#qiskit.circuit.SessionEquivalenceLibrary",
-    "#qiskit.circuit.StandardEquivalenceLibrary",
-  ],
+  "docs/api/qiskit/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
+  "docs/api/qiskit/dev/circuit.mdx": _CIRCUIT_MODULE_IGNORES,
   // Runtime
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
+  ],
+  // Provider
+  "docs/api/qiskit-ibm-provider/release-notes.mdx": [
+    "/api/qiskit/qiskit.circuit.Delay",
   ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,
@@ -151,6 +190,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize",
     "/api/qiskit/qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation",
+    "/api/qiskit/circuit#qiskit.circuit.SessionEquivalenceLibrary",
+    "/api/qiskit/circuit#qiskit.circuit.StandardEquivalenceLibrary",
   ],
   "public/api/qiskit/dev/objects.inv": [
     "/api/qiskit/dev/circuit#qiskit.circuit.CASE_DEFAULT",

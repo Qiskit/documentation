@@ -1,0 +1,48 @@
+---
+title: plot_error_map
+description: API reference for qiskit.visualization.plot_error_map
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_error_map
+---
+
+<span id="qiskit-visualization-plot-error-map" />
+
+# qiskit.visualization.plot\_error\_map
+
+<Function id="qiskit.visualization.plot_error_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.0/qiskit/utils/lazy_tester.py#L1219-L1455" signature="qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)">
+  Plots the error map of a given backend.
+
+  **Parameters**
+
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Given backend.
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Figure size in inches.
+  *   **show\_title** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show the title or not.
+  *   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
+
+  **Returns**
+
+  A matplotlib figure showing error map.
+
+  **Return type**
+
+  Figure
+
+  **Raises**
+
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – The backend does not provide gate errors for the ‘sx’ gate.
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If matplotlib or seaborn is not installed.
+
+  **Example**
+
+  ```python
+  from qiskit.visualization import plot_error_map
+  from qiskit.providers.fake_provider import GenericBackendV2
+
+  backend = GenericBackendV2(num_qubits=5)
+  plot_error_map(backend)
+  ```
+
+  ![../\_images/qiskit-visualization-plot\_error\_map-1.png](/images/api/qiskit/1.0/qiskit-visualization-plot_error_map-1.png)
+</Function>
+
