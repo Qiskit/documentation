@@ -39,6 +39,17 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/post-process-results",
   "docs/guides/configure-error-suppression",
   "docs/guides/repetition-rate-execution",
+  "docs/api/migration-guides/_toc",
+  "docs/api/migration-guides/local-simulators",
+  "docs/api/migration-guides/qiskit-1.0",
+  "docs/api/migration-guides/qiskit-1.0-features",
+  "docs/api/migration-guides/qiskit-1.0-installation",
+  "docs/api/migration-guides/qiskit-runtime-from-ibm-provider",
+  "docs/api/migration-guides/qiskit-runtime-from-ibmq-provider",
+  "docs/api/migration-guides/qiskit-runtime-options",
+  "docs/api/migration-guides/qiskit-runtime-use-case",
+  "docs/api/migration-guides/sessions",
+  "docs/api/migration-guides/v2-primitives",
   // Todo: remove the following old paths
   "docs/start/_toc",
   "docs/build/_toc",
@@ -64,12 +75,6 @@ const ALLOWED_OWNERLESS_FILES = new Set([
 ]);
 
 const ALLOWED_NONEXISTENT_FILES = new Set([
-  "docs/migration-guides/index",
-  "docs/migration-guides/qiskit-runtime",
-  "docs/migration-guides/qiskit-runtime-examples",
-  "docs/migration-guides/qiskit-quantum-instance",
-  "docs/migration-guides/qiskit-algorithms-module",
-  "docs/migration-guides/qiskit-opflow-module",
   // Todo: remove or rename the following old paths
   "docs/build/qubit-order",
   "docs/build/operators_overview",
@@ -77,7 +82,7 @@ const ALLOWED_NONEXISTENT_FILES = new Set([
 ]);
 
 const GLOBS = [
-  "docs/migration-guides/*",
+  "docs/api/migration-guides/*",
   "docs/guides/*",
   // Todo: remove the following old globs
   "docs/start/*",
