@@ -32,15 +32,15 @@ When calling the primitives, you can pass in options by using an options class o
 For V2 primitives, if you do not specify a value for an option, it is given a special value of `Unset` and the server default value is used. Thus, the default value will be the same regardless of your code version.
 For V1 primitives, if you do not specify a value for an option, the Qiskit Runtime client's default value is used. In V1, the default value was dependant on the code version.
 
-The tables in the [Options classes summary section](#options-classes) lists the default values.
+The tables in the [Options classes summary](#options-classes) section lists the default values.
 
 <span id="options-precedence"></span>
 ### Precedence rules
 
 There are several ways to set options.  If you set different values for the same option in multiple places, this is the order of precedence:
 
-2. Any options set after primitive initialization.
-3. Any options set during primitive initialization.
+1. Any options set after primitive initialization.
+2. Any options set during primitive initialization.
 
 <Admonition type="caution" title="Important">
 Shots (Sampler) or precision (Estimator) set in `run()` are not considered options, but take precidence over values set for `default_shots`or `default_precision`. See the [Run() method](#run-method) section for full details.
@@ -69,7 +69,7 @@ If you set `default_shots` in an estimator, it overrides any value set for `defa
 
 The `resilience_level` is used to set a base configuration on any relevant options, and then any other user-specified options override that configuration. So it would be possible to undo the effect of setting the resilience level by reversing all of its settings manually.
 
-In the following example, setting the resilience level to 0 does not turn off zne_mitigation because `estimator.options.resilience.zne_mitigation = True` overrides the relevent setup from `estimator.options.resilience_level = 0`.
+In the following example, setting the resilience level to 0 does not turn off `zne_mitigation` because `estimator.options.resilience.zne_mitigation = True` overrides the relevent setup from `estimator.options.resilience_level = 0`.
 
 ``` python
 from qiskit_ibm_runtime import EstimatorV2, QiskitRuntimeService
@@ -441,13 +441,13 @@ For some algorithms, setting a specific number of shots is a core part of their 
   <TabItem value="primitivesV2" label="V2 Primitives">
 Shots (or precision) can be specified in multiple places in V2.  They are prioritized as follows:
 
-* For any Sampler pub:
+For any Sampler pub:
 
 1. Int-valued shots contained in the pub
 2. The `run(...,shots=val)` value
 3. The `options.default_shots` value
 
-* For any Estimator pub:
+For any Estimator pub:
 
 1. Float-valued precision contained in the pub
 2. The `run(...,precision=val)` value
@@ -519,7 +519,7 @@ See the Optimization level table in the
 
 <Tabs>
   <TabItem value="PrimV2" label="Estimator V2">
-   The optimization level option is a "first-level option".  Sampler V2 does not currently support `optimization_level`.
+   The optimization level option is a "first-level option".  Sampler V2 does not support `optimization_level`.
 
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
