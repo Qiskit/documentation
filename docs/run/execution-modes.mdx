@@ -7,11 +7,11 @@ description: An overview of the available execution modes in Qiskit Runtime; ses
 
 There are several ways to run workloads, depending on your needs.
 
-**Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer.
+**Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` or pass the backend name when instantiating a primitive. See [Primitives examples](primitives-examples) for examples.
 
-[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access. See [Run jobs in a session](run-jobs-in-session) for examples.
+[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access.  To run in session mode, specify `mode=session` when instantiating a primitive or run the job in a session context manager. See [Run jobs in a session](run-jobs-in-session) for examples.
 
-[**Batch mode**](run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.
+[**Batch mode**](run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.   To run in batch mode, specify `mode=batch` when instantiating a primitive or run the job in a batch context manager. See [Run jobs in a batch](run-jobs-batch) for examples.
 
 The differences are summarized in the following table:
 

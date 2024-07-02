@@ -288,7 +288,7 @@ backend = service.least_busy(operational=True, simulator=False)
 options = Options()
 # This uses auto complete.
 options.resilience_level = 2
-estimator = Estimator(backend=backend, options=options)
+estimator = Estimator(mode=backend, options=options)
 
 # Setting options after primitive initialization.
 # This does bulk update.
@@ -776,7 +776,7 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    estimator = Estimator(session=session)
+    estimator = Estimator()
 
     estimator.options.optimization_level = 1
     estimator.options.resilience_level = 1
@@ -829,7 +829,7 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    estimator = Estimator(session=session, options=options)
+    estimator = Estimator(options=options)
     job = estimator.run(isa_circuit, isa_observable)
     another_job = estimator.run(another_isa_circuit, another_isa_observable)
     result = job.result()
@@ -1119,7 +1119,7 @@ sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    sampler = Sampler(session=session)
+    sampler = Sampler()
     job = sampler.run([isa_circuit])
     another_job = sampler.run([another_isa_circuit])
     result = job.result()
@@ -1159,7 +1159,7 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    sampler = Sampler(session=session, options=options)
+    sampler = Sampler(options=options)
     job = sampler.run(circuit)
     another_job = sampler.run(another_circuit)
     result = job.result()

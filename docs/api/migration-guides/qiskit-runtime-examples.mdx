@@ -60,7 +60,7 @@ service = QiskitRuntimeService()
 # Get a backend
 backend = service.least_busy(operational=True, simulator=False)
 
-# Define Estimator  
+# Define Estimator
 estimator = Estimator(backend)
 
 # Run an expectation value calculation
@@ -77,10 +77,10 @@ from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 # Run the sampler job locally using FakeManilaV2
 fake_manila = FakeManilaV2()
 
-# You can use a fixed seed to get fixed results. 
+# You can use a fixed seed to get fixed results.
 options = {"simulator": {"seed_simulator": 42}}
 
-# Define Estimator  
+# Define Estimator
 estimator = Estimator(backend=fake_manila, options=options)
 
 # Run an expectation value calculation
@@ -225,7 +225,8 @@ Output
   </TabItem>
 
   <TabItem value="legacy" label="backend.run()">
-The legacy workflow required additional elements and steps to compute an expectation value. The `QuantumInstance` class stored a `PassManager` and a `Backend` instance, and wrapped the conversion step to ISA circuits and `backend.run` calls.  The `CircuitSampler` class from `qiskit.opflow` wrapped the `QuantumInstance` `run` and `transpile` methods. This degree of nesting is no longer supported, the new workflow allows to access and directly manipulate all the key components of the computation (backend, pass manager, circuits and observables) at all stages of the algorithm. 
+The legacy workflow required additional elements and steps to compute an expectation value. The `QuantumInstance` class stored a `PassManager` and a `Backend` instance, and wrapped the conversion step to ISA circuits and `backend.run` calls.  The `CircuitSampler` class from `qiskit.opflow` wrapped the `QuantumInstance`, `run`, and `transpile` methods. This degree of nesting is no longer supported; the new workflow allows to access and directly manipulate all the key components of the computation (backend, pass manager, circuits and observables) at all stages of the algorithm.
+
 
 ``` python
 from qiskit.opflow import StateFn, PauliExpectation, CircuitSampler
@@ -256,7 +257,7 @@ expectation:  -1.065734058826613
 </Tabs>
 
 <span id="sampler-algorithm"></span>
-## Use Sampler to design an algorithm 
+## Use Sampler to design an algorithm
 
 The Sampler primitive is used to design an algorithm that samples
 circuits and extracts probability distributions.
@@ -286,7 +287,7 @@ difference is the format of the output: `backend.run()` outputs
     # Run
     result = backend.run(isa_circuits)
     ```
-    
+
     </TabItem>
 
 <TabItem value="aer" label="qiskit-aer">
@@ -317,7 +318,7 @@ difference is the format of the output: `backend.run()` outputs
     backend = service.least_busy(operational=True, simulator=False)
 
     # Define Sampler
-    sampler = Sampler(backend=backend)
+    sampler = Sampler(mode=backend)
 
     # Run calculation
     job = sampler.run([isa_circuit])
@@ -334,10 +335,10 @@ from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 # Run the sampler job locally using FakeManilaV2
 fake_manila = FakeManilaV2()
 
-# You can use a fixed seed to get fixed results. 
+# You can use a fixed seed to get fixed results.
 options = {"simulator": {"seed_simulator": 42}}
 
-# Define Sampler  
+# Define Sampler
 sampler = Sampler(backend=fake_manila, options=options)
 
 # Run calculation
@@ -366,7 +367,7 @@ When using the `Sampler` primitive, the circuit **must contain measurements**.
   <TabItem value="PrimV2" label="Runtime Sampler">
   ``` python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
- 
+
 # Define a local backend
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 backend = FakeManilaV2()
@@ -430,7 +431,7 @@ isa_circuit = pm.run(circuit)
 <Tabs>
   <TabItem value="runtime" label="Runtime Sampler">
     ``` python
-sampler = Sampler(backend=backend)
+sampler = Sampler(mode=backend)
 
 job = sampler.run([isa_circuit])
 
@@ -438,11 +439,11 @@ result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
 
-# Get counts from the classical register "meas". 
+# Get counts from the classical register "meas".
 print(f" >> Meas output register counts: {pub_result.data.meas.get_counts()}")
 
->> Meas output register counts: {'0001': 210, '0010': 305, '0000': 282, '0011': 201, '0101': 2, '1010': 6, '0110': 5, '0100': 6, '1000': 3, '0111': 1, '1001': 2, '1011': 1} 
-```  
+>> Meas output register counts: {'0001': 210, '0010': 305, '0000': 282, '0011': 201, '0101': 2, '1010': 6, '0110': 5, '0100': 6, '1000': 3, '0111': 1, '1001': 2, '1011': 1}
+```
   </TabItem>
 
   <TabItem value="legacy" label="backend.run()">
