@@ -91,7 +91,7 @@ estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],
 
 * The `run()` method takes an array of PUBs. Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.
 * Combines elements from observables and parameter values by following NumPy broadcasting rules as described below. 
-* Each input PUB has a corresponding PubResult that contains both data and metadata.
+* Each input PUB has a corresponding `PubResult` that contains both data and metadata.
 
 Example: 
 
@@ -231,7 +231,7 @@ standard error, in `PubResult` form. Different Estimator implementations support
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
+  <TabItem value="EstimatorV1" label="Estimator V1">
     The Estimator primitive computes expectation values of observables with respect to states prepared by quantum circuits.
 The Estimator receives circuit-observable pairs (with the observable expressed as a
 weighted sum of Pauli operators) as inputs, and returns the computed expectation values per pair, as well as their
@@ -252,7 +252,7 @@ The Sampler behaves differently, depending on what version you are using.
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
 
-  <TabItem value="SamplerV1" label="Sampler (V1)">
+  <TabItem value="SamplerV1" label="Sampler V1">
     The Sampler primitive samples from the classical output registers resulting from execution of quantum circuits.
 For this reason, the inputs to the Sampler are (parametrized) quantum circuits, for which it returns the corresponding
 quasi-probability distributions of sampled bitstrings. Quasi-probability distributions are similar to regular
