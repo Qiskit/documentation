@@ -1,0 +1,49 @@
+---
+title: Map problem to quantum circuits and operators
+description: Take a classical problem and map it to run on a quantum computer.
+---
+
+# Map problem to quantum circuits and operators
+
+![../\_images/map-problem.svg](/images/qiskit-patterns/map-problem.svg)
+
+The "map problem to quantum circuits and operators" step of a Qiskit pattern describes how a user starts with a classical
+problem and figures out how to map it to a quantum computer.
+
+For example, in applications such as chemistry and quantum simulation, this step generally involves 
+constructing a quantum circuit representing the Hamiltonian you are attempting to solve.
+During this step, for certain problems, it might also be desirable to specify the mapping of
+the problem onto qubits in the heavy-hex (or gross) lattice of IBM&reg; hardware from the
+outset if the structure of the problem lends itself to optimization earlier. 
+
+It is also worth considering at this point what the outcome of the particular algorithm will be
+in preparation for the later execute step - for example, if the desired outcome involves
+inferring correlation functions using Hadamard tests, you might prepare to use `Sampler`, whereas
+specifying observables would use the `Estimator` and could provide many error mitigation options.
+
+The output of this step in a Qiskit pattern is normally a collection of circuits or quantum operators.
+
+## Guides for mapping problems to quantum circuits and operators 
+
+### Build circuits with the Qiskit SDK
+* [Circuit library](./circuit-library)
+* [Construct circuits](./construct-circuits)
+* [Visualize circuits](./visualize-circuits)
+* [Classical feedforward and control flow](./classical-feedforward-and-control-flow)
+* [Synthesize unitary operators](./synthesize-unitary-operators)
+* [Bit-ordering in the Qiskit SDK](./bit-ordering)
+* [Save circuits to disk](./save-circuits)
+
+### Build operators with the Qiskit SDK
+* [Operators module overview](./operators-overview)
+* [Specifying observables in the Pauli basis](./specify-observables-pauli)
+* [The Operator class](./operator-class)
+
+### Other circuit building tools
+* [Pulse schedules](./pulse)
+* OpenQASM
+  * [Intro to OpenQASM](./introduction-to-qasm)
+  * [OpenQASM 2 and the Qiskit SDK](./interoperate-qiskit-qasm2)
+  * [OpenQASM 3 and the Qiskit SDK](./interoperate-qiskit-qasm3)
+  * [OpenQASM 3 feature table](./qasm-feature-table)
+  * [OpenQASM 3.x live specification](https://openqasm.com/)
