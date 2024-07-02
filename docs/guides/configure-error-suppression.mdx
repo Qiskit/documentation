@@ -13,7 +13,7 @@ Primitives let you employ runtime compilation by choosing advanced runtime compi
 <admonition type="note">Estimator V2 supports optimization levels 0 and 1 only. Sampler V2 does not support setting the optimization level.</admonition>
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](../transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -172,6 +172,6 @@ For instructions to turn off all error suppression, see the [Turn off all error 
 
 <Admonition type="tip" title="Recommendations">
     - Try a tutorial that uses optimization levels, such as the [Variational quantum eigensolver](https://learning.quantum.ibm.com/tutorial/variational-quantum-eigensolver) tutorial.
-    - Learn how to transpile locally in the [Transpile](../transpile/) section.
+    - Learn how to transpile locally in the [Transpile](./transpile/) section.
     - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
