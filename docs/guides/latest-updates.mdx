@@ -1,0 +1,135 @@
+---
+title: Latest updates
+description: The latest updates from Qiskit and IBM Quantum, including the latest package release summaries, news, and events.
+---
+
+# Latest updates
+
+*Last updated 27 June 2024*
+{/* remember to update the date in the previous line each time this page is updated!!! */}
+
+Keep up with the latest and greatest from Qiskit and IBM Quantum&trade;! Gathered here are the the most recent Qiskit package release summaries, documentation updates, blogs, community events, and more.
+
+## Latest release summaries
+
+{/* release summaries written by product owners */}
+
+### Qiskit SDK v1.1.0
+
+*To see the release notes for all versions, visit the [Qiskit SDK release notes](/api/qiskit/release-notes).*
+
+Qiskit SDK v1.1.0 has arrived, marking the first minor version release of the Qiskit SDK’s first major version. On the IBM Quantum blog, we review some of the key highlights — including top new features and improvements, as well as some important deprecations. Read the blog [here](https://www.ibm.com/quantum/blog/qiskit-1-1-release-summary).
+
+The updates and improvements include the following:
+
+- Updated `QuantumCircuit` objects that now support typed classical variables
+- Improvements to the preset transpiler pass managers
+- Speedups in transpilation runtime, thanks to our continued work re-writing transpiler passes in Rust
+- A number of new transpiler passes, including `ElidePermutation` and `StarPreRouting`
+
+Remember, because this a minor release, it will not introduce breaking changes for users moving from Qiskit SDK v1.0. Any deprecations announced with this release refer only to things that will now start throwing deprecation warnings. None of these will be removed until the release of Qiskit v2.0, pursuant to Qiskit’s official [deprecation policy](https://github.com/Qiskit/qiskit/blob/main/DEPRECATION.md#).
+
+For more details on any of the topics covered in the blog, be sure to check [the v1.1 release notes](/api/qiskit/release-notes/1.1).
+
+{/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
+
+### Qiskit Runtime IBM Client 0.24.0
+
+*To see the release notes for all versions, visit the [Qiskit Runtime IBM Client release notes](/api/qiskit-ibm-runtime/release-notes).*
+
+**Highlights from the 0.24.0 (2024-06-10) version release**
+
+#### Deprecation notes
+
+- The `backend` and `session` parameters in `SamplerV2` and `EstimatorV2` are deprecated. You can use the new `mode` parameter instead.
+- [`qiskit_ibm_runtime.QiskitRuntimeService.get_backend()`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#get_backend) is deprecated. You can use [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backend) instead.
+- The V1 fake backends, `FakeBackend`, and FakeProvider are deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2).
+
+#### New features
+
+- The [`ZneOptions.amplifier`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions#amplifier) option was added, which can be one of: `gate_folding` (default), `gate_folding_front`, and `gate_folding_back`. See the [API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions#zneoptions) for more details.
+- You can now use the experimental option in [`qiskit_ibm_runtime.options.EstimatorOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) to enable the Probabilistic Error Amplification (PEA) error mitigation method.
+
+#### Upgrade notes
+
+- Qiskit SDK v1.1 is now supported and required.
+
+#### Bug fixes
+
+- Fixed an issue where retrieved jobs would only return `RuntimeJob` instances, even if the job was run with a V2 primitive. Now, V2 primitive jobs will be returned correctly as `RuntimeJobV2` instances.
+- Fixed the combination of `insert_multiple_cycles` and `coupling_map` options in [`PadDynamicalDecoupling`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling). This combination allows to select staggered dynamical decoupling with multiple sequence cycles in each delay that crosses the threshold set by `sequence_min_length_ratios`.
+- Fixed measurement twirling docstring that incorrectly indicated it’s enabled by default for Sampler.
+- Fixed issues related to target generation and calibration data.
+
+See the full [0.24.0 release notes](/api/qiskit-ibm-runtime/release-notes#0240-2024-06-10).
+{/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
+
+### Qiskit Transpiler Service Client v0.3.0
+
+We’re pleased to share that the beta release of the Qiskit Transpiler Service is now available to all IBM Quantum&trade; Premium Plan users.
+
+The Qiskit Transpiler Service leverages the resources of IBM Cloud&reg; to provide users with the latest transpilation capabilities from the Qiskit SDK. It offers a Python library that helps users seamlessly integrate the service into their current Qiskit patterns and workflows. Perhaps most importantly, the service invites users to experiment with new and improved AI-powered transpiler passes — cutting-edge tools that might be faster and produce better results than traditional transpilation methods.
+
+On the IBM Quantum blog, we take a deep dive into the new beta release with a special focus on the new AI-powered passes. The blog includes detailed explanations showing how to use the Qiskit Transpiler Service for both full circuit transpilation and standalone AI-powered passes, with code examples for each. [Take a look.](https://www.ibm.com/quantum/blog/ai-transpiler-passes)
+
+{/* no other release notes available yet */}
+
+## Qiskit IBM Runtime service updates
+
+This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (using qiskit-ibm-runtime or otherwise), or which version of the client SDK you use. 
+
+### 18 June 2024
+
+The `optimization_level` option is deprecated for Estimator V2 and will be removed no sooner than 30 September 2024.
+
+### 3 June 2024
+
+Probabilistic error amplification (PEA) error mitigation method is now available as an experimental option for Estimator V2. See the [`EstimatorOptions` API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) for more details.
+
+### 28 March 2024
+
+Qiskit Runtime primitives now support OpenQASM 3 as the input format for circuits and standard JSON output format. See [Qiskit IBM Runtime REST API](/api/runtime) for examples.
+
+## IBM Quantum blog: Defining — and citing — the Qiskit SDK
+
+*Browse all blogs at the [IBM Quantum blog page](https://www.ibm.com/quantum/blog).*
+
+{/* Bring over the Quantum news (blog) announcement post */}
+
+Since its launch in 2017, researchers have used the Qiskit SDK to write thousands of papers in the fields of quantum information science and engineering. However, those researchers have also lacked a definitive, authoritative academic citation that explains what the Qiskit SDK and how it enables their experiments —  until now.
+
+[“Quantum computing with Qiskit,”](https://arxiv.org/abs/2405.08810) a paper published recently on arXiv, fills this gap by providing the research community with a succinct overview of the SDK’s architecture and core components. It also offers fascinating insight into the design philosophy that has informed the Qiskit SDK’s development since its earliest days, and delivers a detailed, end-to-end example of a workflow that uses Qiskit to solve a challenging problem in condensed matter physics.
+
+The authors of “Quantum computing with Qiskit” include developers who helped build the very first version of Qiskit in 2017, and who have seen firsthand how it has grown into the sophisticated, versatile tool it is today. Their hope is that the paper will serve as a convenient, citable source that helps researchers better understand what Qiskit is and how it is used for quantum information science.
+
+For more details on the new paper, including key takeaways and example citations, be sure to read [our recent post on the IBM Quantum blog](https://www.ibm.com/quantum/blog/defining-and-citing-the-qiskit-sdk), or read [the full paper on arXiv](https://arxiv.org/abs/2405.08810).
+
+## What's new in the documentation
+
+{/* Copy over the latest "What's new in the docs" announcement */}
+
+IBM Quantum documentation recently added a number of user-facing improvements, including content updates and new features. Many of these changes are a result of specific user requests! Check out the highlights below.
+
+**New pages**
+
+- [Error mitigation techniques](./error-mitigation-and-suppression-techniques)
+- [Error mitigation and suppression techniques](./error-mitigation-and-suppression-techniques)
+- [The Operator class](./operator-class)
+- [Transpile against custom backends](./custom-backend)
+
+**New API reference docs**
+
+- [Qiskit Transpiler Service Client](/api/qiskit-transpiler-service)
+- [Qiskit Transpiler Service REST API](/api/qiskit-transpiler-service-rest)
+
+*A huge thank you goes out to everyone in the open-source community who contributed and gave feedback!* Please [open an issue](https://github.com/Qiskit/documentation/issues/new/choose) if you find a bug, have a suggestion, or want to share your experience.
+
+## Qiskit global community events
+
+Join, participate, contribute! See what events are coming up on the [Qiskit community events calendar](https://www.ibm.com/quantum/community#events).
+
+## See all product updates
+
+<Admonition type="tip" title="">
+Visit the [Product announcements](https://docs.quantum.ibm.com/announcements/product-updates) to browse all product updates and news.
+</Admonition>
