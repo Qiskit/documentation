@@ -25,6 +25,7 @@ import { FileBatch } from "../lib/links/FileBatch";
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
+  "docs/api/runtime/tags/jobs.mdx",
   "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
 ];
