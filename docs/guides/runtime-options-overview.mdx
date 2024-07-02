@@ -106,15 +106,7 @@ estimator.options.resilience.zne_mitigation = True
   - [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator V1">
-  - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. **Estimator only**.
-  - [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions): Options for dynamical decoupling.
-  - [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions): Primitive execution options, including whether to initialize qubits and the repetition delay.
-  - [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
-  - [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions): Execution environment options such as the logging level to set and job tags to add.
-  - [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.
-  </TabItem>
-  <TabItem value="SamplerV1" label="Sampler V1">
+  <TabItem value="OptionsV1" label="V1 options">
   - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. **Estimator only**.
   - [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions): Options for dynamical decoupling.
   - [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions): Primitive execution options, including whether to initialize qubits and the repetition delay.
@@ -214,7 +206,7 @@ Scroll to see the full table.
 
   </TabItem>
 
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
+  <TabItem value="options-V1" label="V1 options">
 | Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
 |----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
 | [optimization_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | `0`/`1`                                                                                       | `1`                         |
@@ -245,38 +237,6 @@ Scroll to see the full table.
 
   </TabItem>
 
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-| Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
-|----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
-|----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| [optimization_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | `0`/`1`                                                                                       | `1`                         |
-| [resilience_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)     |                          |                         | `0`/`1`/`2`                                                                                     | `1`                         |
-| [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
-| [resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions)           |                          |                         |                                                                         |                     |
-|                      | extrapolator             |                         | `LinearExtrapolator`/`QuadraticExtrapolator`/`CubicExtrapolator`/`QuarticExtrapolator`    | `None`, or `LinearExtrapolator` if `resilience_level=2`.  |
-|                      | noise_amplifier          |                         |                                                                                           |                      |
-|                      | noise_factors            |                         |  Applies only for `resilience_level=2`. List of real valued noise factors.                | `(1, 3, 5)`                 |
-| [transpilation](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions)             |      |                         |                                              |                     |
-|                      | skip_transpilation       |                         | `True`/`False`                                                                                      | `False`                     |
-|                      | initial_layout           |                         | layout instance, dictionary, list, or None.  See [qiskit.compiler.](../api/qiskit/compiler#transpile)          | `None`                      |
-|                      | layout_method            |                         |   `trivial`/`dense`/`noise_adaptive`/`sabre`/`none`                                            | `None`                     |
-|                      | routing_method           |                         |   `Basic`/`lookahead`/`stochastic`/`none`                                                 |                     | `None`
-|                      | approximation_degree     |                         | Float in the range 0 - 1 / `None`                                |        `None`    |
-| [execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions)            |                          |                         |                                                                                                         |                           |
-|                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
-|                      | shots                    |                         | integer no larger than `backend.max_shots`.                                | 4000|
-| [environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)          |                          |                         |                                                                                                         |                                  |
-|                      | log_level                |                         |`DEBUG`/`INFO`/`WARNING`/`ERROR`/`CRITICAL`                                                              |`WARNING`                          |
-|                      | callback                 |                         |Callable function that receives Job ID and Job result.                                                   |`None`                           |
-|                      | job_tags                 |                         |List of tags                                                                                             |`None`                           |
-| [simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)            |                          |                         |                                                                                   |                     |
-|                      | noise_model              |                         |   [Qiskit Aer NoiseModel](build-noise-models), or its representation        | `None`                      |
-|                      | seed_simulator           |                         |   integer                                                                               | `None`                    |
-|                      | coupling_map             |                         |  List of directed two-qubit interactions                                                | full connectivity                   |
-|                      | basis_gates              |                         |  List of basis gate names to unroll to                                                  | The set of all basis gates supported by [Qiskit Aer simulator](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html) |
-
-  </TabItem>
 
 
 </Tabs>
