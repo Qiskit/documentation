@@ -126,13 +126,13 @@ Qiskit Runtime custom programs can be easily migrated to Qiskit Serverless via t
 
 Premium Plan users have access to an alpha release of resource management functionality through Qiskit Serverless. This enables automatic selection of quantum hardware for your workloads.
 
-The example below demonstrates how to use `IBMQPUSelector` to automate the process of selecting which qubits will be used from a set of available systems. This illustrates how the selectors can be used within a four-step Qiskit pattern. 
+The example below demonstrates how to use `IBMQPUSelector` to automate the process of selecting which qubits will be used from a set of available systems. This illustrates how the selectors can be used within a four-step Qiskit pattern.
 
 Instead of manually selecting a system, step 2 of the Qiskit pattern optimizes the circuits for execution by using the QPU selectors from Qiskit Serverless to automatically allocate a system according to desired criteria. Here, `IBMLeastNoisyQPUSelector` finds the system, among the ones available to you through your IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. You can also use the `IBMLeastBusyQPUSelector` to find a system that can support the circuit width but with the shortest queue.
 
 For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSelectors` require Qiskit Runtime credentials. The `IBMLeastNoisyQPUSelector` requires a circuit and transpile options specifying how the circuit should be optimized for each system when determining the most optimal QPU and qubit layout. All `IBMQPUSelector`s implement a `get_backend` method, which retrieves the optimal system with respect to the given context. The `get_backend` method also allows for additional filtering of the systems. It is implemented using the same interface as the [QiskitRuntimeService.backends method](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
 
-Then, in step 3 of the pattern, you execute the target circuit on the system chosen by the selector. Since you optimized your circuit for the system in step 2, you can skip further optimization in the primitives by setting `optimization_level=0`. 
+Then, in step 3 of the pattern, you execute the target circuit on the system chosen by the selector.
 
 <Tabs>
   <TabItem value="SamplerV2" label="Sampler V2">
@@ -169,7 +169,7 @@ target_circuit = selector.optimized_circuit
 sampler = Sampler(mode=backend, options={"default_shots": 1024})
 job = sampler.run([target_circuit])
 result = job.result()
-    
+
 # Step 4: Postprocess the results
 print(f" > Counts: {result[0].data.meas.get_counts()}")
 
