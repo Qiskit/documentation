@@ -1,0 +1,191 @@
+---
+title: Set up an IBM Quantum channel
+description: Installation and setup instructions for IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit SDK and Qiskit Runtime jobs
+---
+
+# Set up an IBM Quantum channel
+
+You can access IBM Quantum&trade; systems by using the IBM Quantum Platform or IBM Cloud&reg; _channel_.  _Channel_ is the term used to describe the method you use to access IBM Quantum services.
+
+## Select an IBM Quantum channel
+
+You have the option to access IBM Quantum hardware through either [IBM Quantum Platform](#ibm-quantum-platform) or [IBM Cloud](#ibm-cloud).
+
+### IBM Quantum Platform
+
+IBM Quantum Platform has Open (free access) and Premium (enterprise subscription) plans. See [IBM Quantum access plans](https://www.ibm.com/quantum/access-plans) for details.
+
+Before setting up with IBM Quantum Platform, make sure you have the [Qiskit SDK and Qiskit Runtime installed](./install-qiskit#local).
+
+Available plans:
+
+* **Open Plan** - Run your quantum circuits on the world's best quantum systems for free (up to 10 minutes quantum time per month).
+
+* **Premium Plan** - Run quantum circuits on the world's best quantum systems using an enterprise quantum time subscription.
+
+
+### IBM Cloud
+
+IBM Cloud offers pay-as-you-go access plans. See [IBM Quantum access plans](https://www.ibm.com/quantum/access-plans) for details.
+
+IBM Cloud has Lite (free access) and Standard (pay-as-you-go access) plans. See [Qiskit Runtime plans](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-plans) on IBM Cloud for details.
+
+This channel does not support a cloud-based development environment. Therefore, you will need to [install and set up Qiskit and Qiskit Runtime](./install-qiskit#local) and [set up to use IBM Cloud.](#cloud)
+
+Available plans:
+
+- **Standard (Pay-as-you-go) Plan** - Run quantum circuits on the world's best quantum systems and pay only for the quantum time you use.
+
+- **Lite plan**: Debug and learn about quantum circuits using free simulators.
+
+<span id="iqp"></span>
+## Set up to use IBM Quantum Platform
+
+1. Before setting up with IBM Quantum Platform, ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](./install-qiskit#local).
+
+1. If you do not already have a user account, get one at the [IBM Quantum login page.](https://quantum.ibm.com/login)  Your user account is associated with one or more [instances](./instances) (in the form hub / group / project) that give access to IBM Quantum services. Additionally, a unique token is assigned to each account, allowing for IBM Quantum access from Qiskit. The instructions in this section use our default instance.  For instructions to choose a specific instance, see [Connect to an instance](./instances#connect-instance).
+
+    <Admonition type="note">
+      The Instances section in your [IBM Quantum account page](https://quantum.ibm.com/account) lists the instances that you can access.
+    </Admonition>
+
+1. Retrieve your IBM Quantum token from the [IBM Quantum account page](https://quantum.ibm.com/account).
+
+1. <span id="save-account"></span>Authenticate to the service by calling `QiskitRuntimeService` with your IBM Quantum API key and CRN:
+
+   ```python
+   from qiskit_ibm_runtime import QiskitRuntimeService
+
+   service = QiskitRuntimeService(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>")
+
+   ```
+
+   Or, optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service.
+
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    # Save an IBM Quantum account and set it as your default account.
+    QiskitRuntimeService.save_account(
+        channel="ibm_quantum",
+        token="<MY_IBM_QUANTUM_TOKEN>",
+        set_as_default=True,
+        # Use `overwrite=True` if you're updating your token.
+        overwrite=True,
+    )
+
+    # Load saved credentials
+    service = QiskitRuntimeService()
+    ```
+
+    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types.
+    * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
+    * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
+    * If you don't save your credentials, you must specify them every time you start a new session.
+    * The `channel` parameter allows you to distinguish between different account types. When initializing the account, IBM Cloud is the default account used if have saved credentials for an IBM Quantum Platform and an IBM Cloud account.
+
+    <Admonition type="caution">
+      Account credentials are saved in plain text, so only do so if you are using a trusted device.
+    </Admonition>
+
+    <Admonition type="note">
+    IBM Cloud is the default account used if you don't specify a different channel or account name.
+    </Admonition>
+
+1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
+
+  ```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+# Create empty circuit
+example_circuit = QuantumCircuit(2)
+example_circuit.measure_all()
+
+# You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+sampler = Sampler(backend)
+job = sampler.run([example_circuit])
+print(f"job id: {job.job_id()}")
+result = job.result()
+print(result)
+  ```
+
+<span id="cloud"></span>
+## Set up to use IBM Cloud
+
+1. Before setting up with IBM Cloud, ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](./install-qiskit#local).
+1. If you do not already have one, set up an IBM Cloud account from the [IBM Cloud Registration page](https://cloud.ibm.com/registration).
+1. Create a service instance, if necessary. Open your [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances). If you have one or more instances shown, continue to the next step. Otherwise, click **Create instance**. When creating your instance you can name it, tag it, select a resource group for it, and select a performance strategy. Next, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Create**.
+
+    <Admonition type="note">
+      If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-quickstart-org).
+    </Admonition>
+
+    <Admonition type="note">
+     When selecting a performance strategy there are two options available. One from IBM (default) another from Q-CTRL. The IBM performance strategy allows you to leverage all of the standard options available with [Qiskit Runtime](../api/qiskit-ibm-runtime) and the Q-CTRL strategy uses an automated preset.  To learn more about the Q-CTRL option, visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
+    </Admonition>
+
+1. Find your access credentials.
+    1. Find your API key. From the [API keys page](https://cloud.ibm.com/iam/apikeys), view or create your API key, then copy it to a secure location so you can use it for authentication.
+    2. Find your Cloud Resource Name (CRN). Open the [Instances page](https://cloud.ibm.com/quantum/instances) and click your instance. In the page that opens, click the icon to copy your CRN. Save it in a secure location so you can use it for authentication.
+
+<span id="cloud-save"></span>
+1. Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN:
+
+   ```python
+   from qiskit_ibm_runtime import QiskitRuntimeService
+
+   service = QiskitRuntimeService(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>")
+   ```
+
+   <Admonition type="note">
+     If you set up your instance in step 3 to include Q-CTRL performance management, when initializing the `QiskitRuntimeService()` you should include the additional argument `channel_strategy="q-ctrl"`. To learn more about Q-CTRL performance management strategy visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
+   </Admonition>
+
+   You can optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service.
+
+   ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    # Save account to disk.
+    QiskitRuntimeService.save_account(
+        channel="ibm_cloud",
+        token="<IBM Cloud API key>",
+        instance="<IBM Cloud CRN>",
+        name="<account-name>",
+        # Use `overwrite=True` if you're updating your token.
+        overwrite=True,
+    )
+
+    # Load saved credentials
+    service = QiskitRuntimeService(name="<account-name>")
+    ```
+
+    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. When initializing the account, IBM Cloud is the default account used if you have saved credentials for both an IBM Quantum Platform and an IBM Cloud account.
+    * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
+    * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
+    * If you don't save your credentials, you must specify them every time you start a new session.
+
+    <Admonition type="caution">
+        Account credentials are saved in plain text, so only do so if you are using a trusted device.
+    </Admonition>
+
+ 1. Test your setup.  Ensure that you can connect to the service:
+
+   ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    service = QiskitRuntimeService()
+    ```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  [Configure the Qiskit SDK locally.](configure-qiskit-local)
+  -  Follow the steps in [Hello world](hello-world) to write and run a quantum program.
+  -  [Get started with IBM Quantum on Cloud.](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-get-started)
+  -  Try one of the [workflow example tutorials.](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)
+</Admonition>
