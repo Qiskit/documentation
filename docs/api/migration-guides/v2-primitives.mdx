@@ -7,7 +7,7 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 <span id="v2-primitives"></span>
 # Migrate to the Qiskit Runtime V2 primitives
 
-This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
+With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
 
 For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
 
@@ -17,11 +17,7 @@ Version 2 of the primitives is introduced with a new base class for both Sampler
 
 The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use  `resilience_level` (if using Estimator) as the simple knobs, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
 
-To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives do not perform layout, routing, and translation operations but continue to optimize the circuits if you specify `optimization_level>0`.  See the [transpilation documentation](/guides/transpile) for instructions to transform circuits.
-
-<Admonition type="caution">
-Specifying `optimization_level` is deprecated in `qiskit_ibm_runtime=0.25` and later.
-</Admonition>
+To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives do not perform layout, routing, and translation operations.  See the [transpilation documentation](/guides/transpile) for instructions to transform circuits.
 
 Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
 

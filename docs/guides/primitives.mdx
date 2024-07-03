@@ -27,6 +27,10 @@ In short, the computational model introduced by the Qiskit primitives moves quan
 to where classical programming is today, where the focus is less on the hardware details and more on the results
 you are trying to achieve.
 
+<Admonition type="note">
+The V1 primitives have been deprecated.  For instructions to migrate to the V2 primitives, see the [migration guide.](./api/migration-guides/v2-primitives)
+</Admonition>
+
 ## Implementation of Qiskit primitives
 
 The Qiskit primitives are defined by open-source primitive base-classes, from
@@ -36,7 +40,7 @@ Providers like Qiskit Runtime enable access to appropriate systems through nativ
 their own primitives.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
