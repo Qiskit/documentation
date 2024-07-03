@@ -5,7 +5,7 @@ description: The latest updates from Qiskit and IBM Quantum, including the lates
 
 # Latest updates
 
-*Last updated 27 June 2024*
+*Last updated 3 July 2024*
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&trade;! Gathered here are the the most recent Qiskit package release summaries, documentation updates, blogs, community events, and more.
@@ -76,7 +76,14 @@ On the IBM Quantum blog, we take a deep dive into the new beta release with a sp
 
 ## Qiskit IBM Runtime service updates
 
-This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (using qiskit-ibm-runtime or otherwise), or which version of the client SDK you use. 
+This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (using qiskit-ibm-runtime or otherwise), or which version of the client SDK you use.
+
+### 3 July 2024
+
+The following endpoints are deprecated and will be removed on or after 3 October 2024: [`GET /stream/jobs`](/api/runtime/tags/jobs#tags__jobs__operations__get_stream_jobs_state_updates) and [`GET /stream/jobs/{id}`](/api/runtime/tags/jobs#tags__jobs__operations__get_stream_job_logs_jid). This removal has the following impacts:
+
+- After the endpoints are removed, `job.stream_results()` and `job.interim_results()` will be removed from the [qiskit-ibm-runtime](/api/qiskit-ibm-runtime) client.
+- Additional methods, such as `job.result()` currently use the deprecated endpoints.  Upgrade to `qiskit_ibm_runtime` 0.25 or later before the endpoints are removed to avoid disruption.
 
 ### 18 June 2024
 
