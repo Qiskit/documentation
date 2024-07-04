@@ -628,7 +628,6 @@ There is a specific use case where you want to show instructions for different o
 </OperatingSystemTabs>
 ```
 
-
 ## Proper marking and attribution
 
 **All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
