@@ -45,7 +45,7 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/api/migration-guides/qiskit-1.0-installation",
 ]);
 
-const ALLOWED_NONEXISTENT_FILES = new Set([]);
+const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
 const GLOBS = ["docs/api/migration-guides/*", "docs/guides/*"];
 
