@@ -164,15 +164,6 @@ function maybePrintErrorsAndFail(
 }
 
 async function main() {
-  // Todo: Remove this conditional once the migration is done. This is used only to avoid
-  // the script crashing if the file's structure doesn't exist.
-  if (!(await pathExists(TOC_PATH))) {
-    console.log(
-      `🚧 Check skipped because the migration hasn't been completed.\n`,
-    );
-    process.exit(0);
-  }
-
   const toolsAllEntries = await getToolsTocEntriesToCheck();
   let [toolsEntries, duplicatesErrors] = await deduplicateEntries(
     TOC_PATH,
