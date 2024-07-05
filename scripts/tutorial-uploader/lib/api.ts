@@ -228,6 +228,8 @@ export class API {
       reading_time: localData.reading_time,
       catalog_featured: localData.catalog_featured,
       status: localData.status,
+      required_instance_access: localData.required_instance_access,
+      allowed_email_domains: localData.allowed_email_domains,
       translations: [
         {
           title: localData.title,

@@ -27,6 +27,8 @@ const MOCK_TUTORIAL: LocalTutorialData = {
   topics: [],
   reading_time: 50,
   catalog_featured: false,
+  required_instance_access: ["ibm-quantum/group/project"],
+  allowed_email_domains: ["ibm.com", "hotmail.co.uk"],
 };
 
 /* Just to be sure */
@@ -62,8 +64,8 @@ describe("Tutorial uploader API", () => {
         MOCK_TUTORIAL.category,
       ),
       topics: [],
-      allowed_email_domains: null,
-      required_instance_access: null,
+      allowed_email_domains: ["ibm.com", "hotmail.co.uk"],
+      required_instance_access: ["ibm-quantum/group/project"],
       sort: null,
       translations: [
         {
@@ -118,8 +120,8 @@ describe("Tutorial uploader API", () => {
       topics: topicIds.map((id) => {
         return { tutorials_topics_id: id };
       }),
-      allowed_email_domains: null,
-      required_instance_access: null,
+      allowed_email_domains: ["ibm.com", "hotmail.co.uk"],
+      required_instance_access: ["ibm-quantum/group/project"],
       sort: null,
     });
 
