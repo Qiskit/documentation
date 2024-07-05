@@ -209,7 +209,7 @@ Some instructions are particularly special in that they affect the control flow 
     *   [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp"), to move immediately to the next iteration of the containing loop
     *   [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp"), to loop over a fixed range of values
     *   [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp"), to conditionally enter one of two subcircuits
-    *   [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp"), to conditionally enter one of many subcicuits
+    *   [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp"), to conditionally enter one of many subcircuits
     *   [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), to repeat a subcircuit until a condition is falsified.
 
 [Circuits can include classical expressions that are evaluated in real time](#circuit-repr-real-time-classical), while the QPU is executing a single shot of the circuit. These are primarily documented in the module documentation of [`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical"). You might be particularly interested in the base classes (which are not exposed from the [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") root):
@@ -291,7 +291,7 @@ A collection bits of the same type can be encapsulated in a register of the matc
 
 #### Register
 
-<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L26-L235" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
+<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L26-L233" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
   Implement a generic register.
 
   <Admonition title="Note" type="note">
@@ -318,7 +318,7 @@ A collection bits of the same type can be encapsulated in a register of the matc
 
   ##### index
 
-  <Function id="qiskit.circuit.Register.index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L183-L191" signature="index(bit)">
+  <Function id="qiskit.circuit.Register.index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L181-L189" signature="index(bit)">
     Find the index of the provided bit within this register.
   </Function>
 
@@ -679,7 +679,7 @@ Subclasses of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruc
 
 #### \_define
 
-<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L270-L277" signature="Instruction._define()">
+<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L272-L279" signature="Instruction._define()">
   Populate the cached `_definition` field of this [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
 
   Subclasses should implement this method to provide lazy construction of their public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and not return a value.
@@ -788,7 +788,7 @@ For a more backend-like simulation experience, there are simulator-backed implem
 
 *   [`BasicProvider`](qiskit.providers.basic_provider.BasicProvider "qiskit.providers.basic_provider.BasicProvider") and the raw backends it can return to you.
 *   `StatevectorSimulator` for a backend-like wrapper around [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
-*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.14.1)") for full, high-performance simulation capabilities.
+*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.14.2)") for full, high-performance simulation capabilities.
 *   [`StatevectorSampler`](qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") for simulator-backed reference implementations of the [Qiskit Primitives](primitives#qiskit-primitives).
 
 ### Defining equivalence relationships
@@ -815,7 +815,7 @@ The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary
 
 #### random\_circuit
 
-<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L23-L209" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)">
+<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L23-L287" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None, num_operand_distribution=None)">
   Generate random circuit of arbitrary size and form.
 
   This function will generate a random circuit by randomly selecting gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
@@ -838,6 +838,14 @@ The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary
   *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle measurements and conditionals
   *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle resets
   *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets random seed (optional)
+  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – a distribution of gates that specifies the ratio
+  *   **1-qubit** (*of*) –
+  *   **2-qubit** –
+  *   **3-qubit** –
+  *   **...** –
+  *   **a** (*n-qubit gates in the random circuit. Expect*) –
+  *   **requested** (*deviation from the specified ratios that depends on the size of the*) –
+  *   **circuit.** (*random*) –
 
   **Returns**
 
@@ -915,7 +923,7 @@ $$
    \leftrightarrow \begin{pmatrix} \alpha \\ \beta \end{pmatrix}
 $$
 
-where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
+where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
 
 We construct [the tensor product of two qubit states](https://en.wikipedia.org/wiki/Tensor_product) in matrix algebra using [the Kronecker product](https://en.wikipedia.org/wiki/Kronecker_product), with qubit 0 on the right and qubit 1 on the left, such that the $Z$ basis state $\lvert x\rangle$ (where $x$ is the integer interpretation of the bitstring) has its non-zero term in the statevector `sv` at `sv[x]`:
 

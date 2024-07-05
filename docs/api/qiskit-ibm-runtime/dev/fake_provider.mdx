@@ -28,6 +28,7 @@ Here is an example of using a fake backend for transpilation and simulation.
 from qiskit import QuantumCircuit
 from qiskit import transpile
 from qiskit.visualization import plot_histogram
+from qiskit_ibm_runtime import SamplerV2
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 
 # Get a fake backend from the fake provider
@@ -46,8 +47,10 @@ transpiled_circuit = transpile(circuit, backend)
 transpiled_circuit.draw('mpl', style="iqp")
 
 # Run the transpiled circuit using the simulated fake backend
-job = backend.run(transpiled_circuit)
-counts = job.result().get_counts()
+sampler = SamplerV2(backend)
+job = sampler.run([transpiled_circuit])
+pub_result = job.result()[0]
+counts = pub_result.data.meas.get_counts()
 plot_histogram(counts)
 ```
 
@@ -66,7 +69,7 @@ plot_histogram(counts)
 
   # get a real backend from the runtime service
   service = QiskitRuntimeService()
-  backend = service.get_backend('ibmq_manila')
+  backend = service.backend('ibmq_manila')
 
   # generate a simulator that mimics the real quantum system with the latest calibration results
   backend_sim = AerSimulator.from_backend(backend)
@@ -88,64 +91,65 @@ Fake providers provide access to a list of fake backends.
 
 Fake V2 backends are fake backends with IBM Quantum systems snapshots implemented with `BackendV2` interface. They are all subclasses of `FakeBackendV2`.
 
-|                                                                                                                                     |                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`FakeAlgiers`](qiskit_ibm_runtime.fake_provider.FakeAlgiers "qiskit_ibm_runtime.fake_provider.FakeAlgiers")()                      | A fake 27 qubit backend.        |
-| [`FakeAlmadenV2`](qiskit_ibm_runtime.fake_provider.FakeAlmadenV2 "qiskit_ibm_runtime.fake_provider.FakeAlmadenV2")()                | A fake Almaden V2 backend.      |
-| [`FakeArmonkV2`](qiskit_ibm_runtime.fake_provider.FakeArmonkV2 "qiskit_ibm_runtime.fake_provider.FakeArmonkV2")()                   | A fake 1 qubit backend.         |
-| [`FakeAthensV2`](qiskit_ibm_runtime.fake_provider.FakeAthensV2 "qiskit_ibm_runtime.fake_provider.FakeAthensV2")()                   | A fake 5 qubit backend.         |
-| [`FakeAuckland`](qiskit_ibm_runtime.fake_provider.FakeAuckland "qiskit_ibm_runtime.fake_provider.FakeAuckland")()                   | A fake 27 qubit backend.        |
-| [`FakeBelemV2`](qiskit_ibm_runtime.fake_provider.FakeBelemV2 "qiskit_ibm_runtime.fake_provider.FakeBelemV2")()                      | A fake 5 qubit backend.         |
-| [`FakeBoeblingenV2`](qiskit_ibm_runtime.fake_provider.FakeBoeblingenV2 "qiskit_ibm_runtime.fake_provider.FakeBoeblingenV2")()       | A fake Boeblingen V2 backend.   |
-| [`FakeBogotaV2`](qiskit_ibm_runtime.fake_provider.FakeBogotaV2 "qiskit_ibm_runtime.fake_provider.FakeBogotaV2")()                   | A fake 5 qubit backend.         |
-| [`FakeBrisbane`](qiskit_ibm_runtime.fake_provider.FakeBrisbane "qiskit_ibm_runtime.fake_provider.FakeBrisbane")()                   | A fake 127 qubit backend.       |
-| [`FakeBrooklynV2`](qiskit_ibm_runtime.fake_provider.FakeBrooklynV2 "qiskit_ibm_runtime.fake_provider.FakeBrooklynV2")()             | A fake Brooklyn V2 backend.     |
-| [`FakeBurlingtonV2`](qiskit_ibm_runtime.fake_provider.FakeBurlingtonV2 "qiskit_ibm_runtime.fake_provider.FakeBurlingtonV2")()       | A fake 5 qubit backend.         |
-| [`FakeCairoV2`](qiskit_ibm_runtime.fake_provider.FakeCairoV2 "qiskit_ibm_runtime.fake_provider.FakeCairoV2")()                      | A fake 27 qubit backend.        |
-| [`FakeCambridgeV2`](qiskit_ibm_runtime.fake_provider.FakeCambridgeV2 "qiskit_ibm_runtime.fake_provider.FakeCambridgeV2")()          | A fake Cambridge backend.       |
-| [`FakeCasablancaV2`](qiskit_ibm_runtime.fake_provider.FakeCasablancaV2 "qiskit_ibm_runtime.fake_provider.FakeCasablancaV2")()       | A fake 7 qubit backend.         |
-| [`FakeCusco`](qiskit_ibm_runtime.fake_provider.FakeCusco "qiskit_ibm_runtime.fake_provider.FakeCusco")()                            | A fake 127 qubit backend.       |
-| [`FakeEssexV2`](qiskit_ibm_runtime.fake_provider.FakeEssexV2 "qiskit_ibm_runtime.fake_provider.FakeEssexV2")()                      | A fake 5 qubit backend.         |
-| [`FakeGeneva`](qiskit_ibm_runtime.fake_provider.FakeGeneva "qiskit_ibm_runtime.fake_provider.FakeGeneva")()                         | A fake 27 qubit backend.        |
-| [`FakeGuadalupeV2`](qiskit_ibm_runtime.fake_provider.FakeGuadalupeV2 "qiskit_ibm_runtime.fake_provider.FakeGuadalupeV2")()          | A fake 16 qubit backend.        |
-| [`FakeHanoiV2`](qiskit_ibm_runtime.fake_provider.FakeHanoiV2 "qiskit_ibm_runtime.fake_provider.FakeHanoiV2")()                      | A fake 27 qubit backend.        |
-| [`FakeJakartaV2`](qiskit_ibm_runtime.fake_provider.FakeJakartaV2 "qiskit_ibm_runtime.fake_provider.FakeJakartaV2")()                | A fake 7 qubit V2 backend.      |
-| [`FakeJohannesburgV2`](qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2 "qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2")() | A fake Johannesburg V2 backend. |
-| [`FakeKawasaki`](qiskit_ibm_runtime.fake_provider.FakeKawasaki "qiskit_ibm_runtime.fake_provider.FakeKawasaki")()                   | A fake 127 qubit backend.       |
-| [`FakeKolkataV2`](qiskit_ibm_runtime.fake_provider.FakeKolkataV2 "qiskit_ibm_runtime.fake_provider.FakeKolkataV2")()                | A fake 27 qubit backend.        |
-| [`FakeKyiv`](qiskit_ibm_runtime.fake_provider.FakeKyiv "qiskit_ibm_runtime.fake_provider.FakeKyiv")()                               | A fake 127 qubit backend.       |
-| [`FakeKyoto`](qiskit_ibm_runtime.fake_provider.FakeKyoto "qiskit_ibm_runtime.fake_provider.FakeKyoto")()                            | A fake 127 qubit backend.       |
-| [`FakeLagosV2`](qiskit_ibm_runtime.fake_provider.FakeLagosV2 "qiskit_ibm_runtime.fake_provider.FakeLagosV2")()                      | A fake 7 qubit backend.         |
-| [`FakeLimaV2`](qiskit_ibm_runtime.fake_provider.FakeLimaV2 "qiskit_ibm_runtime.fake_provider.FakeLimaV2")()                         | A fake 5 qubit backend.         |
-| [`FakeLondonV2`](qiskit_ibm_runtime.fake_provider.FakeLondonV2 "qiskit_ibm_runtime.fake_provider.FakeLondonV2")()                   | A fake 5 qubit backend.         |
-| [`FakeManhattanV2`](qiskit_ibm_runtime.fake_provider.FakeManhattanV2 "qiskit_ibm_runtime.fake_provider.FakeManhattanV2")()          | A fake Manhattan backend.       |
-| [`FakeManilaV2`](qiskit_ibm_runtime.fake_provider.FakeManilaV2 "qiskit_ibm_runtime.fake_provider.FakeManilaV2")()                   | A fake 5 qubit backend.         |
-| [`FakeMelbourneV2`](qiskit_ibm_runtime.fake_provider.FakeMelbourneV2 "qiskit_ibm_runtime.fake_provider.FakeMelbourneV2")()          | A fake 14 qubit backend.        |
-| [`FakeMontrealV2`](qiskit_ibm_runtime.fake_provider.FakeMontrealV2 "qiskit_ibm_runtime.fake_provider.FakeMontrealV2")()             | A fake 27 qubit backend.        |
-| [`FakeMumbaiV2`](qiskit_ibm_runtime.fake_provider.FakeMumbaiV2 "qiskit_ibm_runtime.fake_provider.FakeMumbaiV2")()                   | A fake 27 qubit backend.        |
-| [`FakeNairobiV2`](qiskit_ibm_runtime.fake_provider.FakeNairobiV2 "qiskit_ibm_runtime.fake_provider.FakeNairobiV2")()                | A fake 7 qubit backend.         |
-| [`FakeOsaka`](qiskit_ibm_runtime.fake_provider.FakeOsaka "qiskit_ibm_runtime.fake_provider.FakeOsaka")()                            | A fake 127 qubit backend.       |
-| [`FakeOslo`](qiskit_ibm_runtime.fake_provider.FakeOslo "qiskit_ibm_runtime.fake_provider.FakeOslo")()                               | A fake 7 qubit backend.         |
-| [`FakeOurenseV2`](qiskit_ibm_runtime.fake_provider.FakeOurenseV2 "qiskit_ibm_runtime.fake_provider.FakeOurenseV2")()                | A fake 5 qubit backend.         |
-| [`FakeParisV2`](qiskit_ibm_runtime.fake_provider.FakeParisV2 "qiskit_ibm_runtime.fake_provider.FakeParisV2")()                      | A fake Paris backend.           |
-| [`FakePeekskill`](qiskit_ibm_runtime.fake_provider.FakePeekskill "qiskit_ibm_runtime.fake_provider.FakePeekskill")()                | A fake 27 qubit backend.        |
-| [`FakePerth`](qiskit_ibm_runtime.fake_provider.FakePerth "qiskit_ibm_runtime.fake_provider.FakePerth")()                            | A fake 7 qubit backend.         |
-| [`FakePrague`](qiskit_ibm_runtime.fake_provider.FakePrague "qiskit_ibm_runtime.fake_provider.FakePrague")()                         | A fake 33 qubit backend.        |
-| [`FakePoughkeepsieV2`](qiskit_ibm_runtime.fake_provider.FakePoughkeepsieV2 "qiskit_ibm_runtime.fake_provider.FakePoughkeepsieV2")() | A fake Poughkeepsie backend.    |
-| [`FakeQuebec`](qiskit_ibm_runtime.fake_provider.FakeQuebec "qiskit_ibm_runtime.fake_provider.FakeQuebec")()                         | A fake 127 qubit backend.       |
-| [`FakeQuitoV2`](qiskit_ibm_runtime.fake_provider.FakeQuitoV2 "qiskit_ibm_runtime.fake_provider.FakeQuitoV2")()                      | A fake 5 qubit backend.         |
-| [`FakeRochesterV2`](qiskit_ibm_runtime.fake_provider.FakeRochesterV2 "qiskit_ibm_runtime.fake_provider.FakeRochesterV2")()          | A fake Rochester backend.       |
-| [`FakeRomeV2`](qiskit_ibm_runtime.fake_provider.FakeRomeV2 "qiskit_ibm_runtime.fake_provider.FakeRomeV2")()                         | A fake 5 qubit backend.         |
-| [`FakeSantiagoV2`](qiskit_ibm_runtime.fake_provider.FakeSantiagoV2 "qiskit_ibm_runtime.fake_provider.FakeSantiagoV2")()             | A fake Santiago backend.        |
-| [`FakeSherbrooke`](qiskit_ibm_runtime.fake_provider.FakeSherbrooke "qiskit_ibm_runtime.fake_provider.FakeSherbrooke")()             | A fake 127 qubit backend.       |
-| [`FakeSingaporeV2`](qiskit_ibm_runtime.fake_provider.FakeSingaporeV2 "qiskit_ibm_runtime.fake_provider.FakeSingaporeV2")()          | A fake Singapore backend.       |
-| [`FakeSydneyV2`](qiskit_ibm_runtime.fake_provider.FakeSydneyV2 "qiskit_ibm_runtime.fake_provider.FakeSydneyV2")()                   | A fake 27 qubit backend.        |
-| [`FakeTorino`](qiskit_ibm_runtime.fake_provider.FakeTorino "qiskit_ibm_runtime.fake_provider.FakeTorino")()                         | A fake 133 qubit backend.       |
-| [`FakeTorontoV2`](qiskit_ibm_runtime.fake_provider.FakeTorontoV2 "qiskit_ibm_runtime.fake_provider.FakeTorontoV2")()                | A fake 27 qubit backend.        |
-| [`FakeValenciaV2`](qiskit_ibm_runtime.fake_provider.FakeValenciaV2 "qiskit_ibm_runtime.fake_provider.FakeValenciaV2")()             | A fake 5 qubit backend.         |
-| [`FakeVigoV2`](qiskit_ibm_runtime.fake_provider.FakeVigoV2 "qiskit_ibm_runtime.fake_provider.FakeVigoV2")()                         | A fake 5 qubit backend.         |
-| [`FakeWashingtonV2`](qiskit_ibm_runtime.fake_provider.FakeWashingtonV2 "qiskit_ibm_runtime.fake_provider.FakeWashingtonV2")()       | A fake 127 qubit backend.       |
-| [`FakeYorktownV2`](qiskit_ibm_runtime.fake_provider.FakeYorktownV2 "qiskit_ibm_runtime.fake_provider.FakeYorktownV2")()             | A fake 5 qubit backend.         |
+|                                                                                                                                              |                                                                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`FakeAlgiers`](qiskit_ibm_runtime.fake_provider.FakeAlgiers "qiskit_ibm_runtime.fake_provider.FakeAlgiers")()                               | A fake 27 qubit backend.                                                              |
+| [`FakeAlmadenV2`](qiskit_ibm_runtime.fake_provider.FakeAlmadenV2 "qiskit_ibm_runtime.fake_provider.FakeAlmadenV2")()                         | A fake Almaden V2 backend.                                                            |
+| [`FakeArmonkV2`](qiskit_ibm_runtime.fake_provider.FakeArmonkV2 "qiskit_ibm_runtime.fake_provider.FakeArmonkV2")()                            | A fake 1 qubit backend.                                                               |
+| [`FakeAthensV2`](qiskit_ibm_runtime.fake_provider.FakeAthensV2 "qiskit_ibm_runtime.fake_provider.FakeAthensV2")()                            | A fake 5 qubit backend.                                                               |
+| [`FakeAuckland`](qiskit_ibm_runtime.fake_provider.FakeAuckland "qiskit_ibm_runtime.fake_provider.FakeAuckland")()                            | A fake 27 qubit backend.                                                              |
+| [`FakeBelemV2`](qiskit_ibm_runtime.fake_provider.FakeBelemV2 "qiskit_ibm_runtime.fake_provider.FakeBelemV2")()                               | A fake 5 qubit backend.                                                               |
+| [`FakeBoeblingenV2`](qiskit_ibm_runtime.fake_provider.FakeBoeblingenV2 "qiskit_ibm_runtime.fake_provider.FakeBoeblingenV2")()                | A fake Boeblingen V2 backend.                                                         |
+| [`FakeBogotaV2`](qiskit_ibm_runtime.fake_provider.FakeBogotaV2 "qiskit_ibm_runtime.fake_provider.FakeBogotaV2")()                            | A fake 5 qubit backend.                                                               |
+| [`FakeBrisbane`](qiskit_ibm_runtime.fake_provider.FakeBrisbane "qiskit_ibm_runtime.fake_provider.FakeBrisbane")()                            | A fake 127 qubit backend.                                                             |
+| [`FakeBrooklynV2`](qiskit_ibm_runtime.fake_provider.FakeBrooklynV2 "qiskit_ibm_runtime.fake_provider.FakeBrooklynV2")()                      | A fake Brooklyn V2 backend.                                                           |
+| [`FakeBurlingtonV2`](qiskit_ibm_runtime.fake_provider.FakeBurlingtonV2 "qiskit_ibm_runtime.fake_provider.FakeBurlingtonV2")()                | A fake 5 qubit backend.                                                               |
+| [`FakeCairoV2`](qiskit_ibm_runtime.fake_provider.FakeCairoV2 "qiskit_ibm_runtime.fake_provider.FakeCairoV2")()                               | A fake 27 qubit backend.                                                              |
+| [`FakeCambridgeV2`](qiskit_ibm_runtime.fake_provider.FakeCambridgeV2 "qiskit_ibm_runtime.fake_provider.FakeCambridgeV2")()                   | A fake Cambridge backend.                                                             |
+| [`FakeCasablancaV2`](qiskit_ibm_runtime.fake_provider.FakeCasablancaV2 "qiskit_ibm_runtime.fake_provider.FakeCasablancaV2")()                | A fake 7 qubit backend.                                                               |
+| [`FakeCusco`](qiskit_ibm_runtime.fake_provider.FakeCusco "qiskit_ibm_runtime.fake_provider.FakeCusco")()                                     | A fake 127 qubit backend.                                                             |
+| [`FakeEssexV2`](qiskit_ibm_runtime.fake_provider.FakeEssexV2 "qiskit_ibm_runtime.fake_provider.FakeEssexV2")()                               | A fake 5 qubit backend.                                                               |
+| [`FakeGeneva`](qiskit_ibm_runtime.fake_provider.FakeGeneva "qiskit_ibm_runtime.fake_provider.FakeGeneva")()                                  | A fake 27 qubit backend.                                                              |
+| [`FakeGuadalupeV2`](qiskit_ibm_runtime.fake_provider.FakeGuadalupeV2 "qiskit_ibm_runtime.fake_provider.FakeGuadalupeV2")()                   | A fake 16 qubit backend.                                                              |
+| [`FakeHanoiV2`](qiskit_ibm_runtime.fake_provider.FakeHanoiV2 "qiskit_ibm_runtime.fake_provider.FakeHanoiV2")()                               | A fake 27 qubit backend.                                                              |
+| [`FakeJakartaV2`](qiskit_ibm_runtime.fake_provider.FakeJakartaV2 "qiskit_ibm_runtime.fake_provider.FakeJakartaV2")()                         | A fake 7 qubit V2 backend.                                                            |
+| [`FakeJohannesburgV2`](qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2 "qiskit_ibm_runtime.fake_provider.FakeJohannesburgV2")()          | A fake Johannesburg V2 backend.                                                       |
+| [`FakeKawasaki`](qiskit_ibm_runtime.fake_provider.FakeKawasaki "qiskit_ibm_runtime.fake_provider.FakeKawasaki")()                            | A fake 127 qubit backend.                                                             |
+| [`FakeKolkataV2`](qiskit_ibm_runtime.fake_provider.FakeKolkataV2 "qiskit_ibm_runtime.fake_provider.FakeKolkataV2")()                         | A fake 27 qubit backend.                                                              |
+| [`FakeKyiv`](qiskit_ibm_runtime.fake_provider.FakeKyiv "qiskit_ibm_runtime.fake_provider.FakeKyiv")()                                        | A fake 127 qubit backend.                                                             |
+| [`FakeKyoto`](qiskit_ibm_runtime.fake_provider.FakeKyoto "qiskit_ibm_runtime.fake_provider.FakeKyoto")()                                     | A fake 127 qubit backend.                                                             |
+| [`FakeLagosV2`](qiskit_ibm_runtime.fake_provider.FakeLagosV2 "qiskit_ibm_runtime.fake_provider.FakeLagosV2")()                               | A fake 7 qubit backend.                                                               |
+| [`FakeLimaV2`](qiskit_ibm_runtime.fake_provider.FakeLimaV2 "qiskit_ibm_runtime.fake_provider.FakeLimaV2")()                                  | A fake 5 qubit backend.                                                               |
+| [`FakeFractionalBackend`](qiskit_ibm_runtime.fake_provider.FakeFractionalBackend "qiskit_ibm_runtime.fake_provider.FakeFractionalBackend")() | A fake 5 qubit backend with dynamic and fractional feature modeled based on FakeLima. |
+| [`FakeLondonV2`](qiskit_ibm_runtime.fake_provider.FakeLondonV2 "qiskit_ibm_runtime.fake_provider.FakeLondonV2")()                            | A fake 5 qubit backend.                                                               |
+| [`FakeManhattanV2`](qiskit_ibm_runtime.fake_provider.FakeManhattanV2 "qiskit_ibm_runtime.fake_provider.FakeManhattanV2")()                   | A fake Manhattan backend.                                                             |
+| [`FakeManilaV2`](qiskit_ibm_runtime.fake_provider.FakeManilaV2 "qiskit_ibm_runtime.fake_provider.FakeManilaV2")()                            | A fake 5 qubit backend.                                                               |
+| [`FakeMelbourneV2`](qiskit_ibm_runtime.fake_provider.FakeMelbourneV2 "qiskit_ibm_runtime.fake_provider.FakeMelbourneV2")()                   | A fake 14 qubit backend.                                                              |
+| [`FakeMontrealV2`](qiskit_ibm_runtime.fake_provider.FakeMontrealV2 "qiskit_ibm_runtime.fake_provider.FakeMontrealV2")()                      | A fake 27 qubit backend.                                                              |
+| [`FakeMumbaiV2`](qiskit_ibm_runtime.fake_provider.FakeMumbaiV2 "qiskit_ibm_runtime.fake_provider.FakeMumbaiV2")()                            | A fake 27 qubit backend.                                                              |
+| [`FakeNairobiV2`](qiskit_ibm_runtime.fake_provider.FakeNairobiV2 "qiskit_ibm_runtime.fake_provider.FakeNairobiV2")()                         | A fake 7 qubit backend.                                                               |
+| [`FakeOsaka`](qiskit_ibm_runtime.fake_provider.FakeOsaka "qiskit_ibm_runtime.fake_provider.FakeOsaka")()                                     | A fake 127 qubit backend.                                                             |
+| [`FakeOslo`](qiskit_ibm_runtime.fake_provider.FakeOslo "qiskit_ibm_runtime.fake_provider.FakeOslo")()                                        | A fake 7 qubit backend.                                                               |
+| [`FakeOurenseV2`](qiskit_ibm_runtime.fake_provider.FakeOurenseV2 "qiskit_ibm_runtime.fake_provider.FakeOurenseV2")()                         | A fake 5 qubit backend.                                                               |
+| [`FakeParisV2`](qiskit_ibm_runtime.fake_provider.FakeParisV2 "qiskit_ibm_runtime.fake_provider.FakeParisV2")()                               | A fake Paris backend.                                                                 |
+| [`FakePeekskill`](qiskit_ibm_runtime.fake_provider.FakePeekskill "qiskit_ibm_runtime.fake_provider.FakePeekskill")()                         | A fake 27 qubit backend.                                                              |
+| [`FakePerth`](qiskit_ibm_runtime.fake_provider.FakePerth "qiskit_ibm_runtime.fake_provider.FakePerth")()                                     | A fake 7 qubit backend.                                                               |
+| [`FakePrague`](qiskit_ibm_runtime.fake_provider.FakePrague "qiskit_ibm_runtime.fake_provider.FakePrague")()                                  | A fake 33 qubit backend.                                                              |
+| [`FakePoughkeepsieV2`](qiskit_ibm_runtime.fake_provider.FakePoughkeepsieV2 "qiskit_ibm_runtime.fake_provider.FakePoughkeepsieV2")()          | A fake Poughkeepsie backend.                                                          |
+| [`FakeQuebec`](qiskit_ibm_runtime.fake_provider.FakeQuebec "qiskit_ibm_runtime.fake_provider.FakeQuebec")()                                  | A fake 127 qubit backend.                                                             |
+| [`FakeQuitoV2`](qiskit_ibm_runtime.fake_provider.FakeQuitoV2 "qiskit_ibm_runtime.fake_provider.FakeQuitoV2")()                               | A fake 5 qubit backend.                                                               |
+| [`FakeRochesterV2`](qiskit_ibm_runtime.fake_provider.FakeRochesterV2 "qiskit_ibm_runtime.fake_provider.FakeRochesterV2")()                   | A fake Rochester backend.                                                             |
+| [`FakeRomeV2`](qiskit_ibm_runtime.fake_provider.FakeRomeV2 "qiskit_ibm_runtime.fake_provider.FakeRomeV2")()                                  | A fake 5 qubit backend.                                                               |
+| [`FakeSantiagoV2`](qiskit_ibm_runtime.fake_provider.FakeSantiagoV2 "qiskit_ibm_runtime.fake_provider.FakeSantiagoV2")()                      | A fake Santiago backend.                                                              |
+| [`FakeSherbrooke`](qiskit_ibm_runtime.fake_provider.FakeSherbrooke "qiskit_ibm_runtime.fake_provider.FakeSherbrooke")()                      | A fake 127 qubit backend.                                                             |
+| [`FakeSingaporeV2`](qiskit_ibm_runtime.fake_provider.FakeSingaporeV2 "qiskit_ibm_runtime.fake_provider.FakeSingaporeV2")()                   | A fake Singapore backend.                                                             |
+| [`FakeSydneyV2`](qiskit_ibm_runtime.fake_provider.FakeSydneyV2 "qiskit_ibm_runtime.fake_provider.FakeSydneyV2")()                            | A fake 27 qubit backend.                                                              |
+| [`FakeTorino`](qiskit_ibm_runtime.fake_provider.FakeTorino "qiskit_ibm_runtime.fake_provider.FakeTorino")()                                  | A fake 133 qubit backend.                                                             |
+| [`FakeTorontoV2`](qiskit_ibm_runtime.fake_provider.FakeTorontoV2 "qiskit_ibm_runtime.fake_provider.FakeTorontoV2")()                         | A fake 27 qubit backend.                                                              |
+| [`FakeValenciaV2`](qiskit_ibm_runtime.fake_provider.FakeValenciaV2 "qiskit_ibm_runtime.fake_provider.FakeValenciaV2")()                      | A fake 5 qubit backend.                                                               |
+| [`FakeVigoV2`](qiskit_ibm_runtime.fake_provider.FakeVigoV2 "qiskit_ibm_runtime.fake_provider.FakeVigoV2")()                                  | A fake 5 qubit backend.                                                               |
+| [`FakeWashingtonV2`](qiskit_ibm_runtime.fake_provider.FakeWashingtonV2 "qiskit_ibm_runtime.fake_provider.FakeWashingtonV2")()                | A fake 127 qubit backend.                                                             |
+| [`FakeYorktownV2`](qiskit_ibm_runtime.fake_provider.FakeYorktownV2 "qiskit_ibm_runtime.fake_provider.FakeYorktownV2")()                      | A fake 5 qubit backend.                                                               |
 
 ### Fake V1 Backends
 
