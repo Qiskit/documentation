@@ -3,7 +3,7 @@
 This folder contains the content for our tutorials, which appear on [IBM
 Quantum Learning](https://learning.quantum.ibm.com/catalog/tutorials).
 
-## Editing tutorials
+## Editing and deploying existing tutorials
 
 Each tutorial has its own folder in `tutorials/`. Within that folder is the
 content notebook (ending in `.ipynb`) and an optional `images` folder. These
