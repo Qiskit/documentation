@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
 # PadDynamicalDecoupling
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L40-L580" signature="PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False, dd_barrier=None, block_ordering_callable=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L40-L580" signature="PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False, dd_barrier=None, block_ordering_callable=None)" modifiers="class">
   Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
   This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods. As a special case, the pass allows a length-1 sequence (e.g. \[XGate()]). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo. This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
@@ -244,7 +244,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L102-L126" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L102-L126" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
