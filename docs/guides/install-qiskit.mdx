@@ -327,6 +327,12 @@ ensures that you see any deprecation warnings before a
 major version release. 
 Without the cap, `pip` installs 
 the newest version available by default.
+
+The QPY serialization format is backwards-compatible so that a new Qiskit release can always load a QPY
+file generated with an earlier release of Qiskit. However, the format isn't forward-compatible so, in principle, it's not possible
+to load QPY files generated with a newer version of Qiskit using an older release.  To facilitate user migration across major version releases, the (`qiskit.qpy.dump()`](/api/qiskit/qpy#dump) function will always support at least one overlapping version between the `X.0.0` and the `X-1.Y.0` release (where `Y` is the last minor version of 
+that series). The parameter `qiskit.qpy.dump(..., version=...)` will enable saving QPY format files that can be loaded by both major versions from the newer
+release. See more details in [RFC 0020](https://github.com/Qiskit/RFCs/blob/master/0020-release_cycle.md#qpy-support).
 </details>
 
 
