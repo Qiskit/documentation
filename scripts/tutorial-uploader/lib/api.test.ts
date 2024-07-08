@@ -41,6 +41,16 @@ if (/learning-api\.quantum\.ibm\.com/.test(process.env.LEARNING_API_URL!)) {
 describe("Tutorial uploader API", () => {
   const api = new API();
 
+  beforeAll(async () => {
+    if (await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug)) {
+      await api.deleteTutorial(MOCK_TUTORIAL.slug);
+    }
+  });
+
+  afterEach(async () => {
+    await api.deleteTutorial(MOCK_TUTORIAL.slug);
+  });
+
   test("upload new tutorial", async () => {
     expect(await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug)).toBeNull();
 
@@ -140,15 +150,5 @@ describe("Tutorial uploader API", () => {
         languages_code: "en-US",
       },
     ]);
-  });
-
-  beforeAll(async () => {
-    if (await api.getTutorialIdBySlug(MOCK_TUTORIAL.slug)) {
-      await api.deleteTutorial(MOCK_TUTORIAL.slug);
-    }
-  });
-
-  afterEach(async () => {
-    await api.deleteTutorial(MOCK_TUTORIAL.slug);
   });
 });
