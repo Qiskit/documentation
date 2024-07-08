@@ -1,0 +1,62 @@
+---
+title: Execute on target hardware
+description: Run circuits on hardware and return output from a quantum computer. 
+---
+
+# Execute on target hardware
+
+![../\_images/execute.svg](/images/qiskit-patterns/execute.svg)
+
+The "execute on hardware" step of a Qiskit pattern involves running your circuits on hardware
+and produces the outputs of the quantum computation. The ISA circuits produced in
+the previous step can be executed using either a Sampler or Estimator primitive from
+Qiskit Runtime, initialized locally on your computer or from a cluster or other
+heterogeneous compute environment. These can be executed in a Batch, which allows
+parallel transpilation for classical computational efficiency - or a Session,
+which allows iterative tasks to be implemented efficiently without queuing delays.
+
+During this step, there is also the option to configure certain error suppression and
+mitigation techniques provided by Qiskit Runtime.
+
+Depending on whether you are using the Sampler or Estimator primitive, the outcome of this step
+will be different. If using the Sampler, the output will be per-shot measurements
+in the form of bitstrings. If using the Estimator, the output will be
+expectation values of observables corresponding to physical quantities or cost functions.
+
+## Guides for executing on hardware
+
+### Run with primitives
+* [Introduction to primitives](./primitives)
+* [Get started with primitives](./get-started-with-primitives)
+* [Primitives examples](./primitives-examples)
+
+### Configure runtime options
+* [Configure runtime compilation](./configure-error-suppression)
+* [Configure runtime error mitigation](./configure-error-mitigation)
+* [Advanced runtime options](./runtime-options-overview)
+* [Error mitigation and suppression techniques](./error-mitigation-and-suppression-techniques)
+
+### Execution modes
+* [Introduction to execution modes](./execution-modes)
+* [Introduction to sessions](./sessions)
+* [Run jobs in a session](./run-jobs-session)
+* [Run jobs in a batch](./run-jobs-batch)
+* [Fixed and dynamic repetition rate execution](./repetition-rate-execution)
+* [Execution modes FAQs](./execution-modes-faq)
+
+### Manage jobs
+* [Monitor or cancel a job](./monitor-job)
+* [Estimate job run time](./estimate-job-run-time)
+* [Minimize job run time](./minimize-time)
+* [Maximum execution time](./max-execution-time)
+
+### QPU and platform information
+* [Processor types](./processor-types)
+* [QPU information](./qpu-information)
+* [Get QPU information with Qiskit](./get-qpu-information)
+* [Native gates and operations](./native-gates)
+* [Retired QPUs](./retired-qpus)
+* [Hardware considerations and limitations for classical feedforward and control flow](./dynamic-circuits-considerations)
+* [Instances](./instances)
+* [Fair-share scheduler](./fair-share-scheduler)
+* [Manage cost](./manage-cost)
