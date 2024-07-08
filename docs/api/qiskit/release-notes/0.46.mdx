@@ -5,15 +5,61 @@ in_page_toc_max_heading_level: 3
 ---
 # Qiskit 0.46 release notes
   
+## 0.46.2
+
+<span id="relnotes-0-46-2-prelude" />
+
+### Prelude
+
+Qiskit 0.46.2 is a minor bug-fix and backport release for the 0.46 series.
+
+<span id="relnotes-0-46-2-new-features" />
+
+### New Features
+
+*   This release of Qiskit finalizes support for NumPy 2.0. Qiskit will continue to support both Numpy 1.x and 2.x for the foreseeable future.
+
+<span id="relnotes-0-46-2-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed an issue with the `circuit_drawer()` or `QuantumCircuit.draw()` when using the `mpl` output option where the program would hang if the circuit being drawn had a ControlFlow operation in it and the `fold` option was set to -1 (meaning no fold). Fixed [#12012](https://github.com/Qiskit/qiskit/issues/12012).
+
+*   The [`EvolvedOperatorAnsatz`](/api/qiskit/0.46/qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") now correctly handles the case where the operators argument is an empty list. Previously, this would result in an error.
+
+*   From now on, [`EvolvedOperatorAnsatz`](/api/qiskit/0.46/qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz") will not have any qregs when thera are zero qubits, instead of having a [`QuantumRegister`](/api/qiskit/0.46/qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") instance with zero qubits. This behavior aligns more consistently with its superclass [`QuantumCircuit`](/api/qiskit/0.46/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+*   The method [`Instruction.repeat()`](/api/qiskit/0.46/qiskit.circuit.Instruction#repeat "qiskit.circuit.Instruction.repeat") now moves a set [`condition`](/api/qiskit/0.46/qiskit.circuit.Instruction#condition "qiskit.circuit.Instruction.condition") to the outer returned [`Instruction`](/api/qiskit/0.46/qiskit.circuit.Instruction "qiskit.circuit.Instruction") and leave the inner gates of its definition unconditional. Previously, the method would leave [`ClassicalRegister`](/api/qiskit/0.46/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") instances within the inner definition, which was an invalid state, and would manifest itself as seemingly unrelated bugs later, such as during transpilation or export. Fixed [#11935](https://github.com/Qiskit/qiskit/issues/11935).
+
+*   Fixed a floating-point imprecision when scaling certain pulse units between seconds and nanoseconds. If the pulse was symbolically defined, an unnecessary floating-point error could be introduced by the scaling for certain builds of `symengine`, which could manifest in unexpected results once the symbols were fully bound. See [#12392](https://github.com/Qiskit/qiskit/pull/12392).
+
+*   Fixed a bug in `qiskit.visualization.pulse_v2.interface.draw()` that didn’t draw pulse schedules when the draw function was called with a [`BackendV2`](/api/qiskit/0.46/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") argument. Because the V2 backend doesn’t report hardware channel frequencies, the generated drawing will show ‘no freq.’ below each channel label.
+
+*   The [`VF2Layout`](/api/qiskit/0.46/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") pass would raise an exception when provided with a [`Target`](/api/qiskit/0.46/qiskit.transpiler.Target "qiskit.transpiler.Target") instance without connectivity constraints. This would be the case with targets from Aer 0.13. The issue is now fixed.
+
+*   The default `init` plugin was not properly raising a [`TranspilerError`](/api/qiskit/0.46/transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") when called with an invalid optimization level.
+
+*   [`PassManager.run()`](/api/qiskit/0.46/qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") will no longer waste time serializing itself when given multiple inputs if it is only going to work in serial.
+
+*   The OpenQASM 2.0 parser ([`qasm2.load()`](/api/qiskit/0.46/qasm2#qiskit.qasm2.load "qiskit.qasm2.load") and [`qasm2.loads()`](/api/qiskit/0.46/qasm2#qiskit.qasm2.loads "qiskit.qasm2.loads")) can now evaluate gate-angle expressions including integer operands that would overflow the system-size integer. These will be evaluated in a double-precision floating-point context, just like the rest of the expression always has been. Beware: an arbitrarily large integer will not necessarily be exactly representable in double-precision floating-point, so there is a chance that however the circuit was generated, it had already lost all numerical precision modulo $2\pi$.
+
+<span id="relnotes-0-46-1" />
+
+<span id="id3" />
+
 ## 0.46.1
 
 <span id="relnotes-0-46-1-prelude" />
+
+<span id="id4" />
 
 ### Prelude
 
 Qiskit 0.46.1 is a minor bugfix release for the 0.46 series.
 
 <span id="relnotes-0-46-1-bug-fixes" />
+
+<span id="id5" />
 
 ### Bug Fixes
 
@@ -31,13 +77,13 @@ Qiskit 0.46.1 is a minor bugfix release for the 0.46 series.
 
 <span id="relnotes-0-46-0" />
 
-<span id="id3" />
+<span id="id6" />
 
 ## 0.46.0
 
 <span id="relnotes-0-46-0-prelude" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Prelude
 
@@ -56,6 +102,8 @@ If `import qiskit` raises an [`ImportError`](https://docs.python.org/3/library/e
 If you develop a library based on Qiskit and you still have a dependency on `qiskit-terra`, you should urgently release a new package that depends only on `qiskit`. Since version 0.44, the `qiskit` package contained only the `qiskit-terra` compiler core (the component that is now simply called “Qiskit”), so if your minimum version is `0.44`, you can safely switch a `qiskit-terra>=0.44` dependency to `qiskit>=0.44` with no change in what will be installed. For more detail and recommendations for testing and preparation, see the [section for developers of the migration guide](https://qisk.it/1-0-packaging-migration#for-developers).
 
 <span id="relnotes-0-46-0-new-features" />
+
+<span id="id8" />
 
 ### New Features
 

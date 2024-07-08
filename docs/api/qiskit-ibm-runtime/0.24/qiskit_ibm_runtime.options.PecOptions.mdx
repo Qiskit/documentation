@@ -1,0 +1,41 @@
+---
+title: PecOptions
+description: API reference for qiskit_ibm_runtime.options.PecOptions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options.PecOptions
+---
+
+# PecOptions
+
+<Class id="qiskit_ibm_runtime.options.PecOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/options/pec_options.py#L20-L44" signature="PecOptions(*args, **kwargs)" modifiers="class">
+  Probabalistic error cancellation mitigation options.
+
+  **Parameters**
+
+  *   **max\_overhead** – The maximum circuit sampling overhead allowed, or `None` for no maximum. Default: 100.
+
+  *   **noise\_gain** –
+
+      The amount by which to scale the noise, where:
+
+      *   A value of 0 corresponds to removing the full learned noise.
+      *   A value of 1 corresponds to no removal of the learned noise.
+      *   A value between 0 and 1 corresponds to partially removing the learned noise.
+      *   A value greater than one corresponds to amplifying the learned noise.
+
+      If “auto”, the value in the range `[0, 1)` will be chosen automatically for each input PUB based on the learned noise strength, `max_overhead`, and the depth of the PUB. Default: “auto”.
+
+  ## Attributes
+
+  ### max\_overhead
+
+  <Attribute id="qiskit_ibm_runtime.options.PecOptions.max_overhead" attributeTypeHint="UnsetType | float | None" attributeValue="Unset" />
+
+  ### noise\_gain
+
+  <Attribute id="qiskit_ibm_runtime.options.PecOptions.noise_gain" attributeTypeHint="UnsetType | float | Literal['auto']" attributeValue="Unset" />
+
+  ## Methods
+</Class>
+

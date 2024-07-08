@@ -16,50 +16,38 @@ import { load } from "js-yaml";
 import { globby } from "globby";
 
 const ALLOWED_OWNERLESS_FILES = new Set([
-  "docs/start/_toc",
-  "docs/build/_toc",
-  "docs/build/bit-ordering",
-  "docs/build/operators-overview",
-  "docs/build/save-circuits",
-  "docs/transpile/_toc",
-  "docs/transpile/create-a-transpiler-plugin",
-  "docs/transpile/custom-backend",
-  "docs/transpile/transpiler-plugins",
-  "docs/verify/_toc",
-  "docs/verify/local-testing-mode",
-  "docs/verify/plot-quantum-states",
-  "docs/verify/using-ibm-quantum-simulators",
-  "docs/run/_toc",
-  "docs/run/circuit-execution",
-  "docs/run/configure-runtime-compilation",
-  "docs/run/execution-modes-faq",
-  "docs/run/execution-modes",
-  "docs/run/native-gates",
-  "docs/run/save-jobs",
-  "docs/run/visualize-results",
+  "docs/guides/_toc",
+  "docs/guides/bit-ordering",
+  "docs/guides/operators-overview",
+  "docs/guides/save-circuits",
+  "docs/guides/create-a-transpiler-plugin",
+  "docs/guides/custom-backend",
+  "docs/guides/transpiler-plugins",
+  "docs/guides/local-testing-mode",
+  "docs/guides/plot-quantum-states",
+  "docs/guides/using-ibm-quantum-simulators",
+  "docs/guides/circuit-execution",
+  "docs/guides/configure-runtime-compilation",
+  "docs/guides/execution-modes-faq",
+  "docs/guides/execution-modes",
+  "docs/guides/native-gates",
+  "docs/guides/save-jobs",
+  "docs/guides/visualize-results",
+  "docs/guides/create-transpiler-plugin",
+  "docs/guides/intro-to-patterns",
+  "docs/guides/optimize-for-hardware",
+  "docs/guides/post-process-results",
+  "docs/guides/configure-error-suppression",
+  "docs/guides/repetition-rate-execution",
+  "docs/api/migration-guides/_toc",
+  "docs/api/migration-guides/qiskit-1.0",
+  "docs/api/migration-guides/qiskit-1.0-features",
+  "docs/api/migration-guides/qiskit-1.0-installation",
 ]);
 
-const ALLOWED_NONEXISTENT_FILES = new Set([
-  "docs/build/qubit-order",
-  "docs/build/operators_overview",
-  "docs/run/reserve-system-time",
-  "docs/migration-guides/index",
-  "docs/migration-guides/qiskit-runtime",
-  "docs/migration-guides/qiskit-runtime-examples",
-  "docs/migration-guides/qiskit-quantum-instance",
-  "docs/migration-guides/qiskit-algorithms-module",
-  "docs/migration-guides/qiskit-opflow-module",
-]);
+const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
-const GLOBS = [
-  "docs/start/*",
-  "docs/build/*",
-  "docs/transpile/*",
-  "docs/verify/*",
-  "docs/run/*",
-  "docs/migration-guides/*",
-  "docs/guides/*",
-];
+const GLOBS = ["docs/api/migration-guides/*", "docs/guides/*"];
 
 async function main() {
   const qiskitBotFiles = await getQiskitBotFiles();
