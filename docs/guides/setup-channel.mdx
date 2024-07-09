@@ -116,7 +116,7 @@ print(result)
 <span id="iqp-rest-api"></span>
 ## Set up to use IBM Quantum Platform with REST API
 
-Alternatively, you can also access IBM Quantum Systems using REST APIs, enabling you to work with quantum systems from any programming language or framework. 
+Alternatively, you can also access quantum processors with REST APIs, enabling you to work with QPUs using any programming language or framework. 
 
 1. Retrieve your IBM Quantum token from the [IBM Quantum account page](https://quantum.ibm.com/account).
 
@@ -138,7 +138,7 @@ Alternatively, you can also access IBM Quantum Systems using REST APIs, enabling
     auth_id=auth_response.json()['id']
     ```
 
-4. Let's view your available backends
+4. View your available backends:
 
     ```python
     url_backends = 'https://api.quantum-computing.ibm.com/runtime/backends'
@@ -151,9 +151,9 @@ Alternatively, you can also access IBM Quantum Systems using REST APIs, enabling
     ```
 
 
-    You can then [transpile circuits using REST API](./transpile-rest-api) and run them using either the [Sampler or the Estimator Primitives](./run-primitives-rest-api).   
+    You can then [transpile circuits using REST API](./transpile-rest-api) and run them using either the [Sampler or the Estimator primitives](./run-primitives-rest-api).   
 
-5. After your experiments are complete, you can proceed to invalidate your token followed by testing it's invalidation.
+5. After your experiments are complete, you can proceed to invalidate your token and then test its invalidation.
 
     ```python
     logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
@@ -162,7 +162,7 @@ Alternatively, you can also access IBM Quantum Systems using REST APIs, enabling
     print("response ok?:",logout_response.ok,logout_response.text)
     ```
 
-    This should yield an error (Error 401) once access token is invalidated.
+    This should yield an error (Error 401) once the access token is invalidated.
 
     ```python
     logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
