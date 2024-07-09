@@ -5,25 +5,24 @@ description: How to use the Sampler and Estimator primitives with Qiskit Runtime
 
 # Run primitives with REST API
 
-The steps in this topic describe how to run primitives workloads with REST API, explore the options you can use to configure them, and invoke them in any program of your choice.
+The steps in this topic describe how to run and configure primitive workloads with REST API, and demonstrate how to invoke them in any program of your choice.
 
 <Admonition type="note">
-    This documentation utilizes the `requests` module of python to demonstrate the Qiskit Runtime REST API. However, this workflow can be executed using any language/framework that supports working with REST APIs. The official documentation for the API Reference can be found [here](https://docs.quantum.ibm.com/api/runtime/tags/jobs).
+    This documentation utilizes the Python `requests` module to demonstrate the Qiskit Runtime REST API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/api/runtime/tags/jobs) for details.
 </Admonition>
 
 <span id="start-estimator"></span>
-## Estimator Primitive with REST API
+## Estimator primitive with REST API
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the device you want to use to calculate the expectation value. You can then select the IBM Quantum Compute resource of your choice to run your calculations on. 
+Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the compute resource you want to use to calculate the expectation value. 
 
 Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
 
 ### 2. Create a QASM circuit
 
 You need at least one circuit as the input to the `Estimator` primitive.
-
 
 Define a QASM quantum circuit e.g. 
 
