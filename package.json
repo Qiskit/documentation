@@ -17,11 +17,15 @@
     "check:qiskit-bot": "node -r esbuild-register scripts/commands/checkQiskitBotFiles.ts",
     "check:stale-images": "node -r esbuild-register scripts/commands/checkStaleImages.ts",
     "fmt": "prettier --write .",
-    "test": "jest",
+    "test": "jest --testPathIgnorePatterns='tutorial-uploader'",
+    "test:tutorial-uploader": "jest scripts/tutorial-uploader",
     "typecheck": "tsc",
     "regen-apis": "node -r esbuild-register scripts/commands/regenerateApiDocs.ts",
     "gen-api": "node -r esbuild-register scripts/commands/updateApiDocs.ts",
-    "make-historical": "node -r esbuild-register scripts/commands/convertApiDocsToHistorical.ts"
+    "make-historical": "node -r esbuild-register scripts/commands/convertApiDocsToHistorical.ts",
+    "tutorial:sync": "node -r esbuild-register scripts/tutorial-uploader/sync.ts",
+    "tutorial:validate": "node -r esbuild-register scripts/tutorial-uploader/validate-config.ts",
+    "tutorial:setup-testing": "node -r esbuild-register scripts/tutorial-uploader/setup-for-testing.ts"
   },
   "devDependencies": {
     "@swc/jest": "^0.2.29",
@@ -60,8 +64,10 @@
     "zx": "^7.2.3"
   },
   "dependencies": {
+    "@directus/sdk": "^16.0.1",
     "esbuild": "^0.19.11",
     "fast-levenshtein": "^3.0.0",
+    "js-yaml": "^4.1.0",
     "markdown-link-extractor": "^3.1.0",
     "transform-markdown-links": "^2.1.0"
   }
