@@ -5,19 +5,19 @@ description: How to run a quantum computing job in a Qiskit Runtime session.
 
 # Execution modes using REST API
 
-There are several ways to run your Qiskit Primitive workloads using REST APIs, depending on your needs. The three modes: job, session and batch are explained below. 
+You can run your Qiskit primitive workloads using REST APIs in one of three execution modes, depending on your needs: job, session, and batch. This topic explains these modes.
 
 ## Job mode with REST API
 
-In job mode, a single primitive request of the estimator or the sampler made without a context manager. See how to run a quatum circuit using [Estimator](run-primitives-rest-api#estimator-primitive-with-rest-api) and [Sampler](run-primitives-rest-api#sampler-primitive-with-rest-api) for some examples. 
+In job mode, a single primitive request of the Estimator or the Sampler is made without a context manager. See how to run a quantum circuit using [Estimator](run-primitives-rest-api#estimator-primitive-with-rest-api) and [Sampler](run-primitives-rest-api#sampler-primitive-with-rest-api) for some examples. 
 
 ## Session mode with REST API
 
-A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources. More details about Sessions can be found in the [documentation](https://docs.quantum.ibm.com/run/sessions).
+A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources. More details about Sessions can be found in the [documentation](./sessions).
 
-### Start a Session 
+### Start a session 
 
-You begin with creating a session and obtaining a Session ID. 
+Begin with creating a session and obtaining a session ID. 
 
 ```python
 import json
@@ -47,9 +47,9 @@ Output
 ```
 
 
-### Close a Session 
+### Close a session 
 
-It is very good practice to close a `Session` when all jobs are done. This will reduce wait time for subsequent users.
+It is good practice to close a `Session` when all jobs are done. This will reduce wait time for subsequent users.
 
 ```python
 closureURL="https://api.quantum-computing.ibm.com/runtime/sessions/"+sessionId+"/close"
@@ -71,10 +71,9 @@ Output
 Session closure response ok?: True 
 ```
 
-
 ## Batch mode with REST API
 
-Alternatively, you can also submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. More details about batch mode can be found in the [documentation](https://docs.quantum.ibm.com/run/run-jobs-batch).
+Alternatively, you can submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. More details about batch mode can be found in the [documentation](./run-jobs-batch).
 
 ```python
 import json
@@ -100,7 +99,7 @@ sessionId = response.json()['id']
 
 ## Examples of jobs submitted in a session
 
-Once a session is setup: one or more `Sampler`/ `Estimator` jobs can be submitted to the same session by specifying the session ID. 
+Once a session is set up, one or more `Sampler`or `Estimator` jobs can be submitted to the same session by specifying the session ID. 
 
 <Admonition type="note">
     The `<parameter values>` in a `PUB` can either be a single parameter or a list of parameters. It also supports `numpy` broadcasting. 
