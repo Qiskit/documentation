@@ -18,13 +18,13 @@ The steps in this topic describe how to run and configure primitive workloads wi
 
 Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the compute resource you want to use to calculate the expectation value. 
 
-Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
+Find details on how to initialize your account, view available backends, and invalidate tokens in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
 
 ### 2. Create a QASM circuit
 
 You need at least one circuit as the input to the `Estimator` primitive.
 
-Define a QASM quantum circuit e.g. 
+Define a QASM quantum circuit. For example: 
 
 ```python
 qasm_string='''
@@ -39,13 +39,13 @@ c[1] = measure q[1];
 '''  
 ```
 
-The code snippets given below assume that the `qasm_string` has been transpiled to a new string `resulting_qasm`. Detailed instructions on how to use the Cloud Transpiler API can be found in this [topic](./transpile-rest-api).
+The following code snippets assume that the `qasm_string` has been transpiled to a new string `resulting_qasm`. Find detailed instructions on how to use the Cloud Transpiler API in this [topic](./transpile-rest-api).
 
-### 3. Run the Quantum Circuit using the EstimatorV2 API
+### 3. Run the quantum circuit using the Estimator V2 API
 
 
 <Admonition type="note">
-    The jobs below use [Qiskit Runtime V2 primitives](https://docs.quantum.ibm.com/api/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
+    The following jobs use [Qiskit Runtime V2 primitives](/api/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
 </Admonition>
 
 
@@ -84,7 +84,7 @@ else:
 ```
 
 
-### 4. Check Job Status and Get Results
+### 4. Check job status and get results
 
 Next, pass the `job_id` to the API:
 
@@ -113,13 +113,13 @@ Output
 [{'data': {'evs': 0.7428980350102542, 'stds': 0.029884014518789213, 'ensemble_standard_error': 0.03261147170624149}, 'metadata': {'shots': 10016, 'target_precision': 0.01, 'circuit_metadata': {}, 'resilience': {}, 'num_randomizations': 32}}]
 ```
 
-### 5. Working with Runtime Options
+### 5. Work with Runtime options
 
-Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
+Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training, and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
 
 The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the `resilience_level` option when submitting your job.
 
-You will see examples of three such error mitigation / suppression techniques when used with the Estimator Primitive. The examples given below demonstrate the default options for Dynamical decoupling, Twirling and TREX + ZNE. More options and further details can be found [here](https://docs.quantum.ibm.com/run/error-mitigation-explanation).
+The following examples demonstrate the default options for dynamical decoupling, twirling, and TREX + ZNE. Find more options and further details in the [Error mitigation and suppression techniques](./error-mitigation-and-suppression-techniques) topic.
 
 <Tabs>
 
@@ -274,13 +274,13 @@ else:
 
 
 <span id="start-sampler"></span>
-## Sampler Primitive with REST API
+## Sampler primitive with REST API
 
 ### 1. Initialize the account
 
 Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the device you want to use to calculate the expectation value. You can then select the IBM Quantum Compute resource of your choice to run your calculations on. 
 
-Details on how to initialize your account, view available backends and invalidate tokens can be found in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
+Find details on how to initialize your account, view available backends, and invalidate tokens in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
 
 
 ### 2. Create a QASM circuit
@@ -288,7 +288,7 @@ Details on how to initialize your account, view available backends and invalidat
 You need at least one circuit as the input to the `Sampler` primitive.
 
 
-Define a QASM quantum circuit e.g. 
+Define a QASM quantum circuit: 
 
 ```python
 qasm_string='''
@@ -304,14 +304,14 @@ c[1] = measure q[1];
 ```
 
 
-The code snippets given below assume that the `qasm_string` has been transpiled to a new string `resulting_qasm`. Detailed instructions on how to use the Cloud Transpiler API can be found in this [topic](./transpile-rest-api).
+The code snippets given below assume that the `qasm_string` has been transpiled to a new string `resulting_qasm`. Find detailed instructions on how to use the Cloud Transpiler API in this [topic](./transpile-rest-api).
 
 
-### 3. Run the Quantum Circuit using SamplerV2 API
+### 3. Run the quantum circuit using Sampler V2 API
 
 
 <Admonition type="note">
-    The jobs below use [Qiskit Runtime V2 primitives](https://docs.quantum.ibm.com/api/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
+    The jobs below use [Qiskit Runtime V2 primitives](/api/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
 </Admonition>
 
 
@@ -346,7 +346,7 @@ else:
 ```
 
 
-### 4. Check Job Status and Get Results
+### 4. Check job status and get results
 
 Next, pass the `job_id` to the API:
 
@@ -377,14 +377,14 @@ Output
 ['0x3', '0x0', '0x2', '0x1', '0x0', '0x3', '0x0', '0x3', '0x1', '0x2', '0x2', '0x0', '0x2', '0x0', '0x3', '0x3', '0x2', '0x0', '0x1', '0x0']
 ```
 
-### 5. Working with Runtime Options
+### 5. Work with Runtime options
 
-Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
+Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training, and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
 
 The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the `resilience_level` option when submitting your job.
 Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. 
 
-You will see examples of two such error mitigation / suppression techniques when used with the Sampler Primitive. The examples given below demonstrate the default options for Dynamical decoupling and Twirling. More options and further details can be found [here](https://docs.quantum.ibm.com/run/error-mitigation-explanation).   
+The following examples demonstrate the default options for dynamical decoupling and twirling. Find more options and further details in the [Error mitigation and suppression techniques](./error-mitigation-and-suppression-techniques) topic.   
 
 <Tabs>
 
@@ -480,7 +480,7 @@ else:
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - There are several ways to run workloads, depending on your needs: job mode, session mode and batch mode. Learn how to work with session mode and batch mode by following this [topic](execution-modes-rest-api).
+    - There are several ways to run workloads, depending on your needs: job mode, session mode and batch mode. Learn how to work with session mode and batch mode in the [execution modes topic](./execution-modes-rest-api).
     - Learn how to [initialize your account](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api) with REST API.
     - Learn how to [transpile circuits using REST API](./transpile-rest-api).
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
