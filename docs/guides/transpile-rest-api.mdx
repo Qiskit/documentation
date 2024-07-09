@@ -1,30 +1,32 @@
 ---
-title: Transpilation using REST API
+title: Transpile using REST API
 description: How to transpile quantum circuits using REST APIs.
 ---
 
 # Transpile using REST API
 
-The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum systems is known as Transpilation. 
+The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum systems, is known as [transpilation](./transpile).
 
-* You can either transpile [locally via Qiskit](https://docs.quantum.ibm.com/transpile/defaults-and-configuration-options) before generating the QASM string, or:
+You have two transpilation options: 
 
-* Use the [Cloud Transpiler API](https://cloud-transpiler.quantum.ibm.com/docs)
+* Transpile [locally via Qiskit](./defaults-and-configuration-options) before generating the QASM string.
+
+* Use the [Cloud Transpiler API](https://cloud-transpiler.quantum.ibm.com/docs).
 
 <Admonition type="note">
-    [Transpilation is necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum backends. 
+    [Transpilation is necessary](/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum QPUs.
 </Admonition>
 
-The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API. Next steps on how to submit the transpiled quantum circuit to IBM Quantum compute resources are also suggested. 
+The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM Quantum compute resources. 
 
-## Query the Qiskit Transpiler Service
+## Query the Qiskit transpiler service
 
-Query the [Cloud Transpiler API](https://cloud-transpiler.quantum-computing.ibm.com/docs) and provide your QASM string as input. See more details and documentation [here](https://docs.quantum.ibm.com/api/qiskit-transpiler-service-rest). 
+Query the [Cloud Transpiler API](https://cloud-transpiler.quantum-computing.ibm.com/docs) and provide your QASM string as input. See more details in the [API reference documentation](/api/qiskit-transpiler-service-rest).
 
-There are two ways to invoke the Qiskit Transpiler Service using REST API: with regular transpilation and with AI enhanced transpilation. Both ways of invoking the Cloud Transpiler API are shown below. 
+There are two ways to invoke the Qiskit transpiler service using REST API: with regular transpilation, and with AI-enhanced transpilation. The following demonstrates both ways to invoke the Cloud Transpiler API.
 
 <Admonition type="note">
-    This experimental service is only available for IBM Quantum Premium Plan users.
+    This experimental service is only available to IBM Quantum Premium Plan users.
 </Admonition>
 
 <Tabs>
@@ -55,7 +57,7 @@ resp = requests.post(
         ```
     </TabItem>
 
-    <TabItem value="Qiskit Transpiler Service with AI" label="Qiskit Transpiler Service with AI enhanced passes">
+    <TabItem value="Qiskit Transpiler Service with AI" label="Qiskit Transpiler Service with AI-enhanced passes">
         ```python
 backend='ibm_brisbane' #choose your IBM Backend
 
@@ -88,12 +90,12 @@ resp = requests.post(
 
 
 <Admonition type="note">
-    Since there may be cases where it’s better to forego the use of AI enhanced passes, we’ve developed a third option for the ai parameter that gives users the best of both worlds. Set the `ai` parameter to `ai="auto"`, and this will enable the system to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes based on the particulars of your circuit.
+    Since there might be cases where it’s more effective not to use AI-enhanced passes, you can set the `ai` parameter to `ai="auto"` to enable the system to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes, based on the particulars of your circuit. 
 </Admonition>
 
 ## Request results based on the `task_id`
 
-Request the transpilation service results using the `task_id`
+Request the transpilation service results using the `task_id`.
 
 ```python
 task_id=resp.json()['task_id']
