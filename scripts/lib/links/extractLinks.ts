@@ -44,7 +44,7 @@ export function markdownFromNotebook(rawContent: string): string {
   return cells
     .filter((cell) => cell.cell_type === "markdown")
     .map((cell) => cell.source.join(""))
-    .join("\n");
+    .join("\n\n");
 }
 
 export function parseAnchors(markdown: string): Set<string> {
