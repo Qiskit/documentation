@@ -11,7 +11,7 @@
 # that they have been altered from the originals.
 
 name: PR preview
-on: 
+on:
   pull_request:
     # paths:
     #   - "docs/**/*"
@@ -32,18 +32,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-  
+
       - name: Build static site
         run: scripts/pr_previews/builder.py ${{ env.PR_PREVIEW_PATH }} --proof-of-concept
 
-      - name: Switch to gh-pages branch
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
       - name: Deploy to GitHub Pages
         run: |
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
+          git fetch origin gh-pages
+          git switch gh-pages
           git add .
           git commit -m "Deploy PR preview for PR ${{ github.event.pull_request.number }}"
           git push
