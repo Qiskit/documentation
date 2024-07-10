@@ -268,7 +268,7 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 # This uses auto complete.
 estimator.options.default_shots = 4000
 # This does bulk update.
-estimator.options.update(default_shots=4000)
+estimator.options.update(default_shots=4000, resilience_level=2)
 
 # Print the dictionary format.
 # Server defaults are used for unset options.
@@ -349,7 +349,7 @@ sampler.set_options(shots=2000)
 
 * Because Sampler V2 returns samples without postprocessing, it does not support resilience levels.
 * Sampler V2 does not support `optimization_level`.
-* In `qiskit_ibm_runtime` 0.25 and later, `optimization_level` in Estimator V2 is deprecated.
+* Estimator V2 will drop support for `optimization_level` on or around 30 September 2024.
 * Estimator V2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. Level 3 was removed to draw attention to that tradeoff. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
 * Estimator V2 supports `resilience_level` 0-2, as described in the following table.  These options are more advanced than their V1 counterparts. You can also explicitly turn on / off individual error mitigation / suppression methods.
 
