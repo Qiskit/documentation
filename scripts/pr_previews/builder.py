@@ -37,14 +37,43 @@ logging.basicConfig(
 def create_parser() -> ArgumentParser:
     parser = ArgumentParser()
     parser.add_argument("dest", help="The output folder", type=Path)
+    parser.add_argument(
+        "--proof-of-concept",
+        help="Build a simple index.html, rather than actual docs app.",
+        action="store_true",
+    )
     return parser
 
 
 def main() -> None:
     args = create_parser().parse_args()
+    if args.proof_of_concept:
+        write_proof_of_concept(args.dest)
+        return
+
     with setup_dir() as dir:
         yarn_build(dir)
         save_output(dir, args.dest)
+
+
+def write_proof_of_concept(dest: Path) -> None:
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "index.html").write_text(
+        """\
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Proof of Concept</title>
+        </head>
+        <body>
+            <h1>Proof of concept</h1>
+        </body>
+        </html>
+        """
+    )
+    logger.info(f"Wrote proof-of-concept index.html to {dest}")
 
 
 def yarn_build(root_dir: Path) -> None:

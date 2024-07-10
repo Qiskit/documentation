@@ -1,0 +1,47 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: PR preview
+on: 
+  pull_request:
+    # paths:
+    #   - "docs/**/*"
+    #   - "public/images/**/*"
+
+jobs:
+  pr-preview:
+    name: PR preview cleanup
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    env:
+      PR_PREVIEW_PATH: pr-${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+  
+      - name: Build static site
+        run: scripts/pr_previews/builder.py ${{ env.PR_PREVIEW_PATH }} --proof-of-concept
+
+      - name: Switch to gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - name: Deploy to GitHub Pages
+        run: |
+          git add .
+          git commit -m "Deploy PR preview for PR ${{ github.event.pull_request.number }}"
+          git push
