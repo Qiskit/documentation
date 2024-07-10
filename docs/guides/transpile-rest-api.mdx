@@ -5,6 +5,10 @@ description: How to transpile quantum circuits using REST APIs.
 
 # Transpile using REST API
 
+<Admonition type="note">
+    This documentation utilizes the Python `requests` module to demonstrate the Cloud Transpiler API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/api/runtime/tags/jobs) for details.
+</Admonition>
+
 The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum systems, is known as [transpilation](./transpile).
 
 You have two transpilation options: 
@@ -14,10 +18,10 @@ You have two transpilation options:
 * Use the [Cloud Transpiler API](https://cloud-transpiler.quantum.ibm.com/docs).
 
 <Admonition type="note">
-    [Transpilation is necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM Quantum QPUs.
+    [Transpilation is necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM&reg; QPUs.
 </Admonition>
 
-The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM Quantum compute resources. 
+The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM compute resources. 
 
 ## Query the Qiskit transpiler service
 
@@ -26,7 +30,7 @@ Query the [Cloud Transpiler API](https://cloud-transpiler.quantum-computing.ibm.
 There are two ways to invoke the Qiskit transpiler service using REST API: with regular transpilation, and with AI-enhanced transpilation. The following demonstrates both ways to invoke the Cloud Transpiler API.
 
 <Admonition type="note">
-    This experimental service is only available to IBM Quantum Premium Plan users.
+    This experimental service is only available to IBM Quantum&trade; Premium Plan users.
 </Admonition>
 
 <Tabs>
