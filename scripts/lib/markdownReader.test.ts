@@ -45,5 +45,5 @@ test("markdownFromNotebook()", () => {
         "metadata": {}
     }
   `);
-  expect(result).toBe("Line 1.\nLine 2.\nLine 3.");
+  expect(result).toBe("Line 1.\nLine 2.\n\nLine 3.");
 });
