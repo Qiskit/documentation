@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
 import path from "node:path";
 
 import markdownLinkExtractor from "markdown-link-extractor";
@@ -22,6 +21,7 @@ import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
 import { ObjectsInv } from "../api/objectsInv";
+import { readMarkdown } from "../markdownReader";
 import { removePrefix, removeSuffix } from "../stringUtils";
 import { getRoot } from "../fs";
 
@@ -33,19 +33,6 @@ export type ParsedFile = {
   /** External links that this file has to other places. */
   externalLinks: Set<string>;
 };
-
-interface JupyterCell {
-  cell_type: string;
-  source: string[];
-}
-
-export function markdownFromNotebook(rawContent: string): string {
-  const cells = JSON.parse(rawContent).cells as JupyterCell[];
-  return cells
-    .filter((cell) => cell.cell_type === "markdown")
-    .map((cell) => cell.source.join(""))
-    .join("\n");
-}
 
 export function parseAnchors(markdown: string): Set<string> {
   // Anchors generated from markdown titles.
@@ -109,9 +96,7 @@ export async function parseFile(filePath: string): Promise<ParsedFile> {
     };
   }
 
-  const source = await readFile(filePath, { encoding: "utf8" });
-  const markdown =
-    path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
+  const markdown = await readMarkdown(filePath);
   const [internalLinks, externalLinks] = await parseLinks(markdown);
   return { anchors: parseAnchors(markdown), internalLinks, externalLinks };
 }

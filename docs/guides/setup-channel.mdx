@@ -113,6 +113,76 @@ result = job.result()
 print(result)
   ```
 
+<span id="iqp-rest-api"></span>
+## Set up to use IBM Quantum Platform with REST API
+
+Alternatively, you can also access quantum processors with REST APIs, enabling you to work with QPUs using any programming language or framework. 
+
+1. Retrieve your IBM Quantum token from the [IBM Quantum account page](https://quantum.ibm.com/account).
+
+2. If you do not already have a user account, get one at the [IBM Quantum login page.](https://quantum.ibm.com/login)  Your user account is associated with one or more [instances](./instances) (in the form hub / group / project) that give access to IBM Quantum services. Additionally, a unique token is assigned to each account, allowing for IBM Quantum access from Qiskit. The instructions in this section use our default instance.  For instructions to choose a specific instance, see [Connect to an instance](./instances#connect-instance).
+
+    <Admonition type="note">
+      The Instances section in your [IBM Quantum account page](https://quantum.ibm.com/account) lists the instances that you can access.
+    </Admonition>
+
+
+3. Optionally obtain a temporary access token by supplying the API token obtained above. This is especially useful if you would like control over tokens, such as token invalidation. Alternatively, you can work directly with your IBM Quantum Platform API token.
+
+    ```python
+    import requests
+
+    url = 'https://auth.quantum-computing.ibm.com/api/users/loginWithToken'
+    input={'apiToken': "<MY_IBM_QUANTUM_TOKEN>"}
+    auth_response = requests.post(url, json=input)
+    auth_id=auth_response.json()['id']
+    ```
+
+4. View your available backends:
+
+    ```python
+    url_backends = 'https://api.quantum-computing.ibm.com/runtime/backends'
+    headers = {'Content-Type': 'application/json',
+                'x-access-token':auth_id}
+
+    backends_response = requests.get(url_backends, headers=headers)
+
+    print(backends_response.json()['devices'][:5],"...")
+    ```
+
+
+    You can then [transpile circuits using REST API](./transpile-rest-api) and run them using either the [Sampler or the Estimator primitives](./primitives-rest-api).   
+
+5. After your experiments are complete, you can proceed to invalidate your token and then test its invalidation.
+
+    ```python
+    logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
+    headers = {'x-access-token':auth_id}
+    logout_response = requests.post(logout_url, headers=headers)
+    print("response ok?:",logout_response.ok,logout_response.text)
+    ```
+
+    This should yield an error (Error 401) once the access token is invalidated.
+
+    ```python
+    logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
+    headers = {'x-access-token':auth_id}
+    logout_response = requests.post(logout_url, headers=headers)
+
+    if logout_response.status_code == 200:
+        job_id = logout_response.json().get('id')
+        print("Job created:",logout_response.text)
+    elif logout_response.status_code == 401:
+        print("invalid credentials. Access token should be successfully invalidated.")
+    else:
+        print(logout_response.text,"\n")
+        print(f"Error: {logout_response.status_code}")
+    ```
+    Output
+    ```text
+      invalid credentials. Access token should be successfully invalidated.
+      ```
+
 <span id="cloud"></span>
 ## Set up to use IBM Cloud
 
@@ -179,7 +249,7 @@ print(result)
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     service = QiskitRuntimeService()
-    ```
+  ```
 
 ## Next steps
 
