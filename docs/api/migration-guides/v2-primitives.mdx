@@ -225,7 +225,7 @@ circuit.measure(qreg[5:], beta)
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=12)
-pm = generate_preset_pass_manager(backend=backend)
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 sampler = Sampler(backend)
