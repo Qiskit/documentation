@@ -1,0 +1,125 @@
+---
+title: Transpile using REST API
+description: How to transpile quantum circuits using REST APIs.
+---
+
+# Transpile using REST API
+
+<Admonition type="note">
+    This documentation utilizes the Python `requests` module to demonstrate the Cloud Transpiler API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/api/runtime/tags/jobs) for details.
+</Admonition>
+
+The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum systems, is known as [transpilation](./transpile).
+
+You have two transpilation options: 
+
+* Transpile [locally via Qiskit](./defaults-and-configuration-options) before generating the QASM string.
+
+* Use the [Cloud Transpiler API](https://cloud-transpiler.quantum.ibm.com/docs).
+
+<Admonition type="note">
+    [Transpilation is necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM&reg; QPUs.
+</Admonition>
+
+The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM compute resources. 
+
+## Query the Qiskit transpiler service
+
+Query the [Cloud Transpiler API](https://cloud-transpiler.quantum-computing.ibm.com/docs) and provide your QASM string as input. See more details in the [API reference documentation](/api/qiskit-transpiler-service-rest).
+
+There are two ways to invoke the Qiskit transpiler service using REST API: with regular transpilation, and with AI-enhanced transpilation. The following demonstrates both ways to invoke the Cloud Transpiler API.
+
+<Admonition type="note">
+    This experimental service is only available to IBM Quantum&trade; Premium Plan users.
+</Admonition>
+
+<Tabs>
+    <TabItem value="Qiskit Transpiler Service" label="Qiskit Transpiler Service">
+        ```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "ai": "false", # "true", "false" and "auto"
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+        ```
+    </TabItem>
+
+    <TabItem value="Qiskit Transpiler Service with AI" label="Qiskit Transpiler Service with AI-enhanced passes">
+        ```python
+backend='ibm_brisbane' #choose your IBM Backend
+
+headers = {
+    "accept": "application/json",
+    "Authorization": f"Bearer {token}",
+    "Content-Type": "application/json",
+        }
+body= {
+    "qasm_circuits": qasm_string,
+}
+params = {
+        "backend": backend,
+        "optimization_level": 1,
+        "ai": "true", # "true", "false" and "auto"
+        "coupling_map": [],
+        "qiskit_transpile_options": [],
+        "ai_layout_mode": 'OPTIMIZE', # 'KEEP', 'OPTIMIZE', 'IMPROVE'
+        }
+
+resp = requests.post(
+            "https://cloud-transpiler.quantum.ibm.com/transpile",
+            headers=headers,
+            json=body,
+            params=params,
+        )
+        ```
+    </TabItem>
+</Tabs>
+
+
+<Admonition type="note">
+    Since there might be cases where it’s more effective not to use AI-enhanced passes, you can set the `ai` parameter to `ai="auto"` to enable the system to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes, based on the particulars of your circuit. 
+</Admonition>
+
+## Request results based on the `task_id`
+
+Request the transpilation service results using the `task_id`.
+
+```python
+task_id=resp.json()['task_id']
+res = requests.get(url=f"https://cloud-transpiler.quantum.ibm.com/transpile/{task_id}", headers=headers)
+
+if res.json().get("state") == "SUCCESS":
+    resulting_qasm=res.json().get("result")[0].get("qasm")
+
+print(resulting_qasm)
+```
+Output
+```text
+OPENQASM 3.0; include "stdgates.inc"; gate rzx_140040114706704(_gate_p_0) _gate_q_0, _gate_q_1 {   h _gate_q_1;   cx _gate_q_0, _gate_q_1;   rz(pi/4) _gate_q_1;   cx _gate_q_0, _gate_q_1;   h _gate_q_1; } gate rzx_140040024191376(_gate_p_0) _gate_q_0, _gate_q_1 {   h _gate_q_1;   cx _gate_q_0, _gate_q_1;   rz(-pi/4) _gate_q_1;   cx _gate_q_0, _gate_q_1;   h _gate_q_1; } gate ecr _gate_q_0, _gate_q_1 {   rzx_140040114706704(pi/4) _gate_q_0, _gate_q_1;   x _gate_q_0;   rzx_140040024191376(-pi/4) _gate_q_0, _gate_q_1; } bit[2] c; rz(-pi) $0; sx $0; rz(pi/2) $0; rz(-pi/2) $1; sx $1; rz(-pi) $1; ecr $1, $0; rz(-pi/2) $0; sx $0; rz(pi/2) $0; rz(pi/2) $1; sx $1; rz(pi/2) $1; barrier $0, $1; c[0] = measure $0; c[1] = measure $1;
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review detailed [Sampler and Estimator](./primitives-rest-api) primitives examples using REST API.
+    - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+    - Learn how to transpile locally in the [Transpile](./transpile) section.
+</Admonition>

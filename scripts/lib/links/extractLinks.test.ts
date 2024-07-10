@@ -11,42 +11,7 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@jest/globals";
-import { markdownFromNotebook, parseAnchors, parseLinks } from "./extractLinks";
-
-test("markdownFromNotebook()", () => {
-  const result = markdownFromNotebook(`
-    {
-        "cells": [
-            {
-                "attachments": {},
-                "cell_type": "markdown",
-                "metadata": {},
-                "source": [
-                    "Line 1.\\n",
-                    "Line 2."
-                ]
-            },
-            {
-                "cell_type": "code",
-                "execution_count": 1,
-                "metadata": {},
-                "outputs": [],
-                "source": []
-            },
-            {
-                "attachments": {},
-                "cell_type": "markdown",
-                "metadata": {},
-                "source": [
-                    "Line 3."
-                ]
-            }
-        ],
-        "metadata": {}
-    }
-  `);
-  expect(result).toBe("Line 1.\nLine 2.\nLine 3.");
-});
+import { parseAnchors, parseLinks } from "./extractLinks";
 
 test("parseAnchors()", () => {
   const result = parseAnchors(`

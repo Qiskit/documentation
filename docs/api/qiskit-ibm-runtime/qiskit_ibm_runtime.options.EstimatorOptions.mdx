@@ -8,12 +8,12 @@ python_api_name: qiskit_ibm_runtime.options.EstimatorOptions
 
 # EstimatorOptions
 
-<Class id="qiskit_ibm_runtime.options.EstimatorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/options/estimator_options.py#L35-L139" signature="EstimatorOptions(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.EstimatorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/options/estimator_options.py#L35-L134" signature="EstimatorOptions(*args, **kwargs)" modifiers="class">
   Options for V2 Estimator.
 
   **Parameters**
 
-  *   **default\_precision** – The default precision to use for any PUB or `run()` call that does not specify one. Each estimator pub can specify its own precision. If the `run()` method is given a precision, then that value is used for all PUBs in the `run()` call that do not specify their own. Default: 0.015625 (1 / sqrt(4096).
+  *   **default\_precision** – The default precision to use for any PUB or `run()` call that does not specify one. Each estimator pub can specify its own precision. If the `run()` method is given a precision, then that value is used for all PUBs in the `run()` call that do not specify their own. Default: 0.015625 (1 / sqrt(4096)).
 
   *   **default\_shots** –
 
@@ -31,14 +31,12 @@ python_api_name: qiskit_ibm_runtime.options.EstimatorOptions
 
   *   **optimization\_level** –
 
-      How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer processing times.
+      (DEPRECATED) How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer processing times.
 
       *   0: no optimization
       *   1: light optimization
 
-      Refer to the [Configure runtime compilation for Qiskit Runtime](/run/configure-runtime-compilation). for more information about the optimization levels.
-
-      Default: 1.
+      Default: 0.
 
   *   **resilience\_level** –
 
@@ -52,7 +50,7 @@ python_api_name: qiskit_ibm_runtime.options.EstimatorOptions
 
       Default: 1.
 
-  *   **seed\_estimator** – Seed used to control sampling.
+  *   **seed\_estimator** – Seed used to control sampling. Default: `None`.
 
   *   **dynamical\_decoupling** – Suboptions for dynamical decoupling. See [`DynamicalDecouplingOptions`](qiskit_ibm_runtime.options.DynamicalDecouplingOptions "qiskit_ibm_runtime.options.DynamicalDecouplingOptions") for all available options.
 
@@ -132,7 +130,7 @@ python_api_name: qiskit_ibm_runtime.options.EstimatorOptions
 
   ### update
 
-  <Function id="qiskit_ibm_runtime.options.EstimatorOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/options/options.py#L153-L173" signature="update(**kwargs)">
+  <Function id="qiskit_ibm_runtime.options.EstimatorOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/options/options.py#L153-L173" signature="update(**kwargs)">
     Update the options.
 
     **Return type**

@@ -51,6 +51,7 @@ def main() -> None:
         "3000:3000",
         # Needed for ctrl-c to shut down the container.
         "--init",
+        "--rm",
         "qiskit/documentation",
     ]
     subprocess.run(cmd, check=True)

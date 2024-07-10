@@ -413,7 +413,7 @@ options.optimization_level = 2
 options.resilience_level = 2
 
 with Session(service=service, backend=backend) as session:
-    estimator = Estimator(mode=session, options=options)
+    estimator = Estimator(session=session, options=options)
     job = estimator.run(isa_circuit, isa_observable)
     another_job = estimator.run(another_isa_circuit, another_isa_observable)
     result = job.result()
@@ -745,7 +745,7 @@ options.optimization_level = 2
 options.resilience_level = 0
 
 with Session(service=service, backend=backend) as session:
-    sampler = Sampler(mode=session, options=options)
+    sampler = Sampler(session=session, options=options)
     job = sampler.run(isa_circuit)
     another_job = sampler.run(another_isa_circuit)
     result = job.result()
