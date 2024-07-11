@@ -17,7 +17,7 @@ Version 2 of the primitives is introduced with a new base class for both Sampler
 
 The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use  `resilience_level` (if using Estimator) as the simple knob, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
 
-To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives do not perform layout, routing, and translation operations.  See the [transpilation documentation](/guides/transpile) for instructions to transform circuits.
+To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target QPU (quantum processing unit).  Such circuits and observables are referred to as instruction set architecture (ISA) circuits and observables. V2 primitives do not perform layout, routing, and translation operations.  See the [transpilation documentation](/guides/transpile) for instructions to transform circuits.
 
 Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
 
@@ -740,7 +740,7 @@ expvals = job.result().values
 
 ### Use sessions and advanced options
 
-Explore sessions and advanced options to optimize circuit performance on quantum systems.
+Explore sessions and advanced options to optimize circuit performance on QPUs.
 
 {/*Verified EstimatorV2. 2/23 */}
 
@@ -1081,7 +1081,7 @@ print(f" > Metadata: {result.metadata}")
 
 ### Use sessions and advanced options
 
-Explore sessions and advanced options to optimize circuit performance on quantum systems.
+Explore sessions and advanced options to optimize circuit performance on QPUs.
 
 {/*Verified 2/28 */}
 
