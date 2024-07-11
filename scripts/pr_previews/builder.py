@@ -60,7 +60,7 @@ def write_proof_of_concept(dest: Path) -> None:
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Proof of Concept</title>
+            <title>Proof of Concept: {dest.name}</title>
         </head>
         <body>
             <h1>Proof of concept: {dest.name}</h1>
