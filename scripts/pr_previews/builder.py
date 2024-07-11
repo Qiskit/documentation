@@ -59,7 +59,7 @@ def main() -> None:
 def write_proof_of_concept(dest: Path) -> None:
     dest.mkdir(parents=True, exist_ok=True)
     (dest / "index.html").write_text(
-        """\
+        f"""\
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -68,7 +68,7 @@ def write_proof_of_concept(dest: Path) -> None:
             <title>Proof of Concept</title>
         </head>
         <body>
-            <h1>Proof of concept</h1>
+            <h1>Proof of concept: {dest.name}</h1>
         </body>
         </html>
         """
