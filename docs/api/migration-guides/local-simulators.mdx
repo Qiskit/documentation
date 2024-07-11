@@ -16,9 +16,9 @@ The cloud simulators are being retired for several reasons:
 
 Simulators can be useful, but they are too limited to use for research or experimentation:
 
-- Simulators are valuable for understanding small-scale quantum systems, but their usefulness maxes out at around 50 qubits, even with access to high-performance supercomputers. This ceiling comes from the exponential growth in computational resources required to simulate larger quantum systems (review [Massively parallel quantum computer simulator, eleven years later](https://arxiv.org/abs/1805.04708) for the full explanation).  Exploring quantum systems of 100 qubits and more requires hardware.
+- Simulators are valuable for understanding small-scale QPUs (quantum processing units), but their usefulness maxes out at around 50 qubits, even with access to high-performance supercomputers. This ceiling comes from the exponential growth in computational resources required to simulate larger quantum computers (review [Massively parallel quantum computer simulator, eleven years later](https://arxiv.org/abs/1805.04708) for the full explanation).  Exploring quantum computers of 100 qubits and more requires hardware.
 
-- While some simulators offer noise models, it is a very hard problem to capture the entire dynamics of a real QPU. Quantum hardware offers the potential for researchers to confront the challenges inherent in quantum systems, such as noise, errors, and decoherence in a realistic testing environment.
+- While some simulators offer noise models, it is a very hard problem to capture the entire dynamics of a real QPU. Quantum hardware offers the potential for researchers to confront the challenges inherent in quantum computers, such as noise, errors, and decoherence in a realistic testing environment.
 
 </details>
 
@@ -40,7 +40,7 @@ Interacting with quantum hardware grows skills and experience unattainable by on
 
 Successful quantum algorithms must be adapted to exploit the capabilities of quantum hardware, optimizing performance and efficiency.
 
-- Quantum hardware provides a more accurate representation of real-world quantum systems than simulators.
+- Quantum hardware provides a more accurate representation of real-world QPUs than simulators.
 
 - Fine-tuning algorithms for quantum hardware involves adjusting ansatz, circuit implementations, parameters, and configuration to maximize performance.  This process is best achieved through direct experimentation with quantum hardware.
 
@@ -61,7 +61,7 @@ With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to rep
 
 ### Fake backends
 
-The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM Quantum systems by using system snapshots. The system snapshots contain important information about the quantum system, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the system.  The noise model from the snapshot is automatically applied during simulation.
+The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM QPUs by using snapshots. The snapshots contain important information about the QPU, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the QPU.  The noise model from the snapshot is automatically applied during simulation.
 
 ```python
 from qiskit.circuit.library import RealAmplitudes
@@ -123,7 +123,7 @@ with Session(backend=aer_sim) as session:
     result = sampler.run([isa_qc]).result()
 ```
 
-To simulate with noise, specify a system (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that system, and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/guides/build-noise-models).
+To simulate with noise, specify a QPU (quantum hardware) and submit it to Aer.  Aer builds a noise model based on the calibration data from that QPU and instantiates an Aer backend with that model.  If you prefer, you can [build a noise model](/guides/build-noise-models).
 
 Example with noise:
 
@@ -146,7 +146,7 @@ qc.measure_all()
 
 service = QiskitRuntimeService()
 
-# Specify a system to use for the noise model
+# Specify a QPU to use for the noise model
 real_backend = service.backend("ibm_brisbane")
 aer = AerSimulator.from_backend(real_backend)
 
