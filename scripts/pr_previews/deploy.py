@@ -33,7 +33,13 @@ def create_parser() -> ArgumentParser:
 def main() -> None:
     folder: Path = create_parser().parse_args().folder
     if not folder.exists():
-        raise AssertionError(f"Expected {folder} to have been created with the new content")
+        raise AssertionError(
+            f"Expected {folder} to have been created with the new content"
+        )
+
+    starting_branch = run_subprocess(
+        ["git", "rev-parse", "--abbrev-ref", "HEAD"]
+    ).stdout.strip()
 
     run_subprocess(["git", "config", "user.name", "github-actions[bot]"])
     run_subprocess(
@@ -52,6 +58,8 @@ def main() -> None:
     run_subprocess(["git", "add", "."])
     run_subprocess(["git", "commit", "-m", f"Deploy PR preview for {folder}"])
     run_subprocess(["git", "push"])
+
+    run_subprocess(["git", "switch", starting_branch])
 
 
 if __name__ == "__main__":
