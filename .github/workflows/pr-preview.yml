@@ -13,9 +13,9 @@
 name: PR preview
 on:
   pull_request:
-    # paths:
-    #   - "docs/**/*"
-    #   - "public/images/**/*"
+    paths:
+      - "docs/**/*"
+      - "public/images/**/*"
 
 jobs:
   pr-preview:
@@ -63,3 +63,4 @@ jobs:
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
           env_url: ${{ env.PR_PREVIEW_URL }}
+          override: false
