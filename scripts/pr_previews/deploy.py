@@ -55,9 +55,11 @@ def main() -> None:
         shutil.rmtree(folder)
     run_subprocess(["git", "stash", "pop"])
 
-    run_subprocess(["git", "add", "."])
-    run_subprocess(["git", "commit", "-m", f"Deploy PR preview for {folder}"])
-    run_subprocess(["git", "push"])
+    changed_files = run_subprocess(["git", "status", "--porcelain"]).stdout.strip()
+    if changed_files:
+        run_subprocess(["git", "add", "."])
+        run_subprocess(["git", "commit", "-m", f"Deploy PR preview for {folder}"])
+        run_subprocess(["git", "push"])
 
     run_subprocess(["git", "switch", starting_branch])
 
