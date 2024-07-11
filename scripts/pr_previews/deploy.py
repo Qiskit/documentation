@@ -37,10 +37,6 @@ def main() -> None:
             f"Expected {folder} to have been created with the new content"
         )
 
-    starting_branch = run_subprocess(
-        ["git", "rev-parse", "--abbrev-ref", "HEAD"]
-    ).stdout.strip()
-
     run_subprocess(["git", "config", "user.name", "github-actions[bot]"])
     run_subprocess(
         ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"]
@@ -60,8 +56,13 @@ def main() -> None:
         run_subprocess(["git", "add", "."])
         run_subprocess(["git", "commit", "-m", f"Deploy PR preview for {folder}"])
         run_subprocess(["git", "push"])
+        logger.info("Pushed updates to gh-pages branch")
+    else:
+        logger.info("No changed files detected, so no push made to gh-pages")
 
-    run_subprocess(["git", "switch", starting_branch])
+    logger.warning(
+        "The branch is set to gh-pages. You probably want to `git switch` back to your original branch"
+    )
 
 
 if __name__ == "__main__":
