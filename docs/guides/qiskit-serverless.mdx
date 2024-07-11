@@ -126,13 +126,13 @@ Qiskit Runtime custom programs can be easily migrated to Qiskit Serverless via t
 
 Premium Plan users have access to an alpha release of resource management functionality through Qiskit Serverless. This enables automatic selection of quantum hardware for your workloads.
 
-The example below demonstrates how to use `IBMQPUSelector` to automate the process of selecting which qubits will be used from a set of available systems. This illustrates how the selectors can be used within a four-step Qiskit pattern.
+The example below demonstrates how to use `IBMQPUSelector` to automate the process of selecting which qubits will be used from a set of available QPUs. This illustrates how the selectors can be used within a four-step Qiskit pattern.
 
-Instead of manually selecting a system, step 2 of the Qiskit pattern optimizes the circuits for execution by using the QPU selectors from Qiskit Serverless to automatically allocate a system according to desired criteria. Here, `IBMLeastNoisyQPUSelector` finds the system, among the ones available to you through your IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. You can also use the `IBMLeastBusyQPUSelector` to find a system that can support the circuit width but with the shortest queue.
+Instead of manually selecting a QPU, step 2 of the Qiskit pattern optimizes the circuits for execution by using the QPU selectors from Qiskit Serverless to automatically allocate a QPU according to desired criteria. Here, `IBMLeastNoisyQPUSelector` finds the QPU, among the ones available to you through your IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. You can also use the `IBMLeastBusyQPUSelector` to find a QPU that can support the circuit width but with the shortest queue.
 
-For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSelectors` require Qiskit Runtime credentials. The `IBMLeastNoisyQPUSelector` requires a circuit and transpile options specifying how the circuit should be optimized for each system when determining the most optimal QPU and qubit layout. All `IBMQPUSelector`s implement a `get_backend` method, which retrieves the optimal system with respect to the given context. The `get_backend` method also allows for additional filtering of the systems. It is implemented using the same interface as the [QiskitRuntimeService.backends method](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
+For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSelectors` require Qiskit Runtime credentials. The `IBMLeastNoisyQPUSelector` requires a circuit and transpile options specifying how the circuit should be optimized for each QPU when determining the most optimal QPU and qubit layout. All `IBMQPUSelector`s implement a `get_backend` method, which retrieves the optimal QPU with respect to the given context. The `get_backend` method also allows for additional filtering of the QPUs. It is implemented using the same interface as the [QiskitRuntimeService.backends method](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
 
-Then, in step 3 of the pattern, you execute the target circuit on the system chosen by the selector.
+Then, in step 3 of the pattern, you execute the target circuit on the QPU chosen by the selector.
 
 <Tabs>
   <TabItem value="SamplerV2" label="Sampler V2">
@@ -150,14 +150,14 @@ abstract_circuit = random_circuit(
     num_qubits=5, depth=4, measure=True, seed=1234
 )
 
-# Step 2: Optimize the circuit for quantum execution with automatically selected system
+# Step 2: Optimize the circuit for quantum execution with automatically selected QPU
 selector = IBMLeastNoisyQPUSelector(
     service, circuit=abstract_circuit, transpile_options={"optimization_level": 3}
 )
 backend = selector.get_backend(min_num_qubits=127)
 target_circuit = selector.optimized_circuit
 
-## Alternatively, one can automatically select a system according to most available:
+## Alternatively, one can automatically select a QPU according to most available:
 # from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 # from qiskit_serverless_tools.selectors import IBMLeastBusyQPUSelector
 #
@@ -194,14 +194,14 @@ abstract_circuit = random_circuit(
     num_qubits=5, depth=4, measure=True, seed=1234
 )
 
-# Step 2: Optimize the circuit for quantum execution with automatically selected system
+# Step 2: Optimize the circuit for quantum execution with automatically selected QPU
 selector = IBMLeastNoisyQPUSelector(
     service, circuit=abstract_circuit, transpile_options={"optimization_level": 3}
 )
 backend = selector.get_backend(min_num_qubits=127)
 target_circuit = selector.optimized_circuit
 
-## Alternatively, one can automatically select a system according to most available:
+## Alternatively, one can automatically select a QPU according to most available:
 # from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 # from qiskit_serverless_tools.selectors import IBMLeastBusyQPUSelector
 #
