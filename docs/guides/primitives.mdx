@@ -17,7 +17,7 @@ In this context, a *primitive* is the smallest processing instruction, the simpl
 one can create something useful for a given abstraction level.
 
 The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
-As we move toward larger systems and more complex workflows, the focus shifts from interacting with individual
+As we move toward larger QPUs (quantum processing units) and more complex workflows, the focus shifts from interacting with individual
 qubit signals to viewing quantum devices as systems that perform tasks we need.
 
 The two most common tasks quantum computers are used for are sampling quantum states and calculating expectation values.
@@ -36,11 +36,11 @@ The Qiskit Runtime V1 primitives have been deprecated.  For instructions to migr
 The Qiskit primitives are defined by open-source primitive base-classes, from
 which different providers can derive their own Sampler and Estimator implementations. Among the implementations
 using Qiskit, you can find reference primitive implementations for local simulation in the `qiskit.primitives` module.
-Providers like Qiskit Runtime enable access to appropriate systems through native implementations of
+Providers like Qiskit Runtime enable access to appropriate QPUs through native implementations of
 their own primitives.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -51,7 +51,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 ## Benefits of Qiskit primitives
 
-For Qiskit users, primitives let you write quantum code for a specific system without having to explicitly
+For Qiskit users, primitives let you write quantum code for a specific quantum computer without having to explicitly
 manage every detail. In addition, because of the additional layer of abstraction, you might be able to more easily
 access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
 you can leverage the latest advancements in error mitigation and suppression by toggling options such as `resilience_level`, rather than building your own implementation of these techniques.
@@ -267,7 +267,7 @@ probabilities, except they might include negative values, which can occur when u
 ## How to use Qiskit primitives
 
 The `qiskit.primitives` module enables the development of primitive-style quantum programs and was specifically
-designed to simplify switching between different types of systems. The module provides three separate classes
+designed to simplify switching between different types of quantum computers. The module provides three separate classes
 for each primitive type:
 
 1. `StatevectorSampler` and `StatevectorEstimator`
@@ -276,11 +276,11 @@ These classes are reference implementations of both primitives and use the simul
 
 2. `BaseSampler` and `BaseEstimator`
 
-These are abstract base classes that define a common interface for implementing primitives. All other classes in the `qiskit.primitives` module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific system provider. These classes may also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
+These are abstract base classes that define a common interface for implementing primitives. All other classes in the `qiskit.primitives` module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific provider. These classes may also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
 
 3. `BackendSampler` and `BackendEstimator`
 
-If a provider does not support primitives natively, you can use these classes to “wrap” any system into a primitive. Users can write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which system to run on.
+If a provider does not support primitives natively, you can use these classes to “wrap” any quantum computer into a primitive. Users can write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which quantum computer to run on.
 
 The Qiskit Runtime primitives provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service.
 
