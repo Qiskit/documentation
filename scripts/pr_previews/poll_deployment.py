@@ -18,12 +18,10 @@ import time
 from argparse import ArgumentParser
 from urllib.parse import urlparse
 
+from utils import configure_logging
+
+
 logger = logging.getLogger(__name__)
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    datefmt="%H:%M:%S",
-)
 
 INITIAL_DELAY_S = 20
 TIMEOUT_S = 60
@@ -70,4 +68,5 @@ def get_status(url: str) -> int:
 
 
 if __name__ == "__main__":
+    configure_logging()
     main()

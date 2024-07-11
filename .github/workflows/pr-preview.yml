@@ -24,7 +24,7 @@ jobs:
     if: github.event.pull_request.head.repo.full_name == github.repository
     env:
       PR_PREVIEW_PATH: pr-${{ github.event.pull_request.number }}
-      PR_PREVIEW_URL: https://qiskit.github.io/documentation/pr-${{ github.event.pull_request.number }}
+      PR_PREVIEW_URL: https://qiskit.github.io/documentation/pr-${{ github.event.pull_request.number }}/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -41,22 +41,16 @@ jobs:
           step: start
           token: ${{ secrets.GITHUB_TOKEN }}
           env: pr_preview
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Build static site
         run: scripts/pr_previews/builder.py ${{ env.PR_PREVIEW_PATH }} --proof-of-concept
 
       - name: Deploy to GitHub Pages
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email github-actions[bot]@users.noreply.github.com
-          git fetch origin gh-pages
-          git switch gh-pages
-          git add .
-          git commit -m "Deploy PR preview for PR ${{ github.event.pull_request.number }}"
-          git push
+        run: scripts/pr_previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
 
       - name: Determine deployment result
-        run: scripts/pr_previews/builder.py ${{ env.PR_PREVIEW_URL }}
+        run: scripts/pr_previews/poll_deployment.py ${{ env.PR_PREVIEW_URL }}
       - name: Report deployment status
         uses: bobheadxi/deployments@v1
         if: always()

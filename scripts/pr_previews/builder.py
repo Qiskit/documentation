@@ -16,22 +16,17 @@ from __future__ import annotations
 
 import logging
 import shutil
-import subprocess
 from argparse import ArgumentParser
 from contextlib import contextmanager
 from typing import Iterator
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+from utils import configure_logging, run_subprocess
 
 IMAGE_NAME = "iqp-channel-docs-preview-builder"
 
-logger = logging.getLogger()
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    datefmt="%H:%M:%S",
-)
+logger = logging.getLogger(__name__)
 
 
 def create_parser() -> ArgumentParser:
@@ -79,8 +74,8 @@ def write_proof_of_concept(dest: Path) -> None:
 def yarn_build(root_dir: Path) -> None:
     # This ensures that dependencies like Sharp are properly installed. Most
     # dependencies, like the first-party deps, will already have been installed.
-    _run_subprocess(["yarn", "install"], cwd=root_dir, stream_output=True)
-    _run_subprocess(["yarn", "build"], cwd=root_dir, stream_output=True)
+    run_subprocess(["yarn", "install"], cwd=root_dir, stream_output=True)
+    run_subprocess(["yarn", "build"], cwd=root_dir, stream_output=True)
 
 
 def save_output(root_dir: Path, dest: Path) -> None:
@@ -130,38 +125,14 @@ def _copy_local_content(root_dir: Path) -> None:
 
 
 def _extract_docker_files(root_dir: Path) -> None:
-    container_id = _run_subprocess(["docker", "create", IMAGE_NAME]).stdout.strip()
+    container_id = run_subprocess(["docker", "create", IMAGE_NAME]).stdout.strip()
     try:
-        _run_subprocess(["docker", "cp", f"{container_id}:/home/node/app/.", root_dir])
+        run_subprocess(["docker", "cp", f"{container_id}:/home/node/app/.", root_dir])
     finally:
-        _run_subprocess(["docker", "rm", container_id])
+        run_subprocess(["docker", "rm", container_id])
     logger.info("Docker contents extracted")
 
 
-def _run_subprocess(
-    cmd: list[str],
-    *,
-    cwd: Path | None = None,
-    stream_output: bool = False,
-) -> subprocess.CompletedProcess:
-    output_dest = None if stream_output else subprocess.PIPE
-    if stream_output:
-        logger.info(f"Starting subprocess: {', '.join(cmd)}")
-    result = subprocess.run(
-        cmd,
-        cwd=cwd,
-        stdout=output_dest,
-        stderr=output_dest,
-        text=True,
-    )
-    if result.returncode == 0:
-        return result
-    logger.error(f"Subprocess failed with code {result.returncode}: {cmd}")
-    if not stream_output:
-        logger.error(f"stdout: {result.stdout}")
-        logger.error(f"stderr: {result.stderr}")
-    raise SystemExit()
-
-
 if __name__ == "__main__":
+    configure_logging()
     main()
