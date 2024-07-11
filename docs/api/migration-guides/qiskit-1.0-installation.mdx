@@ -11,7 +11,7 @@ Qiskit 1.0 uses a different packaging structure than previous Qiskit versions an
 Do not try to upgrade an existing Python virtual environment to Qiskit 1.0 in-place.
 </Admonition>
 
-This guide is divided into the following sections.  You only need to review the sections that are relevant to you. 
+This guide is divided into the following sections.  You only need to review the sections that are relevant to you.
 
 * Users should read the [For users](#for-users) section.
 * If you develop or maintain a package that depends on Qiskit, read the [For developers](#for-developers) section.
@@ -88,7 +88,7 @@ PowerShell is used for Windows commands.
    pip install 'qiskit>=1'
    ```
 
-   You can optionally include additional packages by including them as arguments.  For example: 
+   You can optionally include additional packages by including them as arguments.  For example:
 
    ```bash
    pip install 'qiskit>=1' jupyterlab pandas matplotlib
@@ -113,7 +113,7 @@ PowerShell is used for Windows commands.
    Do not install packages that are incompatible with Qiskit 1.0 on this virtual environment.  If you need to use such packages, install them in a separate virtual environment with Qiskit 0.45 or 0.46.
    </Admonition>
 
-   If you have an existing environment, you can use [`pipdeptree`](https://github.com/tox-dev/pipdeptree/blob/main/README.md#pipdeptree) to query the requirements of your installed packages to see if they require `qiskit<1`.  For any that require `qiskit<1`, check for updates that make it compatible with Qiskit 1.0. 
+   If you have an existing environment, you can use [`pipdeptree`](https://github.com/tox-dev/pipdeptree/blob/main/README.md#pipdeptree) to query the requirements of your installed packages to see if they require `qiskit<1`.  For any that require `qiskit<1`, check for updates that make it compatible with Qiskit 1.0.
 
    If you encounter issues, consult the [troubleshooting](#troubleshooting) section, or ask on [Qiskit Slack](https://qisk.it/join-slack). If you think there is a bug, you can [create an issue against Qiskit](https://github.com/Qiskit/qiskit/issues/new/choose).
 
@@ -157,7 +157,7 @@ If you maintain a package that depends on Qiskit, use this information to learn 
 We recommend that your package requires `qiskit>=0.45,<1` (or other appropriate lower bound) if you are not certain whether the package is compatible with Qiskit 1.0.
 This is [the same recommendation being made for NumPy 2.0 compatibility.](https://github.com/numpy/numpy/issues/24300)
 
-A Qiskit 1.0 release candidate, version 1.0.0rc1, will be released on 1 February 2024. 
+A Qiskit 1.0 release candidate, version 1.0.0rc1, will be released on 1 February 2024.
 You should test your package against this, and as soon as possible, release a new (compatible) version of your package with its upper requirement unpinned.
 
 ### Recommendations for testing against Qiskit 1.0
@@ -200,7 +200,7 @@ To upgrade an environment in situ, follow these steps:
   pip uninstall --yes qiskit qiskit-terra
   ```
 
-  At this point, the environment's `site-packages` should not contain a `qiskit` directory. You don't need to verify this on every CI run, but if you are debugging a script locally, follow these steps to verify: 
+  At this point, the environment's `site-packages` should not contain a `qiskit` directory. You don't need to verify this on every CI run, but if you are debugging a script locally, follow these steps to verify:
   1. Run the following command from within the `python` of the virtual environment:
 
     ```python
@@ -209,7 +209,7 @@ To upgrade an environment in situ, follow these steps:
     ```
   2. Verify that those directories do not contain a `qiskit` directory. If they do, you likely have namespace-extending packages installed, and you should find these and remove the dependency.
 
-3. Install the target version of Qiskit 1.0 with one of these commands: 
+3. Install the target version of Qiskit 1.0 with one of these commands:
 
   * After the  desired release candidate has been published:
     ```bash
@@ -361,7 +361,7 @@ The following words have special meanings:
 * *module*: A single Python file.
 
 * *package*: A directory containing an `__init__.py` and other files or packages that Python can read.
-  This is the actual code as installed on your system, and is what executes when you run `import something`.
+  This is the actual code as installed on your computer, and is what executes when you run `import something`.
   Python considers any directory that is on the search path to be something you can import (and will import many additional items).
 
   This is not the same object that you `pip install` (which is a *distribution*), but typically what you `pip install` and what you `import` have the same name.
@@ -431,7 +431,7 @@ Starting with version 1.0, Qiskit comprises a single distribution, called `qiski
 This is the normal structure of Python code, and is the simplest and least error-prone structure.
 
 The `qiskit-terra` distribution on PyPI will never be updated to version 1.0 or beyond; it is entirely superseded by `qiskit`.
-The name `qiskit-terra` is no longer involved in the installation. 
+The name `qiskit-terra` is no longer involved in the installation.
 However, the `qiskit-terra` package is not being removed from PyPI, and we will leave its most recent version in a working state, so old scientific code and legacy packages can more easily continue to use it.
 
 Unfortunately, because of the metapackage legacy and deficiencies in `pip` as a package manager, it is not possible for us to make a completely smooth upgrade path for users to Qiskit 1.0, especially while some packages depend on earlier versions of Qiskit, and some require only Qiskit 1.0+.
@@ -514,7 +514,7 @@ You can also read [the documentation from the Python packaging authority about c
 
 ### `pip` succeeds but prints errors after running `pip install` commands
 
-You might see an error in the output of `pip`, such as the following: 
+You might see an error in the output of `pip`, such as the following:
 
 ```text
 ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behavior is the source of the following dependency conflicts.
