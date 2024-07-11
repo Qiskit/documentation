@@ -7,7 +7,7 @@ description: Introduction to transpiling quantum circuits in the Qiskit SDK.
 
 # Introduction to transpilation
 
-Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device, and optimize the circuit instructions for execution on noisy quantum systems.  This documentation covers the tooling and workflows for local transpilation available to all Qiskit users, as well as for the cloud-based [Qiskit transpiler service](qiskit-transpiler-service) available to Premium Plan users.  If you're using primitives and are only interested in the default transpilation options provided by the Qiskit Runtime service, read the [Configure runtime compilation for Qiskit Runtime](./configure-error-suppression) topic.
+Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device, and optimize the circuit instructions for execution on noisy quantum computers.  This documentation covers the tooling and workflows for local transpilation available to all Qiskit users, as well as for the cloud-based [Qiskit transpiler service](qiskit-transpiler-service) available to Premium Plan users.  If you're using primitives and are only interested in the default transpilation options provided by the Qiskit Runtime service, read the [Configure runtime compilation for Qiskit Runtime](./configure-error-suppression) topic.
 
 The process of transpilation takes a circuit that contains your instructions:
 
@@ -37,9 +37,9 @@ In addition to reducing the depth and complexity of quantum circuits, the transp
 Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
 
 1. `init` - This pass runs any initial passes that are required before the circuit can be embedded into the system.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. By default, this validates the circuit instructions and translates multi-qubit gates into single- and two-qubit gates.
-1. `layout` - This pass applies a *layout*, mapping the virtual qubits in your circuit to the system's physical qubits.
-1. `routing` - This pass runs after a layout has been applied and will inject gates (that is, SWAPs) in the original circuit to make it compatible with the system's connectivity (coupling map).
-1. `translation` - This pass translates the gates in the circuit to the system's basis set of instructions.
+1. `layout` - This pass applies a *layout*, mapping the virtual qubits in your circuit to the QPU's physical qubits.
+1. `routing` - This pass runs after a layout has been applied and will inject gates (that is, SWAPs) in the original circuit to make it compatible with the QPU's connectivity (coupling map).
+1. `translation` - This pass translates the gates in the circuit to the QPU's basis set of instructions.
 1. `optimization` - This pass runs an optimization loop to find more efficient decompositions of the quantum circuit until a condition is met (such as a fixed depth).
 1. `scheduling` - This stage is for any hardware-aware scheduling passes. If the user specifies a scheduling method, this stage accounts for all idle time in the circuit.
 
