@@ -9,7 +9,7 @@ description: Specify options when building with Qiskit Runtime primitives
 When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [options classes section](#options-classes) for details.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -65,7 +65,6 @@ estimator = Estimator(mode=backend)
 
 # Setting options after primitive initialization
 # This uses auto complete.
-estimator.options.optimization_level = 1
 estimator.options.default_shots = 4000
 ```
   </TabItem>
@@ -74,7 +73,7 @@ estimator.options.default_shots = 4000
 When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 ```python
-estimator = Estimator(mode=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 result = estimator.run(circuit, observable).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
@@ -131,7 +130,7 @@ sampler.run([circuit1, circuit2], shots=128)
   <TabItem value="PrimV1" label="V1 primitives">
 You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the options category. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid).
 ```python
-estimator = Estimator(mode=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 result = estimator.run(circuit, observable, shots=1024).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
@@ -176,7 +175,7 @@ from qiskit_ibm_runtime import Estimator, Options
 options = Options()
 options.execution.shots = 1024
 
-estimator = Estimator(mode=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 ```
 
 If you need to modify the number of shots set between iterations (primitive calls), you can set the
@@ -185,7 +184,7 @@ shots directly in the `run()` method. This overwrites the initial `shots` settin
 ```python
 from qiskit_ibm_runtime import Estimator
 
-estimator = Estimator(mode=backend)
+estimator = Estimator(backend=backend)
 
 estimator.run(circuits=circuits, observables=observables, shots=50)
 
@@ -206,33 +205,14 @@ For more information about the primitive options, refer to the
 
 The Qiskit Runtime primitives expect to be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled their circuits to respect the native gate set and connectivity constraints of the target system.
 
-The Qiskit Runtime primitives may perform additional runtime compilation to optimize circuits, with the degree of optimization controlled by an optimization level option. The optimization level you choose affects the compilation strategy, with higher levels invoking more expensive or aggressive optimizations.
+In the V2 primitives, you can explicitly enable and disable individual error mitigation/suppression methods, such as dynamical decoupling. For an example, see the
+[Runtime compilation topic](configure-error-suppression#transpilation-table).
 
-See the Optimization level table in the
-[Runtime compilation topic](./configure-error-suppression#set-the-optimization-level) for further details.
-
-<Tabs>
-  <TabItem value="PrimV2" label="Estimator V2">
-   The optimization level option is a "first-level option".  Sampler V2 does not currently support `optimization_level`.
-
-```python
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
-
-estimator = Estimator(mode=backend, options={"optimization_level": 1})
-
-# or..
-estimator.options.optimization_level = 1
-```
-
-To turn off all optional runtime compilation steps, you must set `optimization_level=0`.  V2 primitives do not support any advanced transpilation options.
-  </TabItem>
-
-  <TabItem value="PrimV1" label="V1 primitives">
-    <Admonition>
-    In the currently deployed Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+<Admonition type="note">
+    In the V1 Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
 
-The optimization level option is a "first-level option", and can be set as follows:
+The optimization level option is a "first-level option", and can be set as follows (V1 primitives only):
 
 ```python
 from qiskit_ibm_runtime import Estimator, Options
@@ -243,7 +223,7 @@ options = Options(optimization_level=1)
 options = Options()
 options.optimization_level = 1
 
-estimator = Estimator(mode=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 ```
 
 Turning off all optional runtime compilation steps requires a "second-level option", as follows:
@@ -254,13 +234,11 @@ from qiskit_ibm_runtime import Estimator, Options
 options = Options()
 options.transpilation.skip_transpilation = True
 
-estimator = Estimator(mode=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 ```
 
 For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
 [Runtime compilation topic](./configure-error-suppression#transpilation-table).
-  </TabItem>
-</Tabs>
 
 ### Error mitigation
 
@@ -298,7 +276,7 @@ options = Options(resilience_level = 2)
 options = Options()
 options.resilience_level = 2
 
-estimator = Estimator(mode=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 ```
 </TabItem>
 </Tabs>

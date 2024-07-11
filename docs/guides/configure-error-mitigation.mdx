@@ -41,7 +41,7 @@ expectation values.
 </Admonition>
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -90,7 +90,7 @@ applied at each resilience level.
 </Admonition>
 
 <Admonition type="note">
-  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, do not specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
 
   Setting `optimization_level` or `resilience_level` equal to 0 will result in an
   execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
@@ -334,7 +334,7 @@ options.resilience_level = 2
 options.optimization_level = 1
 backend = service.least_busy(operational=True, simulator=False)
 
-estimator = Estimator(options=options, mode=backend)
+estimator = Estimator(options=options, backend=backend)
 ```
 
 <Admonition type="info" title="Note">
@@ -474,7 +474,7 @@ psi1_H1 = job.result()
 <span id="no-error-mitigation"></span>
 ## Turn off all error mitigation and error suppression
 
-You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0` and `optimization_level = 0`. For SamplerV2, no changes are necessary because no error mitigation or suppression options are enabled by default.
+You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0`. For SamplerV2, no changes are necessary because no error mitigation or suppression options are enabled by default.
 
 Example:
 
@@ -496,7 +496,6 @@ options = estimator.options
 
 # Turn off all error mitigation and suppression
 options.resilience_level = 0
-options.optimization_level = 0
 ```
 
 ## Next steps
@@ -504,6 +503,6 @@ options.optimization_level = 0
 <Admonition type="tip" title="Recommendations">
   - Walk through an example that uses error mitigation in the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
   - Learn more about [Q-CTRL](https://docs.q-ctrl.com/q-ctrl-embedded).
-  - Learn how to transpile locally in the [Transpile](./transpile) section.
+  - Learn how to transpile locally in the [Transpile](./transpile/) section.
   - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>

@@ -3,60 +3,71 @@
 This folder contains the content for our tutorials, which appear on [IBM
 Quantum Learning](https://learning.quantum.ibm.com/catalog/tutorials).
 
-## Edit existing tutorials and deploy
+## Editing and deploying existing tutorials
 
-To deploy changes to tutorials, run the [Deploy
+Each tutorial has its own folder in `tutorials/`. Within that folder is the
+content notebook (ending in `.ipynb`) and an optional `images` folder. These
+are linked to the learning platform through the `learning-api.conf.yaml` file,
+which also contains the tutorials' metadata.
+
+Once your changes are in `main`, follow the steps in "Deploy tutorials" to
+publish them.
+
+> [!Note]
+>
+> ### Gotcha: Top-level headings
+>
+> The learning platform ignores the top-level heading of the notebook. These
+> headings are only included in the notebook for writers' convenience. If you
+> want to change the title of a notebook, edit the title in
+> `tutorials/learning-api.conf.yaml`.
+
+> [!Warning]
+>
+> The uploader identifies tutorials by their slugs. If you change a slug in
+> `tutorials/learning-api.conf.yaml`, the uploader will ignore the old tutorial
+> and try to create a new tutorial with the new slug. If you need to change a
+> slug, the best approach is to create a new tutorial with the new slug (see
+> "Deploy tutorials"), set up a redirect with the learning platform team, then
+> delete the old tutorial (see "Deleting a tutorial").
+
+## Add a new tutorial
+
+To create a new tutorial, add a new notebook to the `tutorials/` folder and
+make a new entry in `learning-api.conf.yaml`. When you're ready to publish,
+merge to `main` and follow the steps in "Deploy tutorials".
+
+The next time the deploy action is run, the tutorial will be created on the
+platform, so make sure to only merge the change to `main` when you're ready for
+the tutorial to go live.
+
+## Deploy tutorials
+
+Once your changes are in `main`, you can deploy them by running the [Deploy
 tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
-workflow. This will push the notebooks on the main branch to the environment
-you select.
+workflow. This will push **all** notebooks and their metadata from the main
+branch to the environment you select.
 
-You should always start with deploying to "Learning platform (staging)". This
-will deploy to https://learning.www-dev.quantum.ibm.com/catalog/tutorials.
-Check that your tutorial renders properly.
+Start by deploying to the environment "Learning platform (staging)" and check
+that your tutorial renders properly. Ask a teammate for the staging link if you
+need it.
 
 Once you are happy with staging, rerun the [Deploy
 tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
-workflow, but this time choose "Learning platform (production)". Warning: this will
-update every non-network tutorial to use the version from the `main` branch. That means
-that if another author had a tutorial that was merged to `main` but not yet ready to go live
-to production, you might accidentally deploy their tutorial. So, before deploying to
-production, check with the team that it is okay to deploy.
+workflow, but this time choose "Learning platform (production)".
 
 After deploying to production, check https://learning.quantum.ibm.com/catalog/tutorials
 to ensure your tutorial is working correctly.
 
-## Gotcha: tutorial headings ignored
+## Deleting a tutorial
 
-One potential gotcha is that the learning platform ignores the top-level
-heading of the notebook. These headings are only included in the notebook for
-writers' convenience. If you want to change the title of a notebook, find the
-page on https://learning-api.quantum.ibm.com/admin and change its title
-there. Make sure to update the title in the notebook too. Because the title determines the URL, inform someone on the infrastructure team well in advance so they can create a redirect.
+Before deleting a tutorial, make sure appropriate redirects are set up. Speak
+to the learning platform team to set up a redirect.
 
-## Add new tutorials and deploy
+To delete a tutorial, first remove its entry from
+`tutorials/learning-api.conf.yaml`. This will **not** delete the tutorial from
+the learning platform, but it will stop the uploader trying to create or update
+that tutorial.
 
-Each tutorial has its own folder in `tutorials/`. Within that folder is the content notebook
-(ending in `.ipynb`) and an optional `images` folder.
-
-To add a new tutorial to the learning platform, go to
-https://learning-api.quantum.ibm.com/admin/ and choose "Create item" (the blue
-`+` in the top-right corner). Enter all the information, but leave the content
-field blank. This will create the tutorial in "draft" mode.
-
-Once you've added the tutorial, copy the tutorial's URL relative to `content`
-(that is, the URL after `https://learning-api.quantum.ibm.com/admin/content/`).
-The copied URL should be of the form `tutorials/<UUID>`. Next, make a new entry
-in the `learning-api.conf.yaml` file in this folder. Set the `path` attribute
-to the name of the tutorial folder in this repo, and `urlProduction` to the
-tutorial ID you copied earlier. Repeat the same process for the staging
-environment (https://learning-api-dev.quantum.ibm.com/admin/).
-
-Next, you will need to add the tutorial to our API token permissions. To do
-that, contact Abdón Rodríguez and ask to add the tutorial IDs to the
-Qiskit/documentation API keys.
-
-To push content from this repo to the learning platform, run the [Deploy
-tutorials](https://github.com/Qiskit/documentation/actions/workflows/deploy-tutorials.yml)
-workflow. This will push the content of **all** tutorials from the main branch.
-Once your content is uploaded, you can go back to the admin panel for that
-tutorial and publish the lesson to take it out of draft mode.
+Next, have someone with the correct permissions go into the learning CMS and
+set the page to "archived". This will take the page off the learning platform.

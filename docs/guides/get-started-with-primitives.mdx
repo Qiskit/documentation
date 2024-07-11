@@ -9,7 +9,7 @@ description: How to use the Estimator and Sampler primitives in Qiskit Runtime.
 The steps in this topic describes how to set up primitives, explore the options you can use to configure them, and invoke them in a program.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -20,7 +20,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 </Admonition>
 
 <Admonition type="note">
-    While this documentation uses the primitives from Qiskit Runtime, which allow you to use IBM&reg; backends, the primitives can be run on any provider by using the [backend primitives](#backend) instead.  Additionally, you can use the *reference* primitives to run on a local statevector simulator.  See [Exact simulation with Qiskit primitives](./simulate-with-qiskit-sdk-primitives) for details.
+    While this documentation uses the primitives from Qiskit Runtime, which allow you to use IBM&reg; backends, the primitives can be run on any provider by using the [backend primitives](#backend) instead.  Additionally, you can use the *reference* primitives to run on a local statevector simulator.  See [Exact simulation with Qiskit primitives](simulate-with-qiskit-sdk-primitives) for details.
 </Admonition>
 
 <span id="start-estimator"></span>
@@ -32,7 +32,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
 
-Follow the steps in the [Install and set up topic](./install-qiskit) if you don't already have an account.
+Follow the steps in the [Install and set up topic](install-qiskit) if you don't already have an account.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
@@ -73,7 +73,7 @@ isa_observable = observable.apply_layout(isa_circuit.layout)
 
 ### 3. Initialize Qiskit Runtime Estimator
 
-When you initialize the Estimator, pass in the system or simulator you previously selected as the target.
+When you initialize the `Estimator`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
 To use the Estimator V2, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
 
@@ -91,7 +91,7 @@ estimator = Estimator(mode=backend)
 ```python
 from qiskit_ibm_runtime import Estimator
 
-estimator = Estimator(mode=backend)
+estimator = Estimator(backend=backend)
 ```
   </TabItem>
 </Tabs>
@@ -153,7 +153,7 @@ print(f"  > Metadata: {result.metadata[0]}")
 
 Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
 
-Follow the steps in the [Install and set up topic](./install-qiskit) if you don't already have an account set up.
+Follow the steps in the [Install and set up topic](install-qiskit) if you don't already have an account set up.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -188,7 +188,7 @@ isa_circuit = pm.run(circuit)
 
 ### 3. Initialize the Qiskit Runtime Sampler
 
-When you initialize the `Sampler`, pass in the simulator or system you previously selected as the target.
+When you initialize the `Sampler`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
 To use the Sampler V2, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backward compatibility.
 
@@ -205,7 +205,7 @@ sampler = Sampler(mode=backend)
     ```python
 from qiskit_ibm_runtime import Sampler
 
-sampler = Sampler(mode=backend)
+sampler = Sampler(backend=backend)
 ```
   </TabItem>
 </Tabs>
@@ -262,7 +262,7 @@ print(f"  > Metadata: {result.metadata[0]}")
 <span id="backend"></span>
 ## Get started with the backend primitives
 
-The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler). Likewise, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). Equivalent implementations in V2 are coming soon.
+The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler). Likewise, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator). Equivalent implementations in V2 are coming soon.
 
 Some providers implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#provider) for more details).
 
@@ -291,10 +291,10 @@ sampler = BackendSampler(backend)
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Learn how to [test locally](./local-testing-mode) before running on quantum computers.
+    - Learn how to [test locally](local-testing-mode) before running on quantum computers.
     - Review detailed [primitives examples.](primitives-examples)
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
-    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Learn how to transpile locally in the [Transpile](transpile/) section.
     - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>

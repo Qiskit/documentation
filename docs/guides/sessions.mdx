@@ -83,6 +83,7 @@ x0 = 2 * np.pi * np.random.random(num_params)
 
 session = Session(backend=backend)
 
+# If using qiskit-ibm-runtime earlier than 0.24.0, change `mode=` to `session=`
 estimator = Estimator(mode=session, options={"shots": int(1e4)})
 res = minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method="cobyla")
 

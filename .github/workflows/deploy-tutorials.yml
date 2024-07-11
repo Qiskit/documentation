@@ -25,15 +25,14 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.11"
-      - name: Install tool
-        run: pip install ./scripts/ibm-quantum-learning-uploader
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
       - name: Upload tutorials
-        run: |
-          cd tutorials
-          sync-lessons
+        run: npm run tutorial:sync
         env:
           LEARNING_API_TOKEN: ${{ secrets.LEARNING_API_TOKEN }}
-          LEARNING_API_ENVIRONMENT: ${{ vars.LEARNING_API_ENVIRONMENT }}
+          LEARNING_API_URL: ${{ vars.LEARNING_API_URL }}
