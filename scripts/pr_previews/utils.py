@@ -66,4 +66,4 @@ def run_subprocess(
     if not stream_output:
         logger.error(f"stdout: {result.stdout}")
         logger.error(f"stderr: {result.stderr}")
-    raise SystemExit()
+    raise SystemExit(1)
