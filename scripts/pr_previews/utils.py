@@ -32,6 +32,7 @@ def run_subprocess(
     cmd: list[str],
     *,
     cwd: Path | None = None,
+    env: dict[str, str] | None = None,
     stream_output: bool = False,
 ) -> subprocess.CompletedProcess:
     output_dest = None if stream_output else subprocess.PIPE
@@ -40,6 +41,7 @@ def run_subprocess(
     result = subprocess.run(
         cmd,
         cwd=cwd,
+        env=env,
         stdout=output_dest,
         stderr=output_dest,
         text=True,

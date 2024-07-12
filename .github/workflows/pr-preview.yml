@@ -44,7 +44,11 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Build static site
-        run: scripts/pr_previews/builder.py ${{ env.PR_PREVIEW_PATH }} --proof-of-concept
+        run: >
+          scripts/pr_previews/builder.py
+          ${{ env.PR_PREVIEW_PATH }}
+          --basepath /documentation/${{ env.PR_PREVIEW_PATH }} 
+          --proof-of-concept
 
       - name: Deploy to GitHub Pages
         run: scripts/pr_previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
