@@ -49,10 +49,9 @@ def main() -> None:
         f"{PWD}/public:/home/node/app/packages/preview/public",
         "-p",
         "3000:3000",
-        "-p",
-        "5001:5001",
         # Needed for ctrl-c to shut down the container.
         "--init",
+        "--rm",
         "qiskit/documentation",
     ]
     subprocess.run(cmd, check=True)
