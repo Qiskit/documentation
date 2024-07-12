@@ -7,11 +7,15 @@ description: An overview of the available execution modes in Qiskit Runtime; ses
 
 There are several ways to run workloads, depending on your needs.
 
-**Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer.
+<Admonition type="note">
+The `mode` option is only available for V2 primitives and requires `qiskit-ibm-runtime` 0.24 or later.
+</Admonition>
 
-[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access. See [Run jobs in a session](./run-jobs-session) for examples.
+**Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](primitives-examples) for examples.
 
-[**Batch mode**](run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.
+[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access.  To run in session mode, specify `mode=session` when instantiating a primitive or run the job in a session context manager. See [Run jobs in a session](run-jobs-session) for examples.
+
+[**Batch mode**](run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundle of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.   To run in batch mode, specify `mode=batch` when instantiating a primitive or run the job in a batch context manager. See [Run jobs in a batch](run-jobs-batch) for examples.
 
 The differences are summarized in the following table:
 
@@ -31,7 +35,7 @@ To ensure the most efficient use of the execution modes, the following practices
 
     A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
 
-- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#partition) or [session](./run-jobs-session#two-vqe) execution mode.
+- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#partition) or [session](run-jobs-session#two-vqe) execution mode.
 
 The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because it can reduce wall clock time.
 
