@@ -26,20 +26,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       with:
         python-version: "3.9"
-        cache: "pip"
-
     - name: Install Python packages
       shell: bash
       run: pip install tox qiskit-ibm-runtime
-
-    - name: Cache tox environment
-      uses: actions/cache@v3
-      with:
-        path: ".tox"
-        key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
     - name: Save IBM Quantum account
       if: ${{ inputs.ibm-quantum-token != '' }}

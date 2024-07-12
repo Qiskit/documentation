@@ -8,7 +8,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
 # ScheduleBlock
 
-<Class id="qiskit.pulse.ScheduleBlock" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L827-L1624" signature="qiskit.pulse.ScheduleBlock(name=None, metadata=None, alignment_context=None)" modifiers="class">
+<Class id="qiskit.pulse.ScheduleBlock" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L818-L1616" signature="qiskit.pulse.ScheduleBlock(name=None, metadata=None, alignment_context=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
   Time-ordered sequence of instructions with alignment context.
@@ -200,7 +200,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### append
 
-  <Function id="qiskit.pulse.ScheduleBlock.append" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1203-L1262" signature="append(block, name=None, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.append" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1194-L1253" signature="append(block, name=None, inplace=True)">
     Return a new schedule block with `block` appended to the context block. The execution time is automatically assigned when the block is converted into schedule.
 
     **Parameters**
@@ -224,7 +224,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### assign\_parameters
 
-  <Function id="qiskit.pulse.ScheduleBlock.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1417-L1454" signature="assign_parameters(value_dict, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1408-L1445" signature="assign_parameters(value_dict, inplace=True)">
     Assign the parameters in this schedule according to the input.
 
     **Parameters**
@@ -249,7 +249,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### assign\_references
 
-  <Function id="qiskit.pulse.ScheduleBlock.assign_references" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1456-L1534" signature="assign_references(subroutine_dict, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.assign_references" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1447-L1525" signature="assign_references(subroutine_dict, inplace=True)">
     Assign schedules to references.
 
     It is only capable of assigning a schedule block to immediate references which are directly referred within the current scope. Let’s see following example:
@@ -307,7 +307,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### ch\_duration
 
-  <Function id="qiskit.pulse.ScheduleBlock.ch_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1194-L1201" signature="ch_duration(*channels)">
+  <Function id="qiskit.pulse.ScheduleBlock.ch_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1185-L1192" signature="ch_duration(*channels)">
     Return the time of the end of the last instruction over the supplied channels.
 
     **Parameters**
@@ -321,7 +321,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### draw
 
-  <Function id="qiskit.pulse.ScheduleBlock.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1649-L1722" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, plot_barrier=True, plotter='mpl2d', axis=None, show_barrier=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1641-L1714" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, plot_barrier=True, plotter='mpl2d', axis=None, show_barrier=True)">
     Plot the schedule.
 
     **Parameters**
@@ -367,7 +367,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### exclude
 
-  <Function id="qiskit.pulse.ScheduleBlock.exclude" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1303-L1339" signature="exclude(*filter_funcs, channels=None, instruction_types=None, check_subroutine=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.exclude" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1294-L1330" signature="exclude(*filter_funcs, channels=None, instruction_types=None, check_subroutine=True)">
     Return a new `ScheduleBlock` with only the instructions from this `ScheduleBlock` *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
 
     ```python
@@ -392,7 +392,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### filter
 
-  <Function id="qiskit.pulse.ScheduleBlock.filter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1264-L1301" signature="filter(*filter_funcs, channels=None, instruction_types=None, check_subroutine=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.filter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1255-L1292" signature="filter(*filter_funcs, channels=None, instruction_types=None, check_subroutine=True)">
     Return a new `ScheduleBlock` with only the instructions from this `ScheduleBlock` which pass though the provided filters; i.e. an instruction will be retained if every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, and the instruction type is contained in `instruction_types`.
 
     <Admonition title="Warning" type="caution">
@@ -415,7 +415,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### get\_parameters
 
-  <Function id="qiskit.pulse.ScheduleBlock.get_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1536-L1568" signature="get_parameters(parameter_name)">
+  <Function id="qiskit.pulse.ScheduleBlock.get_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1527-L1559" signature="get_parameters(parameter_name)">
     Get parameter object bound to this schedule by string name.
 
     Note that we can define different parameter objects with the same name, because these different objects are identified by their unique uuid. For example,
@@ -453,7 +453,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### initialize\_from
 
-  <Function id="qiskit.pulse.ScheduleBlock.initialize_from" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1044-L1076" signature="initialize_from(other_program, name=None)" modifiers="classmethod">
+  <Function id="qiskit.pulse.ScheduleBlock.initialize_from" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1035-L1067" signature="initialize_from(other_program, name=None)" modifiers="classmethod">
     Create new schedule object with metadata of another schedule object.
 
     **Parameters**
@@ -476,7 +476,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### is\_parameterized
 
-  <Function id="qiskit.pulse.ScheduleBlock.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1409-L1411" signature="is_parameterized()">
+  <Function id="qiskit.pulse.ScheduleBlock.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1400-L1402" signature="is_parameterized()">
     Return True iff the instruction is parameterized.
 
     **Return type**
@@ -486,7 +486,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### is\_referenced
 
-  <Function id="qiskit.pulse.ScheduleBlock.is_referenced" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1413-L1415" signature="is_referenced()">
+  <Function id="qiskit.pulse.ScheduleBlock.is_referenced" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1404-L1406" signature="is_referenced()">
     Return True iff the current schedule block contains reference to subroutine.
 
     **Return type**
@@ -496,7 +496,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### is\_schedulable
 
-  <Function id="qiskit.pulse.ScheduleBlock.is_schedulable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1108-L1126" signature="is_schedulable()">
+  <Function id="qiskit.pulse.ScheduleBlock.is_schedulable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1099-L1117" signature="is_schedulable()">
     Return `True` if all durations are assigned.
 
     **Return type**
@@ -506,7 +506,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
   ### replace
 
-  <Function id="qiskit.pulse.ScheduleBlock.replace" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1341-L1407" signature="replace(old, new, inplace=True)">
+  <Function id="qiskit.pulse.ScheduleBlock.replace" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L1332-L1398" signature="replace(old, new, inplace=True)">
     Return a `ScheduleBlock` with the `old` component replaced with a `new` component.
 
     **Parameters**

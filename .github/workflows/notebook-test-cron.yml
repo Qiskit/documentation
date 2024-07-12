@@ -40,6 +40,26 @@ jobs:
           git diff --name-only >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      - name: Make pull request with notebook outputs
+        if: "!cancelled()"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git switch -c actions/cron-${{ github.run_id }}
+          git commit -am "Re-run notebooks"
+          git push origin actions/cron-${{ github.run_id }}
+          gh pr create \
+           -B main \
+           -H actions/cron-${{ github.run_id }} \
+           --title "Update notebook outputs" \
+           --body "An action recently executed the notebooks in this repo. \
+            This PR updates all notebooks that ran successfully with the new cell outputs.
+            > [!NOTE]
+            > This pull request was created by a GitHub action." \
+           --reviewer frankharkins
+
       - name: Upload executed notebooks
         if: "!cancelled()"
         uses: actions/upload-artifact@v4
