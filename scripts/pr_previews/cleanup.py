@@ -19,7 +19,14 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-from utils import configure_logging, run_subprocess, setup_git_account, switch_branch
+from utils import (
+    configure_logging,
+    run_subprocess,
+    setup_git_account,
+    switch_branch,
+    changed_files,
+    commit_all_and_push,
+)
 
 
 def main() -> None:
@@ -28,14 +35,11 @@ def main() -> None:
     with switch_branch("gh-pages"):
         delete_closed_pr_folders()
 
-        changed_files = run_subprocess(["git", "status", "--porcelain"]).stdout.strip()
-        if not changed_files:
+        if not changed_files():
             logger.info("No changed files detected, so no push made to gh-pages")
             return
 
-        run_subprocess(["git", "add", "."])
-        run_subprocess(["git", "commit", "-m", f"Clean up PR previews"])
-        run_subprocess(["git", "push"])
+        commit_all_and_push("Clean up PR previews")
         logger.info("Pushed updates to gh-pages branch")
 
 

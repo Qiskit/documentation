@@ -36,6 +36,16 @@ def setup_git_account() -> None:
     )
 
 
+def changed_files() -> None:
+    return run_subprocess(["git", "status", "--porcelain"]).stdout.strip()
+
+
+def commit_all_and_push(commit_message: str) -> None:
+    run_subprocess(["git", "add", "."])
+    run_subprocess(["git", "commit", "-m", commit_message])
+    run_subprocess(["git", "push"])
+
+
 @contextmanager
 def switch_branch(branchname: str) -> None:
     run_subprocess(["git", "fetch", "origin", branchname])
