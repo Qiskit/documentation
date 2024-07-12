@@ -185,7 +185,7 @@ params = rng.choice(
 aer_sim = AerSimulator(method="stabilizer")
 
 pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
-isa_qc = pm.run(qc)
+isa_circuit = pm.run(circuit)
 sampler = Sampler(backend=aer_sim)
-result = sampler.run([isa_qc]).result()
+result = sampler.run([(isa_circuit, params)]).result()
 ```
