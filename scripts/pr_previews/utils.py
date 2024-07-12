@@ -41,7 +41,7 @@ def switch_branch(branchname: str) -> None:
     run_subprocess(["git", "fetch", "origin", branchname])
     run_subprocess(["git", "switch", branchname])
     yield
-    run_subprocess(["git", "switch", "-"])
+    run_subprocess(["git", "checkout", "-"])
 
 
 def run_subprocess(
