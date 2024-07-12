@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 # QiskitRuntimeService
 
-<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L56-L1198" signature="QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None, private_endpoint=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L54-L1198" signature="QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, channel_strategy=None, private_endpoint=None)" modifiers="class">
   Class for interacting with the Qiskit Runtime service.
 
   QiskitRuntimeService constructor
@@ -84,7 +84,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L734-L783" signature="backend(name=None, instance=None, use_fractional_gates=True)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L734-L783" signature="backend(name=None, instance=None, use_fractional_gates=False)">
     Return a single backend matching the specified filtering.
 
     **Parameters**
@@ -108,7 +108,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   ### backends
 
-  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L453-L564" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=True, **kwargs)">
+  <Function id="qiskit_ibm_runtime.QiskitRuntimeService.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/qiskit_runtime_service.py#L451-L564" signature="backends(name=None, min_num_qubits=None, instance=None, dynamic_circuits=None, filters=None, *, use_fractional_gates=False, **kwargs)">
     Return all backends accessible via this account, subject to optional filtering.
 
     **Parameters**
@@ -121,18 +121,20 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **dynamic\_circuits** (`Optional`\[`bool`]) – Filter by whether the backend supports dynamic circuits.
 
-    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
+    *   **filters** (`Optional`\[`Callable`\[\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")], `bool`]]) –
 
         More complex filters, such as lambda functions. For example:
 
         ```python
         QiskitRuntimeService.backends(
-            filters=lambda b: b.max_shots > 50000)
+            filters=lambda b: b.max_shots > 50000
+        )
         QiskitRuntimeService.backends(
             filters=lambda x: ("rz" in x.basis_gates )
+        )
         ```
 
-    *   **use\_fractional\_gates** (`Optional`\[`bool`]) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with the dynamic circuits, PEC, or PEA. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously.
+    *   **use\_fractional\_gates** (`bool`) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with the dynamic circuits, PEC, or PEA. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously.
 
     *   **\*\*kwargs** –
 
@@ -296,7 +298,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
 
-    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
+    *   **filters** (`Optional`\[`Callable`\[\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")], `bool`]]) –
 
         Filters can be defined as for the [`backends()`](#qiskit_ibm_runtime.QiskitRuntimeService.backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") method. An example to get the operational backends with 5 qubits:
 

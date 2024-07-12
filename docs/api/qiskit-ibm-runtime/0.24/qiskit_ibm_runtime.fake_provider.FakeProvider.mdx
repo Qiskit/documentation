@@ -1,0 +1,76 @@
+---
+title: FakeProvider
+description: API reference for qiskit_ibm_runtime.fake_provider.FakeProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.fake_provider.FakeProvider
+---
+
+# FakeProvider
+
+<Class id="qiskit_ibm_runtime.fake_provider.FakeProvider" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/fake_provider/fake_provider.py#L162-L236" signature="FakeProvider" modifiers="class">
+  Fake provider containing fake V1 backends.
+
+  Only filtering backends by name is implemented. This class contains all fake V1 backends available in the [`qiskit_ibm_runtime.fake_provider`](fake_provider#module-qiskit_ibm_runtime.fake_provider "qiskit_ibm_runtime.fake_provider").
+
+  <Admonition title="Deprecated since version 1.1" type="danger">
+    The class `qiskit.providers.provider.Provider` is deprecated as of qiskit 1.1. It will be removed no earlier than 3 months after the release date. The abstract Provider and ProviderV1 classes are deprecated and will be removed in 2.0. You can just remove it as the parent class and a get\_backend method that returns the backends from self.backend.
+  </Admonition>
+
+  ## Attributes
+
+  ### version
+
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeProvider.version" attributeValue="1" />
+
+  ## Methods
+
+  ### backends
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeProvider.backends" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/fake_provider/fake_provider.py#L180-L181" signature="backends(name=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
+
+    **Parameters**
+
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
+
+    **Returns**
+
+    **a list of Backends that match the filtering**
+
+    criteria.
+
+    **Return type**
+
+    list\[Backend]
+  </Function>
+
+  ### get\_backend
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeProvider.get_backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/fake_provider/fake_provider.py#L169-L178" signature="get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
+
+    <Admonition title="Deprecated since version 1.1" type="danger">
+      The method `qiskit.providers.provider.ProviderV1.get_backend()` is deprecated as of qiskit 1.1. It will be removed no earlier than 3 months after the release date. The abstract Provider and ProviderV1 classes are deprecated and will be removed in 2.0. You can just remove it as the parent class and a get\_backend method that returns the backends from self.backend.
+    </Admonition>
+
+    **Parameters**
+
+    *   **name** (*str*) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
+
+    **Returns**
+
+    a backend matching the filtering.
+
+    **Return type**
+
+    Backend
+
+    **Raises**
+
+    **QiskitBackendNotFoundError** – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+</Class>
+

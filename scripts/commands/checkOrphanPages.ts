@@ -29,7 +29,6 @@ interface Arguments {
 
 const ALLOWED_ORPHAN_URLS = new Set([
   ...apiDocsIgnores(),
-  "/run/circuit-execution",
   "/api/qiskit/qiskit.primitives.BaseEstimator",
   "/api/qiskit/qiskit.primitives.BaseSampler",
 ]);
