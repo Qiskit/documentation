@@ -60,8 +60,9 @@ def main() -> None:
     else:
         logger.info("No changed files detected, so no push made to gh-pages")
 
-    # Switch to previous branch.
-    run_subprocess(["git", "switch", "-"])
+    logger.warning(
+        "The branch is set to gh-pages. You probably want to `git switch` back to your original branch"
+    )
 
 
 if __name__ == "__main__":
