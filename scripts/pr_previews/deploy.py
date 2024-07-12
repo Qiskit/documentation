@@ -19,7 +19,7 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-from utils import configure_logging, run_subprocess
+from utils import configure_logging, run_subprocess, setup_git_account, switch_branch
 
 
 def create_parser() -> ArgumentParser:
@@ -36,33 +36,24 @@ def main() -> None:
         raise AssertionError(
             f"Expected {folder} to have been created with the new content"
         )
-
-    run_subprocess(["git", "config", "user.name", "github-actions[bot]"])
-    run_subprocess(
-        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"]
-    )
-
-    run_subprocess(["git", "fetch", "origin", "gh-pages"])
+    setup_git_account()
 
     # Handle if the content folder already exists on gh-pages branch.
     run_subprocess(["git", "stash", "--include-untracked"])
-    run_subprocess(["git", "switch", "gh-pages"])
-    if folder.exists():
-        shutil.rmtree(folder)
-    run_subprocess(["git", "stash", "pop"])
+    with switch_branch("gh-pages"):
+        if folder.exists():
+            shutil.rmtree(folder)
+        run_subprocess(["git", "stash", "pop"])
 
-    changed_files = run_subprocess(["git", "status", "--porcelain"]).stdout.strip()
-    if changed_files:
+        changed_files = run_subprocess(["git", "status", "--porcelain"]).stdout.strip()
+        if not changed_files:
+            logger.info("No changed files detected, so no push made to gh-pages")
+            return
+
         run_subprocess(["git", "add", "."])
         run_subprocess(["git", "commit", "-m", f"Deploy PR preview for {folder}"])
         run_subprocess(["git", "push"])
         logger.info("Pushed updates to gh-pages branch")
-    else:
-        logger.info("No changed files detected, so no push made to gh-pages")
-
-    logger.warning(
-        "The branch is set to gh-pages. You probably want to `git switch` back to your original branch"
-    )
 
 
 if __name__ == "__main__":

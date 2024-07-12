@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import logging
 import subprocess
+from contextlib import contextmanager
 from pathlib import Path
 
 
@@ -26,6 +27,21 @@ def configure_logging() -> None:
         format="%(asctime)s [%(levelname)s] %(message)s",
         datefmt="%H:%M:%S",
     )
+
+
+def setup_git_account() -> None:
+    run_subprocess(["git", "config", "user.name", "github-actions[bot]"])
+    run_subprocess(
+        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"]
+    )
+
+
+@contextmanager
+def switch_branch(branchname: str) -> None:
+    run_subprocess(["git", "fetch", "origin", branchname])
+    run_subprocess(["git", "switch", branchname])
+    yield
+    run_subprocess(["git", "switch", "-"])
 
 
 def run_subprocess(
