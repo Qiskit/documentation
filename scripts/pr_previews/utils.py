@@ -16,6 +16,7 @@ import logging
 import subprocess
 from contextlib import contextmanager
 from pathlib import Path
+from typing import Iterator
 
 
 logger = logging.getLogger(__name__)
@@ -36,7 +37,7 @@ def setup_git_account() -> None:
     )
 
 
-def changed_files() -> None:
+def changed_files() -> str:
     return run_subprocess(["git", "status", "--porcelain"]).stdout.strip()
 
 
@@ -47,7 +48,7 @@ def commit_all_and_push(commit_message: str) -> None:
 
 
 @contextmanager
-def switch_branch(branchname: str) -> None:
+def switch_branch(branchname: str) -> Iterator[None]:
     run_subprocess(["git", "fetch", "origin", branchname])
     run_subprocess(["git", "switch", branchname])
     yield
