@@ -12,9 +12,9 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
+import json
 import logging
 import shutil
-from argparse import ArgumentParser
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -29,35 +29,34 @@ from utils import (
 )
 
 
-def create_parser() -> ArgumentParser:
-    parser = ArgumentParser()
-    parser.add_argument(
-        "folder", help="the folder to deploy to GitHub Pages", type=Path
-    )
-    return parser
-
-
 def main() -> None:
-    folder: Path = create_parser().parse_args().folder
-    if not folder.exists():
-        raise AssertionError(
-            f"Expected {folder} to have been created with the new content"
-        )
     setup_git_account()
 
-    # Handle if the content folder already exists on gh-pages branch.
-    run_subprocess(["git", "stash", "--include-untracked"])
     with switch_branch("gh-pages"):
-        if folder.exists():
-            shutil.rmtree(folder)
-        run_subprocess(["git", "stash", "pop"])
+        delete_closed_pr_folders()
 
         if not changed_files():
             logger.info("No changed files detected, so no push made to gh-pages")
             return
 
-        commit_all_and_push(f"Deploy PR preview for {folder}")
+        commit_all_and_push("Clean up PR previews")
         logger.info("Pushed updates to gh-pages branch")
+
+
+def get_active_pr_folders() -> set[str]:
+    raw = run_subprocess(
+        ["gh", "pr", "list", "--state", "open", "--json", "number", "--limit", "1000"]
+    ).stdout
+    # `raw` is JSON string of form: { number: int }[]
+    return {f"pr-{obj['number']}" for obj in json.loads(raw)}
+
+
+def delete_closed_pr_folders() -> None:
+    active_pr_folders = get_active_pr_folders()
+    for folder in Path(".").glob("pr-*"):
+        if folder.name not in active_pr_folders:
+            logger.info(f"Deleting {folder}")
+            shutil.rmtree(folder)
 
 
 if __name__ == "__main__":
