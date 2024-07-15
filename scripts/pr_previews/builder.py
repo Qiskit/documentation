@@ -15,6 +15,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import shutil
 from argparse import ArgumentParser
 from contextlib import contextmanager
@@ -33,6 +34,11 @@ def create_parser() -> ArgumentParser:
     parser = ArgumentParser()
     parser.add_argument("dest", help="The output folder", type=Path)
     parser.add_argument(
+        "--basepath",
+        help="The subfolder for relative links, like `/documentation/pr-x`",
+        required=True,
+    )
+    parser.add_argument(
         "--proof-of-concept",
         help="Build a simple index.html, rather than actual docs app.",
         action="store_true",
@@ -47,7 +53,7 @@ def main() -> None:
         return
 
     with setup_dir() as dir:
-        yarn_build(dir)
+        yarn_build(dir, args.basepath)
         save_output(dir, args.dest)
 
 
@@ -71,15 +77,22 @@ def write_proof_of_concept(dest: Path) -> None:
     logger.info(f"Wrote proof-of-concept index.html to {dest}")
 
 
-def yarn_build(root_dir: Path) -> None:
+def yarn_build(root_dir: Path, base_path: str) -> None:
     # This ensures that dependencies like Sharp are properly installed. Most
     # dependencies, like the first-party deps, will already have been installed.
     run_subprocess(["yarn", "install"], cwd=root_dir, stream_output=True)
-    run_subprocess(["yarn", "build"], cwd=root_dir, stream_output=True)
+    run_subprocess(
+        ["yarn", "build"],
+        cwd=root_dir,
+        env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path},
+        stream_output=True,
+    )
 
 
 def save_output(root_dir: Path, dest: Path) -> None:
-    dest.mkdir(parents=True, exist_ok=True)
+    if dest.exists():
+        shutil.rmtree(dest)
+    dest.mkdir(parents=True)
     for item in (root_dir / "packages/preview/out").iterdir():
         if item.is_dir():
             shutil.copytree(item, dest / item.name)
