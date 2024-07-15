@@ -7,6 +7,11 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 <span id="v2-primitives"></span>
 # Migrate to the Qiskit Runtime V2 primitives
 
+<Admonition type="warning">
+The original primitives (referred to as the V1 primitives), [V1 Sampler](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV1) and [V1 Estimator](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV1), have been deprecated in `qiskit-ibm-runtime` 0.23.
+Their support will be removed on 15 August 2024.
+</Admonition>
+
 With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
 
 For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
@@ -29,7 +34,7 @@ See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.E
 
 For backward compatibility, you must explicity import the V2 primitives. Specifying `import <primitive>V2 as <primitive>` is not required, but makes it easier to transition code to V2.
 
-<Admonition type="note">
+<Admonition type="warning">
 After the V1 primitives are no longer supported, `import <primitive>` will import the V2 version of the specified primitive.
 </Admonition>
 
