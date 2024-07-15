@@ -14,7 +14,7 @@ import { readFile } from "fs/promises";
 import { pathExists } from "../lib/fs";
 import type { TocEntry } from "../lib/api/generateToc";
 
-const IGNORED_URLS = ["/guides/first-serverless-program"];
+const IGNORED_URLS = ["/guides/qiskit-serverless"];
 
 const INDEX_PAGES = [
   "docs/guides/map-problem-to-circuits.mdx",
