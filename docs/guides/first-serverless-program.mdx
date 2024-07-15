@@ -1,0 +1,120 @@
+---
+title: Write your first Qiskit Serverless program
+description: 
+
+---
+
+# Write your first Qiskit Serverless program
+
+Creating utility-scale quantum applications generally requires a variety of compute resource requirements. You can use Qiskit Serverless to easily submit quantum workflows for remote, managed execution on IBM Quantum&trade; Platform. These quantum workflows can typically be implemented within a common pattern, called a Qiskit pattern. A Qiskit pattern is an intuitive, repeatable set of steps for implementing a quantum computing workflow.
+
+Steps in a Qiskit pattern:
+
+1. Map classical inputs to a quantum problem
+2. Optimize problem for quantum execution
+3. Execute using Qiskit Runtime primitives
+4. Post-process, return result in classical format
+
+Once you have built a Qiskit pattern, you can use Qiskit Serverless to deploy and submit it for managed execution.
+
+## Wrap a local example to run remotely on Qiskit Serverless
+
+### Build a Qiskit pattern
+
+Here is an example of computing the expectation value using the Qiskit Runtime Estimator primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
+
+
+```python
+# source_files/my_qiskit_pattern.py
+
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.circuit.random import random_circuit
+from qiskit.quantum_info import SparsePauliOp
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_serverless import save_result
+
+service = QiskitRuntimeService()
+backend = service.least_busy(simulator=False)
+
+# Step 1: Map quantum circuits and operators
+abstract_circuit = random_circuit(2, 2, seed=1234)
+observable = SparsePauliOp("IY")
+
+# Step 2: Optimize the circuit for quantum execution
+pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+target_circuit = pm.run(abstract_circuit)
+target_observable = observable.apply_layout(target_circuit.layout)
+
+# Step 3: Execute the target circuit on Estimator V1
+# from qiskit_ibm_runtime import Estimator
+# estimator = Estimator(backend)
+# job = estimator.run(target_circuit, target_observable)
+# result = job.result()
+
+# Step 3: Execute the target circuit on Estimator V2
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
+estimator = Estimator(backend)
+job = estimator.run([(target_circuit, target_observable)])
+result = job.result()
+
+
+# Step 4: Postprocess the Estimator V1 results
+# print(result)
+# save results of program execution
+# note: saved items must be serializable
+# save_result(result.values)
+
+# Step 4: Postprocess the Estimator V2 results
+print(result)
+# save results of program execution
+# note: saved items must be serializable
+save_result(result[0].data.evs)
+```
+
+### Authenticate
+
+After creating a workflow, authenticate to the `IBMServerlessClient` with your IBM Quantum token, which can be obtained from your [IBM Quantum account](https://quantum.ibm.com/account), and upload the script.
+
+```python
+# Authenticate to the IBM serverless client
+from qiskit_serverless import IBMServerlessClient
+serverless = IBMServerlessClient("YOUR_IBM_QUANTUM_TOKEN")
+
+# Deploy the pattern
+from qiskit_serverless import QiskitFunction
+serverless.upload(
+    QiskitFunction(
+        title="My-Qiskit-Pattern",
+        entrypoint="my_qiskit_pattern.py",
+        working_dir="./source_files/"
+    )
+)
+```
+
+### Run the workload remotely
+
+To run the pattern remotely and retrieve results, see [Deploy a Qiskit Serverless workload](deploy-serverless).
+
+## Add custom dependencies
+
+Reuse material from https://qiskit.github.io/qiskit-serverless/getting_started/basic/03_dependencies.html
+
+## Pass input arguments
+
+Reuse material from https://qiskit.github.io/qiskit-serverless/getting_started/basic/02_arguments_and_results.html
+
+<span id="deploy-serverless"></span>
+## Deploy a Qiskit Serverless workload
+
+Finally, the pattern is ready to run remotely.
+
+```python
+# Run pattern remotely
+pattern = serverless.get("My-Qiskit-Pattern")
+pattern.run()
+
+# Retrieve status, logs, results
+job.status()
+job.logs()
+job.result()
+```
