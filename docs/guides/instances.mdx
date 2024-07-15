@@ -7,14 +7,14 @@ description: What IBM Quantum Platform instances are and how to use them
 Access to IBM Quantum&trade; Platform services is controlled by the **instances** (previously called providers) to which you are assigned. An instance is defined by a hierarchical organization of **hub**, **group**, and **project**. A hub is the top level of a given hierarchy (organization) and contains within it one or more groups. These groups are in turn populated with projects. The combination of hub/group/project is called an instance. Users can belong to more than one instance at any given time.
 
 <Admonition type="note">
-  IBM Cloud&reg; instances are different from IBM Quantum Platform instances.  IBM Cloud does not use the hub/group/project structure for user management. This section describes instances in IBM Quantum Platform. To view and create IBM Cloud instances, visit the [IBM Cloud Quantum Instances page](https://cloud.ibm.com/quantum/instances). Click the name of an instance to see details such as your CRN for that instance, what compute resources (programs, systems, and simulators) are available to you by using that instance, and what jobs you have run on that instance. 
+  IBM Cloud&reg; instances are different from IBM Quantum Platform instances.  IBM Cloud does not use the hub/group/project structure for user management. This section describes instances in IBM Quantum Platform. To view and create IBM Cloud instances, visit the [IBM Cloud Quantum Instances page](https://cloud.ibm.com/quantum/instances). Click the name of an instance to see details such as your CRN for that instance, what compute resources (programs, systems, and simulators) are available to you by using that instance, and what jobs you have run on that instance.
 </Admonition>
 
 ![Alice, Bob, and Charlie are all in Hub A.  Hub A has Group 1 and 2.  Alice and Bob are in Group 1.  Charlie is in Group 2.  Group 1 has Project X and Y.  Alice is in both projects.  Bob is only in project X.  Group 2 has Project Z.  Charlie is in project Z.  Therefore, Charlie's instance is Hub-A/Group-2/Project-Z.](/images/guides/providers1.jpg "Hub / group / project hierarchy")
 
 The hub/group/project hierarchy that makes up an IBM Quantum instance.
 
-Users with a public account automatically belong to the ibm-q/open/main [open plan](#open-plan). For organizations outside of IBM, designated hub or group administrators assign users to instances. 
+Users with a public account automatically belong to the ibm-q/open/main [open plan](#open-plan). For organizations outside of IBM, designated hub or group administrators assign users to instances.
 
 To see the instances to which you have access, look at the bottom of your [Account page](https://quantum.ibm.com/account).
 
@@ -26,15 +26,15 @@ You can view a list of your instances on your [account settings page](https://qu
 
 ## Switch instances
 
-If you have access to run on multiple instances, the [IBM Quantum interface](https://quantum.ibm.com/) menu bar contains a dropdown that lets you switch between instances.  The IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and systems based on the selected instance.  
+If you have access to run on multiple instances, the [IBM Quantum interface](https://quantum.ibm.com/) menu bar contains a dropdown that lets you switch between instances.  The IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and systems based on the selected instance.
 
 <Admonition type="note">
  The instance switcher does not appear in the Administration application.
  </Admonition>
 
-If you switch to a different instance, it is remembered the next time you log on and, assuming that it's still a valid instance, information pertaining to that instance is displayed.  By default, the first premium instance you have access to is used.  If you do not have any premium instances, the first open instance is shown.   
+If you switch to a different instance, it is remembered the next time you log on and, assuming that it's still a valid instance, information pertaining to that instance is displayed.  By default, the first premium instance you have access to is used.  If you do not have any premium instances, the first open instance is shown.
 <Admonition type="note">
-The first instance is determined alphabetically. 
+The first instance is determined alphabetically.
 </Admonition>
 
 ## Instances and jobs
@@ -66,7 +66,7 @@ print(service.instances())
 service = QiskitRuntimeService(channel='ibm_quantum', instance="hub1/group1/project1")
 backend1 = service.backend("ibmq_manila")
 
-# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
+# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used.
 backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
 
 sampler1 = SamplerV2(mode=backend1)    # this will use hub1/group1/project1
@@ -85,11 +85,11 @@ print(service.instances())
 service = QiskitRuntimeService(channel='ibm_quantum', instance="hub1/group1/project1")
 backend1 = service.backend("ibmq_manila")
 
-# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
+# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used.
 backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
 
-sampler1 = Sampler(mode=backend1)    # this will use hub1/group1/project1
-sampler2 = Sampler(mode=backend2)    # this will use hub2/group2/project2
+sampler1 = Sampler(backend=backend1)    # this will use hub1/group1/project1
+sampler2 = Sampler(backend=backend2)    # this will use hub2/group2/project2
 ```
   </TabItem>
 </Tabs>
