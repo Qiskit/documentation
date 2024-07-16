@@ -6,7 +6,7 @@ description: Introduction to primitives in Qiskit and Qiskit Runtime, and an exp
 
 # Introduction to primitives
 
-Computing systems are built on multiple layers of abstraction. Abstractions allow to focus on a
+Computing systems are built on multiple layers of abstraction. Abstractions allow you to focus on a
 particular level of detail relevant to the task at hand. The closer you get to the hardware,
 the lower the level of abstraction you need (for example, you might
 want to manipulate electrical signals), and vice versa. The more complex the task you want to perform,
@@ -17,7 +17,7 @@ In this context, a *primitive* is the smallest processing instruction, the simpl
 one can create something useful for a given abstraction level.
 
 The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
-As we move toward larger systems and more complex workflows, the focus shifts from interacting with individual
+With the movement toward larger systems and more complex workflows, the focus shifts from interacting with individual
 qubit signals to viewing quantum devices as systems that perform tasks we need.
 
 The two most common tasks quantum computers are used for are sampling quantum states and calculating expectation values.
@@ -36,7 +36,7 @@ Providers like Qiskit Runtime enable access to appropriate systems through nativ
 their own primitives.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -48,7 +48,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 ## Benefits of Qiskit primitives
 
 For Qiskit users, primitives let you write quantum code for a specific system without having to explicitly
-manage every detail. In addition, because of the additional layer of abstraction, you might be able to more easily
+manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
 access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
 you can leverage the latest advancements in error mitigation and suppression by toggling options such as
 `optimization_level` and `resilience_level`, rather than building your own implementation of these techniques.
@@ -59,7 +59,7 @@ best capabilities.
 
 ## V2 primitives
 
-Version 2 (available with qiskit-ibm-runtime 0.21.0) is the first major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, the new version introduces the following major changes:
+Version 2 (available with `qiskit-ibm-runtime` 0.21.0 and later) is the first major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, the new version introduces the following major changes:
 
 * The **new interface** lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit.
 * You can **turn on or off individual error mitigation and suppression methods**.
