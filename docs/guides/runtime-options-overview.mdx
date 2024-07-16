@@ -6,7 +6,7 @@ description: Specify options when building with Qiskit Runtime primitives
 
 # Advanced Qiskit Runtime options
 
- You can pass options to primitives to customize them to meet your needs. This section focuses on Qiskit Runtime primitive options. While the interface of the primitives' `run()`  method is common across all implementations, their options are not. Consult the corresponding API references for information about the `qiskit.primitives` and `qiskit_aer.primitives` options.
+ You can pass options to primitives to customize them to meet your needs. This section focuses on Qiskit Runtime primitive options. While the interface of the primitives' `run()`  method is common across all implementations, their options are not. Consult the corresponding API references for information about the [`qiskit.primitives`](/api/qiskit/primitives#primitives) and [`qiskit_aer.primitives`](https://qiskit.github.io/qiskit-aer/apidocs/aer_primitives.html) options.
 
 
 <Admonition type="caution" title="Important">
@@ -30,7 +30,7 @@ When calling the primitives, you can pass in options by using an options class o
 ### Defaults
 
 For V2 primitives, if you do not specify a value for an option, it is given a special value of `Unset` and the server default value is used. Thus, the default value will be the same regardless of your code version.
-For V1 primitives, if you do not specify a value for an option, the Qiskit Runtime client's default value is used. In V1, the default value was dependant on the code version.
+For V1 primitives, if you do not specify a value for an option, the Qiskit Runtime client's default value is used. In V1, the default value is dependant on the code version.
 
 The tables in the [Options classes summary](#options-classes) section lists the default values.
 
@@ -90,12 +90,12 @@ estimator.options.resilience.zne_mitigation = True
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-  - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. **Estimator only**.
+  - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. Estimator only.
   - [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions): Options for dynamical decoupling.
   - [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2): Primitive execution options, including whether to initialize qubits and the repetition delay.
   - [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
   - [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions): Execution environment options such as the logging level to set and job tags to add.
-  - [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.
+  - [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to local testing mode only.
   </TabItem>
 
   <TabItem value="SamplerV2" label="Sampler V2">
@@ -128,7 +128,7 @@ Scroll to see the full table.
   <TabItem value="EstimatorV2" label="Estimator V2">
 | Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
 |----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| [default_shots](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)        |                          |                         |  integer in the range[0, `backend.max_shots`]                                             | None                      |
+| [default_shots](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)        |                          |                         |  Integer in the range[0, `backend.max_shots`]                                             | None                      |
 | [default_precision](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)    |                          |                         |  float > 0                                                                                        | `0.015625 (1 / sqrt(4096))`     |
 | [dynamical_decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) |                          |                         |                                                                                           |                                              |
 |                      | enable                   |                         | `True`/`False`                                                             |    `False`           |
@@ -142,7 +142,7 @@ Scroll to see the full table.
 | [execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions)            |                          |                         |                                                                                                         |                           |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.                                | Given by `backend.default_rep_delay`.|
-| [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)   |                          |                         | integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
+| [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)   |                          |                         | Integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
 | [optimization_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)   |                          |                         | `0`/`1`                                                                                       | `1`                         |
 | [resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions)           |                          |                         |                                                                                              |                      |
 |                      | LayerNoiseLearning       |                         | `True`/`False`                                                                                | `True`                      |
@@ -171,14 +171,14 @@ Scroll to see the full table.
 |                      | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
 |                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
 |                      | num_randomizations       |                         |  `auto`/ integer >= 1                                                                         | `'auto'`                    |
-|                      | shots_per_randomization  |                         |   `auto`/ integer no larger than `backend.max_shots`.                                                                      | `'auto'`                    |
+|                      | shots_per_randomization  |                         |   `auto`/ Integer no larger than `backend.max_shots`.                                                                      | `'auto'`                    |
 |                      | strategy                 |                         | `'active'`<br />`'active-circuit'`<br />`'active-accum'`<br />`'all'`                                | `'active-accum'`            |
   </TabItem>
 
   <TabItem value="SamplerV2" label="Sampler V2">
 | Options              | Sub-options              | Sub-sub-options         | Choices                                                                                   | Default                   |
 |----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
-| [default_shots](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)        |                          |                         |  integer in the range[0, `backend.max_shots`]                                             | `4096`                      |
+| [default_shots](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)        |                          |                         |  Integer in the range[0, `backend.max_shots`]                                             | `4096`                      |
 | [dynamical_decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions) |                          |                         |                                                                                           |                                              |
 |                      | enable                   |                         | `True`/`False`                                                             |    `False`           |
 |                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                      |
@@ -191,7 +191,7 @@ Scroll to see the full table.
 | [execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2)            |                          |                         |                                                                                                         |                           |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.                                | Given by `backend.default_rep_delay`.|
-| [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)   |                          |                         | integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
+| [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)   |                          |                         | Integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
 | [simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions)            |                          |                         |                                                                                   |                     |
 |                      | noise_model              |                         |   [Qiskit Aer NoiseModel](build-noise-models), or its representation        | `None`                      |
 |                      | seed_simulator           |                         |   integer                                                                               | `None`                    |
@@ -201,7 +201,7 @@ Scroll to see the full table.
 |                      | enable_gates             |                         | `True`/`False`                                                                                      | `False`                     |
 |                      | enable_measure           |                         | `True`/`False`                                                                                      | `True`                      |
 |                      | num_randomizations       |                         |  `auto`/ integer >= 1                                                                          | `'auto'`                    |
-|                      | shots_per_randomization  |                         |   `auto`/ integer no larger than `backend.max_shots`.                                                                      | `'auto'`                    |
+|                      | shots_per_randomization  |                         |   `auto`/ Integer no larger than `backend.max_shots`.                                                                      | `'auto'`                    |
 |                      | strategy                 |                         | `'active'`<br />`'active-circuit'`<br />`'active-accum'`<br />`'all'`                                | `'active-accum'`            |
 
   </TabItem>
@@ -211,7 +211,7 @@ Scroll to see the full table.
 |----------------------|--------------------------|-------------------------|-------------------------------------------------------------------------------------------|---------------------------|
 | [optimization_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | `0`/`1`                                                                                       | `1`                         |
 | [resilience_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)     |                          |                         | `0`/`1`/`2`                                                                                     | `1`                         |
-| [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
+| [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options)   |                          |                         | Integer number of seconds in the range  [1, 10800]                                            | `10800` (3 hours)                         |
 | [resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions)           |                          |                         |                                                                         |                     |
 |                      | extrapolator             |                         | `LinearExtrapolator`/`QuadraticExtrapolator`/`CubicExtrapolator`/`QuarticExtrapolator`    | `None`, or `LinearExtrapolator` if `resilience_level=2`.  |
 |                      | noise_amplifier          |                         |                                                                                           |                      |
@@ -224,7 +224,7 @@ Scroll to see the full table.
 |                      | approximation_degree     |                         | Float in the range 0 - 1 / `None`                                |        `None`    |
 | [execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptions)            |                          |                         |                                                                                                         |                           |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |
-|                      | shots                    |                         | integer no larger than `backend.max_shots`.                                | 4000|
+|                      | shots                    |                         | Integer no larger than `backend.max_shots`.                                | 4000|
 | [environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)          |                          |                         |                                                                                                         |                                  |
 |                      | log_level                |                         |`DEBUG`/`INFO`/`WARNING`/`ERROR`/`CRITICAL`                                                              |`WARNING`                          |
 |                      | callback                 |                         |Callable function that receives Job ID and Job result.                                                   |`None`                           |
@@ -245,7 +245,7 @@ Scroll to see the full table.
 <span id="options-compatibility-table"></span>
 ### Options compatibility
 
-Due to differences in the device compilation process, certain runtime features cannot be used together in a single job. Click the appropriate tab for a list of features that are not compatible with the selected feature:
+Due to differences in the device compilation process, certain runtime features cannot be used together in a single job. Click the appropriate tab for a list of features that are incompatible with the selected feature:
 
 <Tabs>
   <TabItem value="Dynamic" label="Dynamic circuits">
@@ -509,10 +509,10 @@ For more information about the primitive options, refer to the
 
 ### Error suppression
 
-The Qiskit Runtime primitives expect to be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled their circuits to respect the native gate set and connectivity constraints of the target system.
+The Qiskit Runtime primitives must be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled the circuits to respect the native gate set and connectivity constraints of the target system.
 
-In the V2 primitives, you can explicitly enable and disable individual error mitigation/suppression methods, such as dynamical decoupling. For an example, see the
-[Runtime compilation topic](configure-error-suppression#transpilation-table).
+In the V2 primitives, you can explicitly enable and disable individual error mitigation and suppression methods, such as dynamical decoupling. For an example, see the
+[Error suppression topic](configure-error-suppression#transpilation-table).
 
 <Admonition type="note">
     In the V1 Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
