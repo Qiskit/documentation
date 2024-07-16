@@ -24,7 +24,7 @@ from utils import configure_logging
 logger = logging.getLogger(__name__)
 
 INITIAL_DELAY_S = 20
-TIMEOUT_S = 60
+TIMEOUT_S = 75
 RETRY_INTERVAL_S = 5
 
 
