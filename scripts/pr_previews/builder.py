@@ -25,7 +25,9 @@ from tempfile import TemporaryDirectory
 
 from utils import configure_logging, run_subprocess
 
-IMAGE_NAME = "iqp-channel-docs-preview-builder"
+# You can change this to `iqp-channel-docs-preview-builder` when running locally, if
+# you're able to create a local copy of the builder image through the closed source repo.
+IMAGE_NAME = "icr.io/qc-open-source-docs-prod/preview-builder:latest"
 
 logger = logging.getLogger(__name__)
 
