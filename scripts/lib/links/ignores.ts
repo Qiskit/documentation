@@ -46,6 +46,7 @@ const _PATTERNS_REORG_IGNORES = [
   "/start/configure-qiskit-local",
   "/run/primitives-get-started#3-initialize-the-qiskit-runtime-sampler",
   "/run/primitives-get-started#3-initialize-qiskit-runtime-estimator",
+  "/run/run-jobs-batch",
 ];
 
 const ALWAYS_IGNORED_URLS__EXPECTED = [
@@ -59,6 +60,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
+  "mailto:tellibm@us.ibm.com",
 ];
 
 const ALWAYS_IGNORED_URLS__SHOULD_FIX = [
@@ -111,6 +113,7 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
     "0.21/",
     "0.22/",
     "0.23/",
+    "0.24/",
   ].map((vers) => [
     `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
     [

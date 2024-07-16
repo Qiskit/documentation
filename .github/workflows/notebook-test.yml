@@ -14,7 +14,6 @@ name: Test notebooks
 on:
   pull_request:
     paths:
-      - "tutorials/**/*.ipynb"
       - "docs/**/*.ipynb"
       - "!docs/api/**/*"
   workflow_dispatch:
@@ -47,7 +46,7 @@ jobs:
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
-          files: "{tutorials,docs}/**/*.ipynb"
+          files: "docs/**/*.ipynb"
           separator: "\n"
 
       - name: Check for notebooks that require Linux
@@ -61,12 +60,6 @@ jobs:
             docs/guides/transpiler-stages.ipynb
             docs/guides/represent-quantum-computers.ipynb
             docs/guides/common-parameters.ipynb
-            docs/build/circuit-visualization.ipynb
-            docs/build-new/circuit-visualization.ipynb
-            docs/transpile/common-parameters.ipynb
-            docs/transpile/representing_quantum_computers.ipynb
-            docs/transpile/transpiler-stages.ipynb
-            docs/transpile/custom-backend.ipynb
 
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing

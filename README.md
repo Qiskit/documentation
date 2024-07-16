@@ -426,14 +426,6 @@ This content lives on https://docs.quantum.ibm.com.
 
 See the section "Syncing content with open source repo" in the internal docs repo's README.
 
-### Deploy tutorials
-
-This content lives on https://learning.quantum.ibm.com.
-
-To deploy a file from the `tutorials/` directory in this repository, see the instructions in the [tutorials directory README](https://github.com/Qiskit/documentation/blob/main/tutorials/README.md).
-
-To deploy a file from the ibm-quantum-learning-enablement repository, see the instructions in the internal tutorial repo's tutorials directory README.
-
 # How to write the documentation
 
 Refer to our [style guide](./style-guide.md) for technical writing guidance.
@@ -567,26 +559,6 @@ To use a `DefinitionTooltip`, use the following syntax:
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
 
-### Composer
-
-You can use this component to render a circuit as it will be displayed in the composer. It does not have any interaction.
-
-```mdx
-<Composer qasm={`
-OPENQASM 2.0;
-include "qelib1.inc";
-
-qreg q[5];
-creg c[5];
-
-U(0, 0, pi / 2) q[0];
-CX q[0], q[1];
-u3(0, 0, pi /2) q[0];
-u2(0, 0) q[0];
-
-`}/>
-```
-
 ### Tabs
 
 To use a `Tabs` component, use the following syntax:
@@ -646,35 +618,6 @@ There is a specific use case where you want to show instructions for different o
     command
   </TabItem>
 </OperatingSystemTabs>
-```
-
-### CircuitTabs
-
-This component show tabs with the Composer and the OpenQASM code. It also shows an Open in Composer link at the bottom.
-
-```mdx
-<CircuitTabs name="Bell" qasm={`
-  OPENQASM 2.0;
-  include "qelib1.inc";
-
-qreg q[2];
-creg c[2];
-
-reset q[0];
-h q[0];
-reset q[1];
-cx q[0],q[1];
-measure q[0] -> c[0];
-measure q[1] -> c[1];
-`}/>
-```
-
-### Operation
-
-To display a qasm operation (like a not gate), you can use the `Operation` component:
-
-```mdx
-<Operation name="x" />
 ```
 
 ## Proper marking and attribution
