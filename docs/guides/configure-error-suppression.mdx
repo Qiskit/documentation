@@ -6,14 +6,10 @@ description: How to configure runtime compilation in Qiskit Runtime.
 
 # Configure runtime compilation for Qiskit Runtime
 
-Runtime compilation techniques optimize and transform your circuit to minimize errors. Runtime compilation adds some classical pre-processing overhead to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
-
-Primitives let you employ runtime compilation by choosing advanced runtime compilation options and, for Estimator V2, by setting the optimization level (`optimization_level`) option. If you don't want any processing done to minimize errors, follow the instructions in the [Turn off all error mitigation and error suppression](configure-error-mitigation#no-error-mitigation) section.
-
-<admonition type="note">Estimator V2 supports optimization levels 0 and 1 only. Sampler V2 does not support setting the optimization level.</admonition>
+Runtime compilation techniques transform your circuit to minimize errors. Runtime compilation adds some classical pre-processing overhead to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -22,19 +18,20 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 ```
 </Admonition>
 
-## Set the optimization level
+<span id="set-the-optimization-level"></span>
+## Set the optimization level (V1 primitives only)
 
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
 
 <Admonition>
-  In primitive version 1, optimization levels 2 and 3 behave identically to level 1.  Estimator V2 does not accept levels higher than 1 and Sampler V2 does not support setting the optimization level.
+  Optimization levels 2 and 3 behave identically to level 1.
 </Admonition>
 
 <Table>
   <thead>
     <Tr>
       <Th>Optimization Level</Th>
-      <Th>Estimator & Sampler (V1)</Th>
+      <Th>Estimator & Sampler</Th>
     </Tr>
   </thead>
   <tbody>
@@ -51,7 +48,7 @@ The `optimization_level` setting specifies how much optimization to perform on t
 
         -   Single-qubit gate optimization
         -   Two-qubit gate optimization
-        -   Error suppression: dynamical decoupling (V1 primitives only.  For V2 primitives, you can enable it by using the `dynamical_decoupling` option.)
+        -   Error suppression: dynamical decoupling
       </Td>
     </Tr>
   </tbody>
@@ -90,8 +87,6 @@ H = H.apply_layout(psi.layout)
 
 estimator = Estimator(mode=backend)
 
-estimator.options.optimization_level = 1
-
 job = estimator.run([(psi, H, theta)])
 
 psi1_H1 = job.result()[0]
@@ -117,19 +112,18 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 psi = pm.run(psi)
 H = H.apply_layout(psi.layout)
 
-estimator = Estimator(options=options, mode=backend)
+estimator = Estimator(options=options, backend=backend)
 
 job = estimator.run(circuits=[psi], observables=[H], parameter_values=[theta])
 psi1_H1 = job.result()
 ```
 
-  </TabItem>
-</Tabs>
-
-
 <Admonition type="note">
   If the optimization level is not specified, the service uses `optimization_level = 1`.
 </Admonition>
+  </TabItem>
+</Tabs>
+
 
 <span id="transpilation-table"></span>
 ## Advanced runtime compilation options

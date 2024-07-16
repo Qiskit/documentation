@@ -7,7 +7,12 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 <span id="v2-primitives"></span>
 # Migrate to the Qiskit Runtime V2 primitives
 
-This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
+<Admonition type="warning">
+The original primitives (referred to as the V1 primitives), [V1 Sampler](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV1) and [V1 Estimator](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV1), have been deprecated in `qiskit-ibm-runtime` 0.23.
+Their support will be removed on 15 August 2024.
+</Admonition>
+
+With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
 
 For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
 
@@ -15,9 +20,9 @@ For information about the changes to the Qiskit reference primitives (now called
 
 Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs.
 
-The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use `optimization_level` and `resilience_level` (if using Estimator) as the simple knobs, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
+The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use  `resilience_level` (if using Estimator) as the simple knob, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
 
-To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives do not perform layout, routing, and translation operations but continue to optimize the circuits if you specify `optimization_level>0`.  See the [transpilation documentation](/guides/transpile) for instructions to transform circuits.
+To reduce the total job execution time, V2 primitives only accept circuits and observables that use instructions supported by the target system (referred to as instruction set architecture (ISA) circuits and observables). V2 primitives do not perform layout, routing, and translation operations.  See the [transpilation documentation](/guides/transpile) for instructions to transform circuits.
 
 Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
 
@@ -29,7 +34,7 @@ See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.E
 
 For backward compatibility, you must explicity import the V2 primitives. Specifying `import <primitive>V2 as <primitive>` is not required, but makes it easier to transition code to V2.
 
-<Admonition type="note">
+<Admonition type="warning">
 After the V1 primitives are no longer supported, `import <primitive>` will import the V2 version of the specified primitive.
 </Admonition>
 
@@ -266,10 +271,9 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 
 # Setting options after primitive initialization
 # This uses auto complete.
-estimator.options.optimization_level = 1
 estimator.options.default_shots = 4000
 # This does bulk update.
-estimator.options.update(default_shots=4000, optimization_level=1)
+estimator.options.update(default_shots=4000, resilience_level=2)
 
 # Print the dictionary format.
 # Server defaults are used for unset options.
@@ -292,7 +296,7 @@ estimator = Estimator(backend=backend, options=options)
 
 # Setting options after primitive initialization.
 # This does bulk update.
-estimator.set_options(shots=4000, optimization_level=1)
+estimator.set_options(shots=4000)
 ```
   </TabItem>
 </Tabs>
@@ -340,7 +344,7 @@ sampler = Sampler(backend=backend, options=options)
 
 # Setting options after primitive initialization.
 # This does bulk update.
-sampler.set_options(shots=2000, optimization_level=0)
+sampler.set_options(shots=2000)
   ```
   </TabItem>
 </Tabs>
@@ -349,7 +353,8 @@ sampler.set_options(shots=2000, optimization_level=0)
 ### Error mitigation and suppression
 
 * Because Sampler V2 returns samples without postprocessing, it does not support resilience levels.
-* Sampler V2 does not currently support `optimization_level`.
+* Sampler V2 does not support `optimization_level`.
+* Estimator V2 will drop support for `optimization_level` on or around 30 September 2024.
 * Estimator V2 does not support resilience level 3.  This is because resilience level 3 in V1 Estimator uses Probabilistic Error Cancellation (PEC), which is proven to give unbiased results at the cost of exponential processing time. Level 3 was removed to draw attention to that tradeoff. You can, however, still use PEC as the error mitigation method by specifying the `pec_mitigation` option.
 * Estimator V2 supports `resilience_level` 0-2, as described in the following table.  These options are more advanced than their V1 counterparts. You can also explicitly turn on / off individual error mitigation / suppression methods.
 
@@ -428,9 +433,7 @@ options.resilience_level = 2
 <span id="transpilation"></span>
 ### Transpilation
 
-V2 primitives support only circuits that adhere to the Instruction Set Architecture (ISA) of a particular backend. Because the primitives do not perform layout, routing, and translation operations, the corresponding transpilation options from V1 are not supported.  For Estimator, you can still use `optimization_level` to indicate how much optimization the primitives should apply to the ISA circuits. The valid values are 0 and 1.
-
-Dynamical decoupling is no longer automatically added for `optimization_level=1`. You can, however, enable it by using the `dynamical_decoupling` option.
+V2 primitives support only circuits that adhere to the Instruction Set Architecture (ISA) of a particular backend. Because the primitives do not perform layout, routing, and translation operations, the corresponding transpilation options from V1 are not supported.
 
 
 ### Job status
@@ -776,9 +779,8 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    estimator = Estimator(session=session)
+    estimator = Estimator()
 
-    estimator.options.optimization_level = 1
     estimator.options.resilience_level = 1
 
     job = estimator.run([(isa_circuit, isa_observable)])
@@ -829,7 +831,7 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    estimator = Estimator(session=session, options=options)
+    estimator = Estimator(options=options)
     job = estimator.run(isa_circuit, isa_observable)
     another_job = estimator.run(another_isa_circuit, another_isa_observable)
     result = job.result()
@@ -1119,7 +1121,7 @@ sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    sampler = Sampler(session=session)
+    sampler = Sampler()
     job = sampler.run([isa_circuit])
     another_job = sampler.run([another_isa_circuit])
     result = job.result()
@@ -1159,7 +1161,7 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
 
 with Session(service=service, backend=backend) as session:
-    sampler = Sampler(session=session, options=options)
+    sampler = Sampler(options=options)
     job = sampler.run(circuit)
     another_job = sampler.run(another_circuit)
     result = job.result()
