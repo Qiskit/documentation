@@ -119,6 +119,7 @@ def _copy_local_content(root_dir: Path) -> None:
     for dir in [
         "docs/api/migration-guides",
         "docs/guides",
+        "docs/open-source",
         "public/videos",
         "public/images/guides",
         "public/images/migration",
@@ -133,7 +134,10 @@ def _copy_local_content(root_dir: Path) -> None:
         )
         shutil.copytree(dir, dest)
 
-    for fp in ["docs/support.mdx"]:
+    for fp in [
+        "docs/support.mdx",
+        "docs/responsible-quantum-computing.mdx",
+    ]:
         shutil.copy2(fp, root_dir / fp)
 
     logger.info("local content files copied")
