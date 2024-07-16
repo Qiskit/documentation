@@ -1,12 +1,14 @@
 ---
-title: Configure runtime compilation
-description: How to configure runtime compilation in Qiskit Runtime.
+title: Configure error suppression
+description: How to configure error suppression in Qiskit Runtime. (Previous topic - runtime compilation)
 
 ---
 
-# Configure runtime compilation for Qiskit Runtime
+# Configure error suppression for Qiskit Runtime
 
 Runtime compilation techniques transform your circuit to minimize errors. Runtime compilation adds some classical pre-processing overhead to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
+
+Primitives let you employ runtime compilation by choosing advanced runtime compilation options. If you don't want any processing done to minimize errors, follow the instructions in the [Turn off all error mitigation and error suppression](runtime-options-overview#no-error-mitigation) section.
 
 <Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
@@ -126,11 +128,11 @@ psi1_H1 = job.result()
 
 
 <span id="transpilation-table"></span>
-## Advanced runtime compilation options
+## Advanced error suppression options
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    In the V2 primitives, you can explicitly enable and disable individual error mitigation/suppression methods, such as dynamical decoupling.
+    In the V2 primitives, you can explicitly enable and disable individual error mitigation and suppression methods, such as dynamical decoupling.
 
     <Admonition type = "note">
     Dynamical decoupling is not supported when the input circuits are dynamic.
@@ -154,15 +156,18 @@ print(f">>> dynamical decoupling sequence to use: {sampler.options.dynamical_dec
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-    Because all input must be ISA, options.transpilation.xxx will be ignored.
+    Because all input must be ISA, `options.transpilation.xxx` is ignored. See [Advanced runtime options](runtime-options-overview) for information.
   </TabItem>
 </Tabs>
 
+## Turn off all error suppression
+
+For instructions to turn off all error suppression, see the [Turn off all error suppression and mitigation](runtime-options-overview#no-error-mitigation) section.
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
     - Try a tutorial that uses optimization levels, such as the [Variational quantum eigensolver](https://learning.quantum.ibm.com/tutorial/variational-quantum-eigensolver) tutorial.
-    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Learn how to transpile locally in the [Transpile](./transpile/) section.
     - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>

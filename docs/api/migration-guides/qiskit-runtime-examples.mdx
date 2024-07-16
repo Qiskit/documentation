@@ -225,8 +225,8 @@ Output
   </TabItem>
 
   <TabItem value="legacy" label="backend.run()">
-The legacy workflow required additional elements and steps to compute an expectation value. The `QuantumInstance` class stored a `PassManager` and a `Backend` instance, and wrapped the conversion step to ISA circuits and `backend.run` calls.  The `CircuitSampler` class from `qiskit.opflow` wrapped the `QuantumInstance`, `run`, and `transpile` methods. This degree of nesting is no longer supported; the new workflow allows to access and directly manipulate all the key components of the computation (backend, pass manager, circuits and observables) at all stages of the algorithm.
 
+The legacy workflow required additional elements and steps to compute an expectation value. The `QuantumInstance` class stored a `PassManager` and a `Backend` instance, and wrapped the conversion step to ISA circuits and `backend.run` calls.  The `CircuitSampler` class from `qiskit.opflow` wrapped the `QuantumInstance`, `run`, and `transpile` methods. This degree of nesting is no longer supported; the new workflow allows to access and directly manipulate all the key components of the computation (backend, pass manager, circuits and observables) at all stages of the algorithm.
 
 ``` python
 from qiskit.opflow import StateFn, PauliExpectation, CircuitSampler
