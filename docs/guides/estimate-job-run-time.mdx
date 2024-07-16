@@ -12,11 +12,11 @@ Quantum time is the duration, in seconds, a quantum system is committed to fulfi
 
 <Admonition type="note" title="Notes">
     - This only applies to jobs that use primitives.
-    - This is not yet available on the Qiskit Runtime on IBM Cloud&reg; channel. 
+    - This is not yet available on the Qiskit Runtime on IBM Cloud&reg; channel.
 </Admonition>
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -118,14 +118,14 @@ Output:
 
 You can view the estimated usage (how much quantum time the job will take to run) in two places on IBM Quantum Platform:
 
-- On the [Jobs table](https://quantum.ibm.com/jobs) in the Usage column.  From the Home page, click *View all* on the Recent jobs table.  The Usage column shows the estimated usage for pending jobs, or actual usage for completed jobs. 
-- On the job's details page. From the [Dashboard](https://quantum.ibm.com/) or [Jobs table](https://quantum.ibm.com/jobs), click the job ID to open the job details page.  The estimated usage is shown in the Status Timeline. 
+- On the [Jobs table](https://quantum.ibm.com/jobs) in the Usage column.  From the Home page, click *View all* on the Recent jobs table.  The Usage column shows the estimated usage for pending jobs, or actual usage for completed jobs.
+- On the job's details page. From the [Dashboard](https://quantum.ibm.com/) or [Jobs table](https://quantum.ibm.com/jobs), click the job ID to open the job details page.  The estimated usage is shown in the Status Timeline.
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
     - Review these tips: [Minimize job run time](minimize-time).
     - Set the [Maximum execution time](max-execution-time).
-    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Learn how to transpile locally in the [Transpile](./transpile/) section.
     - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>

@@ -8,17 +8,17 @@ python_api_name: qiskit_ibm_runtime.options.SimulatorOptions
 
 # SimulatorOptions
 
-<Class id="qiskit_ibm_runtime.options.SimulatorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/options/simulator_options.py#L33-L105" signature="SimulatorOptions(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.SimulatorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/options/simulator_options.py#L33-L107" signature="SimulatorOptions(*args, **kwargs)" modifiers="class">
   Simulator options.
 
   For best practice in simulating a backend make sure to pass the basis gates and coupling map of that backend.
 
   **Parameters**
 
-  *   **noise\_model** – Noise model for the simulator.
-  *   **seed\_simulator** – Random seed to control sampling.
-  *   **coupling\_map** – Directed coupling map to target in mapping. If the coupling map is symmetric, both directions need to be specified. Each entry in the list specifies a directed two-qubit interactions, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
-  *   **basis\_gates** – List of basis gate names to unroll to. For example, `['u1', 'u2', 'u3', 'cx']`. Unrolling is not done if not set.
+  *   **noise\_model** – Noise model for the simulator. Default: `None`.
+  *   **seed\_simulator** – Random seed to control sampling. Default: `None`.
+  *   **coupling\_map** – Directed coupling map to target in mapping. If the coupling map is symmetric, both directions need to be specified. Each entry in the list specifies a directed two-qubit interactions, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`. Default: `None`, which implies no connectivity constraints.
+  *   **basis\_gates** – List of basis gate names to unroll to. For example, `['u1', 'u2', 'u3', 'cx']`. Unrolling is not done if not set. Default: all basis gates supported by the simulator.
 
   ## Attributes
 
@@ -42,7 +42,7 @@ python_api_name: qiskit_ibm_runtime.options.SimulatorOptions
 
   ### set\_backend
 
-  <Function id="qiskit_ibm_runtime.options.SimulatorOptions.set_backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/options/simulator_options.py#L79-L105" signature="set_backend(backend)">
+  <Function id="qiskit_ibm_runtime.options.SimulatorOptions.set_backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/options/simulator_options.py#L81-L107" signature="set_backend(backend)">
     Set backend for simulation. This method changes noise\_model, coupling\_map, basis\_gates according to given backend.
 
     **Parameters**

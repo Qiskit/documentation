@@ -6,10 +6,10 @@ description: Practical examples of using primitives in Qiskit Runtime.
 
 # Primitives examples
 
-The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](./install-qiskit)
+The examples in this section illustrate some common ways to use primitives. Before running these examples, follow the instructions in [Install and set up.](install-qiskit)
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -357,7 +357,6 @@ another_isa_observable = another_observable.apply_layout(another_isa_circuit.lay
 with Session(service=service, backend=backend) as session:
     estimator = Estimator(mode=session)
 
-    estimator.options.optimization_level = 1
     estimator.options.resilience_level = 1
 
     job = estimator.run([(isa_circuit, isa_observable)])
@@ -414,7 +413,7 @@ options.optimization_level = 2
 options.resilience_level = 2
 
 with Session(service=service, backend=backend) as session:
-    estimator = Estimator(mode=session, options=options)
+    estimator = Estimator(session=session, options=options)
     job = estimator.run(isa_circuit, isa_observable)
     another_job = estimator.run(another_isa_circuit, another_isa_observable)
     result = job.result()
@@ -746,7 +745,7 @@ options.optimization_level = 2
 options.resilience_level = 0
 
 with Session(service=service, backend=backend) as session:
-    sampler = Sampler(mode=session, options=options)
+    sampler = Sampler(session=session, options=options)
     job = sampler.run(isa_circuit)
     another_job = sampler.run(another_isa_circuit)
     result = job.result()
@@ -766,8 +765,8 @@ print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
 
 <Admonition type="tip" title="Recommendations">
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
-    - [Specify advanced runtime options.](./runtime-options-overview)
+    - [Specify advanced runtime options.](runtime-options-overview)
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
-    - Learn how to transpile locally in the [Transpile](./transpile) section.
+    - Learn how to transpile locally in the [Transpile](./transpile/) section.
     - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>

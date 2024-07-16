@@ -27,6 +27,10 @@ In short, the computational model introduced by the Qiskit primitives moves quan
 to where classical programming is today, where the focus is less on the hardware details and more on the results
 you are trying to achieve.
 
+<Admonition type="note">
+The Qiskit Runtime V1 primitives have been deprecated.  For instructions to migrate to the V2 primitives, see the [migration guide.](/api/migration-guides/v2-primitives)
+</Admonition>
+
 ## Implementation of Qiskit primitives
 
 The Qiskit primitives are defined by open-source primitive base-classes, from
@@ -50,8 +54,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 For Qiskit users, primitives let you write quantum code for a specific system without having to explicitly
 manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
 access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
-you can leverage the latest advancements in error mitigation and suppression by toggling options such as
-`optimization_level` and `resilience_level`, rather than building your own implementation of these techniques.
+you can leverage the latest advancements in error mitigation and suppression by toggling options such as `resilience_level`, rather than building your own implementation of these techniques.
 
 For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
 way to access your hardware features. It is therefore easier for your users to benefit from your hardware's
@@ -74,6 +77,12 @@ See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.E
 The updated interface uses a *primitive unified bloc* (PUB) for input.  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  A summary of the changes to each primitive follows.
 
 #### Estimator V1
+
+<Admonition type="warning">
+[EstimatorV1](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV1) has been deprecated in `qiskit-ibm-runtime` 0.23.
+Its support will be removed on 15 August 2024.
+[EstimatorV2](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) is highly recommended instead.
+</Admonition>
 
 * Takes three parameters: circuits, observables, and parameter values.
 * Each parameter can be a single value or a list.
@@ -187,6 +196,12 @@ list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape 
 
 #### Sampler V1
 
+<Admonition type="warning">
+[SamplerV1](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV1) has been deprecated in `qiskit-ibm-runtime` 0.23.
+Its support will be removed on 15 August 2024.
+[SamplerV2](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) is highly recommended instead.
+</Admonition>
+
 * Takes two parameters: circuits and parameter values.
 * Each parameter can be a single value or a list.
 * The length of the parameters must match.
@@ -284,7 +299,7 @@ The Qiskit Runtime primitives provide a more sophisticated implementation (for e
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Read [Get started with primitives](./get-started-with-primitives) to implement primitives in your work.
+    - Read [Get started with primitives](get-started-with-primitives) to implement primitives in your work.
     - Review detailed [primitives examples.](primitives-examples)
     - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum&trade; Learning.
