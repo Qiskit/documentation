@@ -81,7 +81,7 @@ yourself two questions:
    This question is not new. In the legacy algorithm workflow, you would set up a
    [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance) with either a real system from a provider, or a simulator.
    For this migration, this "system selection" process is translated to **where** do you import your primitives from:
-   
+
    * Using **local** statevector simulators for quick prototyping: **Reference primitives**
    * Using **local** noisy simulations for finer algorithm tuning: **Aer primitives**
    * Accessing **runtime-enabled systems** (or cloud simulators): **Qiskit Runtime primitives**
@@ -90,7 +90,7 @@ yourself two questions:
 Arguably, the `Sampler` is the closest primitive to [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance), as they
 both execute circuits and provide a result. However, with the [`qiskit.utils.QuantumInstance`](../qiskit/0.46/qiskit.utils.QuantumInstance),
 the result data was system-dependent (it could be a counts `dict`, a `numpy.array` for
-statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to 
+statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to
 return a [`qiskit.result.QuasiDistribution`](../qiskit/qiskit.result.QuasiDistribution) object with the resulting quasi-probability distribution.
 
 The `Estimator` provides a specific abstraction for the expectation value calculation that can replace

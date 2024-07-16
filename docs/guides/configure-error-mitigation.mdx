@@ -35,20 +35,9 @@ which levels and corresponding methods are available for each of the
 primitives.
 
 <Admonition type="info" title="Attention">
-Error mitigation is task specific so the techniques you are able to
+Error mitigation is task specific, so the techniques you are able to
 apply vary based whether you are sampling a distribution or generating
 expectation values.
-</Admonition>
-
-<Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
-
-*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
-
-``` python
-service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
-```
-
 </Admonition>
 
 <span id="resilience-table"></span>
@@ -100,7 +89,7 @@ applied at each resilience level.
 
 ## Configure Estimator V2 with resilience levels
 
-You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings with Estimator V2.](#advanced-error) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
+You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings (V2 primitives).](#advanced-error) You cannot specify resilience levels in Sampler V2. However, you can set custom techniques individually.
 
 <details>
 <summary>Resilience Level 0</summary>
@@ -139,7 +128,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resilience-2.png "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value.](/images/optimize/resilience-2.svg "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,
@@ -172,7 +161,7 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 
 <Admonition type="info" title="Note">
 
-As you increase the resilience level, you will be able to use additional methods to improve the accuracy of your result. However, because the methods become more advanced with each level, they require additional sampling overhead (time) to generate more accurate expectation values. Note that higher resilience levels do not guarantee better quality. Higher levels only mean greater overhead. Each method has its strengths and weaknesses. For example, TREX (Twirled Readout Error eXtinction) is good for shallow circuits because of its readout error mitigation, whereas ZNE (Zero Noise Extrapolation) is good for deeper circuits. PEC can mitigate arbitrary errors but may not work in practice because of its large overhead.
+As you increase the resilience level, you can use additional methods to improve the accuracy of your result. However, because the methods become more advanced with each level, they require additional sampling overhead (time) to generate more accurate expectation values. Note that higher resilience levels do not guarantee better quality. Higher levels only mean greater overhead. Each method has its strengths and weaknesses. For example, TREX (Twirled Readout Error eXtinction) is good for shallow circuits because of its readout error mitigation, whereas ZNE (Zero Noise Extrapolation) is good for deeper circuits. PEC can mitigate arbitrary errors but might not work in practice because of its large overhead.
 </Admonition>
 
 ## Configure Estimator (V1) with resilience levels
@@ -217,7 +206,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resilience-2.png "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value.](/images/optimize/resilience-2.svg "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,
@@ -320,7 +309,7 @@ problems.
 
 ### Example
 
-The Estimator interface lets users seamlessly work with the variety of
+The Estimator interface lets you seamlessly work with the variety of
 error mitigation methods to reduce error in expectation values of
 observables. The following code uses Zero Noise Extrapolation by simply
 setting `resilience_level=2`.
@@ -471,32 +460,9 @@ job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1]
 psi1_H1 = job.result()
 ```
 
-<span id="no-error-mitigation"></span>
-## Turn off all error mitigation and error suppression
+## Turn off all error mitigation
 
-You can turn off all error mitigation and suppression if you are, for example, doing research on your own mitigation techniques. To accomplish this, for EstimatorV2, set `resilience_level = 0`. For SamplerV2, no changes are necessary because no error mitigation or suppression options are enabled by default.
-
-Example:
-
-Turn off all error mitigation and suppression in EstimatorV2.
-
-```python
-from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options, QiskitRuntimeService
-
-# Define the service.  This allows you to access IBM Quantum systems.
-service = QiskitRuntimeService()
-
-# Get a backend
-backend = service.least_busy(operational=True, simulator=False)
-
-# Define Estimator
-estimator = Estimator(backend)
-
-options = estimator.options
-
-# Turn off all error mitigation and suppression
-options.resilience_level = 0
-```
+For instructions to turn off all error mitigation, see the [Turn off all error suppression and mitigation](runtime-options-overview#no-error-mitigation) section.
 
 ## Next steps
 

@@ -7,7 +7,7 @@ description: Common use cases when migrating from backend.run to Qiskit Runtime 
 This topic describes how to migrate programs with the most commonly used types of circuits.  For a full example, see [End-to-end examples.](qiskit-runtime-examples)
 
 ## Basic circuits
-The only changes when running basic circuits are how you run the job and retrieve results.  
+The only changes when running basic circuits are how you run the job and retrieve results.
 
 <Tabs>
   <TabItem value="Updated" label="Runtime primitives">
@@ -80,7 +80,7 @@ To migrate programs that run dynamic circuits, change the run call.
 
 <Tabs>
   <TabItem value="primitives" label="Sampler">
-    ```python  
+    ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 sampler = Sampler(backend)
@@ -92,7 +92,7 @@ print(f">>> Hardware counts: {pub_result.data.meas.get_counts()}")
   </TabItem>
 
   <TabItem value="backend" label="backend.run">
-    ```python  
+    ```python
 job = backend.run(dynamic_circ, dynamic=True)
 job.job_id()
 
@@ -154,7 +154,7 @@ theta_values = [np.pi/2, np.pi/2, np.pi/2]
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
-Only circuits that adhere to the Instruction Set Architecture (ISA) of a specific backend are accepted, so we must transform the circuits. 
+Only circuits that adhere to the Instruction Set Architecture (ISA) of a specific backend are accepted, so we must transform the circuits.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -185,7 +185,7 @@ job = sampler.run([(isa_circuit, theta_values)])
 result = job.result()
 # Get results for the first (and only) PUB
 pub_result = result[0]
-# Get counts from the classical register "c". 
+# Get counts from the classical register "c".
 print(f" >> Counts for the c output register: {pub_result.data.c.get_counts()}")
 ```
   </TabItem>
@@ -232,7 +232,7 @@ pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
 
 sampler = Sampler(backend)
-# Get the averaged IQ data. 
+# Get the averaged IQ data.
 # This is equivalent to meas_level=1, meas_return="avg" in backend.run
 sampler.options.execution.meas_type = "avg_kerneled"
 job = sampler.run([isa_circuit], shots=10)
