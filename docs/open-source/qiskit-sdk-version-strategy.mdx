@@ -21,10 +21,8 @@ only during the period of overlap following a new major version release,
 described in more detail below.
 
 
-<details>
-  <summary  id="release-schedule">
-  Release schedule
-  </summary>
+## Release schedule
+
 
 A tentative release schedule is included below:
 
@@ -70,12 +68,9 @@ new versions of Python or other dependencies. Usually the minimum version of a
 dependency is only increased when older dependency versions go out of support or
 when it is not possible to maintain compatibility with the latest release of the
 dependency and the older version.
-</details>
 
-<details>
-  <summary id="upgrade-strategy">
-  Upgrade strategy
-  </summary>
+## Upgrade strategy
+
 When a new major version is released, the recommended upgrade path
 is to first upgrade to the most recent minor version on the previous major
 version. Shortly before a new major version, a final minor version will
@@ -110,13 +105,9 @@ file generated with an earlier release of Qiskit. However, the format isn't forw
 to load QPY files generated with a newer version of Qiskit using an older release.  To facilitate user migration across major version releases, the [`qiskit.qpy.dump()`](/api/qiskit/qpy#dump) function will always support at least one overlapping version between the `X.0.0` and the `X-1.Y.0` release (where `Y` is the last minor version of 
 that series). The parameter `qiskit.qpy.dump(..., version=...)` will enable saving QPY format files that can be loaded by both major versions from the newer
 release. See more details in [RFC 0020](https://github.com/Qiskit/RFCs/blob/master/0020-release_cycle.md#qpy-support).
-</details>
 
+## Pre-releases
 
-<details>
-<summary id="pre-releases">
-Pre-releases
-</summary>
 For each minor and major version release, Qiskit publishes pre-releases that
 are compatible with [PEP440](https://peps.python.org/pep-0440/). Typically
 these are release candidates of the form `X.Y.0rc1`. The `rc` releases
@@ -127,13 +118,10 @@ published, it does not have the same guarantees as an `rc` release, and is
 only a preview release. The API might change between these pre-releases
 and the final release with that version number. For example, `1.0.0pre1` might have
 a different final API than `1.0.0`.
-</details>
 
 
-<details>
-<summary id="post-releases">
-Post-releases
-</summary>
+## Post-releases
+
 If there are issues with a release's packaging, a post-release might be
 issued to correct this. These will follow the form `X.Y.Z.1` where the fourth
 integer indicates that it is the first post-release of the `X.Y.Z` release.
@@ -141,4 +129,4 @@ For example, the qiskit-terra (the legacy package name for Qiskit) 0.25.2
 release had some issue with the sdist package publishing, and a post-release
 0.25.2.1 was published that corrected this issue. The code was identical, and
 0.25.2.1 only fixed the packaging issue for the release.
-</details>
+
