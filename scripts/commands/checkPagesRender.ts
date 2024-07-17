@@ -83,17 +83,27 @@ zxMain(async () => {
 
   let failures: string[] = [];
   let numFilesChecked = 0;
+  let renderTimes = [];
   for (const fp of files) {
     numFilesChecked++;
-    const rendered = await canRender(fp);
-    if (!rendered) {
+    const response = await canRender(fp);
+
+    if (response.ok) {
+      renderTimes.push(response.timeTaken!);
+    } else {
       console.error(`❌ Failed to render: ${fp}`);
       failures.push(fp);
     }
 
     // This script can be slow, so log progress every 10 files.
     if (numFilesChecked % 10 == 0) {
-      console.log(`Checked ${numFilesChecked} / ${files.length} pages`);
+      const averageTime = (
+        renderTimes.reduce((a, b) => a + b, 0) / renderTimes.length
+      ).toFixed(0);
+      console.log(
+        `Checked ${numFilesChecked} / ${files.length} pages (~${averageTime}ms per page)`,
+      );
+      renderTimes = [];
     }
   }
 
@@ -110,18 +120,26 @@ zxMain(async () => {
   }
 });
 
-async function canRender(fp: string): Promise<boolean> {
+type RenderResult = {
+  ok: boolean;
+  timeTaken?: number;
+};
+
+async function canRender(fp: string): Promise<RenderResult> {
   const url = pathToUrl(fp);
+  let timeTaken;
   try {
+    const startTime = performance.now();
     const response = await fetch(url);
+    timeTaken = performance.now() - startTime;
     if (response.status >= 300) {
-      return false;
+      return { ok: false };
     }
   } catch (error) {
-    return false;
+    return { ok: false };
   }
 
-  return true;
+  return { ok: true, timeTaken: timeTaken };
 }
 
 function pathToUrl(path: string): string {
