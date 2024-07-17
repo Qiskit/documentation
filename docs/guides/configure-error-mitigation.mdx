@@ -3,7 +3,7 @@ title: Configure error mitigation
 description: How to configure error mitigation with Qiskit Runtime.
 ---
 
-# Configure error mitigation for Qiskit Runtime
+# Configure error mitigation
 
 Error mitigation techniques allow users to mitigate circuit errors by
 modeling the device noise at the time of execution. This typically
@@ -145,7 +145,7 @@ values](https://arxiv.org/abs/2012.09738).
 
 The `Estimator` interface lets users seamlessly work with the variety of
 error mitigation methods to reduce error in expectation values of
-observables. The following code uses Zero Noise Extrapolation by simply
+observables. The following code uses Zero Noise Extrapolation and readout error mitigation by simply
 setting `resilience_level 2`.
 
 ```python
@@ -158,11 +158,6 @@ backend = service.least_busy(operational=True, simulator=False)
 # Setting options during primitive initialization
 estimator = Estimator(backend, options={"resilience_level": 2})
 ```
-
-<Admonition type="info" title="Note">
-
-As you increase the resilience level, you can use additional methods to improve the accuracy of your result. However, because the methods become more advanced with each level, they require additional sampling overhead (time) to generate more accurate expectation values. Note that higher resilience levels do not guarantee better quality. Higher levels only mean greater overhead. Each method has its strengths and weaknesses. For example, TREX (Twirled Readout Error eXtinction) is good for shallow circuits because of its readout error mitigation, whereas ZNE (Zero Noise Extrapolation) is good for deeper circuits. PEC can mitigate arbitrary errors but might not work in practice because of its large overhead.
-</Admonition>
 
 ## Configure Estimator (V1) with resilience levels
 
@@ -469,6 +464,8 @@ For instructions to turn off all error mitigation, see the [Turn off all error s
 <Admonition type="tip" title="Recommendations">
   - Walk through an example that uses error mitigation in the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
   - Learn more about [Q-CTRL](https://docs.q-ctrl.com/q-ctrl-embedded).
-  - Learn how to transpile locally in the [Transpile](./transpile/) section.
-  - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+  - Learn more about [error mitigation and error suppression techniques.](error-mitigation-and-suppression-techniques)
+  - [Configure error suppression.](configure-error-suppression)
+  - Explore other [options.](runtime-options-overview)
+  - Decide what [execution mode](execution-modes) to run your job in.
 </Admonition>
