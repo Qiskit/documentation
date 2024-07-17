@@ -15,6 +15,7 @@ import fs from "fs/promises";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { mean } from "lodash";
 
 import { zxMain } from "../lib/zx";
 import { Pkg } from "../lib/api/Pkg";
@@ -97,11 +98,9 @@ zxMain(async () => {
 
     // This script can be slow, so log progress every 10 files.
     if (numFilesChecked % 10 == 0) {
-      const averageTime = (
-        renderTimes.reduce((a, b) => a + b, 0) / renderTimes.length
-      ).toFixed(0);
       console.log(
-        `Checked ${numFilesChecked} / ${files.length} pages (~${averageTime}ms per page)`,
+        `Checked ${numFilesChecked} / ${files.length} pages ` +
+          `(~${mean(renderTimes).toFixed(0)}ms per page)`,
       );
       renderTimes = [];
     }
