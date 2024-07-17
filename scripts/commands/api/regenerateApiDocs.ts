@@ -16,9 +16,9 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { $ } from "zx";
 
-import { Pkg } from "../lib/api/Pkg";
-import { zxMain } from "../lib/zx";
-import { pathExists } from "../lib/fs";
+import { Pkg } from "../../lib/api/Pkg";
+import { zxMain } from "../../lib/zx";
+import { pathExists } from "../../lib/fs";
 
 interface Arguments {
   [x: string]: unknown;
