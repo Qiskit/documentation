@@ -10,7 +10,7 @@ description: Specify options when building with Qiskit Runtime primitives
 
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (quantum processing unit) before being submitted to the Qiskit Runtime primitives. Such input is referred to as *instruction set architecture (ISA)* circuits and observables.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -348,7 +348,7 @@ Example:
     `SamplerV2` and `EstimatorV2` have separate options classes that do not need to be instantiated.  You can see the available options and update option values during or after primitive initialization.  Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 ```python
-estimator = Estimator(backend=backend)
+estimator = Estimator(mode=backend)
 
 # Setting options after primitive initialization
 # This uses auto complete.
@@ -360,7 +360,7 @@ estimator.options.default_shots = 4000
 When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Example:
 
 ```python
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 result = estimator.run(circuit, observable).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
@@ -419,7 +419,7 @@ sampler.run([circuit1, circuit2], shots=128)
   <TabItem value="PrimV1" label="V1 primitives">
 You can pass any options to `run()`. Because most users will only overwrite a few options at the job level, it is not necessary to specify the options category. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid).
 ```python
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(backend=backend, options=options)
 result = estimator.run(circuit, observable, shots=1024).result()
 print(f">>> Metadata: {result.metadata[0]}")
 ```
@@ -440,7 +440,7 @@ Shots (or precision) can be specified in multiple places in V2.  They are priori
 
 For any Sampler pub:
 
-1. Int-valued shots contained in the pub
+1. Integer-valued shots contained in the pub
 2. The `run(...,shots=val)` value
 3. The `options.default_shots` value
 
@@ -504,72 +504,29 @@ For more information about the primitive options, refer to the
 </TabItem>
 </Tabs>
 
+### Maximum execution time
 
-### Error suppression
+The maximum execution time (`max_execution_time`) limits how long a job can run.  If a job exceeds this time limit, it is forcibly cancelled.  This value applies to single jobs, whether they are run in job, session, or batch mode.
 
-The Qiskit Runtime primitives must be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled the circuits to respect the native gate set and connectivity constraints of the target system.
-
-In the V2 primitives, you can explicitly enable and disable individual error mitigation and suppression methods, such as dynamical decoupling. For an example, see the
-[Error suppression topic](configure-error-suppression#transpilation-table).
-
-<Admonition type="note">
-    In the V1 Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
-</Admonition>
-
-The optimization level option is a "first-level option", and can be set as follows (V1 primitives only):
-
-```python
-from qiskit_ibm_runtime import Estimator, Options
-
-options = Options(optimization_level=1)
-
-# or..
-options = Options()
-options.optimization_level = 1
-
-estimator = Estimator(session=backend, options=options)
-```
-
-For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
-[Configure error suppression topic](configure-error-suppression#transpilation-table).
-
-### Error mitigation
-
-
-You might want to leverage different error mitigation methods and see how these affect the performance of your
-algorithm.  These methods can be set through the `resilience_level` option.  For more information about error mitigation, see the
-[Configure error mitigation topic](configure-error-mitigation).
+The value is set in seconds, based on quantum time (not wall clock time), which is the amount of time that the QPU is dedicated to processing your job.
 
 <Tabs>
-  <TabItem value="PrimV2" label="Estimator V2">
-With Estimator V2, you can set resilience levels 0-2 and you can also turn on and off various error mitigation settings for fine-tuning.
+  <TabItem value="PrimV2" label="V2 primitives">
 
 ```python
-estimator = Estimator(backend=backend)
+estimator = Estimator(mode=backend)
 
-estimator.options.resilience_level = 2
-estimator.options.resilience.zne_mitigation = True
-estimator.options.resilience.zne.noise_factors = [1, 3, 5]
+estimator.options.max_execution_time = 2500
 ```
+
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
-The method selected for each level is
-different for `Sampler` and `Estimator`.
-
-The configuration is similar to the other options:
-
 ```python
-from qiskit_ibm_runtime import Estimator, Options
-
-options = Options(resilience_level = 2)
-
-# or...
-
 options = Options()
-options.resilience_level = 2
+estimator.options.max_execution_time = 2500
 
-estimator = Estimator(session=backend, options=options)
+estimator = Estimator(backend=backend)
 ```
 </TabItem>
 </Tabs>
@@ -586,7 +543,7 @@ Turn off all error mitigation and suppression in EstimatorV2.
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options, QiskitRuntimeService
 
-# Define the service.  This allows you to access IBM Quantum systems.
+# Define the service.  This allows you to access IBM QPU.
 service = QiskitRuntimeService()
 
 # Get a backend
