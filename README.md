@@ -266,9 +266,9 @@ npm run check:orphan-pages -- --current-apis --dev-apis --historical-apis
 npm run check
 ```
 
-## Check file metadata
+## Check page metadata
 
-Every file needs to have a `title` and `description`. The description must be between 50 and 160 characters. The `lint` job in CI will fail with instructions for any bad file.
+Every file needs to have a `title` and `description`, as explained in [Page Metadata](#page-metadata) The `lint` job in CI will fail with instructions for any bad file.
 
 You can also check for valid metadata locally:
 
@@ -440,9 +440,47 @@ Next, choose the file name. The file name will determine the URL. For example, `
 
 If your file will have non-trivial code in it, please create a Jupyter notebook ending in `.ipynb`, rather than an MDX file. We prefer Jupyter notebooks when there is code because we have tests to make sure that the code still executes properly, whereas MDX is not tested.
 
-Once the file is created, you need to add metadata. Run `npm run check:metadata` for instructions on how to do this. (Refer to [Check file metadata](#check-file-metadata))
-
 Finally, add the file to the folder's `_toc.json`, such as `guides/_toc.json`. The `title` is what will show up in the left side bar. Note that the `url` leaves off the file extension.
+
+## Page metadata
+
+Every page must set a `title` and `description`:
+
+- The title is used for browser tabs and the top line of search results. It should usually match the title used in the `_toc.json` file.
+- The description should describe the page in at least 50 but no more than 160 characters, ideally using some keywords. The description is what shows up as the text in search results. See https://github.com/Qiskit/documentation/issues/131 for some tips.
+
+In MDX files, set the metadata at the top of the file like this:
+
+```
+---
+title: Representing quantum computers
+description: Learn about coupling maps, basis gates, and backend errors for transpiling
+---
+```
+
+In Jupyter notebooks, set `title` and `description` in the `metadata` section for the file. In VSCode, you can set up the metadata with these instructions:
+
+1. Open up the file with the "Open With..." option and then "Text Editor".
+2. Scroll down to the bottom of the file for the top-level key "metadata". Be careful that this is the metadata for the entire file and not a single code block. You should see in the "metadata" section other entries like "language_info" and "nbconvert_exporter".
+3. Add new keys in the "metadata" section for "title" and "description".
+
+```json
+"metadata": {
+  "description": "Get started using Qiskit with IBM Quantum hardware in this Hello World example",
+  "title": "Hello world",
+  "celltoolbar": "Raw Cell Format",
+  "kernelspec": { ...
+}
+```
+
+## Links
+
+Internal URLs referring to other docs pages should start with `/` and not include the file extension. For example:
+
+- `[Qiskit SDK](/api/qiskit)`
+- `[Bit ordering in the Qiskit SDK](/guides/bit-ordering)`
+
+External URLs should use the entire URL, such as `[GitHub](https://github.com)`.
 
 ## Images
 
