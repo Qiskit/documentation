@@ -82,9 +82,9 @@ with Session(service=service, backend=backend):
   </TabItem>
 </Tabs>
 
-When you start a session,  you must specify a system. This can be done by specifying its name or by passing a `backend` object.
+When you start a session,  you must specify a QPU. This can be done by specifying its name or by passing a `backend` object.
 
-**Specify a system by name**
+**Specify a QPU by name**
 
 ``` python
 service = QiskitRuntimeService()
@@ -103,7 +103,7 @@ with Session(backend=backend):
 <span id="specify-length"></span>
 ## Session length
 
-You can define the maximum session timeout with the `max_time` parameter. This should exceed the longest job's execution time and be within the system's limits.
+You can define the maximum session timeout with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits.
 
 ``` python
 with Session(service=service, backend=backend, max_time="25m"):
