@@ -23,6 +23,15 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
     While this documentation uses the primitives from Qiskit Runtime, which allow you to use IBM&reg; backends, the primitives can be run on any provider by using the [backend primitives](#backend) instead.  Additionally, you can use the *reference* primitives to run on a local statevector simulator.  See [Exact simulation with Qiskit primitives](simulate-with-qiskit-sdk-primitives) for details.
 </Admonition>
 
+
+<Admonition type="note" title="Using Fractional Gates">
+    If you wish to use the newly supported [fractional gates](fractional-gates), you will need to set `use_fractional_gates=True` when requesting a backend from a `QiskitRuntimeService` instance. For example:
+    ``` python
+    service = QiskitRuntimeService()
+    fractional_gate_backend = service.least_busy(use_fractional_gates=True)
+    ```
+</Admonition>
+
 <span id="start-estimator"></span>
 ## Get started with Estimator
 
