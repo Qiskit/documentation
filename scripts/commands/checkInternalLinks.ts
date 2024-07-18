@@ -105,13 +105,13 @@ const PROVIDER_GLOBS_TO_LOAD = [
   "docs/run/max-execution-time.mdx",
 ];
 const RUNTIME_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/providers_models.mdx",
-  "docs/api/qiskit-ibm-runtime/options.mdx",
+  "docs/api/qiskit/*.mdx",
   "docs/run/index.mdx",
   "docs/run/max-execution-time.mdx",
   "docs/run/configure-error-mitigation.mdx",
   "docs/run/configure-runtime-compilation.mdx",
   "docs/transpile/index.mdx",
+  "docs/api/migration-guides/v2-primitives.mdx",
 ];
 const QISKIT_GLOBS_TO_LOAD = [
   "docs/build/circuit-construction.ipynb",
