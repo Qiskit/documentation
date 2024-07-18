@@ -4,7 +4,16 @@
   "description": "The documentation content home for https://docs.quantum.ibm.com.",
   "author": "Qiskit Development Team",
   "license": "Apache-2.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./lib/*": "./dist/lib/*.js",
+    "./commands/*": "./dist/commands/*.js"
+  },
   "scripts": {
+    "prepare": "tsc",
     "fmt": "prettier --write .",
     "test": "playwright test",
     "typecheck": "tsc",
