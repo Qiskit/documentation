@@ -90,7 +90,7 @@ zxMain(async () => {
     const response = await canRender(fp);
 
     if (response.ok) {
-      renderTimes.push(response.timeTaken!);
+      renderTimes.push(response.timeTaken);
     } else {
       console.error(`❌ Failed to render: ${fp}`);
       failures.push(fp);
@@ -119,12 +119,10 @@ zxMain(async () => {
   }
 });
 
-type RenderResult = {
-  ok: boolean;
-  timeTaken?: number;
-};
+type RenderSuccess = { ok: true; timeTaken: number };
+type RenderFailure = { ok: false };
 
-async function canRender(fp: string): Promise<RenderResult> {
+async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
   const url = pathToUrl(fp);
   let timeTaken;
   try {
