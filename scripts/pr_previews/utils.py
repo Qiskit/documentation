@@ -14,7 +14,9 @@ from __future__ import annotations
 
 import logging
 import subprocess
+from contextlib import contextmanager
 from pathlib import Path
+from typing import Iterator
 
 
 logger = logging.getLogger(__name__)
@@ -28,10 +30,36 @@ def configure_logging() -> None:
     )
 
 
+def setup_git_account() -> None:
+    run_subprocess(["git", "config", "user.name", "github-actions[bot]"])
+    run_subprocess(
+        ["git", "config", "user.email", "github-actions[bot]@users.noreply.github.com"]
+    )
+
+
+def changed_files() -> str:
+    return run_subprocess(["git", "status", "--porcelain"]).stdout.strip()
+
+
+def commit_all_and_push(commit_message: str) -> None:
+    run_subprocess(["git", "add", "."])
+    run_subprocess(["git", "commit", "-m", commit_message])
+    run_subprocess(["git", "push"])
+
+
+@contextmanager
+def switch_branch(branchname: str) -> Iterator[None]:
+    run_subprocess(["git", "fetch", "origin", branchname])
+    run_subprocess(["git", "switch", branchname])
+    yield
+    run_subprocess(["git", "checkout", "-"])
+
+
 def run_subprocess(
     cmd: list[str],
     *,
     cwd: Path | None = None,
+    env: dict[str, str] | None = None,
     stream_output: bool = False,
 ) -> subprocess.CompletedProcess:
     output_dest = None if stream_output else subprocess.PIPE
@@ -40,6 +68,7 @@ def run_subprocess(
     result = subprocess.run(
         cmd,
         cwd=cwd,
+        env=env,
         stdout=output_dest,
         stderr=output_dest,
         text=True,
@@ -50,4 +79,4 @@ def run_subprocess(
     if not stream_output:
         logger.error(f"stdout: {result.stdout}")
         logger.error(f"stderr: {result.stderr}")
-    raise SystemExit()
+    raise SystemExit(1)

@@ -68,7 +68,7 @@ Version 2 (available with qiskit-ibm-runtime 0.21.0) is the first major interfac
 * You can **turn on or off individual error mitigation and suppression methods**.
 * You can choose to **get counts or per-shot measurements** instead of quasi-probabilities from Sampler V2.
 * Due to scaling issues, Sampler V2 does not support specifying a resilience level, and Estimator V2 supports only levels 0 - 2.
-* To reduce the total execution time, v2 primitives only support ISA circuits. You can use the [Qiskit transpiler](runtime-options-overview#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](qiskit-transpiler-service) to transform the circuits before making the queries to the primitives.
+* To reduce the total execution time, V2 primitives only support ISA circuits. You can use the [Qiskit transpiler](runtime-options-overview#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](qiskit-transpiler-service) to transform the circuits before making the queries to the primitives.
 
 See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
 
@@ -77,6 +77,12 @@ See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.E
 The updated interface uses a *primitive unified bloc* (PUB) for input.  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  A summary of the changes to each primitive follows.
 
 #### Estimator V1
+
+<Admonition type="warning">
+[EstimatorV1](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV1) has been deprecated in `qiskit-ibm-runtime` 0.23.
+Its support will be removed on 15 August 2024.
+[EstimatorV2](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) is highly recommended instead.
+</Admonition>
 
 * Takes three parameters: circuits, observables, and parameter values.
 * Each parameter can be a single value or a list.
@@ -189,6 +195,12 @@ list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape 
 </Admonition>
 
 #### Sampler V1
+
+<Admonition type="warning">
+[SamplerV1](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV1) has been deprecated in `qiskit-ibm-runtime` 0.23.
+Its support will be removed on 15 August 2024.
+[SamplerV2](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) is highly recommended instead.
+</Admonition>
 
 * Takes two parameters: circuits and parameter values.
 * Each parameter can be a single value or a list.
