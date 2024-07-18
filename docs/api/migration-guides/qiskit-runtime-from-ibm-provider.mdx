@@ -22,9 +22,9 @@ information on retrieving account credentials, see [Install and set up](/guides/
 ``` python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-# IBM Quantum channel; set to default 
+# IBM Quantum channel; set to default
 
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, set_as_default=True)
 ```
 
 Additionally, you can now name your saved credentials and load the credentials by name.
@@ -101,7 +101,7 @@ provider = IBMProvider(instance="my_hub/my_group/my_project")
   </TabItem>
 </Tabs>
 
-## Get a backend 
+## Get a backend
 
 Use the updated code to specify a backend.
 
@@ -153,19 +153,19 @@ Change the import and run statements, instantiate the primitive, and make sure t
 from qiskit import QuantumCircuit
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
- 
+
 service = QiskitRuntimeService()
- 
+
 backend = service.least_busy(operational=True, simulator=False, min_num_qubits=127)
- 
+
 circuit = QuantumCircuit(2, 2)
 circuit.h(0)
 circuit.cx(0, 1)
 circuit.measure_all()
- 
+
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 isa_circuit = pm.run(circuit)
- 
+
 sampler = Sampler(backend)
 job = sampler.run([isa_circuit])
 result = job.result()
@@ -203,10 +203,10 @@ print(f" > Counts: {job.result().get_counts()}")
 from qiskit_ibm_runtime import Session
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
-with Session(service=service, backend=backend) as session: 
-    sampler = Sampler(session=session) 
-    job = sampler.run([isa_circuit]) 
-    another_job = sampler.run([another_isa_circuit]) 
+with Session(service=service, backend=backend) as session:
+    sampler = Sampler()
+    job = sampler.run([isa_circuit])
+    another_job = sampler.run([another_isa_circuit])
     result = job.result()
     another_result = another_job.result()
 ```

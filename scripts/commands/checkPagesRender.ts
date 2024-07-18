@@ -15,6 +15,7 @@ import fs from "fs/promises";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { mean } from "lodash";
 
 import { zxMain } from "../lib/zx";
 import { Pkg } from "../lib/api/Pkg";
@@ -83,17 +84,25 @@ zxMain(async () => {
 
   let failures: string[] = [];
   let numFilesChecked = 0;
+  let renderTimes = [];
   for (const fp of files) {
     numFilesChecked++;
-    const rendered = await canRender(fp);
-    if (!rendered) {
+    const response = await canRender(fp);
+
+    if (response.ok) {
+      renderTimes.push(response.timeTaken);
+    } else {
       console.error(`❌ Failed to render: ${fp}`);
       failures.push(fp);
     }
 
     // This script can be slow, so log progress every 10 files.
     if (numFilesChecked % 10 == 0) {
-      console.log(`Checked ${numFilesChecked} / ${files.length} pages`);
+      console.log(
+        `Checked ${numFilesChecked} / ${files.length} pages ` +
+          `(~${mean(renderTimes).toFixed(0)}ms per page)`,
+      );
+      renderTimes = [];
     }
   }
 
@@ -110,18 +119,24 @@ zxMain(async () => {
   }
 });
 
-async function canRender(fp: string): Promise<boolean> {
+type RenderSuccess = { ok: true; timeTaken: number };
+type RenderFailure = { ok: false };
+
+async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
   const url = pathToUrl(fp);
+  let timeTaken;
   try {
+    const startTime = performance.now();
     const response = await fetch(url);
+    timeTaken = performance.now() - startTime;
     if (response.status >= 300) {
-      return false;
+      return { ok: false };
     }
   } catch (error) {
-    return false;
+    return { ok: false };
   }
 
-  return true;
+  return { ok: true, timeTaken: timeTaken };
 }
 
 function pathToUrl(path: string): string {

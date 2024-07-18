@@ -1,0 +1,76 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: PR preview
+on:
+  pull_request:
+    paths:
+      - "docs/**/*"
+      - "public/images/**/*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  pr-preview:
+    name: PR preview
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    env:
+      PR_PREVIEW_PATH: pr-${{ github.event.pull_request.number }}
+      PR_PREVIEW_URL: https://qiskit.github.io/documentation/pr-${{ github.event.pull_request.number }}/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: docker/login-action@v3
+        with:
+          registry: icr.io
+          username: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
+          password: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
+
+      - name: Set up deployment status
+        uses: bobheadxi/deployments@v1
+        id: deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: pr_preview
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Build static site
+        run: >
+          scripts/pr_previews/builder.py
+          ${{ env.PR_PREVIEW_PATH }}
+          --basepath /documentation/${{ env.PR_PREVIEW_PATH }}
+
+      - name: Deploy to GitHub Pages
+        run: scripts/pr_previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
+
+      - name: Determine deployment result
+        run: scripts/pr_previews/poll_deployment.py ${{ env.PR_PREVIEW_URL }}
+      - name: Report deployment status
+        uses: bobheadxi/deployments@v1
+        if: always()
+        with:
+          step: finish
+          token: ${{ github.token }}
+          env: ${{ steps.deployment.outputs.env }}
+          status: ${{ job.status }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env_url: ${{ env.PR_PREVIEW_URL }}
+          override: false
