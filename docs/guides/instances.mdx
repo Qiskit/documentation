@@ -7,14 +7,14 @@ description: What IBM Quantum Platform instances are and how to use them
 Access to IBM Quantum&trade; Platform services is controlled by the **instances** (previously called providers) to which you are assigned. An instance is defined by a hierarchical organization of **hub**, **group**, and **project**. A hub is the top level of a given hierarchy (organization) and contains within it one or more groups. These groups are in turn populated with projects. The combination of hub/group/project is called an instance. Users can belong to more than one instance at any given time.
 
 <Admonition type="note">
-  IBM Cloud&reg; instances are different from IBM Quantum Platform instances.  IBM Cloud does not use the hub/group/project structure for user management. This section describes instances in IBM Quantum Platform. To view and create IBM Cloud instances, visit the [IBM Cloud Quantum Instances page](https://cloud.ibm.com/quantum/instances). Click the name of an instance to see details such as your CRN for that instance, what compute resources (programs, systems, and simulators) are available to you by using that instance, and what jobs you have run on that instance.
+  IBM Cloud&reg; instances are different from IBM Quantum Platform instances.  IBM Cloud does not use the hub/group/project structure for user management. This section describes instances in IBM Quantum Platform. To view and create IBM Cloud instances, visit the [IBM Cloud Quantum Instances page](https://cloud.ibm.com/quantum/instances). Click the name of an instance to see details such as your CRN for that instance, what compute resources are available to you by using that instance, and what jobs you have run on that instance.
 </Admonition>
 
 ![Alice, Bob, and Charlie are all in Hub A.  Hub A has Group 1 and 2.  Alice and Bob are in Group 1.  Charlie is in Group 2.  Group 1 has Project X and Y.  Alice is in both projects.  Bob is only in project X.  Group 2 has Project Z.  Charlie is in project Z.  Therefore, Charlie's instance is Hub-A/Group-2/Project-Z.](/images/guides/providers1.jpg "Hub / group / project hierarchy")
 
 The hub/group/project hierarchy that makes up an IBM Quantum instance.
 
-Users with a public account automatically belong to the ibm-q/open/main [open plan](#open-plan). For organizations outside of IBM, designated hub or group administrators assign users to instances.
+Users with a public account automatically belong to the ibm-q/open/main [Open Plan](#open-plan). For organizations outside of IBM&reg;, designated hub or group administrators assign users to instances.
 
 To see the instances to which you have access, look at the bottom of your [Account page](https://quantum.ibm.com/account).
 
@@ -26,7 +26,7 @@ You can view a list of your instances on your [account settings page](https://qu
 
 ## Switch instances
 
-If you have access to run on multiple instances, the [IBM Quantum interface](https://quantum.ibm.com/) menu bar contains a dropdown that lets you switch between instances.  The IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and systems based on the selected instance.
+If you have access to run on multiple instances, the [IBM Quantum interface](https://quantum.ibm.com/) menu bar contains a dropdown that lets you switch between instances.  The IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and QPUs based on the selected instance.
 
 <Admonition type="note">
  The instance switcher does not appear in the Administration application.
@@ -39,13 +39,13 @@ The first instance is determined alphabetically.
 
 ## Instances and jobs
 
-When you execute a task using an IBM Quantum service (for example, sending circuits to a quantum system or simulator), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final result(s) of the computation. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.
+When you execute a task using an IBM Quantum service (for example, sending circuits to a QPU), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final result(s) of the computation. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.
 
-## Open plan
+## Open Plan
 
-By default, users who sign up for an IBM Quantum account are assigned to the Open plan and the Open plan's instance, `ibm-q/open/main`. To guarantee that everyone can use the IBM Quantum systems allocated to the plan fairly, **an individual can have no more than three jobs running and/or in the queue (across all systems) at the same time.** Submitting more than three jobs at a time will return error [#3458](../errors#3458), and additional jobs will be canceled.
+By default, users who sign up for an IBM Quantum account are assigned to the Open Plan and the Open Plan's instance, `ibm-q/open/main`. To guarantee that everyone can use the QPU allocated to the plan fairly, **an individual can have no more than three jobs running and/or in the queue (across all QPUs) at the same time.** Submitting more than three jobs at a time will return error [#3458](../errors#3458), and additional jobs will be canceled.
 
-Those using the Open plan instance have up to 10 minutes total of system execution time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open plan users can track their system execution time on the [Platform dashboard,](https://quantum.ibm.com/) [Jobs,](https://quantum.ibm.com/jobs) and [Account](https://quantum.ibm.com/account) pages.
+Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard](https://quantum.ibm.com/), [Jobs](https://quantum.ibm.com/jobs), and [Account](https://quantum.ibm.com/account) pages.
 
 <span id="connect-instance"></span>
 ## Connect to an instance
