@@ -58,7 +58,7 @@ estimator.options.resilience.measure_mitigation = True
 estimator.options.default_shots = 4000
 
 # Sample two circuits at 128 shots each.
-estimator.run([circuit1, circuit2], shots=128)
+estimator.run([(circuit1, observable1), (circuit2, observable2)], shots=128)
 ```
 
 #### Special cases
@@ -90,7 +90,7 @@ estimator.options.resilience.zne_mitigation = True
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-  - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC. Estimator only.
+  - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC.
   - [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions): Options for dynamical decoupling.
   - [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2): Primitive execution options, including whether to initialize qubits and the repetition delay.
   - [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
@@ -103,7 +103,7 @@ estimator.options.resilience.zne_mitigation = True
   - [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2): Primitive execution options, including whether to initialize qubits and the repetition delay.
   - [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
   - [Environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions): Execution environment options such as the logging level to set and job tags to add.
-  - [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to **local testing mode only**.
+  - [Simulator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SimulatorOptions): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to local testing mode only.
   </TabItem>
 
   <TabItem value="OptionsV1" label="V1 options">
@@ -144,19 +144,19 @@ Scroll to see the full table.
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.       | Given by `backend.default_rep_delay`.|                      |
 | [max_execution_time](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)   |                          |       | Integer number of seconds in the range  [1, 10800]    | `10800` (3 hours)   | max_execution_time   |
 | [resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions)           |                          |      |                               |                      | resilience    |
-|                      | LayerNoiseLearning       |                         | `True`/`False`                                      | `True`                                                                 |      |
+|                      | [layer_noise_learning](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.LayerNoiseLearningOptions)     |      | `True`/`False`                | `True`               |      |
 |                      |                          | max_layers_to_learn     |  `None`/ integer >= 1                                                                      | `4`                    |                      |
 |                      |                          | shots_per_randomization |  integer >= 1                                                                         |  `128`                    |                      |
 |                      |                          | num_randomizations      |   integer >= 1                                                                            |  `32`                    |                      |
 |                      |                          | layer_pair_depths       |  list[int] of 2-10 values in the range [0, 200]                           | `(0, 1, 2, 4, 16, 32)`              |                      |
-|                      | measure_mitigation       |                         | `True`/`False`                                                                      | `True`                      |                      |
-|                      | measure_noise_learning   | num_randomizations      |  integer >= 1                                                                           | `32`                      |                      |
+|                      | measure_mitigation       |        | `True`/`False`                      | `True`                      |                      |
+|                      | [measure_noise_learning](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.MeasureNoiseLearningOptions)   | num_randomizations      |  integer >= 1  | `32`                      |                      |
 |                      |                          | shots_per_randomization |  integer                                                                                | 'auto'                    |                      |
-|                      | pec                      | max_overhead            |  `None`/ integer >1                                                                     | `100`                      |                      |
+|                      | [pec](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.PecOptions)   | max_overhead            |  `None`/ integer >1          | `100`                      |                      |
 |                      |                          | noise_gain              |  `auto`/ float in the range `[0, 1]`                                                     | `auto`                    |                      |
 |                      | pec_mitigation           |                         | `True`/`False`                                                                        | `False`                      |                      |
 |                      | zne_mitigation           |                         | `True`/`False`                                                                         | `False`                     |                      |
-|                      | zne                      | noise_factors           |   list of floats; each float >= 1                                                      | `(1, 3, 5)`                 |                      |
+|                      | [zne](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions)                      | noise_factors           |   list of floats; each float >= 1     | `(1, 3, 5)`           |                      |
 |                      |                          | amplifier               | `gate_folding`, `gate_folding_front`, `gate_folding_back                                 `  | `gate_folding` |                      |
 |                      |                          | extrapolator            | one or more of `'exponential'`<br />`'linear'`<br />`'double_exponential'`<br />`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |                      |
 | [resilience_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)     |                          |                         | `0`/`1`/`2`    | `1`                         |     resilience_level   |
