@@ -10,8 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-// To run:
-//   node -r esbuild-register scripts/commands/find-stale-images.ts
 import { zxMain } from "../lib/zx";
 import { $ } from "zx";
 import { globby } from "globby";
