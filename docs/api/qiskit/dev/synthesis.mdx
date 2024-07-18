@@ -35,27 +35,27 @@ python_api_name: qiskit.synthesis
 
 ### synth\_cnot\_count\_full\_pmh
 
-<Function id="qiskit.synthesis.synth_cnot_count_full_pmh" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/cnot_synth.py#L26-L71" signature="qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=2)">
+<Function id="qiskit.synthesis.synth_cnot_count_full_pmh" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/cnot_synth.py#L27-L69" signature="qiskit.synthesis.synth_cnot_count_full_pmh(state, section_size=None)">
   Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
 
   This function is an implementation of the Patel, Markov and Hayes algorithm from \[1] for optimal synthesis of linear reversible circuits for all-to-all architecture, as specified by an $n \times n$ matrix.
 
   **Parameters**
 
-  *   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – $n \times n$ boolean invertible matrix, describing the state of the input circuit
-  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The size of each section in the Patel–Markov–Hayes algorithm \[1].
+  *   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*]*) – $n \times n$ boolean invertible matrix, describing the state of the input circuit.
+  *   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The size of each section in the Patel–Markov–Hayes algorithm \[1]. If `None` it is chosen to be $\max(2, \alpha\log_2(n))$ with $\alpha = 0.56$, which approximately minimizes the upper bound on the number of row operations given in \[1] Eq. (3).
 
   **Returns**
 
-  a CX-only circuit implementing the linear transformation.
+  A CX-only circuit implementing the linear transformation.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – When `section_size` is larger than the number of columns.
 
   **Return type**
 
   [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-  **Raises**
-
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – when variable `state` isn’t of type `numpy.ndarray`
 
   **References**
 
@@ -219,7 +219,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_permutation\_basic
 
-<Function id="qiskit.synthesis.synth_permutation_basic" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/permutation/permutation_full.py#L27-L57" signature="qiskit.synthesis.synth_permutation_basic(pattern)">
+<Function id="qiskit.synthesis.synth_permutation_basic" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/permutation/permutation_full.py#L25-L45" signature="qiskit.synthesis.synth_permutation_basic(pattern)">
   Synthesize a permutation circuit for a fully-connected architecture using sorting.
 
   More precisely, if the input permutation is a cycle of length `m`, then this creates a quantum circuit with `m-1` SWAPs (and of depth `m-1`); if the input permutation consists of several disjoint cycles, then each cycle is essentially treated independently.
@@ -239,7 +239,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_permutation\_acg
 
-<Function id="qiskit.synthesis.synth_permutation_acg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/permutation/permutation_full.py#L60-L102" signature="qiskit.synthesis.synth_permutation_acg(pattern)">
+<Function id="qiskit.synthesis.synth_permutation_acg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/permutation/permutation_full.py#L48-L78" signature="qiskit.synthesis.synth_permutation_acg(pattern)">
   Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.
 
   This produces a quantum circuit of depth 2 (measured in the number of SWAPs).
@@ -367,7 +367,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_clifford\_greedy
 
-<Function id="qiskit.synthesis.synth_clifford_greedy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_greedy.py#L34-L124" signature="qiskit.synthesis.synth_clifford_greedy(clifford)">
+<Function id="qiskit.synthesis.synth_clifford_greedy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_greedy.py#L28-L57" signature="qiskit.synthesis.synth_clifford_greedy(clifford)">
   Decompose a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") operator into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin \[1].
 
   This method typically yields better CX cost compared to the Aaronson-Gottesman method.
@@ -397,7 +397,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_clifford\_layers
 
-<Function id="qiskit.synthesis.synth_clifford_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L66-L167" signature="qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)">
+<Function id="qiskit.synthesis.synth_clifford_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L67-L168" signature="qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)">
   Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov \[1].
 
   For example, a 5-qubit Clifford circuit is decomposed into the following layers:
@@ -442,7 +442,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_clifford\_depth\_lnn
 
-<Function id="qiskit.synthesis.synth_clifford_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L414-L444" signature="qiskit.synthesis.synth_clifford_depth_lnn(cliff)">
+<Function id="qiskit.synthesis.synth_clifford_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L416-L446" signature="qiskit.synthesis.synth_clifford_depth_lnn(cliff)">
   Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers for linear-nearest neighbor connectivity.
 
   The depth of the synthesized n-qubit circuit is bounded by $7n+2$, which is not optimal. It should be replaced by a better algorithm that provides depth bounded by $7n-4$ \[3].
@@ -683,20 +683,24 @@ python_api_name: qiskit.synthesis
 
 ### synth\_qft\_line
 
-<Function id="qiskit.synthesis.synth_qft_line" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/qft/qft_decompose_lnn.py#L21-L70" signature="qiskit.synthesis.synth_qft_line(num_qubits, do_swaps=True, approximation_degree=0)">
-  Synthesis of a QFT circuit for a linear nearest neighbor connectivity. Based on Fig 2.b in Fowler et al. \[1].
+<Function id="qiskit.synthesis.synth_qft_line" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/qft/qft_decompose_lnn.py#L21-L78" signature="qiskit.synthesis.synth_qft_line(num_qubits, do_swaps=True, approximation_degree=0)">
+  Construct a circuit for the Quantum Fourier Transform using linear neighbor connectivity.
 
-  Note that this method *reverts* the order of qubits in the circuit, compared to the original [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") code. Hence, the default value of the `do_swaps` parameter is `True` since it produces a circuit with fewer CX gates.
+  The construction is based on Fig 2.b in Fowler et al. \[1].
+
+  <Admonition title="Note" type="note">
+    With the default value of `do_swaps = True`, this synthesis algorithm creates a circuit that faithfully implements the QFT operation. When `do_swaps = False`, this synthesis algorithm creates a circuit that corresponds to “QFT-with-reversal”: applying the QFT and reversing the order of its output qubits.
+  </Admonition>
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits on which the QFT acts.
-  *   **approximation\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The degree of approximation (0 for no approximation).
-  *   **do\_swaps** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to include the final swaps in the QFT.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits on which the Quantum Fourier Transform acts.
+  *   **approximation\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The degree of approximation (0 for no approximation). It is possible to implement the QFT approximately by ignoring controlled-phase rotations with the angle beneath a threshold. This is discussed in more detail in [https://arxiv.org/abs/quant-ph/9601018](https://arxiv.org/abs/quant-ph/9601018) or [https://arxiv.org/abs/quant-ph/0403071](https://arxiv.org/abs/quant-ph/0403071).
+  *   **do\_swaps** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to synthesize the “QFT” or the “QFT-with-reversal” operation.
 
   **Returns**
 
-  A circuit implementation of the QFT circuit.
+  A circuit implementing the QFT operation.
 
   **Return type**
 
@@ -705,6 +709,33 @@ python_api_name: qiskit.synthesis
   **References**
 
   1.  A. G. Fowler, S. J. Devitt, and L. C. L. Hollenberg, *Implementation of Shor’s algorithm on a linear nearest neighbour qubit array*, Quantum Info. Comput. 4, 4 (July 2004), 237–251. [arXiv:quant-ph/0402196 \[quant-ph\]](https://arxiv.org/abs/quant-ph/0402196)
+</Function>
+
+### synth\_qft\_full
+
+<Function id="qiskit.synthesis.synth_qft_full" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/qft/qft_decompose_full.py#L21-L79" signature="qiskit.synthesis.synth_qft_full(num_qubits, do_swaps=True, approximation_degree=0, insert_barriers=False, inverse=False, name=None)">
+  Construct a circuit for the Quantum Fourier Transform using all-to-all connectivity.
+
+  <Admonition title="Note" type="note">
+    With the default value of `do_swaps = True`, this synthesis algorithm creates a circuit that faithfully implements the QFT operation. This circuit contains a sequence of swap gates at the end, corresponding to reversing the order of its output qubits. In some applications this reversal permutation can be avoided. Setting `do_swaps = False` creates a circuit without this reversal permutation, at the expense that this circuit implements the “QFT-with-reversal” instead of QFT. Alternatively, the [`ElidePermutations`](qiskit.transpiler.passes.ElidePermutations "qiskit.transpiler.passes.ElidePermutations") transpiler pass is able to remove these swap gates.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits on which the Quantum Fourier Transform acts.
+  *   **do\_swaps** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to synthesize the “QFT” or the “QFT-with-reversal” operation.
+  *   **approximation\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The degree of approximation (0 for no approximation). It is possible to implement the QFT approximately by ignoring controlled-phase rotations with the angle beneath a threshold. This is discussed in more detail in [https://arxiv.org/abs/quant-ph/9601018](https://arxiv.org/abs/quant-ph/9601018) or [https://arxiv.org/abs/quant-ph/0403071](https://arxiv.org/abs/quant-ph/0403071).
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, barriers are inserted for improved visualization.
+  *   **inverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, the inverse Quantum Fourier Transform is constructed.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The name of the circuit.
+
+  **Returns**
+
+  A circuit implementing the QFT operation.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 </Function>
 
 ## Unitary Synthesis

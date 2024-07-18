@@ -8,12 +8,19 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
 # MCXRecursive
 
-<Class id="qiskit.circuit.library.MCXRecursive" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1310-L1396" signature="qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.MCXRecursive" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1320-L1414" signature="qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
   Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
 
   Implement the multi-controlled X gate using recursion.
 
-  Using a single ancilla qubit, the multi-controlled X gate is recursively split onto four sub-registers. This is done until we reach the 3- or 4-controlled X gate since for these we have a concrete implementation that do not require ancillas.
+  Using a single clean ancilla qubit, the multi-controlled X gate is split into four sub-registers, each one of them uses the V-chain method.
+
+  The method is based on Lemma 9 of \[2], first shown in Lemma 7.3 of \[1].
+
+  **References**
+
+  1.  Barenco et al., 1995. [https://arxiv.org/pdf/quant-ph/9503016.pdf](https://arxiv.org/pdf/quant-ph/9503016.pdf)
+  2.  Iten et al., 2015. [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911)
 
   Create new MCX gate.
 
@@ -160,13 +167,13 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
   ### get\_num\_ancilla\_qubits
 
-  <Function id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1338-L1341" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')" modifiers="static">
+  <Function id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1353-L1356" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')" modifiers="static">
     Get the number of required ancilla qubits.
   </Function>
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.MCXRecursive.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1343-L1355" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.MCXRecursive.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1358-L1370" signature="inverse(annotated=False)">
     Invert this gate. The MCX is its own inverse.
 
     **Parameters**

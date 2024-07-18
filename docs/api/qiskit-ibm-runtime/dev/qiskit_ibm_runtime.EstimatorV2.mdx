@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
 # EstimatorV2
 
-<Class id="qiskit_ibm_runtime.EstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L53-L225" signature="EstimatorV2(mode=None, backend=None, session=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.EstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L53-L231" signature="EstimatorV2(mode=None, backend=None, session=None, options=None)" modifiers="class">
   Class for interacting with Qiskit Runtime Estimator primitive service.
 
   Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
@@ -17,7 +17,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   Following construction, an estimator is used by calling its [`run()`](#qiskit_ibm_runtime.EstimatorV2.run "qiskit_ibm_runtime.EstimatorV2.run") method with a list of PUBs (Primitive Unified Blocs). Each PUB contains four values that, together, define a computation unit of work for the estimator to complete:
 
-  *   a single `QuantumCircuit`, possibly parametrized, whose final state we define as $\psi(\theta)$,
+  *   a single [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)"), possibly parametrized, whose final state we define as $\psi(\theta)$,
   *   one or more observables (specified as any `ObservablesArrayLike`, including `Pauli`, `SparsePauliOp`, `str`) that specify which expectation values to estimate, denoted $H_j$, and
   *   a collection parameter value sets to bind the circuit against, $\theta_k$.
   *   an optional target precision for expectation value estimates.
@@ -53,7 +53,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   **Parameters**
 
-  *   **mode** (`Union`\[`BackendV1`, `BackendV2`, [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `str`, `None`]) –
+  *   **mode** (`Union`\[[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "(in Qiskit v1.1)"), [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.1)"), [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `str`, `None`]) –
 
       The execution mode used to make the primitive query. It can be:
 
@@ -63,7 +63,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
       Refer to the [Qiskit Runtime documentation](/run). for more information about the `Execution modes`.
 
-  *   **backend** (`Union`\[`str`, `BackendV1`, `BackendV2`, `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
+  *   **backend** (`Union`\[`str`, [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "(in Qiskit v1.1)"), [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.1)"), `None`]) – Backend to run the primitive. This can be a backend name or an [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instance. If a name is specified, the default account (e.g. `QiskitRuntimeService()`) is used.
 
   *   **session** (`Optional`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")]) –
 
@@ -125,7 +125,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.EstimatorV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L170-L188" signature="run(pubs, *, precision=None)">
+  <Function id="qiskit_ibm_runtime.EstimatorV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L176-L194" signature="run(pubs, *, precision=None)">
     Submit a request to the estimator primitive.
 
     **Parameters**
