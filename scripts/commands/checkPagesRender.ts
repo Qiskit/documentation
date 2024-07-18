@@ -119,8 +119,8 @@ zxMain(async () => {
   }
 });
 
-type RenderSuccess = { ok: true, timeTaken: number }
-type RenderFailure = { ok: false }
+type RenderSuccess = { ok: true; timeTaken: number };
+type RenderFailure = { ok: false };
 
 async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
   const url = pathToUrl(fp);
