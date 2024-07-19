@@ -23,7 +23,7 @@ The differences are summarized in the following table:
 |:------------:|:---------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | Job mode     | Quantum computation only.               | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
 | Batch mode   | Quantum computation only.               | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch are usually run close together.                                                                     |
-| Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the system during the session active window, and no other users’ or system jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
+| Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
 
 <span id="best-practices"></span>
 ## Best practices
@@ -41,14 +41,14 @@ The above are general guidelines, and you should tune your workload to find the 
 
 ## Sessions versus batch usage
 
-Usage is a measurement of the amount of time the system is locked for your workload.
+Usage is a measurement of the amount of time the QPU is locked for your workload.
 
 * Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
-* Batch usage is the amount of time all jobs spend on the system.
+* Batch usage is the amount of time all jobs spend on the QPU.
 * Single job usage is the quantum time they use in processing.
 
 To find the usage time for your session or batch, in `qiskit-ibm-runtime` 0.23 or later, run `session.details()["usage_time"]` or `batch.details()["usage_time"]`.
 
 If you are calling the REST API directly, the usage time is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both session and batch workloads.
 
-![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The system is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the system.  The system is locked for your use from the time the first job reaches the system until the last job is done processing on the system.  There is no gap between jobs where the system is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
+![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
