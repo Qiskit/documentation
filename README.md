@@ -1,4 +1,4 @@
-# Qiskit docs
+# Qiskit documentation
 
 The documentation content home for https://docs.quantum.ibm.com (excluding API reference).
 
@@ -14,7 +14,7 @@ Read on for more information about how to support this project:
 
 This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&trade; documentation. There are a few different ways to report issues, depending on where it was found:
 
-- For problems you've found in the [Qiskit API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
+- For problems you've found in the [Qiskit SDK API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
 - For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
 - For problems you've found in any other section of [docs](https://docs.quantum.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
@@ -41,7 +41,7 @@ You can look through the open issues we have in this repo and address them with 
 
 Before getting started on an issue, remember to do the following:
 
-1. Read the [Code of Conduct](https://github.com/Qiskit/documentation/blob/main/CODE_OF_CONDUCT.md)
+1. Read the [Code of Conduct](https://docs.quantum.ibm.com/open-source/code-of-conduct)
 2. Check for open, unassigned issues with the "good first issue" label
 3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
 
@@ -50,7 +50,7 @@ Once you have an issue to work on, see the "How to work with this repo" section 
 Before opening a PR, remember to do the following:
 
 1. Check that you have addressed all the requirements from the original issue
-2. Run the spell checker
+2. Run the quality control checks with `npm run check`
 3. Use the GitHub "fixes" notation to [link your PR to the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) you are addressing
 
 # How to work with this repo
@@ -63,7 +63,7 @@ First, install the below software:
 
 1. [Node.js](https://nodejs.org/en). If you expect to use JavaScript in other projects, consider using [NVM](https://github.com/nvm-sh/nvm). Otherwise, consider using [Homebrew](https://formulae.brew.sh/formula/node) or installing [Node.js directly](https://nodejs.org/en).
 2. [Docker](https://www.docker.com). You must also ensure that it is running.
-   - You can use [Colima](https://github.com/abiosoft/colima) or [Rancher Desktop](https://rancherdesktop.io). When installing Rancher Desktop, choose Moby/Dockerd as the engine, rather than nerdctl. To ensure it's running, open up the app "Rancher Desktop".
+   - If you cannot use Docker from docker.com, consider using use [Colima](https://github.com/abiosoft/colima) or [Rancher Desktop](https://rancherdesktop.io). When installing Rancher Desktop, choose Moby/Dockerd as the engine, rather than nerdctl. To ensure it's running, open up the app "Rancher Desktop".
 
 Then, install the dependencies with:
 
@@ -80,7 +80,7 @@ You can preview the docs locally by following these two steps:
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
-Warning: `./start` does not check if there is a new version of the docs application available. Run `docker pull qiskit/documentation` to update to the latest version of the app.
+Warning: `./start` does not check if there is a new version of the docs application available. You can run `docker pull qiskit/documentation` to update to the latest version of the app.
 
 ### API docs authors: How to preview your changes
 
@@ -89,7 +89,33 @@ API docs authors can preview their changes to one of the APIs by using the `-a` 
 1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
 2. Execute `./start` and open up `http://localhost:3000`, as explained in the prior section.
 
-## Execute notebooks
+## Jupyter notebooks
+
+### Add a new notebook
+
+When adding a new notebook, you'll need to tell the testing tools how to handle it.
+To do this, add the file path to `scripts/nb-tester/notebooks.toml`. There are
+four categories:
+
+- `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
+  can't submit jobs as the queue times are too long and it will waste
+  resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
+  information.
+- `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
+  enough to run on a 5-qubit simulator. We will test these notebooks in CI by
+  patching `least_busy` to return a 5-qubit fake backend.
+- `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
+  simulator patch. We skip testing these in CI and instead run them twice per
+  month. Any notebooks with cells that take more than five minutes to run are
+  also deemed too big for CI. Try to avoid adding notebooks to this category if
+  possible.
+- `notebooks_exclude`: Notebooks to be ignored.
+
+If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
+also add it to the "Check for notebooks that require LaTeX" step in
+`.github/workflows/notebook-test.yml`.
+
+### Execute notebooks
 
 Before submitting a new notebook or code changes to a notebook, you must run
 the notebook using `tox -- --write <path-to-notebook>` and commit the results.
@@ -130,31 +156,7 @@ job page, click "Summary", then download "Executed notebooks". Otherwise, if
 your notebook does submit jobs, you need to run it locally using the steps
 mentioned earlier.
 
-### Adding a new notebook
-
-When adding a new notebook, you'll need to tell the testing tools how to handle it.
-To do this, add the file path to `scripts/nb-tester/notebooks.toml`. There are
-four categories:
-
-- `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
-  can't submit jobs as the queue times are too long and it will waste
-  resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
-  information.
-- `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
-  enough to run on a 5-qubit simulator. We will test these notebooks in CI by
-  patching `least_busy` to return a 5-qubit fake backend.
-- `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
-  simulator patch. We skip testing these in CI and instead run them twice per
-  month. Any notebooks with cells that take more than five minutes to run are
-  also deemed too big for CI. Try to avoid adding notebooks to this category if
-  possible.
-- `notebooks_exclude`: Notebooks to be ignored.
-
-If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
-also add it to the "Check for notebooks that require LaTeX" step in
-`.github/workflows/notebook-test.yml`.
-
-### Ignoring warnings
+### Ignore warnings in your notebook
 
 We don't want users to see warnings that can be avoided, so it's best to fix
 the code to avoid them. However, if a warning is unavoidable, you can stop it
@@ -164,7 +166,7 @@ right-click the cell, choose "Add cell tag", type `ignore-warnings`, then press
 Sidebar > Show Notebook Tools, then under "Common Tools" add a tag with text
 `ignore-warnings`.
 
-### Extra code checks
+### Add extra code checks to your notebook
 
 Our CI checks notebooks run from start to finish without errors or warnings.
 You can add extra checks in notebooks to catch other unexpected behavior.
@@ -185,7 +187,7 @@ block is only for testing. Make sure you add the tag `remove-cell`.
 If something ever causes this value to
 change, CI will alert us.
 
-## Lint notebooks
+### Lint notebooks
 
 We use [`squeaky`](https://github.com/frankharkins/squeaky) to lint our
 notebooks. First install `tox` using [pipx](https://pipx.pypa.io/stable/).
@@ -208,7 +210,7 @@ tox -e fix -- path/to/notebook
 ```
 
 Or, you can retrieve an executed and linted version of your notebook from CI
-following the steps at the end of the [Execute notebook](#execute-notebooks)
+following the steps at the end of the [Execute notebooks](#execute-notebooks)
 section.
 
 If you use the Jupyter notebook editor, consider adding squeaky as a [pre-save
@@ -264,9 +266,9 @@ npm run check:orphan-pages -- --current-apis --dev-apis --historical-apis
 npm run check
 ```
 
-## Check file metadata
+## Check page metadata
 
-Every file needs to have a `title` and `description`. The `lint` job in CI will fail with instructions for any bad file.
+Every file needs to have a `title` and `description`, as explained in [Page Metadata](#page-metadata) The `lint` job in CI will fail with instructions for any bad file.
 
 You can also check for valid metadata locally:
 
@@ -274,9 +276,9 @@ You can also check for valid metadata locally:
 # Only check file metadata
 npm run check:metadata
 
-# By default, only the non-API docs are checked. You can add any of the
-# below arguments to also check API docs and/or translations.
-npm run check:metadata -- --translations --apis
+# By default, only the non-API docs are checked. You can add the
+# below argument to also check API docs.
+npm run check:metadata -- --apis
 
 # Or, run all the checks. Although this only checks non-API docs.
 npm run check
@@ -327,7 +329,7 @@ To check that all the non-API docs render:
 1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
 2. In a new tab, `npm run check:pages-render -- --non-api`
 
-You can also check that API docs and translations render by using any of these arguments: `npm run check:pages-render -- --non-api --qiskit-release-notes --current-apis --dev-apis --historical-apis --translations`. Warning that this is exponentially slower.
+You can also check that API docs render by using any of these arguments: `npm run check:pages-render -- --non-api --qiskit-release-notes --current-apis --dev-apis --historical-apis`. Warning that this is exponentially slower.
 
 CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
@@ -418,11 +420,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
   textconv = sh -c 'sphobjinv convert plain "$0" -'
 ```
 
-# How to deploy docs
-
 ## Deploy guides & API docs
-
-This content lives on https://docs.quantum.ibm.com.
 
 See the section "Syncing content with open source repo" in the internal docs repo's README.
 
@@ -442,43 +440,81 @@ Next, choose the file name. The file name will determine the URL. For example, `
 
 If your file will have non-trivial code in it, please create a Jupyter notebook ending in `.ipynb`, rather than an MDX file. We prefer Jupyter notebooks when there is code because we have tests to make sure that the code still executes properly, whereas MDX is not tested.
 
-Once the file is created, you need to add metadata. Run `npm run check:metadata` for instructions on how to do this. (Refer to [Check file metadata](#check-file-metadata))
+Finally, add the file to the folder's `_toc.json`, such as `guides/_toc.json`. The `title` is what will show up in the left side bar. Note that the `url` leaves off the file extension.
 
-Finally, add the file to the folder's `_toc.json`, such as `start/_toc.json`. The `title` is what will show up in the left side bar. Note that the `url` leaves off the file extension.
+## Page metadata
+
+Every page must set a `title` and `description`:
+
+- The title is used for browser tabs and the top line of search results. It should usually match the title used in the `_toc.json` file.
+- The description should describe the page in at least 50 but no more than 160 characters, ideally using some keywords. The description is what shows up as the text in search results. See https://github.com/Qiskit/documentation/issues/131 for some tips.
+
+In MDX files, set the metadata at the top of the file like this:
+
+```
+---
+title: Representing quantum computers
+description: Learn about coupling maps, basis gates, and backend errors for transpiling
+---
+```
+
+In Jupyter notebooks, set `title` and `description` in the `metadata` section for the file. In VSCode, you can set up the metadata with these instructions:
+
+1. Open up the file with the "Open With..." option (one way to do this is to right-click the file name to find the "Open With..." option) and then "Text Editor".
+2. Scroll down to the bottom of the file for the top-level key "metadata". Ensure that this is the metadata for the entire file and not for a single code block. You should see in the "metadata" section other entries like "language_info" and "nbconvert_exporter".
+3. Add new keys in the "metadata" section for "title" and "description".
+
+```json
+"metadata": {
+  "description": "Get started using Qiskit with IBM Quantum hardware in this Hello World example",
+  "title": "Hello world",
+  "celltoolbar": "Raw Cell Format",
+  "kernelspec": { ...
+}
+```
+
+## Links
+
+Internal URLs referring to other docs pages should start with `/` and not include the file extension. For example:
+
+- `[Qiskit SDK](/api/qiskit)`
+- `[Bit ordering in the Qiskit SDK](/guides/bit-ordering)`
+
+External URLs should use the entire URL, such as `[GitHub](https://github.com)`.
 
 ## Images
 
-Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `start/my-file.mdx` should be stored like `public/images/start/my-file/img1.png`.
+Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/images/guides/my-file/img1.png`.
 
 To use the image:
 
 ```markdown
-![Your image](/images/build/your-file/your_image.png)
+![Alt text for the image](/images/guides/your-file/your_image.png)
 ```
 
 To add an inline images:
 
 ```markdown
-Inline ![Inline image](/images/build/your-file/your_image.png) image
+Inline ![Alt text for the image](/images/guides/your-file/your_image.png) image
 ```
 
 To include a caption:
 
 ```markdown
-![Your image](/images/build/your-file/your_image.png "Image caption")
+![Alt text for the image](/images/guides/your-file/your_image.png "Image caption")
 ```
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
 
 ## Videos
 
-Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `start/my-file.mdx` should be stored like `public/videos/start/my-file/video1.mp4`.
+Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/videos/guides/my-file/video1.mp4`.
 
 To add a video:
 
 ```markdown
 <video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
-    <source src="/videos/run/sessions/demo.mp4" type="video/mp4"></source>
+    <source src="/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
 </video>
 ```
 
@@ -502,7 +538,7 @@ Tables are supported: https://www.markdownguide.org/extended-syntax/.
 
 ## Comments
 
-Example comment: {/_ Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html _/}
+Example comment: `{/_ Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html _/}`
 
 ## Collapsible sections
 
@@ -534,7 +570,7 @@ These are components that we expose through MDX. You can use them in both
 To use an `Admonition`, use the following syntax
 
 ```mdx
-<Admonition type="note">This is a __note__ example</Admonition>
+<Admonition type="note">This is an example of a note.</Admonition>
 ```
 
 Available types are `note, tip, info, caution, danger`. This is what they look like:
