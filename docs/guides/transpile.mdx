@@ -36,7 +36,7 @@ In addition to reducing the depth and complexity of quantum circuits, the transp
 
 Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
 
-1. `init` - This pass runs any initial passes that are required before the circuit can be embedded into the system.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. By default, this validates the circuit instructions and translates multi-qubit gates into single- and two-qubit gates.
+1. `init` - This pass runs any initial passes that are required before the circuit can be embedded.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. By default, this validates the circuit instructions and translates multi-qubit gates into single- and two-qubit gates.
 1. `layout` - This pass applies a *layout*, mapping the virtual qubits in your circuit to the QPU's physical qubits.
 1. `routing` - This pass runs after a layout has been applied and will inject gates (that is, SWAPs) in the original circuit to make it compatible with the QPU's connectivity (coupling map).
 1. `translation` - This pass translates the gates in the circuit to the QPU's basis set of instructions.
