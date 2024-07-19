@@ -24,7 +24,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 <span id="options-structure"></span>
 ### Structure
 
-When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [Set primitive options](#pass-options) section for full details.
+When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [Set primitive options](specify-runtime-options) topic for full details.
 
 <span id="options-defaults"></span>
 ### Defaults
@@ -43,7 +43,7 @@ There are several ways to set options.  If you set different values for the same
 2. Any options set during primitive initialization.
 
 <Admonition type="caution" title="Important">
-Shots (Sampler) or precision (Estimator) set in `run()` are not considered options, but take precidence over values set for `default_shots`or `default_precision`. See the [Run() method](#run-method) section for full details.
+Shots (Sampler) or precision (Estimator) set in `run()` are not considered options, but take precidence over values set for `default_shots`or `default_precision`. See the [Run() method](specify-runtime-options#run-method) section for full details.
 </Admonition>
 
 In the following example, these values would be used for the `estimator.run` job: `shots = 128` and `resilience_level = 1`.
@@ -304,8 +304,6 @@ Due to differences in the device compilation process, certain runtime features c
   </TabItem>
 
 </Tabs>
-
-
 
 ## Next steps
 
