@@ -15,7 +15,7 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
-import { last, first, without, initial, tail } from "lodash";
+import { last, first, without, initial, tail } from "lodash-es";
 import { defaultHandlers, Handle, toMdast, all, H } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";

@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { includes, isEmpty, orderBy } from "lodash";
+import { includes, isEmpty, orderBy } from "lodash-es";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkMdx from "remark-mdx";

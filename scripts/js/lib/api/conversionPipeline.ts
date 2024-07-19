@@ -15,7 +15,7 @@ import { readFile, writeFile } from "fs/promises";
 
 import { mkdirp } from "mkdirp";
 import { globby } from "globby";
-import { uniqBy } from "lodash";
+import { uniqBy } from "lodash-es";
 
 import { ObjectsInv } from "./objectsInv";
 import { sphinxHtmlToMarkdown } from "./htmlToMd";

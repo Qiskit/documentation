@@ -13,7 +13,7 @@
 import { zxMain } from "../lib/zx";
 import { $ } from "zx";
 import { globby } from "globby";
-import { zip } from "lodash";
+import { zip } from "lodash-es";
 
 zxMain(async () => {
   const paths = await getStrippedImagePaths();

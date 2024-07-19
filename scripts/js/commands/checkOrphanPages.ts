@@ -16,7 +16,7 @@ import path from "path";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { flattenDeep } from "lodash";
+import { flattenDeep } from "lodash-es";
 
 import { TocEntry } from "../lib/api/generateToc";
 

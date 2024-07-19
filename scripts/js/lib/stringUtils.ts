@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { last, split } from "lodash";
+import { last, split } from "lodash-es";
 
 export const APOSTROPHE_HEX_CODE = "&#x27;";
 

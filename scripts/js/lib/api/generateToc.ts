@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { isEmpty, orderBy } from "lodash";
+import { isEmpty, orderBy } from "lodash-es";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
