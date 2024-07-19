@@ -10,7 +10,7 @@ Error suppression refers to techniques where you use knowledge about the undesir
 
 V2 primitives support a number of error suppression techniques, including dynamical decoupling and Pauli twirling. See Error mitigation and suppression techniques for explanation of each. In V2 primitives, you can turn on or off individual method. See the [Advanced error suppression options](#transpilation-table) section for details.
 
-Estimator V2 employs error suppression and mitigation by default. If you don't want any processing done to your input circuits follow the instructions in the [Turn off all error mitigation and error suppression](runtime-options-overview#no-error-mitigation) section.
+Estimator V2 employs error suppression and mitigation by default. If you don't want any processing done to your input circuits follow the instructions in the [Turn off all error mitigation and error suppression](specify-runtime-options#no-error-mitigation) section.
 
 <Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
