@@ -14,19 +14,19 @@
     "test": "playwright test",
     "typecheck": "tsc",
     "check": "npm run check:qiskit-bot && npm run check:patterns-index && npm run check:metadata && npm run check:spelling && npm run check:internal-links && npm run check:orphan-pages && npm run check:fmt",
-    "check:metadata": "node -r esbuild-register scripts/js/commands/checkMetadata.ts",
+    "check:metadata": "tsx scripts/js/commands/checkMetadata.ts",
     "check:spelling": "cspell --relative --no-progress docs/**/*.md* docs/api/**/*.md* --config cspell/cSpell.json",
     "check:fmt": "prettier --check .",
-    "check:internal-links": "node -r esbuild-register scripts/js/commands/checkInternalLinks.ts",
-    "check:external-links": "node -r esbuild-register scripts/js/commands/checkExternalLinks.ts",
-    "check:pages-render": "node -r esbuild-register scripts/js/commands/checkPagesRender.ts",
-    "check:patterns-index": "node -r esbuild-register scripts/js/commands/checkPatternsIndex.ts",
-    "check:orphan-pages": "node -r esbuild-register scripts/js/commands/checkOrphanPages.ts",
-    "check:qiskit-bot": "node -r esbuild-register scripts/js/commands/checkQiskitBotFiles.ts",
-    "check:stale-images": "node -r esbuild-register scripts/js/commands/checkStaleImages.ts",
-    "regen-apis": "node -r esbuild-register scripts/js/commands/api/regenerateApiDocs.ts",
-    "gen-api": "node -r esbuild-register scripts/js/commands/api/updateApiDocs.ts",
-    "make-historical": "node -r esbuild-register scripts/js/commands/api/convertApiDocsToHistorical.ts"
+    "check:internal-links": "tsx scripts/js/commands/checkInternalLinks.ts",
+    "check:external-links": "tsx scripts/js/commands/checkExternalLinks.ts",
+    "check:pages-render": "tsx scripts/js/commands/checkPagesRender.ts",
+    "check:patterns-index": "tsx scripts/js/commands/checkPatternsIndex.ts",
+    "check:orphan-pages": "tsx scripts/js/commands/checkOrphanPages.ts",
+    "check:qiskit-bot": "tsx scripts/js/commands/checkQiskitBotFiles.ts",
+    "check:stale-images": "tsx scripts/js/commands/checkStaleImages.ts",
+    "regen-apis": "tsx scripts/js/commands/api/regenerateApiDocs.ts",
+    "gen-api": "tsx scripts/js/commands/api/updateApiDocs.ts",
+    "make-historical": "tsx scripts/js/commands/api/convertApiDocsToHistorical.ts"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
@@ -63,9 +63,8 @@
     "@types/lodash-es": "^4.14.198",
     "@types/node": "^20.6.2",
     "@types/yargs": "^17.0.28",
-    "esbuild": "^0.19.11",
-    "esbuild-register": "^3.5.0",
     "prettier": "^3.0.3",
+    "tsx": "^4.16.2",
     "typescript": "^5.2.2"
   }
 }
