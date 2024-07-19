@@ -11,13 +11,9 @@ results in quantum pre-processing overhead related to model training and
 classical post-processing overhead to mitigate errors in the raw results
 by using the generated model.
 
-The error mitigation techniques built in to primitives are advanced
-resilience options. To specify these options, use the `resilience_level`
-option when submitting your job.
+Primitives support several error mitigation techniques, including TREX, [ZNE](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#zne), and [PEC](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#pec). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for explanation of each. In V2 primitives, you can turn on or off individual methods. See the [Custom error settings](#advanced-error) section for details.
 
-<admonition type="note">Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. See the [Custom error settings](#advanced-error) section for details.</admonition>
-
-The resilience level specifies how much resilience to build against
+Estimator V2 also supports `resilience_level`. The resilience level specifies how much resilience to build against
 errors. Higher levels generate more accurate results, at the expense of
 longer processing times. Resilience levels can be used to configure the
 cost/accuracy trade-off when applying error mitigation to your primitive
@@ -364,7 +360,7 @@ sampler = Sampler(backend, options=options)
 <span id="advanced-error"></span>
 ## Custom error settings (V2 primitives)
 
-With the V2 primitives, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE.
+With the V2 primitives, you can turn on and off individual error mitigation and suppression methods, including dynamical decoupling, gate and measurement twirling, measurement error mitigation, and ZNE. See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each.
 
 <Admonition type = "note" title = "Notes">
 - Not all options are available for both primitives.   See the [API reference](/api/qiskit-ibm-runtime/options) for the list of available options.
