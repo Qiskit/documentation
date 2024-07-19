@@ -10,10 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { zxMain } from "../lib/zx";
 import { $ } from "zx";
 import { globby } from "globby";
 import { zip } from "lodash-es";
+
+import { zxMain } from "../lib/zx.js";
 
 zxMain(async () => {
   const paths = await getStrippedImagePaths();

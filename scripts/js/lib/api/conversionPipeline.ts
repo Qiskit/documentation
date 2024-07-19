@@ -17,24 +17,24 @@ import { mkdirp } from "mkdirp";
 import { globby } from "globby";
 import { uniqBy } from "lodash-es";
 
-import { ObjectsInv } from "./objectsInv";
-import { sphinxHtmlToMarkdown } from "./htmlToMd";
-import { saveImages } from "./saveImages";
-import { generateToc } from "./generateToc";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
-import { mergeClassMembers } from "./mergeClassMembers";
-import flattenFolders from "./flattenFolders";
-import { updateLinks } from "./updateLinks";
-import { specialCaseResults } from "./specialCaseResults";
-import addFrontMatter from "./addFrontMatter";
-import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds";
-import removeMathBlocksIndentation from "./removeMathBlocksIndentation";
-import { Pkg } from "./Pkg";
-import { pathExists } from "../fs";
+import { ObjectsInv } from "./objectsInv.js";
+import { sphinxHtmlToMarkdown } from "./htmlToMd.js";
+import { saveImages } from "./saveImages.js";
+import { generateToc } from "./generateToc.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { mergeClassMembers } from "./mergeClassMembers.js";
+import flattenFolders from "./flattenFolders.js";
+import { updateLinks } from "./updateLinks.js";
+import { specialCaseResults } from "./specialCaseResults.js";
+import addFrontMatter from "./addFrontMatter.js";
+import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds.js";
+import removeMathBlocksIndentation from "./removeMathBlocksIndentation.js";
+import { Pkg } from "./Pkg.js";
+import { pathExists } from "../fs.js";
 import {
   maybeUpdateReleaseNotesFolder,
   handleReleaseNotesFile,
-} from "./releaseNotes";
+} from "./releaseNotes.js";
 
 export async function runConversionPipeline(
   htmlPath: string,

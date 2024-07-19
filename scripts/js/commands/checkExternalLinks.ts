@@ -14,9 +14,9 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { ExternalLink } from "../lib/links/ExternalLink";
-import { parseFile } from "../lib/links/extractLinks";
-import { addLinksToMap } from "../lib/links/FileBatch";
+import { ExternalLink } from "../lib/links/ExternalLink.js";
+import { parseFile } from "../lib/links/extractLinks.js";
+import { addLinksToMap } from "../lib/links/FileBatch.js";
 
 interface Arguments {
   [x: string]: unknown;

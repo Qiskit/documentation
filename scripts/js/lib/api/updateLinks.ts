@@ -21,11 +21,11 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { removePart, removePrefix, removeSuffix } from "../stringUtils";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
-import { remarkStringifyOptions } from "./commonParserConfig";
-import { ObjectsInv } from "./objectsInv";
-import { transformSpecialCaseUrl } from "./specialCaseResults";
+import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { remarkStringifyOptions } from "./commonParserConfig.js";
+import { ObjectsInv } from "./objectsInv.js";
+import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 
 export interface Link {
   url: string; // Where the link goes

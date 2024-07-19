@@ -11,7 +11,8 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { addLinksToMap } from "./FileBatch";
+
+import { addLinksToMap } from "./FileBatch.js";
 
 test("addLinksToMap()", () => {
   const linksToMap = new Map();

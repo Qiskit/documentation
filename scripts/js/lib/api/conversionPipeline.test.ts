@@ -17,8 +17,8 @@ import { mkdtemp, readFile } from "fs/promises";
 import { globby } from "globby";
 import { expect, test } from "@playwright/test";
 
-import { runConversionPipeline } from "./conversionPipeline";
-import { Pkg, ReleaseNotesConfig } from "./Pkg";
+import { runConversionPipeline } from "./conversionPipeline.js";
+import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 
 // This test uses snapshot testing (https://jestjs.io/docs/snapshot-testing#updating-snapshots). If the tests fail and the changes
 // are valid, run `npm test -- --updateSnapshot`.

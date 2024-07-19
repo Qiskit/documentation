@@ -13,8 +13,8 @@
 import { expect, test } from "@playwright/test";
 import { ObjectsInv } from "./objectsInv";
 
-import { updateLinks, normalizeUrl, relativizeLink } from "./updateLinks";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import { updateLinks, normalizeUrl, relativizeLink } from "./updateLinks.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test.describe("updateLinks", () => {
   test("update links", async () => {

@@ -12,8 +12,8 @@
 
 import { expect, test } from "@playwright/test";
 
-import flattenFolders from "./flattenFolders";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import flattenFolders from "./flattenFolders.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test("flattenFolders()", () => {
   const results = [

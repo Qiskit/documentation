@@ -18,7 +18,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { flattenDeep } from "lodash-es";
 
-import { TocEntry } from "../lib/api/generateToc";
+import { TocEntry } from "../lib/api/generateToc.js";
 
 interface Arguments {
   [x: string]: unknown;

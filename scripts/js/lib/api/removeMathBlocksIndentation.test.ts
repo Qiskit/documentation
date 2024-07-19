@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import removeMathBlocksIndentation from "./removeMathBlocksIndentation";
+import removeMathBlocksIndentation from "./removeMathBlocksIndentation.js";
 
 test("removeMathBlocksIndentation()", async () => {
   const results = [

@@ -10,8 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
-import { removePart } from "../stringUtils";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { removePart } from "../stringUtils.js";
 
 function flattenFolders(results: HtmlToMdResultWithUrl[]): void {
   for (const result of results) {

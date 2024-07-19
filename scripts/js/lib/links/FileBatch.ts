@@ -12,13 +12,13 @@
 
 import { globby } from "globby";
 
-import { InternalLink, File } from "./InternalLink";
+import { InternalLink, File } from "./InternalLink.js";
 import {
   ALWAYS_IGNORED_URLS,
   FILES_TO_IGNORES,
   IGNORED_FILES,
-} from "./ignores";
-import { parseFile } from "./extractLinks";
+} from "./ignores.js";
+import { parseFile } from "./extractLinks.js";
 
 export class FileBatch {
   /**

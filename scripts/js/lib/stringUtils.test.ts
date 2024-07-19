@@ -19,7 +19,7 @@ import {
   getLastPartFromFullIdentifier,
   capitalize,
   hasPrefix,
-} from "./stringUtils";
+} from "./stringUtils.js";
 
 test("removePart()", () => {
   const input = "a|b|b|x|z";

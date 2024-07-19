@@ -11,7 +11,8 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { markdownFromNotebook } from "./markdownReader";
+
+import { markdownFromNotebook } from "./markdownReader.js";
 
 test("markdownFromNotebook()", () => {
   const result = markdownFromNotebook(`

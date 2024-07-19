@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { dedupeHtmlIds } from "./dedupeHtmlIds";
+import { dedupeHtmlIds } from "./dedupeHtmlIds.js";
 
 test("dedupeHtmlIds()", async () => {
   expect(

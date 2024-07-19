@@ -13,11 +13,11 @@
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { Pkg } from "../../lib/api/Pkg";
-import { zxMain } from "../../lib/zx";
-import { pathExists, rmFilesInFolder } from "../../lib/fs";
-import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts";
-import { runConversionPipeline } from "../../lib/api/conversionPipeline";
+import { Pkg } from "../../lib/api/Pkg.js";
+import { zxMain } from "../../lib/zx.js";
+import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
+import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
+import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
 
 interface Arguments {
   [x: string]: unknown;

@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { pathExists } from "./fs";
+import { pathExists } from "./fs.js";
 
 test("pathExists()", async () => {
   const readme = await pathExists(`README.md`);

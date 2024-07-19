@@ -14,8 +14,8 @@ import { readFile, readdir } from "fs/promises";
 
 import { expect, test } from "@playwright/test";
 
-import { QISKIT_TOC_GROUPING } from "./TocGrouping";
-import type { TocEntry } from "./generateToc";
+import { QISKIT_TOC_GROUPING } from "./TocGrouping.js";
+import type { TocEntry } from "./generateToc.js";
 
 /**
  * The module names belonging to a section, e.g.

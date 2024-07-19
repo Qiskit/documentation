@@ -12,8 +12,8 @@
 
 import { expect, test } from "@playwright/test";
 
-import { mergeClassMembers } from "./mergeClassMembers";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import { mergeClassMembers } from "./mergeClassMembers.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test("merge class members", async () => {
   const results: HtmlToMdResultWithUrl[] = [

@@ -21,8 +21,8 @@ import { Content, Root } from "mdast";
 import { MdxJsxFlowElement, MdxJsxAttribute } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
-import { remarkStringifyOptions } from "./commonParserConfig";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { remarkStringifyOptions } from "./commonParserConfig.js";
 
 export async function mergeClassMembers(
   results: HtmlToMdResultWithUrl[],

@@ -12,9 +12,9 @@
 
 import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 
-import { Image } from "./HtmlToMdResult";
-import { Metadata, ApiType } from "./Metadata";
-import { processMdxComponent } from "./generateApiComponents";
+import { Image } from "./HtmlToMdResult.js";
+import { Metadata, ApiType } from "./Metadata.js";
+import { processMdxComponent } from "./generateApiComponents.js";
 
 export type ProcessedHtml = {
   html: string;

@@ -12,7 +12,7 @@
 
 import { test, expect } from "@playwright/test";
 
-import { sphinxHtmlToMarkdown } from "./htmlToMd";
+import { sphinxHtmlToMarkdown } from "./htmlToMd.js";
 
 const DEFAULT_ARGS = {
   imageDestination: "/images/qiskit",

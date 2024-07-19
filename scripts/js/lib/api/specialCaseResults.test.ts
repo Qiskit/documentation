@@ -17,8 +17,8 @@ import {
   transformSpecialCaseUrl,
   PROVIDER_INDEX_META,
   RUNTIME_INDEX_META,
-} from "./specialCaseResults";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+} from "./specialCaseResults.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test("specialCaseResults()", () => {
   const results = [

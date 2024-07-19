@@ -10,9 +10,9 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { HtmlToMdResult } from "./HtmlToMdResult";
-import { Pkg } from "./Pkg";
+import { getLastPartFromFullIdentifier } from "../stringUtils.js";
+import { HtmlToMdResult } from "./HtmlToMdResult.js";
+import { Pkg } from "./Pkg.js";
 
 function addFrontMatter<T extends HtmlToMdResult>(
   results: T[],

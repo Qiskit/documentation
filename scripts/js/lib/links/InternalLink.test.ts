@@ -11,7 +11,8 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { File, InternalLink } from "./InternalLink";
+
+import { File, InternalLink } from "./InternalLink.js";
 
 test.describe("Test the constructor of InternalLink", () => {
   test("without anchors", () => {

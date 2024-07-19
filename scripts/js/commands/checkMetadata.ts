@@ -17,7 +17,7 @@ import { hideBin } from "yargs/helpers";
 import grayMatter from "gray-matter";
 import { globby } from "globby";
 
-import { Pkg } from "../lib/api/Pkg";
+import { Pkg } from "../lib/api/Pkg.js";
 
 interface Arguments {
   [x: string]: unknown;

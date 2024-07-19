@@ -24,11 +24,11 @@ import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 import { Emphasis, Root, Content } from "mdast";
 
-import { processHtml } from "./processHtml";
-import { HtmlToMdResult } from "./HtmlToMdResult";
-import { Metadata } from "./Metadata";
-import { removePrefix, removeSuffix, capitalize } from "../stringUtils";
-import { remarkStringifyOptions } from "./commonParserConfig";
+import { processHtml } from "./processHtml.js";
+import { HtmlToMdResult } from "./HtmlToMdResult.js";
+import { Metadata } from "./Metadata.js";
+import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
+import { remarkStringifyOptions } from "./commonParserConfig.js";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;

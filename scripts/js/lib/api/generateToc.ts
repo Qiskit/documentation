@@ -12,10 +12,10 @@
 
 import { isEmpty, orderBy } from "lodash-es";
 
-import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
-import { Pkg } from "./Pkg";
-import type { TocGrouping } from "./TocGrouping";
+import { getLastPartFromFullIdentifier } from "../stringUtils.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { Pkg } from "./Pkg.js";
+import type { TocGrouping } from "./TocGrouping.js";
 
 export type TocEntry = {
   title: string;

@@ -11,7 +11,8 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { ExternalLink } from "./ExternalLink";
+
+import { ExternalLink } from "./ExternalLink.js";
 
 test("ExternalLink constructor ignores anchors", () => {
   const link = new ExternalLink("https://ibm.com#my-anchor", []);

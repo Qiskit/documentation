@@ -26,9 +26,9 @@ import {
   replaceViewcodeLinksWithGitHub,
   convertRubricsToHeaders,
   processMembersAndSetMeta,
-} from "./processHtml";
-import { Metadata } from "./Metadata";
-import { CheerioDoc } from "../testUtils";
+} from "./processHtml.js";
+import { Metadata } from "./Metadata.js";
+import { CheerioDoc } from "../testUtils.js";
 
 test.describe("loadImages()", () => {
   test("normal file", () => {

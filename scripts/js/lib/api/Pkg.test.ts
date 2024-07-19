@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { Pkg } from "./Pkg";
+import { Pkg } from "./Pkg.js";
 
 test("Pkg.determineGithubUrlFn()", () => {
   const provider = Pkg.mock({

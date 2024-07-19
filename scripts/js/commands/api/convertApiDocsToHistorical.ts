@@ -18,9 +18,9 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
 
-import { pathExists } from "../../lib/fs";
-import { zxMain } from "../../lib/zx";
-import { Pkg } from "../../lib/api/Pkg";
+import { pathExists } from "../../lib/fs.js";
+import { zxMain } from "../../lib/zx.js";
+import { Pkg } from "../../lib/api/Pkg.js";
 
 interface Arguments {
   [x: string]: unknown;
