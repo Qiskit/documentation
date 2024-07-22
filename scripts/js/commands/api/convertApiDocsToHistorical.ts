@@ -18,7 +18,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
 
-import { pathExists, getRoot } from "../../lib/fs";
+import { pathExists } from "../../lib/fs";
 import { zxMain } from "../../lib/zx";
 import { Pkg } from "../../lib/api/Pkg";
 
@@ -48,15 +48,14 @@ zxMain(async () => {
     throw new Error(`Unrecognized package: ${args.package}`);
   }
 
-  const packageFile = await readFile(
-    `${getRoot()}/docs/api/${pkgName}/_package.json`,
-    { encoding: "utf8" },
-  );
+  const packageFile = await readFile(`docs/api/${pkgName}/_package.json`, {
+    encoding: "utf8",
+  });
   const packageInfo = JSON.parse(packageFile);
   const versionMatch = packageInfo.version.match(/^(\d+\.\d+)/);
   const versionWithoutPatch = versionMatch[0];
 
-  const projectNewHistoricalFolder = `${getRoot()}/docs/api/${pkgName}/${versionWithoutPatch}`;
+  const projectNewHistoricalFolder = `docs/api/${pkgName}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {
     console.error(
       `${pkgName} has already a historical version ${versionWithoutPatch}.`,
@@ -99,7 +98,7 @@ async function copyApiDocsAndUpdateLinks(
     );
   }
 
-  const releaseNotePath = `${getRoot()}/docs/api/${pkgName}/release-notes/${versionWithoutPatch}.mdx`;
+  const releaseNotePath = `docs/api/${pkgName}/release-notes/${versionWithoutPatch}.mdx`;
   if (await pathExists(releaseNotePath)) {
     updateLinksFile(
       pkgName,
@@ -124,7 +123,7 @@ async function generateJsonFiles(
   );
 
   console.log("Generating toc");
-  let tocFile = await readFile(`${getRoot()}/docs/api/${pkgName}/_toc.json`, {
+  let tocFile = await readFile(`docs/api/${pkgName}/_toc.json`, {
     encoding: "utf8",
   });
 
@@ -144,16 +143,16 @@ async function generateJsonFiles(
 
 async function copyImages(pkgName: string, versionWithoutPatch: string) {
   console.log("Copying images");
-  const imageDirSource = `${getRoot()}/public/images/api/${pkgName}/`;
-  const imageDirDest = `${getRoot()}/public/images/api/${pkgName}/${versionWithoutPatch}`;
+  const imageDirSource = `public/images/api/${pkgName}/`;
+  const imageDirDest = `public/images/api/${pkgName}/${versionWithoutPatch}`;
   await mkdirp(imageDirDest);
   await $`find ${imageDirSource}/* -maxdepth 0 -type f | grep -v "release_notes" | xargs -I {} cp -a {} ${imageDirDest}`;
 }
 
 async function copyObjectsInv(pkgName: string, versionWithoutPatch: string) {
   console.log("Copying objects.inv");
-  const sourceDir = `${getRoot()}/public/api/${pkgName}`;
-  const destDir = `${getRoot()}/public/api/${pkgName}/${versionWithoutPatch}`;
+  const sourceDir = `public/api/${pkgName}`;
+  const destDir = `public/api/${pkgName}/${versionWithoutPatch}`;
   await mkdirp(destDir);
   await $`cp -a ${sourceDir}/objects.inv ${destDir}`;
 }

@@ -23,7 +23,6 @@ import remarkGfm from "remark-gfm";
 import { ObjectsInv } from "../api/objectsInv";
 import { readMarkdown } from "../markdownReader";
 import { removePrefix, removeSuffix } from "../stringUtils";
-import { getRoot } from "../fs";
 
 export type ParsedFile = {
   /** Anchors that the file defines. These can be linked to from other files. */
@@ -76,11 +75,9 @@ export async function parseLinks(
 }
 
 async function parseObjectsInv(filePath: string): Promise<Set<string>> {
-  const absoluteFilePath = path.join(
-    getRoot(),
+  const objinv = await ObjectsInv.fromFile(
     removeSuffix(filePath, "objects.inv"),
   );
-  const objinv = await ObjectsInv.fromFile(absoluteFilePath);
   // All URIs are relative to the objects.inv file
   const dirname = removePrefix(path.dirname(filePath), "public");
   return new Set(objinv.entries.map((entry) => path.join(dirname, entry.uri)));

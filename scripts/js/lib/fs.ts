@@ -11,13 +11,8 @@
 // that they have been altered from the originals.
 
 import fs from "fs/promises";
-import path from "path";
 
 import { $ } from "zx/core";
-
-export function getRoot() {
-  return path.normalize(`${__dirname}/../../../`);
-}
 
 export async function pathExists(path: string) {
   try {

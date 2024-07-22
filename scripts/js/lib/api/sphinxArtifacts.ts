@@ -16,7 +16,7 @@ import { finished } from "stream/promises";
 import { Readable } from "stream";
 import fs from "fs";
 
-import { pathExists, getRoot } from "../fs";
+import { pathExists } from "../fs";
 import { mkdirp } from "mkdirp";
 import { Pkg } from "./Pkg";
 
@@ -42,7 +42,7 @@ export async function downloadSphinxArtifact(pkg: Pkg, artifactFolder: string) {
   }
 
   const artifactJson = JSON.parse(
-    fs.readFileSync(`${getRoot()}/scripts/api-html-artifacts.json`, "utf-8"),
+    fs.readFileSync(`scripts/api-html-artifacts.json`, "utf-8"),
   );
 
   const artifactName = pkg.isDev() ? "dev" : `${pkg.versionWithoutPatch}`;
