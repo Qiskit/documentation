@@ -18,10 +18,16 @@ const TEST_FOLDER = "scripts/js/lib/api/testdata/";
 const TEMP_FOLDER = "scripts/js/lib/api/testdata/temp/";
 
 describe("objects.inv", () => {
+  afterAll(async () => {
+    if (await stat(TEMP_FOLDER + "objects.inv")) {
+      await unlink(TEMP_FOLDER + "objects.inv");
+    }
+  });
+
   test("read file and decompress", async () => {
     const objectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
 
-    expect(objectsInv.preamble).toMatch(
+    expect(objectsInv.preamble).toEqual(
       "# Sphinx inventory version 2\n" +
         "# Project: Qiskit\n" +
         "# Version: 0.45\n" +
@@ -32,24 +38,18 @@ describe("objects.inv", () => {
     // This test fails when you include / exclude entries, which shifts some array indices.
     // Use the following code to find the new indices.
     // console.log(objectsInv.entries.findLastIndex( e => { return e.uri.includes("index") }))
-    expect(uriIndices.map((i) => objectsInv.entries[i].uri))
-      .toMatchInlineSnapshot(`
-      [
-        "stubs/qiskit.algorithms.AlgorithmJob.html#qiskit.algorithms.AlgorithmJob.job_id",
-        "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#qiskit.algorithms.FasterAmplitudeEstimation.sampler",
-        "stubs/qiskit.algorithms.Grover.html#qiskit.algorithms.Grover.quantum_instance",
-        "apidoc/assembler.html#qiskit.assembler.disassemble",
-        "index.html",
-      ]
-    `);
+    expect(uriIndices.map((i) => objectsInv.entries[i].uri)).toEqual([
+      "stubs/qiskit.algorithms.AlgorithmJob.html#qiskit.algorithms.AlgorithmJob.job_id",
+      "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#qiskit.algorithms.FasterAmplitudeEstimation.sampler",
+      "stubs/qiskit.algorithms.Grover.html#qiskit.algorithms.Grover.quantum_instance",
+      "apidoc/assembler.html#qiskit.assembler.disassemble",
+      "index.html",
+    ]);
     const nameIndices = [23575, 24146];
-    expect(nameIndices.map((i) => objectsInv.entries[i].dispname))
-      .toMatchInlineSnapshot(`
-    [
+    expect(nameIndices.map((i) => objectsInv.entries[i].dispname)).toEqual([
       "Qiskit 0.45 documentation",
       "FakeOslo",
-    ]
-    `);
+    ]);
   });
 
   test("write file and re-read matches original", async () => {
@@ -60,8 +60,8 @@ describe("objects.inv", () => {
     expect(originalObjectsInv.entries.length).toEqual(
       newObjectsInv.entries.length,
     );
-    expect(originalObjectsInv.preamble).toMatch(newObjectsInv.preamble);
-    expect(originalObjectsInv.entriesString()).toMatch(
+    expect(originalObjectsInv.preamble).toEqual(newObjectsInv.preamble);
+    expect(originalObjectsInv.entriesString()).toEqual(
       newObjectsInv.entriesString(),
     );
   });
@@ -117,11 +117,5 @@ describe("objects.inv", () => {
       "legacy_release_notes#release-notes-agnas-0-5-0",
       "andex",
     ]);
-  });
-
-  afterAll(async () => {
-    if (await stat(TEMP_FOLDER + "objects.inv")) {
-      await unlink(TEMP_FOLDER + "objects.inv");
-    }
   });
 });
