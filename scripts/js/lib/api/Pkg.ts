@@ -13,7 +13,6 @@
 import { join } from "path/posix";
 
 import { findSeparateReleaseNotesVersions } from "./releaseNotes";
-import { getRoot } from "../fs";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage";
 import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping";
 
@@ -161,9 +160,7 @@ export class Pkg {
   }
 
   sphinxArtifactFolder(): string {
-    return `${getRoot()}/.sphinx-artifacts/${this.name}/${
-      this.versionWithoutPatch
-    }`;
+    return `.sphinx-artifacts/${this.name}/${this.versionWithoutPatch}`;
   }
 
   isHistorical(): boolean {

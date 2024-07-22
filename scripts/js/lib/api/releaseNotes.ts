@@ -16,7 +16,7 @@ import { readFile, writeFile, readdir } from "fs/promises";
 import { $ } from "zx";
 import transformLinks from "transform-markdown-links";
 
-import { getRoot, pathExists } from "../fs";
+import { pathExists } from "../fs";
 import type { Pkg } from "./Pkg";
 import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
@@ -88,9 +88,7 @@ export async function maybeUpdateReleaseNotesFolder(
 export const findSeparateReleaseNotesVersions = async (
   pkgName: string,
 ): Promise<string[]> => {
-  return (
-    await $`ls ${getRoot()}/docs/api/${pkgName}/release-notes`.quiet()
-  ).stdout
+  return (await $`ls docs/api/${pkgName}/release-notes`.quiet()).stdout
     .trim()
     .split("\n")
     .map((x) => parse(x).name)
@@ -148,12 +146,12 @@ async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
   console.log("Updating _toc.json files for the historical versions");
 
   const historicalFolders = (
-    await readdir(`${getRoot()}/docs/api/${pkg.name}`, { withFileTypes: true })
+    await readdir(`docs/api/${pkg.name}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   for (let folder of historicalFolders) {
     let tocFile = await readFile(
-      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      `docs/api/${pkg.name}/${folder.name}/_toc.json`,
       {
         encoding: "utf8",
       },
@@ -169,7 +167,7 @@ async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
     }
 
     await writeFile(
-      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      `docs/api/${pkg.name}/${folder.name}/_toc.json`,
       JSON.stringify(jsonData, null, 2) + "\n",
     );
   }
@@ -202,7 +200,7 @@ async function writeReleaseNoteForVersion(
     );
   }
 
-  const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes`;
+  const basePath = `docs/api/${pkg.name}/release-notes`;
   const versionPath = `${basePath}/${pkg.versionWithoutPatch}.mdx`;
 
   const versionsMarkdown = releaseNoteMarkdown
