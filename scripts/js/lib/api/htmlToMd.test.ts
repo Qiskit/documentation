@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, test, expect } from "@jest/globals";
+import { test, expect } from "@jest/globals";
 
 import { sphinxHtmlToMarkdown } from "./htmlToMd";
 
@@ -30,14 +30,13 @@ async function toMd(html: string, withMetadata: boolean = false) {
   return withMetadata ? result : result.markdown;
 }
 
-describe("sphinxHtmlToMarkdown", () => {
-  // ------------------------------------------------------------------
-  // Transform tabs
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Transform tabs
+// ------------------------------------------------------------------
 
-  test("handle tabs", async () => {
-    expect(
-      await toMd(`<div role='main'>
+test("handle tabs", async () => {
+  expect(
+    await toMd(`<div role='main'>
       <details
         class='sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in-slide-down'
       >
@@ -66,21 +65,21 @@ describe("sphinxHtmlToMarkdown", () => {
       </details>
     </div>
 `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
               "### Account initialization
 
               You need to initialize your account before you can start using the Qiskit Runtime service. This is done by initializing a [\`QiskitRuntimeService\`](../stubs/qiskit_ibm_runtime.QiskitRuntimeService#qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") instance with your account credentials.
               "
           `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Transform special characters
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Transform special characters
+// ------------------------------------------------------------------
 
-  test("handle special characters: `<` and `{`", async () => {
-    expect(
-      await toMd(`
+test("handle special characters: `<` and `{`", async () => {
+  expect(
+    await toMd(`
     <div role='main'>
     <p>For the full list of backend attributes, see the <cite>IBMBackend</cite> class documentation
 &lt;<a class='reference external' href='https://qiskit.org/documentation/apidoc/providers_models.html'>https://qiskit.org/documentation/apidoc/providers_models.html</a>&gt;</p>
@@ -91,21 +90,21 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 (2) a single float f, interpreted as {pi: f, pi/2: f/2, pi/3: f/3}.</p>
     </div>
     `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
       "For the full list of backend attributes, see the IBMBackend class documentation \\<[https://qiskit.org/documentation/apidoc/providers\\_models.html](https://qiskit.org/documentation/apidoc/providers_models.html)>
 
       **basis\\_fidelity** (*dict | float*) – available strengths and fidelity of each. Can be either (1) a dictionary mapping XX angle values to fidelity at that angle; or (2) a single float f, interpreted as \\{pi: f, pi/2: f/2, pi/3: f/3}.
       "
     `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Transform code blocks
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Transform code blocks
+// ------------------------------------------------------------------
 
-  test("translate codeblocks to code fences with lang python", async () => {
-    expect(
-      await toMd(`
+test("translate codeblocks to code fences with lang python", async () => {
+  expect(
+    await toMd(`
     <div role='main'>
 <pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
     <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
@@ -114,7 +113,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 </pre>
     </div>
     `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
               "\`\`\`python
               QiskitRuntimeService.backends(
                   filters=lambda b: b.max_shots > 50000)
@@ -123,15 +122,15 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
               \`\`\`
               "
           `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Transform methods and attributes
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Transform methods and attributes
+// ------------------------------------------------------------------
 
-  test("handle inlined methods and attributes", async () => {
-    expect(
-      await toMd(`
+test("handle inlined methods and attributes", async () => {
+  expect(
+    await toMd(`
       <div role="main">
 
 <h1>DAGCircuit<a class="headerlink" href="#dagcircuit" title="Permalink to this heading">#</a></h1>
@@ -170,7 +169,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 </dd></dl>
  </div>
       `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
       "# DAGCircuit
 
       <Class id="qiskit.dagcircuit.DAGCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py" signature="qiskit.dagcircuit.DAGCircuit" modifiers="class">
@@ -207,15 +206,15 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       </Class>
       "
     `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Transform HTML tags
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Transform HTML tags
+// ------------------------------------------------------------------
 
-  test("transform tables", async () => {
-    expect(
-      await toMd(`
+test("transform tables", async () => {
+  expect(
+    await toMd(`
       <div role='main'>
       <table class='autosummary longtable docutils align-default'>
         <tbody>
@@ -258,18 +257,18 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       </table>
     </div>
     `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
               "|                                                                                                                                                                                            |                                                                        |
               | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
               | [\`QiskitRuntimeService\`](../stubs/qiskit_ibm_runtime.QiskitRuntimeService#qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService")(\\[channel, auth, token, ...]) | Class for interacting with the Qiskit Runtime service.                 |
               | [\`Estimator\`](../stubs/qiskit_ibm_runtime.Estimator#qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")(\\[circuits, observables, ...])                                            | Class for interacting with Qiskit Runtime Estimator primitive service. |
               "
           `);
-  });
+});
 
-  test("preserve <span> with ids", async () => {
-    expect(
-      await toMd(`
+test("preserve <span> with ids", async () => {
+  expect(
+    await toMd(`
   <div role='main' class='main-content' itemscope='itemscope' itemtype='http://schema.org/Article'>
     <article itemprop='articleBody' id='pytorch-article' class='pytorch-article'>
       <span id='qiskit-assembler'></span>
@@ -280,7 +279,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     </article>
   </div>
     `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
       "<span id="qiskit-assembler" />
 
       <span id="circuit-and-schedule-assembler-qiskit-assembler" />
@@ -288,24 +287,24 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       # Circuit Assembler
       "
     `);
-  });
+});
 
-  test("merge contiguous <em> removing spaces", async () => {
-    expect(
-      await toMd(`
+test("merge contiguous <em> removing spaces", async () => {
+  expect(
+    await toMd(`
       <div role="main">
         <li><p><strong>gate</strong> (<em> Union</em><em>[</em><a class="reference internal" href="qiskit.circuit.Gate.html#qiskit.circuit.Gate" title="qiskit.circuit.Gate"><em>Gate</em></a><em>, </em><em>str</em><em>]   </em>) – Gate information.</p></li>
       </div>
     `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
       "*   **gate** ( *Union\\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]* ) – Gate information.
       "
     `);
-  });
+});
 
-  test("remove <br/>", async () => {
-    expect(
-      await toMd(`
+test("remove <br/>", async () => {
+  expect(
+    await toMd(`
     <div role="main">
     <p>Transpilation is the process of rewriting a given input circuit to match
 the topology of a specific quantum device, and/or to optimize the circuit
@@ -314,17 +313,17 @@ for execution on present day noisy quantum systems.</p>
 </p>
 </div>
     `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
       "Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device, and/or to optimize the circuit for execution on present day noisy quantum systems.
 
       Qiskit has four pre-built transpilation pipelines available here:
       "
     `);
-  });
+});
 
-  test("transform <dl>, <dd>, <dt> elements", async () => {
-    expect(
-      await toMd(`<div role='main'>
+test("transform <dl>, <dd>, <dt> elements", async () => {
+  expect(
+    await toMd(`<div role='main'>
   <dl>
     <dt class='field-even'>Return type<span class='colon'>:</span></dt>
     <dd class='field-even'><p><a class='reference internal'
@@ -340,7 +339,7 @@ for execution on present day noisy quantum systems.</p>
   </dl>
 </div>
 `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
         "## Return type
 
         [RuntimeJob](qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")
@@ -350,12 +349,12 @@ for execution on present day noisy quantum systems.</p>
         Submitted job. The result of the job is an instance of \`qiskit.primitives.EstimatorResult\`.
         "
       `);
-  });
+});
 
-  // For more information: https://github.com/Qiskit/documentation/issues/485
-  test("transform <dt> sig-object tags without id", async () => {
-    expect(
-      await toMd(`
+// For more information: https://github.com/Qiskit/documentation/issues/485
+test("transform <dt> sig-object tags without id", async () => {
+  expect(
+    await toMd(`
       <div role="main">
       <p>In addition to the public abstract methods, subclasses should also implement the following
       private methods:</p>
@@ -382,7 +381,7 @@ for execution on present day noisy quantum systems.</p>
       </dd></dl>
       </div>
   `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
     "In addition to the public abstract methods, subclasses should also implement the following private methods:
 
     <Function signature="_default_options()" modifiers="classmethod">
@@ -402,15 +401,15 @@ for execution on present day noisy quantum systems.</p>
     </Function>
     "
     `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Transform admonitions
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Transform admonitions
+// ------------------------------------------------------------------
 
-  test("transform admonitions", async () => {
-    expect(
-      await toMd(`<div role='main'>
+test("transform admonitions", async () => {
+  expect(
+    await toMd(`<div role='main'>
   <div class='admonition note'>
     <p class='admonition-title'>Note</p>
     <p>To use these tools locally, you’ll need to install the
@@ -428,7 +427,7 @@ for execution on present day noisy quantum systems.</p>
   </div>
 </div>
         `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
         "<Admonition title="Note" type="note">
           To use these tools locally, you’ll need to install the additional dependencies for the visualization functions:
         </Admonition>
@@ -442,32 +441,32 @@ for execution on present day noisy quantum systems.</p>
         </Admonition>
         "
       `);
-  });
+});
 
-  test("parse deprecations warnings", async () => {
-    expect(
-      await toMd(`
+test("parse deprecations warnings", async () => {
+  expect(
+    await toMd(`
       <div role="main">
       <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version 0.23.0: </span>The method <code class="docutils literal notranslate"><span class="pre">qiskit.circuit.quantumregister.QuantumRegister.qasm()</span></code> is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.</p>
 </div>
       </div>
       `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
         "<Admonition title="Deprecated since version 0.23.0" type="danger">
           The method \`qiskit.circuit.quantumregister.QuantumRegister.qasm()\` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
         </Admonition>
         "
       `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Handle math expressions
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Handle math expressions
+// ------------------------------------------------------------------
 
-  test("transform inline math", async () => {
-    expect(
-      await toMd(`
+test("transform inline math", async () => {
+  expect(
+    await toMd(`
 <div role='main'>
 <table>
 <tbody>
@@ -478,17 +477,17 @@ for execution on present day noisy quantum systems.</p>
 </table>
 </div>
         `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
         "|                                                                                                                                                                       |                                        |
         | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
         | [\`GlobalPhaseGate\`](../stubs/qiskit.circuit.library.GlobalPhaseGate#qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate")(phase\\[, label]) | The global phase gate ($e^{i\\theta}$). |
         "
       `);
-  });
+});
 
-  test("transform block math", async () => {
-    expect(
-      await toMd(`
+test("transform block math", async () => {
+  expect(
+    await toMd(`
 <div role='main'>
 <div class="math notranslate nohighlight">
 \\[\\begin{split}CCX q_0, q_1, q_2 =
@@ -508,7 +507,7 @@ for execution on present day noisy quantum systems.</p>
 \\[x = \\sum_{i=0}^{n-1} 2^i q_i,\\]</div>
 </div>
         `),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
         "$$
         \\begin{split}CCX q_0, q_1, q_2 =
             I \\otimes I \\otimes |0 \\rangle \\langle 0| + CX \\otimes |1 \\rangle \\langle 1| =
@@ -529,15 +528,15 @@ for execution on present day noisy quantum systems.</p>
         $$
         "
       `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Transform links
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Transform links
+// ------------------------------------------------------------------
 
-  test("remove .html extension from relative links", async () => {
-    expect(
-      await toMd(`<div
+test("remove .html extension from relative links", async () => {
+  expect(
+    await toMd(`<div
   role='main'
   class='main-content'
   itemscope='itemscope'
@@ -568,7 +567,7 @@ for execution on present day noisy quantum systems.</p>
     </section>
   </article>
 </div>`),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
       "<span id="qiskit-ibm-runtime-api-reference" />
 
       # qiskit-ibm-runtime API reference
@@ -576,11 +575,11 @@ for execution on present day noisy quantum systems.</p>
       *   [Qiskit Runtime (\`qiskit_ibm_runtime\`)](runtime_service)
       "
     `);
-  });
+});
 
-  test("remove permalink", async () => {
-    expect(
-      await toMd(`<article role="main">
+test("remove permalink", async () => {
+  expect(
+    await toMd(`<article role="main">
         <section id="qiskit-ibm-runtime-api-reference">
           <h1>qiskit-ibm-runtime API reference<a class="headerlink" href="#qiskit-ibm-runtime-api-reference" title="Link to this heading">#</a></h1>
          <div class="toctree-wrapper compound">
@@ -591,7 +590,7 @@ for execution on present day noisy quantum systems.</p>
          </div>
        </section>
     </article>`),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
       "<span id="qiskit-ibm-runtime-api-reference" />
 
       # qiskit-ibm-runtime API reference
@@ -600,11 +599,11 @@ for execution on present day noisy quantum systems.</p>
       *   [Primitive options (\`qiskit_ibm_runtime.options\`)](options)
       "
     `);
-  });
+});
 
-  test("remove download links", async () => {
-    expect(
-      await toMd(`<div
+test("remove download links", async () => {
+  expect(
+    await toMd(`<div
   role='main'
   class='main-content'
   itemscope='itemscope'
@@ -613,28 +612,28 @@ for execution on present day noisy quantum systems.</p>
   <p>(<a class="reference download internal" download="" href="../_downloads/366189d70d6a05b2c91f442d20ba6114/qiskit-circuit-QuantumCircuit-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
 </div>
 `),
-    ).toMatchInlineSnapshot(`""`);
-  });
+  ).toMatchInlineSnapshot(`""`);
+});
 
-  test("convert source links", async () => {
-    expect(
-      await toMd(`<div role='main'>
+test("convert source links", async () => {
+  expect(
+    await toMd(`<div role='main'>
 <span class='sig-prename descclassname'><span class='pre'>IBMBackend.</span></span><span class='sig-name descname'><span class='pre'>control_channel</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>qubits</span></span></em><span class='sig-paren'>)</span><a class='reference internal' href='../_modules/qiskit_ibm_runtime/ibm_backend.html#IBMBackend.control_channel'><span class='viewcode-link'><span class='pre'>[source]</span></span></a><a class='headerlink' href='#qiskit_ibm_runtime.IBMBackend.control_channel' title='Permalink to this definition'>¶</a>
 </div>`),
-    ).toMatchInlineSnapshot(`
+  ).toMatchInlineSnapshot(`
               "IBMBackend.control\\_channel(*qubits*)[\\[source\\]](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/ibm_backend.py)
               "
           `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // apiType headings conversion
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// apiType headings conversion
+// ------------------------------------------------------------------
 
-  test("convert class signature headings", async () => {
-    expect(
-      await toMd(
-        `<div role='main'>
+test("convert class signature headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
     <h1>Estimator<a class='headerlink' href='#estimator' title='Permalink to this heading'>¶</a></h1>
       <dl class='py class'>
         <dt class='sig sig-object py' id='qiskit_ibm_runtime.Sampler'>
@@ -671,9 +670,9 @@ for execution on present day noisy quantum systems.</p>
       </dl>
     </div>
 `,
-        true,
-      ),
-    ).toMatchInlineSnapshot(`
+      true,
+    ),
+  ).toMatchInlineSnapshot(`
     {
       "images": [],
       "isReleaseNotes": false,
@@ -691,12 +690,12 @@ for execution on present day noisy quantum systems.</p>
       },
     }
   `);
-  });
+});
 
-  test("convert class property headings", async () => {
-    expect(
-      await toMd(
-        `<div role='main'>
+test("convert class property headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
 <h1>Estimator.circuits<a class='headerlink' href='#estimator' title='Permalink to this heading'>¶</a></h1>
 <dl class='py property'>
   <dt class='sig sig-object py' id='qiskit_ibm_runtime.Estimator.circuits'>
@@ -725,9 +724,9 @@ for execution on present day noisy quantum systems.</p>
 </dl>
 </div>
 `,
-        true,
-      ),
-    ).toMatchInlineSnapshot(`
+      true,
+    ),
+  ).toMatchInlineSnapshot(`
     {
       "images": [],
       "isReleaseNotes": false,
@@ -743,12 +742,12 @@ for execution on present day noisy quantum systems.</p>
       },
     }
   `);
-  });
+});
 
-  test("convert class method headings", async () => {
-    expect(
-      await toMd(
-        `<div role='main'>
+test("convert class method headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
 <h1>Estimator.run<a class='headerlink' href='#estimator' title='Permalink to this heading'>¶</a></h1>
 <dl class='py method'>
 <dt class='sig sig-object py' id='qiskit_ibm_runtime.Estimator.run'>
@@ -756,9 +755,9 @@ for execution on present day noisy quantum systems.</p>
 <dd><p>Submit a request to the estimator primitive program.</p></dd></dl>
 </div>
 `,
-        true,
-      ),
-    ).toMatchInlineSnapshot(`
+      true,
+    ),
+  ).toMatchInlineSnapshot(`
     {
       "images": [],
       "isReleaseNotes": false,
@@ -774,12 +773,12 @@ for execution on present day noisy quantum systems.</p>
       },
     }
   `);
-  });
+});
 
-  test("convert class attributes headings", async () => {
-    expect(
-      await toMd(
-        `<div role='main'>
+test("convert class attributes headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
 <h1>EnvironmentOptions.callback<a class='headerlink' href='#estimator' title='Permalink to this heading'>¶</a></h1>
 <dl class='py attribute'>
 <dt class='sig sig-object py' id='qiskit_ibm_runtime.options.EnvironmentOptions.callback'>
@@ -787,9 +786,9 @@ for execution on present day noisy quantum systems.</p>
 <dd></dd></dl>
 </div>
 `,
-        true,
-      ),
-    ).toMatchInlineSnapshot(`
+      true,
+    ),
+  ).toMatchInlineSnapshot(`
     {
       "images": [],
       "isReleaseNotes": false,
@@ -803,12 +802,12 @@ for execution on present day noisy quantum systems.</p>
       },
     }
   `);
-  });
+});
 
-  test("convert functions headings", async () => {
-    expect(
-      await toMd(
-        `<div role='main'>
+test("convert functions headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
 <section id="job-monitor">
 <h1>job_monitor<a class="headerlink" href="#job-monitor" title="Permalink to this heading">¶</a></h1>
 <dl class="py function">
@@ -833,9 +832,9 @@ By default this is sys.stdout.</p></li>
 </section>
 </div>
 `,
-        true,
-      ),
-    ).toMatchInlineSnapshot(`
+      true,
+    ),
+  ).toMatchInlineSnapshot(`
     {
       "images": [],
       "isReleaseNotes": false,
@@ -863,12 +862,12 @@ By default this is sys.stdout.</p></li>
       },
     }
   `);
-  });
+});
 
-  test("convert exception headings", async () => {
-    expect(
-      await toMd(
-        `<div role='main'>
+test("convert exception headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
 <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
 <section id="ibmjoberror">
 <h1>IBMJobError<a class="headerlink" href="#ibmjoberror" title="Permalink to this heading">¶</a></h1>
@@ -882,9 +881,9 @@ By default this is sys.stdout.</p></li>
 </article>
 </div>
 `,
-        true,
-      ),
-    ).toMatchInlineSnapshot(`
+      true,
+    ),
+  ).toMatchInlineSnapshot(`
     {
       "images": [],
       "isReleaseNotes": false,
@@ -904,20 +903,20 @@ By default this is sys.stdout.</p></li>
       },
     }
   `);
-  });
+});
 
-  test("convert module headings removing () around the title", async () => {
-    expect(
-      await toMd(
-        `<div role='main'>
+test("convert module headings removing () around the title", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
   <span class="target" id="module-qiskit_ibm_runtime"></span><section id="qiskit-runtime-qiskit-ibm-runtime">
 <h1>Qiskit Runtime (<a class="reference internal" href="#module-qiskit_ibm_runtime" title="qiskit_ibm_runtime"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit_ibm_runtime</span></code></a>)<a class="headerlink" href="#qiskit-runtime-qiskit-ibm-runtime" title="Permalink to this heading">¶</a></h1>
 <p>Modules related to Qiskit Runtime IBM Client.</p>
 </div>
 `,
-        true,
-      ),
-    ).toMatchInlineSnapshot(`
+      true,
+    ),
+  ).toMatchInlineSnapshot(`
     {
       "images": [],
       "isReleaseNotes": false,
@@ -939,16 +938,16 @@ By default this is sys.stdout.</p></li>
       },
     }
     `);
-  });
+});
 
-  // ------------------------------------------------------------------
-  // Release notes HTML to markdown
-  // ------------------------------------------------------------------
+// ------------------------------------------------------------------
+// Release notes HTML to markdown
+// ------------------------------------------------------------------
 
-  test("identify release notes", async () => {
-    expect(
-      await sphinxHtmlToMarkdown({
-        html: `
+test("identify release notes", async () => {
+  expect(
+    await sphinxHtmlToMarkdown({
+      html: `
             <div role="main">
             <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
             <section id="release-notes-0-14-0">
@@ -961,10 +960,10 @@ By default this is sys.stdout.</p></li>
             to better support submitting multiple jobs at once.</p></li>
             </ul>
             `,
-        fileName: "release_notes.html",
-        ...DEFAULT_ARGS,
-      }),
-    ).toMatchInlineSnapshot(`
+      fileName: "release_notes.html",
+      ...DEFAULT_ARGS,
+    }),
+  ).toMatchInlineSnapshot(`
   {
     "images": [],
     "isReleaseNotes": true,
@@ -987,7 +986,6 @@ By default this is sys.stdout.</p></li>
     "meta": {},
   }
   `);
-  });
 });
 
 test("generate correct heading level", async () => {

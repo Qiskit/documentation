@@ -18,6 +18,12 @@ const TEST_FOLDER = "scripts/js/lib/api/testdata/";
 const TEMP_FOLDER = "scripts/js/lib/api/testdata/temp/";
 
 describe("objects.inv", () => {
+  afterAll(async () => {
+    if (await stat(TEMP_FOLDER + "objects.inv")) {
+      await unlink(TEMP_FOLDER + "objects.inv");
+    }
+  });
+
   test("read file and decompress", async () => {
     const objectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
 
@@ -117,11 +123,5 @@ describe("objects.inv", () => {
       "legacy_release_notes#release-notes-agnas-0-5-0",
       "andex",
     ]);
-  });
-
-  afterAll(async () => {
-    if (await stat(TEMP_FOLDER + "objects.inv")) {
-      await unlink(TEMP_FOLDER + "objects.inv");
-    }
   });
 });
