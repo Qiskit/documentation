@@ -12,15 +12,15 @@
 
 import { expect, test } from "@jest/globals";
 
-import { getRoot, pathExists } from "./fs";
+import { pathExists } from "./fs";
 
-test("pathExists() with getRoot()", async () => {
-  const readme = await pathExists(`${getRoot()}/README.md`);
+test("pathExists()", async () => {
+  const readme = await pathExists(`README.md`);
   expect(readme).toBe(true);
 
-  const dir = await pathExists(`${getRoot()}/docs/`);
+  const dir = await pathExists(`docs/`);
   expect(dir).toBe(true);
 
-  const fake = await pathExists(`${getRoot()}/fake-file`);
+  const fake = await pathExists(`fake-file`);
   expect(fake).toBe(false);
 });
