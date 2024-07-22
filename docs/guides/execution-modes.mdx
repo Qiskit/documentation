@@ -31,7 +31,7 @@ The differences are summarized in the following table:
 To ensure the most efficient use of the execution modes, the following practices are recommended:
 
 - Always close your session, either by using a context manager or by specifying `session.close()`.
-- There is a fixed overhead associated with running a job. In general, if your each of your job uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
+- There is a fixed overhead associated with running a job. In general, if each of your jobs uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
 
     A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
 
