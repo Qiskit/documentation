@@ -10,13 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 import { ObjectsInv } from "./objectsInv";
 
 import { updateLinks, normalizeUrl, relativizeLink } from "./updateLinks";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
-describe("updateLinks", () => {
+test.describe("updateLinks", () => {
   test("update links", async () => {
     const data: HtmlToMdResultWithUrl[] = [
       {
@@ -179,17 +179,19 @@ test("normalizeUrl()", () => {
   ]);
 });
 
-describe("relativizeLink()", () => {
-  test.each([
+test.describe("relativizeLink()", () => {
+  [
     "https://ibm.com",
     "https://qiskit.org/ecosystem/nature",
     "https://qiskit.org/documentation/index.html",
     "https://docs.quantum.ibm.com", // Note there is no `/` at the end.
-  ])("ignore irrelevant links", (input) => {
-    expect(relativizeLink({ url: input })).toBeUndefined();
-  });
+  ].forEach((link) =>
+    test(`ignore irrelevant links - ${link}`, () => {
+      expect(relativizeLink({ url: link })).toBeUndefined();
+    }),
+  );
 
-  test.each([
+  [
     [
       "https://qiskit.org/documentation/apidoc/algorithms.html",
       "/api/qiskit/algorithms",
@@ -206,17 +208,21 @@ describe("relativizeLink()", () => {
       "https://qiskit.org/documentation/apidoc/qiskit.circuit.BreakLoopOp.html#qiskit.circuit.BreakLoopOp",
       "/api/qiskit/qiskit.circuit.BreakLoopOp",
     ],
-  ])("relativize qiskit.org Qiskit API links", (input, expected) => {
-    expect(relativizeLink({ url: input })).toEqual({ url: expected });
-  });
+  ].forEach(([input, expected]) =>
+    test(`relativize qiskit.org Qiskit API links - ${input}`, () => {
+      expect(relativizeLink({ url: input })).toEqual({ url: expected });
+    }),
+  );
 
-  test.each([
+  [
     ["https://docs.quantum.ibm.com/run", "/run"],
     ["https://docs.quantum.ibm.com/api/qiskit/utils", "/api/qiskit/utils"],
     ["https://docs.quantum-computing.ibm.com/run", "/run"],
-  ])("relativize docs.quantum.ibm.com links", (input, expected) => {
-    expect(relativizeLink({ url: input })).toEqual({ url: expected });
-  });
+  ].forEach(([input, expected]) =>
+    test(`relativize docs.quantum.ibm.com links - ${input}`, () => {
+      expect(relativizeLink({ url: input })).toEqual({ url: expected });
+    }),
+  );
 
   test("update link text when the same as the URL", () => {
     const url = "https://qiskit.org/documentation/apidoc/algorithms.html";

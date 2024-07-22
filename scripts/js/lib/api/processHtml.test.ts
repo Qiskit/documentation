@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
 import {
   addLanguageClassToCodeBlocks,
@@ -30,7 +30,7 @@ import {
 import { Metadata } from "./Metadata";
 import { CheerioDoc } from "../testUtils";
 
-describe("loadImages()", () => {
+test.describe("loadImages()", () => {
   test("normal file", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
@@ -168,7 +168,7 @@ test("removeColonSpans()", () => {
   doc.expectHtml(`<dt class="field-odd">Parameters</dt>`);
 });
 
-describe("removeMatplotlibFigCaptions()", () => {
+test.describe("removeMatplotlibFigCaptions()", () => {
   test("removes <figcaption>", () => {
     const doc = CheerioDoc.load(`
     <figure class="align-default" id="id1">
@@ -338,7 +338,7 @@ test("convertRubricsToHeaders()", () => {
     <h2>Methods</h2>`);
 });
 
-describe("maybeSetModuleMetadata()", () => {
+test.describe("maybeSetModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
     const meta: Metadata = {};
@@ -382,7 +382,7 @@ describe("maybeSetModuleMetadata()", () => {
   });
 });
 
-describe("processMembersAndSetMeta()", () => {
+test.describe("processMembersAndSetMeta()", () => {
   test("function with added heading", async () => {
     const html = `<h1>Circuit Converters</h1>
 <dl class="py function">

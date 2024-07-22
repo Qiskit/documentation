@@ -15,7 +15,7 @@ import path from "path";
 import { mkdtemp, readFile } from "fs/promises";
 
 import { globby } from "globby";
-import { expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
 import { runConversionPipeline } from "./conversionPipeline";
 import { Pkg, ReleaseNotesConfig } from "./Pkg";
@@ -36,10 +36,14 @@ import { Pkg, ReleaseNotesConfig } from "./Pkg";
 // `git clean -fd` and set this value back to `true`.
 const USE_TMPDIR = true;
 
-test("qiskit-sphinx-theme", async () => {
+test("qiskit-sphinx-theme", async ({}, testInfo) => {
   // The integration test currently does not test these mechanisms:
   //   - images
   //   - release notes
+
+  // Normally, Playwright saves the operating system name in the snapshot results.
+  // Our test is OS-independent, so turn this off.
+  testInfo.snapshotSuffix = "";
 
   let docsBaseFolder = "docs";
   let publicBaseFolder = "public";

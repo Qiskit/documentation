@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
 import {
   ComponentProps,
@@ -30,7 +30,7 @@ test("htmlSignatureToMd", async () => {
   );
 });
 
-describe("addExtraSignatures()", () => {
+test.describe("addExtraSignatures()", () => {
   test("Function with overload signatures", () => {
     const componentProps = {
       id: "qiskit_ibm_runtime.Estimator.run",
@@ -64,7 +64,7 @@ describe("addExtraSignatures()", () => {
   });
 });
 
-describe("createOpeningTag()", () => {
+test.describe("createOpeningTag()", () => {
   test("Create Function tag with some props", async () => {
     const componentProps = {
       id: "qiskit_ibm_runtime.Estimator.run",
@@ -147,7 +147,7 @@ describe("createOpeningTag()", () => {
   });
 });
 
-describe("prepareGitHubLink()", () => {
+test.describe("prepareGitHubLink()", () => {
   test("no link", () => {
     const html = `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`;
     const doc = CheerioDoc.load(html);

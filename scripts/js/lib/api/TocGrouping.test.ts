@@ -12,7 +12,7 @@
 
 import { readFile, readdir } from "fs/promises";
 
-import { expect, describe, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
 import { QISKIT_TOC_GROUPING } from "./TocGrouping";
 import type { TocEntry } from "./generateToc";
@@ -142,7 +142,7 @@ async function checkFolder(dirName: string): Promise<void> {
   expect(indexModuleGroups).toEqual(tocModuleGroups);
 }
 
-describe("Qiskit ToC mirrors index page sections", () => {
+test.describe("Qiskit ToC mirrors index page sections", () => {
   test("validate assumptions", () => {
     validateTopLevelModuleAssumptions();
   });

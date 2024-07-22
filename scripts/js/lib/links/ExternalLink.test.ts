@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 import { ExternalLink } from "./ExternalLink";
 
 test("ExternalLink constructor ignores anchors", () => {
@@ -18,7 +18,7 @@ test("ExternalLink constructor ignores anchors", () => {
   expect(link.value).toEqual("https://ibm.com");
 });
 
-describe("ExternalLink.check()", () => {
+test.describe("ExternalLink.check()", () => {
   test("valid link", async () => {
     let link = new ExternalLink("https://github.com/Qiskit", [
       "/testorigin.mdx",
