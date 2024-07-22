@@ -80,55 +80,50 @@ describe("updateLinks", () => {
     );
 
     await updateLinks(data, objectsInv);
-    expect(data).toMatchInlineSnapshot(`
-      [
-        {
-          "images": [],
-          "isReleaseNotes": false,
-          "markdown": "[link1](qiskit_ibm_runtime.RuntimeJob)
-      [link2](qiskit_ibm_runtime.RuntimeJob)
-      [link3](qiskit_ibm_runtime.RuntimeJob#job)
-      [link4](qiskit_ibm_runtime.RuntimeJob)
-      [link5](qiskit_ibm_runtime.RuntimeJob)
-      [link6](qiskit_ibm_runtime.RuntimeJob)
-      [link7](#qiskit_ibm_runtime.RuntimeJob.job)
-      [link8](/api/qiskit/algorithms)
-      [link9](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)
-      ",
-          "meta": {
-            "apiName": "qiskit_ibm_runtime.RuntimeJob",
-            "apiType": "class",
-          },
-          "url": "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+    expect(data).toEqual([
+      {
+        images: [],
+        isReleaseNotes: false,
+        markdown: `[link1](qiskit_ibm_runtime.RuntimeJob)
+[link2](qiskit_ibm_runtime.RuntimeJob)
+[link3](qiskit_ibm_runtime.RuntimeJob#job)
+[link4](qiskit_ibm_runtime.RuntimeJob)
+[link5](qiskit_ibm_runtime.RuntimeJob)
+[link6](qiskit_ibm_runtime.RuntimeJob)
+[link7](#qiskit_ibm_runtime.RuntimeJob.job)
+[link8](/api/qiskit/algorithms)
+[link9](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)\n`,
+        meta: {
+          apiName: "qiskit_ibm_runtime.RuntimeJob",
+          apiType: "class",
         },
-        {
-          "images": [],
-          "isReleaseNotes": false,
-          "markdown": "[run](qiskit_ibm_runtime.RuntimeJob#run)
-      ",
-          "meta": {
-            "apiName": "qiskit_ibm_runtime.Sampler",
-            "apiType": "class",
-          },
-          "url": "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+      },
+      {
+        images: [],
+        isReleaseNotes: false,
+        markdown: "[run](qiskit_ibm_runtime.RuntimeJob#run)\n",
+        meta: {
+          apiName: "qiskit_ibm_runtime.Sampler",
+          apiType: "class",
         },
-      ]
-    `);
-    expect(objectsInv.entries.map((e) => e.uri)).toMatchInlineSnapshot(`
-      [
-        "qiskit.algorithms.Eigensolver#qiskit.algorithms.Eigensolver",
-        "qiskit.algorithms.EstimationProblem#qiskit.algorithms.EstimationProblem.state_preparation",
-        "qiskit.algorithms.FasterAmplitudeEstimationResult#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability",
-        "qiskit_ibm_runtime.QiskitRuntimeService",
-        "qiskit_ibm_runtime.RuntimeJob#submit",
-        "qiskit_ibm_runtime.RuntimeEncoder#qiskit_ibm_runtime.RuntimeEncoder",
-        "qiskit_ibm_runtime.options.Options#options",
-        "tutorials/qaoa_with_primitives",
-        "tutorials/vqe_with_estimator#step-1:-map-classical-inputs-to-a-quantum-problem",
-        "qiskit.algorithms.gradients.LinCombEstimatorGradient#supported_gates",
-        "qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations#measure_patch_cycles",
-      ]
-    `);
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+      },
+    ]);
+
+    expect(objectsInv.entries.map((e) => e.uri)).toEqual([
+      "qiskit.algorithms.Eigensolver#qiskit.algorithms.Eigensolver",
+      "qiskit.algorithms.EstimationProblem#qiskit.algorithms.EstimationProblem.state_preparation",
+      "qiskit.algorithms.FasterAmplitudeEstimationResult#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability",
+      "qiskit_ibm_runtime.QiskitRuntimeService",
+      "qiskit_ibm_runtime.RuntimeJob#submit",
+      "qiskit_ibm_runtime.RuntimeEncoder#qiskit_ibm_runtime.RuntimeEncoder",
+      "qiskit_ibm_runtime.options.Options#options",
+      "tutorials/qaoa_with_primitives",
+      "tutorials/vqe_with_estimator#step-1:-map-classical-inputs-to-a-quantum-problem",
+      "qiskit.algorithms.gradients.LinCombEstimatorGradient#supported_gates",
+      "qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations#measure_patch_cycles",
+    ]);
   });
 });
 
@@ -171,19 +166,17 @@ test("normalizeUrl()", () => {
   const newUrls = urls.map((url) =>
     normalizeUrl(url, resultsByName, itemNames),
   );
-  expect(newUrls).toMatchInlineSnapshot(`
-      [
-        "qiskit_ibm_runtime.RuntimeJob",
-        "qiskit_ibm_runtime.RuntimeJob",
-        "qiskit_ibm_runtime.RuntimeJob#job",
-        "qiskit_ibm_runtime.RuntimeJob",
-        "qiskit_ibm_runtime.RuntimeJob",
-        "qiskit_ibm_runtime.RuntimeJob",
-        "#qiskit_ibm_runtime.RuntimeJob.job",
-        "qiskit_ibm_runtime.RuntimeJob#run",
-        "qiskit_ibm_runtime.RuntimeJob",
-      ]
-    `);
+  expect(newUrls).toEqual([
+    "qiskit_ibm_runtime.RuntimeJob",
+    "qiskit_ibm_runtime.RuntimeJob",
+    "qiskit_ibm_runtime.RuntimeJob#job",
+    "qiskit_ibm_runtime.RuntimeJob",
+    "qiskit_ibm_runtime.RuntimeJob",
+    "qiskit_ibm_runtime.RuntimeJob",
+    "#qiskit_ibm_runtime.RuntimeJob.job",
+    "qiskit_ibm_runtime.RuntimeJob#run",
+    "qiskit_ibm_runtime.RuntimeJob",
+  ]);
 });
 
 describe("relativizeLink()", () => {

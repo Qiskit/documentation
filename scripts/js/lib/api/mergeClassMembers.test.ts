@@ -10,16 +10,15 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 
 import { mergeClassMembers } from "./mergeClassMembers";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
-describe("mergeClassMembers", () => {
-  test("merge class members", async () => {
-    const results: HtmlToMdResultWithUrl[] = [
-      {
-        markdown: `<Class id='qiskit_ibm_runtime.RuntimeOptions'>
+test("merge class members", async () => {
+  const results: HtmlToMdResultWithUrl[] = [
+    {
+      markdown: `<Class id='qiskit_ibm_runtime.RuntimeOptions'>
   ## Attributes
 
   |                                                                                                                                                                                                         |                 |
@@ -32,41 +31,41 @@ describe("mergeClassMembers", () => {
   | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
   | [\`RuntimeOptions.validate\`](qiskit_ibm_runtime.RuntimeOptions.validate#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |
 </Class>`,
-        meta: {
-          apiType: "class",
-          apiName: "RuntimeOptions",
-        },
-        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
-        images: [],
-        isReleaseNotes: false,
+      meta: {
+        apiType: "class",
+        apiName: "RuntimeOptions",
       },
-      {
-        markdown: `# RuntimeOptions.backend
+      url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
+      images: [],
+      isReleaseNotes: false,
+    },
+    {
+      markdown: `# RuntimeOptions.backend
 <Attribute id='qiskit_ibm_runtime.RuntimeOptions.backend' signature='Optional[str] = None' />
 `,
-        meta: {
-          apiType: "attribute",
-          apiName: "RuntimeOptions.backend",
-        },
-        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.backend",
-        images: [],
-        isReleaseNotes: false,
+      meta: {
+        apiType: "attribute",
+        apiName: "RuntimeOptions.backend",
       },
-      {
-        markdown: `# RuntimeOptions.circuits
+      url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.backend",
+      images: [],
+      isReleaseNotes: false,
+    },
+    {
+      markdown: `# RuntimeOptions.circuits
 
         <Attribute id='qiskit_ibm_runtime.RuntimeOptions.circuits' signature='Optional[str] = None' />
 `,
-        meta: {
-          apiType: "property",
-          apiName: "RuntimeOptions.circuits",
-        },
-        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.circuits",
-        images: [],
-        isReleaseNotes: false,
+      meta: {
+        apiType: "property",
+        apiName: "RuntimeOptions.circuits",
       },
-      {
-        markdown: `
+      url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.circuits",
+      images: [],
+      isReleaseNotes: false,
+    },
+    {
+      markdown: `
 # RuntimeOptions.validate
 
 <Function id='qiskit_ibm_runtime.RuntimeOptions.validate' signature='RuntimeOptions.validate(channel)'>
@@ -85,58 +84,56 @@ describe("mergeClassMembers", () => {
       \`None\`
 </Function>
           `,
-        meta: {
-          apiType: "method",
-          apiName: "RuntimeOptions.backend",
-        },
-        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.validate",
-        images: [],
-        isReleaseNotes: false,
+      meta: {
+        apiType: "method",
+        apiName: "RuntimeOptions.backend",
       },
-    ];
-    const merged = await mergeClassMembers(results);
-    expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
-      .toMatchInlineSnapshot(`
-        "<Class id="qiskit_ibm_runtime.RuntimeOptions">
-          ## Attributes
+      url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.validate",
+      images: [],
+      isReleaseNotes: false,
+    },
+  ];
+  const merged = await mergeClassMembers(results);
+  expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
+    .toEqual(`<Class id="qiskit_ibm_runtime.RuntimeOptions">
+  ## Attributes
 
-          ### RuntimeOptions.backend
+  ### RuntimeOptions.backend
 
-          <Attribute id="qiskit_ibm_runtime.RuntimeOptions.backend" signature="Optional[str] = None" />
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.backend" signature="Optional[str] = None" />
 
-          ### RuntimeOptions.circuits
+  ### RuntimeOptions.circuits
 
-          <Attribute id="qiskit_ibm_runtime.RuntimeOptions.circuits" signature="Optional[str] = None" />
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.circuits" signature="Optional[str] = None" />
 
-          ## Methods
+  ## Methods
 
-          ### RuntimeOptions.validate
+  ### RuntimeOptions.validate
 
-          <Function id="qiskit_ibm_runtime.RuntimeOptions.validate" signature="RuntimeOptions.validate(channel)">
-            Validate options.
+  <Function id="qiskit_ibm_runtime.RuntimeOptions.validate" signature="RuntimeOptions.validate(channel)">
+    Validate options.
 
-            *   Parameters:
+    *   Parameters:
 
-                **channel** (\`str\`) – channel type.
+        **channel** (\`str\`) – channel type.
 
-            *   Raises:
+    *   Raises:
 
-                **IBMInputValueError** – If one or more option is invalid.
+        **IBMInputValueError** – If one or more option is invalid.
 
-            *   Return type:
+    *   Return type:
 
-                \`None\`
-          </Function>
-        </Class>
-        "
-      `);
-    expect(merged.length).toEqual(1);
-  });
+        \`None\`
+  </Function>
+</Class>
+`);
+  expect(merged.length).toEqual(1);
+});
 
-  test("merge class with methods already inlined", async () => {
-    const results: HtmlToMdResultWithUrl[] = [
-      {
-        markdown: `## Attributes
+test("merge class with methods already inlined", async () => {
+  const results: HtmlToMdResultWithUrl[] = [
+    {
+      markdown: `## Attributes
 
 |                                                                                                                                                                                                         |                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
@@ -156,18 +153,18 @@ Inlined attribute
 
 Inlined method
 `,
-        meta: {
-          apiType: "class",
-          apiName: "RuntimeOptions",
-        },
-        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
-        images: [],
-        isReleaseNotes: false,
+      meta: {
+        apiType: "class",
+        apiName: "RuntimeOptions",
       },
-    ];
-    const merged = await mergeClassMembers(results);
-    expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
-      .toEqual(`## Attributes
+      url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
+      images: [],
+      isReleaseNotes: false,
+    },
+  ];
+  const merged = await mergeClassMembers(results);
+  expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
+    .toEqual(`## Attributes
 
 |                                                                                                                    |   |
 | ------------------------------------------------------------------------------------------------------------------ | - |
@@ -187,25 +184,24 @@ Inlined attribute
 
 Inlined method
 `);
-    expect(merged.length).toEqual(1);
-  });
+  expect(merged.length).toEqual(1);
+});
 
-  test("keep members without an owning class", async () => {
-    // Regression test for https://github.com/Qiskit/documentation/issues/814.
-    const results: HtmlToMdResultWithUrl[] = [
-      {
-        markdown:
-          '<span id="baseestimator" />\n\n# BaseEstimator\n\nalias of `BaseEstimatorV1`\n',
-        meta: {
-          apiType: "attribute",
-          apiName: "qiskit.primitives.BaseEstimator",
-        },
-        images: [],
-        isReleaseNotes: false,
-        url: "/docs/api/qiskit/qiskit.primitives.BaseEstimator",
+test("keep members without an owning class", async () => {
+  // Regression test for https://github.com/Qiskit/documentation/issues/814.
+  const results: HtmlToMdResultWithUrl[] = [
+    {
+      markdown:
+        '<span id="baseestimator" />\n\n# BaseEstimator\n\nalias of `BaseEstimatorV1`\n',
+      meta: {
+        apiType: "attribute",
+        apiName: "qiskit.primitives.BaseEstimator",
       },
-    ];
-    const merged = await mergeClassMembers(results);
-    expect(merged).toEqual(results);
-  });
+      images: [],
+      isReleaseNotes: false,
+      url: "/docs/api/qiskit/qiskit.primitives.BaseEstimator",
+    },
+  ];
+  const merged = await mergeClassMembers(results);
+  expect(merged).toEqual(results);
 });

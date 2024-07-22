@@ -64,11 +64,9 @@ test("transformSpecialCaseUrl()", () => {
     "ibm-provider#qiskit-ibm-provider",
   ];
   const transformedUrls = urls.map((x) => transformSpecialCaseUrl(x));
-  expect(transformedUrls).toMatchInlineSnapshot(`
-    [
-      "release-notes",
-      "release-notes#release-notes-0-2-1-bug-fixes",
-      "index#qiskit-ibm-provider",
-    ]
-  `);
+  expect(transformedUrls).toEqual([
+    "release-notes",
+    "release-notes#release-notes-0-2-1-bug-fixes",
+    "index#qiskit-ibm-provider",
+  ]);
 });

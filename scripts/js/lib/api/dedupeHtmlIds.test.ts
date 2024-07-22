@@ -22,10 +22,5 @@ test("dedupeHtmlIds()", async () => {
   # foo
   <span id="foo" />
   `),
-  ).toMatchInlineSnapshot(`
-    "<span id="bar" />
-
-    # foo
-    "
-  `);
+  ).toEqual(`<span id="bar" />\n\n# foo\n`);
 });
