@@ -42,7 +42,7 @@ export async function downloadSphinxArtifact(pkg: Pkg, artifactFolder: string) {
   }
 
   const artifactJson = JSON.parse(
-    fs.readFileSync(`scripts/api-html-artifacts.json`, "utf-8"),
+    fs.readFileSync(`scripts/config/api-html-artifacts.json`, "utf-8"),
   );
 
   const artifactName = pkg.isDev() ? "dev" : `${pkg.versionWithoutPatch}`;
