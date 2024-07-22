@@ -16,7 +16,7 @@ import path from "path";
 import { $ } from "zx/core";
 
 export function getRoot() {
-  return path.normalize(`${__dirname}/../../`);
+  return path.normalize(`${__dirname}/../../../`);
 }
 
 export async function pathExists(path: string) {

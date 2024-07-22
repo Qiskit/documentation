@@ -14,8 +14,8 @@ import { describe, expect, test } from "@jest/globals";
 import { ObjectsInv, ObjectsInvEntry } from "./objectsInv";
 import { unlink, stat } from "fs/promises";
 
-const TEST_FOLDER = "scripts/lib/api/testdata/";
-const TEMP_FOLDER = "scripts/lib/api/testdata/temp/";
+const TEST_FOLDER = "scripts/js/lib/api/testdata/";
+const TEMP_FOLDER = "scripts/js/lib/api/testdata/temp/";
 
 describe("objects.inv", () => {
   test("read file and decompress", async () => {
