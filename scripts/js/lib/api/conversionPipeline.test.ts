@@ -63,7 +63,7 @@ test("qiskit-sphinx-theme", async () => {
   const markdownFolder = pkg.outputDir(docsBaseFolder);
 
   await runConversionPipeline(
-    "scripts/lib/api/testdata/qiskit-sphinx-theme",
+    "scripts/js/lib/api/testdata/qiskit-sphinx-theme",
     docsBaseFolder,
     publicBaseFolder,
     pkg,
