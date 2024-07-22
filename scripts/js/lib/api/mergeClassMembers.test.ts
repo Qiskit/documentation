@@ -95,40 +95,38 @@ test("merge class members", async () => {
   ];
   const merged = await mergeClassMembers(results);
   expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
-    .toMatchInlineSnapshot(`
-        "<Class id="qiskit_ibm_runtime.RuntimeOptions">
-          ## Attributes
+    .toEqual(`<Class id="qiskit_ibm_runtime.RuntimeOptions">
+  ## Attributes
 
-          ### RuntimeOptions.backend
+  ### RuntimeOptions.backend
 
-          <Attribute id="qiskit_ibm_runtime.RuntimeOptions.backend" signature="Optional[str] = None" />
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.backend" signature="Optional[str] = None" />
 
-          ### RuntimeOptions.circuits
+  ### RuntimeOptions.circuits
 
-          <Attribute id="qiskit_ibm_runtime.RuntimeOptions.circuits" signature="Optional[str] = None" />
+  <Attribute id="qiskit_ibm_runtime.RuntimeOptions.circuits" signature="Optional[str] = None" />
 
-          ## Methods
+  ## Methods
 
-          ### RuntimeOptions.validate
+  ### RuntimeOptions.validate
 
-          <Function id="qiskit_ibm_runtime.RuntimeOptions.validate" signature="RuntimeOptions.validate(channel)">
-            Validate options.
+  <Function id="qiskit_ibm_runtime.RuntimeOptions.validate" signature="RuntimeOptions.validate(channel)">
+    Validate options.
 
-            *   Parameters:
+    *   Parameters:
 
-                **channel** (\`str\`) – channel type.
+        **channel** (\`str\`) – channel type.
 
-            *   Raises:
+    *   Raises:
 
-                **IBMInputValueError** – If one or more option is invalid.
+        **IBMInputValueError** – If one or more option is invalid.
 
-            *   Return type:
+    *   Return type:
 
-                \`None\`
-          </Function>
-        </Class>
-        "
-      `);
+        \`None\`
+  </Function>
+</Class>
+`);
   expect(merged.length).toEqual(1);
 });
 
