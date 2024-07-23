@@ -10,7 +10,7 @@
     "typecheck": "tsc",
     "check": "npm run check:qiskit-bot && npm run check:patterns-index && npm run check:metadata && npm run check:spelling && npm run check:internal-links && npm run check:orphan-pages && npm run check:fmt",
     "check:metadata": "node -r esbuild-register scripts/js/commands/checkMetadata.ts",
-    "check:spelling": "cspell --relative --no-progress docs/**/*.md* docs/api/**/*.md* --config cspell/cSpell.json",
+    "check:spelling": "cspell --no-progress docs/**/*.mdx docs/api/**/*.mdx --config scripts/config/cspell/cSpell.json",
     "check:fmt": "prettier --check .",
     "check:internal-links": "node -r esbuild-register scripts/js/commands/checkInternalLinks.ts",
     "check:external-links": "node -r esbuild-register scripts/js/commands/checkExternalLinks.ts",
