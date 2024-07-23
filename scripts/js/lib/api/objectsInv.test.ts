@@ -10,15 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
-import { ObjectsInv, ObjectsInvEntry } from "./objectsInv";
+import { expect, test } from "@playwright/test";
 import { unlink, stat } from "fs/promises";
+
+import { ObjectsInv, ObjectsInvEntry } from "./objectsInv.js";
 
 const TEST_FOLDER = "scripts/js/lib/api/testdata/";
 const TEMP_FOLDER = "scripts/js/lib/api/testdata/temp/";
 
-describe("objects.inv", () => {
-  afterAll(async () => {
+test.describe("objects.inv", () => {
+  test.afterAll(async () => {
     if (await stat(TEMP_FOLDER + "objects.inv")) {
       await unlink(TEMP_FOLDER + "objects.inv");
     }

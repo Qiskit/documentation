@@ -10,15 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { $ } from "zx";
 import { createWriteStream } from "node:fs";
 import { finished } from "stream/promises";
 import { Readable } from "stream";
 import fs from "fs";
 
-import { pathExists } from "../fs";
+import { $ } from "zx";
 import { mkdirp } from "mkdirp";
-import { Pkg } from "./Pkg";
+
+import { pathExists } from "../fs.js";
+import { Pkg } from "./Pkg.js";
 
 async function downloadFromBox(
   pkgName: string,

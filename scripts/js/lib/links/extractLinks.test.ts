@@ -10,8 +10,9 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { expect, test } from "@jest/globals";
-import { parseAnchors, parseLinks } from "./extractLinks";
+import { expect, test } from "@playwright/test";
+
+import { parseAnchors, parseLinks } from "./extractLinks.js";
 
 test("parseAnchors()", () => {
   const result = parseAnchors(`

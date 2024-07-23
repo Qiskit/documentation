@@ -10,10 +10,10 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
-import { mergeClassMembers } from "./mergeClassMembers";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import { mergeClassMembers } from "./mergeClassMembers.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test("merge class members", async () => {
   const results: HtmlToMdResultWithUrl[] = [

@@ -12,9 +12,10 @@
 
 import { readFile, writeFile } from "fs/promises";
 import { unzipSync, deflateSync } from "zlib";
-import { removeSuffix } from "../stringUtils";
 import { join, dirname } from "path";
 import { mkdirp } from "mkdirp";
+
+import { removeSuffix } from "../stringUtils.js";
 
 /**
  * Some pages exist in the sphinx docs but not in our docs

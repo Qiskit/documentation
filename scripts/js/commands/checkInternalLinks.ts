@@ -16,9 +16,9 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { Pkg } from "../lib/api/Pkg";
-import { File } from "../lib/links/InternalLink";
-import { FileBatch } from "../lib/links/FileBatch";
+import { Pkg } from "../lib/api/Pkg.js";
+import { File } from "../lib/links/InternalLink.js";
+import { FileBatch } from "../lib/links/FileBatch.js";
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.

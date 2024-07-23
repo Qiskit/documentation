@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { includes, isEmpty, orderBy } from "lodash";
+import { includes, isEmpty, orderBy } from "lodash-es";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkMdx from "remark-mdx";
@@ -21,8 +21,8 @@ import { Content, Root } from "mdast";
 import { MdxJsxFlowElement, MdxJsxAttribute } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
-import { remarkStringifyOptions } from "./commonParserConfig";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { remarkStringifyOptions } from "./commonParserConfig.js";
 
 export async function mergeClassMembers(
   results: HtmlToMdResultWithUrl[],

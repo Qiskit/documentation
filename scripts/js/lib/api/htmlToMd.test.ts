@@ -10,9 +10,9 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { test, expect } from "@jest/globals";
+import { test, expect } from "@playwright/test";
 
-import { sphinxHtmlToMarkdown } from "./htmlToMd";
+import { sphinxHtmlToMarkdown } from "./htmlToMd.js";
 
 const DEFAULT_ARGS = {
   imageDestination: "/images/qiskit",

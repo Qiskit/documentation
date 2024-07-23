@@ -15,10 +15,10 @@ import fs from "fs/promises";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { mean } from "lodash";
+import { mean } from "lodash-es";
 
-import { zxMain } from "../lib/zx";
-import { Pkg } from "../lib/api/Pkg";
+import { zxMain } from "../lib/zx.js";
+import { Pkg } from "../lib/api/Pkg.js";
 
 const PORT = 3000;
 

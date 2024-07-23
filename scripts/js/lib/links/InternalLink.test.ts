@@ -10,10 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
-import { File, InternalLink } from "./InternalLink";
+import { expect, test } from "@playwright/test";
 
-describe("Test the constructor of InternalLink", () => {
+import { File, InternalLink } from "./InternalLink.js";
+
+test.describe("Test the constructor of InternalLink", () => {
   test("without anchors", () => {
     let testLink = new InternalLink("/testpath", ["/testorigin.mdx"]);
     const attributes = [testLink.value, testLink.anchor, testLink.originFiles];
@@ -35,7 +36,7 @@ describe("Test the constructor of InternalLink", () => {
   });
 });
 
-describe("Validate links", () => {
+test.describe("Validate links", () => {
   test("existing with absolute path", () => {
     let testLink = new InternalLink("/testpath", ["/testorigin.mdx"]);
     let testFile = new File("docs/testpath.mdx", new Set());
@@ -170,7 +171,7 @@ describe("Validate links", () => {
   });
 });
 
-describe("Generate the possible paths of a given link", () => {
+test.describe("Generate the possible paths of a given link", () => {
   test("Possible links with a relative path", () => {
     let testLink = new InternalLink("../testFile", [
       "docs/test/test2/testorigin.mdx",

@@ -16,12 +16,12 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
-import { ApiType } from "./Metadata";
+import { ApiType } from "./Metadata.js";
 import {
   getLastPartFromFullIdentifier,
   removeSuffix,
   APOSTROPHE_HEX_CODE,
-} from "../stringUtils";
+} from "../stringUtils.js";
 
 export type ComponentProps = {
   id?: string;
