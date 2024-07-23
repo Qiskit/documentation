@@ -11,6 +11,9 @@
 // that they have been altered from the originals.
 
 import fs from "fs/promises";
+import path from "path";
+import os from "os";
+import { randomBytes } from "crypto";
 
 import { $ } from "zx/core";
 
@@ -31,4 +34,30 @@ export async function pathExists(path: string) {
  */
 export async function rmFilesInFolder(dir: string): Promise<void> {
   await $`find ${dir} -maxdepth 1 -type f -path "${dir}/*" | xargs rm -f {}`.quiet();
+}
+
+/**
+ * Copies every file to the destDir.
+ *
+ * Will preserve the dirname of each file. For example, `dir/f.txt` will be copied
+ * over to `{dest}/dir/f.txt`.
+ */
+export async function copyFiles(
+  files: string[],
+  destDir: string,
+): Promise<void> {
+  await Promise.all(
+    files.map(async (fp) => {
+      const dest = path.join(destDir, fp);
+      await fs.mkdir(path.dirname(dest), { recursive: true });
+      await fs.copyFile(fp, dest);
+    }),
+  );
+}
+
+export async function createTmpdir(): Promise<string> {
+  const randomSuffix = randomBytes(3).toString("hex");
+  const temp = path.join(os.tmpdir(), `qiskit-docs-${randomSuffix}`);
+  await fs.mkdir(temp);
+  return temp;
 }
