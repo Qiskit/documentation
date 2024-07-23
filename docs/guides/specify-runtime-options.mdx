@@ -49,20 +49,26 @@ You can pass in an instance of the options class or a dictionary when initializi
 
 #### Options class
 
-When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you created in the options class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `primitive.options.option.sub-option.sub-sub-option = choice`.  For example: `estimator.options.dynamical_decoupling.enable = True`
+When creating an instance of the `Estimator` or `Sampler` class, you can pass in an instance of the options class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `primitive.options.option.sub-option.sub-sub-option = choice`.  For example: `estimator.options.dynamical_decoupling.enable = True`
 
 Example:
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    `SamplerV2` and `EstimatorV2` have separate options classes ([`EstimatorOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) and [`SamplerOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)) that do not need to be instantiated.
+    `SamplerV2` and `EstimatorV2` have separate options classes ([`EstimatorOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) and [`SamplerOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)) that do not need to be instantiated, but they can be if you want to pass them in during primitive initialization.
 
 ```python
-estimator = Estimator(backend=backend)
+from qiskit_ibm_runtime.options import EstimatorOptions
 
+options =  EstimatorOptions(resilience_level=2, resilience={"zne_mitigation": True, "zne": {"noise_factors": [1, 3, 5]}})
+
+# or...
+options =  EstimatorOptions()
 estimator.options.resilience_level = 2
-estimator.options.resilience.zne_mitigation = True
-estimator.options.resilience.zne.noise_factors = [1, 3, 5]
+options.resilience.zne_mitigation = True
+options.resilience.zne.noise_factors = [1, 3, 5]
+
+estimator = Estimator(mode=backend, options=options)
 ```
   </TabItem>
 
@@ -116,6 +122,8 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 
 ### Update options after initialization
 
+You can specify the options in this format: `primitive.options.option.sub-option.sub-sub-option = choice` to take advantage of auto complete, or use the `update()` method to make bulk updates.
+
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
 ```python
@@ -123,7 +131,7 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 # This uses auto complete.
 estimator.options.default_shots = 4000
 # This does bulk update.
-estimator.options.update(default_shots=4000, resilience_level=2)
+estimator.options.update(default_shots=4000, resilience={"zne_mitigation": True})
 ```
   </TabItem>
 
@@ -153,6 +161,10 @@ In V2, the only values you can pass to `run()` are those defined in the interfac
 ```python
 # Sample two circuits at 128 shots each.
 sampler.run([circuit1, circuit2], shots=128)
+
+# Sample two circuits with different numbers of shots.
+# 100 shots is used for circuit1 and 200 for circuit2.
+sampler.run([(circuit1, None, 100), (circuit2, None, 200)])
 ```
 
   </TabItem>

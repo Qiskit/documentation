@@ -46,7 +46,7 @@ There are several ways to set options.  If you set different values for the same
 Shots (Sampler) or precision (Estimator) set in `run()` are not considered options, but take precidence over values set for `default_shots`or `default_precision`. See the [Run() method](specify-runtime-options#run-method) section for full details.
 </Admonition>
 
-In the following example, these values would be used for the `estimator.run` job: `shots = 128` and `resilience_level = 1`.
+In the following example, these values would be used for the `estimator.run` job: `shots = 128` and `measure_mitigation = True`.
 
 ``` python
 # Setting options during primitive initialization
@@ -152,9 +152,9 @@ Scroll to see the full table.
 |                      | measure_mitigation       |        | `True`/`False`                      | `True`                      |                      |
 |                      | [measure_noise_learning](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.MeasureNoiseLearningOptions)   | num_randomizations      |  integer >= 1  | `32`                      |                      |
 |                      |                          | shots_per_randomization |  integer                                                                                | 'auto'                    |                      |
+|                      | pec_mitigation           |                         | `True`/`False`                                                                        | `False`                      |                      |
 |                      | [pec](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.PecOptions)   | max_overhead            |  `None`/ integer >1          | `100`                      |                      |
 |                      |                          | noise_gain              |  `auto`/ float in the range `[0, 1]`                                                     | `auto`                    |                      |
-|                      | pec_mitigation           |                         | `True`/`False`                                                                        | `False`                      |                      |
 |                      | zne_mitigation           |                         | `True`/`False`                                                                         | `False`                     |                      |
 |                      | [zne](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions)                      | noise_factors           |   list of floats; each float >= 1     | `(1, 3, 5)`           |                      |
 |                      |                          | amplifier               | `gate_folding`, `gate_folding_front`, `gate_folding_back                                 `  | `gate_folding` |                      |
