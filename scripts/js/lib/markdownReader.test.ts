@@ -10,8 +10,9 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { expect, test } from "@jest/globals";
-import { markdownFromNotebook } from "./markdownReader";
+import { expect, test } from "@playwright/test";
+
+import { markdownFromNotebook } from "./markdownReader.js";
 
 test("markdownFromNotebook()", () => {
   const result = markdownFromNotebook(`

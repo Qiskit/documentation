@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { initial, keyBy, keys, last } from "lodash";
+import { initial, keyBy, keys, last } from "lodash-es";
 import { Root } from "mdast";
 import { visit } from "unist-util-visit";
 import isAbsoluteUrl from "is-absolute-url";
@@ -21,11 +21,11 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { removePart, removePrefix, removeSuffix } from "../stringUtils";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
-import { remarkStringifyOptions } from "./commonParserConfig";
-import { ObjectsInv } from "./objectsInv";
-import { transformSpecialCaseUrl } from "./specialCaseResults";
+import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { remarkStringifyOptions } from "./commonParserConfig.js";
+import { ObjectsInv } from "./objectsInv.js";
+import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 
 export interface Link {
   url: string; // Where the link goes

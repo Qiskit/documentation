@@ -14,9 +14,9 @@ import { mkdirp } from "mkdirp";
 import pMap from "p-map";
 import { copyFile } from "fs/promises";
 
-import { Pkg } from "./Pkg";
-import { Image } from "./HtmlToMdResult";
-import { pathExists, rmFilesInFolder } from "../fs";
+import { Pkg } from "./Pkg.js";
+import { Image } from "./HtmlToMdResult.js";
+import { pathExists, rmFilesInFolder } from "../fs.js";
 
 export async function saveImages(
   images: Image[],

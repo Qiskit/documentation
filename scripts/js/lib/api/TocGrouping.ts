@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { hasPrefix } from "../stringUtils";
+import { hasPrefix } from "../stringUtils.js";
 
 /** A human-written section used to group several modules, e.g. 'Circuit Construction'. */
 type Section = {

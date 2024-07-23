@@ -21,8 +21,8 @@ import remarkStringify from "remark-stringify";
 import { toText } from "hast-util-to-text";
 import Slugger from "github-slugger";
 
-import { remarkStringifyOptions } from "./commonParserConfig";
-import { HtmlToMdResult } from "./HtmlToMdResult";
+import { remarkStringifyOptions } from "./commonParserConfig.js";
+import { HtmlToMdResult } from "./HtmlToMdResult.js";
 
 export async function dedupeHtmlIdsFromResults(
   results: HtmlToMdResult[],

@@ -11,8 +11,8 @@
 // that they have been altered from the originals.
 
 import { readFile } from "fs/promises";
-import { pathExists } from "../lib/fs";
-import type { TocEntry } from "../lib/api/generateToc";
+
+import type { TocEntry } from "../lib/api/generateToc.js";
 
 const IGNORED_URLS = ["/guides/qiskit-serverless"];
 

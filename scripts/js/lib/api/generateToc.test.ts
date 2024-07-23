@@ -10,11 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
-import { generateToc } from "./generateToc";
-import { Pkg, ReleaseNotesConfig } from "./Pkg";
-import type { TocGroupingEntry } from "./TocGrouping";
+import { generateToc } from "./generateToc.js";
+import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
+import type { TocGroupingEntry } from "./TocGrouping.js";
 
 const DEFAULT_ARGS = {
   markdown: "",

@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 /**
  * can't be indented more than one time because it causes the docs app to

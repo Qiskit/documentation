@@ -10,11 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
-import addFrontMatter from "./addFrontMatter";
-import { Pkg, ReleaseNotesConfig } from "./Pkg";
-import { HtmlToMdResult } from "./HtmlToMdResult";
+import addFrontMatter from "./addFrontMatter.js";
+import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
+import { HtmlToMdResult } from "./HtmlToMdResult.js";
 
 test("addFrontMatter()", () => {
   const results: HtmlToMdResult[] = [

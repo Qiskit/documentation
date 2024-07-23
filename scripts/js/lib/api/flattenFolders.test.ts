@@ -10,10 +10,10 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { expect, test } from "@jest/globals";
+import { expect, test } from "@playwright/test";
 
-import flattenFolders from "./flattenFolders";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import flattenFolders from "./flattenFolders.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test("flattenFolders()", () => {
   const results = [
