@@ -10,12 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { zxMain } from "../lib/zx";
 import { $ } from "zx";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { spellCheckDocument } from "cspell-lib";
+import { globby } from "globby";
+import pMap from "p-map";
 
-import { Pkg } from "../lib/api/Pkg";
+import { zxMain } from "../lib/zx.js";
+import { Pkg } from "../lib/api/Pkg.js";
+import { readMarkdown } from "../lib/markdownReader.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -49,4 +53,49 @@ zxMain(async () => {
     const apiFolders = Pkg.VALID_NAMES.map((api) => `docs/api/${api}/**/*.mdx`);
     await $`${cspellCmd} ${apiFolders}`;
   }
+
+  await checkAllNotebooks(args.config);
 });
+
+async function checkAllNotebooks(configPath: string): Promise<void> {
+  const paths = await globby("docs/**/*.ipynb");
+  let allGood = true;
+  await pMap(paths, async (path) => {
+    const errors = await checkForNotebookMistakes(path, configPath);
+    if (errors.length) {
+      allGood = false;
+      const deduplicated = new Set(errors);
+      deduplicated.forEach((mistake) =>
+        console.error(`Spelling mistake in ${path}: ${mistake}`),
+      );
+    }
+  });
+
+  if (!allGood) {
+    process.exit(1);
+  }
+}
+
+/**
+ * Returns any spelling mistakes in the notebook's markdown blocks, if any.
+ */
+async function checkForNotebookMistakes(
+  fp: string,
+  configPath: string,
+): Promise<string[]> {
+  // We should only check the markdown blocks, not code blocks.
+  const text = await readMarkdown(fp);
+
+  const checkOptions = {
+    configFile: configPath,
+  };
+  const doc = {
+    uri: fp,
+    text,
+  };
+  const result = await spellCheckDocument(doc, checkOptions, {});
+
+  // The line numbers get mangled by `readMarkdown()` and they do not correspond to the original notebook file.
+  // So, we only return the spelling mistake without its context.
+  return result.issues.map((issue) => issue.text);
+}
