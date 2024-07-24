@@ -80,7 +80,7 @@ You can preview the docs locally by following these two steps:
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
-Warning: `./start` does not check if there is a new version of the docs application available. You can run `docker pull qiskit/documentation` to update to the latest version of the app.
+Warning: `./start` does not check if there is a new version of the docs application available. You can run `docker pull qiskit/documentation` to update to the latest version of the app. It will also ignore the API docs to speed things up, if you want to view them, run `./start --apis`.
 
 ### API docs authors: How to preview your changes
 
@@ -94,7 +94,7 @@ API docs authors can preview their changes to one of the APIs by using the `-a` 
 ### Add a new notebook
 
 When adding a new notebook, you'll need to tell the testing tools how to handle it.
-To do this, add the file path to `scripts/nb-tester/notebooks.toml`. There are
+To do this, add the file path to `scripts/config/notebook-testing.toml`. There are
 four categories:
 
 - `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
@@ -316,7 +316,7 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 Ayyyyy, this is a fake description.
 ```
 
-2. If the word is a name, add it to the `cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `cspell/cSpell.json`. The word is not case-sensitive.
+2. If the word is a name, add it to the `scripts/config/cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `scripts/config/cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `scripts/config/cspell/cSpell.json`. The word is not case-sensitive.
 
 If the word appears in multiple files, prefer the second approach to add it to one of the dictionaries or `cSpell.json`.
 
@@ -386,7 +386,7 @@ This is useful when new docs content is published, usually corresponding to new 
 7. Select `People with the link` and go to `Link Settings`.
 8. Under `Link Expiration` select `Disable Shared Link on` and set an expiration date of ~10 years into the future.
 9. Copy the direct link at the end of the `Shared Link Settings` tab.
-10. Modify the `scripts/api-html-artifacts.json` file adding the new versions with the direct link from step 9.
+10. Modify the `scripts/config/api-html-artifacts.json` file, adding the new versions with the direct link from step 9.
 11. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
     e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
@@ -538,7 +538,7 @@ Tables are supported: https://www.markdownguide.org/extended-syntax/.
 
 ## Comments
 
-Example comment: `{/_ Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html _/}`
+Example comment: `{/* Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html */}`
 
 ## Collapsible sections
 

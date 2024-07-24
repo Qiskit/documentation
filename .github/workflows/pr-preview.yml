@@ -54,15 +54,15 @@ jobs:
 
       - name: Build static site
         run: >
-          scripts/pr_previews/builder.py
+          scripts/pr-previews/builder.py
           ${{ env.PR_PREVIEW_PATH }}
           --basepath /documentation/${{ env.PR_PREVIEW_PATH }}
 
       - name: Deploy to GitHub Pages
-        run: scripts/pr_previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
+        run: scripts/pr-previews/deploy.py ${{ env.PR_PREVIEW_PATH }}
 
       - name: Determine deployment result
-        run: scripts/pr_previews/poll_deployment.py ${{ env.PR_PREVIEW_URL }}
+        run: scripts/pr-previews/poll_deployment.py ${{ env.PR_PREVIEW_URL }}
       - name: Report deployment status
         uses: bobheadxi/deployments@v1
         if: always()

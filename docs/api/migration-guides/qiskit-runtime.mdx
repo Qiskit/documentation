@@ -10,16 +10,16 @@ in_page_toc_max_heading_level: 2
 # Overview
 
 This guide describes key patterns of behavior and use cases with code
-examples to help you migrate code from the legacy `backend.run()` interface to use the Qiskit Runtime primitives interface (`qiskit-ibm-runtime` package).  
+examples to help you migrate code from the legacy `backend.run()` interface to use the Qiskit Runtime primitives interface (`qiskit-ibm-runtime` package).
 
 <Admonition type="note" title="Notes">
 - Because `backend.run()` only returned counts, the direct replacement is Qiskit Runtime `SamplerV2`.  However, if you used manual processing with `backend.run()` to return expectation values, you can now use Qiskit Runtime `EstimatorV2` instead.
-- Because both `backend.run()` and the "version 1" primitives are being deprecated, this guide uses only the V2 primitives. 
+- Because both `backend.run()` and the "version 1" primitives are being deprecated, this guide uses only the V2 primitives.
 </Admonition>
 
-The `qiskit-ibm-runtime` package provides cloud access to the IBM Quantum&trade; systems through the primitives interface. The `backend.run()` interface coexisted with the original (V1) primitives model as the dedicated “direct hardware access” entry point.  With the introduction of the V2 primitives interface, the new `SamplerV2` class now fulfills that role. Consequentially, `backend.run()` is being deprecated, along with `qiskit-ibm-provider`, which only exposed the `backend.run()` interface. 
+The `qiskit-ibm-runtime` package provides cloud access to the IBM QPUs (quantum processing units) through the primitives interface. The `backend.run()` interface coexisted with the original (V1) primitives model as the dedicated “direct hardware access” entry point.  With the introduction of the V2 primitives interface, the new `SamplerV2` class now fulfills that role. Consequentially, `backend.run()` is being deprecated, along with `qiskit-ibm-provider`, which only exposed the `backend.run()` interface.
 
-The Qiskit Runtime primitives implement the reference Sampler V2 and Estimator V2 interfaces found in `qiskit.primitives`, and enable capabilities not available with the legacy `backend.run()` interface. These capabilities include application of advanced processing techniques for error suppression and mitigation in Estimator, the ability to efficiently sweep between arrays of parameter value sets or observables in both Sampler and Estimator, and access to the new local testing mode. Additionally, Qiskit Runtime lets users run iterative algorithm circuits back to back (session mode) or in collections of circuits without having to re-queue each job (batch mode). This results in more efficient quantum processor use and reduces the time spent running complex computations. 
+The Qiskit Runtime primitives implement the reference Sampler V2 and Estimator V2 interfaces found in `qiskit.primitives`, and enable capabilities not available with the legacy `backend.run()` interface. These capabilities include application of advanced processing techniques for error suppression and mitigation in Estimator, the ability to efficiently sweep between arrays of parameter value sets or observables in both Sampler and Estimator, and access to the new local testing mode. Additionally, Qiskit Runtime lets users run iterative algorithm circuits back to back (session mode) or in collections of circuits without having to re-queue each job (batch mode). This results in more efficient quantum processor use and reduces the time spent running complex computations.
 
 
 ## Basic steps to migrate to primitives
@@ -30,10 +30,10 @@ When migrating, the key to writing an equivalent algorithm using
 primitives is to first identify what minimal unit of information
 your algorithm is based on:
 
--   If it uses an **expectation value** of a certain observable with respect to a quantum state (a real number), you will now use Estimator. 
+-   If it uses an **expectation value** of a certain observable with respect to a quantum state (a real number), you will now use Estimator.
 
     An expectation value of an observable could be the target quantity in scenarios where knowing a quantum state is not relevant. This often occurs in optimization problems or chemistry applications. For example, when trying to discover the extremal energy of a system.
--   If it uses a **probability distribution** from sampling the device, you will now use Sampler. 
+-   If it uses a **probability distribution** from sampling the device, you will now use Sampler.
 
 
     A probability distribution is often of interest in optimization problems that return a classical bit string, encoding a certain solution to a problem at hand. In these cases, you might be interested in finding a bit string that corresponds to a ket value with the largest probability of being measured from a quantum state, for example.
@@ -54,7 +54,7 @@ See these topics for instructions:
 -  [Common use cases (basic, parameterized, and dynamic circuits)](qiskit-runtime-use-case)
 
 
-### Step 3a: replace any `backend.run` options with `qiskit_ibm_runtime` options.  
+### Step 3a: replace any `backend.run` options with `qiskit_ibm_runtime` options.
 
 See the following topics for instructions:
 

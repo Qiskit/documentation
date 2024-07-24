@@ -13,7 +13,7 @@ Follow these examples to design a Qiskit Runtime algorithm.
 
 Use the Estimator primitive to design an algorithm that calculates expectation values.
 
-**Backend.run() model:** In this model, you accessed real systems and remote simulators by using the `qiskit-ibmq-provider` or the `qiskit-ibm-provider` module. To run **local** simulations, you could import a specific simulator from `qiskit-aer`. All of them followed the `backend.run()` interface. The following examples assume you have defined `isa_circuits`, circuits that follow the instruction set architecture (ISA) of the backend after undergoing transpilation.
+**Backend.run() model:** In this model, you accessed real QPUs (quantum processing units) and remote simulators by using the `qiskit-ibmq-provider` or the `qiskit-ibm-provider` module. To run **local** simulations, you could import a specific simulator from `qiskit-aer`. All of them followed the `backend.run()` interface. The following examples assume you have defined `isa_circuits`, circuits that follow the instruction set architecture (ISA) of the backend after undergoing transpilation.
 
 
 <Tabs>
@@ -46,15 +46,15 @@ result = backend.run(isa_circuits)
   </TabItem>
 </Tabs>
 
-**Primitives model:** Access real systems through the `qiskit-ibm-runtime` **primitives** (`Sampler` and `Estimator`). Use **Local testing mode** to run local simulations on Qiskit Runtime fake backends or Aer simulators. The following examples assume you have defined circuits `isa_circuits` and observables `isa_observables`.
+**Primitives model:** Access real QPUs through the `qiskit-ibm-runtime` **primitives** (`Sampler` and `Estimator`). Use **Local testing mode** to run local simulations on Qiskit Runtime fake backends or Aer simulators. The following examples assume you have defined circuits `isa_circuits` and observables `isa_observables`.
 
 
 <Tabs>
-  <TabItem value="hw" label="Run on quantum systems">
+  <TabItem value="hw" label="Run on QPUs">
 ``` python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator, QiskitRuntimeService
 
-# Define the service.  This allows you to access IBM Quantum systems.
+# Define the service.  This allows you to access IBM QPUs.
 service = QiskitRuntimeService()
 
 # Get a backend
@@ -267,7 +267,7 @@ difference is the format of the output: `backend.run()` outputs
 **counts**, while `Sampler` returns **per-shot measurements** (but has convenience methods to also return counts).
 
 
-**Backend.run() model:** In this model, you used the `qiskit-ibmq-provider` or the `qiskit-ibm-provider` module to access real systems and remote simulators. To run **local** simulations, you could import a specific simulator from `qiskit-aer`. All of them followed the `backend.run()` interface.
+**Backend.run() model:** In this model, you used the `qiskit-ibmq-provider` or the `qiskit-ibm-provider` module to access real QPUs and remote simulators. To run **local** simulations, you could import a specific simulator from `qiskit-aer`. All of them followed the `backend.run()` interface.
 
 
 <Tabs>
@@ -303,15 +303,15 @@ difference is the format of the output: `backend.run()` outputs
     </TabItem>
 </Tabs>
 
-    **Primitives model:** Access real systems through the `qiskit-ibm-runtime` Sampler and Estimator *primitives*. Use **local testing mode** to run local simulations by using Qiskit Runtime fake backends or Aer simulators.
+    **Primitives model:** Access real QPUs through the `qiskit-ibm-runtime` Sampler and Estimator *primitives*. Use **local testing mode** to run local simulations by using Qiskit Runtime fake backends or Aer simulators.
 
 
     <Tabs>
-    <TabItem value="hw" label="Run on quantum systems">
+    <TabItem value="hw" label="Run on QPUs">
     ``` python
     from qiskit_ibm_runtime import SamplerV2 as Sampler, QiskitRuntimeService
 
-    # Define the service.  This allows you to access IBM Quantum systems.
+    # Define the service.  This allows you to access IBM QPUs.
     service = QiskitRuntimeService()
 
     # Get a backend

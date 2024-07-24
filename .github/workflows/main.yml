@@ -54,7 +54,7 @@ jobs:
       - name: Start local Docker preview
         if: steps.changed-docs-files.outputs.any_changed == 'true'
         run: |
-          ./start &
+          ./start --apis &
           sleep 20
       - name: Check that pages render
         if: steps.changed-docs-files.outputs.any_changed == 'true'

@@ -9,11 +9,9 @@ def test_all_notebooks_are_classified():
         filenames=None,
         write=False,
         submit_jobs=True,
-        config_path="scripts/nb-tester/notebooks.toml"
+        config_path="scripts/config/notebook-testing.toml"
     )
-
     config = Config.from_args(args)
-
 
     unclassified = [
         path for path in Path(".").glob("[!.]*/**/*.ipynb")
