@@ -102,7 +102,7 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
 # Setting options during primitive initialization
-estimator = Estimator(backend, options={"resilience_level": 2})
+estimator = Estimator(backend, options={"resilience_level": 2, "resilience": {"zne_mitigation": True, "zne": {"noise_factors": [1, 3, 5]}}})
 ```
   </TabItem>
 
