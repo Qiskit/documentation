@@ -19,18 +19,6 @@ from typing import Iterator
 PWD = Path(__file__).parent
 
 
-def translation_volume_mounts() -> Iterator[str]:
-    """Return the CLI args to mount each language in the translations/ folder.
-
-    Unlike the root `Dockerfile`, we cannot use `-v $PWD/translations:/home/node/app/docs` because
-    Docker complains that the volume is already mounted when we mount the `/docs` folder. So, instead
-    we need to be more specific to mount each language's folder.
-    """
-    for path in PWD.glob("translations/*"):
-        if not path.is_dir():
-            continue
-        yield from ["-v", f"{path}:/home/node/app/docs/{path.name}"]
-
 def skip_apis() -> tuple[str]:
     """Mounts an empty directory to /docs/api/ to effectively exclude it"""
     if "--apis" in sys.argv:
@@ -51,7 +39,6 @@ def main() -> None:
         "-v",
         f"{PWD}/docs:/home/node/app/docs",
         *skip_apis(),
-        *translation_volume_mounts(),
         "-v",
         f"{PWD}/public:/home/node/app/packages/preview/public",
         "-p",
