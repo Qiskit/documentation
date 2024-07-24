@@ -13,10 +13,13 @@
 import { readFile } from "fs/promises";
 import path from "node:path";
 
-export async function readMarkdown(filePath: string): Promise<string> {
+export async function readMarkdown(
+  filePath: string,
+  options: { includeCodeCellSourceCode?: boolean } = {},
+): Promise<string> {
   const source = await readFile(filePath, { encoding: "utf8" });
   return path.extname(filePath) === ".ipynb"
-    ? markdownFromNotebook(source)
+    ? markdownFromNotebook(source, options)
     : source;
 }
 
@@ -25,10 +28,17 @@ interface JupyterCell {
   source: string[];
 }
 
-export function markdownFromNotebook(rawContent: string): string {
+export function markdownFromNotebook(
+  rawContent: string,
+  options: { includeCodeCellSourceCode?: boolean },
+): string {
   const cells = JSON.parse(rawContent).cells as JupyterCell[];
   return cells
-    .filter((cell) => cell.cell_type === "markdown")
+    .filter(
+      (cell) =>
+        cell.cell_type === "markdown" ||
+        (options.includeCodeCellSourceCode && cell.cell_type === "code"),
+    )
     .map((cell) => cell.source.join(""))
     .join("\n\n");
 }
