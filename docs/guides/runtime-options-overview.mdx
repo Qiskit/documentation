@@ -9,7 +9,7 @@ description: Specify options when building with Qiskit Runtime primitives
 When calling the primitives, you can pass in options by using an options class or a dictionary. In the options classes, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories, such as `execution`. See the [options classes section](#options-classes) for details.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (quantum processing unit) before being submitted to the Qiskit Runtime primitives.  These are referred to as *instruction set architecture (ISA)* circuits and observables. See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -203,7 +203,7 @@ For more information about the primitive options, refer to the
 
 ### Runtime compilation
 
-The Qiskit Runtime primitives expect to be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled their circuits to respect the native gate set and connectivity constraints of the target system.
+The Qiskit Runtime primitives expect to be called with circuits already suitable for execution on the target QPU. This implies that the user has already transpiled their circuits to respect the native gate set and connectivity constraints of the target QPU.
 
 In the V2 primitives, you can explicitly enable and disable individual error mitigation/suppression methods, such as dynamical decoupling. For an example, see the
 [Runtime compilation topic](configure-error-suppression#transpilation-table).

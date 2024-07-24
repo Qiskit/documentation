@@ -9,7 +9,7 @@ description: How to use the Estimator and Sampler primitives in Qiskit Runtime.
 The steps in this topic describes how to set up primitives, explore the options you can use to configure them, and invoke them in a program.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -30,7 +30,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
+Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the QPU you want to use to calculate the expectation value.
 
 Follow the steps in the [Install and set up topic](install-qiskit) if you don't already have an account.
 
@@ -63,7 +63,7 @@ Output
 ```text
 >>> Observable: ['ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ...']
 ```
-    The circuit and observable need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits). We'll use the transpiler to do this.
+    The circuit and observable need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits). We'll use the transpiler to do this.
 
 ```python
 pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
@@ -151,7 +151,7 @@ print(f"  > Metadata: {result.metadata[0]}")
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
+Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the QPU you want to use to calculate the expectation value.
 
 Follow the steps in the [Install and set up topic](install-qiskit) if you don't already have an account set up.
 
