@@ -80,7 +80,7 @@ You can preview the docs locally by following these two steps:
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
-Warning: `./start` does not check if there is a new version of the docs application available. You can run `docker pull qiskit/documentation` to update to the latest version of the app.
+Warning: `./start` does not check if there is a new version of the docs application available. You can run `docker pull qiskit/documentation` to update to the latest version of the app. It will also ignore the API docs to speed things up, if you want to view them, run `./start --apis`.
 
 ### API docs authors: How to preview your changes
 
