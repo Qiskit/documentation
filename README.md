@@ -538,7 +538,7 @@ Tables are supported: https://www.markdownguide.org/extended-syntax/.
 
 ## Comments
 
-Example comment: `{/_ Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html _/}`
+Example comment: `{/* Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html */}`
 
 ## Collapsible sections
 
