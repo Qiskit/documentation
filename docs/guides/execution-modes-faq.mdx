@@ -61,7 +61,7 @@ Yes. This reduces unwanted cost if a user forgets to close their session.
     How does session usage impact IBM Quantum Network members who are not billed by usage?
   </summary>
 
-IBM Quantum Network members gain reserved capacity on IBM Quantum&trade; systems. Usage is deducted from this capacity and hubs with lower capacity have longer queueing time.
+IBM Quantum Network members gain reserved capacity on IBM Quantum&trade; QPUs. Usage is deducted from this capacity and hubs with lower capacity have longer queueing time.
 </details>
 
 <details>
@@ -74,10 +74,10 @@ Yes. If you submit multiple jobs simultaneously in a session, these jobs will ru
 
 <details>
   <summary>
-    Can sessions be interrupted by system jobs?
+    Can sessions be interrupted by QPU upgrades or calibrations?
   </summary>
 
-No.  Sessions run in dedicated mode, which means that the user has total access to the backend.  Sessions are never interrupted by system jobs, such as calibrations or software upgrades.
+No.  Sessions run in dedicated mode, which means that the user has total access to the backend.  Sessions are never interrupted by calibrations or software upgrades.
 </details>
 
 <details>
@@ -85,7 +85,7 @@ No.  Sessions run in dedicated mode, which means that the user has total access 
     Is compilation time counted as usage in session mode?
   </summary>
 
-Yes.  In session mode, usage is the wall clock time the system is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the system is still running a job. Additionally, time after a job completes while the system waits for another session job (the interactive time to live (ITTL)) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
+Yes.  In session mode, usage is the wall clock time the QPU is **committed to the session**. It starts when the first session job starts and ends when the session goes inactive, is closed, or when the last job completes, whichever happens **last**. Thus, usage continues to accumulate after a session ends if the QPU is still running a job. Additionally, time after a job completes while the QPU waits for another session job (the interactive time to live (ITTL)) counts as usage. This is why you should ensure the session is closed as soon as you are done submitting jobs to it.
 </details>
 
 ## Batch
@@ -109,7 +109,7 @@ Batch mode:
 
 - The total run time is less because the classical processing might run in parallel.
 - There is a slight overhead for running each job, so you end up paying a little more for batched jobs. This overhead correlates to the size of the job. For example, the total usage of two jobs, each containing 40 100x100 circuits, is six seconds more than a single job containing 80 circuits.
-- Because batch mode doesn't give you exclusive access to a backend, jobs inside a batch might run with other users' jobs or system calibration jobs.
+- Because batch mode doesn't give you exclusive access to a backend, jobs inside a batch might run with other users' jobs or calibration jobs.
 - If some jobs fail, you still get results from the completed jobs.
 - You can take action in the middle of a batch workload based on the results of completed jobs. For example, you can cancel the rest of the jobs if the initial results look incorrect.
 
@@ -119,7 +119,7 @@ Job mode:
 - You don't pay for the extra per-job overhead associated with batch workloads.
 - All of your circuits will run together.
 - If this single job fails, you don't get partial results.
-- Your job might hit the system limit if it contains too many circuits or if the circuits are too large.
+- Your job might hit the limit if it contains too many circuits or if the circuits are too large.
 
 In general, if your each of your jobs consumes less than a minute of QPU time, consider combining them into a larger job (this applies to all execution modes).
 </details>
@@ -162,10 +162,10 @@ Yes. However, there is a slight overhead associated with this auto-detection, so
 
 <details>
   <summary>
-    Can batches be interrupted by system jobs?
+    Can batches be interrupted by calibrations or software upgrades
   </summary>
 
-Yes.  Batch workloads might be interrupted by system jobs, such as calibrations or software upgrades.
+Yes.  Batch workloads might be interrupted by calibrations or software upgrades.
 </details>
 
 <details>

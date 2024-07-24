@@ -8,7 +8,7 @@ description: Estimate how long a job that uses a primitive will take to run
 
 After submitting a job to the IBM Quantum&trade; channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Alternatively, you can [view this information on the IBM Quantum Platform user interface](#view-usage).
 
-Quantum time is the duration, in seconds, a quantum system is committed to fulfilling a user request.
+Quantum time is the duration, in seconds, a QPU is committed to fulfilling a user request.
 
 <Admonition type="note" title="Notes">
     - This only applies to jobs that use primitives.
@@ -16,7 +16,7 @@ Quantum time is the duration, in seconds, a quantum system is committed to fulfi
 </Admonition>
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -50,7 +50,7 @@ qc.cx(0, 1)
 qc.measure(0, 0)
 qc.measure(1, 1)
 
-# Run on the least-busy system you have access to
+# Run on the least-busy device you have access to
 backend = service.least_busy(simulator=False,operational=True)
 
 # Generate ISA circuits
@@ -89,7 +89,7 @@ qc.cx(0, 1)
 qc.measure(0, 0)
 qc.measure(1, 1)
 
-# Run on the least-busy system you have access to
+# Run on the least-busy device you have access to
 backend = service.least_busy(simulator=False,operational=True)
 
 # Generate ISA circuits

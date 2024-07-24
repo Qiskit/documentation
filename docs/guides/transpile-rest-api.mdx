@@ -9,7 +9,7 @@ description: How to transpile quantum circuits using REST APIs.
     This documentation utilizes the Python `requests` module to demonstrate the Cloud Transpiler API. However, this workflow can be executed using any language or framework that supports working with REST APIs. Refer to the [API reference documentation](/api/runtime/tags/jobs) for details.
 </Admonition>
 
-The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum systems, is known as [transpilation](./transpile).
+The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum QPUs, is known as [transpilation](./transpile).
 
 You have two transpilation options: 
 
@@ -94,7 +94,7 @@ resp = requests.post(
 
 
 <Admonition type="note">
-    Since there might be cases where it’s more effective not to use AI-enhanced passes, you can set the `ai` parameter to `ai="auto"` to enable the system to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes, based on the particulars of your circuit. 
+    Since there might be cases where it’s more effective not to use AI-enhanced passes, you can set the `ai` parameter to `ai="auto"` to enable the QPU to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes, based on the particulars of your circuit. 
 </Admonition>
 
 ## Request results based on the `task_id`
