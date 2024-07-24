@@ -66,7 +66,7 @@ async function checkAllNotebooks(configPath: string): Promise<void> {
       allGood = false;
       const deduplicated = new Set(errors);
       deduplicated.forEach((mistake) =>
-        console.error(`Spelling mistake in ${path}: ${mistake}`),
+        console.error(`❌ Unrecognized word in ${path}: ${mistake}`),
       );
     }
   });
@@ -84,14 +84,14 @@ async function checkForNotebookMistakes(
   configPath: string,
 ): Promise<string[]> {
   // We should only check the markdown blocks, not code blocks.
-  const text = await readMarkdown(fp);
+  const markdown = await readMarkdown(fp);
 
   const checkOptions = {
     configFile: configPath,
   };
   const doc = {
     uri: fp,
-    text,
+    text: markdown,
   };
   const result = await spellCheckDocument(doc, checkOptions, {});
 
