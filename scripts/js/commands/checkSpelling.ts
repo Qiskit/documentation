@@ -83,15 +83,14 @@ async function checkForNotebookMistakes(
   fp: string,
   configPath: string,
 ): Promise<string[]> {
-  // We should only check the markdown blocks, not code blocks.
-  const markdown = await readMarkdown(fp);
+  const text = await readMarkdown(fp, { includeCodeCellSourceCode: true });
 
   const checkOptions = {
     configFile: configPath,
   };
   const doc = {
     uri: fp,
-    text: markdown,
+    text,
   };
   const result = await spellCheckDocument(doc, checkOptions, {});
 

@@ -15,7 +15,7 @@ import { expect, test } from "@playwright/test";
 import { markdownFromNotebook } from "./markdownReader.js";
 
 test("markdownFromNotebook()", () => {
-  const result = markdownFromNotebook(`
+  const notebook = `
     {
         "cells": [
             {
@@ -32,7 +32,9 @@ test("markdownFromNotebook()", () => {
                 "execution_count": 1,
                 "metadata": {},
                 "outputs": [],
-                "source": []
+                "source": [
+                    "my_code_is_awesome"
+                ]
             },
             {
                 "attachments": {},
@@ -45,6 +47,13 @@ test("markdownFromNotebook()", () => {
         ],
         "metadata": {}
     }
-  `);
-  expect(result).toBe("Line 1.\nLine 2.\n\nLine 3.");
+  `;
+  const result1 = markdownFromNotebook(notebook, {
+    includeCodeCellSourceCode: false,
+  });
+  expect(result1).toBe("Line 1.\nLine 2.\n\nLine 3.");
+  const result2 = markdownFromNotebook(notebook, {
+    includeCodeCellSourceCode: true,
+  });
+  expect(result2).toBe("Line 1.\nLine 2.\n\nmy_code_is_awesome\n\nLine 3.");
 });
