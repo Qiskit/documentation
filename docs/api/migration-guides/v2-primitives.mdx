@@ -471,7 +471,7 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
    estimator.options.dynamical_decoupling.enable = True
    ```
 
-3. Review all the [supported options](../qiskit-ibm-runtime/options) and make updates accordingly.
+3. Review all the [supported options](/api/qiskit-ibm-runtime/options) and make updates accordingly.
 4. Group each circuit you want to run with the observables and parameter values you want to apply to the circuit in a tuple (a PUB). For example, use `(circuit1, observable1, parameter_set1)` if you want to run `circuit1` with `observable1` and `parameter_set1`.
 
   1. You might need to reshape your arrays of observables or parameter sets if you want to apply their outer product. For example, an array of observables of shape (4, 1) and an array of parameter sets of shape (1, 6) will give you a result of (4, 6) expectation values. See the [Numpy broadcasting rules](https://numpy.org/doc/stable/user/basics.broadcasting.html) for more details.
