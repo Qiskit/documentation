@@ -1,5 +1,5 @@
 ---
-title: Best practices for your project
+title: Project setup and best practices
 description: Testing, packaging, and code quality best practices for your Python project.
 ---
 
@@ -11,6 +11,23 @@ can't work out how to install or use your project, they'll give up and move on.
 This page covers licensing, packaging, testing, and documenting your project,
 all of which improve users' experience. If you're releasing research code,
 following best practices will also help others reproduce your results.
+
+Once you've .... add your project to the ecosystem.
+
+## GitHub
+
+* GitHub actions
+* CI
+* Contributing guide
+* Code of conduct
+* Branch protection
+* Squash and merge
+
+### Security
+
+* Dependabot
+* 2FA
+* Branch protection
 
 ## Choose a license
 
@@ -46,6 +63,9 @@ up your project with Poetry.
 
 ## Test your project
 
+Tests are small functions you'll write to make sure your code is working correctly.
+A test 
+
 * Tests ensure your code does a certain thing and should make development easier
   * If the tests pass, your code is good
   * Makes it easy to refactor or add new features
@@ -53,11 +73,16 @@ up your project with Poetry.
 * unittest or pytest
 * Setting up pytest w/ simple example
 
+* Mention tox in admonition for multiple python versions (not dep management)
+
 ## Code quality tools
 
-* black
-* pylint
+* ruff
 * mypy
+* bandit (Security linter)
+* others such as isort, pyupgrade
+
+* Link to CI section
 
 ## Package your project
 
@@ -65,13 +90,10 @@ up your project with Poetry.
   * Good for adoption and reproducability
 
 * Packaging for PyPI (`pip install ...`)
+  * pyproject.toml (not setup.py)
+  * setuptools
 * Make it easy to release with an action
+  * check sphinx-theme (release guide) / rustworkx
 * Integrating with Qiskit
   * Provider
   * Transpiler plugin
-
-## Security
-
-* Set up 2FA on GitHub
-* Make sure your dependences are secure with dependabot
-* Set up branch protection
