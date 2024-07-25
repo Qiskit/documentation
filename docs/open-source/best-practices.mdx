@@ -5,32 +5,44 @@ description: Testing, packaging, and code quality best practices for your Python
 
 # Best practices for your project
 
-* Why you should care
-  * Improves user experience
-    * Installation
-    * Testing for stability
-    * Documentation: See dedicated page
-  * Makes working with the repo easier
-    * Testing == less frustration
-    * Linters == neatness
-    * Both help others contribute to your project
-    * Contributors documentation: See dedicated page
-  * Security
+If you have an idea for a Qiskit-based project, you'll often want to share it
+with the community. Putting your code online is a good start, but if a user
+can't work out how to install or use your project, they'll give up and move on.
+This page covers licensing, packaging, testing, and documenting your project,
+all of which improve users' experience. If you're releasing research code,
+following best practices will also help others reproduce your results.
 
 ## Choose a license
 
-* No license ~= can't use
-* Choose from available licenses (link to OSC)
-* Explain GPL vs Apache etc.
+If you want others to use your project, you *must* choose an appropriate
+license. Otherwise, your grant no permission for others to use it. Most
+projects in the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) use
+the Apache 2.0 or MIT licenses. Visit GitHub's [choosealicense.com](https://choosealicense.com) to
+decide which license is best for you.
+
+Add your license to the top level of your repository in a text file named
+`LICENSE`. When you create a new repository, GitHub will give you the option to
+automatically add a standard license.
 
 ## Dependency management
 
-* Project will rely on other packages
-  * If you don't state this clearly, it's hard to get things working again
+If you don't clearly specify your project's dependencies, users (including your
+future self) will struggle to install and use it.
 
-* Simple requirements.txt file
-* Setting up poetry
-* Link: Security with dependabot
+The simplest way to list your requirements is to put the Python version you're
+using in your `README` and include a
+[`requirements.txt`](https://pip.pypa.io/en/stable/reference/requirements-file-format/)
+file in your repository. However, this means you must manually identify your
+requirements and keep the file in sync.
+
+Tools such as [Poetry](https://python-poetry.org/) solve this problem by
+managing dependencies for you, which means they can keep track of everything
+you've installed. Installing a dependency through Poetry will add it to a
+"lock" file, which keeps track of the exact versions of each package you have
+installed. Users can use the lockfile to replicate your environment.
+
+See [Poetry: Basic usage](https://python-poetry.org/docs/basic-usage/) to set
+up your project with Poetry.
 
 ## Test your project
 
