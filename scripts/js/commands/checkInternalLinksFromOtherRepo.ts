@@ -15,7 +15,7 @@
  * our script infrastructure.
  *
  * Whereas normally checkInternalLinks.ts has real-time access to what files are present in docs/
- * and public/, the other repositories use a snapshot that we save in TODO.
+ * and public/, the other repositories use a snapshot.
  */
 
 import { readFile } from "fs/promises";
