@@ -17,7 +17,7 @@ In this context, a *primitive* is the smallest processing instruction, the simpl
 one can create something useful for a given abstraction level.
 
 The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
-As we move toward larger systems and more complex workflows, the focus shifts from interacting with individual
+As we move toward larger QPUs (quantum processing units) and more complex workflows, the focus shifts from interacting with individual
 qubit signals to viewing quantum devices as systems that perform tasks we need.
 
 The two most common tasks quantum computers are used for are sampling quantum states and calculating expectation values.
@@ -27,16 +27,20 @@ In short, the computational model introduced by the Qiskit primitives moves quan
 to where classical programming is today, where the focus is less on the hardware details and more on the results
 you are trying to achieve.
 
+<Admonition type="note">
+The Qiskit Runtime V1 primitives have been deprecated.  For instructions to migrate to the V2 primitives, see the [migration guide.](/migration-guides/v2-primitives)
+</Admonition>
+
 ## Implementation of Qiskit primitives
 
 The Qiskit primitives are defined by open-source primitive base-classes, from
 which different providers can derive their own Sampler and Estimator implementations. Among the implementations
 using Qiskit, you can find reference primitive implementations for local simulation in the `qiskit.primitives` module.
-Providers like Qiskit Runtime enable access to appropriate systems through native implementations of
+Providers like Qiskit Runtime enable access to appropriate QPUs through native implementations of
 their own primitives.
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -47,11 +51,10 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 ## Benefits of Qiskit primitives
 
-For Qiskit users, primitives let you write quantum code for a specific system without having to explicitly
+For Qiskit users, primitives let you write quantum code for a specific quantum computer without having to explicitly
 manage every detail. In addition, because of the additional layer of abstraction, you might be able to more easily
 access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
-you can leverage the latest advancements in error mitigation and suppression by toggling options such as
-`optimization_level` and `resilience_level`, rather than building your own implementation of these techniques.
+you can leverage the latest advancements in error mitigation and suppression by toggling options such as `resilience_level`, rather than building your own implementation of these techniques.
 
 For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
 way to access your hardware features. It is therefore easier for your users to benefit from your hardware's
@@ -61,26 +64,32 @@ best capabilities.
 
 Version 2 (available with qiskit-ibm-runtime 0.21.0) is the first major interface change since the introduction of Qiskit Runtime primitives. Based on user feedback, the new version introduces the following major changes:
 
-* The **new interface** lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit. 
+* The **new interface** lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit.
 * You can **turn on or off individual error mitigation and suppression methods**.
 * You can choose to **get counts or per-shot measurements** instead of quasi-probabilities from Sampler V2.
-* Due to scaling issues, Sampler V2 does not support specifying a resilience level, and Estimator V2 supports only levels 0 - 2. 
-* To reduce the total execution time, v2 primitives only support ISA circuits. You can use the [Qiskit transpiler](./runtime-options-overview#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](./qiskit-transpiler-service) to transform the circuits before making the queries to the primitives.
+* Due to scaling issues, Sampler V2 does not support specifying a resilience level, and Estimator V2 supports only levels 0 - 2.
+* To reduce the total execution time, V2 primitives only support ISA circuits. You can use the [Qiskit transpiler](runtime-options-overview#runtime-compilation) (manually) or the [AI-driven transpilation service (premium users)](qiskit-transpiler-service) to transform the circuits before making the queries to the primitives.
 
 See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
 
 ### Interface changes
 
-The updated interface uses a *primitive unified bloc* (PUB) for input.  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  A summary of the changes to each primitive follows.  
+The updated interface uses a *primitive unified bloc* (PUB) for input.  Each PUB is a tuple that contains a circuit and the data broadcasted to it. This greatly simplifies your ability to send complex data to a circuit.  Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  A summary of the changes to each primitive follows.
 
 #### Estimator V1
+
+<Admonition type="warning">
+[EstimatorV1](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV1) has been deprecated in `qiskit-ibm-runtime` 0.23.
+Its support will be removed on 15 August 2024.
+[EstimatorV2](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) is highly recommended instead.
+</Admonition>
 
 * Takes three parameters: circuits, observables, and parameter values.
 * Each parameter can be a single value or a list.
 * The length of the parameters must match.
 * Elements from each are aggregated.
 
-Example: 
+Example:
 
 ```python
 estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],
@@ -90,10 +99,10 @@ estimator.run([circuit1, circuit2, ...],[observable1, observable2, ...],
 #### Estimator V2
 
 * The `run()` method takes an array of PUBs. Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.
-* Combines elements from observables and parameter values by following NumPy broadcasting rules as described below. 
+* Combines elements from observables and parameter values by following NumPy broadcasting rules as described below.
 * Each input PUB has a corresponding PubResult that contains both data and metadata.
 
-Example: 
+Example:
 
 ```python
 estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2)])
@@ -106,8 +115,8 @@ Estimator V2 aggregates elements from multiple arrays (observables and parameter
 
 Rules:
 
-* Input arrays do not need to have the same number of dimensions. 
-  * The resulting array will have the same number of dimensions as the input array with the largest dimension. 
+* Input arrays do not need to have the same number of dimensions.
+  * The resulting array will have the same number of dimensions as the input array with the largest dimension.
   * The size of each dimension is the largest size of the corresponding dimension.
   * Missing dimensions are assumed to have size one.
 * Shape comparisons start with the rightmost dimension and continue to the left.
@@ -130,13 +139,13 @@ Examples of array pairs that do not broadcast:
 
 ```text
 A1     (1d array):  5
-A2     (1d array):  3 
+A2     (1d array):  3
 
 A1     (2d array):      2 x 1
 A2     (3d array):  6 x 5 x 4 # This would work if the middle dimension were 2, but it is 5.
 ```
 
-`EstimatorV2` returns one expectation value estimate for each element of the broadcasted shape.  
+`EstimatorV2` returns one expectation value estimate for each element of the broadcasted shape.
 
 Here are some examples of common patterns expressed in terms of array broadcasting.  Their accompanying visual representation is shown in the figure that follows:
 
@@ -187,12 +196,18 @@ list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape 
 
 #### Sampler V1
 
+<Admonition type="warning">
+[SamplerV1](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV1) has been deprecated in `qiskit-ibm-runtime` 0.23.
+Its support will be removed on 15 August 2024.
+[SamplerV2](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) is highly recommended instead.
+</Admonition>
+
 * Takes two parameters: circuits and parameter values.
 * Each parameter can be a single value or a list.
 * The length of the parameters must match.
 * Elements from each are aggregated.
 
-Example: 
+Example:
 
 ```python
 sampler.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_values1, param_values2, ...] )
@@ -202,7 +217,7 @@ sampler.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_val
 
 * Takes one parameter: PUBs in the format  (`<single circuit>`, `<optional one or more parameter values>`, `<optional shots>`), where there can be multiple `parameter values` items, and each item can be either an array or a single parameter, depending on the chosen circuit.
 * Elements from each are aggregated. For example, each array of parameter values in the PUB is applied to the PUB's circuit.
-* Obeys program outputs. Typically this is a bit array but can also be an array of complex numbers (measurement level 1). 
+* Obeys program outputs. Typically this is a bit array but can also be an array of complex numbers (measurement level 1).
 * Returns raw data type. Data from each shot is returned (analogous to `memory=True` in the `backend.run` interface), and post-processing is done by using convenience methods.
 * Output data is grouped by output registers. You need the classical register name to get the results. By default, it is named `meas` if you use `measure_all()`. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.
 * Supports circuits with classical feedforward and control flow (dynamic circuits).
@@ -210,7 +225,7 @@ sampler.run([circuit1, circuit2, ...],[observable1, observable2, ...],[param_val
   Dynamic circuits do not support dynamical decoupling.
   </Admonition>
 
-Example: 
+Example:
 
 ```python
 sampler.run([
@@ -221,7 +236,7 @@ sampler.run([
 
 ## Estimator
 
-The Estimator behaves differently, depending on what version you are using. 
+The Estimator behaves differently, depending on what version you are using.
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
@@ -242,12 +257,12 @@ can be parametrized, as long as the parameter values are also provided as input 
 
 ## Sampler
 
-The Sampler behaves differently, depending on what version you are using. 
+The Sampler behaves differently, depending on what version you are using.
 
 <Tabs>
   <TabItem value="SamplerV2" label="Sampler V2">
-    Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts. 
-    
+    Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights and therefore does not support resilience levels. The result class, however, has methods to return weighted samples, such as counts.
+
     It receives one or more PUBs as the inputs and returns counts or per-shot measurements, as `PubResult`s.  The circuits
 can be parametrized, as long as the parameter values are also provided as input to the primitive.
   </TabItem>
@@ -264,7 +279,7 @@ probabilities, except they might include negative values, which can occur when u
 ## How to use Qiskit primitives
 
 The `qiskit.primitives` module enables the development of primitive-style quantum programs and was specifically
-designed to simplify switching between different types of systems. The module provides three separate classes
+designed to simplify switching between different types of quantum compute resources. The module provides three separate classes
 for each primitive type:
 
 1. `StatevectorSampler` and `StatevectorEstimator`
@@ -273,20 +288,20 @@ These classes are reference implementations of both primitives and use the simul
 
 2. `BaseSampler` and `BaseEstimator`
 
-These are abstract base classes that define a common interface for implementing primitives. All other classes in the `qiskit.primitives` module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific system provider. These classes may also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
+These are abstract base classes that define a common interface for implementing primitives. All other classes in the `qiskit.primitives` module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific provider. These classes may also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
 
 3. `BackendSampler` and `BackendEstimator`
 
-If a provider does not support primitives natively, you can use these classes to “wrap” any system into a primitive. Users can write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which system to run on.
+If a provider does not support primitives natively, you can use these classes to “wrap” any quantum computing resource into a primitive. Users can write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which quantum computer to run on.
 
 The Qiskit Runtime primitives provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service.
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Read [Get started with primitives](./get-started-with-primitives) to implement primitives in your work.
+    - Read [Get started with primitives](get-started-with-primitives) to implement primitives in your work.
     - Review detailed [primitives examples.](primitives-examples)
-    - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
+    - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum&trade; Learning.
 </Admonition>
 

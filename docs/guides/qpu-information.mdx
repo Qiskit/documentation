@@ -1,26 +1,24 @@
 ---
-title: System information
-description: Information about IBM Quantum system calibration, properties, and versioning
+title: QPU information
+description: Information about QPU calibration, properties, and versioning
 
 ---
 
-# System information
+# QPU information
 
-IBM Quantum&trade; offers both open and premium access to a wide variety of quantum systems. All quantum systems deployed by IBM Quantum are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these systems. You can see the full details of all IBM Quantum systems on the [Compute resources page.](https://quantum.ibm.com/services/resources?tab=systems)
+IBM&reg; offers both open and premium access to a wide variety of quantum processing units (QPUs). All QPUs deployed by IBM are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these QPUs. You can see the full details of all IBM QPUs on the [Quantum processing units page](https://quantum.ibm.com/services/resources).
 
-Note that the words "system" and "backend" are often used interchangeably.
+## QPU versioning
 
-## System versioning
-
-Each system has a version number in the form X.Y.Z (major.minor.revision). A circuit compiled for a given system version number is guaranteed to run on that system. If the revision number changes, the circuit will continue to run. If the major or minor number changes, the circuit is not guaranteed to run, although it may do so. The conditions under which a version number may change are listed below:
+Each QPU has a version number in the form X.Y.Z (major.minor.revision). A circuit compiled for a given version number is guaranteed to run on that QPU. If the revision number changes, the circuit will continue to run. If the major or minor number changes, the circuit is not guaranteed to run, although it may do so. The conditions under which a version number may change are listed below:
 
 ### Major version
 
-The major version will increment for system changes such as:
+The major version will increment for changes such as:
 
 *   Sample changes.
 *   Major changes to the control electronics.
-*   Moving the system to a new location, if significant behavior changes result.
+*   Moving the QPU to a new location, if significant behavior changes result.
 
 ### Minor version
 
@@ -37,57 +35,57 @@ The revision version number will increment for fixes that do not break the exist
 
 *   Manual calibrations to improve fidelities.
 *   Small electronics changes that don’t affect operation.
-*   System software updates.
+*   QPU software updates.
 
-## System configuration values
+## QPU configuration values
 
-The following is a subset of system configuration values available in IBM Quantum and from [Qiskit](/api/qiskit/qiskit.providers.models.BackendConfiguration).
+The following is a subset of QPU configuration values available in IBM Quantum Platform and from [Qiskit](/api/qiskit/qiskit.providers.models.BackendConfiguration).
 
-These values are shown on both the Systems and Simulators tabs of the [Compute resources page](https://quantum.ibm.com/services/resources?services=systems) and the details page for each system.
+These values are shown on both the [Compute resources tab](https://quantum.ibm.com/services/resources) and the details page for each QPU.
 
-*   **Name** - The unique name assigned to a specific quantum system or simulator. Systems hosted on IBM Cloud® have names that begin with `ibmq_*` (older systems) or `ibm_*` (newer systems). All quantum systems are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual quantum system is hosted. They are named after IBM&reg; locations around the world.
-*   **Qubits** - The number of qubits in a system. For physical quantum systems, this is the number of physical qubits in the device. For simulators, this number need not be uniquely defined, and instead can depend on the simulation method and/or the amount of memory available.
+*   **Name** - The unique name assigned to a specific QPU. QPUs hosted on IBM Cloud® have names that begin with `ibmq_*` (older QPUs) or `ibm_*` (newer QPUs). All QPUs are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual QPU is hosted. They are named after IBM&reg; locations around the world.
+*   **Qubits** - The number of qubits in a QPU. For physical QPUs, this is the number of physical qubits in the device. For simulators, this number need not be uniquely defined, and instead can depend on the simulation method and/or the amount of memory available.
 *   **EPLG** - Error per layered gate in a chain of 100 qubits. Error per layered gate measures the average gate process error in a layered chain of $N$ qubits ($N$=100 here). It is derived from a similar quantity known as the layer fidelity (LF) where EPLG$_{100}$ = 1-LF$^{\frac{1}{99}}$ and layer fidelity is the process fidelity of the layered chain of $N$ qubits. For details, see the paper [Benchmarking quantum processor performance at scale](https://arxiv.org/abs/2311.05933).
 *   **CLOPS** - Circuit layer operations per second, and also known as CLOPS_v, is a measure of how many layers of a Quantum volume circuit (virtual circuit) a QPU (quantum processing unit) can execute per unit of time. Find more information about this metric in the paper [Quality, Speed, and Scale: three key attributes to measure the performance of near-term quantum computers](https://arxiv.org/abs/2110.14108).
 * **CLOPS_h** -- A measure of how many layers of a 100x100 circuit (hardware-aware circuit) a QPU (quantum processing unit) can execute per unit of time.
-*   **QV** - Quantum volume. This value is another metric for system quality based on passing a fidelity threshold for a set of random, square all-to-all connected circuits. Provided as the peak value measured on a system of devices. For details, see the paper [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926).
-*   **Status** - The system status.
-*   **Total pending jobs** - The total number of jobs that you have submitted to this system.
-*   **Processor type** - Reflects the system topology and indicates the approximate qubit count.
-*   **Features** - Additional information about the system, such as whether it supports pulse inputs.
+*   **QV** - Quantum volume. This value is another metric for QPU quality based on passing a fidelity threshold for a set of random, square all-to-all connected circuits. Provided as the peak value measured on a system of devices. For details, see the paper [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926).
+*   **Status** - The QPU status.
+*   **Total pending jobs** - The total number of jobs that you have submitted to this QPU.
+*   **Processor type** - Reflects the topology and indicates the approximate qubit count.
+*   **Features** - Additional information about the QPU, such as whether it supports pulse inputs.
 
 <Admonition type="note" title="Average gate fidelity">
 Note that the metric for median ECR error (for Eagle processors) and median CZ error (for Heron processors) is the [average gate fidelity](/api/qiskit/quantum_info#average_gate_fidelity), which is the average over all possible input states of the fidelity between the state produced by the actual operation and the state produced by the ideal operation.
 </Admonition>
 
-**Additional information available on the details page for each system**
+**Additional information available on the details page for each QPU**
 
-To access the details page, click the name of the system on the **Compute resources** page.
+To access the details page, click the **Compute resources** tab, then click the name of the QPU.
 
-*   **Version** - The version number of a system in the form `major.minor.revision`. See [System versioning](#system-versioning) for details on how this number is assigned.
+*   **Version** - The version number of a QPU in the form `major.minor.revision`. See [QPU versioning](#qpu-versioning) for details on how this number is assigned.
 
-*   **Calibration data** (Available for systems only) - Download the calibration data as a .csv file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the system.
+*   **Calibration data** - Download the calibration data as a CSV file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the QPU.
 
     > *   <span id="coupling-map">**Topology diagram** or **coupling map** </span> - A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
-    > *   **Individual qubit properties** - Shows the selected property for each qubit on the system. You can view the frequency, T1, T2, Anharmonicity, probability measurements, error rates, and so on.
+    > *   **Individual qubit properties** - Shows the selected property for each qubit on the QPU. You can view the frequency, T1, T2, Anharmonicity, probability measurements, error rates, and so on.
 
 *   **Your access instance** - Instances that you can use. Click the arrow on the right to expand or collapse this section. For each instance, you can see the following information:
 
-    *   **Max shots** - The maximum number of times you can execute a single circuit on a system. The number of shots taken determines the precision of the output probability distribution over repeated executions.
-    *   **Max circuits** - The maximum number of quantum circuits that you can submit to this system at one time.
+    *   **Max shots** - The maximum number of times you can execute a single circuit on a QPU. The number of shots taken determines the precision of the output probability distribution over repeated executions.
+    *   **Max circuits** - The maximum number of quantum circuits that you can submit to this QPU at one time.
     *   **Max qubits per pulse gate** - The maximum number of qubit arguments allowed to a gate.
     *   **Max channels per pulse gate** - The maximum number of channels you can refer to within a pulse schedule. Typically each qubit is associated with a drive channel, a measure channel, an acquisition channel, and then auxiliary control channels for things like cross resonance.
-    *   **Usage** - Click the link to see the jobs that you have run on this system.
+    *   **Usage** - Click the link to see the jobs that you have run on this QPU.
 
-## View system configuration
+## View QPU configuration
 
-View system configuration values by selecting a system on the [Compute resources page.](https://quantum.ibm.com/services/resources?services=systems) The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
+View QPU configuration values by selecting a QPU on the [Quantum processing units](https://quantum.ibm.com/services/resources) page from the Compute resources tab. The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
 
-### Expanded card for a sample system 
+### Expanded card for a sample QPU 
 
-![An expanded card for a sample system.](/images/guides/exp-card.png "Expanded card for a sample system")
+![An expanded card for a sample QPU.](/images/guides/exp-card.png "Expanded card for a sample QPU")
 
-### System tabs
+### QPU tabs
 
 Click the download icon in the upper right of any tab to download a CSV file of calibration data.
 
@@ -100,8 +98,8 @@ Click the download icon in the upper right of any tab to download a CSV file of 
 ![The table view tab shows the calibration information as numerical data.](/images/guides/table-view.png "Table view tab")
 
 
-## Find system information from other channels
+## Find QPU information from other channels
 
-To find your available systems and simulators on **IBM Cloud**, view the [IBM Cloud Compute resources page.](https://cloud.ibm.com/quantum/resources/your-resources) You must be logged in to see your available compute resources. You are shown a snapshot of each system. To see full details, click the system name. You can also search for systems from this page.
+To find your available QPUs on **IBM Cloud**, view the [IBM Cloud Compute resources page.](https://cloud.ibm.com/quantum/resources/your-resources) You must be logged in to see your available compute resources. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also search for QPU from this page.
 
-To find your available systems and simulators on **IBM Quantum Platform**, view the [Platform Compute resources page.](https://quantum.ibm.com/services/resources) You are shown a snapshot of each system. To see full details, click the system name. You can also sort, filter, and search from this page.
+To see the QPUs available to you on **IBM Quantum Platform**, click the [Compute resources tab](https://quantum.ibm.com/services/resources) from your dashboard. You are shown a snapshot of each QPU. To see full details, click the QPU name. You can also sort, filter, and search from this page.

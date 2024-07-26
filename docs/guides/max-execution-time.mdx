@@ -14,7 +14,7 @@ To ensure fairness and help control costs, there is a maximum amount of time eac
 The maximum execution time for a job is the smaller of these values:
 
 - The value set for max_execution_time
-- The system-determined job timeout value
+- The QPU-determined job timeout value
 
 The `max_execution_time` value is based on _quantum time_, not wall clock time. Quantum time is the time spent by the QPU complex to process the job. Simulator jobs use wall clock time because they do not have quantum time.
 
@@ -37,12 +37,12 @@ You can also find how much quantum time completed jobs have used by returning th
 print(f"Quantum time used by job {job.job_id()} was {job.metrics()['usage']['quantum_seconds']} seconds")
 ```
 
-<span id="max-system"></span>
-### System maximum execution time
+<span id="max-QPU"></span>
+### QPU maximum execution time
 
-The system calculates an appropriate job timeout value based on the input circuits and options. This system-calculated timeout is capped at 3 hours to ensure fair device usage. If a `max_execution_time` is also specified for the job, the lesser of the two values is used.
+The QPU calculates an appropriate job timeout value based on the input circuits and options. This QPU-calculated timeout is capped at 3 hours to ensure fair device usage. If a `max_execution_time` is also specified for the job, the lesser of the two values is used.
 
-For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the system determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
+For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the QPU determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
 
 ## Session maximum execution time
 
@@ -51,7 +51,7 @@ When a session is started, it is assigned a maximum session timeout value. After
 ## Other limitations
 
 *   Inputs to jobs cannot exceed 64MB in size.
-*   Open plan users can use up to 10 minutes of system execution time per month (resets at 00:00 UTC on the first of each month). System execution time is the amount of time that the system is dedicated to processing your job. You can track your monthly usage on the [Platform dashboard,](https://quantum.ibm.com/)  [IBM Quantum&trade; Platform Jobs page,](https://quantum.ibm.com/jobs) and [Account](https://quantum.ibm.com/account) page.
+*   Open plan users can use up to 10 minutes of QPU execution time per month (resets at 00:00 UTC on the first of each month). QPU execution time is the amount of time that the QPU is dedicated to processing your job. You can track your monthly usage on the [Platform dashboard,](https://quantum.ibm.com/)  [IBM Quantum&trade; Platform Jobs page,](https://quantum.ibm.com/jobs) and [Account](https://quantum.ibm.com/account) page.
 
 ## Next steps
 

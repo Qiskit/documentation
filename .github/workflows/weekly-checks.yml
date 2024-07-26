@@ -23,14 +23,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Install Node.js dependencies
         run: npm ci
       - name: Start local Docker preview
         run: |
-          ./start &
+          ./start --apis &
           sleep 20
       - name: Check all pages render
         run: >
@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: Install Node.js dependencies

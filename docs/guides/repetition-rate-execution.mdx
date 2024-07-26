@@ -8,7 +8,7 @@ description: Explanatory content on fixed and dynamic repetition rate execution
 
 ## Fixed repetition rate execution
 
-Most IBM Quantum&trade; systems execute circuits at a fixed rate. Although this *repetition rate* varies by system, the underlying execution model is the same, and is described here. First, consider three circuits sent to a system using separate jobs, one for each circuit. The example below shows what happens for jobs of varying lengths. Because of the fixed repetition rate, there is a variable amount of *idle time* that occurs before the start of a circuit in order to make the entire duration match that given by the system repetition rate.
+Most IBM&reg; quantum processing units (QPUs) execute circuits at a fixed rate. Although this *repetition rate* varies by QPU, the underlying execution model is the same, and is described here. First, consider three circuits sent to a QPU using separate jobs, one for each circuit. The example below shows what happens for jobs of varying lengths. Because of the fixed repetition rate, there is a variable amount of *idle time* that occurs before the start of a circuit in order to make the entire duration match that given by the QPU repetition rate.
 
 ![With fixed-rate execution, shorter jobs result in longer idle time.](/images/guides/fixed_single_circuit1.png "Idle time versus job length")
 
@@ -18,7 +18,7 @@ The situation changes somewhat when the same circuits are batched into a single 
 
 Matrix of four circuits in a job showing the execution pattern over the circuits.
 
-When submitting batches of circuits to the systems, the circuits are executed differently than they would be if executed separately. Namely, the initialization of the circuit, that is, prepare the ground state, and measurements (if any) are aligned over all circuits.
+When submitting batches of circuits to QPUs, the circuits are executed differently than they would be if executed separately. Namely, the initialization of the circuit, that is, prepare the ground state, and measurements (if any) are aligned over all circuits.
 
 ![The image shows three circuits.  Although they are different lengths, they take the same amount of time to complete because they were submitted in a batch.](/images/guides/fixed_batch_circuit1.png)
 
@@ -26,7 +26,7 @@ Therefore, each circuit is equal in duration to the longest circuit in the batch
 
 ## Dynamic repetition rate execution
 
-Some IBM Quantum systems allow for dynamic repetition rate execution. These systems are identified in Qiskit using `backend.configuration().dynamic_reprate_enabled`, and return a value of `True`. On these systems, it is possible to manually set the above idle time by setting the `rep_delay` of the submitted job. One can see from the above figures that by reducing the idle time one can potentially see a greater throughput of circuits on the systems that support dynamic repetition rates.
+Some IBM QPUs allow for dynamic repetition rate execution. These QPUs are identified in Qiskit using `backend.configuration().dynamic_reprate_enabled`, and return a value of `True`. On these QPUs, it is possible to manually set the above idle time by setting the `rep_delay` of the submitted job. One can see from the above figures that by reducing the idle time one can potentially see a greater throughput of circuits on the QPUs that support dynamic repetition rates.
 
 ## Specify rep_delay for a primitive job
 
