@@ -37,9 +37,12 @@ The tables in the [Options classes summary](#options-classes) section lists the 
 <span id="options-precedence"></span>
 ## Set options
 
-Options can be defined before a primitive is constructed and passed to the primitive, which will make a copy of them. As shown below, this can be done either as a nested dictionary, or by using the options classes. However, this is not necessary, because after the primitive is constructed, the options that it owns can be changed. You can choose the workflow that works best for your application.
+Options can be defined before a primitive is constructed and passed to the primitive, which will make a copy of them. This can be done either as a nested dictionary, or by using the options classes. Additionally, after the primitive is constructed, its options can be changed. Use the workflow that works best for your application.
+
+Example:
 
 ``` python
+from qiskit_ibm_runtime import EstimatorV2 as Estimator
 from qiskit_ibm_runtime.options import EstimatorOptions
 
 # Set options during primitive initialization with a nested dictionary
@@ -64,13 +67,29 @@ estimator3.options.twirling.enable_gates = True
 estimator3.options.twirling.num_randomizations = 100
 ```
 
-### Special cases
+### Special cases (V2 only)
 
 #### Resilience level (Estimator only)
 
-The resilience level is not actually an option, but is a specification of a base set of curated options to build off of. In general, level 0 turns off all error mitigation, level 1 turns on options for measurement error mitigation, and level 2 turns on options for gate and measurement error mitigation.
+The resilience level is not actually an option, but specifies a base set of curated options to build off of. In general, level 0 turns off all error mitigation, level 1 turns on options for measurement error mitigation, and level 2 turns on options for gate and measurement error mitigation.
 
 Any options you manually specify in addition to the resilience level are applied on top of the base set of options defined by the resilience level. So in principle, you could set the resilience level to 1, but then turn off measurement mitigation, although this is not advised.
+
+In the following example, setting the resilience level to 0 initially turns off `zne_mitigation`, but `estimator.options.resilience.zne_mitigation = True` overrides the relevent setup from `estimator.options.resilience_level = 0`.
+
+``` python
+from qiskit_ibm_runtime import EstimatorV2, QiskitRuntimeService
+from qiskit import QuantumCircuit
+
+service = QiskitRuntimeService()
+backend = service.backend("ibm_auckland")
+
+estimator = EstimatorV2(backend)
+
+estimator.options.default_shots = 100
+estimator.options.resilience_level = 0
+estimator.options.resilience.zne_mitigation = True
+```
 
 ### Shots (Sampler only)
 
