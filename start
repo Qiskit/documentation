@@ -14,9 +14,9 @@
 import subprocess
 import sys
 from pathlib import Path
-from typing import Iterator
 
 PWD = Path(__file__).parent
+IMAGE = "icr.io/qc-open-source-docs-public/preview:latest"
 
 
 def skip_apis() -> tuple[str]:
@@ -29,7 +29,7 @@ def skip_apis() -> tuple[str]:
 def main() -> None:
     print(
         "Warning: this may be using an outdated version of the app. Run "
-        + "`docker pull qiskit/documentation` to check for updates.",
+        + f"`docker pull {IMAGE}` to check for updates.",
         file=sys.stderr,
     )
     # Keep this aligned with the Dockerfile at the root of the repository.
@@ -46,7 +46,7 @@ def main() -> None:
         # Needed for ctrl-c to shut down the container.
         "--init",
         "--rm",
-        "qiskit/documentation",
+        IMAGE,
     ]
     subprocess.run(cmd, check=True)
 
