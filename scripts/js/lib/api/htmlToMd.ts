@@ -186,8 +186,8 @@ function removeEmphasisSpaces(
 }
 
 function findNodeWithProperty(nodeList: any[], propertyName: string) {
-  return nodeList.find(
-    (child: any) => child.properties.className?.includes(propertyName),
+  return nodeList.find((child: any) =>
+    child.properties.className?.includes(propertyName),
   );
 }
 
