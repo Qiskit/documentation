@@ -35,55 +35,65 @@ For V1 primitives, if you do not specify a value for an option, the Qiskit Runti
 The tables in the [Options classes summary](#options-classes) section lists the default values.
 
 <span id="options-precedence"></span>
-### Precedence rules
+## Set options
 
-There are several ways to set options.  If you set different values for the same option in multiple places, this is the order of precedence:
-
-1. Any options set after primitive initialization.
-2. Any options set during primitive initialization.
-
-<Admonition type="caution" title="Important">
-Shots (Sampler) or precision (Estimator) set in `run()` are not considered options, but take precidence over values set for `default_shots`or `default_precision`. See the [Run() method](specify-runtime-options#run-method) section for full details.
-</Admonition>
-
-In the following example, these values would be used for the `estimator.run` job: `shots = 128` and `measure_mitigation = True`.
+Options can be defined before a primitive is constructed and passed to the primitive, which will make a copy of them. As shown below, this can be done either as a nested dictionary, or by using the options classes. However, this is not necessary, because after the primitive is constructed, the options that it owns can be changed. You can choose the workflow that works best for your application.
 
 ``` python
-# Setting options during primitive initialization
-estimator = Estimator(backend, options={'resilience_level': 2,'resilience': {'measure_mitigation': False}})
+from qiskit_ibm_runtime.options import EstimatorOptions
 
-# Setting options after primitive initialization
-# This uses auto complete.
-estimator.options.resilience.measure_mitigation = True
-estimator.options.default_shots = 4000
+# Set options during primitive initialization with a nested dictionary
+estimator1 = Estimator(backend, options={"twirling": {"enable_gates": True}})
 
-# Sample two circuits at 128 shots each.
-estimator.run([(circuit1, observable1), (circuit2, observable2)], shots=128)
+# Update the options after intialization
+estimator1.options.twirling.num_randomizations = 100
+
+# Set options during primitive initialization with an options class
+options = EstimatorOptions()
+options.twirling.enable_gates = True
+estimator2 = Estimator(backend, options=options)
+
+# Update the options after intialization
+estimator2.options.twirling.num_randomizations = 100
+
+# Keep all default options during primitive initialization
+estimator3 = Estimator(backend)
+
+# Update the options after intialization
+estimator3.options.twirling.enable_gates = True
+estimator3.options.twirling.num_randomizations = 100
 ```
 
-#### Special cases
+### Special cases
 
-The `default_shots` and `resilience_level` options require special consideration:
+#### Resilience level (Estimator only)
 
-If you set `default_shots` in an estimator, it overrides any value set for `default_precision`.
+The resilience level is not actually an option, but is a specification of a base set of curated options to build off of. In general, level 0 turns off all error mitigation, level 1 turns on options for measurement error mitigation, and level 2 turns on options for gate and measurement error mitigation.
 
-The `resilience_level` is used to set a base configuration on any relevant options, and then any other user-specified options override that configuration. So it would be possible to undo the effect of setting the resilience level by reversing all of its settings manually.
+Any options you manually specify in addition to the resilience level are applied on top of the base set of options defined by the resilience level. So in principle, you could set the resilience level to 1, but then turn off measurement mitigation, although this is not advised.
 
-In the following example, setting the resilience level to 0 does not turn off `zne_mitigation` because `estimator.options.resilience.zne_mitigation = True` overrides the relevent setup from `estimator.options.resilience_level = 0`.
+### Shots (Sampler only)
 
-``` python
-from qiskit_ibm_runtime import EstimatorV2, QiskitRuntimeService
-from qiskit import QuantumCircuit
+The `SamplerV2.run` method accepts two arguments: a list of PUBs, each of which can specify a PUB-specific value for shots, and a shots keyword argument. These shot values are a part of the Sampler execution interface, and are independent of the Runtime Estimator's options.  They take precedence over any values specified as options in order to comply with the Sampler abstraction.
 
-service = QiskitRuntimeService()
-backend = service.backend("ibm_auckland")
+However, if `shots` is not specified by any PUB or in the run keyword argument (equivalently, if they are all `None`), then the shots value from the options is used, most notably `default_shots`. To sumarize, this is the the order of precedence for specifying shots in the Sampler, for any particular PUB:
 
-estimator = EstimatorV2(backend)
+1. If the PUB specifies shots, use that value.
+2. If the shots keyword argument is specified in `run`, use that value.
+3. If `sampler.options.default_shots` is specified, use that value.
 
-estimator.options.default_shots = 100
-estimator.options.resilience_level = 0
-estimator.options.resilience.zne_mitigation = True
-```
+For example, if shots are specified in all three places, the one with highest precedence (shots specified in the PUB) is used.
+
+### Precision (Estimator only)
+
+Precision is analogous to shots, described in the previous section, except that the options contains both `default_shots` and `default_precision`. Specifically, for any particular Estimator PUB:
+
+1. If the PUB specifies precision, use that value.
+2. If the precision keyword argument is specified in `run`, use that value.
+3. If `estimator.options.default_shots` is specified, use that value to control the amount of data.
+4. If `estimator.options.default_precision` is specified, use that value.
+
+For example, if precision is specified in all four places, the one with highest precedence (precision specified in the PUB) is used.
 
 <span id="options-classes"></span>
 ## Options classes summary
