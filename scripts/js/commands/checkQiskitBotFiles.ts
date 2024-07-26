@@ -39,15 +39,15 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/post-process-results",
   "docs/guides/configure-error-suppression",
   "docs/guides/repetition-rate-execution",
-  "docs/api/migration-guides/_toc",
-  "docs/api/migration-guides/qiskit-1.0",
-  "docs/api/migration-guides/qiskit-1.0-features",
-  "docs/api/migration-guides/qiskit-1.0-installation",
+  "docs/migration-guides/_toc",
+  "docs/migration-guides/qiskit-1.0",
+  "docs/migration-guides/qiskit-1.0-features",
+  "docs/migration-guides/qiskit-1.0-installation",
 ]);
 
 const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
-const GLOBS = ["docs/api/migration-guides/*", "docs/guides/*"];
+const GLOBS = ["docs/guides/*", "docs/migration-guides/*"];
 
 async function main() {
   const qiskitBotFiles = await getQiskitBotFiles();

@@ -18,7 +18,6 @@ import { hideBin } from "yargs/helpers";
 import { mean } from "lodash-es";
 
 import { zxMain } from "../lib/zx.js";
-import { Pkg } from "../lib/api/Pkg.js";
 
 const PORT = 3000;
 
@@ -178,9 +177,8 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     globs.push("docs/**/*.{ipynb,mdx}");
   }
 
-  const allProjects = Pkg.VALID_NAMES.join(",");
   for (const [isIncluded, glob] of [
-    [args.currentApis, `docs/api/{${allProjects}}/*.mdx`],
+    [args.currentApis, `docs/api/*/*.mdx`],
     [args.historicalApis, "docs/api/*/[0-9]*/*.mdx"],
     [args.devApis, "docs/api/*/dev/*.mdx"],
     [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
