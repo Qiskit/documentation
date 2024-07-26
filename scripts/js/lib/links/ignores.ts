@@ -47,6 +47,7 @@ const _PATTERNS_REORG_IGNORES = [
   "/run/primitives-get-started#3-initialize-the-qiskit-runtime-sampler",
   "/run/primitives-get-started#3-initialize-qiskit-runtime-estimator",
   "/run/run-jobs-batch",
+  "/api/migration-guides/qiskit-runtime",
 ];
 
 const ALWAYS_IGNORED_URLS__EXPECTED = [

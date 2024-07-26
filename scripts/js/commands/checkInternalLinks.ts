@@ -16,7 +16,6 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { Pkg } from "../lib/api/Pkg.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
 
@@ -124,7 +123,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/api/qiskit-ibm-provider/index.mdx",
   "docs/api/qiskit-ibm-provider/ibm_jupyter.mdx",
-  "docs/api/migration-guides/qiskit-1.0-features.mdx",
+  "docs/migration-guides/qiskit-1.0-features.mdx",
 ];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
@@ -192,9 +191,8 @@ async function determineCurrentDocsFileBatch(
   ];
 
   if (!args.currentApis) {
-    const projects = Pkg.VALID_NAMES.join(",");
-    toCheck.push(`!{public,docs}/api/{${projects}}/*`);
-    toLoad.push(`docs/api/{${projects}}/*`);
+    toCheck.push(`!{public,docs}/api/*/*`);
+    toLoad.push(`docs/api/*/*`);
   }
 
   if (args.qiskitReleaseNotes) {
