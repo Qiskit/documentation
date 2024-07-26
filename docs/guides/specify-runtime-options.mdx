@@ -41,11 +41,11 @@ options.execution.shots = 2048
 <span id="pass-options"></span>
 ## Set primitive options
 
-You can set options when initializing the primitive, after initializing the primitive, or in the `run()` method. See the [precidence rules](runtime-options-overview#options-precedence) section to understand what happens when the same option is specified in multiple places.
+You can set options when initializing the primitive, after initializing the primitive, or in the `run()` method. See the [precidence rules](runtime-options-overview#options-precedence) section to understand what happens when the same option is specified in multiple places. Thus, changing the original dictionary or options instance doesn't affect the options owned by the primitives.
 
 ### Primitive initialization
 
-You can pass in an instance of the options class or a dictionary when initializing a primitive.
+You can pass in an instance of the options class or a dictionary when initializing a primitive, which then makes a copy of those options.
 
 #### Options class
 
@@ -179,6 +179,8 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
 sampler = Sampler(mode=backend)
+# Default shots to use if not specified in run()
+sampler.options.default_shots = 500
 # Sample two circuits at 128 shots each.
 sampler.run([circuit1, circuit2], shots=128)
 
@@ -203,7 +205,7 @@ print(f">>> Metadata: {result.metadata[0]}")
 
 #### Resilience level (Estimator only)
 
-The resilience level is not actually an option, but specifies a base set of curated options to build off of. In general, level 0 turns off all error mitigation, level 1 turns on options for measurement error mitigation, and level 2 turns on options for gate and measurement error mitigation.
+The resilience level is not actually an option that directly impacts the primitive query, but specifies a base set of curated options to build off of. In general, level 0 turns off all error mitigation, level 1 turns on options for measurement error mitigation, and level 2 turns on options for gate and measurement error mitigation.
 
 Any options you manually specify in addition to the resilience level are applied on top of the base set of options defined by the resilience level. So in principle, you could set the resilience level to 1, but then turn off measurement mitigation, although this is not advised.
 
@@ -225,7 +227,7 @@ estimator.options.resilience.zne_mitigation = True
 
 ### Shots (Sampler only)
 
-The `SamplerV2.run` method accepts two arguments: a list of PUBs, each of which can specify a PUB-specific value for shots, and a shots keyword argument. These shot values are a part of the Sampler execution interface, and are independent of the Runtime Estimator's options.  They take precedence over any values specified as options in order to comply with the Sampler abstraction.
+The `SamplerV2.run` method accepts two arguments: a list of PUBs, each of which can specify a PUB-specific value for shots, and a shots keyword argument. These shot values are a part of the Sampler execution interface, and are independent of the Runtime Sampler's options.  They take precedence over any values specified as options in order to comply with the Sampler abstraction.
 
 However, if `shots` is not specified by any PUB or in the run keyword argument (equivalently, if they are all `None`), then the shots value from the options is used, most notably `default_shots`. To summarize, this is the the order of precedence for specifying shots in the Sampler, for any particular PUB:
 
@@ -237,7 +239,7 @@ For example, if shots are specified in all three places, the one with highest pr
 
 ### Precision (Estimator only)
 
-Precision is analogous to shots, described in the previous section, except that the options contains both `default_shots` and `default_precision`. Specifically, for any particular Estimator PUB:
+Precision is analogous to shots, described in the previous section, except that the Estimator options contains both `default_shots` and `default_precision`. Specifically, for any particular Estimator PUB:
 
 1. If the PUB specifies precision, use that value.
 2. If the precision keyword argument is specified in `run`, use that value.
@@ -257,15 +259,15 @@ For some algorithms, setting a specific number of shots is a core part of their 
   <TabItem value="primitivesV2" label="V2 Primitives">
 Shots (or precision) can be specified in multiple places in V2.  They are prioritized as follows:
 
-For any Sampler pub:
+For any Sampler PUB:
 
-1. Integer-valued shots contained in the pub
+1. Integer-valued shots contained in the PUB
 2. The `run(...,shots=val)` value
 3. The `options.default_shots` value
 
-For any Estimator pub:
+For any Estimator PUB:
 
-1. Float-valued precision contained in the pub
+1. Float-valued precision contained in the PUB
 2. The `run(...,precision=val)` value
 3. The `options.default_shots` value
 4. The `options.default_precision` value
