@@ -41,7 +41,7 @@ expectation values.
 </Admonition>
 
 <Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the system (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -483,7 +483,7 @@ Turn off all error mitigation and suppression in EstimatorV2.
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options, QiskitRuntimeService
 
-# Define the service.  This allows you to access IBM Quantum systems.
+# Define the service.  This allows you to access IBM QPUs.
 service = QiskitRuntimeService()
 
 # Get a backend
