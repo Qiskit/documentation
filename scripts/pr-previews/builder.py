@@ -117,8 +117,8 @@ def setup_dir() -> Iterator[Path]:
 def _copy_local_content(root_dir: Path) -> None:
     # We intentionally don't copy over API docs to speed up the build.
     for dir in [
-        "docs/api/migration-guides",
         "docs/guides",
+        "docs/migration-guides",
         "docs/open-source",
         "public/videos",
         "public/images/guides",

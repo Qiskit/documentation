@@ -18,7 +18,6 @@ import { globby } from "globby";
 import pMap from "p-map";
 
 import { zxMain } from "../lib/zx.js";
-import { Pkg } from "../lib/api/Pkg.js";
 import { readMarkdown } from "../lib/markdownReader.js";
 
 interface Arguments {
@@ -47,11 +46,10 @@ zxMain(async () => {
   const args = readArgs();
   const cspellCmd = ["npx", "cspell", "--no-progress", "--config", args.config];
 
-  await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx docs/api/migration-guides/*.mdx`;
+  await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`;
 
   if (args.apis) {
-    const apiFolders = Pkg.VALID_NAMES.map((api) => `docs/api/${api}/**/*.mdx`);
-    await $`${cspellCmd} ${apiFolders}`;
+    await $`${cspellCmd} docs/api/**/*.mdx`;
   }
 
   await checkAllNotebooks(args.config);

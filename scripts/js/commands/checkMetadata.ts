@@ -17,8 +17,6 @@ import { hideBin } from "yargs/helpers";
 import grayMatter from "gray-matter";
 import { globby } from "globby";
 
-import { Pkg } from "../lib/api/Pkg.js";
-
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
@@ -61,7 +59,7 @@ const isValidMetadata = (
 ): boolean =>
   metadata.title &&
   metadata.description &&
-  (isApi(filePath) ||
+  (filePath.startsWith("/api/") ||
     (metadata.title != metadata.description &&
       metadata.description.length <= 160 &&
       metadata.description.length >= 50));
@@ -93,8 +91,7 @@ async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
   const mdGlobs = ["docs/**/*.mdx"];
   const notebookGlobs = ["docs/**/*.ipynb"];
   if (!args.apis) {
-    const projects = Pkg.VALID_NAMES.join(",");
-    const apiIgnore = `!docs/api/{${projects}}/**/*`;
+    const apiIgnore = `!docs/api/**/*`;
     mdGlobs.push(apiIgnore);
     notebookGlobs.push(apiIgnore);
   }
@@ -103,11 +100,6 @@ async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
     notebookGlobs.push("translations/**/*.ipynb");
   }
   return [await globby(mdGlobs), await globby(notebookGlobs)];
-}
-
-function isApi(filePath: string): boolean {
-  const apiFolders = Pkg.VALID_NAMES.map((pkg) => `/api/${pkg}/`);
-  return apiFolders.some((urlPath) => filePath.startsWith(urlPath));
 }
 
 function handleErrors(mdErrors: string[], notebookErrors: string[]): void {
