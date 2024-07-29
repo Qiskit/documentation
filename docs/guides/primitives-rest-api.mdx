@@ -3,6 +3,8 @@ title: Primitives with REST API
 description: How to use the Sampler and Estimator primitives with Qiskit Runtime REST API.
 ---
 
+{/* cspell:ignore IIZII, XIZZZ, accum */}
+
 # Primitives with REST API
 
 The steps in this topic describe how to run and configure primitive workloads with REST API, and demonstrate how to invoke them in any program of your choice.
@@ -45,7 +47,7 @@ The following code snippets assume that the `qasm_string` has been transpiled to
 
 
 <Admonition type="note">
-    The following jobs use [Qiskit Runtime V2 primitives](/api/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
+    The following jobs use [Qiskit Runtime V2 primitives](/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
 </Admonition>
 
 
@@ -66,12 +68,12 @@ job_input = {
     "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
-        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
              {"IIZII": 1, "XIZZZ": 2.3}, # Observable
              None # parameter values
              ]], 
-        "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
 }}
 
 response = requests.post(url, headers=headers, json=job_input)
@@ -142,12 +144,12 @@ job_input = {
     "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
-        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
              {"IIZII": 1, "XIZZZ": 2.3}, # Observable
              None # parameter values
              ]],
-        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
             "resilience": {
               "measure_mitigation": True,
@@ -194,12 +196,12 @@ job_input = {
     "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
-        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
              {"IIZII": 1, "XIZZZ": 2.3}, # Observable
              None # parameter values
              ]],
-        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
             "dynamical_decoupling": { 
                 "enable": True,
@@ -241,12 +243,12 @@ job_input = {
     "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
-        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
              {"IIZII": 1, "XIZZZ": 2.3}, # Observable
              None # parameter values
              ]],
-        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
             "twirling": { 
                 "enable_gates": True, 
@@ -311,7 +313,7 @@ The code snippets given below assume that the `qasm_string` has been transpiled 
 
 
 <Admonition type="note">
-    The jobs below use [Qiskit Runtime V2 primitives](/api/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
+    The jobs below use [Qiskit Runtime V2 primitives](/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
 </Admonition>
 
 
@@ -332,8 +334,8 @@ job_input = {
     "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
-        "pubs": [[resulting_qasm],[resulting_qasm,None,500]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
-        "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm],[resulting_qasm,None,500]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
 }}
 
 response = requests.post(url, headers=headers, json=job_input)
@@ -407,8 +409,8 @@ job_input = {
     "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
-        "pubs": [[resulting_qasm]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
-        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
             "dynamical_decoupling": { 
                 "enable": True,
@@ -450,8 +452,8 @@ job_input = {
     "project": "project1",
     "start_session": "False", # set to False if you just need to run a single job.  
     "params": {
-        "pubs": [[resulting_qasm]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
-        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/api/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
             "twirling": { 
                 "enable_gates": True, 
@@ -483,7 +485,7 @@ else:
     - There are several ways to run workloads, depending on your needs: job mode, session mode and batch mode. Learn how to work with session mode and batch mode in the [execution modes topic](./execution-modes-rest-api).
     - Learn how to [initialize your account](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api) with REST API.
     - Learn how to [transpile circuits using REST API](./transpile-rest-api).
-    - Read [Migrate to V2 primitives](/api/migration-guides/v2-primitives).
+    - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
     - Learn how to transpile locally in the [Transpile](./transpile) section.
 </Admonition>
