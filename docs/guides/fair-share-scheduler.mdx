@@ -15,7 +15,6 @@ When you submit a job to a quantum processing unit (QPU), it enters the schedule
 *   **Hub:** Administrative hub, which represents the top level of an organization, such as an academic, industry, or research partner.
 *   **Group:** A mid-level structure to which access allocation can be allocated by the hub for one or more collections of users (projects).
 *   **Project:** The base-level construct to which time are allocated from the overarching group, and to which users are directly assigned.
-*   **Access share:** (This documentation uses the simplified term “share”.) A relative amount of access to IBM Quantum computing services assigned to a specific hub, group and project. The portion of access is determined by the specific allotment of minutes divided by the total number of allocation distributed. IBM&reg; assigns time to each hub based on their allotted capacity contracted under the Premium Plan subscription. Hub administrators then assign fractions of their allocation in minutes to each of their groups. Finally, group administrators assign fractions of their allocation in minutes to each of their projects.
 *   **Scheduling window:** The fair-share scheduler accounts for usage over a rolling time window. Only execution time accumulated within that window is accounted for the purpose of fairness. The length of that window is currently 28 days. When the fair-share scheduler is invoked, it takes into account usage starting 28 days ago.
 *   **Time used:** For every group and project, during the scheduling window, we account for all usage on all the QPUs of the IBM Quantum Premium Plan. These include all successful jobs, as well as jobs returning known select errors. It does not account for canceled jobs, even when partially executed.
 
@@ -27,7 +26,7 @@ The hub administration user interface is used to assign allocation, in minutes, 
 
 The fair-share scheduler takes into consideration how the allotted time is distributed across groups and projects to determine job prioritization.
 
-The scheduler combines a group’s allocation with the allotted time of its hub, to determine the total fraction of computational power allocated to that group.
+The scheduler combines a group’s allocation with the alotted time of its hub, to determine the total fraction of computational power allocated to that group.
 
 For example, assume only two groups maintain jobs in one queue. With all else being equal, a group with twice the number of minutes will have twice the number jobs execute.
 
