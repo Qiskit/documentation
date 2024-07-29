@@ -29,6 +29,19 @@ runs:
     - uses: actions/setup-python@v5
       with:
         python-version: "3.9"
+
+    # From https://github.com/Qiskit/qiskit-neko/pull/48
+    # This can be removed when `ibm-platform-services` can build/install with the most recent of
+    # `setuptools`. `setuptools==72.0.0` and `ibm-platform-services==0.55.1` are a known-bad combo.
+    - name: Prebuild old setuptools dependencies
+      shell: bash
+      run: |
+        set -e
+        python -m venv .build-deps
+        .build-deps/bin/python -m pip install 'setuptools<72.0' wheel
+        .build-deps/bin/python -m pip wheel --no-build-isolation ibm-platform-services
+        rm -rf .build-deps:
+
     - name: Install Python packages
       shell: bash
       run: pip install tox qiskit-ibm-runtime
