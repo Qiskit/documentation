@@ -50,9 +50,9 @@ When a session is started, it is assigned a maximum session timeout value. After
 
 ## Batch maximum execution time
 
-Batch jobs have an interactive timeout value (iTTL) between jobs and a maximum time to live (TTL) value. If you don't explicitly close a batch, it is deactivated after the iTTL expires and can be reactivated at any time until it reaches its  maximum TTL (usually 8h).
+Batches have an interactive timeout value (iTTL) between jobs and a maximum time to live (TTL) value. If you don't explicitly close a batch, it is deactivated after the iTTL expires and can be reactivated at any time until it reaches its  maximum TTL (usually 28800 seconds, or 8 hours).
 
-To determine the maximum TTL value for a batch, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `max_time` value.
+To determine the iTTL and maximum TTL values for a batch, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `interactive_timeout` and `max_time` values, respectively.
 
 ## Other limitations
 
