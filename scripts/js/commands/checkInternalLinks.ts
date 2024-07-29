@@ -99,9 +99,7 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-const PROVIDER_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/*.mdx",
-];
+const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
