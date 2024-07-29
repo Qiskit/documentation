@@ -1,20 +1,20 @@
 ---
 title: Native gates and operations
-description: Summary of the native gates and operations supported by IBM Quantum systems
+description: Summary of the native gates and operations supported by IBM quantum processing units
 
 ---
 
 # Native gates and operations
 
-Each [processor family](processor-types) has a native gate set. By default, the systems in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set.
+Each [processor family](processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set.
 
-You can view the native gates and operations for a system either [with Qiskit](#native-gates-with-qiskit) or on the IBM Quantum&trade; Platform [Compute resources page](#native-gates-on-platform).
+You can view the native gates and operations for a QPU either [with Qiskit](#native-gates-with-qiskit) or on the IBM Quantum&trade; Platform [Compute resources page](#native-gates-on-platform).
 
 <Admonition type="note" title="Basis gates">
 The terms native gates and basis gates are often used interchangeably. However, you can specify a different set of basis gates to use, while the native gate set never changes. For information about changing the basis gates, see the [Represent quantum computers](./represent-quantum-computers#basis-gates) topic.
 </Admonition>
 
-## Find the native gate set for a system
+## Find the native gate set for a QPU
 
 <span id="native-gates-with-qiskit"></span>
 ### With Qiskit
@@ -40,7 +40,7 @@ for backend in service.backends():
 <span id="native-gates-on-platform"></span>
 ### On IBM Quantum Platform
 
-Select any system on the [Compute resources](https://quantum.ibm.com/services/resources) tab. The default gates for that system are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit described above to see all native gates and operations for a system.
+Select any QPU on the [Compute resources](https://quantum.ibm.com/services/resources) tab. The default gates for that QPU are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit described above to see all native gates and operations for a QPU.
 
 ## Tables of gates and operations, by processor family
 

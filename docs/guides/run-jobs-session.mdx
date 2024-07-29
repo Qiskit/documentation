@@ -65,15 +65,19 @@ The context manager automatically opens and closes the session.
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
 ``` python
+from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
+
 backend = service.least_busy(operational=True, simulator=False)
 with Session(service=service, backend=backend):
-  estimatorv2 = EstimatorV2()
-  samplerv2 = SamplerV2()
+  estimator = Estimator()
+  sampler = Sampler()
 ```
   </TabItem>
 
   <TabItem value="PrimV1" label="V1 primitives">
 ``` python
+from qiskit_ibm_runtime import Session, Sampler, Estimator
+
 backend = service.least_busy(operational=True, simulator=False)
 with Session(service=service, backend=backend):
   estimator = Estimator()
@@ -82,9 +86,9 @@ with Session(service=service, backend=backend):
   </TabItem>
 </Tabs>
 
-When you start a session,  you must specify a system. This can be done by specifying its name or by passing a `backend` object.
+When you start a session,  you must specify a QPU. This can be done by specifying its name or by passing a `backend` object.
 
-**Specify a system by name**
+**Specify a QPU by name**
 
 ``` python
 service = QiskitRuntimeService()
@@ -103,7 +107,7 @@ with Session(backend=backend):
 <span id="specify-length"></span>
 ## Session length
 
-You can define the maximum session timeout with the `max_time` parameter. This should exceed the longest job's execution time and be within the system's limits.
+You can define the maximum session timeout with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits.
 
 ``` python
 with Session(service=service, backend=backend, max_time="25m"):

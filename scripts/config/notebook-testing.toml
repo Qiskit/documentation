@@ -1,0 +1,55 @@
+# For notebooks to be tested "normally" (no mocking)
+notebooks_normal_test = [
+    "docs/guides/construct-circuits.ipynb",
+    "docs/guides/circuit-library.ipynb",
+    "docs/guides/visualize-circuits.ipynb",
+    "docs/guides/classical-feedforward-and-control-flow.ipynb",
+    "docs/guides/operators-overview.ipynb",
+    "docs/guides/pulse.ipynb",
+    "docs/guides/save-circuits.ipynb",
+    "docs/guides/dynamic-circuits-considerations.ipynb",
+    "docs/guides/get-qpu-information.ipynb",
+    "docs/guides/save-jobs.ipynb",
+    "docs/guides/visualize-results.ipynb",
+    "docs/guides/common-parameters.ipynb",
+    "docs/guides/create-transpiler-plugin.ipynb",
+    "docs/guides/custom-backend.ipynb",
+    "docs/guides/custom-transpiler-pass.ipynb",
+    "docs/guides/defaults-and-configuration-options.ipynb",
+    "docs/guides/dynamical-decoupling-pass-manager.ipynb",
+    "docs/guides/represent-quantum-computers.ipynb",
+    "docs/guides/set-optimization.ipynb",
+    "docs/guides/transpile-with-pass-managers.ipynb",
+    "docs/guides/transpiler-plugins.ipynb",
+    "docs/guides/transpiler-stages.ipynb",
+    "docs/guides/build-noise-models.ipynb",
+    "docs/guides/local-testing-mode.ipynb",
+    "docs/guides/plot-quantum-states.ipynb",
+    "docs/guides/simulate-with-qiskit-aer.ipynb",
+    "docs/guides/simulate-stabilizer-circuits.ipynb",
+    "docs/guides/operator-class.ipynb",
+    "docs/guides/error-mitigation-and-suppression-techniques.ipynb",        
+    "tutorials/explore-composer/explore-composer.ipynb",
+    "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
+]
+
+# Don't test the following notebooks (this section can include glob patterns)
+notebooks_exclude = [
+    "**/.ipynb_checkpoints/**",
+]
+
+# The following notebooks submit jobs that can be mocked with a simulator
+notebooks_that_submit_jobs = [
+    "docs/guides/primitive-input-output.ipynb",
+    "tutorials/chsh-inequality/chsh-inequality.ipynb",
+    "tutorials/grovers-algorithm/grovers.ipynb",
+    "tutorials/quantum-approximate-optimization-algorithm/qaoa.ipynb",
+    "tutorials/variational-quantum-eigensolver/vqe.ipynb",
+]
+
+# The following notebooks submit jobs that are too big to mock with a simulator (or use functions that aren't supported on sims)
+# A job is "too big" if a cell can't run in under 5 mins, or we run out of
+# memory on a reasonable device.
+notebooks_no_mock = [
+    "docs/guides/hello-world.ipynb",
+]
