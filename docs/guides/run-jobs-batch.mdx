@@ -51,3 +51,28 @@ The following example shows how you can partition a long list of circuits into m
 <Admonition type="caution">
     If you set `backend=backend` in a V2 primitive, the program is run in job mode, even if it's inside a batch or session context. Setting `backend=backend` is deprecated as of IBM Qiskit Runtime 0.24.0.  Instead, use the `mode` parameter.
 </Admonition>
+
+<span id="batch-details"></span>
+## Determine batch details
+
+For a comprehensive overview of a batch's configuration and status, including its interactive and max TTL, use the  `batch.details() method`.
+
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+with Batch(backend=backend) as batch:
+    sampler = Sampler()
+    for partition in partitions:
+        job = sampler.run(partition)
+    print(batch.details())
+```
+
+
+
+<Admonition type="tip" title="Recommendations">
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial.
+  - Review the [Batch API](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Batch) reference.
+</Admonition>
