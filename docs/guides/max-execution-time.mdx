@@ -48,6 +48,12 @@ For example, if you specify `max_execution_time=5000` (approximately 83 minutes)
 
 When a session is started, it is assigned a maximum session timeout value. After this timeout is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state. For instructions to set the session maximum time, see [Specify the session length](./run-jobs-session#specify-length).
 
+## Batch maximum execution time
+
+Batch jobs have an interactive timeout value (iTTL) between jobs and a maximum time to live (TTL) value. If you don't explicitly close a batch, it is deactivated after the iTTL expires and can be reactivated at any time until it reaches its  maximum TTL (usually 8h).
+
+To determine the maximum timeout value for a batch, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `max_time` value.
+
 ## Other limitations
 
 *   Inputs to jobs cannot exceed 64MB in size.
