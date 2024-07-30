@@ -18,6 +18,7 @@ import { zxMain } from "../../lib/zx.js";
 import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
 import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
+import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -95,6 +96,7 @@ zxMain(async () => {
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runConversionPipeline(sphinxArtifactFolder, "docs", "public", pkg);
+  await generateHistoricalRedirects();
 });
 
 function determineMinorVersion(args: Arguments): string {

@@ -17,11 +17,14 @@ import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
 import { removeSuffix } from "../../lib/stringUtils.js";
 
+const OUTPUT_FILE = "_historical-pages-to-latest.json";
+
 zxMain(async () => {
   await generateHistoricalRedirects();
 });
 
-async function generateHistoricalRedirects(): Promise<void> {
+export async function generateHistoricalRedirects(): Promise<void> {
+  console.log(`Generating ${OUTPUT_FILE}`);
   const apiDocsPath = "./docs/api";
   const redirectData: HistoricalRedirectData = {};
   for (const packageName of Pkg.VALID_NAMES) {
@@ -29,10 +32,7 @@ async function generateHistoricalRedirects(): Promise<void> {
       join(apiDocsPath, packageName),
     );
   }
-  await writeFile(
-    join(apiDocsPath, "_historical-pages-to-latest.json"),
-    JSON.stringify(redirectData),
-  );
+  await writeFile(join(apiDocsPath, OUTPUT_FILE), JSON.stringify(redirectData));
 }
 /**
  * E.g.
