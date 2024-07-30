@@ -66,6 +66,7 @@ async function getRedirectsForPackage(
   const versionPaths: string[] = [];
   for (const entry of await readdir(packagePath, { withFileTypes: true })) {
     if (entry.isDirectory()) {
+      if (entry.name.endsWith("release-notes")) continue;
       versionPaths.push(entry.name);
     } else {
       latestPages.push(entry.name);
