@@ -17,7 +17,7 @@ import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
 import { removeSuffix } from "../../lib/stringUtils.js";
 
-const OUTPUT_FILE = "_historical-pages-to-latest.json";
+const OUTPUT_FILE = "./scripts/config/historical-pages-to-latest.json";
 
 zxMain(async () => {
   await generateHistoricalRedirects();
@@ -32,7 +32,7 @@ export async function generateHistoricalRedirects(): Promise<void> {
       join(apiDocsPath, packageName),
     );
   }
-  await writeFile(join(apiDocsPath, OUTPUT_FILE), JSON.stringify(redirectData));
+  await writeFile(OUTPUT_FILE, JSON.stringify(redirectData));
 }
 /**
  * E.g.
