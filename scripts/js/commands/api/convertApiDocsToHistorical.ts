@@ -21,6 +21,7 @@ import transformLinks from "transform-markdown-links";
 import { pathExists } from "../../lib/fs.js";
 import { zxMain } from "../../lib/zx.js";
 import { Pkg } from "../../lib/api/Pkg.js";
+import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -75,6 +76,7 @@ zxMain(async () => {
   );
   await copyImages(pkgName, versionWithoutPatch);
   await copyObjectsInv(pkgName, versionWithoutPatch);
+  await generateHistoricalRedirects();
 });
 
 async function copyApiDocsAndUpdateLinks(
