@@ -32,7 +32,7 @@ export async function generateHistoricalRedirects(): Promise<void> {
       join(apiDocsPath, packageName),
     );
   }
-  await writeFile(OUTPUT_FILE, JSON.stringify(redirectData));
+  await writeFile(OUTPUT_FILE, JSON.stringify(redirectData, null, 2));
 }
 /**
  * E.g.
