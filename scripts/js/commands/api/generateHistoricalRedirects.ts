@@ -25,11 +25,10 @@ zxMain(async () => {
 
 export async function generateHistoricalRedirects(): Promise<void> {
   console.log(`Generating ${OUTPUT_FILE}`);
-  const apiDocsPath = "./docs/api";
   const redirectData: HistoricalRedirectData = {};
   for (const packageName of Pkg.VALID_NAMES) {
     redirectData[packageName] = await getRedirectsForPackage(
-      join(apiDocsPath, packageName),
+      join("docs/api", packageName),
     );
   }
   await writeFile(OUTPUT_FILE, JSON.stringify(redirectData, null, 2));
