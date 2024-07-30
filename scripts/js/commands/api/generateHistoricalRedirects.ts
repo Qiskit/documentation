@@ -31,7 +31,7 @@ export async function generateHistoricalRedirects(): Promise<void> {
       join("docs/api", packageName),
     );
   }
-  await writeFile(OUTPUT_FILE, JSON.stringify(redirectData, null, 2));
+  await writeFile(OUTPUT_FILE, JSON.stringify(redirectData, null, 2) + "\n");
 }
 /**
  * E.g.
