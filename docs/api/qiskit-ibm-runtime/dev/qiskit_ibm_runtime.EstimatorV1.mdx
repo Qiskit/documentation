@@ -8,8 +8,12 @@ python_api_name: qiskit_ibm_runtime.EstimatorV1
 
 # EstimatorV1
 
-<Class id="qiskit_ibm_runtime.EstimatorV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L228-L412" signature="EstimatorV1(backend=None, session=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.EstimatorV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L234-L422" signature="EstimatorV1(backend=None, session=None, options=None)" modifiers="class">
   Class for interacting with Qiskit Runtime Estimator primitive service.
+
+  <Admonition title="Deprecated since version 0.23" type="danger">
+    The `EstimatorV1` primitives have been deprecated in 0.23, released on April 15, 2024. See the [V2 migration guide](/api/migration-guides/v2-primitives). for more details. The `EstimatorV1` support will be removed no earlier than July 15, 2024.
+  </Admonition>
 
   Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
 
@@ -70,7 +74,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV1
   ### options
 
   <Attribute id="qiskit_ibm_runtime.EstimatorV1.options">
-    Return options values for the sampler. :rtype: `Options` :returns: options
+    Return options values for the sampler. :rtype: [`Options`](/api/qiskit/qiskit.providers.Options "(in Qiskit v1.1)") :returns: options
   </Attribute>
 
   ### session
@@ -95,15 +99,15 @@ python_api_name: qiskit_ibm_runtime.EstimatorV1
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.EstimatorV1.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L307-L341" signature="run(circuits, observables, parameter_values=None, **kwargs)">
+  <Function id="qiskit_ibm_runtime.EstimatorV1.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/estimator.py#L319-L352" signature="run(circuits, observables, parameter_values=None, **kwargs)">
     Submit a request to the estimator primitive.
 
     **Parameters**
 
-    *   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – a (parameterized) `QuantumCircuit` or a list of (parameterized) `QuantumCircuit`.
+    *   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – a (parameterized) [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)") or a list of (parameterized) [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)").
     *   **observables** (*Sequence\[BaseOperator | str] | BaseOperator | str*) – Observable objects.
     *   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Concrete parameters to be bound.
-    *   **\*\*kwargs** – Individual options to overwrite the default primitive options. These include the runtime options in [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions").
+    *   **\*\*kwargs** – Individual options to overwrite the default primitive options.
 
     **Return type**
 
@@ -111,7 +115,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV1
 
     **Returns**
 
-    Submitted job. The result of the job is an instance of `qiskit.primitives.EstimatorResult`.
+    Submitted job. The result of the job is an instance of [`qiskit.primitives.EstimatorResult`](/api/qiskit/qiskit.primitives.EstimatorResult "(in Qiskit v1.1)").
 
     **Raises**
 
