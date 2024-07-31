@@ -19,25 +19,6 @@ Options are specified differently in the V2 primitives in these ways:
 - If you do not specify a value for an option, it is given a special value of `Unset` and the server defaults are used.
 - For V2 primitives, the `options` attribute is the `dataclass` Python type.  You can use the built-in `asdict` method to convert it to a dictionary.
 
-## Instantiate the Options class (V1)
-
-When using V1 primitives, you must Instantiate the options class before you can set the options. In the example below, we create an instance of the `Options` class. `optimization_level` is a first-level option and can be passed as an input parameter. Options related to the execution environment are passed using the `environment` parameter.
-
-```python
-from qiskit_ibm_runtime import Options
-
-options = Options(optimization_level=1, environment={"log_level": "INFO"})
-```
-
-The `Options` class supports auto-complete. Once you create an instance of the `Options` class, you can use auto-complete to see what options are available. If you choose one of the categories, you can use auto-complete again to see what options are available under that category.
-
-```python
-from qiskit_ibm_runtime import Options
-
-options = Options()
-options.resilience_level = 1
-options.execution.shots = 2048
-```
 <span id="pass-options"></span>
 ## Set primitive options
 
@@ -226,7 +207,7 @@ estimator.options.resilience_level = 0
 estimator.options.resilience.zne_mitigation = True
 ```
 
-### Shots (Sampler only)
+#### Shots (Sampler only)
 
 The `SamplerV2.run` method accepts two arguments: a list of PUBs, each of which can specify a PUB-specific value for shots, and a shots keyword argument. These shot values are a part of the Sampler execution interface, and are independent of the Runtime Sampler's options.  They take precedence over any values specified as options in order to comply with the Sampler abstraction.
 
@@ -238,7 +219,7 @@ However, if `shots` is not specified by any PUB or in the run keyword argument (
 
 For example, if shots are specified in all three places, the one with highest precedence (shots specified in the PUB) is used.
 
-### Precision (Estimator only)
+#### Precision (Estimator only)
 
 Precision is analogous to shots, described in the previous section, except that the Estimator options contains both `default_shots` and `default_precision`. Specifically, for any particular Estimator PUB:
 

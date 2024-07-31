@@ -134,11 +134,12 @@ psi1_H1 = job.result()
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-    In the V2 primitives, you can explicitly enable and disable individual error mitigation and suppression methods, such as dynamical decoupling. See [available options](runtime-options-overview#options-table) table for a list of available options.
+    In the V2 primitives, you can explicitly enable and disable individual error mitigation and suppression methods, such as dynamical decoupling.
 
-    <Admonition type = "note">
-    Dynamical decoupling is not supported when the input circuits are dynamic.
-    </Admonition>
+<Admonition type = "note" title = "Notes">
+- Not all options are available for both primitives.   See the [available options](runtime-options-overview#options-table) table for the list of available options.
+- Not all methods work together on all types of circuits.  See the [options compatibility](runtime-options-overview#options-compatibility-table) table for details.
+</Admonition>
 ```python
 
 from qiskit_ibm_runtime import QiskitRuntimeService
