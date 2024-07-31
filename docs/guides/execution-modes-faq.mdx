@@ -129,7 +129,7 @@ In general, if your each of your jobs consumes less than a minute of QPU time, c
     How many jobs I can submit in a batch?
   </summary>
 
-There are no limits to how many jobs you can submit in a Batch. There are, however, limits on how much usage your jobs can consume based on your plan.
+While there are no limits to the number of jobs you can submit in a batch, there is a maximum time associated with a batch. That is, when a batch's wall clock time (which starts when the first batch job starts running) exceeds the system-defined maximum time, the batch will not accept any new jobs, and any jobs queued but not running are cancelled. Additionally, there are limits on how much usage your jobs can consume based on your plan. To determine the maximum time associated with a batch, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `max_time` value.
 </details>
 
 <details>
