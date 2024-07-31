@@ -81,7 +81,7 @@ fake_manila = FakeManilaV2()
 options = {"simulator": {"seed_simulator": 42}}
 
 # Define Estimator
-estimator = Estimator(backend=fake_manila, options=options)
+estimator = Estimator(mode=fake_manila, options=options)
 
 # Run an expectation value calculation
 job = estimator.run([(isa_circuits, isa_observables)])
@@ -339,7 +339,7 @@ fake_manila = FakeManilaV2()
 options = {"simulator": {"seed_simulator": 42}}
 
 # Define Sampler
-sampler = Sampler(backend=fake_manila, options=options)
+sampler = Sampler(mode=fake_manila, options=options)
 
 # Run calculation
 job = sampler.run([isa_circuit])
