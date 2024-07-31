@@ -17,7 +17,32 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
   During the layout stage, the transpiler can potentially remap the order of the qubits in the circuit as it fits the circuit to the target backend. For example, let the input circuit be:
 
+  ```python
+  from qiskit.circuit import QuantumCircuit, QuantumRegister
+
+  qr = QuantumRegister(3, name="MyReg")
+  qc = QuantumCircuit(qr)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.cx(0, 2)
+  qc.draw("mpl")
+  ```
+
+  ![../\_images/qiskit-transpiler-TranspileLayout-1.png](/images/api/qiskit/dev/qiskit-transpiler-TranspileLayout-1.png)
+
   Suppose that during the layout stage the transpiler reorders the qubits to be:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(3)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.cx(2, 0)
+  qc.draw("mpl")
+  ```
+
+  ![../\_images/qiskit-transpiler-TranspileLayout-2.png](/images/api/qiskit/dev/qiskit-transpiler-TranspileLayout-2.png)
 
   Then the output of the [`initial_virtual_layout()`](#qiskit.transpiler.TranspileLayout.initial_virtual_layout "qiskit.transpiler.TranspileLayout.initial_virtual_layout") method is equivalent to:
 
@@ -32,6 +57,19 @@ python_api_name: qiskit.transpiler.TranspileLayout
   (it is also this attribute in the [`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") and [`circuit_drawer()`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") which is used to display the mapping of qubits to positions in circuit visualizations post-transpilation).
 
   Building on the above example, suppose that during the routing stage the transpiler needs to insert swap gates, and the output circuit becomes:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(3)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.swap(0, 1)
+  qc.cx(2, 1)
+  qc.draw("mpl")
+  ```
+
+  ![../\_images/qiskit-transpiler-TranspileLayout-3.png](/images/api/qiskit/dev/qiskit-transpiler-TranspileLayout-3.png)
 
   Then the output of the [`routing_permutation()`](#qiskit.transpiler.TranspileLayout.routing_permutation "qiskit.transpiler.TranspileLayout.routing_permutation") method is:
 

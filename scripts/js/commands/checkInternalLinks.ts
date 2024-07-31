@@ -99,24 +99,12 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-const PROVIDER_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/*.mdx",
-  "docs/run/max-execution-time.mdx",
-];
+const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const RUNTIME_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/providers_models.mdx",
+  "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
-  "docs/run/index.mdx",
-  "docs/run/max-execution-time.mdx",
-  "docs/run/configure-error-mitigation.mdx",
-  "docs/run/configure-runtime-compilation.mdx",
-  "docs/transpile/index.mdx",
 ];
 const QISKIT_GLOBS_TO_LOAD = [
-  "docs/build/circuit-construction.ipynb",
-  "docs/build/pulse.ipynb",
-  "docs/start/install.mdx",
-  "docs/start/configure-qiskit-local.mdx",
   "docs/api/qiskit/release-notes/0.44.mdx",
   "docs/api/qiskit/release-notes/0.45.mdx",
   "docs/api/qiskit/release-notes/0.46.mdx",
