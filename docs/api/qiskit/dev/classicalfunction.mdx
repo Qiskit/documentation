@@ -47,6 +47,10 @@ The classical function compiler provides the necessary tools to map a classical 
 
 Following Qiskit’s little-endian bit ordering convention, the left-most bit (`a`) is the most significant bit and the right-most bit (`d`) is the least significant bit.
 
+<Admonition title="Warning" type="caution">
+  The functionality of qiskit.circuit.classicalfunction requires tweedledum, which isn’t available on all platforms (up to Python version 3.11). See [tweedledum installation guide](https://github.com/boschmitt/tweedledum/tree/master?tab=readme-ov-file#installation) for more details.
+</Admonition>
+
 ## Supplementary Information
 
 ### Tweedledum
@@ -69,7 +73,7 @@ Decorator for a classical function that returns a ClassicalFunction object.
 
 #### classical\_function
 
-<Function id="qiskit.circuit.classicalfunction.classical_function" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/__init__.py#L116-L132" signature="qiskit.circuit.classicalfunction.classical_function(func)">
+<Function id="qiskit.circuit.classicalfunction.classical_function" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalfunction/__init__.py#L124-L140" signature="qiskit.circuit.classicalfunction.classical_function(func)">
   Parses and type checks the callable `func` to compile it into an `ClassicalFunction` that can be synthesized into a `QuantumCircuit`.
 
   **Parameters**

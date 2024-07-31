@@ -30,7 +30,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
   ### coupling\_map
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.coupling_map">
-    Return the `CouplingMap` object
+    Return the [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.1)") object
   </Attribute>
 
   ### defs\_filename
@@ -74,13 +74,13 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
   ### instruction\_durations
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.instruction_durations">
-    Return the `InstructionDurations` object.
+    Return the [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.1)") object.
   </Attribute>
 
   ### instruction\_schedule\_map
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.instruction_schedule_map">
-    Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
+    Return the [`InstructionScheduleMap`](/api/qiskit/qiskit.pulse.InstructionScheduleMap "(in Qiskit v1.1)") for the instructions defined in this backend’s target.
   </Attribute>
 
   ### instructions
@@ -90,7 +90,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
 
     **Return type**
 
-    `List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
+    `List`\[`Tuple`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.1)"), `Tuple`\[`int`]]]
   </Attribute>
 
   ### max\_circuits
@@ -138,11 +138,11 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.operations">
-    A list of `Instruction` instances that the backend supports.
+    A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.1)") instances that the backend supports.
 
     **Return type**
 
-    `List`\[`Instruction`]
+    `List`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.1)")]
   </Attribute>
 
   ### options
@@ -174,7 +174,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
   ### target
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.target">
-    A `qiskit.transpiler.Target` object for the backend.
+    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.1)") object for the backend.
 
     **Return type**
 
@@ -213,7 +213,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
 
   ### acquire\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.acquire_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L283-L296" signature="acquire_channel(qubit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.acquire_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L376-L389" signature="acquire_channel(qubit)">
     Return the acquisition channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -227,9 +227,37 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
     AcquireChannel
   </Function>
 
+  ### check\_faulty
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L231-L263" signature="check_faulty(circuit)">
+    Check if the input circuit uses faulty qubits or edges.
+
+    **Parameters**
+
+    **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)")) – Circuit to check.
+
+    **Raises**
+
+    **ValueError** – If an instruction operating on a faulty qubit or edge is found.
+
+    **Return type**
+
+    `None`
+  </Function>
+
+  ### configuration
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L227-L229" signature="configuration()">
+    Return the backend configuration.
+
+    **Return type**
+
+    `Union`\[[`QasmBackendConfiguration`](/api/qiskit/qiskit.providers.models.QasmBackendConfiguration "(in Qiskit v1.1)"), [`PulseBackendConfiguration`](/api/qiskit/qiskit.providers.models.PulseBackendConfiguration "(in Qiskit v1.1)")]
+  </Function>
+
   ### control\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.control_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L298-L318" signature="control_channel(qubits)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.control_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L391-L411" signature="control_channel(qubits)">
     Return the secondary drive channel for the given qubit
 
     This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
@@ -249,9 +277,28 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
     List\[ControlChannel]
   </Function>
 
+  ### defaults
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L211-L225" signature="defaults(refresh=False)">
+    Return the pulse defaults for the backend
+
+    **Parameters**
+
+    *   **refresh** (`bool`) – If `True`, re-retrieve the backend defaults from the
+    *   **file.** (*local*)
+
+    **Return type**
+
+    [`PulseDefaults`](/api/qiskit/qiskit.providers.models.PulseDefaults "(in Qiskit v1.1)")
+
+    **Returns**
+
+    The backend pulse defaults or `None` if the backend does not support pulse.
+  </Function>
+
   ### drive\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.drive_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L253-L266" signature="drive_channel(qubit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.drive_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L346-L359" signature="drive_channel(qubit)">
     Return the drive channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -267,7 +314,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
 
   ### measure\_channel
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.measure_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L268-L281" signature="measure_channel(qubit)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.measure_channel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L361-L374" signature="measure_channel(qubit)">
     Return the measure stimulus channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -279,6 +326,25 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
     **Return type**
 
     MeasureChannel
+  </Function>
+
+  ### properties
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.properties" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L197-L209" signature="properties(refresh=False)">
+    Return the backend properties
+
+    **Parameters**
+
+    *   **refresh** (`bool`) – If `True`, re-retrieve the backend properties
+    *   **file.** (*from the local*)
+
+    **Return type**
+
+    [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v1.1)")
+
+    **Returns**
+
+    The backend properties.
   </Function>
 
   ### qubit\_properties
@@ -294,7 +360,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
 
     **Return type**
 
-    `Union`\[`QubitProperties`, `List`\[`QubitProperties`]]
+    `Union`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.1)"), `List`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.1)")]]
 
     **Returns**
 
@@ -307,7 +373,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
 
   ### refresh
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L469-L526" signature="refresh(service)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.refresh" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L562-L636" signature="refresh(service)">
     Update the data files from its real counterpart
 
     This method pulls the latest backend data files from their real counterpart and overwrites the corresponding files in the local installation: \* ../fake\_provider/backends/\{backend\_name}/conf\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/defs\_\{backend\_name}.json \* ../fake\_provider/backends/\{backend\_name}/props\_\{backend\_name}.json
@@ -331,10 +397,10 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L320-L381" signature="run(run_input, **options)">
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L413-L474" signature="run(run_input, **options)">
     Run on the fake backend using a simulator.
 
-    This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicSimulator or Aer simulator and returns a `Job` object.
+    This method runs circuit jobs (an individual or a list of QuantumCircuit ) and pulse jobs (an individual or a list of Schedule or ScheduleBlock) using BasicSimulator or Aer simulator and returns a [`Job`](/api/qiskit/qiskit.providers.Job "(in Qiskit v1.1)") object.
 
     If qiskit-aer is installed, jobs will be run using AerSimulator with noise model of the fake backend. Otherwise, jobs will be run using BasicSimulator without noise.
 
@@ -342,7 +408,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
 
     **Parameters**
 
-    *   **run\_input** (*QuantumCircuit or Schedule or ScheduleBlock or list*) – An individual or a list of `QuantumCircuit`, `ScheduleBlock`, or `Schedule` objects to run on the backend.
+    *   **run\_input** (*QuantumCircuit or Schedule or ScheduleBlock or list*) – An individual or a list of [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)"), [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "(in Qiskit v1.1)"), or [`Schedule`](/api/qiskit/qiskit.pulse.Schedule "(in Qiskit v1.1)") objects to run on the backend.
     *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
     **Returns**
@@ -372,6 +438,20 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeArmonkV2
     **Raises**
 
     **AttributeError** – If the field passed in is not part of the options
+  </Function>
+
+  ### status
+
+  <Function id="qiskit_ibm_runtime.fake_provider.FakeArmonkV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L179-L195" signature="status()">
+    Return the backend status.
+
+    **Return type**
+
+    [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus "(in Qiskit v1.1)")
+
+    **Returns**
+
+    The status of the backend.
   </Function>
 </Class>
 

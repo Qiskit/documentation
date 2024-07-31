@@ -15,7 +15,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     *   You should not instantiate the `IBMBackend` class directly. Instead, use the methods provided by an [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") instance to retrieve and handle backends.
   </Admonition>
 
-  This class represents an IBM Quantum backend. Its attributes and methods provide information about the backend. For example, the [`status()`](#qiskit_ibm_runtime.IBMBackend.status "qiskit_ibm_runtime.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
+  This class represents an IBM Quantum backend. Its attributes and methods provide information about the backend. For example, the [`status()`](#qiskit_ibm_runtime.IBMBackend.status "qiskit_ibm_runtime.IBMBackend.status") method returns a [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus "(in Qiskit v1.1)") instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
 
   ```python
   status = backend.status()
@@ -31,7 +31,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   >
   > *   num\_qubits: number of qubits.
   >
-  > *   target: A `qiskit.transpiler.Target` object for the backend.
+  > *   target: A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.1)") object for the backend.
   >
   > *   basis\_gates: list of basis gates names on the backend.
   >
@@ -125,7 +125,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   **Parameters**
 
-  *   **configuration** (`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]) – Backend configuration.
+  *   **configuration** (`Union`\[[`QasmBackendConfiguration`](/api/qiskit/qiskit.providers.models.QasmBackendConfiguration "(in Qiskit v1.1)"), [`PulseBackendConfiguration`](/api/qiskit/qiskit.providers.models.PulseBackendConfiguration "(in Qiskit v1.1)")]) – Backend configuration.
   *   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Instance of QiskitRuntimeService.
   *   **api\_client** (`RuntimeClient`) – IBM client used to communicate with the server.
 
@@ -134,7 +134,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### coupling\_map
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.coupling_map">
-    Return the `CouplingMap` object
+    Return the [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.1)") object
   </Attribute>
 
   ### dt
@@ -174,13 +174,13 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### instruction\_durations
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.instruction_durations">
-    Return the `InstructionDurations` object.
+    Return the [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.1)") object.
   </Attribute>
 
   ### instruction\_schedule\_map
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.instruction_schedule_map">
-    Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
+    Return the [`InstructionScheduleMap`](/api/qiskit/qiskit.pulse.InstructionScheduleMap "(in Qiskit v1.1)") for the instructions defined in this backend’s target.
   </Attribute>
 
   ### instructions
@@ -190,7 +190,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
+    `List`\[`Tuple`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.1)"), `Tuple`\[`int`]]]
   </Attribute>
 
   ### max\_circuits
@@ -244,11 +244,11 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.operations">
-    A list of `Instruction` instances that the backend supports.
+    A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.1)") instances that the backend supports.
 
     **Return type**
 
-    `List`\[`Instruction`]
+    `List`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.1)")]
   </Attribute>
 
   ### options
@@ -300,11 +300,11 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### target
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.target">
-    A `qiskit.transpiler.Target` object for the backend.
+    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.1)") object for the backend.
 
     **Return type**
 
-    `Target`
+    [`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.1)")
 
     **Returns**
 
@@ -382,7 +382,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    **circuit** (`QuantumCircuit`) – Circuit to check.
+    **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)")) – Circuit to check.
 
     **Raises**
 
@@ -414,7 +414,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
+    `Union`\[[`QasmBackendConfiguration`](/api/qiskit/qiskit.providers.models.QasmBackendConfiguration "(in Qiskit v1.1)"), [`PulseBackendConfiguration`](/api/qiskit/qiskit.providers.models.PulseBackendConfiguration "(in Qiskit v1.1)")]
 
     **Returns**
 
@@ -454,7 +454,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `Optional`\[`PulseDefaults`]
+    `Optional`\[[`PulseDefaults`](/api/qiskit/qiskit.providers.models.PulseDefaults "(in Qiskit v1.1)")]
 
     **Returns**
 
@@ -521,11 +521,11 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     **Parameters**
 
     *   **refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
-    *   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the `BackendProperties` whose timestamp is closest to, but older than, the specified datetime. Note that this is only supported using `ibm_quantum` runtime.
+    *   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v1.1)") whose timestamp is closest to, but older than, the specified datetime. Note that this is only supported using `ibm_quantum` runtime.
 
     **Return type**
 
-    `Optional`\[`BackendProperties`]
+    `Optional`\[[`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v1.1)")]
 
     **Returns**
 
@@ -550,7 +550,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `Union`\[`QubitProperties`, `List`\[`QubitProperties`]]
+    `Union`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.1)"), `List`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.1)")]]
 
     **Returns**
 
@@ -568,13 +568,13 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    *   **circuits** (`Union`\[`QuantumCircuit`, `str`, `List`\[`Union`\[`QuantumCircuit`, `str`]]]) – An individual or a list of `QuantumCircuit`.
+    *   **circuits** (`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)"), `str`, `List`\[`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)"), `str`]]]) – An individual or a list of `QuantumCircuit`.
 
     *   **dynamic** (`Optional`\[`bool`]) – Whether the circuit is dynamic (uses in-circuit conditionals)
 
     *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
 
-    *   **init\_circuit** (`Optional`\[`QuantumCircuit`]) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
+    *   **init\_circuit** (`Optional`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)")]) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
 
     *   **init\_num\_resets** (`Optional`\[`int`]) – The number of qubit resets to insert before each circuit execution.
 
@@ -656,12 +656,12 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     Return the backend status.
 
     <Admonition title="Note" type="note">
-      If the returned `BackendStatus` instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
+      If the returned [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus "(in Qiskit v1.1)") instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
     </Admonition>
 
     **Return type**
 
-    `BackendStatus`
+    [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus "(in Qiskit v1.1)")
 
     **Returns**
 
@@ -675,11 +675,11 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### target\_history
 
   <Function id="qiskit_ibm_runtime.IBMBackend.target_history" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L341-L350" signature="target_history(datetime=None)">
-    A `qiskit.transpiler.Target` object for the backend.
+    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.1)") object for the backend.
 
     **Return type**
 
-    `Target`
+    [`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.1)")
 
     **Returns**
 
