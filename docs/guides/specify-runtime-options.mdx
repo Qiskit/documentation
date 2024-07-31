@@ -22,7 +22,7 @@ Options are specified differently in the V2 primitives in these ways:
 <span id="pass-options"></span>
 ## Set primitive options
 
-You can set options when initializing the primitive, after initializing the primitive, or in the `run()` method. See the [precidence rules](runtime-options-overview#options-precedence) section to understand what happens when the same option is specified in multiple places.
+You can set options when initializing the primitive, after initializing the primitive, or in the `run()` method. See the [precedence rules](runtime-options-overview#options-precedence) section to understand what happens when the same option is specified in multiple places.
 
 ### Primitive initialization
 
@@ -108,11 +108,11 @@ estimator = Estimator(backend, options={"resilience_level": 2})
 
 ### Update options after initialization
 
-You can specify the options in this format: `primitive.options.option.sub-option.sub-sub-option = choice` to take advantage of auto complete, or use the `update()` method to make bulk updates.
+You can specify the options in this format: `primitive.options.option.sub-option.sub-sub-option = choice` to take advantage of auto-complete, or use the `update()` method to make bulk updates.
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
-  The `SamplerV2` and `EstimatorV2` options classes ([`EstimatorOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) and [`SamplerOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)) do not need to be instantiated if you are setting options after initializing the primtiive.
+  The `SamplerV2` and `EstimatorV2` options classes ([`EstimatorOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) and [`SamplerOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions)) do not need to be instantiated if you are setting options after initializing the primitive.
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
@@ -123,7 +123,7 @@ backend = service.least_busy(operational=True, simulator=False)
 estimator = Estimator(mode=backend)
 
 # Setting options after primitive initialization
-# This uses auto complete.
+# This uses auto-complete.
 estimator.options.default_shots = 4000
 # This does bulk update.
 estimator.options.update(default_shots=4000, resilience={"zne_mitigation": True})
@@ -133,7 +133,7 @@ estimator.options.update(default_shots=4000, resilience={"zne_mitigation": True}
   <TabItem value="PrimV1" label="V1 primitives">
 ```python
 # Setting options after primitive initialization
-# This uses auto complete.
+# This uses auto-complete.
 options.resilience_level = 2
 estimator = Estimator(backend=backend, options=options)
 
@@ -189,7 +189,7 @@ print(f">>> Metadata: {result.metadata[0]}")
 
 The resilience level is not actually an option that directly impacts the primitive query, but specifies a base set of curated options to build off of. In general, level 0 turns off all error mitigation, level 1 turns on options for measurement error mitigation, and level 2 turns on options for gate and measurement error mitigation.
 
-Any options you manually specify in addition to the resilience level are applied on top of the base set of options defined by the resilience level. So in principle, you could set the resilience level to 1, but then turn off measurement mitigation, although this is not advised.
+Any options you manually specify in addition to the resilience level are applied on top of the base set of options defined by the resilience level. Therefore, in principle, you could set the resilience level to 1, but then turn off measurement mitigation, although this is not advised.
 
 In the following example, setting the resilience level to 0 initially turns off `zne_mitigation`, but `estimator.options.resilience.zne_mitigation = True` overrides the relevent setup from `estimator.options.resilience_level = 0`.
 
@@ -211,7 +211,7 @@ estimator.options.resilience.zne_mitigation = True
 
 The `SamplerV2.run` method accepts two arguments: a list of PUBs, each of which can specify a PUB-specific value for shots, and a shots keyword argument. These shot values are a part of the Sampler execution interface, and are independent of the Runtime Sampler's options.  They take precedence over any values specified as options in order to comply with the Sampler abstraction.
 
-However, if `shots` is not specified by any PUB or in the run keyword argument (equivalently, if they are all `None`), then the shots value from the options is used, most notably `default_shots`. To summarize, this is the the order of precedence for specifying shots in the Sampler, for any particular PUB:
+However, if `shots` is not specified by any PUB or in the run keyword argument (equivalently, if they are all `None`), then the shots value from the options is used, most notably `default_shots`. To summarize, this is the order of precedence for specifying shots in the Sampler, for any particular PUB:
 
 1. If the PUB specifies shots, use that value.
 2. If the shots keyword argument is specified in `run`, use that value.
@@ -267,7 +267,7 @@ backend = service.least_busy(operational=True, simulator=False)
 sampler = Sampler(mode=backend, options={"default_shots": 4096})
 
 # Setting options after primitive initialization
-# This uses auto complete.
+# This uses auto-complete.
 sampler.options.default_shots=2000
 
 # This does bulk update.  The value for default_shots is overridden if you specify shots with run() or in the PUB.
@@ -314,9 +314,9 @@ For more information about the primitive options, refer to the
 
 ### Maximum execution time
 
-The maximum execution time (`max_execution_time`) limits how long a job can run.  If a job exceeds this time limit, it is forcibly cancelled.  This value applies to single jobs, whether they are run in job, session, or batch mode.
+The maximum execution time (`max_execution_time`) limits how long a job can run.  If a job exceeds this time limit, it is forcibly canceled.  This value applies to single jobs, whether they are run in job, session, or batch mode.
 
-The value is set in seconds, based on quantum time (not wall clock time), which is the amount of time that the QPU is dedicated to processing your job.  It is ignored when using local testing mode because that mode does not have quantum time.
+The value is set in seconds, based on quantum time (not wall clock time), which is the amount of time that the QPU is dedicated to processing your job.  It is ignored when using local testing mode because that mode does not use quantum time.
 
 <Tabs>
   <TabItem value="PrimV2" label="V2 primitives">
