@@ -79,7 +79,7 @@ python_api_name: qiskit.pulse.Schedule
 
     **Notes**
 
-    Nested schedules are returned as-is. If you want to collect only instructions, use py:meth:\~Schedule.instructions instead.
+    Nested schedules are returned as-is. If you want to collect only instructions, use [`instructions()`](#qiskit.pulse.Schedule.instructions "qiskit.pulse.Schedule.instructions") instead.
 
     **Returns**
 
@@ -279,7 +279,7 @@ $$
   ### exclude
 
   <Function id="qiskit.pulse.Schedule.exclude" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/schedule.py#L482-L514" signature="exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)">
-    Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
+    Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of [`filter()`](#qiskit.pulse.Schedule.filter "qiskit.pulse.Schedule.filter"), so that:
 
     ```python
     self.filter(args) | self.exclude(args) == self

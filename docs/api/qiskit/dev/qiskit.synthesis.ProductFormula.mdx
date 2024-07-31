@@ -8,20 +8,25 @@ python_api_name: qiskit.synthesis.ProductFormula
 
 # ProductFormula
 
-<Class id="qiskit.synthesis.ProductFormula" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/product_formula.py#L25-L88" signature="qiskit.synthesis.ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)" modifiers="class">
+<Class id="qiskit.synthesis.ProductFormula" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/product_formula.py#L30-L132" signature="qiskit.synthesis.ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, wrap=False)" modifiers="class">
   Bases: [`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis")
 
   Product formula base class for the decomposition of non-commuting operator exponentials.
 
   [`LieTrotter`](qiskit.synthesis.LieTrotter "qiskit.synthesis.LieTrotter") and [`SuzukiTrotter`](qiskit.synthesis.SuzukiTrotter "qiskit.synthesis.SuzukiTrotter") inherit from this class.
 
+  <Admonition title="Deprecated since version 1.2_pending" type="danger">
+    The ‘Callable\[\[Pauli | SparsePauliOp, float], QuantumCircuit]’ signature of the ‘atomic\_evolution’ argument is pending deprecation as of qiskit 1.2. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Instead you should update your ‘atomic\_evolution’ function to be of the following type: ‘Callable\[\[QuantumCircuit, Pauli | SparsePauliOp, float], None]’.
+  </Admonition>
+
   **Parameters**
 
   *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The order of the product formula.
   *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of time steps.
   *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to insert barriers between the atomic evolutions.
-  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one.
-  *   **atomic\_evolution** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomposed in a CX chain and a single qubit Z rotation.
+  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one. This only takes effect when `atomic_evolution is None`.
+  *   **atomic\_evolution** (*Callable\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate. Alternatively, the function can also take Pauli operator and evolution time as inputs and returns the circuit that will be appended to the overall circuit being built.
+  *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to wrap the atomic evolutions into custom gate objects. This only takes effect when `atomic_evolution is None`.
 
   ## Attributes
 
@@ -43,7 +48,7 @@ python_api_name: qiskit.synthesis.ProductFormula
 
   ### synthesize
 
-  <Function id="qiskit.synthesis.ProductFormula.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/evolution_synthesis.py#L22-L32" signature="synthesize(evolution)" modifiers="abstract">
+  <Function id="qiskit.synthesis.ProductFormula.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/evolution_synthesis.py#L24-L34" signature="synthesize(evolution)" modifiers="abstract">
     Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 
     **Parameters**

@@ -8,8 +8,12 @@ python_api_name: qiskit_ibm_runtime.SamplerV1
 
 # SamplerV1
 
-<Class id="qiskit_ibm_runtime.SamplerV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L170-L322" signature="SamplerV1(backend=None, session=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.SamplerV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L178-L334" signature="SamplerV1(backend=None, session=None, options=None)" modifiers="class">
   Class for interacting with Qiskit Runtime Sampler primitive service.
+
+  <Admonition title="Deprecated since version 0.23" type="danger">
+    The `SamplerV1` primitives have been deprecated in 0.23, released on April 15, 2024. See the [V2 migration guide](/api/migration-guides/v2-primitives). for more details. The `SamplerV1` support will be removed no earlier than July 15, 2024.
+  </Admonition>
 
   Qiskit Runtime Sampler primitive service calculates quasi-probability distribution of bitstrings from quantum circuits.
 
@@ -62,7 +66,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV1
   ### options
 
   <Attribute id="qiskit_ibm_runtime.SamplerV1.options">
-    Return options values for the sampler. :rtype: `Options` :returns: options
+    Return options values for the sampler. :rtype: [`Options`](/api/qiskit/qiskit.providers.Options "(in Qiskit v1.1)") :returns: options
   </Attribute>
 
   ### session
@@ -87,14 +91,14 @@ python_api_name: qiskit_ibm_runtime.SamplerV1
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.SamplerV1.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L242-L270" signature="run(circuits, parameter_values=None, **kwargs)">
+  <Function id="qiskit_ibm_runtime.SamplerV1.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L256-L283" signature="run(circuits, parameter_values=None, **kwargs)">
     Submit a request to the sampler primitive.
 
     **Parameters**
 
-    *   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – A (parameterized) `QuantumCircuit` or a list of (parameterized) `QuantumCircuit`.
+    *   **circuits** (*QuantumCircuit | Sequence\[QuantumCircuit]*) – A (parameterized) [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)") or a list of (parameterized) [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.1)").
     *   **parameter\_values** (*Sequence\[float] | Sequence\[Sequence\[float]] | None*) – Concrete parameters to be bound.
-    *   **\*\*kwargs** – Individual options to overwrite the default primitive options. These include the runtime options in [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions").
+    *   **\*\*kwargs** – Individual options to overwrite the default primitive options.
 
     **Return type**
 
@@ -102,7 +106,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV1
 
     **Returns**
 
-    Submitted job. The result of the job is an instance of `qiskit.primitives.SamplerResult`.
+    Submitted job. The result of the job is an instance of [`qiskit.primitives.SamplerResult`](/api/qiskit/qiskit.primitives.SamplerResult "(in Qiskit v1.1)").
 
     **Raises**
 
