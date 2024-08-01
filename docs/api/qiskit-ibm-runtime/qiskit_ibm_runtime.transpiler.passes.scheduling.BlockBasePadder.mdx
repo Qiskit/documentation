@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
 # BlockBasePadder
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L38-L645" signature="BlockBasePadder(schedule_idle_qubits=False, block_ordering_callable=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.26/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L38-L645" signature="BlockBasePadder(schedule_idle_qubits=False, block_ordering_callable=None)" modifiers="class">
   The base class of padding pass.
 
   This pass requires one of scheduling passes to be executed before itself. Since there are multiple scheduling strategies, the selection of scheduling pass is left in the hands of the pass manager designer. Once a scheduling analysis pass is run, `node_start_time` is generated in the `property_set`. This information is represented by a python dictionary of the expected instruction execution times keyed on the node instances. The padding pass expects all `DAGOpNode` in the circuit to be scheduled.
@@ -69,12 +69,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
     **Parameters**
 
     *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-    *   **state** (`PassManagerState`) – State associated with workflow execution by the pass manager itself.
+    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – State associated with workflow execution by the pass manager itself.
     *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
     **Return type**
 
-    `tuple`\[`Any`, `PassManagerState`]
+    `tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")]
 
     **Returns**
 
@@ -93,12 +93,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L102-L126" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.26/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L102-L126" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
 
-    **dag** (`DAGCircuit`) – DAG to be checked.
+    **dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.1)")) – DAG to be checked.
 
     **Returns**
 
@@ -120,12 +120,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
     **Parameters**
 
-    *   **state** (`PassManagerState`) – Pass manager state to update.
+    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – Pass manager state to update.
     *   **run\_state** (`RunState`) – Completion status of current task.
 
     **Return type**
 
-    `PassManagerState`
+    [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")
 
     **Returns**
 
