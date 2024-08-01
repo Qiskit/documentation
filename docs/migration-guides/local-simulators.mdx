@@ -86,7 +86,7 @@ isa_qc = pm.run(qc)
 
 # You can use a fixed seed to get fixed results.
 options = {"simulator": {"seed_simulator": 42}}
-sampler = Sampler(backend=fake_manila, options=options)
+sampler = Sampler(mode=fake_manila, options=options)
 
 result = sampler.run([isa_qc]).result()
 ```
@@ -137,14 +137,11 @@ from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
 service = QiskitRuntimeService()
 
-
 # Bell Circuit
 qc = QuantumCircuit(2)
 qc.h(0)
 qc.cx(0, 1)
 qc.measure_all()
-
-service = QiskitRuntimeService()
 
 # Specify a QPU to use for the noise model
 real_backend = service.backend("ibm_brisbane")
@@ -153,7 +150,7 @@ aer = AerSimulator.from_backend(real_backend)
 # Run the sampler job locally using AerSimulator.
 pm = generate_preset_pass_manager(backend=aer, optimization_level=1)
 isa_qc = pm.run(qc)
-sampler = Sampler(backend=aer)
+sampler = Sampler(mode=aer)
 result = sampler.run([isa_qc]).result()
 ```
 
@@ -186,6 +183,6 @@ aer_sim = AerSimulator(method="stabilizer")
 
 pm = generate_preset_pass_manager(backend=aer_sim, optimization_level=1)
 isa_circuit = pm.run(circuit)
-sampler = Sampler(backend=aer_sim)
+sampler = Sampler(mode=aer_sim)
 result = sampler.run([(isa_circuit, params)]).result()
 ```
