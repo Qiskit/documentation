@@ -77,15 +77,41 @@ python_api_name: qiskit.dagcircuit.DAGOpNode
 
   ### from\_instruction
 
-  <Function id="qiskit.dagcircuit.DAGOpNode.from_instruction" signature="from_instruction(instruction, dag=None)" modifiers="static" />
+  <Function id="qiskit.dagcircuit.DAGOpNode.from_instruction" signature="from_instruction(instruction, /, *, dag=None, deepcopy=False)" modifiers="static" />
+
+  ### is\_control\_flow
+
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_control_flow" signature="is_control_flow()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a control-flow operation (i.e. an instance of [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"))?
+  </Function>
+
+  ### is\_controlled\_gate
+
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_controlled_gate" signature="is_controlled_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a subclass of [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")?
+  </Function>
+
+  ### is\_directive
+
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_directive" signature="is_directive()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a directive?
+  </Function>
 
   ### is\_parameterized
 
-  <Function id="qiskit.dagcircuit.DAGOpNode.is_parameterized" signature="is_parameterized()" />
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_parameterized" signature="is_parameterized()">
+    Does this node contain any [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") parameters?
+  </Function>
+
+  ### is\_standard\_gate
+
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_standard_gate" signature="is_standard_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a Qiskit standard gate?
+  </Function>
 
   ### semantic\_eq
 
-  <Function id="qiskit.dagcircuit.DAGOpNode.semantic_eq" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagnode.py#L181-L237" signature="semantic_eq(node1, node2, bit_indices1, bit_indices2)" modifiers="static">
+  <Function id="qiskit.dagcircuit.DAGOpNode.semantic_eq" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/dagcircuit/dagnode.py#L181-L237" signature="semantic_eq(node1, node2, bit_indices1, bit_indices2)" modifiers="static">
     Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://www.rustworkx.org/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.15)").
 
     **Parameters**
