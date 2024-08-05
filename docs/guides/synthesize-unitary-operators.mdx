@@ -5,6 +5,13 @@ description: On the implementation of arbitrary unitary matrices on qubits
 
 # Synthesize unitary operations
 
+## What's required
+
+Running the code in this topic requires Qiskit SDK 1.0 or later, with visualization support ( pip install 'qiskit[visualization]' ).
+To learn about the latest changes to Qiskit SDK 1.0, review the most recent [release notes.](/api/qiskit/release-notes)
+
+## Introduction
+
 A unitary operation describes a norm-preserving change to a quantum system.
 For $n$ qubits this change is described by a $2^n \times 2^n$ dimensional, complex matrix $U$ whose adjoint equals the inverse, that is $U^\dagger U = \mathbb{1}$.
 
@@ -15,7 +22,7 @@ For general unitary matrices, synthesis is a complex task with computational cos
 Therefore, if you know an efficient decomposition for the unitary you would like to implement, it will likely be better than a general synthesis.
 
 <Admonition type="note">
-    If no decomposition is available, the Qiskit SDK provides you with the tools to find one. 
+    If no decomposition is available, the Qiskit SDK provides you with the tools to find one.
     However, note that this generally generates deep circuits that may be unsuitable to run on noisy quantum computers.
 </Admonition>
 
@@ -61,7 +68,7 @@ circuit.draw("mpl")
 
 However, after re-synthesizing with the following code, it only needs a single CX gate. (Here we use the `QuantumCircuit.decompose()` method to better visualize the gates used to re-synthesize the unitary.)
 
-```python 
+```python
 from qiskit.quantum_info import Operator
 
 # compute unitary matrix of circuit
