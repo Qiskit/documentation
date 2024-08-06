@@ -5,6 +5,15 @@ description: Stop using the deprecated Qiskit `QuantumInstance` class
 
 # QuantumInstance migration guide
 
+<Admonition type="caution">
+  **Deprecation Notice**
+
+  This guide precedes the introduction of the V2 primitives interface. It was created to guide users from `QuantumInstance` to
+  the V1 primitives interface. Following the introduction of the V2 primitives, some providers have deprecated V1 primitive
+  implementations in favor of the V2 alternatives. If you are interested in following this guide, we recommend combining it with the
+  [migrate to V2 primitives] guide to bring your code to the most updated state.
+</Admonition>
+
 The [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) is a utility class that allows the joint
 configuration of the circuit transpilation and execution steps, and provides functions
 at a higher level of abstraction for a more convenient integration with algorithms.
@@ -12,17 +21,17 @@ These include measurement error mitigation, splitting and combining execution to
 conform to job limits,
 and ensuring reliable circuit execution with additional job management tools.
 
-The [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) class is being deprecated for several reasons:
-* The functionality of [`qiskit.utils.QuantumInstance.execute`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#execute) has been delegated to the different implementations of the [`qiskit.primitives`](/api/qiskit/primitives) base classes.
-* With the direct implementation of transpilation at the primitives level, the algorithms no longer need to manage that aspect of execution, and thus [`qiskit.utils.QuantumInstance.transpile`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#transpile) is no longer required by the workflow. If desired, custom transpilation routines can still be performed at the user level through the [`qiskit.transpiler`](/api/qiskit/transpiler) module (see the table below).
+The [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) class is being deprecated because
+the functionality of [`qiskit.utils.QuantumInstance.execute`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#execute) has been delegated to
+the different implementations of the [`qiskit.primitives`](/api/qiskit/primitives) base classes.
 
 The following table summarizes the migration alternatives for the [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) class:
 
 | QuantumInstance method | Alternative |
 | --- | --- |
 | [`qiskit.utils.QuantumInstance.execute`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#execute) | [`qiskit.primitives.Sampler.run`](/api/qiskit/qiskit.primitives.Sampler#run) or [`qiskit.primitives.Estimator.run`](/api/qiskit/qiskit.primitives.Estimator#run) |
-| [`qiskit.utils.QuantumInstance.transpile`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#transpile) | [`qiskit.compiler.transpile`](/api/qiskit/compiler#qiskit.compiler.transpile) |
-| [`qiskit.utils.QuantumInstance.assemble`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#assemble) | [`qiskit.compiler.assemble`](/api/qiskit/compiler#qiskit.compiler.assemble) |
+| [`qiskit.utils.QuantumInstance.transpile`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#transpile) | [`qiskit.compiler.transpile`](/api/qiskit/compiler#qiskit.compiler.transpile) or [`qiskit.transpiler.pass_manager.PassManager.run`](/api/qiskit/qiskit.transpiler.PassManager#run)|
+| [`qiskit.utils.QuantumInstance.assemble`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#assemble) | [`qiskit.compiler.assemble`](/api/qiskit/compiler#qiskit.compiler.assemble) [Deprecated: no longer part of the workflow]|
 
 The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execute`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#execute) to
 [`qiskit.primitives`](/api/qiskit/primitives) migration path.
@@ -90,7 +99,7 @@ yourself two questions:
 Arguably, the `Sampler` is the closest primitive to [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), as they
 both execute circuits and provide a result. However, with the [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance),
 the result data was system-dependent (it could be a counts `dict`, a `numpy.array` for
-statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to 
+statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to
 return a [`qiskit.result.QuasiDistribution`](/api/qiskit/qiskit.result.QuasiDistribution) object with the resulting quasi-probability distribution.
 
 The `Estimator` provides a specific abstraction for the expectation value calculation that can replace
