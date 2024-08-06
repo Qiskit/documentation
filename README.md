@@ -284,6 +284,20 @@ npm run check:metadata -- --apis
 npm run check
 ```
 
+## Check image alt text
+
+Every image needs to have `alt text` for accessibility. The `lint` job in CI will fail if images do not have alt text.
+
+You can also check for valid metadata locally:
+
+```bash
+# Only check file metadata
+npm run check:alt-text
+
+# Or, run all the checks. Although this only checks non-API docs.
+npm run check
+```
+
 ## Spellcheck
 
 We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
