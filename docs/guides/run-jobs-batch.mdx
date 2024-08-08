@@ -101,7 +101,7 @@ result = job1.result()
 result2 = job2.result()
 ```
 
-If you are not using a context manager, manually close the batch.  If you leave the batch open and submit more jobs to it, it is possible that the TTL will be reached while it is trying to process the jobs; resulting in those jobs being canceled. You can close a batch as soon as you are done submitting jobs to it. When a batch is closed with `batch.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
+If you are not using a context manager, manually close the batch.  If you leave the batch open and submit more jobs to it, it is possible that the maximum TTL will be reached while it is trying to process a job; causing that job to be canceled. You can close a batch as soon as you are done submitting jobs to it. When a batch is closed with `batch.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
 
 ``` python
 batch = Batch(backend=backend)
