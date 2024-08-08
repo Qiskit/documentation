@@ -10,7 +10,7 @@ The steps in this topic describes how to set up primitives, explore the options 
 
 <Admonition type="caution" title="Important">
 
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all primitives except Sampler V2 still optimize the input circuits. To bypass all optimization, set `optimization_level=0`.
+To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](transpile) for instructions to transform circuits.
 
 *Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
 
@@ -77,36 +77,18 @@ isa_observable = observable.apply_layout(isa_circuit.layout)
 
 When you initialize the `Estimator`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
-To use the Estimator V2, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
-
-<Tabs>
-  <TabItem value="EstimatorV2" label="Estimator V2">
+To use the Estimator, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
 
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 
 estimator = Estimator(mode=backend)
  ```
-  </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-```python
-from qiskit_ibm_runtime import Estimator
-
-estimator = Estimator(backend=backend)
-```
-  </TabItem>
-</Tabs>
-
 
 ### 4. Invoke the Estimator and get results
 
-Next, invoke the `run()` method to calculate expectation values for the input circuits and observables.
+Next, invoke the `run()` method to calculate expectation values for the input circuits and observables. The circuit, observable, and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
 
-For Estimator V2, the circuit, observable, and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
-
-<Tabs>
-  <TabItem value="EstimatorV2" label="Estimator V2">
 ```python
 job = estimator.run([(isa_circuit, isa_observable)])
 print(f">>> Job ID: {job.job_id()}")
@@ -130,23 +112,6 @@ Output
   > Expectation value: 0.013671875
   > Metadata: {'target_precision': 0.015625}
 ```
-  </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-    ```python
-job = estimator.run(isa_circuit, isa_observable)
-print(f">>> Job ID: {job.job_id()}")
-print(f">>> Job Status: {job.status()}")
-```
-
-```python
-result = job.result()
-print(f">>> {result}")
-print(f"  > Expectation value: {result.values[0]}")
-print(f"  > Metadata: {result.metadata[0]}")
-```
-  </TabItem>
-</Tabs>
 
 <span id="start-sampler"></span>
 ## Get started with Sampler
@@ -192,35 +157,17 @@ isa_circuit = pm.run(circuit)
 
 When you initialize the `Sampler`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
-To use the Sampler V2, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backward compatibility.
+To use the Sampler, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backward compatibility.
 
-<Tabs>
-  <TabItem value="SamplerV2" label="Sampler V2">
-    ```python
+```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 sampler = Sampler(mode=backend)
 ```
-  </TabItem>
-
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
-from qiskit_ibm_runtime import Sampler
-
-sampler = Sampler(backend=backend)
-```
-  </TabItem>
-</Tabs>
-
 
 ### 4. Invoke the Sampler and get results
 
-Next, invoke the `run()` method to generate the output.
-
-For Sampler V2, the circuit and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
-
-<Tabs>
-  <TabItem value="SamplerV2" label="Sampler V2">
+Next, invoke the `run()` method to generate the output. The circuit and optional parameter value sets are input as *primitive unified bloc* (PUB) tuples.
 
 ```python
 job = sampler.run([isa_circuit])
@@ -244,22 +191,6 @@ Output
 ```text
 Counts for the meas output register: {'0111': 50, '0000': 243, '0001': 101, '0101': 93, '0100': 188, '0011': 128, '1011': 22, '0110': 13, '1100': 10, '1000': 24, '0010': 29, '1010': 26, '1101': 20, '1110': 45, '1001': 16, '1111': 16}
 ```
-  </TabItem>
-
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
-job = sampler.run(isa_circuit)
-print(f">>> Job ID: {job.job_id()}")
-print(f">>> Job Status: {job.status()}")
-```
-```python
-result = job.result()
-print(f">>> {result}")
-print(f"  > Quasi-probability distribution: {result.quasi_dists[0]}")
-print(f"  > Metadata: {result.metadata[0]}")
-```
-  </TabItem>
-</Tabs>
 
 <span id="backend"></span>
 ## Get started with the backend primitives
@@ -296,8 +227,8 @@ sampler = BackendSamplerV2(backend)
 
 ### Similarities and differences between backend and Runtime primitives
 
-- The inputs to [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) and [`qiskit.primitives.BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2)
-follow the same PUB format as the primitives in Qiskit Runtime, so do the outputs, see [Primitive inputs and outputs](primitive-input-output) for details.
+- The inputs to and outputs from [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) and [`qiskit.primitives.BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2)
+follow the same PUB format as the primitives in Qiskit Runtime. See [Primitive inputs and outputs](primitive-input-output) for details.
 However, there can be differences in the fields of the returned metadata.
 
 - The [`qiskit.primitives.BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) class offers no measurement or gate error mitigation implementations out-of-the-box, as
@@ -313,10 +244,10 @@ backend primitives are designed to run locally in the user's machine.
 <Admonition type="tip" title="Recommendations">
     - Learn how to [test locally](local-testing-mode) before running on quantum computers.
     - Review detailed [primitives examples.](primitives-examples)
-    - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
     - Learn how to transpile locally in the [Transpile](transpile/) section.
     - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
     - Learn how to [use the primitive options.](runtime-options-overview)
     - View the API for [Sampler](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.SamplerOptions) and [Estimator](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) options.
+    - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
 </Admonition>
