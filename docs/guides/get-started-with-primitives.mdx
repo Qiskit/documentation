@@ -267,17 +267,13 @@ print(f"  > Metadata: {result.metadata[0]}")
 Unlike provider-specific primitives, backend primitives are generic implementations that can be used with an arbitrary
 `backend` object, as long as it implements the [`Backend`](/api/qiskit/qiskit.providers.Backend) interface.
 
-- The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2)
-or the deprecated V1 implementation, [`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler).
-- The `Estimator` primitive can be run with any provider by using [`qiskit.primitives.BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2),
-or the deprecated V1 implementation, [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator).
+- The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2).
+- The `Estimator` primitive can be run with any provider by using [`qiskit.primitives.BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2).
 
 Some providers implement primitives natively.  See the [Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#provider) for details.
 
 ### Example: BackendEstimator
 
-<Tabs>
-  <TabItem value="BackendEstimatorV2" label="BackendEstimator V2">
 ```python
 from qiskit.primitives import BackendEstimatorV2
 from <some_qiskit_provider> import QiskitProvider
@@ -286,24 +282,9 @@ provider = QiskitProvider()
 backend = provider.get_backend('backend_name')
 estimator = BackendEstimatorV2(backend)
 ```
-  </TabItem>
-
-  <TabItem value="BackendEstimatorV1" label="BackendEstimator (V1)">
-  ```python
-from qiskit.primitives import BackendEstimator
-from <some_qiskit_provider> import QiskitProvider
-
-provider = QiskitProvider()
-backend = provider.get_backend('backend_name')
-estimator = BackendEstimator(backend)
-```
-  </TabItem>
-</Tabs>
 
 ### Example: BackendSampler
 
-<Tabs>
-  <TabItem value="BackendSamplerV2" label="BackendSampler V2">
 ```python
 from qiskit.primitives import BackendSamplerV2
 from <some_qiskit_provider> import QiskitProvider
@@ -312,21 +293,8 @@ provider = QiskitProvider()
 backend = provider.get_backend('backend_name')
 sampler = BackendSamplerV2(backend)
 ```
-  </TabItem>
 
-  <TabItem value="BackendSamplerV1" label="BackendSampler (V1)">
-  ```python
-from qiskit.primitives import BackendSampler
-from <some_qiskit_provider> import QiskitProvider
-
-provider = QiskitProvider()
-backend = provider.get_backend('backend_name')
-sampler = BackendSampler(backend)
-```
-  </TabItem>
-</Tabs>
-
-### Similarities and differences between backend and Runtime primitives (V2)
+### Similarities and differences between backend and Runtime primitives
 
 - The inputs to [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) and [`qiskit.primitives.BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2)
 follow the same PUB format as the primitives in Qiskit Runtime, so do the outputs, see [Primitive inputs and outputs](primitive-input-output) for details.
@@ -337,7 +305,7 @@ backend primitives are designed to run locally in the user's machine.
 
 - The [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) class requires a backend that supports the `memory` option.
 
-- The backend primitives V2 interfaces expose custom [`Sampler`](/api/qiskit/qiskit.primitives.BackendSamplerV2) and [`Estimator`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) `Options` that are different from the Runtime implementations.
+- The backend primitive interfaces expose custom [`Sampler`](/api/qiskit/qiskit.primitives.BackendSamplerV2) and [`Estimator`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) `Options` that are different from the Runtime implementations.
 
 
 ## Next steps
