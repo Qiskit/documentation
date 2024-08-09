@@ -55,18 +55,9 @@ with Batch(backend=backend):
   sampler = Sampler()
 ```
 
-When you start a batch,  you must specify a QPU. This can be done by specifying its name or by passing a `backend` object.
+When you start a batch,  you must specify a QPU by passing a `backend` object.
 
-**Specify a QPU by name**
-
-``` python
-backend = service.least_busy(operational=True, simulator=False)
-service = QiskitRuntimeService()
-with Batch(backend=backend):
-    ...
-```
-
-**Pass a `backend` object**
+Example:
 
 ``` python
 backend = service.least_busy(operational=True, simulator=False)
