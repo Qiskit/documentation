@@ -57,9 +57,7 @@ the value $2^\text{label}$ (label being the qubit's index in
 with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as the
 decimal integer `2` (measured with probability `1.0`).
 
-<Tabs>
-  <TabItem value="SamplerV2" label="Sampler V2">
-    ```python
+```python
 from qiskit.primitives import Samplerv2 as Sampler
 qc.measure_all()
 
@@ -67,17 +65,7 @@ job = sampler.run([qc])
 result = job.result()
 print(f" > Counts: {result[0].data.meas.get_counts()}")
 ```
-  </TabItem>
 
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
-from qiskit.primitives import Sampler
-qc.measure_all()
-
-Sampler().run(qc).result().quasi_dists[0]
-```
-  </TabItem>
-</Tabs>
 
 ```
 {2: 1.0}
