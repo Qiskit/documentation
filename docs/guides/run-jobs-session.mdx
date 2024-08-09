@@ -108,7 +108,7 @@ with Session(backend=backend):
 <span id="specify-length"></span>
 ## Session length
 
-You can define the maximum session timeout with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits.
+You can define the maximum session timeout with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits. This timer starts when the session starts.  When the value is reached, the session is closed.  Any jobs that are running will finish, but jobs still queued are failed.
 
 ``` python
 with Session(backend=backend, max_time="25m"):
