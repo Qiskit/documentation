@@ -54,7 +54,9 @@ To determine the maximum TTL and ITTL values for a session, use the [`session.de
 
 ## Batch maximum execution time
 
-Batches have an ITTL value between jobs and a maximum TTL value. If you don't explicitly close a batch, it is deactivated after the ITTL expires and can be reactivated at any time until it reaches its  maximum TTL (usually 28800 seconds, or 8 hours).
+When a batch is started, it is assigned a maximum TTL value. After this TTL is reached, the batch is terminated, any jobs that are already running continue running, and any queued jobs that remain in the batch are put into a failed state. For instructions to set the batch maximum time, see [Specify the batch length.](./run-jobs-batch#specify-batch-length)
+
+Batches also have an ITTL value between jobs that cannot be configured. If you don't explicitly close a batch, it is deactivated after the ITTL expires and can be reactivated at any time until it reaches its  maximum TTL (usually 28800 seconds, or 8 hours).
 
 To determine the ITTL and maximum TTL values for a batch, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `interactive_timeout` and `max_time` values, respectively.
 
