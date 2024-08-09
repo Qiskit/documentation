@@ -35,7 +35,7 @@ class. The batch starts when its first job begins execution.
 from qiskit_ibm_runtime import Batch, Samplerv2 as Sampler, Estimatorv2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
-batch = Batch(service=service, backend=backend)
+batch = Batch(backend=backend)
 estimator = Estimator(mode=batch)
 sampler = Sampler(mode=batch)
 batch.close()
@@ -50,7 +50,7 @@ The context manager automatically opens and closes the batch.
 from qiskit_ibm_runtime import Batch, Samplerv2 as Sampler, Estimatorv2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
-with Batch(service=service, backend=backend):
+with Batch(backend=backend):
   estimator = Estimator()
   sampler = Sampler()
 ```
@@ -61,7 +61,7 @@ When you start a batch,  you must specify a QPU. This can be done by specifying 
 
 ``` python
 service = QiskitRuntimeService()
-with Batch(service=service, backend="ibm_sherbrooke"):
+with Batch(backend="ibm_sherbrooke"):
     ...
 ```
 
@@ -79,7 +79,7 @@ with Batch(backend=backend):
 You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits.
 
 ``` python
-with Batch(service=service, backend=backend, max_time="25m"):
+with Batch(backend=backend, max_time="25m"):
   ...
 ```
 
@@ -91,7 +91,7 @@ There is also an interactive time to live (ITTL) value of 1 second that cannot b
 A batch automatically closes when it exits the context manager. When the batch context manager is exited, the batch is put into "In progress, not accepting new jobs" status. This means that the batch finishes processing all running or queued jobs until the maximum TTL value is reached. After all jobs are completed, the batch is immediately closed. You cannot submit jobs to a closed batch.
 
 ``` python
-with Batch(service=service, backend=backend) as batch:
+with Batch(backend=backend) as batch:
     estimator = Estimator()
     job1 = estimator.run(...)
     job2 = estimator.run(...)
