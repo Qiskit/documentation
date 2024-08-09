@@ -48,9 +48,9 @@ For example, if you specify `max_execution_time=5000` (approximately 83 minutes)
 
 When a session is started, it is assigned a maximum time to live (TTL) value. After this TTL is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state. For instructions to set the session maximum time, see [Specify the session length](./run-jobs-session#specify-length).
 
-Sessions also have an interactive time to live (ITTL) value  between jobs that cannot be configured. If no session jobs are queued within that window, the session is temporarily deactivated.
+Sessions also have an interactive time to live (ITTL) value between jobs that cannot be configured. If no session jobs are queued within that window, the session is temporarily deactivated.
 
-To determine the maximum ITTL and TTL values for a session, use the [`session.details()`  method](run-jobs-session#session-details) and look for the `interactive_timeout` and `max_time` values, respectively.
+To determine the maximum TTL and ITTL values for a session, use the [`session.details()` method](run-jobs-session#session-details) and look for the `interactive_timeout` and `max_time` values, respectively.
 
 ## Batch maximum execution time
 
