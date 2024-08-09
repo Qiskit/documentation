@@ -203,7 +203,7 @@ print(f" > Counts: {job.result().get_counts()}")
 from qiskit_ibm_runtime import Session
 from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     sampler = Sampler()
     job = sampler.run([isa_circuit])
     another_job = sampler.run([another_isa_circuit])
