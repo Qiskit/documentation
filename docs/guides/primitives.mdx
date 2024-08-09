@@ -35,8 +35,6 @@ using Qiskit, you can find reference primitive implementations for local simulat
 Providers like Qiskit Runtime enable access to appropriate QPUs through native implementations of
 their own primitives.
 
-</Admonition>
-
 ## Benefits of Qiskit primitives
 
 For Qiskit users, primitives let you write quantum code for a specific QPU without having to explicitly
@@ -50,7 +48,7 @@ best capabilities.
 
 ## Input
 
-You can specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit.
+You can specify a single circuit and multiple observables (if using Estimator) as primitive unified blocs (PUBs), along with parameter value sets for that circuit. For further details, see [Primitive inputs and outputs.](/guides/primitive-input-output)
 
 <Admonition type="caution" title="Important">
 To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  You can use the [Qiskit transpiler](./transpile) (manually) or the [AI-driven transpilation service (for Premium Plan users)](./qiskit-transpiler-service) to transform the circuits before making queries to the primitives.
@@ -64,7 +62,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 ## Estimator
 
 Estimator computes expectation values of observables with respect to states prepared by quantum circuits.
-It receives an array of primitive unified blocs (PUBs) as the inputs and returns the computed expectation values per pair, along with their
+It receives an array of PUBs as the inputs and returns the computed expectation values per pair, along with their
 standard error, in `PubResult` form. Different Estimator implementations support various configuration options. Each `PubResult` contains both data and metadata. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
 Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.
