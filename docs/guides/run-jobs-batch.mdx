@@ -60,8 +60,9 @@ When you start a batch,  you must specify a QPU. This can be done by specifying 
 **Specify a QPU by name**
 
 ``` python
+backend = service.least_busy(operational=True, simulator=False)
 service = QiskitRuntimeService()
-with Batch(backend="ibm_sherbrooke"):
+with Batch(backend=backend):
     ...
 ```
 

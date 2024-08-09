@@ -92,7 +92,8 @@ When you start a session,  you must specify a QPU. This can be done by specifyin
 
 ``` python
 service = QiskitRuntimeService()
-with Session(backend="ibm_sherbrooke"):
+backend = service.least_busy(operational=True, simulator=False)
+with Session(backend=backend):
     ...
 ```
 
