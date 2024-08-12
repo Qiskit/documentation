@@ -354,7 +354,7 @@ another_isa_circuit = pm.run(another_circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     estimator = Estimator(mode=session)
 
     estimator.options.resilience_level = 1
@@ -412,7 +412,7 @@ options = Options()
 options.optimization_level = 2
 options.resilience_level = 2
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     estimator = Estimator(session=session, options=options)
     job = estimator.run(isa_circuit, isa_observable)
     another_job = estimator.run(another_isa_circuit, another_isa_observable)
@@ -744,7 +744,7 @@ options = Options()
 options.optimization_level = 2
 options.resilience_level = 0
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     sampler = Sampler(session=session, options=options)
     job = sampler.run(isa_circuit)
     another_job = sampler.run(another_isa_circuit)

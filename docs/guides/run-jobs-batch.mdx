@@ -23,12 +23,86 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
 
 ![This diagram illustrates jobs submitted in a batch.  It shows five jobs, numbered 0 through 4, in a queue. The jobs are a mix of Estimator and Sampler.](/images/guides/batch.png 'Figure 1: Batch execution')
 
-There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching.
+## Open a batch
+
+You can open a runtime batch by using the context manager `with Batch(...)` or by initializing the `Batch`
+class. When you start a batch,  you must specify a QPU by passing a `backend` object.  The batch starts when its first job begins execution.
+
+
+**Batch class**
+
+``` python
+from qiskit_ibm_runtime import Batch, Samplerv2 as Sampler, Estimatorv2 as Estimator
+
+backend = service.least_busy(operational=True, simulator=False)
+batch = Batch(backend=backend)
+estimator = Estimator(mode=batch)
+sampler = Sampler(mode=batch)
+batch.close()
+```
+
+
+**Context manager**
+
+The context manager automatically opens and closes the batch.
+
+``` python
+from qiskit_ibm_runtime import Batch, Samplerv2 as Sampler, Estimatorv2 as Estimator
+
+backend = service.least_busy(operational=True, simulator=False)
+with Batch(backend=backend):
+  estimator = Estimator()
+  sampler = Sampler()
+```
+
+<span id="specify-batch-length"></span>
+## Batch length
+
+You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits. This timer starts when the batch starts.  When the value is reached, the batch is closed.  Any jobs that are running will finish, but jobs still queued are failed.
+
+``` python
+with Batch(backend=backend, max_time="25m"):
+  ...
+```
+
+There is also an interactive time to live (ITTL) value of 1 second that cannot be configured.  If no batch jobs are queued within that window, the batch is temporarily deactivated.
+
+<span id="close"></span>
+## Close a batch
+
+A batch automatically closes when it exits the context manager. When the batch context manager is exited, the batch is put into "In progress, not accepting new jobs" status. This means that the batch finishes processing all running or queued jobs until the maximum TTL value is reached. After all jobs are completed, the batch is immediately closed. You cannot submit jobs to a closed batch.
+
+``` python
+with Batch(backend=backend) as batch:
+    estimator = Estimator()
+    job1 = estimator.run(...)
+    job2 = estimator.run(...)
+
+# The batch is no longer accepting jobs but the submitted job will run to completion.
+result = job1.result()
+result2 = job2.result()
+```
+
+If you are not using a context manager, manually close the batch.  If you leave the batch open and submit more jobs to it later, it is possible that the maximum TTL will be reached before the subsequent jobs start running; causing them to be canceled. You can close a batch as soon as you are done submitting jobs to it. When a batch is closed with `batch.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
+
+``` python
+batch = Batch(backend=backend)
+
+# If using qiskit-ibm-runtime earlier than 0.24.0, change `mode=` to `batch=`
+estimator = Estimator(mode=batch)
+job1 = estimator.run(...)
+job2 = estimator.run(...)
+print(f"Result1: {job1.result()}")
+print(f"Result2: {job2.result()}")
+
+# Manually close the batch. Running and queued jobs will run to completion.
+batch.close()
+```
 
 <span id="partition"></span>
-## Example: Partition a list of circuits into multiple jobs and run them in batch
+## Reconfigure jobs for parallel processing
 
-The following example shows how you can partition a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
+There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching. The following example shows how you can partition a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
  ```python
  from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
