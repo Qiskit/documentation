@@ -240,7 +240,7 @@ another_isa_circuit = pm.run(another_circuit)
 isa_observable = observable.apply_layout(isa_circuit.layout)
 another_isa_observable = another_observable.apply_layout(another_isa_circuit.layout)
 
-with Session(service=service, backend=backend) as session:
+with Session(backend=backend) as session:
     estimator = Estimator(mode=session)
 
     estimator.options.resilience_level = 1
