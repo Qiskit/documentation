@@ -26,7 +26,7 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
 ## Open a batch
 
 You can open a runtime batch by using the context manager `with Batch(...)` or by initializing the `Batch`
-class. The batch starts when its first job begins execution.
+class. When you start a batch,  you must specify a QPU by passing a `backend` object.  The batch starts when its first job begins execution.
 
 
 **Batch class**
@@ -53,16 +53,6 @@ backend = service.least_busy(operational=True, simulator=False)
 with Batch(backend=backend):
   estimator = Estimator()
   sampler = Sampler()
-```
-
-When you start a batch,  you must specify a QPU by passing a `backend` object.
-
-Example:
-
-``` python
-backend = service.least_busy(operational=True, simulator=False)
-with Batch(backend=backend):
-  ...
 ```
 
 <span id="specify-batch-length"></span>
