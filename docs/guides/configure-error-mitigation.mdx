@@ -121,7 +121,7 @@ values](https://arxiv.org/abs/2012.09738).
 
 ### Example
 
-The `Estimator` interface lets users seamlessly work with the variety of
+The `EstimatorV2` interface lets users seamlessly work with the variety of
 error mitigation methods to reduce error in expectation values of
 observables. The following code uses Zero Noise Extrapolation and readout error mitigation by simply
 setting `resilience_level 2`.
@@ -172,9 +172,9 @@ print(f">>> measurement error mitigation is turned on: {estimator.options.resili
 
   <TabItem value="Sampler" label="Sampler">
 ```python
-from qiskit_ibm_runtime import SamplerV2 as Sampler, Options
+from qiskit_ibm_runtime import SamplerV2 as Sampler
 
-# Estimator and Sampler now have different options
+# Estimator and Sampler have different options
 options = sampler.options
 
 options.dynamical_decoupling.enable = True

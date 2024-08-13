@@ -31,7 +31,7 @@ service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the QPU you want to use to calculate the expectation value.
+Because Qiskit Runtime Estimator is a managed service, you first need to initialize your account. You can then select the QPU you want to use to calculate the expectation value.
 
 Follow the steps in the [Install and set up topic](install-qiskit) if you don't already have an account.
 
@@ -45,7 +45,7 @@ estimator = Estimator(mode=backend)
 
 ### 2. Create a circuit and an observable
 
-You need at least one circuit and one observable as inputs to the `Estimator` primitive.
+You need at least one circuit and one observable as inputs to the Estimator primitive.
 
 ```python
 import numpy as np
@@ -75,9 +75,7 @@ isa_observable = observable.apply_layout(isa_circuit.layout)
 
 ### 3. Initialize Qiskit Runtime Estimator
 
-When you initialize the `Estimator`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
-
-To use the Estimator, import the **EstimatorV2** class. The **Estimator** class still refers to the version 1 Estimator, for backwards compatibility.
+When you initialize the Estimator, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
 ```python
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
@@ -118,7 +116,7 @@ Output
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the QPU you want to use to calculate the expectation value.
+Because Qiskit Runtime Sampler is a managed service, you first need to initialize your account. You can then select the QPU you want to use to calculate the expectation value.
 
 Follow the steps in the [Install and set up topic](install-qiskit) if you don't already have an account set up.
 
@@ -131,7 +129,7 @@ backend = service.least_busy(operational=True, simulator=False, min_num_qubits=1
 
 ### 2. Create a circuit
 
-You need at least one circuit as the input to the `Sampler` primitive.
+You need at least one circuit as the input to the Sampler primitive.
 
 ```python
 import numpy as np
@@ -155,9 +153,7 @@ isa_circuit = pm.run(circuit)
 
 ### 3. Initialize the Qiskit Runtime Sampler
 
-When you initialize the `Sampler`, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
-
-To use the Sampler, import the **SamplerV2** class. The **Sampler** class still refers to the version 1 Sampler, for backward compatibility.
+When you initialize the Sampler, use the `mode` parameter to specify the mode you want it to run in.  Possible values are `batch`, `session`, or `backend` objects for batch, session, and job execution mode, respectively. For more information, see [Introduction to Qiskit Runtime execution modes.](execution-modes)
 
 ```python
 from qiskit_ibm_runtime import SamplerV2 as Sampler
@@ -198,8 +194,8 @@ Counts for the meas output register: {'0111': 50, '0000': 243, '0001': 101, '010
 Unlike provider-specific primitives, backend primitives are generic implementations that can be used with an arbitrary
 `backend` object, as long as it implements the [`Backend`](/api/qiskit/qiskit.providers.Backend) interface.
 
-- The `Sampler` primitive can be run with any provider by using [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2).
-- The `Estimator` primitive can be run with any provider by using [`qiskit.primitives.BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2).
+- The Sampler primitive can be run with any provider by using [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2).
+- The Estimator primitive can be run with any provider by using [`qiskit.primitives.BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2).
 
 Some providers implement primitives natively.  See the [Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#provider) for details.
 
@@ -236,7 +232,7 @@ backend primitives are designed to run locally in the user's machine.
 
 - The [`qiskit.primitives.BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) class requires a backend that supports the `memory` option.
 
-- The backend primitive interfaces expose custom [`Sampler`](/api/qiskit/qiskit.primitives.BackendSamplerV2) and [`Estimator`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) `Options` that are different from the Runtime implementations.
+- The backend primitive interfaces expose custom [`SamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) and [`EstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) `Options` that are different from the Runtime implementations.
 
 
 ## Next steps

@@ -26,7 +26,7 @@ You can pass in an instance of the options class or a dictionary when initializi
 
 #### Options class
 
-When creating an instance of the `Estimator` or `Sampler` class, you can pass in an instance of the options class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`
+When creating an instance of the `EstimatorV2` or `SamplerV2` class, you can pass in an instance of the options class. Those options will then be applied when you use `run()` to perform the calculation.  Specify the options in this format:  `options.option.sub-option.sub-sub-option = choice`.  For example: `options.dynamical_decoupling.enable = True`
 
 Example:
 
@@ -228,7 +228,7 @@ Example:
 Turn off all error mitigation and suppression in Estimator.
 
 ```python
-from qiskit_ibm_runtime import EstimatorV2 as Estimator, Options, QiskitRuntimeService
+from qiskit_ibm_runtime import EstimatorV2 as Estimator, QiskitRuntimeService
 
 # Define the service.  This allows you to access IBM QPU.
 service = QiskitRuntimeService()
@@ -249,8 +249,8 @@ options.resilience_level = 0
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Find more details about the `Estimator` methods in the [Estimator API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator#estimator).
-    - Find more details about the `Sampler` methods in the [Sampler API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#sampler).
+    - Find more details about the `EstimatorV2` methods in the [Estimator API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2).
+    - Find more details about the `SamplerV2` methods in the [Sampler API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2).
     - Find all available options in the [Options API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options).
     - Find details about how to configure [error suppression](configure-error-suppression) and [error mitigation](configure-error-mitigation).
     - Decide what [execution mode](execution-modes) to run your job in.

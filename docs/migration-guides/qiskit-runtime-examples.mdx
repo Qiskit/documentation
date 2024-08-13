@@ -46,7 +46,7 @@ result = backend.run(isa_circuits)
   </TabItem>
 </Tabs>
 
-**Primitives model:** Access real QPUs through the `qiskit-ibm-runtime` **primitives** (`Sampler` and `Estimator`). Use **Local testing mode** to run local simulations on Qiskit Runtime fake backends or Aer simulators. The following examples assume you have defined circuits `isa_circuits` and observables `isa_observables`.
+**Primitives model:** Access real QPUs through the `qiskit-ibm-runtime` **primitives** (Sampler and Estimator). Use **Local testing mode** to run local simulations on Qiskit Runtime fake backends or Aer simulators. The following examples assume you have defined circuits `isa_circuits` and observables `isa_observables`.
 
 
 <Tabs>
@@ -262,9 +262,9 @@ expectation:  -1.065734058826613
 The Sampler primitive is used to design an algorithm that samples
 circuits and extracts probability distributions.
 
-Both `Sampler` and `backend.run()` take in circuits as inputs. The main
+Both `SamplerV2` and `backend.run()` take in circuits as inputs. The main
 difference is the format of the output: `backend.run()` outputs
-**counts**, while `Sampler` returns **per-shot measurements** (but has convenience methods to also return counts).
+**counts**, while `SamplerV2` returns **per-shot measurements** (but has convenience methods to also return counts).
 
 
 **Backend.run() model:** In this model, you used the `qiskit-ibmq-provider` or the `qiskit-ibm-provider` module to access real QPUs and remote simulators. To run **local** simulations, you could import a specific simulator from `qiskit-aer`. All of them followed the `backend.run()` interface.
@@ -352,7 +352,7 @@ result = job.result()
 <span id="sampler-example"></span>
 ### End-to-end example
 
-The following example shows an end-to-end example of sampling a circuit by using `backend.run()` and `Sampler`.
+The following example shows an end-to-end example of sampling a circuit by using `backend.run()` and Sampler.
 
 #### 1. Problem definition
 
@@ -360,7 +360,7 @@ We want to find the probability distribution
 associated with a quantum state:
 
 <Admonition type="attention" title="Important">
-When using the `Sampler` primitive, the circuit **must contain measurements**.
+When using the Sampler primitive, the circuit **must contain measurements**.
 </Admonition>
 
 <Tabs>

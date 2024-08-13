@@ -46,29 +46,16 @@ For hardware providers, implementing primitives natively means you can provide y
 way to access your hardware features. It is therefore easier for your users to benefit from your hardware's
 best capabilities.
 
-## Input
-
-You can specify a single circuit and multiple observables (if using Estimator) as primitive unified blocs (PUBs), along with parameter value sets for that circuit. For further details, see [Primitive inputs and outputs.](/guides/primitive-input-output)
-
-<Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  You can use the [Qiskit transpiler](./transpile) (manually) or the [AI-driven transpilation service (for Premium Plan users)](./qiskit-transpiler-service) to transform the circuits before making queries to the primitives.
-
-*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
-
-``` python
-service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
-```
-</Admonition>
-
 ## Estimator
 
-Estimator computes expectation values of observables with respect to states prepared by quantum circuits.
-It receives an array of PUBs as the inputs and returns the computed expectation values per pair, along with their
-standard error, in `PubResult` form. Different Estimator implementations support various configuration options. Each `PubResult` contains both data and metadata. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
+Estimator computes expectation values of observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
-Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.
+The input is an array of PUBs. Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.  Different Estimator implementations support various configuration options.
 
-Estimator combines elements from observables and parameter values by following NumPy broadcasting rules as described below.
+The output is a `PubResult` that contains the computed expectation values per pair, and their standard errors, in `PubResult` form. Each `PubResult` contains both data and metadata.
+
+
+Estimator combines elements from observables and parameter values by following NumPy broadcasting rules as described in the [Primitive inputs and outputs](primitive-input-output#broadcasting-rules) topic.
 
 Example:
 
@@ -76,99 +63,14 @@ Example:
 estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, param_values2)])
 ```
 
-<span id="broadcast-rules"></span>
-### Broadcasting rules
-
-Estimator aggregates elements from multiple arrays (observables and parameter values) by following the same broadcasting rules as NumPy. This section summarizes those rules.  For a detailed explanation, see the [NumPy broadcasting rules documentation.](https://numpy.org/doc/stable/user/basics.broadcasting.html)
-
-Rules:
-
-* Input arrays do not need to have the same number of dimensions.
-  * The resulting array will have the same number of dimensions as the input array with the largest dimension.
-  * The size of each dimension is the largest size of the corresponding dimension.
-  * Missing dimensions are assumed to have size one.
-* Shape comparisons start with the rightmost dimension and continue to the left.
-* Two dimensions are compatible if their sizes are equal or if one of them is 1.
-
-Examples of array pairs that broadcast:
-
-```text
-A1     (1d array):      1
-A2     (2d array):  3 x 5
-Result (2d array):  3 x 5
-
-
-A1     (3d array):  11 x 2 x 7
-A2     (3d array):  11 x 1 x 7
-Result (3d array):  11 x 2 x 7
-```
-
-Examples of array pairs that do not broadcast:
-
-```text
-A1     (1d array):  5
-A2     (1d array):  3
-
-A1     (2d array):      2 x 1
-A2     (3d array):  6 x 5 x 4 # This would work if the middle dimension were 2, but it is 5.
-```
-
-`EstimatorV2` returns one expectation value estimate for each element of the broadcasted shape.
-
-Here are some examples of common patterns expressed in terms of array broadcasting.  Their accompanying visual representation is shown in the figure that follows:
-
-```python
-# Broadcast single observable
-
-parameter_values = np.random.uniform(size=(5,))  # shape (5,)
-observables = SparsePauliOp("ZZZ")  # shape ()
->> pub result has shape (5,)
-
-# Zip
-parameter_values = np.random.uniform(size=(5,))  # shape (5,)
-observables = [SparsePauliOp(pauli) for pauli in ["III", "XXX", "YYY", "ZZZ", "XYZ"]]  # shape (5,)
->> pub result has shape (5,)
-
-# Outer/Product
-parameter_values = np.random.uniform(size=(1, 6))  # shape (1, 6)
-observables = [[SparsePauliOp(pauli)] for pauli in ["III", "XXX", "YYY", "ZZZ"]]  # shape (4, 1)
->> pub result has shape (4, 6)
-
-# Standard nd generalization
-parameter_values = np.random.uniform(size=(3, 6))  # shape (3, 6)
-observables = [
-    [[SparsePauliOp(['XII'])], [SparsePauliOp(['IXI'])], [SparsePauliOp(['IIX'])]],
-    [[SparsePauliOp(['ZII'])], [SparsePauliOp(['IZI'])], [SparsePauliOp(['IIZ'])]]
-]  # shape (2, 3, 1)
->> pub result has shape (2, 3, 6)
-```
-
-![Parameter value sets are represented by n x m arrays, and observable arrays are represented by one or more single-column arrays. For each example in the previous code, the parameter value sets are combined with their observable array to create the resulting EV estimates.  Example 1 (broadcast single observable) has a parameter value set that is a 5x1 array and a 1x1 observables array.  The one item in the observables array is combined with each item in the parameter value set to create a single 5x1 array where each item is a combination of the original item in the parameter value set with the item in the observables array.  Example 2 (zip) has a 5x1 parameter value set and a 5x1 observables array.  The output is a 5x1 array where each item is a combination of the nth item in the parameter value set with the nth item in the observables array.  Example 3 (outer/product) has a 1x6 parameter value set and a 4x1 observables array.  Their combination results in a 4x6 array that is created by combining each item in the parameter value set with *every* item in the observables array.  Thus, each parameter value becomes an entire column in the output.  Example 4 (Standard nd generalization) has a 3x6 parameter value set array and two 3x1 observables array.  They combine to create two 3x6 output arrays in a similar manner to the previous example.](/images/guides/broadcasting.svg "Visual representation of broadcasting")
-
-<Admonition type="tip" title="SparsePauliOp">
-Each `SparsePauliOp` counts as a single element in this context, regardless of the number of Paulis contained in the `SparsePauliOp`. Thus, for the purpose of these broadcasting rules, all of the following elements have the same shape:
-
-```text
-a = SparsePauliOp("Z") # shape ()
-b = SparsePauliOp("IIIIZXYIZ") # shape ()
-c = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
-```
-
-The following lists of operators, while equivalent in terms of information contained, have different shapes:
-
-```text
-list1 = SparsePauliOp.from_list(["XX", "XY", "IZ"]) # shape ()
-list2 = [SparsePauliOp("XX"), SparsePauliOp("XY"), SparsePauliOp("IZ")] # shape (3, )
-```
-</Admonition>
-
 <span id="sampler"></span>
 ## Sampler
 
-Sampler's core task is sampling the output register from execution of quantum circuits. It receives one or more PUBs as the inputs and returns counts or per-shot measurements, as `PubResult` objects, without weights. The result class, however, has methods to return weighted samples, such as counts. The input circuits
-can be parametrized, as long as the parameter values are also provided as input to the primitive.
+Sampler's core task is sampling the output register from execution of quantum circuits. The input circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
-The input PUBs have the format  (`<single circuit>`, `<optional one or more parameter values>`, `<optional shots>`), where there can be multiple `parameter values` items, and each item can be either an array or a single parameter, depending on the chosen circuit.
+The input is one or more PUBs, in the format  (`<single circuit>`, `<optional one or more parameter values>`, `<optional shots>`), where there can be multiple `parameter values` items, and each item can be either an array or a single parameter, depending on the chosen circuit.
+
+The output is counts or per-shot measurements, as `PubResult` objects, without weights. The result class, however, has methods to return weighted samples, such as counts.
 
 Input and output notes:
 
@@ -186,7 +88,7 @@ Example:
 ```python
 sampler.run([
   (circuit1, param_values1, shots1),
-  (circuit2, param_values2, shots_2),
+  (circuit2, param_values2, shots2),
 ])
 ```
 

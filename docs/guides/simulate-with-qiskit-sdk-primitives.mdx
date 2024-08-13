@@ -8,14 +8,14 @@ The reference primitives in the Qiskit SDK perform local statevector simulations
 modeling device noise, but are useful for quickly prototyping algorithms before looking into more advanced simulation
 techniques ([using Qiskit Aer](./simulate-stabilizer-circuits)) or running on real devices ([Qiskit Runtime primitives](primitives)).
 
-The `Estimator` primitive can compute expectation values of circuits, and the `Sampler` primitive can sample
+The Estimator primitive can compute expectation values of circuits, and the Sampler primitive can sample
 from output distributions of circuits.
 
 The following sections show how to use the reference primitives to run your workflow locally.
 
-## Use the reference `Estimator`
+## Use the reference Estimator
 
-The reference implementation of `Estimator` in `qiskit.primitives` that runs on a local statevector
+The reference implementation of `EstimatorV2` in `qiskit.primitives` that runs on a local statevector
 simulators is the [`StatevectorEstimator`](../api/qiskit/qiskit.primitives.StatevectorEstimator) class. It can take circuits, observables, and parameters as inputs and returns the locally computed expectation values.
 
 The following code prepares the inputs that will be used in the examples that follow. The expected input type for the
@@ -122,9 +122,9 @@ estimator.run([(isa_circuit1, isa_obs_array1), (isa_circuit2, isa_obs_array_2)],
 
 For a full example, see the [Primitives examples](primitives-examples#estimator-examples) page.
 
-## Use the reference `Sampler`
+## Use the reference Sampler
 
-The reference implementations of `Sampler` in `qiskit.primitives` is the [`StatevectorSampler`](../api/qiskit/qiskit.primitives.StatevectorSampler) class. It takes circuits and parameters as inputs and returns the results from sampling from the output probability distributions as a quasi-probability distribution of output states.
+The reference implementations of `SamplerV2` in `qiskit.primitives` is the [`StatevectorSampler`](../api/qiskit/qiskit.primitives.StatevectorSampler) class. It takes circuits and parameters as inputs and returns the results from sampling from the output probability distributions as a quasi-probability distribution of output states.
 
 The following code prepares the inputs used in the examples that follow. Note that
 these examples run a single parametrized circuit, but you can also run the Sampler
@@ -158,7 +158,7 @@ Any quantum circuit passed to a Sampler **must** include measurements.
   ```
 </Admonition>
 
-### Initialize `Sampler`
+### Initialize `SamplerV2`
 
 Instantiate [`qiskit.primitives.StatevectorSampler`](../api/qiskit/qiskit.primitives.StatevectorSampler):
 
