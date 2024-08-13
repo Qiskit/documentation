@@ -6,7 +6,7 @@ description: How to perform exact simulation of quantum circuits using primitive
 
 The reference primitives in the Qiskit SDK perform local statevector simulations. These simulations do not support
 modeling device noise, but are useful for quickly prototyping algorithms before looking into more advanced simulation
-techniques ([using Qiskit Aer](./simulate-stabilizer-circuits)) or running on real devices ([Qiskit Runtime primitives](./primitives)).
+techniques ([using Qiskit Aer](./simulate-stabilizer-circuits)) or running on real devices ([Qiskit Runtime primitives](primitives)).
 
 The `Estimator` primitive can compute expectation values of circuits, and the `Sampler` primitive can sample
 from output distributions of circuits.
@@ -111,7 +111,7 @@ By default, the reference Estimator performs an exact statevector calculation ba
 However, this can be modified to introduce the effect of the sampling overhead (also known as "shot noise").
 
 Estimator accepts a `precision` argument that expresses the error bars that the
-primitive implementation should target for expectation values estimates.  This is the sampling overhead and is defined exclusively in the `.run()` method. This allows you to fine-tune the option all the way to the PUB level.
+primitive implementation should target for expectation values estimates.  This is the sampling overhead and is defined exclusively in the `.run()` method. This  lets you fine-tune the option all the way to the PUB level.
 
 This example assumes you have defined two circuits, each with its own array of observables.
 
@@ -119,7 +119,7 @@ This example assumes you have defined two circuits, each with its own array of o
 # Estimate expectation values for two PUBs, both with 0.05 precision.
 estimator.run([(isa_circuit1, isa_obs_array1), (isa_circuit2, isa_obs_array_2)], precision=0.05)
 ```
-()
+
 For a full example, see the [Primitives examples](primitives-examples#estimator-examples) page.
 
 ## Use the reference `Sampler`
@@ -207,8 +207,9 @@ print(f" > Result class: {type(pub_result)}")
 
 Measurement outcome samples are returned as **bitstrings** or **counts**. The bitstrings show the measurement outcomes, preserving the shot order in which they were measured. The Sampler result objects organize data in terms of their input circuits' classical register names, for compatibility with dynamic circuits.
 
-<Admonition> The name of the classical register defaults to `"meas"`.
- This name will be used later to access the measurement bitstrings.</Admonition>
+<Admonition>
+The name of the classical register defaults to `"meas"`. This name will be used later to access the measurement bitstrings.
+ </Admonition>
 
 ```python
  # Define quantum circuit with 2 qubits
@@ -264,8 +265,6 @@ This example assumes you have defined two circuits.
  # for the lack of parameter values in this example.
  sampler.run([(isa_circuit1, None, 123), (isa_circuit2, None, 456)])
  ```
-
-<Tabs>
 
 For a full example, see the [Primitives examples](./primitives-examples#sampler-examples) page.
 ## Next steps
