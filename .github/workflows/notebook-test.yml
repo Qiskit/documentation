@@ -65,7 +65,9 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
-          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed }}
+          # Install Linux deps if the specific guides were changed, or
+          # if all files are being tested.
+          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed || !steps.all-changed-files.outputs.any_changed }}
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
 
       - name: Check lint
