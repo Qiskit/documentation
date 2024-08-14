@@ -92,7 +92,9 @@ jobs:
         run: |
           import subprocess
           files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
-          args = ["tox", "--"] + files.split("\n") + ["--write"]
+          args = ["tox", "--", "--write"]
+          if files:
+              args.extend(files.split("\n"))
           subprocess.run(args, check=True)
 
       - name: Upload executed notebooks
