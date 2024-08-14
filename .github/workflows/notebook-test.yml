@@ -67,7 +67,7 @@ jobs:
         with:
           # Install Linux deps if the specific guides were changed, or
           # if all files are being tested.
-          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed || !steps.all-changed-files.outputs.any_changed }}
+          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed == 'true' || steps.all-changed-files.outputs.any_changed == 'false' }}
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
 
       - name: Check lint
