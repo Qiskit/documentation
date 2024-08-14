@@ -1,0 +1,97 @@
+---
+title: AIRouting
+description: API reference for qiskit_transpiler_service.ai.AIRouting
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_transpiler_service.ai.AIRouting
+---
+
+# AIRouting
+
+<Class id="qiskit_transpiler_service.ai.AIRouting" isDedicatedPage={true} signature="qiskit_transpiler_service.ai.AIRouting(backend_name: str | None = None, coupling_map: list[list[int]] | None = None, optimization_level: int = 2, layout_mode: str = 'OPTIMIZE')" modifiers="class">
+  Bases: [`TransformationPass`](/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v1.1)")
+
+  The AIRouting pass acts both as a layout stage and a routing stage.
+
+  **Parameters**
+
+  *   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, optional*) – Name of the backend used for doing the transpilation.
+  *   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]], optional*) – A list of pairs that represents physical links between qubits.
+  *   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – With a range from 1 to 3, determines the computational effort to spend in the process (higher usually gives better results but takes longer), defaults to 2.
+  *   **layout\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Specifies how to handle the layout selection. There are 3 layout modes: keep (respects the layout set by the previous transpiler passes), improve (uses the layout set by the previous transpiler passes as a starting point) and optimize (ignores previous layout selections), defaults to OPTIMIZE.
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit_transpiler_service.ai.AIRouting.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_transpiler_service.ai.AIRouting.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_transpiler_service.ai.AIRouting.run" signature="run(dag)">
+    Run the AIRouting pass on dag.
+
+    **Parameters**
+
+    **dag** (*DAGCircuit*) – the directed acyclic graph to be mapped.
+
+    **Returns**
+
+    A dag mapped to be compatible with the coupling\_map.
+
+    **Return type**
+
+    DAGCircuit
+
+    **Raises**
+
+    *   **TranspilerError** – if the coupling map or the layout are not
+    *   **compatible with the DAG**\*\*, or \*\***if the coupling\_map=None** –
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_transpiler_service.ai.AIRouting.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")
+  </Function>
+</Class>
+
