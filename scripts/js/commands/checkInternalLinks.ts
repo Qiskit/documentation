@@ -106,6 +106,7 @@ const RUNTIME_GLOBS_TO_LOAD = [
   "docs/guides/*.{mdx,ipynb}",
   "docs/migration-guides/*.{mdx,ipynb}",
 ];
+const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/0.44.mdx",
   "docs/api/qiskit/release-notes/0.45.mdx",
@@ -130,6 +131,11 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     PROVIDER_GLOBS_TO_LOAD,
     args.historicalApis,
   );
+  const transpiler = await determineHistoricalFileBatches(
+    "qiskit-transpiler-service",
+    TRANSPILER_GLOBS_TO_LOAD,
+    args.historicalApis,
+  );
   const runtime = await determineHistoricalFileBatches(
     "qiskit-ibm-runtime",
     RUNTIME_GLOBS_TO_LOAD,
@@ -143,7 +149,7 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     args.qiskitReleaseNotes,
   );
 
-  result.push(...provider, ...runtime, ...qiskit);
+  result.push(...provider, ...transpiler, ...runtime, ...qiskit);
 
   if (args.qiskitReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());
