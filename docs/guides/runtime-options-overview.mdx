@@ -44,7 +44,7 @@ Options can be defined before a primitive is constructed and passed to the primi
 
 <Tabs>
   <TabItem value="EstimatorV2" label="Estimator V2">
-  - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC.
+  - [Resilience](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, PEA, and PEC.
   - [Dynamical decoupling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions): Options for dynamical decoupling.
   - [Execution](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2): Primitive execution options, including whether to initialize qubits and the repetition delay.
   - [Twirling](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
@@ -110,8 +110,8 @@ Scroll to see the full table.
 |                      | [pec](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.PecOptions)   | max_overhead            |  `None`/ integer >1          | `100`                      |                      |
 |                      |                          | noise_gain              |  `auto`/ float in the range `[0, 1]`                                                     | `auto`                    |                      |
 |                      | zne_mitigation           |                         | `True`/`False`                                                                         | `False`                     |                      |
-|                      | [zne](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions)                      | noise_factors           |   list of floats; each float >= 1     | `(1, 3, 5)`           |                      |
-|                      |                          | amplifier               | `gate_folding`, `gate_folding_front`, `gate_folding_back                                 `  | `gate_folding` |                      |
+|                      | [zne](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions)                      | noise_factors           |   list of floats; each float >= 1     | `(1, 1.5, 2)` for PEA, and `(1, 3, 5)` otherwise. |                      |
+|                      |                          | amplifier               | `gate_folding`, `gate_folding_front`, `gate_folding_back, pea                              `  | `gate_folding` |                      |
 |                      |                          | extrapolator            | one or more of `'exponential'`<br />`'linear'`<br />`'double_exponential'`<br />`'polynomial_degree_(1 <= k <= 7)'` | (`'exponential'`, `'linear'`) |                      |
 | [resilience_level](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)     |                          |                         | `0`/`1`/`2`    | `1`                         |     resilience_level   |
 | [seed_estimator](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions)       |                          |                         |  integer         |     `None`               |   seed_estimator   |
