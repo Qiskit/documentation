@@ -14,15 +14,53 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.1.2
+
+<span id="relnotes-1-1-2-prelude" />
+
+### Prelude
+
+Qiskit 1.1.2 is a minor bugfix release for the 1.1 series.
+
+<span id="relnotes-1-1-2-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug in [`BitArray.from_counts()`](/api/qiskit/qiskit.primitives.BitArray#from_counts "qiskit.primitives.BitArray.from_counts") and [`BitArray.from_samples()`](/api/qiskit/qiskit.primitives.BitArray#from_samples "qiskit.primitives.BitArray.from_samples"). Previously these would raise an error if given data containing only zeros, and no value for the optional argument `num_bits`. Now they produce a [`BitArray`](/api/qiskit/qiskit.primitives.BitArray "qiskit.primitives.BitArray") with [`BitArray.num_bits`](/api/qiskit/qiskit.primitives.BitArray#num_bits "qiskit.primitives.BitArray.num_bits") set to 1.
+
+*   Fixed a missing decorator in [`C3SXGate`](/api/qiskit/qiskit.circuit.library.C3SXGate "qiskit.circuit.library.C3SXGate") that made it fail if [`Gate.to_matrix()`](/api/qiskit/qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix") was called. The gate matrix is now return as expected.
+
+*   Added missing Clifford gates to the [`CollectCliffords`](/api/qiskit/qiskit.transpiler.passes.CollectCliffords "qiskit.transpiler.passes.CollectCliffords") transpiler pass. In particular, we have added the gates [`ECRGate`](/api/qiskit/qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), [`DCXGate`](/api/qiskit/qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate"), `iSWAPGate`, [`SXGate`](/api/qiskit/qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate") and [`SXdgGate`](/api/qiskit/qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate") to this transpiler pass.
+
+*   The [`QuantumCircuit.parameters`](/api/qiskit/qiskit.circuit.QuantumCircuit#parameters "qiskit.circuit.QuantumCircuit.parameters") attribute will now correctly be empty when using [`QuantumCircuit.copy_empty_like()`](/api/qiskit/qiskit.circuit.QuantumCircuit#copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like") on a parametric circuit. Previously, an internal cache would be copied over without invalidation. Fix [#12617](https://github.com/Qiskit/qiskit/issues/12617).
+
+*   Fix the [`SolovayKitaev`](/api/qiskit/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev") transpiler pass when loading basic approximations from an existing `.npy` file. Previously, loading a stored approximation which allowed for further reductions (e.g. due to gate cancellations) could cause a runtime failure. Additionally, the global phase difference of the U(2) gate product and SO(3) representation was lost during a save-reload procedure. Fixes [Qiskit/qiskit#12576](https://github.com/Qiskit/qiskit/issues/12576).
+
+*   Fixed an issue with [`dag_drawer()`](/api/qiskit/qiskit.visualization.dag_drawer "qiskit.visualization.dag_drawer") and [`DAGCircuit.draw()`](/api/qiskit/qiskit.dagcircuit.DAGCircuit#draw "qiskit.dagcircuit.DAGCircuit.draw") when attempting to visualize a [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") instance that contained [`Var`](/api/qiskit/circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") wires. The visualizer would raise an exception trying to do this which has been fixed so the expected visualization will be generated.
+
+*   The constructor [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") previously allowed malformed backends to be constructed because it accepted basis gates that couldn’t be allocated given the backend size. For example, a backend with a single qubit could previously accept a basis with two-qubit gates.
+
+*   The OpenQASM 2 parser ([`qiskit.qasm2`](/api/qiskit/qasm2#module-qiskit.qasm2 "qiskit.qasm2")) can now handle conditionals with integers that do not fit within a 64-bit integer. Fixed [#12773](https://github.com/Qiskit/qiskit/issues/12773).
+
+*   Previously, [`DAGCircuit.replace_block_with_op()`](/api/qiskit/qiskit.dagcircuit.DAGCircuit#replace_block_with_op "qiskit.dagcircuit.DAGCircuit.replace_block_with_op") allowed an `n`-qubit operation to be placed onto a block of `m` qubits, leaving the DAG in an invalid state. This behavior has been fixed, and any attempt to do this will now raise a [`DAGCircuitError`](/api/qiskit/dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") as expected.
+
+<span id="relnotes-1-1-1" />
+
+<span id="id2" />
+
 ## 1.1.1
 
 <span id="relnotes-1-1-1-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 Qiskit 1.1.1 is a minor bugfix release for the 1.1 series.
 
 <span id="relnotes-1-1-1-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -44,13 +82,13 @@ Qiskit 1.1.1 is a minor bugfix release for the 1.1 series.
 
 <span id="relnotes-1-1-0" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 1.1.0
 
 <span id="relnotes-1-1-0-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -454,7 +492,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 ### Quantum Information Features
 
-*   Added a new [`Pauli.apply_layout()`](/api/qiskit/qiskit.quantum_info.Pauli#apply_layout "qiskit.quantum_info.Pauli.apply_layout") that is equivalent to the [`SparsePauliOp.apply_layout()`](/api/qiskit/qiskit.quantum_info.SparsePauliOp#apply_layout "qiskit.quantum_info.SparsePauliOp.apply_layout"). This method is used to apply a [`TranspileLayout`](/api/qiskit/qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") layout from the transpiler to a [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") observable that was built for an input circuit. This enables working with `BaseEstimator` / [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") implementations and local transpilation when the input is of type [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"). For example:
+*   Added a new [`apply_layout()`](/api/qiskit/qiskit.quantum_info.Pauli#apply_layout "qiskit.quantum_info.Pauli.apply_layout") method that is equivalent to [`apply_layout()`](/api/qiskit/qiskit.quantum_info.SparsePauliOp#apply_layout "qiskit.quantum_info.SparsePauliOp.apply_layout"). This method is used to apply a [`TranspileLayout`](/api/qiskit/qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") layout from the transpiler to a [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") observable that was built for an input circuit. This enables working with `BaseEstimator` / [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") implementations and local transpilation when the input is of type [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"). For example:
 
     ```python
     from qiskit.circuit.library import RealAmplitudes
@@ -775,7 +813,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 <span id="relnotes-1-1-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
@@ -872,9 +910,9 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 ### Other Notes
 
-*   Support for the arm64 macOS platform has been promoted from Tier 3 to Tier 1. Previously the platform was at Tier 3 because there was no available CI environment for testing Qiskit on the platform. Now that Github has made an arm64 macOS environment available to open source projects [\[1\]](#id6) we’re testing the platform along with the other Tier 1 supported platforms.
+*   Support for the arm64 macOS platform has been promoted from Tier 3 to Tier 1. Previously the platform was at Tier 3 because there was no available CI environment for testing Qiskit on the platform. Now that Github has made an arm64 macOS environment available to open source projects [\[1\]](#id9) we’re testing the platform along with the other Tier 1 supported platforms.
 
-    \[[1](#id5)]
+    \[[1](#id8)]
 
     [https://github.blog/changelog/2024-01-30-github-actions-introducing-the-new-m1-macos-runner-available-to-open-source/](https://github.blog/changelog/2024-01-30-github-actions-introducing-the-new-m1-macos-runner-available-to-open-source/)
 
@@ -886,7 +924,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 <span id="relnotes-1-0-0rc1-providers-upgrade-notes" />
 
-<span id="id7" />
+<span id="id10" />
 
 ### Providers Upgrade Notes
 

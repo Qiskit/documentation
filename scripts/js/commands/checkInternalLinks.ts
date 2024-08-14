@@ -103,7 +103,8 @@ const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
-  "docs/guides/local-testing-mode.ipynb",
+  "docs/guides/*.{mdx,ipynb}",
+  "docs/migration-guides/*.{mdx,ipynb}",
 ];
 const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/0.44.mdx",
