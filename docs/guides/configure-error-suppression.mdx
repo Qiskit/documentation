@@ -12,16 +12,6 @@ Primitives support a number of error suppression techniques, including [dynamica
 
 Estimator employs error suppression and mitigation by default. If you don't want any processing done to your input circuits, follow the instructions in the [Turn off all error mitigation and error suppression](specify-runtime-options#no-error-mitigation) section.
 
-<Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.
-
-*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
-
-``` python
-service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
-```
-</Admonition>
-
 <span id="transpilation-table"></span>
 ## Advanced error suppression options
 

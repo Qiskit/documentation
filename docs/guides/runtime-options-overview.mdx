@@ -8,17 +8,6 @@ description: Available options for building with Qiskit Runtime primitives
 
  You can pass options to primitives to customize them to meet your needs. This section focuses on Qiskit Runtime primitive options. While the interface of the primitives' `run()`  method is common across all implementations, their options are not. Consult the corresponding API references for information about the [`qiskit.primitives`](/api/qiskit/primitives#primitives) and [`qiskit_aer.primitives`](https://qiskit.github.io/qiskit-aer/apidocs/aer_primitives.html) options.
 
-
-<Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (quantum processing unit) before being submitted to the Qiskit Runtime primitives.  These are referred to as *instruction set architecture (ISA)* circuits and observables. See the [transpilation documentation](./transpile) for instructions to transform circuits.
-
-*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
-
-``` python
-service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
-```
-</Admonition>
-
 ## Overview
 
 <span id="options-structure"></span>

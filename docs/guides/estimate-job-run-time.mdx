@@ -15,16 +15,6 @@ Quantum time is the duration, in seconds, a QPU is committed to fulfilling a use
     - This is not yet available on the Qiskit Runtime on IBM Cloud&reg; channel.
 </Admonition>
 
-<Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.
-
-*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
-
-``` python
-service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
-```
-</Admonition>
-
 Example:
 
 ```python
