@@ -46,7 +46,7 @@ The public classes correspond to the standard classes [`Instruction`](qiskit.cir
 
 ### SingletonInstruction
 
-<Class id="qiskit.circuit.singleton.SingletonInstruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/singleton.py#L503-L522" signature="qiskit.circuit.singleton.SingletonInstruction(*args, _force_mutable=False, **kwargs)" modifiers="class">
+<Class id="qiskit.circuit.singleton.SingletonInstruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/singleton.py#L503-L522" signature="qiskit.circuit.singleton.SingletonInstruction(*args, _force_mutable=False, **kwargs)" modifiers="class">
   A base class to use for [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") objects that by default are singleton instances.
 
   This class should be used for instruction classes that have fixed definitions and do not contain any unique state. The canonical example of something like this is [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") which has an immutable definition and any instance of [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") is the same. Using singleton instructions as a base class for these types of gate classes provides a large advantage in the memory footprint of multiple instructions.
@@ -56,7 +56,7 @@ The public classes correspond to the standard classes [`Instruction`](qiskit.cir
 
 ### SingletonGate
 
-<Class id="qiskit.circuit.singleton.SingletonGate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/singleton.py#L534-L541" signature="qiskit.circuit.singleton.SingletonGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+<Class id="qiskit.circuit.singleton.SingletonGate" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/singleton.py#L534-L541" signature="qiskit.circuit.singleton.SingletonGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   A base class to use for [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") objects that by default are singleton instances.
 
   This class is very similar to [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), except implies unitary [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") semantics as well. The same caveats around setting attributes in that class apply here as well.
@@ -64,7 +64,7 @@ The public classes correspond to the standard classes [`Instruction`](qiskit.cir
 
 ### SingletonControlledGate
 
-<Class id="qiskit.circuit.singleton.SingletonControlledGate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/singleton.py#L554-L566" signature="qiskit.circuit.singleton.SingletonControlledGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+<Class id="qiskit.circuit.singleton.SingletonControlledGate" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/singleton.py#L554-L566" signature="qiskit.circuit.singleton.SingletonControlledGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   A base class to use for [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects that by default are singleton instances
 
   This class is very similar to [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), except implies unitary [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") semantics as well. The same caveats around setting attributes in that class apply here as well.
@@ -126,7 +126,7 @@ Subclasses of [`SingletonInstruction`](#qiskit.circuit.singleton.SingletonInstru
 
 #### \_singleton\_lookup\_key
 
-<Function id="qiskit.circuit.singleton.SingletonInstruction._singleton_lookup_key" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/singleton.py#L411-L451" signature="SingletonInstruction._singleton_lookup_key(*_args, **_kwargs)" modifiers="static">
+<Function id="qiskit.circuit.singleton.SingletonInstruction._singleton_lookup_key" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/singleton.py#L411-L451" signature="SingletonInstruction._singleton_lookup_key(*_args, **_kwargs)" modifiers="static">
   Given the arguments to the constructor, return a key tuple that identifies the singleton instance to retrieve, or `None` if the arguments imply that a mutable object must be created.
 
   For performance, as a special case, this method will not be called if the class constructor was given zero arguments (e.g. the construction `XGate()` will not call this method, but `XGate(label=None)` will), and the default singleton will immediately be returned.

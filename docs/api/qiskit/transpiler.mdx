@@ -535,7 +535,10 @@ Next, for the heuristic stage, 2 passes are used by default:
 
 *   [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout"): Selects a layout by starting from an initial random layout and then repeatedly running a routing algorithm (by default [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) both forward and backward over the circuit, using the permutation caused by swap insertions to adjust that initial random layout. For more details you can refer to the paper describing the algorithm: [arXiv:1809.02573](https://arxiv.org/abs/1809.02573) [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") is used to select a layout if a perfect layout isn’t found for optimization levels 1, 2, and 3.
 *   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Always used for the layout at optimization level 0.
-*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit. Used for optimization level 1 if there are control flow operations (such as [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) present in the circuit.
+
+There are other passes than can be used for the heuristic stage, but are not included in the default pipeline, such as:
+
+*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit.
 
 Let’s see what layouts are automatically picked at various optimization levels. The circuits returned by [`qiskit.compiler.transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are annotated with this initial layout information, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"):
 
