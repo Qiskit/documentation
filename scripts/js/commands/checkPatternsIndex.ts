@@ -21,6 +21,7 @@ const INDEX_PAGES = [
   "docs/guides/optimize-for-hardware.mdx",
   "docs/guides/execute-on-hardware.mdx",
   "docs/guides/post-process-results.mdx",
+  "docs/guides/intro-to-patterns.mdx",
 ];
 
 const TOC_PATH = "docs/guides/_toc.json";
