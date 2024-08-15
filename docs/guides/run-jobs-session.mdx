@@ -29,13 +29,11 @@ service = QiskitRuntimeService()
 ## Open a session
 
 You can open a runtime session by using the context manager `with Session(...)` or by initializing the `Session`
-class. The session starts when its first job begins execution.
+class. When you start a session,  you must specify a QPU by passing a `backend` object. The session starts when its first job begins execution.
 
 
 **Session class**
 
-<Tabs>
-  <TabItem value="PrimV2" label="V2 primitives">
 ``` python
 from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
 
@@ -44,26 +42,11 @@ session = Session(backend=backend)
 estimator = Estimator(mode=session)
 sampler = Sampler(mode=session)
 ```
-  </TabItem>
-
-  <TabItem value="PrimV1" label="V1 primitives">
-``` python
-from qiskit_ibm_runtime import Session, Sampler, Estimator
-
-backend = service.least_busy(operational=True, simulator=False)
-session = Session(backend=backend)
-estimator = Estimator(session=session)
-sampler = Sampler(session=session)
-```
-  </TabItem>
-</Tabs>
 
 **Context manager**
 
 The context manager automatically opens and closes the session.
 
-<Tabs>
-  <TabItem value="PrimV2" label="V2 primitives">
 ``` python
 from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
 
@@ -71,38 +54,6 @@ backend = service.least_busy(operational=True, simulator=False)
 with Session(backend=backend):
   estimator = Estimator()
   sampler = Sampler()
-```
-  </TabItem>
-
-  <TabItem value="PrimV1" label="V1 primitives">
-``` python
-from qiskit_ibm_runtime import Session, Sampler, Estimator
-
-backend = service.least_busy(operational=True, simulator=False)
-with Session(backend=backend):
-  estimator = Estimator()
-  sampler = Sampler()
-```
-  </TabItem>
-</Tabs>
-
-When you start a session,  you must specify a QPU. This can be done by specifying its name or by passing a `backend` object.
-
-**Specify a QPU by name**
-
-``` python
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
-with Session(backend=backend):
-    ...
-```
-
-**Pass a `backend` object**
-
-``` python
-backend = service.least_busy(operational=True, simulator=False)
-with Session(backend=backend):
-  ...
 ```
 
 <span id="specify-length"></span>
@@ -167,10 +118,8 @@ with Session(backend=backend) as session:
 <span id="mult-jobs-in-session"></span>
 ## Invoke multiple primitives in a session
 
-A session can handle multiple primitives, allowing for various operations within a single session.  The following example shows how you can create both an instance of the `Sampler` class and one of the `Estimator` class, then invoke their `run()` methods within a session.
+A session can handle multiple primitives, allowing for various operations within a single session.  The following example shows how you can create both an instance of the `SamplerV2` class and one of the `EstimatorV2` class, then invoke their `run()` methods within a session.
 
-<Tabs>
-  <TabItem value="PrimV2" label="V2 primitives">
 ```python
 from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
@@ -187,24 +136,6 @@ with Session(backend=backend):
     print(f" > Expectation value: {result[0].data.evs}")
     print(f" > Metadata: {result[0].metadata}")
 ```
-  </TabItem>
-
-  <TabItem value="PrimV1" label="V1 primitives">
-```python
-from qiskit_ibm_runtime import Session, Sampler, Estimator
-
-with Session(backend=backend):
-    sampler = Sampler()
-    estimator = Estimator()
-
-    result = sampler.run(sampler_circuit).result()
-    print(f">>> Quasi-probability distribution from the sampler job: {result.quasi_dists[0]}")
-
-    result = estimator.run(circuit, observable).result()
-    print(f">>> Expectation value from the estimator job: {result.values[0]}")
-```
-  </TabItem>
-</Tabs>
 
 <span id="two-vqe"></span>
 ## Run two VQE algorithms in a session by using threading
@@ -252,8 +183,6 @@ Session status can be one of the following:
 
 For a comprehensive overview of a session's configuration and status, use the  `session.details() method`.
 
-<Tabs>
-  <TabItem value="EstimatorV2" label="Estimator V2">
 ``` python
 from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
 
@@ -265,22 +194,6 @@ with Session(backend=backend) as session:
     job = estimator.run([(circuit, observable)])
     print(session.details())
 ```
-  </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-``` python
-from qiskit_ibm_runtime import QiskitRuntimeService
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
-
-with Session(backend=backend) as session:
-    estimator = Estimator()
-    job = estimator.run(circuit, observable)
-    print(session.details())
-```
-  </TabItem>
-</Tabs>
 
 ## Next steps
 
