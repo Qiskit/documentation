@@ -14,13 +14,7 @@ import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
 
-const IGNORED_URLS = [
-  "docs/guides/qiskit-serverless",
-  "docs/guides/first-serverless-program",
-  "docs/guides/manage-serverless-resources",
-  "docs/guides/port-code-qiskit-serverless",
-  "docs/guides/run-first-serverless-workload",
-];
+const IGNORED_URLS: string[] = [];
 
 const INDEX_PAGES = [
   "docs/guides/map-problem-to-circuits.mdx",
