@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
 # PadDelay
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L26-L97" signature="PadDelay(durations, fill_very_end=True, schedule_idle_qubits=False, block_ordering_callable=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.27/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L26-L97" signature="PadDelay(durations, fill_very_end=True, schedule_idle_qubits=False, block_ordering_callable=None)" modifiers="class">
   Padding idle time with Delay instructions.
 
   Consecutive delays will be merged in the output of this pass.
@@ -31,10 +31,10 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
   **Parameters**
 
-  *   **durations** (`InstructionDurations`) – Durations of instructions to be used in scheduling.
+  *   **durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.1)")) – Durations of instructions to be used in scheduling.
   *   **fill\_very\_end** (`bool`) – Set `True` to fill the end of circuit with delay.
   *   **schedule\_idle\_qubits** (`bool`) – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
-  *   **block\_ordering\_callable** (`Optional`\[`Callable`\[\[`DAGCircuit`], `Generator`\[`DAGOpNode`, `None`, `None`]]]) – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
+  *   **block\_ordering\_callable** (`Optional`\[`Callable`\[\[[`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.1)")], `Generator`\[[`DAGOpNode`](/api/qiskit/qiskit.dagcircuit.DAGOpNode "(in Qiskit v1.1)"), `None`, `None`]]]) – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
 
   ## Attributes
 
@@ -83,12 +83,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
     **Parameters**
 
     *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-    *   **state** (`PassManagerState`) – State associated with workflow execution by the pass manager itself.
+    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – State associated with workflow execution by the pass manager itself.
     *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
 
     **Return type**
 
-    `tuple`\[`Any`, `PassManagerState`]
+    `tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")]
 
     **Returns**
 
@@ -107,12 +107,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.25/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L102-L126" signature="run(dag)">
+  <Function id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.27/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L102-L126" signature="run(dag)">
     Run the padding pass on `dag`.
 
     **Parameters**
 
-    **dag** (`DAGCircuit`) – DAG to be checked.
+    **dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.1)")) – DAG to be checked.
 
     **Returns**
 
@@ -134,12 +134,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Parameters**
 
-    *   **state** (`PassManagerState`) – Pass manager state to update.
+    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")) – Pass manager state to update.
     *   **run\_state** (`RunState`) – Completion status of current task.
 
     **Return type**
 
-    `PassManagerState`
+    [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.1)")
 
     **Returns**
 

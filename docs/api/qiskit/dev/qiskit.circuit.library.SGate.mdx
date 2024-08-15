@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.SGate
 
 # SGate
 
-<Class id="qiskit.circuit.library.SGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L30-L106" signature="qiskit.circuit.library.SGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
+<Class id="qiskit.circuit.library.SGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/s.py#L32-L141" signature="qiskit.circuit.library.SGate(*args, _force_mutable=False, **kwargs)" modifiers="class">
   Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
   Single qubit S gate (Z\*\*0.5).
@@ -139,9 +139,32 @@ $$
 
   ## Methods
 
+  ### control
+
+  <Function id="qiskit.circuit.library.SGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/s.py#L88-L119" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return a (multi-)controlled-S gate.
+
+    One control qubit returns a [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate").
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
+
+    **Returns**
+
+    controlled version of this gate.
+
+    **Return type**
+
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
+
   ### inverse
 
-  <Function id="qiskit.circuit.library.SGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L86-L98" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.SGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/s.py#L121-L133" signature="inverse(annotated=False)">
     Return inverse of S (SdgGate).
 
     **Parameters**
@@ -159,7 +182,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.SGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/s.py#L100-L103" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.SGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/s.py#L135-L138" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
