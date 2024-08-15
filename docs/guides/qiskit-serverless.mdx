@@ -59,26 +59,13 @@ pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
 target_circuit = pm.run(abstract_circuit)
 target_observable = observable.apply_layout(target_circuit.layout)
 
-# Step 3: Execute the target circuit on Estimator V1
-# from qiskit_ibm_runtime import Estimator
-# estimator = Estimator(backend)
-# job = estimator.run(target_circuit, target_observable)
-# result = job.result()
-
-# Step 3: Execute the target circuit on Estimator V2
+# Step 3: Execute the target circuit on Estimator
 from qiskit_ibm_runtime import EstimatorV2 as Estimator
 estimator = Estimator(backend)
 job = estimator.run([(target_circuit, target_observable)])
 result = job.result()
 
-
-# Step 4: Postprocess the Estimator V1 results
-# print(result)
-# save results of program execution
-# note: saved items must be serializable
-# save_result(result.values)
-
-# Step 4: Postprocess the Estimator V2 results
+# Step 4: Postprocess the Estimator results
 print(result)
 # save results of program execution
 # note: saved items must be serializable
@@ -136,9 +123,7 @@ For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSel
 
 Then, in step 3 of the pattern, you execute the target circuit on the QPU chosen by the selector.
 
-<Tabs>
-  <TabItem value="SamplerV2" label="Sampler V2">
-    ```python
+```python
 # source_files/my_qiskit_pattern_resource_management.py
 
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, Samplerv2 as Sampler
@@ -179,56 +164,5 @@ print(f" > Counts: {result[0].data.meas.get_counts()}")
 # note: saved items must be serializable
 save_result(result)
 ```
-  </TabItem>
-
-  <TabItem value="SamplerV1" label="Sampler (V1)">
-    ```python
-# source_files/my_qiskit_pattern_resource_management.py
-
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Options
-from qiskit.circuit.random import random_circuit
-from qiskit_serverless_tools.selectors import IBMLeastNoisyQPUSelector
-
-service = QiskitRuntimeService()
-
-# Step 1: Map quantum circuits and operators
-abstract_circuit = random_circuit(
-    num_qubits=5, depth=4, measure=True, seed=1234
-)
-
-# Step 2: Optimize the circuit for quantum execution with automatically selected QPU
-selector = IBMLeastNoisyQPUSelector(
-    service, circuit=abstract_circuit, transpile_options={"optimization_level": 3}
-)
-backend = selector.get_backend(min_num_qubits=127)
-target_circuit = selector.optimized_circuit
-
-## Alternatively, one can automatically select a QPU according to most available:
-# from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-# from qiskit_serverless_tools.selectors import IBMLeastBusyQPUSelector
-#
-# backend = IBMLeastBusyQPUSelector(service).get_backend(min_num_qubits=127)
-# pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
-# target_circuit = pm.run(abstract_circuit)
-
-# Step 3: Execute the target circuit
-with Session(service, backend=backend) as session:
-    sampler = Sampler(
-        options=Options(
-            execution={"shots": 1024}, transpilation={"skip_transpilation": True}
-        )
-    )
-    result = sampler.run(target_circuit).result().quasi_dists[0]
-
-# Step 4: Postprocess the results
-print(result)
-
-# save results of program execution
-# note: saved items must be serializable
-save_result(result)
-```
-
-  </TabItem>
-</Tabs>
 
 After creating this pattern, you can deploy and run it remotely with Qiskit Serverless as described above.
