@@ -21,7 +21,7 @@ tool to detect removed import paths in your code and suggest alternatives.
       If you have [`pipx`](https://github.com/pypa/pipx) installed, simply run
       the following command.
       ```sh
-      pipx run flake8-qiskit-migration <path-to-source-directory> 
+      pipx run flake8-qiskit-migration <path-to-source-directory>
       ```
       This will install the package to a temporary virtual environment and run
       it on your code.
@@ -107,7 +107,7 @@ new_circuit = transpile(circuit, backend)
 job = backend.run(new_circuit)
 ```
 
-Alternatively, the [`Sampler`](/api/qiskit/qiskit.primitives.Sampler)
+Alternatively, the [Sampler](/api/qiskit/qiskit.primitives.Sampler)
 primitive is semantically equivalent to the removed `qiskit.execute`
 function. The class
 [`BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) is a
@@ -405,7 +405,7 @@ sampler_v2 = StatevectorSampler()
   </TabItem>
 </Tabs>
 
-2. [`Sampler`](/api/qiskit/qiskit.primitives.BaseSamplerV2): The V2 sampler now
+2. [Sampler](/api/qiskit/qiskit.primitives.BaseSamplerV2): The V2 sampler now
    returns measurement outcome samples in the form of **bitstrings** or
    **counts**, instead of the quasi-probability distributions from the V1
    interface. The bitstrings show the measurement outcomes, preserving the shot
@@ -462,7 +462,7 @@ sampler_v2 = StatevectorSampler()
     ```
 
 3. `Sampler and Estimator`: The sampling overhead, commonly exposed by V1 implementations
-  through the `shots` run option, is now an argument of the primitives `run()` method 
+  through the `shots` run option, is now an argument of the primitives `run()` method
   that can be specified at the **PUB** level.
   The V2 base classes expose the arguments in formats different from the V1 API:
 
@@ -497,7 +497,7 @@ by using
   instead.
 
 * Using a [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList) in
-  `Estimator` observable arguments is no longer allowed. Instead you should
+  Estimator observable arguments is no longer allowed. Instead you should
   explicitly convert the argument by using
   [`SparsePauliOp(pauli_list)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp)
   first.
