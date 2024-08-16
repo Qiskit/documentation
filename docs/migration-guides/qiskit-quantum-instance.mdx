@@ -68,22 +68,22 @@ at the algorithm level to save the user from defining the same parameters for ev
 
 The [`qiskit.primitives`](/api/qiskit/primitives) classes share some of these features, but unlike the [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance),
 there are multiple primitive classes, and each is optimized for a specific
-purpose. Selecting the right primitive (`Sampler` or `Estimator`) requires some knowledge about
+purpose. Selecting the right primitive (Sampler or Estimator) requires some knowledge about
 **what** it is expected to do and **where** or **how** it is expected to run.
 
 <Admonition type="note">
   Primitives are also **algorithmic** abstractions with defined tasks:
 
-  - The `Estimator` takes in circuits and observables and returns **expectation values**.
-  - The `Sampler` takes in circuits, measures them, and returns their  **quasi-probability distributions**.
+  - The Estimator takes in circuits and observables and returns **expectation values**.
+  - The Sampler takes in circuits, measures them, and returns their  **quasi-probability distributions**.
 </Admonition>
 
 To determine which primitive to use instead of [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), you should ask
 yourself two questions:
 
 1. What is the minimal unit of information used by your algorithm?
-    * If it uses an expectation value, you need an `Estimator`.
-    * If it uses a probability distribution (from sampling the device), you need a `Sampler`
+    * If it uses an expectation value, you need an Estimator.
+    * If it uses a probability distribution (from sampling the device), you need a Sampler
 
 2. How do you want to run your circuits?
 
@@ -96,13 +96,13 @@ yourself two questions:
    * Accessing **runtime-enabled systems** (or cloud simulators): **Qiskit Runtime primitives**
    * Accessing **non runtime-enabled systems** : **`Backend` primitives**
 
-Arguably, the `Sampler` is the closest primitive to [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), as they
+Arguably, the Sampler is the closest primitive to [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance), as they
 both execute circuits and provide a result. However, with the [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance),
 the result data was system-dependent (it could be a counts `dict`, a `numpy.array` for
-statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to
+statevector simulations, and so on), while Sampler normalizes its `SamplerResult` to
 return a [`qiskit.result.QuasiDistribution`](/api/qiskit/qiskit.result.QuasiDistribution) object with the resulting quasi-probability distribution.
 
-The `Estimator` provides a specific abstraction for the expectation value calculation that can replace
+The Estimator provides a specific abstraction for the expectation value calculation that can replace
  [`qiskit.utils.QuantumInstance`](/api/qiskit/0.46/qiskit.utils.QuantumInstance) as well as the associated pre- and post-processing steps, usually performed
 with an additional library such as [`qiskit.opflow`](/api/qiskit/0.46/opflow).
 
@@ -304,7 +304,7 @@ print(expectation_value)
 
 **Primitives**
 
-The primitives allow the combination of the opflow and QuantumInstance functionality in a single `Estimator`.
+The primitives allow the combination of the opflow and QuantumInstance functionality in a single Estimator.
 In this case, for local noisy simulation, this will be the Aer estimator.
 
 ```python
