@@ -8,12 +8,18 @@ python_api_name: qiskit.circuit.library.Initialize
 
 # Initialize
 
-<Class id="qiskit.circuit.library.Initialize" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/initializer.py#L32-L96" signature="qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)" modifiers="class">
+<Class id="qiskit.circuit.library.Initialize" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/data_preparation/initializer.py#L32-L104" signature="qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Complex amplitude initialization.
 
   Class that initializes some flexible collection of qubit registers, implemented by calling the [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") class. Note that `Initialize` is an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") and not a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") since it contains a reset instruction, which is not unitary.
+
+  The initial state is prepared based on the [`Isometry`](qiskit.circuit.library.Isometry "qiskit.circuit.library.Isometry") synthesis described in \[1].
+
+  **References**
+
+  1.  Iten et al., Quantum circuits for isometries (2016). [Phys. Rev. A 93, 032318](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318).
 
   **Parameters**
 
@@ -36,7 +42,7 @@ python_api_name: qiskit.circuit.library.Initialize
   <Attribute id="qiskit.circuit.library.Initialize.base_class">
     Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.Initialize.base_class "qiskit.circuit.library.Initialize.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.Initialize.base_class "qiskit.circuit.library.Initialize.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
 
     This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
@@ -130,7 +136,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.Initialize.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/initializer.py#L95-L96" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.Initialize.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/data_preparation/initializer.py#L103-L104" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -149,7 +155,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### gates\_to\_uncompute
 
-  <Function id="qiskit.circuit.library.Initialize.gates_to_uncompute" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/data_preparation/initializer.py#L77-L83" signature="gates_to_uncompute()">
+  <Function id="qiskit.circuit.library.Initialize.gates_to_uncompute" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/data_preparation/initializer.py#L85-L91" signature="gates_to_uncompute()">
     Call to create a circuit with gates that take the desired vector to zero.
 
     **Returns**
