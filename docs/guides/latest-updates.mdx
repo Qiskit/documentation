@@ -5,7 +5,7 @@ description: The latest updates from Qiskit and IBM Quantum, including the lates
 
 # Latest updates
 
-*Last updated 3 July 2024*
+*Last updated 15 August 2024*
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&trade;! Gathered here are the the most recent Qiskit package release summaries, documentation updates, blogs, community events, and more.
@@ -35,55 +35,22 @@ For more details, be sure to check [the v1.2 release notes](/api/qiskit/release-
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
-### Qiskit Runtime IBM Client 0.25.0
+### Qiskit Runtime IBM Client 0.28.0
 
 *To see the release notes for all versions, visit the [Qiskit Runtime IBM Client release notes](/api/qiskit-ibm-runtime/release-notes).*
 
-**Highlights from the 0.25.0 (2024-07-03) version release**
+**Highlights from the 0.28.0 (2024-08-15) version release**
 
-#### Deprecation notes
+#### Removal
 
-- The `optimization_level` option in `EstimatorV2` is deprecated. Instead, you can perform circuit optimization using the [Qiskit transpiler](transpile) or [Qiskit transpiler service](qiskit-transpiler-service).
-- Interim results have been deprecated, including the [`interim_results()`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJobV2#interim_results) and [`stream_results()`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJobV2#stream_results) methods.
-
-#### New features
-
-- Jobs now have an [`instance`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJobV2#instance) property that returns the instance that was used for the job.
-- `default_shots` is now a supported option when using EstimatorV2 in [local testing mode](local-testing-mode).
-
-See the full [0.25.0 release notes](/api/qiskit-ibm-runtime/release-notes#0250-2024-07-02).
-{/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
-
-
-### Qiskit Runtime IBM Client 0.24.0
-
-*To see the release notes for all versions, visit the [Qiskit Runtime IBM Client release notes](/api/qiskit-ibm-runtime/release-notes).*
-
-**Highlights from the 0.24.0 (2024-06-10) version release**
-
-#### Deprecation notes
-
-- The `backend` and `session` parameters in `SamplerV2` and `EstimatorV2` are deprecated. You can use the new `mode` parameter instead.
-- [`qiskit_ibm_runtime.QiskitRuntimeService.get_backend()`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#get_backend) is deprecated. You can use [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backend) instead.
-- The V1 fake backends, `FakeBackend`, and FakeProvider are deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2).
+- The V1 primitives `SamplerV1` and `EstimatorV1` have been completely removed. Refer to the [migration guide](/migration-guides/v2-primitives) for instructions on migrating to V2 primitives.
+- The `service` parameter is now required in `Session.from_id()`.
 
 #### New features
 
-- The [`ZneOptions.amplifier`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions#amplifier) option was added, which can be one of: `gate_folding` (default), `gate_folding_front`, and `gate_folding_back`. See the [API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions#zneoptions) for more details.
-- You can now use the experimental option in [`qiskit_ibm_runtime.options.EstimatorOptions`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) to enable the Probabilistic Error Amplification (PEA) error mitigation method.
+- You can now use the `layer_noise_model` option in `ResilienceOptionsV2` to pass in a noise model. When this field is set, all the mitigation strategies that require noise data skip the noise learning stage, and instead gather the required information from `layer_noise_model`. You can use the [NoiseLearner](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.noise_learner.NoiseLearner) class to learn noise and use it in a subsequent `Estimator` call.
 
-#### Upgrade notes
-
-- Qiskit SDK v1.1 is now supported and required.
-
-#### Bug fixes
-
-- Fixed an issue where retrieved jobs would only return `RuntimeJob` instances, even if the job was run with a V2 primitive. Now, V2 primitive jobs will be returned correctly as `RuntimeJobV2` instances.
-- Fixed the combination of `insert_multiple_cycles` and `coupling_map` options in [`PadDynamicalDecoupling`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling). This combination allows to select staggered dynamical decoupling with multiple sequence cycles in each delay that crosses the threshold set by `sequence_min_length_ratios`.
-- Fixed measurement twirling docstring that incorrectly indicated it’s enabled by default for Sampler.
-- Fixed issues related to target generation and calibration data.
-
-See the full [0.24.0 release notes](/api/qiskit-ibm-runtime/release-notes#0240-2024-06-10).
+See the full [0.28.0 release notes](/api/qiskit-ibm-runtime/release-notes#0280-2024-08-15).
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
 
 ### Qiskit Transpiler Service Client v0.3.0
@@ -99,6 +66,12 @@ On the IBM Quantum blog, we take a deep dive into the new beta release with a sp
 ## Qiskit IBM Runtime service updates
 
 This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (using qiskit-ibm-runtime or otherwise), or which version of the client SDK you use.
+
+### 15 August 2024
+
+- Probabilistic error amplification (PEA) error mitigation method is now available for Estimator V2. See the [`ZneOptions` API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions) for more details.
+- A new helper program `noise-learner` is now available. It allows characterizing the noise processes affecting the gates in one or more circuits of interest, based on the Pauli-Lindblad noise model. The output noise model can then be passed to Estimator via the `layer_noise_model` option.
+- V1 primitives are no longer supported.
 
 ### 3 July 2024
 
