@@ -77,7 +77,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### QiskitBackendNotFoundError
 
-<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L30-L33" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
+<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/exceptions.py#L30-L33" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
   Base class for errors raised while looking for a backend.
 
   Set the error message.
@@ -85,7 +85,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### BackendPropertyError
 
-<Class id="qiskit.providers.BackendPropertyError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L36-L39" signature="qiskit.providers.BackendPropertyError(*message)" modifiers="exception">
+<Class id="qiskit.providers.BackendPropertyError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/exceptions.py#L36-L39" signature="qiskit.providers.BackendPropertyError(*message)" modifiers="exception">
   Base class for errors raised while looking for a backend property.
 
   Set the error message.
@@ -93,7 +93,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### JobError
 
-<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L18-L21" signature="qiskit.providers.JobError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/exceptions.py#L18-L21" signature="qiskit.providers.JobError(*message)" modifiers="exception">
   Base class for errors raised by Jobs.
 
   Set the error message.
@@ -101,7 +101,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### JobTimeoutError
 
-<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L24-L27" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/exceptions.py#L24-L27" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
   Base class for timeout errors raised by jobs.
 
   Set the error message.
@@ -109,7 +109,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### BackendConfigurationError
 
-<Class id="qiskit.providers.BackendConfigurationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/exceptions.py#L42-L45" signature="qiskit.providers.BackendConfigurationError(*message)" modifiers="exception">
+<Class id="qiskit.providers.BackendConfigurationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/exceptions.py#L42-L45" signature="qiskit.providers.BackendConfigurationError(*message)" modifiers="exception">
   Base class for errors raised by the BackendConfiguration.
 
   Set the error message.
@@ -491,7 +491,7 @@ class MySyncJob(Job):
 
 ### Primitives
 
-While not directly part of the provider interface, the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is tightly coupled with providers. Specifically the primitive interfaces, such as `BaseSampler` and `BaseEstimator`, are designed to enable provider implementations to provide custom implementations which are optimized for the provider’s backends. This can include customizations like circuit transformations, additional pre- and post-processing, batching, caching, error mitigation, etc. The concept of the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is to explicitly enable this as the primitive objects are higher level abstractions to produce processed higher level outputs (such as probability distributions and expectation values) that abstract away the mechanics of getting the best result efficiently, to concentrate on higher level applications using these outputs.
+While not directly part of the provider interface, the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is tightly coupled with providers. Specifically the primitive interfaces, such as [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") and [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), are designed to enable provider implementations to provide custom implementations which are optimized for the provider’s backends. This can include customizations like circuit transformations, additional pre- and post-processing, batching, caching, error mitigation, etc. The concept of the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is to explicitly enable this as the primitive objects are higher level abstractions to produce processed higher level outputs (such as probability distributions and expectation values) that abstract away the mechanics of getting the best result efficiently, to concentrate on higher level applications using these outputs.
 
 For example, if your backends were well suited to leverage [mthree](https://github.com/Qiskit-Partners/mthree/) measurement mitigation to improve the quality of the results, you could implement a provider-specific [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler") implementation that leverages the `M3Mitigation` class internally to run the circuits and return quasi-probabilities directly from mthree in the result. Doing this would enable algorithms to get the best results with mitigation applied directly from your backends. You can refer to the documentation in [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") on how to write custom implementations. Also the built-in implementations: [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler"), [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator"), [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler"), and [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") can serve as references/models on how to implement these as well.
 

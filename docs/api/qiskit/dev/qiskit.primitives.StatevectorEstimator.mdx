@@ -8,7 +8,7 @@ python_api_name: qiskit.primitives.StatevectorEstimator
 
 # StatevectorEstimator
 
-<Class id="qiskit.primitives.StatevectorEstimator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/primitives/statevector_estimator.py#L31-L167" signature="qiskit.primitives.StatevectorEstimator(*, default_precision=0.0, seed=None)" modifiers="class">
+<Class id="qiskit.primitives.StatevectorEstimator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/statevector_estimator.py#L31-L174" signature="qiskit.primitives.StatevectorEstimator(*, default_precision=0.0, seed=None)" modifiers="class">
   Bases: [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.base.base_estimator.BaseEstimatorV2")
 
   Simple implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") with full state vector simulation.
@@ -16,6 +16,10 @@ python_api_name: qiskit.primitives.StatevectorEstimator
   This class is implemented via [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") which turns provided circuits into pure state vectors. These states are subsequently acted on by :class:\~.SparsePauliOp\`, which implies that, at present, this implementation is only compatible with Pauli-based observables.
 
   Each tuple of `(circuit, observables, <optional> parameter values, <optional> precision)`, called an estimator primitive unified bloc (PUB), produces its own array-based result. The `run()` method can be given a sequence of pubs to run in one call.
+
+  <Admonition title="Note" type="note">
+    The result of this class is exact if the circuit contains only unitary operations. On the other hand, the result could be stochastic if the circuit contains a non-unitary operation such as a reset for a some subsystems. The stochastic result can be made reproducible by setting `seed`, e.g., `StatevectorEstimator(seed=123)`.
+  </Admonition>
 
   ```python
   from qiskit.circuit import Parameter, QuantumCircuit
@@ -101,7 +105,7 @@ python_api_name: qiskit.primitives.StatevectorEstimator
 
   ### run
 
-  <Function id="qiskit.primitives.StatevectorEstimator.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/primitives/statevector_estimator.py#L127-L136" signature="run(pubs, *, precision=None)">
+  <Function id="qiskit.primitives.StatevectorEstimator.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/statevector_estimator.py#L134-L143" signature="run(pubs, *, precision=None)">
     Estimate expectation values for each provided pub (Primitive Unified Bloc).
 
     **Parameters**

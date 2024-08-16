@@ -310,7 +310,7 @@ The formal distinction between the Primitives V1 and V2 APIs are the base classe
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2")()                                              | Estimator V2 base class.                                                                                                                               |
 | [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator")(\*\[, default\_precision, ...]) | Simple implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") with full state vector simulation. |
-| [`BackendEstimatorV2`](qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2")(\*, backend\[, options])              | Evaluates expectation values for provided quantum circuit and observable combinations                                                                  |
+| [`BackendEstimatorV2`](qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2")(\*, backend\[, options])              | Evaluates expectation values for provided quantum circuit and observable combinations.                                                                 |
 
 ### Sampler V2
 
@@ -331,25 +331,24 @@ The formal distinction between the Primitives V1 and V2 APIs are the base classe
 | [`SamplerPubResult`](qiskit.primitives.SamplerPubResult "qiskit.primitives.SamplerPubResult")(data\[, metadata])      | Result of Sampler Pub.                                               |
 | [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob")(job\_id, \*\*kwargs)    | Primitive job abstract base class.                                   |
 | [`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.PrimitiveJob")(function, \*args, \*\*kwargs)       | Primitive job class for the reference implementations of Primitives. |
-| [`Shaped`](qiskit.primitives.Shaped "qiskit.primitives.Shaped")(\*args, \*\*kwargs)                                   | Protocol that defines what it means to be a shaped object.           |
 
 ### Estimator V1
 
-|                                                                                                                         |                                                                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")                                    | alias of [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.base.base_estimator.BaseEstimatorV1") |
-| [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.BaseEstimatorV1")(\*\[, options])              | Estimator V1 base class.                                                                                                |
-| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(\*\[, options])                                | Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator").       |
-| [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                                 |
-| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata)            | Result of Estimator.                                                                                                    |
+|                                                                                                                         |                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(\*\[, options])                    | DEPRECATED.                                                                                                            |
+| [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.BaseEstimatorV1")(\*\[, options])              | Estimator V1 base class.                                                                                               |
+| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(\*\[, options])                                | Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") (V1). |
+| [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                                |
+| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata)            | Result of Estimator V1.                                                                                                |
 
 ### Sampler V1
 
-|                                                                                                                   |                                                                                                                  |
-| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")                                    | alias of [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.base.base_sampler.BaseSamplerV1")  |
-| [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.BaseSamplerV1")(\*\[, options])              | Sampler V1 base class                                                                                            |
-| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                | Sampler class.                                                                                                   |
-| [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A `BaseSampler` implementation that provides an interface for leveraging the sampler interface from any backend. |
-| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata)      | Result of Sampler.                                                                                               |
+|                                                                                                                   |                                                                                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(\*\[, options])                    | DEPRECATED.                                                                                                                                                                            |
+| [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.BaseSamplerV1")(\*\[, options])              | Sampler V1 base class                                                                                                                                                                  |
+| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                | Sampler V1 class.                                                                                                                                                                      |
+| [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") (V1) implementation that provides a wrapper for leveraging the Sampler V1 interface from any backend. |
+| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata)      | Result of Sampler V1.                                                                                                                                                                  |
 
