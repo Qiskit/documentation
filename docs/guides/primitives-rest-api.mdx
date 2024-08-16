@@ -18,15 +18,15 @@ The steps in this topic describe how to run and configure primitive workloads wi
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Estimator` is a managed service, you first need to initialize your account. You can then select the device you want to use to calculate the expectation value. 
+Because Qiskit Runtime Estimator is a managed service, you first need to initialize your account. You can then select the device you want to use to calculate the expectation value.
 
 Find details on how to initialize your account, view available backends, and invalidate tokens in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
 
 ### 2. Create a QASM circuit
 
-You need at least one circuit as the input to the `Estimator` primitive.
+You need at least one circuit as the input to the Estimator primitive.
 
-Define a QASM quantum circuit. For example: 
+Define a QASM quantum circuit. For example:
 
 ```python
 qasm_string='''
@@ -38,7 +38,7 @@ x q[0];
 cx q[0], q[1];
 c[0] = measure q[0]; 
 c[1] = measure q[1];
-'''  
+'''
 ```
 
 The following code snippets assume that the `qasm_string` has been transpiled to a new string `resulting_qasm`. Find detailed instructions on how to use the Qiskit transpiler service API in this [topic](./transpile-rest-api).
@@ -62,17 +62,17 @@ headers = {
     }
 job_input = {
     'program_id': 'estimator',
-    "backend": backend, 
+    "backend": backend,
     "hub": "hub1",
     "group": "group1",
     "project": "project1",
-    "start_session": "False", # set to False if you just need to run a single job.  
+    "start_session": "False", # set to False if you just need to run a single job.
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
              {"IIZII": 1, "XIZZZ": 2.3}, # Observable
              None # parameter values
-             ]], 
+             ]],
         "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
 }}
 
@@ -138,11 +138,11 @@ headers = {
     }
 job_input = {
     'program_id': 'estimator',
-    "backend": backend, 
+    "backend": backend,
     "hub": "hub1",
     "group": "group1",
     "project": "project1",
-    "start_session": "False", # set to False if you just need to run a single job.  
+    "start_session": "False", # set to False if you just need to run a single job.
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
@@ -190,11 +190,11 @@ headers = {
     }
 job_input = {
     'program_id': 'estimator',
-    "backend": backend, 
+    "backend": backend,
     "hub": "hub1",
     "group": "group1",
     "project": "project1",
-    "start_session": "False", # set to False if you just need to run a single job.  
+    "start_session": "False", # set to False if you just need to run a single job.
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
@@ -203,7 +203,7 @@ job_input = {
              ]],
         "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
-            "dynamical_decoupling": { 
+            "dynamical_decoupling": {
                 "enable": True,
                 "sequence_type": 'XpXm',
                 "extra_slack_distribution": 'middle',
@@ -237,11 +237,11 @@ headers = {
     }
 job_input = {
     'program_id': 'estimator',
-    "backend": backend, 
+    "backend": backend,
     "hub": "hub1",
     "group": "group1",
     "project": "project1",
-    "start_session": "False", # set to False if you just need to run a single job.  
+    "start_session": "False", # set to False if you just need to run a single job.
     "params": {
         "pubs": [ #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
             [resulting_qasm, # QASM circuit
@@ -250,8 +250,8 @@ job_input = {
              ]],
         "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
-            "twirling": { 
-                "enable_gates": True, 
+            "twirling": {
+                "enable_gates": True,
                 "enable_measure": True,
                 "num_randomizations": "auto",
                 "shots_per_randomization": "auto",
@@ -280,14 +280,14 @@ else:
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime `Sampler` is a managed service, you first need to initialize your account. You can then select the device you want to use to run your calculations on.
+Because Qiskit Runtime Sampler is a managed service, you first need to initialize your account. You can then select the device you want to use to run your calculations on.
 
 Find details on how to initialize your account, view available backends, and invalidate tokens in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
 
 
 ### 2. Create a QASM circuit
 
-You need at least one circuit as the input to the `Sampler` primitive.
+You need at least one circuit as the input to the Sampler primitive.
 
 
 Define a QASM quantum circuit: 

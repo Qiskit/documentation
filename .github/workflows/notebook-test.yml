@@ -112,4 +112,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks
-          path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS }}
+          path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}

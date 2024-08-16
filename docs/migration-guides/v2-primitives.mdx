@@ -467,7 +467,7 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
 ## Steps to migrate to Estimator V2
 
 1. Replace `from qiskit_ibm_runtime import Estimator` with `from qiskit_ibm_runtime import EstimatorV2 as Estimator`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Estimator` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `EstimatorV2` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
    ```python
    estimator = Estimator(backend)
    estimator.options.dynamical_decoupling.enable = True
@@ -851,7 +851,7 @@ print(f" > Expectation values job 2: {another_result.values}")
 ## Steps to migrate to Sampler V2
 
 1. Replace `from qiskit_ibm_runtime import Sampler` with `from qiskit_ibm_runtime import SamplerV2 as Sampler`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Sampler` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `SamplerV2` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
    ```python
    sampler = Sampler(backend)
    sampler.options.default_shots = 1024
