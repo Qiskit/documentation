@@ -7,6 +7,14 @@ description: How to update your code to stop using the deprecated `qiskit.opflow
 
 # Opflow migration guide
 
+<Admonition type="caution">
+  **Deprecation Notice**
+
+  This guide precedes the introduction of the V2 primitives interface. Following the introduction of the V2 primitives, some providers have deprecated V1 primitive
+  implementations in favor of the V2 alternatives. If you are interested in following this guide, we recommend combining it with the
+  [Migrate to V2 primitives](./v2-primitives) guide to bring your code to the most updated state.
+</Admonition>
+
 The new [`qiskit.primitives`](/api/qiskit/primitives), in combination with the [`qiskit.quantum_info`](/api/qiskit/quantum_info) module, have superseded
 functionality of [`qiskit.opflow`](/api/qiskit/0.46/opflow), which is being deprecated.
 
@@ -22,7 +30,7 @@ the [`qiskit.opflow`](/api/qiskit/0.46/opflow) module to the [`qiskit.primitives
 <span id="attention_primitives"></span>
 <Admonition type="note">
   Most references to the [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler) or [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) in this guide
-  can be replaced with instances of any primitive implementation. For example Aer primitives ([`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html)/[`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html)) or the Qiskit Runtime primitives ([`qiskit_ibm_runtime.Sampler`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler)/[`qiskit_ibm_runtime.Estimator`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator)).
+  can be replaced with instances of any primitive implementation. For example, Aer primitives ([`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html)/[`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html)) or the Qiskit Runtime primitives ([`qiskit_ibm_runtime.Sampler`](/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.Sampler)/[`qiskit_ibm_runtime.Estimator`](/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.Estimator)).
   Specific QPUs (quantum processing units) can be wrapped with ([`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler), [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator)) to also present primitive-compatible interfaces.
 
   Certain classes, such as the
