@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RYGate
 
 # RYGate
 
-<Class id="qiskit.circuit.library.RYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L25-L137" signature="qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.library.RYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/ry.py#L28-L150" signature="qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Single-qubit rotation about the Y axis.
@@ -44,7 +44,7 @@ $$
   <Attribute id="qiskit.circuit.library.RYGate.base_class">
     Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RYGate.base_class "qiskit.circuit.library.RYGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.RYGate.base_class "qiskit.circuit.library.RYGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
 
     This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
@@ -138,15 +138,15 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.RYGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L74-L104" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.RYGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/ry.py#L79-L117" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return a (multi-)controlled-RY gate.
 
     **Parameters**
 
     *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
+    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is set to `True` if the gate contains free parameters and more than one control qubit, in which case it cannot yet be synthesized. Otherwise it is set to `False`.
 
     **Returns**
 
@@ -159,7 +159,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L106-L120" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/ry.py#L119-L133" signature="inverse(annotated=False)">
     Return inverse RY gate.
 
     $RY(\lambda)^{\dagger} = RY(-\lambda)$
@@ -179,7 +179,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.RYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/standard_gates/ry.py#L130-L132" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.RYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/ry.py#L143-L145" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
