@@ -86,7 +86,7 @@ Once you know which primitive you want to use, choose the primitive implementati
 
 * For running on quantum hardware choose from these options:
 
-   - Access services with native primitive implementations, such as the Qiskit Runtime service by using [`qiskit_ibm_runtime.Sampler`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`.](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator)
+   - Access services with native primitive implementations, such as the Qiskit Runtime service by using [`qiskit_ibm_runtime.Sampler`](/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.SamplerV1) and [`qiskit_ibm_runtime.Estimator`.](/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.EstimatorV1)
    - Wrap any QPU (quantum processing unti) with `Backend` primitives ([`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator)). These wrappers implement a primitive interface on top of a backend that only supports `backend.run()`.
 
 For detailed information and examples, particularly on the use of the `Backend` primitives, refer to
@@ -548,7 +548,7 @@ print(result.eigenvalues)
 **[Updated] Using primitives:**
 
 ```python
-from qiskit_ibm_runtime import Sampler, Estimator, QiskitRuntimeService, Session
+from qiskit_ibm_runtime import SamplerV1 as Sampler, EstimatorV1 as Estimator, QiskitRuntimeService, Session
 from qiskit.algorithms.eigensolvers import VQD
 from qiskit.algorithms.optimizers import SLSQP
 from qiskit.algorithms.state_fidelities import ComputeUncompute
