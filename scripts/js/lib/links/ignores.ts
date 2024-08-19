@@ -148,6 +148,7 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeOptions",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions",
   ],
   // Provider
   "docs/api/qiskit-ibm-provider/release-notes.mdx": [

@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
 # TwoLocal
 
-<Class id="qiskit.circuit.library.TwoLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/two_local.py#L29-L282" signature="qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)" modifiers="class">
+<Class id="qiskit.circuit.library.TwoLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/n_local/two_local.py#L29-L282" signature="qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)" modifiers="class">
   Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
   The two-local circuit.
@@ -57,7 +57,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
   ```python
   >>> two = TwoLocal(3, ['ry','rz'], 'cz', 'full', reps=1, insert_barriers=True)
   >>> qc = QuantumCircuit(3)
-  >>> qc += two
+  >>> qc &= two
   >>> print(qc.decompose().draw())
        ┌──────────┐┌──────────┐ ░           ░ ┌──────────┐ ┌──────────┐
   q_0: ┤ Ry(θ[0]) ├┤ Rz(θ[3]) ├─░──■──■─────░─┤ Ry(θ[6]) ├─┤ Rz(θ[9]) ├
@@ -438,7 +438,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.circuit.library.TwoLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/two_local.py#L276-L282" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+  <Function id="qiskit.circuit.library.TwoLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/n_local/two_local.py#L276-L282" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
     Overloading to handle the special case of 1 qubit where the entanglement are ignored.
 
     **Return type**
