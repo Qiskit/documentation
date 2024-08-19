@@ -14,22 +14,24 @@ Keep up with the latest and greatest from Qiskit and IBM Quantum&trade;! Gathere
 
 {/* release summaries written by product owners */}
 
-### Qiskit SDK v1.1.0
+### Qiskit SDK v1.2.0
 
 *To see the release notes for all versions, visit the [Qiskit SDK release notes](/api/qiskit/release-notes).*
 
-Qiskit SDK v1.1.0 has arrived, marking the first minor version release of the Qiskit SDK’s first major version. On the IBM Quantum blog, we review some of the key highlights — including top new features and improvements, as well as some important deprecations. Read the blog [here](https://www.ibm.com/quantum/blog/qiskit-1-1-release-summary).
+Qiskit 1.2 (stable release) is now available on [PyPI](https://pypi.org/project/qiskit/1.2.0/) and [GitHub](https://github.com/Qiskit/qiskit/releases/tag/1.2.0). Thanks to the maintainers and open-source contributors!
 
-The updates and improvements include the following:
+- Many of the core structures have been moved to Rust, allowing for significant speedups mostly in the construction, manipulation (including copy and parameter assignment), and synthesis of circuits.
+- Better compiler quality due to the addition of unitary peephole optimization (for optimization levels 2 and 3) and improvements in Sabre.
+- [`generate_preset_pass_manager`](/api/qiskit/transpiler_preset#generate_preset_pass_manager) importance highlight, which is now importable from the top level.
 
-- Updated `QuantumCircuit` objects that now support typed classical variables
-- Improvements to the preset transpiler pass managers
-- Speedups in transpilation runtime, thanks to our continued work re-writing transpiler passes in Rust
-- A number of new transpiler passes, including `ElidePermutation` and `StarPreRouting`
+Important deprecations:
+- Primitive V1 reference implementations (like `qiskit.primitives.Estimator`) and tooling are deprecated in favor of [V2 primitives](/api/qiskit/primitives). The primitive V1 base classes remain available.
+- [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) is now deprecated in favor of [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), including the deprecation of `Qobj`, `assemble`, and other scaffolding related to the old V1.
+- Support for Python 3.8 will be dropped in the next release, v1.3. Python 3.9 will then be the new minimal required version.
 
 Remember, because this a minor release, it will not introduce breaking changes for users moving from Qiskit SDK v1.0. Any deprecations announced with this release refer only to things that will now start throwing deprecation warnings. None of these will be removed until the release of Qiskit v2.0, pursuant to Qiskit’s official [deprecation policy](https://github.com/Qiskit/qiskit/blob/main/DEPRECATION.md#).
 
-For more details on any of the topics covered in the blog, be sure to check [the v1.1 release notes](/api/qiskit/release-notes/1.1).
+For more details, explore the [v1.2 release notes](/api/qiskit/release-notes/1.2).
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
