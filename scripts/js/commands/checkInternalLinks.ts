@@ -187,6 +187,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.1.mdx",
+    "docs/api/qiskit/release-notes/1.2.mdx",
   ];
 
   if (!args.currentApis) {
