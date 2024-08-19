@@ -8,7 +8,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
 # BackendV2Converter
 
-<Class id="qiskit.providers.BackendV2Converter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend_compat.py#L330-L449" signature="qiskit.providers.BackendV2Converter(backend, name_mapping=None, add_delay=True, filter_faulty=True)" modifiers="class">
+<Class id="qiskit.providers.BackendV2Converter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend_compat.py#L330-L452" signature="qiskit.providers.BackendV2Converter(backend, name_mapping=None, add_delay=True, filter_faulty=True)" modifiers="class">
   Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
   A converter class that takes a [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") instance and wraps it in a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface.
@@ -167,7 +167,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
   ### acquire\_channel
 
-  <Function id="qiskit.providers.BackendV2Converter.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend_compat.py#L442-L443" signature="acquire_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2Converter.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend_compat.py#L445-L446" signature="acquire_channel(qubit)">
     Return the acquisition channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -187,7 +187,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
   ### control\_channel
 
-  <Function id="qiskit.providers.BackendV2Converter.control_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend_compat.py#L445-L446" signature="control_channel(qubits)">
+  <Function id="qiskit.providers.BackendV2Converter.control_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend_compat.py#L448-L449" signature="control_channel(qubits)">
     Return the secondary drive channel for the given qubit
 
     This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
@@ -213,7 +213,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
   ### drive\_channel
 
-  <Function id="qiskit.providers.BackendV2Converter.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend_compat.py#L436-L437" signature="drive_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2Converter.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend_compat.py#L439-L440" signature="drive_channel(qubit)">
     Return the drive channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -233,7 +233,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
   ### measure\_channel
 
-  <Function id="qiskit.providers.BackendV2Converter.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend_compat.py#L439-L440" signature="measure_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2Converter.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend_compat.py#L442-L443" signature="measure_channel(qubit)">
     Return the measure stimulus channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -253,7 +253,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
   ### qubit\_properties
 
-  <Function id="qiskit.providers.BackendV2Converter.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L484-L516" signature="qubit_properties(qubit)">
+  <Function id="qiskit.providers.BackendV2Converter.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend.py#L493-L525" signature="qubit_properties(qubit)">
     Return QubitProperties for a given qubit.
 
     If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
@@ -277,7 +277,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
   ### run
 
-  <Function id="qiskit.providers.BackendV2Converter.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend_compat.py#L448-L449" signature="run(run_input, **options)">
+  <Function id="qiskit.providers.BackendV2Converter.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend_compat.py#L451-L452" signature="run(run_input, **options)">
     Run on the backend.
 
     This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that runs circuits. Depending on the backend this may be either an async or sync call. It is at the discretion of the provider to decide whether running should block until the execution is finished or not: the Job class can handle either situation.
@@ -298,7 +298,7 @@ python_api_name: qiskit.providers.BackendV2Converter
 
   ### set\_options
 
-  <Function id="qiskit.providers.BackendV2Converter.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/providers/backend.py#L585-L602" signature="set_options(**fields)">
+  <Function id="qiskit.providers.BackendV2Converter.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/providers/backend.py#L594-L611" signature="set_options(**fields)">
     Set the options fields for the backend
 
     This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.

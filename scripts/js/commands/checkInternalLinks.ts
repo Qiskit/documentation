@@ -103,8 +103,10 @@ const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
-  "docs/guides/local-testing-mode.ipynb",
+  "docs/guides/*.{mdx,ipynb}",
+  "docs/migration-guides/*.{mdx,ipynb}",
 ];
+const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/0.44.mdx",
   "docs/api/qiskit/release-notes/0.45.mdx",
@@ -113,6 +115,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit-ibm-provider/index.mdx",
   "docs/api/qiskit-ibm-provider/ibm_jupyter.mdx",
   "docs/migration-guides/qiskit-1.0-features.mdx",
+  "docs/guides/pulse.ipynb",
+  "docs/guides/configure-qiskit-local.mdx",
 ];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
@@ -129,6 +133,11 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     PROVIDER_GLOBS_TO_LOAD,
     args.historicalApis,
   );
+  const transpiler = await determineHistoricalFileBatches(
+    "qiskit-transpiler-service",
+    TRANSPILER_GLOBS_TO_LOAD,
+    args.historicalApis,
+  );
   const runtime = await determineHistoricalFileBatches(
     "qiskit-ibm-runtime",
     RUNTIME_GLOBS_TO_LOAD,
@@ -142,7 +151,7 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     args.qiskitReleaseNotes,
   );
 
-  result.push(...provider, ...runtime, ...qiskit);
+  result.push(...provider, ...transpiler, ...runtime, ...qiskit);
 
   if (args.qiskitReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());
@@ -173,6 +182,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.mdx",
     "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.mdx",
     "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.mdx",
+    "docs/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.{Sampler,Estimator}{,V1}.mdx",
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",

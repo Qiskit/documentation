@@ -10,8 +10,8 @@ description: Migrate from using the original primitives (Estimator and Sampler) 
 # Migrate to the Qiskit Runtime V2 primitives
 
 <Admonition type="warning">
-The original primitives (referred to as the V1 primitives), [V1 Sampler](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV1) and [V1 Estimator](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV1), have been deprecated in `qiskit-ibm-runtime` 0.23.
-Their support will be removed on 15 August 2024.
+The original primitives (referred to as the V1 primitives), [V1 Sampler](/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.SamplerV1) and [V1 Estimator](/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.EstimatorV1), have been deprecated in `qiskit-ibm-runtime` 0.23.
+Their support was removed on 15 August 2024.
 </Admonition>
 
 With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
@@ -467,7 +467,7 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
 ## Steps to migrate to Estimator V2
 
 1. Replace `from qiskit_ibm_runtime import Estimator` with `from qiskit_ibm_runtime import EstimatorV2 as Estimator`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Estimator` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `EstimatorV2` class (for example `estimator = Estimator(backend, options={“dynamical_decoupling”: {“enable”: True}})`), or set them after initialization:
    ```python
    estimator = Estimator(backend)
    estimator.options.dynamical_decoupling.enable = True
@@ -851,7 +851,7 @@ print(f" > Expectation values job 2: {another_result.values}")
 ## Steps to migrate to Sampler V2
 
 1. Replace `from qiskit_ibm_runtime import Sampler` with `from qiskit_ibm_runtime import SamplerV2 as Sampler`.
-2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `Sampler` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
+2. Remove any `from qiskit_ibm_runtime import Options` statements, since the `Options` class is not used by V2 primitives. You can instead pass options as a dictionary when initializing the `SamplerV2` class (for example `sampler = Sampler(backend, options={“default_shots”: 1024})`), or set them after initialization:
    ```python
    sampler = Sampler(backend)
    sampler.options.default_shots = 1024

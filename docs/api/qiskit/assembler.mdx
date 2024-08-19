@@ -22,8 +22,12 @@ python_api_name: qiskit.assembler
 
 ### assemble\_circuits
 
-<Function id="qiskit.assembler.assemble_circuits" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/assembler/assemble_circuits.py#L302-L408" signature="qiskit.assembler.assemble_circuits(circuits, run_config, qobj_id, qobj_header)">
+<Function id="qiskit.assembler.assemble_circuits" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/utils/deprecation.py#L408-L451" signature="qiskit.assembler.assemble_circuits(circuits, run_config, qobj_id, qobj_header)">
   Assembles a list of circuits into a qobj that can be run on the backend.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The function `qiskit.assembler.assemble_circuits.assemble_circuits()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
 
   **Parameters**
 
@@ -63,7 +67,7 @@ python_api_name: qiskit.assembler
 
 ### assemble\_schedules
 
-<Function id="qiskit.assembler.assemble_schedules" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/assembler/assemble_schedules.py#L27-L103" signature="qiskit.assembler.assemble_schedules(schedules, qobj_id, qobj_header, run_config)">
+<Function id="qiskit.assembler.assemble_schedules" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/assembler/assemble_schedules.py#L27-L103" signature="qiskit.assembler.assemble_schedules(schedules, qobj_id, qobj_header, run_config)">
   Assembles a list of schedules into a qobj that can be run on the backend.
 
   **Parameters**
@@ -125,11 +129,15 @@ python_api_name: qiskit.assembler
 
 ### disassemble
 
-<Function id="qiskit.assembler.disassemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/assembler/disassemble.py#L40-L83" signature="qiskit.assembler.disassemble(qobj)">
+<Function id="qiskit.assembler.disassemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/utils/deprecation.py#L41-L92" signature="qiskit.assembler.disassemble(qobj)">
   Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.
 
   <Admonition title="Note" type="note">
     `disassemble(assemble(qc))` is not guaranteed to produce an exactly equal circuit to the input, due to limitations in the [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") format that need to be maintained for backend system compatibility. This is most likely to be the case when using newer features of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). In most cases, the output should be equivalent, if not quite equal.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The function `qiskit.assembler.disassemble.disassemble()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
   </Admonition>
 
   **Parameters**
