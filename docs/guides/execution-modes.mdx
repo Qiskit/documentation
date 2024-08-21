@@ -41,7 +41,7 @@ The above are general guidelines, and you should tune your workload to find the 
 
 ## Sessions versus batch usage
 
-The reported usage is the time a QPU is locked for your workload, including jobs that failed.
+The reported usage is the time a QPU is locked for your workload. Failed or canceled jobs count toward your reported usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
 * Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
 * Batch usage is the amount of time all jobs spend on the QPU.
@@ -58,6 +58,6 @@ If you are calling the REST API directly, the usage time is the `elapsed_time` v
 
 When a job is failed or canceled, the reported usage is as follows:
 
-* Job or batch mode: the reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the workload had not locked the QPU by the time of failure, the reported usage is zero. Otherwise, the workload's reported usage is the value that Qiskit Runtime returns as `consumed`.
+* Job or batch mode: the reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the error occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the value that Qiskit Runtime returns as `consumed`. Thus, some failed jobs do not appear in your reported usage and others do.
 
 * Session mode: the reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are cancelled.
