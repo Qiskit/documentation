@@ -20,7 +20,7 @@ When you submit a job to a quantum processing unit (QPU), it enters the schedule
 
 ## Allocation and administration
 
-IBM assigns allocation to each hub based on their allotted capacity contracted under the Premium Plan subscription. Hub administrators then decide what portion of this allocation to assign to each of their groups. Similarly, group administrators will decide what portion of allocation to assign to each of their projects.
+IBM&reg; assigns allocation to each hub based on their allotted capacity contracted under the Premium Plan subscription. Hub administrators then decide what portion of this allocation to assign to each of their groups. Similarly, group administrators will decide what portion of allocation to assign to each of their projects.
 
 The hub administration user interface is used to assign allocation, in minutes, to groups. The entire hub allotted time can be distributed to the underlying groups, and the hub administrator can control the time distribution by specifying the allocation in minutes for each group. 
 
@@ -32,7 +32,7 @@ For example, assume only two groups maintain jobs in one queue. With all else be
 
 ## How the fair-share scheduler works
 
-The fair-share scheduler selects jobs to execute on a QPU in a dynamic order so that no instance can monopolize the QPU. When a QPU is ready for additional work, it requests the next job from the fair-share scheduler. The scheduler's default behavior is to select the next job by first identifying the group that has used the least amount of their allocation within the scheduling window. If the group has more than one project, and both have jobs waiting to be executed, then the scheduler identifies the project that has used the least of their allocation within the scheduling window. Finally, if the project has submitted more than one job, the scheduler will select the oldest job first. Thus, within a project, the scheduler works on a first-in-first-out (FIFO) basis.
+The fair-share scheduler selects jobs to execute on a QPU in a dynamic order so that no instance can monopolize the QPU. When a QPU is ready for additional work, it requests the next job from the fair-share scheduler. The scheduler's default behavior is to select the next job by first identifying the group that has used the least amount of their allocation within the current scheduling window. If the selected group has more than one project, and both have jobs waiting to be executed, then the scheduler identifies the project that has used the least of their allocation within the scheduling window. Finally, if the selected project has submitted more than one job, the scheduler will select the oldest job first. Thus, within a project, the scheduler works on a first-in-first-out (FIFO) basis.
 
 ## Wait-time estimate
 
