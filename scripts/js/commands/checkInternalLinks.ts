@@ -101,7 +101,6 @@ async function main() {
 
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
-  "docs/api/qiskit-ibm-runtime/options.mdx",
   "docs/guides/*.{mdx,ipynb}",
   "docs/migration-guides/*.{mdx,ipynb}",
 ];
@@ -180,6 +179,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.1.mdx",
     "docs/api/qiskit/release-notes/1.2.mdx",
+    // Used by release notes.
+    "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
   ];
 
   if (!args.currentApis) {
