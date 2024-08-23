@@ -101,6 +101,7 @@ async function main() {
 
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
+  "docs/api/qiskit-ibm-runtime/options.mdx",
   "docs/guides/*.{mdx,ipynb}",
   "docs/migration-guides/*.{mdx,ipynb}",
 ];
