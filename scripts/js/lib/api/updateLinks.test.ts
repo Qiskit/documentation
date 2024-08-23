@@ -64,7 +64,6 @@ test.describe("updateLinks", () => {
       "tutorials/qaoa_with_primitives",
       "tutorials/vqe_with_estimator#Step-1:-Map-classical-inputs-to-a-quantum-problem",
       "qiskit.algorithms.gradients.LinCombEstimatorGradient#SUPPORTED_GATES",
-      "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations#MEASURE_PATCH_CYCLES",
     ].map((uri) => {
       return {
         name: "-",
@@ -122,7 +121,6 @@ test.describe("updateLinks", () => {
       "tutorials/qaoa_with_primitives",
       "tutorials/vqe_with_estimator#step-1:-map-classical-inputs-to-a-quantum-problem",
       "qiskit.algorithms.gradients.LinCombEstimatorGradient#supported_gates",
-      "qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations#measure_patch_cycles",
     ]);
   });
 });

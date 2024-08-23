@@ -150,10 +150,6 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeOptions",
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions",
   ],
-  // Provider
-  "docs/api/qiskit-ibm-provider/release-notes.mdx": [
-    "/api/qiskit/qiskit.circuit.Delay",
-  ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,
   "public/api/qiskit/objects.inv": [
