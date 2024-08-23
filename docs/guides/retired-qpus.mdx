@@ -70,27 +70,7 @@ The following IBM&reg; quantum processing units (QPUs) have been retired. For th
 <span id="retrieve"></span>
 ## Retrieve a job from a retired QPU
 
-To retrieve jobs from a retired QPU, you can use code similar to this, depending on the provider from which the job was sent:
-
-### For a job run from IBM Provider
-
-<Admonition type="note">
-IBM Provider has been deprecated. See [Migrate from qiskit_ibm_provider](/migration-guides/qiskit-runtime-from-ibm-provider) for instructions to migrate.
-</Admonition>
-
-```python
-from qiskit_ibm_provider import IBMProvider
-
-provider = IBMProvider(instance="hub/group/project")
-
-#If you want to retrieve a list of jobs
-jobs = provider.backend.jobs(backend_name=<backend_name>)
-
-#If you want to retrieve a specific job you have the id for
-job = provider.backend.retrieve_job(<job_id>)
-```
-
-### For a job run from Qiskit Runtime
+Use the following code to retrieve a job from a retired QPU.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -104,3 +84,7 @@ job = service.job(<job_id>)
 # Retrieve a batch of jobs. Filtering options can be found in the QiskitRuntimeService.jobs api reference
 jobs = service.jobs(backend_name=<backend_name>)
 ```
+
+<Admonition type="note" title="Deprecated provider packages">
+  `service.jobs()` returns jobs run from both `qiskit-ibm-runtime` and the deprecated `qiskit-ibm-provider` package. Jobs submitted by the older (also deprecated) `qiskit-ibmq-provider` package are no longer available.
+</Admonition>

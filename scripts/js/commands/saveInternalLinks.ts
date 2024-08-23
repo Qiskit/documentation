@@ -20,7 +20,6 @@ async function main() {
       "docs/**/*.{ipynb,mdx}",
       "!docs/api/*/[0-9]*/*",
       "!docs/api/*/dev/*",
-      "!docs/api/qiskit-ibm-provider/**/*",
       "!docs/api/qiskit/release-notes/*",
     ],
     [],
