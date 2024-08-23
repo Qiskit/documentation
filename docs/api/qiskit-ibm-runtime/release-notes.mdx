@@ -16,7 +16,7 @@ in_page_toc_max_heading_level: 2
 
 ### Other Notes
 
-*   The V1 Primitives `SamplerV1` and `EstimatorV1` have been completely removed. Please use the [migration guide](/migration-guides/v2-primitives) and use theV2 Primitives instead. ([1857](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1857))
+*   The V1 Primitives `SamplerV1` and `EstimatorV1` have been completely removed. Please see the [migration guide](/migration-guides/v2-primitives) and use the V2 Primitives instead. ([1857](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1857))
 *   The `service` parameter is now required in `Session.from_id()`. ([1868](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1868))
 
 <span id="id2" />
@@ -586,7 +586,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 ### Bug Fixes
 
 *   Retrieving backend properties with [properties()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.IBMBackend#properties) now supports passing a `datetime` parameter to retrieve properties from a past date.
-*   The `noise_factors` and `extrapolator` options in [qiskit\_ibm\_runtime.options.ResilienceOptions](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions) will now default to `None` unless `resilience_level` is set to 2. Only options relevant to the resilience level will be set, so when using `resilience_level` 2, `noise_factors` will still default to `(1, 3, 5)` and `extrapolator` will default to `LinearExtrapolator`. Additionally, options with a value of `None` will no longer be sent to the server.
+*   The `noise_factors` and `extrapolator` options in [qiskit\_ibm\_runtime.options.ResilienceOptions](/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions) will now default to `None` unless `resilience_level` is set to 2. Only options relevant to the resilience level will be set, so when using `resilience_level` 2, `noise_factors` will still default to `(1, 3, 5)` and `extrapolator` will default to `LinearExtrapolator`. Additionally, options with a value of `None` will no longer be sent to the server.
 *   Job error messages will no longer be returned in all uppercase.
 *   The max\_execution\_time option is now based on system execution time instead of wall clock time. System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
 

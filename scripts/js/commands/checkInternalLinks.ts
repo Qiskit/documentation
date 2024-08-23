@@ -180,6 +180,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.1.mdx",
     "docs/api/qiskit/release-notes/1.2.mdx",
+    // Used by release notes.
+    "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
   ];
 
   if (!args.currentApis) {
