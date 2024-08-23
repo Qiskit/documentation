@@ -20,9 +20,6 @@ To see the instances to which you have access, look at the bottom of your [Accou
 
 ![Screenshot of the Account page.](/images/guides/find-providers1.png "Instances on the Account page")
 
-## How usage affects job priority within an instance
-
-
 ## Find your instances
 
 You can view a list of your instances on your [account settings page](https://quantum.ibm.com/account), or you can use [the `instances()` method](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#instances).
@@ -49,6 +46,14 @@ When you execute a task using an IBM Quantum service (for example, sending circu
 By default, users who sign up for an IBM Quantum account are assigned to the Open Plan and the Open Plan's instance, `ibm-q/open/main`. To guarantee that everyone can use the QPU allocated to the plan fairly, **an individual can have no more than three jobs running and/or in the queue (across all QPUs) at the same time.** Submitting more than three jobs at a time will return error [#3458](../errors#3458), and additional jobs will be canceled.
 
 Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard](https://quantum.ibm.com/), [Jobs](https://quantum.ibm.com/jobs), and [Account](https://quantum.ibm.com/account) pages.
+
+## How usage affects job priority within an instance
+
+*This section applies to Premium users, who have access to multiple instances.* When determining which jobs to run, the [fair-share scheduler](./fair-share-scheduler) takes into account an instance's usage of the QPU in question. For example, an instance that has already run many jobs on a certain QPU might not have as high a priority on that QPU, when compared to an instance that has very low usage.
+
+The jobs you run, as well as the jobs run by other collaborators in the same instance, count toward the reported usage for that instance. You can see the usage for a selected instance on your [Dashboard](https://quantum.ibm.com/) (use the [instance switcher](#instance-switcher) at the top of the page to change which instance is reflected on your Dashboard).  
+
+Be aware that if an instance has been marked "limited" by your administrator and the instance exceeds its allocation (also defined by your administrator) within the 28-day rolling window, jobs run with that instance will not complete until more time is available. If an instance is not limited, and if the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
 
 <span id="connect-instance"></span>
 ## Connect to an instance
