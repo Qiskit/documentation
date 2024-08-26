@@ -20,13 +20,25 @@ To see the instances to which you have access, look at the bottom of your [Accou
 
 ![Screenshot of the Account page.](/images/guides/find-providers1.png "Instances on the Account page")
 
-## Find your instances
+<span id="open-plan"></span>
+## Open Plan instance
+
+By default, users who sign up for an IBM Quantum account are assigned to the Open Plan and the Open Plan's instance, `ibm-q/open/main`. To guarantee that everyone can use the QPU allocated to the plan fairly, **an individual can have no more than three jobs running and/or in the queue (across all QPUs) at the same time.** Submitting more than three jobs at a time will return error [#3458](../errors#3458), and additional jobs will be canceled.
+
+Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard](https://quantum.ibm.com/), [Jobs](https://quantum.ibm.com/jobs), and [Account](https://quantum.ibm.com/account) pages.
+
+## View your instances
+
+You can see information about your instances programmatically or in the user interface.
+
+### List your instances programmatically
 
 You can view a list of your instances on your [account settings page](https://quantum.ibm.com/account), or you can use [the `instances()` method](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#instances).
 
-## Switch instances
+<span id="switch-instances"></span>
+### View instances in the IBM Quantum interface
 
-If you have access to run on multiple instances, the [IBM Quantum interface](https://quantum.ibm.com/) menu bar contains a dropdown that lets you switch between instances.  The IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and QPUs based on the selected instance.
+Within the [IBM Quantum interface](https://quantum.ibm.com/), the IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and QPUs based on your instance. If you have access to multiple instances, use the dropdown in the menu bar to switch between instances.
 
 <Admonition type="note">
  The instance switcher does not appear in the Administration application.
@@ -34,23 +46,33 @@ If you have access to run on multiple instances, the [IBM Quantum interface](htt
 
 If you switch to a different instance, it is remembered the next time you log on and, assuming that it's still a valid instance, information pertaining to that instance is displayed.  By default, the first premium instance you have access to is used.  If you do not have any premium instances, the first open instance is shown.
 <Admonition type="note">
-The first instance is determined alphabetically.
+The "first" instance is determined alphabetically.
 </Admonition>
 
-## Instances and jobs
+## How jobs relate to instances
 
-When you execute a task using an IBM Quantum service (for example, sending circuits to a QPU), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final result(s) of the computation. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.
+When you execute a task using an IBM Quantum service (for example, sending circuits to a QPU), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final computation results. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.
 
-## Open Plan
+## How usage affects job priority within an instance
 
-By default, users who sign up for an IBM Quantum account are assigned to the Open Plan and the Open Plan's instance, `ibm-q/open/main`. To guarantee that everyone can use the QPU allocated to the plan fairly, **an individual can have no more than three jobs running and/or in the queue (across all QPUs) at the same time.** Submitting more than three jobs at a time will return error [#3458](../errors#3458), and additional jobs will be canceled.
+*This section applies to Premium Plan users only, since their access includes multiple instances.* When determining which jobs to run, the [fair-share scheduler](./fair-share-scheduler) takes into account an instance's usage of the QPU in question. For example, an instance that has already run many jobs on a certain QPU might not have as high a priority on that QPU, when compared to an instance that has very low usage.
 
-Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard](https://quantum.ibm.com/), [Jobs](https://quantum.ibm.com/jobs), and [Account](https://quantum.ibm.com/account) pages.
+The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can see the usage for an instance on your [dashboard](https://quantum.ibm.com/) (use the [instance switcher](#switch-instances) at the top of the page to change which instance is reflected on your dashboard).
+
+If an instance has been marked as "limited" by your administrator (you will see a "**Remaining**" column for the usage) and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, jobs run with that instance will not complete until more time is available. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
+
+An alert displays on an instance's usage when it has exceeded its allocation.
+
+![Collaborator's dashboard view, reflecting an instance that has exceeded its specified limit](/images/guides/instances/exceeded-limit-instance.png)
+_Collaborator's dashboard view, reflecting an instance that has exceeded its specified limit_
+
+![Collaborator's dashboard view, reflecting an instance (with no limit specified) that has exceeded its allocation](/images/guides/instances/exceeded-allocation-instance.png)
+_Collaborator's dashboard view, reflecting an instance (with no limit specified) that has exceeded its allocation_
 
 <span id="connect-instance"></span>
-## Connect to an instance
+## Specify an instance in your code
 
-You can specify an instance when initializing the service, or when choosing a QPU.  You can copy the service-level code by clicking the three dots by the instance name on the Instances section of the [Account overview page](https://quantum.ibm.com/account).
+You can specify an instance when initializing the service or when choosing a QPU.  You can copy the service-level code by clicking the three dots by the instance name on the Instances section of the [Account overview page](https://quantum.ibm.com/account).
 
 ```python
 
@@ -78,7 +100,7 @@ If you do not specify an instance, the code will select one in the following ord
 </Admonition>
 
 
-## Leaving an instance
+## Leave an instance
 
 To leave an instance, visit the instance list on your [Account page.](https://quantum.ibm.com/account) Select the instance you wish to leave, then select the overflow menu and choose *Leave instance*.
 
