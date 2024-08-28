@@ -50,8 +50,8 @@ jobs:
           files: "docs/**/*.ipynb"
           separator: "\n"
 
-      - name: Get changed dependency files
-        id: changed-dependencies
+      - name: Get changed config files
+        id: changed-config
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
           files: "scripts/nb-tester/**/*"
@@ -100,9 +100,9 @@ jobs:
         run: |
           import subprocess
           changed_notebooks = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
-          changed_deps = """${{ steps.changed-dependencies.outputs.all_changed_files }}"""
+          changed_config = """${{ steps.changed-config.outputs.all_changed_files }}"""
           args = ["tox", "--", "--write"]
-          if changed_notebooks and not changed_deps:
+          if changed_notebooks and not changed_config:
               args.extend(changed_notebooks.split("\n"))
           subprocess.run(args, check=True)
 
