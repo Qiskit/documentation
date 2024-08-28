@@ -15,7 +15,7 @@ Read on for more information about how to support this project:
 This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&trade; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit SDK API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
-- For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
+- For problems you've found in the [Qiskit Runtime Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
 - For problems you've found in any other section of [docs](https://docs.quantum.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
 ### 2. Suggest new content
@@ -347,7 +347,7 @@ You can regenerate all API docs versions following these steps:
 
 1. Create a dedicated branch for the regeneration other than `main` using `git checkout -b <branch-name>`.
 2. Ensure there are no pending changes by running `git status` and creating a new commit for them if necessary.
-3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-runtime`, and `qiskit-transpiler-service`.
+3. Run `npm run regen-apis` to regenerate all API docs versions for `qiskit`, `qiskit-ibm-runtime`, and `qiskit-ibm-transpiler`.
 
 Each regenerated version will be saved as a distinct commit. If the changes are too large for one single PR, consider splitting it up into multiple PRs by using `git cherry-pick` or `git rebase -i` so each PR only has the commits it wants to target.
 
@@ -355,7 +355,7 @@ If you only want to regenerate the latest stable minor release of each package, 
 
 Alternatively, you can also regenerate one specific version:
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-runtime`, or `qiskit-ibm-transpiler`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
@@ -369,7 +369,7 @@ In this case, no commit will be automatically created.
 
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-runtime`, or `qiskit-transpiler-service`) and its version.
+1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-runtime`, or `qiskit-ibm-transpiler`) and its version.
 2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request

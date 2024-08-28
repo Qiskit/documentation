@@ -152,7 +152,7 @@ function maybePrintErrorsAndFail(
   if (extraToolsEntriesErrors.length > 0) {
     extraToolsEntriesErrors.forEach((error) => console.error(error));
     console.error(
-      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
+      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/js/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
     );
     INDEX_PAGES.forEach((index) => console.error(`\t➡️  ${index}`));
     allGood = false;
