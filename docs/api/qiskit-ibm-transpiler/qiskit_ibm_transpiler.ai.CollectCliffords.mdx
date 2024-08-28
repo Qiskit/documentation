@@ -1,23 +1,23 @@
 ---
-title: CollectPermutations
-description: API reference for qiskit_transpiler_service.ai.CollectPermutations
+title: CollectCliffords
+description: API reference for qiskit_ibm_transpiler.ai.CollectCliffords
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_transpiler_service.ai.CollectPermutations
+python_api_name: qiskit_ibm_transpiler.ai.CollectCliffords
 ---
 
-# CollectPermutations
+# CollectCliffords
 
-<Class id="qiskit_transpiler_service.ai.CollectPermutations" isDedicatedPage={true} signature="qiskit_transpiler_service.ai.CollectPermutations(do_commutative_analysis: bool = True, min_block_size: int = 4, max_block_size: int = PERMUTATION_MAX_BLOCK_SIZE, collect_from_back: bool = False, num_reps: int = 10)" modifiers="class">
+<Class id="qiskit_ibm_transpiler.ai.CollectCliffords" isDedicatedPage={true} signature="qiskit_ibm_transpiler.ai.CollectCliffords(do_commutative_analysis: bool = True, min_block_size: int = 2, max_block_size: int = CLIFFORD_MAX_BLOCK_SIZE, collect_from_back: bool = False, num_reps: int = 10)" modifiers="class">
   Bases: `RepeatedCollectAndCollapse`
 
-  Collects blocks of SWAP circuits as Permutations.
+  Collects Clifford blocks as Instruction objects and stores the original sub-circuit to compare against it after synthesis.
 
   **Parameters**
 
   *   **do\_commutative\_analysis** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*, optional*) – Enable or disable commutative analysis, defaults to True
-  *   **min\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, optional*) – Set the minimum size for blocks generated during the collect permutations pass, defaults to 4.
-  *   **max\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, optional*) – Set the maximum size for blocks generated during the collect permutations pass, defaults to 12.
+  *   **min\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, optional*) – Set the minimum size for blocks generated during the collect Cliffords pass, defaults to 2.
+  *   **max\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, optional*) – Set the maximum size for blocks generated during the collect Cliffords pass, defaults to 9.
   *   **collect\_from\_back** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*, optional*) – Specify if collect blocks in reverse order or not, defaults to False.
   *   **num\_reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, optional*) – Specify how many times to repeat the optimization process, defaults to 10.
 
@@ -25,14 +25,14 @@ python_api_name: qiskit_transpiler_service.ai.CollectPermutations
 
   ### execute
 
-  <Function id="qiskit_transpiler_service.ai.CollectPermutations.execute" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit_ibm_transpiler.ai.CollectCliffords.execute" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
     *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)")) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -45,7 +45,7 @@ python_api_name: qiskit_transpiler_service.ai.CollectPermutations
 
   ### name
 
-  <Function id="qiskit_transpiler_service.ai.CollectPermutations.name" signature="name()">
+  <Function id="qiskit_ibm_transpiler.ai.CollectCliffords.name" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -55,7 +55,7 @@ python_api_name: qiskit_transpiler_service.ai.CollectPermutations
 
   ### run
 
-  <Function id="qiskit_transpiler_service.ai.CollectPermutations.run" signature="run(dag)">
+  <Function id="qiskit_ibm_transpiler.ai.CollectCliffords.run" signature="run(dag)">
     Run the CollectLinearFunctions pass on dag. :param dag: the DAG to be optimized. :type dag: DAGCircuit
 
     **Returns**
@@ -69,7 +69,7 @@ python_api_name: qiskit_transpiler_service.ai.CollectPermutations
 
   ### update\_status
 
-  <Function id="qiskit_transpiler_service.ai.CollectPermutations.update_status" signature="update_status(state, run_state)">
+  <Function id="qiskit_ibm_transpiler.ai.CollectCliffords.update_status" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**
