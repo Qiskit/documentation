@@ -92,9 +92,19 @@ async function getRedirectsForVersion(
     if (latestPages.includes(basename(path))) {
       continue;
     }
-    // For now, we always redirect to the top level. Future improvements could
-    // try to identify the module name and redirect there if it exists.
+
     const pageName = removeSuffix(basename(path), ".mdx");
+
+    if (
+      versionPath.includes("qiskit-ibm-transpiler") &&
+      pageName.includes("qiskit_transpiler_service")
+    ) {
+      redirects[pageName] =
+        `/${pageName.replace("qiskit_transpiler_service", "qiskit_ibm_transpiler")}`;
+      continue;
+    }
+
+    // Otherwise, redirect to the top-level.
     redirects[pageName] = "/";
   }
   return redirects;
