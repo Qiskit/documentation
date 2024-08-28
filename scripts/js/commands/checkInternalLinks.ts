@@ -126,7 +126,7 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   }
 
   const transpiler = await determineHistoricalFileBatches(
-    "qiskit-transpiler-service",
+    "qiskit-ibm-transpiler",
     TRANSPILER_GLOBS_TO_LOAD,
     args.historicalApis,
   );
