@@ -60,6 +60,7 @@ class Config:
     notebooks_exclude: list[str]
     notebooks_that_submit_jobs: list[str]
     notebooks_no_mock: list[str]
+    dependency_files: list[str]
 
     @property
     def all_job_submitting_notebooks(self) -> list[str]:
@@ -98,7 +99,11 @@ class Config:
         """
         Yield notebooks to be executed, printing messages for any skipped files.
         """
-        paths = map(Path, self.args.filenames or self.all_notebooks_to_test)
+        if any(p in self.dependency_files for p in self.args.filenames):
+            print("Dependency file passed as an argument; running all notebooks.")
+            paths = map(Path, self.all_notebooks_to_test)
+        else:
+            paths = map(Path, self.args.filenames or self.all_notebooks_to_test)
         for path in paths:
             if path.suffix != ".ipynb":
                 print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
