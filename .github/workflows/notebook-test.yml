@@ -102,8 +102,8 @@ jobs:
           changed_notebooks = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
           changed_deps = """${{ steps.changed-dependencies.outputs.all_changed_files }}"""
           args = ["tox", "--", "--write"]
-          if files and not changed_deps:
-              args.extend(files.split("\n"))
+          if changed_notebooks and not changed_deps:
+              args.extend(changed_notebooks.split("\n"))
           subprocess.run(args, check=True)
 
       - name: Detect changed notebooks
