@@ -18,19 +18,19 @@ The Qiskit transpiler service offers a Python library to seamlessly integrate th
 </Admonition>
 
 <span id="install-transpiler-service"></span>
-## Install the qiskit-transpiler-service package
+## Install the qiskit-ibm-transpiler package
 
-To use the Qiskit transpiler service, install the `qiskit-transpiler-service` package:
+To use the Qiskit transpiler service, install the `qiskit-ibm-transpiler` package:
 
 ```sh
-pip install qiskit-transpiler-service
+pip install qiskit-ibm-transpiler
 ```
 
 By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`).
 
 *Note*: This package requires Qiskit SDK v1.X.
 
-## qiskit-transpiler-service transpile options
+## qiskit-ibm-transpiler transpile options
 
 - `backend_name` (optional, str) - A backend name as it would be expected by QiskitRuntimeService (for example, `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `backend_name` settings are overridden.
 - `coupling_map` (optional, List[List[int]]) - A valid coupling map list (for example, [[0,1],[1,2]]). If this is set, the transpile method uses this coupling map for the transpilation operation. If defined, it overrides any value specified for `target`.
@@ -38,7 +38,7 @@ By default, the package tries to authenticate to IBM Quantum services with the d
 - `ai` ("true", "false", "auto") - Whether to use AI-powered capabilities during transpilation. The AI-powered capabilities available can be for `AIRouting` transpiling passes or other AI-powered synthesis methods. If this value is `"true"`, the service applies different AI-powered transpiling passes depending on the `optimization_level` requested. If  `"false"`, it uses the latest Qiskit transpiling features without AI. Finally, if `"auto"`, the service decides whether to apply the standard Qiskit heuristic passes or the AI-powered passes based on your circuit.
 - `qiskit_transpile_options` (dict) - A Python dictionary object that can include any other option that is valid in the [Qiskit `transpile()` method](defaults-and-configuration-options). If the `qiskit_transpile_options` input includes `optimization_level`, it is discarded in favor of the `optimization_level` specified as parameter input. If the `qiskit_transpile_options` includes any option not recognized by the Qiskit `transpile()` method, the library raises an error.
 
-For more information about the available `qiskit-transpiler-service` methods, see the [qiskit-transpiler-service API reference](/api/qiskit-transpiler-service). To learn more about the service API, see the [Qiskit Transpiler Service REST API documentation.](/api/qiskit-transpiler-service-rest)
+For more information about the available `qiskit-ibm-transpiler` methods, see the [qiskit-ibm-transpiler API reference](/api/qiskit-ibm-transpiler). To learn more about the service API, see the [Qiskit Transpiler Service REST API documentation.](/api/qiskit-transpiler-service-rest)
 
 ## Examples
 
@@ -48,7 +48,7 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
 
     ```python
     from qiskit.circuit.library import EfficientSU2
-    from qiskit_transpiler_service.transpiler_service import TranspilerService
+    from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
     circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
@@ -65,7 +65,7 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
 
     ```python
     from qiskit.circuit.library import EfficientSU2
-    from qiskit_transpiler_service.transpiler_service import TranspilerService
+    from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
     circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
@@ -82,7 +82,7 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
 
     ```python
     from qiskit.circuit.library import EfficientSU2
-    from qiskit_transpiler_service.transpiler_service import TranspilerService
+    from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
     circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
