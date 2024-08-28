@@ -98,7 +98,7 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime IBM Client",
+        title: "Qiskit Runtime Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
       });
