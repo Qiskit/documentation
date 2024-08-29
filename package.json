@@ -7,7 +7,8 @@
   "type": "module",
   "files": [
     "dist",
-    "scripts/config/cspell"
+    "scripts/config/cspell",
+    "scripts/config/internal-links.json"
   ],
   "scripts": {
     "prepare": "tsc",
@@ -27,18 +28,21 @@
     "check:stale-images": "tsx scripts/js/commands/checkStaleImages.ts",
     "regen-apis": "tsx scripts/js/commands/api/regenerateApiDocs.ts",
     "gen-api": "tsx scripts/js/commands/api/updateApiDocs.ts",
-    "make-historical": "tsx scripts/js/commands/api/convertApiDocsToHistorical.ts"
+    "make-historical": "tsx scripts/js/commands/api/convertApiDocsToHistorical.ts",
+    "generate-historical-redirects": "tsx scripts/js/commands/api/generateHistoricalRedirects.ts",
+    "save-internal-links": "tsx scripts/js/commands/saveInternalLinks.ts"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "cspell": "^7.3.2",
+    "cspell": "^8.12.1",
     "fast-levenshtein": "^3.0.0",
     "github-slugger": "^2.0.0",
-    "globby": "^13.2.2",
+    "globby": "^14.0.2",
     "gray-matter": "^4.0.3",
     "hast-util-to-mdast": "^8.3.0",
     "hast-util-to-text": "^3.1.0",
     "is-absolute-url": "^4.0.1",
+    "js-yaml": "^4.1.0",
     "lodash-es": "^4.17.21",
     "markdown-link-extractor": "^3.1.0",
     "mdast": "^3.0.0",
@@ -55,7 +59,7 @@
     "unified": "^10.0.0",
     "unist-util-visit": "^4.0.0",
     "yargs": "^17.7.2",
-    "zx": "^7.2.3"
+    "zx": "^8.1.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.45.2",
@@ -64,7 +68,7 @@
     "@types/lodash-es": "^4.14.198",
     "@types/node": "^20.6.2",
     "@types/yargs": "^17.0.28",
-    "prettier": "^3.0.3",
+    "prettier": "^3.3.3",
     "tsx": "^4.16.2",
     "typescript": "^5.2.2"
   }

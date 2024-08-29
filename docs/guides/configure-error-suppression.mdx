@@ -1,140 +1,26 @@
 ---
-title: Configure runtime compilation
-description: How to configure runtime compilation in Qiskit Runtime.
+title: Configure error suppression
+description: How to configure error suppression in Qiskit Runtime. (Former title - Runtime compilation)
 
 ---
 
-# Configure runtime compilation for Qiskit Runtime
+# Configure error suppression
 
-Runtime compilation techniques transform your circuit to minimize errors. Runtime compilation adds some classical pre-processing overhead to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
+Error suppression refers to techniques where you use knowledge about the undesirable effects to introduce customization that can anticipate and avoid the potential impacts of those effects. These techniques often consist of altering or adding control signals to ensure that the quantum processor returns the desired results.  This typically results in quantum pre-processing overhead; therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
 
-<Admonition type="caution" title="Important">
-To ensure faster and more efficient results, as of 1 March 2024, circuits and observables need to be transformed to only use instructions supported by the QPU (referred to as *instruction set architecture (ISA)* circuits and observables) before being submitted to the Qiskit Runtime primitives.  See the [transpilation documentation](./transpile) for instructions to transform circuits.  Due to this change, the primitives will no longer perform layout or routing operations.  Consequently, transpilation options referring to those tasks will no longer have any effect. By default, all V1 primitives optimize the input circuits. To bypass all optimization when using a V1 primitive, set `optimization_level=0`.
+Primitives support a number of error suppression techniques, including [dynamical decoupling](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.DynamicalDecouplingOptions#dynamicaldecouplingoptions) and [Pauli twirling](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each. When using primitives, you can turn on or off individual methods. See the [Advanced error suppression options](#transpilation-table) section for details.
 
-*Exception*: When you initialize the Qiskit Runtime Service with the Q-CTRL channel strategy (example below), abstract circuits are still supported.
-
-``` python
-service = QiskitRuntimeService(channel="ibm_cloud", channel_strategy="q-ctrl")
-```
-</Admonition>
-
-<span id="set-the-optimization-level"></span>
-## Set the optimization level (V1 primitives only)
-
-The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
-
-<Admonition>
-  Optimization levels 2 and 3 behave identically to level 1.
-</Admonition>
-
-<Table>
-  <thead>
-    <Tr>
-      <Th>Optimization Level</Th>
-      <Th>Estimator & Sampler</Th>
-    </Tr>
-  </thead>
-  <tbody>
-    <Tr>
-      <Td>0</Td>
-      <Td>
-        No optimization: typically used for hardware characterization or debugging
-      </Td>
-    </Tr>
-    <Tr>
-      <Td>1, 2, 3</Td>
-      <Td>
-        Light optimization:
-
-        -   Single-qubit gate optimization
-        -   Two-qubit gate optimization
-        -   Error suppression: dynamical decoupling
-      </Td>
-    </Tr>
-  </tbody>
-</Table>
-
-<Admonition type="note">
-  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
-
-  Q-CTRL defaults to `optimization_level=3` and `resilience_level=1`.
-  Setting `optimization_level` or `resilience_level` equal to 0 will result in an
-  execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
-  Setting other options will likewise not impact performance, and it may result in a
-  runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
-</Admonition>
-
-### Example: configure Estimator with optimization levels
-
-<Tabs>
-  <TabItem value="EstimatorV2" label="V2 Estimator">
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService, EstimatorV2 as Estimator
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit.circuit.library import RealAmplitudes
-from qiskit.quantum_info import SparsePauliOp
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
-
-psi = RealAmplitudes(num_qubits=2, reps=2)
-H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
-theta = [0, 1, 1, 2, 3, 5]
-
-pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-psi = pm.run(psi)
-H = H.apply_layout(psi.layout)
-
-estimator = Estimator(mode=backend)
-
-job = estimator.run([(psi, H, theta)])
-
-psi1_H1 = job.result()[0]
-  ```
-  </TabItem>
-
-  <TabItem value="EstimatorV1" label="Estimator (V1)">
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator, Options
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-from qiskit.circuit.library import RealAmplitudes
-from qiskit.quantum_info import SparsePauliOp
-
-service = QiskitRuntimeService()
-backend = service.least_busy(operational=True, simulator=False)
-options = Options(optimization_level=1)
-
-psi = RealAmplitudes(num_qubits=2, reps=2)
-H = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
-theta = [0, 1, 1, 2, 3, 5]
-
-pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
-psi = pm.run(psi)
-H = H.apply_layout(psi.layout)
-
-estimator = Estimator(options=options, backend=backend)
-
-job = estimator.run(circuits=[psi], observables=[H], parameter_values=[theta])
-psi1_H1 = job.result()
-```
-
-<Admonition type="note">
-  If the optimization level is not specified, the service uses `optimization_level = 1`.
-</Admonition>
-  </TabItem>
-</Tabs>
-
+Estimator employs error suppression and mitigation by default. If you don't want any processing done to your input circuits, follow the instructions in the [Turn off all error mitigation and error suppression](specify-runtime-options#no-error-mitigation) section.
 
 <span id="transpilation-table"></span>
-## Advanced runtime compilation options
+## Advanced error suppression options
 
-<Tabs>
-  <TabItem value="PrimV2" label="V2 primitives">
-    In the V2 primitives, you can explicitly enable and disable individual error mitigation/suppression methods, such as dynamical decoupling.
+In the primitives, you can explicitly enable and disable individual error mitigation and suppression methods, such as dynamical decoupling.
 
-    <Admonition type = "note">
-    Dynamical decoupling is not supported when the input circuits are dynamic.
-    </Admonition>
+<Admonition type = "note" title = "Notes">
+- Not all options are available for both primitives.   See the [available options](runtime-options-overview#options-table) table for the list of available options.
+- Not all methods work together on all types of circuits.  See the [options compatibility](runtime-options-overview#options-compatibility-table) table for details.
+</Admonition>
 ```python
 
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -151,18 +37,16 @@ sampler.options.dynamical_decoupling.sequence_type = "XpXm"
 
 print(f">>> dynamical decoupling sequence to use: {sampler.options.dynamical_decoupling.sequence_type}")
 ```
-  </TabItem>
 
-  <TabItem value="PrimV1" label="V1 primitives">
-    Because all input must be ISA, options.transpilation.xxx will be ignored.
-  </TabItem>
-</Tabs>
+## Turn off all error suppression
 
+For instructions to turn off all error suppression, see the [Turn off all error suppression and mitigation](specify-runtime-options#no-error-mitigation) section.
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Try a tutorial that uses optimization levels, such as the [Variational quantum eigensolver](https://learning.quantum.ibm.com/tutorial/variational-quantum-eigensolver) tutorial.
-    - Learn how to transpile locally in the [Transpile](./transpile) section.
-    - Try the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+    - Learn more about [error mitigation and error suppression techniques.](error-mitigation-and-suppression-techniques)
+    - [Configure error mitigation.](configure-error-mitigation)
+    - Explore other [options.](runtime-options-overview)
+    - Decide what [execution mode](execution-modes) to run your job in.
 </Admonition>

@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
 # HighLevelSynthesis
 
-<Class id="qiskit.transpiler.passes.HighLevelSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L269-L646" signature="qiskit.transpiler.passes.HighLevelSynthesis(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.HighLevelSynthesis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L310-L838" signature="qiskit.transpiler.passes.HighLevelSynthesis(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Synthesize higher-level objects and unroll custom definitions.
@@ -35,6 +35,12 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
   When neither `basis_gates` nor `target` is specified, the pass synthesizes only the top-level abstract mathematical objects and annotated operations, without descending into the gate `definitions`. This is consistent with the older behavior of the pass, allowing to synthesize some higher-level objects using plugins and leaving the other gates untouched.
 
+  The high-level-synthesis passes information about available auxiliary qubits, and whether their state is clean (defined as $|0\rangle$) or dirty (unknown state) to the synthesis routine via the respective arguments `"num_clean_ancillas"` and `"num_dirty_ancillas"`. If `qubits_initially_zero` is `True` (default), the qubits are assumed to be in the $|0\rangle$ state. When appending a synthesized block using auxiliary qubits onto the circuit, we first use the clean auxiliary qubits.
+
+  <Admonition title="Note" type="note">
+    Synthesis methods are assumed to maintain the state of the auxiliary qubits. Concretely this means that clean auxiliary qubits must still be in the $|0\rangle$ state after the synthesized block, while dirty auxiliary qubits are re-used only as dirty qubits.
+  </Admonition>
+
   HighLevelSynthesis initializer.
 
   **Parameters**
@@ -46,6 +52,7 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
   *   **equivalence\_library** – The equivalence library used (instructions in this library will not be unrolled by this pass).
   *   **basis\_gates** – Optional, target basis names to unroll to, e.g. \[‘u3’, ‘cx’]. Ignored if `target` is also specified.
   *   **min\_qubits** – The minimum number of qubits for operations in the input dag to translate.
+  *   **qubits\_initially\_zero** – Indicates whether the qubits are initially in the state $|0\rangle$. This allows the high-level-synthesis to use clean auxiliary qubits (i.e. in the zero state) to synthesize an operation.
 
   ## Attributes
 
@@ -99,7 +106,7 @@ python_api_name: qiskit.transpiler.passes.HighLevelSynthesis
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.HighLevelSynthesis.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L369-L415" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.HighLevelSynthesis.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/high_level_synthesis.py#L432-L452" signature="run(dag)">
     Run the HighLevelSynthesis pass on dag.
 
     **Parameters**

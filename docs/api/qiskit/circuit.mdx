@@ -209,7 +209,7 @@ Some instructions are particularly special in that they affect the control flow 
     *   [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp"), to move immediately to the next iteration of the containing loop
     *   [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp"), to loop over a fixed range of values
     *   [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp"), to conditionally enter one of two subcircuits
-    *   [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp"), to conditionally enter one of many subcicuits
+    *   [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp"), to conditionally enter one of many subcircuits
     *   [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), to repeat a subcircuit until a condition is falsified.
 
 [Circuits can include classical expressions that are evaluated in real time](#circuit-repr-real-time-classical), while the QPU is executing a single shot of the circuit. These are primarily documented in the module documentation of [`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical"). You might be particularly interested in the base classes (which are not exposed from the [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") root):
@@ -229,9 +229,10 @@ The [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") module also expo
 *   [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary"), a database of decomposition relations between gates and circuits
 *   [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"), a mutable instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") which is used by default by the compiler’s [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator").
 
-There is also a utility for generating random circuits:
+There are also utilities for generating random circuits:
 
-*   [`random.random_circuit()`](#qiskit.circuit.random.random_circuit "qiskit.circuit.random.random_circuit")
+*   [`random_circuit()`](#qiskit.circuit.random.random_circuit "qiskit.circuit.random.random_circuit")
+*   [`random_clifford_circuit()`](#qiskit.circuit.random.random_clifford_circuit "qiskit.circuit.random.random_clifford_circuit")
 
 Finally, the circuit module has its own exception class, to indicate when things went wrong in circuit-specific manners:
 
@@ -251,7 +252,7 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 
 #### Bit
 
-<Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/bit.py#L21-L94" signature="qiskit.circuit.Bit(register=None, index=None)" modifiers="class">
+<Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/bit.py#L21-L94" signature="qiskit.circuit.Bit(register=None, index=None)" modifiers="class">
   Implement a generic bit.
 
   <Admonition title="Note" type="note">
@@ -263,7 +264,7 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 
 #### Qubit
 
-<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/quantumregister.py#L26-L47" signature="qiskit.circuit.Qubit(register=None, index=None)" modifiers="class">
+<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/quantumregister.py#L26-L47" signature="qiskit.circuit.Qubit(register=None, index=None)" modifiers="class">
   Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
 
   Implement a quantum bit.
@@ -271,7 +272,7 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 
 #### Clbit
 
-<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classicalregister.py#L26-L47" signature="qiskit.circuit.Clbit(register=None, index=None)" modifiers="class">
+<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/classicalregister.py#L26-L47" signature="qiskit.circuit.Clbit(register=None, index=None)" modifiers="class">
   Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
 
   Implement a classical bit.
@@ -281,7 +282,7 @@ Qubits and clbits are instantiated by users with no arguments, such as by `Qubit
 
 #### AncillaQubit
 
-<Class id="qiskit.circuit.AncillaQubit" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/quantumregister.py#L60-L65" signature="qiskit.circuit.AncillaQubit(register=None, index=None)" modifiers="class">
+<Class id="qiskit.circuit.AncillaQubit" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/quantumregister.py#L60-L65" signature="qiskit.circuit.AncillaQubit(register=None, index=None)" modifiers="class">
   Bases: [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")
 
   A qubit used as ancillary qubit.
@@ -291,7 +292,7 @@ A collection bits of the same type can be encapsulated in a register of the matc
 
 #### Register
 
-<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/register.py#L26-L235" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
+<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/register.py#L26-L233" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
   Implement a generic register.
 
   <Admonition title="Note" type="note">
@@ -318,7 +319,7 @@ A collection bits of the same type can be encapsulated in a register of the matc
 
   ##### index
 
-  <Function id="qiskit.circuit.Register.index" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/register.py#L183-L191" signature="index(bit)">
+  <Function id="qiskit.circuit.Register.index" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/register.py#L181-L189" signature="index(bit)">
     Find the index of the provided bit within this register.
   </Function>
 
@@ -339,7 +340,7 @@ Each of the defined bit subtypes has an associated register, which have the same
 
 #### QuantumRegister
 
-<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/quantumregister.py#L50-L57" signature="qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)" modifiers="class">
+<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/quantumregister.py#L50-L57" signature="qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
 
   Implement a quantum register.
@@ -347,7 +348,7 @@ Each of the defined bit subtypes has an associated register, which have the same
 
 #### ClassicalRegister
 
-<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/classicalregister.py#L50-L57" signature="qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)" modifiers="class">
+<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/classicalregister.py#L50-L57" signature="qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
 
   Implement a classical register.
@@ -355,7 +356,7 @@ Each of the defined bit subtypes has an associated register, which have the same
 
 #### AncillaRegister
 
-<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/quantumregister.py#L68-L75" signature="qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)" modifiers="class">
+<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/quantumregister.py#L68-L75" signature="qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)" modifiers="class">
   Bases: [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
 
   Implement an ancilla register.
@@ -433,19 +434,19 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
 
 #### InverseModifier
 
-<Class id="qiskit.circuit.InverseModifier" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/annotated_operation.py#L32-L36" signature="qiskit.circuit.InverseModifier" modifiers="class">
+<Class id="qiskit.circuit.InverseModifier" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/annotated_operation.py#L33-L37" signature="qiskit.circuit.InverseModifier" modifiers="class">
   Inverse modifier: specifies that the operation is inverted.
 </Class>
 
 #### ControlModifier
 
-<Class id="qiskit.circuit.ControlModifier" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/annotated_operation.py#L39-L49" signature="qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)" modifiers="class">
+<Class id="qiskit.circuit.ControlModifier" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/annotated_operation.py#L40-L50" signature="qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)" modifiers="class">
   Control modifier: specifies that the operation is controlled by `num_ctrl_qubits` and has control state `ctrl_state`.
 </Class>
 
 #### PowerModifier
 
-<Class id="qiskit.circuit.PowerModifier" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/annotated_operation.py#L52-L56" signature="qiskit.circuit.PowerModifier(power)" modifiers="class">
+<Class id="qiskit.circuit.PowerModifier" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/annotated_operation.py#L53-L57" signature="qiskit.circuit.PowerModifier(power)" modifiers="class">
   Power modifier: specifies that the operation is raised to the power `power`.
 </Class>
 
@@ -459,7 +460,7 @@ Measurements in Qiskit are of a single [`Qubit`](#qiskit.circuit.Qubit "qiskit.c
 
 #### Measure
 
-<Class id="qiskit.circuit.Measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/measure.py#L21-L44" signature="qiskit.circuit.Measure(label=None)" modifiers="class">
+<Class id="qiskit.circuit.Measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/measure.py#L21-L44" signature="qiskit.circuit.Measure(label=None)" modifiers="class">
   Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 
   Quantum measurement in the computational basis.
@@ -473,7 +474,7 @@ Related to measurements, there is a [`Reset`](#qiskit.circuit.Reset "qiskit.circ
 
 #### Reset
 
-<Class id="qiskit.circuit.Reset" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/reset.py#L20-L34" signature="qiskit.circuit.Reset(label=None)" modifiers="class">
+<Class id="qiskit.circuit.Reset" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/reset.py#L20-L34" signature="qiskit.circuit.Reset(label=None)" modifiers="class">
   Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 
   Incoherently reset a qubit to the $\lvert0\rangle$ state.
@@ -487,7 +488,7 @@ Hardware can be instructed to apply a real-time idle period on a given qubit. A 
 
 #### Delay
 
-<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/delay.py#L24-L106" signature="qiskit.circuit.Delay(duration, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/delay.py#L24-L106" signature="qiskit.circuit.Delay(duration, unit='dt')" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Do nothing and just delay/wait/idle for a specified duration.
@@ -513,7 +514,7 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
 
 #### Barrier
 
-<Class id="qiskit.circuit.Barrier" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/barrier.py#L25-L48" signature="qiskit.circuit.Barrier(num_qubits, label=None)" modifiers="class">
+<Class id="qiskit.circuit.Barrier" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/barrier.py#L25-L48" signature="qiskit.circuit.Barrier(num_qubits, label=None)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   A directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers.
@@ -530,7 +531,7 @@ The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is parti
 
 #### Store
 
-<Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/store.py#L55-L95" signature="qiskit.circuit.Store(lvalue, rvalue)" modifiers="class">
+<Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/store.py#L55-L95" signature="qiskit.circuit.Store(lvalue, rvalue)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   A manual storage of some classical value to a classical memory location.
@@ -679,7 +680,7 @@ Subclasses of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruc
 
 #### \_define
 
-<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/instruction.py#L270-L277" signature="Instruction._define()">
+<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/instruction.py#L274-L281" signature="Instruction._define()">
   Populate the cached `_definition` field of this [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
 
   Subclasses should implement this method to provide lazy construction of their public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and not return a value.
@@ -815,7 +816,7 @@ The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary
 
 #### random\_circuit
 
-<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/random/utils.py#L23-L209" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None)">
+<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/random/utils.py#L24-L288" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None, num_operand_distribution=None)">
   Generate random circuit of arbitrary size and form.
 
   This function will generate a random circuit by randomly selecting gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
@@ -838,6 +839,14 @@ The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary
   *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle measurements and conditionals
   *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle resets
   *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets random seed (optional)
+  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – a distribution of gates that specifies the ratio
+  *   **1-qubit** (*of*) –
+  *   **2-qubit** –
+  *   **3-qubit** –
+  *   **...** –
+  *   **a** (*n-qubit gates in the random circuit. Expect*) –
+  *   **requested** (*deviation from the specified ratios that depends on the size of the*) –
+  *   **circuit.** (*random*) –
 
   **Returns**
 
@@ -852,13 +861,45 @@ The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary
   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when invalid options given
 </Function>
 
+#### random\_clifford\_circuit
+
+<Function id="qiskit.circuit.random.random_clifford_circuit" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/random/utils.py#L291-L358" signature="qiskit.circuit.random.random_clifford_circuit(num_qubits, num_gates, gates='all', seed=None)">
+  Generate a pseudo-random Clifford circuit.
+
+  This function will generate a Clifford circuit by randomly selecting the chosen amount of Clifford gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
+
+  ```python
+  from qiskit.circuit.random import random_clifford_circuit
+
+  circ = random_clifford_circuit(num_qubits=2, num_gates=6)
+  circ.draw(output='mpl')
+  ```
+
+  ![../\_images/circuit-3.png](/images/api/qiskit/circuit-3.png)
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of quantum wires.
+  *   **num\_gates** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of gates in the circuit.
+  *   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – optional list of Clifford gate names to randomly sample from. If `"all"` (default), use all Clifford gates in the standard library.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| np.random.Generator*) – sets random seed/generator (optional).
+
+  **Returns**
+
+  constructed circuit
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
+
 ## Exceptions
 
 Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") when encountering an error that is particular to usage of Qiskit (as opposed to regular typing or indexing problems, which will typically raise the corresponding standard Python error).
 
 ### CircuitError
 
-<Class id="qiskit.circuit.CircuitError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/exceptions.py#L18-L19" signature="qiskit.circuit.CircuitError(*message)" modifiers="exception">
+<Class id="qiskit.circuit.CircuitError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/exceptions.py#L18-L19" signature="qiskit.circuit.CircuitError(*message)" modifiers="exception">
   Base class for errors raised while processing a circuit.
 
   Set the error message.
@@ -904,7 +945,7 @@ If we draw this circuit, we will see that Qiskit places the zeroth qubit on the 
 qc.draw("mpl")
 ```
 
-![../\_images/circuit-4.png](/images/api/qiskit/circuit-4.png)
+![../\_images/circuit-5.png](/images/api/qiskit/circuit-5.png)
 
 ### Matrix representations
 

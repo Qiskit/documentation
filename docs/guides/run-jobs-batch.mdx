@@ -8,7 +8,7 @@ description: How to run quantum computing jobs in batch mode using Qiskit Runtim
 
 
 <Admonition type="caution" title="Important">
-The way batches are started within Qiskit Runtime has changed. **By 1 April 2024**, upgrade to `qiskit-ibm-runtime` version 0.20.0 or later, or `qiskit-ibm-provider` version 0.10.0 or later. In addition, ensure you are using Qiskit version 0.45.0 or later. Starting 1 April, batch calls made in earlier versions of these packages will fail.
+The way batches are started within Qiskit Runtime has changed. **By 1 April 2024**, upgrade to `qiskit-ibm-runtime` version 0.20.0 or later. In addition, ensure you are using Qiskit version 0.45.0 or later. Starting 1 April, batch calls made in earlier versions of these packages will fail.
 </Admonition>
 
 Batch mode can shorten processing time if all jobs can be provided at the outset. If you want to submit iterative jobs, use [sessions](sessions) instead.  Using batch mode has these benefits:
@@ -23,12 +23,86 @@ Batch mode can shorten processing time if all jobs can be provided at the outset
 
 ![This diagram illustrates jobs submitted in a batch.  It shows five jobs, numbered 0 through 4, in a queue. The jobs are a mix of Estimator and Sampler.](/images/guides/batch.png 'Figure 1: Batch execution')
 
-There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching.
+## Open a batch
+
+You can open a runtime batch by using the context manager `with Batch(...)` or by initializing the `Batch`
+class. When you start a batch,  you must specify a QPU by passing a `backend` object.  The batch starts when its first job begins execution.
+
+
+**Batch class**
+
+``` python
+from qiskit_ibm_runtime import Batch, Samplerv2 as Sampler, Estimatorv2 as Estimator
+
+backend = service.least_busy(operational=True, simulator=False)
+batch = Batch(backend=backend)
+estimator = Estimator(mode=batch)
+sampler = Sampler(mode=batch)
+batch.close()
+```
+
+
+**Context manager**
+
+The context manager automatically opens and closes the batch.
+
+``` python
+from qiskit_ibm_runtime import Batch, Samplerv2 as Sampler, Estimatorv2 as Estimator
+
+backend = service.least_busy(operational=True, simulator=False)
+with Batch(backend=backend):
+  estimator = Estimator()
+  sampler = Sampler()
+```
+
+<span id="specify-batch-length"></span>
+## Batch length
+
+You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits. This timer starts when the batch starts.  When the value is reached, the batch is closed.  Any jobs that are running will finish, but jobs still queued are failed.
+
+``` python
+with Batch(backend=backend, max_time="25m"):
+  ...
+```
+
+There is also an interactive time to live (ITTL) value of 1 second that cannot be configured.  If no batch jobs are queued within that window, the batch is temporarily deactivated.
+
+<span id="close"></span>
+## Close a batch
+
+A batch automatically closes when it exits the context manager. When the batch context manager is exited, the batch is put into "In progress, not accepting new jobs" status. This means that the batch finishes processing all running or queued jobs until the maximum TTL value is reached. After all jobs are completed, the batch is immediately closed. You cannot submit jobs to a closed batch.
+
+``` python
+with Batch(backend=backend) as batch:
+    estimator = Estimator()
+    job1 = estimator.run(...)
+    job2 = estimator.run(...)
+
+# The batch is no longer accepting jobs but the submitted job will run to completion.
+result = job1.result()
+result2 = job2.result()
+```
+
+If you are not using a context manager, manually close the batch.  If you leave the batch open and submit more jobs to it later, it is possible that the maximum TTL will be reached before the subsequent jobs start running; causing them to be canceled. You can close a batch as soon as you are done submitting jobs to it. When a batch is closed with `batch.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
+
+``` python
+batch = Batch(backend=backend)
+
+# If using qiskit-ibm-runtime earlier than 0.24.0, change `mode=` to `batch=`
+estimator = Estimator(mode=batch)
+job1 = estimator.run(...)
+job2 = estimator.run(...)
+print(f"Result1: {job1.result()}")
+print(f"Result2: {job2.result()}")
+
+# Manually close the batch. Running and queued jobs will run to completion.
+batch.close()
+```
 
 <span id="partition"></span>
-## Example: Partition a list of circuits into multiple jobs and run them in batch
+## Reconfigure jobs for parallel processing
 
-The following example shows how you can partition a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
+There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching. The following example shows how you can partition a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
  ```python
  from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
@@ -49,5 +123,30 @@ The following example shows how you can partition a long list of circuits into m
 
 
 <Admonition type="caution">
-    If you set `backend=backend` in a V2 primitive, the program is run in job mode, even if it's inside a batch or session context. Setting `backend=backend` is deprecated as of IBM Qiskit Runtime 0.24.0.  Instead, use the `mode` parameter.
+    If you set `backend=backend` in a primitive, the program is run in job mode, even if it's inside a batch or session context. Setting `backend=backend` is deprecated as of IBM Qiskit Runtime 0.24.0.  Instead, use the `mode` parameter.
+</Admonition>
+
+<span id="batch-details"></span>
+## Determine batch details
+
+For a comprehensive overview of a batch's configuration and status, including its interactive and max TTL, use the  `batch.details() method`.
+
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+
+service = QiskitRuntimeService()
+backend = service.least_busy(operational=True, simulator=False)
+
+with Batch(backend=backend) as batch:
+    sampler = Sampler()
+    for partition in partitions:
+        job = sampler.run(partition)
+    print(batch.details())
+```
+
+
+
+<Admonition type="tip" title="Recommendations">
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial.
+  - Review the [Batch API](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Batch) reference.
 </Admonition>

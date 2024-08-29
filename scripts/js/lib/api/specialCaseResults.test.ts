@@ -15,7 +15,6 @@ import { expect, test } from "@playwright/test";
 import {
   specialCaseResults,
   transformSpecialCaseUrl,
-  PROVIDER_INDEX_META,
   RUNTIME_INDEX_META,
 } from "./specialCaseResults.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
@@ -26,10 +25,6 @@ test("specialCaseResults()", () => {
     { url: "/api/my-pkg/terra" },
     {
       url: "/api/my-pkg/ibm-runtime",
-      meta: {},
-    },
-    {
-      url: "/api/my-pkg/ibm-provider",
       meta: {},
     },
     { url: "/api/my-pkg/other-file" },
@@ -48,25 +43,16 @@ test("specialCaseResults()", () => {
       meta: { hardcodedFrontmatter: RUNTIME_INDEX_META },
     },
     {
-      url: "/api/my-pkg/index",
-      meta: { hardcodedFrontmatter: PROVIDER_INDEX_META },
-    },
-    {
       url: "/api/my-pkg/other-file",
     },
   ]);
 });
 
 test("transformSpecialCaseUrl()", () => {
-  const urls = [
-    "release_notes",
-    "release_notes#release-notes-0-2-1-bug-fixes",
-    "ibm-provider#qiskit-ibm-provider",
-  ];
+  const urls = ["release_notes", "release_notes#release-notes-0-2-1-bug-fixes"];
   const transformedUrls = urls.map((x) => transformSpecialCaseUrl(x));
   expect(transformedUrls).toEqual([
     "release-notes",
     "release-notes#release-notes-0-2-1-bug-fixes",
-    "index#qiskit-ibm-provider",
   ]);
 });

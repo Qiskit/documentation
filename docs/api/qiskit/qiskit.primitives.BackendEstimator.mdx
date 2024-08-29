@@ -8,18 +8,22 @@ python_api_name: qiskit.primitives.BackendEstimator
 
 # BackendEstimator
 
-<Class id="qiskit.primitives.BackendEstimator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/backend_estimator.py#L89-L405" signature="qiskit.primitives.BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)" modifiers="class">
-  Bases: [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.base.base_estimator.BaseEstimatorV1")\[[`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.primitive_job.PrimitiveJob")\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
+<Class id="qiskit.primitives.BackendEstimator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/primitives/backend_estimator.py#L91-L415" signature="qiskit.primitives.BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)" modifiers="class">
+  Bases: [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")\[[`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.primitive_job.PrimitiveJob")\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 
   Evaluates expectation value using Pauli rotation gates.
 
-  The [`BackendEstimator`](#qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") class is a generic implementation of the `BaseEstimator` interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the `BaseEstimator` API. It facilitates using backends that do not provide a native `BaseEstimator` implementation in places that work with `BaseEstimator`. However, if you’re using a provider that has a native implementation of `BaseEstimator`, it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+  The [`BackendEstimator`](#qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") class is a generic implementation of the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") (V1) interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") V1 API. It facilitates using backends that do not provide a native [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") V1 implementation in places that work with [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") V1. However, if you’re using a provider that has a native implementation of [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.BaseEstimatorV1") ( [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")) or [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
-  Initialize a new BackendEstimator instance
+  Initialize a new BackendEstimator (V1) instance
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.primitives.backend_estimator.BackendEstimator` is deprecated as of qiskit 1.2. It will be removed no earlier than 3 months after the release date. All implementations of the BaseEstimatorV1 interface have been deprecated in favor of their V2 counterparts. The V2 alternative for the BackendEstimator class is BackendEstimatorV2.
+  </Admonition>
 
   **Parameters**
 
-  *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – Required: the backend to run the primitive on
+  *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – (required) the backend to run the primitive on
   *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
   *   **abelian\_grouping** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the observable should be grouped into commuting
   *   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
@@ -69,7 +73,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
   ### run
 
-  <Function id="qiskit.primitives.BackendEstimator.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/base/base_estimator.py#L120-L177" signature="run(circuits, observables, parameter_values=None, **run_options)">
+  <Function id="qiskit.primitives.BackendEstimator.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/primitives/base/base_estimator.py#L121-L178" signature="run(circuits, observables, parameter_values=None, **run_options)">
     Run the job of the estimation of expectation value(s).
 
     `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
@@ -113,7 +117,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
   ### set\_options
 
-  <Function id="qiskit.primitives.BackendEstimator.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/base/base_primitive.py#L39-L45" signature="set_options(**fields)">
+  <Function id="qiskit.primitives.BackendEstimator.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/primitives/base/base_primitive.py#L39-L45" signature="set_options(**fields)">
     Set options values for the estimator.
 
     **Parameters**
@@ -123,7 +127,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
   ### set\_transpile\_options
 
-  <Function id="qiskit.primitives.BackendEstimator.set_transpile_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/backend_estimator.py#L152-L158" signature="set_transpile_options(**fields)">
+  <Function id="qiskit.primitives.BackendEstimator.set_transpile_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/primitives/backend_estimator.py#L162-L168" signature="set_transpile_options(**fields)">
     Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options
   </Function>
 </Class>

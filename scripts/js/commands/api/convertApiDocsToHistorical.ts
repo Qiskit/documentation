@@ -21,6 +21,7 @@ import transformLinks from "transform-markdown-links";
 import { pathExists } from "../../lib/fs.js";
 import { zxMain } from "../../lib/zx.js";
 import { Pkg } from "../../lib/api/Pkg.js";
+import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -43,22 +44,19 @@ const readArgs = (): Arguments => {
 zxMain(async () => {
   const args = readArgs();
 
-  const pkgName = Pkg.VALID_NAMES.find((pkgName) => pkgName === args.package);
-  if (pkgName === undefined) {
-    throw new Error(`Unrecognized package: ${args.package}`);
-  }
+  const pkg = await Pkg.fromArgs(args.package, "ignored", "ignored", "latest");
 
-  const packageFile = await readFile(`docs/api/${pkgName}/_package.json`, {
+  const packageFile = await readFile(`docs/api/${pkg.name}/_package.json`, {
     encoding: "utf8",
   });
   const packageInfo = JSON.parse(packageFile);
   const versionMatch = packageInfo.version.match(/^(\d+\.\d+)/);
   const versionWithoutPatch = versionMatch[0];
 
-  const projectNewHistoricalFolder = `docs/api/${pkgName}/${versionWithoutPatch}`;
+  const projectNewHistoricalFolder = `docs/api/${pkg.name}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {
     console.error(
-      `${pkgName} has already a historical version ${versionWithoutPatch}.`,
+      `${pkg.name} has already a historical version ${versionWithoutPatch}.`,
       `Manually delete the existing folder if you intend to overwrite it.`,
     );
     process.exit(1);
@@ -66,15 +64,20 @@ zxMain(async () => {
 
   await mkdirp(projectNewHistoricalFolder);
 
-  await copyApiDocsAndUpdateLinks(pkgName, versionWithoutPatch);
+  await copyApiDocsAndUpdateLinks(pkg.name, versionWithoutPatch);
   await generateJsonFiles(
-    pkgName,
+    pkg.name,
     packageInfo.version,
     versionWithoutPatch,
     projectNewHistoricalFolder,
   );
-  await copyImages(pkgName, versionWithoutPatch);
-  await copyObjectsInv(pkgName, versionWithoutPatch);
+  await copyImages(
+    pkg.name,
+    pkg.hasSeparateReleaseNotes(),
+    versionWithoutPatch,
+  );
+  await copyObjectsInv(pkg.name, versionWithoutPatch);
+  await generateHistoricalRedirects();
 });
 
 async function copyApiDocsAndUpdateLinks(
@@ -141,12 +144,22 @@ async function generateJsonFiles(
   await writeFile(`${projectNewHistoricalFolder}/_toc.json`, tocFile + "\n");
 }
 
-async function copyImages(pkgName: string, versionWithoutPatch: string) {
+async function copyImages(
+  pkgName: string,
+  hasSeparateReleaseNotes: boolean,
+  versionWithoutPatch: string,
+) {
   console.log("Copying images");
   const imageDirSource = `public/images/api/${pkgName}/`;
   const imageDirDest = `public/images/api/${pkgName}/${versionWithoutPatch}`;
   await mkdirp(imageDirDest);
-  await $`find ${imageDirSource}/* -maxdepth 0 -type f | grep -v "release_notes" | xargs -I {} cp -a {} ${imageDirDest}`;
+
+  // If the project only has a single release notes file, we should not copy the release notes images.
+  if (hasSeparateReleaseNotes) {
+    await $`find ${imageDirSource}/* -maxdepth 0 -type f | xargs -I {} cp -a {} ${imageDirDest}`;
+  } else {
+    await $`find ${imageDirSource}/* -maxdepth 0 -type f | grep -v "release_notes" | xargs -I {} cp -a {} ${imageDirDest}`;
+  }
 }
 
 async function copyObjectsInv(pkgName: string, versionWithoutPatch: string) {

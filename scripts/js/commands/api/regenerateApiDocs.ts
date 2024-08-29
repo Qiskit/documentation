@@ -19,6 +19,7 @@ import { $ } from "zx";
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
 import { pathExists } from "../../lib/fs.js";
+import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -82,6 +83,7 @@ zxMain(async () => {
     result.forEach((msg) => console.error(msg));
     console.log("");
   });
+  await generateHistoricalRedirects();
 
   console.log(`Each regenerated version has been saved as a distinct commit. If the changes are
 too large for one single PR, consider splitting it up into multiple PRs by using

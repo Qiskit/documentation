@@ -16,6 +16,7 @@ on:
     paths:
       - "docs/**/*.ipynb"
       - "!docs/api/**/*"
+      - "scripts/nb-tester/**/*"
   workflow_dispatch:
 jobs:
   execute:
@@ -49,6 +50,12 @@ jobs:
           files: "docs/**/*.ipynb"
           separator: "\n"
 
+      - name: Get changed config files
+        id: changed-config
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          files: "scripts/nb-tester/**/*"
+
       - name: Check for notebooks that require Linux
         id: linux-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
@@ -64,7 +71,9 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
-          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed }}
+          # Install Linux deps if the specific guides were changed, or
+          # if all files are being tested.
+          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed == 'true' || steps.all-changed-files.outputs.any_changed == 'false' }}
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
 
       - name: Check lint
@@ -90,13 +99,24 @@ jobs:
         shell: python
         run: |
           import subprocess
-          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
-          args = ["tox", "--"] + files.split("\n") + ["--write"]
+          changed_notebooks = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          changed_config = """${{ steps.changed-config.outputs.all_changed_files }}"""
+          args = ["tox", "--", "--write"]
+          if changed_notebooks and not changed_config:
+              args.extend(changed_notebooks.split("\n"))
           subprocess.run(args, check=True)
+
+      - name: Detect changed notebooks
+        id: changed-notebooks
+        if: "!cancelled()"
+        run: |
+          echo "CHANGED_NOTEBOOKS<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Upload executed notebooks
         if: "!cancelled()"
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks
-          path: ${{ steps.all-changed-files.outputs.all_changed_files }}
+          path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}

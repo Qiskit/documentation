@@ -8,12 +8,16 @@ python_api_name: qiskit.qobj.GateCalibration
 
 # GateCalibration
 
-<Class id="qiskit.qobj.GateCalibration" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qobj/qasm_qobj.py#L485-L538" signature="qiskit.qobj.GateCalibration(name, qubits, params, instructions)" modifiers="class">
+<Class id="qiskit.qobj.GateCalibration" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qobj/qasm_qobj.py#L526-L587" signature="qiskit.qobj.GateCalibration(name, qubits, params, instructions)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
   Each calibration specifies a unique gate by name, qubits and params, and contains the Pulse instructions to implement it.
 
   Initialize a single gate calibration. Instructions may reference waveforms which should be made available in the pulse\_library.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.qobj.qasm_qobj.GateCalibration` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
 
   **Parameters**
 
@@ -26,7 +30,7 @@ python_api_name: qiskit.qobj.GateCalibration
 
   ### from\_dict
 
-  <Function id="qiskit.qobj.GateCalibration.from_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qobj/qasm_qobj.py#L525-L538" signature="from_dict(data)" modifiers="classmethod">
+  <Function id="qiskit.qobj.GateCalibration.from_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qobj/qasm_qobj.py#L574-L587" signature="from_dict(data)" modifiers="classmethod">
     Create a new GateCalibration object from a dictionary.
 
     **Parameters**
@@ -44,7 +48,7 @@ python_api_name: qiskit.qobj.GateCalibration
 
   ### to\_dict
 
-  <Function id="qiskit.qobj.GateCalibration.to_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qobj/qasm_qobj.py#L515-L523" signature="to_dict()">
+  <Function id="qiskit.qobj.GateCalibration.to_dict" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qobj/qasm_qobj.py#L564-L572" signature="to_dict()">
     Return a dictionary format representation of the Gate Calibration.
 
     **Returns**

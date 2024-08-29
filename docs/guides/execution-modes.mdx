@@ -8,7 +8,7 @@ description: An overview of the available execution modes in Qiskit Runtime; ses
 There are several ways to run workloads, depending on your needs.
 
 <Admonition type="note">
-The `mode` option is only available for V2 primitives and requires `qiskit-ibm-runtime` 0.24 or later.
+The `mode` option requires `qiskit-ibm-runtime` 0.24 or later.
 </Admonition>
 
 **Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](primitives-examples) for examples.
@@ -30,7 +30,7 @@ The differences are summarized in the following table:
 
 To ensure the most efficient use of the execution modes, the following practices are recommended:
 
-- Always close your session, either by using a context manager or by specifying `session.close()`.
+- Always close your session or batch, either by using a context manager or by specifying `session.close()` or `batch.close()`, respectively.
 - There is a fixed overhead associated with running a job. In general, if each of your jobs uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
 
     A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Jobs](https://quantum.ibm.com/jobs) page, or you can  query it by using  `qiskit-ibm-runtime` with this command `job.metrics()["usage"]["quantum_seconds"]`
@@ -39,9 +39,10 @@ To ensure the most efficient use of the execution modes, the following practices
 
 The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost effective because it can reduce wall clock time.
 
+<span id="usage"></span>
 ## Sessions versus batch usage
 
-Usage is a measurement of the amount of time the QPU is locked for your workload.
+The reported usage is the time a QPU is locked for your workload. Failed or canceled jobs count toward your reported usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
 * Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
 * Batch usage is the amount of time all jobs spend on the QPU.
@@ -52,3 +53,12 @@ To find the usage time for your session or batch, in `qiskit-ibm-runtime` 0.23 o
 If you are calling the REST API directly, the usage time is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both session and batch workloads.
 
 ![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
+
+<span id="failed-job"></span>
+## Failed and canceled jobs
+
+When a job is failed or canceled, the reported usage is as follows:
+
+* Job or batch mode: the reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the value that Qiskit Runtime returns as `consumed`. Thus, some failed jobs do not appear in your reported usage and others do.
+
+* Session mode: the reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are cancelled.

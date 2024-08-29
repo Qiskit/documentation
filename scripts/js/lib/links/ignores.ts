@@ -47,6 +47,8 @@ const _PATTERNS_REORG_IGNORES = [
   "/run/primitives-get-started#3-initialize-the-qiskit-runtime-sampler",
   "/run/primitives-get-started#3-initialize-qiskit-runtime-estimator",
   "/run/run-jobs-batch",
+  "/api/migration-guides/qiskit-runtime",
+  "/api/migration-guides/v2-primitives",
 ];
 
 const ALWAYS_IGNORED_URLS__EXPECTED = [
@@ -114,6 +116,12 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
     "0.22/",
     "0.23/",
     "0.24/",
+    "0.25/",
+    "0.26/",
+    "0.27/",
+    "0.28/",
+    "0.29/",
+    "0.29/",
   ].map((vers) => [
     `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
     [
@@ -139,10 +147,8 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#runtime",
     "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#run",
-  ],
-  // Provider
-  "docs/api/qiskit-ibm-provider/release-notes.mdx": [
-    "/api/qiskit/qiskit.circuit.Delay",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeOptions",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptions",
   ],
   // objects.inv
   ..._RUNTIME_OBJECT_INV,

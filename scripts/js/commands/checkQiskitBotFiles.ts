@@ -39,15 +39,15 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/post-process-results",
   "docs/guides/configure-error-suppression",
   "docs/guides/repetition-rate-execution",
-  "docs/api/migration-guides/_toc",
-  "docs/api/migration-guides/qiskit-1.0",
-  "docs/api/migration-guides/qiskit-1.0-features",
-  "docs/api/migration-guides/qiskit-1.0-installation",
+  "docs/migration-guides/_toc",
+  "docs/migration-guides/qiskit-1.0",
+  "docs/migration-guides/qiskit-1.0-features",
+  "docs/migration-guides/qiskit-1.0-installation",
 ]);
 
 const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
-const GLOBS = ["docs/api/migration-guides/*", "docs/guides/*"];
+const GLOBS = ["docs/guides/*", "docs/migration-guides/*"];
 
 async function main() {
   const qiskitBotFiles = await getQiskitBotFiles();
@@ -98,7 +98,7 @@ function showMissingFilesMessage(missingFiles: string[]): void {
 
   console.error(
     "\nAdd an owner to the files in qiskit_bot.yaml if they are new, or update the file names in qiskit_bot.yaml if the were renamed.",
-    "If you don't want them to be tracked by the qiskit bot, you can append the files to the `ALLOWED_OWNERLESS_FILES` list at the beginning of `scripts/commands/checkQiskitBotFiles.ts`.\n",
+    "If you don't want them to be tracked by the qiskit bot, you can append the files to the `ALLOWED_OWNERLESS_FILES` list at the beginning of `scripts/js/commands/checkQiskitBotFiles.ts`.\n",
   );
 }
 
@@ -109,7 +109,7 @@ function showLeftoverFilesMessage(leftoverFiles: string[]): void {
   leftoverFiles.forEach((file) => console.error(`❔ ${file}`));
   console.error(
     "\nRemove the files from the qiskit_bot.yaml, or rename the file in qiskit_bot.yaml if the file was renamed.",
-    "If the files will exist in the future, you can append the files to the `ALLOWED_NONEXISTENT_FILES` list at the beginning of `scripts/commands/checkQiskitBotFiles.ts`.\n",
+    "If the files will exist in the future, you can append the files to the `ALLOWED_NONEXISTENT_FILES` list at the beginning of `scripts/js/commands/checkQiskitBotFiles.ts`.\n",
   );
 }
 

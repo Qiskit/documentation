@@ -16,7 +16,6 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { Pkg } from "../lib/api/Pkg.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
 
@@ -100,31 +99,21 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-const PROVIDER_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/*.mdx",
-  "docs/run/max-execution-time.mdx",
-];
 const RUNTIME_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/providers_models.mdx",
+  "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
-  "docs/run/index.mdx",
-  "docs/run/max-execution-time.mdx",
-  "docs/run/configure-error-mitigation.mdx",
-  "docs/run/configure-runtime-compilation.mdx",
-  "docs/transpile/index.mdx",
+  "docs/guides/*.{mdx,ipynb}",
+  "docs/migration-guides/*.{mdx,ipynb}",
 ];
+const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const QISKIT_GLOBS_TO_LOAD = [
-  "docs/build/circuit-construction.ipynb",
-  "docs/build/pulse.ipynb",
-  "docs/start/install.mdx",
-  "docs/start/configure-qiskit-local.mdx",
   "docs/api/qiskit/release-notes/0.44.mdx",
   "docs/api/qiskit/release-notes/0.45.mdx",
   "docs/api/qiskit/release-notes/0.46.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
-  "docs/api/qiskit-ibm-provider/index.mdx",
-  "docs/api/qiskit-ibm-provider/ibm_jupyter.mdx",
-  "docs/api/migration-guides/qiskit-1.0-features.mdx",
+  "docs/migration-guides/qiskit-1.0-features.mdx",
+  "docs/guides/pulse.ipynb",
+  "docs/guides/configure-qiskit-local.mdx",
 ];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
@@ -136,9 +125,9 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     result.push(...devBatches);
   }
 
-  const provider = await determineHistoricalFileBatches(
-    "qiskit-ibm-provider",
-    PROVIDER_GLOBS_TO_LOAD,
+  const transpiler = await determineHistoricalFileBatches(
+    "qiskit-ibm-transpiler",
+    TRANSPILER_GLOBS_TO_LOAD,
     args.historicalApis,
   );
   const runtime = await determineHistoricalFileBatches(
@@ -154,7 +143,7 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     args.qiskitReleaseNotes,
   );
 
-  result.push(...provider, ...runtime, ...qiskit);
+  result.push(...transpiler, ...runtime, ...qiskit);
 
   if (args.qiskitReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());
@@ -185,16 +174,19 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.mdx",
     "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.mdx",
     "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.mdx",
+    "docs/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.{Sampler,Estimator}{,V1}.mdx",
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.1.mdx",
+    "docs/api/qiskit/release-notes/1.2.mdx",
+    // Used by release notes.
+    "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
   ];
 
   if (!args.currentApis) {
-    const projects = Pkg.VALID_NAMES.join(",");
-    toCheck.push(`!{public,docs}/api/{${projects}}/*`);
-    toLoad.push(`docs/api/{${projects}}/*`);
+    toCheck.push(`!{public,docs}/api/*/*`);
+    toLoad.push(`docs/api/*/*`);
   }
 
   if (args.qiskitReleaseNotes) {
@@ -312,7 +304,7 @@ async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
 
   return await FileBatch.fromGlobs(
     toCheck,
-    [`docs/api/qiskit/0.45/*`, "docs/api/qiskit-ibm-provider/index.mdx"],
+    [`docs/api/qiskit/0.45/*`],
     `qiskit legacy release notes`,
   );
 }

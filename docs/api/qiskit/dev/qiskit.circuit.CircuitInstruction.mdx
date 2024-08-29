@@ -33,15 +33,47 @@ python_api_name: qiskit.circuit.CircuitInstruction
     A sequence of the classical bits that this operation reads from or writes to.
   </Attribute>
 
+  ### condition
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.condition" />
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.duration" />
+
+  ### label
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.label" />
+
+  ### matrix
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.matrix" />
+
+  ### name
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.name">
+    Returns the Instruction name corresponding to the op for this node
+  </Attribute>
+
   ### operation
 
-  <Attribute id="qiskit.circuit.CircuitInstruction.operation" />
+  <Attribute id="qiskit.circuit.CircuitInstruction.operation">
+    The logical operation that this instruction represents an execution of.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.params" />
 
   ### qubits
 
   <Attribute id="qiskit.circuit.CircuitInstruction.qubits">
     A sequence of the qubits that the operation is applied to.
   </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.unit" />
 
   ## Methods
 
@@ -59,9 +91,43 @@ python_api_name: qiskit.circuit.CircuitInstruction
     [CircuitInstruction](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")
   </Function>
 
+  ### from\_standard
+
+  <Function id="qiskit.circuit.CircuitInstruction.from_standard" signature="from_standard(standard, qubits, params, label=None)" modifiers="static" />
+
+  ### is\_control\_flow
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_control_flow" signature="is_control_flow()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this instruction a control-flow operation (i.e. an instance of [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"))?
+  </Function>
+
+  ### is\_controlled\_gate
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_controlled_gate" signature="is_controlled_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this instruction a subclass of [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")?
+  </Function>
+
+  ### is\_directive
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_directive" signature="is_directive()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a directive?
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_parameterized" signature="is_parameterized()">
+    Does this instruction contain any [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") parameters?
+  </Function>
+
+  ### is\_standard\_gate
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_standard_gate" signature="is_standard_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this instruction a Qiskit standard gate?
+  </Function>
+
   ### replace
 
-  <Function id="qiskit.circuit.CircuitInstruction.replace" signature="replace(operation=None, qubits=None, clbits=None, params=None, label=None, duration=None, unit=None, condition=None)">
+  <Function id="qiskit.circuit.CircuitInstruction.replace" signature="replace(operation=None, qubits=None, clbits=None, params=None)">
     Creates a shallow copy with the given fields replaced.
 
     **Returns**

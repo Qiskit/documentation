@@ -16,6 +16,9 @@ on:
     paths:
       - "docs/**/*"
       - "public/images/**/*"
+      # PR previews don't build API docs.
+      - "!docs/api/**/*"
+      - "!public/images/api/**/*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number }}

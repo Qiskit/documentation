@@ -295,3 +295,16 @@ creates a high-level synthesis configuration that uses the `kms` plugin for synt
 | [`KMSSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.KMSSynthesisPermutation")()                            | The permutation synthesis plugin based on the Kutin, Moulton, Smithline method. |
 | [`TokenSwapperSynthesisPermutation`](qiskit.transpiler.passes.synthesis.high_level_synthesis.TokenSwapperSynthesisPermutation "qiskit.transpiler.passes.synthesis.high_level_synthesis.TokenSwapperSynthesisPermutation")() | The permutation synthesis plugin based on the token swapper algorithm.          |
 
+##### QFT Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                              | Targeted connectivity |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `"full"`    | [`QFTSynthesisFull`](qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisFull "qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisFull") | all-to-all            |
+| `"line"`    | [`QFTSynthesisLine`](qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisLine "qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisLine") | linear                |
+| `"default"` | [`QFTSynthesisFull`](qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisFull "qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisFull") | all-to-all            |
+
+|                                                                                                                                                                             |                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [`QFTSynthesisFull`](qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisFull "qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisFull")() | Synthesis plugin for QFT gates using all-to-all connectivity. |
+| [`QFTSynthesisLine`](qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisLine "qiskit.transpiler.passes.synthesis.high_level_synthesis.QFTSynthesisLine")() | Synthesis plugin for QFT gates using linear connectivity.     |
+

@@ -59,14 +59,14 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
 ### Exporter
 
-<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L127-L196" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)" modifiers="class">
+<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L128-L197" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)" modifiers="class">
   QASM3 exporter main class.
 
   **Parameters**
 
-  *   **includes** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
+  *   **includes** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
 
-  *   **basis\_gates** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
+  *   **basis\_gates** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
 
   *   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
 
@@ -88,17 +88,17 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
   *   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
 
-  *   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.experimental.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
+  *   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
 
   #### dump
 
-  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L184-L196" signature="dump(circuit, stream)">
+  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L185-L197" signature="dump(circuit, stream)">
     Convert the circuit to OpenQASM 3, dumping the result to a file or text stream.
   </Function>
 
   #### dumps
 
-  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L178-L182" signature="dumps(circuit)">
+  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L179-L183" signature="dumps(circuit)">
     Convert the circuit to OpenQASM 3, returning the result as a string.
   </Function>
 </Class>

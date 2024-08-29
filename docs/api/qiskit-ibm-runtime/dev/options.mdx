@@ -16,7 +16,7 @@ python_api_name: qiskit_ibm_runtime.options
 
 `qiskit_ibm_runtime.options`
 
-Options that can be passed to the primitives.
+Options that can be passed to the Qiskit Runtime primitives.
 
 ## V2 Primitives
 
@@ -48,31 +48,20 @@ Refer to [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ib
   If an option is not specified, the server default value is used. The default values are subject to change. Refer to this current module’s documentation for the latest defaults.
 </Admonition>
 
-## V1 Primitives
-
-The [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options") class encapsulates all the options you can specify when invoking a V1 primitive. It includes frequently used options, such as `optimization_level` and `resilience_level` as well as sub-categories, such as `transpilation` and `execution`. You can use auto-complete to easily find the options inside each sub-category, for example:
-
-```python
-from qiskit_ibm_runtime.options import Options
-
-options = Options()
-options.transpilation.initial_layout = [0, 1, 2, 3]  # This an be done using auto-complete
-```
-
-You can also pass dictionaries to each sub-category, for example:
-
-```python
-from qiskit_ibm_runtime.options import Options
-
-options = Options(transpilation={"initial_layout": [0, 1, 2, 3]})
-```
-
 ## Classes
+
+### Base primitive options
+
+|                                                                                                                                     |                           |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions")(\*args, \*\*kwargs) | Options for V2 Estimator. |
+| [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions")(\*args, \*\*kwargs)       | Options for V2 Sampler.   |
+
+### Suboptions
 
 |                                                                                                                                                                      |                                                                                                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions")(\*args, \*\*kwargs)                                  | Options for V2 Estimator.                                                                                                                                     |
-| [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions")(\*args, \*\*kwargs)                                        | Options for V2 Sampler.                                                                                                                                       |
+| [`NoiseLearnerOptions`](qiskit_ibm_runtime.options.NoiseLearnerOptions "qiskit_ibm_runtime.options.NoiseLearnerOptions")(\*args, \*\*kwargs)                         | Options for [`NoiseLearner`](qiskit_ibm_runtime.noise_learner.NoiseLearner "qiskit_ibm_runtime.noise_learner.NoiseLearner").                                  |
 | [`DynamicalDecouplingOptions`](qiskit_ibm_runtime.options.DynamicalDecouplingOptions "qiskit_ibm_runtime.options.DynamicalDecouplingOptions")(\*args, \*\*kwargs)    | Options for dynamical decoupling (DD).                                                                                                                        |
 | [`ResilienceOptionsV2`](qiskit_ibm_runtime.options.ResilienceOptionsV2 "qiskit_ibm_runtime.options.ResilienceOptionsV2")(\*args, \*\*kwargs)                         | Resilience options for V2 Estimator.                                                                                                                          |
 | [`LayerNoiseLearningOptions`](qiskit_ibm_runtime.options.LayerNoiseLearningOptions "qiskit_ibm_runtime.options.LayerNoiseLearningOptions")(\*args, \*\*kwargs)       | Options for learning layer noise.                                                                                                                             |
@@ -81,11 +70,7 @@ options = Options(transpilation={"initial_layout": [0, 1, 2, 3]})
 | [`ZneOptions`](qiskit_ibm_runtime.options.ZneOptions "qiskit_ibm_runtime.options.ZneOptions")(\*args, \*\*kwargs)                                                    | Zero noise extrapolation mitigation options.                                                                                                                  |
 | [`TwirlingOptions`](qiskit_ibm_runtime.options.TwirlingOptions "qiskit_ibm_runtime.options.TwirlingOptions")(\*args, \*\*kwargs)                                     | Twirling options.                                                                                                                                             |
 | [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2")(\*args, \*\*kwargs)                            | Execution options for V2 primitives.                                                                                                                          |
-| [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options")(\[optimization\_level, ...])                                                    | Options for the primitives, used by V1 primitives.                                                                                                            |
-| [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions")(\*args, \*\*kwargs)                      | Transpilation options.                                                                                                                                        |
-| [`ResilienceOptions`](qiskit_ibm_runtime.options.ResilienceOptions "qiskit_ibm_runtime.options.ResilienceOptions")(\*args, \*\*kwargs)                               | Resilience options for V1 primitives.                                                                                                                         |
-| [`ExecutionOptions`](qiskit_ibm_runtime.options.ExecutionOptions "qiskit_ibm_runtime.options.ExecutionOptions")(\*args, \*\*kwargs)                                  | Execution options for V1 primitives.                                                                                                                          |
+| [`SamplerExecutionOptionsV2`](qiskit_ibm_runtime.options.SamplerExecutionOptionsV2 "qiskit_ibm_runtime.options.SamplerExecutionOptionsV2")(\*args, \*\*kwargs)       | Extension of [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2") for the sampler primitive. |
 | [`EnvironmentOptions`](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.EnvironmentOptions")(\*args, \*\*kwargs)                            | Options related to the execution environment.                                                                                                                 |
 | [`SimulatorOptions`](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.SimulatorOptions")(\*args, \*\*kwargs)                                  | Simulator options.                                                                                                                                            |
-| [`SamplerExecutionOptionsV2`](qiskit_ibm_runtime.options.SamplerExecutionOptionsV2 "qiskit_ibm_runtime.options.SamplerExecutionOptionsV2")(\*args, \*\*kwargs)       | Extension of [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2") for the sampler primitive. |
 

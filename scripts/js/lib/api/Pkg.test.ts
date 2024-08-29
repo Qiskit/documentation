@@ -15,12 +15,6 @@ import { expect, test } from "@playwright/test";
 import { Pkg } from "./Pkg.js";
 
 test("Pkg.determineGithubUrlFn()", () => {
-  const provider = Pkg.mock({
-    name: "qiskit-ibm-provider",
-    githubSlug: "qiskit/qiskit-ibm-provider",
-    type: "latest",
-    versionWithoutPatch: "0.7",
-  }).determineGithubUrlFn();
   const runtime = Pkg.mock({
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
@@ -54,13 +48,6 @@ test("Pkg.determineGithubUrlFn()", () => {
     version: "1.0.0rc1",
     versionWithoutPatch: "1.0",
   }).determineGithubUrlFn();
-
-  expect(provider("qiskit_ibm_provider/job/exceptions")).toEqual(
-    "https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/exceptions.py",
-  );
-  expect(provider("qiskit_ibm_provider")).toEqual(
-    "https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/__init__.py",
-  );
 
   expect(runtime("qiskit_ibm_runtime/ibm_backend")).toEqual(
     "https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.15/qiskit_ibm_runtime/ibm_backend.py",

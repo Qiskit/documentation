@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RXGate
 
 # RXGate
 
-<Class id="qiskit.circuit.library.RXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L27-L141" signature="qiskit.circuit.library.RXGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.library.RXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L29-L151" signature="qiskit.circuit.library.RXGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Single-qubit rotation about the X axis.
@@ -138,15 +138,15 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.RXGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L78-L108" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.RXGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L80-L118" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return a (multi-)controlled-RX gate.
 
     **Parameters**
 
     *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
     *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the controlled gate can be implemented as an annotated gate.
+    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is set to `True` if the gate contains free parameters and more than one control qubit, in which case it cannot yet be synthesized. Otherwise it is set to `False`.
 
     **Returns**
 
@@ -159,7 +159,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L110-L124" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L120-L134" signature="inverse(annotated=False)">
     Return inverted RX gate.
 
     $RX(\lambda)^{\dagger} = RX(-\lambda)$
@@ -179,7 +179,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.RXGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L134-L136" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.RXGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/rx.py#L144-L146" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](#qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
