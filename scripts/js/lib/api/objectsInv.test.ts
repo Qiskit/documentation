@@ -80,13 +80,6 @@ test.describe("objects.inv", () => {
         dispname: "-",
       },
       {
-        name: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__",
-        domainAndRole: "std:doc",
-        priority: "-1",
-        uri: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__.html",
-        dispname: "ASAPScheduleAnalysis.__call__",
-      },
-      {
         name: "search",
         domainAndRole: "std:label",
         priority: "-1",
@@ -100,23 +93,14 @@ test.describe("objects.inv", () => {
         uri: "legacy_release_notes.html#release-notes-ignis-0-5-0",
         dispname: "Ignis 0.5.0",
       },
-      {
-        name: "index",
-        domainAndRole: "std:doc",
-        priority: "-1",
-        uri: "index.html",
-        dispname: "Qiskit IBM Quantum Provider API docs preview",
-      },
     ];
 
     const objectsInv = new ObjectsInv(preamble, entries);
     objectsInv.updateUris(transformFunction);
     expect(objectsInv.entries.map((i) => i.uri)).toEqual([
       "qaskat_abm_runtame.RuntameJob#qaskat_abm_runtame.RuntameJob.job_ad",
-      "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
       "search",
       "legacy_release_notes#release-notes-agnas-0-5-0",
-      "andex",
     ]);
   });
 });

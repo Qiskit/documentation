@@ -50,6 +50,12 @@ jobs:
           files: "docs/**/*.ipynb"
           separator: "\n"
 
+      - name: Get changed config files
+        id: changed-config
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          files: "scripts/nb-tester/**/*"
+
       - name: Check for notebooks that require Linux
         id: linux-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
@@ -93,10 +99,11 @@ jobs:
         shell: python
         run: |
           import subprocess
-          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          changed_notebooks = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          changed_config = """${{ steps.changed-config.outputs.all_changed_files }}"""
           args = ["tox", "--", "--write"]
-          if files:
-              args.extend(files.split("\n"))
+          if changed_notebooks and not changed_config:
+              args.extend(changed_notebooks.split("\n"))
           subprocess.run(args, check=True)
 
       - name: Detect changed notebooks

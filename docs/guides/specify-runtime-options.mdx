@@ -138,24 +138,36 @@ estimator.options.resilience.zne_mitigation = True
 
 The `SamplerV2.run` method accepts two arguments: a list of PUBs, each of which can specify a PUB-specific value for shots, and a shots keyword argument. These shot values are a part of the Sampler execution interface, and are independent of the Runtime Sampler's options.  They take precedence over any values specified as options in order to comply with the Sampler abstraction.
 
-However, if `shots` is not specified by any PUB or in the run keyword argument (equivalently, if they are all `None`), then the shots value from the options is used, most notably `default_shots`. To summarize, this is the order of precedence for specifying shots in the Sampler, for any particular PUB:
+However, if `shots` is not specified by any PUB or in the run keyword argument (or if they are all `None`), then the shots value from the options is used, most notably `default_shots`.
+
+Finally, because the [`twirling` options](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions) `num_randomizations` and `shots_per_randomization` are enabled by default, the number of shots will actually be the product of `num_randomizations` and `shots_per_randomization` if the `default_shots` value is the only way shots are specified.
+
+To summarize, this is the order of precedence for specifying shots in the Sampler, for any particular PUB:
 
 1. If the PUB specifies shots, use that value.
-2. If the shots keyword argument is specified in `run`, use that value.
+2. If the `shots` keyword argument is specified in `run`, use that value.
+3. If `num_randomizations` and `shots_per_randomization` are specified as `twirling` options (enabled by default), shots are the product of those values.
 3. If `sampler.options.default_shots` is specified, use that value.
 
-For example, if shots are specified in all three places, the one with highest precedence (shots specified in the PUB) is used.
+Thus, if shots are specified in all possible places, the one with highest precedence (shots specified in the PUB) is used.
 
 #### Precision (Estimator only)
 
-Precision is analogous to shots, described in the previous section, except that the Estimator options contains both `default_shots` and `default_precision`. Specifically, for any particular Estimator PUB:
+Precision is analogous to shots, described in the previous section, except that the Estimator options contain both `default_shots` and `default_precision`.
+
+Specifically, for any particular Estimator PUB:
 
 1. If the PUB specifies precision, use that value.
 2. If the precision keyword argument is specified in `run`, use that value.
+2. If `num_randomizations` and `shots_per_randomization` are specified as [`twirling` options](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TwirlingOptions) (enabled by default), use their product to control the amount of data.
 3. If `estimator.options.default_shots` is specified, use that value to control the amount of data.
 4. If `estimator.options.default_precision` is specified, use that value.
 
 For example, if precision is specified in all four places, the one with highest precedence (precision specified in the PUB) is used.
+
+<Admonition type="note">
+Precision scales inversely with usage.  That is, the lower the precision, the more QPU time it takes to run.
+</Admonition>
 
 ## Commonly used options
 

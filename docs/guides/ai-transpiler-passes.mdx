@@ -24,7 +24,7 @@ The following passes are currently available:
  - `AILinearFunctionSynthesis`: Linear function circuit synthesis
  - `AIPermutationSynthesis`: Permutation circuit synthesis
 
-To use the AI transpiler passes through our cloud services, install the `qiskit-transpiler-service` package (see instructions [here](qiskit-transpiler-service#install-transpiler-service)).
+To use the AI transpiler passes through our cloud services, install the `qiskit-ibm-transpiler` package (see instructions [here](./qiskit-transpiler-service#install-transpiler-service)).
 
 ## AI routing pass
 
@@ -32,8 +32,8 @@ The `AIRouting` pass acts both as a layout stage and a routing stage. It can be 
 
 ```python
 from qiskit.transpiler import PassManager
-from qiskit_transpiler_service.ai.routing import AIRouting
 from qiskit.circuit.library import EfficientSU2
+from qiskit_ibm_transpiler.ai.routing import AIRouting
 
 ai_passmanager = PassManager([
   AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize")
@@ -58,9 +58,9 @@ The AI circuit synthesis passes allow you to optimize pieces of different circui
 ```python
 from qiskit.transpiler import PassManager
 
-from qiskit_transpiler_service.ai.routing import AIRouting
-from qiskit_transpiler_service.ai.synthesis import AILinearFunctionSynthesis
-from qiskit_transpiler_service.ai.collection import CollectLinearFunctions
+from qiskit_ibm_transpiler.ai.routing import AIRouting
+from qiskit_ibm_transpiler.ai.synthesis import AILinearFunctionSynthesis
+from qiskit_ibm_transpiler.ai.collection import CollectLinearFunctions
 from qiskit.circuit.library import EfficientSU2
 
 ai_passmanager = PassManager([
@@ -76,7 +76,7 @@ transpiled_circuit = ai_passmanager.run(circuit)
 
 The synthesis respects the coupling map of the device: it can be run safely after other routing passes without disturbing the circuit, so the overall circuit will still follow the device restrictions. By default, the synthesis will replace the original sub-circuit only if the synthesized sub-circuit improves the original (currently only checking CNOT count), but this can be forced to always replace the circuit by setting `replace_only_if_better=False`.
 
-The following synthesis passes are available from `qiskit_transpiler_service.ai.synthesis`:
+The following synthesis passes are available from `qiskit_ibm_transpiler.ai.synthesis`:
 
 - *AICliffordSynthesis*: Synthesis for [Clifford](/api/qiskit/qiskit.quantum_info.Clifford) circuits (blocks of `H`, `S`, and `CX` gates). Currently up to nine qubit blocks.
 - *AILinearFunctionSynthesis*: Synthesis for [Linear Function](/api/qiskit/qiskit.circuit.library.LinearFunction) circuits (blocks of `CX` and `SWAP` gates). Currently up to nine qubit blocks.
@@ -94,7 +94,7 @@ You can also set the environment variable `AI_TRANSPILER_MAX_THREADS` to the des
 
 For the AI synthesis passes to synthesize a sub-circuit, it must lay on a connected subgraph of the coupling map (one way to do this is with a routing pass before collecting the blocks, but this is not the only way to do it). The synthesis passes will automatically check that the specific subgraph is supported, and if not, it will raise a warning and leave the original sub-circuit unchanged.
 
-The following custom collection passes for Cliffords, Linear Functions and Permutations that can be imported from `qiskit_transpiler_service.ai.collection` also complement the synthesis passes:
+The following custom collection passes for Cliffords, Linear Functions and Permutations that can be imported from `qiskit_ibm_transpiler.ai.collection` also complement the synthesis passes:
 
 - *CollectCliffords*: Collects Clifford blocks as `Instruction` objects and stores the original sub-circuit to compare against it after synthesis.
 - *CollectLinearFunctions*: Collects blocks of `SWAP` and `CX` as `LinearFunction` objects and stores the original sub-circuit to compare against it after synthesis.
