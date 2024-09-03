@@ -12,14 +12,11 @@
 
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
-export const RUNTIME_INDEX_META = `title: Qiskit Runtime IBM Client API Docs
+export const RUNTIME_INDEX_META = `title: Qiskit Runtime Client API Docs
 description: API documentation for the qiskit-ibm-runtime client`;
 
-export const PROVIDER_INDEX_META = `title: Qiskit IBM Provider API Docs
-description: API documentation for qiskit-ibm-provider`;
-
 export const TRANSPILER_SERVICE_INDEX_META = `title: Qiskit Transpiler Service Client Docs
-description: API documentation for the qiskit-transpiler-service client`;
+description: API documentation for the qiskit-ibm-transpiler client`;
 
 export function transformSpecialCaseUrl(url: string): string {
   return (
@@ -27,19 +24,12 @@ export function transformSpecialCaseUrl(url: string): string {
       // We use `-` rather than `_` as our delimiter.
       .replace(/(?<=^|\/)release_notes(?=#|$)/g, "release-notes")
       .replace(/(?<=^|\/)terra(?=#|$)/g, "index")
-      .replace(/(?<=^|\/)ibm-provider(?=#|$)/g, "index")
       .replace(/(?<=^|\/)ibm-runtime(?=#|$)/g, "index")
   );
 }
 
 export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
   for (let result of results) {
-    if (result.url.endsWith("/ibm-provider")) {
-      result.meta = {
-        hardcodedFrontmatter: PROVIDER_INDEX_META,
-      };
-    }
-
     if (
       result.url.endsWith("/ibm-runtime") ||
       (result.url.endsWith("/index") &&
@@ -52,7 +42,7 @@ export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
 
     if (
       result.url.endsWith("/index") &&
-      result.url.includes("qiskit-transpiler-service/")
+      result.url.includes("qiskit-ibm-transpiler/")
     ) {
       result.meta = {
         hardcodedFrontmatter: TRANSPILER_SERVICE_INDEX_META,

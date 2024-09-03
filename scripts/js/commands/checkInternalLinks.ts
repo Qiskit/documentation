@@ -99,7 +99,6 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-const PROVIDER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
@@ -112,8 +111,6 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/0.45.mdx",
   "docs/api/qiskit/release-notes/0.46.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
-  "docs/api/qiskit-ibm-provider/index.mdx",
-  "docs/api/qiskit-ibm-provider/ibm_jupyter.mdx",
   "docs/migration-guides/qiskit-1.0-features.mdx",
   "docs/guides/pulse.ipynb",
   "docs/guides/configure-qiskit-local.mdx",
@@ -128,13 +125,8 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     result.push(...devBatches);
   }
 
-  const provider = await determineHistoricalFileBatches(
-    "qiskit-ibm-provider",
-    PROVIDER_GLOBS_TO_LOAD,
-    args.historicalApis,
-  );
   const transpiler = await determineHistoricalFileBatches(
-    "qiskit-transpiler-service",
+    "qiskit-ibm-transpiler",
     TRANSPILER_GLOBS_TO_LOAD,
     args.historicalApis,
   );
@@ -151,7 +143,7 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     args.qiskitReleaseNotes,
   );
 
-  result.push(...provider, ...transpiler, ...runtime, ...qiskit);
+  result.push(...transpiler, ...runtime, ...qiskit);
 
   if (args.qiskitReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());
@@ -188,6 +180,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.1.mdx",
     "docs/api/qiskit/release-notes/1.2.mdx",
+    // Used by release notes.
+    "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
   ];
 
   if (!args.currentApis) {
@@ -310,7 +304,7 @@ async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
 
   return await FileBatch.fromGlobs(
     toCheck,
-    [`docs/api/qiskit/0.45/*`, "docs/api/qiskit-ibm-provider/index.mdx"],
+    [`docs/api/qiskit/0.45/*`],
     `qiskit legacy release notes`,
   );
 }
