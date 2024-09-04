@@ -402,7 +402,6 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     "property",
     "attribute",
     "module",
-    "data",
   ]) {
     if ($dl.hasClass(className)) {
       return className as ApiType;
