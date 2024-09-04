@@ -50,6 +50,63 @@ You can cancel a job from the IBM Quantum Platform dashboard either on the Jobs 
 
 In Qiskit, use `job.cancel()` to cancel a job.
 
+## View Sampler execution spans
+
+The results of `SamplerV2` jobs executed in Qiskit Runtime contain execution timing information in their metadata.
+This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
+Shots are grouped into `~.ExecutionSpan`s, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
+
+An execution span specifies which data was executed during its window by providing an `~.ExecutionSpan.mask` method. This method, given any PUB index, returns a boolean mask that is ``True`` for all shots executing during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2,3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
+
+```python
+# Get the mask of the 1st PUB for the 0th span.
+mask = spans[0].mask(1)
+
+# Decide whether the 0th shot of parameter set (1, 2) occured in this span.
+in_this_span = mask[1, 2, 0]
+
+# Create a new bit array containing only the PUB-1 data collected during this span.
+bits = pub_results[1].data.meas
+filtered_data = BitArray(bits.array(mask), bits.num_bits)
+```
+
+To view execution span information, review the metadata of the result returned by `SamplerV2`, which comes in the form of an `~ExecutionSpans` object. This object is a list-like container containing subclass instances of `ExecutionSpan`s such as `SliceSpan`:
+
+```python
+pub_results = job.result()
+spans = pub_results.metadata["execution"]["execution_spans"]
+for span in spans:
+     print(span)
+```
+
+Excution spans can be filtered to include information pertaining to specific PUBs, selected by their indices:
+
+```python
+# take the subset of spans that reference data in PUBs 0 or 2
+spans.filter_by_pub([0, 2])
+```
+
+View global information about the collection of execution spans:
+
+```python
+print("Number of execution spans:", len(spans))
+print("  Start of the first span:", spans.start)
+print("     End of the last span:", spans.stop)
+print("       Total duration (s):", spans.duration)
+```
+
+Extract and inspect a particular span:
+
+```python
+spans.sort()
+print(" Start of first span:", spans[0].start)
+print("   End of first span:", spans[0].stop)
+print("#shots in first span:", spans[0].size)
+```
+
+<Admonition>
+It is possible for time windows specified by distinct execution spans to overlap. This is not because a QPU was performing multiple executions at once, but is instead an artifact of certain classical processing that might happen concurrently with quantum execution. The guarantee being made is that the referenced data definitely occurred in the reported execution span, but not necessarily that the limits of the time window are as tight as possible.
+</Admonition>
 
 ## Next steps
 
