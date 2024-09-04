@@ -35,11 +35,10 @@ jobs:
       - name: Check internal links
         run: >
           npm run check:internal-links --
-          --qiskit-release-notes
           --current-apis
           --dev-apis
           --historical-apis
-          --skip-broken-historical
+          --qiskit-legacy-release-notes
       - name: Check for orphan pages
         run: npm run check:orphan-pages -- --apis
       - name: Check metadata
