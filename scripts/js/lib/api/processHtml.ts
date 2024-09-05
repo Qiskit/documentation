@@ -29,6 +29,7 @@ export async function processHtml(options: {
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
+  hasSeparateReleaseNotes: boolean;
 }): Promise<ProcessedHtml> {
   const {
     html,
@@ -36,12 +37,19 @@ export async function processHtml(options: {
     imageDestination,
     determineGithubUrl,
     releaseNotesTitle,
+    hasSeparateReleaseNotes,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
 
   const isReleaseNotes = fileName.endsWith("release_notes.html");
-  const images = loadImages($, $main, imageDestination, isReleaseNotes);
+  const images = loadImages(
+    $,
+    $main,
+    imageDestination,
+    isReleaseNotes,
+    hasSeparateReleaseNotes,
+  );
   if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
   }
@@ -73,6 +81,7 @@ export function loadImages(
   $main: Cheerio<any>,
   imageDestination: string,
   isReleaseNotes: boolean,
+  hasSeparateReleaseNotes: boolean,
 ): Image[] {
   return $main
     .find("img")
@@ -84,8 +93,9 @@ export function loadImages(
       const fileName = $img.attr("src")!.split("/").pop()!;
 
       let dest = `${imageDestination}/${fileName}`;
-      if (isReleaseNotes) {
-        // Release notes links should point to the current version
+      if (isReleaseNotes && !hasSeparateReleaseNotes) {
+        // If the Pkg only has a single release notes file for all versions,
+        // then the images should point to the current version.
         dest = dest.replace(/[0-9].*\//, "");
       }
 
