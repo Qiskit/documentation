@@ -35,7 +35,7 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images", false);
+    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
     expect(images).toEqual([
       {
         fileName: "logo.png",
@@ -51,11 +51,11 @@ test.describe("loadImages()", () => {
     );
   });
 
-  test("release note", () => {
+  test("release note - single release note file", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true);
+    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, false);
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
@@ -63,6 +63,20 @@ test.describe("loadImages()", () => {
       },
     ]);
     doc.expectHtml(`<img src="/my-images/view-page-source-icon.svg">`);
+  });
+
+  test("release note - separate release note files", () => {
+    const doc = CheerioDoc.load(
+      `<img src="../_static/images/view-page-source-icon.svg">`,
+    );
+    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, true);
+    expect(images).toEqual([
+      {
+        fileName: "view-page-source-icon.svg",
+        dest: "/my-images/0.45/view-page-source-icon.svg",
+      },
+    ]);
+    doc.expectHtml(`<img src="/my-images/0.45/view-page-source-icon.svg">`);
   });
 });
 
