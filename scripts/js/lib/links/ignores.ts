@@ -85,7 +85,7 @@ export const ALWAYS_IGNORED_URLS = new Set([
 type FilesToIgnores = { [id: string]: string[] };
 
 const _QPY_IGNORES = Object.fromEntries(
-  ["", "dev/"].map((vers) => [
+  ["", "dev/", "0.46/", "1.0/", "1.1/"].map((vers) => [
     `docs/api/qiskit/${vers}qpy.mdx`,
     [
       "#f1",
@@ -135,7 +135,7 @@ const _RUNTIME_OBJECT_INV = Object.fromEntries(
 );
 
 const _QISKIT_OBJECT_INV = Object.fromEntries(
-  ["", "dev/"].map((vers) => [
+  ["", "dev/", "0.46/", "1.0/", "1.1/"].map((vers) => [
     `public/api/qiskit/${vers}objects.inv`,
     [
       `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
@@ -188,6 +188,7 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   "docs/api/qiskit/release-notes/1.0.mdx": [
     "/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
   ],
+  "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": ["#id1", "#id2"],
   ..._QPY_IGNORES,
   // Runtime
   "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
