@@ -44,7 +44,7 @@ function readArgs(): Arguments {
 
 zxMain(async () => {
   const args = readArgs();
-  const cspellCmd = ["npx", "cspell", "--config", args.config];
+  const cspellCmd = ["npx", "cspell", "--no-progress", "--config", args.config];
 
   await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`;
 
