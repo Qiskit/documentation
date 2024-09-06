@@ -82,6 +82,7 @@ function getModulesAndItems(
         "method",
         "property",
         "attribute",
+        "data",
       ].includes(result.meta.apiType),
   );
 
