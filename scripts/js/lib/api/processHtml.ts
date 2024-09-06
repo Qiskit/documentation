@@ -292,6 +292,10 @@ export async function processMembersAndSetMeta(
     const id = $dl.find("dt").attr("id") || "";
     const apiType = getApiType($dl);
 
+    if (apiType && apiType === "module") {
+      throw new Error("Did not expect apiType to be 'module'");
+    }
+
     const priorApiType = meta.apiType;
     if (!priorApiType) {
       meta.apiType = apiType;
@@ -315,7 +319,6 @@ export async function processMembersAndSetMeta(
     } else {
       const [openTag, closeTag] = await processMdxComponent(
         $,
-        $main,
         signatures,
         $dl,
         priorApiType,

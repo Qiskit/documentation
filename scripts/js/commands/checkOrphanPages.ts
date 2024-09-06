@@ -28,7 +28,7 @@ interface Arguments {
 }
 
 const ALLOWED_ORPHAN_URLS = new Set([
-  ...apiDocsIgnores(),
+  ...qiskitIgnores(),
   "/api/qiskit/qiskit.primitives.BaseEstimator",
   "/api/qiskit/qiskit.primitives.BaseSampler",
 ]);
@@ -131,24 +131,9 @@ function collectTocFileContents(children: TocEntry[]): string[] {
   return urls;
 }
 
-function apiDocsIgnores(): string[] {
+function qiskitIgnores(): string[] {
   const versions = [
-    "",
-    "dev/",
-    "0.7/",
-    "0.8/",
-    "0.9/",
-    "0.10/",
-    "0.14/",
-    "0.15/",
-    "0.16/",
-    "0.17/",
-    "0.18/",
     "0.19/",
-    "0.20/",
-    "0.21/",
-    "0.22/",
-    "0.23/",
     "0.24/",
     "0.25/",
     "0.26/",
@@ -171,15 +156,10 @@ function apiDocsIgnores(): string[] {
     "0.44/",
     "0.45/",
     "0.46/",
-    "1.0/",
-    "1.1/",
-    "1.2/",
   ];
 
   return [
     ...versions.flatMap((vers) => [
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Estimator`,
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.Sampler`,
       `/api/qiskit/${vers}aer`,
       `/api/qiskit/${vers}aqua`,
       `/api/qiskit/${vers}ibmq-provider`,
@@ -191,8 +171,6 @@ function apiDocsIgnores(): string[] {
       `/api/qiskit/${vers}qiskit.utils.algorithm_globals`,
       `/api/qiskit/${vers}parallel`,
       `/api/qiskit/${vers}transpiler_builtin_plugins`,
-      `/api/qiskit/${vers}qiskit.primitives.BaseEstimator`,
-      `/api/qiskit/${vers}qiskit.primitives.BaseSampler`,
     ]),
   ];
 }
