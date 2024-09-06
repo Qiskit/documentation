@@ -57,7 +57,7 @@ The results of `SamplerV2` jobs executed in Qiskit Runtime contain execution tim
 This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
 Shots are grouped into `~.ExecutionSpan`s, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
 
-An execution span specifies which data was executed during its window by providing an `~.ExecutionSpan.mask` method. This method, given any PUB index, returns a boolean mask that is ``True`` for all shots executing during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2,3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
+An execution span specifies which data was executed during its window by providing an `~.ExecutionSpan.mask` method. This method, given any PUB index, returns a boolean mask that is ``True`` for all shots executing during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
 
 ```python
 # Get the mask of the 1st PUB for the 0th span.
