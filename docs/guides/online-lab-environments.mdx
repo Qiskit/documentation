@@ -14,7 +14,7 @@ Additional online Jupyter notebook environments like IBM Watson&reg; Studio, Goo
 
 ## Recommended notebook environments with Qiskit pre-installed
 
-### OVH Cloud AI Notebooks
+### OVH Cloud AI notebooks
 
 Users of OVHcloud Public Cloud and OVHcloud Startup can now leverage their OVHcloud quantum notebooks to access Qiskit and submit jobs to IBM Quantum hardware with their IBM Quantum or IBM Cloud&reg; account. To learn more, visit the [OVHcloud Documentation and tutorials](https://help.ovhcloud.com/csm/world-documentation?id=kb_home) page.
 
@@ -28,51 +28,54 @@ Follow these steps to get started:
 2. [Create an OVH Public Cloud project.](https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project)
 6. Follow the steps in [Launch your first AI Notebook,](https://help.ovhcloud.com/csm/en-public-cloud-ai-notebooks-definition?id=kb_article_view&sysparm_article=KB0048270) selecting **Qiskit** for the framework.
 
-### Getting started with qBraid Lab
+### qBraid Lab
 
 Qiskit users can leverage qBraid’s pre-configured Python environments by following the instructions below. For more information, see the [qBraid Docs.](https://docs.qbraid.com/home/introduction)
 
 1. [Set up an qBraid free account.](https://docs.qbraid.com/home/account)
 3. [Create a Jupyter Lab Environment.](https://docs.qbraid.com/lab/user-guide/getting-started)
-3. After launching qBraid Lab, create a Jupyter notebook by clicking **Python 3** in the Notebook section.
-4. Install necessary [Qiskit packages](./install-qiskit) by using the information in the [Pip (magic) commands](https://docs.qbraid.com/lab/user-guide/notebooks#pip-magic-commands) topic.
+3. Launch qBraid Lab, click the **ENVS** icon on the right, click **+ ADD** at the top of the new sidebar, seach for Qiskit.  Click the version you want to use, then click **Install**.
+create a Jupyter notebook by clicking **Python 3 [Qiskit]** in the Notebook section.
+4. You can install any additional Python packages (Such as Qiskit 1.2) in a notebook cell by running `%pip install [package_name].` For more information, see the [Pip (magic) commands](https://docs.qbraid.com/lab/user-guide/notebooks#pip-magic-commands) topic.
 
 ## Additional notebook environments for Qiskit users
 
-For platforms without Qiskit pre-configured, the setup instructions are largely the same. Users will need to create an account, start a new project (or “notebook” or “workspace,” depending on the platform), and pip install Qiskit.
+For platforms without Qiskit preconfigured, the setup instructions are similar: create an account, start a new project (or notebook or workspace, depending on the platform), and pip install Qiskit.
 
-### Getting started with IBM Watson Studio
+### IBM Watson Studio
 
-(1) Set Up Watson Studio Free Trial
+1. [Set up Watson Studio free trial.](https://cloud.ibm.com/docs/watson?topic=watson-about)
+2. [Create a Watson Studio Project.](https://www.ibm.com/docs/en/db2-event-store/2.0.0?topic=data-projects#d275537e106)
+3. To install the Qiskit packages and dependencies needed, open a new notebook and run the following command:
+   ```python
+   !pip install qiskit qiskit-ibm-runtime pylatexenc !yes | pip uninstall simplejson
+   ```
 
-Visit the Watson Studio landing page.
-Create an IBM Cloud account and start a free trial.
-(2) Create a Watson Studio Project
+### Google Colab
 
-Click on "New Project" and follow the prompts.
-(3) Install Qiskit Packages and dependencies needed
-Open a new notebook and run:
-!pip install qiskit qiskit-ibm-runtime pylatexenc !yes | pip uninstall simplejson
+1. [Create a Google account.](https://support.google.com/accounts/answer/27441?hl)
+2. Go to the [Google Google Colab landing page](https://colab.research.google.com/) and sign in with your Google account.
+3. [Create a Colab notebook](http://colab.research.google.com/#create=true) and install Qiskit by running the following command:
+   ```python
+   %pip install qiskit qiskit-ibm-runtime
+   ```
 
-### Getting Started with Google Colab
+### Microsoft Azure Machine Learning Studio
 
-(1) Set Up Google Account
+1. [Create an Azure account.](https://learn.microsoft.com/en-us/dotnet/azure/create-azure-account)
+2. [Create a workspace.](https://learn.microsoft.com/en-us/azure/machine-learning/concept-workspace?view=azureml-api-2#create-a-workspace)
+3. [Create a Jupyter notebook in your workspace.](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks?view=azureml-api-2)
+4. From the notebook, run this command to install Qiskit:
+   ```python
+    %pip install qiskit qiskit-ibm-runtime
+   ```
 
-Visit the Google Colab landing page.
-Sign in with your Google account or create a new one.
-(2) Create a Notebook and Install Qiskit
-Click on "+ New Notebook" and run:
-%pip install qiskit qiskit-ibm-runtime
+## Next steps
 
-### Getting Started with Microsoft Azure Machine Learning Studio
-
-(1) Set Up Azure Account
-
-Visit the Azure landing page.
-Create a free trial account.
-(2) Create Azure ML Studio Workspace and Install Qiskit
-Create a new workspace and a compute resource.
-Open a new notebook and run:
-%pip install qiskit qiskit-ibm-runtime
-
-And that is it! If you need help getting started with any of these online notebook environments, be sure to check the corresponding platform documentation, or consider dropping a question in the Qiskit Slack channel.
+<Admonition type="tip" title="Recommendations">
+  -  [OVH Cloud documentation](https://help.ovhcloud.com/csm/en-documentation?id=kb_home)
+  -  [qBraid Lab documentation](https://docs.qbraid.com/home/introduction)
+  -  [IBM Watson studio documentation](https://cloud.ibm.com/developer/watson/documentation)
+  -  [Google Colab documentation](chttps://colab.research.google.com/)
+  -  [Microsoft Azure Machine Learning Studio documentation](https://learn.microsoft.com/en-us/azure/machine-learning/?view=azureml-api-2)
+</Admonition>
