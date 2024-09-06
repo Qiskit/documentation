@@ -279,8 +279,10 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception",
+        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data",
       )
+      // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
+      .not("td > dl")
       .get(0);
 
     if (!dl) {
@@ -402,6 +404,7 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     "property",
     "attribute",
     "module",
+    "data",
   ]) {
     if ($dl.hasClass(className)) {
       return className as ApiType;

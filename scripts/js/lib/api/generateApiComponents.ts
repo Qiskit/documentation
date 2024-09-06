@@ -34,13 +34,14 @@ export type ComponentProps = {
   isDedicatedPage?: boolean;
 };
 
-const APITYPE_TO_TAG: Record<string, string> = {
+const APITYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
   class: "class",
   exception: "class",
   attribute: "attribute",
   property: "attribute",
   function: "function",
   method: "function",
+  data: "attribute",
 };
 
 export async function processMdxComponent(
@@ -110,6 +111,7 @@ function prepareProps(
     attribute: prepAttributeOrProperty,
     method: prepMethod,
     function: prepFunction,
+    data: prepAttributeOrProperty,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
