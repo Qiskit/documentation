@@ -166,7 +166,7 @@ function prepareMethodProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: string | undefined,
+  priorApiType: ApiType | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
@@ -201,7 +201,7 @@ function prepareAttributeOrPropertyProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: string | undefined,
+  priorApiType: ApiType | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
