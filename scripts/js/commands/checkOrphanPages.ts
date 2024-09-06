@@ -22,35 +22,18 @@ import { TocEntry } from "../lib/api/generateToc.js";
 
 interface Arguments {
   [x: string]: unknown;
-  currentApis: boolean;
-  devApis: boolean;
-  historicalApis: boolean;
+  apis: boolean;
 }
 
-const ALLOWED_ORPHAN_URLS = new Set([
-  ...qiskitIgnores(),
-  "/api/qiskit/qiskit.primitives.BaseEstimator",
-  "/api/qiskit/qiskit.primitives.BaseSampler",
-]);
+const ALLOWED_ORPHAN_URLS: Set<string> = new Set([...qiskitLegacyIgnores()]);
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
-    .option("current-apis", {
+    .option("apis", {
       type: "boolean",
       default: false,
       description: "Check the links in the current API docs.",
-    })
-    .option("dev-apis", {
-      type: "boolean",
-      default: false,
-      description: "Check the links in the /dev API docs.",
-    })
-    .option("historical-apis", {
-      type: "boolean",
-      default: false,
-      description:
-        "Check the links in the historical API docs, e.g. `api/qiskit/0.44`. ",
     })
     .parseSync();
 };
@@ -60,9 +43,7 @@ async function main() {
 
   const tocFiles = await determineTocFiles(args);
 
-  let allGood = true;
   const orphanPages = [];
-
   for (const tocFile of tocFiles) {
     console.log("Checking toc in:", tocFile);
     const tocUrls = await getTocUrls(tocFile);
@@ -104,16 +85,10 @@ async function collectExistingUrls(directory: string): Promise<string[]> {
 }
 
 async function determineTocFiles(args: Arguments): Promise<string[]> {
-  const globs = ["docs/**/_toc.json", "!docs/api/**"];
-  if (args.currentApis) {
-    globs.push("docs/api/*/_toc.json");
-  }
-  if (args.devApis) {
-    globs.push("docs/api/*/dev/_toc.json");
-  }
-  if (args.historicalApis) {
-    globs.push("docs/api/*/[0-9]*/_toc.json");
-  }
+  const globs = [
+    "docs/**/_toc.json",
+    args.apis ? "docs/api/**/_toc.json" : "!docs/api/**",
+  ];
   return await globby(globs);
 }
 
@@ -131,7 +106,7 @@ function collectTocFileContents(children: TocEntry[]): string[] {
   return urls;
 }
 
-function qiskitIgnores(): string[] {
+function qiskitLegacyIgnores(): string[] {
   const versions = [
     "0.19/",
     "0.24/",
@@ -157,7 +132,6 @@ function qiskitIgnores(): string[] {
     "0.45/",
     "0.46/",
   ];
-
   return [
     ...versions.flatMap((vers) => [
       `/api/qiskit/${vers}aer`,
@@ -165,10 +139,6 @@ function qiskitIgnores(): string[] {
       `/api/qiskit/${vers}ibmq-provider`,
       `/api/qiskit/${vers}ibmq_jupyter`,
       `/api/qiskit/${vers}ibmq_visualization`,
-      `/api/qiskit/${vers}qiskit.aqua.aqua_globals`,
-      `/api/qiskit/${vers}qiskit.optimization.INFINITY`,
-      `/api/qiskit/${vers}qiskit.quantum_info.two_qubit_cnot_decompose`,
-      `/api/qiskit/${vers}qiskit.utils.algorithm_globals`,
       `/api/qiskit/${vers}parallel`,
       `/api/qiskit/${vers}transpiler_builtin_plugins`,
     ]),
