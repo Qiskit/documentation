@@ -251,7 +251,7 @@ npm run check:external-links -- 'docs/run/*' '!docs/run/index.mdx'
 
 ## Check for orphan pages
 
-Every file should have a home in one of the `_toc.json` files. If for some reason a page should _not_ have a home, add it to the `ALLOWED_ORPHANS` list in `scripts/checkOrphanPages.ts`.
+Every file should have a home in one of the `_toc.json` files.
 
 To check for orphaned pages, run:
 
@@ -259,10 +259,10 @@ To check for orphaned pages, run:
 # Only check non-API docs
 npm run check:orphan-pages
 
-# You can also add any of the below arguments to check API docs
-npm run check:orphan-pages -- --current-apis --dev-apis --historical-apis
+# You can also check API docs
+npm run check:orphan-pages -- --apis
 
-# Or, run all the checks.  However this will skip the API docs
+# Or, run all the checks. However this will skip the API docs
 npm run check
 ```
 

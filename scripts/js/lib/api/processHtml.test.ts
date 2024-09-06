@@ -35,7 +35,7 @@ test.describe("loadImages()", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images", false);
+    const images = loadImages(doc.$, doc.$main, "/my-images", false, false);
     expect(images).toEqual([
       {
         fileName: "logo.png",
@@ -51,11 +51,11 @@ test.describe("loadImages()", () => {
     );
   });
 
-  test("release note", () => {
+  test("release note - single release note file", () => {
     const doc = CheerioDoc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true);
+    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, false);
     expect(images).toEqual([
       {
         fileName: "view-page-source-icon.svg",
@@ -63,6 +63,20 @@ test.describe("loadImages()", () => {
       },
     ]);
     doc.expectHtml(`<img src="/my-images/view-page-source-icon.svg">`);
+  });
+
+  test("release note - separate release note files", () => {
+    const doc = CheerioDoc.load(
+      `<img src="../_static/images/view-page-source-icon.svg">`,
+    );
+    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true, true);
+    expect(images).toEqual([
+      {
+        fileName: "view-page-source-icon.svg",
+        dest: "/my-images/0.45/view-page-source-icon.svg",
+      },
+    ]);
+    doc.expectHtml(`<img src="/my-images/0.45/view-page-source-icon.svg">`);
   });
 });
 
@@ -535,6 +549,38 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     expect(meta).toEqual({
       apiName: "qiskit.exceptions.QiskitError",
       apiType: "exception",
+    });
+  });
+
+  test("data", async () => {
+    const html = `
+<dl class="py data">
+<dt class="sig sig-object py" id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS">
+<span class="sig-prename descclassname"><span class="pre">qiskit.qasm2.</span></span><span class="sig-name descname"><span class="pre">LEGACY_CUSTOM_INSTRUCTIONS</span></span><a class="headerlink" href="#qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
+if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates
+in the paper version of <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> and <code class="docutils literal notranslate"><span class="pre">delay</span></code> all require a compatible declaration
+statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all
+marked as builtins since they are not actually present in any include file this parser sees.</p>
+</dd></dl>
+`;
+    const doc = CheerioDoc.load(html);
+    const meta: Metadata = { apiType: "module", apiName: "my_module" };
+    await processMembersAndSetMeta(doc.$, doc.$main, meta);
+    doc.expectHtml(`
+<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="undefined" extrasignatures="[]">
+  
+<div><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
+if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates
+in the paper version of <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> and <code class="docutils literal notranslate"><span class="pre">delay</span></code> all require a compatible declaration
+statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all
+marked as builtins since they are not actually present in any include file this parser sees.</p>
+</div>
+</attribute></div>
+`);
+    expect(meta).toEqual({
+      apiName: "my_module",
+      apiType: "module",
     });
   });
 });
