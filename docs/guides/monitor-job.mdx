@@ -18,7 +18,7 @@ Use the job instance to check the job status or retrieve the results by calling 
 |                               |                                                                                                                                                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | job.result()                  | Review job results immediately after the job completes. Job results are available after the job completes. Therefore, job.result() is a blocking call until the job completes.                               |
-| job.job\_id()                 | Return the ID that uniquely identifies that job. Retrieving the job results at a later time requires the job ID. Therefore, it is recommended that you save the IDs of jobs you might want to retrieve later. |
+| job.job\_id()                 | Return the ID that uniquely identifieshttps://ibm-quantumcomputing.slack.com/archives/CSV6D7KKL/p1725881005460219 that job. Retrieving the job results at a later time requires the job ID. Therefore, it is recommended that you save the IDs of jobs you might want to retrieve later. |
 | job.status()                  | Check the job status.                                                                                                                                                                                        |
 | job = service.job(\<job\_id>) | Retrieve a job you previously submitted. This call requires the job ID.                                                                                                                                      |
 
@@ -53,7 +53,7 @@ In Qiskit, use `job.cancel()` to cancel a job.
 <span id="execution-spans"></span>
 ## View Sampler execution spans
 
-The results of `SamplerV2` jobs executed in Qiskit Runtime contain execution timing information in their metadata.
+The results of [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) jobs executed in Qiskit Runtime contain execution timing information in their metadata.
 This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
 Shots are grouped into `~.ExecutionSpan`s, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
 
