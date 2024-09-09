@@ -79,6 +79,16 @@ spans = pub_results.metadata["execution"]["execution_spans"]
 for span in spans:
      print(span)
 ```
+Output:
+
+```text
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:22', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:25', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:24', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:27', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:26', size=1280>)
+...
+```
 
 Execution spans can be filtered to include information pertaining to specific PUBs, selected by their indices:
 
@@ -105,7 +115,7 @@ print("   End of first span:", spans[0].stop)
 print("#shots in first span:", spans[0].size)
 ```
 
-<Admonition>
+<Admonition type ="note">
 It is possible for time windows specified by distinct execution spans to overlap. This is not because a QPU was performing multiple executions at once, but is instead an artifact of certain classical processing that might happen concurrently with quantum execution. The guarantee being made is that the referenced data definitely occurred in the reported execution span, but not necessarily that the limits of the time window are as tight as possible.
 </Admonition>
 
