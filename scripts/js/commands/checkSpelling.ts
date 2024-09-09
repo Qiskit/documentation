@@ -46,10 +46,9 @@ zxMain(async () => {
   const args = readArgs();
   const cspellCmd = ["npx", "cspell", "--config", args.config];
 
-  await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`;
-
+  await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`.pipe(process.stdout);
   if (args.apis) {
-    await $`${cspellCmd} docs/api/**/*.mdx`;
+    await $`${cspellCmd} docs/api/**/*.mdx`.pipe(process.stdout);
   }
 
   await checkAllNotebooks(args.config);

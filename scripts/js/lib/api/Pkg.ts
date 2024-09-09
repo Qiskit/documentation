@@ -44,7 +44,7 @@ export class Pkg {
   static VALID_NAMES = [
     "qiskit",
     "qiskit-ibm-runtime",
-    "qiskit-transpiler-service",
+    "qiskit-ibm-transpiler",
   ];
 
   constructor(kwargs: {
@@ -98,17 +98,17 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime IBM Client",
+        title: "Qiskit Runtime Client",
         name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
       });
     }
 
-    if (name === "qiskit-transpiler-service") {
+    if (name === "qiskit-ibm-transpiler") {
       return new Pkg({
         ...args,
         title: "Qiskit Transpiler Service Client",
-        name: "qiskit-transpiler-service",
+        name: "qiskit-ibm-transpiler",
         githubSlug: undefined,
         releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });

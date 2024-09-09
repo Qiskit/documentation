@@ -14,13 +14,14 @@ import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
 
-const IGNORED_URLS = ["/guides/qiskit-serverless", "/guides/qiskit-addons"];
+const IGNORED_URLS: string[] = ["/guides/qiskit-addons"];
 
 const INDEX_PAGES = [
   "docs/guides/map-problem-to-circuits.mdx",
   "docs/guides/optimize-for-hardware.mdx",
   "docs/guides/execute-on-hardware.mdx",
   "docs/guides/post-process-results.mdx",
+  "docs/guides/intro-to-patterns.mdx",
 ];
 
 const TOC_PATH = "docs/guides/_toc.json";
@@ -152,7 +153,7 @@ function maybePrintErrorsAndFail(
   if (extraToolsEntriesErrors.length > 0) {
     extraToolsEntriesErrors.forEach((error) => console.error(error));
     console.error(
-      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
+      "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/js/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
     );
     INDEX_PAGES.forEach((index) => console.error(`\t➡️  ${index}`));
     allGood = false;

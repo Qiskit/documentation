@@ -29,6 +29,7 @@ export async function processHtml(options: {
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
+  hasSeparateReleaseNotes: boolean;
 }): Promise<ProcessedHtml> {
   const {
     html,
@@ -36,12 +37,19 @@ export async function processHtml(options: {
     imageDestination,
     determineGithubUrl,
     releaseNotesTitle,
+    hasSeparateReleaseNotes,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
 
   const isReleaseNotes = fileName.endsWith("release_notes.html");
-  const images = loadImages($, $main, imageDestination, isReleaseNotes);
+  const images = loadImages(
+    $,
+    $main,
+    imageDestination,
+    isReleaseNotes,
+    hasSeparateReleaseNotes,
+  );
   if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
   }
@@ -73,6 +81,7 @@ export function loadImages(
   $main: Cheerio<any>,
   imageDestination: string,
   isReleaseNotes: boolean,
+  hasSeparateReleaseNotes: boolean,
 ): Image[] {
   return $main
     .find("img")
@@ -84,8 +93,9 @@ export function loadImages(
       const fileName = $img.attr("src")!.split("/").pop()!;
 
       let dest = `${imageDestination}/${fileName}`;
-      if (isReleaseNotes) {
-        // Release notes links should point to the current version
+      if (isReleaseNotes && !hasSeparateReleaseNotes) {
+        // If the Pkg only has a single release notes file for all versions,
+        // then the images should point to the current version.
         dest = dest.replace(/[0-9].*\//, "");
       }
 
@@ -269,8 +279,10 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception",
+        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data",
       )
+      // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
+      .not("td > dl")
       .get(0);
 
     if (!dl) {
@@ -281,6 +293,10 @@ export async function processMembersAndSetMeta(
     const $dl = $(dl);
     const id = $dl.find("dt").attr("id") || "";
     const apiType = getApiType($dl);
+
+    if (apiType && apiType === "module") {
+      throw new Error("Did not expect apiType to be 'module'");
+    }
 
     const priorApiType = meta.apiType;
     if (!priorApiType) {
@@ -305,7 +321,6 @@ export async function processMembersAndSetMeta(
     } else {
       const [openTag, closeTag] = await processMdxComponent(
         $,
-        $main,
         signatures,
         $dl,
         priorApiType,
@@ -389,6 +404,7 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     "property",
     "attribute",
     "module",
+    "data",
   ]) {
     if ($dl.hasClass(className)) {
       return className as ApiType;

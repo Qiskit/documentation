@@ -5,7 +5,7 @@ description: The latest updates from Qiskit and IBM Quantum, including the lates
 
 # Latest updates
 
-*Last updated 15 August 2024*
+*Last updated 6 September 2024*
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
 Keep up with the latest and greatest from Qiskit and IBM Quantum&trade;! Gathered here are the the most recent Qiskit package release summaries, documentation updates, blogs, community events, and more.
@@ -35,9 +35,9 @@ For more details, read the post about the release on the [IBM Quantum blog](http
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
-### Qiskit Runtime IBM Client 0.28.0
+### Qiskit Runtime Client 0.28.0
 
-*To see the release notes for all versions, visit the [Qiskit Runtime IBM Client release notes](/api/qiskit-ibm-runtime/release-notes).*
+*To see the release notes for all versions, visit the [Qiskit Runtime Client release notes](/api/qiskit-ibm-runtime/release-notes).*
 
 **Highlights from the 0.28.0 (2024-08-15) version release**
 
@@ -63,7 +63,7 @@ On the IBM Quantum blog, we take a deep dive into the new beta release with a sp
 
 {/* no other release notes available yet */}
 
-## Qiskit IBM Runtime service updates
+## Qiskit Runtime service updates
 
 This summary of the latest changes to the Qiskit Runtime service applies to anyone using Qiskit Runtime, regardless of how you communicate with the service (using qiskit-ibm-runtime or otherwise), or which version of the client SDK you use.
 
@@ -90,21 +90,21 @@ Probabilistic error amplification (PEA) error mitigation method is now available
 
 ### 28 March 2024
 
-Qiskit Runtime primitives now support OpenQASM 3 as the input format for circuits and standard JSON output format. See [Qiskit IBM Runtime REST API](/api/runtime) for examples.
+Qiskit Runtime primitives now support OpenQASM 3 as the input format for circuits and standard JSON output format. See [Qiskit Runtime REST API](/api/runtime) for examples.
 
-## IBM Quantum blog: Defining — and citing — the Qiskit SDK
+## IBM Quantum blog: Qiskit Serverless sets the stage for Qiskit Functions in the cloud
 
 *Browse all blogs at the [IBM Quantum blog page](https://www.ibm.com/quantum/blog).*
 
 {/* Bring over the Quantum news (blog) announcement post */}
 
-Since its launch in 2017, researchers have used the Qiskit SDK to write thousands of papers in the fields of quantum information science and engineering. However, those researchers have also lacked a definitive, authoritative academic citation that explains what the Qiskit SDK and how it enables their experiments —  until now.
+[This week on the IBM Quantum blog](https://www.ibm.com/quantum/blog/qiskit-serverless), we're taking a fresh look at Qiskit Serverless, a programming model that empowers users to leverage both quantum and classical resources in a cloud environment. We've made a number of improvements to Qiskit Serverless since its debut at IBM Quantum Summit 2023, and have recently expanded and updated the [Qiskit Serverless documentation](/guides/serverless) to simplify the process of getting started with it.
 
-[“Quantum computing with Qiskit,”](https://arxiv.org/abs/2405.08810) a paper published recently on arXiv, fills this gap by providing the research community with a succinct overview of the SDK’s architecture and core components. It also offers fascinating insight into the design philosophy that has informed the Qiskit SDK’s development since its earliest days, and delivers a detailed, end-to-end example of a workflow that uses Qiskit to solve a challenging problem in condensed matter physics.
+Qiskit Serverless is a useful tool for performing complex, long-running tasks, and for running workflows that are intended to be executed on a regular basis. You can scale quantum jobs by running them across multiple quantum and classical compute resources, meaning you can continue to efficiently execute your workflows even after you’ve hit the resource limits of the local machine you use for quantum experiments.
 
-The authors of “Quantum computing with Qiskit” include developers who helped build the very first version of Qiskit in 2017, and who have seen firsthand how it has grown into the sophisticated, versatile tool it is today. Their hope is that the paper will serve as a convenient, citable source that helps researchers better understand what Qiskit is and how it is used for quantum information science.
+In the blog, we take a closer look at how users can take advantage of these capabilities, explain how Qiskit Serverless actually works, and give readers an inside look at the improvements we’ve been making to it over the past several months.
 
-For more details on the new paper, including key takeaways and example citations, be sure to read [our recent post on the IBM Quantum blog](https://www.ibm.com/quantum/blog/defining-and-citing-the-qiskit-sdk), or read [the full paper on arXiv](https://arxiv.org/abs/2405.08810).
+*On the IBM Quantum blog: [Qiskit Serverless sets the stage for Qiskit Functions in the cloud](https://www.ibm.com/quantum/blog/qiskit-serverless)*
 
 ## What's new in the documentation
 
@@ -112,17 +112,41 @@ For more details on the new paper, including key takeaways and example citations
 
 IBM Quantum documentation recently added a number of user-facing improvements, including content updates and new features. Many of these changes are a result of specific user requests! Check out the highlights below.
 
+
+### New and updated content
+
 **New pages**
 
-- [Error mitigation techniques](./error-mitigation-and-suppression-techniques)
-- [Error mitigation and suppression techniques](./error-mitigation-and-suppression-techniques)
-- [The Operator class](./operator-class)
-- [Transpile against custom backends](./custom-backend)
+- [Primitive inputs and outputs](./primitive-input-output)
+- [Noise learning helper](./noise-learning)
+- Expanded and improved [Qiskit Serverless](./serverless) docs, including four new pages that walk you through how to use Qiskit Serverless: [Write your first Qiskit Serverless program](./serverless-first-program), [Run your first Qiskit Serverless workload remotely](./serverless-run-first-workload), [Manage Qiskit Serverless compute and data resources](./serverless-manage-resources), and [Port code to Qiskit Serverless](./serverless-port-code) 
+
+**Content additions and improvements**
+
+- Clarity around the [maximum execution time for batches](./max-execution-time#batch-maximum-execution-time), how usage is reported for [failed and canceled jobs](./execution-modes#failed-and-canceled-jobs), and how [usage affects job priority within an instance](./instances#how-usage-affects-job-priority-within-an-instance).
+- [Probabilistic error amplification (PEA)](./error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea) has been added to the Error techniques topic.
+- New [options compatibility table](./runtime-options-overview#options-compatibility) for Qiskit Runtime error mitigation tools.
+- Updated docs to reflect that [V1 primitives are no longer supported](../migration-guides/v2-primitives).
+- Copyediting and typo fixes across the docs, including bugs reported by community contributors.
+
 
 **New API reference docs**
 
-- [Qiskit Transpiler Service Client](/api/qiskit-transpiler-service)
-- [Qiskit Transpiler Service REST API](/api/qiskit-transpiler-service-rest)
+- [Qiskit SDK v1.2](../api/qiskit/release-notes/1.2)
+- [Qiskit Runtime v0.28](../api/qiskit-ibm-runtime/release-notes#0280-2024-08-15)
+- [qiskit-ibm-transpiler v0.5](../api/qiskit-ibm-transpiler/transpiler_service) 
+
+### User experience improvements
+
+- The table of contents for the IBM Quantum Platform docs is now organized into Get started, Workflow, and Tools sections. Whether you are looking for documentation specific to a Qiskit pattern step, or simply want to jump straight to the tool you need, you can quickly browse for the content you need.
+- The [landing page](https://docs.quantum.ibm.com/) has a fresh new design with an improved focus on API references.
+- We've launched an *Additional resources* tab that directs you to the [migration guides](../migration-guides/), [open-source resources](../open-source/), [responsible quantum computing guidelines](../responsible-quantum-computing), and the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem).
+- Tables in the docs now have borders to improve readability.
+- Alt-text has been added to all images to make them more accessible.
+- Heading size has been adjusted so that it does not change when the screen size changes.
+- Code styling has been improved, including bigger fonts and better contrast for code block comments.
+- In Search, you can now filter out terms by prefixing it with `-`, such as `-qiskit`
+- When on outdated versions of docs, the link in the top banner to take you to the latest version now preserves the page you were on.
 
 *A huge thank you goes out to everyone in the open-source community who contributed and gave feedback!* Please [open an issue](https://github.com/Qiskit/documentation/issues/new/choose) if you find a bug, have a suggestion, or want to share your experience.
 
