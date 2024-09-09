@@ -57,7 +57,7 @@ The results of [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV
 This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
 Shots are grouped into `~.ExecutionSpan`s, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
 
-An execution span specifies which data was executed during its window by providing an `~.ExecutionSpan.mask` method. This method, given any PUB index, returns a boolean mask that is ``True`` for all shots executing during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
+An execution span specifies which data was executed during its window by providing an `~.ExecutionSpan.mask` method. This method, given any PUB index, returns a boolean mask that is ``True`` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
 
 ```python
 # Get the mask of the 1st PUB for the 0th span.
@@ -68,7 +68,7 @@ in_this_span = mask[1, 2, 0]
 
 # Create a new bit array containing only the PUB-1 data collected during this span.
 bits = pub_results[1].data.meas
-filtered_data = BitArray(bits.array(mask), bits.num_bits)
+filtered_data = BitArray(bits.array[mask], bits.num_bits)
 ```
 
 To view execution span information, review the metadata of the result returned by `SamplerV2`, which comes in the form of an `~ExecutionSpans` object. This object is a list-like container containing subclass instances of `ExecutionSpan`s such as `SliceSpan`:
