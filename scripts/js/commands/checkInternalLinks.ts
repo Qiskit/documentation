@@ -261,7 +261,7 @@ async function determineHistoricalFileBatches(
     ];
     const toLoad = [...extraGlobsToLoad];
 
-    // Also check the relesae note file for this version, if the package has
+    // Also check the release note file for this version, if the package has
     // separate release notes per version.
     //
     // Qiskit legacy release notes (< 0.46) have their own FileBatch, so we don't
