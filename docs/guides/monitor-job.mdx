@@ -18,7 +18,7 @@ Use the job instance to check the job status or retrieve the results by calling 
 |                               |                                                                                                                                                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | job.result()                  | Review job results immediately after the job completes. Job results are available after the job completes. Therefore, job.result() is a blocking call until the job completes.                               |
-| job.job\_id()                 | Return the ID that uniquely identifieshttps://ibm-quantumcomputing.slack.com/archives/CSV6D7KKL/p1725881005460219 that job. Retrieving the job results at a later time requires the job ID. Therefore, it is recommended that you save the IDs of jobs you might want to retrieve later. |
+| job.job\_id()                 | Return the ID that uniquely identifies that job. Retrieving the job results at a later time requires the job ID. Therefore, it is recommended that you save the IDs of jobs you might want to retrieve later. |
 | job.status()                  | Check the job status.                                                                                                                                                                                        |
 | job = service.job(\<job\_id>) | Retrieve a job you previously submitted. This call requires the job ID.                                                                                                                                      |
 
@@ -57,7 +57,7 @@ The results of [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV
 This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
 Shots are grouped into `~.ExecutionSpan`s, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
 
-An execution span specifies which data was executed during its window by providing an `~.ExecutionSpan.mask` method. This method, given any PUB index, returns a boolean mask that is ``True`` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
+An execution span specifies which data was executed during its window by providing an `~.ExecutionSpan.mask` method. This method, given any PUB index, returns a Boolean mask that is ``True`` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
 
 ```python
 # Get the mask of the 1st PUB for the 0th span.
@@ -115,7 +115,7 @@ print("   End of first span:", spans[0].stop)
 print("#shots in first span:", spans[0].size)
 ```
 
-<Admonition type ="note">
+<Admonition type="note">
 It is possible for time windows specified by distinct execution spans to overlap. This is not because a QPU was performing multiple executions at once, but is instead an artifact of certain classical processing that might happen concurrently with quantum execution. The guarantee being made is that the referenced data definitely occurred in the reported execution span, but not necessarily that the limits of the time window are as tight as possible.
 </Admonition>
 
