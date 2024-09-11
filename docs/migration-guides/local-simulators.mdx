@@ -63,21 +63,16 @@ use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime
 
 If you are perpelexed by the multiple choie of simulators, feel free to refer the following table as a guide to the applicablity of the simulators. 
 
-## Simulator Comparison
+## Simulator Comparison Table
 
-| **Simulator**| **Fake Backends**| **AerSimulator**| **Clifford Simulation**|
+| Simulator           | Fake Backends                                   | AerSimulator                                       | Clifford Simulation                                |
+|---------------------|-------------------------------------------------|---------------------------------------------------|----------------------------------------------------|
+| **Purpose**         | Mimics specific IBM QPUs using snapshots         | General-purpose, high-performance simulation      | Efficient simulation for Clifford circuits         |
+| **Noise Model**     | Automatically applies noise model from QPU snapshots | Custom or based on real QPU calibration data      | Ideal for noise-free simulations                   |
+| **Circuit Size**    | Limited to the capabilities of the mimicked QPU  | Capable of handling larger circuits               | Suitable for extremely large circuits (e.g., hundreds of qubits) |
+| **Results**         | Moderate runtime for QPU-specific tests          | Lesser runtime for a wide range of simulations    | Extremely fast (suitable) for stabilizer circuits  |
+| **Use Case**        | Testing transpiler and QPU-specific behavior     | General development, custom noise models          | Large stabilizer circuits, error correction        |
 
-|----------------------|----------------------------------------------------------|------------------------------------------------------|---------------------------------------
-------|
-| **Purpose**| Mimics specific IBM QPUs using snapshots| General-purpose, high-performance simulation| Efficient simulation for Clifford circuits|
-
-| **Noise Model**| Automatically applies noise model from QPU snapshots| Custom or based on real QPU calibration data| Ideal for noise-free simulations|
-
-| **Circuit Size**| Limited to the capabilities of the mimicked QPU| Capable of handling larger circuits| Suitable for extremely large circuits (e.g., hundreds of qubits)|
-
-| **Results** | Moderate runtime for QPU-specific tests | Lesser runtime for a wide range of simulations| Extremely fast (suitable) for stabilizer circuits|
-
-| **Use Case** | Testing transpiler and QPU-specific behavior| General development, custom noise models| Large stabilizer circuits, error correction|
 
 *Note: For most users, **AerSimulator** serves as a good default choice due to its flexibility and performance. However, if your work targets a specific QPU, please refer to the table 
 above.*
