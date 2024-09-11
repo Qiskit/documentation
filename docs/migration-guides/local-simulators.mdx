@@ -56,36 +56,37 @@ Local testing mode does not have built-in error suppression or mitigation.  Inst
 
 ## Migrate to local simulators
 
-With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.
+With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To
+use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.
 
 ### Guidance for Choosing a Simulator
 
-When deciding which simulator to use, consider the following:
-
-1. **Fake Backends** are ideal when you need to closely mimic the behavior of a specific IBM QPU, particularly for testing transpiler performance or understanding QPU-specific characteristics.
-
-2. **AerSimulator** is a versatile choice for general-purpose simulations. It excels in handling larger circuits and allows for the incorporation of custom noise models, making it suitable for a wide range of development scenarios.
-
-3. **Clifford Simulation** is the best option for efficiently simulating Clifford circuits, especially when working with large stabilizer circuits or in scenarios involving quantum error correction.
-
-For most users, **AerSimulator** serves as a solid default choice due to its flexibility and performance. However, if your work targets specific IBM QPUs or involves large Clifford circuits, the other options may be more appropriate.
+If you are perpelexed by the multiple choie of simulators, feel free to refer the following table as a guide to the applicablity of the simulators. 
 
 ## Simulator Comparison
 
-| **Simulator**        | **Fake Backends**                                         | **AerSimulator**                                      | **Clifford Simulation**                             |
-|----------------------|----------------------------------------------------------|------------------------------------------------------|----------------------------------------------------|
-| **Purpose**          | Mimics specific IBM QPUs using snapshots                | General-purpose, high-performance simulation         | Efficient simulation for Clifford circuits         |
-| **Noise Model**      | Automatically applies noise model from QPU snapshots     | Custom or based on real QPU calibration data        | Ideal for noise-free simulations                   |
-| **Circuit Size**     | Limited to the capabilities of the mimicked QPU         | Capable of handling larger circuits                  | Very large circuits (e.g., hundreds of qubits)    |
-| **Simulation Speed** | Moderate performance for QPU-specific tests              | Fast performance for a wide range of simulations    | Extremely fast for stabilizer circuits              |
-| **Use Case**         | Testing transpiler and QPU-specific behavior             | General development, custom noise models             | Large stabilizer circuits, error correction         |
+| **Simulator**| **Fake Backends**| **AerSimulator**| **Clifford Simulation**|
 
+|----------------------|----------------------------------------------------------|------------------------------------------------------|---------------------------------------
+------|
+| **Purpose**| Mimics specific IBM QPUs using snapshots| General-purpose, high-performance simulation| Efficient simulation for Clifford circuits|
+
+| **Noise Model**| Automatically applies noise model from QPU snapshots| Custom or based on real QPU calibration data| Ideal for noise-free simulations|
+
+| **Circuit Size**| Limited to the capabilities of the mimicked QPU| Capable of handling larger circuits| Suitable for extremely large circuits (e.g., hundreds of qubits)|
+
+| **Results** | Moderate runtime for QPU-specific tests | Lesser runtime for a wide range of simulations| Extremely fast (suitable) for stabilizer circuits|
+
+| **Use Case** | Testing transpiler and QPU-specific behavior| General development, custom noise models| Large stabilizer circuits, error correction|
+
+*Note: For most users, **AerSimulator** serves as a good default choice due to its flexibility and performance. However, if your work targets a specific QPU, please refer to the table 
+above.*
 
 ### Fake backends
 
 The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM QPUs by using snapshots. The snapshots contain important information about the QPU, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the QPU.  The noise model from the snapshot is automatically applied during simulation.
 
-Example
+Example:
 
 ```python
 from qiskit.circuit.library import RealAmplitudes
