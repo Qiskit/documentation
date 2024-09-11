@@ -1,0 +1,230 @@
+---
+title: Qiskit Code Assistant
+description: Improve your quantum computing developer experience and learn best practices for Qiskit and IBM Quantum Platform services with Qiskit Code Assistant
+---
+
+# Qiskit Code Assistant
+
+Improve your quantum computing developer experience and learn best practices for Qiskit and IBM Quantum Platform services with Qiskit Code Assistant!
+
+Make programming quantum computers even easier with Qiskit Code Assistant, a generative AI code assistant powered by [watsonx](watsonx.ai). Trained with approximately 370 million text tokens from Qiskit SDK v1.x, years of Qiskit code examples, and IBM Quantum features, Qiskit Code Assistant helps your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite 8B Code](https://www.ibm.com/products/watsonx-ai/foundation-models) that incorporate the latest features and functionalities from IBM.
+
+<Admonition type="note">
+    This is an experimental feature available only to the IBM Quantum Premium Plan.
+    The Qiskit Code Assistant is in preview release status, subject to change.
+    If you have feedback or want to contact the developer team, please use this [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
+</Admonition>
+
+## Features
+
+* Accelerate Qiskit code generation by leveraging generative AI based on the `granite-8b-qiskit` model
+* Use abstract and specific prompts to generate recommendations
+* Manage code changes by reviewing, accepting, and rejecting suggestions
+* Supports Python code and Jupyter notebook files
+* Extensions available for [VSCode](https://code.visualstudio.com/) and [JupyterLab](https://jupyterlab.readthedocs.io/en/latest/)
+* Includes guardrails to avoid answering questions that represent a potential risk (hateful speech, etc).
+
+## Installing the extensions
+
+The Qiskit Code Assistant can be integrated directly into your favorite development environment through the official extensions for JupyterLab and VSCode.
+
+### Installing JupyterLab extension
+
+To install the [JupyterLab extension](https://github.com/Qiskit/qiskit-code-assistant-jupyterlab), just run
+```sh
+pip install qiskit-code-assistant-jupyterlab
+```
+
+After installing the extension, proceed as usual to run JupyterLab
+
+```sh
+jupyter lab
+```
+
+The extension will load automatically and will be shown in the JupyterLab graphical user interface.
+
+![../\_images/run/qiskit\-code\-assistant\jupyterlab\-selected\-model.png](/images/run/qiskit-code-assistant/jupyterlab-selected-model.png)
+
+If you need help to install or run JupyterLab, please refer to the [JupyterLab documentation](https://jupyterlab.readthedocs.io/en/latest/)
+
+### Installing the VSCode extension
+
+To install the [VSCode extension](https://github.com/Qiskit/qiskit-code-assistant-vscode), you can add it to your IDE as follows:
+
+1. Launch Visual Studio Code
+1. Click on the Extensions tab
+1. Search for `qiskit-vscode`
+1. Click **Install** for the "Qiskit Code Assistant"
+
+The extension is also available through the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode).
+
+After installing, you will need to reload the extension/IDE (typically VSCode will ask you to do it automatically). When ready, you will see the following in the lower part of the user interface.
+
+![../\_images/run/qiskit\-code\-assistant\vscode\-selected\-model.png](/images/run/qiskit-code-assistant/vscode-selected-model.png)
+
+
+## First steps using the Qiskit Code Assistant
+
+### Authentication and setup
+
+After installing the extension in VSCode or JupyterLab, the extension will try to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`).
+
+By default, the extension will use the `granite-8b-qiskit` model. It will appear in the Model Picker in the bottom status bar.
+
+![../\_images/run/qiskit\-code\-assistant\vscode\-selected\-model.png](/images/run/qiskit-code-assistant/vscode-selected-model.png)
+
+The first time you use the `granite-8b-qiskit` model a modal info view will open, listing some major restrictions that you should be aware of when using the model. Clicking `Accept` will accept the model disclaimer and enable the model for code generation.
+
+![../\_images/run/qiskit\-code\-assistant\eula.png](/images/run/qiskit-code-assistant/eula.png)
+
+### Using the Code Generation
+
+#### JupyterLab
+
+In JupyterLab there are two ways to use the code autocompletion: the inline completer and the code completer.
+
+The inline completer can be triggered using the following key strokes.
+
+- `Alt .` or `Alt \` will run the completer at the current cursor location
+- `Alt [` and `Alt ]` can be used to cycle through the list of suggestions if there are
+  more than one
+- `Alt Tab` or `Alt END` will "accept" the suggested code and insert it at the current
+  cursor location
+
+In addition, once the completer runs you can use the buttons on the inline completer
+widget to cycle or accept
+
+![../\_images/run/qiskit\-code\-assistant\jupyterlab-inline-complete.png](/images/run/qiskit-code-assistant/jupyterlab-inline-complete.png)
+
+> NOTE: The service can sometime take a few seconds to retrun a suggestion, you can see when the service is working by checking the status bar
+
+Jupyterlab also includes a traditional completer than displays suggestion in a context menu rather than inline. This completer can be triggered using `Tab` to run and display the context menu.
+
+The context menu will include suggestions from the default completer in addition to the Qiskit Code Assistant suggestions. The context menu also sanitizes and trims the suggestions, making it less useful for see the code suggestion before inserting it.
+
+![../\_images/run/qiskit\-code\-assistant\jupyterlab-tab-complete.png](/images/run/qiskit-code-assistant/jupyterlab-tab-complete.png)
+
+
+#### VSCode
+
+Once you've accepted the model disclaimer you can open a new file and start typing. If you type `Ctrl+.`, some faded text should appear with model-generated suggestions.
+
+![../\_images/run/qiskit\-code\-assistant\vscode-inline-suggestion.png](/images/run/qiskit-code-assistant/vscode-inline-suggestion.png)
+
+You may press `Tab` to accept the model-generated suggestion or press `ESC` to cancel/reject the model-generated suggestion.
+
+Afterwards, you may type `Ctrl+.` again to generate additional suggestions. Also, when you see the faded text (i.e., model-generated suggestion) you can type `Alt/Option+]` and `Alt/Option+[` to cycle forward and backward, respectively, through the suggestions (if available). You can also hover the cursor over the faded
+text to use the pop-up toolbar to cycle through the suggestions.
+
+![../\_images/run/qiskit\-code\-assistant\vscode-inline-suggestion-toolbar.png](/images/run/qiskit-code-assistant/vscode-inline-suggestion-toolbar.png)
+
+
+## Configuring extension settings
+
+### JupyterLab
+
+
+There are a few settings we recommend to edit in your user settings in JupyteLab.
+
+1. Inline Completer `showWidget` can be set to `always` in order to always show the inline completer widget to cycle through and select a completion item
+
+2. Code Completion `providerTimeout` can be increased, our suggested value is `10000` or 10 seconds. This is 1 second by default and the Qiskit Code Assistant API may take a bit more than 1 second to return a response. This setting only apply the the standard completer that is invoked with `Tab`, the inline completer has a default of 10 seconds.
+
+
+Other configurations available:
+
+1. Keyboard shortcuts can be changed via the JupyterLab Keyboard Shortcuts settings (`Settings` menu -> `Settings editor` -> `Keyboard shortcuts`)
+
+2. You can change the IBM Quantum API token to use via the JupyterLab command palette. To do that, type `Alt+Shift+C`, search for `qiskit`, select the **Qiskit Code Assistant: Set IBM Quantum API token** command, paste your IBM Quantum API token.
+
+2. [Advanced] If you want to change the instance of the Qiskit Code Assistant Service that the extension should use you can edit the Qiskit Code Assistant setting `serviceUrl`
+
+3. [Advanced] Keyboard shortcuts can be changed by searching for `completer` in the Keyboard Shortcuts settings and adding new shortcuts for the relevant commands.
+
+### VSCode
+
+
+Available configurations:
+
+1. Keyboard shortcuts can be changed by searching for `qiskit-vscode` in the Keyboard Shortcuts settings (`Cmd/Ctrl+Shift+P` -> `Preferences: Open Keyboard Shortcuts`)
+
+2. You can change the IBM Quantum API token to use via the VSCode command palette. To do that, type `Cmd/Ctrl+Shift+P`, search for `qiskit`, select the **Qiskit Code Assistant: Set IBM Quantum API token** command, paste your IBM Quantum API token.
+
+3. [Advanced] To change the instance of the Qiskit Code Assistant Service that the extension should use you can edit the `Qiskit Code Assistant: Url` in the User Settings
+
+
+## Uninstalling the extensions
+
+### JupyterLab
+
+
+To remove the Qiskit Code Assistant extension from JupyterLab, execute:
+
+```bash
+pip uninstall qiskit_code_assistant_jupyterlab
+```
+
+### VSCode
+
+To remove the Qiskit Code Assistant from VSCode, proceed as follows:
+
+
+1. Launch Visual Studio Code
+1. Click on the Extensions tab
+1. Search for `qiskit-vscode`
+1. Click **Uninstall** for the "Qiskit Code Assistant"
+
+
+## Troubleshooting
+
+### JupyterLab
+
+If you are seeing the frontend extension, but it is not working, check that the server
+extension is enabled:
+
+```bash
+jupyter server extension list
+```
+
+If the server extension is installed and enabled, but you are not seeing the frontend
+extension, check the frontend extension is installed:
+
+```bash
+jupyter labextension list
+```
+
+### VSCode
+
+If you are not seeing the extension status bar in VSCode, check the extension is installed and enabled under the extensions tab.
+
+If the extension is installed and enabled, but not able to select a model, make sure your current API Token has been added and the `Qiskit Code Assistant: Url` is properly set.
+
+
+
+## More information and citations
+
+If you want to know more about the Qiskit Code Assistant or cite it in your scientific publicatons, check out the recommended citations:
+
+```
+@misc{2405.19495,
+Author = {Nicolas Dupuis and Luca Buratti and Sanjay Vishwakarma and Aitana Viudes Forrat and David Kremer and Ismael Faro and Ruchir Puri and Juan Cruz-Benito},
+Title = {Qiskit Code Assistant: Training LLMs for generating Quantum Computing Code},
+Year = {2024},
+Eprint = {arXiv:2405.19495},
+}
+```
+
+```
+@misc{2406.14712,
+Author = {Sanjay Vishwakarma and Francis Harkins and Siddharth Golecha and Vishal Sharathchandra Bajpe and Nicolas Dupuis and Luca Buratti and David Kremer and Ismael Faro and Ruchir Puri and Juan Cruz-Benito},
+Title = {Qiskit HumanEval: An Evaluation Benchmark For Quantum Code Generative Models},
+Year = {2024},
+Eprint = {arXiv:2406.14712},
+}
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Check out examples on how to use the Qiskit Code Assistant for [circuits](https://docs.quantum.ibm.com/guides/circuit-library), [configure error suppression](https://docs.quantum.ibm.com/guides/configure-error-suppression), [transpile with passmanagers](transpile-with-pass-managers)
+</Admonition>
