@@ -423,7 +423,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 When a new version of an API is released, we should also update `nb-tester/requirements.txt` to ensure that our notebooks still work with the latest version of the API. You can do this upgrade either manually or wait for Dependabot's automated PR.
 
-Dependabot will fail to run at first due to not having access to the token. To fix this, have someone with write access push a commit to the PR, such as by merging main or using `git commit --allow-empty`.
+Dependabot will fail to run at first due to not having access to the token. To fix this, have someone with write access trigger CI for the PR, such as by merging main or closing then reopening the issue.
 
 You can land the API generation separately from the `requirements.txt` version upgrade. It's high priority to get out new versions of the API docs ASAP, so you should not block that on the notebook version upgrade if you run into any complications like failing notebooks.
 
