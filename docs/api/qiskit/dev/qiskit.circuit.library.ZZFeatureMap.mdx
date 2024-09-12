@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 # ZZFeatureMap
 
-<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/zz_feature_map.py#L20-L114" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')" modifiers="class">
+<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/_zz_feature_map.py#L21-L127" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')" modifiers="class">
   Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
   Second-order Pauli-Z evolution circuit.
@@ -16,13 +16,13 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   For 3 qubits and 1 repetition and linear entanglement the circuit is represented by:
 
   ```python
-  ┌───┐┌─────────────────┐
-  ┤ H ├┤ U1(2.0*φ(x[0])) ├──■────────────────────────────■────────────────────────────────────
-  ├───┤├─────────────────┤┌─┴─┐┌──────────────────────┐┌─┴─┐
-  ┤ H ├┤ U1(2.0*φ(x[1])) ├┤ X ├┤ U1(2.0*φ(x[0],x[1])) ├┤ X ├──■────────────────────────────■──
-  ├───┤├─────────────────┤└───┘└──────────────────────┘└───┘┌─┴─┐┌──────────────────────┐┌─┴─┐
-  ┤ H ├┤ U1(2.0*φ(x[2])) ├──────────────────────────────────┤ X ├┤ U1(2.0*φ(x[1],x[2])) ├┤ X ├
-  └───┘└─────────────────┘                                  └───┘└──────────────────────┘└───┘
+  ┌───┐┌────────────────┐
+  ┤ H ├┤ P(2.0*φ(x[0])) ├──■───────────────────────────■───────────────────────────────────
+  ├───┤├────────────────┤┌─┴─┐┌─────────────────────┐┌─┴─┐
+  ┤ H ├┤ P(2.0*φ(x[1])) ├┤ X ├┤ P(2.0*φ(x[0],x[1])) ├┤ X ├──■───────────────────────────■──
+  ├───┤├────────────────┤└───┘└─────────────────────┘└───┘┌─┴─┐┌─────────────────────┐┌─┴─┐
+  ┤ H ├┤ P(2.0*φ(x[2])) ├─────────────────────────────────┤ X ├┤ P(2.0*φ(x[1],x[2])) ├┤ X ├
+  └───┘└────────────────┘                                 └───┘└─────────────────────┘└───┘
   ```
 
   where $\varphi$ is a classical non-linear function, which defaults to $\varphi(x) = x$ if and $\varphi(x,y) = (\pi - x)(\pi - y)$.
@@ -32,12 +32,12 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   ```python
   >>> from qiskit.circuit.library import ZZFeatureMap
   >>> prep = ZZFeatureMap(2, reps=1)
-  >>> print(prep)
-       ┌───┐┌──────────────┐
-  q_0: ┤ H ├┤ U1(2.0*x[0]) ├──■───────────────────────────────────────■──
-       ├───┤├──────────────┤┌─┴─┐┌─────────────────────────────────┐┌─┴─┐
-  q_1: ┤ H ├┤ U1(2.0*x[1]) ├┤ X ├┤ U1(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├
-       └───┘└──────────────┘└───┘└─────────────────────────────────┘└───┘
+  >>> print(prep.decompose())
+       ┌───┐┌─────────────┐
+  q_0: ┤ H ├┤ P(2.0*x[0]) ├──■──────────────────────────────────────■──
+       ├───┤├─────────────┤┌─┴─┐┌────────────────────────────────┐┌─┴─┐
+  q_1: ┤ H ├┤ P(2.0*x[1]) ├┤ X ├┤ P(2.0*(pi - x[0])*(pi - x[1])) ├┤ X ├
+       └───┘└─────────────┘└───┘└────────────────────────────────┘└───┘
   ```
 
   ```python
@@ -68,12 +68,16 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   Create a new second-order Pauli-Z expansion.
 
+  <Admonition title="Deprecated since version 1.3_pending" type="danger">
+    The class `qiskit.circuit.library.data_preparation._zz_feature_map.ZZFeatureMap` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the z\_feature\_map function as a replacement. Note that this will no longer return a BlueprintCircuit, but just a plain QuantumCircuit.
+  </Admonition>
+
   **Parameters**
 
   *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of features.
   *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of repeated circuits, has a min. value of 1.
-  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] |* [*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Specifies the entanglement structure. Refer to [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.NLocal") for detail.
-  *   **data\_map\_func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A mapping function for data x.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]] |* [*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]]]*) – Specifies the entanglement structure. Refer to [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") for detail.
+  *   **data\_map\_func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A mapping function for data x.
   *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The prefix used if default parameters are generated.
   *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
 
@@ -175,7 +179,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.instances" attributeValue="164" />
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.instances" attributeValue="157" />
 
   ### layout
 
