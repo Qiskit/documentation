@@ -55,10 +55,7 @@ jobs:
       - name: Check external links
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: >
-          npm run check:external-links --
-          'docs/**/*.{md,mdx,ipynb}'
-          '!docs/api/qiskit/[0-9]*/*'
+        run: npm run check:external-links -- 'docs/**/*.{md,mdx,ipynb}'
 
   make_issue:
     name: Make issue on failure
