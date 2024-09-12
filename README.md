@@ -229,11 +229,7 @@ To check internal links:
 npm run check:internal-links
 
 # You can add any of the below arguments to also check API docs.
-npm run check:internal-links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
-
-# However, `--historical-apis` currently has failing versions, so you may
-# want to add `--skip-broken-historical`.
-npm run check:internal-links -- --historical-apis --skip-broken-historical
+npm run check:internal-links -- --current-apis --dev-apis --historical-apis --qiskit-legacy-release-notes
 
 # Or, run all the checks. Although this only checks non-API docs.
 npm run check
@@ -243,10 +239,10 @@ To check external links:
 
 ```bash
 # Specify the files you want after `--`
-npm run check:external-links -- docs/run/index.md docs/run/circuit-execution.mdx
+npm run check:external-links -- docs/guides/index.md docs/guides/circuit-execution.mdx
 
 # You can also use globs
-npm run check:external-links -- 'docs/run/*' '!docs/run/index.mdx'
+npm run check:external-links -- 'docs/guides/*' '!docs/guides/index.mdx'
 ```
 
 ## Check for orphan pages
