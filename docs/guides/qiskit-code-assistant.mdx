@@ -5,14 +5,12 @@ description: Learn how to use Qiskit Code Assistant, a generative AI code assist
 
 # Qiskit Code Assistant
 
-The Qiskit Code Assistant aims to make quantum computing more accessible to new Qiskit adopters, and improve the coding experience for current users
-
-The Qiskit Code Assistant is a generative AI code assistant powered by [watsonx](watsonx.ai). It is trained using millions of text tokens from Qiskit SDK v1.x, years of Qiskit code examples and IBM Quantum features. The Qiskit Code Assistant can help your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite 8B Code](https://www.ibm.com/products/watsonx-ai/foundation-models) that incorporate the latest features and functionalities from IBM.
+The Qiskit Code Assistant aims to make quantum computing more accessible to new Qiskit adopters, and improve the coding experience for current users. It is a generative AI code assistant powered by [watsonx](watsonx.ai). It is trained using millions of text tokens from Qiskit SDK v1.x, years of Qiskit code examples and IBM Quantum&trade; features. The Qiskit Code Assistant can help your quantum development workflow by offering LLM-generated suggestions based on [IBM Granite 8B Code,](https://www.ibm.com/products/watsonx-ai/foundation-models) which incorporate the latest features and functionalities from IBM&reg;.
 
 <Admonition type="note" title="Notes">
-    - This is an experimental feature available only to IBM Quantum&trade; Premium Plan users.
+    - This is an experimental feature available only to IBM Quantum Premium Plan users.
     - The Qiskit Code Assistant is in preview release status and is subject to change.
-    If you have feedback or want to contact the developer team, please use this [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
+    - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
 </Admonition>
 
 <video title="A user uses the Qiskit Code Assistant in JupyterLab. The user has a comment in the code to get the available backends for their account in IBM Quantum, the Qiskit Code Assistant gives a code suggestion to get the available backends. The user executes the code, gets the available backends in IBM Quantum Platform for the current account. The user ask to the Qiskit Code Assistant to generate the code to get the T1, T2 and other properties for the qubit 1 in the device ibm_brisbane. The assistant gives a code suggestion. The user runs the suggested code and get the desired output." className="max-w-auto h-auto" controls>
@@ -21,18 +19,20 @@ The Qiskit Code Assistant is a generative AI code assistant powered by [watsonx]
 
 ## Features
 
-* Accelerate Qiskit code generation by leveraging generative AI based on the `granite-8b-qiskit` model.
+* Accelerates Qiskit code generation by leveraging generative AI based on the `granite-8b-qiskit` model.
 * Use abstract and specific prompts to generate recommendations.
 * Manage code changes by reviewing, accepting, and rejecting suggestions.
 * Supports Python code and Jupyter notebook files.
-* Extensions available for [Visual Studio Code](https://code.visualstudio.com/) (VSCode) and [JupyterLab.](https://jupyterlab.readthedocs.io/en/latest/)
+* Available for [Visual Studio Code](https://code.visualstudio.com/) (VSCode) and [JupyterLab.](https://jupyterlab.readthedocs.io/en/latest/)
 * Includes guardrails to avoid answering questions that represent a potential risk for users, such as hateful speech.
 
-To use the Qiskit Code Assistant, check out how to use the official extensions for [JupyterLab](/guides/qiskit-code-assistant-jupyterlab) and [VSCode](/guides/qiskit-code-assistant-vscode) to integrate Qiskit Code Assistant directly into your development environment.
+For instructions to integrate Qiskit Code Assistant directly into your development environment, follow the instructions in the appropriate topic:
+- [JupyterLab](/guides/qiskit-code-assistant-jupyterlab)
+- [VSCode](/guides/qiskit-code-assistant-vscode)
 
 ## The Large Language Model (LLM) behind the Qiskit Code Assistant
 
-To provide code suggestions in the context of the Qiskit Code Assistant we use a Large Language Model (LLM). In this case, the Qiskit Code Assistant relies on the model `granite-8b-qiskit`, built on top of the IBM's [granite-8b-code model](https://github.com/ibm-granite/granite-code-models). The `granite-8b-qiskit` model improves the `granite-8b-code` model's code generation capabilities for Qiskit through extended pretraining and fine-tuning it on high-quality Qiskit data plus python commits and chat. Know more about IBM's Granite models family in [this paper](https://arxiv.org/abs/2405.04324). Check out more details about our `granite-.*-qiskit` models in [the related paper](https://arxiv.org/abs/2405.19495)
+To provide code suggestions, the Qiskit Code Assistant uses a Large Language Model (LLM). In this case, the Qiskit Code Assistant relies on the model `granite-8b-qiskit`, built on the IBM [granite-8b-code model.](https://github.com/ibm-granite/granite-code-models) The `granite-8b-qiskit` model improves the `granite-8b-code` model's code generation capabilities for Qiskit through extended pretraining and fine-tuning it on high-quality Qiskit data, as well as Python commits and chat. For more information about the IBM Granite models family, refer to [Granite Code Models: A Family of Open Foundation Models for Code Intelligence.](https://arxiv.org/abs/2405.04324) For more details about the `granite-.*-qiskit` models, see [Qiskit Code Assistant: Training LLMs for generating Quantum Computing Code.](https://arxiv.org/abs/2405.19495)
 
 The model `granite-8b-qiskit` model is expected to be open source soon.
 
@@ -40,7 +40,7 @@ The model `granite-8b-qiskit` model is expected to be open source soon.
 
 To test the `granite-8b-qiskit` model, we are creating, in collaboration with Qiskit Advocates and experts, a new execution-based benchmark called Qiskit HumanEval (QHE). This benchmark is similar to [HumanEval](https://arxiv.org/abs/2107.03374), including multiple challenging code problems to solve, all based on the official Qiskit libraries.
 
-The benchmark is composed by ~150 tests, each one composed by a function definition, followed by a docstring which details the task the model is required to solve. Each example also includes a reference canonical solution, as well as unittests in order to evaluate the correctness of the generated solutions. There are three levels of difficulty for tests: Basic, Intermediate and Difficult.
+The benchmark is composed of approximately 150 tests, each one made from a function definition, followed by a docstring that details the task the model is required to solve. Each example also includes a reference canonical solution, as well as unit tests, to evaluate the correctness of the generated solutions. There are three levels of difficulty for tests: basic, intermediate, and difficult.
 
 
 The dataset for the Qiskit HumanEval is expected to be open source soon.
@@ -48,7 +48,7 @@ The dataset for the Qiskit HumanEval is expected to be open source soon.
 
 ## More information and citations
 
-If you want to know more about the Qiskit Code Assistant or the Qiskit HumanEval and cite it in your scientific publicatons, check out the recommended citations:
+To learn more about the Qiskit Code Assistant or the Qiskit HumanEval and cite it in your scientific publicatons, review these recommended citations:
 
 ```
 @misc{2405.19495,
@@ -71,6 +71,6 @@ Eprint = {arXiv:2406.14712},
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Check out how to install and use the official [JupyterLab](/guides/qiskit-code-assistant-jupyterlab) or [VSCode](/guides/qiskit-code-assistant-vscode) extensions.
-    - Check out examples on how to use the Qiskit Code Assistant for [circuits](https://docs.quantum.ibm.com/guides/circuit-library), [configure error suppression](https://docs.quantum.ibm.com/guides/configure-error-suppression), [transpile with passmanagers](transpile-with-pass-managers)
+    - Install and use the official [JupyterLab](/guides/qiskit-code-assistant-jupyterlab) or [VSCode](/guides/qiskit-code-assistant-vscode) extensions.
+    - Follow examples to use the Qiskit Code Assistant for [circuits](https://docs.quantum.ibm.com/guides/circuit-library), [configuring error suppression](https://docs.quantum.ibm.com/guides/configure-error-suppression), and [transpiling with passmanagers.](transpile-with-pass-managers)
 </Admonition>
