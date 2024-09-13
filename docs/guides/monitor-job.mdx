@@ -55,9 +55,11 @@ In Qiskit, use `job.cancel()` to cancel a job.
 
 The results of [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) jobs executed in Qiskit Runtime contain execution timing information in their metadata.
 This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
-Shots are grouped into `ExecutionSpan`s, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
+Shots are grouped into `execution spans`, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
 
-An execution span specifies which data was executed during its window by providing an `ExecutionSpan.mask` method. This method, given any PUB index, returns a Boolean mask that is `True` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`.
+An execution span specifies which data was executed during its window by providing an `ExecutionSpan.mask` method. This method, given any PUB index, returns a Boolean mask that is `True` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`. See the [execution_span](/api/qiskit-ibm-runtime/execution_span.mdx) API page for full details.
+
+Example:
 
 ```python
 # Get the mask of the 1st PUB for the 0th span.
