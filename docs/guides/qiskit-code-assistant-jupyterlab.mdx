@@ -5,12 +5,12 @@ description: How to install, use, and configure the Qiskit Code Assistant in Jup
 
 # Use the Qiskit Code Assistant in JupyterLab
 
-Learn how to install, use, configure and uninstall the official Qiskit Code Assistant extension in JupyterLab.
+Learn how to install, use, configure, and uninstall the official Qiskit Code Assistant extension in JupyterLab.
 
 <Admonition type="note" title="Notes">
     - This is an experimental feature available only to IBM Quantum&trade; Premium Plan users.
     - The Qiskit Code Assistant is in preview release status and is subject to change.
-    If you have feedback or want to contact the developer team, please use this [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
+    - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
 </Admonition>
 
 
@@ -40,39 +40,40 @@ For help working with JupyterLab, refer to the [JupyterLab documentation.](https
 
 ### Authentication and setup
 
-After installing the JupyterLab extension, it will try to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`). If you need help configuring your account, check out [the related guide](https://docs.quantum.ibm.com/guides/setup-channel#set-up-to-use-ibm-quantum-platform).
+After installing the extension, it tries to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`). If you need help configuring your account, follow the instructions in [Set up to use IBM Quantum Platform.](/guides/setup-channel#set-up-to-use-ibm-quantum-platform)
 
-By default, the extension will use the `granite-8b-qiskit` model. It will appear in the Model Picker in the bottom status bar.
+By default, the extension uses the `granite-8b-qiskit` model, which is listed in the Model Picker in the bottom status bar.
 
-![../\_images/run/qiskit\-code\-assistant\jupyterlab\-selected\-model.png](/images/run/qiskit-code-assistant/jupyterlab-selected-model.png)
+![The bottom status bar is shown, with `granite-8b-qiskit` listed.](/images/guides/qiskit-code-assistant/vscode-selected-model.png)
 
-The first time you use the `granite-8b-qiskit` model a modal info view will open, listing some major restrictions that you should be aware of when using the model. Clicking `Accept` will accept the model disclaimer and enable the model for code generation.
+The first time you use the `granite-8b-qiskit` model a modal opens, listing some major restrictions that you should be aware of when using the model. Clicking `Accept` will accept the disclaimer and enable the model for code generation.
 
-![../\_images/run/qiskit\-code\-assistant\eula.png](/images/run/qiskit-code-assistant/eula.png)
+![The window that opens upon first use contains restrictions tha must be accepted.](/images/guides/qiskit-code-assistant/eula.png)
 
 ### Generate Code
-In JupyterLab there are two ways to use the code autocompletion: the inline completer and the code completer.
+In JupyterLab, there are two ways to use the code autocompletion: inline or in a context menu.
 
-The inline completer can be triggered using the following key strokes.
+Inline autocomplettion can be triggered by using the following key strokes:
 
-- `Alt .` or `Alt \` will run the completer at the current cursor location
+- `Alt .` or `Alt \` runs autocomplete at the current cursor location.
 - `Alt [` and `Alt ]` can be used to cycle through the list of suggestions if there are
-  more than one
-- `Alt Tab` or `Alt END` will "accept" the suggested code and insert it at the current
-  cursor location
+  more than one.
+- `Alt Tab` or `Alt END` accepts the suggested code and inserts it at the current
+  cursor location.
 
-In addition, once the completer runs you can use the buttons on the inline completer
-widget to cycle or accept
+Additionally, after the assistant runs, you can use the buttons on the widget to cycle or accept the suggestion:
 
-![../\_images/run/qiskit\-code\-assistant\jupyterlab-inline-complete.png](/images/run/qiskit-code-assistant/jupyterlab-inline-complete.png)
+![The popup pane with buttons is shown.](/images/run/qiskit-code-assistant/jupyterlab-inline-complete.png)
 
-> NOTE: The service can sometime take a few seconds to retrun a suggestion, you can see when the service is working by checking the status bar
+<Admonition type="note">
+The service can sometimes take a few seconds to retrun a suggestion, you can see when the service is working by checking the status bar.
+</Admonition>
 
-Jupyterlab also includes a traditional completer than displays suggestion in a context menu rather than inline. This completer can be triggered using `Tab` to run and display the context menu.
+Jupyterlab also includes a traditional suggestion context menu. Use `Tab` to run and display the context menu.
 
-The context menu will include suggestions from the default completer in addition to the Qiskit Code Assistant suggestions. The context menu also sanitizes and trims the suggestions, making it less useful for see the code suggestion before inserting it.
+The context menu includes suggestions from JupyterLab in addition to the Qiskit Code Assistant suggestions. The context menu also sanitizes and trims the suggestions, making it less useful for reviewing the code suggestion before inserting it.
 
-![../\_images/run/qiskit\-code\-assistant\jupyterlab-tab-complete.png](/images/run/qiskit-code-assistant/jupyterlab-tab-complete.png)
+![The context menu is shown, with suggested code from Qiskit, as well as suggestions from JupyterLab.](/images/run/qiskit-code-assistant/jupyterlab-tab-complete.png)
 
 ## Configuring extension settings
 
