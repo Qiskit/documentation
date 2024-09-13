@@ -14,7 +14,11 @@ import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
 
-const IGNORED_URLS: string[] = [/guides/qiskit-code-assistant, /guides/qiskit-code-assistant-jupyterlab, /guides/qiskit-code-assistant-vscode];
+const IGNORED_URLS: string[] = [
+  "/guides/qiskit-code-assistant",
+  "/guides/qiskit-code-assistant-jupyterlab",
+  "/guides/qiskit-code-assistant-vscode",
+];
 
 const INDEX_PAGES = [
   "docs/guides/map-problem-to-circuits.mdx",
