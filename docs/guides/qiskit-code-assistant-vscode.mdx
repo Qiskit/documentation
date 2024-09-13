@@ -1,0 +1,105 @@
+---
+title: Use the Qiskit Code Assistant in JupyterLab
+description: How to install, use, and configure the Qiskit Code Assistant in JupyterLab.
+---
+
+
+# Use the Qiskit Code Assistant in JupyterLab
+
+Learn how to install, use, configure and uninstall the official Qiskit Code Assistant extension in JupyterLab.
+
+<Admonition type="note" title="Notes">
+    - This is an experimental feature available only to IBM Quantum&trade; Premium Plan users.
+    - The Qiskit Code Assistant is in preview release status and is subject to change.
+    If you have feedback or want to contact the developer team, please use this [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
+</Admonition>
+
+
+<video title="A user uses the Qiskit Code Assistant in Visual Studio Code. The user has previous imports and a function definition called get_random_linear_function with a docstring defining what the function should do. After typing Ctrl+. the Qiskit Code Assistant autocompletes the function with the code to generate a random linear function using Numpy and Qiskit. The video ends with the user executing the code generated and getting a matrix representing a random linear function in the terminal." className="max-w-auto h-auto" controls>
+  <source src="/videos/guides/qiskit-code-assistant/demo-Vscode-RandomLinearFunction_8b-qiskit.mp4" type="video/mp4"></source>
+</video>
+
+## Installing the VSCode extension
+
+To install the [VSCode extension](https://github.com/Qiskit/qiskit-code-assistant-vscode), follow these steps:
+
+1. Launch VS Code.
+1. Click the Extensions icon in the left toolbar.
+1. Search for `qiskit-vscode`
+1. Find "Qiskit Code Assistant" and click **Install**.
+
+The extension is also available through the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode).
+
+After installing, you will need to reload the extension/IDE (typically VSCode will ask you to do it automatically). When ready, you will see the following in the lower part of the user interface.
+
+![../\_images/run/qiskit\-code\-assistant\vscode\-selected\-model.png](/images/run/qiskit-code-assistant/vscode-selected-model.png)
+
+
+## Get started using the Qiskit Code Assistant extension for VSCode
+
+
+### Authentication and setup
+
+After installing the extension in VSCode or JupyterLab, the extension will try to authenticate you. By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`).
+
+By default, the extension will use the `granite-8b-qiskit` model. It will appear in the Model Picker in the bottom status bar.
+
+![../\_images/run/qiskit\-code\-assistant\vscode\-selected\-model.png](/images/run/qiskit-code-assistant/vscode-selected-model.png)
+
+The first time you use the `granite-8b-qiskit` model a modal info view will open, listing some major restrictions that you should be aware of when using the model. Clicking `Accept` will accept the model disclaimer and enable the model for code generation.
+
+![../\_images/run/qiskit\-code\-assistant\eula.png](/images/run/qiskit-code-assistant/eula.png)
+
+### Generate Code
+Once you've accepted the EULA you can open a new file and start coding. If you type `Ctrl+.`, some faded text should appear with model-generated suggestions.
+
+![../\_images/run/qiskit\-code\-assistant\vscode-inline-suggestion.png](/images/run/qiskit-code-assistant/vscode-inline-suggestion.png)
+
+You may press `Tab` to accept the model-generated suggestion or press `ESC` to cancel/reject the model-generated suggestion.
+
+Afterwards, you may type `Ctrl+.` again to generate additional suggestions. Also, when you see the faded text (i.e., model-generated suggestion) you can type `Alt/Option+]` and `Alt/Option+[` to cycle forward and backward, respectively, through the suggestions (if available). You can also hover the cursor over the faded
+text to use the pop-up toolbar to cycle through the suggestions.
+
+![../\_images/run/qiskit\-code\-assistant\vscode-inline-suggestion-toolbar.png](/images/run/qiskit-code-assistant/vscode-inline-suggestion-toolbar.png)
+
+
+## Configuring extension settings
+
+Available configurations:
+
+1. Keyboard shortcuts can be changed by searching for `qiskit-vscode` in the Keyboard Shortcuts settings (`Cmd/Ctrl+Shift+P` -> `Preferences: Open Keyboard Shortcuts`)
+
+2. You can change the IBM Quantum API token to use via the VSCode command palette. To do that, type `Cmd/Ctrl+Shift+P`, search for `qiskit`, select the **Qiskit Code Assistant: Set IBM Quantum API token** command, paste your IBM Quantum API token.
+
+3. [Advanced] To change the instance of the Qiskit Code Assistant Service that the extension should use you can edit the `Qiskit Code Assistant: Url` in the User Settings
+
+
+## Uninstalling the VSCode extension
+
+To remove the Qiskit Code Assistant from VSCode, proceed as follows:
+
+
+1. Launch Visual Studio Code
+1. Click on the Extensions tab
+1. Search for `qiskit-vscode`
+1. Click **Uninstall** for the "Qiskit Code Assistant"
+
+
+## Troubleshooting
+
+If you are not seeing the extension status bar in VSCode, check the extension is installed and enabled under the extensions tab.
+
+If the extension is installed and enabled, but not able to select a model, make sure your current API Token has been added and the `Qiskit Code Assistant: Url` is properly set.
+
+
+
+## Contribute to the JupyterLab extension
+
+The code for this official extension is publicly available and open source. Check it out in <https://github.com/Qiskit/qiskit-code-assistant-vscode>
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Check out examples on how to use the Qiskit Code Assistant for [circuits](https://docs.quantum.ibm.com/guides/circuit-library), [configure error suppression](https://docs.quantum.ibm.com/guides/configure-error-suppression), [transpile with passmanagers](transpile-with-pass-managers)
+</Admonition>
