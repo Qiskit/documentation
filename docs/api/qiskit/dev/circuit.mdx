@@ -528,6 +528,15 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
 
 The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is particularly special, in that it allows writing the result of a [real-time classical computation expression](#circuit-repr-real-time-classical) (an [`expr.Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) in a local classical variable (a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")). It takes *neither* [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") nor [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") operands, but has an explicit [`lvalue`](#qiskit.circuit.Store.lvalue "qiskit.circuit.Store.lvalue") and [`rvalue`](#qiskit.circuit.Store.rvalue "qiskit.circuit.Store.rvalue").
 
+For example, to determine the parity of a bitstring `cr` and store it in another register `creg`, the [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction can be used in the following way:
+
+```python
+parity = expr.lift(cr[0])
+for i in range(1,n):
+    parity = expr.bit_xor(cr[i], parity)
+qc.store(creg[0], parity)
+```
+
 #### Store
 
 <Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/store.py#L55-L95" signature="qiskit.circuit.Store(lvalue, rvalue)" modifiers="class">
@@ -609,6 +618,14 @@ Within [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumC
 |                                                                                                    |                                                            |
 | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(\*args, \*\*kwargs) | Abstract class to encapsulate all control flow operations. |
+
+For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset "(in Python v3.12)") instance containing the [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attributes of each of the control-flow operations.
+
+#### qiskit.circuit.CONTROL\_FLOW\_OP\_NAMES
+
+<Attribute id="qiskit.circuit.CONTROL_FLOW_OP_NAMES">
+  Set of the instruction names of Qiskit’s known control-flow operations.
+</Attribute>
 
 These control-flow operations ([`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp"), [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") and [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp")) all have specific state that defines the branching conditions and strategies, but contain all the different subcircuit blocks that might be entered in their [`blocks`](qiskit.circuit.ControlFlowOp#blocks "qiskit.circuit.ControlFlowOp.blocks") property.
 
@@ -790,7 +807,7 @@ For a more backend-like simulation experience, there are simulator-backed implem
 
 *   [`BasicProvider`](qiskit.providers.basic_provider.BasicProvider "qiskit.providers.basic_provider.BasicProvider") and the raw backends it can return to you.
 *   `StatevectorSimulator` for a backend-like wrapper around [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
-*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.14.2)") for full, high-performance simulation capabilities.
+*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.15.0)") for full, high-performance simulation capabilities.
 *   [`StatevectorSampler`](qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") for simulator-backed reference implementations of the [Qiskit Primitives](primitives#qiskit-primitives).
 
 ### Defining equivalence relationships
@@ -929,7 +946,7 @@ $$
    \leftrightarrow \begin{pmatrix} \alpha \\ \beta \end{pmatrix}
 $$
 
-where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
+where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
 
 We construct [the tensor product of two qubit states](https://en.wikipedia.org/wiki/Tensor_product) in matrix algebra using [the Kronecker product](https://en.wikipedia.org/wiki/Kronecker_product), with qubit 0 on the right and qubit 1 on the left, such that the $Z$ basis state $\lvert x\rangle$ (where $x$ is the integer interpretation of the bitstring) has its non-zero term in the statevector `sv` at `sv[x]`:
 
