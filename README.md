@@ -229,11 +229,7 @@ To check internal links:
 npm run check:internal-links
 
 # You can add any of the below arguments to also check API docs.
-npm run check:internal-links -- --current-apis --dev-apis --historical-apis --qiskit-release-notes
-
-# However, `--historical-apis` currently has failing versions, so you may
-# want to add `--skip-broken-historical`.
-npm run check:internal-links -- --historical-apis --skip-broken-historical
+npm run check:internal-links -- --current-apis --dev-apis --historical-apis --qiskit-legacy-release-notes
 
 # Or, run all the checks. Although this only checks non-API docs.
 npm run check
@@ -243,10 +239,10 @@ To check external links:
 
 ```bash
 # Specify the files you want after `--`
-npm run check:external-links -- docs/run/index.md docs/run/circuit-execution.mdx
+npm run check:external-links -- docs/guides/index.md docs/guides/circuit-execution.mdx
 
 # You can also use globs
-npm run check:external-links -- 'docs/run/*' '!docs/run/index.mdx'
+npm run check:external-links -- 'docs/guides/*' '!docs/guides/index.mdx'
 ```
 
 ## Check for orphan pages
@@ -418,6 +414,14 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 [diff "objects_inv"]
   textconv = sh -c 'sphobjinv convert plain "$0" -'
 ```
+
+### Dependabot - upgrade notebook testing version
+
+When a new version of an API is released, we should also update `nb-tester/requirements.txt` to ensure that our notebooks still work with the latest version of the API. You can do this upgrade either manually or wait for Dependabot's automated PR.
+
+Dependabot will fail to run at first due to not having access to the token. To fix this, have someone with write access trigger CI for the PR, such as by merging main or closing then reopening the issue.
+
+You can land the API generation separately from the `requirements.txt` version upgrade. It's high priority to get out new versions of the API docs ASAP, so you should not block that on the notebook version upgrade if you run into any complications like failing notebooks.
 
 ## Deploy guides & API docs
 
