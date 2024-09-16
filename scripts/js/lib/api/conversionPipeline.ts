@@ -84,6 +84,7 @@ async function determineFilePaths(
       "apidoc/**.html",
       "stubs/**.html",
       "release_notes.html",
+      "release-notes.html",
     ],
     {
       cwd: htmlPath,

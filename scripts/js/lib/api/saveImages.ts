@@ -38,7 +38,8 @@ export async function saveImages(
     // in the current version to avoid having duplicate files.
     if (
       pkg.isHistorical() &&
-      img.fileName.includes("release_notes") &&
+      (img.fileName.includes("release_notes") ||
+        img.fileName.includes("release-notes")) &&
       !pkg.hasSeparateReleaseNotes()
     ) {
       return;
