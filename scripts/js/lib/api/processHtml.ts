@@ -42,7 +42,9 @@ export async function processHtml(options: {
   const $ = load(html);
   const $main = $(`[role='main']`);
 
-  const isReleaseNotes = fileName.endsWith("release_notes.html");
+  const isReleaseNotes =
+    fileName.endsWith("release_notes.html") ||
+    fileName.endsWith("release-notes.html");
   const images = loadImages(
     $,
     $main,
@@ -279,8 +281,10 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception",
+        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data",
       )
+      // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
+      .not("td > dl")
       .get(0);
 
     if (!dl) {
@@ -291,6 +295,10 @@ export async function processMembersAndSetMeta(
     const $dl = $(dl);
     const id = $dl.find("dt").attr("id") || "";
     const apiType = getApiType($dl);
+
+    if (apiType && apiType === "module") {
+      throw new Error("Did not expect apiType to be 'module'");
+    }
 
     const priorApiType = meta.apiType;
     if (!priorApiType) {
@@ -315,7 +323,6 @@ export async function processMembersAndSetMeta(
     } else {
       const [openTag, closeTag] = await processMdxComponent(
         $,
-        $main,
         signatures,
         $dl,
         priorApiType,
@@ -399,6 +406,7 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     "property",
     "attribute",
     "module",
+    "data",
   ]) {
     if ($dl.hasClass(className)) {
       return className as ApiType;

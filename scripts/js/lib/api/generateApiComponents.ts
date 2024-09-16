@@ -34,22 +34,22 @@ export type ComponentProps = {
   isDedicatedPage?: boolean;
 };
 
-const APITYPE_TO_TAG: Record<string, string> = {
+const APITYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
   class: "class",
   exception: "class",
   attribute: "attribute",
   property: "attribute",
   function: "function",
   method: "function",
+  data: "attribute",
 };
 
 export async function processMdxComponent(
   $: CheerioAPI,
-  $main: Cheerio<any>,
   signatures: Cheerio<Element>[],
   $dl: Cheerio<any>,
   priorApiType: ApiType | undefined,
-  apiType: ApiType,
+  apiType: Exclude<ApiType, "module">,
   id: string,
 ): Promise<[string, string]> {
   const tagName = APITYPE_TO_TAG[apiType];
@@ -57,7 +57,6 @@ export async function processMdxComponent(
   const $firstSignature = signatures.shift()!;
   const componentProps = prepareProps(
     $,
-    $main,
     $firstSignature,
     $dl,
     priorApiType,
@@ -67,8 +66,7 @@ export async function processMdxComponent(
 
   const extraProps = signatures.flatMap(
     ($overloadedSignature) =>
-      prepareProps($, $main, $overloadedSignature, $dl, apiType, apiType, id) ??
-      [],
+      prepareProps($, $overloadedSignature, $dl, apiType, apiType, id) ?? [],
   );
   addExtraSignatures(componentProps, extraProps);
 
@@ -81,11 +79,10 @@ export async function processMdxComponent(
 
 function prepareProps(
   $: CheerioAPI,
-  $main: Cheerio<any>,
   $child: Cheerio<Element>,
   $dl: Cheerio<any>,
   priorApiType: ApiType | undefined,
-  apiType: ApiType,
+  apiType: Exclude<ApiType, "module">,
   id: string,
 ): ComponentProps {
   const prepClassOrException = () =>
@@ -104,13 +101,17 @@ function prepareProps(
       id,
     );
 
-  const preparePropsPerApiType: Record<string, () => ComponentProps> = {
+  const preparePropsPerApiType: Record<
+    Exclude<ApiType, "module">,
+    () => ComponentProps
+  > = {
     class: prepClassOrException,
     exception: prepClassOrException,
     property: prepAttributeOrProperty,
     attribute: prepAttributeOrProperty,
     method: prepMethod,
     function: prepFunction,
+    data: prepAttributeOrProperty,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
@@ -167,7 +168,7 @@ function prepareMethodProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: string | undefined,
+  priorApiType: ApiType | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
@@ -202,7 +203,7 @@ function prepareAttributeOrPropertyProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: string | undefined,
+  priorApiType: ApiType | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {

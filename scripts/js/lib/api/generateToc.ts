@@ -74,9 +74,16 @@ function getModulesAndItems(
   );
   const items = resultsWithName.filter(
     (result) =>
-      result.meta.apiType === "class" ||
-      result.meta.apiType === "function" ||
-      result.meta.apiType === "exception",
+      result.meta.apiType &&
+      [
+        "class",
+        "function",
+        "exception",
+        "method",
+        "property",
+        "attribute",
+        "data",
+      ].includes(result.meta.apiType),
   );
 
   return [modules, items];

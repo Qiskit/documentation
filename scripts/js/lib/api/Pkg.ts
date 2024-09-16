@@ -109,8 +109,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Transpiler Service Client",
         name: "qiskit-ibm-transpiler",
-        githubSlug: undefined,
-        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+        githubSlug: "qiskit/qiskit-ibm-transpiler",
       });
     }
 

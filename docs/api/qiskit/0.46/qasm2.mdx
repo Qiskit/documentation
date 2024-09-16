@@ -495,17 +495,23 @@ In particular, in the legacy importers:
 
 You can emulate this behaviour in [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") by setting include\_path appropriately (try inspecting the variable `qiskit.__file__` to find the installed location), and by passing a list of [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") instances for each of the custom gates you care about. To make things easier we make three tuples available, which each contain one component of a configuration that is equivalent to Qiskit’s legacy converter behaviour.
 
-**qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS**
+### qiskit.qasm2.LEGACY\_CUSTOM\_INSTRUCTIONS
 
-A tuple containing the extra custom\_instructions that Qiskit’s legacy built-in converters used if `qelib1.inc` is included, and there is any definition of a `delay` instruction. The gates in the paper version of `qelib1.inc` and `delay` all require a compatible declaration statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all marked as builtins since they are not actually present in any include file this parser sees.
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS">
+  A tuple containing the extra custom\_instructions that Qiskit’s legacy built-in converters used if `qelib1.inc` is included, and there is any definition of a `delay` instruction. The gates in the paper version of `qelib1.inc` and `delay` all require a compatible declaration statement to be present within the OpenQASM 2 program, but Qiskit’s legacy additions are all marked as builtins since they are not actually present in any include file this parser sees.
+</Attribute>
 
-**qiskit.qasm2.LEGACY\_CUSTOM\_CLASSICAL**
+### qiskit.qasm2.LEGACY\_CUSTOM\_CLASSICAL
 
-A tuple containing the extra custom\_classical functions that Qiskit’s legacy built-in converters use beyond those specified by the paper. This is the three basic inverse trigonometric functions: $\asin$, $\acos$ and $\atan$.
+<Attribute id="qiskit.qasm2.LEGACY_CUSTOM_CLASSICAL">
+  A tuple containing the extra custom\_classical functions that Qiskit’s legacy built-in converters use beyond those specified by the paper. This is the three basic inverse trigonometric functions: $\asin$, $\acos$ and $\atan$.
+</Attribute>
 
-**qiskit.qasm2.LEGACY\_INCLUDE\_PATH**
+### qiskit.qasm2.LEGACY\_INCLUDE\_PATH
 
-A tuple containing the exact include\_path used by the legacy Qiskit converter.
+<Attribute id="qiskit.qasm2.LEGACY_INCLUDE_PATH">
+  A tuple containing the exact include\_path used by the legacy Qiskit converter.
+</Attribute>
 
 On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behaviour with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
 

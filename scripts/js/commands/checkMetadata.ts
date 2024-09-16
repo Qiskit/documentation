@@ -17,6 +17,8 @@ import { hideBin } from "yargs/helpers";
 import grayMatter from "gray-matter";
 import { globby } from "globby";
 
+const ALLOWED_VIOLATIONS: Set<string> = new Set([...qiskitLegacyIgnores()]);
+
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
@@ -29,8 +31,7 @@ const readArgs = (): Arguments => {
     .option("apis", {
       type: "boolean",
       default: false,
-      description:
-        "Check the API docs? Currently fails (https://github.com/Qiskit/documentation/issues/66)",
+      description: "Check the API docs?",
     })
     .option("translations", {
       type: "boolean",
@@ -59,7 +60,7 @@ const isValidMetadata = (
 ): boolean =>
   metadata.title &&
   metadata.description &&
-  (filePath.startsWith("/api/") ||
+  (filePath.startsWith("docs/api/") ||
     (metadata.title != metadata.description &&
       metadata.description.length <= 160 &&
       metadata.description.length >= 50));
@@ -70,6 +71,8 @@ const main = async (): Promise<void> => {
 
   const mdErrors = [];
   for (const file of mdFiles) {
+    if (ALLOWED_VIOLATIONS.has(file)) continue;
+
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata, file)) {
       mdErrors.push(file);
@@ -78,6 +81,8 @@ const main = async (): Promise<void> => {
 
   const notebookErrors = [];
   for (const file of notebookFiles) {
+    if (ALLOWED_VIOLATIONS.has(file)) continue;
+
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata, file)) {
       notebookErrors.push(file);
@@ -159,4 +164,43 @@ function handleErrors(mdErrors: string[], notebookErrors: string[]): void {
   }
 }
 
-main();
+function qiskitLegacyIgnores(): string[] {
+  const versions = [
+    "0.19/",
+    "0.24/",
+    "0.25/",
+    "0.26/",
+    "0.27/",
+    "0.28/",
+    "0.29/",
+    "0.30/",
+    "0.31/",
+    "0.32/",
+    "0.33/",
+    "0.35/",
+    "0.36/",
+    "0.37/",
+    "0.38/",
+    "0.39/",
+    "0.40/",
+    "0.41/",
+    "0.42/",
+    "0.43/",
+    "0.44/",
+    "0.45/",
+    "0.46/",
+  ];
+  return [
+    ...versions.flatMap((vers) => [
+      `docs/api/qiskit/${vers}aer.mdx`,
+      `docs/api/qiskit/${vers}aqua.mdx`,
+      `docs/api/qiskit/${vers}ibmq-provider.mdx`,
+      `docs/api/qiskit/${vers}ibmq_jupyter.mdx`,
+      `docs/api/qiskit/${vers}ibmq_visualization.mdx`,
+      `docs/api/qiskit/${vers}parallel.mdx`,
+      `docs/api/qiskit/${vers}transpiler_builtin_plugins.mdx`,
+    ]),
+  ];
+}
+
+main().then(() => process.exit());
