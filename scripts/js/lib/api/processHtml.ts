@@ -42,7 +42,9 @@ export async function processHtml(options: {
   const $ = load(html);
   const $main = $(`[role='main']`);
 
-  const isReleaseNotes = fileName.endsWith("release_notes.html");
+  const isReleaseNotes =
+    fileName.endsWith("release_notes.html") ||
+    fileName.endsWith("release-notes.html");
   const images = loadImages(
     $,
     $main,
