@@ -43,6 +43,15 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/migration-guides/qiskit-1.0",
   "docs/migration-guides/qiskit-1.0-features",
   "docs/migration-guides/qiskit-1.0-installation",
+  // TODO: add these to qiskit_bot.yaml once we confirm the stakeholders.
+  "docs/guides/algorithmiq-tem",
+  "docs/guides/functions",
+  "docs/guides/ibm-circuit-function",
+  "docs/guides/q-ctrl-optimization-solver",
+  "docs/guides/q-ctrl-performance-management",
+  "docs/guides/q-ctrl-performance-management",
+  "docs/guides/qedma-qesem",
+  "docs/guides/qunasys-quri-chemistry",
 ]);
 
 const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
