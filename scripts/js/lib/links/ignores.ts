@@ -38,7 +38,11 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "mailto:tellibm@us.ibm.com",
 ];
 
-const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
+const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
+  "mailto:qiskit_ibm@algorithmiq.fi",
+  "mailto:support@qedma.com",
+  "mailto:sales@qunasys.com",
+];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
