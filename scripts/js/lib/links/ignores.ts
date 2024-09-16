@@ -124,7 +124,7 @@ function _qiskitUtilsData(): FilesToIgnores {
   // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
-    ["0.46/", "1.0/", "1.1/"].map((vers) => [
+    ["1.0/", "1.1/"].map((vers) => [
       `public/api/qiskit/${vers}objects.inv`,
       [
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
@@ -164,7 +164,7 @@ function _qiskitUtilsData(): FilesToIgnores {
     ]),
   );
   const utilsFile = Object.fromEntries(
-    ["0.46/", "1.0/", "1.1/"].map((vers) => [
+    ["1.0/", "1.1/"].map((vers) => [
       `docs/api/qiskit/${vers}utils.mdx`,
       [
         "#qiskit.utils.optionals.HAS_TESTTOOLS",
@@ -283,6 +283,9 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
     "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": [
       "#id1",
       "#id2",
+    ],
+    "docs/api/qiskit/release-notes/0.46.mdx": [
+      "/api/qiskit-ibm-provider/ibm_jupyter",
     ],
   },
 );
