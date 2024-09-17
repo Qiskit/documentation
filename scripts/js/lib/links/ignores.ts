@@ -35,14 +35,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
-  "mailto:tellibm@us.ibm.com",
 ];
 
-const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
-  "mailto:qiskit_ibm@algorithmiq.fi",
-  "mailto:support@qedma.com",
-  "mailto:sales@qunasys.com",
-];
+const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
