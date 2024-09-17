@@ -69,17 +69,34 @@ The first time you use the `granite-8b-qiskit` model a modal opens, listing some
 
 ![The window that opens upon first use contains restrictions tha must be accepted.](/images/guides/qiskit-code-assistant/eula.png)
 
-### Generate Code
+### Generate code
 
 While you develop your code using Qiskit, you can ask to the Qiskit Code Assistant to help you. In general, the assistant suggests better code as response to Python comments or docstrings, but you can use the assistant anywhere in your file.
 
-In JupyterLab, there are two ways to use the code autocompletion: inline or in a context menu.
+To get a code suggestion, type a prompt, then type `Alt` + `.` or `Alt` + `\`.  There are two types of prompts you can use:
 
-Inline autocomplettion can be triggered by using the following key strokes:
+  - Enter partial code and get a suggestion to finish the code.  Example:
+    ```python
+    from qiskit.circuit import QuantumCircuit
+    from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+    from qiskit_ibm_runtime import SamplerV2 as Sampler
+    from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 
-- `Alt` + `.` or `Alt` + `\` runs autocomplete at the current cursor location.
-- `Alt` + `[` and `Alt` + `]` can be used to cycle through the list of suggestions if there are
-  more than one.
+    # Bell Circuit
+    qc = QuantumCircuit(2)
+    qc.h(0)
+    qc.cx(0, 1)
+
+    qc.mea # Type Ctrl + . for a code suggestion.
+    ```
+  - Type a pound (#) sign, then type your prompt.  Example: `# Give me a random circuit of 5 qubits and a depth of 4.`
+
+### Work with code suggestions
+
+Use the following to accept, reject, and cycle through suggestions:
+
+- `Alt` + `[` and `Alt` + `]` can be used to cycle through the list of suggestions (if there are
+  more than one).
 - `Alt` + `Tab` or `Alt` + `END` accepts the suggested code and inserts it at the current
   cursor location.
 
@@ -108,15 +125,15 @@ pip uninstall qiskit_code_assistant_jupyterlab
 
 ## Troubleshooting
 
-If you are seeing the frontend extension but it is not working, check that the server
+If you see the frontend extension but it is not working, check that the server
 extension is enabled:
 
 ```bash
 jupyter server extension list
 ```
 
-If the server extension is installed and enabled, but you are not seeing the frontend
-extension, check the frontend extension is installed:
+If the server extension is installed and enabled, but you don't see the frontend
+extension, check that the frontend extension is installed:
 
 ```bash
 jupyter labextension list
@@ -126,3 +143,9 @@ jupyter labextension list
 ## Contribute to the JupyterLab extension
 
 The code for this extension is publicly available and open source. Check it out in [GitHub.](https://github.com/Qiskit/qiskit-code-assistant-jupyterlab)
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+See examples to use the Qiskit Code Assistant for [circuits]/guides/circuit-library), [configuring error suppression](/guides/configure-error-suppression), and [transpiling with pass managers.](/guides/transpile-with-pass-managers)
+</Admonition>
