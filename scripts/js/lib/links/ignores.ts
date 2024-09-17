@@ -284,9 +284,6 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
       "#id1",
       "#id2",
     ],
-    "docs/api/qiskit/release-notes/0.46.mdx": [
-      "/api/qiskit-ibm-provider/ibm_jupyter",
-    ],
   },
 );
 
