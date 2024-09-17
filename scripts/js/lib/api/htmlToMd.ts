@@ -103,6 +103,11 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
       }
       return defaultHandlers.pre(h, node);
     },
+    p(h, node: any) {
+      return node.properties.id
+        ? [buildSpanId(node.properties.id), ...all(h, node)]
+        : defaultHandlers.p(h, node);
+    },
     dl(h, node: any) {
       return defaultHandlers.div(h, node);
     },

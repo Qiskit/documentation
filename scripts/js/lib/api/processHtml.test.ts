@@ -338,7 +338,7 @@ test("convertRubricsToHeaders()", () => {
     <p class="rubric">References</p>
     <p class="rubric">Reference</p>
     <p class="rubric">Simple examples</p>
-    <p class="rubric">Example code</p>
+    <p class="rubric" id="example-code">Example code</p>
     <p class="rubric">Attributes</p>
     <p class="rubric">Methods</p>`);
   convertRubricsToHeaders(doc.$, doc.$main);
@@ -347,7 +347,7 @@ test("convertRubricsToHeaders()", () => {
     <strong>References</strong>
     <strong>Reference</strong>
     <strong>Simple examples</strong>
-    <strong>Example code</strong>
+    <span id="example-code" class="target"></span><strong>Example code</strong>
     <h2>Attributes</h2>
     <h2>Methods</h2>`);
 });
