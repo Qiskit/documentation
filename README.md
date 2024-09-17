@@ -446,8 +446,8 @@ If your file will have non-trivial code in it, please create a Jupyter notebook 
 Add the file to these places:
 
 - The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension.
-- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits`.  Or, in the rare case that it doesn't belong on any of these pages, list it in `\scripts\js\commands\checkPatternsIndex.ts` in the IGNORED_URLS section.  For example, `"/guides/qiskit-code-assistant"`.
-- qiskit_bot.yaml.  Everyone listed under the file name is notified any time the file is updated.  If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes.  For example, - "`@NoNotifications`"
+- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits`. Or, in the rare case that it doesn't belong on any of these pages, list it in `\scripts\js\commands\checkPatternsIndex.ts` in the IGNORED_URLS section. For example, `"/guides/qiskit-code-assistant"`.
+- qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
 
 ## Page metadata
 
