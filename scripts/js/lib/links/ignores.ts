@@ -279,18 +279,18 @@ const _QISKIT_OBJECT_INV = Object.fromEntries(
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
+  _runtimeObjectsInv(),
+);
+
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
+  _QISKIT_QPY_IGNORES,
+  _QISKIT_OBJECT_INV,
   {
     "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": [
       "#id1",
       "#id2",
     ],
   },
-);
-
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
-  _QISKIT_QPY_IGNORES,
-  _runtimeObjectsInv(),
-  _QISKIT_OBJECT_INV,
 );
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
