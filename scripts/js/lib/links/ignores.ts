@@ -35,14 +35,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
-  "mailto:tellibm@us.ibm.com",
 ];
 
-const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
-  "mailto:qiskit_ibm@algorithmiq.fi",
-  "mailto:support@qedma.com",
-  "mailto:sales@qunasys.com",
-];
+const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
@@ -88,37 +83,42 @@ const _QISKIT_QPY_IGNORES = Object.fromEntries(
   ]),
 );
 
-const _RUNTIME_OBJECT_INV = Object.fromEntries(
-  [
-    "",
-    "dev/",
-    "0.16/",
-    "0.17/",
-    "0.18/",
-    "0.19/",
-    "0.20/",
-    "0.21/",
-    "0.22/",
-    "0.23/",
-    "0.24/",
-    "0.25/",
-    "0.26/",
-    "0.27/",
-    "0.28/",
-    "0.29/",
-    "0.29/",
-    "0.30/",
-    "0.31/",
-    "0.32/",
-  ].map((vers) => [
-    `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+function _runtimeObjectsInv(): FilesToIgnores {
+  const legacyVersions = Object.fromEntries(
+    ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
+      (vers) => [
+        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        [
+          `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
+          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+        ],
+      ],
+    ),
+  );
+  const newVersions = Object.fromEntries(
     [
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
-      `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-      `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
-    ],
-  ]),
-);
+      "",
+      "dev/",
+      "0.23/",
+      "0.24/",
+      "0.25/",
+      "0.26/",
+      "0.27/",
+      "0.28/",
+      "0.29/",
+      "0.29/",
+      "0.30/",
+      "0.31/",
+      "0.32/",
+    ].map((vers) => [
+      `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      [
+        `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+      ],
+    ]),
+  );
+  return { ...legacyVersions, ...newVersions };
+}
 
 function _qiskitUtilsData(): FilesToIgnores {
   // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
@@ -279,21 +279,18 @@ const _QISKIT_OBJECT_INV = Object.fromEntries(
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
+  _runtimeObjectsInv(),
+);
+
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
+  _QISKIT_QPY_IGNORES,
+  _QISKIT_OBJECT_INV,
   {
     "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": [
       "#id1",
       "#id2",
     ],
-    "docs/api/qiskit/release-notes/0.46.mdx": [
-      "/api/qiskit-ibm-provider/ibm_jupyter",
-    ],
   },
-);
-
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
-  _QISKIT_QPY_IGNORES,
-  _RUNTIME_OBJECT_INV,
-  _QISKIT_OBJECT_INV,
 );
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
