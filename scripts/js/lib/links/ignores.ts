@@ -84,7 +84,7 @@ const _QISKIT_QPY_IGNORES = Object.fromEntries(
 );
 
 function _runtimeObjectsInv(): FilesToIgnores {
-  const legacyVersions = Object.fromEntries(
+  const legacy = Object.fromEntries(
     ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
       (vers) => [
         `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
@@ -95,29 +95,27 @@ function _runtimeObjectsInv(): FilesToIgnores {
       ],
     ),
   );
-  const newVersions = Object.fromEntries(
-    [
-      "",
-      "dev/",
-      "0.23/",
-      "0.24/",
-      "0.25/",
-      "0.26/",
-      "0.27/",
-      "0.28/",
-      "0.29/",
-      "0.29/",
-      "0.30/",
-      "0.31/",
-      "0.32/",
-    ].map((vers) => [
-      `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
-      [
-        `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+  const legacy2 = Object.fromEntries(
+    ["", "0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
+      (vers) => [
+        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        [
+          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+        ],
       ],
-    ]),
+    ),
   );
-  return { ...legacyVersions, ...newVersions };
+  const latest = Object.fromEntries(
+    ["dev/", "0.29/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
+      (vers) => [
+        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        [
+          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
+        ],
+      ],
+    ),
+  );
+  return { ...legacy, ...legacy2, ...latest };
 }
 
 function _qiskitUtilsData(): FilesToIgnores {
