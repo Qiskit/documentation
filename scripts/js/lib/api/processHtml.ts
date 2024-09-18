@@ -67,6 +67,7 @@ export async function processHtml(options: {
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
+  handleFootnotes($, $main);
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
@@ -271,6 +272,20 @@ export function processSimpleFieldLists(
 
 export function removeColonSpans($main: Cheerio<any>): void {
   $main.find(".colon").remove();
+}
+
+export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
+  $main
+    .find(".footnote, .footnote-reference")
+    .toArray()
+    .forEach((footnote) => {
+      const $footnote = $(footnote);
+      const id = $footnote.attr("id");
+      if (id) {
+        $footnote.before(`<span id="${id}" class="target"></span>`);
+      }
+    });
+  $main.find(".footnote-list").before("<h2>Footnotes</h2>");
 }
 
 export async function processMembersAndSetMeta(
