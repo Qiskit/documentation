@@ -262,20 +262,6 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
-const _QISKIT_OBJECT_INV = Object.fromEntries(
-  ["", "dev/", "0.46/", "1.0/", "1.1/"].map((vers) => [
-    `public/api/qiskit/${vers}objects.inv`,
-    [
-      `/api/qiskit/${vers}qiskit.visualization.timeline_drawer#style-dict-doc`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-constraints`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-envelope`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation`,
-    ],
-  ]),
-);
-
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
@@ -284,7 +270,6 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
   _QISKIT_QPY_IGNORES,
-  _QISKIT_OBJECT_INV,
   {
     "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": [
       "#id1",
