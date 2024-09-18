@@ -1,0 +1,96 @@
+---
+title: Measure qubits
+description: Learn how to measure qubits, including constraints on where measurements can be used.
+---
+
+# Measure qubits
+
+To get information about a qubit's state, you have to _measure_ it onto a [classical bit](/api/qiskit/circuit#qiskit.circuit.Clbit).  This is an irreversible operation, and usually destroys entanglement and phase coherence between the target qubit and the rest of the system. Thus, after a qubit is measured, you can't perform any more instructions on that qubit, and each qubit can only be measured once. Additionally, there must be at least one classical register to store the measurement information.
+
+## Apply a measurement to a circuit
+
+There are several ways to apply measurement to a circuit:
+
+### `Measure` class
+
+The Qiskit [Measure](/api/qiskit/circuit#qiskit.circuit.Measure) class measures the specified qubits.
+
+Examples:
+
+```python
+from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(5, 5)
+qc.x(0)
+qc.x(1)
+qc.x(4)
+qc.measure(range(5), range(5)) #  Measures all qubits into the corresponding clbit.
+```
+
+```python
+from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(3, 1)
+qc.x([0, 2])
+qc.measure(1, 0)    # Measure qubit 1 into the classical bit 0.
+```
+
+### `measure_all` method
+
+To measure all qubits into the corresponding classical bits, use the [`measure_all`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all) method. By default, this method adds new classical bits in a `ClassicalRegister` to store these measurements.
+
+```python
+from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(3, 1)
+qc.x([0, 2])
+qc.measure_all # Measure all qubits.
+```
+
+******************************************************
+QUESTION:
+**WHEN I RUN THE ABOVE CODE AND ADD qc.draw("mpl"), IT DOESN'T LOOK LIKE ANY MEASUREMENTS ARE ACTUALLY ADDED, BUT IF I USE qc.measure(1, 0) INSTEAD, I SEE A MEASUREMENT. WHAT IS HAPPENING?**
+*******************************************************
+
+### `measure_active` method
+
+To measure all qubits that are not idle, use the [`measure_active`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_active) method. This method creates a new `ClassicalRegister` with a size equal to the number of non-idle qubits being measured.
+
+```python
+from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(3, 1)
+qc.x([0, 2])
+qc.measure_active # Measure qubits that are not idle.
+```
+
+### Measure a circuit when it's created
+
+You can add measurements when generating a random circuit. Each qubit is measured, as shown in the following example.  For more information, see the [`random_circuit`](/api/qiskit/circuit#random_circuit) method documentation.
+
+Example:
+
+```python
+from qiskit.circuit.random import random_circuit
+
+circ = random_circuit(2, 2, measure=True)
+circ.draw(output='mpl')
+```
+
+<Admonition type="attention" title="Important notes">
+
+* Qubit measurement must be the last instruction on a qubit.  That is, no instructions can come after a measurement on that qubit (unless it's a dynamic circuit).
+* Each qubit can be measured only once.
+* There must be at least one classical register in order to use measurements.
+* The Sampler primitive requires circuit measurements. You can add circuit measurements with the Estimator primitive, but they are ignored.
+
+</Admonition>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- [`Measure`](/api/qiskit/circuit#qiskit.circuit.Measure) class
+- [`measure_all`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all) method
+- [`measure_active`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_active) method
+- [`random_circuit`](/api/qiskit/circuit#random_circuit) method
+</Admonition>
