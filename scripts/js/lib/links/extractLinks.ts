@@ -49,6 +49,9 @@ export async function parseLinks(
   const externalLinks = new Set<string>();
 
   const addLink = (link: string): void => {
+    // We cannot check that email addresses are valid.
+    if (link.startsWith("mailto:")) return;
+
     if (link.startsWith("http")) {
       externalLinks.add(link);
     } else {
