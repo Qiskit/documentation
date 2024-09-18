@@ -231,7 +231,9 @@ export function convertRubricsToHeaders(
   $main.find(".rubric").each((_, el) => {
     const $el = $(el);
     const tag = appropriateHtmlTag($el.html());
-    $el.replaceWith(`<${tag}>${$el.html()}</${tag}>`);
+    const id = $el.attr("id");
+    const span = id ? `<span id="${id}" class="target"></span>` : "";
+    $el.replaceWith(`${span}<${tag}>${$el.html()}</${tag}>`);
   });
 }
 
