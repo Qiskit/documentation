@@ -285,7 +285,6 @@ export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
         $footnote.before(`<span id="${id}" class="target"></span>`);
       }
     });
-  $main.find(".footnote-list").before("<h2>Footnotes</h2>");
 }
 
 export async function processMembersAndSetMeta(

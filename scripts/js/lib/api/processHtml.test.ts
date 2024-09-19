@@ -362,7 +362,7 @@ test("handleFootnotes()", () => {
   handleFootnotes(doc.$, doc.$main);
   doc.expectHtml(`
     <p>All values use <span id="id2" class="target"></span><a class="footnote-reference brackets" href="#f1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> (big endian) for compatibility.</p>
-    <h2>Footnotes</h2><aside class="footnote-list brackets">
+    <aside class="footnote-list brackets">
     <span id="f1" class="target"></span><aside class="footnote brackets" id="f1" role="doc-footnote">
     <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
 });
