@@ -290,7 +290,7 @@ Find details on how to initialize your account, view available backends, and inv
 You need at least one circuit as the input to the Sampler primitive.
 
 
-Define a QASM quantum circuit: 
+Define a QASM quantum circuit:
 
 ```python
 qasm_string='''
@@ -302,7 +302,7 @@ x q[0];
 cx q[0], q[1];
 c[0] = measure q[0]; 
 c[1] = measure q[1];
-'''  
+'''
 ```
 
 
@@ -328,11 +328,11 @@ headers = {
     }
 job_input = {
     'program_id': 'sampler',
-    "backend": backend, 
+    "backend": backend,
     "hub": "hub1",
     "group": "group1",
     "project": "project1",
-    "start_session": "False", # set to False if you just need to run a single job.  
+    "start_session": "False", # set to False if you just need to run a single job.
     "params": {
         "pubs": [[resulting_qasm],[resulting_qasm,None,500]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
@@ -384,9 +384,9 @@ Output
 Error mitigation techniques allow users to mitigate circuit errors by modeling the device noise at the time of execution. This typically results in quantum pre-processing overhead related to model training, and classical post-processing overhead to mitigate errors in the raw results by using the generated model.
 
 The error mitigation techniques built in to primitives are advanced resilience options. To specify these options, use the `resilience_level` option when submitting your job.
-Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods. 
+Sampler V2 does not support specifying resilience levels. However, you can turn on or off individual error mitigation / suppression methods.
 
-The following examples demonstrate the default options for dynamical decoupling and twirling. Find more options and further details in the [Error mitigation and suppression techniques](./error-mitigation-and-suppression-techniques) topic.   
+The following examples demonstrate the default options for dynamical decoupling and twirling. Find more options and further details in the [Error mitigation and suppression techniques](./error-mitigation-and-suppression-techniques) topic.
 
 <Tabs>
 
@@ -403,16 +403,16 @@ headers = {
     }
 job_input = {
     'program_id': 'sampler',
-    "backend": backend, 
+    "backend": backend,
     "hub": "hub1",
     "group": "group1",
     "project": "project1",
-    "start_session": "False", # set to False if you just need to run a single job.  
+    "start_session": "False", # set to False if you just need to run a single job.
     "params": {
         "pubs": [[resulting_qasm]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
-            "dynamical_decoupling": { 
+            "dynamical_decoupling": {
                 "enable": True,
                 "sequence_type": 'XpXm',
                 "extra_slack_distribution": 'middle',
@@ -446,17 +446,17 @@ headers = {
     }
 job_input = {
     'program_id': 'sampler',
-    "backend": backend, 
+    "backend": backend,
     "hub": "hub1",
     "group": "group1",
     "project": "project1",
-    "start_session": "False", # set to False if you just need to run a single job.  
+    "start_session": "False", # set to False if you just need to run a single job.
     "params": {
         "pubs": [[resulting_qasm]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "version": 2, # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
         "options": {
-            "twirling": { 
-                "enable_gates": True, 
+            "twirling": {
+                "enable_gates": True,
                 "enable_measure": True,
                 "num_randomizations": "auto",
                 "shots_per_randomization": "auto",
@@ -478,6 +478,139 @@ else:
 
   </TabItem>
 </Tabs>
+
+<span id="start-sampler-parms"></span>
+## Sampler primitive with REST API and parameterized circuits
+
+### 1. Initialize the account
+
+Because Qiskit Runtime Sampler is a managed service, you first need to initialize your account. You can then select the device you want to use to run your calculations on.
+
+Find details on how to initialize your account, view available backends, and invalidate tokens in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
+
+### 2. Define parameters
+
+```python
+import requests
+import qiskit_ibm_runtime
+# Imports from Qiskit Runtime
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+from qiskit.qasm3 import dumps
+from qiskit import QuantumCircuit
+from qiskit.circuit import Parameter
+from qiskit import transpile, assemble, qasm3
+from qiskit.converters import circuit_to_dag, dag_to_circuit
+from qiskit.quantum_info import Statevector
+
+service = QiskitRuntimeService(channel='ibm_quantum')
+
+theta = Parameter('theta')
+phi = Parameter('phi')
+parameter_values = {'theta': 1.57, 'phi': 3.14}   # In case we want to pass a dictionary
+```
+
+
+### 3. Create a quantum circuit and add parameterized gates
+
+```python
+qc = QuantumCircuit(2)
+
+# Add parameterized gates
+qc.rx(theta, 0)
+qc.ry(phi, 1)
+qc.cx(0, 1)
+qc.measure_all()
+
+# Draw the original circuit
+qc.draw('mpl')
+
+# Get an ISA circuit
+isa_circuit= pm.run(qc)
+```
+
+### 4. Generate QASM 3 code
+
+```python
+qasm_str = dumps(isa_circuit)
+print("Generated QASM 3 code:")
+print(qasm_str)
+```
+
+### 5. Run the quantum circuit using Sampler V2 API
+
+
+<Admonition type="note">
+    The jobs below use [Qiskit Runtime V2 primitives](/migration-guides/v2-primitives). Both `SamplerV2` and `EstimatorV2` take one or more primitive unified blocs (PUBs) as the input. Each PUB is a tuple that contains one circuit and the data broadcasted to that circuit, which can be multiple observables and parameters. Each PUB returns a result.
+</Admonition>
+
+
+```python
+import requests
+
+url = 'https://api.quantum-computing.ibm.com/runtime/jobs'
+headers = {
+    'Content-Type': 'application/json',
+    '"Authorization": f"Bearer xxxxxxx",
+    'x-qx-client-application': 'qiskit-version-2/0.39.2/'+'your_application' # specifying the application you might be running from. For an actual Integration project, this option is invaluable to know where jobs are coming from. At this time the "qiskit-version-2/0.39.2/" string is a necessary prefix.
+    }
+job_input = {
+    'program_id': 'sampler',
+    "backend": backend,
+    "hub": "hub1",
+    "group": "group1",
+    "project": "project1",
+    "start_session": "False", # set to False if you just need to run a single job.
+    "params": {
+        # Choose one option: direct parameter transfer or through a dictionary
+        #"pubs": [[qasm_str,[1,2],500]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "pubs": [[qasm_str,parameter_values,500]], # primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "version": 2 # this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+}}
+
+response = requests.post(url, headers=headers, json=job_input)
+
+if response.status_code == 200:
+    job_id = response.json().get('id')
+    print("Job created:",response.text)
+else:
+    print(f"Error: {response.status_code}")
+```
+
+```python
+print(response.text)
+```
+
+
+### 6. Check job status and get results
+
+Next, pass the `job_id` to the API:
+
+```python
+response_status_singlejob= requests.get(url+'/'+job_id, headers=headers)
+response_status_singlejob.json().get('state')
+```
+Output
+
+```text
+{'status': 'Completed'}
+```
+
+Get job results:
+```python
+response_result= requests.get(url+'/'+job_id+'/results', headers=headers)
+
+res_dict=response_result.json()
+
+# Get results for the first PUB
+counts=res_dict['results'][0]['data']['c']['samples']
+
+print(counts[:20])
+```
+Output
+```text
+['0x1', '0x2', '0x1', '0x2', '0x1', '0x2', '0x0', '0x2', '0x1', '0x1', '0x2', '0x2', '0x1', '0x1', '0x1', '0x1', '0x1', '0x1', '0x1', '0x1']
+```
 
 ## Next steps
 
