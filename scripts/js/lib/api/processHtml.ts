@@ -276,7 +276,7 @@ export function removeColonSpans($main: Cheerio<any>): void {
 
 export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
   $main
-    .find(".footnote, .footnote-reference")
+    .find(".footnote, .footnote-reference, .footnote dt.label")
     .toArray()
     .forEach((footnote) => {
       const $footnote = $(footnote);
