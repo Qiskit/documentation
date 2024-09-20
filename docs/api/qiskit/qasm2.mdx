@@ -85,12 +85,41 @@ You can extend the quantum components of the OpenQASM 2 language by passing an i
 
 #### CustomInstruction
 
-<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/parse.py#L80-L100" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
+<Class id="qiskit.qasm2.CustomInstruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm2/parse.py#L80-L129" signature="qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)" modifiers="class">
   Information about a custom instruction that should be defined during the parse.
 
   The `name`, `num_params` and `num_qubits` fields are self-explanatory. The `constructor` field should be a callable object with signature `*args -> Instruction`, where each of the `num_params` `args` is a floating-point value. Most of the built-in Qiskit gate classes have this form.
 
   There is a final `builtin` field. This is optional, and if set true will cause the instruction to be defined and available within the parsing, even if there is no definition in any included OpenQASM 2 file.
+
+  **Examples**
+
+  Instruct the importer to use Qiskit’s [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate") and [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate") objects to interpret `gate` statements that are known to have been created from those same objects during OpenQASM 2 export:
+
+  ```python
+  from qiskit import qasm2
+  from qiskit.circuit import QuantumCircuit, library
+
+  qc = QuantumCircuit(2)
+  qc.ecr(0, 1)
+  qc.rzx(0.3, 0, 1)
+  qc.rzx(0.7, 1, 0)
+  qc.rzx(1.5, 0, 1)
+  qc.ecr(1, 0)
+
+  # This output string includes `gate ecr q0, q1 { ... }` and `gate rzx(p) q0, q1 { ... }`
+  # statements, since `ecr` and `rzx` are neither built-in gates nor in ``qelib1.inc``.
+  dumped = qasm2.dumps(qc)
+
+  # Tell the importer how to interpret the `gate` statements, which we know are safe
+  # because we controlled the input OpenQASM 2 source.
+  custom = [
+      qasm2.CustomInstruction("ecr", 0, 2, library.ECRGate),
+      qasm2.CustomInstruction("rzx", 1, 2, library.RZXGate),
+  ]
+
+  loaded = qasm2.loads(dumped, custom_instructions=custom)
+  ```
 </Class>
 
 This can be particularly useful when trying to resolve ambiguities in the global-phase conventions of an OpenQASM 2 program. See [OpenQASM 2 Phase Conventions](#qasm2-phase-conventions) for more details.
