@@ -62,7 +62,7 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description:
-        "Also check historical releases that are known to still fail (currently Qiskit <0.46). " +
+        "Also check historical releases that are known to still fail (currently Qiskit <0.45). " +
         "Intended to be used alongside `--historical-apis`.",
     })
     .option("qiskit-legacy-release-notes", {
@@ -147,9 +147,9 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     {
       check: args.historicalApis,
       hasSeparateReleaseNotes: true,
-      // Qiskit docs are broken on <0.46.
+      // Qiskit docs are broken on <0.45.
       skipVersions: (version) =>
-        !args.includeBrokenHistorical && +version < 0.46,
+        !args.includeBrokenHistorical && +version < 0.45,
     },
   );
 
