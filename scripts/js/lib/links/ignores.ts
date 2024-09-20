@@ -65,24 +65,6 @@ function mergeFilesToIgnores(...mappings: FilesToIgnores[]): FilesToIgnores {
   return result;
 }
 
-const _QISKIT_QPY_IGNORES = Object.fromEntries(
-  ["", "dev/", "0.46/", "1.0/", "1.1/", "1.2/"].map((vers) => [
-    `docs/api/qiskit/${vers}qpy.mdx`,
-    [
-      "#f1",
-      "#f2",
-      "#f3",
-      "#id2",
-      "#id3",
-      "#id4",
-      "#id5",
-      "#id6",
-      "#id7",
-      "#id8",
-    ],
-  ]),
-);
-
 function _runtimeObjectsInv(): FilesToIgnores {
   const legacy = Object.fromEntries(
     ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
@@ -266,15 +248,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _runtimeObjectsInv(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
-  _QISKIT_QPY_IGNORES,
-  {
-    "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": [
-      "#id1",
-      "#id2",
-    ],
-  },
-);
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

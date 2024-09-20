@@ -65,7 +65,7 @@ struct {
 }
 ```
 
-All values use network byte order [1](#f1) (big endian) for cross platform compatibility.
+All values use network byte order <span id="id1" />[1](#f1) (big endian) for cross platform compatibility.
 
 The file header is immediately followed by the circuit payloads. Each individual circuit is composed of the following parts:
 
@@ -200,7 +200,7 @@ struct {
 }
 ```
 
-After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a PARAM struct (see below), `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a PARAM\_EXPR struct (see below), and `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format [2](#f2) data.
+After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a PARAM struct (see below), `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a PARAM\_EXPR struct (see below), and `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format <span id="id2" />[2](#f2) data.
 
 ### PARAMETER
 
@@ -248,7 +248,7 @@ struct {
 }
 ```
 
-this matches the internal C representation of Python’s complex type. [3](#f3) Finally, if type is `i` it represents an integer which is an `int64_t`.
+this matches the internal C representation of Python’s complex type. <span id="id3" />[3](#f3) Finally, if type is `i` it represents an integer which is an `int64_t`.
 
 **[1](#id1)**
 
