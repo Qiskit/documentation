@@ -42,7 +42,9 @@ export async function processHtml(options: {
   const $ = load(html);
   const $main = $(`[role='main']`);
 
-  const isReleaseNotes = fileName.endsWith("release_notes.html");
+  const isReleaseNotes =
+    fileName.endsWith("release_notes.html") ||
+    fileName.endsWith("release-notes.html");
   const images = loadImages(
     $,
     $main,
@@ -65,6 +67,7 @@ export async function processHtml(options: {
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
+  handleFootnotes($, $main);
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
@@ -229,7 +232,9 @@ export function convertRubricsToHeaders(
   $main.find(".rubric").each((_, el) => {
     const $el = $(el);
     const tag = appropriateHtmlTag($el.html());
-    $el.replaceWith(`<${tag}>${$el.html()}</${tag}>`);
+    const id = $el.attr("id");
+    const span = id ? `<span id="${id}" class="target"></span>` : "";
+    $el.replaceWith(`${span}<${tag}>${$el.html()}</${tag}>`);
   });
 }
 
@@ -267,6 +272,19 @@ export function processSimpleFieldLists(
 
 export function removeColonSpans($main: Cheerio<any>): void {
   $main.find(".colon").remove();
+}
+
+export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
+  $main
+    .find(".footnote, .footnote-reference, .footnote dt.label")
+    .toArray()
+    .forEach((footnote) => {
+      const $footnote = $(footnote);
+      const id = $footnote.attr("id");
+      if (id) {
+        $footnote.before(`<span id="${id}" class="target"></span>`);
+      }
+    });
 }
 
 export async function processMembersAndSetMeta(

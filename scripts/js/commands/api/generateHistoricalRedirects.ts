@@ -104,6 +104,12 @@ async function getRedirectsForVersion(
       continue;
     }
 
+    if (pageName.endsWith(".rst")) {
+      redirects[pageName] =
+        `/${pageName.replace("_class.rst", "").replace("_fun.rst", "")}`;
+      continue;
+    }
+
     // Otherwise, redirect to the top-level.
     redirects[pageName] = "/";
   }
