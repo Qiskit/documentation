@@ -495,15 +495,17 @@ import requests
 import qiskit_ibm_runtime
 # Imports from Qiskit Runtime
 from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from qiskit.qasm3 import dumps
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
-from qiskit import transpile, assemble, qasm3
-from qiskit.converters import circuit_to_dag, dag_to_circuit
-from qiskit.quantum_info import Statevector
+from qiskit import transpile
 
 service = QiskitRuntimeService(channel='ibm_quantum')
+backend = service.backend("your selected backend")
+
+pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 
 theta = Parameter('theta')
 phi = Parameter('phi')
