@@ -65,24 +65,6 @@ function mergeFilesToIgnores(...mappings: FilesToIgnores[]): FilesToIgnores {
   return result;
 }
 
-const _QISKIT_QPY_IGNORES = Object.fromEntries(
-  ["", "dev/", "0.46/", "1.0/", "1.1/", "1.2/"].map((vers) => [
-    `docs/api/qiskit/${vers}qpy.mdx`,
-    [
-      "#f1",
-      "#f2",
-      "#f3",
-      "#id2",
-      "#id3",
-      "#id4",
-      "#id5",
-      "#id6",
-      "#id7",
-      "#id8",
-    ],
-  ]),
-);
-
 function _runtimeObjectsInv(): FilesToIgnores {
   const legacy = Object.fromEntries(
     ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
@@ -122,7 +104,7 @@ function _qiskitUtilsData(): FilesToIgnores {
   // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
-    ["1.0/", "1.1/"].map((vers) => [
+    ["0.45/", "1.0/", "1.1/"].map((vers) => [
       `public/api/qiskit/${vers}objects.inv`,
       [
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
@@ -162,8 +144,20 @@ function _qiskitUtilsData(): FilesToIgnores {
     ]),
   );
   const utilsFile = Object.fromEntries(
-    ["1.0/", "1.1/"].map((vers) => [
-      `docs/api/qiskit/${vers}utils.mdx`,
+    [
+      "0.37",
+      "0.38",
+      "0.39",
+      "0.40",
+      "0.41",
+      "0.42",
+      "0.43",
+      "0.44",
+      "0.45",
+      "1.0",
+      "1.1",
+    ].map((vers) => [
+      `docs/api/qiskit/${vers}/utils.mdx`,
       [
         "#qiskit.utils.optionals.HAS_TESTTOOLS",
         "#qiskit.utils.optionals.HAS_GRAPHVIZ",
@@ -184,7 +178,7 @@ function _patternsReorg(): FilesToIgnores {
   // We have redirects for all these files. It's best to update API docs to point directly to the new URL,
   // but we don't bother updating old docs.
   const qiskit = Object.fromEntries(
-    ["", "0.46/", "1.0/", "1.1/"].flatMap((vers) => [
+    ["", "0.45/", "0.46/", "1.0/", "1.1/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
         ["/build/circuit-construction"],
@@ -266,15 +260,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _runtimeObjectsInv(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
-  _QISKIT_QPY_IGNORES,
-  {
-    "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": [
-      "#id1",
-      "#id2",
-    ],
-  },
-);
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
