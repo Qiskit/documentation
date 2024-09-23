@@ -56,12 +56,31 @@ Local testing mode does not have built-in error suppression or mitigation.  Inst
 
 ## Migrate to local simulators
 
-With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To use local testing mode, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.
+With `qiskit-ibm-runtime` 0.22.0 or later, you can use local testing mode to replace cloud simulators. Depending on your needs, there are several ways to use local testing mode.  To begin, specify one of the fake backends in ``qiskit_ibm_runtime.fake_provider`` or specify a Qiskit Aer backend when instantiating a primitive or a session.
 
+### Guidance for choosing a simulator
+
+Use the following table to help choose a simulator.
+
+
+| Simulator           | Fake Backends                                   | AerSimulator                                       | Clifford Simulation                                |
+|---------------------|-------------------------------------------------|---------------------------------------------------|----------------------------------------------------|
+| **Purpose**         | Mimics specific IBM&reg; QPUs by using snapshots         | General-purpose, high-performance simulation      | Efficient simulation for Clifford circuits         |
+| **Noise model**     | Automatically applies noise model from QPU snapshots | Custom or based on real QPU calibration data      | Ideal for noise-free simulations                   |
+| **Circuit size**    | Limited to the capabilities of the mimicked QPU  | Can handle larger circuits               | Suitable for very large circuits (hundreds of qubits) |
+| **Results**         | Moderate runtime for QPU-specific tests          | Shorter runtime for a wide range of simulations    | Extremely fast, suitable for stabilizer circuits  |
+| **Use case**        | Testing transpiler and QPU-specific behavior     | General development, custom noise models          | Large stabilizer circuits, error correction        |
+
+
+<Admonition type="note">
+For most users, `AerSimulator` is a good choice, due to its flexibility and performance. However, if your work targets a specific QPU, a fake backend might be a better choice.
+</Admonition>
 
 ### Fake backends
 
 The [fake backends](/api/qiskit-ibm-runtime/fake_provider) mimic the behaviors of IBM QPUs by using snapshots. The snapshots contain important information about the QPU, such as the coupling map, basis gates, and qubit properties, which are useful for testing the transpiler and performing noisy simulations of the QPU.  The noise model from the snapshot is automatically applied during simulation.
+
+Example:
 
 ```python
 from qiskit.circuit.library import RealAmplitudes
