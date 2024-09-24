@@ -24,7 +24,7 @@ export const IGNORED_FILES = new Set([
 // Always ignored URLs - prefer to use more precise ignores
 // -----------------------------------------------------------------------------------
 
-// These external URLs were all working the last time we checked, but the link checker has false positives.
+// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
