@@ -27,6 +27,10 @@ def skip_apis() -> tuple[str]:
     return ("-v", "/home/node/app/docs/api")
 
 def main() -> None:
+    if "--pull-only" in sys.argv:
+        subprocess.run(["docker", "pull", IMAGE], check=True)
+        sys.exit(0)
+
     print(
         "Warning: this may be using an outdated version of the app. Run "
         + f"`docker pull {IMAGE}` to check for updates.",

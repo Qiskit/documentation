@@ -78,7 +78,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
     ),
   );
   const legacy2 = Object.fromEntries(
-    ["", "0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
+    ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
       (vers) => [
         `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
@@ -88,7 +88,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
     ),
   );
   const latest = Object.fromEntries(
-    ["dev/", "0.29/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
+    ["", "dev/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
       (vers) => [
         `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
@@ -260,7 +260,13 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _runtimeObjectsInv(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
+  "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#run",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#get_backend",
+    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session#run",
+  ],
+};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

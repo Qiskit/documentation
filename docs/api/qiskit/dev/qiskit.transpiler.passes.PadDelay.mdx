@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
 # PadDelay
 
-<Class id="qiskit.transpiler.passes.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/pad_delay.py#L23-L79" signature="qiskit.transpiler.passes.PadDelay(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/padding/pad_delay.py#L23-L82" signature="qiskit.transpiler.passes.PadDelay(*args, **kwargs)" modifiers="class">
   Bases: `BasePadding`
 
   Padding idle time with Delay instructions.
@@ -16,6 +16,9 @@ python_api_name: qiskit.transpiler.passes.PadDelay
   Consecutive delays will be merged in the output of this pass.
 
   ```python
+  from qiskit import QuantumCircuit
+  from qiskit.transpiler import InstructionDurations
+
   durations = InstructionDurations([("x", None, 160), ("cx", None, 800)])
 
   qc = QuantumCircuit(2)

@@ -51,11 +51,14 @@ jobs:
         with:
           files: docs/**/*.{md,mdx,ipynb}
           separator: "\n"
+      - name: Pull preview image
+        if: steps.changed-docs-files.outputs.any_changed == 'true'
+        run: ./start --pull-only
       - name: Start local Docker preview
         if: steps.changed-docs-files.outputs.any_changed == 'true'
         run: |
           ./start --apis &
-          sleep 20
+          sleep 1
       - name: Check that pages render
         if: steps.changed-docs-files.outputs.any_changed == 'true'
         run: |
