@@ -26,7 +26,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 ### dump
 
-<Function id="qiskit.qasm3.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L286-L296" signature="qiskit.qasm3.dump(circuit, stream, **kwargs)">
+<Function id="qiskit.qasm3.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L287-L297" signature="qiskit.qasm3.dump(circuit, stream, **kwargs)">
   Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as an OpenQASM 3 stream to file-like object.
 
   **Parameters**
@@ -38,7 +38,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 ### dumps
 
-<Function id="qiskit.qasm3.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L273-L283" signature="qiskit.qasm3.dumps(circuit, **kwargs)">
+<Function id="qiskit.qasm3.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/__init__.py#L274-L284" signature="qiskit.qasm3.dumps(circuit, **kwargs)">
   Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM 3 string.
 
   **Parameters**
@@ -59,12 +59,18 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
 ### Exporter
 
-<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L128-L197" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)" modifiers="class">
+<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L128-L204" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)" modifiers="class">
   QASM3 exporter main class.
 
   **Parameters**
 
-  *   **includes** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
+  *   **includes** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) –
+
+      the filenames that should be emitted as includes.
+
+        <Admonition title="Note" type="note">
+          At present, only the standard-library file `stdgates.inc` is properly understood by the exporter, in the sense that it knows the gates it defines. You can specify other includes, but you will need to pass the names of the gates they define in the `basis_gates` argument to avoid the exporter outputting a separate `gate` definition.
+        </Admonition>
 
   *   **basis\_gates** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
 
@@ -92,13 +98,13 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
   #### dump
 
-  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L185-L197" signature="dump(circuit, stream)">
+  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L192-L204" signature="dump(circuit, stream)">
     Convert the circuit to OpenQASM 3, dumping the result to a file or text stream.
   </Function>
 
   #### dumps
 
-  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L179-L183" signature="dumps(circuit)">
+  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qasm3/exporter.py#L186-L190" signature="dumps(circuit)">
     Convert the circuit to OpenQASM 3, returning the result as a string.
   </Function>
 </Class>
@@ -213,7 +219,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 ### load
 
-<Function id="qiskit.qasm3.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L299-L321" signature="qiskit.qasm3.load(filename)">
+<Function id="qiskit.qasm3.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L300-L322" signature="qiskit.qasm3.load(filename)">
   Load an OpenQASM 3 program from the file `filename`.
 
   **Parameters**
@@ -235,7 +241,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 ### loads
 
-<Function id="qiskit.qasm3.loads" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L324-L344" signature="qiskit.qasm3.loads(program)">
+<Function id="qiskit.qasm3.loads" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L325-L345" signature="qiskit.qasm3.loads(program)">
   Load an OpenQASM 3 program from the given string.
 
   **Parameters**
@@ -395,6 +401,30 @@ These two functions allow for specifying include paths as an iterable of paths, 
 
 <Class id="qiskit.qasm3.CustomGate" signature="qiskit.qasm3.CustomGate" modifiers="class">
   Information received from Python space about how to construct a Python-space object to represent a given gate that might be declared.
+
+  ##### constructor
+
+  <Attribute id="qiskit.qasm3.CustomGate.constructor">
+    A callable Python object that takes `num_params` angles as positional arguments, and returns a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object representing the gate.
+  </Attribute>
+
+  ##### name
+
+  <Attribute id="qiskit.qasm3.CustomGate.name">
+    The name of the gate as it appears in the OpenQASM 3 program. This is not necessarily identical to the name that Qiskit gives the gate.
+  </Attribute>
+
+  ##### num\_params
+
+  <Attribute id="qiskit.qasm3.CustomGate.num_params">
+    The number of angle-like parameters the gate requires.
+  </Attribute>
+
+  ##### num\_qubits
+
+  <Attribute id="qiskit.qasm3.CustomGate.num_qubits">
+    The number of qubits the gate acts on.
+  </Attribute>
 </Class>
 
 In `custom_gates` is not given, Qiskit will attempt to use its standard-library gate objects for the gates defined in OpenQASM 3 standard library file `stdgates.inc`. This sequence of gates is available on this module, if you wish to build on top of it:

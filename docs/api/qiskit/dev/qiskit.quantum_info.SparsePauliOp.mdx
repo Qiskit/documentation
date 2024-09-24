@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
 # SparsePauliOp
 
-<Class id="qiskit.quantum_info.SparsePauliOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L50-L1171" signature="qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)" modifiers="class">
+<Class id="qiskit.quantum_info.SparsePauliOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L50-L1176" signature="qiskit.quantum_info.SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)" modifiers="class">
   Bases: `LinearOp`
 
   Sparse N-qubit operator in a Pauli basis representation.
@@ -133,7 +133,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### apply\_layout
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.apply_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1126-L1171" signature="apply_layout(layout, num_qubits=None)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.apply_layout" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1131-L1176" signature="apply_layout(layout, num_qubits=None)">
     Apply a transpiler layout to this [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
     **Parameters**
@@ -220,7 +220,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### assign\_parameters
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1081-L1124" signature="assign_parameters(parameters, inplace=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1086-L1129" signature="assign_parameters(parameters, inplace=False)">
     Bind the free `Parameter`s in the coefficients to provided values.
 
     **Parameters**
@@ -365,7 +365,7 @@ python_api_name: qiskit.quantum_info.SparsePauliOp
 
   ### from\_list
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.from_list" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L781-L837" signature="from_list(obj, dtype=<class 'complex'>, *, num_qubits=None)" modifiers="static">
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_list" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L781-L839" signature="from_list(obj, dtype=<class 'complex'>, *, num_qubits=None)" modifiers="static">
     Construct from a list of Pauli strings and coefficients.
 
     For example, the 5-qubit Hamiltonian
@@ -377,6 +377,8 @@ $$
     can be constructed as
 
     ```python
+    from qiskit.quantum_info import SparsePauliOp
+
     # via tuples and the full Pauli string
     op = SparsePauliOp.from_list([("XIIZI", 1), ("IYIIY", 2)])
     ```
@@ -431,7 +433,7 @@ $$
 
   ### from\_sparse\_list
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.from_sparse_list" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L839-L907" signature="from_sparse_list(obj, num_qubits, do_checks=True, dtype=<class 'complex'>)" modifiers="static">
+  <Function id="qiskit.quantum_info.SparsePauliOp.from_sparse_list" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L841-L911" signature="from_sparse_list(obj, num_qubits, do_checks=True, dtype=<class 'complex'>)" modifiers="static">
     Construct from a list of local Pauli strings and coefficients.
 
     Each list element is a 3-tuple of a local Pauli string, indices where to apply it, and a coefficient.
@@ -445,6 +447,8 @@ $$
     can be constructed as
 
     ```python
+    from qiskit.quantum_info import SparsePauliOp
+
     # via triples and local Paulis with indices
     op = SparsePauliOp.from_sparse_list([("ZX", [1, 4], 1), ("YY", [0, 3], 2)], num_qubits=5)
 
@@ -476,7 +480,7 @@ $$
 
   ### group\_commuting
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.group_commuting" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1047-L1070" signature="group_commuting(qubit_wise=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.group_commuting" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1051-L1075" signature="group_commuting(qubit_wise=False)">
     Partition a SparsePauliOp into sets of commuting Pauli strings.
 
     **Parameters**
@@ -486,6 +490,7 @@ $$
     whether the commutation rule is applied to the whole operator, or on a per-qubit basis. For example:
 
     ```python
+    >>> from qiskit.quantum_info import SparsePauliOp
     >>> op = SparsePauliOp.from_list([("XX", 2), ("YY", 1), ("IZ",2j), ("ZZ",1j)])
     >>> op.group_commuting()
     [SparsePauliOp(["IZ", "ZZ"], coeffs=[0.+2.j, 0.+1j]),
@@ -534,7 +539,7 @@ $$
 
   ### label\_iter
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.label_iter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L976-L998" signature="label_iter()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.label_iter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L980-L1002" signature="label_iter()">
     Return a label representation iterator.
 
     This is a lazy iterator that converts each term in the SparsePauliOp into a tuple (label, coeff). To convert the entire table to labels use the `to_labels()` method.
@@ -550,7 +555,7 @@ $$
 
   ### matrix\_iter
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.matrix_iter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1000-L1027" signature="matrix_iter(sparse=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.matrix_iter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1004-L1031" signature="matrix_iter(sparse=False)">
     Return a matrix representation iterator.
 
     This is a lazy iterator that converts each term in the SparsePauliOp into a matrix as it is used. To convert to a single matrix use the [`to_matrix()`](#qiskit.quantum_info.SparsePauliOp.to_matrix "qiskit.quantum_info.SparsePauliOp.to_matrix") method.
@@ -570,7 +575,7 @@ $$
 
   ### noncommutation\_graph
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.noncommutation_graph" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1029-L1045" signature="noncommutation_graph(qubit_wise)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.noncommutation_graph" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L1033-L1049" signature="noncommutation_graph(qubit_wise)">
     Create the non-commutation graph of this SparsePauliOp.
 
     This transforms the measurement operator grouping problem into graph coloring problem. The constructed graph contains one node for each Pauli. The nodes will be connecting for any two Pauli terms that do \_not\_ commute.
@@ -784,7 +789,7 @@ $$
 
   ### to\_list
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.to_list" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L909-L932" signature="to_list(array=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_list" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L913-L936" signature="to_list(array=False)">
     Convert to a list Pauli string labels and coefficients.
 
     For operators with a lot of terms converting using the `array=True` kwarg will be more efficient since it allocates memory for the full Numpy array of labels in advance.
@@ -804,7 +809,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L934-L966" signature="to_matrix(sparse=False, force_serial=False)">
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L938-L970" signature="to_matrix(sparse=False, force_serial=False)">
     Convert to a dense or sparse matrix.
 
     **Parameters**
@@ -823,7 +828,7 @@ $$
 
   ### to\_operator
 
-  <Function id="qiskit.quantum_info.SparsePauliOp.to_operator" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L968-L970" signature="to_operator()">
+  <Function id="qiskit.quantum_info.SparsePauliOp.to_operator" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/quantum_info/operators/symplectic/sparse_pauli_op.py#L972-L974" signature="to_operator()">
     Convert to a matrix Operator object
 
     **Return type**
