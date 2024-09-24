@@ -48,7 +48,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git switch -c actions/cron-${{ github.run_id }}
           git add .
-          git commit -m "Re-run notebooks"
+          git commit -m "Sync latest dev docs"
           git push origin actions/cron-${{ github.run_id }}
           gh pr create \
            -B main \
