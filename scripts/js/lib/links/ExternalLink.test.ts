@@ -29,12 +29,12 @@ test.describe("ExternalLink.check()", () => {
   });
 
   test("Validate existing external links", async () => {
-    let link = new ExternalLink("https://github.com/QiskitNotExistingRepo", [
+    let link = new ExternalLink("https://ibm.com/FakePageDoesNotExist", [
       "/testorigin.mdx",
     ]);
     const result = await link.check();
     expect(result).toEqual(
-      "❌ Could not find link 'https://github.com/QiskitNotExistingRepo'. Appears in:\n    /testorigin.mdx",
+      "❌ Could not find link 'https://ibm.com/FakePageDoesNotExist'. Appears in:\n    /testorigin.mdx",
     );
   });
 });
