@@ -1,0 +1,62 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2024.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+name: Dev docs sync
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *" # Every day at 1 am UTC
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Sync dev docs
+        run: npx tsx scripts/js/commands/api/syncDevDocs.ts
+      - name: Get all changed docs files
+        id: changed-docs-files
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          # Note: we specifically check for changed docs files rather than changed
+          # images in public/images or changes to scripts/config/api-html-artifacts.json
+          # to avoid noisy PRs. It's common for images to change because some of the
+          # images are generated non-deterministically.
+          files: docs/api/**/*.mdx
+      - name: Make pull request
+        if: ${{ !cancelled() && steps.changed-docs-files.outputs.any_changed == 'true' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git switch -c actions/cron-${{ github.run_id }}
+          git add .
+          git commit -m "Sync latest dev docs"
+          git push origin actions/cron-${{ github.run_id }}
+          gh pr create \
+           -B main \
+           -H actions/cron-${{ github.run_id }} \
+           --title "Update API dev docs" \
+           --body "An action recently synced the latest dev docs. \
+            This PR updates all dev APIs that changed.
+            > [!NOTE]
+            > This pull request was created by a GitHub action." \
+           --reviewer frankharkins
+           --reviewer Eric-Arellano
