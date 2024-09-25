@@ -871,7 +871,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
     Similarly, the deprecated arguments `circuits`, `observables`, `parameters`, `service`, and `skip_transpilation` have been removed from [Estimator](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator).
 
-    In [QiskitRuntimeService](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService), the `auth` parameter has been removed. Additionally, the `instance`, `job_tags`, and `max_execution_time` paramters have been removed from [qiskit\_ibm\_runtime.QiskitRuntimeService.run()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#run). They can be passed in through [RuntimeOptions](/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions) instead.
+    In [QiskitRuntimeService](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService), the `auth` parameter has been removed. Additionally, the `instance`, `job_tags`, and `max_execution_time` paramters have been removed from [qiskit\_ibm\_runtime.QiskitRuntimeService.run()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService#run). They can be passed in through [RuntimeOptions](/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions) instead.
 
     Within [RuntimeOptions](/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions), `backend_name` is no longer supported. Please use `backend` instead.
 
@@ -890,7 +890,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 ### Upgrade Notes
 
 *   Added error messages in case the user defines unsupported values for ‘optimization\_level’ or for ‘resilience\_level’. Added validation checking for options given as input to `resilience`. Previously, this validation was done on the server side. By adding them on the client side, response will be much faster upon failure. The environment variable `QISKIT_RUNTIME_SKIP_OPTIONS_VALIDATION` is used to control validation. If set, validation will be skipped.
-*   Backend configurations are no longer loaded when [QiskitRuntimeService](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService) is initialized. Instead, the configuration is only loaded and cached during [get\_backend()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#get_backend) and [backends()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
+*   Backend configurations are no longer loaded when [QiskitRuntimeService](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService) is initialized. Instead, the configuration is only loaded and cached during [get\_backend()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService#get_backend) and [backends()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
 
 <span id="id113" />
 
@@ -923,7 +923,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 *   Fixed a bug where the default values for `optimization_level` and for `resilience_level` were not being set correctly.
 *   Fixed an issue where if no backend was selected, `optimization_level` and `resilience_level` would default to `None`, causing the job to fail.
-*   If an instance is passed in to [qiskit\_ibm\_runtime.QiskitRuntimeService.get\_backend()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#get_backend) and then the backend is used in a session, all jobs within the session will be run from the original instance passed in.
+*   If an instance is passed in to [qiskit\_ibm\_runtime.QiskitRuntimeService.get\_backend()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService#get_backend) and then the backend is used in a session, all jobs within the session will be run from the original instance passed in.
 *   Removed additional decomposition of `BlueprintCircuit`s in the JSON encoder. This was introduced as a bugfix, but has since been fixed. Still doing the decomposition led to possible problems if the decomposed circuit was not in the correct basis set of the backend anymore.
 
 <span id="id118" />
@@ -952,7 +952,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ### Deprecation Notes
 
-*   `backend` is no longer a supported option when using [qiskit\_ibm\_runtime.Session.run()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session#run). Sessions do not support multiple cross backends. Additionally, an exception will be raised if a backend passed in through options does not match the original session backend in an active session.
+*   `backend` is no longer a supported option when using [qiskit\_ibm\_runtime.Session.run()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session#run). Sessions do not support multiple cross backends. Additionally, an exception will be raised if a backend passed in through options does not match the original session backend in an active session.
 
 <span id="id121" />
 
@@ -994,7 +994,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 *   Python 3.10 is now supported.
 *   Advanced resilience options can now be set under `options.resilience`. See [qiskit\_ibm\_runtime.options.ResilienceOptions](/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions) for all available options.
-*   You can now specify a pair of result decoders for the `result_decoder` parameter of [qiskit\_ibm\_runtime.QiskitRuntimeService.run()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#run) method. If a pair is specified, the first one is used to decode interim results and the second the final results.
+*   You can now specify a pair of result decoders for the `result_decoder` parameter of [qiskit\_ibm\_runtime.QiskitRuntimeService.run()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService#run) method. If a pair is specified, the first one is used to decode interim results and the second the final results.
 
 <span id="id128" />
 
@@ -1037,7 +1037,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 ### Deprecation Notes
 
 *   Qiskit Runtime programs `torch-train`, `torch-infer`, `sample-expval`, `sample-program`, and `quantum_kernal_alignment` have been deprecated due to low usage.
-*   Passing `instance` parameter to the [qiskit\_ibm\_runtime.QiskitRuntimeService.run()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#run) has been deprecated. Instead, you can pass the `instance` parameter inside the `options` parameter.
+*   Passing `instance` parameter to the [qiskit\_ibm\_runtime.QiskitRuntimeService.run()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService#run) has been deprecated. Instead, you can pass the `instance` parameter inside the `options` parameter.
 *   Passing `job_tags` and `max_execution_time` as parameters to [qiskit\_ibm\_runtime.QiskitRuntimeService](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService) has been deprecated. Please pass them inside `options`.
 
 <span id="id135" />
@@ -1268,9 +1268,9 @@ This release leverages the API and Queue enhancements to become more runtime ses
 
 *   The `session_id`, which is the Job ID of the first job in a runtime session can now be used as a filter in [jobs()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs) with the parameter `session_id`.
 
-*   [run()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#run) now supports a new parameter, `job_tags`. These tags can be used when filtering jobs with [jobs()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs).
+*   [run()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService#run) now supports a new parameter, `job_tags`. These tags can be used when filtering jobs with [jobs()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs).
 
-*   [run()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#run) now supports a new parameter, `max_execution_time`, which can be used to override the default program maximum execution time. It should be less than or equal to the program maximum execution time.
+*   [run()](/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService#run) now supports a new parameter, `max_execution_time`, which can be used to override the default program maximum execution time. It should be less than or equal to the program maximum execution time.
 
 *   [jobs()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs) has a new parameter, `descending`. This parameter defaults to `True`, where jobs will be returned in descending order based on creation date.
 
