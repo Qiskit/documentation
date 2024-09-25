@@ -85,25 +85,29 @@ sampler.run([
 ])
 ```
 
-## How to use Qiskit primitives
+<span id="primitive-classes"></span>
+## Qiskit primitive classes
 
 The [`qiskit.primitives`](/api/qiskit/primitives) module enables the development of primitive-style quantum programs and was specifically
-designed to simplify switching between different types of quantum compute resources. The module provides three separate classes
-for each primitive type:
+designed to simplify switching between different types of quantum compute resources. As described previously, there are two types of Qiskit primitives; the base class, and their implementations.
 
-1. [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator) and [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler#statevectorsampler)
+### Base class
 
-These classes are reference implementations of both primitives and use the simulator built in to Qiskit. They leverage the Qiskit [`quantum_info`](/api/qiskit/quantum_info#quantum-information) module in the background, producing results based on ideal statevector simulations.
-
-2. [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2)
+[`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
 These are abstract base classes that define a common interface for implementing primitives. All other classes in the [`qiskit.primitives`](/api/qiskit/primitives) module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific provider. These classes may also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
 
-3. [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2)
+### Implementations
+
+- [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator) and [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler#statevectorsampler)
+
+These classes are reference implementations of both primitives and use the simulator built in to Qiskit. They leverage the Qiskit [`quantum_info`](/api/qiskit/quantum_info#quantum-information) module in the background, producing results based on ideal statevector simulations.
+
+- [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2)
 
 If a provider does not support primitives natively, you can use these classes to “wrap” any quantum computing resource into a primitive. Users can write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which quantum computer to run on.
 
-The Qiskit Runtime primitives provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service.
+- The Qiskit Runtime primitives ([`EstimatorV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2)) provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service.
 
 ## Next steps
 
