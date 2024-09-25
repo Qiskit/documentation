@@ -194,6 +194,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.21/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
     "docs/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions.mdx",
     "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session.mdx",
   ];
 
   if (args.currentApis) {
