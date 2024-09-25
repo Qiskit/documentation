@@ -260,13 +260,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _runtimeObjectsInv(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
-  "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#run",
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#get_backend",
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session#run",
-  ],
-};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
