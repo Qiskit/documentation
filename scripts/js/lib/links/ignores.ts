@@ -24,12 +24,19 @@ export const IGNORED_FILES = new Set([
 // Always ignored URLs - prefer to use more precise ignores
 // -----------------------------------------------------------------------------------
 
+// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
-  // StackOverflow rate limits us.
+  "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
+  "https://support.google.com/accounts/answer/27441?hl",
+  "https://colab.research.google.com",
+  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://code.visualstudio.com",
+  "http://science.sciencemag.org/content/273/5278/1073",
+  "https://doi.org/10.1002/qute.201800012",
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
@@ -37,7 +44,19 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
 ];
 
-const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
+// These external URLs cause actual 404s and should probably be fixed.
+const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
+  "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
+  "http://csis.pace.edu/ctappert/cs837-19spring/QC-textbook.pdf",
+  "https://arxiv.org/abs/9810040",
+  "https://github.com/Qiskit/qiskit-tutorials/qiskit/finance/data_providers/time_series.ipynb",
+  "https://sunqm.github.io/pyscf/",
+  "http://sunqm.github.io/pyscf/install.html",
+  "https://support.hdfgroup.org/HDF5/",
+  "https://github.com/Qiskit/qiskit-tutorials/blob/master/legacy_tutorials/aqua/finance/data_providers/time_series.ipynb",
+  "https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/finance/11_time_series.ipynb",
+  "https://github.com/python-constraint/python-constraint%3E__",
+];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
