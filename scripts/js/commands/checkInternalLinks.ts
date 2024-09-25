@@ -113,6 +113,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/migration-guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
+  "docs/guides/bit-ordering.mdx",
   "docs/guides/pulse.ipynb",
   "docs/guides/configure-qiskit-local.mdx",
 ];
