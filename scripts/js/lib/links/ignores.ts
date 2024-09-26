@@ -261,10 +261,48 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
+function _legacyQiskitSDKIssues(): FilesToIgnores {
+  // These are all issues due to quirks in our old docs. They
+  // are all safe to ignore and not worth the effort to fix.
+
+  // The module page is missing the expected anchor, even in the original Sphinx. However,
+  // the page is small enough that the link to the transpile function is easy to access.
+  const transpileAnchor = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42", "43"].map((vers) => [
+      `docs/api/qiskit/0.${vers}/qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager.mdx`,
+      ["compiler#qiskit.compiler.transpile"],
+    ]),
+  );
+  // The capitalization of the anchor link changes between the class page and the referring
+  // page, and it's inconsistent in the original Sphinx. However, it doesn't matter
+  // because the anchor is at the top of the page anyways.
+  const pulseLibraryAnchorCapitalization = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42"].flatMap((vers) => [
+      [
+        `docs/api/qiskit/0.${vers}/qiskit.pulse.library.gaussian_square.mdx`,
+        ["qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian"],
+      ],
+      [
+        `docs/api/qiskit/0.${vers}/pulse.mdx`,
+        [
+          "qiskit.pulse.library.constant#qiskit.pulse.library.constant",
+          "qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian",
+          "qiskit.pulse.library.drag#qiskit.pulse.library.drag",
+        ],
+      ],
+    ]),
+  );
+  return {
+    ...transpileAnchor,
+    ...pulseLibraryAnchorCapitalization,
+  };
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
+  _legacyQiskitSDKIssues(),
 );
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
