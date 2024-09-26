@@ -74,7 +74,7 @@ export async function processHtml(options: {
   await processMembersAndSetMeta($, $main, meta);
   maybeSetModuleMetadata($, $main, meta);
   if (meta.apiType === "module") {
-    updateModuleHeadings($, $main, meta);
+    updateModuleHeadings($, $main);
   }
   return { html: $main.html()!, meta, images, isReleaseNotes };
 }
@@ -382,11 +382,7 @@ export function preserveMathBlockWhitespace(
     });
 }
 
-export function updateModuleHeadings(
-  $: CheerioAPI,
-  $main: Cheerio<any>,
-  meta: Metadata,
-): void {
+export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
   $main
     .find("h1,h2")
     .toArray()
@@ -400,7 +396,7 @@ export function updateModuleHeadings(
       title = title.replace("()", "");
       let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
       if (signature.trim().length > 0) {
-        replacement += `<span class="target" id="module-${meta.apiName}" /><p><code>${signature}</code></p>`;
+        replacement += `<p><code>${signature}</code></p>`;
       }
       $el.replaceWith(replacement);
     });
