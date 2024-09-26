@@ -55,3 +55,54 @@ The simulator models an ideal environment, without noise or decoherence. When jo
 ## How do I delete my account and data?
 
 To delete your account, go to your [account page](https://quantum.ibm.com/account#delete-account). Scroll to the Delete Account section, and click *Delete your account and account data*. You will receive an email with a link to delete your account.
+
+## Questions about cloud simulator retirement
+
+To migrate from cloud simulators to local simulators, see the [migration guide](/migration-guides/local-simulators).
+
+### Why are the cloud simulators being retired?
+
+The cloud simulators are being retired for several reasons:
+
+<details>
+<summary><a>Simulators have limitations</a></summary>
+
+Simulators can be useful, but they are too limited to use for research or experimentation:
+
+- Simulators are valuable for understanding small-scale QPUs (quantum processing units), but their usefulness maxes out at around 50 qubits, even with access to high-performance supercomputers. This ceiling comes from the exponential growth in computational resources required to simulate larger quantum computers (review [Massively parallel quantum computer simulator, eleven years later](https://arxiv.org/abs/1805.04708) for the full explanation).  Exploring quantum computers of 100 qubits and more requires hardware.
+
+- While some simulators offer noise models, it is a very hard problem to capture the entire dynamics of a real QPU. Quantum hardware offers the potential for researchers to confront the challenges inherent in quantum computers, such as noise, errors, and decoherence in a realistic testing environment.
+
+</details>
+
+<details>
+<summary><a>Using quantum hardware builds unique skills</a></summary>
+
+Interacting with quantum hardware grows skills and experience unattainable by only using simulators:
+
+- Direct interaction with quantum hardware builds skills because you must implement or use error mitigation or suppression techniques, for reliable computation.
+
+- Hands-on experience with quantum hardware develops a deeper understanding of quantum phenomena and how to tailor algorithms to the characteristics of quantum processors.
+
+- Engaging with quantum hardware results in practical insights into the challenges and opportunities of quantum computing, enhancing developers' ability to drive innovation in the field.
+
+</details>
+
+<details>
+<summary><a>Algorithms should be adapted for quantum hardware</a></summary>
+
+Successful quantum algorithms must be adapted to exploit the capabilities of quantum hardware, optimizing performance and efficiency.
+
+- Quantum hardware provides a more accurate representation of real-world QPUs than simulators.
+
+- Fine-tuning algorithms for quantum hardware involves adjusting ansatz, circuit implementations, parameters, and configuration to maximize performance.  This process is best achieved through direct experimentation with quantum hardware.
+
+</details>
+
+### When should simulators be used?
+
+Quantum simulators should be used to help develop and test programs before fine-tuning them and sending them to quantum hardware. Local simulators can do this with good performance and efficiency.  Clifford circuits can be simulated very efficiently, and results can be verified, which is a useful way to gain confidence in an experiment.
+
+<Admonition type="note">
+Local testing mode does not have built-in error suppression or mitigation.  Instead, you must specify those options explicitly. See [Configure error mitigation for Qiskit Runtime](/guides/configure-error-mitigation) for details.
+</Admonition>
