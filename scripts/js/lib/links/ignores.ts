@@ -153,6 +153,8 @@ function _qiskitUtilsData(): FilesToIgnores {
   );
   const utilsFile = Object.fromEntries(
     [
+      "0.35",
+      "0.36",
       "0.37",
       "0.38",
       "0.39",
