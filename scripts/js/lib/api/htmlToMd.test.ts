@@ -881,8 +881,6 @@ test("convert module headings removing () around the title", async () => {
 
 # Qiskit Runtime
 
-<span id="module-qiskit_ibm_runtime" />
-
 \`qiskit_ibm_runtime\`
 
 Modules related to Qiskit Runtime IBM Client.\n`,
