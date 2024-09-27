@@ -484,7 +484,7 @@ else:
 
 ### 1. Initialize the account
 
-Because Qiskit Runtime Sampler is a managed service, you first need to initialize your account. You can then select the device you want to use to run your calculations on.
+Because Qiskit Runtime is a managed service, you first need to initialize your account. You can then select the device you want to use to run your calculations on.
 
 Find details on how to initialize your account, view available backends, and invalidate tokens in this [topic](./setup-channel#set-up-to-use-ibm-quantum-platform-with-rest-api).
 
@@ -493,17 +493,15 @@ Find details on how to initialize your account, view available backends, and inv
 ```python
 import requests
 import qiskit_ibm_runtime
-# Imports from Qiskit Runtime
 from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-
 from qiskit.qasm3 import dumps
 from qiskit import QuantumCircuit
 from qiskit.circuit import Parameter
 from qiskit import transpile
 
 service = QiskitRuntimeService(channel='ibm_quantum')
-backend = service.backend("your selected backend")
+backend = service.backend("<your selected backend>")
 
 pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
 
@@ -528,7 +526,7 @@ qc.measure_all()
 qc.draw('mpl')
 
 # Get an ISA circuit
-isa_circuit= pm.run(qc)
+isa_circuit = pm.run(qc)
 ```
 
 ### 4. Generate QASM 3 code
@@ -592,6 +590,7 @@ Next, pass the `job_id` to the API:
 response_status_singlejob= requests.get(url+'/'+job_id, headers=headers)
 response_status_singlejob.json().get('state')
 ```
+
 Output
 
 ```text
@@ -599,6 +598,7 @@ Output
 ```
 
 Get job results:
+
 ```python
 response_result= requests.get(url+'/'+job_id+'/results', headers=headers)
 
@@ -609,7 +609,9 @@ counts=res_dict['results'][0]['data']['c']['samples']
 
 print(counts[:20])
 ```
+
 Output
+
 ```text
 ['0x1', '0x2', '0x1', '0x2', '0x1', '0x2', '0x0', '0x2', '0x1', '0x1', '0x2', '0x2', '0x1', '0x1', '0x1', '0x1', '0x1', '0x1', '0x1', '0x1']
 ```
