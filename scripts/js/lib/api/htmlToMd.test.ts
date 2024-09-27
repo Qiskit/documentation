@@ -280,6 +280,18 @@ test("preserve <span> with ids", async () => {
 `);
 });
 
+test("preserve ids of divs with class section", async () => {
+  expect(
+    await toMd(
+      `<div role="main"><div class="section" id="my-id"><p>Some text</p></div></div>`,
+    ),
+  ).toEqual(`<span id="my-id" />\n\nSome text\n`);
+  // The class `section` must be set.
+  expect(
+    await toMd(`<div role="main"><div id="my-id"><p>Some text</p></div></div>`),
+  ).toEqual(`Some text\n`);
+});
+
 test("merge contiguous <em> removing spaces", async () => {
   expect(
     await toMd(`

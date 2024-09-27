@@ -10,6 +10,8 @@ python_api_name: qiskit.providers
 
 <span id="qiskit-providers" />
 
+<span id="providers-interface-qiskit-providers" />
+
 # Providers Interface
 
 `qiskit.providers`
@@ -75,6 +77,8 @@ If you have a quantum device or simulator that you would like to integrate with 
 
 For a simple example of a provider, see the [qiskit-aqt-provider](https://github.com/Qiskit-Partners/qiskit-aqt-provider)
 
+<span id="id1" />
+
 ## Provider
 
 A provider class serves a single purpose: to get backend objects that enable executing circuits on a device or simulator. The expectation is that any required credentials and/or authentication will be handled in the initialization of a provider object. The provider object will then provide a list of backends, and methods to filter and acquire backends (using the provided credentials if required). An example provider class looks like:
@@ -100,6 +104,8 @@ class MyProvider(Provider):
 ```
 
 Ensure that any necessary information for authentication (if required) are present in the class and that the backends method matches the required interface. The rest is up to the specific provider on how to implement.
+
+<span id="id2" />
 
 ## Backend
 
@@ -271,6 +277,8 @@ def run(self, circuits. **kwargs):
     return MyJob(self. job_handle, job_json, circuit)
 ```
 
+<span id="id3" />
+
 ### Options
 
 There are often several options for a backend that control how a circuit is run. The typical example of this is something like the number of `shots` which is how many times the circuit is to be executed. The options available for a backend are defined using an [`Options`](qiskit.providers.Options "qiskit.providers.Options") object. This object is initially created by the `_default_options` method of a Backend class. The default options returns an initialized [`Options`](qiskit.providers.Options "qiskit.providers.Options") object with all the default values for all the options a backend supports. For example, if the backend supports only supports `shots` the `_default_options` method would look like:
@@ -288,6 +296,8 @@ self.options.set_validator("shots", (1, 4096))
 ```
 
 you can refer to the [`set_validator()`](qiskit.providers.Options#set_validator "qiskit.providers.Options.set_validator") documentation for a full list of validation options.
+
+<span id="id4" />
 
 ## Job
 
@@ -376,6 +386,8 @@ class MySyncJob(Job):
 
 # Migrating between Backend API Versions
 
+<span id="backendv1-backendv2" />
+
 ## BackendV1 -> BackendV2
 
 The [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") class re-defined user access for most properties of a backend to make them work with native Qiskit data structures and have flatter access patterns. However this means when using a provider that upgrades from [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") existing access patterns will need to be adjusted. It is expected for existing providers to deprecate the old access where possible to provide a graceful migration, but eventually users will need to adjust code. The biggest change to adapt to in [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") is that most of the information accesible about a backend is contained in its [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object and the backend’s attributes often query its [`target`](qiskit.providers.BackendV2#target "qiskit.providers.BackendV2.target") attribute to return information, however in many cases the attributes only provide a subset of information the target can contain. For example, `backend.coupling_map` returns a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") constructed from the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") accesible in the [`target`](qiskit.providers.BackendV2#target "qiskit.providers.BackendV2.target") attribute, however the target may contain instructions that operate on more than two qubits (which can’t be represented in a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) or has instructions that only operate on a subset of qubits (or two qubit links for a two qubit instruction) which won’t be detailed in the full coupling map returned by [`coupling_map`](qiskit.providers.BackendV2#coupling_map "qiskit.providers.BackendV2.coupling_map"). So depending on your use case it might be necessary to look deeper than just the equivalent access with [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
@@ -400,6 +412,8 @@ Below is a table of example access patterns in [`BackendV1`](qiskit.providers.Ba
 | `backend.properties().frequency(0)`                                    | `backend.qubit_properties(0).frequency`                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `backend.properties().readout_error(0)`                                | `backend.target["measure"][(0,)].error`                                | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the error rate for the [`Measure`](qiskit.circuit.Measure "qiskit.circuit.Measure") operation on a given qubit is used to model the readout error. However a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                               |
 | `backend.properties().readout_length(0)`                               | `backend.target["measure"][(0,)].duration`                             | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the duration for the [`Measure`](qiskit.circuit.Measure "qiskit.circuit.Measure") operation on a given qubit is used to model the readout length. However, a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                               |
+
+<span id="legacy-provider-interface-base-objects-qiskit-providers" />
 
 # Legacy Provider Interface Base Objects
 
