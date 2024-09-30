@@ -30,6 +30,8 @@ jobs:
         run: npm ci
       - name: Sync dev docs
         run: npx tsx scripts/js/commands/api/syncDevDocs.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Get all changed docs files
         id: changed-docs-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
