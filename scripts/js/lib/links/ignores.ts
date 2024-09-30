@@ -32,15 +32,16 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
   "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
   "https://support.google.com/accounts/answer/27441?hl",
-  "https://colab.research.google.com",
+  "https://colab.research.google.com/",
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
-  "https://code.visualstudio.com",
+  "https://code.visualstudio.com/",
   "https://doi.org/10.1002/qute.201800012",
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
+  "https://www.science.org/doi/10.1126/science.273.5278.1073",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
