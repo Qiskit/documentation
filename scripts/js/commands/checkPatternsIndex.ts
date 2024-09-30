@@ -14,12 +14,22 @@ import { readFile } from "fs/promises";
 
 import type { TocEntry } from "../lib/api/generateToc.js";
 
-const IGNORED_URLS: string[] = [
+// URLs that show up in the left ToC under the `Tools` section, but are not in
+// any of the INDEX_PAGES.
+const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/qiskit-code-assistant",
   "/guides/qiskit-code-assistant-jupyterlab",
   "/guides/qiskit-code-assistant-vscode",
   "/guides/addons",
-];
+]);
+
+// URLs that show up in the INDEX_PAGES, but are not in the left ToC under
+// the `Tools` section.
+//
+// Note that `checkOrphanPages.tsx` will validate these
+// pages do show up somewhere in the ToC, they only might be in a different
+// section than `Tools.`
+const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([]);
 
 const INDEX_PAGES = [
   "docs/guides/map-problem-to-circuits.mdx",
@@ -88,7 +98,7 @@ async function getToolsTocEntriesToCheck(): Promise<string[]> {
     (child: TocEntry) => child.title == "Tools",
   );
   const toolsPages = getTocSectionPageNames(toolsNode);
-  return toolsPages.filter((page) => !IGNORED_URLS.includes(page));
+  return toolsPages.filter((page) => !ALLOWLIST_MISSING_FROM_INDEX.has(page));
 }
 
 async function deduplicateEntries(
@@ -115,7 +125,10 @@ function getExtraIndexPagesErrors(
   toolsEntries: Set<string>,
 ): string[] {
   return [...indexEntries]
-    .filter((page) => !toolsEntries.has(page))
+    .filter(
+      (page) =>
+        !toolsEntries.has(page) && !ALLOWLIST_MISSING_FROM_TOC.has(page),
+    )
     .map(
       (page) =>
         `❌ ${indexPage}: The entry ${page} doesn't appear in the \`Tools\` menu.`,
