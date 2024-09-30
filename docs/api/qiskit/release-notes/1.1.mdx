@@ -777,7 +777,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
     ```python
     def get_backend(self, name=None, **kwargs):
-      backend = self.backends(name, **kwargs)
+      backends = self.backends(name, **kwargs)
       if len(backends) > 1:
           raise QiskitBackendNotFoundError("More than one backend matches the criteria")
       if not backends:
