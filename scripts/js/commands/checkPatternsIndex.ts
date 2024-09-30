@@ -19,6 +19,12 @@ const IGNORED_URLS: string[] = [
   "/guides/qiskit-code-assistant-jupyterlab",
   "/guides/qiskit-code-assistant-vscode",
   "/guides/addons",
+  "/guides/map-problem-to-circuits",
+  "/guides/optimize-for-hardware",
+  "/guides/execute-on-hardware",
+  "/guides/post-process-results",
+  "/guides/q-ctrl-optimization-solver",
+  "/guides/qunasys-quri-chemistry",
 ];
 
 const INDEX_PAGES = [
