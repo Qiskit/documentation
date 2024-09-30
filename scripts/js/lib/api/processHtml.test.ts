@@ -26,6 +26,7 @@ import {
   replaceViewcodeLinksWithGitHub,
   convertRubricsToHeaders,
   processMembersAndSetMeta,
+  handleFootnotes,
 } from "./processHtml.js";
 import { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -338,7 +339,7 @@ test("convertRubricsToHeaders()", () => {
     <p class="rubric">References</p>
     <p class="rubric">Reference</p>
     <p class="rubric">Simple examples</p>
-    <p class="rubric">Example code</p>
+    <p class="rubric" id="example-code">Example code</p>
     <p class="rubric">Attributes</p>
     <p class="rubric">Methods</p>`);
   convertRubricsToHeaders(doc.$, doc.$main);
@@ -347,9 +348,23 @@ test("convertRubricsToHeaders()", () => {
     <strong>References</strong>
     <strong>Reference</strong>
     <strong>Simple examples</strong>
-    <strong>Example code</strong>
+    <span id="example-code" class="target"></span><strong>Example code</strong>
     <h2>Attributes</h2>
     <h2>Methods</h2>`);
+});
+
+test("handleFootnotes()", () => {
+  const doc = CheerioDoc.load(`
+    <p>All values use <a class="footnote-reference brackets" href="#f1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> (big endian) for compatibility.</p>
+    <aside class="footnote-list brackets">
+    <aside class="footnote brackets" id="f1" role="doc-footnote">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
+  handleFootnotes(doc.$, doc.$main);
+  doc.expectHtml(`
+    <p>All values use <span id="id2" class="target"></span><a class="footnote-reference brackets" href="#f1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> (big endian) for compatibility.</p>
+    <aside class="footnote-list brackets">
+    <span id="f1" class="target"></span><aside class="footnote brackets" id="f1" role="doc-footnote">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
 });
 
 test.describe("maybeSetModuleMetadata()", () => {

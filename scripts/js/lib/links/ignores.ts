@@ -24,25 +24,28 @@ export const IGNORED_FILES = new Set([
 // Always ignored URLs - prefer to use more precise ignores
 // -----------------------------------------------------------------------------------
 
+// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
-  // StackOverflow rate limits us.
+  "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
+  "https://support.google.com/accounts/answer/27441?hl",
+  "https://colab.research.google.com/",
+  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://code.visualstudio.com/",
+  "https://doi.org/10.1002/qute.201800012",
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
-  "mailto:tellibm@us.ibm.com",
+  "https://www.science.org/doi/10.1126/science.273.5278.1073",
 ];
 
-const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
-  "mailto:qiskit_ibm@algorithmiq.fi",
-  "mailto:support@qedma.com",
-  "mailto:sales@qunasys.com",
-];
+// These external URLs cause actual 404s and should probably be fixed.
+const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
@@ -70,61 +73,46 @@ function mergeFilesToIgnores(...mappings: FilesToIgnores[]): FilesToIgnores {
   return result;
 }
 
-const _QISKIT_QPY_IGNORES = Object.fromEntries(
-  ["", "dev/", "0.46/", "1.0/", "1.1/", "1.2/"].map((vers) => [
-    `docs/api/qiskit/${vers}qpy.mdx`,
-    [
-      "#f1",
-      "#f2",
-      "#f3",
-      "#id2",
-      "#id3",
-      "#id4",
-      "#id5",
-      "#id6",
-      "#id7",
-      "#id8",
-    ],
-  ]),
-);
-
-const _RUNTIME_OBJECT_INV = Object.fromEntries(
-  [
-    "",
-    "dev/",
-    "0.16/",
-    "0.17/",
-    "0.18/",
-    "0.19/",
-    "0.20/",
-    "0.21/",
-    "0.22/",
-    "0.23/",
-    "0.24/",
-    "0.25/",
-    "0.26/",
-    "0.27/",
-    "0.28/",
-    "0.29/",
-    "0.29/",
-    "0.30/",
-    "0.31/",
-    "0.32/",
-  ].map((vers) => [
-    `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
-    [
-      `/api/qiskit-ibm-runtime/${vers}qiskit_ibm_runtime.RuntimeEncoder#key_separator`,
-      `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-      `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
-    ],
-  ]),
-);
+function _runtimeObjectsInv(): FilesToIgnores {
+  const legacy = Object.fromEntries(
+    ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
+      (vers) => [
+        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        [
+          `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
+          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+        ],
+      ],
+    ),
+  );
+  const legacy2 = Object.fromEntries(
+    ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
+      (vers) => [
+        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        [
+          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+        ],
+      ],
+    ),
+  );
+  const latest = Object.fromEntries(
+    ["", "dev/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
+      (vers) => [
+        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        [
+          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
+        ],
+      ],
+    ),
+  );
+  return { ...legacy, ...legacy2, ...latest };
+}
 
 function _qiskitUtilsData(): FilesToIgnores {
   // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
-    ["1.0/", "1.1/"].map((vers) => [
+    ["0.45/", "1.0/", "1.1/"].map((vers) => [
       `public/api/qiskit/${vers}objects.inv`,
       [
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
@@ -164,8 +152,20 @@ function _qiskitUtilsData(): FilesToIgnores {
     ]),
   );
   const utilsFile = Object.fromEntries(
-    ["1.0/", "1.1/"].map((vers) => [
-      `docs/api/qiskit/${vers}utils.mdx`,
+    [
+      "0.37",
+      "0.38",
+      "0.39",
+      "0.40",
+      "0.41",
+      "0.42",
+      "0.43",
+      "0.44",
+      "0.45",
+      "1.0",
+      "1.1",
+    ].map((vers) => [
+      `docs/api/qiskit/${vers}/utils.mdx`,
       [
         "#qiskit.utils.optionals.HAS_TESTTOOLS",
         "#qiskit.utils.optionals.HAS_GRAPHVIZ",
@@ -186,7 +186,7 @@ function _patternsReorg(): FilesToIgnores {
   // We have redirects for all these files. It's best to update API docs to point directly to the new URL,
   // but we don't bother updating old docs.
   const qiskit = Object.fromEntries(
-    ["", "0.46/", "1.0/", "1.1/"].flatMap((vers) => [
+    ["", "0.45/", "0.46/", "1.0/", "1.1/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
         ["/build/circuit-construction"],
@@ -262,39 +262,51 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
-const _QISKIT_OBJECT_INV = Object.fromEntries(
-  ["", "dev/", "0.46/", "1.0/", "1.1/"].map((vers) => [
-    `public/api/qiskit/${vers}objects.inv`,
-    [
-      `/api/qiskit/${vers}qiskit.visualization.timeline_drawer#style-dict-doc`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-constraints`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-envelope`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-eval-condition`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-serialize`,
-      `/api/qiskit/${vers}qiskit.pulse.library.SymbolicPulse#symbolic-pulse-validation`,
-    ],
-  ]),
-);
+function _legacyQiskitSDKIssues(): FilesToIgnores {
+  // These are all issues due to quirks in our old docs. They
+  // are all safe to ignore and not worth the effort to fix.
+
+  // The module page is missing the expected anchor, even in the original Sphinx. However,
+  // the page is small enough that the link to the transpile function is easy to access.
+  const transpileAnchor = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42", "43"].map((vers) => [
+      `docs/api/qiskit/0.${vers}/qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager.mdx`,
+      ["compiler#qiskit.compiler.transpile"],
+    ]),
+  );
+  // The capitalization of the anchor link changes between the class page and the referring
+  // page, and it's inconsistent in the original Sphinx. However, it doesn't matter
+  // because the anchor is at the top of the page anyways.
+  const pulseLibraryAnchorCapitalization = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42"].flatMap((vers) => [
+      [
+        `docs/api/qiskit/0.${vers}/qiskit.pulse.library.gaussian_square.mdx`,
+        ["qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian"],
+      ],
+      [
+        `docs/api/qiskit/0.${vers}/pulse.mdx`,
+        [
+          "qiskit.pulse.library.constant#qiskit.pulse.library.constant",
+          "qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian",
+          "qiskit.pulse.library.drag#qiskit.pulse.library.drag",
+        ],
+      ],
+    ]),
+  );
+  return {
+    ...transpileAnchor,
+    ...pulseLibraryAnchorCapitalization,
+  };
+}
 
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
-  {
-    "docs/api/qiskit/0.46/qiskit.algorithms.optimizers.NFT.mdx": [
-      "#id1",
-      "#id2",
-    ],
-    "docs/api/qiskit/release-notes/0.46.mdx": [
-      "/api/qiskit-ibm-provider/ibm_jupyter",
-    ],
-  },
+  _runtimeObjectsInv(),
+  _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
-  _QISKIT_QPY_IGNORES,
-  _RUNTIME_OBJECT_INV,
-  _QISKIT_OBJECT_INV,
-);
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
