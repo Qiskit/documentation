@@ -14,8 +14,6 @@ python_api_name: qiskit.qasm3
 
 # OpenQASM 3
 
-<span id="module-qiskit.qasm3" />
-
 `qiskit.qasm3`
 
 Qiskit provides some tools for converting between [OpenQASM 3](https://openqasm.com) representations of quantum programs, and the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class. These will continue to evolve as Qiskit’s support for the dynamic-circuit capabilities expressed by OpenQASM 3 increases.
@@ -59,12 +57,18 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
 ### Exporter
 
-<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm3/exporter.py#L128-L197" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)" modifiers="class">
+<Class id="qiskit.qasm3.Exporter" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm3/exporter.py#L128-L204" signature="qiskit.qasm3.Exporter(includes=('stdgates.inc', ), basis_gates=('U', ), disable_constants=False, alias_classical_registers=None, allow_aliasing=None, indent='  ', experimental=ExperimentalFeatures.None)" modifiers="class">
   QASM3 exporter main class.
 
   **Parameters**
 
-  *   **includes** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
+  *   **includes** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) –
+
+      the filenames that should be emitted as includes.
+
+        <Admonition title="Note" type="note">
+          At present, only the standard-library file `stdgates.inc` is properly understood by the exporter, in the sense that it knows the gates it defines. You can specify other includes, but you will need to pass the names of the gates they define in the `basis_gates` argument to avoid the exporter outputting a separate `gate` definition.
+        </Admonition>
 
   *   **basis\_gates** (*Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
 
@@ -92,13 +96,13 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
   #### dump
 
-  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm3/exporter.py#L185-L197" signature="dump(circuit, stream)">
+  <Function id="qiskit.qasm3.Exporter.dump" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm3/exporter.py#L192-L204" signature="dump(circuit, stream)">
     Convert the circuit to OpenQASM 3, dumping the result to a file or text stream.
   </Function>
 
   #### dumps
 
-  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm3/exporter.py#L179-L183" signature="dumps(circuit)">
+  <Function id="qiskit.qasm3.Exporter.dumps" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qasm3/exporter.py#L186-L190" signature="dumps(circuit)">
     Convert the circuit to OpenQASM 3, returning the result as a string.
   </Function>
 </Class>

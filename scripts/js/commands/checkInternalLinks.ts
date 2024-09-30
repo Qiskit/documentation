@@ -62,7 +62,7 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description:
-        "Also check historical releases that are known to still fail (currently Qiskit <0.46). " +
+        "Also check historical releases that are known to still fail (currently Qiskit <0.43). " +
         "Intended to be used alongside `--historical-apis`.",
     })
     .option("qiskit-legacy-release-notes", {
@@ -113,6 +113,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/migration-guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
+  "docs/guides/bit-ordering.mdx",
   "docs/guides/pulse.ipynb",
   "docs/guides/configure-qiskit-local.mdx",
 ];
@@ -147,9 +148,9 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     {
       check: args.historicalApis,
       hasSeparateReleaseNotes: true,
-      // Qiskit docs are broken on <0.46.
+      // Qiskit docs are broken on <0.43.
       skipVersions: (version) =>
-        !args.includeBrokenHistorical && +version < 0.46,
+        !args.includeBrokenHistorical && +version < 0.43,
     },
   );
 
@@ -194,6 +195,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.21/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
     "docs/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions.mdx",
     "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session.mdx",
   ];
 
   if (args.currentApis) {
