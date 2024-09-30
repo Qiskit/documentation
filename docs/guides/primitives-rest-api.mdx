@@ -552,7 +552,7 @@ url = 'https://api.quantum-computing.ibm.com/runtime/jobs'
 headers = {
     'Content-Type': 'application/json',
     '"Authorization": f"Bearer xxxxxxx",
-    'x-qx-client-application': 'qiskit-version-2/0.39.2/'+'your_application' # specifying the application you might be running from. For an actual Integration project, this option is invaluable to know where jobs are coming from. At this time the "qiskit-version-2/0.39.2/" string is a necessary prefix.
+    'x-qx-client-application': 'qiskit-version-2/<version>/'+'<your_application>' # This is set by the client making the request. You can use it to include information such as the package version used.  For an integration project, this option is helpful in understanding where jobs are coming from.  The prefix 'qiskit-version-2/<version>/' is required.
 }
 
 job_input = {
