@@ -553,7 +553,8 @@ headers = {
     'Content-Type': 'application/json',
     '"Authorization": f"Bearer xxxxxxx",
     'x-qx-client-application': 'qiskit-version-2/0.39.2/'+'your_application' # specifying the application you might be running from. For an actual Integration project, this option is invaluable to know where jobs are coming from. At this time the "qiskit-version-2/0.39.2/" string is a necessary prefix.
-    }
+}
+
 job_input = {
     'program_id': 'sampler',
     "backend": backend,
@@ -572,7 +573,7 @@ response = requests.post(url, headers=headers, json=job_input)
 
 if response.status_code == 200:
     job_id = response.json().get('id')
-    print("Job created:",response.text)
+    print(f"Job created: {response.text}")
 else:
     print(f"Error: {response.status_code}")
 ```
@@ -587,7 +588,7 @@ print(response.text)
 Next, pass the `job_id` to the API:
 
 ```python
-response_status_singlejob= requests.get(url+'/'+job_id, headers=headers)
+response_status_singlejob = requests.get(f"{url}/{job_id}", headers=headers)
 response_status_singlejob.json().get('state')
 ```
 
@@ -600,7 +601,7 @@ Output
 Get job results:
 
 ```python
-response_result= requests.get(url+'/'+job_id+'/results', headers=headers)
+response_result = requests.get(f"{url}/{job_id}/results", headers=headers)
 
 res_dict=response_result.json()
 
