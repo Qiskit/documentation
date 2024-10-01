@@ -23,21 +23,15 @@ $$
 
   For 4 qubits, the circuit that implements this transformation is:
 
-  ([Source code](qiskit-circuit-library-QFT-1.py), [png](qiskit-circuit-library-QFT-1.png), [hires.png](qiskit-circuit-library-QFT-1.hires.png), [pdf](qiskit-circuit-library-QFT-1.pdf))
-
   ![../\_images/qiskit-circuit-library-QFT-1.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-1.png)
 
   The inverse QFT can be obtained by calling the `inverse` method on this class. The respective circuit diagram is:
-
-  ([Source code](qiskit-circuit-library-QFT-2.py), [png](qiskit-circuit-library-QFT-2.png), [hires.png](qiskit-circuit-library-QFT-2.hires.png), [pdf](qiskit-circuit-library-QFT-2.pdf))
 
   ![../\_images/qiskit-circuit-library-QFT-2.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-2.png)
 
   One method to reduce circuit depth is to implement the QFT approximately by ignoring controlled-phase rotations where the angle is beneath a threshold. This is discussed in more detail in [https://arxiv.org/abs/quant-ph/9601018](https://arxiv.org/abs/quant-ph/9601018) or [https://arxiv.org/abs/quant-ph/0403071](https://arxiv.org/abs/quant-ph/0403071).
 
   Here, this can be adjusted using the `approximation_degree` attribute: the smallest `approximation_degree` rotation angles are dropped from the QFT. For instance, a QFT on 5 qubits with approximation degree 2 yields (the barriers are dropped in this example):
-
-  ([Source code](qiskit-circuit-library-QFT-3.py), [png](qiskit-circuit-library-QFT-3.png), [hires.png](qiskit-circuit-library-QFT-3.hires.png), [pdf](qiskit-circuit-library-QFT-3.pdf))
 
   ![../\_images/qiskit-circuit-library-QFT-3.png](/images/api/qiskit/0.40/qiskit-circuit-library-QFT-3.png)
 
