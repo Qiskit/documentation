@@ -353,7 +353,7 @@ async def _main() -> None:
 
     if paths and args.is_fork:
         print(
-            "We can't run notebook tests on pull requests from forks becaus of how GitHub Secrets work."
+            "⛔️ We can't run notebook tests on pull requests from forks becaus of how GitHub Secrets work."
             "\n\n"
             "If you have write access to Qiskit/documentation, push to a new "
             "branch there and make your pull request from that branch instead."
@@ -364,7 +364,6 @@ async def _main() -> None:
             "When this PR is approved, a maintainer will merge it to a new "
             "branch in Qiskit/documentation, then make a PR from that branch "
             "into main so it can pass CI.",
-            file=sys.stderr,
         )
         sys.exit(1)
 
