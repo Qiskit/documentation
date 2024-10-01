@@ -20,18 +20,23 @@ import { mkdirp } from "mkdirp";
 
 import { pathExists } from "../fs.js";
 import { Pkg } from "./Pkg.js";
+import { getHeaders } from "../links/ExternalLink.js";
 
 async function downloadFromBox(
   pkgName: string,
   artifactUrl: string,
   destination: string,
 ) {
-  const response = await fetch(artifactUrl);
+  const response = await fetch(artifactUrl, {
+    headers: getHeaders(artifactUrl),
+  });
   if (response.ok) {
     const stream = createWriteStream(destination);
     await finished(Readable.fromWeb(response.body as any).pipe(stream));
   } else {
-    throw new Error(`Error downloading the ${pkgName} artifact from Box.`);
+    throw new Error(
+      `Error downloading the ${pkgName} artifact: ${response.status}, ${response.statusText}`,
+    );
   }
 }
 

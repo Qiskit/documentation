@@ -437,13 +437,17 @@ Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on M
 
 ## How to add a new page
 
-Choose which existing folder from `docs/` your new page belongs to.
+Choose which existing folder from `docs/` your new page belongs to (probably `guides`).
 
 Next, choose the file name. The file name will determine the URL. For example, `start/my-new-page.mdx` results in the URL `start/my-new-page`. Choose a file name that will be stable over the page's lifespan and that is unlikely to clash with other topics. Use `-` rather than `_` as the delimiter. You can also ask for help choosing a name in the GitHub issue or pull request.
 
 If your file will have non-trivial code in it, please create a Jupyter notebook ending in `.ipynb`, rather than an MDX file. We prefer Jupyter notebooks when there is code because we have tests to make sure that the code still executes properly, whereas MDX is not tested.
 
-Finally, add the file to the folder's `_toc.json`, such as `guides/_toc.json`. The `title` is what will show up in the left side bar. Note that the `url` leaves off the file extension.
+Add the file to these places:
+
+- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension.
+- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the IGNORED_URLS section. For example, `"/guides/qiskit-code-assistant"`.
+- qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
 
 ## Page metadata
 

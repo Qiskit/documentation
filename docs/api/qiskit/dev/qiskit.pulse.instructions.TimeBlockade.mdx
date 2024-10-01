@@ -8,7 +8,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
 # TimeBlockade
 
-<Class id="qiskit.pulse.instructions.TimeBlockade" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/directives.py#L61-L146" signature="qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)" modifiers="class">
+<Class id="qiskit.pulse.instructions.TimeBlockade" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/directives.py#L61-L151" signature="qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)" modifiers="class">
   Bases: `Directive`
 
   Pulse `TimeBlockade` directive.
@@ -20,6 +20,8 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
   This schedule plays constant pulse at t0 = 120.
 
   ```python
+  from qiskit.pulse import Schedule, Play, Constant, DriveChannel
+
   schedule = Schedule()
   schedule.insert(120, Play(Constant(10, 0.1), DriveChannel(0)))
   ```
@@ -27,6 +29,9 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
   This schedule block is expected to be identical to above at a time of execution.
 
   ```python
+  from qiskit.pulse import ScheduleBlock, Play, Constant, DriveChannel
+  from qiskit.pulse.instructions import TimeBlockade
+
   block = ScheduleBlock()
   block.append(TimeBlockade(120, DriveChannel(0)))
   block.append(Play(Constant(10, 0.1), DriveChannel(0)))

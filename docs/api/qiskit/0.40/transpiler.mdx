@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler
 
 <span id="qiskit-transpiler" />
 
-# Transpiler
+<span id="transpiler-qiskit-transpiler" />
 
-<span id="module-qiskit.transpiler" />
+# Transpiler
 
 `qiskit.transpiler`
 
@@ -292,8 +292,6 @@ target.add_instruction(
 target.build_coupling_map().draw()
 ```
 
-([Source code](transpiler-1.py))
-
 This shows the global connectivity of the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") which is the combination of the supported qubits for [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") and [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"). To see the individual connectivity, you can pass the operation name to `CouplingMap.build_coupling_map()`:
 
 ```python
@@ -350,8 +348,6 @@ target.add_instruction(
 target.build_coupling_map('cx').draw()
 ```
 
-([Source code](transpiler-2.py))
-
 ```python
 from qiskit.circuit import Parameter, Measure
 from qiskit.transpiler import Target, InstructionProperties
@@ -406,8 +402,6 @@ target.add_instruction(
 target.build_coupling_map('cz').draw()
 ```
 
-([Source code](transpiler-3.py))
-
 <span id="transpiler-stage-descriptions" />
 
 ## Transpiler Stage Details
@@ -439,8 +433,6 @@ qc.measure([0], [0])
 qc.draw(output='mpl')
 ```
 
-([Source code](transpiler-4.py), [png](transpiler-4.png), [hires.png](transpiler-4.hires.png), [pdf](transpiler-4.pdf))
-
 ![../\_images/transpiler-4.png](/images/api/qiskit/0.40/transpiler-4.png)
 
 We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. This translation is taken care of for us in the `qiskit.execute()` function. However, we can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`FakeVigoV2`](qiskit.providers.fake_provider.FakeVigoV2 "qiskit.providers.fake_provider.FakeVigoV2") backend is a fake backend that models the historical IBM Vigo 5 qubit device for test purposes):
@@ -463,8 +455,6 @@ qc.measure([0], [0])
 qc_basis = transpile(qc, backend)
 qc_basis.draw(output='mpl')
 ```
-
-([Source code](transpiler-5.py), [png](transpiler-5.png), [hires.png](transpiler-5.hires.png), [pdf](transpiler-5.pdf))
 
 ![../\_images/transpiler-5.png](/images/api/qiskit/0.40/transpiler-5.png)
 
@@ -507,8 +497,6 @@ It is important to highlight two special cases:
     ccx_circ.decompose().draw(output='mpl')
     ```
 
-    ([Source code](transpiler-6.py), [png](transpiler-6.png), [hires.png](transpiler-6.hires.png), [pdf](transpiler-6.pdf))
-
     ![../\_images/transpiler-6.png](/images/api/qiskit/0.40/transpiler-6.png)
 
     For every Toffoli gate in a quantum circuit, the hardware may execute up to six CNOT gates, and a handful of single-qubit gates. From this example, it should be clear that any algorithm that makes use of multiple Toffoli gates will end up as a circuit with large depth and will therefore be appreciably affected by noise and gate errors.
@@ -548,8 +536,6 @@ ghz.measure(range(3), range(3))
 ghz.draw(output='mpl')
 ```
 
-([Source code](transpiler-7.py), [png](transpiler-7.png), [hires.png](transpiler-7.hires.png), [pdf](transpiler-7.pdf))
-
 ![../\_images/transpiler-7.png](/images/api/qiskit/0.40/transpiler-7.png)
 
 *   **Layout Using Optimization Level 0**
@@ -570,8 +556,6 @@ ghz.draw(output='mpl')
     > plot_circuit_layout(new_circ_lv0, backend)
     > ```
     >
-    > ([Source code](transpiler-8.py), [png](transpiler-8.png), [hires.png](transpiler-8.hires.png), [pdf](transpiler-8.pdf))
-    >
     > ![../\_images/transpiler-8.png](/images/api/qiskit/0.40/transpiler-8.png)
 
 *   **Layout Using Optimization Level 3**
@@ -591,8 +575,6 @@ ghz.draw(output='mpl')
     > new_circ_lv3 = transpile(ghz, backend=backend, optimization_level=3)
     > plot_circuit_layout(new_circ_lv3, backend)
     > ```
-    >
-    > ([Source code](transpiler-9.py), [png](transpiler-9.png), [hires.png](transpiler-9.hires.png), [pdf](transpiler-9.pdf))
     >
     > ![../\_images/transpiler-9.png](/images/api/qiskit/0.40/transpiler-9.png)
 
@@ -619,8 +601,6 @@ my_ghz = transpile(ghz, backend, initial_layout=[3, 4, 2])
 plot_circuit_layout(my_ghz, backend)
 ```
 
-([Source code](transpiler-10.py), [png](transpiler-10.png), [hires.png](transpiler-10.hires.png), [pdf](transpiler-10.pdf))
-
 ![../\_images/transpiler-10.png](/images/api/qiskit/0.40/transpiler-10.png)
 
 <span id="id4" />
@@ -632,8 +612,6 @@ In order to implement a 2-qubit gate between qubits in a quantum circuit that ar
 However, as with many important things in life, finding the optimal swap mapping is hard. In fact it is in a class of problems called NP-hard, and is thus prohibitively expensive to compute for all but the smallest quantum devices and input circuits. To get around this, by default Qiskit uses a stochastic heuristic algorithm called [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") to compute a good, but not necessarily optimal swap mapping. The use of a stochastic method means the circuits generated by [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") (or [`execute()`](execute#qiskit.execute_function.execute "qiskit.execute_function.execute") that calls [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") internally) are not guaranteed to be the same over repeated runs. Indeed, running the same circuit repeatedly will in general result in a distribution of circuit depths and gate counts at the output.
 
 In order to highlight this, we run a GHZ circuit 100 times, using a “bad” (disconnected) initial\_layout:
-
-([Source code](transpiler-11.py), [png](transpiler-11.png), [hires.png](transpiler-11.hires.png), [pdf](transpiler-11.pdf))
 
 ![../\_images/transpiler-11.png](/images/api/qiskit/0.40/transpiler-11.png)
 
@@ -663,8 +641,6 @@ plt.xlabel('Depth', fontsize=14)
 plt.ylabel('Counts', fontsize=14);
 ```
 
-([Source code](transpiler-12.py), [png](transpiler-12.png), [hires.png](transpiler-12.hires.png), [pdf](transpiler-12.pdf))
-
 ![../\_images/transpiler-12.png](/images/api/qiskit/0.40/transpiler-12.png)
 
 This distribution is quite wide, signaling the difficulty the swap mapper is having in computing the best mapping. Most circuits will have a distribution of depths, perhaps not as wide as this one, due to the stochastic nature of the default swap mapper. Of course, we want the best circuit we can get, especially in cases where the depth is critical to success or failure. The [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") pass will by default by run its algorithm in parallel with multiple seed values and select the output which uses the fewest swaps. If you would like to increase the number of trials [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") runs you can refer to [Working with Preset Pass Managers](#working-with-preset-pass-managers) and modify the `routing` stage with a custom instance of [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") with a larger value for the `trials` argument.
@@ -680,8 +656,6 @@ Decomposing quantum circuits into the basis gate set of the target device, and t
 <Admonition title="Important" type="danger">
   The output from [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") varies due to the stochastic swap mapper. So the numbers below will likely change each time you run the code.
 </Admonition>
-
-([Source code](transpiler-13.py), [png](transpiler-13.png), [hires.png](transpiler-13.hires.png), [pdf](transpiler-13.pdf))
 
 ![../\_images/transpiler-13.png](/images/api/qiskit/0.40/transpiler-13.png)
 
@@ -719,8 +693,6 @@ fig.tight_layout()
 plt.show()
 ```
 
-([Source code](transpiler-14.py), [png](transpiler-14.png), [hires.png](transpiler-14.hires.png), [pdf](transpiler-14.pdf))
-
 ![../\_images/transpiler-14.png](/images/api/qiskit/0.40/transpiler-14.png)
 
 <span id="id6" />
@@ -728,8 +700,6 @@ plt.show()
 ### Scheduling Stage
 
 After the circuit has been translated to the target basis, mapped to the device, and optimized, a scheduling phase can be applied to optionally account for all the idle time in the circuit. At a high level the scheduling can be thought of as inserting delays into the circuit to account for idle time on the qubits between the execution of instructions. For example, if we start with a circuit such as:
-
-([Source code](transpiler-15.py), [png](transpiler-15.png), [hires.png](transpiler-15.hires.png), [pdf](transpiler-15.pdf))
 
 ![../\_images/transpiler-15.png](/images/api/qiskit/0.40/transpiler-15.png)
 
@@ -749,13 +719,9 @@ circ = transpile(ghz, backend, scheduling_method="asap")
 circ.draw(output='mpl')
 ```
 
-([Source code](transpiler-16.py), [png](transpiler-16.png), [hires.png](transpiler-16.hires.png), [pdf](transpiler-16.pdf))
-
 ![../\_images/transpiler-16.png](/images/api/qiskit/0.40/transpiler-16.png)
 
 You can see here that the transpiler inserted [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") instructions to account for idle time on each qubit. To get a better idea of the timing of the circuit we can also look at it with the `timeline.draw()` function:
-
-([Source code](transpiler-17.py), [png](transpiler-17.png), [hires.png](transpiler-17.hires.png), [pdf](transpiler-17.pdf))
 
 ![../\_images/transpiler-17.png](/images/api/qiskit/0.40/transpiler-17.png)
 

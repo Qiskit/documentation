@@ -67,13 +67,14 @@ export async function processHtml(options: {
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
+  handleFootnotes($, $main);
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta);
   maybeSetModuleMetadata($, $main, meta);
   if (meta.apiType === "module") {
-    updateModuleHeadings($, $main, meta);
+    updateModuleHeadings($, $main);
   }
   return { html: $main.html()!, meta, images, isReleaseNotes };
 }
@@ -273,6 +274,19 @@ export function removeColonSpans($main: Cheerio<any>): void {
   $main.find(".colon").remove();
 }
 
+export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
+  $main
+    .find(".footnote, .footnote-reference, .footnote dt.label")
+    .toArray()
+    .forEach((footnote) => {
+      const $footnote = $(footnote);
+      const id = $footnote.attr("id");
+      if (id) {
+        $footnote.before(`<span id="${id}" class="target"></span>`);
+      }
+    });
+}
+
 export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
@@ -368,11 +382,7 @@ export function preserveMathBlockWhitespace(
     });
 }
 
-export function updateModuleHeadings(
-  $: CheerioAPI,
-  $main: Cheerio<any>,
-  meta: Metadata,
-): void {
+export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
   $main
     .find("h1,h2")
     .toArray()
@@ -386,7 +396,7 @@ export function updateModuleHeadings(
       title = title.replace("()", "");
       let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
       if (signature.trim().length > 0) {
-        replacement += `<span class="target" id="module-${meta.apiName}" /><p><code>${signature}</code></p>`;
+        replacement += `<p><code>${signature}</code></p>`;
       }
       $el.replaceWith(replacement);
     });
