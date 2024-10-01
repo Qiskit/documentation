@@ -1,0 +1,44 @@
+---
+title: Job limits
+description: Job limits imposed by the job validation service for jobs sent to IBM QPUs.
+
+---
+# Job limits
+
+When you send a job to an IBM&reg; QPU, it is first sent to the job validation service.  This service tries to ensure that the job will be able to run on the QPU so you don't have to wait for it to go through the queue and then have the job fail.  These checks include enforcing the described limits.
+
+<Admonition type="note">
+Certain primitive options increase the circuit size.  The described limits are checked _after_ the expected increase in circuit size. In particular, these options increase circuit size:
+  - Dynamical decoupling introduces additional 1-qubit gates that are included in the instructions for the [Maximum number of low-level instructions per qubit](#per-qubit) limit.
+  - Gate-folding ZNE introduces additional 2-qubit gates relevant to the [Maximum number of 2-qubit gates per job](#2-cubit-limit) limit. The number of 2-qubit gates is multiplied by the largest noise factor requested in gate-folding ZNE.
+</Admonition>
+
+<span id="max-shots"></span>
+## Maximum executions
+
+At most **5 million** executions are allowed.  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
+
+For example, if you have a PUB with 1 circuit, observables with shape (1, 6), and parameters with shape (4, 1), this would render 4 * 6 = 24 circuits (or fewer, if the observables are commutable). If you requested 2,000 shots, then total number of executions is 24 * 2,000 = 48,000.
+
+<span id="per-qubit"></span>
+## Maximum number of low-level instructions per qubit
+
+The system permits up to **32 million instructions per qubit**. This ensures that the user circuits fit within the control system's instruction memory.  The following table describes how the system translates instruction set architecture (ISA) circuit instructions to control system instructions when calculating this limit.
+
+| Instruction | Count |
+|:-----------:|:-----:|
+| `rz`          | 1     |
+| `delay`       | 1     |
+| `sx`          | 2     |
+| `x`           | 2     |
+| `cx`          | 5     |
+| `cz`          | 5     |
+| `ecr`         | 5     |
+| `measure`     | 10    |
+| `reset`       | 17    |
+| `init`        | 50    |
+
+<span id="2-qubit-limit"></span>
+## Maximum number of 2-qubit gates per job
+
+This ensures that the job can be manipulated within the memory limits of the low-level software stack. The actual limit depends on the options selected in the Sampler or Estimator query. However, the 2-qubit gate limit per job lower bound is **10,000 2-qubit gates**. That is, if a job has fewer than 10,000 2-qubit gates, it typically passes validation. Some jobs might allow more, and the service will calculate the limit allowed for the user-selected options and communicate that in the validation error message.
