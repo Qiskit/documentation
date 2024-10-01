@@ -59,7 +59,7 @@ jobs:
           separator: "\n"
 
       - name: Pull preview image
-        if: steps.changed-docs-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.any_changed == 'true'
         run: ./start --pull-only
       - name: Start local Docker preview
         if: steps.all-changed-files.outputs.any_changed == 'true'
