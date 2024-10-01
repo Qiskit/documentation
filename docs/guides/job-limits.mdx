@@ -18,12 +18,12 @@ Certain primitive options increase the circuit size.  The described limits are c
 
 At most, **5 million** executions are allowed.  The number of executions is the number of circuits times the number of shots, where the circuits are those generated after PUB elements are broadcasted.
 
-For example, if you have a PUB with one circuit, observables with shape (1, 6), and parameters with shape (4, 1), this would render $4 * 6 = 24$ circuits (or fewer, if the observables are commutable). If you requested 2,000 shots, then the total number of executions is $24 * 2,000 = 48,000$.
+For example, if you have a PUB with one circuit, observables with shape (1, 6), and parameters with shape (4, 1), this would render $4 * 6 = 24$ circuits (or fewer, if some observables commute). If you requested 2,000 shots, then the total number of executions is $24 * 2,000 = 48,000$.
 
 <span id="per-qubit"></span>
 ## Maximum number of low-level instructions per qubit
 
-The service permits up to **32 million instructions per qubit**. This ensures that the user circuits fit within the control system's instruction memory.  The following table describes how the system translates instruction set architecture (ISA) circuit instructions to control system instructions when calculating this limit.
+The service permits up to **32 million control-system instructions per qubit**. This ensures that the user circuits fit within the control system's instruction memory.  The following table describes how the system translates instruction set architecture (ISA) circuit instructions to control system instructions when calculating this limit.
 
 | Instruction | Count |
 |:-----------:|:-----:|
@@ -41,4 +41,4 @@ The service permits up to **32 million instructions per qubit**. This ensures th
 <span id="2-qubit-limit"></span>
 ## Maximum number of two-qubit gates per job
 
-This ensures that the job can be manipulated within the memory limits of the low-level software stack. The actual limit depends on the options selected in the Sampler or Estimator query. However, the two-qubit gate limit per job lower bound is **10,000 two-qubit gates**. That is, if a job has fewer than 10,000 two-qubit gates, it typically passes validation. Some jobs might allow more, and the service will calculate the limit allowed for the user-selected options and communicate that in the validation error message.
+This ensures that the job can be manipulated within the memory limits of the low-level software stack. The precise limit depends on the options selected in the Sampler or Estimator query. However, if a job has fewer than 10,000 two-qubit gates, it will pass validation. Some options might allow more, and the service will calculate the limit allowed for the user-selected options and communicate that should your job be rejected in validation.
