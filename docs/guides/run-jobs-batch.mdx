@@ -104,7 +104,7 @@ batch.close()
 
 There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching. The following example shows how you can partition a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
- ```python
+```python
  from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
 
  max_circuits = 100
@@ -119,7 +119,7 @@ There are multiple ways you can reconfigure your jobs to take advantage of the p
      for partitioned_circuits in all_partitioned_circuits:
          job = sampler.run(partitioned_circuits)
          jobs.append(job)
- ```
+```
 
 
 <Admonition type="caution">
@@ -149,4 +149,5 @@ with Batch(backend=backend) as batch:
 <Admonition type="tip" title="Recommendations">
   - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial.
   - Review the [Batch API](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Batch) reference.
+  - Understand the [Job limits](/guides/job-limits) when sending a job to an IBM&reg; QPU.
 </Admonition>
