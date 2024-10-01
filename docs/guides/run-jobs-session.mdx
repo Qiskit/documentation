@@ -31,6 +31,10 @@ service = QiskitRuntimeService()
 You can open a runtime session by using the context manager `with Session(...)` or by initializing the `Session`
 class. When you start a session,  you must specify a QPU by passing a `backend` object. The session starts when its first job begins execution.
 
+<Admonition type="note">
+If you open a session but do not submit any jobs to it for 30 minutes, the session will automatically close.
+</Admonition>
+
 
 **Session class**
 
