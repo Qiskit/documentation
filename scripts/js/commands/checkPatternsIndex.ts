@@ -29,7 +29,14 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
 // Note that `checkOrphanPages.tsx` will validate these
 // pages do show up somewhere in the ToC, they only might be in a different
 // section than `Tools.`
-const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([]);
+const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
+  "/guides/map-problem-to-circuits",
+  "/guides/optimize-for-hardware",
+  "/guides/execute-on-hardware",
+  "/guides/post-process-results",
+  "/guides/q-ctrl-optimization-solver",
+  "/guides/qunasys-quri-chemistry",
+]);
 
 const INDEX_PAGES = [
   "docs/guides/map-problem-to-circuits.mdx",
