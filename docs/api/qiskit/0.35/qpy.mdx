@@ -10,9 +10,9 @@ python_api_name: qiskit.qpy
 
 <span id="qiskit-qpy" />
 
-# QPY serialization
+<span id="qpy-serialization-qiskit-qpy" />
 
-<span id="module-qiskit.qpy" />
+# QPY serialization
 
 `qiskit.qpy`
 
@@ -129,6 +129,8 @@ followed by `size` elements that are INSTRUCTION\_PARAM payloads, where each of 
 
 Version 3 of the QPY format is identical to [Version 2](#qpy-version-2) except that it defines a struct format to represent a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") natively in QPY. To accomplish this the [CUSTOM\_DEFINITIONS](#qpy-custom-definition) struct now supports a new type value `'p'` to represent a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"). Enties in the custom instructions tables have unique name generated that start with the string `"###PauliEvolutionGate_"` followed by a uuid string. This gate name is reservered in QPY and if you have a custom [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") object with a definition set and that name prefix it will error. If it’s of type `'p'` the data payload is defined as follows:
 
+<span id="pauli-evolution" />
+
 <span id="pauli-evo-qpy" />
 
 #### PAULI\_EVOLUTION
@@ -147,6 +149,8 @@ struct {
 
 This is immediately followed by `operator_count` elements defined by the [SPARSE\_PAULI\_OP\_LIST\_ELEM](#qpy-pauli-sum-op) payload. Following that we have `time_size` bytes representing the `time` attribute. If `standalone_op` is `True` then there must only be a single operator. The encoding of these bytes is determined by the value of `time_type`. Possible values of `time_type` are `'f'`, `'p'`, and `'e'`. If `time_type` is `'f'` it’s a double, `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a [PARAMETER](#qpy-param-struct), `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a [PARAMETER\_EXPR](#qpy-param-expr). Following that is `synthesis_size` bytes which is a utf8 encoded json payload representing the [`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") class used by the gate.
 
+<span id="sparse-pauli-op-list-elem" />
+
 <span id="qpy-pauli-sum-op" />
 
 #### SPARSE\_PAULI\_OP\_LIST\_ELEM
@@ -162,6 +166,8 @@ struct {
 which is immediately followed by `pauli_op_size` bytes which are .npy format <span id="id2" />[2](#f2) data which represents the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
 Version 3 of the QPY format also defines a struct format to represent a `ParameterVectorElement` as a distinct subclass from a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). This adds a new parameter type char `'v'` to represent a `ParameterVectorElement` which is now supported as a type string value for an INSTRUCTION\_PARAM. The payload for these parameters are defined below as [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector).
+
+<span id="parameter-vector-element" />
 
 <span id="qpy-param-vector" />
 
@@ -179,6 +185,8 @@ struct {
 ```
 
 which is immediately followed by `vector_name_size` utf8 bytes representing the parameter’s vector name.
+
+<span id="parameter-expr" />
 
 <span id="qpy-param-expr-v3" />
 
@@ -236,6 +244,8 @@ This is immediately followed by `name_size` bytes of utf8 data for the name of t
 <span id="qpy-version-1" />
 
 ### Version 1
+
+<span id="id3" />
 
 #### HEADER
 
@@ -299,6 +309,8 @@ qc = QuantumCircuit(bits=bits)
 ```
 
 `qr` would have `standalone` set to `False`.
+
+<span id="custom-definitions" />
 
 <span id="qpy-custom-definition" />
 
@@ -388,6 +400,8 @@ struct {
 ```
 
 which is immediately followed by `name_size` utf8 bytes representing the parameter name.
+
+<span id="qpy-param-expr" />
 
 <span id="id5" />
 

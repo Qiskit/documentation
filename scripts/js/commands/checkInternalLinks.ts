@@ -35,7 +35,6 @@ interface Arguments {
   devApis: boolean;
   historicalApis: boolean;
   qiskitLegacyReleaseNotes: boolean;
-  includeBrokenHistorical: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -57,13 +56,6 @@ const readArgs = (): Arguments => {
       description:
         "Check the links in the historical API docs, e.g. `api/qiskit/0.46`. " +
         "Warning: this is slow.",
-    })
-    .option("include-broken-historical", {
-      type: "boolean",
-      default: false,
-      description:
-        "Also check historical releases that are known to still fail (currently Qiskit <0.43). " +
-        "Intended to be used alongside `--historical-apis`.",
     })
     .option("qiskit-legacy-release-notes", {
       type: "boolean",
@@ -115,6 +107,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/construct-circuits.ipynb",
   "docs/guides/bit-ordering.mdx",
   "docs/guides/pulse.ipynb",
+  "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
 ];
 
@@ -148,9 +141,6 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     {
       check: args.historicalApis,
       hasSeparateReleaseNotes: true,
-      // Qiskit docs are broken on <0.43.
-      skipVersions: (version) =>
-        !args.includeBrokenHistorical && +version < 0.43,
     },
   );
 
