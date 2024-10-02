@@ -57,7 +57,6 @@ jobs:
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
 
       - name: Execute notebooks
-        if: ${{ success() && !cancelled() }}
         shell: python
         env:
           PR_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
@@ -75,14 +74,12 @@ jobs:
 
       - name: Detect changed notebooks
         id: changed-notebooks
-        if: ${{ success() && !cancelled() }}
         run: |
           echo "CHANGED_NOTEBOOKS<<EOF" >> $GITHUB_OUTPUT
           git diff --name-only >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Upload executed notebooks
-        if: ${{ success() && !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks
