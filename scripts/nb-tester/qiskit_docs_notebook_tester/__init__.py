@@ -18,7 +18,6 @@ import asyncio
 import sys
 import textwrap
 import platform
-from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -53,6 +52,7 @@ warnings.filterwarnings("ignore", message="Options {.*} have no effect in local 
 warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
 
+
 @dataclass
 class Config:
     args: argparse.Namespace
@@ -63,7 +63,7 @@ class Config:
 
     @property
     def all_job_submitting_notebooks(self) -> list[str]:
-       return [*self.notebooks_that_submit_jobs, *self.notebooks_no_mock]
+        return [*self.notebooks_that_submit_jobs, *self.notebooks_no_mock]
 
     @property
     def all_notebooks_to_test(self) -> list[str]:
@@ -116,7 +116,9 @@ class Config:
                 )
                 continue
 
-            if self.args.only_submit_jobs and not matches(path, self.all_job_submitting_notebooks):
+            if self.args.only_submit_jobs and not matches(
+                path, self.all_job_submitting_notebooks
+            ):
                 print(
                     f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
                 )
@@ -179,6 +181,7 @@ def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
                 )
     return notebook_warnings
 
+
 async def execute_notebook(path: Path, config: Config) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status and write result
@@ -205,7 +208,7 @@ async def execute_notebook(path: Path, config: Config) -> bool:
         )
         return False
 
-    if (skip_reason := config.should_skip_writing(path)):
+    if skip_reason := config.should_skip_writing(path):
         print(f"✅ No problems in {path} (not written as {skip_reason})")
         return True
 
@@ -213,11 +216,13 @@ async def execute_notebook(path: Path, config: Config) -> bool:
     print(f"✅ No problems in {path} (written)")
     return True
 
+
 async def _execute_in_kernel(kernel: AsyncKernelClient, code: str) -> None:
     """Execute code in kernel and raise if it fails"""
     response = await kernel.execute_interactive(code, store_history=False)
     if response.get("content", {}).get("status", "") == "error":
         raise Exception("Error running initialization code")
+
 
 async def _execute_notebook(filepath: Path, config: Config) -> nbformat.NotebookNode:
     """
@@ -312,7 +317,7 @@ def get_args() -> argparse.Namespace:
         help=(
             "Run notebooks that submit jobs to IBM Quantum and wait indefinitely "
             "for jobs to complete. Warning: this has a real cost because it uses "
-            "quantum resources! Only use this argument occasionally and intentionally." 
+            "quantum resources! Only use this argument occasionally and intentionally."
         ),
     )
     parser.add_argument(
@@ -321,11 +326,19 @@ def get_args() -> argparse.Namespace:
         help=(
             "Same as --submit-jobs, but only runs notebooks that submit jobs. "
             "Setting this option implicitly sets --submit-jobs."
-        )
+        ),
     )
     parser.add_argument(
         "--config-path",
         help="Path to a TOML file containing the globs for detecting and sorting notebooks",
+    )
+    parser.add_argument(
+        "--is-fork",
+        action="store_true",
+        help=(
+            "Set to true when running on forks in CI, since authentication cannot work there. "
+            "The program will fail with a helpful message if any of the notebooks cannot be executed."
+        ),
     )
     args = parser.parse_args()
     if args.only_submit_jobs:
@@ -334,8 +347,25 @@ def get_args() -> argparse.Namespace:
 
 
 async def _main() -> None:
-    config = Config.from_args(get_args())
-    paths = config.notebooks_to_execute()
+    args = get_args()
+    config = Config.from_args(args)
+    paths = list(config.notebooks_to_execute())
+
+    if paths and args.is_fork:
+        print(
+            "⛔️ We can't run notebook tests on pull requests from forks becaus of how GitHub Secrets work."
+            "\n\n"
+            "If you have write access to Qiskit/documentation, push to a new "
+            "branch there and make your pull request from that branch instead."
+            "\n\n"
+            "If you don't have write access, you should locally test out the notebooks you're modifying "
+            "by using the instructions in "
+            "https://github.com/Qiskit/documentation#execute-notebooks. "
+            "When this PR is approved, a maintainer will merge it to a new "
+            "branch in Qiskit/documentation, then make a PR from that branch "
+            "into main so it can pass CI.\n",
+        )
+        sys.exit(1)
 
     # Execute notebooks
     start_time = datetime.now()
@@ -346,6 +376,7 @@ async def _main() -> None:
     if not all(results):
         sys.exit(1)
     sys.exit(0)
+
 
 def main():
     if platform.system() == "Windows":
