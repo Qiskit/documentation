@@ -14,9 +14,29 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.2.4
+
+<span id="relnotes-1-2-4-prelude" />
+
+### Prelude
+
+Qiskit 1.2.4 is a patch release that fixes a QPY problem introduced in the [yanked](https://peps.python.org/pep-0592/) 1.2.3 bugfix release. In 1.2.3, an error would be raised when loading a QPY file that was generated with a different symengine version from the version installed when loading.
+
+<span id="relnotes-1-2-4-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed an issue introduced in the now [yanked](https://peps.python.org/pep-0592/) 1.2.3 bugfix release that would cause an exception with the error message “Qiskit doesn’t support loading a symengine payload generated with symengine >= 1.0” to be raised whenever loading a QPY file that was generated with a different symengine version from the version installed when loading. This issue could only occur in 1.2.3.
+
+<span id="relnotes-1-2-3" />
+
+<span id="id2" />
+
 ## 1.2.3
 
 <span id="relnotes-1-2-3-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -26,17 +46,17 @@ Qiskit 1.2.3 is a patch release fixing a problem in QPY that could cause files g
 
 ### Known Issues
 
-*   Versions of Qiskit before 1.2.3 will not be able to load QPY files dumped using [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump"), even with `version` set appropriately, if:
+*   Versions of Qiskit before 1.2.4 will not be able to load QPY files dumped using [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump"), even with `version` set appropriately, if:
 
     *   there are unbound [`ParameterExpression`](/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects in the QPY file,
     *   the `use_symengine=True` flag was set (which is the default in Qiskit >= 1.0.0) in [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump"), and
     *   the version of `symengine` installed in the generating and loading environments are not within the same minor version.
 
-    This applies regardless of the version of Qiskit used in the generation (at least up to Qiskit 1.2.3 inclusive).
+    This applies regardless of the version of Qiskit used in the generation (at least up to Qiskit 1.2.4 inclusive).
 
     If you want to maximize compatibility with versions of Qiskit \< 1.2.3, you should set `use_symengine=False`. Versions of Qiskit >= 1.2.3 should not require this.
 
-*   QPY files from the Qiskit 0.45 series can, under a very specific and unlikely set of circumstances, fail to load with any newer version of Qiskit, including Qiskit 1.2.3. The criteria are:
+*   QPY files from the Qiskit 0.45 series can, under a very specific and unlikely set of circumstances, fail to load with any newer version of Qiskit, including Qiskit 1.2.4. The criteria are:
 
     *   the [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") to be dumped contained unbound [`ParameterExpression`](/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects,
     *   the installed version of `symengine` was in the 0.9 series (which was the most recent release during the support window of Qiskit 0.45), and
@@ -54,6 +74,8 @@ Qiskit 1.2.3 is a patch release fixing a problem in QPY that could cause files g
 
 <span id="relnotes-1-2-3-bug-fixes" />
 
+<span id="id4" />
+
 ### Bug Fixes
 
 *   Fixed an issue with [`qpy.load()`](/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load") when loading a QPY file containing a [`ParameterExpression`](/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"), if the versions of `symengine` installed in the generating and loading environments were not the same. For example, if a QPY file containing [`ParameterExpression`](/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects was generated using Qiskit 1.2.2 with `symengine==0.11.0` installed, Qiskit 1.2.2 with `symengine==0.13.0` installed would be unable to load it.
@@ -62,13 +84,13 @@ Qiskit 1.2.3 is a patch release fixing a problem in QPY that could cause files g
 
 <span id="relnotes-1-2-2" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 1.2.2
 
 <span id="relnotes-1-2-2-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -76,7 +98,7 @@ Qiskit 1.2.2 is a minor bugfix release for the 1.2 series.
 
 <span id="relnotes-1-2-2-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
@@ -96,13 +118,13 @@ Qiskit 1.2.2 is a minor bugfix release for the 1.2 series.
 
 <span id="relnotes-1-2-1" />
 
-<span id="id5" />
+<span id="id8" />
 
 ## 1.2.1
 
 <span id="relnotes-1-2-1-prelude" />
 
-<span id="id6" />
+<span id="id9" />
 
 ### Prelude
 
@@ -110,7 +132,7 @@ Qiskit 1.2.1 is a minor bugfix release for the 1.2 series.
 
 <span id="relnotes-1-2-1-bug-fixes" />
 
-<span id="id7" />
+<span id="id10" />
 
 ### Bug Fixes
 
@@ -142,13 +164,13 @@ Qiskit 1.2.1 is a minor bugfix release for the 1.2 series.
 
 <span id="relnotes-1-2-0" />
 
-<span id="id8" />
+<span id="id11" />
 
 ## 1.2.0
 
 <span id="relnotes-1-2-0-prelude" />
 
-<span id="id9" />
+<span id="id12" />
 
 ### Prelude
 
@@ -514,7 +536,7 @@ The Qiskit 1.2.0 release focuses mainly on improving performance and quality of 
 
 <span id="relnotes-1-2-0-bug-fixes" />
 
-<span id="id10" />
+<span id="id13" />
 
 ### Bug Fixes
 
