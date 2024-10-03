@@ -17,14 +17,14 @@ In this context, a *primitive* is the smallest processing instruction, the simpl
 one can create something useful for a given abstraction level.
 
 The recent progress in quantum computing has increased the need to work at higher levels of abstraction.
-As we move toward larger QPUs (quantum processing units) and more complex workflows, the focus shifts from interacting with individual
+As we move toward larger quantum processing units (QPUs) and more complex workflows, the focus shifts from interacting with individual
 qubit signals to viewing quantum devices as systems that perform tasks we need.
 
 The two most common tasks quantum computers are used for are sampling quantum states and calculating expectation values.
 These tasks motivated the design of the Qiskit primitives: **Estimator** and **Sampler**.
 
 - [Estimator](#estimator) computes expectation values of observables with respect to states prepared by quantum circuits.
-- [Sampler](#sampler) samples the output register from execution of quantum circuits.
+- [Sampler](#sampler) samples the output register from quantum circuit execution.
 
 In short, the computational model introduced by the Qiskit primitives moves quantum programming one step closer
 to where classical programming is today, where the focus is less on the hardware details and more on the results
@@ -45,14 +45,14 @@ best capabilities.
 
 The Qiskit primitives are defined by open-source primitive base-classes, from
 which different providers can derive their own Sampler and Estimator implementations. Among the implementations
-using Qiskit, you can find reference primitive implementations for local simulation in the [`qiskit.primitives`](/api/qiskit/primitives) module.
+that use Qiskit, you can find reference primitive implementations for local simulation in the [`qiskit.primitives`](/api/qiskit/primitives) module.
 Providers like [Qiskit Runtime](/api/qiskit-ibm-runtime/runtime_service) enable access to appropriate QPUs through native implementations of
 their own primitives.
 
 <span id="estimator"></span>
 ## Estimator
 
-Estimator computes expectation values of observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
+Estimator computes observables' expectation values with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
 The input is an array of [PUBs.](/guides/primitive-input-output#pubs) Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.  Different Estimator implementations support various configuration options. If the input contains measurements, they are ignored.
 
@@ -95,13 +95,13 @@ designed to simplify switching between different types of quantum compute resour
 
 [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
-These are abstract base classes that define a common interface for implementing primitives. All other classes in the [`qiskit.primitives`](/api/qiskit/primitives) module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific provider. These classes may also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
+These are abstract base classes that define a common interface for implementing primitives. All other classes in the [`qiskit.primitives`](/api/qiskit/primitives) module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific provider. These classes might also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
 
 ### Implementations
 
 - [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator) and [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler#statevectorsampler)
 
-These classes are reference implementations of both primitives and use the simulator built in to Qiskit. They leverage the Qiskit [`quantum_info`](/api/qiskit/quantum_info#quantum-information) module in the background, producing results based on ideal statevector simulations.
+These classes are reference implementations of the primitives and use the simulator built into Qiskit. They leverage the Qiskit [`quantum_info`](/api/qiskit/quantum_info#quantum-information) module in the background, producing results based on ideal statevector simulations.
 
 - [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2)
 
