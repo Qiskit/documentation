@@ -47,10 +47,10 @@ zxMain(async () => {
 
   await updateHtmlArtifacts({ qiskitUrl, runtimeUrl });
 
-  if (!qiskitIsRc) {
+  if (qiskitUrl) {
     await regenDocs("qiskit", qiskitVersion);
   }
-  if (!runtimeIsRc) {
+  if (runtimeUrl) {
     await regenDocs("qiskit-ibm-runtime", runtimeVersion);
   }
 });
@@ -67,12 +67,25 @@ async function getArtifactUrl(
   repoName: string,
   workflowId: string,
 ): Promise<string> {
+  // Note that we do not filter for successful workflow runs, which we'd do by putting
+  // `and .conclusion=="success"` in the `select()`. This is because Runtime frequently fails
+  // its integration tests. The docs jobs are deterministic though so should be fine.
   const runProc =
-    await $`gh api repos/qiskit/${repoName}/actions/workflows/${workflowId}/runs --jq '.workflow_runs[] | select(.head_branch=="main" and .conclusion=="success") | .id'`;
+    await $`gh api repos/qiskit/${repoName}/actions/workflows/${workflowId}/runs --jq '.workflow_runs[] | select(.head_branch=="main") | .id'`;
   const runId = runProc.stdout.split("\n")[0];
-  const url =
+  if (!runId) {
+    throw new Error(`Failed to get run ID for ${repoName}`);
+  }
+
+  const urlProc =
     await $`gh api repos/qiskit/${repoName}/actions/runs/${runId}/artifacts --jq '.artifacts[0].archive_download_url'`;
-  return url.stdout.trim();
+  const url = urlProc.stdout.trim();
+  if (!url) {
+    throw new Error(
+      `Failed to get artifact URL for https://github.com/Qiskit/${repoName}/actions/runs/${runId}`,
+    );
+  }
+  return url;
 }
 
 async function updateHtmlArtifacts(args: {
