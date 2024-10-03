@@ -58,7 +58,9 @@ url = 'https://api.quantum-computing.ibm.com/runtime/jobs'
 headers = {
     'Content-Type': 'application/json',
     'x-access-token':auth_id,
-    'x-qx-client-application': 'qiskit-version-2/0.39.2/'+'your_application' # specifying the application you might be running from. For an actual Integration project, this option is invaluable to know where jobs are coming from. At this time the "qiskit-version-2/0.39.2/" string is a necessary prefix.
+    # Replace <your_application> with the name of your application. This is useful to understand
+    # where jobs are coming from. Note that the prefix "qiskit-version-2/0.39.2/" is necessary.
+    'x-qx-client-application': f'qiskit-version-2/0.39.2/<your_application>',
     }
 job_input = {
     'program_id': 'estimator',
