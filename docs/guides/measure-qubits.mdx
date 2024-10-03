@@ -5,7 +5,7 @@ description: Learn how to measure qubits, including constraints on where measure
 
 # Measure qubits
 
-To get information about a qubit's state, you can _measure_ it onto a [classical bit](/api/qiskit/circuit#qiskit.circuit.Clbit). In Qiskit, measurements are performed in the computational basis, that is, the single-qubit Pauli-$Z$ basis. A measurement will thus yield 0 or 1, depending on the overlap with the Pauli-$Z$ eigenstates $|0\rangle$ and $|1\rangle$:
+To get information about a qubit's state, you can _measure_ it onto a [classical bit](/api/qiskit/circuit#qiskit.circuit.Clbit). In Qiskit, measurements are performed in the computational basis, that is, the single-qubit Pauli-$Z$ basis. Therefore, a measurement yields 0 or 1, depending on the overlap with the Pauli-$Z$ eigenstates $|0\rangle$ and $|1\rangle$:
 
 $$
 |q\rangle \xrightarrow{measure}\begin{cases}
@@ -16,7 +16,7 @@ $$
 
 ## Apply a measurement to a circuit
 
-There are several ways to apply measurement to a circuit:
+There are several ways to apply measurements to a circuit:
 
 ### `measure` method
 
@@ -80,8 +80,7 @@ qc.measure_active() # Measure qubits that are not idle, i.e., qubits 0 and 2.
 
 <Admonition type="attention" title="Important notes">
 
-* Circuits that contain operations _after_ a measurement are called dynamic circuits. Note, that not all backends or simulators might support these.
-* Each qubit can be measured only once, except when using dynamic circuits.
+* Circuits that contain operations _after_ a measurement are called dynamic circuits. Not all QPUs or simulators support these.
 * There must be at least one classical register in order to use measurements.
 * The Sampler primitive requires circuit measurements. You can add circuit measurements with the Estimator primitive, but they are ignored.
 
