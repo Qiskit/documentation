@@ -35,7 +35,7 @@ class. When you start a session,  you must specify a QPU by passing a `backend` 
 **Session class**
 
 ``` python
-from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
 session = Session(backend=backend)
@@ -48,7 +48,7 @@ sampler = Sampler(mode=session)
 The context manager automatically opens and closes the session.
 
 ``` python
-from qiskit_ibm_runtime import Session, Samplerv2 as Sampler, Estimatorv2 as Estimator
+from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
 with Session(backend=backend):
