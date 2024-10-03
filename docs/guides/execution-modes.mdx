@@ -20,7 +20,7 @@ The `mode` option requires `qiskit-ibm-runtime` 0.24 or later.
 The differences are summarized in the following table:
 
 |     Mode     |                  Usage                  |                                                                                                        Benefit                                                                                                        |
-|:------------:|:---------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Job mode     | Quantum computation only.               | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
 | Batch mode   | Quantum computation only.               | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch are usually run close together.                                                                     |
 | Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
@@ -61,4 +61,23 @@ When a job is failed or canceled, the reported usage is as follows:
 
 * Job or batch mode: the reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the value that Qiskit Runtime returns as `consumed`. Thus, some failed jobs do not appear in your reported usage and others do.
 
-* Session mode: the reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are cancelled.
+* Session mode: the reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
+
+<span id="ittl-by-mode"></span>
+## Interactive time to live (ITTL)
+
+The [ITTL](/guides/max-execution-time#session-maximum-execution-time) in batch mode is one second for all instances.
+
+The ITTL for a session (Premium Plan users only) is 60 seconds, unless there is an instance-specific configuration that dictates a different ITTL.
+
+
+| Execution mode | Instance type (Open or Premium Plan) | ITTL |
+| --- | --- | --- |
+| Batch mode | Both Open and Premium Plan | 1 sec |
+| Session mode | Premium Plan | 60 sec* |
+
+*\* Certain Premium Plan instances might be specially configured to have a different ITTL.*
+
+<Admonition type="note">
+You can also programmatically query the ITTL; see details on the [Maximum execution time](/guides/max-execution-time#session-maximum-execution-time) page.
+</Admonition>
