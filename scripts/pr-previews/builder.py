@@ -137,6 +137,7 @@ def _copy_local_content(root_dir: Path) -> None:
     for fp in [
         "docs/support.mdx",
         "docs/responsible-quantum-computing.mdx",
+        "docs/faq.mdx",
     ]:
         shutil.copy2(fp, root_dir / fp)
 
