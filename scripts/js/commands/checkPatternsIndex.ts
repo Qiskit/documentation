@@ -36,6 +36,7 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/guides/post-process-results",
   "/guides/q-ctrl-optimization-solver",
   "/guides/qunasys-quri-chemistry",
+  "/guides/circuit-library",
 ]);
 
 const INDEX_PAGES = [
