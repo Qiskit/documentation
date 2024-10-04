@@ -48,7 +48,7 @@ The reported usage is the time a QPU is locked for your workload. Failed or canc
 * Batch usage is the amount of time all jobs spend on the QPU.
 * Single job usage is the quantum time they use in processing.
 
-To find the usage time for your session or batch, in `qiskit-ibm-runtime` 0.30 or later, run `session.usage()` or `batch.usage()`. If using an older version of `qiskit-ibm-runtime` (>= 0.23), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
+To find the usage time for your session or batch, in `qiskit-ibm-runtime` 0.30 or later, run `session.usage()` or `batch.usage()`. If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
 
 If you are calling the REST API directly, the usage time is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both session and batch workloads.
 
