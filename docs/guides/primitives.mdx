@@ -30,36 +30,27 @@ In short, the computational model introduced by the Qiskit primitives moves quan
 to where classical programming is today, where the focus is less on the hardware details and more on the results
 you are trying to achieve.
 
-## Benefits of Qiskit primitives
+<Admonition type="note">
+The Qiskit SDK holds the definitions of the `Estimator` and `Sampler` primitives and acts  as the source-of-truth for this concept. It also contains reference implentations [(explained below)](./primitives#implementations) to assist providers of quantum compute resources in developing services which support Qiskit users.
 
-For Qiskit users, primitives let you write quantum code for a specific QPU without having to explicitly
-manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
-access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
-you can leverage the latest advancements in error mitigation and suppression by toggling options such as [`resilience_level`,](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions#resilience_level) rather than building your own implementation of these techniques.
-
-For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
-way to access your hardware features. It is therefore easier for your users to benefit from your hardware's
-best capabilities.
-
-## Implementation of Qiskit primitives
-
-The Qiskit primitives are defined by open-source primitive base-classes, from
-which different providers can derive their own Sampler and Estimator implementations. Among the implementations
-that use Qiskit, you can find reference primitive implementations for local simulation in the [`qiskit.primitives`](/api/qiskit/primitives) module.
-Providers like [Qiskit Runtime](/api/qiskit-ibm-runtime/runtime_service) enable access to appropriate QPUs through native implementations of
-their own primitives.
+For users of IBM Quantum hardware, the [`qiskit-ibm-runtime`](./index#qiskit-runtime) package possesses an implementation of these primitives which allow you to execute quantum workloads on IBM Quantum hardware.
+</Admonition>
 
 <span id="estimator"></span>
 ## Estimator
 
-Estimator computes observables' expectation values with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
+The Estimator primitive computes the expectation values for one or more observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
-The input is an array of [PUBs.](/guides/primitive-input-output#pubs) Each PUB is in the format (`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), where the optional `parameter values` can be a list or a single parameter.  Different Estimator implementations support various configuration options. If the input contains measurements, they are ignored.
+The input is an array of [PUBs.](/guides/primitive-input-output#pubs) Each PUB is in the format:
+
+(`<single circuit>`, `<one or more observables>`, `<optional one or more parameter values>`, `<optional precision>`), 
+
+where the optional `parameter values` can be a list or a single parameter.  Different Estimator implementations support various configuration options. If the input contains measurements, they are ignored.
 
 The output is a [`PubResult`](/api/qiskit/qiskit.primitives.PubResult#pubresult) that contains the computed expectation values per pair, and their standard errors, in `PubResult` form. Each `PubResult` contains both data and metadata.
 
 
-Estimator combines elements from observables and parameter values by following NumPy broadcasting rules as described in the [Primitive inputs and outputs](primitive-input-output#broadcasting-rules) topic.
+The Estimator combines elements from observables and parameter values by following NumPy broadcasting rules as described in the [Primitive inputs and outputs](primitive-input-output#broadcasting-rules) topic.
 
 Example:
 
@@ -70,9 +61,13 @@ estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, pa
 <span id="sampler"></span>
 ## Sampler
 
-Sampler's core task is sampling the output register from execution of quantum circuits. The input circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
+The Sampler's core task is sampling the output register from the execution of one or more quantum circuits. The input circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
-The input is one or more [PUBs,](/guides/primitive-input-output#pubs) in the format  (`<single circuit>`, `<optional one or more parameter values>`, `<optional shots>`), where there can be multiple `parameter values` items, and each item can be either an array or a single parameter, depending on the chosen circuit. Additionally, the input must contain measurements.
+The input is one or more [PUBs,](/guides/primitive-input-output#pubs) in the format:
+
+(`<single circuit>`, `<optional one or more parameter values>`, `<optional shots>`),
+
+where there can be multiple `parameter values` items, and each item can be either an array or a single parameter, depending on the chosen circuit. Additionally, the input must contain measurements.
 
 The output is counts or per-shot measurements, as [`PubResult`](/api/qiskit/qiskit.primitives.PubResult#pubresult) objects, without weights. The result class, however, has methods to return weighted samples, such as counts. See [Primitive inputs and outputs](primitive-input-output#broadcasting-rules) for full details.
 
@@ -85,8 +80,25 @@ sampler.run([
 ])
 ```
 
-<span id="primitive-classes"></span>
-## Qiskit primitive classes
+## Benefits of Qiskit primitives
+
+For Qiskit users, primitives let you write quantum code for a specific QPU without having to explicitly
+manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
+access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
+you can leverage the latest advancements in error mitigation and suppression by toggling options such as the primitive's [`resilience_level`,](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions#resilience_level) rather than building your own implementation of these techniques.
+
+For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
+way to access your hardware features (such as advanced post-processing technqiues). It is therefore easier for your users to benefit from your hardware's
+best capabilities.
+
+## Definition and implementation of Qiskit primitives
+
+The Qiskit primitives are defined by open-source primitive base-classes, from
+which different providers can derive their own Sampler and Estimator implementations. Among the implementations
+that use Qiskit, you can find reference primitive implementations for local simulation in the [`qiskit.primitives`](/api/qiskit/primitives) module.
+Providers like [Qiskit Runtime](/api/qiskit-ibm-runtime/runtime_service) enable access to appropriate QPUs through native implementations of
+their own primitives.
+
 
 The [`qiskit.primitives`](/api/qiskit/primitives) module enables the development of primitive-style quantum programs and was specifically
 designed to simplify switching between different types of quantum compute resources. As described previously, there are two types of Qiskit primitives; the base class, and their implementations.
