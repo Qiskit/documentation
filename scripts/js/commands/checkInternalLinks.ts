@@ -35,7 +35,6 @@ interface Arguments {
   devApis: boolean;
   historicalApis: boolean;
   qiskitLegacyReleaseNotes: boolean;
-  includeBrokenHistorical: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -57,13 +56,6 @@ const readArgs = (): Arguments => {
       description:
         "Check the links in the historical API docs, e.g. `api/qiskit/0.46`. " +
         "Warning: this is slow.",
-    })
-    .option("include-broken-historical", {
-      type: "boolean",
-      default: false,
-      description:
-        "Also check historical releases that are known to still fail (currently Qiskit <0.45). " +
-        "Intended to be used alongside `--historical-apis`.",
     })
     .option("qiskit-legacy-release-notes", {
       type: "boolean",
@@ -113,7 +105,9 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/migration-guides/qiskit-1.0-features.mdx",
   "docs/guides/construct-circuits.ipynb",
+  "docs/guides/bit-ordering.mdx",
   "docs/guides/pulse.ipynb",
+  "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
 ];
 
@@ -147,9 +141,6 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     {
       check: args.historicalApis,
       hasSeparateReleaseNotes: true,
-      // Qiskit docs are broken on <0.45.
-      skipVersions: (version) =>
-        !args.includeBrokenHistorical && +version < 0.45,
     },
   );
 
@@ -194,6 +185,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.21/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
     "docs/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions.mdx",
     "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session.mdx",
   ];
 
   if (args.currentApis) {

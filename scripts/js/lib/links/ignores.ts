@@ -24,19 +24,27 @@ export const IGNORED_FILES = new Set([
 // Always ignored URLs - prefer to use more precise ignores
 // -----------------------------------------------------------------------------------
 
+// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
-  // StackOverflow rate limits us.
+  "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
+  "https://support.google.com/accounts/answer/27441?hl",
+  "https://colab.research.google.com/",
+  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://code.visualstudio.com/",
+  "https://doi.org/10.1002/qute.201800012",
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
+  "https://www.science.org/doi/10.1126/science.273.5278.1073",
 ];
 
+// These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
 
 export const ALWAYS_IGNORED_URLS = new Set([
@@ -78,7 +86,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
     ),
   );
   const legacy2 = Object.fromEntries(
-    ["", "0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
+    ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
       (vers) => [
         `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
@@ -88,7 +96,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
     ),
   );
   const latest = Object.fromEntries(
-    ["dev/", "0.29/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
+    ["", "dev/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
       (vers) => [
         `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
@@ -145,6 +153,8 @@ function _qiskitUtilsData(): FilesToIgnores {
   );
   const utilsFile = Object.fromEntries(
     [
+      "0.35",
+      "0.36",
       "0.37",
       "0.38",
       "0.39",
@@ -254,10 +264,48 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
+function _legacyQiskitSDKIssues(): FilesToIgnores {
+  // These are all issues due to quirks in our old docs. They
+  // are all safe to ignore and not worth the effort to fix.
+
+  // The module page is missing the expected anchor, even in the original Sphinx. However,
+  // the page is small enough that the link to the transpile function is easy to access.
+  const transpileAnchor = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42", "43"].map((vers) => [
+      `docs/api/qiskit/0.${vers}/qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager.mdx`,
+      ["compiler#qiskit.compiler.transpile"],
+    ]),
+  );
+  // The capitalization of the anchor link changes between the class page and the referring
+  // page, and it's inconsistent in the original Sphinx. However, it doesn't matter
+  // because the anchor is at the top of the page anyways.
+  const pulseLibraryAnchorCapitalization = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42"].flatMap((vers) => [
+      [
+        `docs/api/qiskit/0.${vers}/qiskit.pulse.library.gaussian_square.mdx`,
+        ["qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian"],
+      ],
+      [
+        `docs/api/qiskit/0.${vers}/pulse.mdx`,
+        [
+          "qiskit.pulse.library.constant#qiskit.pulse.library.constant",
+          "qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian",
+          "qiskit.pulse.library.drag#qiskit.pulse.library.drag",
+        ],
+      ],
+    ]),
+  );
+  return {
+    ...transpileAnchor,
+    ...pulseLibraryAnchorCapitalization,
+  };
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
+  _legacyQiskitSDKIssues(),
 );
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};

@@ -127,7 +127,9 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
         return buildDeprecatedAdmonition(node, handlers);
       }
 
-      return defaultHandlers.div(h, node);
+      return node.properties.id && nodeClasses.includes("section")
+        ? [buildSpanId(node.properties.id), ...all(h, node)]
+        : defaultHandlers.div(h, node);
     },
     class(h, node: any): any {
       return buildApiComponent(h, node);

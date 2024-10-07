@@ -14,8 +14,6 @@ python_api_name: qiskit.qpy
 
 # QPY serialization
 
-<span id="module-qiskit.qpy" />
-
 `qiskit.qpy`
 
 QPY is a binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") objects that is designed to be cross-platform, Python version agnostic, and backwards compatible moving forward. QPY should be used if you need a mechanism to save or copy between systems a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") that preserves the full Qiskit object structure (except for custom attributes defined outside of Qiskit code). This differs from other serialization formats like [OpenQASM](https://github.com/openqasm/openqasm) (2.0 or 3.0) which has a different abstraction model and can result in a loss of information contained in the original circuit (or is unable to represent some aspects of the Qiskit objects) or Python’s [pickle](https://docs.python.org/3/library/pickle.html) which will preserve the Qiskit object exactly but will only work for a single Qiskit version (it is also [potentially insecure](https://docs.python.org/3/library/pickle.html#module-pickle)).
@@ -57,7 +55,7 @@ and then loading that file will return a list with all the circuits
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L210-L341" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L221-L352" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
@@ -102,7 +100,7 @@ and then loading that file will return a list with all the circuits
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L76-L207" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=12)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L76-L218" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=12)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -153,6 +151,10 @@ and then loading that file will return a list with all the circuits
 
         <Admonition title="Note" type="note">
           If specified with an older version of QPY the limitations and potential bugs stemming from the QPY format at that version will persist. This should only be used if compatibility with loading the payload with an older version of Qiskit is necessary.
+        </Admonition>
+
+        <Admonition title="Note" type="note">
+          If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") that contain [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.3 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
         </Admonition>
 
   **Raises**
@@ -219,6 +221,15 @@ If a feature being loaded is deprecated in the corresponding qiskit release, QPY
 <Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
 </Class>
+
+<Admonition title="Note" type="note">
+  With versions of Qiskit before 1.2.3, the `use_symengine=True` argument to [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") could cause problems with backwards compatibility if there were [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects to serialize. In particular:
+
+  *   When the loading version of Qiskit is 1.2.3 or greater, QPY files generated with any version of Qiskit >= 0.46.0 can be loaded. If a version of Qiskit between 0.45.0 and 0.45.3 was used to generate the files, and the non-default argument `use_symengine=True` was given to [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump"), the file can only be read if the version of `symengine` used in the generating environment was in the 0.11 or 0.13 series, but if the environment was created during the support window of Qiskit 0.45, it is likely that `symengine==0.9.2` was used.
+  *   When the loading version of Qiskit is between 0.46.0 and 1.2.2 inclusive, the file can only be read if the installed version of `symengine` in the loading environment matches the version used in the generating environment.
+
+  To recover a QPY file that fails with `symengine` version-related errors during a call to [`qpy.load()`](#qiskit.qpy.load "qiskit.qpy.load"), first attempt to use Qiskit >= 1.2.3 to load the file. If this still fails, it is likely because Qiskit 0.45.x was used to generate the file with `use_symengine=True`. In this case, use Qiskit 0.45.3 with `symengine==0.9.2` to load the file, and then re-export it to QPY setting `use_symengine=False`. The resulting file can then be loaded by any later version of Qiskit.
+</Admonition>
 
 ### QPY format version history
 
@@ -1261,6 +1272,8 @@ struct {
 ```
 
 this matches the internal C representation of Python’s complex type. <span id="id7" />[\[3\]](#f3)
+
+## References
 
 <span id="f1" />
 
