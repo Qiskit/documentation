@@ -33,6 +33,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
   "https://support.google.com/accounts/answer/27441?hl",
   "https://colab.research.google.com/",
+  "https://colab.research.google.com/#create=true",
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
   "https://code.visualstudio.com/",
   "https://doi.org/10.1002/qute.201800012",
@@ -42,6 +43,19 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
   "https://www.science.org/doi/10.1126/science.273.5278.1073",
+  "https://journals.aps.org/prx/abstract/10.1103/PhysRevX.10.011022",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.99.032331",
+  "https://link.aps.org/doi/10.1103/PhysRevLett.103.110501",
+  "https://link.aps.org/doi/10.1103/PhysRevA.83.012308",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.71.052330",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.024034",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.052325",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
+  "https://doi.org/10.1103/PhysRevApplied.5.034007",
+  "http://dx.doi.org/10.1103/PhysRevA.83.012308",
+  "https://doi.org/10.1103/PhysRevLett.103.150502",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
