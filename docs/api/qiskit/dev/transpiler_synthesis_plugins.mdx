@@ -328,3 +328,17 @@ The following table lists synthesis plugins available for an [`MCXGate`](qiskit.
 | [`MCXSynthesis1CleanB95`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95 "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesis1CleanB95")() | Synthesis plugin for a multi-controlled X gate based on the paper by Barenco et al. (1995).                                                            |
 | [`MCXSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisDefault")()       | The default synthesis plugin for a multi-controlled X gate.                                                                                            |
 
+##### MCMT Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                        | Number of clean ancillas | Number of dirty ancillas | Description                                                |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ------------------------ | ---------------------------------------------------------- |
+| `"vchain"`  | [`MCMTSynthesisVChain`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain")    | k-1                      | 0                        | uses a linear number of Toffoli gates                      |
+| `"noaux"`   | [`MCMTSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux")       | 0                        | 0                        | uses Qiskit’s standard control mechanism                   |
+| `"default"` | [`MCMTSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault") | any                      | any                      | chooses the best algorithm based on the ancillas available |
+
+|                                                                                                                                                                       |                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`MCMTSynthesisVChain`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain")()    | A V-chain based synthesis for `MCMTGate`. |
+| [`MCMTSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux")()       | A V-chain based synthesis for `MCMTGate`. |
+| [`MCMTSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault")() | A default decomposition for MCMT gates.   |
+
