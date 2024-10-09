@@ -23,23 +23,12 @@ qubit signals to viewing quantum devices as systems that perform necessary tasks
 The two most common tasks for quantum computers are sampling quantum states and calculating expectation values.
 These tasks motivated the design of the Qiskit primitives: **Estimator** and **Sampler**.
 
-- [Estimator](#estimator) computes expectation values of observables with respect to states prepared by quantum circuits.
-- [Sampler](#sampler) samples the output register from quantum circuit execution.
+- Estimator computes expectation values of observables with respect to states prepared by quantum circuits.
+- Sampler samples the output register from quantum circuit execution.
 
 In short, the computational model introduced by the Qiskit primitives moves quantum programming one step closer
 to where classical programming is today, where the focus is less on the hardware details and more on the results
 you are trying to achieve.
-
-## Benefits of Qiskit primitives
-
-With primitives, Qiskit users can write quantum code for a specific QPU without having to explicitly
-manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
-access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
-you can take advantage of the latest advancements in error mitigation and suppression by toggling options such as the primitive's [`resilience_level`,](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions#resilience_level) rather than building your own implementation of these techniques.
-
-For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
-way to access your hardware features (such as advanced post-processing techniques). It is therefore easier for your users to benefit from your hardware's
-best capabilities.
 
 ## Primitive definition and implementations
 
@@ -60,12 +49,27 @@ These are implementations of the the primitives base classes:
 
 - [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator) and [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler#statevectorsampler) - Reference implementations of the primitives and use the simulator built into Qiskit. They are built with the Qiskit [`quantum_info`](/api/qiskit/quantum_info#quantum-information) module in the background, producing results based on ideal statevector simulations.
 
-- [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) - You can use these classes to “wrap” any quantum computing resource into a primitive. This lets you write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which quantum computer to run on.
+- [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) - You can use these classes to “wrap” any quantum computing resource into a primitive. This lets you write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional `backend` argument for selecting which quantum computer to run on. (accessed via Qiskit)
 
-- The Qiskit Runtime primitives ([`EstimatorV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2)) provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service. This implementation of the base primitives is used to access IBM Quantum&trade; hardware.
+- The Qiskit Runtime primitives ([`EstimatorV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2)) provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service. This implementation of the base primitives is used to access IBM Quantum&trade; hardware. (access by q ibm runtime - put first)
+
+## Benefits of Qiskit primitives
+
+With primitives, Qiskit users can write quantum code for a specific QPU without having to explicitly
+manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
+access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
+you can take advantage of the latest advancements in error mitigation and suppression by toggling options such as the primitive's [`resilience_level`,](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions#resilience_level) rather than building your own implementation of these techniques.
+
+For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
+way to access your hardware features such as advanced post-processing techniques. It is therefore easier for your users to benefit from your hardware's
+best capabilities.
+
+## Primitive details
+
+As described previously, all primitives are created from the base classes, therefore they have the same general structure and usage.  For example, the format of the input for all Estimator primitives is the same.  However, there are differences in implementations that make them unique.  Because most users access the Qiskit Runtime primitives, the examples in the rest of this section are based on Qiskit Runtime primitives.
 
 <span id="estimator"></span>
-## Estimator
+### Estimator
 
 The Estimator primitive computes the expectation values for one or more observables with respect to states prepared by quantum circuits. The circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
@@ -87,7 +91,7 @@ estimator.run([(circuit1, observable1, param_values1),(circuit2, observable2, pa
 ```
 
 <span id="sampler"></span>
-## Sampler
+### Sampler
 
 The Sampler's core task is sampling the output register from the execution of one or more quantum circuits. The input circuits can be parametrized, as long as the parameter values are also provided as input to the primitive.
 
