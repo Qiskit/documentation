@@ -63,7 +63,7 @@ with Session(backend=backend):
 <span id="specify-length"></span>
 ## Session length
 
-The maximum session timeout determines how long a session a session can run.  You can set this value with the `max_time` parameter. This should exceed the longest job's execution time. The maximum (and default) value this can be for a session is 8 hours (28800 seconds), unless there is an instance-specific configuration that dictates a different maximum session timeout.  To determine a session's maximum timeout, follow the instructions in [Determine session details](#session-details) and look for the `max_time` value.
+The maximum session time to live (TTL) determines how long a session a session can run.  You can set this value with the `max_time` parameter. This should exceed the longest job's execution time.
 
 This timer starts when the session starts.  When the value is reached, the session is closed.  Any jobs that are running will finish, but jobs still queued are failed.
 
@@ -72,17 +72,11 @@ with Session(backend=backend, max_time="25m"):
   ...
 ```
 
-There is also an interactive time to live (ITTL) value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.  The ITTL for a session is 60 seconds, unless there is an instance-specific configuration that dictates a different ITTL. To determine a session's ITTL, follow the instructions in [Determine session details](#session-details) and look for the `interactive_timeout` value.
+There is also an interactive time to live (ITTL) value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
 
-| Instance type (Open or Premium Plan) | ITTL | Maximum timeout |
-| --- | --- | --- |
-| Premium Plan | 60 sec* | 8 h* |
+To determine a session's max TTL or ITTL, follow the instructions in [Determine session details](#session-details) and look for the `max_time`or `interactive_timeout` value, respectively.
 
-*\* Certain Premium Plan instances might be configured to have a different value.*
-
-<Admonition type="note">
-You can also programmatically query these values; see details on the [Maximum execution time](/guides/max-execution-time#session-maximum-execution-time) page.
-</Admonition>
+For more information about these settings, see [Session maximum execution time.](/guides/max-execution-time#session-max-time)
 
 <span id="close"></span>
 ## Close a session
