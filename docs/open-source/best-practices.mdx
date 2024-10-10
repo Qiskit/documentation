@@ -1,6 +1,6 @@
 ---
 title: Project setup and best practices
-description: Testing, packaging, and code quality best practices for your Python project.
+description: Testing, packaging, and code-quality best practices for your Python project.
 ---
 
 # Best practices for your project
@@ -12,20 +12,20 @@ This page covers licensing, packaging, testing, and documenting your project,
 all of which improve your users' experience. If you're releasing research code,
 following best practices will also help others reproduce your results.
 
-Once you've polished it up, consider adding your project to the [Qiskit
+Once you've put the finishing touches on it, consider adding your project to the [Qiskit
 ecosystem](https://www.ibm.com/quantum/ecosystem).
 
 ## GitHub
 
 Most Qiskit projects are hosted on [GitHub](https://github.com/), a source-code
-hosting platform. GitHub is based on [Git](https://git-scm.com/) (a version
-control system) and provides a large set of tools to help collaborate on your
-project and keep it to a high quality. See [Github
+hosting platform. GitHub is based on [Git](https://git-scm.com/), a version
+control system. It provides a large set of tools to collaborate and
+maintain high quality. See [Github
 skills](https://skills.github.com/) to get up to speed on GitHub quickly.
 
 Some key features are:
 
-* **Issues and Pull requests**
+* **Issues and pull requests**
 
   Users can use GitHub to report bugs in your project or request changes to it.
   Your team and external contributors can use pull requests to propose and
@@ -41,7 +41,7 @@ Some key features are:
 
   This feature runs scripts when certain events happen in your GitHub repo. For
   example, you can run your [test suite](#test-your-project) when you push new
-  code or automatically [publishing your package](#package-your-project) when
+  code or automatically [publish your package](#package-your-project) when
   you tag a commit.
 
 * **Security features**
@@ -57,7 +57,8 @@ Some key features are:
     – to make sure code meets some criteria before being pushed to certain
     branches.
 
-The rest of this page will assume you have your project hosted on GitHub.
+The rest of this page will assume you have your project hosted on GitHub, although
+you are welcome to other providers like GitLab.
 
 ## Choose a license
 
@@ -66,7 +67,7 @@ license. Otherwise, your grant no permission for others to use it. Most
 projects in the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) use
 the Apache 2.0 or MIT licenses. Visit GitHub's
 [choosealicense.com](https://choosealicense.com) to decide which license is
-best for you.
+best for you, and consider seeking legal help.
 
 Add your license to the top level of your repository in a text file named
 `LICENSE`. When you create a new repository, GitHub will give you the option to
@@ -74,6 +75,7 @@ automatically add a standard license.
 
 ## Dependency management
 
+Most projects depend on other projects, such as Qiskit or NumPy.
 If you don't clearly specify your project's dependencies, users (including your
 future self) will struggle to install and use it.
 
@@ -118,15 +120,21 @@ The two most popular testing frameworks in Python are:
 * Python's built-in [`unittest`](https://docs.python.org/3/library/unittest.html)
 
 You can also consider using [`tox`](https://tox.wiki/en/4.18.0/) to test your
-project against different versions of Python.
+project against different versions of Python. Tox [is compatible](https://python-poetry.org/docs/faq/#is-tox-supported) with Poetry.
 
 ## Code quality tools
 
 A linter is a tool that detects (and sometimes corrects) common problems in
-your code. A popular linter for Python is
-[`ruff`](https://docs.astral.sh/ruff/). Other popular tools include
+your code. Formatters will auto-format your code to use a consistent style.
+
+A popular linter for Python is
+[`ruff`](https://docs.astral.sh/ruff/), which also
+includes a formatter (based on the popular tool [Black](https://black.readthedocs.io/en/stable/)).
+Other popular tools include
 [`mypy`](https://www.mypy-lang.org/) for type-checking, and
 [`bandit`](https://bandit.readthedocs.io/en/latest/) for security scanning.
 
-Once you've set your tools up, you can use a [GitHub action](#github) to make
+Once you've set up your tools, you can use a [GitHub action](#github) to make
 sure all code pushed to your repository has been linted.
+
+Document how to run the linters and formatters in your README.md or CONTRIBUTOR.md.
