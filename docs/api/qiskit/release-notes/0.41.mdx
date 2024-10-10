@@ -32,7 +32,7 @@ The Qiskit Terra 0.23.2 patch release fixes further bugs identified in the 0.23 
 
 *   Add a decomposition of an [`ECRGate`](/api/qiskit/0.45/qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate") into Clifford gates (up to a global phase) to the standard equivalence library.
 
-*   Fixed an issue with the [`BackendV2Converter`](/api/qiskit/0.45/qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") class when wrapping a [`BackendV1`](/api/qiskit/0.45/qiskit.providers.BackendV1 "qiskit.providers.BackendV1")-based simulator. It would error if either the `online_date` field in the [`BackendConfiguration`](/api/qiskit/0.45/qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") for the simulator was not present or if the simulator backend supported ideal implementations of gates that involve more than 1 qubit. Fixed [#9562](https://github.com/Qiskit/qiskit-terra/issues/9562).
+*   Fixed an issue with the [`BackendV2Converter`](/api/qiskit/0.45/qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") class when wrapping a [`BackendV1`](/api/qiskit/0.45/qiskit.providers.BackendV1 "qiskit.providers.BackendV1")-based simulator. It would error if either the `online_date` field in the [`BackendConfiguration`](/api/qiskit/0.45/qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") for the simulator was not present or if the simulator backend supported ideal implementations of gates that involve more than 1 qubit. Fixed [#9562](https://github.com/Qiskit/qiskit/issues/9562).
 
 *   Fixed an incorrect return value of the method `BackendV2Converter.meas_map()` that had returned the backend `dt` instead.
 
@@ -42,13 +42,13 @@ The Qiskit Terra 0.23.2 patch release fixes further bugs identified in the 0.23 
 
     The correct way to retrieve the index of a bit within a circuit, and any registers in that circuit the bit is contained within is to call [`QuantumCircuit.find_bit()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#find_bit "qiskit.circuit.QuantumCircuit.find_bit"). This method will return the correct information in all versions of Terra since its addition in version 0.19.
 
-*   Fixed an issue with the [`InstructionScheduleMap.has_custom_gate()`](/api/qiskit/0.45/qiskit.pulse.InstructionScheduleMap#has_custom_gate "qiskit.pulse.InstructionScheduleMap.has_custom_gate") method, where it would always return `True` when the [`InstructionScheduleMap`](/api/qiskit/0.45/qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") object was created by [`Target`](/api/qiskit/0.45/qiskit.transpiler.Target "qiskit.transpiler.Target"). Fixed [#9595](https://github.com/Qiskit/qiskit-terra/issues/9595).
+*   Fixed an issue with the [`InstructionScheduleMap.has_custom_gate()`](/api/qiskit/0.45/qiskit.pulse.InstructionScheduleMap#has_custom_gate "qiskit.pulse.InstructionScheduleMap.has_custom_gate") method, where it would always return `True` when the [`InstructionScheduleMap`](/api/qiskit/0.45/qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") object was created by [`Target`](/api/qiskit/0.45/qiskit.transpiler.Target "qiskit.transpiler.Target"). Fixed [#9595](https://github.com/Qiskit/qiskit/issues/9595).
 
 *   Fixed a bug in the NumPy-based eigensolvers ([`NumPyMinimumEigensolver`](/api/qiskit/0.45/qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolver") / [`NumPyEigensolver`](/api/qiskit/0.45/qiskit.algorithms.eigensolvers.NumPyEigensolver "qiskit.algorithms.eigensolvers.NumPyEigensolver")) and in the SciPy-based time evolvers ([`SciPyRealEvolver`](/api/qiskit/0.45/qiskit.algorithms.SciPyRealEvolver "qiskit.algorithms.SciPyRealEvolver") / [`SciPyImaginaryEvolver`](/api/qiskit/0.45/qiskit.algorithms.SciPyImaginaryEvolver "qiskit.algorithms.SciPyImaginaryEvolver")), where operators that support conversion to sparse matrices, such as [`SparsePauliOp`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), were converted to dense matrices anyways.
 
-*   Fixed a bug in [`generate_basic_approximations()`](/api/qiskit/0.45/synthesis#qiskit.synthesis.generate_basic_approximations "qiskit.synthesis.generate_basic_approximations") where the inverse of the [`SdgGate`](/api/qiskit/0.45/qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") was not correctly recognized as [`SGate`](/api/qiskit/0.45/qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"). Fixed [#9585](https://github.com/Qiskit/qiskit-terra/issues/9585).
+*   Fixed a bug in [`generate_basic_approximations()`](/api/qiskit/0.45/synthesis#qiskit.synthesis.generate_basic_approximations "qiskit.synthesis.generate_basic_approximations") where the inverse of the [`SdgGate`](/api/qiskit/0.45/qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") was not correctly recognized as [`SGate`](/api/qiskit/0.45/qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"). Fixed [#9585](https://github.com/Qiskit/qiskit/issues/9585).
 
-*   Fixed a bug in the [`VQD`](/api/qiskit/0.45/qiskit.algorithms.eigensolvers.VQD "qiskit.algorithms.eigensolvers.VQD") algorithm where the energy evaluation function could not process batches of parameters, making it incompatible with optimizers with `max_evals_grouped>1`. Fixed [#9500](https://github.com/Qiskit/qiskit-terra/issues/9500).
+*   Fixed a bug in the [`VQD`](/api/qiskit/0.45/qiskit.algorithms.eigensolvers.VQD "qiskit.algorithms.eigensolvers.VQD") algorithm where the energy evaluation function could not process batches of parameters, making it incompatible with optimizers with `max_evals_grouped>1`. Fixed [#9500](https://github.com/Qiskit/qiskit/issues/9500).
 
 *   Fixed bug in [`QNSPSA`](/api/qiskit/0.45/qiskit.algorithms.optimizers.QNSPSA "qiskit.algorithms.optimizers.QNSPSA") which raised a type error when the computed fidelities happened to be of type `int` but the perturbation was of type `float`.
 
@@ -98,7 +98,7 @@ Qiskit Terra 0.23.1 is a small patch release to fix bugs identified in Qiskit Te
     AttributeError: 'property' object has no attribute 'match'
     ```
 
-    Fixed [#9493](https://github.com/Qiskit/qiskit-terra/issues/9493).
+    Fixed [#9493](https://github.com/Qiskit/qiskit/issues/9493).
 
 <span id="id60" />
 
