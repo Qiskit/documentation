@@ -58,14 +58,18 @@ with Batch(backend=backend):
 <span id="specify-batch-length"></span>
 ## Batch length
 
-You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time and be within the QPU's limits. This timer starts when the batch starts.  When the value is reached, the batch is closed.  Any jobs that are running will finish, but jobs still queued are failed.
+You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time. This timer starts when the batch starts.  When the value is reached, the batch is closed.  Any jobs that are running will finish, but jobs still queued are failed.
 
 ``` python
 with Batch(backend=backend, max_time="25m"):
   ...
 ```
 
-There is also an interactive time to live (ITTL) value of 1 second that cannot be configured.  If no batch jobs are queued within that window, the batch is temporarily deactivated.
+There is also an interactive time to live (ITTL) value that cannot be configured.  If no batch jobs are queued within that window, the batch is temporarily deactivated.
+
+To determine a batch's TTL or ITTL, follow the instructions in [Determine batch details](#batch-details) and look for the `max_time`or `interactive_timeout` value, respectively.
+
+For more information about these settings, see [Batch maximum execution time.](/guides/max-execution-time#batch-max-time)
 
 <span id="close"></span>
 ## Close a batch
@@ -83,7 +87,9 @@ result = job1.result()
 result2 = job2.result()
 ```
 
+<Admonition type="tip">
 If you are not using a context manager, manually close the batch.  If you leave the batch open and submit more jobs to it later, it is possible that the maximum TTL will be reached before the subsequent jobs start running; causing them to be canceled. You can close a batch as soon as you are done submitting jobs to it. When a batch is closed with `batch.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
+</Admonition>
 
 ``` python
 batch = Batch(backend=backend)
