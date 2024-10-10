@@ -94,7 +94,9 @@ result = job1.result()
 result2 = job2.result()
 ```
 
+<Admonition type="tip">
 If you are not using a context manager, manually close the session to avoid unwanted cost. You can close a session as soon as you are done submitting jobs to it. When a session is closed with `session.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
+</Admonition>
 
 ``` python
 session = Session(backend=backend)
