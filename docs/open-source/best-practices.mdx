@@ -81,21 +81,24 @@ automatically add a standard license.
 
 ## Dependency management
 
-Most projects depend on other projects, such as Qiskit or NumPy.
-If you don't clearly specify your project's dependencies, users (including your
-future self) will struggle to install and use it.
+Most projects depend on other projects, such as Qiskit or NumPy. If you don't
+clearly specify your project's dependencies, users (including your future self)
+will struggle to install and use it.
 
 The simplest way to list your requirements is to put the Python version you're
 using in your `README` and include a
 [`requirements.txt`](https://pip.pypa.io/en/stable/reference/requirements-file-format/)
-file in your repository. However, this means you must manually identify your
-requirements and keep the file in sync.
+file in your repository. You may also see `requirements-dev.txt` for
+dependencies only used for contributing to the project, such as linters or test
+runners. You must manually identify your requirements and keep requirements
+files up to date.
 
-Tools such as [Poetry](https://python-poetry.org/) solve this problem by
-managing dependencies for you, which means they can keep track of everything
-you've installed. Installing a dependency through Poetry will add it to a
-"lock" file, which keeps track of the exact versions of each package you have
-installed. Users can use the lockfile to replicate your environment.
+Tools such as [Poetry](https://python-poetry.org/) manage dependencies for you
+and keep track of everything you've installed. Installing a dependency through
+Poetry will add it to a "lockfile", which stores the exact versions of each
+package needed to replicate your environment. Without a lockfile, future users
+may try to run your project with more recent versions of your dependencies,
+with which it might not work correctly.
 
 See [Poetry: Basic usage](https://python-poetry.org/docs/basic-usage/) to set
 up your project with Poetry.
