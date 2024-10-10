@@ -32,11 +32,11 @@ you are trying to achieve.
 
 ## Primitive definition and implementations
 
-There are two types of Qiskit primitives: the base classes, and their implementations. The Qiskit primitives are defined by open-source primitive base classes that live in the Qiskit SDK (in the  [`qiskit.primitives`](/api/qiskit/primitives) module). Providers (such as Qiskit Runtime) can use these base classes to derive their own Sampler and Estimator implementations.
+There are two types of Qiskit primitives: the base classes, and their implementations. The Qiskit primitives are defined by open-source primitive base classes that live in the Qiskit SDK (in the  [`qiskit.primitives`](/api/qiskit/primitives) module). Providers (such as Qiskit Runtime) can use these base classes to derive their own Sampler and Estimator implementations.  Most users will interact with provider implementations, not the base primitives.
 
 ### Base classes
 
-[`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2) - Abstract base classes that define a common interface for implementing primitives. All other classes in the [`qiskit.primitives`](/api/qiskit/primitives) module inherit from these base classes.  Developers should use these if they are interested in creating their own primitives-based execution model for a specific provider. These classes might also be useful for those who want to do highly customized processing and find that the existing primitives implementations are too simple for their needs.
+[`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2) - Abstract base classes that define a common interface for implementing primitives. All other classes in the [`qiskit.primitives`](/api/qiskit/primitives) module inherit from these base classes.  Developers should use these if they are interested in creating their own primitives-based execution model for a specific provider. These classes might also be useful for those who want to do highly customized processing and find that the existing primitives implementations are too simple for their needs. General users will not directly use the base classes.
 
 <span id="implementations"></span>
 ### Implementations
