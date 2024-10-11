@@ -15,7 +15,7 @@ The `mode` option requires `qiskit-ibm-runtime` 0.24 or later.
 
 [**Batch mode**](run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundles of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.   To run in batch mode, specify `mode=batch` when instantiating a primitive or run the job in a batch context manager. See [Run jobs in a batch](run-jobs-batch) for examples.
 
-[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously, taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access.  To run in session mode, specify `mode=session` when instantiating a primitive or run the job in a session context manager. See [Run jobs in a session](run-jobs-session) for examples.
+[**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously, taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access.  To run in session mode, specify `mode=session` when instantiating a primitive or run the job in a session context manager. Learn more about sessions in the [Introduction to sessions,](/guide/sessions) and see [Run jobs in a session](run-jobs-session) for examples.
 
 ## Choose batch or sessions mode
 
@@ -30,9 +30,9 @@ The differences are summarized in the following table:
 | Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
 
 <span id="usage"></span>
-## Sessions and batch usage calculations
+## Batch and session usage calculation
 
-The reported usage is the time a QPU is locked for your workload. Failed or canceled jobs count toward your reported usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
+The _usage_ is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
 * Single job usage is the quantum time they use in processing.
 * Batch usage is the amount of time all jobs spend on the QPU.
