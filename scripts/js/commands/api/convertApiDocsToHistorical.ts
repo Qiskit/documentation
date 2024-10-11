@@ -18,7 +18,10 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
 
-import { readApiVersion, parseMinorVersion } from "../../lib/apiVersions.js";
+import {
+  readApiFullVersion,
+  readApiMinorVersion,
+} from "../../lib/apiVersions.js";
 import { pathExists } from "../../lib/fs.js";
 import { zxMain } from "../../lib/zx.js";
 import { Pkg } from "../../lib/api/Pkg.js";
@@ -47,13 +50,8 @@ zxMain(async () => {
 
   const pkg = await Pkg.fromArgs(args.package, "ignored", "ignored", "latest");
 
-  const version = await readApiVersion(`docs/api/${pkg.name}`);
-  const versionWithoutPatch = parseMinorVersion(version);
-  if (versionWithoutPatch === null) {
-    throw new Error(
-      `Could not parse minor version from _package.json for ${pkg} latest docs`,
-    );
-  }
+  const version = await readApiFullVersion(`docs/api/${pkg.name}`);
+  const versionWithoutPatch = await readApiMinorVersion(version);
 
   const projectNewHistoricalFolder = `docs/api/${pkg.name}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {

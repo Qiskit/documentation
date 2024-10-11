@@ -10,13 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile, readdir } from "fs/promises";
+import { readdir } from "fs/promises";
 
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { readApiVersion, parseMinorVersion } from "../lib/apiVersions.js";
+import { readApiMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
 
@@ -191,12 +191,7 @@ async function determineCurrentDocsFileBatch(
   ];
 
   if (args.currentApis) {
-    const currentQiskitVersion = parseMinorVersion(
-      await readApiVersion("docs/api/qiskit"),
-    );
-    if (currentQiskitVersion === null) {
-      throw new Error("Could not parse minor version of docs/api/qiskit");
-    }
+    const currentQiskitVersion = await readApiMinorVersion("docs/api/qiskit");
     toCheck.push(`docs/api/qiskit/release-notes/${currentQiskitVersion}.mdx`);
   } else {
     toCheck.push(`!{public,docs}/api/*/*`);

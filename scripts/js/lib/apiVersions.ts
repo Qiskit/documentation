@@ -12,9 +12,22 @@
 
 import { readFile } from "fs/promises";
 
-export async function readApiVersion(versionFolder: string): Promise<string> {
+export async function readApiFullVersion(
+  versionFolder: string,
+): Promise<string> {
   return JSON.parse(await readFile(`${versionFolder}/_package.json`, "utf-8"))
     .version;
+}
+
+export async function readApiMinorVersion(
+  versionFolder: string,
+): Promise<string> {
+  const version = await readApiFullVersion(versionFolder);
+  const versionWithoutPatch = parseMinorVersion(version);
+  if (!versionWithoutPatch) {
+    throw new Error(`Could not read minor version from ${versionFolder}`);
+  }
+  return versionWithoutPatch;
 }
 
 export function parseMinorVersion(version: string): string | null {

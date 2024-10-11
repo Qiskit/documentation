@@ -19,7 +19,7 @@ import { $ } from "zx";
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
 import { pathExists } from "../../lib/fs.js";
-import { readApiVersion } from "../../lib/apiVersions.js";
+import { readApiFullVersion } from "../../lib/apiVersions.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
@@ -136,7 +136,7 @@ async function getDevVersion(pkgName: string): Promise<string | undefined> {
   const devPath = `docs/api/${pkgName}/dev`;
 
   if (await pathExists(devPath)) {
-    return await readApiVersion(devPath);
+    return await readApiFullVersion(devPath);
   }
 
   return undefined;
@@ -155,15 +155,14 @@ async function getReleasedVersions(
     ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
     for (const folder of historicalFolders) {
-      const historicalVersion = await readApiVersion(
+      const historicalVersion = await readApiFullVersion(
         `${pkgDocsPath}/${folder.name}`,
       );
       historicalVersions.push(historicalVersion);
     }
   }
 
-  const currentVersion = await readApiVersion(pkgDocsPath);
-
+  const currentVersion = await readApiFullVersion(pkgDocsPath);
   return [historicalVersions, currentVersion];
 }
 
