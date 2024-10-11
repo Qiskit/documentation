@@ -46,32 +46,6 @@ The QPU calculates an appropriate job timeout value based on the input circuits 
 
 For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the QPU determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
 
-<span id="session-max-time"></span>
-## Session maximum execution time
-
-When a session is started, it is assigned a maximum time to live (TTL) value that determines how long a session can run. After this TTL is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state.
-
-You can set this value with the `max_time` parameter. For instructions, see [Specify the session length.](./run-jobs-session#specify-length)
-
-There is also an interactive time to live (ITTL) value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
-
-| Instance type (Open or Premium Plan) | ITTL | Maximum TTL |
-| --- | --- | --- |
-| Premium Plan | 60 sec* | 8 h* |
-| Open Plan | sessions not available | sessions not available |
-
-| ITTL | Maximum TTL |
-| --- | --- |
-| 60 sec* | 8 h* |
-
-- ITTL: 60 sec
-- Maximum TTL: 8 hr
-
-
-*\* Certain Premium Plan instances might be configured to have a different value.*
-
-To determine the maximum TTL and ITTL values for a session programmatically, use the [`session.details()` method](run-jobs-session#session-details) and look for the `max_time` and  `interactive_timeout` values, respectively.
-
 <span id="batch-max-time"></span>
 ## Batch maximum execution time
 
@@ -84,6 +58,32 @@ Batches also have an ITTL value between jobs that cannot be configured. If you d
 | Both Open and Premium Plan | 1 sec | 10 min |
 
 To determine the ITTL and maximum TTL values for a batch programmatically, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `interactive_timeout` and `max_time` values, respectively.
+
+<span id="session-max-time"></span>
+## Session maximum execution time
+
+When a session is started, it is assigned a maximum time to live (TTL) value that determines how long a session can run. After this TTL is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state.
+
+You can set this value with the `max_time` parameter. For instructions, see [Specify the session length.](./run-jobs-session#specify-length)
+
+There is also an interactive time to live (ITTL) value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
+
+| Instance type (Open or Premium Plan) | ITTL | Maximum TTL |
+| --- | --- | --- |
+| Premium Plan | 60 sec* | 8 h* |
+| Open Plan | sessions run in job mode | sessions run in job mode |
+
+| ITTL | Maximum TTL |
+| --- | --- |
+| 60 sec* | 8 h* |
+
+- ITTL: 60 sec
+- Maximum TTL: 8 hr
+
+
+*\* Certain Premium Plan instances might be configured to have a different value.*
+
+To determine the maximum TTL and ITTL values for a session programmatically, use the [`session.details()` method](run-jobs-session#session-details) and look for the `max_time` and  `interactive_timeout` values, respectively.
 
 ## Other limitations
 
