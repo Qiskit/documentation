@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile, readdir } from "fs/promises";
+import { readdir } from "fs/promises";
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
@@ -19,6 +19,7 @@ import { $ } from "zx";
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
 import { pathExists } from "../../lib/fs.js";
+import { readApiVersion } from "../../lib/apiVersions.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
 interface Arguments {
@@ -135,8 +136,7 @@ async function getDevVersion(pkgName: string): Promise<string | undefined> {
   const devPath = `docs/api/${pkgName}/dev`;
 
   if (await pathExists(devPath)) {
-    return JSON.parse(await readFile(`${devPath}/_package.json`, "utf-8"))
-      .version;
+    return await readApiVersion(devPath);
   }
 
   return undefined;
@@ -155,18 +155,16 @@ async function getReleasedVersions(
     ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
     for (const folder of historicalFolders) {
-      const historicalVersion = JSON.parse(
-        await readFile(`${pkgDocsPath}/${folder.name}/_package.json`, "utf-8"),
+      const historicalVersion = await readApiVersion(
+        `${pkgDocsPath}/${folder.name}`,
       );
-      historicalVersions.push(historicalVersion.version);
+      historicalVersions.push(historicalVersion);
     }
   }
 
-  const currentVersion = JSON.parse(
-    await readFile(`${pkgDocsPath}/_package.json`, "utf-8"),
-  );
+  const currentVersion = await readApiVersion(pkgDocsPath);
 
-  return [historicalVersions, currentVersion.version];
+  return [historicalVersions, currentVersion];
 }
 
 async function validateGitStatus(): Promise<void> {

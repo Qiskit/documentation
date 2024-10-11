@@ -15,6 +15,7 @@ import fs from "fs/promises";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
+import { readApiVersion } from "../../lib/apiVersions.js";
 import {
   generateVersion,
   determineMinorVersion,
@@ -26,8 +27,10 @@ const QISKIT_WORKFLOW_ID = "66225883";
 const RUNTIME_WORKFLOW_ID = "18319714";
 
 zxMain(async () => {
-  const qiskitVersion = await getDevVersion("qiskit");
-  const runtimeVersion = await getDevVersion("qiskit-ibm-runtime");
+  const qiskitVersion = await readApiVersion("docs/api/qiskit/dev");
+  const runtimeVersion = await readApiVersion(
+    "docs/api/qiskit-ibm-runtime/dev",
+  );
   const qiskitIsRc = !qiskitVersion.endsWith("-dev");
   const runtimeIsRc = !runtimeVersion.endsWith("-dev");
 
@@ -54,14 +57,6 @@ zxMain(async () => {
     await regenDocs("qiskit-ibm-runtime", runtimeVersion);
   }
 });
-
-async function getDevVersion(pkg: string): Promise<string> {
-  const rawContent = await fs.readFile(
-    `docs/api/${pkg}/dev/_package.json`,
-    "utf-8",
-  );
-  return JSON.parse(rawContent)["version"];
-}
 
 async function getArtifactUrl(
   repoName: string,

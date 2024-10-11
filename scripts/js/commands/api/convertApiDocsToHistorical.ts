@@ -18,6 +18,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
 
+import { readApiVersion, parseMinorVersion } from "../../lib/apiVersions.js";
 import { pathExists } from "../../lib/fs.js";
 import { zxMain } from "../../lib/zx.js";
 import { Pkg } from "../../lib/api/Pkg.js";
@@ -46,12 +47,13 @@ zxMain(async () => {
 
   const pkg = await Pkg.fromArgs(args.package, "ignored", "ignored", "latest");
 
-  const packageFile = await readFile(`docs/api/${pkg.name}/_package.json`, {
-    encoding: "utf8",
-  });
-  const packageInfo = JSON.parse(packageFile);
-  const versionMatch = packageInfo.version.match(/^(\d+\.\d+)/);
-  const versionWithoutPatch = versionMatch[0];
+  const version = await readApiVersion(`docs/api/${pkg.name}`);
+  const versionWithoutPatch = parseMinorVersion(version);
+  if (versionWithoutPatch === null) {
+    throw new Error(
+      `Could not parse minor version from _package.json for ${pkg} latest docs`,
+    );
+  }
 
   const projectNewHistoricalFolder = `docs/api/${pkg.name}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {
@@ -67,7 +69,7 @@ zxMain(async () => {
   await copyApiDocsAndUpdateLinks(pkg.name, versionWithoutPatch);
   await generateJsonFiles(
     pkg.name,
-    packageInfo.version,
+    version,
     versionWithoutPatch,
     projectNewHistoricalFolder,
   );

@@ -16,6 +16,7 @@ import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
+import { readApiVersion, parseMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
 
@@ -190,12 +191,12 @@ async function determineCurrentDocsFileBatch(
   ];
 
   if (args.currentApis) {
-    const currentQiskitVersion = JSON.parse(
-      await readFile(`docs/api/qiskit/_package.json`, "utf-8"),
-    )
-      .version.split(".")
-      .slice(0, -1)
-      .join(".");
+    const currentQiskitVersion = parseMinorVersion(
+      await readApiVersion("docs/api/qiskit"),
+    );
+    if (currentQiskitVersion === null) {
+      throw new Error("Could not parse minor version of docs/api/qiskit");
+    }
     toCheck.push(`docs/api/qiskit/release-notes/${currentQiskitVersion}.mdx`);
   } else {
     toCheck.push(`!{public,docs}/api/*/*`);
