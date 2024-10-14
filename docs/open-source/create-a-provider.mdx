@@ -42,7 +42,7 @@ class ProviderService:
 ```
 
 ## Providing an interface for execution
-In addition to providing a service returning hardware configurations, a service providing access to external QPU resources also might also support the execution of quantum workloads. Exposing that capability can be done by creating implementations of the Qiskit primitives interfaces; for example the (../api/qiskit/qiskit.primitives.BasePrimitiveJob), [`BaseEstimatorV2`](../api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](../api/qiskit/qiskit.primitives.BaseSamplerV2) among others. At minimum, these interfaces should be able to provide a method for execution, querying job status, and returning the job results.
+In addition to providing a service returning hardware configurations, a service providing access to external QPU resources also might also support the execution of quantum workloads. Exposing that capability can be done by creating implementations of the Qiskit primitives interfaces; for example the [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob), [`BaseEstimatorV2`](../api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](../api/qiskit/qiskit.primitives.BaseSamplerV2) among others. At minimum, these interfaces should be able to provide a method for execution, querying job status, and returning the job results.
 
 To handle job status and results, the Qiskit SDK provides a [`DataBin`](../api/qiskit/qiskit.primitives.DataBin), [`PubResult`](../api/qiskit/qiskit.primitives.PubResult), [`PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult), and [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob) objects should be used.
 
