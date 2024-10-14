@@ -15,6 +15,7 @@ import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
+import { parseMinorVersion } from "../../lib/apiVersions.js";
 import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
 import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
@@ -86,8 +87,8 @@ export async function generateVersion(
 }
 
 export function determineMinorVersion(args: Arguments): string {
-  const versionMatch = args.version.match(/^(\d+\.\d+)/);
-  if (versionMatch === null) {
+  const minorVersion = parseMinorVersion(args.version);
+  if (minorVersion === null) {
     throw new Error(
       `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
     );
@@ -100,7 +101,7 @@ export function determineMinorVersion(args: Arguments): string {
     );
   }
 
-  return versionMatch[0];
+  return minorVersion;
 }
 
 async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
