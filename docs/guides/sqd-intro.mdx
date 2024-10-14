@@ -1,0 +1,30 @@
+# Sample-based quantum diagonalization (SQD)
+
+Sample-based quantum diagonalization (SQD) is a technique for finding eigenvalues and eigenvectors of quantum operators, such as a the Hamiltonian of a quantum system, using quantum and distributed classical computing together.
+
+Classical computing is used to process samples obtained from a quantum processor, and to project and diagonalize a target Hamiltonian in a subspace spanned by them.This allows SQD to be robust to samples corrupted by quantum noise and deal with large Hamiltonians, such as chemical systems with millions of interacting terms, beyond the reach of exact diagonalization methods.
+
+The SQD tool can target Hamiltonians expressed as linear combinations of Pauli operators, or second-quantized fermionic operators. The input smaples are obtained by quantum circuits defined by the user, which are believed to be good representations of eigenstates (e.g. the ground state) of a target operator. The convergence rate of SQD as a function of the number of samples improves with the sparseness of the target eigenstate.
+
+## Installation
+
+
+## SQD Procedue
+
+The SQD workflow using self-consistent configuration recovery is explained in detail in [1](#references). This page will briefly overview the technique depicted in the following diagram.
+
+![SQD diagram depicting configuration recovery, collecting subsamples, and obtaining eigenstates from those subsamples](/images/guides/qiskit-addons/sqd_diagram.png)
+
+Here $\bar{\mathcal{X}}$ is a set of noisy samples containing, in the context of the Hamiltonian being simulated, physical and non-physical configurations (represented as bitstrings) obtained from execution on a QPU. The non-physical configurations are due to noise and can be processed by the `sqd.configuration_recovery.recover_configurations()` method to refine the samples into a new set $\mathcal{X}_R$. 
+
+From this set, batches of configurations $\mathcal{S}^{(1)}...\ \mathcal{S}^{(K)}$ are collected and represent samples obtained from different subspaces of the Hamiltonian. These subspace samples are built from a set of basis states, $\mathcal{S}^{(k)}=\{|\mathbb{x}^{(k)}\rangle\}$, and are projections of the system Hamiltonian, $\hat{H}$. This projection is defined as
+
+$$ \hat{H}_{S^{(k)}} = \hat{P}_{\mathcal{S}^{(k)}}\hat{H}\hat{P}_{\mathcal{S}^{(k)}}\text{, with } \hat{P}_{\mathcal{S}^{(k)}} = \sum_{\mathbb{x} \in \mathcal{S}^{(k)}} |\mathbb{x}\rangle\langle\mathbb{x}|$$
+
+where $\hat{H}_{\mathcal{S}^{(k)}}$ is the Hamiltonian of a given subspace.
+
+The power of SQD lies here where each of these subspace Hamiltonians are diagonalized 
+
+## References
+
+[1] Robledo-Moreno, Javier, et al. ["Chemistry beyond exact solutions on a quantum-centric supercomputer"](https://arxiv.org/abs/2405.05068) arXiv preprint arXiv:2405.05068 (2024).
