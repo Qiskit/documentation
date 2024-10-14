@@ -56,6 +56,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://doi.org/10.1103/PhysRevApplied.5.034007",
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
   "https://doi.org/10.1103/PhysRevLett.103.150502",
+  "https://doi.org/10.1103/PhysRevA.99.032331",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
