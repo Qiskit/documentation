@@ -926,15 +926,15 @@ For full details on all the changes made in this release see the detailed releas
 
 #### Bug Fixes
 
-*   The [`BarrierBeforeFinalMeasurements`](/api/qiskit/0.45/qiskit.transpiler.passes.BarrierBeforeFinalMeasurements "qiskit.transpiler.passes.BarrierBeforeFinalMeasurements") transpiler pass, included in the preset transpiler levels when targeting a physical device, previously inserted a barrier across only measured qubits. In some cases, this allowed the transpiler to insert a swap after a measure operation, rendering the circuit invalid for current devices. The pass has been updated so that the inserted barrier will span all qubits on the device. Fixes [#3937](https://github.com/Qiskit/qiskit-terra/issues/3937)
+*   The [`BarrierBeforeFinalMeasurements`](/api/qiskit/0.45/qiskit.transpiler.passes.BarrierBeforeFinalMeasurements "qiskit.transpiler.passes.BarrierBeforeFinalMeasurements") transpiler pass, included in the preset transpiler levels when targeting a physical device, previously inserted a barrier across only measured qubits. In some cases, this allowed the transpiler to insert a swap after a measure operation, rendering the circuit invalid for current devices. The pass has been updated so that the inserted barrier will span all qubits on the device. Fixes [#3937](https://github.com/Qiskit/qiskit/issues/3937)
 
-*   When extending a [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") instance (extendee) with another circuit (extension), the circuit is taken via reference. If a circuit is extended with itself that leads to an infinite loop as extendee and extension are the same. This bug has been resolved by copying the extension if it is the same object as the extendee. Fixes [#3811](https://github.com/Qiskit/qiskit-terra/issues/3811)
+*   When extending a [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") instance (extendee) with another circuit (extension), the circuit is taken via reference. If a circuit is extended with itself that leads to an infinite loop as extendee and extension are the same. This bug has been resolved by copying the extension if it is the same object as the extendee. Fixes [#3811](https://github.com/Qiskit/qiskit/issues/3811)
 
-*   Fixes a case in [`qiskit.result.Result.get_counts()`](/api/qiskit/0.45/qiskit.result.Result#get_counts "qiskit.result.Result.get_counts"), where the results for an expirement could not be referenced if the experiment was initialized as a Schedule without a name. Fixes [#2753](https://github.com/Qiskit/qiskit-terra/issues/2753)
+*   Fixes a case in [`qiskit.result.Result.get_counts()`](/api/qiskit/0.45/qiskit.result.Result#get_counts "qiskit.result.Result.get_counts"), where the results for an expirement could not be referenced if the experiment was initialized as a Schedule without a name. Fixes [#2753](https://github.com/Qiskit/qiskit/issues/2753)
 
 *   Previously, replacing [`Parameter`](/api/qiskit/0.45/qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in a circuit with new Parameter objects prior to decomposing a circuit would result in the substituted values not correctly being substituted into the decomposed gates. This has been resolved such that binding and decomposition may occur in any order.
 
-*   The matplotlib output backend for the [`qiskit.visualization.circuit_drawer()`](/api/qiskit/0.45/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") function and [`qiskit.circuit.QuantumCircuit.draw()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") method drawer has been fixed to render `CU1Gate` gates correctly. Fixes [#3684](https://github.com/Qiskit/qiskit-terra/issues/3684)
+*   The matplotlib output backend for the [`qiskit.visualization.circuit_drawer()`](/api/qiskit/0.45/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") function and [`qiskit.circuit.QuantumCircuit.draw()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") method drawer has been fixed to render `CU1Gate` gates correctly. Fixes [#3684](https://github.com/Qiskit/qiskit/issues/3684)
 
 *   A bug in [`qiskit.circuit.QuantumCircuit.from_qasm_str()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#from_qasm_str "qiskit.circuit.QuantumCircuit.from_qasm_str") and [`qiskit.circuit.QuantumCircuit.from_qasm_file()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#from_qasm_file "qiskit.circuit.QuantumCircuit.from_qasm_file") when loading QASM with custom gates defined has been fixed. Now, loading this QASM:
 
@@ -961,7 +961,7 @@ For full details on all the changes made in this release see the detailed releas
     expected.append(rinv, [qr[0]])
     ```
 
-    Fixes [#1566](https://github.com/Qiskit/qiskit-terra/issues/1566)
+    Fixes [#1566](https://github.com/Qiskit/qiskit/issues/1566)
 
 *   Allow quantum circuit Instructions to have list parameter values. This is used in Aer for expectation value snapshot parameters for example `params = [[1.0, 'I'], [1.0, 'X']]]` for $\langle I + X\rangle$.
 

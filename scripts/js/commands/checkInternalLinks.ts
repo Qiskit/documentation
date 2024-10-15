@@ -10,12 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile, readdir } from "fs/promises";
+import { readdir } from "fs/promises";
 
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
+import { readApiMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
 
@@ -27,6 +28,7 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/tags/jobs.mdx",
   "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
+  "docs/announcements/product-updates/2024-09-16-code-assistant.mdx",
 ];
 
 interface Arguments {
@@ -190,12 +192,7 @@ async function determineCurrentDocsFileBatch(
   ];
 
   if (args.currentApis) {
-    const currentQiskitVersion = JSON.parse(
-      await readFile(`docs/api/qiskit/_package.json`, "utf-8"),
-    )
-      .version.split(".")
-      .slice(0, -1)
-      .join(".");
+    const currentQiskitVersion = await readApiMinorVersion("docs/api/qiskit");
     toCheck.push(`docs/api/qiskit/release-notes/${currentQiskitVersion}.mdx`);
   } else {
     toCheck.push(`!{public,docs}/api/*/*`);
