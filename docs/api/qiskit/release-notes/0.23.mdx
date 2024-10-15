@@ -390,10 +390,10 @@ No change
 
 *   optimize\_svm method of qp\_solver would sometimes fail resulting in an error like this ValueError: cannot reshape array of size 1 into shape (200,1) This addresses the issue by adding an L2 norm parameter, lambda2, which defaults to 0.001 but can be changed via the QSVM algorithm, as needed, to facilitate convergence.
 *   A method `one_letter_symbol` has been removed from the `VarType` in the latest build of DOCplex making Aqua incompatible with this version. So instead of using this method an explicit type check of variable types has been introduced in the Aqua optimization module.
-*   :meth\`\~qiskit.aqua.operators.state\_fns.DictStateFn.sample()\` could only handle real amplitudes, but it is fixed to handle complex amplitudes. #1311 \<[https://github.com/Qiskit/qiskit-aqua/issues/1311](https://github.com/Qiskit/qiskit-aqua/issues/1311)> for more details.
-*   Trotter class did not use the reps argument in constructor. #1317 \<[https://github.com/Qiskit/qiskit-aqua/issues/1317](https://github.com/Qiskit/qiskit-aqua/issues/1317)> for more details.
-*   Raise an AquaError if :class\`qiskit.aqua.operators.converters.CircuitSampler\` samples an empty operator. #1321 \<[https://github.com/Qiskit/qiskit-aqua/issues/1321](https://github.com/Qiskit/qiskit-aqua/issues/1321)> for more details.
-*   `to_opflow()` returns a correct operator when coefficients are complex numbers. #1381 \<[https://github.com/Qiskit/qiskit-aqua/issues/1381](https://github.com/Qiskit/qiskit-aqua/issues/1381)> for more details.
+*   :meth\`\~qiskit.aqua.operators.state\_fns.DictStateFn.sample()\` could only handle real amplitudes, but it is fixed to handle complex amplitudes. #1311 \<[https://github.com/qiskit-community/qiskit-aqua/issues/1311](https://github.com/qiskit-community/qiskit-aqua/issues/1311)> for more details.
+*   Trotter class did not use the reps argument in constructor. #1317 \<[https://github.com/qiskit-community/qiskit-aqua/issues/1317](https://github.com/qiskit-community/qiskit-aqua/issues/1317)> for more details.
+*   Raise an AquaError if :class\`qiskit.aqua.operators.converters.CircuitSampler\` samples an empty operator. #1321 \<[https://github.com/qiskit-community/qiskit-aqua/issues/1321](https://github.com/qiskit-community/qiskit-aqua/issues/1321)> for more details.
+*   `to_opflow()` returns a correct operator when coefficients are complex numbers. #1381 \<[https://github.com/qiskit-community/qiskit-aqua/issues/1381](https://github.com/qiskit-community/qiskit-aqua/issues/1381)> for more details.
 *   Let backend simulators validate NoiseModel support instead of restricting to Aer only in QuantumInstance.
 *   Correctly handle PassManager on QuantumInstance `transpile` method by calling its `run` method if it exists.
 *   A bug that mixes custom `initial_state` in `QAOA` with Hadamard gates has been fixed. This doesn’t change functionality of QAOA if no initial\_state is provided by the user. Attention should be taken if your implementation uses QAOA with cusom `initial_state` parameter as the optimization results might differ.
@@ -1429,7 +1429,7 @@ VQE expectation computation with Aer qasm\_simulator now defaults to a computati
 *   Calling PauliTrotterEvolution.convert on an operator including a term that is a scalar multiple of the identity gave an incorrect circuit, one that ignored the scalar coefficient. This fix includes the effect of the coefficient in the global\_phase property of the circuit.
 *   Make ListOp.num\_qubits check that all ops in list have the same num\_qubits Previously, the number of qubits in the first operator in the ListOp was returned. With this change, an additional check is made that all other operators also have the same number of qubits.
 *   Make PauliOp.exp\_i() generate the correct matrix with the following changes. 1) There was previously an error in the phase of a factor of 2. 2) The global phase was ignored when converting the circuit to a matrix. We now use qiskit.quantum\_info.Operator, which is generally useful for converting a circuit to a unitary matrix, when possible.
-*   Fixes the cyclicity detection as reported buggy in [https://github.com/Qiskit/qiskit-aqua/issues/1184](https://github.com/Qiskit/qiskit-aqua/issues/1184).
+*   Fixes the cyclicity detection as reported buggy in [https://github.com/qiskit-community/qiskit-aqua/issues/1184](https://github.com/qiskit-community/qiskit-aqua/issues/1184).
 
 <span id="ibm-q-provider-0-11-0" />
 
