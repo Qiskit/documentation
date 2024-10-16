@@ -20,6 +20,7 @@ import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
 import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
+import { generateApiRedirectData } from "./generateApiRedirectData.js";
 
 export interface Arguments {
   [x: string]: unknown;
@@ -84,6 +85,7 @@ export async function generateVersion(
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runConversionPipeline(sphinxArtifactFolder, "docs", "public", pkg);
   await generateHistoricalRedirects();
+  await generateApiRedirectData();
 }
 
 export function determineMinorVersion(args: Arguments): string {

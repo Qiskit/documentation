@@ -21,6 +21,7 @@ import { zxMain } from "../../lib/zx.js";
 import { pathExists } from "../../lib/fs.js";
 import { readApiFullVersion } from "../../lib/apiVersions.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
+import { generateApiRedirectData } from "./generateApiRedirectData.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -77,6 +78,7 @@ zxMain(async () => {
   }
 
   await generateHistoricalRedirects();
+  await generateApiRedirectData();
 
   console.log(`Each regenerated version has been saved as a distinct commit. If the changes are
 too large for one single PR, consider splitting it up into multiple PRs by using
