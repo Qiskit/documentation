@@ -52,7 +52,7 @@ zxMain(async () => {
   const pkg = await Pkg.fromArgs(args.package, "ignored", "ignored", "latest");
 
   const version = await readApiFullVersion(`docs/api/${pkg.name}`);
-  const versionWithoutPatch = await readApiMinorVersion(version);
+  const versionWithoutPatch = await readApiMinorVersion(`docs/api/${pkg.name}`);
 
   const projectNewHistoricalFolder = `docs/api/${pkg.name}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {
