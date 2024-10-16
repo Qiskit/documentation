@@ -20,40 +20,20 @@ import { removeSuffix } from "../../lib/stringUtils.js";
 
 const OUTPUT_FILE = "./scripts/config/api-redirect-data.json";
 
+type Version = string;
+
 // Store which minor version == the latest release. This simplifies the web app's
 // implementation.
-type LatestVersions = { [pkg: string]: string };
+type LatestVersions = { [pkg: string]: Version };
 
-// Note: if this file's memory becomes a problem over time, we can use a more optimal
-// representation of missing pages. Rather than enumerating every version a page is
-// missing from, we can store contiguous ranges. For example, ("0.1", "0.5") would mean the
-// page is missing in 0.1-0.5. However, this representation is not as simple:
-//
-//   - We need to handle multiple contiguous ranges. For example, imagine an
-//     API added in 0.3 but removed in 0.6. This would be
-//     [("0.1", "0.2"), ("0.6", "<dev-version>")]
-//   - Qiskit SDK has breaks in its versions; 0.20-0.23 and 0.34 don't exist, but
-//     those versions not existing don't necessarily mean the range is not contiguous.
-//   - The web app code would have more complex code to check if the current
-//     page is in the contiguous ranges.
-type MissingPages = { [pkg: string]: { [page: string]: string[] } };
+// This isn't the most compact representation possible, but it's good enough for now.
+// See https://github.com/Qiskit/documentation/pull/2125 for more information.
+type MissingPages = { [pkg: string]: { [page: string]: Version[] } };
 
-// This mechanism allows us to set up custom redirects from historical/dev versions to
-// the latest version.
-//
-// This mechanism is useful because of the API version warning banner that we show on all versions
-// other than latest. That banner differentiates between pages that exist on the latest
-// version versus do not because the API was deleted or it's new to the dev version. Sometimes,
-// the API was not actually changed and only its URL was modified; so, this mechanism let's us
-// more accurately reflect the situation.
-//
-// We don't attempt to support custom redirect rules for arbitrary version relationships like
-// 0.1 <-> 0.2 because it is too complex. When changing between historical API versions via the
-// version selector, it's not the end of the world if we don't preserve the current API you're on
-// and instead go to the API index page. That behavior would only happen when an API's
-// URL changed between versions, which is not common. We only go so out of our way to
-// set up custom redirect rules for the latest version because we don't want to say
-// misleading information in the API version warning banner.
+// This mechanism links pages between historical/dev versions and the latest version when URLs change.
+// For simplicity, we only support custom redirects between historical/dev to latest,
+// which covers the most important cases. See https://github.com/Qiskit/documentation/pull/2125
+// for more information.
 type CustomRedirectsToLatest = {
   [pkg: string]: { [version: string]: { [page: string]: string } };
 };
