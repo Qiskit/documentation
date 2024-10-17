@@ -40,9 +40,9 @@ jobs:
           # images in public/images or changes to scripts/config/api-html-artifacts.json
           # to avoid noisy PRs. It's common for images to change because some of the
           # images are generated non-deterministically.
-          files: docs/api/**/*.mdx
+          files: "docs/api/**/*.mdx"
       - name: Make pull request
-        if: ${{ !cancelled() && steps.changed-docs-files.outputs.any_changed == 'true' }}
+        if: steps.changed-docs-files.outputs.any_changed == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
