@@ -26,7 +26,6 @@ import { pathExists } from "../../lib/fs.js";
 import { zxMain } from "../../lib/zx.js";
 import { Pkg } from "../../lib/api/Pkg.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
-import { generateApiRedirectData } from "./generateApiRedirectData.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -79,7 +78,6 @@ zxMain(async () => {
   );
   await copyObjectsInv(pkg.name, versionWithoutPatch);
   await generateHistoricalRedirects();
-  await generateApiRedirectData();
 });
 
 async function copyApiDocsAndUpdateLinks(
