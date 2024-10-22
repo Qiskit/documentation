@@ -1,0 +1,34 @@
+---
+title: qpdbasis_from_instruction
+description: API reference for qiskit_addon_cutting.qpd.qpdbasis_from_instruction
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.qpd.qpdbasis_from_instruction
+---
+
+<span id="qiskit-addon-cutting-qpd-qpdbasis-from-instruction" />
+
+# qiskit\_addon\_cutting.qpd.qpdbasis\_from\_instruction
+
+<Function id="qiskit_addon_cutting.qpd.qpdbasis_from_instruction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/decompositions.py" signature="qpdbasis_from_instruction(gate, /)">
+  Generate a [`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation.
+
+  All two-qubit gates which implement the [`to_matrix()`](/api/qiskit/qiskit.circuit.Gate#to_matrix "(in Qiskit v1.2)") method are supported. This should include the vast majority of gates with no unbound parameters, but there are some special cases (see, e.g., [qiskit issue #10396](https://github.com/Qiskit/qiskit-terra/issues/10396)).
+
+  The [`Move`](qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") operation, which can be used to specify a wire cut, is also supported.
+
+  **Return type**
+
+  [`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")
+
+  **Returns**
+
+  The newly-instantiated [`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") object
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Instruction not supported.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Cannot decompose instruction with unbound parameters.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – `to_matrix` conversion of two-qubit gate failed.
+</Function>
+

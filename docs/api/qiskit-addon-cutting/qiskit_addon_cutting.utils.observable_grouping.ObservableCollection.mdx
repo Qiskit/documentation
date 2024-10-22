@@ -1,0 +1,48 @@
+---
+title: ObservableCollection
+description: API reference for qiskit_addon_cutting.utils.observable_grouping.ObservableCollection
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_cutting.utils.observable_grouping.ObservableCollection
+---
+
+<span id="qiskit-addon-cutting-utils-observable-grouping-observablecollection" />
+
+# qiskit\_addon\_cutting.utils.observable\_grouping.ObservableCollection
+
+<Class id="qiskit_addon_cutting.utils.observable_grouping.ObservableCollection" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/observable_grouping.py" signature="ObservableCollection(observables, /)" modifiers="class">
+  Collection of observables organized for efficient taking of measurements.
+
+  The observables are automatically organized into sets of mutually qubit-wise commuting observables, each represented by a [`CommutingObservableGroup`](qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup "qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup").
+
+  Assign member variables.
+
+  **Parameters**
+
+  **observables** (PauliList | Iterable\[Pauli]) – Observables of interest
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_addon_cutting.utils.observable_grouping.ObservableCollection.__init__" signature="__init__(observables, /)">
+    Assign member variables.
+
+    **Parameters**
+
+    **observables** (PauliList | Iterable\[Pauli]) – Observables of interest
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                                            |                                                                                        |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_addon_cutting.utils.observable_grouping.ObservableCollection.__init__ "qiskit_addon_cutting.utils.observable_grouping.ObservableCollection.__init__")(observables, /) | Assign member variables.                                                               |
+  | `construct_general_observables`(...)                                                                                                                                                       | Construct the most general observable from each set of mutually commuting observables. |
+
+  ## Attributes
+
+  |          |                                                                                                                                                                                                                                            |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | `groups` | List of [`CommutingObservableGroup`](qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup "qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup")s which, together, contain all desired observables. |
+  | `lookup` | Get dict which maps each [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)") observable to a list of indices, `(i, j)`, to commuting observables in `groups`.                                                              |
+</Class>
+

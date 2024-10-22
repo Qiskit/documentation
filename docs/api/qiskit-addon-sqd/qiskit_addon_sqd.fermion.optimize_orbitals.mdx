@@ -1,0 +1,62 @@
+---
+title: optimize_orbitals
+description: API reference for qiskit_addon_sqd.fermion.optimize_orbitals
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_sqd.fermion.optimize_orbitals
+---
+
+<span id="qiskit-addon-sqd-fermion-optimize-orbitals" />
+
+# qiskit\_addon\_sqd.fermion.optimize\_orbitals
+
+<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L130-L241" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, max_davidson=100)">
+  Optimize orbitals to produce a minimal ground state.
+
+  The process involves iterating over 3 steps:
+
+  ## For `num_iters` iterations:
+
+  *   Rotate the integrals with respect to the parameters, `k_flat`
+  *   Diagonalize and approximate the groundstate energy and wavefunction amplitudes
+  *   Optimize `k_flat` using gradient descent and the wavefunction amplitudes found in Step 2
+
+  Refer to [Sec. II A 4](https://arxiv.org/pdf/2405.05068) for more detailed discussion on this orbital optimization technique.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) –
+
+      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
+
+      (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
+
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Core Hamiltonian matrix representing single-electron integrals
+
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Electronic repulsion integrals representing two-electron integrals
+
+  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – 1D array defining the orbital transform. This array will be reshaped to be of shape (# orbitals, # orbitals) before being used as a similarity transform operator on the orbitals. Thus `len(k_flat)=# orbitals**2`.
+
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
+
+  *   **spin\_sq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Target value for the total spin squared for the ground state
+
+  *   **num\_iters** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of iterations of orbital optimization to perform
+
+  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm to perform during diagonalization.
+
+  *   **num\_steps\_grad** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of steps of gradient descent to perform during each optimization iteration
+
+  *   **learning\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The learning rate to use during gradient descent
+
+  **Returns**
+
+  *   The groundstate energy found during the last optimization iteration
+  *   An optimized 1D array defining the orbital transform
+  *   Average orbital occupancy
+
+  **Return type**
+
+  A tuple containing
+</Function>
+
