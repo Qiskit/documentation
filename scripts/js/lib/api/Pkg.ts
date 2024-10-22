@@ -45,6 +45,12 @@ export class Pkg {
     "qiskit",
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
+    "qiskit-addon-obp",
+    "qiskit-addon-mpf",
+    "qiskit-addon-sqd",
+    "qiskit-addon-cutting",
+    "qiskit-addon-utils",
+    "qiskit-addon-dice-solver",
   ];
 
   constructor(kwargs: {
@@ -86,7 +92,6 @@ export class Pkg {
       return new Pkg({
         ...args,
         title: "Qiskit SDK",
-        name: "qiskit",
         githubSlug: "qiskit/qiskit",
         releaseNotesConfig: new ReleaseNotesConfig({
           separatePagesVersions: releaseNoteEntries,
@@ -99,7 +104,6 @@ export class Pkg {
       return new Pkg({
         ...args,
         title: "Qiskit Runtime Client",
-        name: "qiskit-ibm-runtime",
         githubSlug: "qiskit/qiskit-ibm-runtime",
       });
     }
@@ -108,8 +112,50 @@ export class Pkg {
       return new Pkg({
         ...args,
         title: "Qiskit Transpiler Service Client",
-        name: "qiskit-ibm-transpiler",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
+      });
+    }
+
+    if (name === "qiskit-addon-obp") {
+      return new Pkg({
+        ...args,
+        title: "Operator Backpropagation",
+        githubSlug: "Qiskit/qiskit-addon-obp",
+      });
+    }
+    if (name === "qiskit-addon-mpf") {
+      return new Pkg({
+        ...args,
+        title: "Multi-Product Formulas",
+        githubSlug: "Qiskit/qiskit-addon-mpf",
+      });
+    }
+    if (name === "qiskit-addon-sqd") {
+      return new Pkg({
+        ...args,
+        title: "Sample-Based Quantum Diagonalization",
+        githubSlug: "Qiskit/qiskit-addon-sqd",
+      });
+    }
+    if (name === "qiskit-addon-cutting") {
+      return new Pkg({
+        ...args,
+        title: "Circuit Cutting",
+        githubSlug: "Qiskit/qiskit-addon-cutting",
+      });
+    }
+    if (name === "qiskit-addon-utils") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Addon Utilities",
+        githubSlug: "Qiskit/qiskit-addon-utils",
+      });
+    }
+    if (name === "qiskit-addon-dice-solver") {
+      return new Pkg({
+        ...args,
+        title: "Dice Eigensolver",
+        githubSlug: "Qiskit/qiskit-addon-dice-solver",
       });
     }
 
