@@ -18,6 +18,11 @@ export const IGNORED_FILES = new Set([
   "public/api/qiskit-ibm-runtime/0.14/objects.inv",
   "public/api/qiskit-ibm-runtime/0.15/objects.inv",
   "public/api/qiskit-ibm-runtime/0.16/objects.inv",
+  "public/api/qiskit-addon-cutting/objects.inv",
+  "public/api/qiskit-addon-mpf/objects.inv",
+  "public/api/qiskit-addon-obp/objects.inv",
+  "public/api/qiskit-addon-sqd/objects.inv",
+  "public/api/qiskit-addon-utils/objects.inv",
 ]);
 
 // -----------------------------------------------------------------------------------
@@ -316,6 +321,29 @@ function _legacyQiskitSDKIssues(): FilesToIgnores {
   };
 }
 
+function _addonsApiDocs(): FilesToIgnores {
+  return {
+    "docs/api/qiskit-addon-cutting/qiskit_addon_cutting.instructions.Move.mdx":
+      ["tutorials/03_wire_cutting_via_move_instruction"],
+    "docs/api/qiskit-addon-cutting/release-notes.mdx": [
+      "/api/migration-guides/v2-primitives",
+      "/api/migration-guides/qiskit-1.0-features#qiskitprimitives",
+      "explanation/index",
+      "tutorials/index#circuit-cutting-tutorials",
+      "explanation/index#circuit-cutting-explanation",
+    ],
+    "docs/api/qiskit-addon-obp/qiskit_addon_obp.utils.truncating.setup_budget.mdx":
+      ["how_tos/truncate_operator_terms", "how_tos/bound_error_using_p_norm"],
+    "docs/api/qiskit-addon-obp/qiskit_addon_obp.utils.truncating.TruncationErrorBudget.mdx":
+      ["how_tos/truncate_operator_terms", "how_tos/bound_error_using_p_norm"],
+    "docs/api/qiskit-addon-obp/qiskit_addon_obp.backpropagate.mdx": [
+      "how_tos/truncate_operator_terms",
+    ],
+    "docs/api/qiskit-addon-utils/qiskit_addon_utils.slicing.mdx": [
+      "how_tos/create_circuit_slices",
+    ],
+  };
+}
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
@@ -323,7 +351,8 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
+  mergeFilesToIgnores(_addonsApiDocs());
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

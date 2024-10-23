@@ -1,0 +1,31 @@
+---
+title: bitstring_matrix_to_ci_strs
+description: API reference for qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs
+---
+
+<span id="qiskit-addon-sqd-fermion-bitstring-matrix-to-ci-strs" />
+
+# qiskit\_addon\_sqd.fermion.bitstring\_matrix\_to\_ci\_strs
+
+<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L356-L400" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
+  Convert bitstrings (rows) in a `bitstring_matrix` into integer representations of determinants.
+
+  This function separates each bitstring in `bitstring_matrix` in half, flips the bits and translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether unique configurations from the left and right halves of the bitstrings should be kept separate. If `False`, configurations from the left and right halves of the bitstrings are combined into a single set of unique configurations. That combined set will be returned for both the left and right bitstrings.
+
+  **Returns**
+
+  A length-2 tuple of determinant lists representing the right (spin-up) and left (spin-down) halves of the bitstrings, respectively.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+</Function>
+

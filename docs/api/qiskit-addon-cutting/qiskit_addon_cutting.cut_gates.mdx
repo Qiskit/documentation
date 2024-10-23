@@ -1,0 +1,34 @@
+---
+title: cut_gates
+description: API reference for qiskit_addon_cutting.cut_gates
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.cut_gates
+---
+
+<span id="qiskit-addon-cutting-cut-gates" />
+
+# qiskit\_addon\_cutting.cut\_gates
+
+<Function id="qiskit_addon_cutting.cut_gates" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/cutting_decomposition.py" signature="cut_gates(circuit, gate_ids, inplace=False)">
+  Transform specified gates into [`TwoQubitQPDGate`](qiskit_addon_cutting.qpd.TwoQubitQPDGate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s.
+
+  **Parameters**
+
+  *   **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – The circuit containing gates to be decomposed
+  *   **gate\_ids** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]) – The indices of the gates to decompose
+  *   **inplace** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Flag denoting whether to copy the input circuit before acting on it
+
+  **Return type**
+
+  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")]]
+
+  **Returns**
+
+  A copy of the input circuit with the specified gates replaced with [`TwoQubitQPDGate`](qiskit_addon_cutting.qpd.TwoQubitQPDGate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s and a list of [`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") instances – one for each decomposed gate.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – The input circuit should contain no classical bits or registers.
+</Function>
+

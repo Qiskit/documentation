@@ -1,0 +1,40 @@
+---
+title: decompose_qpd_instructions
+description: API reference for qiskit_addon_cutting.qpd.decompose_qpd_instructions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.qpd.decompose_qpd_instructions
+---
+
+<span id="qiskit-addon-cutting-qpd-decompose-qpd-instructions" />
+
+# qiskit\_addon\_cutting.qpd.decompose\_qpd\_instructions
+
+<Function id="qiskit_addon_cutting.qpd.decompose_qpd_instructions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/decompose.py" signature="decompose_qpd_instructions(circuit, instruction_ids, map_ids=None, *, inplace=False)">
+  Replace all QPD instructions in the circuit with local Qiskit operations and measurements.
+
+  **Parameters**
+
+  *   **circuit** (QuantumCircuit) – The circuit containing QPD instructions
+  *   **instruction\_ids** (Sequence\[Sequence\[int]]) – A 2D sequence, such that each inner sequence corresponds to indices of instructions comprising one decomposition in the circuit. The elements within a common sequence belong to a common decomposition and should be sampled together.
+  *   **map\_ids** (Sequence\[int] | None) – Indices to a specific linear mapping to be applied to the decompositions in the circuit. If no map IDs are provided, the circuit will be decomposed randomly according to the decompositions’ joint probability distribution.
+
+  **Return type**
+
+  QuantumCircuit
+
+  **Returns**
+
+  Circuit which has had all its [`BaseQPDGate`](qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate") instances decomposed into local operations.
+
+  The circuit will contain a new, final classical register to contain the QPD measurement outcomes (accessible at `retval.cregs[-1]`).
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – An index in `instruction_ids` corresponds to a gate which is not a [`BaseQPDGate`](qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate") instance.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – A list within instruction\_ids is not length 1 or 2.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – The total number of indices in `instruction_ids` does not equal the number of [`BaseQPDGate`](qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate") instances in the circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Gates within the same decomposition hold different QPD bases.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Length of `map_ids` does not equal the number of decompositions in the circuit.
+</Function>
+

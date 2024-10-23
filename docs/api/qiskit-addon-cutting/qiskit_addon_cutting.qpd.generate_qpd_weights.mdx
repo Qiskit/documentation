@@ -1,0 +1,33 @@
+---
+title: generate_qpd_weights
+description: API reference for qiskit_addon_cutting.qpd.generate_qpd_weights
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.qpd.generate_qpd_weights
+---
+
+<span id="qiskit-addon-cutting-qpd-generate-qpd-weights" />
+
+# qiskit\_addon\_cutting.qpd.generate\_qpd\_weights
+
+<Function id="qiskit_addon_cutting.qpd.generate_qpd_weights" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/weights.py" signature="generate_qpd_weights(qpd_bases, num_samples=1000)">
+  Generate weights from the joint quasiprobability distribution.
+
+  Each weight whose absolute value is above a threshold of `1 / num_samples` will be evaluated exactly. The remaining weights – those in the tail of the distribution – will then be sampled from, resulting in at most `num_samples` unique weights.
+
+  **Parameters**
+
+  *   **qpd\_bases** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")]) – The [`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") objects from which to generate weights
+  *   **num\_samples** ([`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Controls the number of weights to generate
+
+  **Return type**
+
+  [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"), [`...`](https://docs.python.org/3/library/constants.html#Ellipsis "(in Python v3.12)")], [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [`WeightType`](qiskit_addon_cutting.qpd.WeightType "qiskit_addon_cutting.qpd.weights.WeightType")]]
+
+  **Returns**
+
+  A mapping from a given decomposition to its weight. Keys are tuples of indices – one index per input [`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis"). The indices correspond to a specific decomposition mapping in the basis.
+
+  Values are tuples. The first element is a number corresponding to the weight of the contribution. The second element is the [`WeightType`](qiskit_addon_cutting.qpd.WeightType "qiskit_addon_cutting.qpd.WeightType"), either `EXACT` or `SAMPLED`.
+</Function>
+

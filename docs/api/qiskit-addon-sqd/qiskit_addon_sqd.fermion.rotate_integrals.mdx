@@ -1,0 +1,43 @@
+---
+title: rotate_integrals
+description: API reference for qiskit_addon_sqd.fermion.rotate_integrals
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_sqd.fermion.rotate_integrals
+---
+
+<span id="qiskit-addon-sqd-fermion-rotate-integrals" />
+
+# qiskit\_addon\_sqd.fermion.rotate\_integrals
+
+<Function id="qiskit_addon_sqd.fermion.rotate_integrals" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L244-L276" signature="rotate_integrals(hcore, eri, k_flat)">
+  Perform a similarity transform on the integrals.
+
+  The transformation is described as:
+
+$$
+\hat{\widetilde{H}} = \hat{U^{\dagger}}(k)\hat{H}\hat{U}(k)
+$$
+
+  For more information on how $\hat{U}$ and $\hat{U^{\dagger}}$ are generated from `k_flat` and applied to the one- and two-body integrals, refer to [Sec. II A 4](https://arxiv.org/pdf/2405.05068).
+
+  **Parameters**
+
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Core Hamiltonian matrix representing single-electron integrals
+
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Electronic repulsion integrals representing two-electron integrals
+
+  *   **k\_flat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) –
+
+      1D array defining the orbital transform. Refer to [Sec. II A 4](https://arxiv.org/pdf/2405.05068) for more information on how these values are used to generate the transform operator.
+
+  **Returns**
+
+  *   The rotated core Hamiltonian matrix
+  *   The rotated ERI matrix
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+</Function>
+

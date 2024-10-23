@@ -1,0 +1,75 @@
+---
+title: generate_xyz_hamiltonian
+description: API reference for qiskit_addon_utils.problem_generators.generate_xyz_hamiltonian
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_utils.problem_generators.generate_xyz_hamiltonian
+---
+
+<span id="generate-xyz-hamiltonian" />
+
+# generate\_xyz\_hamiltonian
+
+<Function id="qiskit_addon_utils.problem_generators.generate_xyz_hamiltonian" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-utils/tree/main/qiskit_addon_utils/problem_generators/generate_xyz_hamiltonian.py#L56-L189" signature="generate_xyz_hamiltonian(coupling, *, coupling_constants=(1.0, 1.0, 1.0), ext_magnetic_field=(0.0, 0.0, 0.0), pauli_order_strategy=PauliOrderStrategy.ColorThenInteraction, coloring=None)">
+  Generate a connectivity-aware qubit operator representing a quantum XYZ-type model.
+
+  This function implements the following Hamiltonian:
+
+$$
+\hat{H} = \sum_{(j,k)\in E} (J_{x} \sigma_j^{x} \sigma_{k}^{x} +
+J_{y} \sigma_j^{y} \sigma_{k}^{y} + J_{z} \sigma_j^{z} \sigma_{k}^{z}) +
+\sum_{j\in V} (h_{x} \sigma_j^{x} + h_{y} \sigma_j^{y} + h_{z} \sigma_j^{z})
+$$
+
+  Where G(V,E) is the graph of the provided `coupling` map.
+
+  <Admonition title="Note" type="note">
+    There is often a $-\frac{1}{2}$ factor included outside the summation of this equation. This factor is not applied internally, so it should be accounted for in the `coupling_constants` and `ext_magnetic_field` inputs.
+  </Admonition>
+
+  ```python
+  >>> from qiskit.transpiler import CouplingMap
+  >>> from qiskit_addon_utils.problem_generators import generate_xyz_hamiltonian
+
+  >>> coupling_map = CouplingMap.from_line(10)
+  >>> hamiltonian = generate_xyz_hamiltonian(
+  ...     coupling_map,
+  ...     coupling_constants=(0.4, 0.4, 0.0),
+  ...     ext_magnetic_field=(0.0, 0.0, 0.6),
+  ... )
+  >>> print(hamiltonian)
+  SparsePauliOp(['IIIIIIIXXI', 'IIIIIIIYYI', 'IIIIIXXIII', 'IIIIIYYIII',
+                 'IIIXXIIIII', 'IIIYYIIIII', 'IXXIIIIIII', 'IYYIIIIIII',
+                 'IIIIIIIIXX', 'IIIIIIIIYY', 'IIIIIIXXII', 'IIIIIIYYII',
+                 'IIIIXXIIII', 'IIIIYYIIII', 'IIXXIIIIII', 'IIYYIIIIII',
+                 'XXIIIIIIII', 'YYIIIIIIII', 'IIIIIIIIIZ', 'IIIIIIIIZI',
+                 'IIIIIIIZII', 'IIIIIIZIII', 'IIIIIZIIII', 'IIIIZIIIII',
+                 'IIIZIIIIII', 'IIZIIIIIII', 'IZIIIIIIII', 'ZIIIIIIIII'],
+              coeffs=[0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j,
+                      0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j, 0.4+0.j,
+                      0.4+0.j, 0.4+0.j, 0.6+0.j, 0.6+0.j, 0.6+0.j, 0.6+0.j, 0.6+0.j, 0.6+0.j,
+                      0.6+0.j, 0.6+0.j, 0.6+0.j, 0.6+0.j])
+  ```
+
+  **Parameters**
+
+  *   **coupling** ([*CouplingMap*](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.2)")  *|*[*PyGraph*](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.15)")  *|*[*PyDiGraph*](https://www.rustworkx.org/apiref/rustworkx.PyDiGraph.html#rustworkx.PyDiGraph "(in rustworkx v0.15)")) – The qubit subgraph on which to map the Hamiltonian. Directionality of graph edges will be ignored, and parallel edges will be treated as a single edge during generation of the operator.
+  *   **coupling\_constants** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – The real-valued coupling constants, $J_i$, in each Cartesian axis.
+  *   **ext\_magnetic\_field** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – The coefficients, $h_i$, representing a magnetic field along each Cartesian axis.
+  *   **pauli\_order\_strategy** ([*PauliOrderStrategy*](qiskit_addon_utils.problem_generators.PauliOrderStrategy "qiskit_addon_utils.problem_generators.generate_xyz_hamiltonian.PauliOrderStrategy")) – Indicates the iteration strategy in which the Pauli terms will be generated. See [`PauliOrderStrategy`](qiskit_addon_utils.problem_generators.PauliOrderStrategy "qiskit_addon_utils.problem_generators.PauliOrderStrategy") for more details.
+  *   **coloring** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – An optional dictionary encoding the graph coloring that is used to sort the Hamiltonian terms. This dictionary maps edge labels (in the form of integer pairs) to color values (simple integers). Hamiltonian interaction terms will be added by increasing color value. Within each color, edges are sorted which does not change anything physically but results in easier to read results.
+
+  **Returns**
+
+  A qubit operator describing a quantum XYZ-type model. The `i`-th qubit in the operator corresponds to the node in index `i` on the coupling map.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The coupling constants must be specified by a length-3 sequence of floating point values.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The external magnetic field must be specified by a length-3 sequence of floating point values.
+
+  **Return type**
+
+  [*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)")
+</Function>
+
