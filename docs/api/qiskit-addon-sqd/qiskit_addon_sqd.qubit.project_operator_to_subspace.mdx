@@ -1,0 +1,44 @@
+---
+title: project_operator_to_subspace
+description: API reference for qiskit_addon_sqd.qubit.project_operator_to_subspace
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_sqd.qubit.project_operator_to_subspace
+---
+
+<span id="qiskit-addon-sqd-qubit-project-operator-to-subspace" />
+
+# qiskit\_addon\_sqd.qubit.project\_operator\_to\_subspace
+
+<Function id="qiskit_addon_sqd.qubit.project_operator_to_subspace" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/qubit.py#L90-L156" signature="project_operator_to_subspace(bitstring_matrix, hamiltonian, *, verbose=False)">
+  Project a Pauli operator onto a Hilbert subspace defined by the computational basis states (rows) in `bitstring_matrix`.
+
+  The output sparse matrix, `A`, represents an `NxN` matrix s.t. `N` is the number of rows in `bitstring_matrix`. The rows of `A` represent the input configurations, and the columns represent the connected component associated with the configuration in the corresponding row. The non-zero elements of the matrix represent the complex amplitudes associated with the connected components.
+
+  <Admonition title="Note" type="note">
+    The bitstrings in the `bitstring_matrix` must be unique and sorted in ascending order according to their unsigned integer representation. Otherwise the projection will return wrong results. This function does not explicitly check for uniqueness and order because this can be rather time consuming. See [`qiskit_addon_sqd.qubit.sort_and_remove_duplicates()`](qiskit_addon_sqd.qubit.sort_and_remove_duplicates "qiskit_addon_sqd.qubit.sort_and_remove_duplicates") for a simple way to ensure your bitstring matrix is well-formatted.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    This function relies on `jax` to efficiently perform some calculations. `jax` converts the bit arrays to `int64_t`, which means the bit arrays in `bitstring_matrix` may not have length greater than `63`.
+  </Admonition>
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring. This set of bitstrings specifies the subspace into which the `hamiltonian` will be projected and diagonalized.
+  *   **hamiltonian** ([*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)")) – A Pauli operator to project onto a Hilbert subspace defined by `bitstring_matrix`.
+  *   **verbose** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to print the stage of the subroutine.
+
+  **Returns**
+
+  A [scipy.sparse.coo\_matrix](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html#coo-matrix) representing the operator projected in the subspace. The rows represent the input configurations, and the columns represent the connected component associated with the configuration in the corresponding row. The non-zero elements of the matrix represent the complex amplitudes associated with the pairs of connected components.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Bitstrings (rows) in `bitstring_matrix` must have length \< `64`.
+
+  **Return type**
+
+  *spmatrix*
+</Function>
+

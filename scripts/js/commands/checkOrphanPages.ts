@@ -51,7 +51,10 @@ async function main() {
     const existingUrls = await collectExistingUrls(dir);
     orphanPages.push(
       ...existingUrls.filter(
-        (file) => !tocUrls.has(file) && !ALLOWED_ORPHAN_URLS.has(file),
+        (file) =>
+          !tocUrls.has(file) &&
+          !ALLOWED_ORPHAN_URLS.has(file) &&
+          !file.includes("api/qiskit-addon-"),
       ),
     );
   }

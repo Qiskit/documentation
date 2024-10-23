@@ -1,0 +1,48 @@
+---
+title: apply_op_to
+description: API reference for qiskit_addon_obp.utils.operations.apply_op_to
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_obp.utils.operations.apply_op_to
+---
+
+<span id="apply-op-to" />
+
+# apply\_op\_to
+
+<Function id="qiskit_addon_obp.utils.operations.apply_op_to" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/operations.py#L32-L100" signature="apply_op_to(op1, op1_qargs, op2, op2_qargs, *, apply_as_transform=False)">
+  Apply the operator `op2` to the operator `op1`.
+
+  These operators do not necessarily need to act on the same number of qubits, as they are assumed to act on a larger system. The position in the system of each operator is defined by the corresponding `qargs`. The output operator will be defined on `union(op1_qargs, op2_qargs)`.
+
+  By default, this function applies `op1` to `op2` in the following way:
+
+  > `op2 @ op1`
+
+  By setting `apply_as_transform=True`, this function will apply `op1` to `op2` in the following way:
+
+  > `op2.adjoint() @ op1 @ op2`
+
+  **Parameters**
+
+  *   **op1** ([*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)")) – The operator on which `op2` will be applied.
+  *   **op1\_qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The qubit indices for `op1`.
+  *   **op2** ([*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)")) – The operator to apply to `op1`.
+  *   **op2\_qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The qubit indices for `op2`.
+  *   **apply\_as\_transform** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to apply `op2` to `op1` as a transformation.
+
+  **Returns**
+
+  The tuple `(op, qargs)` where `op` is the input `op1` with `op2` left-applied and `qargs` is a list of qubit indices for the new operator `op`. The qubit IDs in the output `op` correspond to the global qubit ID in the same index in `qargs`.
+
+  For example, if the output `op` is a `SparsePauliOp("YX")` and `qargs` is \[3, 4], the X term on qubit 0 of the operator corresponds to global qubit ID 3.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of unique operator qargs must match the number of qubits in the corresponding operator.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
+</Function>
+
