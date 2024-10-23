@@ -50,7 +50,6 @@ export class Pkg {
     "qiskit-addon-sqd",
     "qiskit-addon-cutting",
     "qiskit-addon-utils",
-    "qiskit-addon-dice-solver",
   ];
 
   constructor(kwargs: {
@@ -149,13 +148,6 @@ export class Pkg {
         ...args,
         title: "Qiskit Addon Utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
-      });
-    }
-    if (name === "qiskit-addon-dice-solver") {
-      return new Pkg({
-        ...args,
-        title: "Dice Eigensolver",
-        githubSlug: "Qiskit/qiskit-addon-dice-solver",
       });
     }
 
