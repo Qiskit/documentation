@@ -48,8 +48,8 @@ $$
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – width of gate.
-  *   **theta** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.0)")) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – width of gate.
+  *   **theta** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
 
   ## Attributes
 
@@ -87,6 +87,16 @@ $$
     QuantumCircuitData
   </Attribute>
 
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.GMS.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.GMS.unit "qiskit.circuit.library.GMS.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.GMS.global_phase">
@@ -95,7 +105,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.GMS.instances" attributeValue="171" />
+  <Attribute id="qiskit.circuit.library.GMS.instances" attributeValue="168" />
 
   ### layout
 
@@ -184,7 +194,7 @@ $$
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
   </Attribute>
 
   ### parameters
@@ -255,6 +265,16 @@ $$
     A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.GMS.unit">
+    The unit that [`duration`](#qiskit.circuit.library.GMS.duration "qiskit.circuit.library.GMS.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### name
 
   <Attribute id="qiskit.circuit.library.GMS.name" attributeTypeHint="str">
@@ -271,18 +291,6 @@ $$
 
   <Attribute id="qiskit.circuit.library.GMS.cregs" attributeTypeHint="list[ClassicalRegister]">
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.GMS.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.GMS.unit "qiskit.circuit.library.GMS.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.GMS.unit">
-    The unit that [`duration`](#qiskit.circuit.library.GMS.duration "qiskit.circuit.library.GMS.duration") is specified in.
   </Attribute>
 </Class>
 

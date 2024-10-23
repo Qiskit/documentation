@@ -9,7 +9,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 # TranspileLayout
 
 <Class id="qiskit.transpiler.TranspileLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/layout.py#L442-L737" signature="qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None, _input_qubit_count=None, _output_qubit_list=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Layout attributes for the output circuit from transpiler.
 
@@ -17,7 +17,32 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
   During the layout stage, the transpiler can potentially remap the order of the qubits in the circuit as it fits the circuit to the target backend. For example, let the input circuit be:
 
+  ```python
+  from qiskit.circuit import QuantumCircuit, QuantumRegister
+
+  qr = QuantumRegister(3, name="MyReg")
+  qc = QuantumCircuit(qr)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.cx(0, 2)
+  qc.draw("mpl")
+  ```
+
+  ![../\_images/qiskit-transpiler-TranspileLayout-1.png](/images/api/qiskit/dev/qiskit-transpiler-TranspileLayout-1.png)
+
   Suppose that during the layout stage the transpiler reorders the qubits to be:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(3)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.cx(2, 0)
+  qc.draw("mpl")
+  ```
+
+  ![../\_images/qiskit-transpiler-TranspileLayout-2.png](/images/api/qiskit/dev/qiskit-transpiler-TranspileLayout-2.png)
 
   Then the output of the [`initial_virtual_layout()`](#qiskit.transpiler.TranspileLayout.initial_virtual_layout "qiskit.transpiler.TranspileLayout.initial_virtual_layout") method is equivalent to:
 
@@ -32,6 +57,19 @@ python_api_name: qiskit.transpiler.TranspileLayout
   (it is also this attribute in the [`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") and [`circuit_drawer()`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") which is used to display the mapping of qubits to positions in circuit visualizations post-transpilation).
 
   Building on the above example, suppose that during the routing stage the transpiler needs to insert swap gates, and the output circuit becomes:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(3)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.swap(0, 1)
+  qc.cx(2, 1)
+  qc.draw("mpl")
+  ```
+
+  ![../\_images/qiskit-transpiler-TranspileLayout-3.png](/images/api/qiskit/dev/qiskit-transpiler-TranspileLayout-3.png)
 
   Then the output of the [`routing_permutation()`](#qiskit.transpiler.TranspileLayout.routing_permutation "qiskit.transpiler.TranspileLayout.routing_permutation") method is:
 
@@ -97,7 +135,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
     **Parameters**
 
-    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `False` any ancillas allocated in the output circuit will be included in the layout.
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `False` any ancillas allocated in the output circuit will be included in the layout.
 
     **Returns**
 
@@ -105,7 +143,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
     **Return type**
 
-    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
   </Function>
 
   ### final\_virtual\_layout
@@ -146,7 +184,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
     **Parameters**
 
-    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `False` any ancillas allocated in the output circuit will be included in the layout.
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `False` any ancillas allocated in the output circuit will be included in the layout.
 
     **Returns**
 
@@ -164,7 +202,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
     **Parameters**
 
-    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` any ancilla qubits added to the transpiler will not be included in the output.
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `True` any ancilla qubits added to the transpiler will not be included in the output.
 
     **Returns**
 
@@ -172,7 +210,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
     **Return type**
 
-    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
   </Function>
 
   ### initial\_virtual\_layout
@@ -184,7 +222,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
     **Parameters**
 
-    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` only qubits in the input circuit will be in the returned layout. Any ancilla qubits added to the output circuit will be filtered from the returned object.
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `True` only qubits in the input circuit will be in the returned layout. Any ancilla qubits added to the output circuit will be filtered from the returned object.
 
     **Returns**
 
@@ -208,7 +246,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
     **Return type**
 
-    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
   </Function>
 </Class>
 

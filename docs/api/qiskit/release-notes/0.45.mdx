@@ -531,7 +531,7 @@ Some feature highlights of Qiskit 0.45.0 are:
 
 *   The visualizations from the [`plot_gate_map()`](/api/qiskit/0.45/qiskit.visualization.plot_gate_map "qiskit.visualization.plot_gate_map"), [`plot_coupling_map()`](/api/qiskit/0.45/qiskit.visualization.plot_coupling_map "qiskit.visualization.plot_coupling_map"). [`plot_error_map()`](/api/qiskit/0.45/qiskit.visualization.plot_error_map "qiskit.visualization.plot_error_map"), and [`plot_circuit_layout()`](/api/qiskit/0.45/qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout") functions have been significantly improved for rendering layouts of backends with large numbers of qubits. This was accomplished by leveraging [graphviz](https://graphviz.org/) through rustworkx’s `graphviz_draw()` function to perform a more sophisticated algorithmic graph layout that scales for large numbers of qubits.
 
-    ![\_images/release\_notes-1.png](/images/api/qiskit/release_notes-1.png)
+    ![\_images/release\_notes-1.png](/images/api/qiskit/0.45/release_notes-1.png)
 
 <span id="relnotes-0-45-0-stable-0-45-misc-features" />
 
@@ -550,7 +550,7 @@ Some feature highlights of Qiskit 0.45.0 are:
     print("Sign of a Parameter assigned to -3 is: ", sign_value.assign(b,-3))
     ```
 
-    Refer to [#10360](https://github.com/Qiskit/qiskit-terra/issues/10360) for more details.
+    Refer to [#10360](https://github.com/Qiskit/qiskit/issues/10360) for more details.
 
 *   [`Parameter`](/api/qiskit/0.45/qiskit.circuit.Parameter "qiskit.circuit.Parameter") now has an advanced-usage keyword argument `uuid` in its constructor, which can be used to make the [`Parameter`](/api/qiskit/0.45/qiskit.circuit.Parameter "qiskit.circuit.Parameter") compare equal to another of the same name. This should not typically be used by users, and is most useful for custom serialisation and deserialisation.
 
@@ -890,11 +890,11 @@ Some feature highlights of Qiskit 0.45.0 are:
 
 ### Bug Fixes
 
-*   The maximum number of qubits to consider for matrix multiplication-based commutativity check in [`CommutationChecker`](/api/qiskit/0.45/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker") is now limited to 3 by default. Fixed [#10488](https://github.com/Qiskit/qiskit-terra/issues/10488)
+*   The maximum number of qubits to consider for matrix multiplication-based commutativity check in [`CommutationChecker`](/api/qiskit/0.45/qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker") is now limited to 3 by default. Fixed [#10488](https://github.com/Qiskit/qiskit/issues/10488)
 
 *   The [`GateDirection`](/api/qiskit/0.45/qiskit.transpiler.passes.GateDirection "qiskit.transpiler.passes.GateDirection") transpiler pass will now use discrete-basis translations rather than relying on a continuous [`RYGate`](/api/qiskit/0.45/qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate"), which should help make some discrete-basis-set targets slightly more reliable. In general, [`transpile()`](/api/qiskit/0.45/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") only has partial support for basis sets that do not contain a continuously-parametrised operation, and so it may not always succeed in these situations, and will almost certainly not produce optimal results.
 
-*   Fixed [`CommutationAnalysis`](/api/qiskit/0.45/qiskit.transpiler.passes.CommutationAnalysis "qiskit.transpiler.passes.CommutationAnalysis") to group gates on a wire into sets, with each set only containing gates that pairwise commute. This prevents `CommutationCancellation` from performing unsound optimizations. See [#8020](https://github.com/Qiskit/qiskit-terra/issues/8020)
+*   Fixed [`CommutationAnalysis`](/api/qiskit/0.45/qiskit.transpiler.passes.CommutationAnalysis "qiskit.transpiler.passes.CommutationAnalysis") to group gates on a wire into sets, with each set only containing gates that pairwise commute. This prevents `CommutationCancellation` from performing unsound optimizations. See [#8020](https://github.com/Qiskit/qiskit/issues/8020)
 
 *   [`CUGate`](/api/qiskit/0.45/qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate") will now behave correctly during calls to [`QuantumCircuit.assign_parameters()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters"). Previously, it would cause various odd errors, often some time after the initial circuit assignment. See [#7326](https://github.com/Qiskit/qiskit/issues/7326), [#7410](https://github.com/Qiskit/qiskit/issues/7410), [#9627](https://github.com/Qiskit/qiskit/issues/9627), [#10002](https://github.com/Qiskit/qiskit/issues/10002), and [#10131](https://github.com/Qiskit/qiskit/issues/10131).
 
@@ -929,11 +929,11 @@ Some feature highlights of Qiskit 0.45.0 are:
 
 *   The hash of a [`Parameter`](/api/qiskit/0.45/qiskit.circuit.Parameter "qiskit.circuit.Parameter") is now equal to the hashes of any [`ParameterExpression`](/api/qiskit/0.45/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") that it compares equal to. Previously the hashes were different, which would cause spurious additional entries in hashmaps when [`Parameter`](/api/qiskit/0.45/qiskit.circuit.Parameter "qiskit.circuit.Parameter") and [`ParameterExpression`](/api/qiskit/0.45/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") values were mixed in the same map as it violated Python’s data model.
 
-*   Fixed a bug in QPY serialization ([`qiskit.qpy`](/api/qiskit/0.45/qpy#module-qiskit.qpy "qiskit.qpy")) where controlled unitary gates in a circuit could result would fail to deserialize. Fixed [#10802](https://github.com/Qiskit/qiskit-terra/issues/10802).
+*   Fixed a bug in QPY serialization ([`qiskit.qpy`](/api/qiskit/0.45/qpy#module-qiskit.qpy "qiskit.qpy")) where controlled unitary gates in a circuit could result would fail to deserialize. Fixed [#10802](https://github.com/Qiskit/qiskit/issues/10802).
 
 *   Fixes the implementation of [`random_statevector()`](/api/qiskit/0.45/quantum_info#qiskit.quantum_info.random_statevector "qiskit.quantum_info.random_statevector") so that it samples from the uniform distribution.
 
-*   The pass [`NoiseAdaptiveLayout`](/api/qiskit/0.45/qiskit.transpiler.passes.NoiseAdaptiveLayout "qiskit.transpiler.passes.NoiseAdaptiveLayout") now takes [`CouplingMap`](/api/qiskit/0.45/qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") as an optional argument. This is used by the plugin to control on inconsistency between [`configuration()`](/api/qiskit/0.45/qiskit.providers.BackendV1#configuration "qiskit.providers.BackendV1.configuration") and [`properties()`](/api/qiskit/0.45/qiskit.providers.BackendV1#properties "qiskit.providers.BackendV1.properties"), like in the case of [`FakeMelbourne`](/api/qiskit/0.45/qiskit.providers.fake_provider.FakeMelbourne "qiskit.providers.fake_provider.FakeMelbourne"). Fixed [#7677](https://github.com/Qiskit/qiskit-terra/issues/7677).
+*   The pass [`NoiseAdaptiveLayout`](/api/qiskit/0.45/qiskit.transpiler.passes.NoiseAdaptiveLayout "qiskit.transpiler.passes.NoiseAdaptiveLayout") now takes [`CouplingMap`](/api/qiskit/0.45/qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") as an optional argument. This is used by the plugin to control on inconsistency between [`configuration()`](/api/qiskit/0.45/qiskit.providers.BackendV1#configuration "qiskit.providers.BackendV1.configuration") and [`properties()`](/api/qiskit/0.45/qiskit.providers.BackendV1#properties "qiskit.providers.BackendV1.properties"), like in the case of [`FakeMelbourne`](/api/qiskit/0.45/qiskit.providers.fake_provider.FakeMelbourne "qiskit.providers.fake_provider.FakeMelbourne"). Fixed [#7677](https://github.com/Qiskit/qiskit/issues/7677).
 
 *   The methods [`QuantumCircuit.copy()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#copy "qiskit.circuit.QuantumCircuit.copy") and [`copy_empty_like()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#copy_empty_like "qiskit.circuit.QuantumCircuit.copy_empty_like") will now raise an error if the `name` argument is incorrectly typed, instead of generating an invalid circuit.
 
@@ -943,7 +943,7 @@ Some feature highlights of Qiskit 0.45.0 are:
 
 *   Fixed an oversight in the [`Gate`](/api/qiskit/0.45/qiskit.circuit.Gate "qiskit.circuit.Gate") (and standard-library subclasses) constructor where the [`duration`](/api/qiskit/0.45/qiskit.circuit.Gate#duration "qiskit.circuit.Gate.duration") and [`unit`](/api/qiskit/0.45/qiskit.circuit.Gate#unit "qiskit.circuit.Gate.unit") attributes could not be set as keyword arguments during construction. The parent class [`Instruction`](/api/qiskit/0.45/qiskit.circuit.Instruction "qiskit.circuit.Instruction") supported setting this but [`Gate`](/api/qiskit/0.45/qiskit.circuit.Gate "qiskit.circuit.Gate") was previously not exposing this interface correctly.
 
-*   Added support to allow `SparsePauliOp` default initialization passing an empty iterable to the static methods [`from_list()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#from_list "qiskit.quantum_info.SparsePauliOp.from_list") and [`from_sparse_list()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#from_sparse_list "qiskit.quantum_info.SparsePauliOp.from_sparse_list"). Fixed [#10159](https://github.com/Qiskit/qiskit-terra/issues/10159).
+*   Added support to allow `SparsePauliOp` default initialization passing an empty iterable to the static methods [`from_list()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#from_list "qiskit.quantum_info.SparsePauliOp.from_list") and [`from_sparse_list()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#from_sparse_list "qiskit.quantum_info.SparsePauliOp.from_sparse_list"). Fixed [#10159](https://github.com/Qiskit/qiskit/issues/10159).
 
 *   The use of the (deprecated) `Optimizer` class on [`AQC`](/api/qiskit/0.45/qiskit.transpiler.synthesis.aqc.AQC "qiskit.transpiler.synthesis.aqc.AQC") did not have a non-deprecated alternative path, which should have been introduced in Qiskit 0.44. It now accepts a callable that implements the [`Minimizer`](/api/qiskit/0.45/qiskit.algorithms.optimizers.Minimizer "qiskit.algorithms.optimizers.Minimizer") protocol, as explicitly stated in the deprecation warning. The callable can look like the following example:
 

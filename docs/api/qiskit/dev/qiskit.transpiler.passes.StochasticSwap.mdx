@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
 # StochasticSwap
 
-<Class id="qiskit.transpiler.passes.StochasticSwap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/routing/stochastic_swap.py#L47-L474" signature="qiskit.transpiler.passes.StochasticSwap(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.StochasticSwap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/routing/stochastic_swap.py#L48-L480" signature="qiskit.transpiler.passes.StochasticSwap(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Map a DAGCircuit onto a coupling\_map adding swap gates.
@@ -26,12 +26,16 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
   If these are not satisfied, the behavior is undefined.
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.transpiler.passes.routing.stochastic_swap.StochasticSwap` is deprecated as of qiskit 1.3. It will be removed in the 2.0 release. The StochasticSwap transpilation pass is a suboptimal routing algorithm and has been superseded by the SabreSwap pass.
+  </Admonition>
+
   **Parameters**
 
   *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph representing a coupling map.
-  *   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum number of iterations to attempt
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – seed for random number generator
-  *   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it will only pretend to do routing, i.e., no swap is effectively added.
+  *   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – maximum number of iterations to attempt
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – seed for random number generator
+  *   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if true, it will only pretend to do routing, i.e., no swap is effectively added.
   *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – starting layout at beginning of pass.
 
   ## Attributes
@@ -61,9 +65,9 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -71,7 +75,7 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -81,12 +85,12 @@ python_api_name: qiskit.transpiler.passes.StochasticSwap
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.StochasticSwap.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/routing/stochastic_swap.py#L93-L132" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.StochasticSwap.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/routing/stochastic_swap.py#L101-L140" signature="run(dag)">
     Run the StochasticSwap pass on dag.
 
     **Parameters**

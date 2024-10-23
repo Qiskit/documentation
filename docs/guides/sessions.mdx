@@ -6,7 +6,7 @@ description: An overview of Qiskit Runtime sessions and when to use them.
 # Introduction to Qiskit Runtime sessions
 
 <Admonition type="caution" title="Important">
-The way sessions are started within Qiskit Runtime has changed. **By 1 April 2024**, upgrade to `qiskit-ibm-runtime` version 0.20.0 or later, or `qiskit-ibm-provider` version 0.10.0 or later. In addition, ensure you are using Qiskit version 0.45.0 or later. Starting 1 April, session calls made in earlier versions of these packages will fail.
+The way sessions are started within Qiskit Runtime has changed. **By 1 April 2024**, upgrade to `qiskit-ibm-runtime` version 0.20.0 or later. In addition, ensure you are using Qiskit version 0.45.0 or later. Starting 1 April, session calls made in earlier versions of these packages will fail.
 </Admonition>
 
 ## What is a session?
@@ -36,7 +36,7 @@ The basic workflow for sessions is as follows:
 
 The following video illustrates the session basic workflow:
 
-<video title="A user starts a session job and becomes the priority user.  They submit jobs to the quantum system while other users wait. After the prioritized user's session finishes, the next person's jobs can begin processing." className="max-w-auto h-auto" controls>
+<video title="A user starts a session job and becomes the priority user.  They submit jobs to the QPU while other users wait. After the prioritized user's session finishes, the next person's jobs can begin processing." className="max-w-auto h-auto" controls>
   <source src="/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
 </video>
 
@@ -63,7 +63,7 @@ A session ends in the following circumstances:
 * If you use Session as a context manager, that is,  `with Session()`, the session is automatically closed when the context ends (the same behavior as using `session.close()`).
 
 <Admonition type = "note">
-When a session ends, the system finishes running any job that is currently running.
+When a session ends, the QPu finishes running any job that is currently running.
 </Admonition>
 
 ## Usage patterns

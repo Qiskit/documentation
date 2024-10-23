@@ -1,13 +1,15 @@
 ---
-title: Transpile circuits remotely with the Qiskit transpiler service
-description: What is the Qiskit transpiler service and how to use it
-
+title: Transpile circuits remotely with the Qiskit Transpiler Service
+description: What is the Qiskit Transpiler Service and how to use it
 ---
-# Transpile circuits remotely with the Qiskit transpiler service
 
-The Qiskit transpiler service provides transpilation capabilities on the cloud. In addition to the local Qiskit transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum&trade; cloud resources and AI-powered transpiler passes.
+{/* cspell:ignore Eprint */}
 
-The Qiskit transpiler service offers a Python library to seamlessly integrate this service and its capabilities into your current Qiskit patterns and workflows.
+# Transpile circuits remotely with the Qiskit Transpiler Service
+
+The Qiskit Transpiler Service provides transpilation capabilities on the cloud. In addition to the local Qiskit transpiler capabilities, your transpilation tasks can benefit from both IBM Quantum&trade; cloud resources and AI-powered transpiler passes.
+
+The Qiskit Transpiler Service offers a Python library to seamlessly integrate this service and its capabilities into your current Qiskit patterns and workflows.
 
 <Admonition type="note">
     This experimental service is only available for IBM Quantum Premium Plan users.
@@ -16,19 +18,19 @@ The Qiskit transpiler service offers a Python library to seamlessly integrate th
 </Admonition>
 
 <span id="install-transpiler-service"></span>
-## Install the qiskit-transpiler-service package
+## Install the qiskit-ibm-transpiler package
 
-To use the Qiskit transpiler service, install the `qiskit-transpiler-service` package:
+To use the Qiskit Transpiler Service, install the `qiskit-ibm-transpiler` package:
 
 ```sh
-pip install qiskit-transpiler-service
+pip install qiskit-ibm-transpiler
 ```
 
 By default, the package tries to authenticate to IBM Quantum services with the defined Qiskit API token, and uses your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`).
 
 *Note*: This package requires Qiskit SDK v1.X.
 
-## qiskit-transpiler-service transpile options
+## qiskit-ibm-transpiler transpile options
 
 - `backend_name` (optional, str) - A backend name as it would be expected by QiskitRuntimeService (for example, `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `backend_name` settings are overridden.
 - `coupling_map` (optional, List[List[int]]) - A valid coupling map list (for example, [[0,1],[1,2]]). If this is set, the transpile method uses this coupling map for the transpilation operation. If defined, it overrides any value specified for `target`.
@@ -36,17 +38,17 @@ By default, the package tries to authenticate to IBM Quantum services with the d
 - `ai` ("true", "false", "auto") - Whether to use AI-powered capabilities during transpilation. The AI-powered capabilities available can be for `AIRouting` transpiling passes or other AI-powered synthesis methods. If this value is `"true"`, the service applies different AI-powered transpiling passes depending on the `optimization_level` requested. If  `"false"`, it uses the latest Qiskit transpiling features without AI. Finally, if `"auto"`, the service decides whether to apply the standard Qiskit heuristic passes or the AI-powered passes based on your circuit.
 - `qiskit_transpile_options` (dict) - A Python dictionary object that can include any other option that is valid in the [Qiskit `transpile()` method](defaults-and-configuration-options). If the `qiskit_transpile_options` input includes `optimization_level`, it is discarded in favor of the `optimization_level` specified as parameter input. If the `qiskit_transpile_options` includes any option not recognized by the Qiskit `transpile()` method, the library raises an error.
 
-For more information about the available `qiskit-transpiler-service` methods, see the [qiskit-transpiler-service API reference](/api/qiskit-transpiler-service). To learn more about the service API, see the [Qiskit Transpiler Service REST API documentation.](/api/qiskit-transpiler-service-rest)
+For more information about the available `qiskit-ibm-transpiler` methods, see the [qiskit-ibm-transpiler API reference](/api/qiskit-ibm-transpiler). To learn more about the service API, see the [Qiskit Transpiler Service REST API documentation.](/api/qiskit-transpiler-service-rest)
 
 ## Examples
 
-The following examples demonstrate how to transpile circuits using the Qiskit transpiler service with different parameters.
+The following examples demonstrate how to transpile circuits using the Qiskit Transpiler Service with different parameters.
 
-1. Create a circuit and call the Qiskit transpiler service to transpile the circuit with `ibm_sherbrooke` as the `backend_name`, 3 as the `optimization_level`, and without using AI during the transpilation.
+1. Create a circuit and call the Qiskit Transpiler Service to transpile the circuit with `ibm_sherbrooke` as the `backend_name`, 3 as the `optimization_level`, and without using AI during the transpilation.
 
     ```python
     from qiskit.circuit.library import EfficientSU2
-    from qiskit_transpiler_service.transpiler_service import TranspilerService
+    from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
     circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
@@ -63,7 +65,7 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
 
     ```python
     from qiskit.circuit.library import EfficientSU2
-    from qiskit_transpiler_service.transpiler_service import TranspilerService
+    from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
     circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
@@ -80,7 +82,7 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
 
     ```python
     from qiskit.circuit.library import EfficientSU2
-    from qiskit_transpiler_service.transpiler_service import TranspilerService
+    from qiskit_ibm_transpiler.transpiler_service import TranspilerService
 
     circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
@@ -92,9 +94,19 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
     transpiled_circuit = cloud_transpiler_service.run(circuit)
     ```
 
+## Limits of the Qiskit Transpiler Service
+
+Following are the most relevant limitations of the service:
+
+- The maximum number of two-qubit gates per circuit in a transpilation job in any `ai` mode is 1 million.
+- The maximum time allowed to run a transpilation process is 30 minutes per job.
+- You must retrieve the transpilation result from the service within 20 minutes after the transpilation process ends. After 20 minutes, the job result is discarded.
+- The maximum time a set of circuits can live in the internal queue while waiting to be transpiled is 120 minutes. After that time, if the job has not been transpiled, it is discarded.
+- The maximum number of qubits has not been determined. The service has been tested on 900+ qubits.
+
 ## Citation
 
-If you use any AI-powered feature from the Qiskit transpiler service in your research, use the following recommended citation:
+If you use any AI-powered feature from the Qiskit Transpiler Service in your research, use the following recommended citation:
 
 ```
 @misc{2405.13196,
@@ -110,5 +122,5 @@ Eprint = {arXiv:2405.13196},
 <Admonition type="tip" title="Recommendations">
     - Learn how to create [AI transpiler passes.](ai-transpiler-passes)
     - Learn [how to transpile circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) as part of Qiskit Patterns workflows using Qiskit Runtime.
-    - Review the [Qiskit transpiler service API documentation.](https://cloud-transpiler-experimental.quantum-computing.ibm.com/docs)
+    - Review the [Qiskit Transpiler Service API documentation.](https://cloud-transpiler-experimental.quantum-computing.ibm.com/docs)
 </Admonition>

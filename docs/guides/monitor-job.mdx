@@ -6,10 +6,10 @@ description: How to monitor or cancel a job submitted to IBM Quantum Platform or
 
 # Monitor or cancel a job
 
-Jobs are listed on the Jobs page for your quantum service channel:
+Jobs are listed on the Workloads page for your quantum service channel:
 
 *   IBM Cloud&reg; channel: From the IBM Cloud console quantum [Instances page](https://cloud.ibm.com/quantum/instances), click the name of your instance, then click the Jobs tab.
-*   IBM Quantum&trade; channel: In IBM Quantum Platform, open the [Jobs page](https://quantum.ibm.com/jobs).
+*   IBM Quantum&trade; channel: In IBM Quantum Platform, open the [Workloads page](https://quantum.ibm.com/workloads).
 
 ## Monitor a job
 
@@ -25,10 +25,10 @@ Use the job instance to check the job status or retrieve the results by calling 
 <span id="retrieve-later"></span>
 ## Retrieve job results at a later time
 
-Call `service.job(\<job\_id>)` to retrieve a job you previously submitted. If you don’t have the job ID, or if you want to retrieve multiple jobs at once; including jobs from retired systems, call `service.jobs()` with optional filters instead. See [QiskitRuntimeService.jobs](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs).
+Call `service.job(\<job\_id>)` to retrieve a job you previously submitted. If you don’t have the job ID, or if you want to retrieve multiple jobs at once; including jobs from retired QPUs (quantum processing units), call `service.jobs()` with optional filters instead. See [QiskitRuntimeService.jobs](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs).
 
-<Admonition type="note">
-  service.jobs() returns only Qiskit Runtime jobs. To retrieve other jobs, use [qiskit-ibm-provider](../api/qiskit-ibm-provider/qiskit_ibm_provider.IBMBackend#ibmbackend) instead.
+<Admonition type="note" title="Deprecated provider packages">
+  `service.jobs()` also returns jobs run from the deprecated `qiskit-ibm-provider` package. Jobs submitted by the older (also deprecated) `qiskit-ibmq-provider` package are no longer available.
 </Admonition>
 
 ### Example
@@ -50,10 +50,80 @@ You can cancel a job from the IBM Quantum Platform dashboard either on the Jobs 
 
 In Qiskit, use `job.cancel()` to cancel a job.
 
+<span id="execution-spans"></span>
+## View Sampler execution spans
+
+The results of [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) jobs executed in Qiskit Runtime contain execution timing information in their metadata.
+This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
+Shots are grouped into [`ExecutionSpan`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.execution_span.ExecutionSpan) objects, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
+
+An execution span specifies which data was executed during its window by providing an [`ExecutionSpan.mask`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.execution_span.ExecutionSpan#mask) method. This method, given any [Primitive Unified Block (PUB)](/guides/primitive-input-output) index, returns a boolean mask that is `True` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`. See the [execution_span](/api/qiskit-ibm-runtime/execution_span) API page for full details.
+
+Example:
+
+```python
+# Get the mask of the 1st PUB for the 0th span.
+mask = spans[0].mask(1)
+
+# Decide whether the 0th shot of parameter set (1, 2) occurred in this span.
+in_this_span = mask[1, 2, 0]
+
+# Create a new bit array containing only the PUB-1 data collected during this span.
+bits = pub_results[1].data.meas
+filtered_data = BitArray(bits.array[mask], bits.num_bits)
+```
+
+To view execution span information, review the metadata of the result returned by `SamplerV2`, which comes in the form of an `ExecutionSpans` object. This object is a list-like container containing subclass instances of `ExecutionSpan`s such as `SliceSpan`:
+
+```python
+pub_results = job.result()
+spans = pub_results.metadata["execution"]["execution_spans"]
+for span in spans:
+     print(span)
+```
+Output:
+
+```text
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:22', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:25', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:24', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:27', size=1280>)
+SliceSpan(<start='2024-09-09 11:48:21', stop='2024-09-09 11:48:26', size=1280>)
+...
+```
+
+Execution spans can be filtered to include information pertaining to specific PUBs, selected by their indices:
+
+```python
+# take the subset of spans that reference data in PUBs 0 or 2
+spans.filter_by_pub([0, 2])
+```
+
+View global information about the collection of execution spans:
+
+```python
+print("Number of execution spans:", len(spans))
+print("  Start of the first span:", spans.start)
+print("     End of the last span:", spans.stop)
+print("       Total duration (s):", spans.duration)
+```
+
+Extract and inspect a particular span:
+
+```python
+spans.sort()
+print(" Start of first span:", spans[0].start)
+print("   End of first span:", spans[0].stop)
+print("#shots in first span:", spans[0].size)
+```
+
+<Admonition type="note">
+It is possible for time windows specified by distinct execution spans to overlap. This is not because a QPU was performing multiple executions at once, but is instead an artifact of certain classical processing that might happen concurrently with quantum execution. The guarantee being made is that the referenced data definitely occurred in the reported execution span, but not necessarily that the limits of the time window are as tight as possible.
+</Admonition>
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
     - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-    - View the [`job_monitor` documentation](/api/qiskit-ibm-provider/qiskit_ibm_provider.job.job_monitor) in the Qiskit IBM Provider API reference.
+    - [Migrate from qiskit_ibm_provider](/migration-guides/qiskit-runtime-from-ibm-provider)
 </Admonition>

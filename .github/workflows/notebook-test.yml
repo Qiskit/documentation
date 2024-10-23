@@ -16,6 +16,7 @@ on:
     paths:
       - "docs/**/*.ipynb"
       - "!docs/api/**/*"
+      - "scripts/nb-tester/**/*"
   workflow_dispatch:
 jobs:
   execute:
@@ -24,31 +25,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Exit early on forks
-        if: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
-        shell: python
-        run: |
-          raise SystemExit(
-            "We can't run this test on pull requests from forks."
-            "\n\n"
-            "If you have write access to Qiskit/documentation, push to a new "
-            "branch there and make your pull request from that branch instead."
-            "\n\n"
-            "If you don't have write access, you must test out the notebook "
-            "locally using the instructions in "
-            "https://github.com/Qiskit/documentation#execute-notebooks."
-            "When this PR is approved, a maintainer will merge it to a new "
-            "branch in Qiskit/documentation, then make a PR from that branch "
-            "into main so it can pass CI."
-          )
-
-      - name: Get all changed files
-        id: all-changed-files
+      - name: Get all changed notebooks
+        id: all-changed-notebooks
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
           files: "docs/**/*.ipynb"
           separator: "\n"
-
+      - name: Get changed config files
+        id: changed-config
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          files: "scripts/nb-tester/**/*"
       - name: Check for notebooks that require Linux
         id: linux-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
@@ -64,39 +51,36 @@ jobs:
       - name: Setup environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
-          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed }}
+          # Install Linux deps if the specific guides were changed, or
+          # if all files are being tested.
+          install-linux-deps: ${{ steps.linux-changed-files.outputs.any_changed == 'true' || steps.changed-config.outputs.any_changed == 'true' }}
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
 
-      - name: Check lint
-        shell: python
-        run: |
-          import subprocess, sys
-          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
-          args = ["tox", "-e", "lint", "--"] + files.split("\n")
-          try:
-            subprocess.run(args, check=True)
-          except:
-            print(
-              "To fix, install `tox` and run `tox -e fix` or download the fixed "
-              "notebook from this run by clicking \"Summary\" on the upper-left "
-              "of this page, and downloading the \"Executed notebooks\" artifact."
-              "\n\n"
-              "For more information, see https://github.com/Qiskit/documentation/blob/main/README.md#lint-notebooks"
-            )
-            sys.exit(1)
-
       - name: Execute notebooks
-        if: "!cancelled()"
         shell: python
+        env:
+          PR_REPOSITORY: ${{ github.event.pull_request.head.repo.full_name }}
         run: |
+          import os
           import subprocess
-          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
-          args = ["tox", "--"] + files.split("\n") + ["--write"]
+          changed_notebooks = """${{ steps.all-changed-notebooks.outputs.all_changed_files }}"""
+          changed_config = """${{ steps.changed-config.outputs.all_changed_files }}"""
+          args = ["tox", "--", "--write"]
+          if changed_notebooks and not changed_config:
+              args.extend(changed_notebooks.split("\n"))
+          if os.environ["PR_REPOSITORY"] != os.environ["GITHUB_REPOSITORY"]:
+              args.append("--is-fork")
           subprocess.run(args, check=True)
 
+      - name: Detect changed notebooks
+        id: changed-notebooks
+        run: |
+          echo "CHANGED_NOTEBOOKS<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Upload executed notebooks
-        if: "!cancelled()"
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks
-          path: ${{ steps.all-changed-files.outputs.all_changed_files }}
+          path: ${{ steps.changed-notebooks.outputs.CHANGED_NOTEBOOKS || 'no-changes' }}

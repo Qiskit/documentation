@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
 # StatePreparation
 
-<Class id="qiskit.circuit.library.StatePreparation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L33-L242" signature="qiskit.circuit.library.StatePreparation(params, num_qubits=None, inverse=False, label=None, normalize=False)" modifiers="class">
+<Class id="qiskit.circuit.library.StatePreparation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L35-L244" signature="qiskit.circuit.library.StatePreparation(params, num_qubits=None, inverse=False, label=None, normalize=False)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Complex amplitude state preparation.
@@ -17,20 +17,20 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
   **Parameters**
 
-  *   **params** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")) –
+  *   **params** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")) –
 
       *   Statevector: Statevector to initialize to.
       *   list: vector of complex amplitudes to initialize to.
       *   string: labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
       *   int: an integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
 
-  *   **inverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, the inverse state is constructed.
+  *   **inverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, the inverse state is constructed.
 
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – An optional label for the gate
 
-  *   **normalize** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to normalize an input array to a unit vector.
+  *   **normalize** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to normalize an input array to a unit vector.
 
   **Raises**
 
@@ -93,6 +93,10 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
   <Attribute id="qiskit.circuit.library.StatePreparation.duration">
     Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### label
@@ -137,13 +141,17 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
   <Attribute id="qiskit.circuit.library.StatePreparation.unit">
     Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ## Methods
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.StatePreparation.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L210-L219" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.StatePreparation.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L212-L221" signature="broadcast_arguments(qargs, cargs)">
     Validation and handling of the arguments and its relationship.
 
     For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
@@ -192,13 +200,13 @@ python_api_name: qiskit.circuit.library.StatePreparation
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.StatePreparation.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L201-L208" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.StatePreparation.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L203-L210" signature="inverse(annotated=False)">
     Return inverted StatePreparation
   </Function>
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.StatePreparation.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L221-L239" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.StatePreparation.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/state_preparation.py#L223-L241" signature="validate_parameter(parameter)">
     StatePreparation instruction parameter can be str, int, float, and complex.
   </Function>
 </Class>

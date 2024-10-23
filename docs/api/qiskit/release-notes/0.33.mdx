@@ -405,10 +405,10 @@ As always, there are many more features and fixes in this release as well, which
 
 *   Improved performance of the following [`SparsePauliOp`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") operations:
 
-    *   [`simplify()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#simplify "qiskit.quantum_info.SparsePauliOp.simplify") (see [#7122](https://github.com/Qiskit/qiskit-terra/issues/7122))
-    *   [`compose()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#compose "qiskit.quantum_info.SparsePauliOp.compose") (see [#7126](https://github.com/Qiskit/qiskit-terra/issues/7126))
-    *   `_add()` (see [#7138](https://github.com/Qiskit/qiskit-terra/issues/7138))
-    *   [`from_list()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#from_list "qiskit.quantum_info.SparsePauliOp.from_list") and `__init__()` (see other discussion in [#7138](https://github.com/Qiskit/qiskit-terra/issues/7138)).
+    *   [`simplify()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#simplify "qiskit.quantum_info.SparsePauliOp.simplify") (see [#7122](https://github.com/Qiskit/qiskit/issues/7122))
+    *   [`compose()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#compose "qiskit.quantum_info.SparsePauliOp.compose") (see [#7126](https://github.com/Qiskit/qiskit/issues/7126))
+    *   `_add()` (see [#7138](https://github.com/Qiskit/qiskit/issues/7138))
+    *   [`from_list()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#from_list "qiskit.quantum_info.SparsePauliOp.from_list") and `__init__()` (see other discussion in [#7138](https://github.com/Qiskit/qiskit/issues/7138)).
 
 *   Added the [`SparsePauliOp.sum()`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp#sum "qiskit.quantum_info.SparsePauliOp.sum") method to add together many [`SparsePauliOp`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")s. This method has significantly better performance than adding the instances together in a loop. For example, the previous way to add several [`SparsePauliOp`](/api/qiskit/0.45/qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")s together would be to do:
 
@@ -427,7 +427,7 @@ As always, there are many more features and fixes in this release as well, which
     SparsePauliOp.sum(sparse_ops)
     ```
 
-*   Added an argument `limit_amplitude` to the constructor of `ParametricPulse`, which is the base class of [`Gaussian`](/api/qiskit/0.45/qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian"), [`GaussianSquare`](/api/qiskit/0.45/qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare"), [`Drag`](/api/qiskit/0.45/qiskit.pulse.library.Drag_class.rst#qiskit.pulse.library.Drag "qiskit.pulse.library.Drag") and [`Constant`](/api/qiskit/0.45/qiskit.pulse.library.Constant_class.rst#qiskit.pulse.library.Constant "qiskit.pulse.library.Constant"), to allowing disabling the amplitude limit of 1 on a pulse-by-pulse basis. With `limit_amplitude=False`, individual pulses may have an amplitude exceeding unity without raising a [`PulseError`](/api/qiskit/0.45/pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError"). See [#6544](https://github.com/Qiskit/qiskit-terra/issues/6544) for more detail.
+*   Added an argument `limit_amplitude` to the constructor of `ParametricPulse`, which is the base class of [`Gaussian`](/api/qiskit/0.45/qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian"), [`GaussianSquare`](/api/qiskit/0.45/qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare"), [`Drag`](/api/qiskit/0.45/qiskit.pulse.library.Drag_class.rst#qiskit.pulse.library.Drag "qiskit.pulse.library.Drag") and [`Constant`](/api/qiskit/0.45/qiskit.pulse.library.Constant_class.rst#qiskit.pulse.library.Constant "qiskit.pulse.library.Constant"), to allowing disabling the amplitude limit of 1 on a pulse-by-pulse basis. With `limit_amplitude=False`, individual pulses may have an amplitude exceeding unity without raising a [`PulseError`](/api/qiskit/0.45/pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError"). See [#6544](https://github.com/Qiskit/qiskit/issues/6544) for more detail.
 
 *   Using [`QuantumCircuit.draw()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") or [`circuit_drawer()`](/api/qiskit/0.45/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") with the `latex` drawer will now generate a file in an image format inferred from the filename extension, for example:
 
@@ -440,7 +440,7 @@ As always, there are many more features and fixes in this release as well, which
     circuit.draw('latex', filename='./file.jpg')
     ```
 
-    This will save the circuit drawing in the JPEG format. Previously, the image always be in PNG format. Refer to [#6448](https://github.com/Qiskit/qiskit-terra/issues/6448) for more details.
+    This will save the circuit drawing in the JPEG format. Previously, the image always be in PNG format. Refer to [#6448](https://github.com/Qiskit/qiskit/issues/6448) for more details.
 
     Now, if it encounters a filename extension which is not supported, for example:
 
@@ -551,7 +551,7 @@ As always, there are many more features and fixes in this release as well, which
 
 *   Added a transpiler pass [`Optimize1qGatesSimpleCommutation`](/api/qiskit/0.45/qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation "qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation"), which optimizes a circuit according to a strategy of commuting single-qubit gates around to discover resynthesis opportunities.
 
-*   Added a `max_job_tries` parameter to [`QuantumInstance`](/api/qiskit/0.45/qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance"), to limit the number of times a job will attempt to be executed on a backend. Previously the submission and fetching of results would be attempted infinitely, even if the job was cancelled or errored on the backend. The default is now 50, and the previous behaviour can be achieved by setting `max_job_tries=-1`. Fixes [#6872](https://github.com/Qiskit/qiskit-terra/issues/6872) and [#6821](https://github.com/Qiskit/qiskit-terra/issues/6821).
+*   Added a `max_job_tries` parameter to [`QuantumInstance`](/api/qiskit/0.45/qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance"), to limit the number of times a job will attempt to be executed on a backend. Previously the submission and fetching of results would be attempted infinitely, even if the job was cancelled or errored on the backend. The default is now 50, and the previous behaviour can be achieved by setting `max_job_tries=-1`. Fixes [#6872](https://github.com/Qiskit/qiskit/issues/6872) and [#6821](https://github.com/Qiskit/qiskit/issues/6821).
 
 *   The `latex` output method for the [`circuit_drawer()`](/api/qiskit/0.45/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") function and the [`QuantumCircuit.draw()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") method can now draw circuits that contain gates with single bit condition. This was added for compatibility of latex drawer with the new feature of supporting classical conditioning of gates on single classical bits.
 
@@ -1251,21 +1251,21 @@ As always, there are many more features and fixes in this release as well, which
 
 #### Bug Fixes
 
-*   Fixed a bug where many layout methods would ignore 3-or-more qubit gates, resulting in unexpected layout-allocation decisions. The transpiler pass [`Unroll3qOrMore`](/api/qiskit/0.45/qiskit.transpiler.passes.Unroll3qOrMore "qiskit.transpiler.passes.Unroll3qOrMore") is now being executed before the layout pass in all the preset pass managers when [`transpile()`](/api/qiskit/0.45/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") is called. Fixed [#7156](https://github.com/Qiskit/qiskit-terra/issues/7156).
+*   Fixed a bug where many layout methods would ignore 3-or-more qubit gates, resulting in unexpected layout-allocation decisions. The transpiler pass [`Unroll3qOrMore`](/api/qiskit/0.45/qiskit.transpiler.passes.Unroll3qOrMore "qiskit.transpiler.passes.Unroll3qOrMore") is now being executed before the layout pass in all the preset pass managers when [`transpile()`](/api/qiskit/0.45/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") is called. Fixed [#7156](https://github.com/Qiskit/qiskit/issues/7156).
 
-*   Disassembled circuits now inherit calibrations from assembled [`QasmQobj`](/api/qiskit/0.45/qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") and experiments. Fixes [#5348](https://github.com/Qiskit/qiskit-terra/issues/5348).
+*   Disassembled circuits now inherit calibrations from assembled [`QasmQobj`](/api/qiskit/0.45/qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") and experiments. Fixes [#5348](https://github.com/Qiskit/qiskit/issues/5348).
 
-*   Fixed setting the `ansatz` or `optimizer` attributes of a [`VQE`](/api/qiskit/0.45/qiskit.algorithms.VQE "qiskit.algorithms.VQE") instance to `None` resulting in a buggy behavior. See [#7093](https://github.com/Qiskit/qiskit-terra/issues/7093) for details.
+*   Fixed setting the `ansatz` or `optimizer` attributes of a [`VQE`](/api/qiskit/0.45/qiskit.algorithms.VQE "qiskit.algorithms.VQE") instance to `None` resulting in a buggy behavior. See [#7093](https://github.com/Qiskit/qiskit/issues/7093) for details.
 
 *   Fixed addition of [`PauliList`](/api/qiskit/0.45/qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")s with `qargs`. The method used to raise a runtime error if the operands had different numbers of qubits.
 
-*   Fixed an issue causing an error when trying to compute a gradient with the [`CircuitGradient`](/api/qiskit/0.45/qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.CircuitGradient") class for a gate that was not a supported gate. This bugfix transpiles a given gate to the set of supported gates for a requested gradient method. Fixes [#6918](https://github.com/Qiskit/qiskit-terra/issues/6918).
+*   Fixed an issue causing an error when trying to compute a gradient with the [`CircuitGradient`](/api/qiskit/0.45/qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.CircuitGradient") class for a gate that was not a supported gate. This bugfix transpiles a given gate to the set of supported gates for a requested gradient method. Fixes [#6918](https://github.com/Qiskit/qiskit/issues/6918).
 
-*   Removed calibration results when using error mitigation with the [`execute()`](/api/qiskit/0.45/qiskit.utils.QuantumInstance#execute "qiskit.utils.QuantumInstance.execute") method of [`QuantumInstance`](/api/qiskit/0.45/qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance"). Fixes [#7129](https://github.com/Qiskit/qiskit-terra/issues/7129).
+*   Removed calibration results when using error mitigation with the [`execute()`](/api/qiskit/0.45/qiskit.utils.QuantumInstance#execute "qiskit.utils.QuantumInstance.execute") method of [`QuantumInstance`](/api/qiskit/0.45/qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance"). Fixes [#7129](https://github.com/Qiskit/qiskit/issues/7129).
 
 *   Fixed a deprecation warning emitted when running [`QuantumCircuit.draw()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") or [`circuit_drawer()`](/api/qiskit/0.45/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") with Sympy 1.9 installed, mentioning the Sympy function `expr_free_symbols()`. The circuit drawers previously made use of this method when finding instances of symbolic constants.
 
-*   Fixed an issue where the `ax` kwarg and the `figwidth` option in the `style` kwarg for the `mpl` circuit drawer did not scale properly. Users can now pass an `ax` from a Matplotlib subplot to the `mpl` circuit drawer and the circuit will be drawn within the boundaries of that subplot. Alternatively, users can set the `figwidth` in inches in the `style` dict kwarg and the drawing will scale to the width in inches that was set. Fixed [#6367](https://github.com/Qiskit/qiskit-terra/issues/6367).
+*   Fixed an issue where the `ax` kwarg and the `figwidth` option in the `style` kwarg for the `mpl` circuit drawer did not scale properly. Users can now pass an `ax` from a Matplotlib subplot to the `mpl` circuit drawer and the circuit will be drawn within the boundaries of that subplot. Alternatively, users can set the `figwidth` in inches in the `style` dict kwarg and the drawing will scale to the width in inches that was set. Fixed [#6367](https://github.com/Qiskit/qiskit/issues/6367).
 
 *   Fixed an issue with the [`circuit_drawer()`](/api/qiskit/0.45/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") function and [`draw()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") method of [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). When displaying a `measure` instruction targeted on a classical bit instead of a register, using the `latex` drawer option, the drawer would fail.
 
@@ -1292,21 +1292,21 @@ As always, there are many more features and fixes in this release as well, which
 
 *   Fixed an issue with the [`circuit_drawer()`](/api/qiskit/0.45/qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") function and [`draw()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") method of [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The `mpl` drawer used hex notation to display the `condition` value, whereas the `text` and `latex` drawers used decimal notation. Now all three drawers use hex notation.
 
-*   Fixed a bug in the Hoare optimizer transpilation pass where it could attempt to remove a gate twice if it could be separately combined with both its predecessor and its successor to form the identity. Refer to [#7271](https://github.com/Qiskit/qiskit-terra/issues/7271) for more details.
+*   Fixed a bug in the Hoare optimizer transpilation pass where it could attempt to remove a gate twice if it could be separately combined with both its predecessor and its successor to form the identity. Refer to [#7271](https://github.com/Qiskit/qiskit/issues/7271) for more details.
 
-*   Making an instruction conditional with the standard [`InstructionSet.c_if()`](/api/qiskit/0.45/qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") method with integer indices is now consistent with the numbering scheme used by the [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") the instructions are part of. Previously, if there were two [`ClassicalRegister`](/api/qiskit/0.45/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s with overlapping [`Clbit`](/api/qiskit/0.45/qiskit.circuit.Clbit "qiskit.circuit.Clbit")s, the numbering would be incorrect. See [#7246](https://github.com/Qiskit/qiskit-terra/issues/7246) for more detail.
+*   Making an instruction conditional with the standard [`InstructionSet.c_if()`](/api/qiskit/0.45/qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") method with integer indices is now consistent with the numbering scheme used by the [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") the instructions are part of. Previously, if there were two [`ClassicalRegister`](/api/qiskit/0.45/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s with overlapping [`Clbit`](/api/qiskit/0.45/qiskit.circuit.Clbit "qiskit.circuit.Clbit")s, the numbering would be incorrect. See [#7246](https://github.com/Qiskit/qiskit/issues/7246) for more detail.
 
-*   Making an instruction conditional with the standard [`InstructionSet.c_if()`](/api/qiskit/0.45/qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") method will now succeed, even if there are no [`ClassicalRegister`](/api/qiskit/0.45/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s in the circuit. See [#7250](https://github.com/Qiskit/qiskit-terra/issues/7250) for more detail.
+*   Making an instruction conditional with the standard [`InstructionSet.c_if()`](/api/qiskit/0.45/qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") method will now succeed, even if there are no [`ClassicalRegister`](/api/qiskit/0.45/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s in the circuit. See [#7250](https://github.com/Qiskit/qiskit/issues/7250) for more detail.
 
 *   Making an instruction conditional with the standard [`InstructionSet.c_if()`](/api/qiskit/0.45/qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") method when using a [`Clbit`](/api/qiskit/0.45/qiskit.circuit.Clbit "qiskit.circuit.Clbit") that is contained in a [`ClassicalRegister`](/api/qiskit/0.45/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") of size one will now correctly create a condition on the bit, not the register. See [#7255](https://github.com/Qiskit/qiskit-terra/pull/7255) for more detail.
 
 *   Trying to make an instruction conditional with the standard [`InstructionSet.c_if()`](/api/qiskit/0.45/qiskit.circuit.InstructionSet#c_if "qiskit.circuit.InstructionSet.c_if") method will now correctly raise an error if the classical resource is not present in the circuit. See [#7255](https://github.com/Qiskit/qiskit-terra/pull/7255) for more detail.
 
-*   Fixed a compatibility issue with Matplotlib 3.5, where the Bloch sphere would fail to render if it had any vectors attached, such as by using [`plot_bloch_vector`](/api/qiskit/0.45/qiskit.visualization.plot_bloch_vector "qiskit.visualization.plot_bloch_vector"). See [#7272](https://github.com/Qiskit/qiskit-terra/issues/7272) for more detail.
+*   Fixed a compatibility issue with Matplotlib 3.5, where the Bloch sphere would fail to render if it had any vectors attached, such as by using [`plot_bloch_vector`](/api/qiskit/0.45/qiskit.visualization.plot_bloch_vector "qiskit.visualization.plot_bloch_vector"). See [#7272](https://github.com/Qiskit/qiskit/issues/7272) for more detail.
 
 *   Fixed an issue with the [`NLocal.add_layer()`](/api/qiskit/0.45/qiskit.circuit.library.NLocal#add_layer "qiskit.circuit.library.NLocal.add_layer") method incorrectly appending layers if the [`NLocal`](/api/qiskit/0.45/qiskit.circuit.library.NLocal "qiskit.circuit.library.NLocal") object had already been built.
 
-*   Fixed an issue with pickling [`InstructionScheduleMap`](/api/qiskit/0.45/qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") object when using Python 3.6. See [#6944](https://github.com/Qiskit/qiskit-terra/issues/6944) for details.
+*   Fixed an issue with pickling [`InstructionScheduleMap`](/api/qiskit/0.45/qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") object when using Python 3.6. See [#6944](https://github.com/Qiskit/qiskit/issues/6944) for details.
 
 *   Complex valued pulse parameter assignment with symengine has been fixed. For example,
 
@@ -1324,21 +1324,21 @@ As always, there are many more features and fixes in this release as well, which
 
     The assigned amplitude has been shown as `ParameterExpression(0.1*exp(1.57*I))` after the use of `symengine` was introduced in the 0.18.0 release. This is now correctly evaluated and shown as `7.96327e-05 + 0.0999999683j`.
 
-*   Fixed an issue where [`QAOA.construct_circuit()`](/api/qiskit/0.45/qiskit.algorithms.QAOA#construct_circuit "qiskit.algorithms.QAOA.construct_circuit") with different operators with same number of qubits would generate the same circuit each time. See [#7223](https://github.com/Qiskit/qiskit-terra/issues/7223) for more detail.
+*   Fixed an issue where [`QAOA.construct_circuit()`](/api/qiskit/0.45/qiskit.algorithms.QAOA#construct_circuit "qiskit.algorithms.QAOA.construct_circuit") with different operators with same number of qubits would generate the same circuit each time. See [#7223](https://github.com/Qiskit/qiskit/issues/7223) for more detail.
 
 *   Fixed an issue where [`QAOAAnsatz`](/api/qiskit/0.45/qiskit.circuit.library.QAOAAnsatz "qiskit.circuit.library.QAOAAnsatz") had an incorrect number of parameters if identities of `PauliSumOp` were given, e.g., `PauliSumOp.from_list([("III", 1)])`. See [#7225](https://github.com/Qiskit/qiskit-terra/pull/7225) for more detail.
 
 *   Fixed a bug where the [`QuantumCircuit.qasm()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#qasm "qiskit.circuit.QuantumCircuit.qasm") method could return OpenQASM 2 instructions with invalid identifiers. The same bug was fixed for `UnitaryGate`.
 
-*   Fixed an issue where trying to display registerless bits would cause a failure of the `mpl` and the `latex` circuit drawers. A leading `_` has been removed from the display of registerless bits’ numbers in the `text` drawer. Fixed [#6732](https://github.com/Qiskit/qiskit-terra/issues/6732).
+*   Fixed an issue where trying to display registerless bits would cause a failure of the `mpl` and the `latex` circuit drawers. A leading `_` has been removed from the display of registerless bits’ numbers in the `text` drawer. Fixed [#6732](https://github.com/Qiskit/qiskit/issues/6732).
 
-*   For one-bit registers, all of the circuit drawers now display only the register name and no longer show the `0` subscript. Fixed [#5784](https://github.com/Qiskit/qiskit-terra/issues/5784).
+*   For one-bit registers, all of the circuit drawers now display only the register name and no longer show the `0` subscript. Fixed [#5784](https://github.com/Qiskit/qiskit/issues/5784).
 
 *   Fixed naming collisions of implicit registers in [`QuantumCircuit.qasm`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#qasm "qiskit.circuit.QuantumCircuit.qasm") when dealing with registerless qubits and clbits. Previously, registerless qubits and clbits were put into corresponding `qreg` and `creg` both called `regless`, despite the collision. They will now have separate, deterministically generated names, which will not clash with any user-defined register names in the circuit.
 
-*   Fixed an issue in scheduling of circuits with clbits operations, e.g. measurements, conditional gates, updating [`ASAPSchedule`](/api/qiskit/0.45/qiskit.transpiler.passes.ASAPSchedule "qiskit.transpiler.passes.ASAPSchedule"), [`ALAPSchedule`](/api/qiskit/0.45/qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule"), and [`AlignMeasures`](/api/qiskit/0.45/qiskit.transpiler.passes.AlignMeasures "qiskit.transpiler.passes.AlignMeasures"). The updated schedulers assume all clbits I/O operations take no time, `measure` writes the measured value to a clbit at the end, and `c_if` reads the conditional value in clbit(s) at the beginning. Fixed [#7006](https://github.com/Qiskit/qiskit-terra/issues/7006).
+*   Fixed an issue in scheduling of circuits with clbits operations, e.g. measurements, conditional gates, updating [`ASAPSchedule`](/api/qiskit/0.45/qiskit.transpiler.passes.ASAPSchedule "qiskit.transpiler.passes.ASAPSchedule"), [`ALAPSchedule`](/api/qiskit/0.45/qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule"), and [`AlignMeasures`](/api/qiskit/0.45/qiskit.transpiler.passes.AlignMeasures "qiskit.transpiler.passes.AlignMeasures"). The updated schedulers assume all clbits I/O operations take no time, `measure` writes the measured value to a clbit at the end, and `c_if` reads the conditional value in clbit(s) at the beginning. Fixed [#7006](https://github.com/Qiskit/qiskit/issues/7006).
 
-*   Calling [`transpile`](/api/qiskit/0.45/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") on an empty list will now correctly return an empty list without issuing a warning. Fixed [#7287](https://github.com/Qiskit/qiskit-terra/issues/7287).
+*   Calling [`transpile`](/api/qiskit/0.45/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") on an empty list will now correctly return an empty list without issuing a warning. Fixed [#7287](https://github.com/Qiskit/qiskit/issues/7287).
 
 *   Fixed an issue in [`PiecewiseChebyshev`](/api/qiskit/0.45/qiskit.circuit.library.PiecewiseChebyshev "qiskit.circuit.library.PiecewiseChebyshev") when the function to be approximated was constant. In these cases, you should now pass the constant directly as the `f_x` argument, rather than using a function, such as:
 
@@ -1352,7 +1352,7 @@ As always, there are many more features and fixes in this release as well, which
 
 *   If an `HHL` algorithm instance was constructed without a [`QuantumInstance`](/api/qiskit/0.45/qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") (the default), attempts to use the getter and setter properties to read or set an instance later would fail. The getters and setters now work as expected.
 
-*   The [`QuantumCircuit.qasm()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#qasm "qiskit.circuit.QuantumCircuit.qasm") method now edits the names of copies of the instructions present in the circuit, not the original instructions that live in `circuit.data`. Refer to [#6952](https://github.com/Qiskit/qiskit-terra/issues/6952) for more details.
+*   The [`QuantumCircuit.qasm()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#qasm "qiskit.circuit.QuantumCircuit.qasm") method now edits the names of copies of the instructions present in the circuit, not the original instructions that live in `circuit.data`. Refer to [#6952](https://github.com/Qiskit/qiskit/issues/6952) for more details.
 
 *   Fixed a bug in [`PauliSumOp.permute()`](/api/qiskit/0.45/qiskit.opflow.primitive_ops.PauliSumOp#permute "qiskit.opflow.primitive_ops.PauliSumOp.permute") causing the error:
 
@@ -1372,7 +1372,7 @@ As always, there are many more features and fixes in this release as well, which
 
 *   Fixed an issue with [`RemoveFinalMeasurements`](/api/qiskit/0.45/qiskit.transpiler.passes.RemoveFinalMeasurements "qiskit.transpiler.passes.RemoveFinalMeasurements") which could cause the resulting [`DAGCircuit`](/api/qiskit/0.45/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") to become invalid. See [#7196](https://github.com/Qiskit/qiskit-terra/pull/7196) for more details.
 
-*   Fixed an issue with method [`remove_final_measurements()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#remove_final_measurements "qiskit.circuit.QuantumCircuit.remove_final_measurements") of class [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that caused [`QuantumCircuit.clbits`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#clbits "qiskit.circuit.QuantumCircuit.clbits") to be incorrect after invocation. Refer to [#7089](https://github.com/Qiskit/qiskit-terra/issues/7089) for details.
+*   Fixed an issue with method [`remove_final_measurements()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#remove_final_measurements "qiskit.circuit.QuantumCircuit.remove_final_measurements") of class [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that caused [`QuantumCircuit.clbits`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#clbits "qiskit.circuit.QuantumCircuit.clbits") to be incorrect after invocation. Refer to [#7089](https://github.com/Qiskit/qiskit/issues/7089) for details.
 
 *   When tapering an empty zero operator in [`qiskit.opflow`](/api/qiskit/0.45/opflow#module-qiskit.opflow "qiskit.opflow"), the code, on detecting it was zero, logged a warning and returned the original operator. Such operators are commonly found in the auxiliary operators, when using Qiskit Nature, and the above behavior caused `VQE` to throw an exception as tapered non-zero operators were a different number of qubits from the tapered zero operators (since taper has returned the input operator unchanged). The code will now correctly taper a zero operator such that the number of qubits is reduced as expected and matches to tapered non-zero operators e.g `` `0*"IIII"` `` when we are tapering by 3 qubits will become `0*"I"`.
 

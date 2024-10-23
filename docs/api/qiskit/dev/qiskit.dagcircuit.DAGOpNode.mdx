@@ -19,15 +19,47 @@ python_api_name: qiskit.dagcircuit.DAGOpNode
 
   <Attribute id="qiskit.dagcircuit.DAGOpNode.cargs" />
 
+  ### condition
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.condition" />
+
+  ### definition
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.definition" />
+
+  ### duration
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.duration" />
+
+  ### label
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.label" />
+
+  ### matrix
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.matrix" />
+
   ### name
 
   <Attribute id="qiskit.dagcircuit.DAGOpNode.name">
     Returns the Instruction name corresponding to the op for this node
   </Attribute>
 
+  ### num\_clbits
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.num_clbits" />
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.num_qubits" />
+
   ### op
 
   <Attribute id="qiskit.dagcircuit.DAGOpNode.op" />
+
+  ### params
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.params" />
 
   ### qargs
 
@@ -37,27 +69,44 @@ python_api_name: qiskit.dagcircuit.DAGOpNode
 
   <Attribute id="qiskit.dagcircuit.DAGOpNode.sort_key" />
 
+  ### unit
+
+  <Attribute id="qiskit.dagcircuit.DAGOpNode.unit" />
+
   ## Methods
 
-  ### semantic\_eq
+  ### from\_instruction
 
-  <Function id="qiskit.dagcircuit.DAGOpNode.semantic_eq" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/dagcircuit/dagnode.py#L181-L237" signature="semantic_eq(node1, node2, bit_indices1, bit_indices2)" modifiers="static">
-    Check if DAG nodes are considered equivalent, e.g., as a node\_match for [`rustworkx.is_isomorphic_node_match()`](https://www.rustworkx.org/apiref/rustworkx.is_isomorphic_node_match.html#rustworkx.is_isomorphic_node_match "(in rustworkx v0.14)").
+  <Function id="qiskit.dagcircuit.DAGOpNode.from_instruction" signature="from_instruction(instruction, /, *, deepcopy=False)" modifiers="static" />
 
-    **Parameters**
+  ### is\_control\_flow
 
-    *   **node1** ([*DAGOpNode*](#qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – A node to compare.
-    *   **node2** ([*DAGOpNode*](#qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*,* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – The other node to compare.
-    *   **bit\_indices1** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node1
-    *   **bit\_indices2** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Dictionary mapping Bit instances to their index within the circuit containing node2
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_control_flow" signature="is_control_flow()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a control-flow operation (i.e. an instance of [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"))?
+  </Function>
 
-    **Returns**
+  ### is\_controlled\_gate
 
-    If node1 == node2
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_controlled_gate" signature="is_controlled_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a subclass of [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")?
+  </Function>
 
-    **Return type**
+  ### is\_directive
 
-    [Bool](circuit_classical#qiskit.circuit.classical.types.Bool "qiskit.circuit.classical.types.Bool")
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_directive" signature="is_directive()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a directive?
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_parameterized" signature="is_parameterized()">
+    Does this node contain any [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") parameters?
+  </Function>
+
+  ### is\_standard\_gate
+
+  <Function id="qiskit.dagcircuit.DAGOpNode.is_standard_gate" signature="is_standard_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a Qiskit standard gate?
   </Function>
 </Class>
 

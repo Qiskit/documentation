@@ -8,7 +8,7 @@ python_api_name: qiskit.pulse.library.Waveform
 
 # Waveform
 
-<Class id="qiskit.pulse.library.Waveform" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/waveform.py#L23-L137" signature="qiskit.pulse.library.Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)" modifiers="class">
+<Class id="qiskit.pulse.library.Waveform" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/waveform.py#L23-L134" signature="qiskit.pulse.library.Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)" modifiers="class">
   Bases: `Pulse`
 
   A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
@@ -17,10 +17,10 @@ python_api_name: qiskit.pulse.library.Waveform
 
   **Parameters**
 
-  *   **samples** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]*) – Complex array of the samples in the pulse envelope.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unique name to identify the pulse.
-  *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
-  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Passed to parent Pulse
+  *   **samples** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*]*) – Complex array of the samples in the pulse envelope.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Unique name to identify the pulse.
+  *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
+  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Passed to parent Pulse
 
   ## Attributes
 
@@ -58,22 +58,22 @@ python_api_name: qiskit.pulse.library.Waveform
 
   ### draw
 
-  <Function id="qiskit.pulse.library.Waveform.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/pulse.py#L77-L132" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
+  <Function id="qiskit.pulse.library.Waveform.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/pulse.py#L77-L132" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
     Plot the interpolated envelope of pulse.
 
     **Parameters**
 
-    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
     *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-    *   **time\_range** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+    *   **time\_range** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-    *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+    *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-    *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+    *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-    *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
+    *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
 
         Name of plotter API to generate an output image. One of following APIs should be specified:
 
@@ -94,12 +94,12 @@ python_api_name: qiskit.pulse.library.Waveform
 
   ### is\_parameterized
 
-  <Function id="qiskit.pulse.library.Waveform.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/waveform.py#L108-L110" signature="is_parameterized()">
+  <Function id="qiskit.pulse.library.Waveform.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/waveform.py#L108-L110" signature="is_parameterized()">
     Return True iff the instruction is parameterized.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
   </Function>
 </Class>
 

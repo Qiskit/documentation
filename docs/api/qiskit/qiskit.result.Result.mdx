@@ -8,8 +8,8 @@ python_api_name: qiskit.result.Result
 
 # Result
 
-<Class id="qiskit.result.Result" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L29-L397" signature="qiskit.result.Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+<Class id="qiskit.result.Result" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L29-L392" signature="qiskit.result.Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Model for Results.
 
@@ -20,7 +20,7 @@ python_api_name: qiskit.result.Result
 
     **Type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Attribute>
 
   ### backend\_version
@@ -30,7 +30,7 @@ python_api_name: qiskit.result.Result
 
     **Type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Attribute>
 
   ### qobj\_id
@@ -40,7 +40,7 @@ python_api_name: qiskit.result.Result
 
     **Type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Attribute>
 
   ### job\_id
@@ -50,7 +50,7 @@ python_api_name: qiskit.result.Result
 
     **Type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Attribute>
 
   ### success
@@ -60,7 +60,7 @@ python_api_name: qiskit.result.Result
 
     **Type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
   </Attribute>
 
   ### results
@@ -70,21 +70,21 @@ python_api_name: qiskit.result.Result
 
     **Type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[ExperimentResult]
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[ExperimentResult]
   </Attribute>
 
   ## Methods
 
   ### data
 
-  <Function id="qiskit.result.Result.data" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L138-L189" signature="data(experiment=None)">
+  <Function id="qiskit.result.Result.data" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L133-L184" signature="data(experiment=None)">
     Get the raw data for an experiment.
 
     Note this data will be a single classical and quantum register and in a format required by the results schema. We recommend that most users use the get\_xxx method, and the data will be post-processed for the data type.
 
     **Parameters**
 
-    **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or None*) – the index of the experiment. Several types are accepted for convenience:: \* str: the name of the experiment. \* QuantumCircuit: the name of the circuit instance will be used. \* Schedule: the name of the schedule instance will be used. \* int: the position of the experiment. \* None: if there is only one experiment, returns it.
+    **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or None*) – the index of the experiment. Several types are accepted for convenience:: \* str: the name of the experiment. \* QuantumCircuit: the name of the circuit instance will be used. \* Schedule: the name of the schedule instance will be used. \* int: the position of the experiment. \* None: if there is only one experiment, returns it.
 
     **Returns**
 
@@ -100,7 +100,7 @@ python_api_name: qiskit.result.Result
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
 
     **Raises**
 
@@ -109,12 +109,12 @@ python_api_name: qiskit.result.Result
 
   ### from\_dict
 
-  <Function id="qiskit.result.Result.from_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L119-L136" signature="from_dict(data)" modifiers="classmethod">
+  <Function id="qiskit.result.Result.from_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L112-L131" signature="from_dict(data)" modifiers="classmethod">
     Create a new ExperimentResultData object from a dictionary.
 
     **Parameters**
 
-    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the Result to create. It will be in the same format as output by [`to_dict()`](#qiskit.result.Result.to_dict "qiskit.result.Result.to_dict").
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – A dictionary representing the Result to create. It will be in the same format as output by [`to_dict()`](#qiskit.result.Result.to_dict "qiskit.result.Result.to_dict").
 
     **Returns**
 
@@ -127,12 +127,12 @@ python_api_name: qiskit.result.Result
 
   ### get\_counts
 
-  <Function id="qiskit.result.Result.get_counts" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L245-L295" signature="get_counts(experiment=None)">
+  <Function id="qiskit.result.Result.get_counts" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L240-L290" signature="get_counts(experiment=None)">
     Get the histogram data of an experiment.
 
     **Parameters**
 
-    **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or None*) – the index of the experiment, as specified by `data([experiment])`.
+    **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or None*) – the index of the experiment, as specified by `data([experiment])`.
 
     **Returns**
 
@@ -140,7 +140,7 @@ python_api_name: qiskit.result.Result
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")] or [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")] or [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
 
     **Raises**
 
@@ -149,12 +149,12 @@ python_api_name: qiskit.result.Result
 
   ### get\_memory
 
-  <Function id="qiskit.result.Result.get_memory" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L191-L243" signature="get_memory(experiment=None)">
+  <Function id="qiskit.result.Result.get_memory" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L186-L238" signature="get_memory(experiment=None)">
     Get the sequence of memory states (readouts) for each shot The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’]
 
     **Parameters**
 
-    **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or None*) – the index of the experiment, as specified by `data()`.
+    **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or None*) – the index of the experiment, as specified by `data()`.
 
     **Returns**
 
@@ -170,7 +170,7 @@ python_api_name: qiskit.result.Result
 
     **Return type**
 
-    List\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")] or np.ndarray
+    List\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")] or np.ndarray
 
     **Raises**
 
@@ -179,13 +179,13 @@ python_api_name: qiskit.result.Result
 
   ### get\_statevector
 
-  <Function id="qiskit.result.Result.get_statevector" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L297-L317" signature="get_statevector(experiment=None, decimals=None)">
+  <Function id="qiskit.result.Result.get_statevector" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L292-L312" signature="get_statevector(experiment=None, decimals=None)">
     Get the final statevector of an experiment.
 
     **Parameters**
 
-    *   **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or None*) – the index of the experiment, as specified by `data()`.
-    *   **decimals** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimals in the statevector. If None, does not round.
+    *   **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or None*) – the index of the experiment, as specified by `data()`.
+    *   **decimals** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimals in the statevector. If None, does not round.
 
     **Returns**
 
@@ -193,7 +193,7 @@ python_api_name: qiskit.result.Result
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")]
 
     **Raises**
 
@@ -202,13 +202,13 @@ python_api_name: qiskit.result.Result
 
   ### get\_unitary
 
-  <Function id="qiskit.result.Result.get_unitary" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L319-L338" signature="get_unitary(experiment=None, decimals=None)">
+  <Function id="qiskit.result.Result.get_unitary" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L314-L333" signature="get_unitary(experiment=None, decimals=None)">
     Get the final unitary of an experiment.
 
     **Parameters**
 
-    *   **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or None*) – the index of the experiment, as specified by `data()`.
-    *   **decimals** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimals in the unitary. If None, does not round.
+    *   **experiment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or None*) – the index of the experiment, as specified by `data()`.
+    *   **decimals** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimals in the unitary. If None, does not round.
 
     **Returns**
 
@@ -218,7 +218,7 @@ python_api_name: qiskit.result.Result
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]]
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")]]
 
     **Raises**
 
@@ -227,7 +227,7 @@ python_api_name: qiskit.result.Result
 
   ### to\_dict
 
-  <Function id="qiskit.result.Result.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/result/result.py#L93-L111" signature="to_dict()">
+  <Function id="qiskit.result.Result.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/result/result.py#L86-L104" signature="to_dict()">
     Return a dictionary format representation of the Result
 
     **Returns**
@@ -236,7 +236,7 @@ python_api_name: qiskit.result.Result
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
   </Function>
 </Class>
 

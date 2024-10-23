@@ -385,7 +385,7 @@ With this, Qiskit’s circuits no longer assume an implicit initial state of $|0
 
 #### Bug Fixes
 
-*   The [`qiskit.circuit.QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods [`inverse()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#inverse "qiskit.circuit.QuantumCircuit.inverse"), `mirror()` methods, as well as the `QuantumCircuit.data` setter would generate an invalid circuit when used on a parameterized circuit instance. This has been resolved and these methods should now work with a parameterized circuit. Fixes [#4235](https://github.com/Qiskit/qiskit-terra/issues/4235)
+*   The [`qiskit.circuit.QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods [`inverse()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#inverse "qiskit.circuit.QuantumCircuit.inverse"), `mirror()` methods, as well as the `QuantumCircuit.data` setter would generate an invalid circuit when used on a parameterized circuit instance. This has been resolved and these methods should now work with a parameterized circuit. Fixes [#4235](https://github.com/Qiskit/qiskit/issues/4235)
 
 *   Previously when creating a controlled version of a standard qiskit gate if a `ctrl_state` was specified a generic `ControlledGate` object would be returned whereas without it a standard qiskit controlled gate would be returned if it was defined. This PR allows standard qiskit controlled gates to understand `ctrl_state`.
 
@@ -402,13 +402,13 @@ With this, Qiskit’s circuits no longer assume an implicit initial state of $|0
 
     would apply `ctrl_state` to all three control qubits instead of just the two control qubits being added.
 
-*   Fixed a bug in [`random_clifford()`](/api/qiskit/0.45/quantum_info#qiskit.quantum_info.random_clifford "qiskit.quantum_info.random_clifford") that stopped it from sampling the full Clifford group. Fixes [#4271](https://github.com/Qiskit/qiskit-terra/issues/4271)
+*   Fixed a bug in [`random_clifford()`](/api/qiskit/0.45/quantum_info#qiskit.quantum_info.random_clifford "qiskit.quantum_info.random_clifford") that stopped it from sampling the full Clifford group. Fixes [#4271](https://github.com/Qiskit/qiskit/issues/4271)
 
 *   The [`qiskit.circuit.Instruction`](/api/qiskit/0.45/qiskit.circuit.Instruction "qiskit.circuit.Instruction") method [`qiskit.circuit.Instruction.is_parameterized()`](/api/qiskit/0.45/qiskit.circuit.Instruction#is_parameterized "qiskit.circuit.Instruction.is_parameterized") method had previously returned `True` for any `Instruction` instance which had a [`qiskit.circuit.Parameter`](/api/qiskit/0.45/qiskit.circuit.Parameter "qiskit.circuit.Parameter") in any element of its `params` array, even if that `Parameter` had been fully bound. This has been corrected so that `.is_parameterized` will return `False` when the instruction is fully bound.
 
 *   [`qiskit.circuit.ParameterExpression.subs()`](/api/qiskit/0.45/qiskit.circuit.ParameterExpression#subs "qiskit.circuit.ParameterExpression.subs") had not correctly detected some cases where substituting parameters would result in a two distinct `Parameters` objects in an expression with the same name. This has been corrected so a `CircuitError` will be raised in these cases.
 
-*   Improve performance of [`qiskit.quantum_info.Statevector`](/api/qiskit/0.45/qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") and [`qiskit.quantum_info.DensityMatrix`](/api/qiskit/0.45/qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") for low-qubit circuit simulations by optimizing the class `__init__` methods. Fixes [#4281](https://github.com/Qiskit/qiskit-terra/issues/4281)
+*   Improve performance of [`qiskit.quantum_info.Statevector`](/api/qiskit/0.45/qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") and [`qiskit.quantum_info.DensityMatrix`](/api/qiskit/0.45/qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") for low-qubit circuit simulations by optimizing the class `__init__` methods. Fixes [#4281](https://github.com/Qiskit/qiskit/issues/4281)
 
 *   The function [`qiskit.compiler.transpile()`](/api/qiskit/0.45/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") now correctly handles when the parameter `basis_gates` is set to `None`. This will allow any gate in the output tranpiled circuit, including gates added by the transpilation process. Note that using this parameter may have some unintended consequences during optimization. Some transpiler passes depend on having a `basis_gates` set. For example, [`qiskit.transpiler.passes.Optimize1qGates`](/api/qiskit/0.45/qiskit.transpiler.passes.Optimize1qGates "qiskit.transpiler.passes.Optimize1qGates") only optimizes the chains of u1, u2, and u3 gates and without `basis_gates` it is unable to unroll gates that otherwise could be optimized:
 
@@ -433,7 +433,7 @@ With this, Qiskit’s circuits no longer assume an implicit initial state of $|0
          └───┘└─────────────┘└───┘└─────────────────┘
     ```
 
-    Fixes [#3017](https://github.com/Qiskit/qiskit-terra/issues/3017)
+    Fixes [#3017](https://github.com/Qiskit/qiskit/issues/3017)
 
 <span id="release-notes-0-14-0-other-notes" />
 

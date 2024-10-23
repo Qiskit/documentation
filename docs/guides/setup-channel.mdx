@@ -5,7 +5,7 @@ description: Installation and setup instructions for IBM Quantum Platform or IBM
 
 # Set up an IBM Quantum channel
 
-You can access IBM Quantum&trade; systems by using the IBM Quantum Platform or IBM Cloud&reg; _channel_.  _Channel_ is the term used to describe the method you use to access IBM Quantum services.
+You can access IBM&reg; quantum processing units (QPUs) by using the IBM Quantum Platform or IBM Cloud&reg; _channel_.  _Channel_ is the term used to describe the method you use to access IBM Quantum services.
 
 ## Select an IBM Quantum channel
 
@@ -19,9 +19,9 @@ Before setting up with IBM Quantum Platform, make sure you have the [Qiskit SDK 
 
 Available plans:
 
-* **Open Plan** - Run your quantum circuits on the world's best quantum systems for free (up to 10 minutes quantum time per month).
+* **Open Plan** - Run your quantum circuits on the world's best QPUs for free (up to 10 minutes quantum time per month).
 
-* **Premium Plan** - Run quantum circuits on the world's best quantum systems using an enterprise quantum time subscription.
+* **Premium Plan** - Run quantum circuits on the world's best QPUs using an enterprise quantum time subscription.
 
 
 ### IBM Cloud
@@ -34,7 +34,7 @@ This channel does not support a cloud-based development environment. Therefore, 
 
 Available plans:
 
-- **Standard (Pay-as-you-go) Plan** - Run quantum circuits on the world's best quantum systems and pay only for the quantum time you use.
+- **Standard (Pay-as-you-go) Plan** - Run quantum circuits on the world's best QPUs and pay only for the quantum time you use.
 
 - **Lite plan**: Debug and learn about quantum circuits using free simulators.
 
@@ -91,6 +91,12 @@ Available plans:
     <Admonition type="note">
     IBM Cloud is the default account used if you don't specify a different channel or account name.
     </Admonition>
+
+    <CodeAssistantAdmonition>
+      If you forget the setup code, try asking Qiskit Code Assistant.
+
+      * `# Set up my IBM Runtime account using TOKEN for my token`
+    </CodeAssistantAdmonition>
 
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
 
@@ -194,10 +200,6 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
       If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-quickstart-org).
     </Admonition>
 
-    <Admonition type="note">
-     When selecting a performance strategy there are two options available. One from IBM (default) another from Q-CTRL. The IBM performance strategy allows you to leverage all of the standard options available with [Qiskit Runtime](../api/qiskit-ibm-runtime) and the Q-CTRL strategy uses an automated preset.  To learn more about the Q-CTRL option, visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
-    </Admonition>
-
 1. Find your access credentials.
     1. Find your API key. From the [API keys page](https://cloud.ibm.com/iam/apikeys), view or create your API key, then copy it to a secure location so you can use it for authentication.
     2. Find your Cloud Resource Name (CRN). Open the [Instances page](https://cloud.ibm.com/quantum/instances) and click your instance. In the page that opens, click the icon to copy your CRN. Save it in a secure location so you can use it for authentication.
@@ -210,10 +212,6 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
 
    service = QiskitRuntimeService(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>")
    ```
-
-   <Admonition type="note">
-     If you set up your instance in step 3 to include Q-CTRL performance management, when initializing the `QiskitRuntimeService()` you should include the additional argument `channel_strategy="q-ctrl"`. To learn more about Q-CTRL performance management strategy visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
-   </Admonition>
 
    You can optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service.
 
