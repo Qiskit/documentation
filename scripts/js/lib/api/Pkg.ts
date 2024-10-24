@@ -40,6 +40,8 @@ export class Pkg {
   readonly type: PackageType;
   readonly releaseNotesConfig: ReleaseNotesConfig;
   readonly tocGrouping?: TocGrouping;
+  /// Convert URLs like `my_pkg.SomeClass` to `some-class` for better SEO.
+  readonly kebabCaseAndShortenUrls: boolean;
 
   static VALID_NAMES = [
     "qiskit",
@@ -61,6 +63,7 @@ export class Pkg {
     type: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
+    kebabCaseAndShortenUrls: boolean;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -71,6 +74,7 @@ export class Pkg {
     this.releaseNotesConfig =
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
     this.tocGrouping = kwargs.tocGrouping;
+    this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
   }
 
   static async fromArgs(
@@ -96,6 +100,7 @@ export class Pkg {
           separatePagesVersions: releaseNoteEntries,
         }),
         tocGrouping: QISKIT_TOC_GROUPING,
+        kebabCaseAndShortenUrls: false,
       });
     }
 
@@ -104,6 +109,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Runtime Client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
+        kebabCaseAndShortenUrls: false,
       });
     }
 
@@ -112,6 +118,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Transpiler Service Client",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
+        kebabCaseAndShortenUrls: false,
       });
     }
 
@@ -120,6 +127,7 @@ export class Pkg {
         ...args,
         title: "Operator Backpropagation",
         githubSlug: "Qiskit/qiskit-addon-obp",
+        kebabCaseAndShortenUrls: true,
       });
     }
     if (name === "qiskit-addon-mpf") {
@@ -127,6 +135,7 @@ export class Pkg {
         ...args,
         title: "Multi-Product Formulas",
         githubSlug: "Qiskit/qiskit-addon-mpf",
+        kebabCaseAndShortenUrls: true,
       });
     }
     if (name === "qiskit-addon-sqd") {
@@ -134,6 +143,7 @@ export class Pkg {
         ...args,
         title: "Sample-Based Quantum Diagonalization",
         githubSlug: "Qiskit/qiskit-addon-sqd",
+        kebabCaseAndShortenUrls: true,
       });
     }
     if (name === "qiskit-addon-cutting") {
@@ -141,6 +151,7 @@ export class Pkg {
         ...args,
         title: "Circuit Cutting",
         githubSlug: "Qiskit/qiskit-addon-cutting",
+        kebabCaseAndShortenUrls: true,
       });
     }
     if (name === "qiskit-addon-utils") {
@@ -148,6 +159,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Addon Utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
       });
     }
 
@@ -163,6 +175,7 @@ export class Pkg {
     type?: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
+    kebabCaseAndShortenUrls?: boolean;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -173,6 +186,7 @@ export class Pkg {
       type: kwargs.type ?? "latest",
       releaseNotesConfig: kwargs.releaseNotesConfig,
       tocGrouping: kwargs.tocGrouping,
+      kebabCaseAndShortenUrls: kwargs.kebabCaseAndShortenUrls ?? false,
     });
   }
 

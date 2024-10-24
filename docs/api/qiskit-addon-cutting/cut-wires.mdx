@@ -1,0 +1,32 @@
+---
+title: cut_wires
+description: API reference for qiskit_addon_cutting.cut_wires
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.cut_wires
+---
+
+<span id="qiskit-addon-cutting-cut-wires" />
+
+# qiskit\_addon\_cutting.cut\_wires
+
+<Function id="qiskit_addon_cutting.cut_wires" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/wire_cutting_transforms.py" signature="cut_wires(circuit, /)">
+  Transform all [`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire") instructions in a circuit to [`Move`](instructions-move "qiskit_addon_cutting.instructions.Move") instructions marked for cutting.
+
+  The returned circuit will have one newly allocated qubit for every [`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire") instruction.
+
+  See Sec. 3 and Appendix A of [2302.03366v1](https://arxiv.org/abs/2302.03366v1) for more information about the two different representations of wire cuts: single-qubit ([`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire")) vs. two-qubit ([`Move`](instructions-move "qiskit_addon_cutting.instructions.Move")).
+
+  **Parameters**
+
+  **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Original circuit with [`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire") instructions
+
+  **Returns**
+
+  New circuit with [`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire") instructions replaced by [`Move`](instructions-move "qiskit_addon_cutting.instructions.Move") instructions wrapped in `TwoQubitQPDGate`s
+
+  **Return type**
+
+  circuit
+</Function>
+

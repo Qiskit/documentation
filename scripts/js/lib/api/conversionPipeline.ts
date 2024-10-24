@@ -23,7 +23,7 @@ import { saveImages } from "./saveImages.js";
 import { generateToc } from "./generateToc.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { mergeClassMembers } from "./mergeClassMembers.js";
-import flattenFolders from "./flattenFolders.js";
+import { normalizeResultUrls } from "./normalizeResultUrls.js";
 import { updateLinks } from "./updateLinks.js";
 import { specialCaseResults } from "./specialCaseResults.js";
 import addFrontMatter from "./addFrontMatter.js";
@@ -149,9 +149,16 @@ async function postProcessResults(
   initialResults: HtmlToMdResultWithUrl[],
 ): Promise<HtmlToMdResultWithUrl[]> {
   const results = await mergeClassMembers(initialResults);
-  flattenFolders(results);
+  normalizeResultUrls(results, {
+    kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+    pkgName: pkg.name,
+  });
   specialCaseResults(results);
-  await updateLinks(results, maybeObjectsInv);
+  await updateLinks(
+    results,
+    { kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls, pkgName: pkg.name },
+    maybeObjectsInv,
+  );
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
   removeMathBlocksIndentation(results);

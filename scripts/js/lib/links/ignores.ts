@@ -323,8 +323,9 @@ function _legacyQiskitSDKIssues(): FilesToIgnores {
 
 function _addonsApiDocs(): FilesToIgnores {
   return {
-    "docs/api/qiskit-addon-cutting/qiskit_addon_cutting.instructions.Move.mdx":
-      ["tutorials/03_wire_cutting_via_move_instruction"],
+    "docs/api/qiskit-addon-cutting/instructions-move.mdx": [
+      "tutorials/03-wire-cutting-via-move-instruction",
+    ],
     "docs/api/qiskit-addon-cutting/release-notes.mdx": [
       "/api/migration-guides/v2-primitives",
       "/api/migration-guides/qiskit-1.0-features#qiskitprimitives",
@@ -332,15 +333,19 @@ function _addonsApiDocs(): FilesToIgnores {
       "tutorials/index#circuit-cutting-tutorials",
       "explanation/index#circuit-cutting-explanation",
     ],
-    "docs/api/qiskit-addon-obp/qiskit_addon_obp.utils.truncating.setup_budget.mdx":
-      ["how_tos/truncate_operator_terms", "how_tos/bound_error_using_p_norm"],
-    "docs/api/qiskit-addon-obp/qiskit_addon_obp.utils.truncating.TruncationErrorBudget.mdx":
-      ["how_tos/truncate_operator_terms", "how_tos/bound_error_using_p_norm"],
-    "docs/api/qiskit-addon-obp/qiskit_addon_obp.backpropagate.mdx": [
-      "how_tos/truncate_operator_terms",
+    "docs/api/qiskit-addon-obp/utils-truncating-setup-budget.mdx": [
+      "how_tos/truncate-operator-terms",
+      "how_tos/bound-error-using-p-norm",
     ],
-    "docs/api/qiskit-addon-utils/qiskit_addon_utils.slicing.mdx": [
-      "how_tos/create_circuit_slices",
+    "docs/api/qiskit-addon-obp/utils-truncating-truncation-error-budget.mdx": [
+      "how_tos/truncate-operator-terms",
+      "how_tos/bound-error-using-p-norm",
+    ],
+    "docs/api/qiskit-addon-obp/backpropagate.mdx": [
+      "how_tos/truncate-operator-terms",
+    ],
+    "docs/api/qiskit-addon-utils/slicing.mdx": [
+      "how_tos/create-circuit-slices",
     ],
   };
 }
