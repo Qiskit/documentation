@@ -1,0 +1,37 @@
+---
+title: partition_circuit_qubits
+description: API reference for qiskit_addon_cutting.partition_circuit_qubits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.partition_circuit_qubits
+---
+
+<span id="qiskit-addon-cutting-partition-circuit-qubits" />
+
+# qiskit\_addon\_cutting.partition\_circuit\_qubits
+
+<Function id="qiskit_addon_cutting.partition_circuit_qubits" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/cutting_decomposition.py" signature="partition_circuit_qubits(circuit, partition_labels, inplace=False)">
+  Replace all nonlocal gates belonging to more than one partition with instances of [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate").
+
+  [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s belonging to a single partition will not be affected.
+
+  **Parameters**
+
+  *   **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – The circuit to partition
+  *   **partition\_labels** ([`Sequence`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable "(in Python v3.12)")]) – A sequence containing a partition label for each qubit in the input circuit. Nonlocal gates belonging to more than one partition will be replaced with [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s.
+  *   **inplace** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Flag denoting whether to copy the input circuit before acting on it
+
+  **Return type**
+
+  [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")
+
+  **Returns**
+
+  The output circuit with each nonlocal gate spanning two partitions replaced by a [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – The length of partition\_labels does not equal the number of qubits in the circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Input circuit contains unsupported gate.
+</Function>
+
