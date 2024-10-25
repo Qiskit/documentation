@@ -592,7 +592,7 @@ By default, the title is the `type` capitalized. You can customize it by setting
 </Admonition>
 ```
 
-We also have a specialized admonition for Qiskit Code Assistant prompt suggestions.
+We also have a specialized admonition for Qiskit Code Assistant prompt suggestions. Warning: avoid a trailing comma on the last entry in `prompts`!
 
 ```mdx
 <CodeAssistantAdmonition
