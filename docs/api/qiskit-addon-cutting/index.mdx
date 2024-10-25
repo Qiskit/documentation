@@ -18,48 +18,48 @@ Circuit Cutting ([`qiskit_addon_cutting`](#module-qiskit_addon_cutting "qiskit_a
 
 ### Circuit Cutting
 
-|                                                                                                                                               |                                                                                                                                                                                                                                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`cut_wires`](qiskit_addon_cutting.cut_wires "qiskit_addon_cutting.cut_wires")                                                                | Transform all [`CutWire`](qiskit_addon_cutting.instructions.CutWire "qiskit_addon_cutting.instructions.CutWire") instructions in a circuit to [`Move`](qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instructions marked for cutting. |
-| [`expand_observables`](qiskit_addon_cutting.expand_observables "qiskit_addon_cutting.expand_observables")                                     | Expand observable(s) according to the qubit mapping between `original_circuit` and `final_circuit`.                                                                                                                                                                      |
-| [`partition_circuit_qubits`](qiskit_addon_cutting.partition_circuit_qubits "qiskit_addon_cutting.partition_circuit_qubits")                   | Replace all nonlocal gates belonging to more than one partition with instances of [`TwoQubitQPDGate`](qiskit_addon_cutting.qpd.TwoQubitQPDGate "qiskit_addon_cutting.qpd.TwoQubitQPDGate").                                                                              |
-| [`partition_problem`](qiskit_addon_cutting.partition_problem "qiskit_addon_cutting.partition_problem")                                        | Separate an input circuit and observable(s).                                                                                                                                                                                                                             |
-| [`cut_gates`](qiskit_addon_cutting.cut_gates "qiskit_addon_cutting.cut_gates")                                                                | Transform specified gates into [`TwoQubitQPDGate`](qiskit_addon_cutting.qpd.TwoQubitQPDGate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s.                                                                                                                                |
-| [`generate_cutting_experiments`](qiskit_addon_cutting.generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments")       | Generate cutting subexperiments and their associated coefficients.                                                                                                                                                                                                       |
-| [`reconstruct_expectation_values`](qiskit_addon_cutting.reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") | Reconstruct an expectation value from the results of the sub-experiments.                                                                                                                                                                                                |
+|                                                                                                                          |                                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`cut_wires`](cut-wires "qiskit_addon_cutting.cut_wires")                                                                | Transform all [`CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire") instructions in a circuit to [`Move`](instructions-move "qiskit_addon_cutting.instructions.Move") instructions marked for cutting. |
+| [`expand_observables`](expand-observables "qiskit_addon_cutting.expand_observables")                                     | Expand observable(s) according to the qubit mapping between `original_circuit` and `final_circuit`.                                                                                                                             |
+| [`partition_circuit_qubits`](partition-circuit-qubits "qiskit_addon_cutting.partition_circuit_qubits")                   | Replace all nonlocal gates belonging to more than one partition with instances of [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate").                                                       |
+| [`partition_problem`](partition-problem "qiskit_addon_cutting.partition_problem")                                        | Separate an input circuit and observable(s).                                                                                                                                                                                    |
+| [`cut_gates`](cut-gates "qiskit_addon_cutting.cut_gates")                                                                | Transform specified gates into [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s.                                                                                                         |
+| [`generate_cutting_experiments`](generate-cutting-experiments "qiskit_addon_cutting.generate_cutting_experiments")       | Generate cutting subexperiments and their associated coefficients.                                                                                                                                                              |
+| [`reconstruct_expectation_values`](reconstruct-expectation-values "qiskit_addon_cutting.reconstruct_expectation_values") | Reconstruct an expectation value from the results of the sub-experiments.                                                                                                                                                       |
 
-|                                                                                                                                |                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| [`PartitionedCuttingProblem`](qiskit_addon_cutting.PartitionedCuttingProblem "qiskit_addon_cutting.PartitionedCuttingProblem") | The result of decomposing and separating a circuit and observable(s).                |
-| [`instructions.CutWire`](qiskit_addon_cutting.instructions.CutWire "qiskit_addon_cutting.instructions.CutWire")                | An instruction for denoting a wire cut location.                                     |
-| [`instructions.Move`](qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move")                         | A two-qubit instruction representing a reset of the second qubit followed by a swap. |
+|                                                                                                             |                                                                                      |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| [`PartitionedCuttingProblem`](partitioned-cutting-problem "qiskit_addon_cutting.PartitionedCuttingProblem") | The result of decomposing and separating a circuit and observable(s).                |
+| [`instructions.CutWire`](instructions-cut-wire "qiskit_addon_cutting.instructions.CutWire")                 | An instruction for denoting a wire cut location.                                     |
+| [`instructions.Move`](instructions-move "qiskit_addon_cutting.instructions.Move")                           | A two-qubit instruction representing a reset of the second qubit followed by a swap. |
 
 #### Automatic Cut Finding
 
-|                                                                                |                                                                                         |
-| ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| [`find_cuts`](qiskit_addon_cutting.find_cuts "qiskit_addon_cutting.find_cuts") | Find cut locations in a circuit, given optimization parameters and cutting constraints. |
+|                                                           |                                                                                         |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| [`find_cuts`](find-cuts "qiskit_addon_cutting.find_cuts") | Find cut locations in a circuit, given optimization parameters and cutting constraints. |
 
-|                                                                                                                       |                                                                         |
-| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`OptimizationParameters`](qiskit_addon_cutting.OptimizationParameters "qiskit_addon_cutting.OptimizationParameters") | Specify parameters that control the optimization.                       |
-| [`DeviceConstraints`](qiskit_addon_cutting.DeviceConstraints "qiskit_addon_cutting.DeviceConstraints")                | Specify the constraints (qubits per subcircuit) that must be respected. |
+|                                                                                                   |                                                                         |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [`OptimizationParameters`](optimization-parameters "qiskit_addon_cutting.OptimizationParameters") | Specify parameters that control the optimization.                       |
+| [`DeviceConstraints`](device-constraints "qiskit_addon_cutting.DeviceConstraints")                | Specify the constraints (qubits per subcircuit) that must be respected. |
 
 ### Quasi-Probability Decomposition (QPD)
 
-|                                                                                                                       |                                                                              |
-| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`qpd.QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis")                               | Basis in which to decompose an operation.                                    |
-| [`qpd.BaseQPDGate`](qiskit_addon_cutting.qpd.BaseQPDGate "qiskit_addon_cutting.qpd.BaseQPDGate")                      | Base class for a gate to be decomposed using quasiprobability decomposition. |
-| [`qpd.SingleQubitQPDGate`](qiskit_addon_cutting.qpd.SingleQubitQPDGate "qiskit_addon_cutting.qpd.SingleQubitQPDGate") | Single qubit gate to be decomposed using quasiprobability decomposition.     |
-| [`qpd.TwoQubitQPDGate`](qiskit_addon_cutting.qpd.TwoQubitQPDGate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")          | Two qubit gate to be decomposed using quasiprobability decomposition.        |
-| [`qpd.WeightType`](qiskit_addon_cutting.qpd.WeightType "qiskit_addon_cutting.qpd.WeightType")                         | Type of weight associated with a QPD sample.                                 |
+|                                                                                                     |                                                                              |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`qpd.QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis")                                 | Basis in which to decompose an operation.                                    |
+| [`qpd.BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate")                       | Base class for a gate to be decomposed using quasiprobability decomposition. |
+| [`qpd.SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate") | Single qubit gate to be decomposed using quasiprobability decomposition.     |
+| [`qpd.TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")          | Two qubit gate to be decomposed using quasiprobability decomposition.        |
+| [`qpd.WeightType`](qpd-weight-type "qiskit_addon_cutting.qpd.WeightType")                           | Type of weight associated with a QPD sample.                                 |
 
-|                                                                                                                                               |                                                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [`qpd.generate_qpd_weights`](qiskit_addon_cutting.qpd.generate_qpd_weights "qiskit_addon_cutting.qpd.generate_qpd_weights")                   | Generate weights from the joint quasiprobability distribution.                                                                      |
-| [`qpd.decompose_qpd_instructions`](qiskit_addon_cutting.qpd.decompose_qpd_instructions "qiskit_addon_cutting.qpd.decompose_qpd_instructions") | Replace all QPD instructions in the circuit with local Qiskit operations and measurements.                                          |
-| [`qpd.qpdbasis_from_instruction`](qiskit_addon_cutting.qpd.qpdbasis_from_instruction "qiskit_addon_cutting.qpd.qpdbasis_from_instruction")    | Generate a [`QPDBasis`](qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation. |
+|                                                                                                                          |                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| [`qpd.generate_qpd_weights`](qpd-generate-qpd-weights "qiskit_addon_cutting.qpd.generate_qpd_weights")                   | Generate weights from the joint quasiprobability distribution.                                                  |
+| [`qpd.decompose_qpd_instructions`](qpd-decompose-qpd-instructions "qiskit_addon_cutting.qpd.decompose_qpd_instructions") | Replace all QPD instructions in the circuit with local Qiskit operations and measurements.                      |
+| [`qpd.qpdbasis_from_instruction`](qpd-qpdbasis-from-instruction "qiskit_addon_cutting.qpd.qpdbasis_from_instruction")    | Generate a [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation. |
 
 <span id="module-qiskit_addon_cutting.utils" />
 
@@ -75,9 +75,9 @@ Utility functions.
 
 Bitwise utilities.
 
-|                                                                                                                  |                           |
-| ---------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`bit_count`](qiskit_addon_cutting.utils.bitwise.bit_count "qiskit_addon_cutting.utils.bitwise.bit_count")(x, /) | Count number of set bits. |
+|                                                                                             |                           |
+| ------------------------------------------------------------------------------------------- | ------------------------- |
+| [`bit_count`](utils-bitwise-bit-count "qiskit_addon_cutting.utils.bitwise.bit_count")(x, /) | Count number of set bits. |
 
 <span id="module-qiskit_addon_cutting.utils.iteration" />
 
@@ -87,10 +87,10 @@ Bitwise utilities.
 
 Iteration utilities.
 
-|                                                                                                                                      |                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| [`unique_by_id`](qiskit_addon_cutting.utils.iteration.unique_by_id "qiskit_addon_cutting.utils.iteration.unique_by_id")(iterable, /) | Return unique objects in `iterable`, by identity. |
-| [`unique_by_eq`](qiskit_addon_cutting.utils.iteration.unique_by_eq "qiskit_addon_cutting.utils.iteration.unique_by_eq")(iterable, /) | Return unique objects in `iterable`, by equality. |
+|                                                                                                                 |                                                   |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [`unique_by_id`](utils-iteration-unique-by-id "qiskit_addon_cutting.utils.iteration.unique_by_id")(iterable, /) | Return unique objects in `iterable`, by identity. |
+| [`unique_by_eq`](utils-iteration-unique-by-eq "qiskit_addon_cutting.utils.iteration.unique_by_eq")(iterable, /) | Return unique objects in `iterable`, by equality. |
 
 <span id="module-qiskit_addon_cutting.utils.observable_grouping" />
 
@@ -100,11 +100,11 @@ Iteration utilities.
 
 Module for conducting Pauli observable grouping.
 
-|                                                                                                                                                                                                                               |                                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`observables_restricted_to_subsystem`](qiskit_addon_cutting.utils.observable_grouping.observables_restricted_to_subsystem "qiskit_addon_cutting.utils.observable_grouping.observables_restricted_to_subsystem")(qubits, ...) | Restrict each observable to its support on a given subsystem.             |
-| [`CommutingObservableGroup`](qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup "qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup")(general\_observable, ...)                     | Set of mutually qubit-wise commuting observables.                         |
-| [`ObservableCollection`](qiskit_addon_cutting.utils.observable_grouping.ObservableCollection "qiskit_addon_cutting.utils.observable_grouping.ObservableCollection")(observables, /)                                           | Collection of observables organized for efficient taking of measurements. |
+|                                                                                                                                                                                                          |                                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`observables_restricted_to_subsystem`](utils-observable-grouping-observables-restricted-to-subsystem "qiskit_addon_cutting.utils.observable_grouping.observables_restricted_to_subsystem")(qubits, ...) | Restrict each observable to its support on a given subsystem.             |
+| [`CommutingObservableGroup`](utils-observable-grouping-commuting-observable-group "qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup")(general\_observable, ...)                   | Set of mutually qubit-wise commuting observables.                         |
+| [`ObservableCollection`](utils-observable-grouping-observable-collection "qiskit_addon_cutting.utils.observable_grouping.ObservableCollection")(observables, /)                                          | Collection of observables organized for efficient taking of measurements. |
 
 <span id="module-qiskit_addon_cutting.utils.simulation" />
 
@@ -114,10 +114,10 @@ Module for conducting Pauli observable grouping.
 
 Simulation of precise measurement outcome probabilities.
 
-|                                                                                                                                                                                     |                                                                      |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`simulate_statevector_outcomes`](qiskit_addon_cutting.utils.simulation.simulate_statevector_outcomes "qiskit_addon_cutting.utils.simulation.simulate_statevector_outcomes")(qc, /) | Return each classical outcome along with its precise probability.    |
-| [`ExactSampler`](qiskit_addon_cutting.utils.simulation.ExactSampler "qiskit_addon_cutting.utils.simulation.ExactSampler")(\*\[, options])                                           | Sampler which returns exact probabilities for each possible outcome. |
+|                                                                                                                                                                |                                                                      |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [`simulate_statevector_outcomes`](utils-simulation-simulate-statevector-outcomes "qiskit_addon_cutting.utils.simulation.simulate_statevector_outcomes")(qc, /) | Return each classical outcome along with its precise probability.    |
+| [`ExactSampler`](utils-simulation-exact-sampler "qiskit_addon_cutting.utils.simulation.ExactSampler")(\*\[, options])                                          | Sampler which returns exact probabilities for each possible outcome. |
 
 <span id="module-qiskit_addon_cutting.utils.transforms" />
 
@@ -127,13 +127,13 @@ Simulation of precise measurement outcome probabilities.
 
 Functions for manipulating quantum circuits.
 
-|                                                                                                                                                                      |                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| [`separate_circuit`](qiskit_addon_cutting.utils.transforms.separate_circuit "qiskit_addon_cutting.utils.transforms.separate_circuit")(circuit\[, partition\_labels]) | Separate the circuit into its disconnected components. |
+|                                                                                                                                                 |                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [`separate_circuit`](utils-transforms-separate-circuit "qiskit_addon_cutting.utils.transforms.separate_circuit")(circuit\[, partition\_labels]) | Separate the circuit into its disconnected components. |
 
-|                                                                                                                                                                   |                                                                                                                                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`SeparatedCircuits`](qiskit_addon_cutting.utils.transforms.SeparatedCircuits "qiskit_addon_cutting.utils.transforms.SeparatedCircuits")(subcircuits, qubit\_map) | Named tuple for result of [`separate_circuit()`](qiskit_addon_cutting.utils.transforms.separate_circuit "qiskit_addon_cutting.utils.transforms.separate_circuit"). |
+|                                                                                                                                               |                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`SeparatedCircuits`](utils-transforms-separated-circuits "qiskit_addon_cutting.utils.transforms.SeparatedCircuits")(subcircuits, qubit\_map) | Named tuple for result of [`separate_circuit()`](utils-transforms-separate-circuit "qiskit_addon_cutting.utils.transforms.separate_circuit"). |
 
 <span id="module-qiskit_addon_cutting.utils.transpiler_passes" />
 
@@ -143,8 +143,8 @@ Functions for manipulating quantum circuits.
 
 Transpiler passes useful for circuit knitting.
 
-|                                                                                                                                                                            |                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [`RemoveFinalReset`](qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset "qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset")(\*args, \*\*kwargs)    | Remove reset when it is the final instruction on a qubit wire. |
-| [`ConsolidateResets`](qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets "qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets")(\*args, \*\*kwargs) | Consolidate a run duplicate resets in to a single reset.       |
+|                                                                                                                                                        |                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| [`RemoveFinalReset`](utils-transpiler-passes-remove-final-reset "qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset")(\*args, \*\*kwargs)   | Remove reset when it is the final instruction on a qubit wire. |
+| [`ConsolidateResets`](utils-transpiler-passes-consolidate-resets "qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets")(\*args, \*\*kwargs) | Consolidate a run duplicate resets in to a single reset.       |
 
