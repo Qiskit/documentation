@@ -680,7 +680,13 @@ There is a specific use case where you want to show instructions for different o
 
 This component only works in notebooks. Notebook code cells are always at the
 top-level of content, but sometimes you'll want to have them nested in other
-components, such as in tabs or in a list. To use this component, add a tag
+components, such as in tabs or in a list. While you could write your code
+as a markdown block, it's usually preferable to keep the code as a code block
+so that it is executed and its code can be later used in the notebook. The
+CodeCellPlaceholder component allows you to still use a code block, but move
+it to render somewhere else in the notebook.
+
+To use this component, add a tag
 starting with `id-` to the cell you'd like to move, then add a
 `<CodeCellPlaceholder tag="id-tag" />` component with the same tag somewhere in
 your markdown. This will move that code cell into the place of the component.
