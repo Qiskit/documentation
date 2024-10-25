@@ -321,34 +321,6 @@ function _legacyQiskitSDKIssues(): FilesToIgnores {
   };
 }
 
-function _addonsApiDocs(): FilesToIgnores {
-  return {
-    "docs/api/qiskit-addon-cutting/instructions-move.mdx": [
-      "tutorials/03-wire-cutting-via-move-instruction",
-    ],
-    "docs/api/qiskit-addon-cutting/release-notes.mdx": [
-      "/api/migration-guides/v2-primitives",
-      "/api/migration-guides/qiskit-1.0-features#qiskitprimitives",
-      "explanation/index",
-      "tutorials/index#circuit-cutting-tutorials",
-      "explanation/index#circuit-cutting-explanation",
-    ],
-    "docs/api/qiskit-addon-obp/utils-truncating-setup-budget.mdx": [
-      "how_tos/truncate-operator-terms",
-      "how_tos/bound-error-using-p-norm",
-    ],
-    "docs/api/qiskit-addon-obp/utils-truncating-truncation-error-budget.mdx": [
-      "how_tos/truncate-operator-terms",
-      "how_tos/bound-error-using-p-norm",
-    ],
-    "docs/api/qiskit-addon-obp/backpropagate.mdx": [
-      "how_tos/truncate-operator-terms",
-    ],
-    "docs/api/qiskit-addon-utils/slicing.mdx": [
-      "how_tos/create-circuit-slices",
-    ],
-  };
-}
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
@@ -356,8 +328,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores =
-  mergeFilesToIgnores(_addonsApiDocs());
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
