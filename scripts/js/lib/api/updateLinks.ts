@@ -77,19 +77,21 @@ export function normalizeUrl(
   const normalizedPage = kwargs.kebabCaseAndShorten
     ? kebabCaseAndShortenPage(page, kwargs.pkgName)
     : page;
-  const normalizedBase = [...initialUrlParts, normalizedPage].join("/");
+  const normalizedUrlWithoutHash = [...initialUrlParts, normalizedPage].join(
+    "/",
+  );
 
   // qiskit_ibm_runtime.RuntimeJob
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
   if (itemNames.has(page)) {
     if (hash === page) {
-      return normalizedBase;
+      return normalizedUrlWithoutHash;
     }
 
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
     if (hash?.startsWith(`${page}.`)) {
       const member = removePrefix(hash, `${page}.`);
-      return `${normalizedBase}#${member}`;
+      return `${normalizedUrlWithoutHash}#${member}`;
     }
   }
 
@@ -105,7 +107,7 @@ export function normalizeUrl(
     return [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
   }
 
-  if (!hash) return normalizedBase;
+  if (!hash) return normalizedUrlWithoutHash;
 
   // Anchors generated from markdown headings are always lower case but, if these
   // headings are API references, Sphinx sometimes expects them to include
@@ -115,7 +117,7 @@ export function normalizeUrl(
   // tags (which preserve Sphinx's original casing), and anchors with no periods
   // are from markdown headings (which must be lower-cased). This seems to work ok.
   const normalizedHash = hash.includes(".") ? hash : hash.toLowerCase();
-  return `${normalizedBase}#${normalizedHash}`;
+  return `${normalizedUrlWithoutHash}#${normalizedHash}`;
 }
 
 export function relativizeLink(link: Link): Link | undefined {
