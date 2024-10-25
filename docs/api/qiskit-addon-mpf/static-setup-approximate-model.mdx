@@ -1,0 +1,70 @@
+---
+title: setup_approximate_model
+description: API reference for qiskit_addon_mpf.static.setup_approximate_model
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_mpf.static.setup_approximate_model
+---
+
+<span id="setup-approximate-model" />
+
+# setup\_approximate\_model
+
+<Function id="qiskit_addon_mpf.static.setup_approximate_model" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/main/qiskit_addon_mpf/static/approximate.py#L22-L76" signature="setup_approximate_model(lse, *, max_l1_norm=10.0)">
+  Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.5)") for finding approximate static MPF coefficients.
+
+  The optimization problem constructed by this class is defined as follows:
+
+  *   the cost function minimizes the sum of squares ([`sum_squares()`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.sum_squares.sum_squares "(in CVXPY v1.5)")) of the distances to an exact solution for all equations of the [`LSE`](static-lse "qiskit_addon_mpf.static.LSE"):
+
+$$
+\sum_i \left( \sum_j A_{ij} x_j - b_i \right)^2
+$$
+
+  *   two constraints are set:
+
+      1.  the variables must sum to 1: $\sum_i x_i == 1$
+      2.  the L1-norm ([`norm1`](https://www.cvxpy.org/api_reference/cvxpy.atoms.other_atoms.html#cvxpy.atoms.norm1.norm1 "(in CVXPY v1.5)")) of the variables is bounded by `max_l1_norm`
+
+  Here is an example:
+
+  ```python
+  >>> from qiskit_addon_mpf.static import setup_lse, setup_approximate_model
+  >>> lse = setup_lse([1,2,3], order=2, symmetric=True)
+  >>> problem, coeffs = setup_approximate_model(lse, max_l1_norm=3.0)
+  >>> print(problem)
+  minimize quad_over_lin(Vstack([1. 1.     1.]         @ x + -1.0,
+                                [1. 0.25   0.11111111] @ x + -0.0,
+                                [1. 0.0625 0.01234568] @ x + -0.0), 1.0)
+  subject to Sum(x, None, False) == 1.0
+             norm1(x) <= 3.0
+  ```
+
+  You can then solve the problem and extract the expansion coefficients like so:
+
+  ```python
+  >>> final_cost = problem.solve()
+  >>> print(coeffs.value)  
+  [ 0.03513467 -1.          1.96486533]
+  ```
+
+  **Parameters**
+
+  *   **lse** ([*LSE*](static-lse "qiskit_addon_mpf.static.lse.LSE")) – the linear system of equations from which to build the model.
+  *   **max\_l1\_norm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the upper limit to use for the constrain of the L1-norm of the variables.
+
+  **Returns**
+
+  The optimization problem and coefficients variable.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Problem*](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.5)"), [*Variable*](https://www.cvxpy.org/api_reference/cvxpy.expressions.html#cvxpy.expressions.variable.Variable "(in CVXPY v1.5)")]
+
+  **References**
+
+  ## \[1]: S. Zhuk et al., arXiv:2306.12569 (2023).
+
+  [https://arxiv.org/abs/2306.12569](https://arxiv.org/abs/2306.12569)
+</Function>
+
