@@ -600,7 +600,7 @@ We also have a specialized admonition for Qiskit Code Assistant prompt suggestio
   prompts={[
     "# Print the version of Qiskit we're using",
     "# Return True if the version of Qiskit is 1.0 or greater",
-    "# Install Qiskit 1.0.2",
+    "# Install Qiskit 1.0.2"
   ]}
 />
 ```
