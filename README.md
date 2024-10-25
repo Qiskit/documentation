@@ -592,6 +592,19 @@ By default, the title is the `type` capitalized. You can customize it by setting
 </Admonition>
 ```
 
+We also have a specialized admonition for Qiskit Code Assistant prompt suggestions.
+
+```mdx
+<CodeAssistantAdmonition
+  tagLine="Need help? Try asking Qiskit Code Assistant."
+  prompts={[
+    "# Print the version of Qiskit we're using",
+    "# Return True if the version of Qiskit is 1.0 or greater",
+    "# Install Qiskit 1.0.2",
+  ]}
+/>
+```
+
 ### Definition Tooltip
 
 To use a `DefinitionTooltip`, use the following syntax:
@@ -661,6 +674,36 @@ There is a specific use case where you want to show instructions for different o
     command
   </TabItem>
 </OperatingSystemTabs>
+```
+
+### CodeCellPlaceholder
+
+This component only works in notebooks. Notebook code cells are always at the
+top-level of content, but sometimes you'll want to have them nested in other
+components, such as in tabs or in a list. To use this component, add a tag
+starting with `id-` to the cell you'd like to move, then add a
+`<CodeCellPlaceholder tag="id-tag" />` component with the same tag somewhere in
+your markdown. This will move that code cell into the place of the component.
+
+You can then use this component anywhere in your mdx. While you can move code
+cells anywhere, try to keep them relatively close to their position in the
+notebook and preserve their order to avoid confusion.
+
+```mdx
+Here's a list where the second list element is a code cell.
+The cell with tag "id-move-to-list" will be moved inside this list.
+
+- List item 1
+- <CodeCellPlaceholder tag="id-move-to-list" />
+
+Here's a code cell inside a `Tabs` component.
+The cell with tag "id-move-to-tabs" will be moved inside these tabs.
+
+<Tabs>
+  <TabItem value="code" label="Code cell
+    <CodeCellPlaceholder tag="id-move-to-tabs" />
+  </TabItem>
+</Tabs>
 ```
 
 ## Proper marking and attribution
