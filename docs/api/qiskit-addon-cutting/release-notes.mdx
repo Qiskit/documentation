@@ -80,7 +80,7 @@ The 0.7.1 release provides a workaround to ensure that the experiments generated
 
 ### Prelude
 
-The 0.7 release introduces an automated cut finding code for the new circuit cutting workflow. With this milestone, the older cutting workflow (CutQC) is now deprecated. Additionally, this is the first CKT release to support version 2 of the Qiskit Runtime primitives. User are encouraged to [migrate to v2 primitives](/api/migration-guides/v2-primitives) as soon as possible.
+The 0.7 release introduces an automated cut finding code for the new circuit cutting workflow. With this milestone, the older cutting workflow (CutQC) is now deprecated. Additionally, this is the first CKT release to support version 2 of the Qiskit Runtime primitives. User are encouraged to [migrate to v2 primitives](/migration-guides/v2-primitives) as soon as possible.
 
 <span id="release-notes-0-7-0-new-features" />
 
@@ -90,7 +90,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   Added a cut-finder function, `circuit_knitting.cutting.find_cuts()`, for automatically identifying locations to place LO gate and wire cuts such that the circuit is separable and runnable, given the maximum number of qubits per subcircuit as a parameter. The cut-finder will search for cut schemes which minimize the sampling overhead. Note, however, that for larger circuits, the number of cuts needed to separate the circuit will naturally grow larger, leading to an exponentially increasing sampling overhead. For instances of wire cuts, the cut-finder assumes no qubit reuse. Therefore, for each wire cut, a new wire is added to the circuit. In addition, the cut-finder requires that every gate in an input circuit be at most a two qubit gate. The search algorithm used by the cut-finder to identify cut locations is Dijkstra’s best first search algorithm which is guaranteed to find solutions with the lowest sampling overhead, provided any user-specified value for the maximum number of allowed backjumps or for the maximum sampling overhead does not prematurely stop the search. If the user wishes to time-restrict the search when running the cut-finder on large circuits, they can specify a maximum sampling overhead and/or a maximum number of allowed backjumps, in which case the cut-finder will return a valid albeit suboptimal cut scheme.
 
-*   Circuit cutting reconstruction can now interpret the [`PrimitiveResult`](/api/qiskit/qiskit.primitives.PrimitiveResult "(in Qiskit v1.2)") object, which is returned by version 2 of the sampler primitive ([`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2 "(in Qiskit v1.2)")). See the [migration guide](/api/migration-guides/qiskit-1.0-features#qiskitprimitives) for details on upgrading to version 2 of the Qiskit primitives.
+*   Circuit cutting reconstruction can now interpret the [`PrimitiveResult`](/api/qiskit/qiskit.primitives.PrimitiveResult "(in Qiskit v1.2)") object, which is returned by version 2 of the sampler primitive ([`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2 "(in Qiskit v1.2)")). See the [migration guide](/migration-guides/qiskit-1.0-features#qiskitprimitives) for details on upgrading to version 2 of the Qiskit primitives.
 
 <span id="release-notes-0-7-0-upgrade-notes" />
 
@@ -116,7 +116,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   The cutting tutorials have been rephrased with the goal of reconstructing the expectation value of a single [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)") with many terms, rather than multiple independent [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)") observables.
 
-*   The [circuit cutting explanation](explanation/index) document has been expanded significantly.
+*   The [circuit cutting explanation](https://qiskit.github.io/qiskit-addon-cutting/explanation/index.html) document has been expanded significantly.
 
 <span id="release-notes-0-6-0" />
 
@@ -236,7 +236,7 @@ The primary goal of this release is to modify the circuit cutting workflow to en
 
 ### Deprecation Notes
 
-*   The `execute_experiments()` function has been deprecated. Going forward, users should first call [`generate_cutting_experiments()`](qiskit_addon_cutting.generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") to generate the subexperiment circuits and then submit these circuits directly to the desired Sampler(s). The [tutorials](tutorials/index#circuit-cutting-tutorials) have been updated with this new workflow.
+*   The `execute_experiments()` function has been deprecated. Going forward, users should first call [`generate_cutting_experiments()`](qiskit_addon_cutting.generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") to generate the subexperiment circuits and then submit these circuits directly to the desired Sampler(s). The [tutorials](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) have been updated with this new workflow.
 
 <span id="release-notes-0-3-0" />
 
@@ -281,7 +281,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 *   `generate_qpd_weights()` now returns a mixture of exact and sampled weights when appropriate. Specifically, it exactly evaluates all weights greater than or equal to `1 / num_samples` and samples from the remaining weights (ones which are below this threshold). Previously, this function would only return exact weights if *all* weights were greater than or equal to `1 / num_samples`; otherwise, all weights were sampled. The new behavior is expected to improve performance on non-uniform quasi-probability decompositions, e.g. for cut instantiations of [`RXXGate`](/api/qiskit/qiskit.circuit.library.RXXGate "(in Qiskit v1.2)"), [`RYYGate`](/api/qiskit/qiskit.circuit.library.RYYGate "(in Qiskit v1.2)"), [`RZZGate`](/api/qiskit/qiskit.circuit.library.RZZGate "(in Qiskit v1.2)"), [`CRXGate`](/api/qiskit/qiskit.circuit.library.CRXGate "(in Qiskit v1.2)"), [`CRYGate`](/api/qiskit/qiskit.circuit.library.CRYGate "(in Qiskit v1.2)"), and [`CRZGate`](/api/qiskit/qiskit.circuit.library.CRZGate "(in Qiskit v1.2)") away from $\theta=\pi/2$.
 
-*   The `circuit_knitting.cutting` module now supports wire cutting. There is a [new tutorial](tutorials/index#circuit-cutting-tutorials) that explains how to use it.
+*   The `circuit_knitting.cutting` module now supports wire cutting. There is a [new tutorial](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) that explains how to use it.
 
 <span id="release-notes-0-3-0-upgrade-notes" />
 
@@ -338,11 +338,11 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 ### Prelude
 
-0.2.0 is centered around the addition of functions which allow for the easy implementation of a circuit cutting technique called gate cutting. For more details on circuit cutting, check out our [explanation guide](explanation/index#circuit-cutting-explanation).
+0.2.0 is centered around the addition of functions which allow for the easy implementation of a circuit cutting technique called gate cutting. For more details on circuit cutting, check out our [explanation guide](https://qiskit.github.io/qiskit-addon-cutting/explanation/index.html).
 
 The foundation of the `circuit_cutting` package is the `circuit_knitting_toolbox.circuit_cutting.qpd` sub-package. The `qpd` package allows for easy transformation of [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") gates and wires into elements which may be decomposed to a probabilistic set of basis gates. See `QPDBasis` and `BaseQPDGate` classes for more information.
 
-Additionally, 0.2.0 includes a set of functions which allow for easy implementation of gate cutting workflows. These functions are built on top of the `circuit_knitting_toolbox.circuit_cutting.qpd` package. Like all circuit knitting techniques, gate cutting can be described as three consecutive stages: *decomposition* of a problem, *execution* of many subexperiments, and *reconstruction* of a simulated output of the original problem. These steps may be implemented with the `circuit_cutting` package using only a few primary functions, namely, the [`partition_problem()`](qiskit_addon_cutting.partition_problem "qiskit_addon_cutting.partition_problem"), `decompose_gates()`, `execute_experiments()`, and [`reconstruct_expectation_values()`](qiskit_addon_cutting.reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") functions. Check out the [tutorials](tutorials/index#circuit-cutting-tutorials) for a look at a couple of example circuit cutting workflows.
+Additionally, 0.2.0 includes a set of functions which allow for easy implementation of gate cutting workflows. These functions are built on top of the `circuit_knitting_toolbox.circuit_cutting.qpd` package. Like all circuit knitting techniques, gate cutting can be described as three consecutive stages: *decomposition* of a problem, *execution* of many subexperiments, and *reconstruction* of a simulated output of the original problem. These steps may be implemented with the `circuit_cutting` package using only a few primary functions, namely, the [`partition_problem()`](qiskit_addon_cutting.partition_problem "qiskit_addon_cutting.partition_problem"), `decompose_gates()`, `execute_experiments()`, and [`reconstruct_expectation_values()`](qiskit_addon_cutting.reconstruct_expectation_values "qiskit_addon_cutting.reconstruct_expectation_values") functions. Check out the [tutorials](https://qiskit.github.io/qiskit-addon-cutting/tutorials/index.html) for a look at a couple of example circuit cutting workflows.
 
 <span id="release-notes-0-2-0-new-features" />
 
