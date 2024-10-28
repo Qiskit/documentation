@@ -446,7 +446,7 @@ If your file will have non-trivial code in it, please create a Jupyter notebook 
 Add the file to these places:
 
 - The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension.
-- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the IGNORED_URLS section. For example, `"/guides/qiskit-code-assistant"`.
+- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
 - qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
 
 ## Page metadata
@@ -592,6 +592,19 @@ By default, the title is the `type` capitalized. You can customize it by setting
 </Admonition>
 ```
 
+We also have a specialized admonition for Qiskit Code Assistant prompt suggestions. Warning: avoid a trailing comma on the last entry in `prompts`!
+
+```mdx
+<CodeAssistantAdmonition
+  tagLine="Need help? Try asking Qiskit Code Assistant."
+  prompts={[
+    "# Print the version of Qiskit we're using",
+    "# Return True if the version of Qiskit is 1.0 or greater",
+    "# Install Qiskit 1.0.2"
+  ]}
+/>
+```
+
 ### Definition Tooltip
 
 To use a `DefinitionTooltip`, use the following syntax:
@@ -661,6 +674,65 @@ There is a specific use case where you want to show instructions for different o
     command
   </TabItem>
 </OperatingSystemTabs>
+```
+
+### CodeCellPlaceholder
+
+This component only works in notebooks. Notebook code cells are always at the
+top-level of content, but sometimes you'll want to have them nested in other
+components, such as in tabs or in a list. While you could write your code
+as a markdown block, it's usually preferable to keep the code as a code block
+so that it is executed and its code can be later used in the notebook. The
+CodeCellPlaceholder component allows you to still use a code block, but move
+it to render somewhere else in the notebook.
+
+To use this component, add a tag
+starting with `id-` to the code cell you'd like to move, then add a
+`<CodeCellPlaceholder tag="id-tag" />` component with the same tag somewhere in
+your markdown. This will move that code cell into the place of the component.
+
+You can then use this component anywhere in your markdown. While you can move code
+cells anywhere, try to keep them relatively close to their position in the
+notebook and preserve their order to avoid confusion.
+
+Here's an example of what this might look like in your notebook source.
+
+```json
+{
+ "cell_type": "code",
+ "execution_count": 1,
+ "metadata": {
+  "tags": [
+   "id-example-cell"
+  ]
+ },
+ "outputs": [
+  {
+   "data": {
+    "text/plain": [
+     "Hello, world!"
+    ]
+   },
+  }
+ ],
+ "source": [
+  "# This is a code cell\n",
+  "print(\"Hello, world!\")"
+ ]
+},
+{
+ "cell_type": "markdown",
+ "source": [
+  "This is a notebook markdown cell.",
+  "\n",
+  "<Tabs>\n",
+  "<TabItem value=\"Example\" label=\"Example\">\n",
+  "  This `TabItem` contains a notebook code cell\n",
+  "  <CodeCellPlaceholder tag=\"id-example-cell\" />\n",
+  "</TabItem>\n",
+  "</Tabs>"
+ ]
+}
 ```
 
 ## Proper marking and attribution

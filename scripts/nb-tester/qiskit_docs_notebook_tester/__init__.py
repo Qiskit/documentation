@@ -351,6 +351,10 @@ async def _main() -> None:
     config = Config.from_args(args)
     paths = list(config.notebooks_to_execute())
 
+    if not paths:
+        print("⚠️ No notebooks to execute - exiting")
+        return
+
     if paths and args.is_fork:
         print(
             "⛔️ We can't run notebook tests on pull requests from forks becaus of how GitHub Secrets work."
@@ -375,7 +379,6 @@ async def _main() -> None:
     results.append(cancel_trailing_jobs(start_time, config.args.config_path))
     if not all(results):
         sys.exit(1)
-    sys.exit(0)
 
 
 def main():

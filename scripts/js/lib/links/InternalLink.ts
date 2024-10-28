@@ -114,14 +114,14 @@ export class InternalLink {
     let suggestionPath: String = "";
     let suggestionPathAnchors: string[] = [];
 
-    const possiblePaths = this.possibleFilePaths(originFile);
-    const pathNoExtension = possiblePaths[0].replace(/\.[^\/.]+$/, "");
-
     existingFiles.forEach((file) => {
-      let score = levenshtein.get(pathNoExtension, file.path);
+      const candidatePath = file.path.startsWith("public/")
+        ? file.path.replace(/^public/, "")
+        : file.path.replace(/\.[^\/.]+$/, "").replace(/^docs/, "");
+      let score = levenshtein.get(this.value, candidatePath);
       if (score < minScoreLink) {
         minScoreLink = score;
-        suggestionPath = file.path;
+        suggestionPath = candidatePath;
         suggestionPathAnchors = Array.from(file.anchors);
       }
     });
@@ -137,9 +137,7 @@ export class InternalLink {
     }
 
     if (this.anchor == "") {
-      return `❓ Did you mean '${suggestionPath
-        .replace(/\.[^\/.]+$/, "")
-        .replace(/^docs/, "")}'?`;
+      return `❓ Did you mean '${suggestionPath}'?`;
     }
 
     // Find a new valid anchor
@@ -164,9 +162,7 @@ export class InternalLink {
       return null;
     }
 
-    return `❓ Did you mean '${suggestionPath
-      .replace(/\.[^\/.]+$/, "")
-      .replace(/^docs/, "")}${suggestionAnchor}'?`;
+    return `❓ Did you mean '${suggestionPath}${suggestionAnchor}'?`;
   }
 
   /**
