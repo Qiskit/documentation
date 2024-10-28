@@ -695,21 +695,44 @@ You can then use this component anywhere in your mdx. While you can move code
 cells anywhere, try to keep them relatively close to their position in the
 notebook and preserve their order to avoid confusion.
 
-```mdx
-Here's a list where the second list element is a code cell.
-The cell with tag "id-move-to-list" will be moved inside this list.
+Here's an example of what this might look like in your notebook source.
 
-- List item 1
-- <CodeCellPlaceholder tag="id-move-to-list" />
-
-Here's a code cell inside a `Tabs` component.
-The cell with tag "id-move-to-tabs" will be moved inside these tabs.
-
-<Tabs>
-  <TabItem value="code" label="Code cell
-    <CodeCellPlaceholder tag="id-move-to-tabs" />
-  </TabItem>
-</Tabs>
+```json
+{
+ "cell_type": "markdown",
+ "source": [
+  "This is a notebook markdown cell.",
+  "\n",
+  "<Tabs>\n",
+  "<TabItem value=\"Example\" label=\"Example\">\n",
+  "  This `TabItem` contains a notebook code cell\n",
+  "  <CodeCellPlaceholder tag=\"id-example-cell\" />\n",
+  "</TabItem>\n",
+  "</Tabs>"
+ ]
+},
+{
+ "cell_type": "code",
+ "execution_count": 1,
+ "metadata": {
+  "tags": [
+   "id-example-cell"
+  ]
+ },
+ "outputs": [
+  {
+   "data": {
+    "text/plain": [
+     "Hello, world!"
+    ]
+   },
+  }
+ ],
+ "source": [
+  "# This is a code cell\n",
+  "print(\"Hello, world!\")"
+ ]
+}
 ```
 
 ## Proper marking and attribution
