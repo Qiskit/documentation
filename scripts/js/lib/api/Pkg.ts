@@ -107,7 +107,7 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime Client",
+        title: "Qiskit Runtime client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: false,
       });
@@ -116,7 +116,7 @@ export class Pkg {
     if (name === "qiskit-ibm-transpiler") {
       return new Pkg({
         ...args,
-        title: "Qiskit Transpiler Service Client",
+        title: "Qiskit Transpiler Service client",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
         kebabCaseAndShortenUrls: false,
       });
@@ -125,7 +125,7 @@ export class Pkg {
     if (name === "qiskit-addon-obp") {
       return new Pkg({
         ...args,
-        title: "Operator Backpropagation",
+        title: "Operator backpropagation",
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
       });
@@ -133,7 +133,7 @@ export class Pkg {
     if (name === "qiskit-addon-mpf") {
       return new Pkg({
         ...args,
-        title: "Multi-Product Formulas",
+        title: "Multi-product formulas",
         githubSlug: "Qiskit/qiskit-addon-mpf",
         kebabCaseAndShortenUrls: true,
       });
@@ -141,7 +141,7 @@ export class Pkg {
     if (name === "qiskit-addon-sqd") {
       return new Pkg({
         ...args,
-        title: "Sample-Based Quantum Diagonalization",
+        title: "Sample-based quantum diagonalization",
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
       });
@@ -149,7 +149,7 @@ export class Pkg {
     if (name === "qiskit-addon-cutting") {
       return new Pkg({
         ...args,
-        title: "Circuit Cutting",
+        title: "Circuit cutting",
         githubSlug: "Qiskit/qiskit-addon-cutting",
         kebabCaseAndShortenUrls: true,
       });
@@ -157,7 +157,7 @@ export class Pkg {
     if (name === "qiskit-addon-utils") {
       return new Pkg({
         ...args,
-        title: "Qiskit Addon Utilities",
+        title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
         kebabCaseAndShortenUrls: true,
       });
