@@ -699,19 +699,6 @@ Here's an example of what this might look like in your notebook source.
 
 ```json
 {
- "cell_type": "markdown",
- "source": [
-  "This is a notebook markdown cell.",
-  "\n",
-  "<Tabs>\n",
-  "<TabItem value=\"Example\" label=\"Example\">\n",
-  "  This `TabItem` contains a notebook code cell\n",
-  "  <CodeCellPlaceholder tag=\"id-example-cell\" />\n",
-  "</TabItem>\n",
-  "</Tabs>"
- ]
-},
-{
  "cell_type": "code",
  "execution_count": 1,
  "metadata": {
@@ -731,6 +718,19 @@ Here's an example of what this might look like in your notebook source.
  "source": [
   "# This is a code cell\n",
   "print(\"Hello, world!\")"
+ ]
+},
+{
+ "cell_type": "markdown",
+ "source": [
+  "This is a notebook markdown cell.",
+  "\n",
+  "<Tabs>\n",
+  "<TabItem value=\"Example\" label=\"Example\">\n",
+  "  This `TabItem` contains a notebook code cell\n",
+  "  <CodeCellPlaceholder tag=\"id-example-cell\" />\n",
+  "</TabItem>\n",
+  "</Tabs>"
  ]
 }
 ```
