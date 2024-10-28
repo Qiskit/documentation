@@ -687,7 +687,7 @@ CodeCellPlaceholder component allows you to still use a code block, but move
 it to render somewhere else in the notebook.
 
 To use this component, add a tag
-starting with `id-` to the cell you'd like to move, then add a
+starting with `id-` to the code cell you'd like to move, then add a
 `<CodeCellPlaceholder tag="id-tag" />` component with the same tag somewhere in
 your markdown. This will move that code cell into the place of the component.
 
