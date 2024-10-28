@@ -691,7 +691,7 @@ starting with `id-` to the cell you'd like to move, then add a
 `<CodeCellPlaceholder tag="id-tag" />` component with the same tag somewhere in
 your markdown. This will move that code cell into the place of the component.
 
-You can then use this component anywhere in your mdx. While you can move code
+You can then use this component anywhere in your markdown. While you can move code
 cells anywhere, try to keep them relatively close to their position in the
 notebook and preserve their order to avoid confusion.
 
