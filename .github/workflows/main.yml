@@ -81,7 +81,9 @@ jobs:
         run: |
           import subprocess, sys
           files = """${{ steps.all-changed-notebooks.outputs.all_changed_notebooks }}"""
-          args = ["tox", "-e", "lint", "--"] + files.split("\n")
+          args = ["tox", "-e", "lint"]
+          if files != "":
+            args += ["--"] + files.split("\n")
           try:
             subprocess.run(args, check=True)
           except:
