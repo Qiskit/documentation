@@ -1,0 +1,43 @@
+---
+title: expand_observables
+description: API reference for qiskit_addon_cutting.expand_observables
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.expand_observables
+---
+
+<span id="qiskit-addon-cutting-expand-observables" />
+
+# qiskit\_addon\_cutting.expand\_observables
+
+<Function id="qiskit_addon_cutting.expand_observables" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/wire_cutting_transforms.py" signature="expand_observables(observables, original_circuit, final_circuit, /)">
+  Expand observable(s) according to the qubit mapping between `original_circuit` and `final_circuit`.
+
+  The `Qubit`s on `final_circuit` must be a superset of those on `original_circuit`.
+
+  Given a `PauliList` of observables, this function returns new observables with identity operators placed on the qubits that did not exist in `original_circuit`. This way, observables on `original_circuit` can be mapped to appropriate observables on `final_circuit`.
+
+  This function is designed to be used after calling `final_circuit = transform_cuts_to_moves(original_circuit)` (see `transform_cuts_to_moves()`).
+
+  This function requires `observables.num_qubits == original_circuit.num_qubits` and returns new observables such that `retval.num_qubits == final_circuit.num_qubits`.
+
+  **Parameters**
+
+  *   **observables** ([`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.2)")) – Observables corresponding to `original_circuit`
+  *   **original\_circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Original circuit
+  *   **final\_circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Final circuit, whose qubits the original `observables` should be expanded to
+
+  **Return type**
+
+  [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.2)")
+
+  **Returns**
+
+  New $N$-qubit observables which are compatible with the $N$-qubit `final_circuit`
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `observables` and `original_circuit` have different number of qubits.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Qubit from `original_circuit` cannot be found in `final_circuit`.
+</Function>
+

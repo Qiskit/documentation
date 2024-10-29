@@ -1,0 +1,47 @@
+---
+title: solve_fermion
+description: API reference for qiskit_addon_sqd.fermion.solve_fermion
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_sqd.fermion.solve_fermion
+---
+
+<span id="qiskit-addon-sqd-fermion-solve-fermion" />
+
+# qiskit\_addon\_sqd.fermion.solve\_fermion
+
+<Function id="qiskit_addon_sqd.fermion.solve_fermion" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L46-L127" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, max_davidson=100, verbose=None)">
+  Approximate the ground state given molecular integrals and a set of electronic configurations.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) –
+
+      A set of configurations defining the subspace onto which the Hamiltonian will be projected and diagonalized. This is a 2D array of `bool` representations of bit values such that each row represents a single bitstring. The spin-up configurations should be specified by column indices in range `(N, N/2]`, and the spin-down configurations should be specified by column indices in range `(N/2, 0]`, where `N` is the number of qubits.
+
+      (DEPRECATED) The configurations may also be specified by a length-2 tuple of sorted 1D arrays containing unsigned integer representations of the determinants. The two lists should represent the spin-up and spin-down orbitals, respectively.
+
+  *   **hcore** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Core Hamiltonian matrix representing single-electron integrals
+
+  *   **eri** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Electronic repulsion integrals representing two-electron integrals
+
+  *   **open\_shell** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A flag specifying whether configurations from the left and right halves of the bitstrings should be kept separate. If `False`, CI strings from the left and right halves of the bitstrings are combined into a single set of unique configurations and used for both the alpha and beta subspaces.
+
+  *   **spin\_sq** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Target value for the total spin squared for the ground state. If `None`, no spin will be imposed.
+
+  *   **max\_davidson** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The maximum number of cycles of Davidson’s algorithm
+
+  *   **verbose** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A verbosity level between 0 and 10
+
+  **Returns**
+
+  *   Minimum energy from SCI calculation
+  *   SCI coefficients
+  *   Average orbital occupancy
+  *   Expectation value of spin-squared
+
+  **Return type**
+
+  A tuple containing
+</Function>
+

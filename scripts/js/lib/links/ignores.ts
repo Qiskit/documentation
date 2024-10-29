@@ -18,6 +18,11 @@ export const IGNORED_FILES = new Set([
   "public/api/qiskit-ibm-runtime/0.14/objects.inv",
   "public/api/qiskit-ibm-runtime/0.15/objects.inv",
   "public/api/qiskit-ibm-runtime/0.16/objects.inv",
+  "public/api/qiskit-addon-cutting/objects.inv",
+  "public/api/qiskit-addon-mpf/objects.inv",
+  "public/api/qiskit-addon-obp/objects.inv",
+  "public/api/qiskit-addon-sqd/objects.inv",
+  "public/api/qiskit-addon-utils/objects.inv",
 ]);
 
 // -----------------------------------------------------------------------------------
@@ -56,6 +61,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://doi.org/10.1103/PhysRevApplied.5.034007",
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
   "https://doi.org/10.1103/PhysRevLett.103.150502",
+  "https://doi.org/10.1103/PhysRevA.99.032331",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.

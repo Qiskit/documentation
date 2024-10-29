@@ -1,0 +1,38 @@
+---
+title: generate_counts_bipartite_hamming
+description: API reference for qiskit_addon_sqd.counts.generate_counts_bipartite_hamming
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_sqd.counts.generate_counts_bipartite_hamming
+---
+
+<span id="qiskit-addon-sqd-counts-generate-counts-bipartite-hamming" />
+
+# qiskit\_addon\_sqd.counts.generate\_counts\_bipartite\_hamming
+
+<Function id="qiskit_addon_sqd.counts.generate_counts_bipartite_hamming" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/counts.py#L91-L150" signature="generate_counts_bipartite_hamming(num_samples, num_bits, *, hamming_right, hamming_left, rand_seed=None)">
+  Generate a bitstring counts dictionary with specified bipartite hamming weight.
+
+  **Parameters**
+
+  *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw
+  *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of bits in the bitstrings
+  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The hamming weight on the right half of each bitstring
+  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The hamming weight on the left half of each bitstring
+  *   **rand\_seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
+
+  **Returns**
+
+  A dictionary mapping bitstrings to the number of times they were sampled. Each half of each bitstring in the output dictionary will have a hamming weight as specified by the inputs.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `num_bits` and `num_samples` must be positive integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Hamming weights must be specified as non-negative integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – `num_bits` must be even.
+
+  **Return type**
+
+  [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+</Function>
+

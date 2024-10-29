@@ -28,21 +28,25 @@ jobs:
           node-version: 18
       - name: Install Node.js dependencies
         run: npm ci
+
       - name: Sync dev docs
         run: npx tsx scripts/js/commands/api/syncDevDocs.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Get all changed docs files
         id: changed-docs-files
-        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
-        with:
-          # Note: we specifically check for changed docs files rather than changed
-          # images in public/images or changes to scripts/config/api-html-artifacts.json
-          # to avoid noisy PRs. It's common for images to change because some of the
-          # images are generated non-deterministically.
-          files: docs/api/**/*.mdx
+        # Note: we specifically check for changed docs files rather than changed
+        # images in public/images or changes to scripts/config/api-html-artifacts.json
+        # to avoid noisy PRs. It's common for images to change because some of the
+        # images are generated non-deterministically.
+        run: |
+          echo "CHANGED_FILES<<EOF" >> $GITHUB_OUTPUT
+          git diff --name-only docs >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
       - name: Make pull request
-        if: ${{ !cancelled() && steps.changed-docs-files.outputs.any_changed == 'true' }}
+        if: steps.changed-docs-files.outputs.CHANGED_FILES
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
