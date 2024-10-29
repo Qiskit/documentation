@@ -51,12 +51,6 @@ jobs:
         with:
           files: docs/**/*.{md,mdx,ipynb}
           separator: "\n"
-      - name: Get all changed notebooks
-        id: all-changed-notebooks
-        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
-        with:
-          files: "docs/**/*.ipynb"
-          separator: "\n"
 
       - name: Pull preview image
         if: steps.all-changed-files.outputs.any_changed == 'true'
@@ -80,19 +74,11 @@ jobs:
         shell: python
         run: |
           import subprocess, sys
-          files = """${{ steps.all-changed-notebooks.outputs.all_changed_notebooks }}"""
-          args = ["tox", "-e", "lint"]
-          if files != "":
-            args += ["--"] + files.split("\n")
           try:
-            subprocess.run(args, check=True)
+            subprocess.run(["tox", "-e", "lint"], check=True)
           except:
             print(
-              "To fix, install `tox` and run `tox -e fix`.\n\n"
-              "Alternatively, you can download the fixed notebook from CI by going to this PR's "
-              "\"Execute notebooks\" job, clicking \"Summary\" on the upper-left "
-              "of this page, and downloading the \"Executed notebooks\" artifact."
-              "\n\n"
-              "For more information, see https://github.com/Qiskit/documentation/blob/main/README.md#lint-notebooks"
+              "Error while linting notebook. "
+              "To fix, install tox and run `tox -e fix`."
             )
             sys.exit(1)
