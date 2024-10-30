@@ -1,0 +1,68 @@
+---
+title: BackendEstimatorV2
+description: API reference for qiskit.primitives.BackendEstimatorV2
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.BackendEstimatorV2
+---
+
+# BackendEstimatorV2
+
+<Class id="qiskit.primitives.BackendEstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/backend_estimator_v2.py#L74-L390" signature="qiskit.primitives.BackendEstimatorV2(*, backend, options=None)" modifiers="class">
+  Bases: [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.base.base_estimator.BaseEstimatorV2")
+
+  Evaluates expectation values for provided quantum circuit and observable combinations
+
+  The [`BackendEstimatorV2`](#qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2") class is a generic implementation of the [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") API. It facilitates using backends that do not provide a native [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") implementation in places that work with [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"). However, if you’re using a provider that has a native implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+
+  This class does not perform any measurement or gate mitigation, and, presently, is only compatible with Pauli-based observables.
+
+  Each tuple of `(circuit, observables, <optional> parameter values, <optional> precision)`, called an estimator primitive unified bloc (PUB), produces its own array-based result. The [`run()`](#qiskit.primitives.BackendEstimatorV2.run "qiskit.primitives.BackendEstimatorV2.run") method can be given a sequence of pubs to run in one call.
+
+  The options for [`BackendEstimatorV2`](#qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2") consist of the following items.
+
+  *   `default_precision`: The default precision to use if none are specified in [`run()`](#qiskit.primitives.BackendEstimatorV2.run "qiskit.primitives.BackendEstimatorV2.run"). Default: 0.015625 (1 / sqrt(4096)).
+  *   `abelian_grouping`: Whether the observables should be grouped into sets of qubit-wise commuting observables. Default: True.
+  *   `seed_simulator`: The seed to use in the simulator. If None, a random seed will be used. Default: None.
+
+  **Parameters**
+
+  *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
+  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – The options to control the default precision (`default_precision`), the operator grouping (`abelian_grouping`), and the random seed for the simulator (`seed_simulator`).
+
+  ## Attributes
+
+  ### backend
+
+  <Attribute id="qiskit.primitives.BackendEstimatorV2.backend">
+    Returns the backend which this sampler object based on.
+  </Attribute>
+
+  ### options
+
+  <Attribute id="qiskit.primitives.BackendEstimatorV2.options">
+    Return the options
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.primitives.BackendEstimatorV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/primitives/backend_estimator_v2.py#L142-L151" signature="run(pubs, *, precision=None)">
+    Estimate expectation values for each provided pub (Primitive Unified Bloc).
+
+    **Parameters**
+
+    *   **pubs** (*Iterable\[EstimatorPubLike]*) – An iterable of pub-like objects, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`.
+    *   **precision** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The target precision for expectation value estimates of each run Estimator Pub that does not specify its own precision. If None the estimator’s default precision value will be used.
+
+    **Returns**
+
+    A job object that contains results.
+
+    **Return type**
+
+    [PrimitiveJob](qiskit.primitives.PrimitiveJob "qiskit.primitives.PrimitiveJob")\[[PrimitiveResult](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult")\[[PubResult](qiskit.primitives.PubResult "qiskit.primitives.PubResult")]]
+  </Function>
+</Class>
+

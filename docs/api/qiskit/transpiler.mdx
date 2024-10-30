@@ -14,8 +14,6 @@ python_api_name: qiskit.transpiler
 
 # Transpiler
 
-<span id="module-qiskit.transpiler" />
-
 `qiskit.transpiler`
 
 ## Overview
@@ -57,8 +55,9 @@ which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager 
 
 ```python
 import numpy as np
+from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit.circuit.library import HGate, PhaseGate, RXGate, TdgGate, TGate, XGate
-from qiskit.transpiler import PassManager
+from qiskit.transpiler import PassManager, generate_preset_pass_manager
 from qiskit.transpiler.passes import (
     ALAPScheduleAnalysis,
     CXCancellation,
@@ -66,6 +65,7 @@ from qiskit.transpiler.passes import (
     PadDynamicalDecoupling,
 )
 
+backend = GenericBackendV2(num_qubits=5)
 dd_sequence = [XGate(), XGate()]
 scheduling_pm = PassManager(
     [
@@ -86,6 +86,9 @@ logical_opt = PassManager(
     ]
 )
 
+pass_manager = generate_preset_pass_manager(
+    optimization_level=0
+)
 
 # Add pre-layout stage to run extra logical optimization
 pass_manager.pre_layout = logical_opt
@@ -535,7 +538,10 @@ Next, for the heuristic stage, 2 passes are used by default:
 
 *   [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout"): Selects a layout by starting from an initial random layout and then repeatedly running a routing algorithm (by default [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) both forward and backward over the circuit, using the permutation caused by swap insertions to adjust that initial random layout. For more details you can refer to the paper describing the algorithm: [arXiv:1809.02573](https://arxiv.org/abs/1809.02573) [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") is used to select a layout if a perfect layout isn’t found for optimization levels 1, 2, and 3.
 *   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Always used for the layout at optimization level 0.
-*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit. Used for optimization level 1 if there are control flow operations (such as [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")) present in the circuit.
+
+There are other passes than can be used for the heuristic stage, but are not included in the default pipeline, such as:
+
+*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit.
 
 Let’s see what layouts are automatically picked at various optimization levels. The circuits returned by [`qiskit.compiler.transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are annotated with this initial layout information, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"):
 
@@ -937,7 +943,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### TranspilerError
 
-<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
   Exceptions raised during transpilation.
 
   Set the error message.
@@ -945,7 +951,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### TranspilerAccessError
 
-<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
   DEPRECATED: Exception of access error in the transpiler passes.
 
   Set the error message.
@@ -953,7 +959,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### CouplingError
 
-<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
   Base class for errors raised by the coupling graph object.
 
   Set the error message.
@@ -961,7 +967,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### LayoutError
 
-<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
   Errors raised by the layout object.
 
   Set the error message.
@@ -969,7 +975,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### CircuitTooWideForTarget
 
-<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
   Error raised if the circuit is too wide for the target.
 
   Set the error message.
@@ -977,7 +983,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### InvalidLayoutError
 
-<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
   Error raised when a user provided layout is invalid.
 
   Set the error message.

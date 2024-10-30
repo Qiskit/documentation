@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
 # SabrePreLayout
 
-<Class id="qiskit.transpiler.passes.SabrePreLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L22-L217" signature="qiskit.transpiler.passes.SabrePreLayout(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.SabrePreLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L25-L225" signature="qiskit.transpiler.passes.SabrePreLayout(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Choose a starting layout to use for additional Sabre layout trials.
@@ -18,6 +18,10 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
   **`sabre_starting_layouts` (`list[Layout]`)**
 
   An optional list of [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") objects to use for additional Sabre layout trials.
+
+  **References:**
+
+  \[1] Henry Zou and Matthew Treinish and Kevin Hartman and Alexander Ivrii and Jake Lishman. “LightSABRE: A Lightweight and Enhanced SABRE Algorithm” [arXiv:2409.08368](https://doi.org/10.48550/arXiv.2409.08368)
 
   SabrePreLayout initializer.
 
@@ -104,9 +108,9 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -114,7 +118,7 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -124,12 +128,12 @@ python_api_name: qiskit.transpiler.passes.SabrePreLayout
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.SabrePreLayout.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L89-L132" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.SabrePreLayout.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/layout/sabre_pre_layout.py#L97-L140" signature="run(dag)">
     Run the SabrePreLayout pass on dag.
 
     The discovered starting layout is written to the property set value `sabre_starting_layouts`.

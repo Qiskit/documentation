@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 # QAOAAnsatz
 
-<Class id="qiskit.circuit.library.QAOAAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/circuit/library/n_local/qaoa_ansatz.py#L28-L289" signature="qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)" modifiers="class">
+<Class id="qiskit.circuit.library.QAOAAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/n_local/qaoa_ansatz.py#L28-L287" signature="qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)" modifiers="class">
   Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.n_local.evolved_operator_ansatz.EvolvedOperatorAnsatz")
 
   A generalized QAOA quantum circuit with a support of custom initial states and mixers.
@@ -22,11 +22,11 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
   **Parameters**
 
   *   **cost\_operator** (*BaseOperator or OperatorBase, optional*) – The operator representing the cost of the optimization problem, denoted as $U(C, \gamma)$ in the original paper. Must be set either in the constructor or via property setter.
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The integer parameter p, which determines the depth of the circuit, as specified in the original paper, default is 1.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The integer parameter p, which determines the depth of the circuit, as specified in the original paper, default is 1.
   *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, optional*) – An optional initial state to use. If None is passed then a set of Hadamard gates is applied as an initial state to all qubits.
   *   **mixer\_operator** (*BaseOperator or OperatorBase or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*, optional*) – An optional custom mixer to use instead of the global X-rotations, denoted as $U(B, \beta)$ in the original paper. Can be an operator or an optionally parameterized quantum circuit.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A name of the circuit, default ‘qaoa’
-  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – A name of the circuit, default ‘qaoa’
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
 
   ## Attributes
 
@@ -66,7 +66,17 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.data" />
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.data">
+    The circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
 
   ### entanglement
 
@@ -132,7 +142,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.instances" attributeValue="316" />
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.instances" attributeValue="323" />
 
   ### layout
 
@@ -214,7 +224,9 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_parameters" />
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
   ### num\_parameters\_settable
 
@@ -257,7 +269,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
   </Attribute>
 
   ### operators
@@ -314,7 +326,61 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.parameters" />
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
   ### preferred\_init\_points
 

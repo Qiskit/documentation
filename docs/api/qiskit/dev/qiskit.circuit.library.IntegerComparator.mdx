@@ -25,10 +25,10 @@ $$
 
   **Parameters**
 
-  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Number of state qubits. If this is set it will determine the number of qubits required for the circuit.
-  *   **value** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The fixed value to compare with.
-  *   **geq** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, evaluate a `>=` condition, else `<`.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of the circuit.
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Number of state qubits. If this is set it will determine the number of qubits required for the circuit.
+  *   **value** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The fixed value to compare with.
+  *   **geq** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, evaluate a `>=` condition, else `<`.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name of the circuit.
 
   ## Attributes
 
@@ -54,7 +54,27 @@ $$
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.IntegerComparator.data" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.data">
+    The circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.IntegerComparator.unit "qiskit.circuit.library.IntegerComparator.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
 
   ### geq
 
@@ -74,7 +94,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.IntegerComparator.instances" attributeValue="190" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.instances" attributeValue="161" />
 
   ### layout
 
@@ -132,7 +152,9 @@ $$
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.IntegerComparator.num_parameters" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
   ### num\_qubits
 
@@ -171,12 +193,66 @@ $$
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
   </Attribute>
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.IntegerComparator.parameters" />
+  <Attribute id="qiskit.circuit.library.IntegerComparator.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
   ### prefix
 
@@ -192,6 +268,16 @@ $$
 
   <Attribute id="qiskit.circuit.library.IntegerComparator.qubits">
     A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.IntegerComparator.unit">
+    The unit that [`duration`](#qiskit.circuit.library.IntegerComparator.duration "qiskit.circuit.library.IntegerComparator.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### value
@@ -214,18 +300,6 @@ $$
 
   <Attribute id="qiskit.circuit.library.IntegerComparator.cregs" attributeTypeHint="list[ClassicalRegister]">
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.IntegerComparator.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.IntegerComparator.unit "qiskit.circuit.library.IntegerComparator.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.IntegerComparator.unit">
-    The unit that [`duration`](#qiskit.circuit.library.IntegerComparator.duration "qiskit.circuit.library.IntegerComparator.duration") is specified in.
   </Attribute>
 </Class>
 

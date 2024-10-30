@@ -8,7 +8,7 @@ python_api_name: qiskit.pulse.library.SymbolicPulse
 
 # SymbolicPulse
 
-<Class id="qiskit.pulse.library.SymbolicPulse" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/symbolic_pulses.py#L213-L579" signature="qiskit.pulse.library.SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)" modifiers="class">
+<Class id="qiskit.pulse.library.SymbolicPulse" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/symbolic_pulses.py#L213-L576" signature="qiskit.pulse.library.SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)" modifiers="class">
   Bases: `Pulse`
 
   The pulse representation model with parameters and symbolic expressions.
@@ -16,6 +16,8 @@ python_api_name: qiskit.pulse.library.SymbolicPulse
   A symbolic pulse instance can be defined with an envelope and parameter constraints. Envelope and parameter constraints should be provided as symbolic expressions. Rather than creating a subclass, different pulse shapes can be distinguished by the instance attributes [`SymbolicPulse.envelope`](#qiskit.pulse.library.SymbolicPulse.envelope "qiskit.pulse.library.SymbolicPulse.envelope") and [`SymbolicPulse.pulse_type`](#qiskit.pulse.library.SymbolicPulse.pulse_type "qiskit.pulse.library.SymbolicPulse.pulse_type").
 
   The symbolic expressions must be defined either with [SymPy](https://www.sympy.org/en/index.html) or [Symengine](https://symengine.org). Usually Symengine-based expression is much more performant for instantiation of the [`SymbolicPulse`](#qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse"), however, it doesn’t support every functions available in SymPy. You may need to choose proper library depending on how you define your pulses. Symengine works in the most envelopes and constraints, and thus it is recommended to use this library especially when your program contains a lot of pulses. Also note that Symengine has the limited platform support and may not be available for your local system. Symengine is a required dependency for Qiskit on platforms that support it will always be installed along with Qiskit on macOS `x86_64` and `arm64`, and Linux `x86_64`, `aarch64`, and `ppc64le`. For 64-bit Windows users they will need to manual install it. For 32-bit platforms such as `i686` and `armv7` Linux, and on Linux `s390x` there are no pre-compiled packages available and to use symengine you’ll need to compile it from source. If Symengine is not available in your environment SymPy will be used.
+
+  <span id="symbolic-pulse-envelope" />
 
   **Envelope function**
 
@@ -27,13 +29,19 @@ $$
 
   where $\Theta$ is the set of full pulse parameters in the [`SymbolicPulse.parameters`](#qiskit.pulse.library.SymbolicPulse.parameters "qiskit.pulse.library.SymbolicPulse.parameters") dictionary which must include the $\rm duration$. Note that the $F$ is an envelope of the waveform, and a programmer must provide this as a symbolic expression. $\overline{\rm params}$ can be arbitrary complex values as long as they pass [`validate_parameters()`](#qiskit.pulse.library.SymbolicPulse.validate_parameters "qiskit.pulse.library.SymbolicPulse.validate_parameters") and your quantum backend can accept. The time $t$ and $\rm duration$ are in units of dt, i.e. sample time resolution, and this function is sampled with a discrete time vector in $[0, {\rm duration}]$ sampling the pulse envelope at every 0.5 dt (middle sampling strategy) when the [`SymbolicPulse.get_waveform()`](#qiskit.pulse.library.SymbolicPulse.get_waveform "qiskit.pulse.library.SymbolicPulse.get_waveform") method is called. The sample data is not generated until this method is called thus a symbolic pulse instance only stores parameter values and waveform shape, which greatly reduces memory footprint during the program generation.
 
+  <span id="symbolic-pulse-validation" />
+
   **Pulse validation**
 
   When a symbolic pulse is instantiated, the method [`validate_parameters()`](#qiskit.pulse.library.SymbolicPulse.validate_parameters "qiskit.pulse.library.SymbolicPulse.validate_parameters") is called, and performs validation of the pulse. The validation process involves testing the constraint functions and the maximal amplitude of the pulse (see below). While the validation process will improve code stability, it will reduce performance and might create compatibility issues (particularly with JAX). Therefore, it is possible to disable the validation by setting the class attribute [`disable_validation`](#qiskit.pulse.library.SymbolicPulse.disable_validation "qiskit.pulse.library.SymbolicPulse.disable_validation") to `True`.
 
+  <span id="symbolic-pulse-constraints" />
+
   **Constraint functions**
 
   Constraints on the parameters are defined with an instance attribute [`SymbolicPulse.constraints`](#qiskit.pulse.library.SymbolicPulse.constraints "qiskit.pulse.library.SymbolicPulse.constraints") which can be provided through the constructor. The constraints value must be a symbolic expression, which is a function of parameters to be validated and must return a boolean value being `True` when parameters are valid. If there are multiple conditions to be evaluated, these conditions can be concatenated with logical expressions such as `And` and `Or` in SymPy or Symengine. The symbolic pulse instance can be played only when the constraint function returns `True`. The constraint is evaluated when [`validate_parameters()`](#qiskit.pulse.library.SymbolicPulse.validate_parameters "qiskit.pulse.library.SymbolicPulse.validate_parameters") is called.
+
+  <span id="symbolic-pulse-eval-condition" />
 
   **Maximum amplitude validation**
 
@@ -95,6 +103,8 @@ $$
 
   You can also provide a `Parameter` object in the `parameters` dictionary, or define `duration` with a `Parameter` object when you instantiate the symbolic pulse instance. A waveform cannot be generated until you assign all unbounded parameters. Note that parameters will be assigned through the schedule playing the pulse.
 
+  <span id="symbolic-pulse-serialize" />
+
   **Serialization**
 
   The [`SymbolicPulse`](#qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") subclass can be serialized along with the symbolic expressions through [`qiskit.qpy`](qpy#module-qiskit.qpy "qiskit.qpy"). A user can therefore create a custom pulse subclass with a novel envelope and constraints, and then one can instantiate the class with certain parameters to run on a backend. This pulse instance can be saved in the QPY binary, which can be loaded afterwards even within the environment not having original class definition loaded. This mechanism also allows us to easily share a pulse program including custom pulse instructions with collaborators.
@@ -103,11 +113,11 @@ $$
 
   **Parameters**
 
-  *   **pulse\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Display name of this pulse shape.
-  *   **duration** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse.
-  *   **parameters** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | None*) – Dictionary of pulse parameters that defines the pulse envelope.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Display name for this particular pulse envelope.
-  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – If `True`, then limit the absolute value of the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+  *   **pulse\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Display name of this pulse shape.
+  *   **duration** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Duration of pulse.
+  *   **parameters** (*Mapping\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*] | None*) – Dictionary of pulse parameters that defines the pulse envelope.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Display name for this particular pulse envelope.
+  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – If `True`, then limit the absolute value of the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
   *   **envelope** (*sym.Expr | None*) – Pulse envelope expression.
   *   **constraints** (*sym.Expr | None*) – Pulse parameter constraint expression.
   *   **valid\_amp\_conditions** (*sym.Expr | None*) – Extra conditions to skip a full-waveform check for the amplitude limit. If this condition is not met, then the validation routine will investigate the full-waveform and raise an error when the amplitude norm of any data point exceeds 1.0. If not provided, the validation always creates a full-waveform.
@@ -172,22 +182,22 @@ $$
 
   ### draw
 
-  <Function id="qiskit.pulse.library.SymbolicPulse.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/pulse.py#L77-L132" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
+  <Function id="qiskit.pulse.library.SymbolicPulse.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/pulse.py#L77-L132" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
     Plot the interpolated envelope of pulse.
 
     **Parameters**
 
-    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
     *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-    *   **time\_range** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+    *   **time\_range** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-    *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+    *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-    *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+    *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-    *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
+    *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
 
         Name of plotter API to generate an output image. One of following APIs should be specified:
 
@@ -208,7 +218,7 @@ $$
 
   ### get\_waveform
 
-  <Function id="qiskit.pulse.library.SymbolicPulse.get_waveform" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/symbolic_pulses.py#L481-L506" signature="get_waveform()">
+  <Function id="qiskit.pulse.library.SymbolicPulse.get_waveform" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/symbolic_pulses.py#L481-L506" signature="get_waveform()">
     Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
     Since the returned array is a discretized time series of the continuous function, this method uses a midpoint sampler. For `duration`, return:
@@ -233,17 +243,17 @@ $$
 
   ### is\_parameterized
 
-  <Function id="qiskit.pulse.library.SymbolicPulse.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/symbolic_pulses.py#L546-L548" signature="is_parameterized()">
+  <Function id="qiskit.pulse.library.SymbolicPulse.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/symbolic_pulses.py#L546-L548" signature="is_parameterized()">
     Return True iff the instruction is parameterized.
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
   </Function>
 
   ### validate\_parameters
 
-  <Function id="qiskit.pulse.library.SymbolicPulse.validate_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/1.1/qiskit/pulse/library/symbolic_pulses.py#L508-L544" signature="validate_parameters()">
+  <Function id="qiskit.pulse.library.SymbolicPulse.validate_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/library/symbolic_pulses.py#L508-L544" signature="validate_parameters()">
     Validate parameters.
 
     **Raises**

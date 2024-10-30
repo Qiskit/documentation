@@ -26,8 +26,8 @@ This bugfix release fixes a few minor issues in 0.18, including a performance re
 
 #### Bug Fixes
 
-*   Fixed [#7004](https://github.com/Qiskit/qiskit-terra/issues/7004) where `AttributeError` was raised when executing [`ScheduleBlock`](/api/qiskit/0.45/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") on a pulse backend. These blocks are now correctly treated as pulse jobs, like [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule").
-*   Fixed an issue causing an error when binding a complex parameter value to an operator’s coefficient. Casts to `float` in [`PrimitiveOp`](/api/qiskit/0.45/qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.PrimitiveOp") were generalized to casts to `complex` if necessary, but will remain `float` if there is no imaginary component. Fixes [#6976](https://github.com/Qiskit/qiskit-terra/issues/6976).
+*   Fixed [#7004](https://github.com/Qiskit/qiskit/issues/7004) where `AttributeError` was raised when executing [`ScheduleBlock`](/api/qiskit/0.45/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") on a pulse backend. These blocks are now correctly treated as pulse jobs, like [`Schedule`](/api/qiskit/0.45/qiskit.pulse.Schedule "qiskit.pulse.Schedule").
+*   Fixed an issue causing an error when binding a complex parameter value to an operator’s coefficient. Casts to `float` in [`PrimitiveOp`](/api/qiskit/0.45/qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.PrimitiveOp") were generalized to casts to `complex` if necessary, but will remain `float` if there is no imaginary component. Fixes [#6976](https://github.com/Qiskit/qiskit/issues/6976).
 *   Update the 1-qubit gate errors in [`plot_error_map`](/api/qiskit/0.45/qiskit.visualization.plot_error_map "qiskit.visualization.plot_error_map") to use the sx gate instead of the u2 gate, consistent with IBMQ backends.
 
 <span id="aer-0-9-0" />

@@ -1,20 +1,23 @@
 ---
-title: Retired systems
-description: A list of IBM Quantum systems that are now retired
+title: Retired QPUs
+description: A list of IBM quantum processing units (QPUs) that are now retired
 
 ---
 
-# Retired systems
+# Retired QPUs
 
-The following IBM Quantum&trade; systems have been retired. For the full list of available systems, see the [Compute resources page.](https://quantum.ibm.com/services/resources?services=systems) By default, the information is shown in the card view, but you can use the view switchers (![view-switcher icon](/images/guides/view-switcher1.png)) at the top right to change to a sortable table view.
+The following IBM&reg; quantum processing units (QPUs) have been retired. For the full list of available QPUs, see the [Compute resources page](https://quantum.ibm.com/services/resources). By default, the information is shown in the card view, but you can use the view switchers (![view-switcher icon](/images/guides/view-switcher1.png)) at the top right to change to a sortable table view.
 
 <Admonition type="note">
-    To retrieve jobs from a retired system, see [these instructions.](#retrieve)
+    To retrieve jobs from a retired QPU, see [these instructions.](#retrieve)
 </Admonition>
 
 
-| System name       | Qubit count | Retirement date (Year - month - day) |
+| QPU name       | Qubit count | Retirement date (Year - month - day) |
 | ----------------- | ----------- | --------------- |
+| ibm_kyoto         | **127**     | 2024-09-05      |
+| ibm_osaka         | **127**     | 2024-08-13      |
+| ibm_cusco         | **127**     | 2024-08-13      |
 | ibm_algiers       | **27**      | 2024-04-30      |
 | ibm_cairo         | **27**      | 2024-04-30      |
 | ibm_hanoi         | **27**      | 2024-04-30      |
@@ -66,25 +69,9 @@ The following IBM Quantum&trade; systems have been retired. For the full list of
 
 
 <span id="retrieve"></span>
-## Retrieve a job from a retired system
+## Retrieve a job from a retired QPU
 
-To retrieve jobs from a retired system, you can use code similar to this, depending on the provider from which the job was sent:
-
-### For a job run from IBM Provider
-
-```python
-from qiskit_ibm_provider import IBMProvider
-
-provider = IBMProvider(instance="hub/group/project")
-
-#If you want to retrieve a list of jobs
-jobs = provider.backend.jobs(backend_name=<backend_name>)
-
-#If you want to retrieve a specific job you have the id for
-job = provider.backend.retrieve_job(<job_id>)
-```
-
-### For a job run from Qiskit Runtime
+Use the following code to retrieve a job from a retired QPU.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -98,3 +85,7 @@ job = service.job(<job_id>)
 # Retrieve a batch of jobs. Filtering options can be found in the QiskitRuntimeService.jobs api reference
 jobs = service.jobs(backend_name=<backend_name>)
 ```
+
+<Admonition type="note" title="Deprecated provider packages">
+  `service.jobs()` returns jobs run from both `qiskit-ibm-runtime` and the deprecated `qiskit-ibm-provider` package. Jobs submitted by the older (also deprecated) `qiskit-ibmq-provider` package are no longer available.
+</Admonition>
