@@ -115,6 +115,12 @@ If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 also add it to the "Check for notebooks that require LaTeX" step in
 `.github/workflows/notebook-test.yml`.
 
+### Add package version information
+
+Add a new markdown cell under your title with a `version-info` tag.
+When you execute the notebook (see the next section), the script will populate
+this cell with the package versions so users can reproduce the results.
+
 ### Execute notebooks
 
 Before submitting a new notebook or code changes to a notebook, you must run
