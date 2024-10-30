@@ -61,9 +61,10 @@ def get_package_versions():
 
 VERSION_INFO = f"""\
 <details>
-<summary>Package version information</summary>
+<summary>Package versions</summary>
 
-The code on this page was last executed using the following requirements.
+The code on this page was developed using the following requirements.
+We recommend using these versions or newer.
 
 ```
 {get_package_versions()}
