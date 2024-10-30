@@ -81,17 +81,21 @@ export function normalizeUrl(
     "/",
   );
 
+  // Default case. We'll then check if the hash should be transformed
+  // for a few edge cases.
+  url = hash ? `${normalizedUrlWithoutHash}#${hash}` : normalizedUrlWithoutHash;
+
   // qiskit_ibm_runtime.RuntimeJob
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
   if (itemNames.has(page)) {
     if (hash === page) {
-      return normalizedUrlWithoutHash;
+      url = normalizedUrlWithoutHash;
     }
 
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
     if (hash?.startsWith(`${page}.`)) {
       const member = removePrefix(hash, `${page}.`);
-      return `${normalizedUrlWithoutHash}#${member}`;
+      url = `${normalizedUrlWithoutHash}#${member}`;
     }
   }
 
@@ -104,20 +108,10 @@ export function normalizeUrl(
     const normalizedParentName = kwargs.kebabCaseAndShorten
       ? kebabCaseAndShortenPage(parentName, kwargs.pkgName)
       : parentName;
-    return [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
+    url = [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
   }
 
-  if (!hash) return normalizedUrlWithoutHash;
-
-  // Anchors generated from markdown headings are always lower case but, if these
-  // headings are API references, Sphinx sometimes expects them to include
-  // uppercase characters.
-  //
-  // As a heuristic, we assume URLs containing periods are anchors to HTML id
-  // tags (which preserve Sphinx's original casing), and anchors with no periods
-  // are from markdown headings (which must be lower-cased). This seems to work ok.
-  const normalizedHash = hash.includes(".") ? hash : hash.toLowerCase();
-  return `${normalizedUrlWithoutHash}#${normalizedHash}`;
+  return lowerCaseIfMarkdownAnchor(url);
 }
 
 export function relativizeLink(link: Link): Link | undefined {
