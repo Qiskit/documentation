@@ -60,9 +60,9 @@ def get_package_versions():
     return package_versions.strip()
 
 VERSION_INFO = f"""\
-### Version information
+## Package information
 
-The code on this page was run using the following package versions.
+The code on this page was developed using the following package versions.
 
 ```
 {get_package_versions()}
