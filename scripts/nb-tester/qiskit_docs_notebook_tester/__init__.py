@@ -60,13 +60,15 @@ def get_package_versions():
     return package_versions.strip()
 
 VERSION_INFO = f"""\
-## Package information
+<details>
+<summary>Package version information</summary>
 
-The code on this page was developed using the following package versions.
+The code on this page was last executed using the following requirements.
 
 ```
 {get_package_versions()}
 ```
+</details>
 """
 
 @dataclass
