@@ -170,14 +170,25 @@ export function handleSphinxDesignCards(
   });
 }
 
+function detectLanguage($pre: Cheerio<any>): string {
+  // Two levels up from `pre` should have class `highlight-<language>`
+  const detectedLanguage = $pre
+    .parent()
+    .parent()[0]
+    .attribs.class.match(/(?<=highlight-)\w+/);
+  if (!detectedLanguage || detectedLanguage[0] === "default") return "python";
+  return detectedLanguage[0];
+}
+
 export function addLanguageClassToCodeBlocks(
   $: CheerioAPI,
   $main: Cheerio<any>,
 ): void {
   $main.find("pre").each((_, pre) => {
     const $pre = $(pre);
+    const language = detectLanguage($pre);
     $pre.replaceWith(
-      `<pre><code class="language-python">${$pre.html()}</code></pre>`,
+      `<pre><code class="language-${language}">${$pre.html()}</code></pre>`,
     );
   });
 }
