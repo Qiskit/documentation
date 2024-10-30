@@ -19,7 +19,7 @@ python_api_name: qiskit.circuit.library.U1Gate
     This gate is deprecated. Instead, the following replacements should be used
 
 $$
-U1(\lambda) = P(\lambda)= U(0,0,\lambda)
+U1(\theta) = P(\theta)= U(0,0,\theta)
 $$
 
     ```python
@@ -32,39 +32,39 @@ $$
 
   ```python
        ┌───────┐
-  q_0: ┤ U1(λ) ├
+  q_0: ┤ U1(θ) ├
        └───────┘
   ```
 
   **Matrix Representation:**
 
 $$
-U1(\lambda) =
+U1(\theta) =
 \begin{pmatrix}
 1 & 0 \\
-0 & e^{i\lambda}
+0 & e^{i\theta}
 \end{pmatrix}
 $$
 
   **Examples:**
 
   > $$
-  > U1(\lambda = \pi) = Z
+  > U1(\theta = \pi) = Z
   > $$
   >
   > $$
-  > U1(\lambda = \pi/2) = S
+  > U1(\theta = \pi/2) = S
   > $$
   >
   > $$
-  > U1(\lambda = \pi/4) = T
+  > U1(\theta = \pi/4) = T
   > $$
 
   <Admonition title="See also" type="note">
     `RZGate`: This gate is equivalent to RZ up to a phase factor.
 
     > $$
-    > U1(\lambda) = e^{i{\lambda}/2} RZ(\lambda)
+    > U1(\theta) = e^{i{\theta}/2} RZ(\theta)
     > $$
 
     `U3Gate`: U3 is a generalization of U2 that covers all single-qubit rotations, using two X90 pulses.
