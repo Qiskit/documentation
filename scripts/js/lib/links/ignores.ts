@@ -332,7 +332,14 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
+  "docs/api/qiskit-addon-obp/utils-metadata-obp-metadata.mdx": [
+    "utils-truncating#TruncationErrorBudget.p_norm",
+  ],
+  "docs/api/qiskit-addon-obp/utils-metadata-slice-metadata.mdx": [
+    "utils-truncating#TruncationErrorBudget.p_norm",
+  ],
+};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
