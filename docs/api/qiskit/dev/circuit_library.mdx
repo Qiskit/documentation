@@ -270,6 +270,72 @@ These [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCi
 | [`HamiltonianGate`](qiskit.circuit.library.HamiltonianGate "qiskit.circuit.library.HamiltonianGate")(data, time\[, label])                   | Class for representing evolution by a Hamiltonian operator as a gate.    |
 | [`UnitaryOverlap`](qiskit.circuit.library.UnitaryOverlap "qiskit.circuit.library.UnitaryOverlap")(unitary1, unitary2\[, ...])                | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
 
+### iqp
+
+<Function id="qiskit.circuit.library.iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L84-L143" signature="qiskit.circuit.library.iqp(interactions)">
+  Instantaneous quantum polynomial time (IQP) circuit.
+
+  The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
+
+  The circuit is parameterized by an $n \times n$ interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
+
+  **Reference Circuit:**
+
+  ![../\_images/circuit\_library-2.png](/images/api/qiskit/dev/circuit_library-2.png)
+
+  **Expanded Circuit:**
+
+  > ![../\_images/circuit\_library-3.png](/images/api/qiskit/dev/circuit_library-3.png)
+
+  **References:**
+
+  \[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
+
+  **Parameters**
+
+  **interactions** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – The interactions as symmetric square matrix. If `None`, then the `num_qubits` argument must be set and a random IQP circuit will be generated.
+
+  **Returns**
+
+  An IQP circuit.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Function>
+
+### random\_iqp
+
+<Function id="qiskit.circuit.library.random_iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L146-L175" signature="qiskit.circuit.library.random_iqp(num_qubits, seed=None)">
+  A random instantaneous quantum polynomial time (IQP) circuit.
+
+  See [`iqp()`](#qiskit.circuit.library.iqp "qiskit.circuit.library.iqp") for more details on the IQP circuit.
+
+  Example:
+
+  ```python
+  from qiskit.circuit.library import random_iqp
+
+  circuit = random_iqp(3)
+  circuit.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-4.png](/images/api/qiskit/dev/circuit_library-4.png)
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits in the circuit.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for the random number generator, in case the interactions matrix is randomly generated.
+
+  **Returns**
+
+  An IQP circuit.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
+
 ## N-local circuits
 
 These `BlueprintCircuit` subclasses are used as parameterized models (a.k.a. ansatzes or variational forms) in variational algorithms. They are heavily used in near-term algorithms in e.g. Chemistry, Physics or Optimization.
