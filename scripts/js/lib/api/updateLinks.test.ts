@@ -107,7 +107,7 @@ test.describe("updateLinks", () => {
       {
         images: [],
         isReleaseNotes: false,
-        markdown: "[run](qiskit_ibm_runtime.RuntimeJob#run)\n",
+        markdown: "[run](qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run)\n",
         meta: {
           apiName: "qiskit_ibm_runtime.Sampler",
           apiType: "class",
@@ -122,7 +122,7 @@ test.describe("updateLinks", () => {
       "qiskit.algorithms.FasterAmplitudeEstimationResult#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability",
       "qiskit_ibm_runtime#index",
       "qiskit_ibm_runtime.QiskitRuntimeService",
-      "qiskit_ibm_runtime.RuntimeJob#submit",
+      "qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.submit",
       "qiskit_ibm_runtime.RuntimeEncoder#qiskit_ibm_runtime.RuntimeEncoder",
       "qiskit_ibm_runtime.options.Options#options",
       "qiskit.algorithms.gradients.LinCombEstimatorGradient#supported_gates",
@@ -159,7 +159,7 @@ test.describe("updateLinks", () => {
       {
         images: [],
         isReleaseNotes: false,
-        markdown: "[run](runtime-job#run)\n",
+        markdown: "[run](runtime-job#qiskit_ibm_runtime.RuntimeJob.run)\n",
         meta: {
           apiName: "qiskit_ibm_runtime.Sampler",
           apiType: "class",
@@ -174,7 +174,7 @@ test.describe("updateLinks", () => {
       "qiskit-algorithms-faster-amplitude-estimation-result#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability",
       "qiskit-ibm-runtime#index",
       "qiskit-runtime-service",
-      "runtime-job#submit",
+      "runtime-job#qiskit_ibm_runtime.RuntimeJob.submit",
       "runtime-encoder#qiskit_ibm_runtime.RuntimeEncoder",
       "options-options#options",
       "qiskit-algorithms-gradients-lin-comb-estimator-gradient#supported_gates",
@@ -234,7 +234,7 @@ test("normalizeUrl()", () => {
     "qiskit_ibm_runtime.RuntimeJob",
     "qiskit_ibm_runtime.RuntimeJob",
     "#qiskit_ibm_runtime.RuntimeJob.job",
-    "qiskit_ibm_runtime.RuntimeJob#run",
+    "qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run",
     "qiskit_ibm_runtime.RuntimeJob",
   ]);
 
@@ -253,7 +253,7 @@ test("normalizeUrl()", () => {
     "runtime-job",
     "runtime-job",
     "#qiskit_ibm_runtime.RuntimeJob.job",
-    "runtime-job#run",
+    "runtime-job#qiskit_ibm_runtime.RuntimeJob.run",
     "runtime-job",
   ]);
 });

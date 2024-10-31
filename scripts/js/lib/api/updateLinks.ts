@@ -91,14 +91,9 @@ export function normalizeUrl(
     if (hash === page) {
       url = normalizedUrlWithoutHash;
     }
-
-    // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
-    if (hash?.startsWith(`${page}.`)) {
-      const member = removePrefix(hash, `${page}.`);
-      url = `${normalizedUrlWithoutHash}#${member}`;
-    }
   }
 
+  // We inline methods to live on class pages in mergeClassMembers.ts.
   // qiskit_ibm_runtime.QiskitRuntimeService.job -> qiskit_ibm_runtime.QiskitRuntimeService#job
   const pathParts = page.split(".");
   const member = last(pathParts);
