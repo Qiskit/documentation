@@ -58,6 +58,10 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620",
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.052325",
   "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.210601",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033154",
+  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
+  "https://https://arxiv.org/abs/quant-ph/0403071",
   "https://doi.org/10.1103/PhysRevApplied.5.034007",
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
   "https://doi.org/10.1103/PhysRevLett.103.150502",
@@ -328,7 +332,14 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
+  "docs/api/qiskit-addon-obp/utils-metadata-obp-metadata.mdx": [
+    "utils-truncating#TruncationErrorBudget.p_norm",
+  ],
+  "docs/api/qiskit-addon-obp/utils-metadata-slice-metadata.mdx": [
+    "utils-truncating#TruncationErrorBudget.p_norm",
+  ],
+};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,

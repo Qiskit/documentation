@@ -26,10 +26,11 @@ test.describe("updateLinks", () => {
 [link3](qiskit_ibm_runtime.RuntimeJob.job#wut)
 [link4](../stubs/qiskit_ibm_runtime.RuntimeJob)
 [link5](../apidocs/qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob)
-[link6](qiskit_ibm_runtime.RuntimeJob)
-[link7](#qiskit_ibm_runtime.RuntimeJob.job)
-[link8](https://qiskit.org/documentation/apidoc/algorithms.html)
-[link9](https://qiskit.org/documentation/stubs/qiskit.circuit.BreakLoopOp.html#assemble)
+[link6](../apidocs/qiskit_ibm_runtime.RuntimeJob#SOME_VAR)
+[link7](qiskit_ibm_runtime.RuntimeJob)
+[link8](#qiskit_ibm_runtime.RuntimeJob.job)
+[link9](https://qiskit.org/documentation/apidoc/algorithms.html)
+[link10](https://qiskit.org/documentation/stubs/qiskit.circuit.BreakLoopOp.html#assemble)
         `,
       meta: {
         apiType: "class",
@@ -92,10 +93,11 @@ test.describe("updateLinks", () => {
 [link3](qiskit_ibm_runtime.RuntimeJob#job)
 [link4](qiskit_ibm_runtime.RuntimeJob)
 [link5](qiskit_ibm_runtime.RuntimeJob)
-[link6](qiskit_ibm_runtime.RuntimeJob)
-[link7](#qiskit_ibm_runtime.RuntimeJob.job)
-[link8](/api/qiskit/algorithms)
-[link9](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)\n`,
+[link6](qiskit_ibm_runtime.RuntimeJob#some_var)
+[link7](qiskit_ibm_runtime.RuntimeJob)
+[link8](#qiskit_ibm_runtime.RuntimeJob.job)
+[link9](/api/qiskit/algorithms)
+[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)\n`,
         meta: {
           apiName: "qiskit_ibm_runtime.RuntimeJob",
           apiType: "class",
@@ -143,10 +145,11 @@ test.describe("updateLinks", () => {
 [link3](runtime-job#job)
 [link4](runtime-job)
 [link5](runtime-job)
-[link6](runtime-job)
-[link7](#qiskit_ibm_runtime.RuntimeJob.job)
-[link8](/api/qiskit/algorithms)
-[link9](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)\n`,
+[link6](runtime-job#some_var)
+[link7](runtime-job)
+[link8](#qiskit_ibm_runtime.RuntimeJob.job)
+[link9](/api/qiskit/algorithms)
+[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)\n`,
         meta: {
           apiName: "qiskit_ibm_runtime.RuntimeJob",
           apiType: "class",
