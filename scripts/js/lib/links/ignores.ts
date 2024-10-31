@@ -339,10 +339,6 @@ const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
   "docs/api/qiskit-addon-obp/utils-metadata-slice-metadata.mdx": [
     "utils-truncating#TruncationErrorBudget.p_norm",
   ],
-  "docs/api/qiskit-ibm-runtime/release-notes.mdx": [
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJob#stream_results",
-    "/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJob#interim_results",
-  ],
 };
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
