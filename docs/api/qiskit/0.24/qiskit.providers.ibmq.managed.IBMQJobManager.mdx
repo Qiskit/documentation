@@ -38,14 +38,14 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManager
   job_set_foo = job_manager.run(circs, backend=backend, name='foo')
   ```
 
-  The [`run()`](#qiskit.providers.ibmq.managed.IBMQJobManager.run "qiskit.providers.ibmq.managed.IBMQJobManager.run") method returns a [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") instance, which represents the set of jobs for the experiments. You can use the [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") methods, such as [`statuses()`](qiskit.providers.ibmq.managed.ManagedJobSet#statuses "qiskit.providers.ibmq.managed.ManagedJobSet.statuses"), [`results()`](qiskit.providers.ibmq.managed.ManagedJobSet#results "qiskit.providers.ibmq.managed.ManagedJobSet.results"), and [`error_messages()`](qiskit.providers.ibmq.managed.ManagedJobSet#error_messages "qiskit.providers.ibmq.managed.ManagedJobSet.error_messages") to get a combined view of the jobs in the set. For example:
+  The [`run()`](#qiskit.providers.ibmq.managed.IBMQJobManager.run "qiskit.providers.ibmq.managed.IBMQJobManager.run") method returns a [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") instance, which represents the set of jobs for the experiments. You can use the [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") methods, such as [`statuses()`](qiskit.providers.ibmq.managed.ManagedJobSet#qiskit.providers.ibmq.managed.ManagedJobSet.statuses "qiskit.providers.ibmq.managed.ManagedJobSet.statuses"), [`results()`](qiskit.providers.ibmq.managed.ManagedJobSet#qiskit.providers.ibmq.managed.ManagedJobSet.results "qiskit.providers.ibmq.managed.ManagedJobSet.results"), and [`error_messages()`](qiskit.providers.ibmq.managed.ManagedJobSet#qiskit.providers.ibmq.managed.ManagedJobSet.error_messages "qiskit.providers.ibmq.managed.ManagedJobSet.error_messages") to get a combined view of the jobs in the set. For example:
 
   ```python
   results = job_set_foo.results()
   results.get_counts(5)  # Counts for experiment 5.
   ```
 
-  The [`job_set_id()`](qiskit.providers.ibmq.managed.ManagedJobSet#job_set_id "qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id") method of [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") returns the job set ID, which can be used to retrieve the job set later:
+  The [`job_set_id()`](qiskit.providers.ibmq.managed.ManagedJobSet#qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id "qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id") method of [`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.ManagedJobSet") returns the job set ID, which can be used to retrieve the job set later:
 
   ```python
   job_set_id = job_set_foo.job_set_id()
