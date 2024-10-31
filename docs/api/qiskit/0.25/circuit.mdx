@@ -129,7 +129,7 @@ qc.num_qubits
   For a quantum circuit composed from just qubits, the circuit width is equal to the number of qubits. This is the definition used in quantum computing. However, for more complicated circuits with classical registers, and classically controlled gates, this equivalence breaks down. As such, from now on we will not refer to the number of qubits in a quantum circuit as the width.
 </Admonition>
 
-It is also straightforward to get the number and type of the gates in a circuit using [`QuantumCircuit.count_ops()`](qiskit.circuit.QuantumCircuit#count_ops "qiskit.circuit.QuantumCircuit.count_ops"):
+It is also straightforward to get the number and type of the gates in a circuit using [`QuantumCircuit.count_ops()`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.count_ops "qiskit.circuit.QuantumCircuit.count_ops"):
 
 ```python
 qc.count_ops()
@@ -139,7 +139,7 @@ qc.count_ops()
 OrderedDict([('cx', 8), ('h', 5), ('x', 3), ('swap', 3)])
 ```
 
-We can also get just the raw count of operations by computing the circuits [`QuantumCircuit.size()`](qiskit.circuit.QuantumCircuit#size "qiskit.circuit.QuantumCircuit.size"):
+We can also get just the raw count of operations by computing the circuits [`QuantumCircuit.size()`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.size "qiskit.circuit.QuantumCircuit.size"):
 
 ```python
 qc.size()
@@ -155,7 +155,7 @@ The depth of a quantum circuit has a mathematical definition as the longest path
 
 ![../\_images/depth.gif](/images/api/qiskit/0.25/depth.gif)
 
-We can verify our graphical result using [`QuantumCircuit.depth()`](qiskit.circuit.QuantumCircuit#depth "qiskit.circuit.QuantumCircuit.depth"):
+We can verify our graphical result using [`QuantumCircuit.depth()`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.depth "qiskit.circuit.QuantumCircuit.depth"):
 
 ```python
 qc.depth()
