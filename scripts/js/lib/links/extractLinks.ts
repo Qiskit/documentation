@@ -35,11 +35,28 @@ export type ParsedFile = {
 };
 
 export function parseAnchors(markdown: string): Set<string> {
-  // Anchors generated from markdown titles.
-  const mdAnchors = markdownLinkExtractor(markdown).anchors;
-  // Anchors from HTML id tags.
-  const idAnchors = markdown.match(/(?<=id=")(.+?)(?=")/gm) || [];
-  return new Set([...mdAnchors, ...idAnchors.map((id) => `#${id}`)]);
+  const lines = markdown.split("\n");
+  const anchors = new Set<string>();
+  for (const line of lines) {
+    const heading = line.match(/^\s*#{1,6}\s+(.+?)\s*$/);
+    if (heading) {
+      const normalized = heading[1]
+        .toLowerCase()
+        .trim()
+        .replaceAll(" ", "-")
+        .replaceAll(/[\.,;!?`\\\(\)]/g, "");
+      let deduplicated = normalized;
+      let i = 1;
+      while (anchors.has(`#${deduplicated}`)) {
+        deduplicated = `${normalized}-${i}`;
+        i += 1;
+      }
+      anchors.add(`#${deduplicated}`);
+    }
+    const id = line.match(/(?<=id=")(.+?)(?=")/);
+    if (id) anchors.add(`#${id[1]}`);
+  }
+  return anchors;
 }
 
 export async function parseLinks(
