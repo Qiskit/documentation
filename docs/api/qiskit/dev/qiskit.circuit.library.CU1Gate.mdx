@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.CU1Gate
 
 # CU1Gate
 
-<Class id="qiskit.circuit.library.CU1Gate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L174-L342" signature="qiskit.circuit.library.CU1Gate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.CU1Gate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L177-L352" signature="qiskit.circuit.library.CU1Gate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
   Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
   Controlled-U1 gate.
@@ -30,22 +30,22 @@ $$
 
   **Circuit symbol:**
 
-  ```python
+  ```text
   q_0: ─■──
-        │λ
+        │θ
   q_1: ─■──
   ```
 
   **Matrix representation:**
 
 $$
-CU1(\lambda) =
+CU1(\theta) =
 I \otimes |0\rangle\langle 0| + U1 \otimes |1\rangle\langle 1| =
 \begin{pmatrix}
 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 0 \\
 0 & 0 & 1 & 0 \\
-0 & 0 & 0 & e^{i\lambda}
+0 & 0 & 0 & e^{i\theta}
 \end{pmatrix}
 $$
 
@@ -82,12 +82,20 @@ $$
 
   <Attribute id="qiskit.circuit.library.CU1Gate.condition">
     The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### condition\_bits
 
   <Attribute id="qiskit.circuit.library.CU1Gate.condition_bits">
     Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### ctrl\_state
@@ -200,7 +208,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.CU1Gate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L283-L313" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+  <Function id="qiskit.circuit.library.CU1Gate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L286-L316" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
     Controlled version of this gate.
 
     **Parameters**
@@ -221,7 +229,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.CU1Gate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L315-L328" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.CU1Gate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/u1.py#L318-L331" signature="inverse(annotated=False)">
     Return inverted CU1 gate ($CU1(\lambda)^{\dagger} = CU1(-\lambda))$
 
     **Parameters**

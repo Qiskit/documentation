@@ -59,12 +59,20 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   <Attribute id="qiskit.circuit.classicalfunction.ClassicalFunction.condition">
     The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### condition\_bits
 
   <Attribute id="qiskit.circuit.classicalfunction.ClassicalFunction.condition_bits">
     Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### decompositions
@@ -179,13 +187,13 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L336-L341" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L353-L358" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### assemble
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.assemble" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L365-L375" signature="assemble()">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.assemble" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L382-L392" signature="assemble()">
     Assemble a QasmQobjInstruction
 
     <Admonition title="Deprecated since version 1.2" type="danger">
@@ -248,11 +256,15 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### c\_if
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.c_if" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L504-L522" signature="c_if(classical, val)">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.c_if" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L521-L540" signature="c_if(classical, val)">
     Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
     <Admonition title="Note" type="note">
       This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The method `qiskit.circuit.instruction.Instruction.c_if()` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
     </Admonition>
   </Function>
 
@@ -287,7 +299,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### copy
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L524-L539" signature="copy(name=None)">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L542-L557" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -305,7 +317,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### inverse
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L447-L502" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L464-L519" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -329,7 +341,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L301-L306" signature="is_parameterized()">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L318-L323" signature="is_parameterized()">
     Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
@@ -356,7 +368,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### repeat
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L587-L629" signature="repeat(n)">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L605-L647" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
 
     If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
@@ -380,7 +392,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L421-L445" signature="reverse_ops()">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L438-L462" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -432,7 +444,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L232-L272" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L249-L289" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -489,7 +501,7 @@ python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L152-L160" signature="to_mutable()">
+  <Function id="qiskit.circuit.classicalfunction.ClassicalFunction.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L168-L176" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.

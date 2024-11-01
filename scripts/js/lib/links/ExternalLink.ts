@@ -43,8 +43,8 @@ export class ExternalLink {
       if (response.status >= 300) {
         error = `Could not find link '${this.value}'`;
       }
-    } catch (error) {
-      error = `Failed to fetch '${this.value}': ${(error as Error).message}`;
+    } catch (err) {
+      error = `Failed to fetch '${this.value}': ${(err as Error).message}`;
     }
 
     if (!error) {

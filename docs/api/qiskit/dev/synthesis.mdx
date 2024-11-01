@@ -395,12 +395,12 @@ python_api_name: qiskit.synthesis
 
 ### synth\_clifford\_layers
 
-<Function id="qiskit.synthesis.synth_clifford_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L67-L168" signature="qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)">
+<Function id="qiskit.synthesis.synth_clifford_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L67-L169" signature="qiskit.synthesis.synth_clifford_layers(cliff, cx_synth_func=<function _default_cx_synth_func>, cz_synth_func=<function _default_cz_synth_func>, cx_cz_synth_func=None, cz_func_reverse_qubits=False, validate=False)">
   Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers, it provides a similar decomposition to the synthesis described in Lemma 8 of Bravyi and Maslov \[1].
 
   For example, a 5-qubit Clifford circuit is decomposed into the following layers:
 
-  ```python
+  ```text
        ┌─────┐┌─────┐┌────────┐┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
   q_0: ┤0    ├┤0    ├┤0       ├┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
        │     ││     ││        ││     ││     ││     ││     ││        │
@@ -440,7 +440,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_clifford\_depth\_lnn
 
-<Function id="qiskit.synthesis.synth_clifford_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L416-L446" signature="qiskit.synthesis.synth_clifford_depth_lnn(cliff)">
+<Function id="qiskit.synthesis.synth_clifford_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/clifford/clifford_decompose_layers.py#L417-L447" signature="qiskit.synthesis.synth_clifford_depth_lnn(cliff)">
   Synthesis of a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") into layers for linear-nearest neighbor connectivity.
 
   The depth of the synthesized n-qubit circuit is bounded by $7n+2$, which is not optimal. It should be replaced by a better algorithm that provides depth bounded by $7n-4$ \[3].
@@ -549,14 +549,14 @@ python_api_name: qiskit.synthesis
 
 ### synth\_stabilizer\_layers
 
-<Function id="qiskit.synthesis.synth_stabilizer_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L36-L119" signature="qiskit.synthesis.synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)">
+<Function id="qiskit.synthesis.synth_stabilizer_layers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L36-L120" signature="qiskit.synthesis.synth_stabilizer_layers(stab, cz_synth_func=<function _default_cz_synth_func>, cz_func_reverse_qubits=False, validate=False)">
   Synthesis of a stabilizer state into layers.
 
   It provides a similar decomposition to the synthesis described in Lemma 8 of reference \[1], without the initial Hadamard-free sub-circuit which do not affect the stabilizer state.
 
   For example, a 5-qubit stabilizer state is decomposed into the following layers:
 
-  ```python
+  ```text
        ┌─────┐┌─────┐┌─────┐┌─────┐┌────────┐
   q_0: ┤0    ├┤0    ├┤0    ├┤0    ├┤0       ├
        │     ││     ││     ││     ││        │
@@ -596,7 +596,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_stabilizer\_depth\_lnn
 
-<Function id="qiskit.synthesis.synth_stabilizer_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L168-L193" signature="qiskit.synthesis.synth_stabilizer_depth_lnn(stab)">
+<Function id="qiskit.synthesis.synth_stabilizer_depth_lnn" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/stabilizer/stabilizer_decompose.py#L169-L194" signature="qiskit.synthesis.synth_stabilizer_depth_lnn(stab)">
   Synthesis of an n-qubit stabilizer state for linear-nearest neighbor connectivity, in 2-qubit depth $2n+2$ and two distinct CX layers, using [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")s and phase gates ([`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate"), [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate") or [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")).
 
   **Parameters**
@@ -742,12 +742,12 @@ Decomposition of general $2^n \times 2^n$ unitary matrices for any number of qub
 
 ### qs\_decomposition
 
-<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L36-L149" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=True, opt_a2=True, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
+<Function id="qiskit.synthesis.qs_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/unitary/qsd.py#L36-L150" signature="qiskit.synthesis.qs_decomposition(mat, opt_a1=True, opt_a2=True, decomposer_1q=None, decomposer_2q=None, *, _depth=0)">
   Decomposes a unitary matrix into one and two qubit gates using Quantum Shannon Decomposition,
 
   This decomposition is described in Shende et al. \[1].
 
-  ```python
+  ```text
     ┌───┐               ┌───┐     ┌───┐     ┌───┐
    ─┤   ├─       ───────┤ Rz├─────┤ Ry├─────┤ Rz├─────
     │   │    ≃     ┌───┐└─┬─┘┌───┐└─┬─┘┌───┐└─┬─┘┌───┐
@@ -834,7 +834,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcmt\_vchain
 
-<Function id="qiskit.synthesis.synth_mcmt_vchain" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcmt_vchain.py#L21-L49" signature="qiskit.synthesis.synth_mcmt_vchain(gate, num_ctrl_qubits, num_target_qubits, ctrl_state=None)">
+<Function id="qiskit.synthesis.synth_mcmt_vchain" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcmt_vchain.py#L21-L52" signature="qiskit.synthesis.synth_mcmt_vchain(gate, num_ctrl_qubits, num_target_qubits, ctrl_state=None)">
   Synthesize MCMT using a V-chain.
 
   This uses a chain of CCX gates, using `num_ctrl_qubits - 1` auxiliary qubits.

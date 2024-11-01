@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
 
 # RuntimeJobV2
 
-<Class id="qiskit_ibm_runtime.RuntimeJobV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L53-L325" signature="RuntimeJobV2(backend, api_client, client_params, job_id, program_id, service, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.RuntimeJobV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L53-L273" signature="RuntimeJobV2(backend, api_client, client_params, job_id, program_id, service, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)" modifiers="class">
   Representation of a runtime V2 primitive exeuction.
 
   RuntimeJob constructor.
@@ -234,28 +234,6 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
     `bool`
   </Function>
 
-  ### interim\_results
-
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.interim_results" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L306-L325" signature="interim_results(decoder=None)">
-    Return the interim results of the job.
-
-    **Parameters**
-
-    **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode interim results.
-
-    **Return type**
-
-    `Any`
-
-    **Returns**
-
-    Runtime job interim results.
-
-    **Raises**
-
-    **RuntimeJobFailureError** – If the job failed.
-  </Function>
-
   ### job\_id
 
   <Function id="qiskit_ibm_runtime.RuntimeJobV2.job_id" signature="job_id()">
@@ -375,31 +353,6 @@ python_api_name: qiskit_ibm_runtime.RuntimeJobV2
     **Returns**
 
     Status of this job.
-  </Function>
-
-  ### stream\_results
-
-  <Function id="qiskit_ibm_runtime.RuntimeJobV2.stream_results" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job_v2.py#L275-L304" signature="stream_results(callback, decoder=None)">
-    Start streaming job results.
-
-    **Parameters**
-
-    *   **callback** (`Callable`) –
-
-        Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
-
-        > 1.  Job ID
-        > 2.  Job result.
-
-    *   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode job results.
-
-    **Raises**
-
-    **RuntimeInvalidStateError** – If a callback function is already streaming results or if the job already finished.
-
-    **Return type**
-
-    `None`
   </Function>
 
   ### update\_tags

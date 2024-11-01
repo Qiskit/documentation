@@ -18,6 +18,11 @@ export const IGNORED_FILES = new Set([
   "public/api/qiskit-ibm-runtime/0.14/objects.inv",
   "public/api/qiskit-ibm-runtime/0.15/objects.inv",
   "public/api/qiskit-ibm-runtime/0.16/objects.inv",
+  "public/api/qiskit-addon-cutting/objects.inv",
+  "public/api/qiskit-addon-mpf/objects.inv",
+  "public/api/qiskit-addon-obp/objects.inv",
+  "public/api/qiskit-addon-sqd/objects.inv",
+  "public/api/qiskit-addon-utils/objects.inv",
 ]);
 
 // -----------------------------------------------------------------------------------
@@ -53,9 +58,14 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620",
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.052325",
   "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.210601",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033154",
+  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
+  "https://https://arxiv.org/abs/quant-ph/0403071",
   "https://doi.org/10.1103/PhysRevApplied.5.034007",
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
   "https://doi.org/10.1103/PhysRevLett.103.150502",
+  "https://doi.org/10.1103/PhysRevA.99.032331",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
@@ -65,6 +75,14 @@ export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
   ...ALWAYS_IGNORED_URLS__SHOULD_FIX,
 ]);
+
+// -----------------------------------------------------------------------------------
+// Always ignored URL prefixes - be careful using this
+// -----------------------------------------------------------------------------------
+
+export const ALWAYS_IGNORED_URL_PREFIXES: string[] = [
+  "/announcements/product-updates",
+];
 
 // -----------------------------------------------------------------------------------
 // Files to ignores
@@ -322,7 +340,18 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
+  "public/api/qiskit/dev/objects.inv": [
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#left",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#minus",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#one",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#plus",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#right",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#x",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#y",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#z",
+  ],
+};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
