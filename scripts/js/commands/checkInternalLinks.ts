@@ -26,9 +26,7 @@ const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
-  "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/announcements/product-updates/2024-09-16-code-assistant.mdx",
 ];
 
 interface Arguments {
@@ -189,6 +187,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session.mdx",
+    "docs/api/qiskit-ibm-runtime/0.30/qiskit_ibm_runtime.RuntimeJob.mdx",
   ];
 
   if (args.currentApis) {
@@ -276,8 +275,6 @@ async function determineHistoricalFileBatches(
 }
 
 async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
-  const result: FileBatch[] = [];
-
   const legacyVersions = (
     await globby("docs/api/qiskit/release-notes/[!index]*")
   )

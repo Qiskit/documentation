@@ -81,17 +81,33 @@ export function normalizeUrl(
     "/",
   );
 
+  // Default case. We'll then check if the hash should be transformed
+  // for a few edge cases.
+  url = hash ? `${normalizedUrlWithoutHash}#${hash}` : normalizedUrlWithoutHash;
+
   // qiskit_ibm_runtime.RuntimeJob
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
   if (itemNames.has(page)) {
     if (hash === page) {
-      return normalizedUrlWithoutHash;
+      url = normalizedUrlWithoutHash;
     }
 
+    // Rather than linking to the component like `Function` or `Attribute`, we link to the header.
+    // This is necessary because until we implement https://github.com/Qiskit/documentation/issues/1395, the
+    // anchor for the component would take you too low in the page, given that the header is above the component.
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
+    //
+    // TODO(#2217): Remove this special case and use the full ID instead.
     if (hash?.startsWith(`${page}.`)) {
-      const member = removePrefix(hash, `${page}.`);
-      return `${normalizedUrlWithoutHash}#${member}`;
+      let member = removePrefix(hash, `${page}.`);
+      // Also check for inline classes, which often show up on module pages.
+      // qiskit_addon_obp.utils.truncating#qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm
+      // -> qiskit_addon_obp.utils.truncating#p_norm, whereas without this check
+      // it would be qiskit_addon_obp.utils.truncating#TruncationErrorBudget.p_norm.
+      if (member.includes(".")) {
+        member = member.split(".", 2)[1];
+      }
+      url = `${normalizedUrlWithoutHash}#${member}`;
     }
   }
 
@@ -104,20 +120,10 @@ export function normalizeUrl(
     const normalizedParentName = kwargs.kebabCaseAndShorten
       ? kebabCaseAndShortenPage(parentName, kwargs.pkgName)
       : parentName;
-    return [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
+    url = [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
   }
 
-  if (!hash) return normalizedUrlWithoutHash;
-
-  // Anchors generated from markdown headings are always lower case but, if these
-  // headings are API references, Sphinx sometimes expects them to include
-  // uppercase characters.
-  //
-  // As a heuristic, we assume URLs containing periods are anchors to HTML id
-  // tags (which preserve Sphinx's original casing), and anchors with no periods
-  // are from markdown headings (which must be lower-cased). This seems to work ok.
-  const normalizedHash = hash.includes(".") ? hash : hash.toLowerCase();
-  return `${normalizedUrlWithoutHash}#${normalizedHash}`;
+  return lowerCaseIfMarkdownAnchor(url);
 }
 
 export function relativizeLink(link: Link): Link | undefined {

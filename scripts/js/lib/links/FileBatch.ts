@@ -15,6 +15,7 @@ import { globby } from "globby";
 import { InternalLink, File } from "./InternalLink.js";
 import {
   ALWAYS_IGNORED_URLS,
+  ALWAYS_IGNORED_URL_PREFIXES,
   FILES_TO_IGNORES,
   IGNORED_FILES,
 } from "./ignores.js";
@@ -115,6 +116,7 @@ export function addLinksToMap(
   links.forEach((link) => {
     if (
       ALWAYS_IGNORED_URLS.has(link) ||
+      ALWAYS_IGNORED_URL_PREFIXES.some((prefix) => link.startsWith(prefix)) ||
       FILES_TO_IGNORES[filePath]?.includes(link)
     ) {
       return;
