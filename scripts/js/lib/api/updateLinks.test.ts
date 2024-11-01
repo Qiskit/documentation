@@ -31,6 +31,8 @@ test.describe("updateLinks", () => {
 [link8](#qiskit_ibm_runtime.RuntimeJob.job)
 [link9](https://qiskit.org/documentation/apidoc/algorithms.html)
 [link10](https://qiskit.org/documentation/stubs/qiskit.circuit.BreakLoopOp.html#assemble)
+[link11](qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.a_method)
+[link12](qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.InlineClass.another_method)
         `,
       meta: {
         apiType: "class",
@@ -97,7 +99,9 @@ test.describe("updateLinks", () => {
 [link7](qiskit_ibm_runtime.RuntimeJob)
 [link8](#qiskit_ibm_runtime.RuntimeJob.job)
 [link9](/api/qiskit/algorithms)
-[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)\n`,
+[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)
+[link11](qiskit_ibm_runtime.RuntimeJob#a_method)
+[link12](qiskit_ibm_runtime.RuntimeJob#another_method)\n`,
         meta: {
           apiName: "qiskit_ibm_runtime.RuntimeJob",
           apiType: "class",
@@ -149,7 +153,9 @@ test.describe("updateLinks", () => {
 [link7](runtime-job)
 [link8](#qiskit_ibm_runtime.RuntimeJob.job)
 [link9](/api/qiskit/algorithms)
-[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)\n`,
+[link10](/api/qiskit/qiskit.circuit.BreakLoopOp#assemble)
+[link11](runtime-job#a_method)
+[link12](runtime-job#another_method)\n`,
         meta: {
           apiName: "qiskit_ibm_runtime.RuntimeJob",
           apiType: "class",
