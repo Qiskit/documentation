@@ -182,12 +182,31 @@ print(diagonal.num_qubits)
 
 These are [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") subclasses that implement boolean logic operations, such as the logical or of a set of qubit states.
 
-|                                                                                                              |                                                                                                |
-| ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| [`AND`](qiskit.circuit.library.AND "qiskit.circuit.library.AND")(num\_variable\_qubits\[, flags, mcx\_mode]) | A circuit implementing the logical AND operation on a number of qubits.                        |
-| [`OR`](qiskit.circuit.library.OR "qiskit.circuit.library.OR")(num\_variable\_qubits\[, flags, mcx\_mode])    | A circuit implementing the logical OR operation on a number of qubits.                         |
-| [`XOR`](qiskit.circuit.library.XOR "qiskit.circuit.library.XOR")(num\_qubits\[, amount, seed])               | An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`.                  |
-| [`InnerProduct`](qiskit.circuit.library.InnerProduct "qiskit.circuit.library.InnerProduct")(num\_qubits)     | A 2n-qubit Boolean function that computes the inner product of two n-qubit vectors over $F_2$. |
+|                                                                                                                        |                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [`AND`](qiskit.circuit.library.AND "qiskit.circuit.library.AND")(num\_variable\_qubits\[, flags, mcx\_mode])           | A circuit implementing the logical AND operation on a number of qubits.                        |
+| [`AndGate`](qiskit.circuit.library.AndGate "qiskit.circuit.library.AndGate")(num\_variable\_qubits\[, flags])          | A gate representing the logical AND operation on a number of qubits.                           |
+| [`OR`](qiskit.circuit.library.OR "qiskit.circuit.library.OR")(num\_variable\_qubits\[, flags, mcx\_mode])              | A circuit implementing the logical OR operation on a number of qubits.                         |
+| [`OrGate`](qiskit.circuit.library.OrGate "qiskit.circuit.library.OrGate")(num\_variable\_qubits\[, flags])             | A gate representing the logical OR operation on a number of qubits.                            |
+| [`XOR`](qiskit.circuit.library.XOR "qiskit.circuit.library.XOR")(num\_qubits\[, amount, seed])                         | An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`.                  |
+| [`BitwiseXorGate`](qiskit.circuit.library.BitwiseXorGate "qiskit.circuit.library.BitwiseXorGate")(num\_qubits, amount) | An n-qubit gate for bitwise xor-ing the input with some integer `amount`.                      |
+| [`InnerProduct`](qiskit.circuit.library.InnerProduct "qiskit.circuit.library.InnerProduct")(num\_qubits)               | A 2n-qubit Boolean function that computes the inner product of two n-qubit vectors over $F_2$. |
+| [`InnerProductGate`](qiskit.circuit.library.InnerProductGate "qiskit.circuit.library.InnerProductGate")(num\_qubits)   | A 2n-qubit Boolean function that computes the inner product of two n-qubit vectors over $F_2$. |
+
+### random\_bitwise\_xor
+
+<Function id="qiskit.circuit.library.random_bitwise_xor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/boolean_logic/quantum_xor.py#L154-L165" signature="qiskit.circuit.library.random_bitwise_xor(num_qubits, seed)">
+  Create a random BitwiseXorGate.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the width of circuit.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – random seed in case a random xor is requested.
+
+  **Return type**
+
+  [*BitwiseXorGate*](qiskit.circuit.library.BitwiseXorGate "qiskit.circuit.library.boolean_logic.quantum_xor.BitwiseXorGate")
+</Function>
 
 ## Basis Change Circuits
 
@@ -269,6 +288,72 @@ These [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCi
 | [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")(operator\[, time, label, ...]) | Time-evolution of an operator consisting of Paulis.                      |
 | [`HamiltonianGate`](qiskit.circuit.library.HamiltonianGate "qiskit.circuit.library.HamiltonianGate")(data, time\[, label])                   | Class for representing evolution by a Hamiltonian operator as a gate.    |
 | [`UnitaryOverlap`](qiskit.circuit.library.UnitaryOverlap "qiskit.circuit.library.UnitaryOverlap")(unitary1, unitary2\[, ...])                | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
+
+### iqp
+
+<Function id="qiskit.circuit.library.iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L84-L143" signature="qiskit.circuit.library.iqp(interactions)">
+  Instantaneous quantum polynomial time (IQP) circuit.
+
+  The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
+
+  The circuit is parameterized by an $n \times n$ interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
+
+  **Reference Circuit:**
+
+  ![../\_images/circuit\_library-2.png](/images/api/qiskit/dev/circuit_library-2.png)
+
+  **Expanded Circuit:**
+
+  > ![../\_images/circuit\_library-3.png](/images/api/qiskit/dev/circuit_library-3.png)
+
+  **References:**
+
+  \[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
+
+  **Parameters**
+
+  **interactions** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – The interactions as symmetric square matrix. If `None`, then the `num_qubits` argument must be set and a random IQP circuit will be generated.
+
+  **Returns**
+
+  An IQP circuit.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Function>
+
+### random\_iqp
+
+<Function id="qiskit.circuit.library.random_iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L146-L175" signature="qiskit.circuit.library.random_iqp(num_qubits, seed=None)">
+  A random instantaneous quantum polynomial time (IQP) circuit.
+
+  See [`iqp()`](#qiskit.circuit.library.iqp "qiskit.circuit.library.iqp") for more details on the IQP circuit.
+
+  Example:
+
+  ```python
+  from qiskit.circuit.library import random_iqp
+
+  circuit = random_iqp(3)
+  circuit.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-4.png](/images/api/qiskit/dev/circuit_library-4.png)
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits in the circuit.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for the random number generator, in case the interactions matrix is randomly generated.
+
+  **Returns**
+
+  An IQP circuit.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
 
 ## N-local circuits
 
