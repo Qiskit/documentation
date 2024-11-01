@@ -26,6 +26,7 @@ import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
+import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -58,6 +59,7 @@ export function normalizeUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
   itemNames: Set<string>,
+  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
 ): string {
   if (isAbsoluteUrl(url)) return url;
   if (url.startsWith("/")) return url;
@@ -67,36 +69,55 @@ export function normalizeUrl(
 
   const urlParts = url.split("/");
   const initialUrlParts = initial(urlParts);
-  const [path, hash] = last(urlParts)!.split("#") as [
+  const [page, hash] = last(urlParts)!.split("#") as [
     string,
     string | undefined,
   ];
 
+  const normalizedPage = kwargs.kebabCaseAndShorten
+    ? kebabCaseAndShortenPage(page, kwargs.pkgName)
+    : page;
+  const normalizedUrlWithoutHash = [...initialUrlParts, normalizedPage].join(
+    "/",
+  );
+
   // qiskit_ibm_runtime.RuntimeJob
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
-  if (itemNames.has(path)) {
-    if (hash === path) {
-      url = [...initialUrlParts, path].join("/");
+  if (itemNames.has(page)) {
+    if (hash === page) {
+      return normalizedUrlWithoutHash;
     }
 
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
-    if (hash?.startsWith(`${path}.`)) {
-      const member = removePrefix(hash, `${path}.`);
-      url = [...initialUrlParts, path].join("/") + `#${member}`;
+    if (hash?.startsWith(`${page}.`)) {
+      const member = removePrefix(hash, `${page}.`);
+      return `${normalizedUrlWithoutHash}#${member}`;
     }
   }
 
   // qiskit_ibm_runtime.QiskitRuntimeService.job -> qiskit_ibm_runtime.QiskitRuntimeService#job
-  const pathParts = path.split(".");
+  const pathParts = page.split(".");
   const member = last(pathParts);
   const initialPathParts = initial(pathParts);
   const parentName = initialPathParts.join(".");
   if ("class" === resultsByName[parentName]?.meta.apiType) {
-    url = [...initialUrlParts, parentName].join("/") + "#" + member;
+    const normalizedParentName = kwargs.kebabCaseAndShorten
+      ? kebabCaseAndShortenPage(parentName, kwargs.pkgName)
+      : parentName;
+    return [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
   }
 
-  url = lowerCaseIfMarkdownAnchor(url);
-  return url;
+  if (!hash) return normalizedUrlWithoutHash;
+
+  // Anchors generated from markdown headings are always lower case but, if these
+  // headings are API references, Sphinx sometimes expects them to include
+  // uppercase characters.
+  //
+  // As a heuristic, we assume URLs containing periods are anchors to HTML id
+  // tags (which preserve Sphinx's original casing), and anchors with no periods
+  // are from markdown headings (which must be lower-cased). This seems to work ok.
+  const normalizedHash = hash.includes(".") ? hash : hash.toLowerCase();
+  return `${normalizedUrlWithoutHash}#${normalizedHash}`;
 }
 
 export function relativizeLink(link: Link): Link | undefined {
@@ -126,6 +147,7 @@ export function relativizeLink(link: Link): Link | undefined {
 
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
+  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
   maybeObjectsInv?: ObjectsInv,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
@@ -153,7 +175,7 @@ export async function updateLinks(
               textNode.value = relativizedLink.text;
             }
           }
-          node.url = normalizeUrl(node.url, resultsByName, itemNames);
+          node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });
       })
       .use(remarkStringify, remarkStringifyOptions)
@@ -163,6 +185,6 @@ export async function updateLinks(
   }
 
   maybeObjectsInv?.updateUris((uri: string) =>
-    normalizeUrl(uri, resultsByName, itemNames),
+    normalizeUrl(uri, resultsByName, itemNames, kwargs),
   );
 }

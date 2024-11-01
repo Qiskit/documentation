@@ -1,0 +1,46 @@
+---
+title: partition_problem
+description: API reference for qiskit_addon_cutting.partition_problem
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_addon_cutting.partition_problem
+---
+
+<span id="qiskit-addon-cutting-partition-problem" />
+
+# qiskit\_addon\_cutting.partition\_problem
+
+<Function id="qiskit_addon_cutting.partition_problem" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/cutting_decomposition.py" signature="partition_problem(circuit, partition_labels=None, observables=None)">
+  Separate an input circuit and observable(s).
+
+  If `partition_labels` is provided, then qubits with matching partition labels will be grouped together, and non-local gates spanning more than one partition will be cut apart. The label `None` is treated specially: any qubit with that partition label must be unused in the circuit.
+
+  If `partition_labels` is not provided, then it will be determined automatically from the connectivity of the circuit. This automatic determination ignores any [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s in the `circuit`, as these denote instructions that are explicitly destined for cutting. The resulting partition labels, in the automatic case, will be consecutive integers starting with 0. Qubits which are idle throughout the circuit will be assigned a partition label of `None`.
+
+  All cut instructions will be replaced with [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s.
+
+  If provided, `observables` will be separated along the boundaries specified by the partition labels.
+
+  **Parameters**
+
+  *   **circuit** (QuantumCircuit) – The circuit to partition and separate
+  *   **partition\_labels** (Sequence\[Hashable] | None) – A sequence of labels, such that each label corresponds to the circuit qubit with the same index
+  *   **observables** (PauliList | None) – The observables to separate
+
+  **Return type**
+
+  PartitionedCuttingProblem
+
+  **Returns**
+
+  A tuple containing a dictionary mapping a partition label to a subcircuit, a list of QPD bases (one for each circuit gate or wire which was decomposed), and, optionally, a dictionary mapping a partition label to a list of Pauli observables.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of partition labels does not equal the number of qubits in the circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – An input observable acts on a different number of qubits than the input circuit.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – An input observable has a phase not equal to 1.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – A qubit with a label of `None` is not idle
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The input circuit should contain no classical bits or registers.
+</Function>
+
