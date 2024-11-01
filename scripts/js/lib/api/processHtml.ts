@@ -176,11 +176,11 @@ function detectLanguage($pre: Cheerio<any>): string | null {
     .parent()
     .parent()[0]
     .attribs.class.match(/(?<=highlight-)\w+/);
-  if (!detectedLanguage) return 'python';
+  if (!detectedLanguage) return "python";
   const langName = detectedLanguage[0];
-  if (langName === 'none') return null;
-  if (langName === 'default') return 'python';
-  if (langName === 'ipython3') return 'python';
+  if (langName === "none") return null;
+  if (langName === "default") return "python";
+  if (langName === "ipython3") return "python";
   return langName;
 }
 
@@ -191,7 +191,7 @@ export function addLanguageClassToCodeBlocks(
   $main.find("pre").each((_, pre) => {
     const $pre = $(pre);
     const language = detectLanguage($pre);
-    const languageClass = language ? `language-${language}` : '';
+    const languageClass = language ? `language-${language}` : "";
     $pre.replaceWith(
       `<pre><code class="${languageClass}">${$pre.html()}</code></pre>`,
     );
