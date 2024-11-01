@@ -22,9 +22,20 @@ $$
 
   where $f'(x)$ is the gaussian waveform without lifting or amplitude scaling, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
 
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    The class `qiskit.pulse.library.symbolic_pulses.Gaussian` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
-  </Admonition>
+  Create new pulse instance.
+
+  **Parameters**
+
+  *   **duration** – Pulse length in terms of the sampling period dt.
+  *   **amp** – The magnitude of the amplitude of the Gaussian envelope.
+  *   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+  *   **angle** – The angle of the complex amplitude of the Gaussian envelope. Default value 0.
+  *   **name** – Display name for this pulse envelope.
+  *   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+
+  **Returns**
+
+  ScalableSymbolicPulse instance.
 
   ## Attributes
 
