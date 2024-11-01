@@ -340,7 +340,18 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
+  "public/api/qiskit/dev/objects.inv": [
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#left",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#minus",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#one",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#plus",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#right",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#x",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#y",
+    "/api/qiskit/dev/qiskit.quantum_info.SparseObservable#z",
+  ],
+};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
