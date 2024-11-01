@@ -105,12 +105,8 @@ python_api_name: qiskit.compiler
 
 ### schedule
 
-<Function id="qiskit.compiler.schedule" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/scheduler.py#L39-L109" signature="qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)">
+<Function id="qiskit.compiler.schedule" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/scheduler.py#L38-L107" signature="qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)">
   Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in `qiskit.scheduler.schedule_circuit`.
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    The function `qiskit.compiler.scheduler.schedule()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that `qiskit.compiler.scheduler.schedule()` will be moved as well.
-  </Admonition>
 
   **Parameters**
 
@@ -136,7 +132,7 @@ python_api_name: qiskit.compiler
 
 ### transpile
 
-<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/transpiler.py#L43-L435" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
+<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/transpiler.py#L41-L403" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
   Transpile one or more circuits, according to some desired transpilation targets.
 
   Transpilation is potentially done in parallel using multiprocessing when `circuits` is a list with > 1 [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object, depending on the local environment and configuration.
@@ -153,22 +149,6 @@ python_api_name: qiskit.compiler
   | **timing\_constraints**    | target | timing\_constraints    | timing\_constraints    |
   | **backend\_properties**    | target | backend\_properties    | backend\_properties    |
 
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `inst_map` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and this argument uses a dependency on the package.
-  </Admonition>
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `backend_properties` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The target parameter should be used instead. You can build a Target instance with defined properties with Target.from\_configuration(…, backend\_properties=…)
-  </Admonition>
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `timing_constraints` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The target parameter should be used instead. You can build a Target instance with defined timing constraints with Target.from\_configuration(…, timing\_constraints=…)
-  </Admonition>
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `instruction_durations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The target parameter should be used instead. You can build a Target instance with defined instruction durations with Target.from\_configuration(…, instruction\_durations=…)
-  </Admonition>
-
   **Parameters**
 
   *   **circuits** (*\_CircuitT*) – Circuit(s) to transpile
@@ -177,7 +157,7 @@ python_api_name: qiskit.compiler
 
   *   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
 
-  *   **inst\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")*] | None*) – DEPRECATED. Mapping of unrolled gates to pulse schedules. If this is not provided, transpiler tries to get from the backend. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation. This feature is available iff the backend supports the pulse gate experiment.
+  *   **inst\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")*] | None*) – Mapping of unrolled gates to pulse schedules. If this is not provided, transpiler tries to get from the backend. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation. This feature is available iff the backend supports the pulse gate experiment.
 
   *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | None*) –
 
@@ -314,12 +294,8 @@ python_api_name: qiskit.compiler
 
 ### sequence
 
-<Function id="qiskit.compiler.sequence" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/sequencer.py#L27-L71" signature="qiskit.compiler.sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)">
+<Function id="qiskit.compiler.sequence" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/compiler/sequencer.py#L26-L69" signature="qiskit.compiler.sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)">
   Schedule a scheduled circuit to a pulse `Schedule`, using the backend.
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    The function `qiskit.compiler.sequencer.sequence()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that `qiskit.compiler.sequencer.sequence()` will be moved as well.
-  </Admonition>
 
   **Parameters**
 
