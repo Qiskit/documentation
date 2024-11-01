@@ -5,7 +5,7 @@ description: Overview of the Sample-based quantum diagonalization (SQD) workflow
 
 # Sample-based quantum diagonalization (SQD)
 
-Sample-based quantum diagonalization (SQD) is a technique for finding eigenvalues and eigenvectors of quantum operators, such as the Hamiltonian of a quantum system, using quantum and distributed classical computing together.
+Sample-based quantum diagonalization (SQD) is a technique for finding eigenvalues and eigenvectors of quantum operators, such as the Hamiltonian of a quantum system, using quantum and distributed classical computing together. This post-processing technique may be especially useful for users simulating chemical or other quantum systems.
 
 Classical computing is used to process samples obtained from a quantum processor, and to project and diagonalize a target Hamiltonian in a subspace spanned by them. This allows SQD to be robust to samples corrupted by quantum noise and manage large Hamiltonians, such as chemical systems with millions of interacting terms, beyond the reach of exact diagonalization methods.
 
@@ -45,7 +45,7 @@ The SQD workflow using self-consistent configuration recovery is explained in de
 
 ![SQD diagram depicting configuration recovery, collecting subsamples, and obtaining eigenstates from those subsamples](/images/guides/qiskit-addons/sqd_diagram.png)
 
-Here $\bar{\mathcal{X}}$ is a set of noisy samples containing, in the context of the Hamiltonian being simulated, physical and non-physical configurations (represented as bitstrings) obtained from execution on a QPU. The non-physical configurations are due to noise and can be processed by the `sqd.configuration_recovery.recover_configurations()` method to refine the samples into a new set $\mathcal{X}_R$. 
+Here $\bar{\mathcal{X}}$ is a set of noisy samples obtained from a QPU which contain, in the context of the Hamiltonian being simulated, physical and non-physical configurations (represented as bitstrings) obtained from execution on a QPU. The non-physical configurations are due to noise and can be processed by the `sqd.configuration_recovery.recover_configurations()` method to refine the samples into a new set $\mathcal{X}_R$. 
 
 From this set, batches of configurations $\mathcal{S}^{(1)}...\ \mathcal{S}^{(K)}$ are collected and represent samples obtained from different subspaces of the Hamiltonian. These subspace samples are built from a set of basis states, $\mathcal{S}^{(k)}=\{|\mathbf{x}^{(k)}\rangle\}$, and are projections of the system Hamiltonian, $\hat{H}$. This projection is defined as
 
@@ -53,7 +53,15 @@ $$ \hat{H}_{S^{(k)}} = \hat{P}_{\mathcal{S}^{(k)}}\hat{H}\hat{P}_{\mathcal{S}^{(
 
 where $\hat{H}_{\mathcal{S}^{(k)}}$ is the Hamiltonian of a given subspace.
 
-The bulk of the SQD workflow lies here where each of these subspace Hamiltonians are diagonalized. The ground states obtained from each of these subspaces, $|\psi^{(k)}\rangle$, and are used to obtain an estimate of a reference vector of occupancies $\mathbf{n}^{(K)}$ averaged over each of the $K$ subspaces and sent back to the configuration recovery step. Then a new set of subspaces are obtained and diagonalized, and this procedure iterates in a self-consistent loop until the ground state energy estimate has converged.
+The bulk of the SQD workflow lies here where each of these subspace Hamiltonians are diagonalized. The ground states obtained from each of these subspaces, $|\psi^{(k)}\rangle$, are used to obtain an estimate of a reference vector of occupancies $\mathbf{n}^{(K)}$ averaged over each of the $K$ subspaces and sent back to the configuration recovery step. Then a new set of subspaces are obtained and diagonalized, and this procedure iterates in a self-consistent loop until the ground state energy estimate has converged.
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Read about basis gates in the [Represent quantum computers](./represent-quantum-computers#basis-gates) topic.
+    - Apply your knowledge of basis gates to one of these [workflow example tutorials.](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)
+</Admonition>
 
 ## References
 
