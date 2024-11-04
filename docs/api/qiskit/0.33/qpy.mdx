@@ -55,7 +55,7 @@ The QPY serialization format is a portable cross-platform binary serialization f
 
 A QPY file (or memory object) always starts with the following 7 byte UTF8 string: `QISKIT` which is immediately followed by the overall file header. The contents of the file header as defined as a C struct are:
 
-```python
+```c
 struct {
     uint8_t qpy_version;
     uint8_t qiskit_major_version;
@@ -87,7 +87,7 @@ Version 3 of the QPY format is identical to [Version 2](#version-2) except that 
 
 This represents the high level [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")
 
-```python
+```c
 struct {
     uint64_t operator_count;
     _Bool standalone_op;
@@ -107,7 +107,7 @@ This is immediately followed by `operator_count` elements defined by the [SPARSE
 
 This represents an instance of [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp").
 
-```python
+```c
 struct {
     uint32_t pauli_op_size;
 }
@@ -125,7 +125,7 @@ Version 3 of the QPY format also defines a struct format to represent a `Paramet
 
 A PARAMETER\_VECTOR\_ELEMENT represents a `ParameterVectorElement` object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER\_VECTOR\_ELEMENT are defined as:
 
-```python
+```c
 struct {
     uint16_t vector_name_size;
     uint64_t vector_size;
@@ -146,7 +146,7 @@ Additionally, since QPY format version v3 distinguishes between a [`Parameter`](
 
 A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object that the data for an INSTRUCTION\_PARAM. The contents of a PARAMETER\_EXPR are defined as:
 
-```python
+```c
 struct {
     uint64_t map_elements;
     uint64_t expr_size;
@@ -155,7 +155,7 @@ struct {
 
 Immediately following the header is `expr_size` bytes of utf8 data containing the expression string, which is the sympy srepr of the expression for the parameter expression. Following that is a symbol map which contains `map_elements` elements with the format
 
-```python
+```c
 struct {
     char symbol_type;
     char type;
@@ -175,7 +175,7 @@ Version 2 of the QPY format is identical to version 1 except for the HEADER sect
 
 The contents of HEADER are defined as a C struct are:
 
-```python
+```c
 struct {
     uint16_t name_size;
     char global_phase_type;
@@ -201,7 +201,7 @@ This is immediately followed by `name_size` bytes of utf8 data for the name of t
 
 The contents of HEADER as defined as a C struct are:
 
-```python
+```c
 struct {
     uint16_t name_size;
     double global_phase;
@@ -224,7 +224,7 @@ The METADATA field is a UTF8 encoded JSON string. After reading the HEADER (whic
 
 The contents of REGISTERS is a number of REGISTER object. If num\_registers is > 0 then after reading METADATA you read that number of REGISTER structs defined as:
 
-```python
+```c
 struct {
     char type;
     _Bool standalone;
@@ -264,7 +264,7 @@ This section specifies custom definitions for any of the instructions in the cir
 
 CUSTOM\_DEFINITION\_HEADER contents are defined as:
 
-```python
+```c
 struct {
     uint64_t size;
 }
@@ -272,7 +272,7 @@ struct {
 
 If size is greater than 0 that means the circuit contains custom instruction(s). Each custom instruction is defined with a CUSTOM\_INSTRUCTION block defined as:
 
-```python
+```c
 struct {
     uint16_t name_size;
     char type;
@@ -289,7 +289,7 @@ If `custom_definition` is `True` that means that the immediately following `size
 
 The contents of INSTRUCTIONS is a list of INSTRUCTION metadata objects
 
-```python
+```c
 struct {
     uint16_t name_size;
     uint16_t label_size;
@@ -308,7 +308,7 @@ This is immediately followed by the INSTRUCTION\_ARG structs for the list of arg
 
 The contents of each INSTRUCTION\_ARG is:
 
-```python
+```c
 struct {
     char type;
     uint32_t index;
@@ -321,7 +321,7 @@ After all arguments for an instruction the parameters are specified with `num_pa
 
 The contents of each INSTRUCTION\_PARAM is:
 
-```python
+```c
 struct {
     char type;
     uint64_t size;
@@ -336,7 +336,7 @@ After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. 
 
 A PARAMETER represents a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER are defined as:
 
-```python
+```c
 struct {
     uint16_t name_size;
     char uuid[16];
@@ -355,7 +355,7 @@ A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterE
 
 The PARAMETER\_EXPR data starts with a header:
 
-```python
+```c
 struct {
     uint64_t map_elements;
     uint64_t expr_size;
@@ -364,7 +364,7 @@ struct {
 
 Immediately following the header is `expr_size` bytes of utf8 data containing the expression string, which is the sympy srepr of the expression for the parameter expression. Follwing that is a symbol map which contains `map_elements` elements with the format
 
-```python
+```c
 struct {
     char type;
     uint64_t size;
@@ -379,7 +379,7 @@ Which is followed immediately by `PARAMETER` object (both the struct and utf8 na
 
 When representing a double precision complex value in QPY the following struct is used:
 
-```python
+```c
 struct {
     double real;
     double imag;
