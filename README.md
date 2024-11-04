@@ -195,8 +195,9 @@ change, CI will alert us.
 
 ### Lint notebooks
 
-We use [`squeaky`](https://github.com/frankharkins/squeaky) to lint our
-notebooks. First install `tox` using [pipx](https://pipx.pypa.io/stable/).
+We use [`squeaky`](https://github.com/frankharkins/squeaky) and
+[`ruff`](https://docs.astral.sh/ruff/) to lint our notebooks. First install
+`tox` using [pipx](https://pipx.pypa.io/stable/).
 
 ```sh
 pipx install tox
@@ -206,18 +207,18 @@ To check if a notebook needs linting:
 
 ```sh
 # Check all notebooks in ./docs
-tox -e lint -- docs/**/*.ipynb
+tox -e lint
 ```
 
-To fix problems in a notebooks, run:
+Some problems can be fixed automatically. To fix these problems, run:
 
 ```sh
+# Fix problems in all notebooks
+tox -e fix
+
+# Fix problems in a specific notebook
 tox -e fix -- path/to/notebook
 ```
-
-Or, you can retrieve an executed and linted version of your notebook from CI
-following the steps at the end of the [Execute notebooks](#execute-notebooks)
-section.
 
 If you use the Jupyter notebook editor, consider adding squeaky as a [pre-save
 hook](https://github.com/frankharkins/squeaky?tab=readme-ov-file#jupyter-pre-save-hook).
