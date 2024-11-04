@@ -80,7 +80,7 @@ You can preview the docs locally by following these two steps:
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
-Warning: `./start` does not check if there is a new version of the docs application available. You can run `docker pull qiskit/documentation` to update to the latest version of the app. It will also ignore the API docs to speed things up, if you want to view them, run `./start --apis`.
+Maintainers: when you release a new version of the image, you need to update the image digest in `./start` by following the instructions at the top of the file and opening a pull request.
 
 ### API docs authors: How to preview your changes
 
@@ -114,6 +114,12 @@ four categories:
 If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 also add it to the "Check for notebooks that require LaTeX" step in
 `.github/workflows/notebook-test.yml`.
+
+### Add package version information
+
+Add a new markdown cell under your title with a `version-info` tag.
+When you execute the notebook (see the next section), the script will populate
+this cell with the package versions so users can reproduce the results.
 
 ### Execute notebooks
 

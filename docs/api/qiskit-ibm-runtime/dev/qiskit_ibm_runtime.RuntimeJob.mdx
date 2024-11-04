@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
 # RuntimeJob
 
-<Class id="qiskit_ibm_runtime.RuntimeJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L47-L418" signature="RuntimeJob(backend, api_client, client_params, job_id, program_id, service, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.RuntimeJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L47-L366" signature="RuntimeJob(backend, api_client, client_params, job_id, program_id, service, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None, version=None)" modifiers="class">
   Representation of a runtime primitive execution.
 
   A new `RuntimeJob` instance is returned when you call `QiskitRuntimeService.run` to execute a runtime primitive, or [`QiskitRuntimeService.job`](qiskit_ibm_runtime.QiskitRuntimeService#job "qiskit_ibm_runtime.QiskitRuntimeService.job") to retrieve a previously executed job.
@@ -27,7 +27,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
       print("Job failed!: {}".format(ex))
   ```
 
-  If the primitive has any interim results, you can use the `callback` parameter of the `run()` method to stream the interim results along with the final result. Alternatively, you can use the [`stream_results()`](#qiskit_ibm_runtime.RuntimeJob.stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
+  If the primitive has any interim results, you can use the `callback` parameter of the `run()` method to stream the interim results along with the final result. Alternatively, you can use the `stream_results()` method to stream the results at a later time, but before the job finishes.
 
   RuntimeJob constructor.
 
@@ -256,28 +256,6 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
     `bool`
   </Function>
 
-  ### interim\_results
-
-  <Function id="qiskit_ibm_runtime.RuntimeJob.interim_results" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L399-L418" signature="interim_results(decoder=None)">
-    (DEPRECATED) Return the interim results of the job.
-
-    **Parameters**
-
-    **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode interim results.
-
-    **Return type**
-
-    `Any`
-
-    **Returns**
-
-    Runtime job interim results.
-
-    **Raises**
-
-    **RuntimeJobFailureError** – If the job failed.
-  </Function>
-
   ### job\_id
 
   <Function id="qiskit_ibm_runtime.RuntimeJob.job_id" signature="job_id()">
@@ -439,31 +417,6 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
     **Returns**
 
     Status of this job.
-  </Function>
-
-  ### stream\_results
-
-  <Function id="qiskit_ibm_runtime.RuntimeJob.stream_results" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/runtime_job.py#L368-L397" signature="stream_results(callback, decoder=None)">
-    (DEPRECATED) Start streaming job results.
-
-    **Parameters**
-
-    *   **callback** (`Callable`) –
-
-        Callback function to be invoked for any interim results and final result. The callback function will receive 2 positional parameters:
-
-        > 1.  Job ID
-        > 2.  Job result.
-
-    *   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A `ResultDecoder` subclass used to decode job results.
-
-    **Raises**
-
-    **RuntimeInvalidStateError** – If a callback function is already streaming results or if the job already finished.
-
-    **Return type**
-
-    `None`
   </Function>
 
   ### submit

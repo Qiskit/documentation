@@ -52,6 +52,25 @@ warnings.filterwarnings("ignore", message="Options {.*} have no effect in local 
 warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
 
+def get_package_versions():
+    requirements_file = Path("scripts/nb-tester/requirements.txt").read_text()
+    package_versions = "\n".join(
+        line for line in requirements_file.split('\n') if not line.startswith('#')
+    )
+    return package_versions.strip()
+
+VERSION_INFO = f"""\
+<details>
+<summary><b>Package versions</b></summary>
+
+The code on this page was developed using the following requirements.
+We recommend using these versions or newer.
+
+```
+{get_package_versions()}
+```
+</details>
+"""
 
 @dataclass
 class Config:
@@ -256,6 +275,8 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
+        if 'version-info' in cell.metadata.get('tags', []):
+            cell.source = VERSION_INFO
     nb, _ = clean_notebook(nb)
     return nb
 

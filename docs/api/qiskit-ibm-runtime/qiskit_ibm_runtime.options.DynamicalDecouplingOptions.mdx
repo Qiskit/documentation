@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
 
 # DynamicalDecouplingOptions
 
-<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.31/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L55" signature="DynamicalDecouplingOptions(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/options/dynamical_decoupling_options.py#L20-L63" signature="DynamicalDecouplingOptions(*args, **kwargs)" modifiers="class">
   Options for dynamical decoupling (DD).
 
   ## Attributes
@@ -57,6 +57,16 @@ python_api_name: qiskit_ibm_runtime.options.DynamicalDecouplingOptions
     *   **`"XY4"`:use the sequence**
 
         `tau/2 - (+X) - tau - (+Y) - tau (-X) - tau - (-Y) - tau/2`
+  </Attribute>
+
+  ### skip\_reset\_qubits
+
+  <Attribute id="qiskit_ibm_runtime.options.DynamicalDecouplingOptions.skip_reset_qubits" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+    Whether to insert DD on idle periods that immediately follow initialized/reset qubits.
+
+    Since qubits in the ground state are less susceptible to decoherence, it can be beneficial to let them be while they are known to be in this state.
+
+    Default: False.
   </Attribute>
 
   ## Methods
