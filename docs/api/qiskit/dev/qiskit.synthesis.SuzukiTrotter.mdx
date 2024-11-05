@@ -8,7 +8,7 @@ python_api_name: qiskit.synthesis.SuzukiTrotter
 
 # SuzukiTrotter
 
-<Class id="qiskit.synthesis.SuzukiTrotter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/suzuki_trotter.py#L30-L155" signature="qiskit.synthesis.SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, wrap=False)" modifiers="class">
+<Class id="qiskit.synthesis.SuzukiTrotter" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/suzuki_trotter.py#L33-L198" signature="qiskit.synthesis.SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, wrap=False)" modifiers="class">
   Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 
   The (higher order) Suzuki-Trotter product formula.
@@ -24,7 +24,7 @@ $$
   In this implementation, the operators are provided as sum terms of a Pauli operator. For example, in the second order Suzuki-Trotter decomposition we approximate
 
 $$
-e^{-it(XX + ZZ)} = e^{-it/2 ZZ}e^{-it XX}e^{-it/2 ZZ} + \mathcal{O}(t^3).
+e^{-it(XI + ZZ)} = e^{-it/2 XI}e^{-it ZZ}e^{-it/2 XI} + \mathcal{O}(t^3).
 $$
 
   **References**
@@ -66,10 +66,38 @@ $$
 
   ## Methods
 
+  ### expand
+
+  <Function id="qiskit.synthesis.SuzukiTrotter.expand" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/suzuki_trotter.py#L118-L164" signature="expand(evolution)">
+    Expand the Hamiltonian into a Suzuki-Trotter sequence of sparse gates.
+
+    For example, the Hamiltonian `H = IX + ZZ` for an evolution time `t` and 1 repetition for an order 2 formula would get decomposed into a list of 3-tuples containing `(pauli, indices, rz_rotation_angle)`, that is:
+
+    ```text
+    ("X", [0], t), ("ZZ", [0, 1], 2t), ("X", [0], 2)
+    ```
+
+    Note that the rotation angle contains a factor of 2, such that that evolution of a Pauli $P$ over time $t$, which is $e^{itP}$, is represented by `(P, indices, 2 * t)`.
+
+    For `N` repetitions, this sequence would be repeated `N` times and the coefficients divided by `N`.
+
+    **Parameters**
+
+    **evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to expand.
+
+    **Returns**
+
+    The Pauli network implementing the Trotter expansion.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")], ParameterValueType]]
+  </Function>
+
   ### synthesize
 
-  <Function id="qiskit.synthesis.SuzukiTrotter.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/suzuki_trotter.py#L115-L135" signature="synthesize(evolution)">
-    Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
+  <Function id="qiskit.synthesis.SuzukiTrotter.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/evolution/product_formula.py#L135-L157" signature="synthesize(evolution)">
+    Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate").
 
     **Parameters**
 
