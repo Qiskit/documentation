@@ -1,3 +1,43 @@
 # Operator backpropagation (OBP)
 
-Operator backpropagation (OBP) is a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements.
+Operator backpropagation (OBP) is a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. There are a number of ways in which operator backpropagation can be performed, and this package uses a method based on Clifford perturbation theory.
+
+As one propagates an operator further through a circuit, the size of the additional obervable needed for measurment grows exponentially. This results in both a classical and quantum resource overhead. However, for some circuits, the resulting distribution of additional Pauli observables is more concentrated than the worst-case exponential scaling. This implies that some terms in an observable which small coefficients can be truncated to reduce the quantum overhead. The error incurred by doing so can be controlled to find a suitable tradeoff between precision and efficiency.
+
+## Installation
+
+There are two ways to install the OBP package. Via PyPI and building from source. We also recommend installing these packages in a [virtual environment](https://docs.python.org/3.10/tutorial/venv.html) to ensure separation between package dependencies.
+
+### Install from PyPI
+
+The most straightforward way to install the `qiskit-addon-obp` package is via PyPI.
+
+```bash
+pip install qiskit-addon-obp
+```
+
+### Build from source
+
+Users who wish to contribute to this package or who want to install it manually may do so by first cloning the repository
+
+```bash
+git clone git@github.com:Qiskit/qiskit-addon-obp.git
+```
+
+and install the package via `pip`. The repository also contains example notebooks which can be run. And if you plan on developing in the repository, you may want to also install the `dev` dependencies.
+
+Adjust the options to suit your needs
+
+```bash
+pip install tox notebook -e '.[notebook-dependencies, dev]'
+```
+
+## Theoretical background
+
+When using the Estimator primitive, the output of a quantum workload is the estimation of one or more expectation values $\langle O \rangle$ with respect to some state prepared using a QPU. Mathematically this can be written as
+
+$$ \langle O \rangle_{U|\psi\rangle} = \langle\psi | U^\dagger O U |\psi \rangle $$
+
+where $\langle O \rangle$ is the expectation value to estimate, $U$ is the circuit to execute, and \psi is some initial state.
+
+To distribute this problem across both classical and quantum resources, we can split the circuit $U$ into two subcircuits, $U_C$ and $U_Q$. The subcircuit $U_C$ is selected
