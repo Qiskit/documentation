@@ -5,7 +5,7 @@ description: Overview of the Sample-based quantum diagonalization (SQD) workflow
 
 # Sample-based quantum diagonalization (SQD) overview
 
-Sample-based quantum diagonalization (SQD) is a technique for finding eigenvalues and eigenvectors of quantum operators, such as the Hamiltonian of a quantum system, using quantum and distributed classical computing together. This post-processing technique may be especially useful for users simulating chemical or other quantum systems.
+Sample-based quantum diagonalization (SQD) is a classical **post-processing** technique which acts on samples obtained from a quantum circuit after execution on a QPU. It is useful for finding eigenvalues and eigenvectors of quantum operators, such as the Hamiltonian of a quantum system, and uses quantum and distributed classical computing together. This post-processing technique may be especially useful for users simulating chemical or other quantum systems.
 
 Classical computing is used to process samples obtained from a quantum processor, and to project and diagonalize a target Hamiltonian in a subspace spanned by them. This allows SQD to be robust to samples corrupted by quantum noise and manage large Hamiltonians, such as chemical systems with millions of interacting terms, beyond the reach of exact diagonalization methods.
 
@@ -25,6 +25,11 @@ pip install qiskit-addon-sqd
 
 ### Build from source
 
+<details>
+<summary>
+Click here to read how to install this package manually
+
+</summary>
 If you wish to contribute to this package or want to install it manually, first clone the repository:
 
 ```bash
@@ -38,6 +43,8 @@ Adjust the options to suit your needs.
 ```bash
 pip install tox notebook -e '.[notebook-dependencies, dev]'
 ```
+</details>
+
 
 ## Theoretical background
 
