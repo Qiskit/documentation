@@ -77,6 +77,14 @@ export const ALWAYS_IGNORED_URLS = new Set([
 ]);
 
 // -----------------------------------------------------------------------------------
+// Always ignored URL prefixes - be careful using this
+// -----------------------------------------------------------------------------------
+
+export const ALWAYS_IGNORED_URL_PREFIXES: string[] = [
+  "/announcements/product-updates",
+];
+
+// -----------------------------------------------------------------------------------
 // Files to ignores
 // -----------------------------------------------------------------------------------
 
@@ -332,14 +340,7 @@ const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _legacyQiskitSDKIssues(),
 );
 
-const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {
-  "docs/api/qiskit-addon-obp/utils-metadata-obp-metadata.mdx": [
-    "utils-truncating#TruncationErrorBudget.p_norm",
-  ],
-  "docs/api/qiskit-addon-obp/utils-metadata-slice-metadata.mdx": [
-    "utils-truncating#TruncationErrorBudget.p_norm",
-  ],
-};
+const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
 
 export const FILES_TO_IGNORES: FilesToIgnores = mergeFilesToIgnores(
   FILES_TO_IGNORES__EXPECTED,
