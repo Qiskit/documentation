@@ -1,6 +1,6 @@
 ---
-title: LinearFunction
-description: API reference for qiskit.circuit.library.LinearFunction
+title: LinearFunction (dev version)
+description: API reference for qiskit.circuit.library.LinearFunction in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.LinearFunction
@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 # LinearFunction
 
-<Class id="qiskit.circuit.library.LinearFunction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L25-L312" signature="qiskit.circuit.library.LinearFunction(linear, validate_input=False)" modifiers="class">
+<Class id="qiskit.circuit.library.LinearFunction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L26-L318" signature="qiskit.circuit.library.LinearFunction(linear, validate_input=False)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   A linear reversible circuit on n qubits.
@@ -47,7 +47,7 @@ $$
 
   **Parameters**
 
-  *   **linear** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*LinearFunction*](#qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")  *|*[*PermutationGate*](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")  *|*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
+  *   **linear** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*]] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*LinearFunction*](#qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")  *|*[*PermutationGate*](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")  *|*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
   *   **validate\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
 
   **Raises**
@@ -183,7 +183,7 @@ $$
 
   ### extend\_with\_identity
 
-  <Function id="qiskit.circuit.library.LinearFunction.extend_with_identity" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L269-L287" signature="extend_with_identity(num_qubits, positions)">
+  <Function id="qiskit.circuit.library.LinearFunction.extend_with_identity" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L275-L293" signature="extend_with_identity(num_qubits, positions)">
     Extend linear function to a linear function over nq qubits, with identities on other subsystems.
 
     **Parameters**
@@ -202,13 +202,13 @@ $$
 
   ### function\_str
 
-  <Function id="qiskit.circuit.library.LinearFunction.function_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L295-L312" signature="function_str()">
+  <Function id="qiskit.circuit.library.LinearFunction.function_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L301-L318" signature="function_str()">
     Return string representation of the linear function viewed as a linear transformation.
   </Function>
 
   ### is\_permutation
 
-  <Function id="qiskit.circuit.library.LinearFunction.is_permutation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L248-L255" signature="is_permutation()">
+  <Function id="qiskit.circuit.library.LinearFunction.is_permutation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L254-L261" signature="is_permutation()">
     Returns whether this linear function is a permutation, that is whether every row and every column of the n x n matrix has exactly one 1.
 
     **Return type**
@@ -218,20 +218,24 @@ $$
 
   ### mat\_str
 
-  <Function id="qiskit.circuit.library.LinearFunction.mat_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L289-L293" signature="mat_str()">
+  <Function id="qiskit.circuit.library.LinearFunction.mat_str" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L295-L299" signature="mat_str()">
     Return string representation of the linear function viewed as a matrix with 0/1 entries.
   </Function>
 
   ### permutation\_pattern
 
-  <Function id="qiskit.circuit.library.LinearFunction.permutation_pattern" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L257-L267" signature="permutation_pattern()">
+  <Function id="qiskit.circuit.library.LinearFunction.permutation_pattern" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L263-L273" signature="permutation_pattern()">
     This method first checks if a linear function is a permutation and raises a qiskit.circuit.exceptions.CircuitError if not. In the case that this linear function is a permutation, returns the permutation pattern.
   </Function>
 
   ### synthesize
 
-  <Function id="qiskit.circuit.library.LinearFunction.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L226-L234" signature="synthesize()">
+  <Function id="qiskit.circuit.library.LinearFunction.synthesize" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L229-L240" signature="synthesize()">
     Synthesizes the linear function into a quantum circuit.
+
+    <Admonition title="Deprecated since version 1.3_pending" type="danger">
+      The method `qiskit.circuit.library.generalized_gates.linear_function.LinearFunction.synthesize()` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Call LinearFunction.definition instead, or compile the circuit.
+    </Admonition>
 
     **Returns**
 
@@ -244,7 +248,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.LinearFunction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L218-L220" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.LinearFunction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/linear_function.py#L219-L221" signature="validate_parameter(parameter)">
     Parameter validation
   </Function>
 </Class>
