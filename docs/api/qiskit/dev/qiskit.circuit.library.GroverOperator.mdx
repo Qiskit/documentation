@@ -1,6 +1,6 @@
 ---
-title: GroverOperator
-description: API reference for qiskit.circuit.library.GroverOperator
+title: GroverOperator (dev version)
+description: API reference for qiskit.circuit.library.GroverOperator in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.GroverOperator
@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 # GroverOperator
 
-<Class id="qiskit.circuit.library.GroverOperator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/grover_operator.py#L25-L285" signature="qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')" modifiers="class">
+<Class id="qiskit.circuit.library.GroverOperator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/grover_operator.py#L281-L553" signature="qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   The Grover operator.
@@ -136,6 +136,10 @@ $$
   «         └─────────────────┘└───────────────┘└────────────┘└───┘
   ```
 
+  <Admonition title="See also" type="note">
+    The [`grover_operator()`](circuit_library#qiskit.circuit.library.grover_operator "qiskit.circuit.library.grover_operator") implements the same functionality but keeping the [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate") abstract, such that the compiler may choose the optimal decomposition. We recommend using [`grover_operator()`](circuit_library#qiskit.circuit.library.grover_operator "qiskit.circuit.library.grover_operator") for performance reasons, which does not wrap the circuit into an opaque gate.
+  </Admonition>
+
   **References**
 
   **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
@@ -149,6 +153,10 @@ $$
   **\[3]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
 
   Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+
+  <Admonition title="Deprecated since version 1.3_pending" type="danger">
+    The class `qiskit.circuit.library.grover_operator.GroverOperator` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use qiskit.circuit.library.grover\_operator instead.
+  </Admonition>
 
   **Parameters**
 
@@ -218,7 +226,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.GroverOperator.instances" attributeValue="195" />
+  <Attribute id="qiskit.circuit.library.GroverOperator.instances" attributeValue="190" />
 
   ### layout
 
