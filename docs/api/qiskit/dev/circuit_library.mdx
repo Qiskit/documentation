@@ -85,7 +85,7 @@ print(gate.control(1).to_matrix())  # CX (controlled X) gate
 | [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate")(\*args\[, \_force\_mutable])                             | An echoed cross-resonance gate.                                     |
 | [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")(\*args\[, \_force\_mutable])                                   | Single-qubit Hadamard gate.                                         |
 | [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate")(\*args\[, \_force\_mutable])                                   | Identity gate.                                                      |
-| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])                               | MSGate has been deprecated.                                         |
+| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])                               | The Mølmer–Sørensen gate.                                           |
 | [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate")(theta\[, label, duration, unit])                   | Single-qubit rotation about the Z axis.                             |
 | [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate")(\*args\[, \_force\_mutable])                          | The simplified Toffoli gate, also referred to as Margolus gate.     |
 | [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate")(\*args\[, \_force\_mutable])                          | The simplified 3-controlled Toffoli gate.                           |
@@ -134,12 +134,12 @@ Operations are non-reversible changes in the quantum state of the circuit.
 These “gates” (many are [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") subclasses) allow to set the amount of qubits involved at instantiation time.
 
 ```python
-from qiskit.circuit.library import Diagonal
+from qiskit.circuit.library import DiagonalGate
 
-diagonal = Diagonal([1, 1])
+diagonal = DiagonalGate([1, 1j])
 print(diagonal.num_qubits)
 
-diagonal = Diagonal([1, 1, 1, 1])
+diagonal = DiagonalGate([1, 1, 1, -1])
 print(diagonal.num_qubits)
 ```
 
@@ -150,8 +150,8 @@ print(diagonal.num_qubits)
 
 |                                                                                                                                 |                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                           | Diagonal circuit.                                                                                        |
-| [`DiagonalGate`](qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate")(diag)                               | Gate implementing a diagonal transformation.                                                             |
+| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                           | Circuit implementing a diagonal transformation.                                                          |
+| [`DiagonalGate`](qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate")(diag)                               | A generic diagonal quantum gate.                                                                         |
 | [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)               | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.                  |
 | [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, ...)             | The MCMT implementation using the CCX V-chain.                                                           |
 | [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])         | An n\_qubit circuit that permutes qubits.                                                                |
@@ -548,6 +548,180 @@ $$
   **\[3]: Qiskit**
 
   [textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
+</Function>
+
+### grover\_operator
+
+<Function id="qiskit.circuit.library.grover_operator" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/grover_operator.py#L27-L278" signature="qiskit.circuit.library.grover_operator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, name='Q')">
+  Construct the Grover operator.
+
+  Grover’s search algorithm \[1, 2] consists of repeated applications of the so-called Grover operator used to amplify the amplitudes of the desired output states. This operator, $\mathcal{Q}$, consists of the phase oracle, $\mathcal{S}_f$, zero phase-shift or zero reflection, $\mathcal{S}_0$, and an input state preparation $\mathcal{A}$:
+
+$$
+\mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f
+
+
+$$
+
+  In the standard Grover search we have $\mathcal{A} = H^{\otimes n}$:
+
+$$
+\mathcal{Q} = H^{\otimes n} \mathcal{S}_0 H^{\otimes n} \mathcal{S}_f
+= D \mathcal{S_f}
+
+
+$$
+
+  The operation $D = H^{\otimes n} \mathcal{S}_0 H^{\otimes n}$ is also referred to as diffusion operator. In this formulation we can see that Grover’s operator consists of two steps: first, the phase oracle multiplies the good states by -1 (with $\mathcal{S}_f$) and then the whole state is reflected around the mean (with $D$).
+
+  This class allows setting a different state preparation, as in quantum amplitude amplification (a generalization of Grover’s algorithm), $\mathcal{A}$ might not be a layer of Hardamard gates \[3].
+
+  The action of the phase oracle $\mathcal{S}_f$ is defined as
+
+$$
+\mathcal{S}_f: |x\rangle \mapsto (-1)^{f(x)}|x\rangle
+
+
+$$
+
+  where $f(x) = 1$ if $x$ is a good state and 0 otherwise. To highlight the fact that this oracle flips the phase of the good states and does not flip the state of a result qubit, we call $\mathcal{S}_f$ a phase oracle.
+
+  Note that you can easily construct a phase oracle from a bitflip oracle by sandwiching the controlled X gate on the result qubit by a X and H gate. For instance
+
+  ```python
+  Bitflip oracle     Phaseflip oracle
+  q_0: ──■──         q_0: ────────────■────────────
+       ┌─┴─┐              ┌───┐┌───┐┌─┴─┐┌───┐┌───┐
+  out: ┤ X ├         out: ┤ X ├┤ H ├┤ X ├┤ H ├┤ X ├
+       └───┘              └───┘└───┘└───┘└───┘└───┘
+  ```
+
+  There is some flexibility in defining the oracle and $\mathcal{A}$ operator. Before the Grover operator is applied in Grover’s algorithm, the qubits are first prepared with one application of the $\mathcal{A}$ operator (or Hadamard gates in the standard formulation). Thus, we always have operation of the form $\mathcal{A} \mathcal{S}_f \mathcal{A}^\dagger$. Therefore it is possible to move bitflip logic into $\mathcal{A}$ and leaving the oracle only to do phaseflips via Z gates based on the bitflips. One possible use-case for this are oracles that do not uncompute the state qubits.
+
+  The zero reflection $\mathcal{S}_0$ is usually defined as
+
+$$
+\mathcal{S}_0 = 2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n
+
+
+$$
+
+  where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
+
+  **Examples**
+
+  We can construct a Grover operator just from the phase oracle:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import grover_operator
+
+  oracle = QuantumCircuit(2)
+  oracle.z(0)  # good state = first qubit is |1>
+  grover_op = grover_operator(oracle, insert_barriers=True)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-9.png](/images/api/qiskit/dev/circuit_library-9.png)
+
+  We can also modify the state preparation:
+
+  ```python
+  oracle = QuantumCircuit(1)
+  oracle.z(0)  # the qubit state |1> is the good state
+  state_preparation = QuantumCircuit(1)
+  state_preparation.ry(0.2, 0)  # non-uniform state preparation
+  grover_op = grover_operator(oracle, state_preparation)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-10\_00.png](/images/api/qiskit/dev/circuit_library-10_00.png)
+
+  ![../\_images/circuit\_library-10\_01.png](/images/api/qiskit/dev/circuit_library-10_01.png)
+
+  In addition, we can also mark which qubits the zero reflection should act on. This is useful in case that some qubits are just used as scratch space but should not affect the oracle:
+
+  ```python
+  oracle = QuantumCircuit(4)
+  oracle.z(3)
+  reflection_qubits = [0, 3]
+  state_preparation = QuantumCircuit(4)
+  state_preparation.cry(0.1, 0, 3)
+  state_preparation.ry(0.5, 3)
+  grover_op = grover_operator(oracle, state_preparation, reflection_qubits=reflection_qubits)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-11\_00.png](/images/api/qiskit/dev/circuit_library-11_00.png)
+
+  ![../\_images/circuit\_library-11\_01.png](/images/api/qiskit/dev/circuit_library-11_01.png)
+
+  ![../\_images/circuit\_library-11\_02.png](/images/api/qiskit/dev/circuit_library-11_02.png)
+
+  The oracle and the zero reflection can also be passed as [`qiskit.quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") objects:
+
+  ```python
+  from qiskit.quantum_info import Statevector, DensityMatrix, Operator
+
+  mark_state = Statevector.from_label("011")
+  reflection = 2 * DensityMatrix.from_label("000") - Operator.from_label("III")
+  grover_op = grover_operator(oracle=mark_state, zero_reflection=reflection)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-12\_00.png](/images/api/qiskit/dev/circuit_library-12_00.png)
+
+  ![../\_images/circuit\_library-12\_01.png](/images/api/qiskit/dev/circuit_library-12_01.png)
+
+  ![../\_images/circuit\_library-12\_02.png](/images/api/qiskit/dev/circuit_library-12_02.png)
+
+  ![../\_images/circuit\_library-12\_03.png](/images/api/qiskit/dev/circuit_library-12_03.png)
+
+  For a large number of qubits, the multi-controlled X gate used for the zero-reflection can be synthesized in different fashions. Depending on the number of available qubits, the compiler will choose a different implementation:
+
+  ```python
+  from qiskit import transpile, Qubit
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import grover_operator
+
+  oracle = QuantumCircuit(10)
+  oracle.z(oracle.qubits)
+  grover_op = grover_operator(oracle)
+
+  # without extra qubit space, the MCX synthesis is expensive
+  basis_gates = ["u", "cx"]
+  tqc = transpile(grover_op, basis_gates=basis_gates)
+  is_2q = lambda inst: len(inst.qubits) == 2
+  print("2q depth w/o scratch qubits:", tqc.depth(filter_function=is_2q))  # > 350
+
+  # add extra bits that can be used as scratch space
+  grover_op.add_bits([Qubit() for _ in range(num_qubits)])
+  tqc = transpile(grover_op, basis_gates=basis_gates)
+  print("2q depth w/ scratch qubits:", tqc.depth(filter_function=is_2q)) # < 100
+  ```
+
+  **Parameters**
+
+  *   **oracle** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
+  *   **state\_preparation** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
+  *   **zero\_reflection** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")  *|*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *| None*) – The reflection about the zero state, $\mathcal{S}_0$.
+  *   **reflection\_qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Qubits on which the zero reflection acts on.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether barriers should be inserted between the reflections and A.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+
+  **References**
+
+  **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
+
+  [arXiv:quant-ph/9605043](https://arxiv.org/abs/quant-ph/9605043).
+
+  **\[2]: I. Chuang & M. Nielsen, Quantum Computation and Quantum Information,**
+
+  Cambridge: Cambridge University Press, 2000. Chapter 6.1.2.
+
+  **\[3]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+
+  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
 </Function>
 
 ## N-local circuits
