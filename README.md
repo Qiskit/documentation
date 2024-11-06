@@ -309,7 +309,7 @@ npm run check
 
 There are two ways to deal with cSpell incorrectly complaining about a word, such as abbreviations.
 
-1. Ignore the word in the local markdown file by adding a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
+1. Ignore the word in the local markdown file by adding a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere (inside a markdown cell, in the source part). Note that in the text editor, each line is surrounded by quotes and ends with /n.  So it looks like this:  "{/* cspell:ignore hellllooooo, ayyyyy */}/n"
 
 ```
 {/* cspell:ignore hellllooooo, ayyyyy */}
