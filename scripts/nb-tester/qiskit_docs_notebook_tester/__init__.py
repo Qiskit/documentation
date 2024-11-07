@@ -44,7 +44,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 from qiskit.providers.fake_provider import GenericBackendV2
 
 def patched_least_busy(self, *args, **kwarg):
-  return GenericBackendV2(num_qubits=5, control_flow=True)
+  return GenericBackendV2(num_qubits=6, control_flow=True)
 
 QiskitRuntimeService.least_busy = patched_least_busy
 
