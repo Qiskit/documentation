@@ -132,7 +132,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   The minimum supported version of `qiskit` is now 0.45.0, and the minimum supported version of `qiskit-ibm-runtime` is now 0.12.2. CKT also now explicitly requires a version of `qiskit` less than 1.0, as there is no guarantee that the current version of CKT will work with Qiskit 1.0.
 
-*   Removed the `circuit_knitting.cutting.qpd.QPDBasis.from_gate` method, which has been deprecated since the 0.3 release. `QPDBasis.from_instruction()` should be used instead.
+*   Removed the `circuit_knitting.cutting.qpd.QPDBasis.from_gate` method, which has been deprecated since the 0.3 release. [`QPDBasis.from_instruction()`](qpd-qpd-basis#from_instruction "qiskit_addon_cutting.qpd.QPDBasis.from_instruction") should be used instead.
 
 *   Removed the `circuit_knitting_toolbox` import path. Users should now import from `circuit_knitting` instead.
 
@@ -144,7 +144,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 *   Removed the `circuit_knitting.cutting.qpd.qpdbasis_from_gate` function, which has been deprecated since the 0.3 release. [`qpdbasis_from_instruction()`](qpd#qpdbasis_from_instruction "qiskit_addon_cutting.qpd.qpdbasis_from_instruction") should be used instead.
 
-*   The [`generate_cutting_experiments()`](qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") function now performs some optimizations on the generated circuits before returning them to the user. In particular, it performs the [`RemoveResetInZeroState`](/api/qiskit/qiskit.transpiler.passes.RemoveResetInZeroState "(in Qiskit v1.2)"), [`RemoveFinalReset`](utils-transpiler-passes#removefinalreset "qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset"), and [`ConsolidateResets`](utils-transpiler-passes#consolidateresets "qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets") passes, so that circuits with cut wires and no re-used qubits are transformed into subexperiments that contain no `Reset`s. This allows such circuits to work on a greater variety of hardware backends.
+*   The [`generate_cutting_experiments()`](qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments") function now performs some optimizations on the generated circuits before returning them to the user. In particular, it performs the [`RemoveResetInZeroState`](/api/qiskit/qiskit.transpiler.passes.RemoveResetInZeroState "(in Qiskit v1.2)"), [`RemoveFinalReset`](utils-transpiler-passes-remove-final-reset "qiskit_addon_cutting.utils.transpiler_passes.RemoveFinalReset"), and [`ConsolidateResets`](utils-transpiler-passes-consolidate-resets "qiskit_addon_cutting.utils.transpiler_passes.ConsolidateResets") passes, so that circuits with cut wires and no re-used qubits are transformed into subexperiments that contain no `Reset`s. This allows such circuits to work on a greater variety of hardware backends.
 
 <span id="release-notes-0-6-0-bug-fixes" />
 
@@ -152,7 +152,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 ### Bug Fixes
 
-*   It is now possible to serialize [`SingleQubitQPDGate`](qpd#singlequbitqpdgate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s using [`qpy`](/api/qiskit/qpy#module-qiskit.qpy "(in Qiskit v1.2)"), but some other issues with serialization and deserialization still remain. See issue [#455](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/445) for details.
+*   It is now possible to serialize [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s using [`qpy`](/api/qiskit/qpy#module-qiskit.qpy "(in Qiskit v1.2)"), but some other issues with serialization and deserialization still remain. See issue [#455](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/445) for details.
 
 <span id="release-notes-0-6-0-other-notes" />
 
@@ -216,7 +216,7 @@ The primary goal of this release is to modify the circuit cutting workflow to en
 
 ### New Features
 
-*   Added a module, `circuit_knitting.cutting.cutting_experiments`, which is intended to hold functions used for generating the quantum experiments needed for circuit cutting. This module will initially hold one function, [`generate_cutting_experiments()`](qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments"), which can be used to generate quantum experiments, given an input circuit containing [`BaseQPDGate`](qpd#baseqpdgate "qiskit_addon_cutting.qpd.BaseQPDGate") instances, some observables, and a number of times the joint quasi-probability distribution for the cuts should be sampled.
+*   Added a module, `circuit_knitting.cutting.cutting_experiments`, which is intended to hold functions used for generating the quantum experiments needed for circuit cutting. This module will initially hold one function, [`generate_cutting_experiments()`](qiskit-addon-cutting#generate_cutting_experiments "qiskit_addon_cutting.generate_cutting_experiments"), which can be used to generate quantum experiments, given an input circuit containing [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances, some observables, and a number of times the joint quasi-probability distribution for the cuts should be sampled.
 
 <span id="release-notes-0-4-0-upgrade-notes" />
 
@@ -273,7 +273,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
     *   [`iSwapGate`](/api/qiskit/qiskit.circuit.library.iSwapGate "(in Qiskit v1.2)")
     *   [`DCXGate`](/api/qiskit/qiskit.circuit.library.DCXGate "(in Qiskit v1.2)")
 
-*   [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem") now works even if `partition_labels` is not explicitly provided. In this case, the labels are determined automatically from the connectivity of the input circuit. For the sake of determining connectivity, [`TwoQubitQPDGate`](qpd#twoqubitqpdgate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s are ignored, as these instructions are already marked for cutting. To support this workflow, this release also introduces a new method, `TwoQubitQPDGate.from_instruction()`, which allows one to create a [`TwoQubitQPDGate`](qpd#twoqubitqpdgate "qiskit_addon_cutting.qpd.TwoQubitQPDGate") that wraps a given instruction.
+*   [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem") now works even if `partition_labels` is not explicitly provided. In this case, the labels are determined automatically from the connectivity of the input circuit. For the sake of determining connectivity, [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate")s are ignored, as these instructions are already marked for cutting. To support this workflow, this release also introduces a new method, [`TwoQubitQPDGate.from_instruction()`](qpd-two-qubit-qpd-gate#from_instruction "qiskit_addon_cutting.qpd.TwoQubitQPDGate.from_instruction"), which allows one to create a [`TwoQubitQPDGate`](qpd-two-qubit-qpd-gate "qiskit_addon_cutting.qpd.TwoQubitQPDGate") that wraps a given instruction.
 
 *   Dynamic Definition code has been added to the `cutqc` module. See pull request [#285](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/pull/285) for details.
 
@@ -295,7 +295,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 *   The dependency on the `qiskit.opflow` module has been removed from entanglement forging. With this change, Qiskit Nature 0.6.0 is now required. However, Qiskit Nature 0.6.0 is incompatible with Quantum Serverless, so users that wish to use entanglement forging with Quantum Serverless must remain on version 0.2 of the Circuit Knitting Toolbox until [issue #108](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/108) is resolved.
 
-*   [`BaseQPDGate`](qpd#baseqpdgate "qiskit_addon_cutting.qpd.BaseQPDGate") instances in subcircuits returned from [`partition_circuit_qubits()`](qiskit-addon-cutting#partition_circuit_qubits "qiskit_addon_cutting.partition_circuit_qubits") and [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem") will now have labels prefixed with “cut”, rather than “qpd”.
+*   [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances in subcircuits returned from [`partition_circuit_qubits()`](qiskit-addon-cutting#partition_circuit_qubits "qiskit_addon_cutting.partition_circuit_qubits") and [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem") will now have labels prefixed with “cut”, rather than “qpd”.
 
 <span id="release-notes-0-3-0-deprecation-notes" />
 
@@ -307,7 +307,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 *   `generate_qpd_samples()` has been renamed to `generate_qpd_weights()`. The original name will be removed no sooner than version 0.4 of the Circuit Knitting Toolbox.
 
-*   `QPDBasis.from_gate()` has been renamed to `QPDBasis.from_instruction()`. The original name is deprecated and will be removed no sooner than CKT v0.4.0.
+*   `QPDBasis.from_gate()` has been renamed to [`QPDBasis.from_instruction()`](qpd-qpd-basis#from_instruction "qiskit_addon_cutting.qpd.QPDBasis.from_instruction"). The original name is deprecated and will be removed no sooner than CKT v0.4.0.
 
 *   The top-level name for imports has been renamed from `circuit_knitting_toolbox` to `circuit_knitting`. Furthermore, the following renames have occurred one level deeper:
 
