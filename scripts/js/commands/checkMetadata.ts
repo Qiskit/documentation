@@ -72,7 +72,6 @@ const main = async (): Promise<void> => {
   const mdErrors = [];
   for (const file of mdFiles) {
     if (ALLOWED_VIOLATIONS.has(file)) continue;
-    if (file.includes("api/qiskit-addon-")) continue;
 
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata, file)) {
