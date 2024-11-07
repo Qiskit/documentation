@@ -598,10 +598,10 @@ A circuit can contain manual classical storage locations, represented internally
 
 Various parametric [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances in Qiskit can be parametrized in ways that are designed to be resolved at compile time. These are characterized by the use of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") classes.
 
-|                                                                                                                     |                                                                         |
-| ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name, \*\[, uuid])                               | A compile-time symbolic parameter.                                      |
-| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(symbol\_map, expr) | ParameterExpression class to enable creating expressions of Parameters. |
+|                                                                                                                                 |                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name, \*\[, uuid])                                           | A compile-time symbolic parameter.                                      |
+| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(symbol\_map, expr, \*\[, ...]) | ParameterExpression class to enable creating expressions of Parameters. |
 
 The main way that this differs from the `expr.Var` variables used in real-time classical computation is that [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") is a symbolic representation of a mathematical expression. The semantics of the expression are those of regular mathematics over the continuous real numbers (and, in limited cases, over the complex numbers). In contrast, [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") is a handle to a variable stored on a classical computer, such as a floating-point value or an fixed-width integer, which are always discrete.
 
