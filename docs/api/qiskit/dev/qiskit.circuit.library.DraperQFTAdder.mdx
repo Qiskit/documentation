@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
 # DraperQFTAdder
 
-<Class id="qiskit.circuit.library.DraperQFTAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py#L24-L116" signature="qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')" modifiers="class">
+<Class id="qiskit.circuit.library.DraperQFTAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py#L24-L129" signature="qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')" modifiers="class">
   Bases: `Adder`
 
   A circuit that uses QFT to perform in-place addition on two qubit registers.
@@ -29,6 +29,18 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
   cout_0: ┤2     ├────────────────────────■────────■───────┤2      ├
           └──────┘                                         └───────┘
   ```
+
+  <Admonition title="See also" type="note">
+    The following generic gate objects perform additions, like this circuit class, but allow the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Adder=["qft_d00"]`.
+
+    **`ModularAdderGate`: A generic inplace adder, modulo $2^n$. This**
+
+    is functionally equivalent to `kind="fixed"`.
+
+    **`AdderGate`: A generic inplace adder. This**
+
+    is functionally equivalent to `kind="half"`.
+  </Admonition>
 
   **References:**
 
