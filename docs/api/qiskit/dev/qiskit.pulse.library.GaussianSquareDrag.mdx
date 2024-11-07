@@ -1,6 +1,6 @@
 ---
-title: GaussianSquareDrag
-description: API reference for qiskit.pulse.library.GaussianSquareDrag
+title: GaussianSquareDrag (dev version)
+description: API reference for qiskit.pulse.library.GaussianSquareDrag in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: function
 python_api_name: qiskit.pulse.library.GaussianSquareDrag
@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.GaussianSquareDrag
 
 # qiskit.pulse.library.GaussianSquareDrag
 
-<Function id="qiskit.pulse.library.GaussianSquareDrag" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/library/symbolic_pulses.py#L912-L1061" signature="qiskit.pulse.library.GaussianSquareDrag(duration, amp, sigma, beta, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)">
+<Function id="qiskit.pulse.library.GaussianSquareDrag" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/library/symbolic_pulses.py#L922-L1072" signature="qiskit.pulse.library.GaussianSquareDrag(duration, amp, sigma, beta, width=None, angle=0.0, risefall_sigma_ratio=None, name=None, limit_amplitude=None)">
   A square pulse with a Drag shaped rise and fall
 
   This pulse shape is similar to [`GaussianSquare`](qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare") but uses [`Drag`](qiskit.pulse.library.Drag "qiskit.pulse.library.Drag") for its rise and fall instead of [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian"). The addition of the DRAG component of the rise and fall is sometimes helpful in suppressing the spectral content of the pulse at frequencies near to, but slightly offset from, the fundamental frequency of the drive. When there is a spectator qubit close in frequency to the fundamental frequency, suppressing the drive at the spectator’s frequency can help avoid unwanted excitation of the spectator.
@@ -60,6 +60,10 @@ f'(x) &= \begin{cases}            \text{A} \times d'(x, \text{risefall}, \text{s
 $$
 
   where $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.library.symbolic_pulses.GaussianSquareDrag()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   **Parameters**
 

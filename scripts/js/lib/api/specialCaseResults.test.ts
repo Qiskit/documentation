@@ -12,41 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import {
-  specialCaseResults,
-  transformSpecialCaseUrl,
-  RUNTIME_INDEX_META,
-} from "./specialCaseResults.js";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
-
-test("specialCaseResults()", () => {
-  const results = [
-    { url: "/api/my-pkg/release_notes" },
-    { url: "/api/my-pkg/terra" },
-    {
-      url: "/api/my-pkg/ibm-runtime",
-      meta: {},
-    },
-    { url: "/api/my-pkg/other-file" },
-  ] as HtmlToMdResultWithUrl[];
-
-  specialCaseResults(results);
-  expect(results).toEqual([
-    {
-      url: "/api/my-pkg/release-notes",
-    },
-    {
-      url: "/api/my-pkg/index",
-    },
-    {
-      url: "/api/my-pkg/index",
-      meta: { hardcodedFrontmatter: RUNTIME_INDEX_META },
-    },
-    {
-      url: "/api/my-pkg/other-file",
-    },
-  ]);
-});
+import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 
 test("transformSpecialCaseUrl()", () => {
   const urls = ["release_notes", "release_notes#release-notes-0-2-1-bug-fixes"];

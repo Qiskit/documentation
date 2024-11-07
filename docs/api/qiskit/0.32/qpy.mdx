@@ -1,6 +1,6 @@
 ---
-title: qpy_serialization
-description: API reference for qiskit.circuit.qpy_serialization
+title: qpy_serialization (v0.32)
+description: API reference for qiskit.circuit.qpy_serialization in qiskit v0.32
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit.qpy_serialization
@@ -55,7 +55,7 @@ The QPY serialization format is a portable cross-platform binary serialization f
 
 A QPY file (or memory object) always starts with the following 7 byte UTF8 string: `QISKIT` which is immediately followed by the overall file header. The contents of the file header as defined as a C struct are:
 
-```python
+```c
 struct {
     uint8_t qpy_version;
     uint8_t qiskit_major_version;
@@ -77,7 +77,7 @@ There is a circuit payload for each circuit (where the total number is dictated 
 
 The contents of HEADER as defined as a C struct are:
 
-```python
+```c
 struct {
     uint16_t name_size;
     double global_phase;
@@ -100,7 +100,7 @@ The METADATA field is a UTF8 encoded JSON string. After reading the HEADER (whic
 
 The contents of REGISTERS is a number of REGISTER object. If num\_registers is > 0 then after reading METADATA you read that number of REGISTER structs defined as:
 
-```python
+```c
 struct {
     char type;
     _Bool standalone;
@@ -138,7 +138,7 @@ This section specifies custom definitions for any of the instructions in the cir
 
 CUSTOM\_DEFINITION\_HEADER contents are defined as:
 
-```python
+```c
 struct {
     uint64_t size;
 }
@@ -146,7 +146,7 @@ struct {
 
 If size is greater than 0 that means the circuit contains custom instruction(s). Each custom instruction is defined with a CUSTOM\_INSTRUCTION block defined as:
 
-```python
+```c
 struct {
     uint16_t name_size;
     char type;
@@ -163,7 +163,7 @@ If `custom_definition` is `True` that means that the immediately following `size
 
 The contents of INSTRUCTIONS is a list of INSTRUCTION metadata objects
 
-```python
+```c
 struct {
     uint16_t name_size;
     uint16_t label_size;
@@ -182,7 +182,7 @@ This is immediately followed by the INSTRUCTION\_ARG structs for the list of arg
 
 The contents of each INSTRUCTION\_ARG is:
 
-```python
+```c
 struct {
     char type;
     uint32_t index;
@@ -195,7 +195,7 @@ After all arguments for an instruction the parameters are specified with `num_pa
 
 The contents of each INSTRUCTION\_PARAM is:
 
-```python
+```c
 struct {
     char type;
     uint64_t size;
@@ -208,7 +208,7 @@ After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. 
 
 A PARAMETER represents a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER are defined as:
 
-```python
+```c
 struct {
     uint16_t name_size;
     char uuid[16];
@@ -227,7 +227,7 @@ A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterE
 
 The PARAMETER\_EXPR data starts with a header:
 
-```python
+```c
 struct {
     uint64_t map_elements;
     uint64_t expr_size;
@@ -236,7 +236,7 @@ struct {
 
 Immediately following the header is `expr_size` bytes of utf8 data containing the expression string, which is the sympy srepr of the expression for the parameter expression. Follwing that is a symbol map which contains `map_elements` elements with the format
 
-```python
+```c
 struct {
     char type;
     uint64_t size;
@@ -245,7 +245,7 @@ struct {
 
 Which is followed immediately by `PARAMETER` object (both the struct and utf8 name bytes) for the symbol map key. That is followed by `size` bytes for the data of the symbol. The data format is dependent on the value of `type`. If `type` is `p` then it represents a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and size will be 0, the value will just be the same as the key. If `type` is `f` then it represents a double precision float. If `type` is `c` it represents a double precision complex, which is represented by:
 
-```python
+```c
 struct {
     double real;
     double imag;

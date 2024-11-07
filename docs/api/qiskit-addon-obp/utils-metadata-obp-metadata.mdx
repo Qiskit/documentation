@@ -1,6 +1,6 @@
 ---
-title: OBPMetadata
-description: API reference for qiskit_addon_obp.utils.metadata.OBPMetadata
+title: OBPMetadata (latest version)
+description: API reference for qiskit_addon_obp.utils.metadata.OBPMetadata in the latest version of qiskit-addon-obp
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
@@ -58,7 +58,7 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     This method computes the accumulated error for a given observable index at a given “time” during the course of the backpropagation. In this context, “time” is to be understood as the discrete steps of already backpropagated slices.
 
-    The accumulated error is computed as the sum of the individual [`SliceMetadata.slice_errors`](utils-metadata-slice-metadata#slice_errors "qiskit_addon_obp.utils.metadata.SliceMetadata.slice_errors"). These in turn may be computed within a specified [`TruncationErrorBudget.p_norm`](utils-truncating#TruncationErrorBudget.p_norm "qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm"). Thus, the computed accumulated error is an upper bound to the real accumulated error as given by the [Minkowski inequality](https://en.wikipedia.org/wiki/Minkowski_inequality) (the generalization of the triangle inequality for Lp-norms other than `p=2`).
+    The accumulated error is computed as the sum of the individual [`SliceMetadata.slice_errors`](utils-metadata-slice-metadata#slice_errors "qiskit_addon_obp.utils.metadata.SliceMetadata.slice_errors"). These in turn may be computed within a specified [`TruncationErrorBudget.p_norm`](utils-truncating#p_norm "qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm"). Thus, the computed accumulated error is an upper bound to the real accumulated error as given by the [Minkowski inequality](https://en.wikipedia.org/wiki/Minkowski_inequality) (the generalization of the triangle inequality for Lp-norms other than `p=2`).
 
     <Admonition title="Note" type="note">
       Since a general Lp-norm (other than `p=2`) is *not* an inner product norm, it does *not* satisfy the [parallelogram law](https://en.wikipedia.org/wiki/Parallelogram_law). Hence, we must use the Minkowski inequality as the upper bound of the accumulated error.
@@ -103,7 +103,7 @@ python_api_name: qiskit_addon_obp.utils.metadata.OBPMetadata
 
     This method computes the left-over error budget for a given observable index at a given “time” during the course of the backpropagation. In this context, “time” is to be understood as the discrete steps of already backpropagated slices.
 
-    The left-over error budget is computed as the remainder of the total budget minus the sum of the individual [`SliceMetadata.slice_errors`](utils-metadata-slice-metadata#slice_errors "qiskit_addon_obp.utils.metadata.SliceMetadata.slice_errors"). These in turn may be computed within a specified [`TruncationErrorBudget.p_norm`](utils-truncating#TruncationErrorBudget.p_norm "qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm").
+    The left-over error budget is computed as the remainder of the total budget minus the sum of the individual [`SliceMetadata.slice_errors`](utils-metadata-slice-metadata#slice_errors "qiskit_addon_obp.utils.metadata.SliceMetadata.slice_errors"). These in turn may be computed within a specified [`TruncationErrorBudget.p_norm`](utils-truncating#p_norm "qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm").
 
     <Admonition title="Note" type="note">
       See also the explanations in [`accumulated_error()`](#qiskit_addon_obp.utils.metadata.OBPMetadata.accumulated_error "qiskit_addon_obp.utils.metadata.OBPMetadata.accumulated_error") for more details on how the individual slice errors are summed up to form an upper bound to the real error via the Minkowski inequality.

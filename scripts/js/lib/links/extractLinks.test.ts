@@ -29,6 +29,16 @@ test("parseAnchors()", () => {
 
   ## \`code-header\`
 
+  ## Header.with periods-and wild! punctuation?? and numbers 1234 8 (parentheses)
+
+  ## header_using\_underscores
+
+  ## UpperCase Should Be lowercase
+
+  ## repeated
+  ## repeated
+  ## repeated
+
   <Function id="mdx.component.testId" name="testId" signature="testId">
     Convert to dictionary.
 
@@ -36,15 +46,26 @@ test("parseAnchors()", () => {
 
     \`Dict\`
   </Function>
+
+  <Class>
+      ### Header inside a component
+  </Class>
   `);
   expect(result).toEqual(
     new Set([
       "#my-top-level-heading",
       "#header-2",
       "#code-header",
+      "#headerwith-periods-and-wild-punctuation-and-numbers-1234-8-parentheses",
+      "#header_using_underscores",
+      "#uppercase-should-be-lowercase",
       "#this-is-a-hardcoded-anchor",
       "#another_span",
       "#mdx.component.testId",
+      "#header-inside-a-component",
+      "#repeated",
+      "#repeated-1",
+      "#repeated-2",
     ]),
   );
 });

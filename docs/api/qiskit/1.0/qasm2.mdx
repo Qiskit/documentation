@@ -1,6 +1,6 @@
 ---
-title: qasm2
-description: API reference for qiskit.qasm2
+title: qasm2 (v1.0)
+description: API reference for qiskit.qasm2 in qiskit v1.0
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.qasm2
@@ -207,7 +207,7 @@ qc.measure([0, 1], [0, 1])
 print(qiskit.qasm2.dumps(qc))
 ```
 
-```python
+```text
 OPENQASM 2.0;
 include "qelib1.inc";
 qreg q[2];
@@ -262,7 +262,7 @@ circuit = qiskit.qasm2.loads(program)
 circuit.draw()
 ```
 
-```python
+```text
      ┌───┐     ┌─┐
 q_0: ┤ H ├──■──┤M├───
      └───┘┌─┴─┐└╥┘┌─┐
@@ -370,7 +370,7 @@ circuit = loads(program, custom_classical=customs)
 
 As a language, OpenQASM 2 does not have a way to specify the global phase of a complete program, nor of particular gate definitions. This means that parsers of the language may interpret particular gates with a different global phase than what you might expect. For example, the *de facto* standard library of OpenQASM 2 `qelib1.inc` contains definitions of `u1` and `rz` as follows:
 
-```python
+```text
 gate u1(lambda) q {
     U(0, 0, lambda) q;
 }
@@ -415,7 +415,7 @@ This will use Qiskit’s [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.
 Operator(qasm2.loads(program, custom_instructions=custom))
 ```
 
-```python
+```text
 Operator([[1.000000e+00+0.j, 0.000000e+00+0.j],
           [0.000000e+00+0.j, 6.123234e-17+1.j]],
          input_dims=(2,), output_dims=(2,))
