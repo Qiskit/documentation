@@ -1,0 +1,44 @@
+---
+title: Approximate quantum compiler with tensor networks
+description: Overview of the addon for approximate quantum compilation using tensor networks
+---
+
+# Approximate quantum compiler with tensor networks (AQC)
+
+The Approximate quantum compilation with tensor networks (AQC) Qiskit addon enables user to compile the *initial portion* of a circui into a nearly equivalent approximation of that circuit, but with much fewer layers. This is accomplished using tensor networks using the method described in [[1]](https://arxiv.org/abs/2301.08609). It's primary utility is in circuits which simulate time evolution, but may be applicable to any class of circuits which has access to:
+
+1. A good intermediate state which can be prepared using tensor-network simulation; and,
+2. A good circuit which prepares an approximation of this intermediate state, but with fewer layers when compiled to the target QPU.
+
+
+
+## Install the AQC-Tensor package
+
+There are two ways to install the AQC package: PyPI and building from source. It is recommended to install these packages in a [virtual environment](https://docs.python.org/3.10/tutorial/venv.html) to ensure separation between package dependencies.
+
+### Install from PyPI
+
+The most straightforward way to install the AQC package is via PyPI. In order to use the package, you must also install at least one tensor network backend. The following code snippet will install the addon, along with `quimb` (for tensor network support) and `jax` (for automatic differentiation).
+
+```bash
+pip install qiskit-addon-aqc-tensor[quimb-jax]
+```
+
+### Install from source
+
+<details>
+<summary>
+Click here to read how to install this package manually.
+</summary>
+
+If you wish to contribute to this package or want to install it manually, first clone the repository:
+
+```bash
+git clone git clone git@github.com:Qiskit/qiskit-addon-aqc-tensor.git
+```
+and install the package via `pip`. If you plan on running the tutorials found in the package repository, install the notebook dependencies as well. If you plan on developing in the repository, you may also want to install the `dev` dependencies.
+```bash
+pip install tox jupyterlab -e '.[notebook-dependencies,dev]'
+```
+</details>
+
