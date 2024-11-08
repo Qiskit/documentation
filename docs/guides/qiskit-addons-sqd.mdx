@@ -9,7 +9,7 @@ Sample-based quantum diagonalization (SQD) is a classical **post-processing** te
 
 Classical computing is used to process samples obtained from a quantum processor, and to project and diagonalize a target Hamiltonian in a subspace spanned by them. This allows SQD to be robust to samples corrupted by quantum noise and manage large Hamiltonians, such as chemical systems with millions of interacting terms, beyond the reach of exact diagonalization methods.
 
-The SQD tool can target Hamiltonians expressed as linear combinations of Pauli operators, or second-quantized fermionic operators. The input samples are obtained by quantum circuits defined by the user, which are believed to be good representations of eigenstates (for example, the ground state) of a target operator. The convergence rate of SQD as a function of the number of samples improves with the sparseness of the target eigenstate.
+The SQD tool can target Hamiltonians expressed as linear combinations of Pauli operators, or second-quantized Fermionic operators. The input samples are obtained by quantum circuits defined by the user, which are believed to be good representations of eigenstates (for example, the ground state) of a target operator. The convergence rate of SQD as a function of the number of samples improves with the sparseness of the target eigenstate.
 
 ## Install the SQD package
 
@@ -60,14 +60,13 @@ $$ \hat{H}_{S^{(k)}} = \hat{P}_{\mathcal{S}^{(k)}}\hat{H}\hat{P}_{\mathcal{S}^{(
 
 where $\hat{H}_{\mathcal{S}^{(k)}}$ is the Hamiltonian of a given subspace.
 
-The bulk of the SQD workflow lies here wherein each of these subspace Hamiltonians is diagonalized. The ground states obtained from each of these subspaces, $|\psi^{(k)}\rangle$, are used to obtain an estimate of a reference vector of occupancies $\mathbf{n}^{(K)}$ averaged over each of the $K$ subspaces and sent back to the configuration recovery step. A new set of subspaces are then obtained and diagonalized, and this procedure iterates in a self-consistent loop until the ground state energy estimate has converged.
+The bulk of the SQD workflow lies here wherein each of these subspace Hamiltonians is diagonalized. The ground states obtained from each of these subspaces, $|\psi^{(k)}\rangle$, are used to obtain an estimate of a reference vector of occupancies $\mathbf{n}^{(K)}$ averaged over each of the $K$ subspaces and sent back to the configuration recovery step. A new set of subspaces are then obtained and diagonalized, and this procedure iterates in a loop until a user specified criterion is met.
 
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Read about basis gates in the [Represent quantum computers](/guides/represent-quantum-computers#basis-gates) topic.
-    - Apply your knowledge of basis gates to a tutorial in [IBM Quantum Learning](https://learning.quantum.ibm.com/catalog/tutorials).
+    - Read through the [SQD getting started](/guides/qiskit-addons-sqd-get-started) page 
 </Admonition>
 
 ## References
