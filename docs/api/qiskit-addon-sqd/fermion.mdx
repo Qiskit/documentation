@@ -16,9 +16,51 @@ python_api_name: qiskit_addon_sqd.fermion
 
 Functions for the study of fermionic systems.
 
+### SCIState
+
+<Class id="qiskit_addon_sqd.fermion.SCIState" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L32-L69" signature="SCIState(amplitudes, ci_strs_a, ci_strs_b)" modifiers="class">
+  The amplitudes and determinants describing a quantum state.
+
+  **Parameters**
+
+  *   **amplitudes** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"))
+  *   **ci\_strs\_a** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"))
+  *   **ci\_strs\_b** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"))
+
+  #### amplitudes
+
+  <Attribute id="qiskit_addon_sqd.fermion.SCIState.amplitudes" attributeTypeHint="ndarray">
+    An $M \times N$ array where $M =$ len(`ci_strs_a`) and $N$ = len(`ci_strs_b`). `amplitudes[i][j]` is the amplitude of the determinant pair (`ci_strs_a[i]`, `ci_strs_b[j]`).
+  </Attribute>
+
+  #### ci\_strs\_a
+
+  <Attribute id="qiskit_addon_sqd.fermion.SCIState.ci_strs_a" attributeTypeHint="ndarray">
+    The alpha determinants.
+  </Attribute>
+
+  #### ci\_strs\_b
+
+  <Attribute id="qiskit_addon_sqd.fermion.SCIState.ci_strs_b" attributeTypeHint="ndarray">
+    The beta determinants.
+  </Attribute>
+
+  #### load
+
+  <Function id="qiskit_addon_sqd.fermion.SCIState.load" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L65-L69" signature="load(filename)" modifiers="classmethod">
+    Load an SCIState object from an .npz file.
+  </Function>
+
+  #### save
+
+  <Function id="qiskit_addon_sqd.fermion.SCIState.save" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L59-L63" signature="save(filename)">
+    Save the SCIState object to an .npz file.
+  </Function>
+</Class>
+
 ### bitstring\_matrix\_to\_ci\_strs
 
-<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L338-L382" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
+<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L389-L433" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
   Convert bitstrings (rows) in a `bitstring_matrix` into integer representations of determinants.
 
   This function separates each bitstring in `bitstring_matrix` in half, flips the bits and translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
@@ -39,7 +81,7 @@ Functions for the study of fermionic systems.
 
 ### enlarge\_batch\_from\_transitions
 
-<Function id="qiskit_addon_sqd.fermion.enlarge_batch_from_transitions" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L385-L408" signature="enlarge_batch_from_transitions(bitstring_matrix, transition_operators)">
+<Function id="qiskit_addon_sqd.fermion.enlarge_batch_from_transitions" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L436-L459" signature="enlarge_batch_from_transitions(bitstring_matrix, transition_operators)">
   Apply the set of transition operators to the configurations represented in `bitstring_matrix`.
 
   **Parameters**
@@ -58,7 +100,7 @@ Functions for the study of fermionic systems.
 
 ### flip\_orbital\_occupancies
 
-<Function id="qiskit_addon_sqd.fermion.flip_orbital_occupancies" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L262-L282" signature="flip_orbital_occupancies(occupancies)">
+<Function id="qiskit_addon_sqd.fermion.flip_orbital_occupancies" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L313-L333" signature="flip_orbital_occupancies(occupancies)">
   Flip an orbital occupancy array to match the indexing of a bitstring.
 
   This function reformats a 1D array of spin-orbital occupancies formatted like:
@@ -82,7 +124,7 @@ Functions for the study of fermionic systems.
 
 ### solve\_fermion
 
-<Function id="qiskit_addon_sqd.fermion.solve_fermion" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L31-L111" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, max_davidson=100, verbose=None)">
+<Function id="qiskit_addon_sqd.fermion.solve_fermion" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L72-L162" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, max_davidson=100, verbose=None)">
   Approximate the ground state given molecular integrals and a set of electronic configurations.
 
   **Parameters**
@@ -108,18 +150,18 @@ Functions for the study of fermionic systems.
   **Returns**
 
   *   Minimum energy from SCI calculation
-  *   SCI coefficients
-  *   Average orbital occupancy
+  *   The SCI ground state
+  *   Average occupancy of the alpha and beta orbitals, respectively
   *   Expectation value of spin-squared
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [*SCIState*](#qiskit_addon_sqd.fermion.SCIState "qiskit_addon_sqd.fermion.SCIState"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
 </Function>
 
 ### optimize\_orbitals
 
-<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L114-L224" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, max_davidson=100)">
+<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L165-L275" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, max_davidson=100)">
   Optimize orbitals to produce a minimal ground state.
 
   The process involves iterating over 3 steps:
@@ -171,7 +213,7 @@ Functions for the study of fermionic systems.
 
 ### rotate\_integrals
 
-<Function id="qiskit_addon_sqd.fermion.rotate_integrals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L227-L259" signature="rotate_integrals(hcore, eri, k_flat)">
+<Function id="qiskit_addon_sqd.fermion.rotate_integrals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L278-L310" signature="rotate_integrals(hcore, eri, k_flat)">
   Perform a similarity transform on the integrals.
 
   The transformation is described as:
@@ -204,13 +246,13 @@ $$
 
 ### bitstring\_matrix\_to\_sorted\_addresses
 
-<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L285-L335" signature="bitstring_matrix_to_sorted_addresses(bitstring_matrix, open_shell=False)">
+<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/fermion.py#L336-L386" signature="bitstring_matrix_to_sorted_addresses(bitstring_matrix, open_shell=False)">
   Convert a bitstring matrix into a sorted array of unique, unsigned integers.
 
   This function separates each bitstring in `bitstring_matrix` in half, flips the bits and translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
 
   <Admonition title="Deprecated since version 0.6.0" type="danger">
-    The function `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` is deprecated as of qiskit-addon-sqd 0.6.0. It will be removed no sooner than qiskit-addon-sqd 0.8.0. Use the bitstring\_matrix\_to\_ci\_strs function.
+    The function `qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()` is deprecated as of qiskit-addon-sqd 0.6.0. It will be removed no sooner than qiskit-addon-sqd 0.9.0. Use the bitstring\_matrix\_to\_ci\_strs function.
   </Admonition>
 
   **Parameters**
