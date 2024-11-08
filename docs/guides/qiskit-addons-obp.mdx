@@ -1,13 +1,13 @@
 ---
 title: Operator backpropagation (OBP)
-description: Learn about the operator backpropagation addon to reduce quantum resource overhead
+description: Learn about the operator backpropagation addon to reduce the depth of quantum circuits
 ---
 
 # Operator backpropagation (OBP)
 
 Operator backpropagation (OBP) is a technique to reduce circuit depth by trimming operations from its end at the cost of more operator measurements. There are a number of ways in which operator backpropagation can be performed, and this package uses a method based on Clifford perturbation theory.
 
-As one propagates an operator further through a circuit, the size of the additional observable needed for measurement grows exponentially. This results in both a classical and quantum resource overhead. However, for some circuits, the resulting distribution of additional Pauli observables is more concentrated than the worst-case exponential scaling. This implies that some terms in an observable which small coefficients can be truncated to reduce the quantum overhead. The error incurred by doing so can be controlled to find a suitable tradeoff between precision and efficiency.
+As one propagates an operator further through a circuit, the size of the observable to measure grows exponentially. This results in both a classical and quantum resource overhead. However, for some circuits, the resulting distribution of additional Pauli observables is more concentrated than the worst-case exponential scaling. This implies that some terms in an observable with small coefficients can be truncated to reduce the quantum overhead. The error incurred by doing so can be controlled to find a suitable tradeoff between precision and efficiency.
 
 ## Installation
 
