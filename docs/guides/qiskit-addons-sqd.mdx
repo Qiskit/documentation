@@ -54,7 +54,7 @@ The SQD workflow using self-consistent configuration recovery is explained in de
 
 Here $\bar{\mathcal{X}}$ is a set of noisy samples which contain, in the context of the Hamiltonian being simulated, physical and non-physical configurations (represented as bitstrings) obtained from execution on a QPU. The non-physical configurations are due to noise and can be processed by the `sqd.configuration_recovery.recover_configurations()` method to refine the samples into a new set $\mathcal{X}_R$. 
 
-From this set, batches of configurations $\mathcal{S}^{(1)}...\ \mathcal{S}^{(K)}$ are collected and represent samples obtained from different subspaces of the Hamiltonian. These subspace samples are built from a set of basis states, $\mathcal{S}^{(k)}=\{|\mathbf{x}^{(k)}\rangle\}$, and are projections of the system Hamiltonian, $\hat{H}$. This projection is defined as
+From this set, batches of configurations $\mathcal{S}^{(1)}...\ \mathcal{S}^{(K)}$ are collected according to a distribution proportional to the empirical frequencies of each $\mathbf{x}$ in $\mathcal{X}_R$. Each batch of sampled configurations spans a subspace, $\mathcal{S}^{(k)}: k = 1, ..., K$, in which the Hamiltonian is projected and diagonalized:
 
 $$ \hat{H}_{S^{(k)}} = \hat{P}_{\mathcal{S}^{(k)}}\hat{H}\hat{P}_{\mathcal{S}^{(k)}}\text{, with } \hat{P}_{\mathcal{S}^{(k)}} = \sum_{\mathbf{x} \in \mathcal{S}^{(k)}} |\mathbf{x}\rangle\langle\mathbf{x}|,$$
 
