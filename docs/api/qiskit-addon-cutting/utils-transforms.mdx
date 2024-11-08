@@ -67,6 +67,8 @@ Functions for manipulating quantum circuits.
 ### SeparatedCircuits
 
 <Class id="qiskit_addon_cutting.utils.transforms.SeparatedCircuits" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/transforms.py" signature="SeparatedCircuits(subcircuits, qubit_map)" modifiers="class">
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple "(in Python v3.13)")
+
   Named tuple for result of [`separate_circuit()`](#qiskit_addon_cutting.utils.transforms.separate_circuit "qiskit_addon_cutting.utils.transforms.separate_circuit").
 
   `subcircuits` is a dict of circuits, keyed by each partition label. `qubit_map` is a list with length equal to the number of qubits in the original circuit. Each element of that list is a 2-tuple which includes the partition label of that qubit, together with the index of that qubit in the corresponding subcircuit. If the original qubit is unused and has been removed from the separated circuits, then that tuple will be equal to `(None, None)`.
