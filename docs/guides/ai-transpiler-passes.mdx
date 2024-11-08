@@ -5,11 +5,10 @@ description: What are the AI transpiler passes and how to use them
 
 # AI transpiler passes
 ​
-The AI-powered transpiler passes are experimental passes that work as a drop-in replacement of "traditional" Qiskit passes for some transpiling tasks. They often produce better results than existing heuristic algorithms (such as lower depth and CNOT count), but are also much faster than optimization algorithms such as Boolean satisfiability solvers. The AI transpiler passes run on the cloud and are available to IBM Quantum&trade; Premium Plan users.
+The AI-powered transpiler passes are experimental passes that work as a drop-in replacement of "traditional" Qiskit passes for some transpiling tasks. They often produce better results than existing heuristic algorithms (such as lower depth and CNOT count), but are also much faster than optimization algorithms such as Boolean satisfiability solvers. The AI transpiler passes can run on your local environment or on the cloud using the Qiskit Transpiler Service if you are part of the IBM Quantum&trade; Premium Plan users.
 
 
 <Admonition type="note">
-    This is an experimental feature available only to the IBM Quantum Premium Plan.
     The AI-powered transpiler passes are in beta release status, subject to change.
     If you have feedback or want to contact the developer team, please use this [Qiskit Slack Workspace channel](https://qiskit.slack.com/archives/C06KF8YHUAU).
 </Admonition>
@@ -24,7 +23,17 @@ The following passes are currently available:
  - `AILinearFunctionSynthesis`: Linear function circuit synthesis
  - `AIPermutationSynthesis`: Permutation circuit synthesis
 
-To use the AI transpiler passes through our cloud services, install the `qiskit-ibm-transpiler` package (see instructions [here](./qiskit-transpiler-service#install-transpiler-service)).
+To use the AI transpiler passes, install the `qiskit-ibm-transpiler` package (see instructions [here](./qiskit-transpiler-service#install-transpiler-service)).
+
+## Running the AI transpiler passes on local or cloud
+
+If you want to use the AI-powered transpiler passes in your local environment for free you will need install the `qiskit-ibm-transpiler` with some extra dendencies as follows:
+
+```sh
+pip install qiskit-ibm-transpiler["ai-local-mode"]
+```
+
+Without these extra dependencies, the AI-powered transpiler passes will run on cloud through the Qiskit Transpiler Service (available only for IBM Quantum&trade; Premium Plan users). After installing the extra dependencies, the default mode to run the AI-powered transpiler passes will be using your local machine.
 
 ## AI routing pass
 
@@ -36,7 +45,7 @@ from qiskit.circuit.library import EfficientSU2
 from qiskit_ibm_transpiler.ai.routing import AIRouting
 
 ai_passmanager = PassManager([
-  AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize")
+  AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize", local_mode=True)
 ])
 
 circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
@@ -50,6 +59,7 @@ The `layout_mode` includes the following options:
 - `keep`: This respects the layout set by the previous transpiler passes (or uses the trivial layout if not set). It is typically only used when the circuit must be run on specific qubits of the device. It often produces worse results because it has less room for optimization.
 - `improve`: This uses the layout set by the previous transpiler passes as a starting point. It is useful when you have a good initial guess for the layout; for example, for circuits that are built in a way that approximately follows the device's coupling map. It is also useful if you want to try other specific layout passes combined with the `AIRouting` pass.
 - `optimize`: This is the default mode. It works best for general circuits where you might not have good layout guesses. This mode ignores previous layout selections.
+- `local_mode`: This flag determines where your AIRouting pass will run, if `False`, AIRouting will run on cloud through the Qiskit Transpiler Service. If `True` the package will try to run on your local environment with a fallback to the cloud mode if the required the extra dependencies needed to run the AI-powered transpiler passes on local are not found.
 
 ## AI circuit synthesis passes
 
@@ -64,9 +74,9 @@ from qiskit_ibm_transpiler.ai.collection import CollectLinearFunctions
 from qiskit.circuit.library import EfficientSU2
 
 ai_passmanager = PassManager([
-  AIRouting(backend_name="ibm_cairo", optimization_level=3, layout_mode="optimize"),  # Route circuit
+  AIRouting(backend_name="ibm_cairo", optimization_level=3, layout_mode="optimize", local_mode=True),  # Route circuit
   CollectLinearFunctions(),  # Collect Linear Function blocks
-  AILinearFunctionSynthesis(backend_name="ibm_cairo")  # Re-synthesize Linear Function blocks
+  AILinearFunctionSynthesis(backend_name="ibm_cairo", local_mode=True)  # Re-synthesize Linear Function blocks
 ])
 
 circuit = EfficientSU2(10, entanglement="full", reps=1).decompose()
@@ -101,6 +111,32 @@ The following custom collection passes for Cliffords, Linear Functions and Permu
 - *CollectPermutations*: Collects blocks of `SWAP` circuits as `Permutations`.
 
 These custom collection passes limit the sizes of the collected sub-circuits so they are supported by the AI-powered synthesis passes. Therefore, it is recommended to use them after the routing passes and before the synthesis passes for a better overall optimization.
+
+## Hybrid Qiskit-AI circuit transpilation
+
+The `qiskit-ibm-transpiler` offers the option to configure an hybrid pass manager combining best of Qiskit and the AI-powered transpiler passes, so you can run a whole transpilation on your own. This featres behaves similarly to the Qiskit `generate_pass_manager` method. A typical way to use this `generate_ai_pass_manager` is as follows:
+
+```python
+    from qiskit_ibm_transpiler.ai import generate_ai_pass_manager
+    from qiskit.circuit.library import EfficientSU2
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    backend = QiskitRuntimeService().backend("ibm_fez")
+    fez_coupling_map = backend.coupling_map
+
+    su2_circuit = EfficientSU2(101, entanglement=\"circular\", reps=1).decompose()
+
+    ai_transpiler_pass_manager = generate_ai_pass_manager(,
+        coupling_map=fez_coupling_map,
+        ai_optimization_level=3,
+        optimization_level=3,
+        ai_layout_mode=optimize,
+    )
+
+    ai_su2_transpiled_circuit = ai_transpiler_pass_manager.run(su2_circuit),
+```
+
+Here, the `coupling_map` determines which coupling map needs to be used for the transpilation. The `ai_optimization_level` refers to the level of optimization (1-3) to get using the AI components of the PassManager, while the `optimization_level` refers to the optimization to get from the Qiskit heuristic algorithms. The `ai_layout_mode` refers to how the AI routing part of the PassManager will handle the layout. Refer to the #AI-routing-pass section to review the different configuration options for this parameter.
 
 ## Limits
 
