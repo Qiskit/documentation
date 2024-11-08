@@ -30,25 +30,6 @@ export function transformSpecialCaseUrl(url: string): string {
 
 export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
   for (let result of results) {
-    if (
-      result.url.endsWith("/ibm-runtime") ||
-      (result.url.endsWith("/index") &&
-        result.url.includes("qiskit-ibm-runtime/"))
-    ) {
-      result.meta = {
-        hardcodedFrontmatter: RUNTIME_INDEX_META,
-      };
-    }
-
-    if (
-      result.url.endsWith("/index") &&
-      result.url.includes("qiskit-ibm-transpiler/")
-    ) {
-      result.meta = {
-        hardcodedFrontmatter: TRANSPILER_SERVICE_INDEX_META,
-      };
-    }
-
     result.url = transformSpecialCaseUrl(result.url);
   }
 }

@@ -1,6 +1,6 @@
 ---
-title: plugin
-description: API reference for qiskit.transpiler.passes.synthesis.plugin
+title: plugin (dev version)
+description: API reference for qiskit.transpiler.passes.synthesis.plugin in the dev version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler.passes.synthesis.plugin
@@ -341,4 +341,68 @@ The following table lists synthesis plugins available for an [`MCXGate`](qiskit.
 | [`MCMTSynthesisVChain`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain")()    | A V-chain based synthesis for `MCMTGate`. |
 | [`MCMTSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux")()       | A V-chain based synthesis for `MCMTGate`. |
 | [`MCMTSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault")() | A default decomposition for MCMT gates.   |
+
+##### Pauli Evolution Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                                                      | Description                                 | Targeted connectivity |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | --------------------- |
+| `"rustiq"`  | [`PauliEvolutionSynthesisRustiq`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq")    | use a diagonalizing Clifford per Pauli term | all-to-all            |
+| `"default"` | [`PauliEvolutionSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault") | use `rustiq_core` synthesis library         | all-to-all            |
+
+|                                                                                                                                                                                                     |                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`PauliEvolutionSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault")() | Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using the default synthesis algorithm. |
+| [`PauliEvolutionSynthesisRustiq`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq")()    | Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using Rustiq.                          |
+
+##### Modular Adder Synthesis
+
+| Plugin name     | Plugin class                                                                                                                                                                    | Number of clean ancillas   | Description          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------- |
+| `"ripple_cdkm"` | [`ModularAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04") | 1                          | a ripple-carry adder |
+| `"ripple_vbe"`  | [`ModularAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95") | $n-1$, for $n$-bit numbers | a ripple-carry adder |
+| `"qft"`         | [`ModularAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00") | 0                          | a QFT-based adder    |
+
+|                                                                                                                                                                                   |                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`ModularAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisC04")() | A ripple-carry adder, modulo $2^n$. |
+| [`ModularAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisD00")() | A QFT-based adder, modulo $2^n$.    |
+| [`ModularAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95")() | A ripple-carry adder, modulo $2^n$. |
+
+##### Half Adder Synthesis
+
+| Plugin name     | Plugin class                                                                                                                                                           | Number of clean ancillas   | Description          |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------- |
+| `"ripple_cdkm"` | [`HalfAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04") | 1                          | a ripple-carry adder |
+| `"ripple_vbe"`  | [`HalfAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95") | $n-1$, for $n$-bit numbers | a ripple-carry adder |
+| `"qft"`         | [`HalfAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00") | 0                          | a QFT-based adder    |
+
+|                                                                                                                                                                          |                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| [`HalfAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04")() | A ripple-carry adder with a carry-out bit.             |
+| [`HalfAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00")() | A QFT-based adder with a carry-in and a carry-out bit. |
+| [`HalfAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95")() | A ripple-carry adder with a carry-out bit.             |
+
+##### Full Adder Synthesis
+
+| Plugin name     | Plugin class                                                                                                                                                           | Number of clean ancillas   | Description          |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------- |
+| `"ripple_cdkm"` | [`FullAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04") | 0                          | a ripple-carry adder |
+| `"ripple_vbe"`  | [`FullAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95") | $n-1$, for $n$-bit numbers | a ripple-carry adder |
+
+|                                                                                                                                                                          |                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| [`FullAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisC04")() | A ripple-carry adder with a carry-in and a carry-out bit. |
+| [`FullAdderSynthesisV95`](qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95")() | A ripple-carry adder with a carry-in and a carry-out bit. |
+
+##### Multiplier Synthesis
+
+| Plugin name    | Plugin class                                                                                                                                                              | Number of clean ancillas          | Description                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | --------------------------------------------- |
+| `"cumulative"` | [`MultiplierSynthesisH18`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18") | depending on the `AdderGate` used | a cumulative adder based on controlled adders |
+| `"qft"`        | [`MultiplierSynthesisR17`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17") | 0                                 | a QFT-based multiplier                        |
+
+|                                                                                                                                                                             |                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`MultiplierSynthesisH18`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18")() | A cumulative multiplier based on controlled adders. |
+| [`MultiplierSynthesisR17`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17")() | A QFT-based multiplier.                             |
 

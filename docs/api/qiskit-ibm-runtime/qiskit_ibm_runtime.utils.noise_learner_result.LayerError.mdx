@@ -1,6 +1,6 @@
 ---
-title: LayerError
-description: API reference for qiskit_ibm_runtime.utils.noise_learner_result.LayerError
+title: LayerError (latest version)
+description: API reference for qiskit_ibm_runtime.utils.noise_learner_result.LayerError in the latest version of qiskit-ibm-runtime
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
 
 # LayerError
 
-<Class id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/utils/noise_learner_result.py#L136-L309" signature="LayerError(circuit, qubits, error=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/utils/noise_learner_result.py#L136-L375" signature="LayerError(circuit, qubits, error=None)" modifiers="class">
   The error channel (in Pauli-Lindblad format) of a single layer of instructions.
 
   **Parameters**
@@ -87,7 +87,7 @@ python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
 
   ### draw\_map
 
-  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_map" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/utils/noise_learner_result.py#L221-L301" signature="draw_map(embedding, colorscale='Bluered', color_no_data='lightgray', color_out_of_scale='lightgreen', num_edge_segments=16, edge_width=4, height=500, highest_rate=None, background_color='white', radius=0.25, width=800)">
+  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_map" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/utils/noise_learner_result.py#L221-L301" signature="draw_map(embedding, colorscale='Bluered', color_no_data='lightgray', color_out_of_scale='lightgreen', num_edge_segments=16, edge_width=4, height=500, highest_rate=None, background_color='white', radius=0.25, width=800)">
     Draw a map view of a this layer error.
 
     **Parameters**
@@ -127,6 +127,37 @@ python_api_name: qiskit_ibm_runtime.utils.noise_learner_result.LayerError
         \# Draw the layer error on embedding1 layer\_error.draw\_map(embedding1)
 
         \# Draw the layer error on embedding2 layer\_error.draw\_map(embedding2)
+
+    **Return type**
+
+    `Figure`
+  </Function>
+
+  ### draw\_swarm
+
+  <Function id="qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_swarm" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/utils/noise_learner_result.py#L303-L367" signature="draw_swarm(num_bodies=None, max_rate=None, min_rate=None, connected=None, colors=None, num_bins=None, opacities=0.4, names=None, x_coo=None, marker_size=None, height=500, width=800)">
+    Draw a swarm plot of the rates in this layer error.
+
+    This function plots the rates along a vertical axes, offsetting the rates along the `x` axis so that they do not overlap with each other.
+
+    <Admonition title="Note" type="note">
+      To draw multiple layer errors at once, consider calling `draw_layer_errors_swarm()` directly.
+    </Admonition>
+
+    **Parameters**
+
+    *   **num\_bodies** (`Optional`\[`int`]) – The weight of the generators to include in the plot, or `None` if all the generators should be included.
+    *   **max\_rate** (`Optional`\[`float`]) – The largest rate to include in the plot, or `None` if no upper limit should be set.
+    *   **min\_rate** (`Optional`\[`float`]) – The smallest rate to include in the plot, or `None` if no lower limit should be set.
+    *   **connected** (`Union`\[`list`\[[`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)")], `list`\[`str`], `None`]) – A list of generators whose markers are to be connected by lines.
+    *   **colors** (`Optional`\[`list`\[`str`]]) – A list of colors for the markers in the plot, or `None` if these colors are to be chosen automatically.
+    *   **num\_bins** (`Optional`\[`int`]) – The number of bins to place the rates into when calculating the `x`-axis offsets.
+    *   **opacities** (`Union`\[`float`, `list`\[`float`]]) – A list of opacities for the markers.
+    *   **names** (`Optional`\[`list`\[`str`]]) – The names of the various layers as displayed in the legend. If `None`, default names are assigned based on the layers’ position inside the `layer_errors` list.
+    *   **x\_coo** (`Optional`\[`list`\[`float`]]) – The `x`-axis coordinates of the vertical axes that the markers are drawn around, or `None` if these axes should be placed at regular intervals.
+    *   **marker\_size** (`Optional`\[`float`]) – The size of the marker in the plot.
+    *   **height** (`int`) – The height of the returned figure.
+    *   **width** (`int`) – The width of the returned figure.
 
     **Return type**
 

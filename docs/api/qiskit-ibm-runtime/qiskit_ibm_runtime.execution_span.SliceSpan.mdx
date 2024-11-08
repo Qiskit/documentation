@@ -1,6 +1,6 @@
 ---
-title: SliceSpan
-description: API reference for qiskit_ibm_runtime.execution_span.SliceSpan
+title: SliceSpan (latest version)
+description: API reference for qiskit_ibm_runtime.execution_span.SliceSpan in the latest version of qiskit-ibm-runtime
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
 
 # SliceSpan
 
-<Class id="qiskit_ibm_runtime.execution_span.SliceSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/slice_span.py#L27-L74" signature="SliceSpan(start, stop, data_slices)" modifiers="class">
+<Class id="qiskit_ibm_runtime.execution_span.SliceSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/slice_span.py#L27-L74" signature="SliceSpan(start, stop, data_slices)" modifiers="class">
   An [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan") for data stored in a sliceable format.
 
   This type of execution span references pub result data by assuming that it is a sliceable portion of the (row major) flattened data. Therefore, for each pub dependent on this span, the constructor accepts a single `slice` object, along with the corresponding shape of the data to be sliced.
@@ -71,7 +71,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
 
   ### contains\_pub
 
-  <Function id="qiskit_ibm_runtime.execution_span.SliceSpan.contains_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/execution_span.py#L112-L122" signature="contains_pub(pub_idx)">
+  <Function id="qiskit_ibm_runtime.execution_span.SliceSpan.contains_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/execution_span.py#L112-L122" signature="contains_pub(pub_idx)">
     Return whether the pub with the given index has data with dependence on this span.
 
     **Parameters**
@@ -89,7 +89,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
 
   ### filter\_by\_pub
 
-  <Function id="qiskit_ibm_runtime.execution_span.SliceSpan.filter_by_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/slice_span.py#L71-L74" signature="filter_by_pub(pub_idx)">
+  <Function id="qiskit_ibm_runtime.execution_span.SliceSpan.filter_by_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/slice_span.py#L71-L74" signature="filter_by_pub(pub_idx)">
     Return a new span whose slices are filtered to the provided pub indices.
 
     For example, if this span contains slice information for pubs with indices 1, 3, 4 and `[1, 4]` is provided, then the span returned by this method will contain slice information for only those two indices, but be identical otherwise.
@@ -109,7 +109,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
 
   ### mask
 
-  <Function id="qiskit_ibm_runtime.execution_span.SliceSpan.mask" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/slice_span.py#L65-L69" signature="mask(pub_idx)">
+  <Function id="qiskit_ibm_runtime.execution_span.SliceSpan.mask" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/slice_span.py#L65-L69" signature="mask(pub_idx)">
     Return an array-valued mask specifying which parts of a pub result depend on this span.
 
     **Parameters**

@@ -1,6 +1,6 @@
 ---
-title: DoubleSliceSpan
-description: API reference for qiskit_ibm_runtime.execution_span.DoubleSliceSpan
+title: DoubleSliceSpan (latest version)
+description: API reference for qiskit_ibm_runtime.execution_span.DoubleSliceSpan in the latest version of qiskit-ibm-runtime
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
 # DoubleSliceSpan
 
-<Class id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/double_slice_span.py#L27-L79" signature="DoubleSliceSpan(start, stop, data_slices)" modifiers="class">
+<Class id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/double_slice_span.py#L27-L79" signature="DoubleSliceSpan(start, stop, data_slices)" modifiers="class">
   An [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan") for data stored in a sliceable format.
 
   This type of execution span references pub result data by assuming that it is a sliceable portion of the data where the shots are the outermost slice and the rest of the data is flattened. Therefore, for each pub dependent on this span, the constructor accepts two `slice` objects, along with the corresponding shape of the data to be sliced; in contrast to [`SliceSpan`](qiskit_ibm_runtime.execution_span.SliceSpan "qiskit_ibm_runtime.execution_span.SliceSpan"), this class does not assume that *all* shots for a particular set of parameter values are contiguous in the array of data.
@@ -17,7 +17,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
   *   **start** (`datetime`) – The start time of the span, in UTC.
   *   **stop** (`datetime`) – The stop time of the span, in UTC.
-  *   **data\_slices** (`dict`\[`int`, `tuple`\[`Tuple`\[`int`, `...`], `slice`, `slice`]]) – A map from pub indices to `(shape_tuple, slice, slice)`.
+  *   **data\_slices** (`dict`\[`int`, `tuple`\[`Tuple`\[`int`, `...`], `slice`, `slice`]]) – A map from pub indices to `(shape_tuple, flat_shape_slice, shots_slice)`.
 
   ## Attributes
 
@@ -71,7 +71,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
   ### contains\_pub
 
-  <Function id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.contains_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/execution_span.py#L112-L122" signature="contains_pub(pub_idx)">
+  <Function id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.contains_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/execution_span.py#L112-L122" signature="contains_pub(pub_idx)">
     Return whether the pub with the given index has data with dependence on this span.
 
     **Parameters**
@@ -89,7 +89,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
   ### filter\_by\_pub
 
-  <Function id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.filter_by_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/double_slice_span.py#L76-L79" signature="filter_by_pub(pub_idx)">
+  <Function id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.filter_by_pub" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/double_slice_span.py#L76-L79" signature="filter_by_pub(pub_idx)">
     Return a new span whose slices are filtered to the provided pub indices.
 
     For example, if this span contains slice information for pubs with indices 1, 3, 4 and `[1, 4]` is provided, then the span returned by this method will contain slice information for only those two indices, but be identical otherwise.
@@ -109,7 +109,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
   ### mask
 
-  <Function id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.mask" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.32/qiskit_ibm_runtime/execution_span/double_slice_span.py#L70-L74" signature="mask(pub_idx)">
+  <Function id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.mask" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/double_slice_span.py#L70-L74" signature="mask(pub_idx)">
     Return an array-valued mask specifying which parts of a pub result depend on this span.
 
     **Parameters**

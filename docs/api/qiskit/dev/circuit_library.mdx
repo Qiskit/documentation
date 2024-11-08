@@ -1,6 +1,6 @@
 ---
-title: library
-description: API reference for qiskit.circuit.library
+title: library (dev version)
+description: API reference for qiskit.circuit.library in the dev version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit.library
@@ -32,7 +32,30 @@ circuit.draw('mpl')
 
 ![../\_images/circuit\_library-1.png](/images/api/qiskit/dev/circuit_library-1.png)
 
-The library is organized in several sections.
+The library is organized in several sections. The function [`get_standard_gate_name_mapping()`](#qiskit.circuit.library.get_standard_gate_name_mapping "qiskit.circuit.library.get_standard_gate_name_mapping") allows you to see the available standard gates and operations.
+
+### get\_standard\_gate\_name\_mapping
+
+<Function id="qiskit.circuit.library.get_standard_gate_name_mapping" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/__init__.py#L49-L142" signature="qiskit.circuit.library.get_standard_gate_name_mapping()">
+  Return a dictionary mapping the name of standard gates and instructions to an object for that name.
+
+  **Examples**
+
+  ```python
+  from qiskit.circuit.library import get_standard_gate_name_mapping
+
+  gate_name_map = get_standard_gate_name_mapping()
+  cx_object = gate_name_map["cx"]
+
+  print(cx_object)
+  print(type(cx_object))
+  ```
+
+  ```text
+  Instruction(name='cx', num_qubits=2, num_clbits=0, params=[])
+  _SingletonCXGate
+  ```
+</Function>
 
 ## Standard gates
 
@@ -85,7 +108,7 @@ print(gate.control(1).to_matrix())  # CX (controlled X) gate
 | [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate")(\*args\[, \_force\_mutable])                             | An echoed cross-resonance gate.                                     |
 | [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")(\*args\[, \_force\_mutable])                                   | Single-qubit Hadamard gate.                                         |
 | [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate")(\*args\[, \_force\_mutable])                                   | Identity gate.                                                      |
-| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])                               | MSGate has been deprecated.                                         |
+| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])                               | The Mølmer–Sørensen gate.                                           |
 | [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate")(theta\[, label, duration, unit])                   | Single-qubit rotation about the Z axis.                             |
 | [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate")(\*args\[, \_force\_mutable])                          | The simplified Toffoli gate, also referred to as Margolus gate.     |
 | [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate")(\*args\[, \_force\_mutable])                          | The simplified 3-controlled Toffoli gate.                           |
@@ -134,12 +157,12 @@ Operations are non-reversible changes in the quantum state of the circuit.
 These “gates” (many are [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") subclasses) allow to set the amount of qubits involved at instantiation time.
 
 ```python
-from qiskit.circuit.library import Diagonal
+from qiskit.circuit.library import DiagonalGate
 
-diagonal = Diagonal([1, 1])
+diagonal = DiagonalGate([1, 1j])
 print(diagonal.num_qubits)
 
-diagonal = Diagonal([1, 1, 1, 1])
+diagonal = DiagonalGate([1, 1, 1, -1])
 print(diagonal.num_qubits)
 ```
 
@@ -150,8 +173,8 @@ print(diagonal.num_qubits)
 
 |                                                                                                                                 |                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                           | Diagonal circuit.                                                                                        |
-| [`DiagonalGate`](qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate")(diag)                               | Gate implementing a diagonal transformation.                                                             |
+| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                           | Circuit implementing a diagonal transformation.                                                          |
+| [`DiagonalGate`](qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate")(diag)                               | A generic diagonal quantum gate.                                                                         |
 | [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)               | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.                  |
 | [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, ...)             | The MCMT implementation using the CCX V-chain.                                                           |
 | [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])         | An n\_qubit circuit that permutes qubits.                                                                |
@@ -195,7 +218,7 @@ These are [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.Quant
 
 ### random\_bitwise\_xor
 
-<Function id="qiskit.circuit.library.random_bitwise_xor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/boolean_logic/quantum_xor.py#L154-L165" signature="qiskit.circuit.library.random_bitwise_xor(num_qubits, seed)">
+<Function id="qiskit.circuit.library.random_bitwise_xor" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/boolean_logic/quantum_xor.py#L154-L165" signature="qiskit.circuit.library.random_bitwise_xor(num_qubits, seed)">
   Create a random BitwiseXorGate.
 
   **Parameters**
@@ -277,85 +300,39 @@ These [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCi
 |                                                                                                                                              |                                                                          |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | [`FourierChecking`](qiskit.circuit.library.FourierChecking "qiskit.circuit.library.FourierChecking")(f, g)                                   | Fourier checking circuit.                                                |
+| [`fourier_checking`](qiskit.circuit.library.fourier_checking "qiskit.circuit.library.fourier_checking")(f, g)                                | Fourier checking circuit.                                                |
 | [`GraphState`](qiskit.circuit.library.GraphState "qiskit.circuit.library.GraphState")(adjacency\_matrix)                                     | Circuit to prepare a graph state.                                        |
+| [`GraphStateGate`](qiskit.circuit.library.GraphStateGate "qiskit.circuit.library.GraphStateGate")(adjacency\_matrix)                         | A gate representing a graph state.                                       |
 | [`HiddenLinearFunction`](qiskit.circuit.library.HiddenLinearFunction "qiskit.circuit.library.HiddenLinearFunction")(adjacency\_matrix)       | Circuit to solve the hidden linear function problem.                     |
-| [`IQP`](qiskit.circuit.library.IQP "qiskit.circuit.library.IQP")(interactions)                                                               | Instantaneous quantum polynomial (IQP) circuit.                          |
+| [`hidden_linear_function`](qiskit.circuit.library.hidden_linear_function "qiskit.circuit.library.hidden_linear_function")(adjacency\_matrix) | Circuit to solve the hidden linear function problem.                     |
+| [`IQP`](qiskit.circuit.library.IQP#qiskit.circuit.library.IQP "qiskit.circuit.library.IQP")(interactions)                                    | Instantaneous quantum polynomial (IQP) circuit.                          |
+| [`iqp`](qiskit.circuit.library.iqp "qiskit.circuit.library.iqp")(interactions)                                                               | Instantaneous quantum polynomial time (IQP) circuit.                     |
+| [`random_iqp`](qiskit.circuit.library.random_iqp "qiskit.circuit.library.random_iqp")(num\_qubits\[, seed])                                  | A random instantaneous quantum polynomial time (IQP) circuit.            |
 | [`QuantumVolume`](qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume")(num\_qubits\[, depth, seed, ...])             | A quantum volume model circuit.                                          |
 | [`quantum_volume`](qiskit.circuit.library.quantum_volume "qiskit.circuit.library.quantum_volume")(num\_qubits\[, depth, seed])               | A quantum volume model circuit.                                          |
 | [`PhaseEstimation`](qiskit.circuit.library.PhaseEstimation "qiskit.circuit.library.PhaseEstimation")(num\_evaluation\_qubits, unitary)       | Phase Estimation circuit.                                                |
+| [`phase_estimation`](qiskit.circuit.library.phase_estimation "qiskit.circuit.library.phase_estimation")(num\_evaluation\_qubits, unitary)    | Phase Estimation circuit.                                                |
 | [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator")(oracle\[, state\_preparation, ...])        | The Grover operator.                                                     |
+| [`grover_operator`](qiskit.circuit.library.grover_operator "qiskit.circuit.library.grover_operator")(oracle\[, state\_preparation, ...])     | Construct the Grover operator.                                           |
 | [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")(expression\[, synthesizer, var\_order])             | Phase Oracle.                                                            |
 | [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")(operator\[, time, label, ...]) | Time-evolution of an operator consisting of Paulis.                      |
 | [`HamiltonianGate`](qiskit.circuit.library.HamiltonianGate "qiskit.circuit.library.HamiltonianGate")(data, time\[, label])                   | Class for representing evolution by a Hamiltonian operator as a gate.    |
 | [`UnitaryOverlap`](qiskit.circuit.library.UnitaryOverlap "qiskit.circuit.library.UnitaryOverlap")(unitary1, unitary2\[, ...])                | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
-
-### iqp
-
-<Function id="qiskit.circuit.library.iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L84-L143" signature="qiskit.circuit.library.iqp(interactions)">
-  Instantaneous quantum polynomial time (IQP) circuit.
-
-  The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
-
-  The circuit is parameterized by an $n \times n$ interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
-
-  **Reference Circuit:**
-
-  ![../\_images/circuit\_library-2.png](/images/api/qiskit/dev/circuit_library-2.png)
-
-  **Expanded Circuit:**
-
-  > ![../\_images/circuit\_library-3.png](/images/api/qiskit/dev/circuit_library-3.png)
-
-  **References:**
-
-  \[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
-
-  **Parameters**
-
-  **interactions** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – The interactions as symmetric square matrix. If `None`, then the `num_qubits` argument must be set and a random IQP circuit will be generated.
-
-  **Returns**
-
-  An IQP circuit.
-
-  **Return type**
-
-  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
-</Function>
-
-### random\_iqp
-
-<Function id="qiskit.circuit.library.random_iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L146-L175" signature="qiskit.circuit.library.random_iqp(num_qubits, seed=None)">
-  A random instantaneous quantum polynomial time (IQP) circuit.
-
-  See [`iqp()`](#qiskit.circuit.library.iqp "qiskit.circuit.library.iqp") for more details on the IQP circuit.
-
-  Example:
-
-  ```python
-  from qiskit.circuit.library import random_iqp
-
-  circuit = random_iqp(3)
-  circuit.draw("mpl")
-  ```
-
-  ![../\_images/circuit\_library-4.png](/images/api/qiskit/dev/circuit_library-4.png)
-
-  **Parameters**
-
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits in the circuit.
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for the random number generator, in case the interactions matrix is randomly generated.
-
-  **Returns**
-
-  An IQP circuit.
-
-  **Return type**
-
-  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-</Function>
+| [`unitary_overlap`](qiskit.circuit.library.unitary_overlap "qiskit.circuit.library.unitary_overlap")(unitary1, unitary2\[, ...])             | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
 
 ## N-local circuits
+
+The following functions return a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to use as ansatz in a broad set of variational quantum algorithms:
+
+|                                                                                                                                                                |                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`n_local`](qiskit.circuit.library.n_local "qiskit.circuit.library.n_local")(num\_qubits, rotation\_blocks, ...\[, ...])                                       | Construct an n-local variational circuit.                 |
+| [`efficient_su2`](qiskit.circuit.library.efficient_su2 "qiskit.circuit.library.efficient_su2")(num\_qubits\[, su2\_gates, ...])                                | The hardware-efficient $SU(2)$ 2-local circuit.           |
+| [`real_amplitudes`](qiskit.circuit.library.real_amplitudes "qiskit.circuit.library.real_amplitudes")(num\_qubits\[, entanglement, ...])                        | Construct a real-amplitudes 2-local circuit.              |
+| [`pauli_two_design`](qiskit.circuit.library.pauli_two_design "qiskit.circuit.library.pauli_two_design")(num\_qubits\[, reps, seed, ...])                       | Construct a Pauli 2-design ansatz.                        |
+| [`excitation_preserving`](qiskit.circuit.library.excitation_preserving "qiskit.circuit.library.excitation_preserving")(num\_qubits\[, mode, ...])              | The heuristic excitation-preserving wave function ansatz. |
+| [`hamiltonian_variational_ansatz`](qiskit.circuit.library.hamiltonian_variational_ansatz "qiskit.circuit.library.hamiltonian_variational_ansatz")(hamiltonian) | Construct a Hamiltonian variational ansatz.               |
+| [`evolved_operator_ansatz`](qiskit.circuit.library.evolved_operator_ansatz "qiskit.circuit.library.evolved_operator_ansatz")(operators\[, reps, ...])          | Construct an ansatz out of operator evolutions.           |
 
 These `BlueprintCircuit` subclasses are used as parameterized models (a.k.a. ansatzes or variational forms) in variational algorithms. They are heavily used in near-term algorithms in e.g. Chemistry, Physics or Optimization.
 
@@ -371,6 +348,14 @@ These `BlueprintCircuit` subclasses are used as parameterized models (a.k.a. ans
 | [`QAOAAnsatz`](qiskit.circuit.library.QAOAAnsatz "qiskit.circuit.library.QAOAAnsatz")(\[cost\_operator, reps, ...])                             | A generalized QAOA quantum circuit with a support of custom initial states and mixers. |
 
 ## Data encoding circuits
+
+The following functions return a parameterized [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to use as data encoding circuits in a series of variational quantum algorithms:
+
+|                                                                                                                                              |                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [`pauli_feature_map`](qiskit.circuit.library.pauli_feature_map "qiskit.circuit.library.pauli_feature_map")(feature\_dimension\[, reps, ...]) | The Pauli expansion circuit.               |
+| [`z_feature_map`](qiskit.circuit.library.z_feature_map "qiskit.circuit.library.z_feature_map")(feature\_dimension\[, reps, ...])             | The first order Pauli Z-evolution circuit. |
+| [`zz_feature_map`](qiskit.circuit.library.zz_feature_map "qiskit.circuit.library.zz_feature_map")(feature\_dimension\[, reps, ...])          | Second-order Pauli-Z evolution circuit.    |
 
 These `BlueprintCircuit` encode classical data in quantum states and are used as feature maps for classification.
 
@@ -408,7 +393,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_2a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_1.py#L18-L34" signature="qiskit.circuit.library.templates.nct.template_nct_2a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_2a_1.py#L18-L34" signature="qiskit.circuit.library.templates.nct.template_nct_2a_1()">
   Template 2a\_1:
 
   ```text
@@ -428,7 +413,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_2a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_2.py#L18-L35" signature="qiskit.circuit.library.templates.nct.template_nct_2a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_2a_2.py#L18-L35" signature="qiskit.circuit.library.templates.nct.template_nct_2a_2()">
   Template 2a\_2:
 
   ```text
@@ -449,7 +434,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_2a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_3.py#L18-L37" signature="qiskit.circuit.library.templates.nct.template_nct_2a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_2a_3.py#L18-L37" signature="qiskit.circuit.library.templates.nct.template_nct_2a_3()">
   Template 2a\_3:
 
   ```text
@@ -472,7 +457,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_4a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_4a_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_4a_1()">
   Template 4a\_1:
 
   ```text
@@ -499,7 +484,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_4a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_4a_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_4a_2()">
   Template 4a\_2:
 
   ```text
@@ -524,7 +509,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_3.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_4a_3.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4a_3()">
   Template 4a\_3:
 
   ```text
@@ -547,7 +532,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4b\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4b_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_4b_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_4b_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_4b_1()">
   Template 4b\_1:
 
   ```text
@@ -572,7 +557,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4b\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4b_2.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4b_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_4b_2.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4b_2()">
   Template 4b\_2:
 
   ```text
@@ -595,7 +580,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_1.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_5a_1.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_1()">
   Template 5a\_1:
 
   ```text
@@ -618,7 +603,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_2.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_5a_2.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_2()">
   Template 5a\_2:
 
   ```text
@@ -641,7 +626,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_3.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_5a_3.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_3()">
   Template 5a\_3:
 
   ```text
@@ -664,7 +649,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_4.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_5a_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_4" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_5a_4.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_5a_4()">
   Template 5a\_4:
 
   ```text
@@ -686,7 +671,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_1.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_6a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_6a_1.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_6a_1()">
   Template 6a\_1:
 
   ```text
@@ -708,7 +693,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_6a_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_2()">
   Template 6a\_2:
 
   ```text
@@ -731,7 +716,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_3.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_6a_3.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_3()">
   Template 6a\_3:
 
   ```text
@@ -754,7 +739,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_4.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_4" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_6a_4.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_4()">
   Template 6a\_4:
 
   ```text
@@ -777,7 +762,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6b\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6b_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6b_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_6b_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6b_1()">
   Template 6b\_1:
 
   ```text
@@ -800,7 +785,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6b\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6b_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6b_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_6b_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6b_2()">
   Template 6b\_2:
 
   ```text
@@ -823,7 +808,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6c\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6c_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6c_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6c_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_6c_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6c_1()">
   Template 6c\_1:
 
   ```text
@@ -846,7 +831,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7a_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7a_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_7a_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7a_1()">
   Template 7a\_1:
 
   ```text
@@ -870,7 +855,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7b\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7b_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7b_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7b_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_7b_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7b_1()">
   Template 7b\_1:
 
   ```text
@@ -894,7 +879,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7c\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7c_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7c_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7c_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_7c_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7c_1()">
   Template 7c\_1:
 
   ```text
@@ -918,7 +903,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7d\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7d_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7d_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7d_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7d_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_7d_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7d_1()">
   Template 7d\_1:
 
   ```text
@@ -942,7 +927,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7e\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7e_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7e_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7e_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7e_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_7e_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7e_1()">
   Template 7e\_1:
 
   ```text
@@ -966,7 +951,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9a_1.py#L18-L45" signature="qiskit.circuit.library.templates.nct.template_nct_9a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9a_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9a_1.py#L18-L45" signature="qiskit.circuit.library.templates.nct.template_nct_9a_1()">
   Template 9a\_1:
 
   ```text
@@ -990,7 +975,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_9c_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_9c_1()">
   Template 9c\_1:
 
   ```text
@@ -1012,7 +997,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_2.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_2.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_2()">
   Template 9c\_2:
 
   ```text
@@ -1035,7 +1020,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_3.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_3.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_3()">
   Template 9c\_3:
 
   ```text
@@ -1058,7 +1043,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_4.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_4" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_4.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_4()">
   Template 9c\_4:
 
   ```text
@@ -1081,7 +1066,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_5
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_5.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_5()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_5" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_5.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_5()">
   Template 9c\_5:
 
   ```text
@@ -1104,7 +1089,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_6
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_6" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_6.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_6()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_6" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_6.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_6()">
   Template 9c\_6:
 
   ```text
@@ -1127,7 +1112,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_7
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_7" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_7.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_7()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_7" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_7.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_7()">
   Template 9c\_7:
 
   ```text
@@ -1150,7 +1135,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_8
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_8" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_8.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_8()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_8" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_8.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_8()">
   Template 9c\_8:
 
   ```text
@@ -1173,7 +1158,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_9
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_9" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_9.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_9()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_9" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_9.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_9()">
   Template 9c\_9:
 
   ```text
@@ -1196,7 +1181,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_10
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_10" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_10.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_10()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_10" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_10.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_10()">
   Template 9c\_10:
 
   ```text
@@ -1219,7 +1204,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_11
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_11" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_11.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_11()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_11" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_11.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_11()">
   Template 9c\_11:
 
   ```text
@@ -1242,7 +1227,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_12
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_12" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_12.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_12()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_12" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9c_12.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_12()">
   Template 9c\_12:
 
   ```text
@@ -1265,7 +1250,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_9d_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_9d_1()">
   Template 9d\_1:
 
   ```text
@@ -1287,7 +1272,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_2.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_2.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_2()">
   Template 9d\_2:
 
   ```text
@@ -1310,7 +1295,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_3.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_3.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_3()">
   Template 9d\_3:
 
   ```text
@@ -1333,7 +1318,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_4.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_4" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_4.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_4()">
   Template 9d\_4:
 
   ```text
@@ -1356,7 +1341,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_5
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_5.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_5()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_5" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_5.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_5()">
   Template 9d\_5:
 
   ```text
@@ -1379,7 +1364,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_6
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_6" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_6.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_6()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_6" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_6.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_6()">
   Template 9d\_6:
 
   ```text
@@ -1402,7 +1387,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_7
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_7" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_7.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_7()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_7" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_7.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_7()">
   Template 9d\_7:
 
   ```text
@@ -1425,7 +1410,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_8
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_8" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_8.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_8()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_8" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_8.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_8()">
   Template 9d\_8:
 
   ```text
@@ -1448,7 +1433,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_9
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_9" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_9.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_9()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_9" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_9.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_9()">
   Template 9d\_9:
 
   ```text
@@ -1471,7 +1456,7 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_10
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_10" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_10.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_10()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_10" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/nct/template_nct_9d_10.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_10()">
   Template 9d\_10:
 
   ```text
@@ -1498,7 +1483,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_1
 
-<Function id="qiskit.circuit.library.clifford_2_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_1.py#L18-L34" signature="qiskit.circuit.library.clifford_2_1()">
+<Function id="qiskit.circuit.library.clifford_2_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_2_1.py#L18-L34" signature="qiskit.circuit.library.clifford_2_1()">
   Clifford template 2\_1:
 
   ```text
@@ -1518,7 +1503,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_2
 
-<Function id="qiskit.circuit.library.clifford_2_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_2.py#L18-L35" signature="qiskit.circuit.library.clifford_2_2()">
+<Function id="qiskit.circuit.library.clifford_2_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_2_2.py#L18-L35" signature="qiskit.circuit.library.clifford_2_2()">
   Clifford template 2\_2:
 
   ```text
@@ -1539,7 +1524,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_3
 
-<Function id="qiskit.circuit.library.clifford_2_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_3.py#L18-L34" signature="qiskit.circuit.library.clifford_2_3()">
+<Function id="qiskit.circuit.library.clifford_2_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_2_3.py#L18-L34" signature="qiskit.circuit.library.clifford_2_3()">
   Clifford template 2\_3:
 
   ```text
@@ -1559,7 +1544,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_4
 
-<Function id="qiskit.circuit.library.clifford_2_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_4.py#L18-L34" signature="qiskit.circuit.library.clifford_2_4()">
+<Function id="qiskit.circuit.library.clifford_2_4" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_2_4.py#L18-L34" signature="qiskit.circuit.library.clifford_2_4()">
   Clifford template 2\_4:
 
   ```text
@@ -1579,7 +1564,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_3\_1
 
-<Function id="qiskit.circuit.library.clifford_3_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_3_1.py#L18-L35" signature="qiskit.circuit.library.clifford_3_1()">
+<Function id="qiskit.circuit.library.clifford_3_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_3_1.py#L18-L35" signature="qiskit.circuit.library.clifford_3_1()">
   Clifford template 3\_1:
 
   ```text
@@ -1599,7 +1584,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_1
 
-<Function id="qiskit.circuit.library.clifford_4_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_1.py#L18-L38" signature="qiskit.circuit.library.clifford_4_1()">
+<Function id="qiskit.circuit.library.clifford_4_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_4_1.py#L18-L38" signature="qiskit.circuit.library.clifford_4_1()">
   Clifford template 4\_1:
 
   ```text
@@ -1621,7 +1606,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_2
 
-<Function id="qiskit.circuit.library.clifford_4_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_2.py#L18-L37" signature="qiskit.circuit.library.clifford_4_2()">
+<Function id="qiskit.circuit.library.clifford_4_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_4_2.py#L18-L37" signature="qiskit.circuit.library.clifford_4_2()">
   Clifford template 4\_2:
 
   ```text
@@ -1642,7 +1627,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_3
 
-<Function id="qiskit.circuit.library.clifford_4_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_3.py#L18-L38" signature="qiskit.circuit.library.clifford_4_3()">
+<Function id="qiskit.circuit.library.clifford_4_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_4_3.py#L18-L38" signature="qiskit.circuit.library.clifford_4_3()">
   Clifford template 4\_3:
 
   ```text
@@ -1664,7 +1649,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_4
 
-<Function id="qiskit.circuit.library.clifford_4_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_4.py#L18-L37" signature="qiskit.circuit.library.clifford_4_4()">
+<Function id="qiskit.circuit.library.clifford_4_4" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_4_4.py#L18-L37" signature="qiskit.circuit.library.clifford_4_4()">
   Clifford template 4\_4:
 
   ```text
@@ -1685,7 +1670,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_5\_1
 
-<Function id="qiskit.circuit.library.clifford_5_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_5_1.py#L18-L40" signature="qiskit.circuit.library.clifford_5_1()">
+<Function id="qiskit.circuit.library.clifford_5_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_5_1.py#L18-L40" signature="qiskit.circuit.library.clifford_5_1()">
   Clifford template 5\_1:
 
   > ```text
@@ -1708,7 +1693,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_1
 
-<Function id="qiskit.circuit.library.clifford_6_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_1.py#L18-L40" signature="qiskit.circuit.library.clifford_6_1()">
+<Function id="qiskit.circuit.library.clifford_6_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_6_1.py#L18-L40" signature="qiskit.circuit.library.clifford_6_1()">
   Clifford template 6\_1:
 
   > ```text
@@ -1730,7 +1715,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_2
 
-<Function id="qiskit.circuit.library.clifford_6_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_2.py#L18-L40" signature="qiskit.circuit.library.clifford_6_2()">
+<Function id="qiskit.circuit.library.clifford_6_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_6_2.py#L18-L40" signature="qiskit.circuit.library.clifford_6_2()">
   Clifford template 6\_2:
 
   > ```text
@@ -1752,7 +1737,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_3
 
-<Function id="qiskit.circuit.library.clifford_6_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_3.py#L18-L40" signature="qiskit.circuit.library.clifford_6_3()">
+<Function id="qiskit.circuit.library.clifford_6_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_6_3.py#L18-L40" signature="qiskit.circuit.library.clifford_6_3()">
   Clifford template 6\_3:
 
   ```text
@@ -1774,7 +1759,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_4
 
-<Function id="qiskit.circuit.library.clifford_6_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_4.py#L18-L38" signature="qiskit.circuit.library.clifford_6_4()">
+<Function id="qiskit.circuit.library.clifford_6_4" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_6_4.py#L18-L38" signature="qiskit.circuit.library.clifford_6_4()">
   Clifford template 6\_4:
 
   ```text
@@ -1794,7 +1779,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_5
 
-<Function id="qiskit.circuit.library.clifford_6_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_5.py#L18-L40" signature="qiskit.circuit.library.clifford_6_5()">
+<Function id="qiskit.circuit.library.clifford_6_5" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_6_5.py#L18-L40" signature="qiskit.circuit.library.clifford_6_5()">
   Clifford template 6\_5:
 
   ```text
@@ -1816,7 +1801,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_8\_1
 
-<Function id="qiskit.circuit.library.clifford_8_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_1.py#L18-L42" signature="qiskit.circuit.library.clifford_8_1()">
+<Function id="qiskit.circuit.library.clifford_8_1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_8_1.py#L18-L42" signature="qiskit.circuit.library.clifford_8_1()">
   Clifford template 8\_1:
 
   ```text
@@ -1838,7 +1823,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_8\_2
 
-<Function id="qiskit.circuit.library.clifford_8_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_2.py#L18-L42" signature="qiskit.circuit.library.clifford_8_2()">
+<Function id="qiskit.circuit.library.clifford_8_2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_8_2.py#L18-L42" signature="qiskit.circuit.library.clifford_8_2()">
   Clifford template 8\_2:
 
   ```text
@@ -1860,7 +1845,7 @@ Template circuits over Clifford gates.
 
 #### clifford\_8\_3
 
-<Function id="qiskit.circuit.library.clifford_8_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_3.py#L18-L41" signature="qiskit.circuit.library.clifford_8_3()">
+<Function id="qiskit.circuit.library.clifford_8_3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/clifford/clifford_8_3.py#L18-L41" signature="qiskit.circuit.library.clifford_8_3()">
   Clifford template 8\_3:
 
   ```text
@@ -1885,7 +1870,7 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 
 #### rzx\_yz
 
-<Function id="qiskit.circuit.library.rzx_yz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_yz.py#L23-L45" signature="qiskit.circuit.library.rzx_yz(theta=None)">
+<Function id="qiskit.circuit.library.rzx_yz" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/rzx/rzx_yz.py#L23-L45" signature="qiskit.circuit.library.rzx_yz(theta=None)">
   RZX-based template for CX - RYGate - CX.
 
   ```text
@@ -1899,7 +1884,7 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 
 #### rzx\_xz
 
-<Function id="qiskit.circuit.library.rzx_xz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_xz.py#L23-L54" signature="qiskit.circuit.library.rzx_xz(theta=None)">
+<Function id="qiskit.circuit.library.rzx_xz" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/rzx/rzx_xz.py#L23-L54" signature="qiskit.circuit.library.rzx_xz(theta=None)">
   RZX-based template for CX - RXGate - CX.
 
   ```text
@@ -1918,7 +1903,7 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 
 #### rzx\_cy
 
-<Function id="qiskit.circuit.library.rzx_cy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_cy.py#L23-L47" signature="qiskit.circuit.library.rzx_cy(theta=None)">
+<Function id="qiskit.circuit.library.rzx_cy" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/rzx/rzx_cy.py#L23-L47" signature="qiskit.circuit.library.rzx_cy(theta=None)">
   RZX-based template for CX - RYGate - CX.
 
   ```text
@@ -1932,7 +1917,7 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 
 #### rzx\_zz1
 
-<Function id="qiskit.circuit.library.rzx_zz1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz1.py#L23-L69" signature="qiskit.circuit.library.rzx_zz1(theta=None)">
+<Function id="qiskit.circuit.library.rzx_zz1" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/rzx/rzx_zz1.py#L23-L69" signature="qiskit.circuit.library.rzx_zz1(theta=None)">
   RZX-based template for CX - RZGate - CX.
 
   ```text
@@ -1956,7 +1941,7 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 
 #### rzx\_zz2
 
-<Function id="qiskit.circuit.library.rzx_zz2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz2.py#L23-L59" signature="qiskit.circuit.library.rzx_zz2(theta=None)">
+<Function id="qiskit.circuit.library.rzx_zz2" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/rzx/rzx_zz2.py#L23-L59" signature="qiskit.circuit.library.rzx_zz2(theta=None)">
   RZX-based template for CX - PhaseGate - CX.
 
   ```text
@@ -1975,7 +1960,7 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 
 #### rzx\_zz3
 
-<Function id="qiskit.circuit.library.rzx_zz3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz3.py#L23-L59" signature="qiskit.circuit.library.rzx_zz3(theta=None)">
+<Function id="qiskit.circuit.library.rzx_zz3" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/templates/rzx/rzx_zz3.py#L23-L59" signature="qiskit.circuit.library.rzx_zz3(theta=None)">
   RZX-based template for CX - RZGate - CX.
 
   ```text
