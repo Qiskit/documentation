@@ -5,11 +5,12 @@ description: Overview of the addon for approximate quantum compilation using ten
 
 # Approximate quantum compiler with tensor networks (AQC)
 
-The Approximate quantum compilation with tensor networks (AQC) Qiskit addon enables user to compile the *initial portion* of a circui into a nearly equivalent approximation of that circuit, but with much fewer layers. This is accomplished using tensor networks using the method described in [[1]](https://arxiv.org/abs/2301.08609). It's primary utility is in circuits which simulate time evolution, but may be applicable to any class of circuits which has access to:
+The Approximate quantum compilation with tensor networks (AQC) Qiskit addon enables user to compile the *initial portion* of a circuit into a nearly equivalent approximation of that circuit, but with much fewer layers. This is accomplished using tensor networks using the method described in [[1]](https://arxiv.org/abs/2301.08609). It's primary utility is in circuits which simulate time evolution, but may be applicable to any class of circuits which has access to:
 
 1. A good intermediate state which can be prepared using tensor-network simulation; and,
 2. A good circuit which prepares an approximation of this intermediate state, but with fewer layers when compiled to the target QPU.
 
+The technique generates an ansatz circuit based on a larger target circuit which a user ultimately wants to execute on a QPU. This is accomplished by first simulating some portion of the target circuit by tensor network methods and obtaining an accurate description of an intermediate state which the ansatz circuit will approximate. Once this intermediate state is found, it is used as a cost function in order to optimize the ansatz circuit's parameters. After the optimization is complete, the remaining portion of the target circuit is appended to the ansatz and then executed on quantum hardware.
 
 
 ## Install the AQC-Tensor package
