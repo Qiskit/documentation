@@ -110,6 +110,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
 ];
+// This is reused amongst all the addons to make this config less verbose.
+const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);
@@ -144,7 +146,15 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     },
   );
 
-  result.push(...transpiler, ...runtime, ...qiskit);
+  const sqd = await determineHistoricalFileBatches(
+    "qiskit-addon-sqd",
+    ADDON_GLOBS_TO_LOAD,
+    { check: args.historicalApis },
+  );
+
+  // This is intentionally ordered so that the smallest APIs are checked first,
+  // since they are much faster to check.
+  result.push(...transpiler, ...sqd, ...runtime, ...qiskit);
 
   if (args.qiskitLegacyReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());

@@ -39,6 +39,7 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/post-process-results",
   "docs/guides/configure-error-suppression",
   "docs/guides/repetition-rate-execution",
+  "docs/guides/n2_fci",
   "docs/migration-guides/_toc",
   "docs/migration-guides/qiskit-1.0",
   "docs/migration-guides/qiskit-1.0-features",

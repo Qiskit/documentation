@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.Target
 
 # Target
 
-<Class id="qiskit.transpiler.Target" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L179-L1207" signature="qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None, *args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.Target" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L179-L1221" signature="qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None, *args, **kwargs)" modifiers="class">
   Bases: `BaseTarget`
 
   The intent of the `Target` object is to inform Qiskit’s compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. It currently contains a description of instructions on a backend and their properties as well as some timing information. However, this exact interface may evolve over time as the needs of the compiler change. These changes will be done in a backwards compatible and controlled manner when they are made (either through versioning, subclassing, or mixins) to add on to the set of information exposed by a target.
@@ -159,7 +159,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### add\_instruction
 
-  <Function id="qiskit.transpiler.Target.add_instruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L359-L448" signature="add_instruction(instruction, properties=None, name=None)">
+  <Function id="qiskit.transpiler.Target.add_instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L359-L448" signature="add_instruction(instruction, properties=None, name=None)">
     Add a new instruction to the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target")
 
     As `Target` objects are strictly additive this is the primary method for modifying a `Target`. Typically, you will use this to fully populate a `Target` before using it in [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"). For example:
@@ -198,7 +198,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### build\_coupling\_map
 
-  <Function id="qiskit.transpiler.Target.build_coupling_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L813-L879" signature="build_coupling_map(two_q_gate=None, filter_idle_qubits=False)">
+  <Function id="qiskit.transpiler.Target.build_coupling_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L813-L879" signature="build_coupling_map(two_q_gate=None, filter_idle_qubits=False)">
     Get a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") from this target.
 
     If there is a mix of two qubit operations that have a connectivity constraint and those that are globally defined this will also return `None` because the globally connectivity means there is no constraint on the target. If you wish to see the constraints of the two qubit operations that have constraints you should use the `two_q_gate` argument to limit the output to the gates which have a constraint.
@@ -226,7 +226,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### durations
 
-  <Function id="qiskit.transpiler.Target.durations" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L596-L611" signature="durations()">
+  <Function id="qiskit.transpiler.Target.durations" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L596-L611" signature="durations()">
     Get an InstructionDurations object from the target
 
     **Returns**
@@ -242,7 +242,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### from\_configuration
 
-  <Function id="qiskit.transpiler.Target.from_configuration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L972-L1207" signature="from_configuration(basis_gates, num_qubits=None, coupling_map=None, inst_map=None, backend_properties=None, instruction_durations=None, concurrent_measurements=None, dt=None, timing_constraints=None, custom_name_mapping=None)" modifiers="classmethod">
+  <Function id="qiskit.transpiler.Target.from_configuration" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L972-L1221" signature="from_configuration(basis_gates, num_qubits=None, coupling_map=None, inst_map=None, backend_properties=None, instruction_durations=None, concurrent_measurements=None, dt=None, timing_constraints=None, custom_name_mapping=None)" modifiers="classmethod">
     Create a target object from the individual global configuration
 
     Prior to the creation of the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") class, the constraints of a backend were represented by a collection of different objects which combined represent a subset of the information contained in the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target"). This function provides a simple interface to convert those separate objects to a [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target").
@@ -255,7 +255,7 @@ python_api_name: qiskit.transpiler.Target
 
     **Parameters**
 
-    *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – The list of basis gate names for the backend. For the target to be created these names must either be in the output from `get_standard_gate_name_mapping()` or present in the specified `custom_name_mapping` argument.
+    *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – The list of basis gate names for the backend. For the target to be created these names must either be in the output from [`get_standard_gate_name_mapping()`](circuit_library#qiskit.circuit.library.get_standard_gate_name_mapping "qiskit.circuit.library.get_standard_gate_name_mapping") or present in the specified `custom_name_mapping` argument.
     *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits supported on the backend.
     *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") *| None*) – The coupling map representing connectivity constraints on the backend. If specified all gates from `basis_gates` will be supported on all qubits (or pairs of qubits).
     *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") *| None*) – DEPRECATED. The instruction schedule map representing the pulse [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") definitions for each instruction. If this is specified `coupling_map` must be specified. The `coupling_map` is used as the source of truth for connectivity and if `inst_map` is used the schedule is looked up based on the instructions from the pair of `basis_gates` and `coupling_map`. If you want to define a custom gate for a particular qubit or qubit pair, you can manually build [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target").
@@ -283,13 +283,13 @@ python_api_name: qiskit.transpiler.Target
 
   ### get
 
-  <Function id="qiskit.transpiler.Target.get" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L895-L900" signature="get(key, default=None)">
+  <Function id="qiskit.transpiler.Target.get" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L895-L900" signature="get(key, default=None)">
     Gets an item from the Target. If not found return a provided default or None.
   </Function>
 
   ### get\_calibration
 
-  <Function id="qiskit.transpiler.Target.get_calibration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L683-L705" signature="get_calibration(operation_name, qargs, *args, **kwargs)">
+  <Function id="qiskit.transpiler.Target.get_calibration" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L683-L705" signature="get_calibration(operation_name, qargs, *args, **kwargs)">
     Get calibrated pulse schedule for the instruction.
 
     If calibration is templated with parameters, one can also provide those values to build a schedule with assigned parameters.
@@ -336,7 +336,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### has\_calibration
 
-  <Function id="qiskit.transpiler.Target.has_calibration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L654-L669" signature="has_calibration(operation_name, qargs)">
+  <Function id="qiskit.transpiler.Target.has_calibration" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L654-L669" signature="has_calibration(operation_name, qargs)">
     Return whether the instruction (operation + qubits) defines a calibration.
 
     <Admonition title="Deprecated since version 1.3" type="danger">
@@ -359,7 +359,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### instruction\_properties
 
-  <Function id="qiskit.transpiler.Target.instruction_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L741-L779" signature="instruction_properties(index)">
+  <Function id="qiskit.transpiler.Target.instruction_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L741-L779" signature="instruction_properties(index)">
     Get the instruction properties for a specific instruction tuple
 
     This method is to be used in conjunction with the [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") attribute of a [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") object. You can use this method to quickly get the instruction properties for an element of [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") by using the index in that list. However, if you’re not working with [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") directly it is likely more efficient to access the target directly via the name and qubits to get the instruction properties. For example, if [`instructions`](#qiskit.transpiler.Target.instructions "qiskit.transpiler.Target.instructions") returned:
@@ -397,7 +397,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### instruction\_schedule\_map
 
-  <Function id="qiskit.transpiler.Target.instruction_schedule_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L623-L632" signature="instruction_schedule_map()">
+  <Function id="qiskit.transpiler.Target.instruction_schedule_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L623-L632" signature="instruction_schedule_map()">
     Return an [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions in the target with a pulse schedule defined.
 
     <Admonition title="Deprecated since version 1.3" type="danger">
@@ -454,13 +454,13 @@ python_api_name: qiskit.transpiler.Target
 
   ### items
 
-  <Function id="qiskit.transpiler.Target.items" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L916-L918" signature="items()">
+  <Function id="qiskit.transpiler.Target.items" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L916-L918" signature="items()">
     Returns pairs of Gate names and its property map (str, dict\[tuple, InstructionProperties])
   </Function>
 
   ### keys
 
-  <Function id="qiskit.transpiler.Target.keys" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L908-L910" signature="keys()">
+  <Function id="qiskit.transpiler.Target.keys" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L908-L910" signature="keys()">
     Return the keys (operation\_names) of the Target
   </Function>
 
@@ -528,7 +528,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### qargs\_for\_operation\_name
 
-  <Function id="qiskit.transpiler.Target.qargs_for_operation_name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L584-L594" signature="qargs_for_operation_name(operation)">
+  <Function id="qiskit.transpiler.Target.qargs_for_operation_name" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L584-L594" signature="qargs_for_operation_name(operation)">
     Get the qargs for a given operation name
 
     **Parameters**
@@ -546,7 +546,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### timing\_constraints
 
-  <Function id="qiskit.transpiler.Target.timing_constraints" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L613-L621" signature="timing_constraints()">
+  <Function id="qiskit.transpiler.Target.timing_constraints" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L613-L621" signature="timing_constraints()">
     Get an `TimingConstraints` object from the target
 
     **Returns**
@@ -560,7 +560,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### update\_from\_instruction\_schedule\_map
 
-  <Function id="qiskit.transpiler.Target.update_from_instruction_schedule_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L465-L582" signature="update_from_instruction_schedule_map(inst_map, inst_name_map=None, error_dict=None)">
+  <Function id="qiskit.transpiler.Target.update_from_instruction_schedule_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L465-L582" signature="update_from_instruction_schedule_map(inst_map, inst_name_map=None, error_dict=None)">
     Update the target from an instruction schedule map.
 
     If the input instruction schedule map contains new instructions not in the target they will be added. However, if it contains additional qargs for an existing instruction in the target it will error.
@@ -596,7 +596,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### update\_instruction\_properties
 
-  <Function id="qiskit.transpiler.Target.update_instruction_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L450-L463" signature="update_instruction_properties(instruction, qargs, properties)">
+  <Function id="qiskit.transpiler.Target.update_instruction_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L450-L463" signature="update_instruction_properties(instruction, qargs, properties)">
     Update the property object for an instruction qarg pair already in the Target
 
     **Parameters**
@@ -612,7 +612,7 @@ python_api_name: qiskit.transpiler.Target
 
   ### values
 
-  <Function id="qiskit.transpiler.Target.values" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/target.py#L912-L914" signature="values()">
+  <Function id="qiskit.transpiler.Target.values" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/target.py#L912-L914" signature="values()">
     Return the Property Map (qargs -> InstructionProperties) of every instruction in the Target
   </Function>
 </Class>
