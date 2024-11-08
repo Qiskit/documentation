@@ -907,6 +907,38 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when invalid options given
 </Function>
 
+### Apply Pauli twirling to a circuit
+
+There are two primary types of noise when executing quantum circuits. The first is stochastic, or incoherent, noise that is mainly due to the unwanted interaction between the quantum processor and the external environment in which it resides. The second is known as coherent error, and these errors arise due to imperfect control of a quantum system. This can be unwanted terms in a system Hamiltonian, i.e. incorrect unitary evolution, or errors from incorrect temporal control of the quantum system, which includes things like incorrect pulse-shapes for gates.
+
+Pauli twirling is a quantum error suppression technique that uses randomization to shape coherent error into stochastic errors by combining the results from many random, but logically equivalent circuits, together. Qiskit provides a function to apply Pauli twirling to a given circuit for standard two qubit gates. For more details you can refer to the documentation of the function below:
+
+#### pauli\_twirl\_2q\_gates
+
+<Function id="qiskit.circuit.pauli_twirl_2q_gates" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/twirling.py#L36-L145" signature="qiskit.circuit.pauli_twirl_2q_gates(circuit, twirling_gate=None, seed=None, num_twirls=None, target=None)">
+  Create copies of a given circuit with Pauli twirling applied around specified two qubit gates.
+
+  If you’re running this function with the intent to twirl a circuit to run on hardware this may not be the most efficient way to perform twirling. Especially if the hardware vendor has implemented the [`primitives`](primitives#module-qiskit.primitives "qiskit.primitives") execution interface with `SamplerV2` and `EstimatorV2` this most likely is not the best way to apply twirling to your circuit and you’ll want to refer to the implementation of `SamplerV2` and/or `EstimatorV2` for the specified hardware vendor.
+
+  If the intent of this function is to be run after [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") the optional `target` argument can be used so that the inserted 1 qubit Pauli gates are synthesized to be compatible with the given [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") so the output circuit(s) are still compatible.
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit to twirl
+  *   **twirling\_gate** (*None |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gate to twirl, defaults to None which means twirl all default gates: [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), and [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"). If supplied it can either be a single gate or a list of gates either as either a gate object or its string name. Currently only the names “cx”, “cz”, “ecr”, and “iswap” are supported. If a gate object is provided outside the default gates it must have a matrix defined from its `to_matrix` method for the gate to potentially be twirled. If a valid twirling configuration can’t be computed that particular gate will be silently ignored and not twirled.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – An integer seed for the random number generator used internally by this function. If specified this must be between 0 and 18,446,744,073,709,551,615.
+  *   **num\_twirls** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of twirling circuits to build. This defaults to `None` and will return a single circuit. If it is an integer a list of circuits with num\_twirls circuits will be returned.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target") *| None*) – If specified an [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instance to use for running single qubit decomposition as part of the Pauli twirling to optimize and map the pauli gates added to the circuit to the specified target.
+
+  **Returns**
+
+  A copy of the given circuit with Pauli twirling applied to each instance of the specified twirling gate.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+</Function>
+
 ## Exceptions
 
 Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") when encountering an error that is particular to usage of Qiskit (as opposed to regular typing or indexing problems, which will typically raise the corresponding standard Python error).

@@ -276,12 +276,6 @@ creates a high-level synthesis configuration that uses the `kms` plugin for synt
 | [`PMHSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.PMHSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.PMHSynthesisLinearFunction")()             | Linear function synthesis plugin based on the Patel-Markov-Hayes method.      |
 | [`DefaultSynthesisLinearFunction`](qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisLinearFunction "qiskit.transpiler.passes.synthesis.hls_plugins.DefaultSynthesisLinearFunction")() | The default linear function synthesis plugin.                                 |
 
-##### Pauli Evolution Synthesis
-
-| Plugin name | Plugin class                     | Description                                 |
-| ----------- | -------------------------------- | ------------------------------------------- |
-| `"default"` | `PauliEvolutionSynthesisDefault` | use a diagonalizing Clifford per Pauli term |
-
 ##### Permutation Synthesis
 
 | Plugin name       | Plugin class                                                                                                                                                                                            | Targeted connectivity | Description                                              |
@@ -347,6 +341,18 @@ The following table lists synthesis plugins available for an [`MCXGate`](qiskit.
 | [`MCMTSynthesisVChain`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisVChain")()    | A V-chain based synthesis for `MCMTGate`. |
 | [`MCMTSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux")()       | A V-chain based synthesis for `MCMTGate`. |
 | [`MCMTSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault")() | A default decomposition for MCMT gates.   |
+
+##### Pauli Evolution Synthesis
+
+| Plugin name | Plugin class                                                                                                                                                                                      | Description                                 | Targeted connectivity |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- | --------------------- |
+| `"rustiq"`  | [`PauliEvolutionSynthesisRustiq`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq")    | use a diagonalizing Clifford per Pauli term | all-to-all            |
+| `"default"` | [`PauliEvolutionSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault") | use `rustiq_core` synthesis library         | all-to-all            |
+
+|                                                                                                                                                                                                     |                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`PauliEvolutionSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisDefault")() | Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using the default synthesis algorithm. |
+| [`PauliEvolutionSynthesisRustiq`](qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq")()    | Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using Rustiq.                          |
 
 ##### Modular Adder Synthesis
 
