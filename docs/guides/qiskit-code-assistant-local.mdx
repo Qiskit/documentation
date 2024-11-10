@@ -1,0 +1,205 @@
+---
+title: Use Qiskit Code Assistant in local mode
+description: Learn how to deploy and use the Qiskit Code Assistant model locally.
+---
+
+{/* cspell:ignore ollama, gguf */}
+
+# Use Qiskit Code Assistant in local mode
+
+Learn how to install, configure, and use the Qiskit Code Assistant model on your local machine.
+
+<Admonition type="note" title="Notes">
+    - This is an experimental feature available only to IBM Quantum Premium Plan users.
+    - Qiskit Code Assistant is in preview release status and is subject to change.
+    - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
+</Admonition>
+
+## Download the Qiskit Code Assistant model
+
+The Qiskit Code Assistant model is available in the <DefinitionTooltip definition="GGUF is a binary format that is designed for fast loading and saving of models, and for ease of reading.">GGUF file format</DefinitionTooltip> and can be downloaded from Hugging Face in one of two ways.
+
+<details>
+
+<summary>Download from the Hugging Face website</summary>
+
+Follow these steps to download the Qiskit Code Assistant GGUF model from the Hugging Face website:
+
+1. Navigate to the IBM granite model page: https://huggingface.co/ibm-granite
+1. Select the Granite Qiskit code assistant GGUF model
+1. Go to the Files and Versions tab and download the GGUF model
+
+</details>
+
+
+<details>
+
+<summary>Download using the Hugging Face CLI</summary>
+
+To download the Qiskit Code Assistant GGUF model using the Hugging Face CLI follow these steps:
+
+1. Install the Hugging Face CLI: https://huggingface.co/docs/huggingface_hub/main/en/guides/cli
+1. Login to your Hugging Face account
+
+    ```
+    huggingface-cli login
+    ```
+
+1. Download the Qiskit Code Assistant GGUF model
+
+    ```
+    huggingface-cli download <HF REPO NAME> <GGUF PATH> --local-dir <LOCAL PATH>
+    ```
+
+</details>
+
+
+## Get the Qiskit Code Assistant model up and running
+
+There are multiple ways to deploy and interact with the downloaded Qiskit Code Assistant GGUF model. These instructions outline how to get up and running on your local machine using [Ollama](https://ollama.com).
+
+- [Using the Ollama application](#using-the-ollama-application)
+- [Using the `llama-cpp-python` package](#using-the-llama-cpp-python-package)
+
+### Using the Ollama application
+
+The Ollama application provides a simple solution to run the GGUF models locally. It is easy to use, with a CLI that makes the whole set up process, model management, and interaction fairly straightforward. It’s ideal for quick experimentation and/or for users that want fewer technical details to handle.
+
+#### Install Ollama
+
+1. Download the Ollama application: https://ollama.com/download
+1. Install the downloaded file
+1. Launch the installed Ollama application
+
+    <Admonition type="info">Once running, you will see the Ollama icon in the desktop menu bar, indicating that the application is running successfully. You can also verify the service is running by going to http://localhost:11434/.</Admonition>
+
+1. Try Ollama in your terminal and start running models e.g.,
+
+    ```
+    ollama run llama
+    ```
+
+#### Set up Ollama with the Qiskit Code Assistant GGUF model
+
+1. Create a `Modelfile` entering the below content and be sure to update `<PATH-TO-GGUF-FILE>` to the actual path of your downloaded model
+
+    ```
+    FROM <PATH-TO-GGUF-FILE>
+    TEMPLATE """{{ if .System }}System:
+    {{ .System }}
+
+    {{ end }}
+    {{ if .Prompt }}Question:
+    {{ .Prompt }}
+
+    {{ end }}
+    Answer:
+    ```python
+    {{ .Response }}
+    """
+
+    SYSTEM """"""
+
+    PARAMETER stop "<fim_prefix>"
+    PARAMETER stop "<fim_middle>"
+    PARAMETER stop "<fim_suffix>"
+    PARAMETER stop "<fim_pad>"
+    PARAMETER stop "<|endoftext|>"
+
+    PARAMETER mirostat 0
+    PARAMETER mirostat_eta 0.1
+    PARAMETER mirostat_tau 5.0
+    PARAMETER num_ctx 10000
+    PARAMETER repeat_penalty 1.0
+    PARAMETER temperature 0.8
+    PARAMETER seed 0
+    PARAMETER tfs_z 1.0
+    PARAMETER num_predict 1024
+    PARAMETER top_k 50
+    PARAMETER top_p 0.95
+    PARAMETER min_p 0.05
+    ```
+
+1. Run the following command to create a custom model instance based on the `Modelfile`
+
+    ```
+    ollama create qiskit-granite-local -f ./path-to-model-file
+    ```
+
+    <Admonition type="note">This process may take some time, Ollama will read the model file, initialize the model instance and configure it according to the specifications provided.</Admonition>
+
+
+#### Run the Qiskit Code Assistant model in Ollama
+
+After the Qiskit Code Assistant GGUF model has been set up in Ollama, run the following command to launch the model and interact with it in the terminal (in chat mode)
+
+```
+ollama run qiskit-granite-local
+```
+
+Some useful commands:
+
+- `ollama list` - List models on your computer
+- `ollama rm qiskit-granite-local` - Remove/delete the model
+- `ollama show qiskit-granite-local` - Show model information
+- `ollama stop qiskit-granite-local` - Stop a model which is currently running
+- `ollama ps` - List which models are currently loaded
+
+### Using the `llama-cpp-python` package
+
+An alternative to the Ollama application is the `llama-cpp-python` package. It is a Python binding for `llama.cpp`. It gives you more control and flexibility to run the GGUF model locally. It’s ideal for users who wish to integrate the local model in their workflows and Python applications.
+
+1. Install `llama-cpp-python`: https://pypi.org/project/llama-cpp-python/
+1. Interact with the model from within your application using `llama_cpp` e.g.,
+
+```python
+from llama_cpp import Llama
+
+model_path = <PATH-TO-GGUF-FILE>
+
+model = Llama(
+        model_path, 
+        seed=17, 
+        n_ctx=10000,
+        n_gpu_layers=37, # to offload in gpu, but put 0 if all in cpu
+    )
+
+input = 'Generate a quantum circuit with 2 qubits'
+raw_pred = model(input)["choices"][0]["text"]
+```
+
+You can also add generate parameters to the model to customize the inference:
+
+```python
+generation_kwargs = {
+        "max_tokens": 512,
+        "echo": False, # Echo the prompt in the output
+        "top_k": 1
+    }
+
+raw_pred = model(input, **generation_kwargs)["choices"][0]["text"]
+```
+
+### Use the Qiskit Code Assistant extensions
+
+The VS Code extension and JupyterLab extension for the Qiskit Code Assistant can be used to prompt the locally deployed Qiskit Code Assistant GGUF model. Once you have the Ollama application [up and running with the model](#using-the-ollama-application) you can configure the extensions to connect to the local service.
+
+
+#### Connect with the Qiskit Code Assistant VS Code extension
+
+Using the Qiskit Code Assistant VS Code extension allows you to interact with the model and perform code completion while writing your code. This can work well for users looking for assistance writing Qiskit code for their Python applications.
+
+1. Install the [Qiskit Code Assistant VS Code extension](/guides/qiskit-code-assistant-vscode)
+1. In VS Code, go to the **User Settings** and set the **Qiskit Code Assistant: Url** to the URL of your local Ollama deployment (i.e., http://localhost:11434)
+1. Reload VS Code, by going to **View > Command Pallette...** and selecting **Developer: Reload Window**
+
+The `qiskit-granite-local` configured in Ollama should appear in the status bar and ready to use.
+
+#### Connect with Qiskit Code Assistant JupyterLab extension
+
+Using the Qiskit Code Assistant JupyterLab extension allows you to interact with the model and perform code completion directly in your Jupyter Notebook. Users who predominantly work with Jupyter Notebooks can take advantage of this extension to further enhance their experience writing Qiskit code.
+
+1. Install the [Qiskit Code Assistant JupyterLab extension](/guides/qiskit-code-assistant-jupyterlab)
+1. In JupyterLab, go to the **Settings Editor** and set the **Qiskit Code Assistant Service API** to the URL of your local Ollama deployment (i.e., http://localhost:11434)
+
+The `qiskit-granite-local` configured in Ollama should appear in the status bar and ready to use.
