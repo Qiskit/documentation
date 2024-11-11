@@ -136,7 +136,13 @@ The `qiskit-ibm-transpiler` offers the option to configure a hybrid pass manager
     ai_su2_transpiled_circuit = ai_transpiler_pass_manager.run(su2_circuit),
 ```
 
-Here, the `coupling_map` determines which coupling map needs to be used for the transpilation. The `ai_optimization_level` refers to the level of optimization (1-3) to get using the AI components of the PassManager, while the `optimization_level` refers to the optimization to get from the Qiskit heuristic algorithms. The `ai_layout_mode` refers to how the AI routing part of the PassManager will handle the layout. Refer to the #AI-routing-pass section to review the different configuration options for this parameter.
+The following options are used:
+* `coupling_map` - Specifies which coupling map to use for the transpilation. 
+* `ai_optimization_level` - Specifies the level of optimization (1-3) to use for the AI components of the PassManager.
+* `optimization_level` - Specifies the optimization to use for the Qiskit heuristic algorithms. 
+* `ai_layout_mode` - Specifies how the AI routing part of the PassManager handles the layout. 
+
+Refer to the #AI-routing-pass section to review the configuration options for this parameter.
 
 ## Limits
 
