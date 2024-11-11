@@ -1,0 +1,42 @@
+---
+title: simulation (latest version)
+description: API reference for qiskit_addon_aqc_tensor.simulation in the latest version of qiskit-addon-aqc-tensor
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_aqc_tensor.simulation
+---
+
+<span id="module-qiskit_addon_aqc_tensor.simulation" />
+
+<span id="simulation" />
+
+# Tensor Network Simulation
+
+This module provides an interface to tensor-network simulation that is agnostic to which backend is used.
+
+Currently, there is a single implementation, which uses the Qiskit Aer matrix-product state (MPS) simulator as its backend.
+
+## Abstract classes
+
+|                                                                                                                                                         |                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| [`TensorNetworkState`](simulation-tensor-network-state "qiskit_addon_aqc_tensor.simulation.TensorNetworkState")                                         | Abstract tensor network state. |
+| [`TensorNetworkSimulationSettings`](simulation-tensor-network-simulation-settings "qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings") | Abstract truncation settings.  |
+
+Aer backend (`qiskit_addon_aqc_tensor.simulation.aer`)
+
+|                                                                                                                                                     |                                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`QiskitAerMPS`](simulation-aer-qiskit-aer-mps "qiskit_addon_aqc_tensor.simulation.aer.QiskitAerMPS")                                               | Qiskit Aer representation of a matrix-product state. |
+| [`QiskitAerSimulationSettings`](simulation-aer-qiskit-aer-simulation-settings "qiskit_addon_aqc_tensor.simulation.aer.QiskitAerSimulationSettings") | Qiskit Aer simulator settings.                       |
+
+Methods.
+
+The following abstract methods provide a common interface that can be used with any supported backend:
+
+|                                                                                                                                       |                                                                |                    |
+| ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------ |
+| [`tensornetwork_from_circuit`](simulation-tensornetwork-from-circuit "qiskit_addon_aqc_tensor.simulation.tensornetwork_from_circuit") | Create a tensor-network state by simulating a quantum circuit. |                    |
+| [`apply_circuit_to_state`](simulation-apply-circuit-to-state "qiskit_addon_aqc_tensor.simulation.apply_circuit_to_state")             | Apply a quantum circuit to a tensor network state.             |                    |
+| [`compute_overlap`](simulation-compute-overlap "qiskit_addon_aqc_tensor.simulation.compute_overlap")                                  | Compute overlap of two quantum states: \$\langle \psi\_1       | \psi\_2 \rangle\$. |
+
