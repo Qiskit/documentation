@@ -59,7 +59,7 @@ The `layout_mode` includes the following options:
 - `keep`: This respects the layout set by the previous transpiler passes (or uses the trivial layout if not set). It is typically only used when the circuit must be run on specific qubits of the device. It often produces worse results because it has less room for optimization.
 - `improve`: This uses the layout set by the previous transpiler passes as a starting point. It is useful when you have a good initial guess for the layout; for example, for circuits that are built in a way that approximately follows the device's coupling map. It is also useful if you want to try other specific layout passes combined with the `AIRouting` pass.
 - `optimize`: This is the default mode. It works best for general circuits where you might not have good layout guesses. This mode ignores previous layout selections.
-- `local_mode`: This flag determines where your AIRouting pass will run, if `False`, AIRouting will run on cloud through the Qiskit Transpiler Service. If `True` the package will try to run on your local environment with a fallback to the cloud mode if the required the extra dependencies needed to run the AI-powered transpiler passes on local are not found.
+- `local_mode`: This flag determines where the AIRouting pass runs, if `False`, AIRouting runs on cloud through the Qiskit Transpiler Service. If `True`, the package tries to run on your local environment with a fallback to cloud mode if the required the extra dependencies are not found.
 
 ## AI circuit synthesis passes
 
