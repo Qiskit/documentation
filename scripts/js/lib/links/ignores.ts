@@ -22,6 +22,7 @@ export const IGNORED_FILES = new Set([
   "public/api/qiskit-addon-mpf/objects.inv",
   "public/api/qiskit-addon-obp/objects.inv",
   "public/api/qiskit-addon-sqd/objects.inv",
+  "public/api/qiskit-addon-sqd/0.7/objects.inv",
   "public/api/qiskit-addon-utils/objects.inv",
 ]);
 
