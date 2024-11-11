@@ -18,7 +18,7 @@ Functions for transforming counts dictionaries.
 
 ### counts\_to\_arrays
 
-<Function id="qiskit_addon_sqd.counts.counts_to_arrays" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/counts.py#L21-L40" signature="counts_to_arrays(counts)">
+<Function id="qiskit_addon_sqd.counts.counts_to_arrays" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.8/qiskit_addon_sqd/counts.py#L21-L40" signature="counts_to_arrays(counts)">
   Convert a counts dictionary into a bitstring matrix and a probability array.
 
   **Parameters**
@@ -37,14 +37,14 @@ Functions for transforming counts dictionaries.
 
 ### generate\_counts\_uniform
 
-<Function id="qiskit_addon_sqd.counts.generate_counts_uniform" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/counts.py#L43-L75" signature="generate_counts_uniform(num_samples, num_bits, rand_seed=None)">
+<Function id="qiskit_addon_sqd.counts.generate_counts_uniform" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.8/qiskit_addon_sqd/counts.py#L43-L77" signature="generate_counts_uniform(num_samples, num_bits, rand_seed=None)">
   Generate a bitstring counts dictionary of samples drawn from the uniform distribution.
 
   **Parameters**
 
   *   **num\_samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw
   *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of bits in the bitstrings
-  *   **rand\_seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
+  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.1)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
 
   **Returns**
 
@@ -61,7 +61,7 @@ Functions for transforming counts dictionaries.
 
 ### generate\_counts\_bipartite\_hamming
 
-<Function id="qiskit_addon_sqd.counts.generate_counts_bipartite_hamming" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/counts.py#L78-L137" signature="generate_counts_bipartite_hamming(num_samples, num_bits, *, hamming_right, hamming_left, rand_seed=None)">
+<Function id="qiskit_addon_sqd.counts.generate_counts_bipartite_hamming" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.8/qiskit_addon_sqd/counts.py#L80-L135" signature="generate_counts_bipartite_hamming(num_samples, num_bits, *, hamming_right, hamming_left, rand_seed=None)">
   Generate a bitstring counts dictionary with specified bipartite hamming weight.
 
   **Parameters**
@@ -70,7 +70,7 @@ Functions for transforming counts dictionaries.
   *   **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of bits in the bitstrings
   *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The hamming weight on the right half of each bitstring
   *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The hamming weight on the left half of each bitstring
-  *   **rand\_seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
+  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.1)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for controlling randomness
 
   **Returns**
 
@@ -89,8 +89,12 @@ Functions for transforming counts dictionaries.
 
 ### normalize\_counts\_dict
 
-<Function id="qiskit_addon_sqd.counts.normalize_counts_dict" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/main/qiskit_addon_sqd/counts.py#L140-L147" signature="normalize_counts_dict(counts)">
+<Function id="qiskit_addon_sqd.counts.normalize_counts_dict" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.8/qiskit_addon_sqd/counts.py#L138-L145" signature="normalize_counts_dict(counts)">
   Convert a counts dictionary into a probability dictionary.
+
+  **Parameters**
+
+  **counts** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*)
 
   **Return type**
 

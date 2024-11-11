@@ -28,11 +28,17 @@ Simulation of precise measurement outcome probabilities.
   **Return type**
 
   [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
+
+  **Parameters**
+
+  **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
 </Function>
 
 ### ExactSampler
 
 <Class id="qiskit_addon_cutting.utils.simulation.ExactSampler" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/simulation.py" signature="ExactSampler(*, options=None)" modifiers="class">
+  Bases: [`BaseSamplerV1`](/api/qiskit/qiskit.primitives.BaseSamplerV1 "(in Qiskit v1.2)")
+
   Sampler which returns exact probabilities for each possible outcome.
 
   This sampler supports:
@@ -52,5 +58,49 @@ Simulation of precise measurement outcome probabilities.
   **Parameters**
 
   **options** (dict | None) – Default options.
+
+  #### options
+
+  <Attribute id="qiskit_addon_cutting.utils.simulation.ExactSampler.options" attributeTypeHint="Options">
+    Return options values for the estimator.
+
+    **Returns**
+
+    options
+  </Attribute>
+
+  #### run
+
+  <Function id="qiskit_addon_cutting.utils.simulation.ExactSampler.run" signature="run(circuits, parameter_values=None, **run_options)">
+    Run the job of the sampling of bitstrings.
+
+    **Parameters**
+
+    *   **circuits** (QuantumCircuit | Sequence\[QuantumCircuit]) – One of more circuit objects.
+    *   **parameter\_values** (Sequence\[float] | Sequence\[Sequence\[float]] | None) – Parameters to be bound to the circuit.
+    *   **run\_options** – Backend runtime options used for circuit execution.
+
+    **Return type**
+
+    T
+
+    **Returns**
+
+    The job object of the result of the sampler. The i-th result corresponds to `circuits[i]` evaluated with parameters bound as `parameter_values[i]`.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Invalid arguments are given.
+  </Function>
+
+  #### set\_options
+
+  <Function id="qiskit_addon_cutting.utils.simulation.ExactSampler.set_options" signature="set_options(**fields)">
+    Set options values for the estimator.
+
+    **Parameters**
+
+    **\*\*fields** – The fields to update the options
+  </Function>
 </Class>
 

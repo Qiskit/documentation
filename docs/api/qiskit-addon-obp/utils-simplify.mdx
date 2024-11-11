@@ -18,13 +18,29 @@ Functions for simplifying Pauli operators.
 
 ### OperatorBudget
 
-<Class id="qiskit_addon_obp.utils.simplify.OperatorBudget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/simplify.py#L43-L69" signature="OperatorBudget(max_paulis=None, max_qwc_groups=None, simplify=True)" modifiers="class">
+<Class id="qiskit_addon_obp.utils.simplify.OperatorBudget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/simplify.py#L43-L69" signature="OperatorBudget(max_paulis=None, max_qwc_groups=None, simplify=True)" modifiers="class">
   A class for storing the constants that determine how large an operator may grow.
 
   Backpropagation will stop if either of the following conditions is met:
 
   *   The number of Pauli terms across all of the observables exceeds `max_paulis`. When `max_paulis = None`, the number of Pauli terms in the observables is not constrained.
   *   The number of qubit-wise commuting Pauli groups across all of the observables exceed `max_qwc_groups`. When `max_qwc_groups = None`, the number of qubit-wise commuting Pauli groups in the observables is not constrained.
+
+  **Parameters**
+
+  *   **max\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
+  *   **max\_qwc\_groups** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*)
+  *   **simplify** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)"))
+
+  #### is\_active
+
+  <Function id="qiskit_addon_obp.utils.simplify.OperatorBudget.is_active" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/simplify.py#L67-L69" signature="is_active()">
+    Return whether `self` places any bounds on operator size.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
 
   #### max\_paulis
 
@@ -43,28 +59,19 @@ Functions for simplifying Pauli operators.
   <Attribute id="qiskit_addon_obp.utils.simplify.OperatorBudget.simplify" attributeTypeHint="bool" attributeValue="True">
     A flag denoting whether to call [`simplify()`](#qiskit_addon_obp.utils.simplify.simplify "qiskit_addon_obp.utils.simplify.simplify") at every iteration.
   </Attribute>
-
-  #### is\_active
-
-  <Function id="qiskit_addon_obp.utils.simplify.OperatorBudget.is_active" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/simplify.py#L67-L69" signature="is_active()">
-    Return whether `self` places any bounds on operator size.
-
-    **Return type**
-
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
-  </Function>
 </Class>
 
 ### SimplifyMetadata
 
-<Class id="qiskit_addon_obp.utils.simplify.SimplifyMetadata" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/simplify.py#L26-L40" signature="SimplifyMetadata(num_unique_paulis, num_duplicate_paulis, num_trimmed_paulis, sum_trimmed_coeffs)" modifiers="class">
+<Class id="qiskit_addon_obp.utils.simplify.SimplifyMetadata" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/simplify.py#L26-L40" signature="SimplifyMetadata(num_unique_paulis, num_duplicate_paulis, num_trimmed_paulis, sum_trimmed_coeffs)" modifiers="class">
   A simple dataclass for returning the tracked attributes during operator simplification.
 
-  #### num\_unique\_paulis
+  **Parameters**
 
-  <Attribute id="qiskit_addon_obp.utils.simplify.SimplifyMetadata.num_unique_paulis" attributeTypeHint="int">
-    The number of unique Pauli terms. See also `num_unique_paulis`.
-  </Attribute>
+  *   **num\_unique\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+  *   **num\_duplicate\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+  *   **num\_trimmed\_paulis** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+  *   **sum\_trimmed\_coeffs** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"))
 
   #### num\_duplicate\_paulis
 
@@ -78,6 +85,12 @@ Functions for simplifying Pauli operators.
     The number of trimmed Pauli terms. See also `num_trimmed_paulis`.
   </Attribute>
 
+  #### num\_unique\_paulis
+
+  <Attribute id="qiskit_addon_obp.utils.simplify.SimplifyMetadata.num_unique_paulis" attributeTypeHint="int">
+    The number of unique Pauli terms. See also `num_unique_paulis`.
+  </Attribute>
+
   #### sum\_trimmed\_coeffs
 
   <Attribute id="qiskit_addon_obp.utils.simplify.SimplifyMetadata.sum_trimmed_coeffs" attributeTypeHint="float">
@@ -87,7 +100,7 @@ Functions for simplifying Pauli operators.
 
 ### simplify
 
-<Function id="qiskit_addon_obp.utils.simplify.simplify" github="https://github.com/Qiskit/qiskit-addon-obp/tree/main/qiskit_addon_obp/utils/simplify.py#L72-L161" signature="simplify(operator, *, atol=None, rtol=None)">
+<Function id="qiskit_addon_obp.utils.simplify.simplify" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/simplify.py#L72-L161" signature="simplify(operator, *, atol=None, rtol=None)">
   Simplifies the provided Pauli operator.
 
   This is an adaption of `SparsePauliOp.simplify()` which tracks metadata of the simplified terms.

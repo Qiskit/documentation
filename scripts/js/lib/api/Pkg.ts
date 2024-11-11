@@ -125,7 +125,7 @@ export class Pkg {
     if (name === "qiskit-addon-obp") {
       return new Pkg({
         ...args,
-        title: "Operator backpropagation",
+        title: "Operator backpropagation (OBP)",
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
       });
@@ -133,15 +133,16 @@ export class Pkg {
     if (name === "qiskit-addon-mpf") {
       return new Pkg({
         ...args,
-        title: "Multi-product formulas",
+        title: "Multi-product formulas (MPF)",
         githubSlug: "Qiskit/qiskit-addon-mpf",
         kebabCaseAndShortenUrls: true,
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
     if (name === "qiskit-addon-sqd") {
       return new Pkg({
         ...args,
-        title: "Sample-based quantum diagonalization",
+        title: "Sample-based quantum diagonalization (SQD)",
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
       });
