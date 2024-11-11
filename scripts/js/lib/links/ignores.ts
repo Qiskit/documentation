@@ -60,6 +60,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
   "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.210601",
   "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033154",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.042303",
   "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
   "https://https://arxiv.org/abs/quant-ph/0403071",
   "https://doi.org/10.1103/PhysRevApplied.5.034007",
