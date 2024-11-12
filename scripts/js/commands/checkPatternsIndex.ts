@@ -22,6 +22,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/qiskit-code-assistant-vscode",
   "/guides/addons",
   "/guides/addons/qiskit-addons-sqd-get-started",
+  "/guides/serverless-hamsim-template",
   "/guides/qiskit-addons-obp",
   "/guides/qiskit-addons-obp-get-started",
 ]);
