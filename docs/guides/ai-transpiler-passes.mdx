@@ -5,7 +5,7 @@ description: What are the AI transpiler passes and how to use them
 
 # AI transpiler passes
 ​
-The AI-powered transpiler passes are experimental passes that work as a drop-in replacement of "traditional" Qiskit passes for some transpiling tasks. They often produce better results than existing heuristic algorithms (such as lower depth and CNOT count), but are also much faster than optimization algorithms such as Boolean satisfiability solvers. The AI transpiler passes can run on your local environment or on the cloud using the Qiskit Transpiler Service if you are part of the IBM Quantum&trade; Premium Plan.
+The AI-powered transpiler passes are passes that work as a drop-in replacement of "traditional" Qiskit passes for some transpiling tasks. They often produce better results than existing heuristic algorithms (such as lower depth and CNOT count), but are also much faster than optimization algorithms such as Boolean satisfiability solvers. The AI transpiler passes can run on your local environment or on the cloud using the Qiskit Transpiler Service if you are part of the IBM Quantum&trade; Premium Plan.
 
 
 <Admonition type="note">
@@ -137,10 +137,10 @@ The `qiskit-ibm-transpiler` allows you to configure a hybrid pass manager that c
 ```
 
 The following options are used:
-* `coupling_map` - Specifies which coupling map to use for the transpilation. 
+* `coupling_map` - Specifies which coupling map to use for the transpilation.
 * `ai_optimization_level` - Specifies the level of optimization (1-3) to use for the AI components of the PassManager.
 * `optimization_level` - Specifies how much optimization to perform on the circuit for the heuristic components of the PassManager.
-* `ai_layout_mode` - Specifies how the AI routing part of the PassManager handles the layout. 
+* `ai_layout_mode` - Specifies how the AI routing part of the PassManager handles the layout.
 
 Refer to the #AI-routing-pass section to review the configuration options for this parameter.
 
