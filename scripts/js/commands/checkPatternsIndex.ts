@@ -22,6 +22,8 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/qiskit-code-assistant-vscode",
   "/guides/addons",
   "/guides/addons/qiskit-addons-sqd-get-started",
+  "/guides/qiskit-addons-obp",
+  "/guides/qiskit-addons-obp-get-started",
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under
@@ -38,6 +40,8 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/guides/q-ctrl-optimization-solver",
   "/guides/qunasys-quri-chemistry",
   "/guides/circuit-library",
+  "/guides/qiskit-addons-obp",
+  "/guides/qiskit-addons-obp-get-started",
 ]);
 
 const INDEX_PAGES = [
