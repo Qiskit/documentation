@@ -23,7 +23,7 @@ The following passes are currently available:
  - `AILinearFunctionSynthesis`: Linear function circuit synthesis
  - `AIPermutationSynthesis`: Permutation circuit synthesis
 
-To use the AI transpiler passes, first [install the `qiskit-ibm-transpiler` package.](./qiskit-transpiler-service#install-transpiler-service))
+To use the AI transpiler passes, first [install the `qiskit-ibm-transpiler` package.](./qiskit-transpiler-service#install-transpiler-service)). Check out the [qiskit-ibm-transpiler API documentation](https://docs.quantum.ibm.com/api/qiskit-ibm-transpiler) to get more information about the different options available.
 
 ## Run the AI transpiler passes locally or on cloud
 
@@ -136,13 +136,11 @@ The `qiskit-ibm-transpiler` allows you to configure a hybrid pass manager that c
     ai_su2_transpiled_circuit = ai_transpiler_pass_manager.run(su2_circuit),
 ```
 
-The following options are used:
+The following options are used in this example:
 * `coupling_map` - Specifies which coupling map to use for the transpilation.
 * `ai_optimization_level` - Specifies the level of optimization (1-3) to use for the AI components of the PassManager.
 * `optimization_level` - Specifies how much optimization to perform on the circuit for the heuristic components of the PassManager.
-* `ai_layout_mode` - Specifies how the AI routing part of the PassManager handles the layout.
-
-Refer to the #AI-routing-pass section to review the configuration options for this parameter.
+* `ai_layout_mode` - Specifies how the AI routing part of the PassManager handles the layout. Refer to the #AI-routing-pass section to review the configuration options for this `ai_layout_mode` parameter.
 
 ## Limits
 
