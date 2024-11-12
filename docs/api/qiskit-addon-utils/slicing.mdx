@@ -20,7 +20,7 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
 ### combine\_slices
 
-<Function id="qiskit_addon_utils.slicing.combine_slices" github="https://github.com/Qiskit/qiskit-addon-utils/tree/main/qiskit_addon_utils/slicing/combine_slices.py#L22-L54" signature="combine_slices(slices, include_barriers=False)">
+<Function id="qiskit_addon_utils.slicing.combine_slices" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/slicing/combine_slices.py#L22-L54" signature="combine_slices(slices, include_barriers=False)">
   Combine N-qubit slices of a circuit into a single circuit.
 
   **Parameters**
@@ -43,7 +43,7 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
 ### slice\_by\_barriers
 
-<Function id="qiskit_addon_utils.slicing.slice_by_barriers" github="https://github.com/Qiskit/qiskit-addon-utils/tree/main/qiskit_addon_utils/slicing/slice_by_barriers.py#L21-L52" signature="slice_by_barriers(circuit)">
+<Function id="qiskit_addon_utils.slicing.slice_by_barriers" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/slicing/slice_by_barriers.py#L21-L52" signature="slice_by_barriers(circuit)">
   Split a `QuantumCircuit` into slices around full-circuit barriers.
 
   Barriers which do not act on all circuit qubits will be treated as normal operations and included in the slices. Barriers which act on all qubits will be interpreted as slice locations and will not be included in the output slices.
@@ -63,7 +63,7 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
 ### slice\_by\_coloring
 
-<Function id="qiskit_addon_utils.slicing.slice_by_coloring" github="https://github.com/Qiskit/qiskit-addon-utils/tree/main/qiskit_addon_utils/slicing/slice_by_coloring.py#L28-L120" signature="slice_by_coloring(circuit, coloring)">
+<Function id="qiskit_addon_utils.slicing.slice_by_coloring" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/slicing/slice_by_coloring.py#L28-L120" signature="slice_by_coloring(circuit, coloring)">
   Split a `QuantumCircuit` into slices using the provided edge coloring.
 
   Two-qubit gates acting on identically colored qubit connections (edges) will be grouped greedily into slices using [`CollectOpColor`](slicing-transpiler-passes-collect-op-color "qiskit_addon_utils.slicing.transpiler.passes.CollectOpColor"). This will be done in order of increasing color value (the integer values which each edge is mapped to).
@@ -137,7 +137,7 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
 ### slice\_by\_depth
 
-<Function id="qiskit_addon_utils.slicing.slice_by_depth" github="https://github.com/Qiskit/qiskit-addon-utils/tree/main/qiskit_addon_utils/slicing/slice_by_depth.py#L21-L57" signature="slice_by_depth(circuit, max_slice_depth)">
+<Function id="qiskit_addon_utils.slicing.slice_by_depth" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/slicing/slice_by_depth.py#L21-L57" signature="slice_by_depth(circuit, max_slice_depth)">
   Split a `QuantumCircuit` into slices based on depth.
 
   This function transforms the input circuit into a [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.2)") and batches the sequence of depth-1 layers output from [`layers()`](/api/qiskit/qiskit.dagcircuit.DAGCircuit#layers "(in Qiskit v1.2)") into slices of depth not exceeding `max_slice_depth`. This is achieved by composing layers into slices until the max slice depth is reached and then starting a new slice with the next layer. The final slice may be composed of fewer than `max_slice_depth` layers.
@@ -158,7 +158,7 @@ For more information, check out the [how-to guide](https://qiskit.github.io/qisk
 
 ### slice\_by\_gate\_types
 
-<Function id="qiskit_addon_utils.slicing.slice_by_gate_types" github="https://github.com/Qiskit/qiskit-addon-utils/tree/main/qiskit_addon_utils/slicing/slice_by_gate_types.py#L24-L56" signature="slice_by_gate_types(circuit)">
+<Function id="qiskit_addon_utils.slicing.slice_by_gate_types" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/slicing/slice_by_gate_types.py#L24-L56" signature="slice_by_gate_types(circuit)">
   Split a `QuantumCircuit` into depth-1 slices of operations of the same type.
 
   <Admonition title="Warning" type="caution">
