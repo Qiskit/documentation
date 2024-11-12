@@ -25,7 +25,10 @@ interface Arguments {
   apis: boolean;
 }
 
-const ALLOWED_ORPHAN_URLS: Set<string> = new Set([...qiskitLegacyIgnores()]);
+const ALLOWED_ORPHAN_URLS: Set<string> = new Set([
+  ...qiskitLegacyIgnores(),
+  "/api/qiskit-addon-mpf/release-notes",
+]);
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
