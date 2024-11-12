@@ -77,19 +77,19 @@ Fortunately, the decomposition of $O'$ can often contain coefficients that are q
 
 ### Clifford perturbation theory
 
-Lastly, the `qiskit-addon-obp` package approaches operator backpropagation based on Clifford perturbation theory. This method has the benefit that the overhead incurred by backpropagating various gates is determined by the non-Cliffordness of that gate (as in, how much of a particular portion of $U_C$ contains non-Clifford instructions).
+Lastly, the `qiskit-addon-obp` package approaches operator backpropagation based on Clifford perturbation theory. This method has the benefit that the overhead incurred by backpropagating various gates scales with the non-Cliffordness of $U_C$ (i.e. how much of U C is comprised of non-Clifford instructions).
 
 This approach to OBP begins by splitting the simulated circuit, $U_C$, into *slices*:
 
 $$ U_C = \prod_{s=1}^S \mathcal{U}_s = \mathcal{U}_S...\mathcal{U}_2\mathcal{U}_1, $$
 
-where $S$ represents the total number of slices and $\mathcal{U}_s$ denotes a single slice of the circuit $U_C$. Each of these slices are then analytically applied in sequence to measure the backpropagated operator $O'$, and might or might not contribute to the overall size of the sum, depending on if the slice is a Clifford versus non-Clifford operation.
+where $S$ represents the total number of slices and $\mathcal{U}_s$ denotes a single slice of the circuit $U_C$. Each of these slices are then analytically applied in sequence to measure the back propagated operator $O'$ and may or may not contribute to the overall size of the sum, depending on if the slice is a Clifford vs non-Clifford operation. If an [error budget](../api/qiskit-addon-obp/utils-truncating#setup_budget) is allocated, truncation will then occur between the application of each slice.
 
 
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - [Get started with OBP.](/guides/qiskit-addons-obp-get-started.ipynb)    
+    - [Get started with OBP.](/guides/qiskit-addons-obp-get-started)    
     - Become familiar with the [error mitigation techniques](/guides/error-mitigation-and-suppression-techniques) available in Qiskit Runtime.
 </Admonition>
