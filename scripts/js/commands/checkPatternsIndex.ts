@@ -40,6 +40,8 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/guides/q-ctrl-optimization-solver",
   "/guides/qunasys-quri-chemistry",
   "/guides/circuit-library",
+  "/guides/qiskit-addons-obp",
+  "/guides/qiskit-addons-obp-get-started",
 ]);
 
 const INDEX_PAGES = [
