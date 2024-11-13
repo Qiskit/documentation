@@ -47,6 +47,7 @@ export class Pkg {
     "qiskit",
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
+    "qiskit-addon-aqc-tensor",
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
@@ -122,6 +123,14 @@ export class Pkg {
       });
     }
 
+    if (name === "qiskit-addon-aqc-tensor") {
+      return new Pkg({
+        ...args,
+        title: "Approximate quantum compilation (AQC-Tensor)",
+        githubSlug: "Qiskit/qiskit-addon-aqc-tensor",
+        kebabCaseAndShortenUrls: true,
+      });
+    }
     if (name === "qiskit-addon-obp") {
       return new Pkg({
         ...args,
