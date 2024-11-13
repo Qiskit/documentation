@@ -47,6 +47,7 @@ export class Pkg {
     "qiskit",
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
+    "qiskit-addon-aqc-tensor",
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
@@ -122,10 +123,18 @@ export class Pkg {
       });
     }
 
+    if (name === "qiskit-addon-aqc-tensor") {
+      return new Pkg({
+        ...args,
+        title: "Approximate quantum compilation (AQC-Tensor)",
+        githubSlug: "Qiskit/qiskit-addon-aqc-tensor",
+        kebabCaseAndShortenUrls: true,
+      });
+    }
     if (name === "qiskit-addon-obp") {
       return new Pkg({
         ...args,
-        title: "Operator backpropagation",
+        title: "Operator backpropagation (OBP)",
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
       });
@@ -133,15 +142,16 @@ export class Pkg {
     if (name === "qiskit-addon-mpf") {
       return new Pkg({
         ...args,
-        title: "Multi-product formulas",
+        title: "Multi-product formulas (MPF)",
         githubSlug: "Qiskit/qiskit-addon-mpf",
         kebabCaseAndShortenUrls: true,
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
     if (name === "qiskit-addon-sqd") {
       return new Pkg({
         ...args,
-        title: "Sample-based quantum diagonalization",
+        title: "Sample-based quantum diagonalization (SQD)",
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
       });

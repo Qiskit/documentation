@@ -78,11 +78,10 @@ class VF2LayoutPlugin(PassManagerStagePlugin):
 
 The second step is to expose the [`PassManagerStagePlugin`](qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin "qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin") subclass as a setuptools entry point in the package metadata. This can be done an `entry-points` table in `pyproject.toml` for the plugin package with the necessary entry points under the appropriate namespace for the stage your plugin is for. You can see the list of stages, entry points, and expectations from the stage in [Plugin Stages](#stage-table). For example, continuing from the example plugin above:
 
-```python
-.. code-block:: toml
+```toml
+[project.entry-points."qiskit.transpiler.layout"]
+"vf2" = "qiskit_plugin_pkg.module.plugin:VF2LayoutPlugin"
 ```
-
-> \[project.entry-points.”qiskit.transpiler.layout”] “vf2” = “qiskit\_plugin\_pkg.module.plugin:VF2LayoutPlugin”
 
 There isn’t a limit to the number of plugins a single package can include as long as each plugin has a unique name. So a single package can expose multiple plugins if necessary. Refer to [Plugin Stages](#stage-table) for a list of reserved names for each stage.
 
@@ -95,7 +94,7 @@ There isn’t a limit to the number of plugins a single package can include as l
 
 ### list\_stage\_plugins
 
-<Function id="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/plugin.py#L283-L309" signature="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)">
+<Function id="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/preset_passmanagers/plugin.py#L283-L309" signature="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins(stage_name)">
   Get a list of installed plugins for a stage.
 
   **Parameters**
@@ -117,7 +116,7 @@ There isn’t a limit to the number of plugins a single package can include as l
 
 ### passmanager\_stage\_plugins
 
-<Function id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/plugin.py#L312-L353" signature="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)">
+<Function id="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/preset_passmanagers/plugin.py#L312-L353" signature="qiskit.transpiler.preset_passmanagers.plugin.passmanager_stage_plugins(stage)">
   Return a dict with, for each stage name, the class type of the plugin.
 
   This function is useful for getting more information about a plugin:
