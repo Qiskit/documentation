@@ -19,6 +19,7 @@ export const IGNORED_FILES = new Set([
   "public/api/qiskit-ibm-runtime/0.15/objects.inv",
   "public/api/qiskit-ibm-runtime/0.16/objects.inv",
   "public/api/qiskit-addon-cutting/objects.inv",
+  "public/api/qiskit-addon-aqc-tensor/objects.inv",
   "public/api/qiskit-addon-mpf/objects.inv",
   "public/api/qiskit-addon-obp/objects.inv",
   "public/api/qiskit-addon-sqd/objects.inv",
