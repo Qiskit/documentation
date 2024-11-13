@@ -22,7 +22,7 @@ The following passes are currently available:
  - `AICliffordSynthesis`: Clifford circuit synthesis
  - `AILinearFunctionSynthesis`: Linear function circuit synthesis
  - `AIPermutationSynthesis`: Permutation circuit synthesis
- - `AIPauliNetworkSynthesis`: Pauli Network circuit synthesis
+ - `AIPauliNetworkSynthesis`: Pauli Network circuit synthesis (only available in the Qiskit Transpiler Service, not in local environment)
 
 To use the AI transpiler passes, first [install the `qiskit-ibm-transpiler` package](/guides/qiskit-transpiler-service#install-transpiler-service). Visit the [qiskit-ibm-transpiler API documentation](/api/qiskit-ibm-transpiler) to get more information about the different options available.
 
@@ -81,7 +81,7 @@ ai_passmanager = PassManager([
   CollectLinearFunctions(),  # Collect Linear Function blocks
   AILinearFunctionSynthesis(backend_name="ibm_cairo", local_mode=True)  # Re-synthesize Linear Function blocks
   CollectPauliNetworks(), # Collect Pauli Networks blocks
-  AIPauliNetworkSynthesis(backend_name="ibm_cairo"),  # Re-synthesize Pauli Network blocks
+  AIPauliNetworkSynthesis(backend_name="ibm_cairo", local_mode=False),  # Re-synthesize Pauli Network blocks. Only available in the Qiskit Transpiler Service
 ])
 
 circuit = EfficientSU2(10, entanglement="full", reps=1).decompose()
@@ -96,7 +96,7 @@ The following synthesis passes are available from `qiskit_ibm_transpiler.ai.synt
 - *AICliffordSynthesis*: Synthesis for [Clifford](/api/qiskit/qiskit.quantum_info.Clifford) circuits (blocks of `H`, `S`, and `CX` gates). Currently up to nine qubit blocks.
 - *AILinearFunctionSynthesis*: Synthesis for [Linear Function](/api/qiskit/qiskit.circuit.library.LinearFunction) circuits (blocks of `CX` and `SWAP` gates). Currently up to nine qubit blocks.
 - *AIPermutationSynthesis*: Synthesis for [Permutation](/api/qiskit/qiskit.circuit.library.Permutation#permutation) circuits (blocks of `SWAP` gates). Currently available for 65, 33, and 27 qubit blocks.
-- *AIPauliNetworkSynthesis*: Synthesis for Pauli Network circuits (blocks of `H`, `S`, `SX`, `CX`, `RX`, `RY` and `RZ` gates). Currently up to six qubit blocks.
+- *AIPauliNetworkSynthesis*: Synthesis for Pauli Network circuits (blocks of `H`, `S`, `SX`, `CX`, `RX`, `RY` and `RZ` gates). Currently up to six qubit blocks. This pass is only available in the Qiskit Transpiler Service, not locally.
 
 We expect to gradually increase the size of the supported blocks.
 
