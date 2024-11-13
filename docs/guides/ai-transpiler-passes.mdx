@@ -23,6 +23,7 @@ The following passes are currently available:
  - `AICliffordSynthesis`: Clifford circuit synthesis
  - `AILinearFunctionSynthesis`: Linear function circuit synthesis
  - `AIPermutationSynthesis`: Permutation circuit synthesis
+ - `AIPauliNetworkSynthesis`: Pauli Network circuit synthesis
 
 To use the AI transpiler passes through our cloud services, install the `qiskit-ibm-transpiler` package (see instructions [here](./qiskit-transpiler-service#install-transpiler-service)).
 
@@ -53,7 +54,7 @@ The `layout_mode` includes the following options:
 
 ## AI circuit synthesis passes
 
-The AI circuit synthesis passes allow you to optimize pieces of different circuit types ([Clifford](/api/qiskit/qiskit.quantum_info.Clifford), [Linear Function](/api/qiskit/qiskit.circuit.library.LinearFunction), [Permutation](/api/qiskit/qiskit.circuit.library.Permutation#permutation)) by re-synthesizing them. A typical way to use the synthesis pass is as follows:
+The AI circuit synthesis passes allow you to optimize pieces of different circuit types ([Clifford](/api/qiskit/qiskit.quantum_info.Clifford), [Linear Function](/api/qiskit/qiskit.circuit.library.LinearFunction), [Permutation](/api/qiskit/qiskit.circuit.library.Permutation#permutation), Pauli Network) by re-synthesizing them. A typical way to use the synthesis pass is as follows:
 
 ```python
 from qiskit.transpiler import PassManager
@@ -61,12 +62,16 @@ from qiskit.transpiler import PassManager
 from qiskit_ibm_transpiler.ai.routing import AIRouting
 from qiskit_ibm_transpiler.ai.synthesis import AILinearFunctionSynthesis
 from qiskit_ibm_transpiler.ai.collection import CollectLinearFunctions
+from qiskit_ibm_transpiler.ai.synthesis import AIPauliNetworkSynthesis
+from qiskit_ibm_transpiler.ai.collection import CollectPauliNetworks
 from qiskit.circuit.library import EfficientSU2
 
 ai_passmanager = PassManager([
   AIRouting(backend_name="ibm_cairo", optimization_level=3, layout_mode="optimize"),  # Route circuit
   CollectLinearFunctions(),  # Collect Linear Function blocks
-  AILinearFunctionSynthesis(backend_name="ibm_cairo")  # Re-synthesize Linear Function blocks
+  AILinearFunctionSynthesis(backend_name="ibm_cairo"),  # Re-synthesize Linear Function blocks
+  CollectPauliNetworks(), # Collect Pauli Networks blocks
+  AIPauliNetworkSynthesis(backend_name="ibm_cairo"),  # Re-synthesize Pauli Network blocks
 ])
 
 circuit = EfficientSU2(10, entanglement="full", reps=1).decompose()
@@ -81,6 +86,7 @@ The following synthesis passes are available from `qiskit_ibm_transpiler.ai.synt
 - *AICliffordSynthesis*: Synthesis for [Clifford](/api/qiskit/qiskit.quantum_info.Clifford) circuits (blocks of `H`, `S`, and `CX` gates). Currently up to nine qubit blocks.
 - *AILinearFunctionSynthesis*: Synthesis for [Linear Function](/api/qiskit/qiskit.circuit.library.LinearFunction) circuits (blocks of `CX` and `SWAP` gates). Currently up to nine qubit blocks.
 - *AIPermutationSynthesis*: Synthesis for [Permutation](/api/qiskit/qiskit.circuit.library.Permutation#permutation) circuits (blocks of `SWAP` gates). Currently available for 65, 33, and 27 qubit blocks.
+- *AIPauliNetworkSynthesis*: Synthesis for Pauli Network circuits (blocks of `H`, `S`, `SX`, `CX`, `RX`, `RY` and `RZ` gates). Currently up to six qubit blocks.
 
 We expect to gradually increase the size of the supported blocks.
 
@@ -99,6 +105,7 @@ The following custom collection passes for Cliffords, Linear Functions and Permu
 - *CollectCliffords*: Collects Clifford blocks as `Instruction` objects and stores the original sub-circuit to compare against it after synthesis.
 - *CollectLinearFunctions*: Collects blocks of `SWAP` and `CX` as `LinearFunction` objects and stores the original sub-circuit to compare against it after synthesis.
 - *CollectPermutations*: Collects blocks of `SWAP` circuits as `Permutations`.
+- *CollectPauliNetworks*: Collects Pauli Network blocks and stores the original sub-circuit to compare against it after synthesis.
 
 These custom collection passes limit the sizes of the collected sub-circuits so they are supported by the AI-powered synthesis passes. Therefore, it is recommended to use them after the routing passes and before the synthesis passes for a better overall optimization.
 
