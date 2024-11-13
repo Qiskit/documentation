@@ -20,6 +20,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/qiskit-code-assistant",
   "/guides/qiskit-code-assistant-jupyterlab",
   "/guides/qiskit-code-assistant-vscode",
+  "/guides/qiskit-code-assistant-local",
   "/guides/addons",
 ]);
 
