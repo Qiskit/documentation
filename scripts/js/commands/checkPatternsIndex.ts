@@ -23,6 +23,8 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/addons",
   "/guides/addons/qiskit-addons-sqd-get-started",
   "/guides/serverless-hamsim-template",
+  "/guides/qiskit-addons-aqc",
+  "/guides/qiskit-addons-aqc-get-started",
   "/guides/qiskit-addons-obp",
   "/guides/qiskit-addons-obp-get-started",
 ]);
@@ -43,6 +45,8 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/guides/circuit-library",
   "/guides/qiskit-addons-obp",
   "/guides/qiskit-addons-obp-get-started",
+  "/guides/qiskit-addons-aqc",
+  "/guides/qiskit-addons-aqc-get-started",
 ]);
 
 const INDEX_PAGES = [
