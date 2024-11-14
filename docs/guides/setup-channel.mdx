@@ -84,12 +84,37 @@ Available plans:
     * The `channel` parameter allows you to distinguish between different account types. When initializing the account, IBM Cloud is the default account used if have saved credentials for an IBM Quantum Platform and an IBM Cloud account.
 
     <Admonition type="caution">
-      Account credentials are saved in plain text. It is recommended to use environment variables to securely manage your token.
+      Account credentials are saved in plain text. To more securely manage your token, it is recommended to use an environment variable; click the following collapsible section for more information.
     </Admonition>
 
-<details>
-<summary>Securely manage your token with environment variables</summary>Text here 
-</details>
+    <details>
+      <summary>
+        Securely manage your token with an environment variable
+      </summary>
+      To store sensitive information like account credentials more securely, it’s a good practice to use environment variables instead of saving them in plain text. Here’s how to modify your code to load the API token from an environment variable.
+
+      1. Set the environment variable:
+
+      Set the `IQP_API_TOKEN` environment variable in your system. You can do this by adding the following line to your shell profile (for example, `.bashrc`, `.zshrc`) or by setting it directly in your terminal:
+
+      ```bash
+      export IQP_API_TOKEN="<YOUR_IQP_API_TOKEN>"
+      ```
+
+      2. Modify the code to retrieve the token from the environment variable
+
+      Update your code to retrieve the token from the environment variable instead of saving it directly:
+
+      ```python
+      import os
+      from qiskit_ibm_catalog import QiskitFunctionsCatalog
+
+      # Gather the token from your environment
+      iqp_api_token = os.getenv("IQP_API_TOKEN")
+
+      QiskitFunctionsCatalog.save_account(token=iqp_api_token)
+      ``` 
+    </details>
 
     <Admonition type="note">
     IBM Cloud is the default account used if you don't specify a different channel or account name.
@@ -208,8 +233,7 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     1. Find your API key. From the [API keys page](https://cloud.ibm.com/iam/apikeys), view or create your API key, then copy it to a secure location so you can use it for authentication.
     2. Find your Cloud Resource Name (CRN). Open the [Instances page](https://cloud.ibm.com/quantum/instances) and click your instance. In the page that opens, click the icon to copy your CRN. Save it in a secure location so you can use it for authentication.
 
-<span id="cloud-save"></span>
-1. Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN:
+1. <span id="cloud-save"></span>Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN:
 
    ```python
    from qiskit_ibm_runtime import QiskitRuntimeService
@@ -241,17 +265,47 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
     * If you don't save your credentials, you must specify them every time you start a new session.
 
+
     <Admonition type="caution">
-        Account credentials are saved in plain text, so only do so if you are using a trusted device.
+      Account credentials are saved in plain text. To more securely manage your token, it is recommended to use an environment variable; click the following collapsible section for more information.
     </Admonition>
 
- 1. Test your setup.  Ensure that you can connect to the service:
+  <details>
+    <summary>
+      Securely manage your token with an environment variable
+    </summary>
+    To store sensitive information like account credentials more securely, it’s a good practice to use environment variables instead of saving them in plain text. Here’s how to modify your code to load the API token from an environment variable.
 
-   ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
+    1. Set the environment variable:
 
-    service = QiskitRuntimeService()
-  ```
+    Set the `IQP_API_TOKEN` environment variable in your system. You can do this by adding the following line to your shell profile (for example, `.bashrc`, `.zshrc`) or by setting it directly in your terminal:
+
+    ```bash
+    export IQP_API_TOKEN="<YOUR_IQP_API_TOKEN>"
+    ```
+
+    2. Modify the code to retrieve the token from the environment variable
+
+    Update your code to retrieve the token from the environment variable instead of saving it directly:
+
+    ```python
+    import os
+    from qiskit_ibm_catalog import QiskitFunctionsCatalog
+
+    # Gather the token from your environment
+    iqp_api_token = os.getenv("IQP_API_TOKEN")
+
+    QiskitFunctionsCatalog.save_account(token=iqp_api_token)
+    ``` 
+  </details>
+
+6. Test your setup.  Ensure that you can connect to the service:
+
+```python
+  from qiskit_ibm_runtime import QiskitRuntimeService
+
+  service = QiskitRuntimeService()
+```
 
 ## Next steps
 
