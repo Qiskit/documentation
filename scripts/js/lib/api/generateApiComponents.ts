@@ -210,12 +210,15 @@ function prepareAttributeOrPropertyProps(
   // we must first extract any modifiers. Attributes will not have modifiers, whereas
   // properties will have `property` or possibly `abstract property`. If the modifier is simply
   // `property`, then we do not save its value because there is no practical difference for end-users
-  // between an attribute and property. However, we preserve the full string if it's `abstract property`. 
+  // between an attribute and property. However, we preserve the full string if it's `abstract property`.
   //
   // Meanwhile, we preserve the non-modifier `em.property` elements to be processed below.
-  const rawModifiers = $child.find("em.property").filter((i, el) => $(el).text().includes("property"));
-  const modifiersText = rawModifiers.text().trim()
-  const filteredModifiers = modifiersText === "property" ? undefined : modifiersText
+  const rawModifiers = $child
+    .find("em.property")
+    .filter((i, el) => $(el).text().includes("property"));
+  const modifiersText = rawModifiers.text().trim();
+  const filteredModifiers =
+    modifiersText === "property" ? undefined : modifiersText;
   rawModifiers.remove();
 
   const text = $child.text();
