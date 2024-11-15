@@ -14,7 +14,11 @@ import { join } from "path/posix";
 
 import { findSeparateReleaseNotesVersions } from "./releaseNotes.js";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage.js";
-import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping.js";
+import {
+  TocGrouping,
+  QISKIT_TOC_GROUPING,
+  QISKIT_ADDON_MPF_GROUPING,
+} from "./TocGrouping.js";
 
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
@@ -146,6 +150,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-mpf",
         kebabCaseAndShortenUrls: true,
         releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+        tocGrouping: QISKIT_ADDON_MPF_GROUPING,
       });
     }
     if (name === "qiskit-addon-sqd") {
