@@ -115,6 +115,8 @@ If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 also add it to the "Check for notebooks that require LaTeX" step in
 `.github/workflows/notebook-test.yml`.
 
+If you don't do this step, you will get the error "FAILED scripts/nb-tester/test/test_notebook_classification.py::test_all_notebooks_are_classified".
+
 ### Add package version information
 
 Add a new markdown cell under your title with a `version-info` tag.
