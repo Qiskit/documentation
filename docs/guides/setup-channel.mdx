@@ -263,8 +263,10 @@ Update your code to retrieve the token from the environment variable instead of 
 import os
 from qiskit_ibm_catalog import QiskitFunctionsCatalog
 
-# Gather the token from your environment
-iqp_api_token = os.getenv("IQP_API_TOKEN")
+# Gather the token from your environment variables.
+# We use `.pop()` to ensure any subprocesses started by
+# our program cannot access the value.
+iqp_api_token = os.environ.pop("IQP_API_TOKEN")
 
 QiskitFunctionsCatalog.save_account(token=iqp_api_token)
 ``` 
