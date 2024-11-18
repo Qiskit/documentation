@@ -38,19 +38,61 @@ matplotlib.set_loglevel("critical")
 """
 
 # If not submitting jobs, we also run this code before notebook execution to mock the real backend
-MOCKING_CODE = """\
+
+# MOCKING_CODE = """\
+# import warnings
+# from qiskit_ibm_runtime import QiskitRuntimeService
+# from qiskit.providers.fake_provider import GenericBackendV2
+# 
+# def patched_least_busy(self, *args, **kwarg):
+#   return GenericBackendV2(num_qubits=6, control_flow=True)
+# 
+# QiskitRuntimeService.least_busy = patched_least_busy
+# 
+# warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
+# warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
+# """
+
+MOCKING_CODE = """
 import warnings
-from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit.providers.fake_provider import GenericBackendV2
-
-def patched_least_busy(self, *args, **kwarg):
-  return GenericBackendV2(num_qubits=6, control_flow=True)
-
-QiskitRuntimeService.least_busy = patched_least_busy
 
 warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
 warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
+warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
+
+
+def generate_backend_cell(backend_name, fake_provider=False, **kwargs):
+    """
+    generate code for fetching a custom backend to inject into a notebook
+    """
+
+    # Generates a set of arguments for QiskitRuntimeService using kwargs
+    qiskit_runtime_service_args = ", ".join([f"{arg}=\"{val}\"" if val else f"{arg}=None" for arg, val in kwargs.items()])
+
+    cell = """
+from qiskit_ibm_runtime import QiskitRuntimeService"""
+
+    if fake_provider:
+        cell += f"""
+from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
+
+def patched_least_busy(self, *args, **kwargs):
+    provider = FakeProviderForBackendV2()
+    return provider.backend("{backend_name}")"""
+    else: 
+        cell += f"""
+def patched_least_busy(self, *args, **kwargs):
+    service = QiskitRuntimeService({qiskit_runtime_service_args})
+    return service.backend("{backend_name}")"""
+
+    cell += """
+QiskitRuntimeService.least_busy = patched_least_busy"""
+
+    cell += MOCKING_CODE
+    print(cell)
+    return cell
+
 
 def get_package_versions():
     requirements_file = Path("scripts/nb-tester/requirements.txt").read_text()
@@ -260,8 +302,31 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
     )
 
     await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
-    if config.should_patch(filepath):
-        await _execute_in_kernel(kernel, MOCKING_CODE)
+    # if config.should_patch(filepath):
+    print(vars(config.args))
+    def get_arg(arg, default):
+        return vars(config.args).get(arg.lstrip("-").replace("-", "_"), default)
+
+    backend = get_arg("--backend", "fake_athens")
+    fake_provider = get_arg("--fake-provider", False)
+    channel = get_arg("--channel", None)
+    token = get_arg("--token", None)
+    url = get_arg("--url", None)
+    name = get_arg("--name", None)
+    instance = get_arg("--instance", None)
+    
+    # Implements a subset of options from QiskitRuntimeService, but in practice any option
+    # can easily be added here
+    backend_cell = generate_backend_cell(
+        backend_name=backend, 
+        fake_provider=fake_provider,
+        channel=channel,
+        token=token,
+        url=url,
+        name=name,
+        instance=instance,
+    )
+    await _execute_in_kernel(kernel, backend_cell)
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,
@@ -360,6 +425,22 @@ def get_args() -> argparse.Namespace:
             "Set to true when running on forks in CI, since authentication cannot work there. "
             "The program will fail with a helpful message if any of the notebooks cannot be executed."
         ),
+    )
+    parser.add_argument(
+        "--backend",
+        action="store",
+        default="test_eagle",
+        help=(
+            "Specify a backend to run the script against"
+        )
+    )
+    parser.add_argument(
+        "--fake-provider",
+        action="store_true",
+        default=False,
+        help=(
+            "Specify whether to fetch the backend from a fake provider or not"
+        )
     )
     args = parser.parse_args()
     if args.only_submit_jobs:
