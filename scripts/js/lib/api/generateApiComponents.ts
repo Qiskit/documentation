@@ -237,7 +237,8 @@ function prepareAttributeOrPropertyProps(
     githubSourceLink,
   };
 
-  if (!priorApiType && id) {
+  const pageHeading = $dl.siblings("h1").text();
+  if (id.endsWith(pageHeading) && pageHeading != "") {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return {
       ...props,
