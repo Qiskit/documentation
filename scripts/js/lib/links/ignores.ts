@@ -76,16 +76,14 @@ function _addonsObjectsInvRegexes(): string[] {
   // Addons have non-API docs in their Sphinx build that translate into invalid links
   // we should ignore
   return ["how-tos", "how_tos", "install", "index", "explanations"]
-    .map(
-      (path) => [
-        // Latest version
-        `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
-        // Historical versions
-        `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]\/${path}(\/.*|#.*|$)`,
-        // Dev version
-        `\/api\/qiskit-addon-[^\/]+\/dev\/${path}(\/.*|#.*|$)`,
-      ],
-    )
+    .map((path) => [
+      // Latest version
+      `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
+      // Historical versions
+      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]\/${path}(\/.*|#.*|$)`,
+      // Dev version
+      `\/api\/qiskit-addon-[^\/]+\/dev\/${path}(\/.*|#.*|$)`,
+    ])
     .flat();
 }
 
