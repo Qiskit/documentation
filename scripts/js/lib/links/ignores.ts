@@ -14,18 +14,7 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES = new Set([
-  "public/api/qiskit-ibm-runtime/0.14/objects.inv",
-  "public/api/qiskit-ibm-runtime/0.15/objects.inv",
-  "public/api/qiskit-ibm-runtime/0.16/objects.inv",
-  "public/api/qiskit-addon-cutting/objects.inv",
-  "public/api/qiskit-addon-aqc-tensor/objects.inv",
-  "public/api/qiskit-addon-mpf/objects.inv",
-  "public/api/qiskit-addon-obp/objects.inv",
-  "public/api/qiskit-addon-sqd/objects.inv",
-  "public/api/qiskit-addon-sqd/0.7/objects.inv",
-  "public/api/qiskit-addon-utils/objects.inv",
-]);
+export const IGNORED_FILES: Set<string> = new Set([]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
@@ -78,6 +67,47 @@ export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
   ...ALWAYS_IGNORED_URLS__SHOULD_FIX,
 ]);
+
+// -----------------------------------------------------------------------------------
+// Always ignored URL regexes - be careful using this
+// -----------------------------------------------------------------------------------
+
+function _addonsObjectsInvRegexes(): string[] {
+  // Addons have non-API docs in their Sphinx build that translate into invalid links
+  // we should ignore
+  return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
+    (path) => [
+      // Latest version
+      `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
+      // Historical versions
+      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]\/${path}(\/.*|#.*|$)`,
+    ],
+  );
+}
+
+function _runtimeObjectsInvRegexes(): string[] {
+  // Runtime has non-API docs in their Sphinx build that translate into invalid links
+  // we should ignore
+  return [
+    "errors",
+    "migrate",
+    "cloud",
+    "faqs",
+    "index",
+    "sessions",
+    "primitives",
+    "compare",
+    "retired",
+  ].map(
+    (path) =>
+      `\/api\/qiskit-ibm-runtime\/(0.16|0.15|0.14)\/${path}(\/.*|#.*|$)`,
+  );
+}
+
+export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
+  ..._addonsObjectsInvRegexes(),
+  ..._runtimeObjectsInvRegexes(),
+];
 
 // -----------------------------------------------------------------------------------
 // Always ignored URL prefixes - be careful using this
