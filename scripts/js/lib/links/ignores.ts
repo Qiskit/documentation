@@ -69,13 +69,13 @@ export const ALWAYS_IGNORED_URLS = new Set([
 ]);
 
 // -----------------------------------------------------------------------------------
-// Always ignored URL regex - be careful using this
+// Always ignored URL regexes - be careful using this
 // -----------------------------------------------------------------------------------
 
 function _addonsObjectsInvRegexes(): string[] {
   return ["how-tos", "how_tos", "install", "index", "explanations"]
     .map(
-      // Addoncs have non-API docs in their Sphinx build that translate into invalid links
+      // Addons have non-API docs in their Sphinx build that translate into invalid links
       // we should ignore
       (path) => [
         // Latest version
@@ -90,6 +90,8 @@ function _addonsObjectsInvRegexes(): string[] {
 }
 
 function _runtimeObjectsInvRegexes(): string[] {
+  // Runtime has non-API docs in their Sphinx build that translate into invalid links
+  // we should ignore
   return [
     "errors",
     "migrate",
