@@ -75,16 +75,14 @@ export const ALWAYS_IGNORED_URLS = new Set([
 function _addonsObjectsInvRegexes(): string[] {
   // Addons have non-API docs in their Sphinx build that translate into invalid links
   // we should ignore
-  return ["how-tos", "how_tos", "install", "index", "explanations"]
-    .map((path) => [
+  return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
+    (path) => [
       // Latest version
       `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
       // Historical versions
       `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]\/${path}(\/.*|#.*|$)`,
-      // Dev version
-      `\/api\/qiskit-addon-[^\/]+\/dev\/${path}(\/.*|#.*|$)`,
-    ])
-    .flat();
+    ],
+  );
 }
 
 function _runtimeObjectsInvRegexes(): string[] {
@@ -100,13 +98,9 @@ function _runtimeObjectsInvRegexes(): string[] {
     "primitives",
     "compare",
     "retired",
-  ]
-    .map((path) => [
-      `\/api\/qiskit-ibm-runtime\/0.16\/${path}(\/.*|#.*|$)`,
-      `\/api\/qiskit-ibm-runtime\/0.15\/${path}(\/.*|#.*|$)`,
-      `\/api\/qiskit-ibm-runtime\/0.14\/${path}(\/.*|#.*|$)`,
-    ])
-    .flat();
+  ].flatMap((path) => [
+    `\/api\/qiskit-ibm-runtime\/(0.16|0.15|0.14)\/${path}(\/.*|#.*|$)`,
+  ]);
 }
 
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
