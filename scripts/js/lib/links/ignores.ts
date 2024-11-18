@@ -73,10 +73,10 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // -----------------------------------------------------------------------------------
 
 function _addonsObjectsInvRegexes(): string[] {
+  // Addons have non-API docs in their Sphinx build that translate into invalid links
+  // we should ignore
   return ["how-tos", "how_tos", "install", "index", "explanations"]
     .map(
-      // Addons have non-API docs in their Sphinx build that translate into invalid links
-      // we should ignore
       (path) => [
         // Latest version
         `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
