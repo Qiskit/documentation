@@ -98,9 +98,10 @@ function _runtimeObjectsInvRegexes(): string[] {
     "primitives",
     "compare",
     "retired",
-  ].flatMap((path) => [
-    `\/api\/qiskit-ibm-runtime\/(0.16|0.15|0.14)\/${path}(\/.*|#.*|$)`,
-  ]);
+  ].map(
+    (path) =>
+      `\/api\/qiskit-ibm-runtime\/(0.16|0.15|0.14)\/${path}(\/.*|#.*|$)`,
+  );
 }
 
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
