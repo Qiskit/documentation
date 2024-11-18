@@ -583,7 +583,7 @@ marked as builtins since they are not actually present in any include file this 
     const meta: Metadata = { apiType: "module", apiName: "my_module" };
     await processMembersAndSetMeta(doc.$, doc.$main, meta);
     doc.expectHtml(`
-<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="undefined" extrasignatures="[]">
+<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
   
 <div><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
 if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates

@@ -748,6 +748,55 @@ test("convert class property headings", async () => {
   });
 });
 
+test("convert abstract class property headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
+<h1>Estimator.circuits<a class='headerlink' href='#estimator' title='Permalink to this heading'>¶</a></h1>
+<dl class='py property'>
+  <dt class='sig sig-object py' id='qiskit_ibm_runtime.Estimator.circuits'>
+    <em class='property'
+    ><span class='pre'>abstract</span><span class='w'> </span><span class='pre'>property</span><span class='w'> </span></em
+    ><span class='sig-prename descclassname'
+  ><span class='pre'>Estimator.</span></span
+  ><span class='sig-name descname'><span class='pre'>circuits</span></span
+  ><em class='property'
+  ><span class='p'><span class='pre'>:</span></span
+  ><span class='w'> </span><span class='pre'>tuple</span
+  ><span class='p'><span class='pre'>[</span></span
+  ><span class='pre'>qiskit.circuit.quantumcircuit.QuantumCircuit</span
+  ><span class='p'><span class='pre'>,</span></span
+  ><span class='w'> </span
+  ><span class='p'><span class='pre'>...</span></span
+  ><span class='p'><span class='pre'>]</span></span></em
+  ><a
+    class='headerlink'
+    href='#qiskit_ibm_runtime.Estimator.circuits'
+    title='Permalink to this definition'
+  >¶</a
+  >
+  </dt>
+  <dd><p>Quantum circuits that represents quantum states.</p></dd>
+</dl>
+</div>
+`,
+      true,
+    ),
+  ).toEqual({
+    images: [],
+    isReleaseNotes: false,
+    markdown: `# circuits
+
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true} modifiers="abstract property">
+  Quantum circuits that represents quantum states.
+</Attribute>\n`,
+    meta: {
+      apiName: "qiskit_ibm_runtime.Estimator.circuits",
+      apiType: "property",
+    },
+  });
+});
+
 test("convert class method headings", async () => {
   expect(
     await toMd(
