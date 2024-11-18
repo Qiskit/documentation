@@ -20,6 +20,24 @@ python_api_name: qiskit_ibm_transpiler.ai.AIRouting
   *   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – With a range from 1 to 3, determines the computational effort to spend in the process (higher usually gives better results but takes longer), defaults to 2.
   *   **layout\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Specifies how to handle the layout selection. There are 3 layout modes: keep (respects the layout set by the previous transpiler passes), improve (uses the layout set by the previous transpiler passes as a starting point) and optimize (ignores previous layout selections), defaults to OPTIMIZE.
 
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit_ibm_transpiler.ai.AIRouting.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit_ibm_transpiler.ai.AIRouting.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
   ## Methods
 
   ### execute
@@ -31,7 +49,7 @@ python_api_name: qiskit_ibm_transpiler.ai.AIRouting
 
     *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)")) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
