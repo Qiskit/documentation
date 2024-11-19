@@ -245,7 +245,7 @@ function prepareAttributeOrPropertyProps(
   };
 
   const pageHeading = $dl.siblings("h1").text();
-  if (id.endsWith(pageHeading) && pageHeading != "") {
+  if (pageHeading && id.endsWith(pageHeading)) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return {
       ...props,
@@ -279,7 +279,7 @@ function prepareFunctionProps(
   };
 
   const pageHeading = $dl.siblings("h1").text();
-  if (id.endsWith(pageHeading) && pageHeading != "") {
+  if (pageHeading && id.endsWith(pageHeading)) {
     // Page is already dedicated to apiType; no heading needed
     return {
       ...props,
