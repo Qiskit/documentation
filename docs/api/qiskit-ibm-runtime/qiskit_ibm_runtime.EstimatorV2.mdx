@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 # EstimatorV2
 
 <Class id="qiskit_ibm_runtime.EstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/estimator.py#L45-L181" signature="EstimatorV2(mode=None, options=None)" modifiers="class">
+  Bases: `BasePrimitiveV2`\[[`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions")], `Estimator`, [`BaseEstimatorV2`](/api/qiskit/qiskit.primitives.BaseEstimatorV2 "(in Qiskit v1.2)")
+
   Class for interacting with Qiskit Runtime Estimator primitive service.
 
   Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
@@ -74,7 +76,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
     **Return type**
 
-    Optional\[[Session](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") | [Batch](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")]
+    `Union`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `None`]
 
     **Returns**
 
@@ -104,7 +106,7 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
     **Return type**
 
-    BackendV1 | BackendV2
+    [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "(in Qiskit v1.2)") | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.2)")
   </Function>
 
   ### run
@@ -114,12 +116,12 @@ python_api_name: qiskit_ibm_runtime.EstimatorV2
 
     **Parameters**
 
-    *   **pubs** (*Iterable\[EstimatorPubLike]*) – An iterable of pub-like (primitive unified bloc) objects, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`.
-    *   **precision** (*float | None*) – The target precision for expectation value estimates of each run Estimator Pub that does not specify its own precision. If None the estimator’s default precision value will be used.
+    *   **pubs** (`Iterable`\[`Union`\[`EstimatorPub`, `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)"), [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)"), `Mapping`\[`Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)")], `float`], `Buffer`, `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `bytes`, `_NestedSequence`\[`bool` | `int` | `float` | `complex` | `str` | `bytes`]]], `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)"), [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)"), `Mapping`\[`Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)")], `float`], `Buffer`, `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `bytes`, `_NestedSequence`\[`bool` | `int` | `float` | `complex` | `str` | `bytes`]], `Mapping`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`, `Tuple`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`], `...`]], `Union`\[`Buffer`, `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `str`, `bytes`, `_NestedSequence`\[`bool` | `int` | `float` | `complex` | `str` | `bytes`]]]], `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)"), [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)"), `Mapping`\[`Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)")], `float`], `Buffer`, `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `bytes`, `_NestedSequence`\[`bool` | `int` | `float` | `complex` | `str` | `bytes`]], `Mapping`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`, `Tuple`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`], `...`]], `Union`\[`Buffer`, `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `str`, `bytes`, `_NestedSequence`\[`bool` | `int` | `float` | `complex` | `str` | `bytes`]]], `Real`]]]) – An iterable of pub-like (primitive unified bloc) objects, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`.
+    *   **precision** (`Optional`\[`float`]) – The target precision for expectation value estimates of each run Estimator Pub that does not specify its own precision. If None the estimator’s default precision value will be used.
 
     **Return type**
 
-    [RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
+    [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
 
     **Returns**
 

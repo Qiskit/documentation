@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 # QiskitRuntimeService
 
 <Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/qiskit_runtime_service.py#L53-L1180" signature="QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, private_endpoint=None, url_resolver=None)" modifiers="class">
+  Bases: `object`
+
   Class for interacting with the Qiskit Runtime service.
 
   QiskitRuntimeService constructor
@@ -265,8 +267,8 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
     *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit.
     *   **skip** (`int`) – Starting index for the job retrieval.
     *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-    *   **pending** (`Optional`\[`bool`]) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
-    *   **program\_id** (`Optional`\[`str`]) – Filter by Program ID.
+    *   **pending** (`bool`) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
+    *   **program\_id** (`str`) – Filter by Program ID.
     *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
     *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
     *   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
@@ -305,6 +307,8 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
         ```python
         QiskitRuntimeService.least_busy(n_qubits=5, operational=True)
         ```
+
+    *   **kwargs** (*Any*)
 
     **Return type**
 

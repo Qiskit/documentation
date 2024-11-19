@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 # ConvertISAToClifford
 
 <Class id="qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/transpiler/passes/cliffordization/convert_isa_to_clifford.py#L29-L81" signature="ConvertISAToClifford(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v1.2)")
+
   Convert the gates of an ISA circuit to Clifford gates.
 
   ISA circuits only contain Clifford gates from a restricted set or [`qiskit.circuit.library.RZGate`](/api/qiskit/qiskit.circuit.library.RZGate "(in Qiskit v1.2)")s by arbitrary angles. To convert them to Clifford circuits, this pass rounds the angle of every [`qiskit.circuit.library.RZGate`](/api/qiskit/qiskit.circuit.library.RZGate "(in Qiskit v1.2)") to the closest multiple of pi/2 (or to a random multiple of pi/2 if the angle is unspecified), while it skips every Clifford gate, measurement, and barrier.
@@ -67,12 +69,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 
     **Parameters**
 
-    *   **circuit** (*QuantumCircuit*) – The dag on which the pass is run.
-    *   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place.
+    *   **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – The dag on which the pass is run.
+    *   **property\_set** (`UnionType`\[[`PropertySet`](/api/qiskit/qiskit.passmanager.PropertySet "(in Qiskit v1.2)"), `dict`, `None`]) – Input/output property set. An analysis pass might change the property set in-place.
 
     **Return type**
 
-    QuantumCircuit
+    [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")
 
     **Returns**
 
@@ -88,7 +90,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.ConvertISAToClifford
 
     *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
     *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
+    *   **callback** (`Callable`) – A callback function which is caller per execution of optimization task.
 
     **Return type**
 

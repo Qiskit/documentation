@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpans
 # ExecutionSpans
 
 <Class id="qiskit_ibm_runtime.execution_span.ExecutionSpans" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/execution_spans.py#L26-L144" signature="ExecutionSpans(spans)" modifiers="class">
+  Bases: `object`
+
   A collection of timings for pub results.
 
   This class is a list-like containing [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan")s, where each execution span represents a time window of data collection, and contains a reference to exactly which of the data were collected during the window.
@@ -16,6 +18,10 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpans
   It is possible for distinct time windows to overlap. This is not because a QPU was performing multiple executions at once, but is instead an artifact of certain classical processing that may happen concurrently with quantum execution. The guarantee being made is that the referenced data definitely occurred in the reported execution span, but not necessarily that the limits of the time window are as tight as possible.
 
   ## Attributes
+
+  **Parameters**
+
+  **spans** (*Iterable\[*[*ExecutionSpan*](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan")*]*)
 
   ### duration
 
@@ -86,7 +92,7 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpans
 
     **Parameters**
 
-    *   **name** (`Optional`\[`str`]) – The name of this set of spans.
+    *   **name** (`str`) – The name of this set of spans.
     *   **normalize\_y** (`bool`) – Whether to display the y-axis units as a percentage of work complete, rather than cumulative shots completed.
     *   **line\_width** (`int`) – The thickness of line segments.
 
@@ -108,11 +114,11 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpans
 
     **Parameters**
 
-    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices to filter.
+    **pub\_idx** (`Union`\[`int`, `Iterable`\[`int`]]) – One or more pub indices to filter.
 
     **Return type**
 
-    [ExecutionSpans](#qiskit_ibm_runtime.execution_span.ExecutionSpans "qiskit_ibm_runtime.execution_span.ExecutionSpans")
+    [`ExecutionSpans`](#qiskit_ibm_runtime.execution_span.ExecutionSpans "qiskit_ibm_runtime.execution_span.execution_spans.ExecutionSpans")
   </Function>
 
   ### sort

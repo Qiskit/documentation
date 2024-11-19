@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
 # SliceSpan
 
 <Class id="qiskit_ibm_runtime.execution_span.SliceSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/slice_span.py#L27-L74" signature="SliceSpan(start, stop, data_slices)" modifiers="class">
+  Bases: [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.execution_span.ExecutionSpan")
+
   An [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan") for data stored in a sliceable format.
 
   This type of execution span references pub result data by assuming that it is a sliceable portion of the (row major) flattened data. Therefore, for each pub dependent on this span, the constructor accepts a single `slice` object, along with the corresponding shape of the data to be sliced.
@@ -76,11 +78,11 @@ python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
 
     **Parameters**
 
-    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
+    **pub\_idx** (`Union`\[`int`, `Iterable`\[`int`]]) – One or more pub indices from the original primitive call.
 
     **Return type**
 
-    bool
+    `bool`
 
     **Returns**
 
@@ -96,11 +98,11 @@ python_api_name: qiskit_ibm_runtime.execution_span.SliceSpan
 
     **Parameters**
 
-    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
+    **pub\_idx** (`Union`\[`int`, `Iterable`\[`int`]]) – One or more pub indices from the original primitive call.
 
     **Return type**
 
-    [SliceSpan](#qiskit_ibm_runtime.execution_span.SliceSpan "qiskit_ibm_runtime.execution_span.SliceSpan")
+    [`SliceSpan`](#qiskit_ibm_runtime.execution_span.SliceSpan "qiskit_ibm_runtime.execution_span.slice_span.SliceSpan")
 
     **Returns**
 

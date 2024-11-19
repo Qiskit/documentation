@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 # PadDynamicalDecoupling
 
 <Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L40-L580" signature="PadDynamicalDecoupling(durations, dd_sequences, qubits=None, spacings=None, skip_reset_qubits=True, pulse_alignment=16, extra_slack_distribution='middle', sequence_min_length_ratios=None, insert_multiple_cycles=False, coupling_map=None, alt_spacings=None, schedule_idle_qubits=False, dd_barrier=None, block_ordering_callable=None)" modifiers="class">
+  Bases: [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.block_base_padder.BlockBasePadder")
+
   Dynamical decoupling insertion pass for IBM dynamic circuit backends.
 
   This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods. As a special case, the pass allows a length-1 sequence (e.g. \[XGate()]). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo. This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
@@ -157,7 +159,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
   *   **insert\_multiple\_cycles** (`bool`) – If the available duration exceeds 2\*sequence\_min\_length\_ratio\*duration(dd\_sequence) enable the insertion of multiple rounds of the dynamical decoupling sequence in that delay.
 
-  *   **coupling\_map** (`Optional`\[[`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.2)")]) – directed graph representing the coupling map for the device. Specifying a coupling map partitions the device into subcircuits, in order to apply DD sequences with different pulse spacings within each. Currently support 2 subcircuits.
+  *   **coupling\_map** ([`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.2)")) – directed graph representing the coupling map for the device. Specifying a coupling map partitions the device into subcircuits, in order to apply DD sequences with different pulse spacings within each. Currently support 2 subcircuits.
 
   *   **alt\_spacings** (`Union`\[`List`\[`List`\[`float`]], `List`\[`float`], `None`]) – A list of lists of spacings between the DD gates, for the second subcircuit, as determined by the coupling map. If None, a balanced spacing that is staggered with respect to the first subcircuit will be used \[d, d, d, …, d, d, 0].
 
@@ -200,12 +202,12 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
     **Parameters**
 
-    *   **circuit** (*QuantumCircuit*) – The dag on which the pass is run.
-    *   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place.
+    *   **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – The dag on which the pass is run.
+    *   **property\_set** (`UnionType`\[[`PropertySet`](/api/qiskit/qiskit.passmanager.PropertySet "(in Qiskit v1.2)"), `dict`, `None`]) – Input/output property set. An analysis pass might change the property set in-place.
 
     **Return type**
 
-    QuantumCircuit
+    [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")
 
     **Returns**
 
@@ -221,7 +223,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
     *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
     *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
+    *   **callback** (`Callable`) – A callback function which is caller per execution of optimization task.
 
     **Return type**
 

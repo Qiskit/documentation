@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.execution_span.TwirledSliceSpan
 # TwirledSliceSpan
 
 <Class id="qiskit_ibm_runtime.execution_span.TwirledSliceSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/twirled_slice_span.py#L27-L92" signature="TwirledSliceSpan(start, stop, data_slices)" modifiers="class">
+  Bases: [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.execution_span.ExecutionSpan")
+
   An [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan") for data stored in a sliceable format when twirling.
 
   This type of execution span references pub result data that came from a twirled sampler experiment which was executed by either prepending or appending an axis to paramater values to account for twirling. Concretely, `data_slices` is a map from pub slices to tuples `(twirled_shape, at_front, shape_slice, shots_slice)` where
@@ -81,11 +83,11 @@ python_api_name: qiskit_ibm_runtime.execution_span.TwirledSliceSpan
 
     **Parameters**
 
-    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
+    **pub\_idx** (`Union`\[`int`, `Iterable`\[`int`]]) – One or more pub indices from the original primitive call.
 
     **Return type**
 
-    bool
+    `bool`
 
     **Returns**
 
@@ -101,11 +103,11 @@ python_api_name: qiskit_ibm_runtime.execution_span.TwirledSliceSpan
 
     **Parameters**
 
-    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
+    **pub\_idx** (`Union`\[`int`, `Iterable`\[`int`]]) – One or more pub indices from the original primitive call.
 
     **Return type**
 
-    [TwirledSliceSpan](#qiskit_ibm_runtime.execution_span.TwirledSliceSpan "qiskit_ibm_runtime.execution_span.TwirledSliceSpan")
+    [`TwirledSliceSpan`](#qiskit_ibm_runtime.execution_span.TwirledSliceSpan "qiskit_ibm_runtime.execution_span.twirled_slice_span.TwirledSliceSpan")
 
     **Returns**
 
