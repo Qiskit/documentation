@@ -429,7 +429,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "--backend",
         action="store",
-        default="test_eagle",
+        default="fake_athens",
         help=(
             "Specify a backend to run the script against"
         )
@@ -440,6 +440,46 @@ def get_args() -> argparse.Namespace:
         default=False,
         help=(
             "Specify whether to fetch the backend from a fake provider or not"
+        )
+    )
+    parser.add_argument(
+        "--channel",
+        action="store",
+        default="ibm_quantum",
+        help=(
+            "Specify a channel for running the notebook against"
+        )
+    )
+    parser.add_argument(
+        "--token",
+        action="store",
+        default=None,
+        help=(
+            "IBM Cloud API key or IBM Quantum API token"
+        )
+    )
+    parser.add_argument(
+        "--url",
+        action="store",
+        default=None,
+        help=(
+            "The API URL to submit the notebook against"
+        )
+    )
+    parser.add_argument(
+        "--name",
+        action="store",
+        default=None,
+        help=(
+            "Name of the qiskit account to load"
+        )
+    )
+    parser.add_argument(
+        "--instance",
+        action="store",
+        default=None,
+        help=(
+            "The service instance to use"
         )
     )
     args = parser.parse_args()
