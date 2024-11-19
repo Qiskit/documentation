@@ -96,7 +96,7 @@ def patched_least_busy(self, *args, **kwargs):
 def patched_least_busy(self, *args, **kwargs):
     service = QiskitRuntimeService({qiskit_runtime_service_args})
     return service.backend("{backend_name}")"""
-        
+
     else:
         raise ValueError(f"Please specify a valid provider. \"{provider}\" is invalid.")
 
@@ -261,7 +261,7 @@ async def execute_notebook(path: Path, config: Config) -> bool:
     Wrapper function for `_execute_notebook` to print status and write result
     """
     if config.should_patch(path):
-        print(f"▶️ Executing {path} (with least_busy patched to return fake backend)")
+        print(f"▶️ Executing {path} (with least_busy patched to {config.args.backend})")
     else:
         print(f"▶️ Executing {path}")
     possible_exceptions = (
