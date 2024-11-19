@@ -315,31 +315,30 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
     )
 
     await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
-    # if config.should_patch(filepath):
-    print(vars(config.args))
-    def get_arg(arg, default):
-        return vars(config.args).get(arg.lstrip("-").replace("-", "_"), default)
+    if config.should_patch(filepath):
+        def get_arg(arg, default):
+            return vars(config.args).get(arg.lstrip("-").replace("-", "_"), default)
 
-    backend = get_arg("--backend", "fake_athens")
-    provider = get_arg("--provider", "qiskit_fake_provider")
-    channel = get_arg("--channel", None)
-    token = get_arg("--token", None)
-    url = get_arg("--url", None)
-    name = get_arg("--name", None)
-    instance = get_arg("--instance", None)
-    
-    # Implements a subset of options from QiskitRuntimeService, but in practice any option
-    # can easily be added here
-    backend_cell = generate_backend_cell(
-        backend_name=backend, 
-        provider=provider,
-        channel=channel,
-        token=token,
-        url=url,
-        name=name,
-        instance=instance,
-    )
-    await _execute_in_kernel(kernel, backend_cell)
+        backend = get_arg("--backend", "fake_athens")
+        provider = get_arg("--provider", "qiskit_fake_provider")
+        channel = get_arg("--channel", None)
+        token = get_arg("--token", None)
+        url = get_arg("--url", None)
+        name = get_arg("--name", None)
+        instance = get_arg("--instance", None)
+
+        # Implements a subset of options from QiskitRuntimeService, but in practice any option
+        # can easily be added here
+        backend_cell = generate_backend_cell(
+            backend_name=backend, 
+            provider=provider,
+            channel=channel,
+            token=token,
+            url=url,
+            name=name,
+            instance=instance,
+        )
+        await _execute_in_kernel(kernel, backend_cell)
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,
