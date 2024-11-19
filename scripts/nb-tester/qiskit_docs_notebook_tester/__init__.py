@@ -81,7 +81,7 @@ from qiskit_ibm_runtime import QiskitRuntimeService"""
         cell += f"""
 from qiskit.providers.fake_provider import GenericBackendV2
 def patched_least_busy(self, *args, **kwargs):
-    GenericBackendV2(num_qubits=5, control_flow=True)"""
+    return GenericBackendV2(num_qubits=5, control_flow=True)"""
 
     elif provider == "runtime_fake_provider":
         cell += f"""
@@ -448,11 +448,11 @@ def get_args() -> argparse.Namespace:
         )
     )
     parser.add_argument(
-        "--fake-provider",
-        action="store_true",
-        default=False,
+        "--provider",
+        action="store",
+        default="qiskit_fake_provider",
         help=(
-            "Specify whether to fetch the backend from a fake provider or not"
+            "Specify a provider to run notebook against [qiskit_ibm_provider, qiskit_fake_provider, runtime_fake_provider]"
         )
     )
     parser.add_argument(
