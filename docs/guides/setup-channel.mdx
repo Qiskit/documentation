@@ -48,47 +48,91 @@ Available plans:
       The Instances section in your [IBM Quantum account page](https://quantum.ibm.com/account) lists the instances that you can access.
     </Admonition>
 
-1. Retrieve your IBM Quantum token from the [IBM Quantum account page](https://quantum.ibm.com/account).
-
-1. <span id="save-account"></span>Authenticate to the service by calling `QiskitRuntimeService` with your IBM Quantum API token and CRN. [Set up an environment variable](#securely-manage) rather than copying and pasting your API token into your code.
-
-   ```python
-   from qiskit_ibm_runtime import QiskitRuntimeService
-
-   service = QiskitRuntimeService(channel="ibm_quantum", token=<your-environment-variable>)
-
-   ```
-
-   Or, optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. *Note that account credentials are saved in plain text. **Never include your token in a notebook.** Instead, use an environment variable when using `save_account()`; see the [Securely manage your token](#securely-manage) section for more information.*
+1. Retrieve your API token from the [IBM Quantum account page](https://quantum.ibm.com/account) and authenticate to the service. Remember that your API token should be kept confidential, so do not share it in a notebook or in any public code.
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
-    # Save an IBM Quantum account and set it as your default account.
-    QiskitRuntimeService.save_account(
-        channel="ibm_quantum",
-        token=<your-environment-variable>,
-        set_as_default=True,
-        # Use `overwrite=True` if you're updating your token.
-        overwrite=True,
-    )
-
-    # Load saved credentials
-    service = QiskitRuntimeService()
+    service = QiskitRuntimeService(
+      channel="ibm_quantum",
+      token="<MY_IBM_QUANTUM_TOKEN>" # Your token is confidential.
+      # Take care not to share your token in public code.
+      )
     ```
 
-    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types.
-    * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
-    * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
-    * If you don't save your credentials, you must specify them every time you start a new session.
-    * The `channel` parameter allows you to distinguish between different account types. When initializing the account, IBM Cloud is the default account used if have saved credentials for an IBM Quantum Platform and an IBM Cloud account.
+1. <span id="save-account"></span>If you want to save your token locally, set the `IQP_API_TOKEN` environment variable in your system by adding the following line to your shell profile (for example, `.bashrc`, `.zshrc`) or by setting it directly in your terminal. **Credentials are saved locally as plain text. Never include your token in a notebook!**
 
-    <Admonition type="caution">
-      Account credentials are saved in plain text. To more securely manage your token, it is recommended that you use an environment variable; see the [Securely manage your token](#securely-manage) section for more information.
-    </Admonition>
+
+    ```bash
+    export IQP_API_TOKEN="<YOUR_IQP_API_TOKEN>"
+    ```
+
+    When you authenticate to the service, use `token=iqp_api_token` in your code to retrieve the token from the environment variable.
+
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+
+    service = QiskitRuntimeService(channel="ibm_quantum", token=<your-environment-variable>)
+    ```
+
+      Or, optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. **Credentials are saved locally as plain text. Never include your token in a notebook!**
+
+    <details>
+      <summary>Click to expand for examples.</summary>
+    
+      <Tabs>
+
+        <TabItem value="runtime" label="Within Qiskit Runtime">
+        ```python
+        import os
+        from qiskit_ibm_runtime import QiskitRuntimeService
+
+        # Gather the token from your environment variables.
+        # We use `.pop()` to ensure any subprocesses started by
+        # our program cannot access the value.
+        iqp_api_token = os.environ.pop("IQP_API_TOKEN")
+
+        # Save an IBM Quantum account and set it as your default account.
+        QiskitRuntimeService.save_account(
+          channel="ibm_quantum",
+          token=iqp_api_token,
+          set_as_default=True,
+          # Use `overwrite=True` if you're updating your token.
+          overwrite=True,
+        )
+
+        # Load saved credentials
+        service = QiskitRuntimeService()
+        ```
+        </TabItem>
+
+        <TabItem value="functions" label="Within Qiskit Functions">
+        ```python
+        import os
+        from qiskit_ibm_catalog import QiskitFunctionsCatalog
+
+        # Gather the token from your environment variables.
+        # We use `.pop()` to ensure any subprocesses started by
+        # our program cannot access the value.
+        iqp_api_token = os.environ.pop("IQP_API_TOKEN")
+
+        QiskitFunctionsCatalog.save_account(token=iqp_api_token)
+
+        # Load saved credentials
+        catalog = QiskitFunctionsCatalog()
+        ```
+        </TabItem>
+      </Tabs>
+    </details>
+
+      * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types.
+      * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
+      * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
+      * If you don't save your credentials, you must specify them every time you start a new session.
+      * The `channel` parameter allows you to distinguish between different account types. When initializing the account, IBM Cloud is the default account used if have saved credentials for an IBM Quantum Platform and an IBM Cloud account.
 
     <Admonition type="note">
-    IBM Cloud is the default account used if you don't specify a different channel or account name.
+      IBM Cloud is the default account used if you don't specify a different channel or account name.
     </Admonition>
 
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
@@ -197,23 +241,28 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     1. Find your API key. From the [API keys page](https://cloud.ibm.com/iam/apikeys), view or create your API key, then copy it to a secure location so you can use it for authentication.
     2. Find your Cloud Resource Name (CRN). Open the [Instances page](https://cloud.ibm.com/quantum/instances) and click your instance. In the page that opens, click the icon to copy your CRN. Save it in a secure location so you can use it for authentication.
 
-1. <span id="cloud-save"></span>Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN. [Set up an environment variable](#securely-manage) rather than copying and pasting your API token into your code.
+1. <span id="cloud-save"></span>Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN. Remember that your credentials should be kept confidential, so do not share it in a notebook or in any public code.
 
-   ```python
-   from qiskit_ibm_runtime import QiskitRuntimeService
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
 
-   service = QiskitRuntimeService(channel="ibm_cloud", token=<your-environment-variable>, instance="<IBM Cloud CRN>")
-   ```
+    service = QiskitRuntimeService(
+    channel="ibm_cloud",
+    token="<IBM Cloud API key>", # Your token is confidential.
+    # Take care not to share your token in public code.
+    instance="<IBM Cloud CRN>"
+    )
+    ```
 
-   You can optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. *Note that account credentials are saved in plain text. **Never include your token in a notebook.** Instead, use an environment variable when using `save_account()`; see the [Securely manage your token](#securely-manage) section for more information.* 
+    You can optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. See these [instructions for creating an environment variable](#save-account) to use in the following code. **Credentials are saved locally as plain text. Never include your token in a notebook or public code!**
 
-   ```python
+    ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # Save account to disk.
     QiskitRuntimeService.save_account(
         channel="ibm_cloud",
-        token=<your-environment-variable>,
+        token=iqp_api_token,
         instance="<IBM Cloud CRN>",
         name="<account-name>",
         # Use `overwrite=True` if you're updating your token.
@@ -224,71 +273,23 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     service = QiskitRuntimeService(name="<account-name>")
     ```
 
-    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. When initializing the account, IBM Cloud is the default account used if you have saved credentials for both an IBM Quantum Platform and an IBM Cloud account.
-    * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
-    * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
-    * If you don't save your credentials, you must specify them every time you start a new session.
+      * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. When initializing the account, IBM Cloud is the default account used if you have saved credentials for both an IBM Quantum Platform and an IBM Cloud account.
+      * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
+      * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
+      * If you don't save your credentials, you must specify them every time you start a new session.
 
 
-    <Admonition type="caution">
-      *Note that account credentials are saved in plain text. **Never include your token in a notebook.** Instead, use an environment variable when using `save_account()`; see the [Securely manage your token](#securely-manage) section for more information.*
-    </Admonition>
+      <Admonition type="caution">
+        *Note that account credentials are saved in plain text. **Never include your token in a notebook.** Instead, use an environment variable when using `save_account()`; see the [Securely manage your token](#securely-manage) section for more information.*
+      </Admonition>
 
-6. Test your setup.  Ensure that you can connect to the service:
+1. Test your setup.  Ensure that you can connect to the service:
 
 ```python
-  from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import QiskitRuntimeService
 
-  service = QiskitRuntimeService()
+service = QiskitRuntimeService()
 ```
-
-<span id="securely-manage"></span>
-## Securely manage your token
-
-To store sensitive information like account credentials more securely, it’s a good practice to use environment variables instead of saving them in plain text. The following demonstrates how to modify your code to load the API token from an environment variable.
-
-1. Set the environment variable.
-
-Set the `IQP_API_TOKEN` environment variable in your system. You can do this by adding the following line to your shell profile (for example, `.bashrc`, `.zshrc`) or by setting it directly in your terminal:
-
-```bash
-export IQP_API_TOKEN="<YOUR_IQP_API_TOKEN>"
-```
-
-2. Modify the code to retrieve the token from the environment variable.
-
-Update your code to retrieve the token from the environment variable instead of saving it directly:
-
-<Tabs>
-
-  <TabItem value="runtime" label="Within Qiskit Runtime">
-  ```python
-  import os
-  from qiskit_ibm_runtime import QiskitRuntimeService
-
-  # Gather the token from your environment variables.
-  # We use `.pop()` to ensure any subprocesses started by
-  # our program cannot access the value.
-  iqp_api_token = os.environ.pop("IQP_API_TOKEN")
-
-  QiskitRuntimeService.save_account(token=iqp_api_token)
-  ```
-  </TabItem>
-
-  <TabItem value="functions" label="Within Qiskit Functions">
-  ```python
-  import os
-  from qiskit_ibm_catalog import QiskitFunctionsCatalog
-
-  # Gather the token from your environment variables.
-  # We use `.pop()` to ensure any subprocesses started by
-  # our program cannot access the value.
-  iqp_api_token = os.environ.pop("IQP_API_TOKEN")
-
-  QiskitFunctionsCatalog.save_account(token=iqp_api_token)
-  ```
-  </TabItem>
-</Tabs>
 
 ## Next steps
 
