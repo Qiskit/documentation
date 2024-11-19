@@ -21,7 +21,7 @@ import platform
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Iterator
+from typing import Iterator, Literal
 
 import nbclient
 import nbformat
@@ -62,7 +62,11 @@ warnings.filterwarnings("ignore", message="Session is not supported in local tes
 """
 
 
-def generate_backend_cell(backend_name, fake_provider=False, **kwargs):
+def generate_backend_cell(
+    backend_name, 
+    provider: Literal["qiskit_ibm_runtime", "qiskit_fake_provider", "runtime_fake_provider"] = "qiskit_ibm_runtime", 
+    **kwargs
+):
     """
     generate code for fetching a custom backend to inject into a notebook
     """
@@ -73,24 +77,33 @@ def generate_backend_cell(backend_name, fake_provider=False, **kwargs):
     cell = """
 from qiskit_ibm_runtime import QiskitRuntimeService"""
 
-    if fake_provider:
+    if provider == "qiskit_fake_provider":
+        cell += f"""
+from qiskit.providers.fake_provider import GenericBackendV2
+def patched_least_busy(self, *args, **kwargs):
+    GenericBackendV2(num_qubits=5, control_flow=True)"""
+
+    elif provider == "runtime_fake_provider":
         cell += f"""
 from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
 
 def patched_least_busy(self, *args, **kwargs):
     provider = FakeProviderForBackendV2()
     return provider.backend("{backend_name}")"""
-    else: 
+
+    elif provider == "qiskit_ibm_runtime": 
         cell += f"""
 def patched_least_busy(self, *args, **kwargs):
     service = QiskitRuntimeService({qiskit_runtime_service_args})
     return service.backend("{backend_name}")"""
+        
+    else:
+        raise ValueError(f"Please specify a valid provider. \"{provider}\" is invalid.")
 
     cell += """
 QiskitRuntimeService.least_busy = patched_least_busy"""
 
     cell += MOCKING_CODE
-    print(cell)
     return cell
 
 
@@ -308,7 +321,7 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
         return vars(config.args).get(arg.lstrip("-").replace("-", "_"), default)
 
     backend = get_arg("--backend", "fake_athens")
-    fake_provider = get_arg("--fake-provider", False)
+    provider = get_arg("--provider", "qiskit_fake_provider")
     channel = get_arg("--channel", None)
     token = get_arg("--token", None)
     url = get_arg("--url", None)
@@ -319,7 +332,7 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
     # can easily be added here
     backend_cell = generate_backend_cell(
         backend_name=backend, 
-        fake_provider=fake_provider,
+        provider=provider,
         channel=channel,
         token=token,
         url=url,
