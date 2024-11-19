@@ -23,7 +23,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   **Parameters**
 
-  *   **mode** (`Union`\[[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "(in Qiskit v1.2)"), [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.2)"), [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `str`, `None`]) –
+  *   **mode** (*Optional\[Union\[BackendV1, BackendV2,* [*Session*](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")*,* [*Batch*](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")*, str]]*) –
 
       The execution mode used to make the primitive query. It can be:
 
@@ -33,7 +33,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
       Refer to the [Qiskit Runtime documentation](/guides/execution-modes). for more information about the `Execution modes`.
 
-  *   **options** (`Union`\[`Dict`, [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.sampler_options.SamplerOptions"), `None`]) – Sampler options, see `SamplerOptions` for detailed description.
+  *   **options** (*Optional\[Union\[Dict,* [*SamplerOptions*](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions")*]]*) – Sampler options, see `SamplerOptions` for detailed description.
 
   ## Attributes
 
@@ -41,10 +41,6 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   <Attribute id="qiskit_ibm_runtime.SamplerV2.mode">
     Return the execution mode used by this primitive.
-
-    **Return type**
-
-    `Union`\[[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `None`]
 
     **Returns**
 
@@ -55,10 +51,6 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   <Attribute id="qiskit_ibm_runtime.SamplerV2.options" attributeTypeHint="SamplerOptions">
     Return options
-
-    **Return type**
-
-    `TypeVar`(`OptionsT`, bound= `BaseOptions`)
   </Attribute>
 
   ### version
@@ -74,7 +66,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
     **Return type**
 
-    [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "(in Qiskit v1.2)") | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.2)")
+    [*BackendV1*](/api/qiskit/qiskit.providers.BackendV1 "(in Qiskit v1.2)") | [*BackendV2*](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.2)")
   </Function>
 
   ### run
@@ -84,12 +76,8 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
     **Parameters**
 
-    *   **pubs** (`Iterable`\[`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")], `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Mapping`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`, `Tuple`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`], `...`]], `Union`\[`Buffer`, `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `str`, `bytes`, `_NestedSequence`\[`bool` | `int` | `float` | `complex` | `str` | `bytes`]]]], `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Mapping`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`, `Tuple`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`], `...`]], `Union`\[`Buffer`, `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `str`, `bytes`, `_NestedSequence`\[`bool` | `int` | `float` | `complex` | `str` | `bytes`]]], `Optional`\[`Integral`]]]]) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
-    *   **shots** (`Optional`\[`int`]) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the primitive’s default shots value will be used, which can vary by implementation.
-
-    **Return type**
-
-    [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
+    *   **pubs** (*Iterable\[*[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") *| Tuple\[*[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")*] | Tuple\[*[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")*, Mapping\[*[*Parameter*](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)") *| str | Tuple\[*[*Parameter*](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)") *| str, ...], Buffer | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")*\[Any]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")*\[Any]]] | bool | int | float | complex | str | bytes | \_NestedSequence\[bool | int | float | complex | str | bytes]]] | Tuple\[*[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")*, Mapping\[*[*Parameter*](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)") *| str | Tuple\[*[*Parameter*](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)") *| str, ...], Buffer | \_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")*\[Any]] | \_NestedSequence\[\_SupportsArray\[*[*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")*\[Any]]] | bool | int | float | complex | str | bytes | \_NestedSequence\[bool | int | float | complex | str | bytes]], Integral | None]]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
+    *   **shots** (*int | None*) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the primitive’s default shots value will be used, which can vary by implementation.
 
     **Returns**
 
@@ -98,6 +86,10 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
     **Raises**
 
     **ValueError** – Invalid arguments are given.
+
+    **Return type**
+
+    [*RuntimeJobV2*](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
   </Function>
 </Class>
 

@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
 # QiskitRuntimeService
 
-<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/qiskit_runtime_service.py#L53-L1180" signature="QiskitRuntimeService(channel=None, token=None, url=None, filename=None, name=None, instance=None, proxies=None, verify=None, private_endpoint=None, url_resolver=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.QiskitRuntimeService" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/qiskit_runtime_service.py#L53-L1180" signature="QiskitRuntimeService(*args, **kwargs)" modifiers="class">
   Bases: `object`
 
   Class for interacting with the Qiskit Runtime service.
@@ -29,16 +29,16 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   **Parameters**
 
-  *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’, ‘local’]]) – Channel type. `ibm_cloud`, `ibm_quantum` or `local`. If `local` is selected, the local testing mode will be used, and primitive queries will run on a local simulator. For more details, check the [Qiskit Runtime local testing mode](/guides/local-testing-mode) documentation.
-  *   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
-  *   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
-  *   **filename** (`Optional`\[`str`]) – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE
-  *   **name** (`Optional`\[`str`]) – Name of the account to load.
-  *   **instance** (`Optional`\[`str`]) – The service instance to use. For `ibm_cloud` runtime, this is the Cloud Resource Name (CRN) or the service name. For `ibm_quantum` runtime, this is the hub/group/project in that format.
-  *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
-  *   **verify** (`Optional`\[`bool`]) – Whether to verify the server’s TLS certificate.
-  *   **private\_endpoint** (`Optional`\[`bool`]) – Connect to private API URL.
-  *   **url\_resolver** (`Optional`\[`Callable`\[\[`str`, `str`, `Optional`\[`bool`]], `str`]]) – Function used to resolve the runtime url.
+  *   **channel** – Channel type. `ibm_cloud`, `ibm_quantum` or `local`. If `local` is selected, the local testing mode will be used, and primitive queries will run on a local simulator. For more details, check the [Qiskit Runtime local testing mode](/guides/local-testing-mode) documentation.
+  *   **token** – IBM Cloud API key or IBM Quantum API token.
+  *   **url** – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
+  *   **filename** – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE
+  *   **name** – Name of the account to load.
+  *   **instance** – The service instance to use. For `ibm_cloud` runtime, this is the Cloud Resource Name (CRN) or the service name. For `ibm_quantum` runtime, this is the hub/group/project in that format.
+  *   **proxies** – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+  *   **verify** – Whether to verify the server’s TLS certificate.
+  *   **private\_endpoint** – Connect to private API URL.
+  *   **url\_resolver** – Function used to resolve the runtime url.
 
   **Returns**
 
@@ -54,10 +54,6 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   <Attribute id="qiskit_ibm_runtime.QiskitRuntimeService.channel">
     Return the channel type used.
-
-    **Return type**
-
-    `str`
 
     **Returns**
 
@@ -75,13 +71,13 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
   <Function id="qiskit_ibm_runtime.QiskitRuntimeService.active_account" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/qiskit_runtime_service.py#L605-L611" signature="active_account()">
     Return the IBM Quantum account currently in use for the session.
 
-    **Return type**
-
-    `Optional`\[`Dict`\[`str`, `str`]]
-
     **Returns**
 
     A dictionary with information about the account currently in the session.
+
+    **Return type**
+
+    *Dict*\[str, str] | None
   </Function>
 
   ### backend
@@ -91,9 +87,9 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    *   **name** (`str`) – Name of the backend.
-    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format. If an instance is not given, among the providers with access to the backend, a premium provider will be prioritized. For users without access to a premium provider, the default open provider will be used.
-    *   **use\_fractional\_gates** (`Optional`\[`bool`]) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with dynamic circuits, PEC, PEA, or gate twirling. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously. If `None`, then both fractional gates and control flow operations are included in the backend targets.
+    *   **name** (*str*) – Name of the backend.
+    *   **instance** (*str | None*) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format. If an instance is not given, among the providers with access to the backend, a premium provider will be prioritized. For users without access to a premium provider, the default open provider will be used.
+    *   **use\_fractional\_gates** (*bool | None*) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with dynamic circuits, PEC, PEA, or gate twirling. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously. If `None`, then both fractional gates and control flow operations are included in the backend targets.
 
     **Returns**
 
@@ -115,15 +111,15 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    *   **name** (`Optional`\[`str`]) – Backend name to filter by.
+    *   **name** (*str | None*) – Backend name to filter by.
 
-    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
+    *   **min\_num\_qubits** (*int | None*) – Minimum number of qubits the backend has to have.
 
-    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+    *   **instance** (*str | None*) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
 
-    *   **dynamic\_circuits** (`Optional`\[`bool`]) – Filter by whether the backend supports dynamic circuits.
+    *   **dynamic\_circuits** (*bool | None*) – Filter by whether the backend supports dynamic circuits.
 
-    *   **filters** (`Optional`\[`Callable`\[\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")], `bool`]]) –
+    *   **filters** (*Callable\[\[*[*IBMBackend*](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")*], bool] | None*) –
 
         More complex filters, such as lambda functions. For example:
 
@@ -136,9 +132,9 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
         )
         ```
 
-    *   **use\_fractional\_gates** (`Optional`\[`bool`]) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with dynamic circuits, PEC, PEA, or gate twirling. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously. If `None`, then both fractional gates and control flow operations are included in the backend targets.
+    *   **use\_fractional\_gates** (*bool | None*) – Set True to allow for the backends to include fractional gates in target. Currently this feature cannot be used simulataneously with dynamic circuits, PEC, PEA, or gate twirling. When this flag is set, control flow instructions are automatically removed from the backend target. When you use the dynamic circuits feature (e.g. if\_else) in your algorithm, you must disable this flag to create executable ISA circuits. This flag might be modified or removed when our backend supports dynamic circuits and fractional gates simultaneously. If `None`, then both fractional gates and control flow operations are included in the backend targets.
 
-    *   **\*\*kwargs** –
+    *   **\*\*kwargs** (*Any*) –
 
         Simple filters that require a specific value for an attribute in backend configuration or status. Examples:
 
@@ -155,10 +151,6 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
         For the full list of backend attributes, see the IBMBackend class documentation \<[api/qiskit/providers\_models](/api/qiskit/providers_models)>
 
-    **Return type**
-
-    `List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]
-
     **Returns**
 
     The list of available backends that match the filter.
@@ -167,6 +159,10 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **IBMInputValueError** – If an input is invalid.
     *   **QiskitBackendNotFoundError** – If the backend is not in any instance.
+
+    **Return type**
+
+    *List*\[[*IBMBackend*](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]
   </Function>
 
   ### check\_pending\_jobs
@@ -176,7 +172,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### delete\_account
@@ -186,17 +182,17 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    *   **filename** (`Optional`\[`str`]) – Name of file from which to delete the account.
-    *   **name** (`Optional`\[`str`]) – Name of the saved account to delete.
-    *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’, ‘local’]]) – Channel type of the default account to delete. Ignored if account name is provided.
-
-    **Return type**
-
-    `bool`
+    *   **filename** (*str | None*) – Name of file from which to delete the account.
+    *   **name** (*str | None*) – Name of the saved account to delete.
+    *   **channel** (*Literal\['ibm\_cloud', 'ibm\_quantum', 'local'] | None*) – Channel type of the default account to delete. Ignored if account name is provided.
 
     **Returns**
 
     True if the account was deleted. False if no account was found.
+
+    **Return type**
+
+    bool
   </Function>
 
   ### delete\_job
@@ -208,7 +204,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    **job\_id** (`str`) – ID of the job to delete.
+    **job\_id** (*str*) – ID of the job to delete.
 
     **Raises**
 
@@ -217,7 +213,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### instances
@@ -225,13 +221,13 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
   <Function id="qiskit_ibm_runtime.QiskitRuntimeService.instances" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/qiskit_runtime_service.py#L1153-L1161" signature="instances()">
     Return the IBM Quantum instances list currently in use for the session.
 
-    **Return type**
-
-    `List`\[`str`]
-
     **Returns**
 
     A list with instances currently in the session.
+
+    **Return type**
+
+    *List*\[str]
   </Function>
 
   ### job
@@ -241,11 +237,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    **job\_id** (`str`) – Job ID.
-
-    **Return type**
-
-    `Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")]
+    **job\_id** (*str*) – Job ID.
 
     **Returns**
 
@@ -255,6 +247,10 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **RuntimeJobNotFound** – If the job doesn’t exist.
     *   **IBMRuntimeError** – If the request failed.
+
+    **Return type**
+
+    [*RuntimeJob*](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob") | [*RuntimeJobV2*](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
   </Function>
 
   ### jobs
@@ -264,21 +260,17 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit.
-    *   **skip** (`int`) – Starting index for the job retrieval.
-    *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-    *   **pending** (`bool`) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
-    *   **program\_id** (`str`) – Filter by Program ID.
-    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
-    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
-    *   **session\_id** (`Optional`\[`str`]) – Job ID of the first job in a runtime session.
-    *   **created\_after** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
-    *   **created\_before** (`Optional`\[`datetime`]) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
-    *   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
-
-    **Return type**
-
-    `List`\[`Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")]]
+    *   **limit** (*int | None*) – Number of jobs to retrieve. `None` means no limit.
+    *   **skip** (*int*) – Starting index for the job retrieval.
+    *   **backend\_name** (*str | None*) – Name of the backend to retrieve jobs from.
+    *   **pending** (*bool*) – Filter by job pending state. If `True`, ‘QUEUED’ and ‘RUNNING’ jobs are included. If `False`, ‘DONE’, ‘CANCELLED’ and ‘ERROR’ jobs are included.
+    *   **program\_id** (*str*) – Filter by Program ID.
+    *   **instance** (*str | None*) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+    *   **job\_tags** (*List\[str] | None*) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
+    *   **session\_id** (*str | None*) – Job ID of the first job in a runtime session.
+    *   **created\_after** (*datetime | None*) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
+    *   **created\_before** (*datetime | None*) – Filter by the given end date, in local time. This is used to find jobs whose creation dates are before (less than or equal to) this local date/time.
+    *   **descending** (*bool*) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
 
     **Returns**
 
@@ -287,6 +279,10 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
     **Raises**
 
     **IBMInputValueError** – If an input value is invalid.
+
+    **Return type**
+
+    *List*\[[*RuntimeJob*](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob") | [*RuntimeJobV2*](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")]
   </Function>
 
   ### least\_busy
@@ -296,11 +292,11 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    *   **min\_num\_qubits** (`Optional`\[`int`]) – Minimum number of qubits the backend has to have.
+    *   **min\_num\_qubits** (*int | None*) – Minimum number of qubits the backend has to have.
 
-    *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
+    *   **instance** (*str | None*) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
 
-    *   **filters** (`Optional`\[`Callable`\[\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")], `bool`]]) –
+    *   **filters** (*Callable\[\[*[*IBMBackend*](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")*], bool] | None*) –
 
         Filters can be defined as for the [`backends()`](#qiskit_ibm_runtime.QiskitRuntimeService.backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") method. An example to get the operational backends with 5 qubits:
 
@@ -310,10 +306,6 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **kwargs** (*Any*)
 
-    **Return type**
-
-    [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
-
     **Returns**
 
     The backend with the fewest number of pending jobs.
@@ -321,6 +313,10 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
     **Raises**
 
     **QiskitBackendNotFoundError** – If no backend matches the criteria.
+
+    **Return type**
+
+    [*IBMBackend*](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
   </Function>
 
   ### save\_account
@@ -330,21 +326,21 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    *   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
-    *   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
-    *   **instance** (`Optional`\[`str`]) – The CRN (ibm\_cloud) or hub/group/project (ibm\_quantum).
-    *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’, ‘local’]]) – Channel type. ibm\_cloud or ibm\_quantum.
-    *   **filename** (`Optional`\[`str`]) – Full path of the file where the account is saved.
-    *   **name** (`Optional`\[`str`]) – Name of the account to save.
-    *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
-    *   **verify** (`Optional`\[`bool`]) – Verify the server’s TLS certificate.
-    *   **overwrite** (`Optional`\[`bool`]) – `True` if the existing account is to be overwritten.
-    *   **set\_as\_default** (`Optional`\[`bool`]) – If `True`, the account is saved in filename, as the default account.
-    *   **private\_endpoint** (`Optional`\[`bool`]) – Connect to private API URL.
+    *   **token** (*str | None*) – IBM Cloud API key or IBM Quantum API token.
+    *   **url** (*str | None*) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
+    *   **instance** (*str | None*) – The CRN (ibm\_cloud) or hub/group/project (ibm\_quantum).
+    *   **channel** (*Literal\['ibm\_cloud', 'ibm\_quantum', 'local'] | None*) – Channel type. ibm\_cloud or ibm\_quantum.
+    *   **filename** (*str | None*) – Full path of the file where the account is saved.
+    *   **name** (*str | None*) – Name of the account to save.
+    *   **proxies** (*dict | None*) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
+    *   **verify** (*bool | None*) – Verify the server’s TLS certificate.
+    *   **overwrite** (*bool | None*) – `True` if the existing account is to be overwritten.
+    *   **set\_as\_default** (*bool | None*) – If `True`, the account is saved in filename, as the default account.
+    *   **private\_endpoint** (*bool | None*) – Connect to private API URL.
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### saved\_accounts
@@ -354,14 +350,10 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Parameters**
 
-    *   **default** (`Optional`\[`bool`]) – If set to True, only default accounts are returned.
-    *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’, ‘local’]]) – Channel type. ibm\_cloud or ibm\_quantum.
-    *   **filename** (`Optional`\[`str`]) – Name of file whose accounts are returned.
-    *   **name** (`Optional`\[`str`]) – If set, only accounts with the given name are returned.
-
-    **Return type**
-
-    `dict`
+    *   **default** (*bool | None*) – If set to True, only default accounts are returned.
+    *   **channel** (*Literal\['ibm\_cloud', 'ibm\_quantum', 'local'] | None*) – Channel type. ibm\_cloud or ibm\_quantum.
+    *   **filename** (*str | None*) – Name of file whose accounts are returned.
+    *   **name** (*str | None*) – If set, only accounts with the given name are returned.
 
     **Returns**
 
@@ -370,16 +362,16 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
     **Raises**
 
     **ValueError** – If an invalid account is found on disk.
+
+    **Return type**
+
+    dict
   </Function>
 
   ### usage
 
   <Function id="qiskit_ibm_runtime.QiskitRuntimeService.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/qiskit_runtime_service.py#L1037-L1050" signature="usage()">
     Return monthly open plan usage information.
-
-    **Return type**
-
-    `Dict`\[`str`, `Any`]
 
     **Returns**
 
@@ -388,6 +380,10 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
     **Raises**
 
     **IBMInputValueError** – If method is called when using the ibm\_cloud channel
+
+    **Return type**
+
+    *Dict*\[str, *Any*]
   </Function>
 </Class>
 

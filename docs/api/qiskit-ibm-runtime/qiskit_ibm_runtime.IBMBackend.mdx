@@ -127,9 +127,9 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   **Parameters**
 
-  *   **configuration** (`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]) – Backend configuration.
-  *   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Instance of QiskitRuntimeService.
-  *   **api\_client** (`RuntimeClient`) – IBM client used to communicate with the server.
+  *   **configuration** (*QasmBackendConfiguration | PulseBackendConfiguration*) – Backend configuration.
+  *   **service** ([*qiskit\_runtime\_service.QiskitRuntimeService*](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – Instance of QiskitRuntimeService.
+  *   **api\_client** (*RuntimeClient*) – IBM client used to communicate with the server.
   *   **instance** (*str | None*)
 
   ## Attributes
@@ -146,10 +146,6 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     Return the system time resolution of input signals
 
     This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Return type**
-
-    `Optional`\[`float`]
 
     **Returns**
 
@@ -190,10 +186,6 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.instructions">
     A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
-
-    **Return type**
-
-    `List`\[`Tuple`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)"), `Tuple`\[`int`]]]
   </Attribute>
 
   ### max\_circuits
@@ -202,10 +194,6 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     The maximum number of circuits
 
     The maximum number of circuits (or Pulse schedules) that can be run in a single job. If there is no limit this will return None.
-
-    **Return type**
-
-    `int`
   </Attribute>
 
   ### meas\_map
@@ -228,30 +216,18 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.num_qubits">
     Return the number of qubits the backend has.
-
-    **Return type**
-
-    `int`
   </Attribute>
 
   ### operation\_names
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.operation_names">
     A list of instruction names that the backend supports.
-
-    **Return type**
-
-    `List`\[`str`]
   </Attribute>
 
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.operations">
     A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)") instances that the backend supports.
-
-    **Return type**
-
-    `List`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)")]
   </Attribute>
 
   ### options
@@ -294,20 +270,12 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.session">
     Return session
-
-    **Return type**
-
-    `Session`
   </Attribute>
 
   ### target
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.target">
     A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.2)") object for the backend.
-
-    **Return type**
-
-    [`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.2)")
 
     **Returns**
 
@@ -351,7 +319,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    [`IBMBackend`](#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
+    [*IBMBackend*](#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
   </Function>
 
   ### acquire\_channel
@@ -379,7 +347,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### check\_faulty
@@ -389,7 +357,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Circuit to check.
+    **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Circuit to check.
 
     **Raises**
 
@@ -397,7 +365,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### close\_session
@@ -407,7 +375,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### configuration
@@ -431,13 +399,13 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
         jobs at once. Parts of the classical computation will be parallelized.
 
-    **Return type**
-
-    `Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
-
     **Returns**
 
     The configuration for the backend.
+
+    **Return type**
+
+    *QasmBackendConfiguration* | *PulseBackendConfiguration*
   </Function>
 
   ### control\_channel
@@ -449,7 +417,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    **qubits** (`Iterable`\[`int`]) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+    **qubits** (*Iterable\[int]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
     **Returns**
 
@@ -469,15 +437,15 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    **refresh** (`bool`) – If `True`, re-query the server for the backend pulse defaults. Otherwise, return a cached version.
-
-    **Return type**
-
-    `Optional`\[`PulseDefaults`]
+    **refresh** (*bool*) – If `True`, re-query the server for the backend pulse defaults. Otherwise, return a cached version.
 
     **Returns**
 
     The backend pulse defaults or `None` if the backend does not support pulse.
+
+    **Return type**
+
+    *PulseDefaults* | None
   </Function>
 
   ### drive\_channel
@@ -505,7 +473,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `str`
+    str
   </Function>
 
   ### measure\_channel
@@ -531,13 +499,13 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   <Function id="qiskit_ibm_runtime.IBMBackend.open_session" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/ibm_backend.py#L857-L873" signature="open_session(max_time=None)">
     Open session
 
-    **Return type**
-
-    `Session`
-
     **Parameters**
 
     **max\_time** (*int | str | None*)
+
+    **Return type**
+
+    *Session*
   </Function>
 
   ### properties
@@ -551,12 +519,8 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    *   **refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
-    *   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the `BackendProperties` whose timestamp is closest to, but older than, the specified datetime. Note that this is only supported using `ibm_quantum` runtime.
-
-    **Return type**
-
-    `Optional`\[`BackendProperties`]
+    *   **refresh** (*bool*) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
+    *   **datetime** (*datetime | None*) – By specifying datetime, this function returns an instance of the `BackendProperties` whose timestamp is closest to, but older than, the specified datetime. Note that this is only supported using `ibm_quantum` runtime.
 
     **Returns**
 
@@ -566,6 +530,10 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     *   **TypeError** – If an input argument is not of the correct type.
     *   **NotImplementedError** – If datetime is specified when cloud runtime is used.
+
+    **Return type**
+
+    *BackendProperties* | None
   </Function>
 
   ### qubit\_properties
@@ -577,11 +545,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    **qubit** (`Union`\[`int`, `List`\[`int`]]) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
-
-    **Return type**
-
-    `Union`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)"), `List`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)")]]
+    **qubit** (*int | List\[int]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
 
     **Returns**
 
@@ -590,6 +554,10 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     **Raises**
 
     **NotImplementedError** – if the backend doesn’t support querying the qubit properties
+
+    **Return type**
+
+    [*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)") | *List*\[[*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)")]
   </Function>
 
   ### refresh
@@ -599,7 +567,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### run
@@ -609,23 +577,23 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Parameters**
 
-    *   **circuits** (`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `str`, `List`\[`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `str`]]]) – An individual or a list of `QuantumCircuit`.
+    *   **circuits** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") *| str | List\[*[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") *| str]*) – An individual or a list of `QuantumCircuit`.
 
-    *   **dynamic** (`bool`) – Whether the circuit is dynamic (uses in-circuit conditionals)
+    *   **dynamic** (*bool*) – Whether the circuit is dynamic (uses in-circuit conditionals)
 
-    *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
+    *   **job\_tags** (*List\[str] | None*) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
 
-    *   **init\_circuit** (`Optional`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")]) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
+    *   **init\_circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") *| None*) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
 
-    *   **init\_num\_resets** (`Optional`\[`int`]) – The number of qubit resets to insert before each circuit execution.
+    *   **init\_num\_resets** (*int | None*) – The number of qubit resets to insert before each circuit execution.
 
-    *   **header** (`Optional`\[`Dict`]) – User input that will be attached to the job and will be copied to the corresponding result header. Headers do not affect the run. This replaces the old `Qobj` header. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **header** (*Dict | None*) – User input that will be attached to the job and will be copied to the corresponding result header. Headers do not affect the run. This replaces the old `Qobj` header. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **shots** (`Union`\[`int`, `float`, `None`]) – Number of repetitions of each circuit, for sampling. Default: 4000 or `max_shots` from the backend configuration, whichever is smaller. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **shots** (*int | float | None*) – Number of repetitions of each circuit, for sampling. Default: 4000 or `max_shots` from the backend configuration, whichever is smaller. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **memory** (`Optional`\[`bool`]) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **memory** (*bool | None*) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **meas\_level** (`Union`\[`int`, `MeasLevel`, `None`]) –
+    *   **meas\_level** (*int | MeasLevel | None*) –
 
         Level of the measurement output for pulse experiments. See [OpenPulse specification](https://arxiv.org/pdf/1809.03452.pdf) for details:
 
@@ -635,7 +603,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
         This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **meas\_return** (`Union`\[`str`, `MeasReturnType`, `None`]) –
+    *   **meas\_return** (*str | MeasReturnType | None*) –
 
         Level of measurement data for the backend to return. For `meas_level` 0 and 1:
 
@@ -644,21 +612,17 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
         This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **rep\_delay** (`Optional`\[`float`]) – Delay between primitives in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **rep\_delay** (*float | None*) – Delay between primitives in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **init\_qubits** (`Optional`\[`bool`]) – Whether to reset the qubits to the ground state for each shot. Default: `True`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **init\_qubits** (*bool | None*) – Whether to reset the qubits to the ground state for each shot. Default: `True`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **use\_measure\_esp** (`Optional`\[`bool`]) – Whether to use excited state promoted (ESP) readout for measurements which are the terminal instruction to a qubit. ESP readout can offer higher fidelity than standard measurement sequences. See [here](https://arxiv.org/pdf/2008.08571.pdf). Default: `True` if backend supports ESP readout, else `False`. Backend support for ESP readout is determined by the flag `measure_esp_enabled` in `backend.configuration()`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **use\_measure\_esp** (*bool | None*) – Whether to use excited state promoted (ESP) readout for measurements which are the terminal instruction to a qubit. ESP readout can offer higher fidelity than standard measurement sequences. See [here](https://arxiv.org/pdf/2008.08571.pdf). Default: `True` if backend supports ESP readout, else `False`. Backend support for ESP readout is determined by the flag `measure_esp_enabled` in `backend.configuration()`. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **noise\_model** (`Optional`\[`Any`]) – Noise model (Simulators only). This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **noise\_model** (*Any | None*) – Noise model (Simulators only). This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **seed\_simulator** (`Optional`\[`int`]) – Random seed to control sampling (Simulators only). This parameter is applicable only if `dynamic=False` is specified or defaulted to.
+    *   **seed\_simulator** (*int | None*) – Random seed to control sampling (Simulators only). This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
-    *   **\*\*run\_config** – Extra arguments used to configure the run. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
-
-    **Return type**
-
-    [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
+    *   **\*\*run\_config** (*Dict*) – Extra arguments used to configure the run. This parameter is applicable only if `dynamic=False` is specified or defaulted to.
 
     **Returns**
 
@@ -673,6 +637,10 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     *   **IBMBackendValueError** –
 
         *   If an input parameter value is not valid. - If ESP readout is used and the backend does not support this.
+
+    **Return type**
+
+    [*RuntimeJob*](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
   </Function>
 
   ### set\_options
@@ -700,10 +668,6 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
       If the returned `BackendStatus` instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
     </Admonition>
 
-    **Return type**
-
-    `BackendStatus`
-
     **Returns**
 
     The status of the backend.
@@ -711,16 +675,16 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     **Raises**
 
     **IBMBackendApiProtocolError** – If the status for the backend cannot be formatted properly.
+
+    **Return type**
+
+    *BackendStatus*
   </Function>
 
   ### target\_history
 
   <Function id="qiskit_ibm_runtime.IBMBackend.target_history" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/ibm_backend.py#L328-L346" signature="target_history(datetime=None)">
     A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.2)") object for the backend.
-
-    **Return type**
-
-    [`Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.2)")
 
     **Returns**
 
@@ -729,6 +693,10 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     **Parameters**
 
     **datetime** (*datetime | None*)
+
+    **Return type**
+
+    [*Target*](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.2)")
   </Function>
 </Class>
 

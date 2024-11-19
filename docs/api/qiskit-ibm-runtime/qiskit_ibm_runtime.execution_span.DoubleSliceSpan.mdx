@@ -17,9 +17,9 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
   **Parameters**
 
-  *   **start** (`datetime`) – The start time of the span, in UTC.
-  *   **stop** (`datetime`) – The stop time of the span, in UTC.
-  *   **data\_slices** (`dict`\[`int`, `tuple`\[`Tuple`\[`int`, `...`], `slice`, `slice`]]) – A map from pub indices to `(shape_tuple, flat_shape_slice, shots_slice)`.
+  *   **start** (*datetime*) – The start time of the span, in UTC.
+  *   **stop** (*datetime*) – The stop time of the span, in UTC.
+  *   **data\_slices** (*dict\[int, tuple\[ShapeType, slice, slice]]*) – A map from pub indices to `(shape_tuple, flat_shape_slice, shots_slice)`.
 
   ## Attributes
 
@@ -27,46 +27,26 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
   <Attribute id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.duration">
     The duration of this span, in seconds.
-
-    **Return type**
-
-    `float`
   </Attribute>
 
   ### pub\_idxs
 
-  <Attribute id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.pub_idxs">
-    **Return type**
-
-    `list`\[`int`]
-  </Attribute>
+  <Attribute id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.pub_idxs" />
 
   ### size
 
-  <Attribute id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.size">
-    **Return type**
-
-    `int`
-  </Attribute>
+  <Attribute id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.size" />
 
   ### start
 
   <Attribute id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.start">
     The start time of the span, in UTC.
-
-    **Return type**
-
-    `datetime`
   </Attribute>
 
   ### stop
 
   <Attribute id="qiskit_ibm_runtime.execution_span.DoubleSliceSpan.stop">
     The stop time of the span, in UTC.
-
-    **Return type**
-
-    `datetime`
   </Attribute>
 
   ## Methods
@@ -78,15 +58,15 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
     **Parameters**
 
-    **pub\_idx** (`Union`\[`int`, `Iterable`\[`int`]]) – One or more pub indices from the original primitive call.
-
-    **Return type**
-
-    `bool`
+    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
 
     **Returns**
 
     Whether there is dependence on this span.
+
+    **Return type**
+
+    bool
   </Function>
 
   ### filter\_by\_pub
@@ -98,15 +78,15 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
     **Parameters**
 
-    **pub\_idx** (`Union`\[`int`, `Iterable`\[`int`]]) – One or more pub indices from the original primitive call.
-
-    **Return type**
-
-    [`DoubleSliceSpan`](#qiskit_ibm_runtime.execution_span.DoubleSliceSpan "qiskit_ibm_runtime.execution_span.double_slice_span.DoubleSliceSpan")
+    **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
 
     **Returns**
 
     A new filtered span.
+
+    **Return type**
+
+    [*DoubleSliceSpan*](#qiskit_ibm_runtime.execution_span.DoubleSliceSpan "qiskit_ibm_runtime.execution_span.double_slice_span.DoubleSliceSpan")
   </Function>
 
   ### mask
@@ -116,15 +96,15 @@ python_api_name: qiskit_ibm_runtime.execution_span.DoubleSliceSpan
 
     **Parameters**
 
-    **pub\_idx** (`int`) – The index of the pub to return a mask for.
-
-    **Return type**
-
-    [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")\[`Any`, [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[[`bool`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.1)")]]
+    **pub\_idx** (*int*) – The index of the pub to return a mask for.
 
     **Returns**
 
     An array with the same shape as the pub data.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")\[*Any*, [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.1)")]]
   </Function>
 </Class>
 
