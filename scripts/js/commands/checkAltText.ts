@@ -16,24 +16,27 @@ import { readMarkdown } from "../lib/markdownReader.js";
 
 async function main() {
   const files = await globby(["docs/**/*.{ipynb,mdx}", "!docs/api/**/*.mdx"]);
-  const errors: string[] = [];
+  const fileErrors: string[] = [];
 
   for (const file of files) {
     const markdown = await readMarkdown(file);
     const images: Image[] = await extractMarkdownImages(markdown);
-    const fileErrors = images.flatMap((image: Image) =>
+    const imageErrors = images.flatMap((image: Image) =>
       image.altText
         ? []
         : `The image '${image.imageName}' does not have an alt text defined.`,
     );
+    const imageErrorsDeduplicated = new Set(imageErrors);
 
-    if (fileErrors.length > 0) {
-      errors.push(`Error in file '${file}':\n\t- ${fileErrors.join("\n\t- ")}`);
+    if (imageErrorsDeduplicated.size > 0) {
+      fileErrors.push(
+        `Error in file '${file}':\n\t- ${[...imageErrorsDeduplicated].join("\n\t- ")}`,
+      );
     }
   }
 
-  if (errors.length > 0) {
-    errors.forEach((error) => console.log(error));
+  if (fileErrors.length > 0) {
+    fileErrors.forEach((error) => console.log(error));
     console.error("\nSome images are missing alt text 💔\n");
     process.exit(1);
   }

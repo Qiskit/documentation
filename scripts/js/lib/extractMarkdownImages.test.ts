@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { Image, extractMarkdownImages } from "./extractMarkdownImages.js";
+import { extractMarkdownImages } from "./extractMarkdownImages.js";
 
 test("Test the extraction of the images", async () => {
   const markdown = `
