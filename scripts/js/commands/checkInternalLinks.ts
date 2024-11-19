@@ -26,9 +26,7 @@ const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
-  "docs/announcements/product-updates/2024-04-15-backend-run-deprecation.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/announcements/product-updates/2024-09-16-code-assistant.mdx",
 ];
 
 interface Arguments {
@@ -112,6 +110,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
 ];
+// This is reused amongst all the addons to make this config less verbose.
+const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);
@@ -146,7 +146,15 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     },
   );
 
-  result.push(...transpiler, ...runtime, ...qiskit);
+  const sqd = await determineHistoricalFileBatches(
+    "qiskit-addon-sqd",
+    ADDON_GLOBS_TO_LOAD,
+    { check: args.historicalApis },
+  );
+
+  // This is intentionally ordered so that the smallest APIs are checked first,
+  // since they are much faster to check.
+  result.push(...transpiler, ...sqd, ...runtime, ...qiskit);
 
   if (args.qiskitLegacyReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());
@@ -189,6 +197,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session.mdx",
+    "docs/api/qiskit-ibm-runtime/0.30/qiskit_ibm_runtime.RuntimeJob.mdx",
   ];
 
   if (args.currentApis) {
@@ -276,8 +285,6 @@ async function determineHistoricalFileBatches(
 }
 
 async function determineQiskitLegacyReleaseNotes(): Promise<FileBatch> {
-  const result: FileBatch[] = [];
-
   const legacyVersions = (
     await globby("docs/api/qiskit/release-notes/[!index]*")
   )

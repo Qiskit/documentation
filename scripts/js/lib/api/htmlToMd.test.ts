@@ -100,9 +100,10 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 // Transform code blocks
 // ------------------------------------------------------------------
 
-test("translate codeblocks to code fences with lang python", async () => {
+test("translate codeblocks to code fences with default lang python", async () => {
   expect(
     await toMd(`
+    <div class='highlight-default notranslate'>
     <div role='main'>
 <pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
     <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
@@ -110,8 +111,31 @@ test("translate codeblocks to code fences with lang python", async () => {
     <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
 </pre>
     </div>
+    </div>
     `),
   ).toEqual(`\`\`\`python
+QiskitRuntimeService.backends(
+    filters=lambda b: b.max_shots > 50000)
+QiskitRuntimeService.backends(
+    filters=lambda x: ("rz" in x.basis_gates )
+\`\`\`
+`);
+});
+
+test("translate codeblocks to code fences with lang c", async () => {
+  expect(
+    await toMd(`
+    <div class='highlight-c notranslate'>
+    <div role='main'>
+<pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
+<span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
+</pre>
+    </div>
+    </div>
+    `),
+  ).toEqual(`\`\`\`c
 QiskitRuntimeService.backends(
     filters=lambda b: b.max_shots > 50000)
 QiskitRuntimeService.backends(
@@ -715,6 +739,55 @@ test("convert class property headings", async () => {
     markdown: `# circuits
 
 <Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true}>
+  Quantum circuits that represents quantum states.
+</Attribute>\n`,
+    meta: {
+      apiName: "qiskit_ibm_runtime.Estimator.circuits",
+      apiType: "property",
+    },
+  });
+});
+
+test("convert abstract class property headings", async () => {
+  expect(
+    await toMd(
+      `<div role='main'>
+<h1>Estimator.circuits<a class='headerlink' href='#estimator' title='Permalink to this heading'>¶</a></h1>
+<dl class='py property'>
+  <dt class='sig sig-object py' id='qiskit_ibm_runtime.Estimator.circuits'>
+    <em class='property'
+    ><span class='pre'>abstract</span><span class='w'> </span><span class='pre'>property</span><span class='w'> </span></em
+    ><span class='sig-prename descclassname'
+  ><span class='pre'>Estimator.</span></span
+  ><span class='sig-name descname'><span class='pre'>circuits</span></span
+  ><em class='property'
+  ><span class='p'><span class='pre'>:</span></span
+  ><span class='w'> </span><span class='pre'>tuple</span
+  ><span class='p'><span class='pre'>[</span></span
+  ><span class='pre'>qiskit.circuit.quantumcircuit.QuantumCircuit</span
+  ><span class='p'><span class='pre'>,</span></span
+  ><span class='w'> </span
+  ><span class='p'><span class='pre'>...</span></span
+  ><span class='p'><span class='pre'>]</span></span></em
+  ><a
+    class='headerlink'
+    href='#qiskit_ibm_runtime.Estimator.circuits'
+    title='Permalink to this definition'
+  >¶</a
+  >
+  </dt>
+  <dd><p>Quantum circuits that represents quantum states.</p></dd>
+</dl>
+</div>
+`,
+      true,
+    ),
+  ).toEqual({
+    images: [],
+    isReleaseNotes: false,
+    markdown: `# circuits
+
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true} modifiers="abstract property">
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {

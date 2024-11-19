@@ -1,14 +1,12 @@
 ---
-title: QPDBasis
-description: API reference for qiskit_addon_cutting.qpd.QPDBasis
+title: QPDBasis (latest version)
+description: API reference for qiskit_addon_cutting.qpd.QPDBasis in the latest version of qiskit-addon-cutting
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit_addon_cutting.qpd.QPDBasis
 ---
 
-<span id="qiskit-addon-cutting-qpd-qpdbasis" />
-
-# qiskit\_addon\_cutting.qpd.QPDBasis
+# QPDBasis
 
 <Class id="qiskit_addon_cutting.qpd.QPDBasis" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/qpd_basis.py" signature="QPDBasis(maps, coeffs)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
@@ -28,22 +26,68 @@ python_api_name: qiskit_addon_cutting.qpd.QPDBasis
 
   None
 
-  ## Methods
-
-  |                             |                                                                                                                                      |
-  | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-  | `__init__`(maps, coeffs)    | Assign member variables.                                                                                                             |
-  | `from_instruction`(gate, /) | Generate a [`QPDBasis`](#qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation. |
-
   ## Attributes
 
-  |                 |                                                          |
-  | --------------- | -------------------------------------------------------- |
-  | `coeffs`        | Quasiprobability decomposition coefficients.             |
-  | `kappa`         | Get the square root of the sampling overhead.            |
-  | `maps`          | Get mappings for each qubit in the decomposition.        |
-  | `num_qubits`    | Get number of qubits that this decomposition acts on.    |
-  | `overhead`      | Get the sampling overhead.                               |
-  | `probabilities` | Get the probabilities on which the maps will be sampled. |
+  ### coeffs
+
+  <Attribute id="qiskit_addon_cutting.qpd.QPDBasis.coeffs">
+    Quasiprobability decomposition coefficients.
+  </Attribute>
+
+  ### kappa
+
+  <Attribute id="qiskit_addon_cutting.qpd.QPDBasis.kappa">
+    Get the square root of the sampling overhead.
+
+    This quantity is the sum of the magnitude of the coefficients.
+  </Attribute>
+
+  ### maps
+
+  <Attribute id="qiskit_addon_cutting.qpd.QPDBasis.maps">
+    Get mappings for each qubit in the decomposition.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit_addon_cutting.qpd.QPDBasis.num_qubits">
+    Get number of qubits that this decomposition acts on.
+  </Attribute>
+
+  ### overhead
+
+  <Attribute id="qiskit_addon_cutting.qpd.QPDBasis.overhead">
+    Get the sampling overhead.
+
+    The sampling overhead is the square of the sum of the magnitude of the coefficients.
+  </Attribute>
+
+  ### probabilities
+
+  <Attribute id="qiskit_addon_cutting.qpd.QPDBasis.probabilities">
+    Get the probabilities on which the maps will be sampled.
+  </Attribute>
+
+  ## Methods
+
+  ### from\_instruction
+
+  <Function id="qiskit_addon_cutting.qpd.QPDBasis.from_instruction" signature="from_instruction(gate, /)" modifiers="static">
+    Generate a [`QPDBasis`](#qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation.
+
+    This static method is provided for convenience; it simply calls `qpdbasis_from_instruction()` under the hood.
+
+    **Parameters**
+
+    **gate** ([`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)")) – The instruction from which to instantiate a decomposition
+
+    **Return type**
+
+    [`QPDBasis`](#qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.qpd_basis.QPDBasis")
+
+    **Returns**
+
+    The newly-instantiated [`QPDBasis`](#qiskit_addon_cutting.qpd.QPDBasis "qiskit_addon_cutting.qpd.QPDBasis") object
+  </Function>
 </Class>
 

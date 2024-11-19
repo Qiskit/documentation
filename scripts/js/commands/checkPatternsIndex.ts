@@ -20,6 +20,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/qiskit-code-assistant",
   "/guides/qiskit-code-assistant-jupyterlab",
   "/guides/qiskit-code-assistant-vscode",
+  "/guides/qiskit-code-assistant-local",
   "/guides/addons",
 ]);
 
@@ -30,23 +31,21 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
 // pages do show up somewhere in the ToC, they only might be in a different
 // section than `Tools.`
 const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
+  "/guides/q-ctrl-optimization-solver",
+  "/guides/qunasys-quri-chemistry",
+]);
+
+const INDEX_PAGE_URLS: Set<string> = new Set([
   "/guides/map-problem-to-circuits",
   "/guides/optimize-for-hardware",
   "/guides/execute-on-hardware",
   "/guides/post-process-results",
-  "/guides/q-ctrl-optimization-solver",
-  "/guides/qunasys-quri-chemistry",
-  "/guides/circuit-library",
+  "/guides/intro-to-patterns",
 ]);
 
-const INDEX_PAGES = [
-  "docs/guides/map-problem-to-circuits.mdx",
-  "docs/guides/optimize-for-hardware.mdx",
-  "docs/guides/execute-on-hardware.mdx",
-  "docs/guides/post-process-results.mdx",
-  "docs/guides/intro-to-patterns.mdx",
-];
-
+const INDEX_PAGE_FILES = Array.from(INDEX_PAGE_URLS).map(
+  (page) => `docs${page}.mdx`,
+);
 const TOC_PATH = "docs/guides/_toc.json";
 
 async function getIndexEntries(indexPath: string): Promise<string[]> {
@@ -135,7 +134,9 @@ function getExtraIndexPagesErrors(
   return [...indexEntries]
     .filter(
       (page) =>
-        !toolsEntries.has(page) && !ALLOWLIST_MISSING_FROM_TOC.has(page),
+        !toolsEntries.has(page) &&
+        !ALLOWLIST_MISSING_FROM_TOC.has(page) &&
+        !INDEX_PAGE_URLS.has(page),
     )
     .map(
       (page) =>
@@ -181,7 +182,7 @@ function maybePrintErrorsAndFail(
     console.error(
       "\nAdd the entries in one of the following index pages, or add the URL to the `IGNORED_URLS` list at the beginning of `/scripts/js/commands/checkPatternsIndex.tsx` if it's not used in Workflow:",
     );
-    INDEX_PAGES.forEach((index) => console.error(`\t➡️  ${index}`));
+    INDEX_PAGE_FILES.forEach((index) => console.error(`\t➡️  ${index}`));
     allGood = false;
   }
 
@@ -198,7 +199,7 @@ async function main() {
   );
 
   let extraIndexEntriesErrors: string[] = [];
-  for (const indexPage of INDEX_PAGES) {
+  for (const indexPage of INDEX_PAGE_FILES) {
     const indexAllEntries = await getIndexEntries(indexPage);
     let [indexEntries, indexDuplicatedErrors] = await deduplicateEntries(
       indexPage,

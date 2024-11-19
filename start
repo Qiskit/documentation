@@ -15,8 +15,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Get the latest digest by running `docker pull icr.io/qc-open-source-docs-public/preview:latest`.
+IMAGE_DIGEST = "sha256:9d475dd73d574cb420490cdaf203c45f9b211debee2fb8825bae40018e55bcae"
+
 PWD = Path(__file__).parent
-IMAGE = "icr.io/qc-open-source-docs-public/preview:latest"
+IMAGE = f"icr.io/qc-open-source-docs-public/preview@{IMAGE_DIGEST}"
 
 
 def skip_apis() -> tuple[str]:
@@ -31,11 +34,6 @@ def main() -> None:
         subprocess.run(["docker", "pull", IMAGE], check=True)
         sys.exit(0)
 
-    print(
-        "Warning: this may be using an outdated version of the app. Run "
-        + f"`docker pull {IMAGE}` to check for updates.",
-        file=sys.stderr,
-    )
     # Keep this aligned with the Dockerfile at the root of the repository.
     cmd = [
         "docker",

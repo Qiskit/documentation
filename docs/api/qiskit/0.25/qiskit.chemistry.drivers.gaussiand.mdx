@@ -1,6 +1,6 @@
 ---
-title: gaussiand
-description: API reference for qiskit.chemistry.drivers.gaussiand
+title: gaussiand (v0.25)
+description: API reference for qiskit.chemistry.drivers.gaussiand in qiskit v0.25
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.chemistry.drivers.gaussiand
@@ -32,7 +32,7 @@ If no prebuilt native extension binary, as supplied with Qiskit, works for your 
 
 The full syntax of the f2py command on macOS and Linux is as follows:
 
-```python
+```sh
 f2py -c -m qcmatrixio qcmatrixio.F
 ```
 
@@ -42,7 +42,7 @@ Special Notes for macOS X
 
 If your account is using the bash shell on a macOS X machine, you can edit the .bash\_profile file in your home directory and add the following lines:
 
-```python
+```sh
 export GAUSS_SCRDIR=~/.gaussian
 export g16root=/Applications
 alias enable_gaussian='. $g16root/g16/bsd/g16.profile'
@@ -52,13 +52,13 @@ The above assumes that the application Gaussian™ 16 was placed in the /Applica
 
 Now, before Qiskit can properly interface Gaussian™ 16, you will have to run the enable\_gaussian command defined above. This, however, may generate the following error:
 
-```python
+```sh
 bash: ulimit: open files: cannot modify limit: Invalid argument
 ```
 
 While this error is not harmful, you might want to suppress it, which can be done by entering the following sequence of commands on the command line:
 
-```python
+```sh
 echo kern.maxfiles=65536 | sudo tee -a /etc/sysctl.conf
 echo kern.maxfilesperproc=65536 | sudo tee -a /etc/sysctl.conf
 sudo sysctl -w kern.maxfiles=65536
@@ -68,13 +68,13 @@ ulimit -n 65536 65536
 
 as well as finally adding the following line to the .bash\_profile file in your account’s home directory:
 
-```python
+```sh
 ulimit -n 65536 65536
 ```
 
 At the end of this configuration, the .bash\_profile in your account’s home directory should have a section in it like in the following script snippet:
 
-```python
+```sh
 # Gaussian 16
 export GAUSS_SCRDIR=~/.gaussian
 export g16root=/Applications
@@ -88,13 +88,13 @@ The following steps can be used with the Intel Fortran compiler on the Microsoft
 
 1.  Set up the environment by running the Intel Fortran compiler batch program ifortvars.bat as follows:
 
-    ```python
+    ```sh
     ifortvars -arch intel64
     ```
 
 2.  Then, in this environment, issue the following command from within the gauopen directory:
 
-    ```python
+    ```sh
     f2py -c --fcompiler=intelvem -m qcmatrixio qcmatrixio.F
     ```
 

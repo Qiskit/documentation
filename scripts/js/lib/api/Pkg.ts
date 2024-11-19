@@ -47,6 +47,7 @@ export class Pkg {
     "qiskit",
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
+    "qiskit-addon-aqc-tensor",
     "qiskit-addon-obp",
     "qiskit-addon-mpf",
     "qiskit-addon-sqd",
@@ -107,7 +108,7 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime Client",
+        title: "Qiskit Runtime client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: false,
       });
@@ -116,16 +117,24 @@ export class Pkg {
     if (name === "qiskit-ibm-transpiler") {
       return new Pkg({
         ...args,
-        title: "Qiskit Transpiler Service Client",
+        title: "Qiskit Transpiler Service client",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
         kebabCaseAndShortenUrls: false,
       });
     }
 
+    if (name === "qiskit-addon-aqc-tensor") {
+      return new Pkg({
+        ...args,
+        title: "Approximate quantum compilation (AQC-Tensor)",
+        githubSlug: "Qiskit/qiskit-addon-aqc-tensor",
+        kebabCaseAndShortenUrls: true,
+      });
+    }
     if (name === "qiskit-addon-obp") {
       return new Pkg({
         ...args,
-        title: "Operator Backpropagation",
+        title: "Operator backpropagation (OBP)",
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
       });
@@ -133,15 +142,16 @@ export class Pkg {
     if (name === "qiskit-addon-mpf") {
       return new Pkg({
         ...args,
-        title: "Multi-Product Formulas",
+        title: "Multi-product formulas (MPF)",
         githubSlug: "Qiskit/qiskit-addon-mpf",
         kebabCaseAndShortenUrls: true,
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
     if (name === "qiskit-addon-sqd") {
       return new Pkg({
         ...args,
-        title: "Sample-Based Quantum Diagonalization",
+        title: "Sample-based quantum diagonalization (SQD)",
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
       });
@@ -149,7 +159,7 @@ export class Pkg {
     if (name === "qiskit-addon-cutting") {
       return new Pkg({
         ...args,
-        title: "Circuit Cutting",
+        title: "Circuit cutting",
         githubSlug: "Qiskit/qiskit-addon-cutting",
         kebabCaseAndShortenUrls: true,
       });
@@ -157,7 +167,7 @@ export class Pkg {
     if (name === "qiskit-addon-utils") {
       return new Pkg({
         ...args,
-        title: "Qiskit Addon Utilities",
+        title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
         kebabCaseAndShortenUrls: true,
       });

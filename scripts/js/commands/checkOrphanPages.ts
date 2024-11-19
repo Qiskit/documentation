@@ -25,7 +25,10 @@ interface Arguments {
   apis: boolean;
 }
 
-const ALLOWED_ORPHAN_URLS: Set<string> = new Set([...qiskitLegacyIgnores()]);
+const ALLOWED_ORPHAN_URLS: Set<string> = new Set([
+  ...qiskitLegacyIgnores(),
+  "/api/qiskit-addon-mpf/release-notes",
+]);
 
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
@@ -51,10 +54,7 @@ async function main() {
     const existingUrls = await collectExistingUrls(dir);
     orphanPages.push(
       ...existingUrls.filter(
-        (file) =>
-          !tocUrls.has(file) &&
-          !ALLOWED_ORPHAN_URLS.has(file) &&
-          !file.includes("api/qiskit-addon-"),
+        (file) => !tocUrls.has(file) && !ALLOWED_ORPHAN_URLS.has(file),
       ),
     );
   }

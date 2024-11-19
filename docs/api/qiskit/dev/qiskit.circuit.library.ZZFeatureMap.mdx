@@ -1,6 +1,6 @@
 ---
-title: ZZFeatureMap
-description: API reference for qiskit.circuit.library.ZZFeatureMap
+title: ZZFeatureMap (dev version)
+description: API reference for qiskit.circuit.library.ZZFeatureMap in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.ZZFeatureMap
@@ -8,14 +8,14 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 # ZZFeatureMap
 
-<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/_zz_feature_map.py#L21-L150" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')" modifiers="class">
+<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/data_preparation/_zz_feature_map.py#L21-L150" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')" modifiers="class">
   Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
   Second-order Pauli-Z evolution circuit.
 
   For 3 qubits and 1 repetition and linear entanglement the circuit is represented by:
 
-  ```python
+  ```text
   ┌───┐┌────────────────┐
   ┤ H ├┤ P(2.0*φ(x[0])) ├──■───────────────────────────■───────────────────────────────────
   ├───┤├────────────────┤┌─┴─┐┌─────────────────────┐┌─┴─┐
@@ -35,7 +35,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   print(prep.decompose())
   ```
 
-  ```python
+  ```text
        ┌───┐┌─────────────┐
   q_0: ┤ H ├┤ P(2.0*x[0]) ├──■──────────────────────────────────────■──
        ├───┤├─────────────┤┌─┴─┐┌────────────────────────────────┐┌─┴─┐
@@ -49,7 +49,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   classifier.num_parameters
   ```
 
-  ```python
+  ```text
   27
   ```
 
@@ -57,7 +57,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   classifier.parameters  # 'x' for the data preparation, 'θ' for the SU2 parameters
   ```
 
-  ```python
+  ```text
   ParameterView([
       ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
       ParameterVectorElement(x[2]), ParameterVectorElement(θ[0]),
@@ -80,7 +80,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   classifier.count_ops()
   ```
 
-  ```python
+  ```text
   OrderedDict([('ZZFeatureMap', 1), ('EfficientSU2', 1)])
   ```
 
@@ -127,6 +127,10 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
   </Attribute>
 
   ### clbits
