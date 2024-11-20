@@ -456,7 +456,7 @@ def get_args() -> argparse.Namespace:
         action="store",
         default=None,
         help=(
-            "IBM Cloud API key or IBM Quantum API token"
+            'IBM Cloud API key or IBM Quantum API token. Warning: for security, you should set this via an environment variable, e.g. `--token="${IQP_API_TOKEN}"'
         )
     )
     parser.add_argument(
