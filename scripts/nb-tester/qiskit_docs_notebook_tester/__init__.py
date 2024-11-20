@@ -431,7 +431,7 @@ def get_args() -> argparse.Namespace:
         action="store",
         default="fake_athens",
         help=(
-            "Specify a backend to run the script against"
+            "Specify a backend to run the script against, such as 'fake_athens' or 'athens'. Only relevant when `--provider` is `qiskit_ibm_runtime` or `runtime_fake_provider`."
         )
     )
     parser.add_argument(
