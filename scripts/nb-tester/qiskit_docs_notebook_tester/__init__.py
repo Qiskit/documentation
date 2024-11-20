@@ -49,7 +49,7 @@ def generate_backend_patch(
     backend_name: str, 
     provider: Literal["qiskit_ibm_runtime", "qiskit_fake_provider", "runtime_fake_provider"] = "qiskit_ibm_runtime", 
     **kwargs
-):
+) -> str:
     """
     Generate code for fetching a custom backend to inject into a notebook.
     """
