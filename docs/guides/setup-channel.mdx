@@ -125,10 +125,10 @@ Available plans:
     </details>
 
       * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types.
+      * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify otherwise with the `channel` parameter.
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
       * If you don't save your credentials, you must specify them every time you start a new session.
-      * The `channel` parameter allows you to distinguish between different account types. When initializing the account, IBM Cloud is the default account used if have saved credentials for an IBM Quantum Platform and an IBM Cloud account.
 
     <Admonition type="note">
       IBM Cloud is the default account used if you don't specify a different channel or account name.
@@ -273,7 +273,7 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     service = QiskitRuntimeService(name="<account-name>")
     ```
 
-      * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. When initializing the account, IBM Cloud is the default account used if you have saved credentials for both an IBM Quantum Platform and an IBM Cloud account.
+      * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. When initializing the account, IBM Cloud is the default account used if you have saved credentials for both an IBM Quantum Platform and an IBM Cloud account unless you specify otherwise with the `channel` parameter.
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
       * If you don't save your credentials, you must specify them every time you start a new session.
