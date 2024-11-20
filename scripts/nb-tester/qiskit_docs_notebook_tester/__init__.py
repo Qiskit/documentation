@@ -87,9 +87,7 @@ def generate_backend_patch(
     else:
         raise ValueError(f"Please specify a valid provider. \"{provider}\" is invalid.")
 
-    patch += dedent("""
-    QiskitRuntimeService.least_busy = patched_least_busy
-    """)
+    patch += "\nQiskitRuntimeService.least_busy = patched_least_busy\n"
 
     patch += MOCKING_CODE
     return patch
