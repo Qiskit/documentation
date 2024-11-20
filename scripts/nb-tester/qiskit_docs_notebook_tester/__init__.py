@@ -416,7 +416,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         "--provider",
         action="store",
-        default="qiskit_fake_provider",
+        default="qiskit-fake-provider",
         choices=["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"],
         help=(
             "Specify a provider to run notebook against."
