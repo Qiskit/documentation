@@ -17,6 +17,7 @@ import argparse
 import asyncio
 import sys
 import textwrap
+from textwrap import dedent
 import platform
 from dataclasses import dataclass
 from datetime import datetime
@@ -37,22 +38,6 @@ import matplotlib
 matplotlib.set_loglevel("critical")
 """
 
-# If not submitting jobs, we also run this code before notebook execution to mock the real backend
-
-# MOCKING_CODE = """\
-# import warnings
-# from qiskit_ibm_runtime import QiskitRuntimeService
-# from qiskit.providers.fake_provider import GenericBackendV2
-# 
-# def patched_least_busy(self, *args, **kwarg):
-#   return GenericBackendV2(num_qubits=6, control_flow=True)
-# 
-# QiskitRuntimeService.least_busy = patched_least_busy
-# 
-# warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
-# warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
-# """
-
 MOCKING_CODE = """
 import warnings
 
@@ -61,8 +46,7 @@ warnings.filterwarnings("ignore", message="Session is not supported in local tes
 warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
 
-
-def generate_backend_cell(
+def generate_backend_patch(
     backend_name, 
     provider: Literal["qiskit_ibm_runtime", "qiskit_fake_provider", "runtime_fake_provider"] = "qiskit_ibm_runtime", 
     **kwargs
@@ -74,37 +58,42 @@ def generate_backend_cell(
     # Generates a set of arguments for QiskitRuntimeService using kwargs
     qiskit_runtime_service_args = ", ".join([f"{arg}=\"{val}\"" if val else f"{arg}=None" for arg, val in kwargs.items()])
 
-    cell = """
-from qiskit_ibm_runtime import QiskitRuntimeService"""
+    patch = dedent("""
+    from qiskit_ibm_runtime import QiskitRuntimeService
+    """)
 
     if provider == "qiskit_fake_provider":
-        cell += f"""
-from qiskit.providers.fake_provider import GenericBackendV2
-def patched_least_busy(self, *args, **kwargs):
-    return GenericBackendV2(num_qubits=5, control_flow=True)"""
+        patch += dedent("""
+        from qiskit.providers.fake_provider import GenericBackendV2
+        def patched_least_busy(self, *args, **kwargs):
+            return GenericBackendV2(num_qubits=5, control_flow=True)
+        """)
 
     elif provider == "runtime_fake_provider":
-        cell += f"""
-from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
+        patch += dedent(f"""
+        from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
 
-def patched_least_busy(self, *args, **kwargs):
-    provider = FakeProviderForBackendV2()
-    return provider.backend("{backend_name}")"""
+        def patched_least_busy(self, *args, **kwargs):
+            provider = FakeProviderForBackendV2()
+            return provider.backend("{backend_name}")
+        """)
 
     elif provider == "qiskit_ibm_runtime": 
-        cell += f"""
-def patched_least_busy(self, *args, **kwargs):
-    service = QiskitRuntimeService({qiskit_runtime_service_args})
-    return service.backend("{backend_name}")"""
+        patch += dedent(f"""
+        def patched_least_busy(self, *args, **kwargs):
+            service = QiskitRuntimeService({qiskit_runtime_service_args})
+            return service.backend("{backend_name}")
+        """)
 
     else:
         raise ValueError(f"Please specify a valid provider. \"{provider}\" is invalid.")
 
-    cell += """
-QiskitRuntimeService.least_busy = patched_least_busy"""
+    patch += dedent("""
+    QiskitRuntimeService.least_busy = patched_least_busy
+    """)
 
-    cell += MOCKING_CODE
-    return cell
+    patch += MOCKING_CODE
+    return patch
 
 
 def get_package_versions():
@@ -329,7 +318,7 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
 
         # Implements a subset of options from QiskitRuntimeService, but in practice any option
         # can easily be added here
-        backend_cell = generate_backend_cell(
+        backend_cell = generate_backend_patch(
             backend_name=backend, 
             provider=provider,
             channel=channel,
@@ -450,6 +439,7 @@ def get_args() -> argparse.Namespace:
         "--provider",
         action="store",
         default="qiskit_fake_provider",
+        choices=["qiskit_ibm_runtime", "qiskit_fake_provider", "runtime_fake_provider"],
         help=(
             "Specify a provider to run notebook against [qiskit_ibm_provider, qiskit_fake_provider, runtime_fake_provider]"
         )
