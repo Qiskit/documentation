@@ -38,37 +38,31 @@ import matplotlib
 matplotlib.set_loglevel("critical")
 """
 
-MOCKING_CODE = """
-import warnings
-
-warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
-warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
-"""
-
 def generate_backend_patch(
     backend_name: str, 
-    provider: Literal["qiskit_ibm_runtime", "qiskit_fake_provider", "runtime_fake_provider"] = "qiskit_ibm_runtime", 
-    **kwargs
+    provider: Literal["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"] = "qiskit-ibm-runtime", 
+    runtime_service_args: dict[str, str | None] = None
 ) -> str:
     """
     Generate code for fetching a custom backend to inject into a notebook.
     """
 
-    # Generates a set of arguments for QiskitRuntimeService using kwargs
-    qiskit_runtime_service_args = ", ".join([f"{arg}=\"{val}\"" if val else f"{arg}=None" for arg, val in kwargs.items()])
-
     patch = dedent("""
     from qiskit_ibm_runtime import QiskitRuntimeService
+    import warnings
+
+    warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
+    warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
     """)
 
-    if provider == "qiskit_fake_provider":
+    if provider == "qiskit-fake-provider":
         patch += dedent("""
         from qiskit.providers.fake_provider import GenericBackendV2
         def patched_least_busy(self, *args, **kwargs):
             return GenericBackendV2(num_qubits=6, control_flow=True)
         """)
 
-    elif provider == "runtime_fake_provider":
+    elif provider == "runtime-fake-provider":
         patch += dedent(f"""
         from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
 
@@ -77,7 +71,12 @@ def generate_backend_patch(
             return provider.backend("{backend_name}")
         """)
 
-    elif provider == "qiskit_ibm_runtime": 
+    elif provider == "qiskit-ibm-runtime": 
+        # Generates a set of arguments for QiskitRuntimeService using kwargs
+        if not runtime_service_args:
+            runtime_service_args = {}
+        qiskit_runtime_service_args = ", ".join(f"{arg}=\"{val}\"" if val else f"{arg}=None" for arg, val in runtime_service_args.items())
+
         patch += dedent(f"""
         def patched_least_busy(self, *args, **kwargs):
             service = QiskitRuntimeService({qiskit_runtime_service_args})
@@ -89,7 +88,6 @@ def generate_backend_patch(
 
     patch += "\nQiskitRuntimeService.least_busy = patched_least_busy\n"
 
-    patch += MOCKING_CODE
     return patch
 
 
@@ -302,27 +300,18 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
 
     await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
     if config.should_patch(filepath):
-        def get_arg(arg, default):
-            return vars(config.args).get(arg.lstrip("-").replace("-", "_"), default)
-
-        backend = get_arg("--backend", "fake_athens")
-        provider = get_arg("--provider", "qiskit_fake_provider")
-        channel = get_arg("--channel", None)
-        token = get_arg("--token", None)
-        url = get_arg("--url", None)
-        name = get_arg("--name", None)
-        instance = get_arg("--instance", None)
-
-        # Implements a subset of options from QiskitRuntimeService, but in practice any option
-        # can easily be added here
+        # Implements a subset of options from QiskitRuntimeService, but in 
+        # practice any option can easily be added here
         backend_cell = generate_backend_patch(
-            backend_name=backend, 
-            provider=provider,
-            channel=channel,
-            token=token,
-            url=url,
-            name=name,
-            instance=instance,
+            backend_name=config.args.backend, 
+            provider=config.args.provider,
+            runtime_service_args = {
+                "channel": config.args.channel,
+                "token": config.args.token,
+                "url": config.args.url,
+                "name": config.args.name,
+                "instance": config.args.instance,
+            }
         )
         await _execute_in_kernel(kernel, backend_cell)
 
@@ -425,60 +414,74 @@ def get_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--provider",
+        action="store",
+        default="qiskit_fake_provider",
+        choices=["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"],
+        help=(
+            "Specify a provider to run notebook against."
+        )
+    )
+    parser.add_argument(
         "--backend",
         action="store",
         default="fake_athens",
         help=(
-            "Specify a backend to run the script against, such as 'fake_athens' or 'athens'. Only relevant when `--provider` is `qiskit_ibm_runtime` or `runtime_fake_provider`."
+            "Specify a backend to run the script against, such as 'fake_athens'"
+            "or 'athens'. Only relevant when `--provider` is "
+            "`qiskit_ibm_runtime` or `runtime_fake_provider`."
         )
     )
-    parser.add_argument(
-        "--provider",
-        action="store",
-        default="qiskit_fake_provider",
-        choices=["qiskit_ibm_runtime", "qiskit_fake_provider", "runtime_fake_provider"],
-        help=(
-            "Specify a provider to run notebook against [qiskit_ibm_provider, qiskit_fake_provider, runtime_fake_provider]"
+    runtime_options_group = parser.add_argument_group(
+        "qiskit-ibm-runtime options",
+        description=(
+            "These options change the behavior when --provider=qiskit-ibm-runtime, "
+            "and are passed as parameters directly to QiskitRuntimeService. "
+            "See https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService "
+            "for more details."
         )
     )
-    parser.add_argument(
+    runtime_options_group.add_argument(
         "--channel",
         action="store",
         default="ibm_quantum",
+        choices=["ibm_cloud", "ibm_quantum", "local"],
         help=(
-            "Specify a channel for running the notebook against"
+            "Specify a channel for running the notebook against."
         )
     )
-    parser.add_argument(
+    runtime_options_group.add_argument(
         "--token",
         action="store",
         default=None,
         help=(
-            'IBM Cloud API key or IBM Quantum API token. Warning: for security, you should set this via an environment variable, e.g. `--token="${IQP_API_TOKEN}"'
+            'IBM Cloud API key or IBM Quantum API token. Warning: for security,' 
+            'you should set this via an environment variable, e.g. '
+            '`--token="${IQP_API_TOKEN}".'
         )
     )
-    parser.add_argument(
+    runtime_options_group.add_argument(
         "--url",
         action="store",
         default=None,
         help=(
-            "The API URL to submit the notebook against"
+            "The API URL to submit the notebook against."
         )
     )
-    parser.add_argument(
+    runtime_options_group.add_argument(
         "--name",
         action="store",
         default=None,
         help=(
-            "Name of the qiskit account to load"
+            "Name of the qiskit account to load."
         )
     )
-    parser.add_argument(
+    runtime_options_group.add_argument(
         "--instance",
         action="store",
         default=None,
         help=(
-            "The service instance to use"
+            "The service instance to use."
         )
     )
     args = parser.parse_args()
@@ -526,3 +529,4 @@ def main():
     if platform.system() == "Windows":
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(_main())
+
