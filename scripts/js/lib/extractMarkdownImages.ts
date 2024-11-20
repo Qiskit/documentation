@@ -17,23 +17,20 @@ import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkStringify from "remark-stringify";
 
-export interface Image {
-  imageName: string;
-  altText: string | null;
-}
-
-export async function extractMarkdownImages(
+export async function findImagesWithoutAltText(
   markdown: string,
-): Promise<Image[]> {
-  const images: Image[] = [];
+): Promise<Set<string>> {
+  const images = new Set<string>();
 
   await unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(() => (tree: Root) => {
-      visit(tree, "image", (node) =>
-        images.push({ imageName: node.url, altText: node.alt } as Image),
-      );
+      visit(tree, "image", (node) => {
+        if (!node.alt) {
+          images.add(node.url);
+        }
+      });
     })
     .use(remarkStringify)
     .process(markdown);

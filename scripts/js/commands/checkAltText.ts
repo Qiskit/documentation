@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { globby } from "globby";
-import { Image, extractMarkdownImages } from "../lib/extractMarkdownImages.js";
+import { findImagesWithoutAltText } from "../lib/extractMarkdownImages.js";
 import { readMarkdown } from "../lib/markdownReader.js";
 
 async function main() {
@@ -20,22 +20,19 @@ async function main() {
 
   for (const file of files) {
     const markdown = await readMarkdown(file);
-    const images: Image[] = await extractMarkdownImages(markdown);
-    const imageErrors = images.flatMap((image: Image) =>
-      image.altText
-        ? []
-        : `The image '${image.imageName}' does not have an alt text defined.`,
+    const images = await findImagesWithoutAltText(markdown);
+    const imageErrors = [...images].map(
+      (image) => `The image '${image}' does not have an alt text defined.`,
     );
-    const imageErrorsDeduplicated = new Set(imageErrors);
 
-    if (imageErrorsDeduplicated.size > 0) {
+    if (imageErrors.length) {
       fileErrors.push(
-        `Error in file '${file}':\n\t- ${[...imageErrorsDeduplicated].join("\n\t- ")}`,
+        `Error in file '${file}':\n\t- ${imageErrors.join("\n\t- ")}`,
       );
     }
   }
 
-  if (fileErrors.length > 0) {
+  if (fileErrors.length) {
     fileErrors.forEach((error) => console.log(error));
     console.error("\nSome images are missing alt text 💔\n");
     process.exit(1);

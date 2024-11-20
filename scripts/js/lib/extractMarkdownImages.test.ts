@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { extractMarkdownImages } from "./extractMarkdownImages.js";
+import { findImagesWithoutAltText } from "./extractMarkdownImages.js";
 
 test("Test the extraction of the images", async () => {
   const markdown = `
@@ -24,15 +24,17 @@ test("Test the extraction of the images", async () => {
 
 ![Here's another valid image](/images/img2.png)
 
+![](/images/invalid_img2.png)
+
+![](/images/invalid_img2.png)
+
 ![And now, our last link](https://ibm.com)
     `;
-  const images = await extractMarkdownImages(markdown);
-  const correct_images = [
-    { imageName: "/images/img1.png", altText: "Our first image with alt text" },
-    { imageName: "/images/invalid_img1.png", altText: "" },
-    { imageName: "/images/img2.png", altText: "Here's another valid image" },
-    { imageName: "https://ibm.com", altText: "And now, our last link" },
-  ];
+  const images = await findImagesWithoutAltText(markdown);
+  const correct_images = new Set([
+    "/images/invalid_img1.png",
+    "/images/invalid_img2.png",
+  ]);
 
   expect(images).toEqual(correct_images);
 });
