@@ -43,7 +43,6 @@ import warnings
 
 warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
 warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
-warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 """
 
 def generate_backend_patch(
