@@ -70,9 +70,12 @@ Available plans:
     When you authenticate to the service, use `token=iqp_api_token` in your code to retrieve the token from the environment variable.
 
     ```python
+    
+    import os
     from qiskit_ibm_runtime import QiskitRuntimeService
 
-    service = QiskitRuntimeService(channel="ibm_quantum", token=<your-environment-variable>)
+    iqp_api_token = os.environ.pop("IQP_API_TOKEN")
+    service = QiskitRuntimeService(channel="ibm_quantum", token=iqp_api_token)
     ```
 
       Or, optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. **Credentials are saved locally as plain text. Never include your token in a notebook!**
@@ -254,9 +257,10 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     )
     ```
 
-    You can optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. See these [instructions for creating an environment variable](#save-account) to use in the following code. **Credentials are saved locally as plain text. Never include your token in a notebook or public code!**
+    You can optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. See these [instructions to create an environment variable](#save-account) to use in the following code. **Credentials are saved locally as plain text. Never include your token in a notebook or public code!**
 
     ```python
+    import os
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # Save account to disk.
@@ -277,11 +281,6 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
       * If you don't save your credentials, you must specify them every time you start a new session.
-
-
-      <Admonition type="caution">
-        *Note that account credentials are saved in plain text. **Never include your token in a notebook.** Instead, use an environment variable when using `save_account()`; see the [Securely manage your token](#securely-manage) section for more information.*
-      </Admonition>
 
 1. Test your setup.  Ensure that you can connect to the service:
 
