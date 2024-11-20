@@ -41,6 +41,7 @@ matplotlib.set_loglevel("critical")
 def generate_backend_patch(
     backend_name: str, 
     provider: Literal["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"] = "qiskit-ibm-runtime", 
+    generic_backend_args: dict[str, str | None] = None, 
     runtime_service_args: dict[str, str | None] = None
 ) -> str:
     """
@@ -56,10 +57,11 @@ def generate_backend_patch(
     """)
 
     if provider == "qiskit-fake-provider":
-        patch += dedent("""
+        qiskit_fake_provider_args = ", ".join(f"{arg}=\"{val}\"" if val else f"{arg}=None" for arg, val in generic_backend_args.items())
+        patch += dedent(f"""
         from qiskit.providers.fake_provider import GenericBackendV2
         def patched_least_busy(self, *args, **kwargs):
-            return GenericBackendV2(num_qubits=6, control_flow=True)
+            return GenericBackendV2({qiskit_fake_provider_args})
         """)
 
     elif provider == "runtime-fake-provider":
@@ -311,6 +313,10 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
                 "url": config.args.url,
                 "name": config.args.name,
                 "instance": config.args.instance,
+            },
+            generic_backend_args = {
+                "num_qubits": config.args.num_qubits,
+                "control_flow": config.args.control_flow
             }
         )
         await _execute_in_kernel(kernel, backend_cell)
@@ -430,6 +436,32 @@ def get_args() -> argparse.Namespace:
             "Specify a backend to run the script against, such as 'fake_athens'"
             "or 'athens'. Only relevant when `--provider` is "
             "`qiskit_ibm_runtime` or `runtime_fake_provider`."
+        )
+    )
+    generic_backend_options_group = parser.add_argument_group(
+        "qiskit-fake-backend options",
+        description=(
+            "These options change the behavior when --provider=qiskit-fake-backend, "
+            "and are passed as parameters directly to GenericBackendV2. "
+            "See https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2 "
+            "for more details."
+
+        )
+    )
+    generic_backend_options_group.add_argument(
+        "--num-qubits",
+        action="store",
+        default="6",
+        help=(
+            "Specify the number of qubits for the qiskit generic backend to use"
+        )
+    )
+    generic_backend_options_group.add_argument(
+        "--control-flow",
+        action="store_true",
+        help=(
+            "Specify if the qiskit generic backend should enable control flow"
+            "directives on the target"
         )
     )
     runtime_options_group = parser.add_argument_group(
