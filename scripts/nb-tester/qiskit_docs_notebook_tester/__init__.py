@@ -51,7 +51,7 @@ def generate_backend_patch(
     **kwargs
 ):
     """
-    generate code for fetching a custom backend to inject into a notebook
+    Generate code for fetching a custom backend to inject into a notebook.
     """
 
     # Generates a set of arguments for QiskitRuntimeService using kwargs
