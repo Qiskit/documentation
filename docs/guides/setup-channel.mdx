@@ -48,91 +48,27 @@ Available plans:
       The Instances section in your [IBM Quantum account page](https://quantum.ibm.com/account) lists the instances that you can access.
     </Admonition>
 
-1. Retrieve your API token from the [IBM Quantum account page](https://quantum.ibm.com/account) and authenticate to the service. Remember that your API token should be kept confidential, so do not share it in a notebook or in any public code.
+1. <span id="save-account"></span>Retrieve your API token from the [IBM Quantum account page](https://quantum.ibm.com/account). **If you are on a trusted machine,** use the `save_account()` method to save your credentials locally. (Skip to the next step if you are not using a trusted machine to authenticate to IBM Quantum Platform.) To use `save_account()`, first activate your Python virtual environment (see the [installation instructions](/guides/install-qiskit#local) if you do not already have a virtual environment set up) and run Python to open a read-eval-print loop (REPL), then enter the following:
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
-    service = QiskitRuntimeService(
-      channel="ibm_quantum",
-      token="<MY_IBM_QUANTUM_TOKEN>" # Your token is confidential.
-      # Take care not to share your token in public code.
-      )
+    QiskitRuntimeService.save_account(
+      token="<your-token">,
+      channel="ibm_quantum" # `channel` distinguishes between different account types
+    )
     ```
 
-1. <span id="save-account"></span>If you want to save your token locally, set the `IQP_API_TOKEN` environment variable in your system by adding the following line to your shell profile (for example, `.bashrc`, `.zshrc`) or by setting it directly in your terminal. **Credentials are saved locally as plain text. Never include your token in a notebook!**
+    Close out of the REPL with `exit()`. Whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`. The `channel` parameter distinguishes between different account types.
 
-
-    ```bash
-    export IQP_API_TOKEN="<YOUR_IQP_API_TOKEN>"
-    ```
-
-    When you authenticate to the service, use `token=iqp_api_token` in your code to retrieve the token from the environment variable.
-
-    ```python
-    
-    import os
-    from qiskit_ibm_runtime import QiskitRuntimeService
-
-    iqp_api_token = os.environ.pop("IQP_API_TOKEN")
-    service = QiskitRuntimeService(channel="ibm_quantum", token=iqp_api_token)
-    ```
-
-      Or, optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service. **Credentials are saved locally as plain text. Never include your token in a notebook!**
-
-    <details>
-      <summary>Click to expand for examples.</summary>
-    
-      <Tabs>
-
-        <TabItem value="runtime" label="Within Qiskit Runtime">
-        ```python
-        import os
-        from qiskit_ibm_runtime import QiskitRuntimeService
-
-        # Gather the token from your environment variables.
-        iqp_api_token = os.environ.pop("IQP_API_TOKEN")
-
-        # Save an IBM Quantum account and set it as your default account.
-        QiskitRuntimeService.save_account(
-          channel="ibm_quantum",
-          token=iqp_api_token,
-          set_as_default=True,
-          # Use `overwrite=True` if you're updating your token.
-          overwrite=True,
-        )
-
-        # Load saved credentials
-        service = QiskitRuntimeService()
-        ```
-        </TabItem>
-
-        <TabItem value="functions" label="Within Qiskit Functions">
-        ```python
-        import os
-        from qiskit_ibm_catalog import QiskitFunctionsCatalog
-
-        # Gather the token from your environment variables.
-        iqp_api_token = os.environ.pop("IQP_API_TOKEN")
-
-        QiskitFunctionsCatalog.save_account(token=iqp_api_token)
-
-        # Load saved credentials
-        catalog = QiskitFunctionsCatalog()
-        ```
-        </TabItem>
-      </Tabs>
-    </details>
-
-      * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types.
-      * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify otherwise with the `channel` parameter.
-      * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
-      * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
-      * If you don't save your credentials, you must specify them every time you start a new session.
-
-    <Admonition type="note">
-      IBM Cloud is the default account used if you don't specify a different channel or account name.
+    <Admonition type="warning">
+      Protect your API token! Never include your token in plain text in a notebook file. If you are on a trusted machine, use the `save_account()` method described in the previous step to store your credentials, keeping in mind that your token will still be stored as plain text on your local drive. If you are not on a trusted machine, use the instructions in the next step.
     </Admonition>
+
+      * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify `set_as_default=True` in your IBM Quantum Platform account when you use the `save_account()` method. (REVIEWERS: IS THIS TRUE??)
+      * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them. (REVIEWERS: Does each named account within the same channel use the same API token, or does each have a unique token?)
+      * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
+
 
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
 
