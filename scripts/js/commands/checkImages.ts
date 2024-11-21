@@ -32,11 +32,11 @@ async function main() {
   if (fileErrors.length) {
     fileErrors.forEach((error) => console.log(error));
     console.error(
-      "\nInvalid images found 💔 See https://github.com/Qiskit/documentation#images for instructions.\n",
+      "\n💔 Some images have problems. See https://github.com/Qiskit/documentation#images for instructions.\n",
     );
     process.exit(1);
   }
-  console.log("All images are correct ✅\n");
+  console.log("✅ All images are valid.\n");
 }
 
 main().then(() => process.exit());

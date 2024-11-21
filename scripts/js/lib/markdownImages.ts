@@ -36,7 +36,7 @@ export async function collectInvalidImageErrors(
         const $ = load(node.value);
         if ($("img").length) {
           imagesErrors.add(
-            `The image '${$("img").attr("src")}' uses an HTML tag instead of markdown syntax.`,
+            `The image '${$("img").attr("src")}' uses an HTML <img> tag instead of markdown syntax.`,
           );
         }
       });
