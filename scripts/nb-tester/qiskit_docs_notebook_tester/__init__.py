@@ -57,7 +57,9 @@ def generate_backend_patch(
     """)
 
     if provider == "qiskit-fake-provider":
-        qiskit_fake_provider_args = ", ".join(f"{arg}=\"{val}\"" if val else f"{arg}=None" for arg, val in generic_backend_args.items())
+        qiskit_fake_provider_args = ", ".join(
+            f"{arg}=\"{val}\"" if isinstance(val, str) else f"{arg}={val}" for arg, val in generic_backend_args.items()
+        )
         patch += dedent(f"""
         from qiskit.providers.fake_provider import GenericBackendV2
         def patched_least_busy(self, *args, **kwargs):
@@ -77,7 +79,9 @@ def generate_backend_patch(
         # Generates a set of arguments for QiskitRuntimeService using kwargs
         if not runtime_service_args:
             runtime_service_args = {}
-        qiskit_runtime_service_args = ", ".join(f"{arg}=\"{val}\"" if val else f"{arg}=None" for arg, val in runtime_service_args.items())
+        qiskit_runtime_service_args = ", ".join(
+            f"{arg}=\"{val}\"" if isinstance(val, str) else f"{arg}={val}" for arg, val in generic_backend_args.items()
+        )
 
         patch += dedent(f"""
         def patched_least_busy(self, *args, **kwargs):
@@ -451,7 +455,7 @@ def get_args() -> argparse.Namespace:
     generic_backend_options_group.add_argument(
         "--num-qubits",
         action="store",
-        default="6",
+        default=6,
         help=(
             "Specify the number of qubits for the qiskit generic backend to use"
         )
