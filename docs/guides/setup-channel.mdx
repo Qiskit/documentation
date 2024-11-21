@@ -69,6 +69,14 @@ Available plans:
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them. (REVIEWERS: Does each named account within the same channel use the same API token, or does each have a unique token?)
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
 
+1. **If you are not on a trusted machine** (such as a shared computer), do the following to authenticate, while being careful not to save your API token in a notebook file or any other file on the local machine. 
+
+    ```python
+    from qiskit_ibm_runtime import QiskitRuntimeService
+  
+    service = QiskitRuntimeService(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>")
+    ```
+
 
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
 
