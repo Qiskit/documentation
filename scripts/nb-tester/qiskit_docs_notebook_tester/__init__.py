@@ -65,9 +65,7 @@ def generate_backend_patch(
     """)
 
     if provider == "qiskit-fake-provider":
-        if not generic_backend_kwargs:
-            generic_backend_kwargs = {}
-        qiskit_fake_provider_args = render_kwargs(generic_backend_kwargs)
+        qiskit_fake_provider_args = render_kwargs(generic_backend_kwargs or {})
         patch += dedent(f"""
         from qiskit.providers.fake_provider import GenericBackendV2
         def patched_least_busy(self, *args, **kwargs):
@@ -84,10 +82,7 @@ def generate_backend_patch(
         """)
 
     elif provider == "qiskit-ibm-runtime": 
-        # Generates a set of arguments for QiskitRuntimeService using kwargs
-        if not runtime_service_kwargs:
-            runtime_service_kwargs = {}
-        qiskit_runtime_service_args = render_kwargs(runtime_service_kwargs)
+        qiskit_runtime_service_args = render_kwargs(runtime_service_kwargs or {})
 
         patch += dedent(f"""
         def patched_least_busy(self, *args, **kwargs):
@@ -448,6 +443,7 @@ def get_args() -> argparse.Namespace:
             "`qiskit-ibm-runtime` or `runtime-fake-provider`."
         )
     )
+
     generic_backend_options_group = parser.add_argument_group(
         "qiskit-fake-backend options",
         description=(
@@ -475,6 +471,7 @@ def get_args() -> argparse.Namespace:
             "directives on the target"
         )
     )
+
     runtime_options_group = parser.add_argument_group(
         "qiskit-ibm-runtime options",
         description=(
