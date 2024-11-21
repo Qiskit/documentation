@@ -251,7 +251,7 @@ async def execute_notebook(path: Path, config: Config) -> bool:
     Wrapper function for `_execute_notebook` to print status and write result
     """
     if config.should_patch(path):
-        print(f"▶️ Executing {path} (with least_busy patched to {config.args.backend})")
+        print(f"▶️ Executing {path} (with least_busy patched)")
     else:
         print(f"▶️ Executing {path}")
     possible_exceptions = (
