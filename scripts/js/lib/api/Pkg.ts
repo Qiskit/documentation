@@ -145,7 +145,6 @@ export class Pkg {
         title: "Multi-product formulas (MPF)",
         githubSlug: "Qiskit/qiskit-addon-mpf",
         kebabCaseAndShortenUrls: true,
-        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
       });
     }
     if (name === "qiskit-addon-sqd") {
