@@ -32,11 +32,11 @@ async function main() {
   if (fileErrors.length) {
     fileErrors.forEach((error) => console.log(error));
     console.error(
-      "\nSome images are missing alt text 💔 See https://github.com/Qiskit/documentation#images for instructions.\n",
+      "\nInvalid images found 💔 See https://github.com/Qiskit/documentation#images for instructions.\n",
     );
     process.exit(1);
   }
-  console.log("All images have alt text ✅\n");
+  console.log("All images are correct ✅\n");
 }
 
 main().then(() => process.exit());
