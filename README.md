@@ -289,6 +289,20 @@ npm run check:metadata -- --apis
 npm run check
 ```
 
+## Check images
+
+Every image needs to have alt text for accessibility and must use markdown syntax. To avoid changing the styling of the images, the use of the `<img>` HTML tag is not allowed. The lint job in CI will fail if images do not have alt text defined or if an `<img>` tag is found.
+
+You can check it locally by running:
+
+```bash
+# Only check images
+npm run check:images
+
+# Or, run all the checks
+npm run check
+```
+
 ## Spellcheck
 
 We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
@@ -626,6 +640,8 @@ To use a `DefinitionTooltip`, use the following syntax:
 ```
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
+
+Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
 
 ### Tabs
 

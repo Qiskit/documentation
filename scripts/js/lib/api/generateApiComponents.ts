@@ -92,14 +92,7 @@ function prepareProps(
   const prepMethod = () =>
     prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id);
   const prepAttributeOrProperty = () =>
-    prepareAttributeOrPropertyProps(
-      $,
-      $child,
-      $dl,
-      priorApiType,
-      githubSourceLink,
-      id,
-    );
+    prepareAttributeOrPropertyProps($, $child, $dl, githubSourceLink, id);
 
   const preparePropsPerApiType: Record<
     Exclude<ApiType, "module">,
@@ -196,7 +189,6 @@ function prepareAttributeOrPropertyProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: ApiType | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
@@ -252,7 +244,8 @@ function prepareAttributeOrPropertyProps(
     modifiers: filteredModifiers,
   };
 
-  if (!priorApiType && id) {
+  const pageHeading = $dl.siblings("h1").text();
+  if (pageHeading && id.endsWith(pageHeading)) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return {
       ...props,
@@ -286,7 +279,7 @@ function prepareFunctionProps(
   };
 
   const pageHeading = $dl.siblings("h1").text();
-  if (id.endsWith(pageHeading) && pageHeading != "") {
+  if (pageHeading && id.endsWith(pageHeading)) {
     // Page is already dedicated to apiType; no heading needed
     return {
       ...props,
