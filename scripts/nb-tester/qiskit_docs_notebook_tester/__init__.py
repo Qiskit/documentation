@@ -38,11 +38,19 @@ import matplotlib
 matplotlib.set_loglevel("critical")
 """
 
+def render_kwarg(arg: str, val: any):
+    if isinstance(val, str):
+        return f"{arg}=\"{val}\""
+    return f"{arg}={val}"
+
+def render_kwargs(kwargs: dict[str, any]):
+    return ", ".join(render_kwarg(arg, val) for arg, val in kwargs.items())
+
 def generate_backend_patch(
     backend_name: str, 
     provider: Literal["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"] = "qiskit-ibm-runtime", 
-    generic_backend_args: dict[str, str | None] = None, 
-    runtime_service_args: dict[str, str | None] = None
+    generic_backend_kwargs: dict[str, any] = None, 
+    runtime_service_kwargs: dict[str, any] = None
 ) -> str:
     """
     Generate code for fetching a custom backend to inject into a notebook.
@@ -57,9 +65,9 @@ def generate_backend_patch(
     """)
 
     if provider == "qiskit-fake-provider":
-        qiskit_fake_provider_args = ", ".join(
-            f"{arg}=\"{val}\"" if isinstance(val, str) else f"{arg}={val}" for arg, val in generic_backend_args.items()
-        )
+        if not generic_backend_kwargs:
+            generic_backend_kwargs = {}
+        qiskit_fake_provider_args = render_kwargs(generic_backend_kwargs)
         patch += dedent(f"""
         from qiskit.providers.fake_provider import GenericBackendV2
         def patched_least_busy(self, *args, **kwargs):
@@ -77,11 +85,9 @@ def generate_backend_patch(
 
     elif provider == "qiskit-ibm-runtime": 
         # Generates a set of arguments for QiskitRuntimeService using kwargs
-        if not runtime_service_args:
-            runtime_service_args = {}
-        qiskit_runtime_service_args = ", ".join(
-            f"{arg}=\"{val}\"" if isinstance(val, str) else f"{arg}={val}" for arg, val in generic_backend_args.items()
-        )
+        if not runtime_service_kwargs:
+            runtime_service_kwargs = {}
+        qiskit_runtime_service_args = render_kwargs(runtime_service_kwargs)
 
         patch += dedent(f"""
         def patched_least_busy(self, *args, **kwargs):
@@ -311,14 +317,14 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
         backend_cell = generate_backend_patch(
             backend_name=config.args.backend, 
             provider=config.args.provider,
-            runtime_service_args = {
+            runtime_service_kwargs = {
                 "channel": config.args.channel,
                 "token": config.args.token,
                 "url": config.args.url,
                 "name": config.args.name,
                 "instance": config.args.instance,
             },
-            generic_backend_args = {
+            generic_backend_kwargs = {
                 "num_qubits": config.args.num_qubits,
                 "control_flow": config.args.control_flow
             }
@@ -455,6 +461,7 @@ def get_args() -> argparse.Namespace:
     generic_backend_options_group.add_argument(
         "--num-qubits",
         action="store",
+        type=int,
         default=6,
         help=(
             "Specify the number of qubits for the qiskit generic backend to use"
