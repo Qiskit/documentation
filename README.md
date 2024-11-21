@@ -627,7 +627,7 @@ To use a `DefinitionTooltip`, use the following syntax:
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
 
-Warning: do not use Latex/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
+Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
 
 ### Tabs
 
