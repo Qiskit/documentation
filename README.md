@@ -289,15 +289,15 @@ npm run check:metadata -- --apis
 npm run check
 ```
 
-## Check image alt text
+## Check images
 
-Every image needs to have alt text for accessibility. The `lint` job in CI will fail if images do not have alt text defined.
+Every image needs to have alt text for accessibility and must use markdown syntax. To avoid changing the styling of the images, the use of the `<img>` HTML tag is not allowed. The lint job in CI will fail if images do not have alt text defined or if an `<img>` tag is found.
 
 You can check it locally by running:
 
 ```bash
-# Only check alt text
-npm run check:alt-text
+# Only check images
+npm run check:images
 
 # Or, run all the checks
 npm run check

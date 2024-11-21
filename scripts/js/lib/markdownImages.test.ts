@@ -12,9 +12,9 @@
 
 import { expect, test } from "@playwright/test";
 
-import { findImagesWithoutAltText } from "./extractMarkdownImages.js";
+import { collectInvalidImageErrors } from "./markdownImages.js";
 
-test("Test the extraction of the images", async () => {
+test("Test the finding of invalid images", async () => {
   const markdown = `
 # A header
 
@@ -28,12 +28,18 @@ test("Test the extraction of the images", async () => {
 
 ![](/images/invalid_img2.png)
 
+<img src="/images/HTMLexample1.jpg" alt="" width="200"/>
+
+<img src="/images/HTMLexample2.jpg" alt="Example" width="200"/>
+
 ![And now, our last link](https://ibm.com)
     `;
-  const images = await findImagesWithoutAltText(markdown);
+  const images = await collectInvalidImageErrors(markdown);
   const correct_images = new Set([
-    "/images/invalid_img1.png",
-    "/images/invalid_img2.png",
+    "The image '/images/HTMLexample1.jpg' uses an HTML tag instead of markdown syntax.",
+    "The image '/images/HTMLexample2.jpg' uses an HTML tag instead of markdown syntax.",
+    "The image '/images/invalid_img1.png' does not have alt text.",
+    "The image '/images/invalid_img2.png' does not have alt text.",
   ]);
 
   expect(images).toEqual(correct_images);

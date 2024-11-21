@@ -10,6 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import { load } from "cheerio";
 import { unified } from "unified";
 import { Root } from "remark-mdx";
 import { visit } from "unist-util-visit";
@@ -17,10 +18,10 @@ import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkStringify from "remark-stringify";
 
-export async function findImagesWithoutAltText(
+export async function collectInvalidImageErrors(
   markdown: string,
 ): Promise<Set<string>> {
-  const images = new Set<string>();
+  const imagesErrors = new Set<string>();
 
   await unified()
     .use(remarkParse)
@@ -28,12 +29,20 @@ export async function findImagesWithoutAltText(
     .use(() => (tree: Root) => {
       visit(tree, "image", (node) => {
         if (!node.alt) {
-          images.add(node.url);
+          imagesErrors.add(`The image '${node.url}' does not have alt text.`);
+        }
+      });
+      visit(tree, "html", (node) => {
+        const $ = load(node.value);
+        if ($("img").length) {
+          imagesErrors.add(
+            `The image '${$("img").attr("src")}' uses an HTML tag instead of markdown syntax.`,
+          );
         }
       });
     })
     .use(remarkStringify)
     .process(markdown);
 
-  return images;
+  return imagesErrors;
 }
