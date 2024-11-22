@@ -19,6 +19,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   *   **or** (*data (np.ndarray or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *or matrix\_like or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): A statevector, quantum instruction or an object with a `to_operator` or `to_matrix` method from which the density matrix can be constructed. If a vector the density matrix is constructed as the projector of that vector. If a quantum instruction, the density matrix is constructed by assuming all qubits are initialized in the zero state.
   *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Optional. The subsystem dimension of the state (See additional information).
+  *   **data** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction") *| QuantumState*) –
 
   **Raises**
 
@@ -127,6 +128,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
     *   **QuantumChannel** (*other (Operator or*) – or Instruction or Circuit): The operator to evolve by.
     *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – a list of QuantumState subsystem positions to apply the operator on.
+    *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")  *| QuantumChannel |*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) –
 
     **Returns**
 

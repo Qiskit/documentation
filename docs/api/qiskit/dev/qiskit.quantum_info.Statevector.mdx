@@ -19,6 +19,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
   *   **or** (*data (np.array or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *or*[*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): Data from which the statevector can be constructed. This can be either a complex vector, another statevector, a `Operator` with only one column or a `QuantumCircuit` or `Instruction`. If the data is a circuit or instruction, the statevector is constructed by assuming that all qubits are initialized to the zero state.
   *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Optional. The subsystem dimension of the state (See additional information).
+  *   **data** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *|*[*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *|*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) –
 
   **Raises**
 
@@ -334,6 +335,11 @@ python_api_name: qiskit.quantum_info.Statevector
 
   <Function id="qiskit.quantum_info.Statevector.is_valid" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/statevector.py#L234-L241" signature="is_valid(atol=None, rtol=None)">
     Return True if a Statevector has norm 1.
+
+    **Parameters**
+
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) –
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) –
 
     **Return type**
 

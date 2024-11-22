@@ -69,6 +69,8 @@ These are all instances of the same base class:
 ### Instruction
 
 <Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/instructions/instruction.py#L37-L270" signature="qiskit.pulse.instructions.Instruction(operands, name=None)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
   The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
   Instruction initializer.
@@ -162,6 +164,8 @@ All channels are children of the same abstract base class:
 ### Channel
 
 <Class id="qiskit.pulse.channels.Channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/channels.py#L64-L164" signature="qiskit.pulse.channels.Channel(*args, **kwargs)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
   When serialized channels are identified by their serialized name `<prefix><index>`. The type of the channel is interpreted from the prefix, and the index often (but not always) maps to the qubit index. All concrete channel classes must have a `prefix` class attribute (and instances of that class have an index attribute). Base classes which have `prefix` set to `None` are prevented from being instantiated.
@@ -219,9 +223,15 @@ These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.puls
 #### AlignmentKind
 
 <Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/transforms/alignments.py#L25-L87" signature="qiskit.pulse.transforms.AlignmentKind(context_params)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
   An abstract class for schedule alignment.
 
   Create new context.
+
+  **Parameters**
+
+  **context\_params** (*Tuple\[ParameterValueType, ...]*) –
 </Class>
 
 <span id="pulse-canonical-transform" />
@@ -300,8 +310,8 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Parameters**
 
-  *   **schedules** (*Iterable\[ScheduleComponent]*) – Collection of schedules to be aligned together
-  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") *| None*) – Mapping of circuit operations to pulse schedules
+  *   **schedules** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]*) – Collection of schedules to be aligned together
+  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap") *| None*) – Mapping of circuit operations to pulse schedules
   *   **cal\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the gate to inspect for the calibration time
   *   **max\_calibration\_duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – If provided, inst\_map and cal\_gate will be ignored
   *   **align\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – If provided, this will be used as final align time.
@@ -317,7 +327,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[qiskit.pulse.schedule.Schedule](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
 </Function>
 
 #### block\_to\_schedule
@@ -396,7 +406,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Parameters**
 
-  **program** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")) – A program which may contain the subroutine, i.e. `Call` instruction.
+  **program** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – A program which may contain the subroutine, i.e. `Call` instruction.
 
   **Returns**
 
@@ -408,7 +418,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Return type**
 
-  [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule") | [ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")
+  [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
 </Function>
 
 #### pad
@@ -418,11 +428,11 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Parameters**
 
-  *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule to pad.
-  *   **channels** (*Iterable\[chans.Channel] | None*) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
+  *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to pad.
+  *   **channels** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)")*\[*[*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
   *   **until** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Time to pad until. Defaults to `schedule.duration` if not provided.
   *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Pad this schedule by mutating rather than returning a new schedule.
-  *   **pad\_with** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*instructions.Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction")*] | None*) – Pulse `Instruction` subclass to be used for padding. Default to [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction.
+  *   **pad\_with** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] | None*) – Pulse `Instruction` subclass to be used for padding. Default to [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction.
 
   **Returns**
 
@@ -434,7 +444,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Return type**
 
-  [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 </Function>
 
 #### remove\_directives
@@ -792,9 +802,9 @@ The above is just a small taste of what is possible with the builder. See the re
   **Parameters**
 
   *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A Qiskit backend. If not supplied certain builder functionality will be unavailable.
-  *   **schedule** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") *| None*) – A pulse `ScheduleBlock` in which your pulse program will be built.
+  *   **schedule** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") *| None*) – A pulse `ScheduleBlock` in which your pulse program will be built.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of pulse program to be built.
-  *   **default\_alignment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind") *| None*) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
+  *   **default\_alignment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind") *| None*) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
 
   **Returns**
 
@@ -802,7 +812,7 @@ The above is just a small taste of what is possible with the builder. See the re
 
   **Return type**
 
-  ContextManager\[[ScheduleBlock](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")]
+  [*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.13)")\[[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
 </Function>
 
 ### Channels
@@ -848,6 +858,10 @@ DriveChannel(0)
   <Admonition title="Note" type="note">
     Requires the active builder context to have a backend set.
   </Admonition>
+
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
 
   **Return type**
 
@@ -918,6 +932,10 @@ DriveChannel(0)
     Requires the active builder context to have a backend set.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
   [*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
@@ -947,6 +965,10 @@ DriveChannel(0)
   <Admonition title="Note" type="note">
     Requires the active builder context to have a backend set.
   </Admonition>
+
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
 
   **Return type**
 
@@ -1018,9 +1040,9 @@ drive_sched.draw()
   **Parameters**
 
   *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Duration to acquire data for
-  *   **qubit\_or\_channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| chans.AcquireChannel*) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
-  *   **register** (*StorageLocation*) – Location to store measured result.
-  *   **metadata** (*Unpack\[\_MetaDataType]*) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
+  *   **qubit\_or\_channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
+  *   **register** ([*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")  *|*[*RegisterSlot*](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")) – Location to store measured result.
+  *   **metadata** ([*Unpack*](https://docs.python.org/3/library/typing.html#typing.Unpack "(in Python v3.13)")*\[\_MetaDataType]*) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
 
   **Raises**
 
@@ -1098,7 +1120,7 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **channels\_or\_qubits** (*chans.Channel |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Channels or qubits to barrier.
+  *   **channels\_or\_qubits** ([*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Channels or qubits to barrier.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name for the barrier
 </Function>
 
@@ -1269,10 +1291,10 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **target** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") *| None*) – Target circuit or pulse schedule to call.
+  *   **target** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") *| None*) – Target circuit or pulse schedule to call.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Optional. A unique name of subroutine if defined. When the name is explicitly provided, one cannot call different schedule blocks with the same name.
-  *   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[ParameterValueType, ParameterValueType] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
-  *   **kw\_params** (*ParameterValueType*) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
+  *   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*Union*](https://docs.python.org/3/library/typing.html#typing.Union "(in Python v3.13)")*\[*[*qiskit.circuit.parameterexpression.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*],* [*Union*](https://docs.python.org/3/library/typing.html#typing.Union "(in Python v3.13)")*\[*[*qiskit.circuit.parameterexpression.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
+  *   **kw\_params** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
 </Function>
 
 #### delay
@@ -1298,7 +1320,7 @@ drive_sched.draw()
   **Parameters**
 
   *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of cycles to delay for on `channel`.
-  *   **channel** (*chans.Channel*) – Channel to delay on.
+  *   **channel** ([*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Channel to delay on.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
@@ -1324,8 +1346,8 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **pulse** (*library.Pulse | np.ndarray*) – Pulse to play.
-  *   **channel** (*chans.PulseChannel*) – Channel to play pulse on.
+  *   **pulse** (*Pulse |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Pulse to play.
+  *   **channel** (*PulseChannel*) – Channel to play pulse on.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the pulse.
 </Function>
 
@@ -1381,7 +1403,7 @@ drive_sched.draw()
   **Parameters**
 
   *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Frequency in Hz to set channel to.
-  *   **channel** (*chans.PulseChannel*) – Channel to set frequency of.
+  *   **channel** (*PulseChannel*) – Channel to set frequency of.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
@@ -1410,7 +1432,7 @@ drive_sched.draw()
   **Parameters**
 
   *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Phase in radians to set channel carrier signal to.
-  *   **channel** (*chans.PulseChannel*) – Channel to set phase of.
+  *   **channel** (*PulseChannel*) – Channel to set phase of.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
@@ -1437,7 +1459,7 @@ drive_sched.draw()
   **Parameters**
 
   *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Frequency in Hz to shift channel frequency by.
-  *   **channel** (*chans.PulseChannel*) – Channel to shift frequency of.
+  *   **channel** (*PulseChannel*) – Channel to shift frequency of.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
@@ -1466,7 +1488,7 @@ drive_sched.draw()
   **Parameters**
 
   *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Phase in radians to shift channel carrier signal by.
-  *   **channel** (*chans.PulseChannel*) – Channel to shift phase of.
+  *   **channel** (*PulseChannel*) – Channel to shift phase of.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
@@ -1551,7 +1573,7 @@ pulse_prog.draw()
 
   **Parameters**
 
-  **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
+  **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
 
   **Yields**
 
@@ -1559,7 +1581,7 @@ pulse_prog.draw()
 
   **Return type**
 
-  Generator\[None, None, None]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[None, None, None]
 
   **Notes**
 
@@ -1606,8 +1628,8 @@ pulse_prog.draw()
 
   **Parameters**
 
-  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
-  *   **func** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
+  *   **func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)")*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
   **Yields**
 
@@ -1615,7 +1637,7 @@ pulse_prog.draw()
 
   **Return type**
 
-  Generator\[None, None, None]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[None, None, None]
 
   **Notes**
 
@@ -1895,7 +1917,7 @@ MemorySlot(0)
   **Parameters**
 
   *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Physical qubit to measure.
-  *   **registers** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[StorageLocation] | StorageLocation*) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
+  *   **registers** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Union*](https://docs.python.org/3/library/typing.html#typing.Union "(in Python v3.13)")*\[*[*qiskit.pulse.channels.MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")*,* [*qiskit.pulse.channels.RegisterSlot*](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")*]] |* [*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")  *|*[*RegisterSlot*](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
 
   **Returns**
 
@@ -1903,7 +1925,7 @@ MemorySlot(0)
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[StorageLocation] | StorageLocation
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*Union*](https://docs.python.org/3/library/typing.html#typing.Union "(in Python v3.13)")\[[qiskit.pulse.channels.MemorySlot](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [qiskit.pulse.channels.RegisterSlot](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]] | [*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot") | [*RegisterSlot*](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")
 </Function>
 
 #### measure\_all
@@ -2095,6 +2117,10 @@ There are 1e-06 seconds in 4500 samples.
     A channel may still be associated with another qubit in this list such as in the case where significant crosstalk exists.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
   [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.13)")\[[qiskit.pulse.channels.Channel](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
@@ -2111,7 +2137,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Parameters**
 
-  **samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| np.ndarray*) – Number of samples to convert to time in seconds.
+  **samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Number of samples to convert to time in seconds.
 
   **Returns**
 
@@ -2119,7 +2145,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") | np.ndarray
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")
 </Function>
 
 #### seconds\_to\_samples
@@ -2135,7 +2161,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Parameters**
 
-  **seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| np.ndarray*) – Time in seconds to convert to samples.
+  **seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")) – Time in seconds to convert to samples.
 
   **Returns**
 
@@ -2143,7 +2169,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Return type**
 
-  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") | np.ndarray
+  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")
 </Function>
 
 ## Configuration
@@ -2157,6 +2183,8 @@ There are 1e-06 seconds in 4500 samples.
 ### PulseError
 
 <Class id="qiskit.pulse.PulseError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L18-L29" signature="qiskit.pulse.PulseError(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   Errors raised by the pulse module.
 
   Set the error message.
@@ -2169,6 +2197,8 @@ There are 1e-06 seconds in 4500 samples.
 ### BackendNotSet
 
 <Class id="qiskit.pulse.BackendNotSet" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L32-L33" signature="qiskit.pulse.BackendNotSet(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if the builder context does not have a backend.
 
   Set the error message.
@@ -2181,6 +2211,8 @@ There are 1e-06 seconds in 4500 samples.
 ### NoActiveBuilder
 
 <Class id="qiskit.pulse.NoActiveBuilder" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L36-L37" signature="qiskit.pulse.NoActiveBuilder(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if no builder context is active.
 
   Set the error message.
@@ -2193,6 +2225,8 @@ There are 1e-06 seconds in 4500 samples.
 ### UnassignedDurationError
 
 <Class id="qiskit.pulse.UnassignedDurationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L40-L41" signature="qiskit.pulse.UnassignedDurationError(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if instruction duration is unassigned.
 
   Set the error message.
@@ -2205,6 +2239,8 @@ There are 1e-06 seconds in 4500 samples.
 ### UnassignedReferenceError
 
 <Class id="qiskit.pulse.UnassignedReferenceError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L44-L45" signature="qiskit.pulse.UnassignedReferenceError(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if subroutine is unassigned.
 
   Set the error message.
