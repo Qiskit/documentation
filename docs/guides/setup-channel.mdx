@@ -57,14 +57,15 @@ Available plans:
 
     QiskitRuntimeService.save_account(
       token="<your-token">,
-      channel="ibm_quantum" # `channel` distinguishes between different account types
+      channel="ibm_quantum", # `channel` distinguishes between different account types
+      overwrite=True # Use `overwrite=True` if you're updating your token.
     )
     ```
 
     Close out of the REPL with `exit()`. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.
 
-      * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify `set_as_default=True` in your IBM Quantum Platform account when you use the `save_account()` method. (REVIEWERS: IS THIS TRUE??)
-      * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them. (REVIEWERS: Does each named account within the same channel use the same API token, or does each have a unique token?)
+      * If you have saved credentials for both an IBM Quantum Platform account and an IBM Cloud account, IBM Cloud is the default account used when you initialize your account, unless you specify `set_as_default=True` in your IBM Quantum Platform account when you use the `save_account()` method.
+      * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
 
     <Admonition type="warning">
