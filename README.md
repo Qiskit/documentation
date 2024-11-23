@@ -569,6 +569,8 @@ $$
 
 Tables are supported: https://www.markdownguide.org/extended-syntax/.
 
+Warning: do not use `|` inside LaTeX/math expressions. Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+
 ## Comments
 
 Example comment: `{/* Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html */}`
