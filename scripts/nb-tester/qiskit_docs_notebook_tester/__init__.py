@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import sys
+import tempfile
 import textwrap
 from textwrap import dedent
 import platform
@@ -33,9 +34,11 @@ from squeaky import clean_notebook
 
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
-import matplotlib
+# Import with underscores to avoid interfering with user-facing code.
+from matplotlib import set_loglevel as _set_mpl_loglevel
+
 # See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
-matplotlib.set_loglevel("critical")
+_set_mpl_loglevel("critical")
 """
 
 def render_kwarg(arg: str, val: any):
@@ -255,15 +258,19 @@ async def execute_notebook(path: Path, config: Config) -> bool:
         print(f"▶️ Executing {path} (with least_busy patched)")
     else:
         print(f"▶️ Executing {path}")
+
+    working_directory = tempfile.TemporaryDirectory()
     possible_exceptions = (
         nbclient.exceptions.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        nb = await _execute_notebook(path, config)
+        nb = await _execute_notebook(path, config, working_directory.name)
     except possible_exceptions as err:
         print(f"❌ Problem in {path}:\n{err}")
         return False
+    finally:
+        working_directory.cleanup()
 
     notebook_warnings = extract_warnings(nb)
     if notebook_warnings:
@@ -289,12 +296,14 @@ async def _execute_in_kernel(kernel: AsyncKernelClient, code: str) -> None:
         raise Exception("Error running initialization code")
 
 
-async def _execute_notebook(filepath: Path, config: Config) -> nbformat.NotebookNode:
+async def _execute_notebook(
+    filepath: Path, config: Config, working_directory: str
+) -> nbformat.NotebookNode:
     """
     Use nbclient to execute notebook. The steps are:
     1. Read notebook from file
     2. Create a new kernel
-    3. (Optional) Run some custom code to set up the kernel
+    3. Run some custom code to set up the kernel
     4. Execute the notebook inside the kernel
     5. Clean the notebook and return it
     """
@@ -303,6 +312,7 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
     kernel_manager, kernel = await start_new_async_kernel(
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"],
+        cwd=working_directory,
     )
 
     await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
