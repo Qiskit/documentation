@@ -54,6 +54,10 @@ jobs:
           files: docs/**/*.{md,mdx,ipynb}
           separator: "\n"
           write_output_files: true
+      - name: Experiment without output folder
+        run: |
+          ls .github/outputs
+          cat .github/outputs/all_changed_files.txt
 
       - name: Pull preview image
         if: steps.all-changed-files.outputs.any_changed == 'true'
