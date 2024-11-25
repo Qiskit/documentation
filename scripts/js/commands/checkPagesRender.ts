@@ -38,8 +38,18 @@ const readArgs = (): Arguments => {
     .option("from-file", {
       type: "string",
       normalize: true,
+      conflicts: [
+        "non-api",
+        "current-apis",
+        "dev-apis",
+        "historical-apis",
+        "qiskit-release-notes",
+        "translations",
+      ],
       description:
-        "Read the file path for file paths and globs to check, like `docs/start/index.md`. Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb).",
+        "Read the file path for file paths and globs to check, like `docs/start/index.md`. " +
+        "Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb). " +
+        "Mutually exclusive with the other args.",
     })
     .option("non-api", {
       type: "boolean",
@@ -167,12 +177,12 @@ async function validateDockerRunning(): Promise<void> {
 }
 
 async function determineFilePaths(args: Arguments): Promise<string[]> {
-  const globs = [];
   if (args.fromFile) {
     const content = await fs.readFile(args.fromFile, "utf-8");
-    globs.push(...content.split("\n").filter((entry) => entry));
+    return globby(content.split("\n").filter((entry) => entry));
   }
 
+  const globs = [];
   if (args.nonApi) {
     globs.push("docs/**/*.{ipynb,mdx}");
   }
