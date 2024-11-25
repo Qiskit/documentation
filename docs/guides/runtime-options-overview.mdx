@@ -152,7 +152,7 @@ Scroll to see the full table.
 Setting `gen3-turbo` enables the next-generation execution path, which provides a great improvement in performance. This option is experimental (subject to change without notice, and stability is not guaranteed) and is only available on `ibm_fez`, `ibm_marrakesh`, and `ibm_torino`.
 </Admonition>
 <span id="options-compatibility-table"></span>
-### Options compatibility
+### Feature compatibility
 
 Due to differences in the device compilation process, certain runtime features cannot be used together in a single job. Click the appropriate tab for a list of features that are incompatible with the selected feature:
 
@@ -160,12 +160,24 @@ Due to differences in the device compilation process, certain runtime features c
   <TabItem value="Dynamic" label="Dynamic circuits">
   Incompatible with:
   - Gate-folding ZNE
+  - gen3-turbo
   - PEA
   - PEC
   - Dynamical decoupling
+  - Fractional gates
   - Pulse gates
 
   Can be used with gate twirling for non-conditional gates.
+  </TabItem>
+
+  <TabItem value="Fractional" label="Fractional gates">
+  Incompatible with:
+  - Dynamic circuits
+  - gen3-turbo
+  - Gate twirling
+  - PEA
+  - PEC
+
   </TabItem>
 
   <TabItem value="ZNE" label="Gate-folding ZNE">
@@ -177,9 +189,20 @@ Due to differences in the device compilation process, certain runtime features c
   Can be used with pulse gates, but it might not work when using custom gates.
   </TabItem>
 
+  <TabItem value="Gen3" label="gen3-turbo">
+  Incompatible with:
+  - Dynamic circuits
+  - Fractional gates
+  - Pulse gates
+  - `meas_type=kerneled` or `meas_type=avg_kerneled` (measurement level 1)
+
+  Does not support parameter expressions with arithmetic operations.
+  </TabItem>
+
   <TabItem value="PEA" label="PEA">
     Incompatible with:
   - Dynamic circuits
+  - Fractional gates
   - Gate-folding ZNE
   - PEC
   - Pulse gates
@@ -188,6 +211,7 @@ Due to differences in the device compilation process, certain runtime features c
   <TabItem value="PEC" label="PEC">
     Incompatible with:
   - Dynamic circuits
+  - Fractional gates
   - Gate-folding ZNE
   - PEA
   - Pulse gates
@@ -199,18 +223,22 @@ Due to differences in the device compilation process, certain runtime features c
   <TabItem value="Pulse" label="Pulse gates (Eagle only)">
   Incompatible with:
   - Dynamic circuits
+  - Dynamical decoupling
+  - gen3-turbo
   - PEA
   - PEC
-  - Dynamical decoupling
+
 
   Other notes:
   - Can be used with gate-folding ZNE, but it might not work with custom gates.
   - Can be used with gate twirling, but it does not work with non-Clifford entanglers.
+  - Does not support parameter expressions with arithmetic operations.
   </TabItem>
   <TabItem value="Twirling" label="Gate twirling">
   Compatible with all other features, with the following conditions:
   - Can be used with dynamic circuits with non-conditional gates.
   - Can be used with pulse gates, but it does not work with non-Clifford entanglers.
+  - Not compatible with fractional gates.
 
   </TabItem>
   <TabItem value="gen3-turbo" label="gen3-turbo">
