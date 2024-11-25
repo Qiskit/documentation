@@ -35,13 +35,10 @@ from squeaky import clean_notebook
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
 # Import with underscores to avoid interfering with user-facing code.
-from os import chdir as _chdir
 from matplotlib import set_loglevel as _set_mpl_loglevel
 
 # See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
 _set_mpl_loglevel("critical")
-
-_chdir("{temp_dir_path}")
 """
 
 def render_kwarg(arg: str, val: any):
@@ -315,11 +312,10 @@ async def _execute_notebook(
     kernel_manager, kernel = await start_new_async_kernel(
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"],
+        cwd=working_directory,
     )
 
-    await _execute_in_kernel(
-        kernel, PRE_EXECUTE_CODE.format(temp_dir_path=working_directory)
-    )
+    await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
     if config.should_patch(filepath):
         # Implements a subset of options from QiskitRuntimeService, but in 
         # practice any option can easily be added here
