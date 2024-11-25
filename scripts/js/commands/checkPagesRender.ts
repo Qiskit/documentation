@@ -167,12 +167,12 @@ async function validateDockerRunning(): Promise<void> {
 }
 
 async function determineFilePaths(args: Arguments): Promise<string[]> {
-  const globs = [];
   if (args.fromFile) {
     const content = await fs.readFile(args.fromFile, "utf-8");
-    globs.push(...content.split("\n").filter((entry) => entry));
+    return globby(content.split("\n").filter((entry) => entry));
   }
 
+  const globs = [];
   if (args.nonApi) {
     globs.push("docs/**/*.{ipynb,mdx}");
   }
