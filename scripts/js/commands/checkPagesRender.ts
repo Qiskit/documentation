@@ -39,7 +39,9 @@ const readArgs = (): Arguments => {
       type: "string",
       normalize: true,
       description:
-        "Read the file path for file paths and globs to check, like `docs/start/index.md`. Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb).",
+        "Read the file path for file paths and globs to check, like `docs/start/index.md`. " +
+        "Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb)." +
+        "Mutually exclusive with the other args.",
     })
     .option("non-api", {
       type: "boolean",
