@@ -38,9 +38,17 @@ const readArgs = (): Arguments => {
     .option("from-file", {
       type: "string",
       normalize: true,
+      conflicts: [
+        "non-api",
+        "current-apis",
+        "dev-apis",
+        "historical-apis",
+        "qiskit-release-notes",
+        "translations",
+      ],
       description:
         "Read the file path for file paths and globs to check, like `docs/start/index.md`. " +
-        "Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb)." +
+        "Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb). " +
         "Mutually exclusive with the other args.",
     })
     .option("non-api", {
