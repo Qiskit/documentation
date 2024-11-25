@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 # SamplerV2
 
 <Class id="qiskit_ibm_runtime.SamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/sampler.py#L45-L134" signature="SamplerV2(mode=None, options=None)" modifiers="class">
+  Bases: `BasePrimitiveV2`\[[`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.sampler_options.SamplerOptions")], `Sampler`, [`BaseSamplerV2`](/api/qiskit/qiskit.primitives.BaseSamplerV2 "(in Qiskit v1.2)")
+
   Class for interacting with Qiskit Runtime Sampler primitive service.
 
   This class supports version 2 of the Sampler interface, which uses different input and output formats than version 1.
@@ -21,7 +23,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   **Parameters**
 
-  *   **mode** (`Union`\[[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "(in Qiskit v1.2)"), [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.2)"), [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `str`, `None`]) –
+  *   **mode** (*Optional\[Union\[BackendV1, BackendV2,* [*Session*](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")*,* [*Batch*](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")*, str]]*) –
 
       The execution mode used to make the primitive query. It can be:
 
@@ -31,7 +33,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
       Refer to the [Qiskit Runtime documentation](/guides/execution-modes). for more information about the `Execution modes`.
 
-  *   **options** (`Union`\[`Dict`, [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.sampler_options.SamplerOptions"), `None`]) – Sampler options, see `SamplerOptions` for detailed description.
+  *   **options** (*Optional\[Union\[Dict,* [*SamplerOptions*](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions")*]]*) – Sampler options, see `SamplerOptions` for detailed description.
 
   ## Attributes
 
@@ -39,10 +41,6 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   <Attribute id="qiskit_ibm_runtime.SamplerV2.mode">
     Return the execution mode used by this primitive.
-
-    **Return type**
-
-    Optional\[[Session](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") | [Batch](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")]
 
     **Returns**
 
@@ -53,10 +51,6 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   <Attribute id="qiskit_ibm_runtime.SamplerV2.options" attributeTypeHint="SamplerOptions">
     Return options
-
-    **Return type**
-
-    `TypeVar`(`OptionsT`, bound= `BaseOptions`)
   </Attribute>
 
   ### version
@@ -85,10 +79,6 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
     *   **pubs** (*Iterable\[SamplerPubLike]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
     *   **shots** (*int | None*) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the primitive’s default shots value will be used, which can vary by implementation.
 
-    **Return type**
-
-    [RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
-
     **Returns**
 
     Submitted job. The result of the job is an instance of `qiskit.primitives.containers.PrimitiveResult`.
@@ -96,6 +86,10 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
     **Raises**
 
     **ValueError** – Invalid arguments are given.
+
+    **Return type**
+
+    [RuntimeJobV2](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2")
   </Function>
 </Class>
 
