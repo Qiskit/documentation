@@ -206,7 +206,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Parameters**
 
-    *   **block** (*BlockComponent*) – ScheduleBlock to be appended.
+    *   **block** ([*ScheduleBlock*](#qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – ScheduleBlock to be appended.
     *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new `Schedule`. Defaults to name of `self`.
     *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Perform operation inplace on this schedule. Otherwise, return a new `Schedule`.
 
@@ -220,7 +220,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Return type**
 
-    [ScheduleBlock](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")
+    [*ScheduleBlock*](#qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
   </Function>
 
   ### assign\_parameters
@@ -230,7 +230,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Parameters**
 
-    *   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, ParameterValueType | Sequence\[ParameterValueType]]*) – A mapping from parameters or parameter names (parameter vector
+    *   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*qiskit.circuit.parameterexpression.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*qiskit.circuit.parametervector.ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Union*](https://docs.python.org/3/library/typing.html#typing.Union "(in Python v3.13)")*\[*[*qiskit.circuit.parameterexpression.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.13)")*\[*[*Union*](https://docs.python.org/3/library/typing.html#typing.Union "(in Python v3.13)")*\[*[*qiskit.circuit.parameterexpression.ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]]]*) – A mapping from parameters or parameter names (parameter vector
     *   **values** (*or parameter vector name) to either numeric*) –
     *   **expression** (*or another parameter*) –
     *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set `True` to override this instance with new parameter.
@@ -245,7 +245,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Return type**
 
-    [ScheduleBlock](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")
+    [*ScheduleBlock*](#qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
   </Function>
 
   ### assign\_references
@@ -290,7 +290,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Parameters**
 
-    *   **subroutine\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, ...], 'ScheduleBlock']*) – A mapping from reference key to schedule block of the subroutine.
+    *   **subroutine\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, ...],* [*qiskit.pulse.schedule.ScheduleBlock*](#qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*]*) – A mapping from reference key to schedule block of the subroutine.
     *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set `True` to override this instance with new subroutine.
 
     **Returns**
@@ -303,7 +303,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Return type**
 
-    [ScheduleBlock](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")
+    [*ScheduleBlock*](#qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
   </Function>
 
   ### ch\_duration
@@ -327,7 +327,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Parameters**
 
-    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
     *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
@@ -335,7 +335,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The unit of specified time range either `dt` or `ns`. The unit of ns is available only when `backend` object is provided.
 
-    *   **disable\_channels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list are not shown in the output image.
+    *   **disable\_channels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*qiskit.pulse.channels.Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A control property to show specific pulse channel. Pulse channel instances provided as a list are not shown in the output image.
 
     *   **show\_snapshot** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Show snapshot instructions.
 
@@ -357,7 +357,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
         `axis` and `style` kwargs may depend on the plotter.
 
-    *   **axis** (*Any | None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+    *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
     *   **show\_barrier** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – DEPRECATED. Show barrier lines.
 
@@ -381,9 +381,9 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Parameters**
 
-    *   **filter\_funcs** (*Callable\[...,* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*]*) – A list of Callables which take a `Instruction` and return a bool.
-    *   **channels** (*Iterable\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
-    *   **instruction\_types** (*Iterable\[*[*abc.ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")*] |* [*abc.ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")) – For example, `[PulseInstruction, AcquireInstruction]`.
+    *   **filter\_funcs** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)")*\[\[...],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*]*) – A list of Callables which take a `Instruction` and return a bool.
+    *   **channels** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+    *   **instruction\_types** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)")*\[*[*ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")*] |* [*ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")) – For example, `[PulseInstruction, AcquireInstruction]`.
     *   **check\_subroutine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set True to individually filter instructions inside of a subroutine defined by the `Call` instruction.
 
     **Returns**
@@ -404,9 +404,9 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Parameters**
 
-    *   **filter\_funcs** (*Callable\[...,* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*]*) – A list of Callables which take a `Instruction` and return a bool.
-    *   **channels** (*Iterable\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
-    *   **instruction\_types** (*Iterable\[*[*abc.ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")*] |* [*abc.ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")) – For example, `[PulseInstruction, AcquireInstruction]`.
+    *   **filter\_funcs** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)")*\[\[...],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*]*) – A list of Callables which take a `Instruction` and return a bool.
+    *   **channels** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+    *   **instruction\_types** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)")*\[*[*ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")*] |* [*ABCMeta*](https://docs.python.org/3/library/abc.html#abc.ABCMeta "(in Python v3.13)")) – For example, `[PulseInstruction, AcquireInstruction]`.
     *   **check\_subroutine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set True to individually filter instructions inside a subroutine defined by the `Call` instruction.
 
     **Returns**
@@ -459,7 +459,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Parameters**
 
-    *   **other\_program** (*Any*) – Qiskit program that provides metadata to new object.
+    *   **other\_program** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit program that provides metadata to new object.
     *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of new schedule. Name of `block` is used by default.
 
     **Returns**
@@ -472,7 +472,7 @@ python_api_name: qiskit.pulse.ScheduleBlock
 
     **Return type**
 
-    [ScheduleBlock](#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")
+    [*ScheduleBlock*](#qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")
   </Function>
 
   ### is\_parameterized

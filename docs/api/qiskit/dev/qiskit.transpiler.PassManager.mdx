@@ -29,11 +29,15 @@ python_api_name: qiskit.transpiler.PassManager
 
     **Parameters**
 
-    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[Task]*) – A set of transpiler passes to be added to schedule.
+    **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[qiskit.passmanager.base\_tasks.Task]*) – A set of transpiler passes to be added to schedule.
 
     **Raises**
 
     [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
+
+    **Return type**
+
+    None
   </Function>
 
   ### draw
@@ -74,6 +78,10 @@ python_api_name: qiskit.transpiler.PassManager
     **Raises**
 
     [**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
+
+    **Return type**
+
+    None
   </Function>
 
   ### replace
@@ -84,7 +92,11 @@ python_api_name: qiskit.transpiler.PassManager
     **Parameters**
 
     *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Pass index to replace, based on the position in passes().
-    *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[Task]*) – A pass set to be added to the pass manager schedule.
+    *   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[qiskit.passmanager.base\_tasks.Task]*) – A pass set to be added to the pass manager schedule.
+
+    **Return type**
+
+    None
   </Function>
 
   ### run
@@ -98,7 +110,7 @@ python_api_name: qiskit.transpiler.PassManager
 
     *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
-    *   **callback** (*Callable*) –
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)")) –
 
         A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
 
@@ -136,7 +148,7 @@ python_api_name: qiskit.transpiler.PassManager
 
     **Return type**
 
-    \_CircuitsT
+    *\_CircuitsT*
   </Function>
 
   ### to\_flow\_controller
