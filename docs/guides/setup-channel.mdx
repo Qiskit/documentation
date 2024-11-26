@@ -54,7 +54,7 @@ Available plans:
 
 1. Retrieve your API token from the [IBM Quantum account page](https://quantum.ibm.com/account), and activate your Python virtual environment.  See the [installation instructions](/guides/install-qiskit#local) if you do not already have a virtual environment set up. 
 
-    <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run Python in your virtual environment to open a read-eval-print loop (REPL), then enter the following:
+    <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run Python in your virtual environment to open a REPL (read-eval-print loop), then enter the following:
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
@@ -65,6 +65,9 @@ Available plans:
       overwrite=True # Use `overwrite=True` if you're updating your token
     )
     ```
+    <Admonition type="tip">
+      Alternatively, you can copy the code for accessing a specific instance, then paste it into your code. Go to the Instances section of your [IBM Quantum account](https://quantum.ibm.com/account) page and click the vertical ellipses at the end of an instance's column to copy the code.
+    </Admonition>
 
     Close out of the REPL with `exit()`. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.
 
