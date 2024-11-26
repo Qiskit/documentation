@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 # FakeAlmadenV2
 
 <Class id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/backends/almaden/fake_almaden.py#L21-L38" signature="FakeAlmadenV2" modifiers="class">
+  Bases: `FakeBackendV2`
+
   A fake Almaden V2 backend.
 
   ```text
@@ -54,10 +56,6 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     This is required to be implemented if the backend supports Pulse scheduling.
 
-    **Return type**
-
-    `Optional`\[`float`]
-
     **Returns**
 
     The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
@@ -67,10 +65,6 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.dtm">
     Return the system time resolution of output signals
-
-    **Return type**
-
-    `float`
 
     **Returns**
 
@@ -93,28 +87,16 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.instructions">
     A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
-
-    **Return type**
-
-    `List`\[`Tuple`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)"), `Tuple`\[`int`]]]
   </Attribute>
 
   ### max\_circuits
 
-  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.max_circuits">
-    **Return type**
-
-    `None`
-  </Attribute>
+  <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.max_circuits" />
 
   ### meas\_map
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.meas_map">
     Return the grouping of measurements which are multiplexed This is required to be implemented if the backend supports Pulse scheduling.
-
-    **Return type**
-
-    `List`\[`List`\[`int`]]
 
     **Returns**
 
@@ -125,30 +107,18 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.num_qubits">
     Return the number of qubits the backend has.
-
-    **Return type**
-
-    `int`
   </Attribute>
 
   ### operation\_names
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.operation_names">
     A list of instruction names that the backend supports.
-
-    **Return type**
-
-    `List`\[`str`]
   </Attribute>
 
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.operations">
     A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)") instances that the backend supports.
-
-    **Return type**
-
-    `List`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)")]
   </Attribute>
 
   ### options
@@ -231,6 +201,10 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
     **Return type**
 
     AcquireChannel
+
+    **Parameters**
+
+    **qubit** (*int*)
   </Function>
 
   ### check\_faulty
@@ -240,7 +214,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Parameters**
 
-    **circuit** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Circuit to check.
+    **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Circuit to check.
 
     **Raises**
 
@@ -248,7 +222,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### configuration
@@ -258,7 +232,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Return type**
 
-    `Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
+    *QasmBackendConfiguration* | *PulseBackendConfiguration*
   </Function>
 
   ### control\_channel
@@ -272,7 +246,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Parameters**
 
-    **qubits** (`Iterable`\[`int`]) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+    **qubits** (*Iterable\[int]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
     **Returns**
 
@@ -290,16 +264,16 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Parameters**
 
-    *   **refresh** (`bool`) – If `True`, re-retrieve the backend defaults from the
+    *   **refresh** (*bool*) – If `True`, re-retrieve the backend defaults from the
     *   **file.** (*local*)
-
-    **Return type**
-
-    `PulseDefaults`
 
     **Returns**
 
     The backend pulse defaults or `None` if the backend does not support pulse.
+
+    **Return type**
+
+    *PulseDefaults*
   </Function>
 
   ### drive\_channel
@@ -316,6 +290,10 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
     **Return type**
 
     DriveChannel
+
+    **Parameters**
+
+    **qubit** (*int*)
   </Function>
 
   ### measure\_channel
@@ -332,6 +310,10 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
     **Return type**
 
     MeasureChannel
+
+    **Parameters**
+
+    **qubit** (*int*)
   </Function>
 
   ### properties
@@ -341,16 +323,16 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Parameters**
 
-    *   **refresh** (`bool`) – If `True`, re-retrieve the backend properties
+    *   **refresh** (*bool*) – If `True`, re-retrieve the backend properties
     *   **file.** (*from the local*)
-
-    **Return type**
-
-    `BackendProperties`
 
     **Returns**
 
     The backend properties.
+
+    **Return type**
+
+    *BackendProperties*
   </Function>
 
   ### qubit\_properties
@@ -362,11 +344,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Parameters**
 
-    **qubit** (`Union`\[`int`, `List`\[`int`]]) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
-
-    **Return type**
-
-    `Union`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)"), `List`\[[`QubitProperties`](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)")]]
+    **qubit** (*int | List\[int]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
 
     **Returns**
 
@@ -375,6 +353,10 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
     **Raises**
 
     **NotImplementedError** – if the backend doesn’t support querying the qubit properties
+
+    **Return type**
+
+    [*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)") | *List*\[[*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.2)")]
   </Function>
 
   ### refresh
@@ -390,7 +372,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Parameters**
 
-    **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
+    **service** ([*QiskitRuntimeService*](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – A `QiskitRuntimeService` instance
 
     **Raises**
 
@@ -399,7 +381,7 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
 
     **Return type**
 
-    `None`
+    None
   </Function>
 
   ### run
@@ -452,13 +434,13 @@ python_api_name: qiskit_ibm_runtime.fake_provider.FakeAlmadenV2
   <Function id="qiskit_ibm_runtime.fake_provider.FakeAlmadenV2.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/fake_provider/fake_backend.py#L179-L195" signature="status()">
     Return the backend status.
 
-    **Return type**
-
-    `BackendStatus`
-
     **Returns**
 
     The status of the backend.
+
+    **Return type**
+
+    *BackendStatus*
   </Function>
 </Class>
 
