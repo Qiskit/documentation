@@ -215,14 +215,14 @@ The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) 
   </TabItem>
 
   <TabItem value="SamplerOut" label="Convert V2 output to V1 format">
-    The V1 output format was a dictionary of bitstrings (as an int) as the key and quasi-probabilities as the value for each circuit. The V2 format has the same key (but as a string) and counts as the value. To convert the V2 format to V1, divide the quasi-probabilities by the number of shots, where the number of shots selected is described in the [Specify options](/guides/specify-runtime-options#shots) guide.
+    The V1 output format was a dictionary of bitstrings (as an int) as the key and quasi-probabilities as the value for each circuit. The V2 format has the same key (but as a string) and counts as the value. To convert the V2 format to V1, divide the counts by the number of shots, where the number of shots selected is described in the [Specify options](/guides/specify-runtime-options#shots) guide.
 
     ```python
     v2_result = sampler_v2_job.result()
     v1_format = []
     for pub_result in v2_result:
-     counts = pub_result.data.meas.get_counts()
-     v1_format.append( {int(key, 2): val/shots for key, val in counts.items()} )
+        counts = pub_result.data.meas.get_counts()
+        v1_format.append( {int(key, 2): val/shots for key, val in counts.items()} )
 ```
   </TabItem>
 </Tabs>
