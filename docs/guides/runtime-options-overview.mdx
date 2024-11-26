@@ -195,8 +195,8 @@ Due to differences in the device compilation process, certain runtime features c
   - Fractional gates
   - Pulse gates
   - `meas_type=kerneled` or `meas_type=avg_kerneled` (measurement level 1)
+  - Parameter expressions with arithmetic operations
 
-  Does not support parameter expressions with arithmetic operations.
   </TabItem>
 
   <TabItem value="PEA" label="PEA">
@@ -234,17 +234,11 @@ Due to differences in the device compilation process, certain runtime features c
   - Can be used with gate twirling, but it does not work with non-Clifford entanglers.
   </TabItem>
   <TabItem value="Twirling" label="Gate twirling">
-  Compatible with all other features, with the following conditions:
+  Incompatible with fractional gates.
+
+  Other notes:
   - Can be used with dynamic circuits with non-conditional gates.
   - Can be used with pulse gates, but it does not work with non-Clifford entanglers.
-  - Not compatible with fractional gates.
-
-  </TabItem>
-  <TabItem value="gen3-turbo" label="gen3-turbo">
-  Incompatible with:
-  - Dynamic circuits
-  - `meas_type=kerneled` or `meas_type=avg_kerneled`
-  - Fractional gates
 
   </TabItem>
 
