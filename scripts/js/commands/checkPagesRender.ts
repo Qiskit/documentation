@@ -24,12 +24,12 @@ const PORT = 3000;
 interface Arguments {
   [x: string]: unknown;
   fromFile?: string;
-  nonApi: boolean;
-  currentApis: boolean;
-  devApis: boolean;
-  historicalApis: boolean;
-  qiskitReleaseNotes: boolean;
-  translations: boolean;
+  nonApi?: boolean;
+  currentApis?: boolean;
+  devApis?: boolean;
+  historicalApis?: boolean;
+  qiskitReleaseNotes?: boolean;
+  translations?: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -53,34 +53,28 @@ const readArgs = (): Arguments => {
     })
     .option("non-api", {
       type: "boolean",
-      default: false,
       description: "Check all the non-API docs, like start/.",
     })
     .option("current-apis", {
       type: "boolean",
-      default: false,
       description: "Check the pages in the current API docs.",
     })
     .option("dev-apis", {
       type: "boolean",
-      default: false,
       description: "Check the /dev API docs.",
     })
     .option("historical-apis", {
       type: "boolean",
-      default: false,
       description:
         "Check the pages in the historical API docs, e.g. `api/qiskit/0.44`. " +
         "Warning: this is slow.",
     })
     .option("qiskit-release-notes", {
       type: "boolean",
-      default: false,
       description: "Check the pages in the `api/qiskit/release-notes` folder.",
     })
     .option("translations", {
       type: "boolean",
-      default: false,
       description: "Check the pages in the `translations/` subfolders.",
     })
     .parseSync();
