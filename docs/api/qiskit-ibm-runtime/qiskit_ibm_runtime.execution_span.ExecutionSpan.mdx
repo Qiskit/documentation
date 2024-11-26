@@ -9,6 +9,8 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpan
 # ExecutionSpan
 
 <Class id="qiskit_ibm_runtime.execution_span.ExecutionSpan" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/execution_span/execution_span.py#L31-L137" signature="ExecutionSpan(start, stop)" modifiers="class">
+  Bases: `ABC`
+
   Abstract parent for classes that store an execution time span for a subset of job data.
 
   A pub is said to have dependence on an execution span if the corresponding execution includes data that forms any part of the pub’s results.
@@ -17,8 +19,8 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpan
 
   **Parameters**
 
-  *   **start** (`datetime`) – The start time of the span, in UTC.
-  *   **stop** (`datetime`) – The stop time of the span, in UTC.
+  *   **start** (*datetime*) – The start time of the span, in UTC.
+  *   **stop** (*datetime*) – The stop time of the span, in UTC.
 
   ## Attributes
 
@@ -26,20 +28,12 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpan
 
   <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpan.duration">
     The duration of this span, in seconds.
-
-    **Return type**
-
-    `float`
   </Attribute>
 
   ### pub\_idxs
 
   <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpan.pub_idxs">
     Which pubs, by index, have dependence on this execution span.
-
-    **Return type**
-
-    `list`\[`int`]
   </Attribute>
 
   ### size
@@ -54,30 +48,18 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpan
     ```python
     span.filter_by_pub(2).size
     ```
-
-    **Return type**
-
-    `int`
   </Attribute>
 
   ### start
 
   <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpan.start">
     The start time of the span, in UTC.
-
-    **Return type**
-
-    `datetime`
   </Attribute>
 
   ### stop
 
   <Attribute id="qiskit_ibm_runtime.execution_span.ExecutionSpan.stop">
     The stop time of the span, in UTC.
-
-    **Return type**
-
-    `datetime`
   </Attribute>
 
   ## Methods
@@ -91,13 +73,13 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpan
 
     **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
 
-    **Return type**
-
-    bool
-
     **Returns**
 
     Whether there is dependence on this span.
+
+    **Return type**
+
+    bool
   </Function>
 
   ### filter\_by\_pub
@@ -111,13 +93,13 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpan
 
     **pub\_idx** (*int | Iterable\[int]*) – One or more pub indices from the original primitive call.
 
-    **Return type**
-
-    [ExecutionSpan](#qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan")
-
     **Returns**
 
     A new filtered span.
+
+    **Return type**
+
+    [ExecutionSpan](#qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan")
   </Function>
 
   ### mask
@@ -127,15 +109,15 @@ python_api_name: qiskit_ibm_runtime.execution_span.ExecutionSpan
 
     **Parameters**
 
-    **pub\_idx** (`int`) – The index of the pub to return a mask for.
-
-    **Return type**
-
-    [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")\[`Any`, [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[[`bool`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.1)")]]
+    **pub\_idx** (*int*) – The index of the pub to return a mask for.
 
     **Returns**
 
     An array with the same shape as the pub data.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")\[*Any*, [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool "(in NumPy v2.1)")]]
   </Function>
 </Class>
 

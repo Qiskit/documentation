@@ -16,12 +16,14 @@ from __future__ import annotations
 import argparse
 import asyncio
 import sys
+import tempfile
 import textwrap
+from textwrap import dedent
 import platform
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Iterator
+from typing import Iterator, Literal
 
 import nbclient
 import nbformat
@@ -32,25 +34,72 @@ from squeaky import clean_notebook
 
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
-import matplotlib
+# Import with underscores to avoid interfering with user-facing code.
+from matplotlib import set_loglevel as _set_mpl_loglevel
+
 # See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
-matplotlib.set_loglevel("critical")
+_set_mpl_loglevel("critical")
 """
 
-# If not submitting jobs, we also run this code before notebook execution to mock the real backend
-MOCKING_CODE = """\
-import warnings
-from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit.providers.fake_provider import GenericBackendV2
+def render_kwarg(arg: str, val: any):
+    if isinstance(val, str):
+        return f"{arg}=\"{val}\""
+    return f"{arg}={val}"
 
-def patched_least_busy(self, *args, **kwarg):
-  return GenericBackendV2(num_qubits=6, control_flow=True)
+def render_kwargs(kwargs: dict[str, any]):
+    return ", ".join(render_kwarg(arg, val) for arg, val in kwargs.items())
 
-QiskitRuntimeService.least_busy = patched_least_busy
+def generate_backend_patch(
+    backend_name: str, 
+    provider: Literal["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"] = "qiskit-ibm-runtime", 
+    generic_backend_kwargs: dict[str, any] = None, 
+    runtime_service_kwargs: dict[str, any] = None
+) -> str:
+    """
+    Generate code for fetching a custom backend to inject into a notebook.
+    """
 
-warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
-warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
-"""
+    patch = dedent("""
+    from qiskit_ibm_runtime import QiskitRuntimeService
+    import warnings
+
+    warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
+    warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
+    """)
+
+    if provider == "qiskit-fake-provider":
+        qiskit_fake_provider_args = render_kwargs(generic_backend_kwargs or {})
+        patch += dedent(f"""
+        from qiskit.providers.fake_provider import GenericBackendV2
+        def patched_least_busy(self, *args, **kwargs):
+            return GenericBackendV2({qiskit_fake_provider_args})
+        """)
+
+    elif provider == "runtime-fake-provider":
+        patch += dedent(f"""
+        from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
+
+        def patched_least_busy(self, *args, **kwargs):
+            provider = FakeProviderForBackendV2()
+            return provider.backend("{backend_name}")
+        """)
+
+    elif provider == "qiskit-ibm-runtime": 
+        qiskit_runtime_service_args = render_kwargs(runtime_service_kwargs or {})
+
+        patch += dedent(f"""
+        def patched_least_busy(self, *args, **kwargs):
+            service = QiskitRuntimeService({qiskit_runtime_service_args})
+            return service.backend("{backend_name}")
+        """)
+
+    else:
+        raise ValueError(f"Please specify a valid provider. \"{provider}\" is invalid.")
+
+    patch += "\nQiskitRuntimeService.least_busy = patched_least_busy\n"
+
+    return patch
+
 
 def get_package_versions():
     requirements_file = Path("scripts/nb-tester/requirements.txt").read_text()
@@ -206,18 +255,22 @@ async def execute_notebook(path: Path, config: Config) -> bool:
     Wrapper function for `_execute_notebook` to print status and write result
     """
     if config.should_patch(path):
-        print(f"▶️ Executing {path} (with least_busy patched to return fake backend)")
+        print(f"▶️ Executing {path} (with least_busy patched)")
     else:
         print(f"▶️ Executing {path}")
+
+    working_directory = tempfile.TemporaryDirectory()
     possible_exceptions = (
         nbclient.exceptions.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        nb = await _execute_notebook(path, config)
+        nb = await _execute_notebook(path, config, working_directory.name)
     except possible_exceptions as err:
         print(f"❌ Problem in {path}:\n{err}")
         return False
+    finally:
+        working_directory.cleanup()
 
     notebook_warnings = extract_warnings(nb)
     if notebook_warnings:
@@ -243,12 +296,14 @@ async def _execute_in_kernel(kernel: AsyncKernelClient, code: str) -> None:
         raise Exception("Error running initialization code")
 
 
-async def _execute_notebook(filepath: Path, config: Config) -> nbformat.NotebookNode:
+async def _execute_notebook(
+    filepath: Path, config: Config, working_directory: str
+) -> nbformat.NotebookNode:
     """
     Use nbclient to execute notebook. The steps are:
     1. Read notebook from file
     2. Create a new kernel
-    3. (Optional) Run some custom code to set up the kernel
+    3. Run some custom code to set up the kernel
     4. Execute the notebook inside the kernel
     5. Clean the notebook and return it
     """
@@ -257,11 +312,29 @@ async def _execute_notebook(filepath: Path, config: Config) -> nbformat.Notebook
     kernel_manager, kernel = await start_new_async_kernel(
         kernel_name="python3",
         extra_arguments=["--InlineBackend.figure_format='svg'"],
+        cwd=working_directory,
     )
 
     await _execute_in_kernel(kernel, PRE_EXECUTE_CODE)
     if config.should_patch(filepath):
-        await _execute_in_kernel(kernel, MOCKING_CODE)
+        # Implements a subset of options from QiskitRuntimeService, but in 
+        # practice any option can easily be added here
+        backend_cell = generate_backend_patch(
+            backend_name=config.args.backend, 
+            provider=config.args.provider,
+            runtime_service_kwargs = {
+                "channel": config.args.channel,
+                "token": config.args.token,
+                "url": config.args.url,
+                "name": config.args.name,
+                "instance": config.args.instance,
+            },
+            generic_backend_kwargs = {
+                "num_qubits": config.args.num_qubits,
+                "control_flow": config.args.control_flow
+            }
+        )
+        await _execute_in_kernel(kernel, backend_cell)
 
     notebook_client = nbclient.NotebookClient(
         nb=nb,
@@ -361,6 +434,106 @@ def get_args() -> argparse.Namespace:
             "The program will fail with a helpful message if any of the notebooks cannot be executed."
         ),
     )
+    parser.add_argument(
+        "--provider",
+        action="store",
+        default="qiskit-fake-provider",
+        choices=["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"],
+        help=(
+            "Specify a provider to run notebook against."
+        )
+    )
+    parser.add_argument(
+        "--backend",
+        action="store",
+        default="fake_athens",
+        help=(
+            "Specify a backend to run the script against, such as 'fake_athens'"
+            "or 'athens'. Only relevant when `--provider` is "
+            "`qiskit-ibm-runtime` or `runtime-fake-provider`."
+        )
+    )
+
+    generic_backend_options_group = parser.add_argument_group(
+        "qiskit-fake-backend options",
+        description=(
+            "These options change the behavior when --provider=qiskit-fake-backend, "
+            "and are passed as parameters directly to GenericBackendV2. "
+            "See https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2 "
+            "for more details."
+
+        )
+    )
+    generic_backend_options_group.add_argument(
+        "--num-qubits",
+        action="store",
+        type=int,
+        default=6,
+        help=(
+            "Specify the number of qubits for the qiskit generic backend to use"
+        )
+    )
+    generic_backend_options_group.add_argument(
+        "--control-flow",
+        action="store_true",
+        help=(
+            "Specify if the qiskit generic backend should enable control flow"
+            "directives on the target"
+        )
+    )
+
+    runtime_options_group = parser.add_argument_group(
+        "qiskit-ibm-runtime options",
+        description=(
+            "These options change the behavior when --provider=qiskit-ibm-runtime, "
+            "and are passed as parameters directly to QiskitRuntimeService. "
+            "See https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService "
+            "for more details."
+        )
+    )
+    runtime_options_group.add_argument(
+        "--channel",
+        action="store",
+        default="ibm_quantum",
+        choices=["ibm_cloud", "ibm_quantum", "local"],
+        help=(
+            "Specify a channel for running the notebook against."
+        )
+    )
+    runtime_options_group.add_argument(
+        "--token",
+        action="store",
+        default=None,
+        help=(
+            'IBM Cloud API key or IBM Quantum API token. Warning: for security,' 
+            'you should set this via an environment variable, e.g. '
+            '`--token="${IQP_API_TOKEN}".'
+        )
+    )
+    runtime_options_group.add_argument(
+        "--url",
+        action="store",
+        default=None,
+        help=(
+            "The API URL to submit the notebook against."
+        )
+    )
+    runtime_options_group.add_argument(
+        "--name",
+        action="store",
+        default=None,
+        help=(
+            "Name of the qiskit account to load."
+        )
+    )
+    runtime_options_group.add_argument(
+        "--instance",
+        action="store",
+        default=None,
+        help=(
+            "The service instance to use."
+        )
+    )
     args = parser.parse_args()
     if args.only_submit_jobs:
         args.submit_jobs = True
@@ -406,3 +579,4 @@ def main():
     if platform.system() == "Windows":
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(_main())
+

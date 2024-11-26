@@ -79,7 +79,7 @@ from qiskit.circuit.library import EfficientSU2
 ai_passmanager = PassManager([
   AIRouting(backend_name="ibm_cairo", optimization_level=3, layout_mode="optimize", local_mode=True),  # Route circuit
   CollectLinearFunctions(),  # Collect Linear Function blocks
-  AILinearFunctionSynthesis(backend_name="ibm_cairo", local_mode=True)  # Re-synthesize Linear Function blocks
+  AILinearFunctionSynthesis(backend_name="ibm_cairo", local_mode=True),  # Re-synthesize Linear Function blocks
   CollectPauliNetworks(), # Collect Pauli Networks blocks
   AIPauliNetworkSynthesis(backend_name="ibm_cairo", local_mode=False),  # Re-synthesize Pauli Network blocks. Only available in the Qiskit Transpiler Service
 ])
@@ -124,7 +124,7 @@ These custom collection passes limit the sizes of the collected sub-circuits so 
 The `qiskit-ibm-transpiler` allows you to configure a hybrid pass manager that combines the best of Qiskit's heuristic and the AI-powered transpiler passes. This feature behaves similarly to the Qiskit `generate_pass_manager` method. A typical way to use `generate_ai_pass_manager` is as follows:
 
 ```python
-    from qiskit_ibm_transpiler.ai import generate_ai_pass_manager
+    from qiskit_ibm_transpiler import generate_ai_pass_manager
     from qiskit.circuit.library import EfficientSU2
     from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -133,7 +133,7 @@ The `qiskit-ibm-transpiler` allows you to configure a hybrid pass manager that c
 
     su2_circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
 
-    ai_transpiler_pass_manager = generate_ai_pass_manager(,
+    ai_transpiler_pass_manager = generate_ai_pass_manager(
         coupling_map=fez_coupling_map,
         ai_optimization_level=3,
         optimization_level=3,

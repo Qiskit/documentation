@@ -115,6 +115,8 @@ If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
 also add it to the "Check for notebooks that require LaTeX" step in
 `.github/workflows/notebook-test.yml`.
 
+If you don't do this step, you will get the error "FAILED scripts/nb-tester/test/test_notebook_classification.py::test_all_notebooks_are_classified".
+
 ### Add package version information
 
 Add a new markdown cell under your title with a `version-info` tag.
@@ -287,6 +289,20 @@ npm run check:metadata -- --apis
 npm run check
 ```
 
+## Check images
+
+Every image needs to have alt text for accessibility and must use markdown syntax. To avoid changing the styling of the images, the use of the `<img>` HTML tag is not allowed. The lint job in CI will fail if images do not have alt text defined or if an `<img>` tag is found.
+
+You can check it locally by running:
+
+```bash
+# Only check images
+npm run check:images
+
+# Or, run all the checks
+npm run check
+```
+
 ## Spellcheck
 
 We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
@@ -372,7 +388,7 @@ In this case, no commit will be automatically created.
 
 This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
 
-1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-runtime`, or `qiskit-ibm-transpiler`) and its version.
+1. Choose which documentation you want to generate (e.g. `qiskit` or `qiskit-ibm-runtime`) and its version.
 2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
 3. Download a CI artifact with the project's documentation. To find this:
    1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
@@ -389,22 +405,25 @@ This is useful when new docs content is published, usually corresponding to new 
 8. Under `Link Expiration` select `Disable Shared Link on` and set an expiration date of ~10 years into the future.
 9. Copy the direct link at the end of the `Shared Link Settings` tab.
 10. Modify the `scripts/config/api-html-artifacts.json` file, adding the new versions with the direct link from step 9.
-11. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
-    e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+11. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`. If it is not the latest minor version, set `--historical`.
 
-If you are regenerating a dev version, then you can add `--dev` as an argument and the documentation will be built at `/docs/api/<pkg-name>/dev`. For dev versions, end the `--version` in `-dev`, e.g. `-v 1.0.0-dev`. If a release candidate has already been released, use `-v 1.0.0rc1`, for example.
+For dev docs, add `--dev` and either use a version like `-v 1.0.0-dev` or `-v 1.0.0rc1`.
 
-In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
+### Setting up a new minor version
+
+For example, the latest unversioned docs were `0.2.0` but `0.3.0` was just released.
+
+You must first save the latest unversioned docs as historical docs by running `npm run gen-api` with the `--historical` arg. For example, first run `npm run gen-api -- -p qiskit -v 0.2.0 --historical`.
+
+Once the historical docs are set up, you can now generate the newest docs by following the normal process, such as `npm run gen-api -- -p qiskit -v 0.3.0`.
 
 ### Generate patch releases
 
 For example, if the current docs are for 0.45.2 but you want to generate 0.45.3.
 
-Follow the same process above for new API docs, other than:
+When uploading the artifact to Box, overwrite the existing file with the new one. No need to update the file metadata.
 
-- When uploading the artifact, overwrite the existing file with the new one. Be careful to follow the above steps to change "Link Expiration"!
-
-If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
+If the version is not for the latest stable minor release series, remember to add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.3.\* but you're generating docs for the patch release 0.2.1.
 
 ### View diff for `objects.inv`
 
@@ -422,7 +441,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
   textconv = sh -c 'sphobjinv convert plain "$0" -'
 ```
 
-### Dependabot - upgrade notebook testing version
+## Dependabot - upgrade notebook testing version
 
 When a new version of an API is released, we should also update `nb-tester/requirements.txt` to ensure that our notebooks still work with the latest version of the API. You can do this upgrade either manually or wait for Dependabot's automated PR.
 
@@ -550,6 +569,8 @@ $$
 
 Tables are supported: https://www.markdownguide.org/extended-syntax/.
 
+Warning: do not use `|` inside LaTeX/math expressions. Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+
 ## Comments
 
 Example comment: `{/* Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html */}`
@@ -621,6 +642,8 @@ To use a `DefinitionTooltip`, use the following syntax:
 ```
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
+
+Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
 
 ### Tabs
 

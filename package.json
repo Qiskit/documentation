@@ -15,7 +15,8 @@
     "fmt": "prettier --write .",
     "test": "playwright test",
     "typecheck": "tsc",
-    "check": "npm run check:qiskit-bot && npm run check:patterns-index && npm run check:metadata && npm run check:spelling && npm run check:internal-links && npm run check:orphan-pages && npm run check:fmt",
+    "check": "npm run check:qiskit-bot && npm run check:patterns-index && npm run check:images && npm run check:metadata && npm run check:spelling && npm run check:internal-links && npm run check:orphan-pages && npm run check:fmt",
+    "check:images": "tsx scripts/js/commands/checkImages.ts",
     "check:metadata": "tsx scripts/js/commands/checkMetadata.ts",
     "check:spelling": "tsx scripts/js/commands/checkSpelling.ts",
     "check:fmt": "prettier --check .",
@@ -28,7 +29,6 @@
     "check:stale-images": "tsx scripts/js/commands/checkStaleImages.ts",
     "regen-apis": "tsx scripts/js/commands/api/regenerateApiDocs.ts",
     "gen-api": "tsx scripts/js/commands/api/updateApiDocs.ts",
-    "make-historical": "tsx scripts/js/commands/api/convertApiDocsToHistorical.ts",
     "generate-historical-redirects": "tsx scripts/js/commands/api/generateHistoricalRedirects.ts",
     "save-internal-links": "tsx scripts/js/commands/saveInternalLinks.ts"
   },

@@ -53,6 +53,8 @@ Options can be defined before a primitive is constructed and passed to the primi
 <span id="options-table"></span>
 ### Available options
 
+The following table documents options from the latest version of `qiskit-ibm-runtime`. To see older option versions, visit the [`qiskit-ibm-runtime` API reference](/api/qiskit-ibm-runtime) and select a previous version.
+
 <Admonition type="caution" title="Important">
 Scroll to see the full table.
 </Admonition>
@@ -68,6 +70,7 @@ Scroll to see the full table.
 |                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                         | `'XX'`                      |                      |
 |                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                  | `'middle'`                  |                      |
 |                      | scheduling_method        |                         | `'asap'`/`'alap'`                                                                      | `'alap'`                    |                      |
+|                      | skip_reset_qubits        |                         | `True`/`False`                                                                                   | `False`                 |                    |
 | [environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)          |                          |     |             |                                  | environment          |
 |                      | log_level                |                         |`DEBUG`/`INFO`/`WARNING`/`ERROR`/`CRITICAL`                 |`WARNING`                          |                      |
 |                      | callback                 |                         |Callable function that receives Job ID and Job result.                             |`None`                           |                      |
@@ -118,6 +121,7 @@ Scroll to see the full table.
 |                      | sequence_type            |                         | `'XX'`/`'XpXm'`/`'XY4'`                                                                         | `'XX'`                 |                    |
 |                      | extra_slack_distribution |                         | `'middle'`/`'edges'`                                                                          | `'middle'`                  |                    |
 |                      | scheduling_method        |                         | `'asap'`/`'alap'`                                                                            | `'alap'`                    |                    |
+|                      | skip_reset_qubits        |                         | `True`/`False`                                                                                   | `False`                 |                    |
 | [environment](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EnvironmentOptions)          |                          |                         |              |                                  |                    |
 |                      | log_level                |                         |`DEBUG`/`INFO`/`WARNING`/`ERROR`/`CRITICAL`                                             |`WARNING`                          |   environment   |
 |                      | callback                 |                         |Callable function that receives Job ID and Job result.                                    |`None`                           |                    |
@@ -145,7 +149,7 @@ Scroll to see the full table.
 
 <span id="experimental-option-note"></span>
 <Admonition type="note">
-Setting `gen3-turbo` enables the next-generation execution path, which provides a great improvement in performance. This option is experimental (subject to change without notice, and stability is not guaranteed) and is only available on `ibm_torino`.
+Setting `gen3-turbo` enables the next-generation execution path, which provides a great improvement in performance. This option is experimental (subject to change without notice, and stability is not guaranteed) and is only available on `ibm_fez`, `ibm_marrakesh`, and `ibm_torino`.
 </Admonition>
 <span id="options-compatibility-table"></span>
 ### Options compatibility
