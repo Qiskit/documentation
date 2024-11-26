@@ -169,6 +169,10 @@ Due to differences in the device compilation process, certain runtime features c
 
   Can be used with gate twirling for non-conditional gates.
   </TabItem>
+  <TabItem value="DD" label="Dynamical decoupling">
+  Incompatible with dynamic circuits.
+
+  </TabItem>
 
   <TabItem value="Fractional" label="Fractional gates">
   Incompatible with:
@@ -187,6 +191,14 @@ Due to differences in the device compilation process, certain runtime features c
   - PEC
 
   Can be used with pulse gates, but it might not work when using custom gates.
+  </TabItem>
+  <TabItem value="Twirling" label="Gate twirling">
+  Incompatible with fractional gates.
+
+  Other notes:
+  - Can be used with dynamic circuits with non-conditional gates.
+  - Can be used with pulse gates, but it does not work with non-Clifford entanglers.
+
   </TabItem>
 
   <TabItem value="Gen3" label="gen3-turbo">
@@ -216,10 +228,7 @@ Due to differences in the device compilation process, certain runtime features c
   - PEA
   - Pulse gates
   </TabItem>
-  <TabItem value="DD" label="Dynamical decoupling">
-  Incompatible with dynamic circuits.
 
-  </TabItem>
   <TabItem value="Pulse" label="Pulse gates (Eagle only)">
   Incompatible with:
   - Dynamic circuits
@@ -233,14 +242,7 @@ Due to differences in the device compilation process, certain runtime features c
   - Can be used with gate-folding ZNE, but it might not work with custom gates.
   - Can be used with gate twirling, but it does not work with non-Clifford entanglers.
   </TabItem>
-  <TabItem value="Twirling" label="Gate twirling">
-  Incompatible with fractional gates.
 
-  Other notes:
-  - Can be used with dynamic circuits with non-conditional gates.
-  - Can be used with pulse gates, but it does not work with non-Clifford entanglers.
-
-  </TabItem>
 
 </Tabs>
 
