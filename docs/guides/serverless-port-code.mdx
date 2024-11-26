@@ -19,8 +19,7 @@ from qiskit.circuit.random import random_circuit
 qc_random = [(random_circuit(20, 20, measure=True)) for _ in range(30)]
 optimization_level = 3
 
-# Get backend
-# Follow instructions at https://docs.quantum.ibm.com/guides/functions to authenticate with your API token.
+# If you have not previously saved your credentials, follow instructions at https://docs.quantum.ibm.com/guides/setup-channel#iqp to authenticate with your API token.
 service = QiskitRuntimeService(channel="ibm_quantum")
 backend = service.get_backend(backend_name)
 
