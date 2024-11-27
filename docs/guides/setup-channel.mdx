@@ -83,12 +83,13 @@ Available plans:
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
 
-1. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API token after each use by rotating it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API token field). To initialize the service in this situation, you can use code like the following:
+1. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API token after each use by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API token field) to reduce risk. To initialize the service in this situation, you can use code like the following:
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
   
-    # Refresh your API token on the dashboard after using the code as follows:
+    # After using the following code, go to your dashboard (https://quantum.ibm.com/)
+    # and expire your API token (click the refresh button in the API token field)
     service = QiskitRuntimeService(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>")
     ```
 
