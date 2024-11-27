@@ -183,6 +183,7 @@ The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) 
   </TabItem>
 </Tabs>
 
+<span id="sampler-examples"></span>
 #### Sampler examples  (input and output)
 
 {/*Verified by Elena.*/}
@@ -210,6 +211,18 @@ The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) 
       job = sampler_v2.run([(circuit1, vals1), (circuit2, vals1)])
       counts1 = job.result()[0].data.meas.get_counts()  # result for pub 1 (circuit 1)
       counts2 = job.result()[1].data.meas.get_counts()  # result for pub 2 (circuit 2)
+```
+  </TabItem>
+
+  <TabItem value="SamplerOut" label="Convert V2 output to V1 format">
+    The V1 output format was a dictionary of bitstrings (as an int) as the key and quasi-probabilities as the value for each circuit. The V2 format has the same key (but as a string) and counts as the value. To convert the V2 format to V1, divide the counts by the number of shots, where the number of shots selected is described in the [Specify options](/guides/specify-runtime-options#shots) guide.
+
+    ```python
+    v2_result = sampler_v2_job.result()
+    v1_format = []
+    for pub_result in v2_result:
+        counts = pub_result.data.meas.get_counts()
+        v1_format.append( {int(key, 2): val/shots for key, val in counts.items()} )
 ```
   </TabItem>
 </Tabs>
@@ -1177,3 +1190,11 @@ print(f" > Quasi-probability distribution job 2: {another_result.quasi_dists}")
 ```
   </TabItem>
 </Tabs>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn more about setting options in the [Specify options](/guides/specify-runtime-options) guide.
+    - Learn more details about [Primitive inputs and outputs.](/guides/primitive-input-output)
+    - Experiment with the [CHSH Inequality](https://learning.quantum.ibm.com/tutorial/chsh-inequality) tutorial.
+</Admonition>
