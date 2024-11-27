@@ -144,6 +144,7 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
 
     ```python
     import os
+
     import requests
     
     req_url = "https://api.quantum-computing.ibm.com/runtime/jobs?limit=10&offset=0&exclude_params=true"
@@ -180,12 +181,12 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
 1. Optionally obtain a temporary access token by supplying your API token. This is especially useful if you would like control over tokens, such as token invalidation. Follow the same precautions previously mentioned about securely using the environment variable.
 
     ```python
-    import requests
-
     import os
 
+    import requests
+
     url = 'https://auth.quantum-computing.ibm.com/api/users/loginWithToken'
-    payload = {'apiToken': "<MY_IBM_QUANTUM_TOKEN>"}
+    payload = {"apiToken": os.environ["IQP_API_TOKEN"]}
     auth_response = requests.post(url, json=payload)
     auth_id=auth_response.json()['id']
     ```
