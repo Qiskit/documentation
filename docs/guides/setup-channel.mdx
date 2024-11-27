@@ -245,16 +245,18 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
 
 1. <span id="cloud-save"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#cloud-untrusted) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Cloud.) To use `save_account()`, activate a Python virtual environment (see the [installation instructions](/guides/install-qiskit#local) if you do not already have a virtual environment set up). Then, run Python in your virtual environment to open a read-eval-print loop (REPL), and enter the following:
 
-    ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
 
+    ```python
+    token = "<your-token>"
+    ```
+
+    ```python
     service = QiskitRuntimeService(
-    channel="ibm_cloud",
-    token="<IBM Cloud API key>", # Your token is confidential.
+    channel="ibm_cloud", # `channel` distinguishes between different account types
+    token=token, # Your token is confidential.
     # Take care not to share your token in public code.
     instance="<IBM Cloud CRN>",
     name="<account-name>",
-    overwrite=True, # Use `overwrite=True` if you're updating your token.
     )
     ```
 
