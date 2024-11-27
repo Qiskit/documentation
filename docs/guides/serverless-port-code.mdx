@@ -19,8 +19,10 @@ from qiskit.circuit.random import random_circuit
 qc_random = [(random_circuit(20, 20, measure=True)) for _ in range(30)]
 optimization_level = 3
 
-# Get backend
-service = QiskitRuntimeService(channel="ibm_quantum", token=API_TOKEN)
+# If you have not previously saved your credentials, follow instructions at
+# https://docs.quantum.ibm.com/guides/setup-channel#iqp
+# to authenticate with your API token.
+service = QiskitRuntimeService(channel="ibm_quantum")
 backend = service.get_backend(backend_name)
 
 pass_manager = generate_preset_pass_manager(
@@ -72,6 +74,7 @@ def transpile_parallel(circuit, pass_manager):
 
 try:
     # Get backend
+    # Follow instructions at https://docs.quantum.ibm.com/guides/setup-channel#iqp to authenticate with your API token.
     service = QiskitRuntimeService(channel="ibm_quantum")
     backend = service.get_backend(backend_name)
 
@@ -101,13 +104,13 @@ except Exception as e:
 
 ## Upload to Qiskit Serverless
 
+Follow the instructions on the [Introduction to Qiskit Functions](/guides/functions) page to authenticate with your API token.
+
 ```python
 from qiskit_ibm_catalog import QiskitServerless, QiskitFunction
 
-# Authenticate to the remote cluster and submit the pattern for remote execution
-serverless = QiskitServerless(
-    token=API_TOKEN
-)
+# Authenticate to the remote cluster and submit the pattern for remote execution.
+serverless = QiskitServerless() 
 
 transpile_remote_demo = QiskitFunction(
     title="transpile_remote_serverless",
