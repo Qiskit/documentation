@@ -182,9 +182,11 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     ```python
     import requests
 
+    import os
+
     url = 'https://auth.quantum-computing.ibm.com/api/users/loginWithToken'
-    input={'apiToken': "<MY_IBM_QUANTUM_TOKEN>"}
-    auth_response = requests.post(url, json=input)
+    payload = {'apiToken': "<MY_IBM_QUANTUM_TOKEN>"}
+    auth_response = requests.post(url, json=payload)
     auth_id=auth_response.json()['id']
     ```
 
