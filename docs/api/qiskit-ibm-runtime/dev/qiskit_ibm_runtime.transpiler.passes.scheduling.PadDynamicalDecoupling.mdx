@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
 # PadDynamicalDecoupling
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L40-L585" signature="PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L40-L587" signature="PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
   Bases: [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.block_base_padder.BlockBasePadder")
 
   Dynamical decoupling insertion pass for IBM dynamic circuit backends.
@@ -36,52 +36,16 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
        ("cx", [1, 2], 200), ("cx", [2, 3], 300),
        ("x", None, 50), ("measure", None, 1000)]
   )
-  ```
 
-  ```python
   # balanced X-X sequence on all qubits
   dd_sequence = [XGate(), XGate()]
   pm = PassManager([ALAPScheduleAnalysis(durations),
                     PadDynamicalDecoupling(durations, dd_sequence)])
   circ_dd = pm.run(circ)
-  circ_dd.draw()
+  circ_dd.draw('mpl', style="iqp")
   ```
 
-  ```python
-                ┌───┐            ┌───────────────┐      ┌───┐      »
-     q_0: ──────┤ H ├─────────■──┤ Delay(96[dt]) ├──────┤ X ├──────»
-          ┌─────┴───┴─────┐ ┌─┴─┐└───────────────┘┌─────┴───┴─────┐»
-     q_1: ┤ Delay(50[dt]) ├─┤ X ├────────■────────┤ Delay(48[dt]) ├»
-          ├───────────────┴┐└───┘      ┌─┴─┐      └───────────────┘»
-     q_2: ┤ Delay(750[dt]) ├───────────┤ X ├──────────────■────────»
-          ├────────────────┤           └───┘            ┌─┴─┐      »
-     q_3: ┤ Delay(950[dt]) ├────────────────────────────┤ X ├──────»
-          └────────────────┘                            └───┘      »
-  meas: 4/═════════════════════════════════════════════════════════»
-                                                                   »
-  «        ┌────────────────┐      ┌───┐      ┌───────────────┐                 »
-  «   q_0: ┤ Delay(208[dt]) ├──────┤ X ├──────┤ Delay(96[dt]) ├─────────────────»
-  «        └─────┬───┬──────┘┌─────┴───┴─────┐└─────┬───┬─────┘┌───────────────┐»
-  «   q_1: ──────┤ X ├───────┤ Delay(96[dt]) ├──────┤ X ├──────┤ Delay(56[dt]) ├»
-  «              └───┘       └───────────────┘      └───┘      └───────────────┘»
-  «   q_2: ─────────────────────────────────────────────────────────────────────»
-  «                                                                             »
-  «   q_3: ─────────────────────────────────────────────────────────────────────»
-  «                                                                             »
-  «meas: 4/═════════════════════════════════════════════════════════════════════»
-  «                                                                             »
-  «         ░ ┌─┐         
-  «   q_0: ─░─┤M├─────────
-  «         ░ └╥┘┌─┐      
-  «   q_1: ─░──╫─┤M├──────
-  «         ░  ║ └╥┘┌─┐   
-  «   q_2: ─░──╫──╫─┤M├───
-  «         ░  ║  ║ └╥┘┌─┐
-  «   q_3: ─░──╫──╫──╫─┤M├
-  «         ░  ║  ║  ║ └╥┘
-  «meas: 4/════╩══╩══╩══╩═
-  «            0  1  2  3 
-  ```
+  ![../\_images/qiskit\_ibm\_runtime-transpiler-passes-scheduling-PadDynamicalDecoupling-1.png](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-PadDynamicalDecoupling-1.png)
 
   ```python
   # Uhrig sequence on qubit 0
@@ -100,33 +64,10 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
       ]
   )
   circ_dd = pm.run(circ)
-  circ_dd.draw()
+  circ_dd.draw('mpl', style="iqp")
   ```
 
-  ```python
-                ┌───┐            ┌────────────────┐                   ░ ┌─┐      »
-     q_0: ──────┤ H ├─────────■──┤ Delay(500[dt]) ├───────────────────░─┤M├──────»
-          ┌─────┴───┴─────┐ ┌─┴─┐└────────────────┘┌────────────────┐ ░ └╥┘┌─┐   »
-     q_1: ┤ Delay(50[dt]) ├─┤ X ├────────■─────────┤ Delay(300[dt]) ├─░──╫─┤M├───»
-          ├───────────────┴┐└───┘      ┌─┴─┐       └────────────────┘ ░  ║ └╥┘┌─┐»
-     q_2: ┤ Delay(750[dt]) ├───────────┤ X ├───────────────■──────────░──╫──╫─┤M├»
-          ├────────────────┤           └───┘             ┌─┴─┐        ░  ║  ║ └╥┘»
-     q_3: ┤ Delay(950[dt]) ├─────────────────────────────┤ X ├────────░──╫──╫──╫─»
-          └────────────────┘                             └───┘        ░  ║  ║  ║ »
-  meas: 4/═══════════════════════════════════════════════════════════════╩══╩══╩═»
-                                                                         0  1  2 »
-  «           
-  «   q_0: ───
-  «           
-  «   q_1: ───
-  «           
-  «   q_2: ───
-  «        ┌─┐
-  «   q_3: ┤M├
-  «        └╥┘
-  «meas: 4/═╩═
-  «         3 
-  ```
+  ![../\_images/qiskit\_ibm\_runtime-transpiler-passes-scheduling-PadDynamicalDecoupling-2.png](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-PadDynamicalDecoupling-2.png)
 
   <Admonition title="Note" type="note">
     You need to call [`ALAPScheduleAnalysis`](qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis "qiskit_ibm_runtime.transpiler.passes.scheduling.ALAPScheduleAnalysis") before running dynamical decoupling to guarantee your circuit satisfies acquisition alignment constraints for dynamic circuit backends.
