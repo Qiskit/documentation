@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
 # SabreLayout
 
-<Class id="qiskit.transpiler.passes.SabreLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/layout/sabre_layout.py#L47-L463" signature="qiskit.transpiler.passes.SabreLayout(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.SabreLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passes/layout/sabre_layout.py#L47-L468" signature="qiskit.transpiler.passes.SabreLayout(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
   Choose a Layout via iterative bidirectional routing of the input circuit.
@@ -41,7 +41,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
   **References:**
 
-  \[1] Li, Gushu, Yufei Ding, and Yuan Xie. “Tackling the qubit mapping problem for NISQ-era quantum devices.” ASPLOS 2019. [arXiv:1809.02573](https://arxiv.org/pdf/1809.02573.pdf)
+  \[1] Henry Zou and Matthew Treinish and Kevin Hartman and Alexander Ivrii and Jake Lishman. “LightSABRE: A Lightweight and Enhanced SABRE Algorithm” [arXiv:2409.08368](https://doi.org/10.48550/arXiv.2409.08368) \[2] Li, Gushu, Yufei Ding, and Yuan Xie. “Tackling the qubit mapping problem for NISQ-era quantum devices.” ASPLOS 2019. [arXiv:1809.02573](https://arxiv.org/pdf/1809.02573.pdf)
 
   SabreLayout initializer.
 
@@ -87,7 +87,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
   **param layout\_trials**
 
-  The number of random seed trials to run layout with. When > 1 the trial that results in the output with the fewest swap gates will be selected. If this is not specified (and `routing_pass` is not set) then the number of local physical CPUs will be used as the default value. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used.
+  The number of random seed trials to run layout with. When > 1 the trial that results in the output with the fewest swap gates will be selected. If this is not specified (and `routing_pass` is not set) then the number of local physical CPUs will be used as the default value. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used. An additional 3 or 4 trials depending on the `coupling_map` value are run with common layouts on top of the random trial count specified by this value.
 
   **type layout\_trials**
 
@@ -129,7 +129,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.SabreLayout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.SabreLayout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -149,7 +149,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.SabreLayout.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.SabreLayout.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -159,7 +159,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.SabreLayout.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passes/layout/sabre_layout.py#L192-L360" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.SabreLayout.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passes/layout/sabre_layout.py#L197-L365" signature="run(dag)">
     Run the SabreLayout pass on dag.
 
     **Parameters**
@@ -183,7 +183,7 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.SabreLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.SabreLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**
