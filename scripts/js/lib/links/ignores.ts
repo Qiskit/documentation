@@ -254,7 +254,7 @@ function _patternsReorg(): FilesToIgnores {
   // We have redirects for all these files. It's best to update API docs to point directly to the new URL,
   // but we don't bother updating old docs.
   const qiskit = Object.fromEntries(
-    ["", "0.45/", "0.46/", "1.0/", "1.1/"].flatMap((vers) => [
+    ["", "0.45/", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
         ["/build/circuit-construction"],

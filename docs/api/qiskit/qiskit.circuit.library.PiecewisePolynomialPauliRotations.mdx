@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 
 # PiecewisePolynomialPauliRotations
 
-<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L27-L317" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')" modifiers="class">
+<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L27-L317" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')" modifiers="class">
   Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
   Piecewise-polynomially-controlled Pauli rotations.
@@ -117,6 +117,10 @@ $$
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
   </Attribute>
 
   ### clbits
@@ -159,6 +163,16 @@ $$
     QuantumCircuitData
   </Attribute>
 
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit "qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.global_phase">
@@ -167,7 +181,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.instances" attributeValue="256" />
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.instances" attributeValue="264" />
 
   ### layout
 
@@ -363,6 +377,16 @@ $$
     A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit">
+    The unit that [`duration`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration "qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### name
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.name" attributeTypeHint="str">
@@ -375,23 +399,11 @@ $$
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit "qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit">
-    The unit that [`duration`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration "qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration") is specified in.
-  </Attribute>
-
   ## Methods
 
   ### evaluate
 
-  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L210-L224" signature="evaluate(x)">
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L210-L224" signature="evaluate(x)">
     Classically evaluate the piecewise polynomial rotation.
 
     **Parameters**
