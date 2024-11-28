@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 # RZXGate
 
-<Class id="qiskit.circuit.library.RZXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/rzx.py#L25-L229" signature="qiskit.circuit.library.RZXGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.library.RZXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rzx.py#L25-L229" signature="qiskit.circuit.library.RZXGate(theta, label=None, *, duration=None, unit='dt')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   A parametric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
@@ -21,7 +21,7 @@ python_api_name: qiskit.circuit.library.RZXGate
 
   **Circuit Symbol:**
 
-  ```python
+  ```text
        ┌─────────┐
   q_0: ┤0        ├
        │  Rzx(θ) │
@@ -46,7 +46,7 @@ $$
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in the $X \otimes Z$ tensor order. Instead, if we apply it on (q\_1, q\_0), the matrix will be $Z \otimes X$:
 
-    ```python
+    ```text
          ┌─────────┐
     q_0: ┤1        ├
          │  Rzx(θ) │
@@ -80,19 +80,19 @@ $$
   **Examples:**
 
   > $$
-  > R_{ZX}(\theta = 0) = I
+  > R_{ZX}(\theta = 0)\ q_0, q_1 = I
   > $$
   >
   > $$
-  > R_{ZX}(\theta = 2\pi) = -I
+  > R_{ZX}(\theta = 2\pi)\ q_0, q_1 = -I
   > $$
   >
   > $$
-  > R_{ZX}(\theta = \pi) = -i X \otimes Z
+  > R_{ZX}(\theta = \pi)\ q_0, q_1 = -i X \otimes Z
   > $$
   >
   > $$
-  > RZX(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
+  > R_{ZX}(\theta = \frac{\pi}{2})\ q_0, q_1 = \frac{1}{\sqrt{2}}
   >                         \begin{pmatrix}
   >                             1  & 0 & -i & 0 \\
   >                             0  & 1 & 0  & i \\
@@ -130,12 +130,20 @@ $$
 
   <Attribute id="qiskit.circuit.library.RZXGate.condition">
     The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### condition\_bits
 
   <Attribute id="qiskit.circuit.library.RZXGate.condition_bits">
     Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### decompositions
@@ -154,6 +162,10 @@ $$
 
   <Attribute id="qiskit.circuit.library.RZXGate.duration">
     Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### label
@@ -198,13 +210,17 @@ $$
 
   <Attribute id="qiskit.circuit.library.RZXGate.unit">
     Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ## Methods
 
   ### control
 
-  <Function id="qiskit.circuit.library.RZXGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/rzx.py#L161-L192" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.RZXGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rzx.py#L161-L192" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return a (multi-)controlled-RZX gate.
 
     **Parameters**
@@ -225,7 +241,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RZXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/rzx.py#L194-L206" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RZXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rzx.py#L194-L206" signature="inverse(annotated=False)">
     Return inverse RZX gate (i.e. with the negative rotation angle).
 
     **Parameters**
@@ -243,7 +259,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.RZXGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/rzx.py#L222-L224" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.RZXGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rzx.py#L222-L224" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.

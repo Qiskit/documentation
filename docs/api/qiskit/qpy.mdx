@@ -55,7 +55,7 @@ and then loading that file will return a list with all the circuits
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qpy/interface.py#L221-L352" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/qpy/interface.py#L238-L377" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
@@ -100,7 +100,7 @@ and then loading that file will return a list with all the circuits
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qpy/interface.py#L76-L218" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=12)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/qpy/interface.py#L77-L235" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=13)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -135,15 +135,19 @@ and then loading that file will return a list with all the circuits
 
   Which will save the qpy serialized circuit to the provided file.
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    Passing ScheduleBlock to programs is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and this argument uses a dependency on the package.
+  </Admonition>
+
   **Parameters**
 
-  *   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Different data types must be separately serialized.
+  *   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Different data types must be separately serialized. Support for [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is deprecated since Qiskit 1.3.0.
 
   *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – The file like object to write the QPY data too
 
   *   **metadata\_serializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
 
-  *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, all objects containing symbolic expressions will be serialized using symengine’s native mechanism. This is a faster serialization alternative, but not supported in all platforms. Please check that your target platform is supported by the symengine library before setting this option, as it will be required by qpy to deserialize the payload. For this reason, the option defaults to False.
+  *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, all objects containing symbolic expressions will be serialized using symengine’s native mechanism. This is a faster serialization alternative, but not supported in all platforms. This flag only has an effect if the emitted QPY format version is 10, 11, or 12. For QPY format version >= 13 (which is the default starting in Qiskit 1.3.0) this flag is no longer used.
 
   *   **version** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
 
@@ -168,7 +172,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
 
 ### QpyError
 
-<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
+<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
   Errors raised by the qpy module.
 
   Set the error message.
@@ -178,7 +182,7 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
 ### UnsupportedFeatureForVersion
 
-<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
+<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
   QPY error raised when the target dump version is too low for a feature that is present in the object to be serialized.
 
   **Parameters**
@@ -208,6 +212,8 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
   [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
 </Attribute>
 
+<span id="id1" />
+
 ## QPY Compatibility
 
 The QPY format is designed to be backwards compatible moving forward. This means you should be able to load a QPY with any newer Qiskit version than the one that generated it. However, loading a QPY file with an older Qiskit version is not supported and may not work.
@@ -218,14 +224,14 @@ If a feature being loaded is deprecated in the corresponding qiskit release, QPY
 
 ### QPYLoadingDeprecatedFeatureWarning
 
-<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
+<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
 </Class>
 
 <Admonition title="Note" type="note">
   With versions of Qiskit before 1.2.4, the `use_symengine=True` argument to [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") could cause problems with backwards compatibility if there were [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects to serialize. In particular:
 
-  *   When the loading version of Qiskit is 1.2.4 or greater, QPY files generated with any version of Qiskit >= 0.46.0 can be loaded. If a version of Qiskit between 0.45.0 and 0.45.3 was used to generate the files, and the non-default argument `use_symengine=True` was given to [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump"), the file can only be read if the version of `symengine` used in the generating environment was in the 0.11 or 0.13 series. However, if the environment was created during the support window of Qiskit 0.45, it is likely that `symengine==0.9.2` was used.
+  *   When the loading version of Qiskit is 1.2.4 or greater, QPY files generated with any version of Qiskit >= 0.46.0 can be loaded. If a version of Qiskit between 0.45.0 and 0.45.3 was used to generate the files, and the non-default argument `use_symengine=True` was given to [`qpy.dump()`](#qiskit.qpy.dump "qiskit.qpy.dump"), the file can only be read if the version of `symengine` used in the generating environment was in the 0.11 or 0.13 series, but if the environment was created during the support window of Qiskit 0.45, it is likely that `symengine==0.9.2` was used.
   *   When the loading version of Qiskit is between 0.46.0 and 1.2.2 inclusive, the file can only be read if the installed version of `symengine` in the loading environment matches the version used in the generating environment.
 
   To recover a QPY file that fails with `symengine` version-related errors during a call to [`qpy.load()`](#qiskit.qpy.load "qiskit.qpy.load"), first attempt to use Qiskit >= 1.2.4 to load the file. If this still fails, it is likely because Qiskit 0.45.x was used to generate the file with `use_symengine=True`. In this case, use Qiskit 0.45.3 with `symengine==0.9.2` to load the file, and then re-export it to QPY setting `use_symengine=False`. The resulting file can then be loaded by any later version of Qiskit.
@@ -237,6 +243,12 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 1.3.0                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.2.4                                      | 10, 11, 12                                                               | 12                                                                                                                  |
+| 1.2.3 (yanked)                             | 10, 11, 12                                                               | 12                                                                                                                  |
+| 1.2.2                                      | 10, 11, 12                                                               | 12                                                                                                                  |
+| 1.2.1                                      | 10, 11, 12                                                               | 12                                                                                                                  |
+| 1.2.0                                      | 10, 11, 12                                                               | 12                                                                                                                  |
 | 1.1.0                                      | 10, 11, 12                                                               | 12                                                                                                                  |
 | 1.0.2                                      | 10, 11                                                                   | 11                                                                                                                  |
 | 1.0.1                                      | 10, 11                                                                   | 11                                                                                                                  |
@@ -275,7 +287,7 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 | 0.18.1                                     | 1                                                                        | 1                                                                                                                   |
 | 0.18.0                                     | 1                                                                        | 1                                                                                                                   |
 
-<span id="id1" />
+<span id="id2" />
 
 ## QPY Format
 
@@ -306,7 +318,7 @@ struct {
 }
 ```
 
-All values use network byte order <span id="id2" />[\[1\]](#f1) (big endian) for cross platform compatibility.
+All values use network byte order <span id="id3" />[\[1\]](#f1) (big endian) for cross platform compatibility.
 
 The file header is immediately followed by the circuit payloads. Each individual circuit is composed of the following parts:
 
@@ -315,6 +327,82 @@ The file header is immediately followed by the circuit payloads. Each individual
 The `STANDALONE_VARS` are new in QPY version 12; before that, there was no data between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-13" />
+
+### Version 13
+
+Version 13 added a native Qiskit serialization representation for [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"). Previous QPY versions relied on either `sympy` or `symengine` to serialize the underlying symbolic expression. Starting in Version 13, QPY now represents the sequence of API calls used to create the [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression").
+
+The main change in the serialization format is in the [PARAMETER\_EXPR](#qpy-param-expr-v3) payload. The `expr_size` bytes following the head now contain an array of `PARAM_EXPR_ELEM_V13` structs. The intent is for this array to be read one struct at a time, where each struct describes one of the calls to make to reconstruct the [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression").
+
+<span id="param-expr-elem-v13" />
+
+#### PARAM\_EXPR\_ELEM\_V13
+
+The struct format is defined as:
+
+```c
+struct {
+    unsigned char op_code;
+    char lhs_type;
+    char lhs[16];
+    char rhs_type;
+    char rhs[16];
+} PARAM_EXPR_ELEM_V13;
+```
+
+The `op_code` field is used to define the operation added to the [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"). The value can be:
+
+| `op_code` | [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") method      |
+| --------- | ------------------------------------------------------------------------------------------------------------ |
+| 0         | `__add__()`                                                                                                  |
+| 1         | `__sub__()`                                                                                                  |
+| 2         | `__mul__()`                                                                                                  |
+| 3         | `__truediv__()`                                                                                              |
+| 4         | `__pow__()`                                                                                                  |
+| 5         | [`sin()`](qiskit.circuit.ParameterExpression#sin "qiskit.circuit.ParameterExpression.sin")                   |
+| 6         | [`cos()`](qiskit.circuit.ParameterExpression#cos "qiskit.circuit.ParameterExpression.cos")                   |
+| 7         | [`tan()`](qiskit.circuit.ParameterExpression#tan "qiskit.circuit.ParameterExpression.tan")                   |
+| 8         | [`arcsin()`](qiskit.circuit.ParameterExpression#arcsin "qiskit.circuit.ParameterExpression.arcsin")          |
+| 9         | [`arccos()`](qiskit.circuit.ParameterExpression#arccos "qiskit.circuit.ParameterExpression.arccos")          |
+| 10        | [`exp()`](qiskit.circuit.ParameterExpression#exp "qiskit.circuit.ParameterExpression.exp")                   |
+| 11        | [`log()`](qiskit.circuit.ParameterExpression#log "qiskit.circuit.ParameterExpression.log")                   |
+| 12        | [`sign()`](qiskit.circuit.ParameterExpression#sign "qiskit.circuit.ParameterExpression.sign")                |
+| 13        | [`gradient()`](qiskit.circuit.ParameterExpression#gradient "qiskit.circuit.ParameterExpression.gradient")    |
+| 14        | [`conjugate()`](qiskit.circuit.ParameterExpression#conjugate "qiskit.circuit.ParameterExpression.conjugate") |
+| 15        | [`subs()`](qiskit.circuit.ParameterExpression#subs "qiskit.circuit.ParameterExpression.subs")                |
+| 16        | [`abs()`](qiskit.circuit.ParameterExpression#abs "qiskit.circuit.ParameterExpression.abs")                   |
+| 17        | [`arctan()`](qiskit.circuit.ParameterExpression#arctan "qiskit.circuit.ParameterExpression.arctan")          |
+| 255       | NULL                                                                                                         |
+
+The `NULL` value of 255 is only used to fill the op code field for entries that are not actual operations but indicate recursive definitions. Then the `lhs_type` and `rhs_type` fields are used to describe the operand types and can be one of the following UTF-8 encoded characters:
+
+| Value | Type                                                                                                                        |
+| ----- | --------------------------------------------------------------------------------------------------------------------------- |
+| `n`   | `None`                                                                                                                      |
+| `p`   | [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")                                                          |
+| `f`   | `float`                                                                                                                     |
+| `c`   | `complex`                                                                                                                   |
+| `i`   | `int`                                                                                                                       |
+| `s`   | Recursive [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") definition start |
+| `e`   | Recursive [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") definition stop  |
+| `u`   | substitution                                                                                                                |
+
+If the type value is `f` ,\`\`c\`\` or `i`, the corresponding `lhs` or rhs\` field widths are 128 bits each. In the case of floats, the literal value is encoded as a double with 0 padding, while complex numbers are encoded as real part followed by imaginary part, taking up 64 bits each. For ```i`, the value is encoded as a 64 bit signed integer with 0 padding for the full 128 bit width. ``n``` is used to represent a `None` and typically isn’t directly used as it indicates an argument that’s not used. For `p` the data is the UUID for the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") which can be looked up in the symbol map described in the `map_elements` outer [PARAMETER\_EXPR](#qpy-param-expr-v3) payload. If the type value is `s` this marks the start of a a new recursive section for a nested [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"). For example, in the following snippet there is an inner `expr` contained in `final_expr`, constituting a nested expression:
+
+```python
+from qiskit.circuit import Parameter
+
+x = Parameter("x")
+y = Parameter("y")
+z = Parameter("z")
+
+expr = (x + y) / 2
+final_expr = z**2 + expr
+```
+
+When `s` is encountered, this indicates that until an ```e` struct is reached, the next structs are used for a recursive definition. For both ``s``` and `e` types, the data values are not used, and always set to 0. The type value of `u` is used to represent a substitution call. This is only used for `lhs_type` and is always paired with an `rhs_type` of `n`. The data value is the size in bytes of a [MAPPING](#qpy-mapping) encoded mapping of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") names to their value for the [`subs()`](qiskit.circuit.ParameterExpression#subs "qiskit.circuit.ParameterExpression.subs") call. The mapping data is immediately following the struct, and the next struct starts immediately after the mapping data.
 
 <span id="qpy-version-12" />
 
@@ -990,7 +1078,7 @@ struct {
 }
 ```
 
-which is immediately followed by `pauli_op_size` bytes which are .npy format <span id="id3" />[\[2\]](#f2) data which represents the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+which is immediately followed by `pauli_op_size` bytes which are .npy format <span id="id4" />[\[2\]](#f2) data which represents the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
 Version 3 of the QPY format also defines a struct format to represent a `ParameterVectorElement` as a distinct subclass from a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). This adds a new parameter type char `'v'` to represent a `ParameterVectorElement` which is now supported as a type string value for an INSTRUCTION\_PARAM. The payload for these parameters are defined below as [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector).
 
@@ -1071,7 +1159,7 @@ This is immediately followed by `name_size` bytes of utf8 data for the name of t
 
 ### Version 1
 
-<span id="id4" />
+<span id="id5" />
 
 #### HEADER
 
@@ -1213,7 +1301,7 @@ struct {
 }
 ```
 
-After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#qpy-param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a [PARAMETER](#qpy-param-struct) struct, `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a [PARAMETER\_EXPR](#qpy-param-expr) struct (on QPY format [Version 3](#qpy-version-3) the format is tweak slightly see: [PARAMETER\_EXPR](#qpy-param-expr-v3)), `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format <span id="id5" />[\[2\]](#f2) data, and in QPY [Version 3](#qpy-version-3) `'v'` represents a `ParameterVectorElement` which is represented by a [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector) struct.
+After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#qpy-param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a [PARAMETER](#qpy-param-struct) struct, `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a [PARAMETER\_EXPR](#qpy-param-expr) struct (on QPY format [Version 3](#qpy-version-3) the format is tweak slightly see: [PARAMETER\_EXPR](#qpy-param-expr-v3)), `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format <span id="id6" />[\[2\]](#f2) data, and in QPY [Version 3](#qpy-version-3) `'v'` represents a `ParameterVectorElement` which is represented by a [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector) struct.
 
 <span id="qpy-param-struct" />
 
@@ -1232,7 +1320,7 @@ which is immediately followed by `name_size` utf8 bytes representing the paramet
 
 <span id="qpy-param-expr" />
 
-<span id="id6" />
+<span id="id7" />
 
 #### PARAMETER\_EXPR
 
@@ -1271,23 +1359,25 @@ struct {
 }
 ```
 
-this matches the internal C representation of Python’s complex type. <span id="id7" />[\[3\]](#f3)
+this matches the internal C representation of Python’s complex type. <span id="id8" />[\[3\]](#f3)
+
+## References
 
 <span id="f1" />
 
-\[[1](#id2)]
+\[[1](#id3)]
 
 [https://tools.ietf.org/html/rfc1700](https://tools.ietf.org/html/rfc1700)
 
 <span id="f2" />
 
-\[2] ([1](#id3),[2](#id5))
+\[2] ([1](#id4),[2](#id6))
 
 [https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html)
 
 <span id="f3" />
 
-\[[3](#id7)]
+\[[3](#id8)]
 
 [https://docs.python.org/3/c-api/complex.html#c.Py\_complex](https://docs.python.org/3/c-api/complex.html#c.Py_complex)
 

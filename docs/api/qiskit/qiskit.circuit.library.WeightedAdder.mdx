@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 # WeightedAdder
 
-<Class id="qiskit.circuit.library.WeightedAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/arithmetic/weighted_adder.py#L23-L337" signature="qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')" modifiers="class">
+<Class id="qiskit.circuit.library.WeightedAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/arithmetic/weighted_adder.py#L23-L337" signature="qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')" modifiers="class">
   Bases: `BlueprintCircuit`
 
   A circuit to compute the weighted sum of qubit registers.
@@ -30,7 +30,7 @@ $$
 
   For qubits in a circuit diagram, the first weight applies to the upper-most qubit. For an example where the state of 4 qubits is added into a sum register, the circuit can be schematically drawn as
 
-  ```python
+  ```text
              ┌────────┐
     state_0: ┤0       ├ | state_0 * weights[0]
              │        │ |
@@ -76,6 +76,10 @@ $$
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
   </Attribute>
 
   ### clbits
@@ -98,6 +102,16 @@ $$
     QuantumCircuitData
   </Attribute>
 
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.WeightedAdder.unit "qiskit.circuit.library.WeightedAdder.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.global_phase">
@@ -106,7 +120,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.instances" attributeValue="160" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.instances" attributeValue="157" />
 
   ### layout
 
@@ -316,6 +330,16 @@ $$
     A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.unit">
+    The unit that [`duration`](#qiskit.circuit.library.WeightedAdder.duration "qiskit.circuit.library.WeightedAdder.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### weights
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.weights">
@@ -336,18 +360,6 @@ $$
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.cregs" attributeTypeHint="list[ClassicalRegister]">
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.WeightedAdder.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.WeightedAdder.unit "qiskit.circuit.library.WeightedAdder.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.WeightedAdder.unit">
-    The unit that [`duration`](#qiskit.circuit.library.WeightedAdder.duration "qiskit.circuit.library.WeightedAdder.duration") is specified in.
   </Attribute>
 </Class>
 
