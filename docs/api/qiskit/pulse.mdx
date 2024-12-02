@@ -69,6 +69,8 @@ These are all instances of the same base class:
 ### Instruction
 
 <Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/instructions/instruction.py#L37-L270" signature="qiskit.pulse.instructions.Instruction(operands, name=None)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
   The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
   Instruction initializer.
@@ -162,6 +164,8 @@ All channels are children of the same abstract base class:
 ### Channel
 
 <Class id="qiskit.pulse.channels.Channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/channels.py#L64-L164" signature="qiskit.pulse.channels.Channel(*args, **kwargs)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
   When serialized channels are identified by their serialized name `<prefix><index>`. The type of the channel is interpreted from the prefix, and the index often (but not always) maps to the qubit index. All concrete channel classes must have a `prefix` class attribute (and instances of that class have an index attribute). Base classes which have `prefix` set to `None` are prevented from being instantiated.
@@ -219,9 +223,15 @@ These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.puls
 #### AlignmentKind
 
 <Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/transforms/alignments.py#L25-L87" signature="qiskit.pulse.transforms.AlignmentKind(context_params)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
   An abstract class for schedule alignment.
 
   Create new context.
+
+  **Parameters**
+
+  **context\_params** (*Tuple\[ParameterValueType, ...]*) –
 </Class>
 
 <span id="pulse-canonical-transform" />
@@ -849,6 +859,10 @@ DriveChannel(0)
     Requires the active builder context to have a backend set.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
   [*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
@@ -918,6 +932,10 @@ DriveChannel(0)
     Requires the active builder context to have a backend set.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
   [*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
@@ -947,6 +965,10 @@ DriveChannel(0)
   <Admonition title="Note" type="note">
     Requires the active builder context to have a backend set.
   </Admonition>
+
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
 
   **Return type**
 
@@ -2095,6 +2117,10 @@ There are 1e-06 seconds in 4500 samples.
     A channel may still be associated with another qubit in this list such as in the case where significant crosstalk exists.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
   [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.13)")\[[qiskit.pulse.channels.Channel](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
@@ -2157,6 +2183,8 @@ There are 1e-06 seconds in 4500 samples.
 ### PulseError
 
 <Class id="qiskit.pulse.PulseError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L18-L29" signature="qiskit.pulse.PulseError(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   Errors raised by the pulse module.
 
   Set the error message.
@@ -2169,6 +2197,8 @@ There are 1e-06 seconds in 4500 samples.
 ### BackendNotSet
 
 <Class id="qiskit.pulse.BackendNotSet" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L32-L33" signature="qiskit.pulse.BackendNotSet(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if the builder context does not have a backend.
 
   Set the error message.
@@ -2181,6 +2211,8 @@ There are 1e-06 seconds in 4500 samples.
 ### NoActiveBuilder
 
 <Class id="qiskit.pulse.NoActiveBuilder" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L36-L37" signature="qiskit.pulse.NoActiveBuilder(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if no builder context is active.
 
   Set the error message.
@@ -2193,6 +2225,8 @@ There are 1e-06 seconds in 4500 samples.
 ### UnassignedDurationError
 
 <Class id="qiskit.pulse.UnassignedDurationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L40-L41" signature="qiskit.pulse.UnassignedDurationError(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if instruction duration is unassigned.
 
   Set the error message.
@@ -2205,6 +2239,8 @@ There are 1e-06 seconds in 4500 samples.
 ### UnassignedReferenceError
 
 <Class id="qiskit.pulse.UnassignedReferenceError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/exceptions.py#L44-L45" signature="qiskit.pulse.UnassignedReferenceError(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if subroutine is unassigned.
 
   Set the error message.
