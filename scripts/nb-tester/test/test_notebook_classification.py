@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 from pathlib import Path
 
-from qiskit_docs_notebook_tester import Config, matches
+from qiskit_docs_notebook_tester.config import Config, matches
 
 
 def test_all_notebooks_are_classified():
