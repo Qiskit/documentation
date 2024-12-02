@@ -13,6 +13,8 @@ python_api_name: qiskit.circuit.QuantumCircuit
 # [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class
 
 <Class id="qiskit.circuit.QuantumCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/quantumcircuit.py#L121-L6655" signature="qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Core Qiskit representation of a quantum circuit.
 
   <Admonition title="Note" type="note">
@@ -534,6 +536,14 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   <Function id="qiskit.circuit.QuantumCircuit.add_bits" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/quantumcircuit.py#L3115-L3136" signature="add_bits(bits)">
     Add Bits to the circuit.
+
+    **Parameters**
+
+    **bits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.bit.Bit")*]*) –
+
+    **Return type**
+
+    None
   </Function>
 
   Registers are added to the circuit with [`add_register()`](#qiskit.circuit.QuantumCircuit.add_register "qiskit.circuit.QuantumCircuit.add_register"). In this method, it is not an error if some of the bits are already present in the circuit. In this case, the register will be an “alias” over the bits. This is not generally well-supported by hardware backends; it is probably best to stay away from relying on it. The registers a given bit is in are part of the return of [`find_bit()`](#qiskit.circuit.QuantumCircuit.find_bit "qiskit.circuit.QuantumCircuit.find_bit").
@@ -542,6 +552,14 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   <Function id="qiskit.circuit.QuantumCircuit.add_register" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/quantumcircuit.py#L3043-L3103" signature="add_register(*regs)">
     Add registers.
+
+    **Parameters**
+
+    **regs** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| Sequence\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) –
+
+    **Return type**
+
+    None
   </Function>
 
   [Real-time, typed classical data](circuit#circuit-repr-real-time-classical) is represented on the circuit by [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes with a well-defined [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type"). It is possible to instantiate these separately to a circuit (see [`Var.new()`](circuit_classical#qiskit.circuit.classical.expr.Var.new "qiskit.circuit.classical.expr.Var.new")), but it is often more convenient to use circuit methods that will automatically manage the types and expression initialization for you. The two most common methods are [`add_var()`](#qiskit.circuit.QuantumCircuit.add_var "qiskit.circuit.QuantumCircuit.add_var") (locally scoped variables) and [`add_input()`](#qiskit.circuit.QuantumCircuit.add_input "qiskit.circuit.QuantumCircuit.add_input") (inputs to the circuit).
@@ -1297,6 +1315,11 @@ python_api_name: qiskit.circuit.QuantumCircuit
     **Return type**
 
     [QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+    **Parameters**
+
+    *   **other** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) –
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
   </Function>
 
   As some rules of thumb:
@@ -3308,6 +3331,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
       A method to produce a new circuit with no instructions and all the same tracking of quantum and classical typed data, but without mutating the original circuit.
     </Admonition>
+
+    **Return type**
+
+    None
   </Function>
 
   #### remove\_final\_measurements
@@ -3379,6 +3406,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
     **Raises**
 
     [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.13)") – if the gate is of type string and params is None.
+
+    **Return type**
+
+    None
   </Function>
 
   #### has\_calibration\_for
@@ -3389,6 +3420,10 @@ python_api_name: qiskit.circuit.QuantumCircuit
     <Admonition title="Deprecated since version 1.3" type="danger">
       The method `qiskit.circuit.quantumcircuit.QuantumCircuit.has_calibration_for()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.has_calibration_for()` will have no alternative in Qiskit.
     </Admonition>
+
+    **Parameters**
+
+    **instruction** ([*CircuitInstruction*](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) –
   </Function>
 
   ## Circuit properties
@@ -3655,7 +3690,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **\*qubits** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Qubits within `self` to include. Integers are allowed for qubits, indicating
+    *   **\*qubits** – Qubits within `self` to include. Integers are allowed for qubits, indicating
     *   **self.qubits.** (*indices of*) –
 
     **Returns**
@@ -3680,7 +3715,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **\*qubits** ([*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Qubits within `self` to include. Integers are allowed for qubits, indicating
+    *   **\*qubits** – Qubits within `self` to include. Integers are allowed for qubits, indicating
     *   **self.qubits.** (*indices of*) –
 
     **Returns**
@@ -4048,6 +4083,11 @@ python_api_name: qiskit.circuit.QuantumCircuit
       The method `qiskit.circuit.quantumcircuit.QuantumCircuit.cast()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. This method is only used as an internal helper and will be removed with no replacement.
     </Admonition>
 
+    **Parameters**
+
+    *   **value** (*S*) –
+    *   **type\_** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[...], T]*) –
+
     **Return type**
 
     *S* | *T*
@@ -4124,5 +4164,15 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[qiskit.circuit.quantumregister.Qubit](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
   </Function>
+
+  **Parameters**
+
+  *   **regs** ([*Register*](circuit#qiskit.circuit.Register "qiskit.circuit.Register")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| Sequence\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **global\_phase** (*ParameterValueType*) –
+  *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) –
+  *   **inputs** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*) –
+  *   **captures** (*Iterable\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*]*) –
+  *   **declarations** (*Mapping\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*] | Iterable\[Tuple\[*[*expr.Var*](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")*,* [*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")*]]*) –
 </Class>
 
