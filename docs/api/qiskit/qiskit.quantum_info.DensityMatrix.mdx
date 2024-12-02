@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
 # DensityMatrix
 
-<Class id="qiskit.quantum_info.DensityMatrix" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L41-L845" signature="qiskit.quantum_info.DensityMatrix(data, dims=None)" modifiers="class">
+<Class id="qiskit.quantum_info.DensityMatrix" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L46-L847" signature="qiskit.quantum_info.DensityMatrix(data, dims=None)" modifiers="class">
   Bases: `QuantumState`, `TolerancesMixin`
 
   DensityMatrix class
@@ -17,8 +17,8 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   **Parameters**
 
-  *   **or** (*data (np.ndarray or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *or matrix\_like or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): A statevector, quantum instruction or an object with a `to_operator` or `to_matrix` method from which the density matrix can be constructed. If a vector the density matrix is constructed as the projector of that vector. If a quantum instruction, the density matrix is constructed by assuming all qubits are initialized in the zero state.
-  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Optional. The subsystem dimension of the state (See additional information).
+  *   **data** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| QuantumState*) – A statevector, quantum instruction or an object with a `to_operator` or `to_matrix` method from which the density matrix can be constructed. If a vector the density matrix is constructed as the projector of that vector. If a quantum instruction, the density matrix is constructed by assuming all qubits are initialized in the zero state.
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *| None*) – The subsystem dimension of the state (See additional information).
 
   **Raises**
 
@@ -69,7 +69,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### conjugate
 
-  <Function id="qiskit.quantum_info.DensityMatrix.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L212-L214" signature="conjugate()">
+  <Function id="qiskit.quantum_info.DensityMatrix.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L214-L216" signature="conjugate()">
     Return the conjugate of the density matrix.
   </Function>
 
@@ -87,7 +87,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### draw
 
-  <Function id="qiskit.quantum_info.DensityMatrix.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L136-L176" signature="draw(output=None, **drawer_args)">
+  <Function id="qiskit.quantum_info.DensityMatrix.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L138-L178" signature="draw(output=None, **drawer_args)">
     Return a visualization of the Statevector.
 
     **repr**: ASCII TextMatrix of the state’s `__repr__`.
@@ -120,30 +120,30 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### evolve
 
-  <Function id="qiskit.quantum_info.DensityMatrix.evolve" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L304-L343" signature="evolve(other, qargs=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.evolve" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L306-L343" signature="evolve(other, qargs=None)">
     Evolve a quantum state by an operator.
 
     **Parameters**
 
-    *   **QuantumChannel** (*other (Operator or*) – or Instruction or Circuit): The operator to evolve by.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – a list of QuantumState subsystem positions to apply the operator on.
+    *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *| QuantumChannel |*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The operator to evolve by.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – a list of QuantumState subsystem positions to apply the operator on.
 
     **Returns**
 
-    the output density matrix.
-
-    **Return type**
-
-    [DensityMatrix](#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
+    The output density matrix.
 
     **Raises**
 
     [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the operator dimension does not match the specified QuantumState subsystem dimensions.
+
+    **Return type**
+
+    [DensityMatrix](#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
   </Function>
 
   ### expand
 
-  <Function id="qiskit.quantum_info.DensityMatrix.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L247-L264" signature="expand(other)">
+  <Function id="qiskit.quantum_info.DensityMatrix.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L249-L266" signature="expand(other)">
     Return the tensor product state other ⊗ self.
 
     **Parameters**
@@ -184,26 +184,26 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### from\_instruction
 
-  <Function id="qiskit.quantum_info.DensityMatrix.from_instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L600-L627" signature="from_instruction(instruction)" modifiers="classmethod">
+  <Function id="qiskit.quantum_info.DensityMatrix.from_instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L600-L629" signature="from_instruction(instruction)" modifiers="classmethod">
     Return the output density matrix of an instruction.
 
     The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
 
     **Parameters**
 
-    **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – instruction or circuit
+    **instruction** ([*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – instruction or circuit
 
     **Returns**
 
-    the final density matrix.
-
-    **Return type**
-
-    [DensityMatrix](#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
+    The final density matrix.
 
     **Raises**
 
     [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the instruction contains invalid instructions for density matrix simulation.
+
+    **Return type**
+
+    [DensityMatrix](#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
   </Function>
 
   ### from\_int
@@ -265,7 +265,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### is\_valid
 
-  <Function id="qiskit.quantum_info.DensityMatrix.is_valid" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L192-L205" signature="is_valid(atol=None, rtol=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.is_valid" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L194-L207" signature="is_valid(atol=None, rtol=None)">
     Return True if trace 1 and positive semidefinite.
   </Function>
 
@@ -293,7 +293,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### partial\_transpose
 
-  <Function id="qiskit.quantum_info.DensityMatrix.partial_transpose" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L828-L845" signature="partial_transpose(qargs)">
+  <Function id="qiskit.quantum_info.DensityMatrix.partial_transpose" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L830-L847" signature="partial_transpose(qargs)">
     Return partially transposed density matrix.
 
     **Parameters**
@@ -405,7 +405,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### purity
 
-  <Function id="qiskit.quantum_info.DensityMatrix.purity" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L220-L226" signature="purity()">
+  <Function id="qiskit.quantum_info.DensityMatrix.purity" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L222-L228" signature="purity()">
     Return the purity of the quantum state.
   </Function>
 
@@ -505,7 +505,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### tensor
 
-  <Function id="qiskit.quantum_info.DensityMatrix.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L228-L245" signature="tensor(other)">
+  <Function id="qiskit.quantum_info.DensityMatrix.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L230-L247" signature="tensor(other)">
     Return the tensor product state self ⊗ other.
 
     **Parameters**
@@ -527,7 +527,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### to\_dict
 
-  <Function id="qiskit.quantum_info.DensityMatrix.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L629-L707" signature="to_dict(decimals=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L631-L709" signature="to_dict(decimals=None)">
     Convert the density matrix to dictionary form.
 
     This dictionary representation uses a Ket-like notation where the dictionary keys are qudit strings for the subsystem basis vectors. If any subsystem has a dimension greater than 10 comma delimiters are inserted between integers so that subsystems can be distinguished.
@@ -603,7 +603,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### to\_operator
 
-  <Function id="qiskit.quantum_info.DensityMatrix.to_operator" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L207-L210" signature="to_operator()">
+  <Function id="qiskit.quantum_info.DensityMatrix.to_operator" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L209-L212" signature="to_operator()">
     Convert to Operator
 
     **Return type**
@@ -613,7 +613,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### to\_statevector
 
-  <Function id="qiskit.quantum_info.DensityMatrix.to_statevector" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L796-L826" signature="to_statevector(atol=None, rtol=None)">
+  <Function id="qiskit.quantum_info.DensityMatrix.to_statevector" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L798-L828" signature="to_statevector(atol=None, rtol=None)">
     Return a statevector from a pure density matrix.
 
     **Parameters**
@@ -638,7 +638,7 @@ python_api_name: qiskit.quantum_info.DensityMatrix
 
   ### trace
 
-  <Function id="qiskit.quantum_info.DensityMatrix.trace" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L216-L218" signature="trace()">
+  <Function id="qiskit.quantum_info.DensityMatrix.trace" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/quantum_info/states/densitymatrix.py#L218-L220" signature="trace()">
     Return the trace of the density matrix.
   </Function>
 </Class>
