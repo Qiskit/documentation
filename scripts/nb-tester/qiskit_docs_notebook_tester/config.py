@@ -18,10 +18,8 @@ from textwrap import dedent
 from dataclasses import dataclass
 from pathlib import Path
 import tomli
-from typing import Iterator, Literal, Callable
+from typing import Iterator, Literal
 
-import nbformat
-from squeaky import clean_notebook
 
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
@@ -31,40 +29,6 @@ from matplotlib import set_loglevel as _set_mpl_loglevel
 # See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
 _set_mpl_loglevel("critical")
 """
-
-
-def get_package_versions():
-    requirements_file = Path("scripts/nb-tester/requirements.txt").read_text()
-    package_versions = "\n".join(
-        line for line in requirements_file.split("\n") if not line.startswith("#")
-    )
-    return package_versions.strip()
-
-
-# This markdown replaces cells with tag 'version-info'
-VERSION_INFO = f"""\
-<details>
-<summary><b>Package versions</b></summary>
-
-The code on this page was developed using the following requirements.
-We recommend using these versions or newer.
-
-```
-{get_package_versions()}
-```
-</details>
-"""
-
-
-def post_process_notebook(nb: nbformat.NotebookNode) -> nbformat.NotebookNode:
-    for cell in nb.cells:
-        # Remove execution metadata to avoid noisy diffs.
-        cell.metadata.pop("execution", None)
-        if "version-info" in cell.metadata.get("tags", []):
-            cell.source = VERSION_INFO
-
-    nb, _ = clean_notebook(nb)
-    return nb
 
 
 @dataclass
@@ -87,7 +51,6 @@ class NotebookJob:
     backend_patch: str | None
     cell_timeout: int | None
     write: Result
-    post_process: Callable[[nbformat.NotebookNode], nbformat.NotebookNode]
 
 
 def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
@@ -127,7 +90,6 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
             backend_patch=backend_patch,
             cell_timeout=-1 if config.args.submit_jobs else 300,
             write=write,
-            post_process=post_process_notebook,
         )
 
 

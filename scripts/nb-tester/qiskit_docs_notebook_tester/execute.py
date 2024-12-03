@@ -21,6 +21,7 @@ import nbformat
 from jupyter_client.manager import start_new_async_kernel, AsyncKernelClient
 
 from .config import NotebookJob, Result
+from .post_process import post_process_notebook
 
 
 @dataclass(frozen=True)
@@ -137,4 +138,4 @@ async def _execute_notebook(
         timeout=job.cell_timeout or -1,
     )
     await notebook_client.async_execute()
-    return job.post_process(nb)
+    return post_process_notebook(nb)
