@@ -53,7 +53,7 @@ python_api_name: qiskit_ibm_runtime.options.ZneOptions
 
       Extrapolator(s) to try (in order) for extrapolating to zero noise. The available options are:
 
-      > *   `"exponential"`, which fits the data using an exponential decaying function defined as $f(x; A, au) = A e^{-x/ au}$, where $A = f(0; A, au)$ is the value at zero noise ($x=0$) and :math:\` au>0\` is a positive rate.
+      > *   `"exponential"`, which fits the data using an exponential decaying function defined as $f(x; A, \tau) = A e^{-x/\tau}$, where $A = f(0; A, \tau)$ is the value at zero noise ($x=0$) and $\tau>0$ is a positive rate.
       > *   `"double_exponential"`, which uses a sum of two exponential as in Ref. 1.
       > *   `"polynomial_degree_(1 <= k <= 7)"`, which uses a polynomial function defined as $f(x; c_0, c_1, \ldots, c_k) = \sum_{i=0, k} c_i x^i$.
       > *   `"linear"`, which is equivalent to `"polynomial_degree_1"`.
