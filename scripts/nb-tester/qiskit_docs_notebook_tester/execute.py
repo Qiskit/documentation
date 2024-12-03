@@ -12,13 +12,16 @@
 
 from __future__ import annotations
 
+
 import tempfile
 import textwrap
 from dataclasses import dataclass
+from datetime import datetime
 
 import nbclient
 import nbformat
 from jupyter_client.manager import start_new_async_kernel, AsyncKernelClient
+from qiskit_ibm_runtime import QiskitRuntimeService
 
 from .config import NotebookJob, Result
 from .post_process import post_process_notebook
@@ -139,3 +142,32 @@ async def _execute_notebook(
     )
     await notebook_client.async_execute()
     return post_process_notebook(nb)
+
+
+def cancel_trailing_jobs(start_time: datetime) -> Result:
+    """
+    Cancel any runtime jobs created after `start_time`. Result is ok if none exist.
+
+    Notebooks should not submit jobs during a normal test run. If they do, the
+    cell will time out and this function will cancel the job to avoid wasting
+    device time.
+
+    If a notebook submits a job but does not wait for the result, this check
+    will also catch it and cancel the job.
+    """
+    jobs = [
+        job
+        for job in QiskitRuntimeService().jobs(created_after=start_time)
+        if not job.in_final_state()
+    ]
+    if not jobs:
+        return Result(True)
+
+    print(
+        f"⚠️ Cancelling {len(jobs)} job(s) created after {start_time}.\n"
+        "Add any notebooks that submit jobs to `notebooks-that-submit-jobs` in "
+        f"`scripts/config/notebook-testing.toml`."
+    )
+    for job in jobs:
+        job.cancel()
+    return Result(False, reason="Trailing jobs detected")

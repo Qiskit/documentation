@@ -19,10 +19,8 @@ from textwrap import dedent
 import platform
 from datetime import datetime
 
-from qiskit_ibm_runtime import QiskitRuntimeService
-
-from .config import get_notebook_jobs, get_args, Result
-from .execute import execute_notebook
+from .config import get_notebook_jobs, get_args
+from .execute import execute_notebook, cancel_trailing_jobs
 
 
 async def _main() -> None:
@@ -46,32 +44,3 @@ def main():
     if platform.system() == "Windows":
         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
     asyncio.run(_main())
-
-
-def cancel_trailing_jobs(start_time: datetime) -> Result:
-    """
-    Cancel any runtime jobs created after `start_time`. Result is ok if none exist.
-
-    Notebooks should not submit jobs during a normal test run. If they do, the
-    cell will time out and this function will cancel the job to avoid wasting
-    device time.
-
-    If a notebook submits a job but does not wait for the result, this check
-    will also catch it and cancel the job.
-    """
-    jobs = [
-        job
-        for job in QiskitRuntimeService().jobs(created_after=start_time)
-        if not job.in_final_state()
-    ]
-    if not jobs:
-        return Result(True)
-
-    print(
-        f"⚠️ Cancelling {len(jobs)} job(s) created after {start_time}.\n"
-        "Add any notebooks that submit jobs to `notebooks-that-submit-jobs` in "
-        f"`scripts/config/notebook-testing.toml`."
-    )
-    for job in jobs:
-        job.cancel()
-    return Result(False, reason="Trailing jobs detected")
