@@ -164,6 +164,22 @@ class Config:
                 )
                 continue
 
+            if self.args.is_fork:
+                print(
+                    "⛔️ We can't run notebook tests on pull requests from forks "
+                    "because of how GitHub Secrets work."
+                    "\n\n"
+                    "If you have write access to Qiskit/documentation, push to a new "
+                    "branch there and make your pull request from that branch instead."
+                    "\n\n"
+                    "If you don't have write access, you should locally test out the notebooks you're modifying "
+                    "by using the instructions in "
+                    "https://github.com/Qiskit/documentation#execute-notebooks. "
+                    "When this PR is approved, a maintainer will merge it to a new "
+                    "branch in Qiskit/documentation, then make a PR from that branch "
+                    "into main so it can pass CI.\n",
+                )
+                sys.exit(1)
             yield path
 
     def should_patch(self, path: Path) -> bool:
