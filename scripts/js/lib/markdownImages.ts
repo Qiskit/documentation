@@ -17,6 +17,7 @@ import { visit } from "unist-util-visit";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkStringify from "remark-stringify";
+import { last, split } from "lodash-es";
 
 export async function collectInvalidImageErrors(
   markdown: string,
@@ -28,7 +29,10 @@ export async function collectInvalidImageErrors(
     .use(remarkGfm)
     .use(() => (tree: Root) => {
       visit(tree, "image", (node) => {
-        if (!node.alt) {
+        // Sphinx uses the image path as alt text if it wasn't defined using the
+        // :alt: option.
+        const imageName = last(split(node.url, "/"));
+        if (!node.alt || node.alt.endsWith(imageName!)) {
           imagesErrors.add(`The image '${node.url}' does not have alt text.`);
         }
       });
