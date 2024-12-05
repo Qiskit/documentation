@@ -39,7 +39,7 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description:
-        "Check the images in the current and dev versions of the API docs.",
+        "Check the images in the current and dev versions of the API docs have alt text.",
     })
     .parseSync();
 };
