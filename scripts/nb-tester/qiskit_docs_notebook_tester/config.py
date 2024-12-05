@@ -17,7 +17,7 @@ import argparse
 from textwrap import dedent
 from dataclasses import dataclass
 from pathlib import Path
-import tomli
+import tomllib
 from typing import Iterator, Literal
 
 
@@ -59,143 +59,146 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
     """
     config = Config.from_args(args)
 
-    for path in config.notebooks_to_execute():
-        backend_patch = None
-        if config.should_patch(path):
-            # Implements a subset of options from QiskitRuntimeService, but in 
-            # practice any option can easily be added here
-            backend_patch = generate_backend_patch(
-                backend_name=config.args.backend, 
-                provider=config.args.provider,
-                runtime_service_kwargs = {
-                    "channel": config.args.channel,
-                    "token": config.args.token,
-                    "url": config.args.url,
-                    "name": config.args.name,
-                    "instance": config.args.instance,
-                },
-                generic_backend_kwargs = {
-                    "num_qubits": config.args.num_qubits,
-                    "control_flow": config.args.control_flow
-                }
-            )
-        
-        write = Result(True)
-        if reason := config.should_skip_writing(path):
-            write = Result(False, reason)
+    for group in config.groups:
+        for path in group["notebooks"]:
+            if config.cli_filenames and not matches(path, config.cli_filenames):
+                continue
+            if config.test_strategy not in group.get("test-strategies", {}):
+                if matches(path, config.cli_filenames):
+                    # User explicitly defined this path so we'll explain why we're skipping it
+                    print(
+                        f'ℹ️ Skipping {path} (no test strategy "{config.test_strategy}" defined for this notebook)'
+                    )
+                continue
 
-        yield NotebookJob(
-            path=path,
-            pre_execute_code=PRE_EXECUTE_CODE,
-            backend_patch=backend_patch,
-            cell_timeout=-1 if config.args.submit_jobs else 300,
-            write=write,
-        )
+            patch = config.get_patch_for_group(group)
+
+            def should_write(config: Config, patch: str | None):
+                if patch:
+                    return Result(False, "hardware was mocked")
+                if not config.write:
+                    return Result(False, "--write arg not set")
+                return Result(True)
+
+            write = should_write(config, patch)
+
+            yield NotebookJob(
+                path=Path(path),
+                pre_execute_code=PRE_EXECUTE_CODE,
+                backend_patch=patch,
+                cell_timeout=config.cell_timeout,
+                write=write,
+            )
 
 
 @dataclass
 class Config:
-    args: argparse.Namespace
-    notebooks_normal_test: list[str]
-    notebooks_exclude: list[str]
-    notebooks_that_submit_jobs: list[str]
-    notebooks_no_mock: list[str]
-
-    @property
-    def all_job_submitting_notebooks(self) -> list[str]:
-        return [*self.notebooks_that_submit_jobs, *self.notebooks_no_mock]
-
-    @property
-    def all_notebooks_to_test(self) -> list[str]:
-        return [
-            *self.notebooks_normal_test,
-            *self.notebooks_that_submit_jobs,
-            *self.notebooks_no_mock,
-        ]
-
-    @property
-    def all_notebooks(self) -> list[str]:
-        return [
-            *self.all_notebooks_to_test,
-            *self.notebooks_exclude,
-        ]
+    cli_filenames: list[Path]
+    cell_timeout: int
+    test_strategy: str
+    write: bool
+    groups: list[dict]
 
     @classmethod
     def from_args(cls, args: argparse.Namespace) -> Config:
         """
-        Create config from args, including loading the globs from the TOML file
+        Create config from args, including loading the paths from the TOML file if needed.
         """
-        path = Path(args.config_path)
+        if (args.config_path or args.test_strategy) and args.patch:
+            raise ValueError("Can't set --patch with --config-file or --test-strategy")
+
+        if not args.config_path:
+            patch_info = parse_patch_arg(args.patch)
+            if patch_info != {}:
+                print("Patching all notebooks with:", patch_info)
+            return cls(
+                cli_filenames=args.filenames,
+                cell_timeout=args.cell_timeout,
+                test_strategy="custom",
+                write=args.write,
+                groups=[
+                    {
+                        "name": "main",
+                        "notebooks": args.filenames,
+                        "test-strategies": {"custom": patch_info},
+                    }
+                ],
+            )
+
         try:
-            return cls(args=args, **tomli.loads(path.read_text()))
+            config_path = Path(args.config_path)
+            config_file = tomllib.loads(config_path.read_text())
         except TypeError as err:
             raise ValueError(
-                f"Couldn't read config from {path}; check it exists and the"
+                f"Couldn't read config from {config_path}; check it exists and the"
                 " entries are correct."
             ) from err
 
-    def notebooks_to_execute(self) -> Iterator[Path]:
-        """
-        Yield notebooks to be executed, printing messages for any skipped files.
-        """
-        paths = map(Path, self.args.filenames or self.all_notebooks_to_test)
-        for path in paths:
-            if path.suffix != ".ipynb":
-                print(f"ℹ️ Skipping {path}; file is not `.ipynb` format.")
-                continue
+        groups = [
+            {"name": key, **value} for key, value in config_file["groups"].items()
+        ]
+        test_strategy = args.test_strategy or config_file["default-strategy"]
+        cell_timeout = (
+            args.cell_timeout or
+            config_file.get("test-strategies", {})
+            .get(test_strategy, {})
+            .get("timeout", None)
+        )
+        return cls(
+            cli_filenames=args.filenames,
+            cell_timeout=cell_timeout,
+            test_strategy=test_strategy,
+            write=args.write,
+            groups=groups,
+        )
 
-            if matches(path, self.notebooks_exclude):
-                print(
-                    f"ℹ️ Skipping {path}; to run it, edit `notebooks-exclude` in {self.args.config_path}."
-                )
-                continue
-
-            if not self.args.submit_jobs and matches(path, self.notebooks_no_mock):
-                print(
-                    f"ℹ️ Skipping {path} as it doesn't work with mock hardware; use the --submit-jobs flag to run it."
-                )
-                continue
-
-            if self.args.only_submit_jobs and not matches(
-                path, self.all_job_submitting_notebooks
-            ):
-                print(
-                    f"ℹ️ Skipping {path} as it doesn't submit jobs and the --only-submit-jobs flag is set."
-                )
-                continue
-
-            yield path
-
-    def should_patch(self, path: Path) -> bool:
-        if self.args.submit_jobs:
-            return False
-        return matches(path, self.notebooks_that_submit_jobs)
-
-    def should_skip_writing(self, path: Path) -> bool | str:
-        """Returns False or string with reason for skipping"""
-        if not self.args.write:
-            return "--write arg not set"
-        if self.should_patch(path):
-            return "hardware was mocked"
-        return False
+    def get_patch_for_group(self, group: dict) -> str | None:
+        patch_config = group["test-strategies"].get(self.test_strategy, {})
+        if patch_config == {}:
+            return None
+        return generate_backend_patch(
+            backend_name=patch_config.get("backend", "fake_athens"),
+            provider=patch_config.get("provider", "qiskit-ibm-runtime"),
+            generic_backend_kwargs=patch_config.get("generic_backend_kwargs", None),
+            runtime_service_kwargs=patch_config.get("runtime_service_kwargs", None),
+        )
 
 
-def matches(path: Path, glob_list: list[str]) -> bool:
-    return any(path.match(glob) for glob in glob_list)
+def matches(path: Path | str, glob_list: list[str]) -> bool:
+    return any(Path(path).match(glob) for glob in glob_list)
 
 
+def parse_patch_arg(patch: str | None) -> dict:
+    if not patch:
+        return {}
+    try:
+        patch_info = tomllib.loads(f"patch={patch}")["patch"]
+    except tomllib.TOMLDecodeError as err:
+        raise ValueError(
+            "Problem parsing your --patch argument; "
+            "Make sure it's of the form '{ string=\"value\", number=4, ... }'."
+        ) from err
+    return patch_info
 
-def get_args() -> argparse.Namespace:
+
+def get_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="Notebook executor",
-        description="For testing notebooks and updating their outputs",
+        description=dedent(
+            """\
+            For testing notebooks and updating their outputs.
+
+            There are two ways to call this script. The simplest is to just provide a list of filenames and (optionally) a backend that we'll patch qiskit-ibm-runtime's least_busy method to always return.
+            If providing a patch, this will apply all the notebooks.
+
+            The other option is to provide a config file, which lets you set different patches for each notebook. See the README for more information.
+            """
+        ),
     )
     parser.add_argument(
         "filenames",
         help=(
-            "Paths to notebooks. If not provided, the script will search for "
-            "notebooks in `docs/`. To exclude a notebook from this process, add it "
-            "to `notebooks-exclude` in the config file."
+            "Paths to notebooks. If not provided but --config-file is provided, the script will run all notebooks in the config file."
         ),
         nargs="*",
     )
@@ -206,130 +209,26 @@ def get_args() -> argparse.Namespace:
         help="Overwrite notebooks with the results of this script's execution.",
     )
     parser.add_argument(
-        "--submit-jobs",
-        action="store_true",
-        help=(
-            "Run notebooks that submit jobs to IBM Quantum and wait indefinitely "
-            "for jobs to complete. Warning: this has a real cost because it uses "
-            "quantum resources! Only use this argument occasionally and intentionally."
-        ),
+        "--patch",
+        help='If not providing a config file, an optional TOML string with the patch information. For example, \'{ provider="qiskit-ibm-runtime", backend="test-eagle" }\'',
     )
     parser.add_argument(
-        "--only-submit-jobs",
-        action="store_true",
-        help=(
-            "Same as --submit-jobs, but only runs notebooks that submit jobs. "
-            "Setting this option implicitly sets --submit-jobs."
-        ),
+        "--cell-timeout",
+        type=int,
+        help="Maximum number of seconds each cell can run for. This overrides the timeout in your config file if you're using one. For no timeout, set to -1 (This is also the default with no config file).",
     )
     parser.add_argument(
         "--config-path",
-        help="Path to a TOML file containing the globs for detecting and sorting notebooks",
+        help="Path to a TOML file listing the notebooks to execute and the test strategies for each notebook.",
     )
     parser.add_argument(
-        "--provider",
-        action="store",
-        default="qiskit-fake-provider",
-        choices=["qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"],
+        "--test-strategy",
         help=(
-            "Specify a provider to run notebook against."
-        )
+            "If using a config file, the name of the testing strategy to use. "
+            "This affects which notebooks are run and how they're patched."
+        ),
     )
-    parser.add_argument(
-        "--backend",
-        action="store",
-        default="fake_athens",
-        help=(
-            "Specify a backend to run the script against, such as 'fake_athens'"
-            "or 'athens'. Only relevant when `--provider` is "
-            "`qiskit-ibm-runtime` or `runtime-fake-provider`."
-        )
-    )
-
-    generic_backend_options_group = parser.add_argument_group(
-        "qiskit-fake-backend options",
-        description=(
-            "These options change the behavior when --provider=qiskit-fake-backend, "
-            "and are passed as parameters directly to GenericBackendV2. "
-            "See https://docs.quantum.ibm.com/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2 "
-            "for more details."
-
-        )
-    )
-    generic_backend_options_group.add_argument(
-        "--num-qubits",
-        action="store",
-        type=int,
-        default=6,
-        help=(
-            "Specify the number of qubits for the qiskit generic backend to use"
-        )
-    )
-    generic_backend_options_group.add_argument(
-        "--control-flow",
-        action="store_true",
-        help=(
-            "Specify if the qiskit generic backend should enable control flow"
-            "directives on the target"
-        )
-    )
-
-    runtime_options_group = parser.add_argument_group(
-        "qiskit-ibm-runtime options",
-        description=(
-            "These options change the behavior when --provider=qiskit-ibm-runtime, "
-            "and are passed as parameters directly to QiskitRuntimeService. "
-            "See https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService "
-            "for more details."
-        )
-    )
-    runtime_options_group.add_argument(
-        "--channel",
-        action="store",
-        default="ibm_quantum",
-        choices=["ibm_cloud", "ibm_quantum", "local"],
-        help=(
-            "Specify a channel for running the notebook against."
-        )
-    )
-    runtime_options_group.add_argument(
-        "--token",
-        action="store",
-        default=None,
-        help=(
-            'IBM Cloud API key or IBM Quantum API token. Warning: for security,' 
-            'you should set this via an environment variable, e.g. '
-            '`--token="${IQP_API_TOKEN}".'
-        )
-    )
-    runtime_options_group.add_argument(
-        "--url",
-        action="store",
-        default=None,
-        help=(
-            "The API URL to submit the notebook against."
-        )
-    )
-    runtime_options_group.add_argument(
-        "--name",
-        action="store",
-        default=None,
-        help=(
-            "Name of the qiskit account to load."
-        )
-    )
-    runtime_options_group.add_argument(
-        "--instance",
-        action="store",
-        default=None,
-        help=(
-            "The service instance to use."
-        )
-    )
-    args = parser.parse_args()
-    if args.only_submit_jobs:
-        args.submit_jobs = True
-    return args
+    return parser
 
 
 def generate_backend_patch(

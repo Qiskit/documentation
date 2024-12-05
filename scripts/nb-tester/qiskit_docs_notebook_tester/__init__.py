@@ -19,12 +19,12 @@ from textwrap import dedent
 import platform
 from datetime import datetime
 
-from .config import get_notebook_jobs, get_args
+from .config import get_notebook_jobs, get_parser
 from .execute import execute_notebook, cancel_trailing_jobs
 
 
 async def _main() -> None:
-    args = get_args()
+    args = get_parser().parse_args()
     jobs = list(get_notebook_jobs(args))
 
     if not jobs:
