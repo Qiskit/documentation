@@ -70,8 +70,10 @@ jobs:
 
       - name: Setup Python environment
         uses: ./.github/actions/set-up-notebook-testing
-      - name: nb-tester tests
-        run: tox -e nb-tester
+
+      - name: Check all notebooks are listed in the config file
+        run: python scripts/ci/check-all-notebooks-are-tested.py
+
       - name: Lint notebooks
         shell: python
         run: |
