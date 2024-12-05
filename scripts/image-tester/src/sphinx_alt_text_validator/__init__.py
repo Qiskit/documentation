@@ -11,7 +11,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from verify_images import validate_image
+from .verify_images import validate_image
 import multiprocessing
 import glob
 import sys
