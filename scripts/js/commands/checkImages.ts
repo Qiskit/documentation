@@ -82,7 +82,6 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
   // although it won't be very useful.
   const globs = [
     "docs/**/*.{ipynb,mdx}",
-    "!docs/api/qiskit/release-notes/*.mdx",
     args.apis ? "!docs/api/*/([0-9]*)/*.mdx" : "!docs/api/**/*.mdx",
     ...APIS_TO_IGNORE__SHOULD_FIX.map((api) => `!docs/api/${api}/**/*.mdx`),
   ];
