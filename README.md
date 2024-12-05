@@ -299,6 +299,10 @@ You can check it locally by running:
 # Only check images
 npm run check:images
 
+# By default, only the non-API docs are checked. You can add the
+# below argument to also check API docs.
+npm run check:images -- --apis
+
 # Or, run all the checks
 npm run check
 ```

@@ -33,6 +33,8 @@ test("Test the finding of invalid images", async () => {
 <img src="/images/HTMLexample2.jpg" alt="Example" width="200"/>
 
 ![And now, our last link](https://ibm.com)
+
+![../\_images/invalid\_img3.png](/images/invalid_img3.png)
     `;
   const images = await collectInvalidImageErrors(markdown);
   const correct_images = new Set([
@@ -40,6 +42,7 @@ test("Test the finding of invalid images", async () => {
     "The image '/images/HTMLexample2.jpg' uses an HTML <img> tag instead of markdown syntax.",
     "The image '/images/invalid_img1.png' does not have alt text.",
     "The image '/images/invalid_img2.png' does not have alt text.",
+    "The image '/images/invalid_img3.png' does not have alt text.",
   ]);
 
   expect(images).toEqual(correct_images);
