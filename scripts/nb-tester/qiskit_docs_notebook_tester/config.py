@@ -73,14 +73,12 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
 
             patch = config.get_patch_for_group(group)
 
-            def should_write(config: Config, patch: str | None):
-                if patch:
-                    return Result(False, "hardware was mocked")
-                if not config.write:
-                    return Result(False, "--write arg not set")
-                return Result(True)
-
-            write = should_write(config, patch)
+            if patch:
+                write = Result(False, "hardware was mocked")
+            elif not config.write:
+                write = Result(False, "--write arg not set")
+            else:
+                write = Result(True)
 
             yield NotebookJob(
                 path=Path(path),

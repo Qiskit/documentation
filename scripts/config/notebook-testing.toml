@@ -1,12 +1,12 @@
-default-strategy="ci"
+default-strategy = "ci"
 
 [test-strategies]
 ci = { timeout = 300 }
 
 # For notebooks to be tested in CI "normally" (no mocking)
 [groups.normal]
-test-strategies.ci={}
-test-strategies.hardware={}
+test-strategies.ci = {}
+test-strategies.hardware = {}
 notebooks = [
     "docs/guides/build-noise-models.ipynb",
     "docs/guides/circuit-library.ipynb",
@@ -46,8 +46,8 @@ notebooks = [
 
 # The following notebooks submit jobs that can be mocked with a simulator
 [groups.mockable]
-test-strategies.ci={ provider="qiskit-fake-provider", generic_backend_kwargs={ num_qubits=6 } }
-test-strategies.hardware={}
+test-strategies.ci = { provider="qiskit-fake-provider", generic_backend_kwargs={ num_qubits=6 } }
+test-strategies.hardware = {}
 notebooks = [
     "docs/guides/debug-qiskit-runtime-jobs.ipynb",
     "docs/guides/primitive-input-output.ipynb",
@@ -57,7 +57,7 @@ notebooks = [
 # A job is "too big" if a cell can't run in under 5 mins, or we run out of
 # memory on a reasonable device.
 [groups.cron-job-only]
-test-strategies.hardware={}
+test-strategies.hardware = {}
 notebooks = [
     "docs/guides/get-started-with-primitives.ipynb",
     "docs/guides/hello-world.ipynb",
