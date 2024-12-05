@@ -1,6 +1,6 @@
 ---
-title: RXCalibrationBuilder
-description: API reference for qiskit.transpiler.passes.RXCalibrationBuilder
+title: RXCalibrationBuilder (dev version)
+description: API reference for qiskit.transpiler.passes.RXCalibrationBuilder in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
 
 # RXCalibrationBuilder
 
-<Class id="qiskit.transpiler.passes.RXCalibrationBuilder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rx_builder.py#L29-L138" signature="qiskit.transpiler.passes.RXCalibrationBuilder(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.RXCalibrationBuilder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rx_builder.py#L30-L144" signature="qiskit.transpiler.passes.RXCalibrationBuilder(*args, **kwargs)" modifiers="class">
   Bases: `CalibrationBuilder`
 
   Add single-pulse RX calibrations that are bootstrapped from the SX calibration.
@@ -27,7 +27,7 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
   from qiskit.circuit.library import QuantumVolume
   from qiskit.circuit.library.standard_gates import RXGate
 
-  from calibration.rx_builder import RXCalibrationBuilder
+  from qiskit.transpiler.passes import RXCalibrationBuilder
 
   qv = QuantumVolume(4, 4, seed=1004)
 
@@ -57,6 +57,10 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
   *   \[1]: Gokhale et al. (2020), Optimized Quantum Compilation for Near-Term Algorithms with OpenPulse. arXiv:2004.11205 \<[https://arxiv.org/abs/2004.11205](https://arxiv.org/abs/2004.11205)>
 
   Bootstrap single-pulse RX gate calibrations from the (hardware-calibrated) SX gate calibration.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.transpiler.passes.calibration.rx_builder.RXCalibrationBuilder` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.transpiler.passes.calibration.rx_builder.RXCalibrationBuilder` will have no alternative in Qiskit.
+  </Admonition>
 
   **Parameters**
 
@@ -90,9 +94,9 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
@@ -100,13 +104,18 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### get\_calibration
 
-  <Function id="qiskit.transpiler.passes.RXCalibrationBuilder.get_calibration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rx_builder.py#L112-L138" signature="get_calibration(node_op, qubits)">
+  <Function id="qiskit.transpiler.passes.RXCalibrationBuilder.get_calibration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rx_builder.py#L118-L144" signature="get_calibration(node_op, qubits)">
     Generate RX calibration for the rotation angle specified in node\_op.
+
+    **Parameters**
+
+    *   **node\_op** ([*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) –
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) –
 
     **Return type**
 
@@ -120,7 +129,7 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
   </Function>
 
   ### run
@@ -143,12 +152,17 @@ python_api_name: qiskit.transpiler.passes.RXCalibrationBuilder
 
   ### supported
 
-  <Function id="qiskit.transpiler.passes.RXCalibrationBuilder.supported" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rx_builder.py#L96-L110" signature="supported(node_op, qubits)">
+  <Function id="qiskit.transpiler.passes.RXCalibrationBuilder.supported" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/calibration/rx_builder.py#L100-L116" signature="supported(node_op, qubits)">
     Check if the calibration for SX gate exists and it’s a single DRAG pulse.
+
+    **Parameters**
+
+    *   **node\_op** ([*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) –
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) –
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
   </Function>
 
   ### update\_status

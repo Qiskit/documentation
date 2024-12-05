@@ -32,7 +32,7 @@ Qiskit Terra 0.21.2 is a primarily a bugfix release, and also comes with several
 
 *   Fixed the [`UCGate.inverse()`](/api/qiskit/0.45/qiskit.circuit.library.UCGate#inverse "qiskit.circuit.library.UCGate.inverse") method which previously did not invert the global phase.
 
-*   [`QuantumCircuit.compose()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#compose "qiskit.circuit.QuantumCircuit.compose") will now function correctly when used with the `inplace=True` argument within control-flow builder contexts. Previously the instructions would be added outside the control-flow scope. Fixed [#8433](https://github.com/Qiskit/qiskit-terra/issues/8433).
+*   [`QuantumCircuit.compose()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#compose "qiskit.circuit.QuantumCircuit.compose") will now function correctly when used with the `inplace=True` argument within control-flow builder contexts. Previously the instructions would be added outside the control-flow scope. Fixed [#8433](https://github.com/Qiskit/qiskit/issues/8433).
 
 *   Fixed a bug where a bound [`ParameterExpression`](/api/qiskit/0.45/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") was not identified as real if `symengine` was installed and the bound expression was not a plain `1j`. For example:
 
@@ -45,7 +45,7 @@ Qiskit Terra 0.21.2 is a primarily a bugfix release, and also comes with several
     print(bound.is_real())  # used to be True, but is now False
     ```
 
-*   Fixed QPY serialisation and deserialisation of [`ControlledGate`](/api/qiskit/0.45/qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") with open controls (*i.e.* those whose `ctrl_state` is not all ones). Fixed [#8549](https://github.com/Qiskit/qiskit-terra/issues/8549).
+*   Fixed QPY serialisation and deserialisation of [`ControlledGate`](/api/qiskit/0.45/qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") with open controls (*i.e.* those whose `ctrl_state` is not all ones). Fixed [#8549](https://github.com/Qiskit/qiskit/issues/8549).
 
 *   All fake backends in `qiskit.providers.fake_provider.backends` have been updated to return the corresponding pulse channel objects with the method call of `drive_channel()`, `measure_channel()`, `acquire_channel()`, `control_channel()`.
 
@@ -95,7 +95,7 @@ No change
     )
     ```
 
-*   Fixed an issue with the [`marginal_distribution()`](/api/qiskit/0.45/result#qiskit.result.marginal_distribution "qiskit.result.marginal_distribution") function: when a numpy array was passed in for the `indices` argument the function would raise an error. Fixed [#8283](https://github.com/Qiskit/qiskit-terra/issues/8283)
+*   Fixed an issue with the [`marginal_distribution()`](/api/qiskit/0.45/result#qiskit.result.marginal_distribution "qiskit.result.marginal_distribution") function: when a numpy array was passed in for the `indices` argument the function would raise an error. Fixed [#8283](https://github.com/Qiskit/qiskit/issues/8283)
 
 *   Previously it was not possible to adjoint a [`CircuitStateFn`](/api/qiskit/0.45/qiskit.opflow.state_fns.CircuitStateFn "qiskit.opflow.state_fns.CircuitStateFn") that has been constructed from a [`VectorStateFn`](/api/qiskit/0.45/qiskit.opflow.state_fns.VectorStateFn "qiskit.opflow.state_fns.VectorStateFn"). That’s because the statevector has been converted to a circuit with the `Initialize` instruction, which is not unitary. This problem is now fixed by instead using the [`StatePreparation`](/api/qiskit/0.45/qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation") instruction, which can be used since the state is assumed to start out in the all 0 state.
 
@@ -169,7 +169,7 @@ No change
 
 This release officially marks the end of support for the Qiskit Ignis project from Qiskit. It was originally deprecated in the 0.33.0 release and as was documented in that release the `qiskit-ignis` package has been removed from the Qiskit metapackage, which means in that future release `pip install qiskit` will no longer include `qiskit-ignis`. However, note because of limitations in python packaging we cannot automatically remove a pre-existing install of `qiskit-ignis`. If you are upgrading from a previous version it’s recommended that you manually uninstall Qiskit Ignis with `pip uninstall qiskit-ignis` or install the metapackage in a fresh python environment.
 
-Qiskit Ignis has been supersceded by the [Qiskit Experiments](https://qiskit.org/documentation/experiments/) project. You can refer to the [migration guide](https://github.com/Qiskit/qiskit-ignis#migration-guide) for details on how to switch from Qiskit Ignis to Qiskit Experiments.
+Qiskit Ignis has been supersceded by the [Qiskit Experiments](https://qiskit.org/documentation/experiments/) project. You can refer to the [migration guide](https://github.com/qiskit-community/qiskit-ignis#migration-guide) for details on how to switch from Qiskit Ignis to Qiskit Experiments.
 
 <span id="terra-0-21-0" />
 
@@ -438,7 +438,7 @@ Additionally, the transpiler has been improved to enable better quality outputs.
 
 *   Qiskit Terra’s compiled Rust extensions now have a minimum supported Rust version (MSRV) of 1.56.1. This means when building Qiskit Terra from source the oldest version of the Rust compiler supported is 1.56.1. If you are using an older version of the Rust compiler you will need to update to a newer version to continue to build Qiskit from source. This change was necessary as a number of upstream dependencies have updated their minimum supported versions too.
 
-*   Circuit scheduling now executes in parallel when more than one circuit is provided to [`schedule()`](/api/qiskit/0.45/compiler#qiskit.compiler.schedule "qiskit.compiler.schedule"). Refer to [#2695](https://github.com/Qiskit/qiskit-terra/issues/2695) for more details.
+*   Circuit scheduling now executes in parallel when more than one circuit is provided to [`schedule()`](/api/qiskit/0.45/compiler#qiskit.compiler.schedule "qiskit.compiler.schedule"). Refer to [#2695](https://github.com/Qiskit/qiskit/issues/2695) for more details.
 
 *   The previously deprecated `BaseBackend`, `BaseJob`, and `BaseProvider` classes have all been removed. They were originally deprecated in the 0.18.0 release. Instead of these classes you should be using the versioned providers interface classes, the latest being [`BackendV2`](/api/qiskit/0.45/qiskit.providers.BackendV2 "qiskit.providers.BackendV2"), [`JobV1`](/api/qiskit/0.45/qiskit.providers.JobV1 "qiskit.providers.JobV1"), and [`ProviderV1`](/api/qiskit/0.45/qiskit.providers.ProviderV1 "qiskit.providers.ProviderV1").
 
@@ -572,17 +572,17 @@ Additionally, the transpiler has been improved to enable better quality outputs.
 
 *   The [`timeline_drawer()`](/api/qiskit/0.45/qiskit.visualization.timeline_drawer "qiskit.visualization.timeline_drawer") visualization will no longer misalign classical register slots.
 
-*   Parameter validation for [`GaussianSquare`](/api/qiskit/0.45/qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare") is now consistent before and after construction. Refer to [#7882](https://github.com/Qiskit/qiskit-terra/issues/7882) for more details.
+*   Parameter validation for [`GaussianSquare`](/api/qiskit/0.45/qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare") is now consistent before and after construction. Refer to [#7882](https://github.com/Qiskit/qiskit/issues/7882) for more details.
 
 *   The [`BackendV2`](/api/qiskit/0.45/qiskit.providers.BackendV2 "qiskit.providers.BackendV2")-based fake backends in the [`qiskit.providers.fake_provider`](/api/qiskit/0.45/providers_fake_provider#module-qiskit.providers.fake_provider "qiskit.providers.fake_provider") module, such as [`FakeMontrealV2`](/api/qiskit/0.45/qiskit.providers.fake_provider.FakeMontrealV2 "qiskit.providers.fake_provider.FakeMontrealV2"), now support the [`Delay`](/api/qiskit/0.45/qiskit.circuit.Delay "qiskit.circuit.Delay") operation in their [`target`](/api/qiskit/0.45/qiskit.providers.BackendV2#target "qiskit.providers.BackendV2.target") attributes. Previously, [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects that contained delays could not be compiled to these backends.
 
-*   Fixed a bug in `TridiagonalToeplitz.eigs_bounds()`, which caused incorrect eigenvalue bounds to be returned in some cases with negative eigenvalues. Refer to [#7939](https://github.com/Qiskit/qiskit-terra/issues/7939) for more details.
+*   Fixed a bug in `TridiagonalToeplitz.eigs_bounds()`, which caused incorrect eigenvalue bounds to be returned in some cases with negative eigenvalues. Refer to [#7939](https://github.com/Qiskit/qiskit/issues/7939) for more details.
 
 *   Fixed a bug in which the LaTeX statevector drawer ignored the `max_size` parameter.
 
 *   Fixed support in the [`PassManagerConfig.from_backend()`](/api/qiskit/0.45/qiskit.transpiler.PassManagerConfig#from_backend "qiskit.transpiler.PassManagerConfig.from_backend") constructor method for building a [`PassManagerConfig`](/api/qiskit/0.45/qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig") object from a [`BackendV2`](/api/qiskit/0.45/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") instance. Previously this wasn’t handled correctly and would fail when running with a [`BackendV2`](/api/qiskit/0.45/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") object.
 
-*   Fixed support for QPY serialization ([`qpy.dump()`](/api/qiskit/0.45/qpy#qiskit.qpy.dump "qiskit.qpy.dump")) and deserialization ([`qpy.load()`](/api/qiskit/0.45/qpy#qiskit.qpy.load "qiskit.qpy.load")) of a [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object containing custom [`ControlledGate`](/api/qiskit/0.45/qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects. Previously, an exception would be raised by [`qpy.load()`](/api/qiskit/0.45/qpy#qiskit.qpy.load "qiskit.qpy.load") when trying to reconstruct the custom [`ControlledGate`](/api/qiskit/0.45/qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate"). Fixed [#7999](https://github.com/Qiskit/qiskit-terra/issues/7999).
+*   Fixed support for QPY serialization ([`qpy.dump()`](/api/qiskit/0.45/qpy#qiskit.qpy.dump "qiskit.qpy.dump")) and deserialization ([`qpy.load()`](/api/qiskit/0.45/qpy#qiskit.qpy.load "qiskit.qpy.load")) of a [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object containing custom [`ControlledGate`](/api/qiskit/0.45/qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects. Previously, an exception would be raised by [`qpy.load()`](/api/qiskit/0.45/qpy#qiskit.qpy.load "qiskit.qpy.load") when trying to reconstruct the custom [`ControlledGate`](/api/qiskit/0.45/qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate"). Fixed [#7999](https://github.com/Qiskit/qiskit/issues/7999).
 
 *   Fixed support for QPY serialization ([`qpy.dump()`](/api/qiskit/0.45/qpy#qiskit.qpy.dump "qiskit.qpy.dump")) and deserialization ([`qpy.load()`](/api/qiskit/0.45/qpy#qiskit.qpy.load "qiskit.qpy.load")) of a [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object containing custom [`MCPhaseGate`](/api/qiskit/0.45/qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate") objects. Previously, an exception would be raised by [`qpy.load()`](/api/qiskit/0.45/qpy#qiskit.qpy.load "qiskit.qpy.load") when trying to reconstruct the [`MCPhaseGate`](/api/qiskit/0.45/qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").
 
@@ -624,7 +624,7 @@ Additionally, the transpiler has been improved to enable better quality outputs.
 
 *   The method [`qiskit.result.marginal_counts()`](/api/qiskit/0.45/result#qiskit.result.marginal_counts "qiskit.result.marginal_counts"), when passed a [`Result`](/api/qiskit/0.45/qiskit.result.Result "qiskit.result.Result") from a pulse backend, would fail, because it contains an array of `ExperimentResult` objects, each of which have an `QobjExperimentHeader`, and those `ExperimentHeaders` lack creg\_sizes instance-variables. If the `Result` came from a simulator backend (e.g. Aer), that instance-variable would be there. We fix `marginal_counts` so that it skips logic that needs creg\_sizes if the field is not present, or non-None.
 
-*   The OpenQASM 2 exporter ([`QuantumCircuit.qasm()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#qasm "qiskit.circuit.QuantumCircuit.qasm")) will now correctly define the qubit parameters for [`UnitaryGate`](/api/qiskit/0.45/qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate") operations that do not affect all the qubits they are defined over. Fixed [#8224](https://github.com/Qiskit/qiskit-terra/issues/8224).
+*   The OpenQASM 2 exporter ([`QuantumCircuit.qasm()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#qasm "qiskit.circuit.QuantumCircuit.qasm")) will now correctly define the qubit parameters for [`UnitaryGate`](/api/qiskit/0.45/qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate") operations that do not affect all the qubits they are defined over. Fixed [#8224](https://github.com/Qiskit/qiskit/issues/8224).
 
 *   Fixed an issue with reproducibility of the [`transpile()`](/api/qiskit/0.45/compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function when running with `optimization_level` 1, 2, and 3. Previously, under some conditions when there were multiple perfect layouts (a layout that doesn’t require any SWAP gates) available the selected layout and output circuit could vary regardless of whether the `seed_transpiler` argument was set.
 

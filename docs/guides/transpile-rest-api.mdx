@@ -11,7 +11,7 @@ description: How to transpile quantum circuits using REST APIs.
 
 The process of rewriting a given input circuit to match the topology of a specific quantum device, and optimizing the circuit instructions for execution on noisy quantum QPUs, is known as [transpilation](./transpile).
 
-You have two transpilation options: 
+You have two transpilation options:
 
 * Transpile [locally via Qiskit](./defaults-and-configuration-options) before generating the QASM string.
 
@@ -21,7 +21,7 @@ You have two transpilation options:
     [Transpilation is necessary](https://docs.quantum.ibm.com/announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update) prior to submitting a circuit to IBM&reg; QPUs.
 </Admonition>
 
-The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM compute resources. 
+The steps in this topic describe how to transpile a given QASM circuit and obtain results using the Cloud Transpiler REST API, and include suggestions on how to submit the transpiled quantum circuit to IBM compute resources.  For an example that uses parameterized input, see [Sampler primitive with REST API and parameterized circuits.](/guides/primitives-rest-api#start-sampler-parms)
 
 ## Query the Qiskit Transpiler Service
 
@@ -94,7 +94,7 @@ resp = requests.post(
 
 
 <Admonition type="note">
-    Since there might be cases where it’s more effective not to use AI-enhanced passes, you can set the `ai` parameter to `ai="auto"` to enable the QPU to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes, based on the particulars of your circuit. 
+    Since there might be cases where it’s more effective not to use AI-enhanced passes, you can set the `ai` parameter to `ai="auto"` to enable the QPU to decide automatically whether to apply the standard Qiskit heuristic passes or the new AI-powered passes, based on the particulars of your circuit.
 </Admonition>
 
 ## Request results based on the `task_id`

@@ -15,12 +15,13 @@ import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
+import { parseMinorVersion } from "../../lib/apiVersions.js";
 import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
 import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
 import { generateHistoricalRedirects } from "./generateHistoricalRedirects.js";
 
-interface Arguments {
+export interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
@@ -73,35 +74,21 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-zxMain(async () => {
-  const args = readArgs();
-
-  if (args.historical && args.dev) {
-    throw new Error(
-      `${args.package} ${args.version} cannot be historical and dev at the same time. Please remove at least only one of these two arguments: --historical, --dev.`,
-    );
-  }
-
-  const minorVersion = determineMinorVersion(args);
-  const type = args.historical ? "historical" : args.dev ? "dev" : "latest";
-  const pkg = await Pkg.fromArgs(
-    args.package,
-    args.version,
-    minorVersion,
-    type,
-  );
-
+export async function generateVersion(
+  pkg: Pkg,
+  args: Arguments,
+): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
   await deleteExistingMarkdown(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runConversionPipeline(sphinxArtifactFolder, "docs", "public", pkg);
   await generateHistoricalRedirects();
-});
+}
 
-function determineMinorVersion(args: Arguments): string {
-  const versionMatch = args.version.match(/^(\d+\.\d+)/);
-  if (versionMatch === null) {
+export function determineMinorVersion(args: Arguments): string {
+  const minorVersion = parseMinorVersion(args.version);
+  if (minorVersion === null) {
     throw new Error(
       `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
     );
@@ -114,7 +101,7 @@ function determineMinorVersion(args: Arguments): string {
     );
   }
 
-  return versionMatch[0];
+  return minorVersion;
 }
 
 async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
@@ -147,4 +134,26 @@ async function deleteExistingMarkdown(pkg: Pkg): Promise<void> {
     `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await rmFilesInFolder(markdownDir);
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  zxMain(async () => {
+    const args = readArgs();
+
+    if (args.historical && args.dev) {
+      throw new Error(
+        `${args.package} ${args.version} cannot be historical and dev at the same time. Please remove at least only one of these two arguments: --historical, --dev.`,
+      );
+    }
+
+    const minorVersion = determineMinorVersion(args);
+    const type = args.historical ? "historical" : args.dev ? "dev" : "latest";
+    const pkg = await Pkg.fromArgs(
+      args.package,
+      args.version,
+      minorVersion,
+      type,
+    );
+    await generateVersion(pkg, args);
+  });
 }

@@ -43,8 +43,8 @@ export class ExternalLink {
       if (response.status >= 300) {
         error = `Could not find link '${this.value}'`;
       }
-    } catch (error) {
-      error = `Failed to fetch '${this.value}': ${(error as Error).message}`;
+    } catch (err) {
+      error = `Failed to fetch '${this.value}': ${(err as Error).message}`;
     }
 
     if (!error) {
@@ -58,16 +58,22 @@ export class ExternalLink {
   }
 }
 
-function getHeaders(link: string) {
+export function getHeaders(link: string): HeadersInit {
   const headers: HeadersInit = {
-    "User-Agent": "qiskit-documentation-broken-links-finder",
+    "User-Agent": "qiskit-documentation-scripts",
   };
 
-  if (link.startsWith("https://github.com")) {
+  if (
+    link.startsWith("https://github.com") ||
+    link.startsWith("https://api.github.com")
+  ) {
     const ghToken = process.env.GITHUB_TOKEN;
-    if (ghToken) {
-      headers["Authorization"] = `token ${ghToken}`;
+    if (!ghToken) {
+      throw new Error(
+        "The env variable GITHUB_TOKEN is not set. You can get your token by running `gh auth token`.",
+      );
     }
+    headers["Authorization"] = `token ${ghToken}`;
   }
 
   return headers;

@@ -15,8 +15,10 @@ import { globby } from "globby";
 import { InternalLink, File } from "./InternalLink.js";
 import {
   ALWAYS_IGNORED_URLS,
+  ALWAYS_IGNORED_URL_PREFIXES,
   FILES_TO_IGNORES,
   IGNORED_FILES,
+  ALWAYS_IGNORED_URL_REGEXES,
 } from "./ignores.js";
 import { parseFile } from "./extractLinks.js";
 
@@ -111,11 +113,14 @@ export function addLinksToMap(
   links: Set<string>,
   linksToOriginFiles: Map<string, string[]>,
 ): void {
+  const ignoreUrlsRegex = new RegExp(ALWAYS_IGNORED_URL_REGEXES.join("|"), "i");
   if (IGNORED_FILES.has(filePath)) return;
   links.forEach((link) => {
     if (
       ALWAYS_IGNORED_URLS.has(link) ||
-      FILES_TO_IGNORES[filePath]?.includes(link)
+      ALWAYS_IGNORED_URL_PREFIXES.some((prefix) => link.startsWith(prefix)) ||
+      FILES_TO_IGNORES[filePath]?.includes(link) ||
+      ignoreUrlsRegex.test(link)
     ) {
       return;
     }

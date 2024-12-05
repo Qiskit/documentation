@@ -1,6 +1,6 @@
 ---
-title: QuantumVolume
-description: API reference for qiskit.circuit.library.QuantumVolume
+title: QuantumVolume (latest version)
+description: API reference for qiskit.circuit.library.QuantumVolume in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.QuantumVolume
@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
 # QuantumVolume
 
-<Class id="qiskit.circuit.library.QuantumVolume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/quantum_volume.py#L22-L115" signature="qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True, *, flatten=False)" modifiers="class">
+<Class id="qiskit.circuit.library.QuantumVolume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/quantum_volume.py#L25-L128" signature="qiskit.circuit.library.QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True, *, flatten=False)" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   A quantum volume model circuit.
@@ -33,11 +33,11 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   **Parameters**
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of active qubits in model circuit.
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – layers of SU(4) operations in model circuit.
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.1)") *| None*) – Random number generator or generator seed.
-  *   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use classical permutations at every layer, rather than quantum.
-  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False` (the default), construct a circuit that contains a single instruction, which in turn has the actual volume structure. If `True`, construct the volume structure directly.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of active qubits in model circuit.
+  *   **depth** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – layers of SU(4) operations in model circuit.
+  *   **seed** (*Optional\[Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, np.random.Generator]]*) – Random number generator or generator seed.
+  *   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – use classical permutations at every layer, rather than quantum.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False` (the default), construct a circuit that contains a single instruction, which in turn has the actual volume structure. If `True`, construct the volume structure directly.
 
   ## Attributes
 
@@ -53,6 +53,10 @@ python_api_name: qiskit.circuit.library.QuantumVolume
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
   </Attribute>
 
   ### clbits
@@ -75,6 +79,16 @@ python_api_name: qiskit.circuit.library.QuantumVolume
     QuantumCircuitData
   </Attribute>
 
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QuantumVolume.unit "qiskit.circuit.library.QuantumVolume.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.global_phase">
@@ -83,7 +97,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.QuantumVolume.instances" attributeValue="162" />
+  <Attribute id="qiskit.circuit.library.QuantumVolume.instances" attributeValue="171" />
 
   ### layout
 
@@ -172,7 +186,7 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
   </Attribute>
 
   ### parameters
@@ -243,6 +257,16 @@ python_api_name: qiskit.circuit.library.QuantumVolume
     A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.QuantumVolume.unit">
+    The unit that [`duration`](#qiskit.circuit.library.QuantumVolume.duration "qiskit.circuit.library.QuantumVolume.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### name
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.name" attributeTypeHint="str">
@@ -259,18 +283,6 @@ python_api_name: qiskit.circuit.library.QuantumVolume
 
   <Attribute id="qiskit.circuit.library.QuantumVolume.cregs" attributeTypeHint="list[ClassicalRegister]">
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.QuantumVolume.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QuantumVolume.unit "qiskit.circuit.library.QuantumVolume.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.QuantumVolume.unit">
-    The unit that [`duration`](#qiskit.circuit.library.QuantumVolume.duration "qiskit.circuit.library.QuantumVolume.duration") is specified in.
   </Attribute>
 </Class>
 

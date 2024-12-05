@@ -1,6 +1,6 @@
 ---
-title: NoiseLearner
-description: API reference for qiskit_ibm_runtime.noise_learner.NoiseLearner
+title: NoiseLearner (latest version)
+description: API reference for qiskit_ibm_runtime.noise_learner.NoiseLearner in the latest version of qiskit-ibm-runtime
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
@@ -8,7 +8,9 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
 # NoiseLearner
 
-<Class id="qiskit_ibm_runtime.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.29/qiskit_ibm_runtime/noise_learner/noise_learner.py#L48-L269" signature="NoiseLearner(mode=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/noise_learner/noise_learner.py#L48-L273" signature="NoiseLearner(mode=None, options=None)" modifiers="class">
+  Bases: `object`
+
   Class for executing noise learning experiments.
 
   <Admonition title="Note" type="note">
@@ -59,7 +61,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
   **Parameters**
 
-  *   **mode** (`Union`\[[`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.2)"), [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session"), [`Batch`](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.batch.Batch"), `None`]) –
+  *   **mode** (*Optional\[Union\[BackendV2,* [*Session*](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")*,* [*Batch*](qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")*]]*) –
 
       The execution mode used to make the primitive query. It can be:
 
@@ -69,11 +71,11 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
       Refer to the [Qiskit Runtime documentation](/guides/execution-modes) for more information about the execution modes.
 
-  *   **options** (`Union`\[`Dict`, [`NoiseLearnerOptions`](qiskit_ibm_runtime.options.NoiseLearnerOptions "qiskit_ibm_runtime.options.noise_learner_options.NoiseLearnerOptions"), [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.estimator_options.EstimatorOptions"), `None`]) – `NoiseLearnerOptions`. Alternatively, `EstimatorOptions` can be provided for convenience, in which case the estimator options get reformatted into noise learner options and all the irrelevant fields are ignored.
+  *   **options** (*Optional\[Union\[Dict,* [*NoiseLearnerOptions*](qiskit_ibm_runtime.options.NoiseLearnerOptions "qiskit_ibm_runtime.options.NoiseLearnerOptions")*,* [*EstimatorOptions*](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions")*]]*) – `NoiseLearnerOptions`. Alternatively, `EstimatorOptions` can be provided for convenience, in which case the estimator options get reformatted into noise learner options and all the irrelevant fields are ignored.
 
   **References**
 
-  1.  E. van den Berg, Z. Minev, A. Kandala, K. Temme, *Probabilistic error cancellation with sparse Pauli–Lindblad models on noisy quantum processors*, Nature Physics volume 19, pages1116–1121 (2023). [arXiv:2201.09866 \[quant-ph\]](https://arxiv.org/abs/2201.09866)
+  1.  E. van den Berg, Z. Minev, A. Kandala, K. Temme, *Probabilistic error cancellation with sparse Pauli–Lindblad models on noisy quantum processors*, Nature Physics volume 19, pages 1116–1121 (2023). [arXiv:2201.09866 \[quant-ph\]](https://arxiv.org/abs/2201.09866)
 
   ## Attributes
 
@@ -81,32 +83,38 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
   <Attribute id="qiskit_ibm_runtime.noise_learner.NoiseLearner.options">
     The options in this noise learner.
-
-    **Return type**
-
-    [`NoiseLearnerOptions`](qiskit_ibm_runtime.options.NoiseLearnerOptions "qiskit_ibm_runtime.options.noise_learner_options.NoiseLearnerOptions")
   </Attribute>
 
   ## Methods
 
+  ### backend
+
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/noise_learner/noise_learner.py#L224-L226" signature="backend()">
+    Return the backend the primitive query will be run on.
+
+    **Return type**
+
+    [*BackendV2*](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.2)")
+  </Function>
+
   ### run
 
-  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.29/qiskit_ibm_runtime/noise_learner/noise_learner.py#L145-L217" signature="run(circuits)">
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/noise_learner/noise_learner.py#L145-L217" signature="run(circuits)">
     Submit a request to the noise learner program.
 
     This function breaks the given list of circuits into a list of unique layers, following the strategy set by the `twirling_strategy` field specified in the `options` (see `NoiseLearnerOptions` for more details) and sorting them based on the number of times they occur in the various circuits. Then, it runs the noise learning experiment for as many layers as specified by the `max_layers_to_learn` field in the `options`, prioritizing layers that occurr more frequently.
 
     **Parameters**
 
-    **circuits** (`Iterable`\[`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `EstimatorPub`, `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)"), [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)"), `Mapping`\[`Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)")], `float`], `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `bytes`, `_NestedSequence`\[`Union`\[`bool`, `int`, `float`, `complex`, `str`, `bytes`]]]], `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)"), [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)"), `Mapping`\[`Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)")], `float`], `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `bytes`, `_NestedSequence`\[`Union`\[`bool`, `int`, `float`, `complex`, `str`, `bytes`]]], `Mapping`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`, `Tuple`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`], `...`]], `Union`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `str`, `bytes`, `_NestedSequence`\[`Union`\[`bool`, `int`, `float`, `complex`, `str`, `bytes`]]]]], `Tuple`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), `Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)"), [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)"), `Mapping`\[`Union`\[`str`, [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)")], `float`], `_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `bytes`, `_NestedSequence`\[`Union`\[`bool`, `int`, `float`, `complex`, `str`, `bytes`]]], `Mapping`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`, `Tuple`\[`Union`\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)"), `str`], `...`]], `Union`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]], `_NestedSequence`\[`_SupportsArray`\[[`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype "(in NumPy v2.1)")\[`Any`]]], `bool`, `int`, `float`, `complex`, `str`, `bytes`, `_NestedSequence`\[`Union`\[`bool`, `int`, `float`, `complex`, `str`, `bytes`]]]], `Real`]]]) – An iterable of circuits to run the noise learner program for. Alternatively, estimator pub-like (primitive unified bloc) objects can be specified, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`. In this case, the pub-like objects are converted to a list of circuits, and all the other fields (such as `observables` and `parameter_values`) are ignored.
-
-    **Return type**
-
-    [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
+    **circuits** (*Iterable\[*[*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") *| EstimatorPubLike]*) – An iterable of circuits to run the noise learner program for. Alternatively, estimator pub-like (primitive unified bloc) objects can be specified, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`. In this case, the pub-like objects are converted to a list of circuits, and all the other fields (such as `observables` and `parameter_values`) are ignored.
 
     **Returns**
 
     The submitted job.
+
+    **Return type**
+
+    [*RuntimeJobV2*](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")
   </Function>
 </Class>
 

@@ -28,6 +28,8 @@ jobs:
 
       - name: File metadata
         run: npm run check:metadata
+      - name: Check images
+        run: npm run check:images -- --apis
       - name: Spellcheck
         run: npm run check:spelling
       - name: Check Qiskit bot config
@@ -46,23 +48,41 @@ jobs:
         run: npm test
 
       - name: Get all changed docs files
-        id: changed-docs-files
+        id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
           files: docs/**/*.{md,mdx,ipynb}
           separator: "\n"
+          write_output_files: true
+
+      - name: Pull preview image
+        if: steps.all-changed-files.outputs.any_changed == 'true'
+        run: ./start --pull-only
       - name: Start local Docker preview
-        if: steps.changed-docs-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.any_changed == 'true'
         run: |
           ./start --apis &
-          sleep 20
+          sleep 1
       - name: Check that pages render
-        if: steps.changed-docs-files.outputs.any_changed == 'true'
+        if: steps.all-changed-files.outputs.any_changed == 'true'
         run: |
-          echo "${{ steps.changed-docs-files.outputs.all_changed_files }}" > changed.txt
-          npm run check:pages-render -- --from-file changed.txt
+          npm run check:pages-render -- --from-file .github/outputs/all_changed_files.txt
 
       - name: Setup Python environment
         uses: ./.github/actions/set-up-notebook-testing
-      - name: nb-tester tests
-        run: tox -e nb-tester
+
+      - name: Check all notebooks are listed in the config file
+        run: python scripts/ci/check-all-notebooks-are-tested.py
+
+      - name: Lint notebooks
+        shell: python
+        run: |
+          import subprocess, sys
+          try:
+            subprocess.run(["tox", "-e", "lint"], check=True)
+          except:
+            print(
+              "Error while linting notebook. "
+              "To fix, install tox and run `tox -e fix`."
+            )
+            sys.exit(1)

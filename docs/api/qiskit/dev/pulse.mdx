@@ -1,6 +1,6 @@
 ---
-title: pulse
-description: API reference for qiskit.pulse
+title: pulse (dev version)
+description: API reference for qiskit.pulse in the dev version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.pulse
@@ -13,8 +13,6 @@ python_api_name: qiskit.pulse
 <span id="pulse-qiskit-pulse" />
 
 # Pulse
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse`
 
@@ -33,8 +31,6 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 <span id="pulse-insts" />
 
 ## Instructions
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse.instructions`
 
@@ -72,15 +68,21 @@ These are all instances of the same base class:
 
 ### Instruction
 
-<Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L36-L268" signature="qiskit.pulse.instructions.Instruction(operands, name=None)" modifiers="class">
+<Class id="qiskit.pulse.instructions.Instruction" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/instructions/instruction.py#L37-L270" signature="qiskit.pulse.instructions.Instruction(operands, name=None)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
   The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
   Instruction initializer.
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.instructions.instruction.Instruction` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
   **Parameters**
 
-  *   **operands** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – The argument list.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optional display name for this instruction.
+  *   **operands** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – The argument list.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Optional display name for this instruction.
 </Class>
 
 <span id="module-qiskit.pulse.library" />
@@ -88,8 +90,6 @@ These are all instances of the same base class:
 <span id="pulse-library-qiskit-pulse-library" />
 
 ## Pulse Library
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse.library`
 
@@ -137,8 +137,6 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
 ## Channels
 
-<span id="module-qiskit.pulse" />
-
 `qiskit.pulse.channels`
 
 Pulse is meant to be agnostic to the underlying hardware implementation, while still allowing low-level control. Therefore, our signal channels are *virtual* hardware channels. The backend which executes our programs is responsible for mapping these virtual channels to the proper physical channel within the quantum control hardware.
@@ -165,7 +163,9 @@ All channels are children of the same abstract base class:
 
 ### Channel
 
-<Class id="qiskit.pulse.channels.Channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/channels.py#L63-L162" signature="qiskit.pulse.channels.Channel(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.pulse.channels.Channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/channels.py#L64-L164" signature="qiskit.pulse.channels.Channel(*args, **kwargs)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
   When serialized channels are identified by their serialized name `<prefix><index>`. The type of the channel is interpreted from the prefix, and the index often (but not always) maps to the qubit index. All concrete channel classes must have a `prefix` class attribute (and instances of that class have an index attribute). Base classes which have `prefix` set to `None` are prevented from being instantiated.
@@ -173,6 +173,10 @@ All channels are children of the same abstract base class:
   To implement a new channel inherit from [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") and provide a unique string identifier for the `prefix` class attribute.
 
   Channel class.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.channels.Channel` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   **Parameters**
 
@@ -195,8 +199,6 @@ Schedules are Pulse programs. They describe instruction sequences for the contro
 <span id="pulse-transforms-qiskit-pulse-transforms" />
 
 ## Pulse Transforms
-
-<span id="module-qiskit.pulse" />
 
 `qiskit.pulse.transforms`
 
@@ -221,9 +223,15 @@ These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.puls
 #### AlignmentKind
 
 <Class id="qiskit.pulse.transforms.AlignmentKind" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/alignments.py#L25-L87" signature="qiskit.pulse.transforms.AlignmentKind(context_params)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
   An abstract class for schedule alignment.
 
   Create new context.
+
+  **Parameters**
+
+  **context\_params** (*Tuple\[ParameterValueType, ...]*) –
 </Class>
 
 <span id="pulse-canonical-transform" />
@@ -234,7 +242,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
 #### add\_implicit\_acquires
 
-<Function id="qiskit.pulse.transforms.add_implicit_acquires" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L384-L433" signature="qiskit.pulse.transforms.add_implicit_acquires(schedule, meas_map)">
+<Function id="qiskit.pulse.transforms.add_implicit_acquires" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L390-L439" signature="qiskit.pulse.transforms.add_implicit_acquires(schedule, meas_map)">
   Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.
 
   <Admonition title="Warning" type="caution">
@@ -244,7 +252,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
   **Parameters**
 
   *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule to be aligned.
-  *   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of lists of qubits that are measured together.
+  *   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – List of lists of qubits that are measured together.
 
   **Returns**
 
@@ -257,7 +265,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
 #### align\_measures
 
-<Function id="qiskit.pulse.transforms.align_measures" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L227-L381" signature="qiskit.pulse.transforms.align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)">
+<Function id="qiskit.pulse.transforms.align_measures" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L227-L387" signature="qiskit.pulse.transforms.align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)">
   Return new schedules where measurements occur at the same physical time.
 
   This transformation will align the first [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") on every channel to occur at the same time.
@@ -304,10 +312,10 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   *   **schedules** (*Iterable\[ScheduleComponent]*) – Collection of schedules to be aligned together
   *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") *| None*) – Mapping of circuit operations to pulse schedules
-  *   **cal\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the gate to inspect for the calibration time
-  *   **max\_calibration\_duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – If provided, inst\_map and cal\_gate will be ignored
-  *   **align\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – If provided, this will be used as final align time.
-  *   **align\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Shift all instructions in the schedule such that they maintain their relative alignment with the shifted acquisition instruction. If `False` only the acquisition and measurement pulse instructions will be shifted.
+  *   **cal\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the gate to inspect for the calibration time
+  *   **max\_calibration\_duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – If provided, inst\_map and cal\_gate will be ignored
+  *   **align\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – If provided, this will be used as final align time.
+  *   **align\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Shift all instructions in the schedule such that they maintain their relative alignment with the shifted acquisition instruction. If `False` only the acquisition and measurement pulse instructions will be shifted.
 
   **Returns**
 
@@ -319,7 +327,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")]
 </Function>
 
 #### block\_to\_schedule
@@ -356,7 +364,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Parameters**
 
-  **schedules** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*qiskit.pulse.schedule.Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")*]*) – Schedules to compress.
+  **schedules** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*qiskit.pulse.schedule.Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")*]*) – Schedules to compress.
 
   **Returns**
 
@@ -364,7 +372,7 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.schedule.Schedule](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[qiskit.pulse.schedule.Schedule](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
 </Function>
 
 #### flatten
@@ -415,15 +423,15 @@ The canonicalization transforms convert schedules to a form amenable for executi
 
 #### pad
 
-<Function id="qiskit.pulse.transforms.pad" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L436-L498" signature="qiskit.pulse.transforms.pad(schedule, channels=None, until=None, inplace=False, pad_with=None)">
+<Function id="qiskit.pulse.transforms.pad" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/canonicalization.py#L442-L504" signature="qiskit.pulse.transforms.pad(schedule, channels=None, until=None, inplace=False, pad_with=None)">
   Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`.
 
   **Parameters**
 
   *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule to pad.
   *   **channels** (*Iterable\[chans.Channel] | None*) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
-  *   **until** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Time to pad until. Defaults to `schedule.duration` if not provided.
-  *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Pad this schedule by mutating rather than returning a new schedule.
+  *   **until** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Time to pad until. Defaults to `schedule.duration` if not provided.
+  *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Pad this schedule by mutating rather than returning a new schedule.
   *   **pad\_with** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*instructions.Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction")*] | None*) – Pulse `Instruction` subclass to be used for padding. Default to [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction.
 
   **Returns**
@@ -483,12 +491,17 @@ The DAG transforms create DAG representation of input program. This can be used 
 
 #### block\_to\_dag
 
-<Function id="qiskit.pulse.transforms.block_to_dag" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/dag.py#L27-L75" signature="qiskit.pulse.transforms.block_to_dag(block)">
+<Function id="qiskit.pulse.transforms.block_to_dag" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/transforms/dag.py#L27-L88" signature="qiskit.pulse.transforms.block_to_dag(block)">
   Convert schedule block instruction into DAG.
 
   `ScheduleBlock` can be represented as a DAG as needed. For example, equality of two programs are efficiently checked on DAG representation.
 
   ```python
+  from qiskit import pulse
+
+  my_gaussian0 = pulse.Gaussian(100, 0.5, 20)
+  my_gaussian1 = pulse.Gaussian(100, 0.3, 10)
+
   with pulse.build() as sched1:
       with pulse.align_left():
           pulse.play(my_gaussian0, pulse.DriveChannel(0))
@@ -507,6 +520,8 @@ The DAG transforms create DAG representation of input program. This can be used 
   Another example is instruction optimization.
 
   ```python
+  from qiskit import pulse
+
   with pulse.build() as sched:
       with pulse.align_left():
           pulse.shift_phase(1.57, pulse.DriveChannel(1))
@@ -546,8 +561,8 @@ A sequence of transformations to generate a target code.
 
   **Parameters**
 
-  *   **sched** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]*) – Input program to transform.
-  *   **remove\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set True to remove compiler directives.
+  *   **sched** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]*) – Input program to transform.
+  *   **remove\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set True to remove compiler directives.
 
   **Returns**
 
@@ -588,7 +603,7 @@ with pulse.build(name='pulse_programming_in') as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-1.png](/images/api/qiskit/dev/pulse-1.png)
+![../\_images/pulse-5.png](/images/api/qiskit/dev/pulse-5.png)
 
 To begin pulse programming we must first initialize our program builder context with [`build()`](#qiskit.pulse.builder.build "qiskit.pulse.builder.build"), after which we can begin adding program statements. For example, below we write a simple program that [`play()`](#qiskit.pulse.builder.play "qiskit.pulse.builder.play")s a pulse:
 
@@ -603,7 +618,7 @@ with pulse.build() as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-2.png](/images/api/qiskit/dev/pulse-2.png)
+![../\_images/pulse-6.png](/images/api/qiskit/dev/pulse-6.png)
 
 The builder initializes a [`pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), `pulse_prog` and then begins to construct the program within the context. The output pulse schedule will survive after the context is exited and can be used like a normal Qiskit schedule.
 
@@ -644,7 +659,7 @@ with pulse.build(backend) as decoupled_bell_prep_and_measure:
 decoupled_bell_prep_and_measure.draw()
 ```
 
-![../\_images/pulse-3.png](/images/api/qiskit/dev/pulse-3.png)
+![../\_images/pulse-7.png](/images/api/qiskit/dev/pulse-7.png)
 
 With the pulse builder we are able to blend programming on qubits and channels. While the pulse schedule is based on instructions that operate on channels, the pulse builder automatically handles the mapping from qubits to channels for you.
 
@@ -655,7 +670,6 @@ import math
 from qiskit.compiler import schedule
 
 from qiskit import pulse, QuantumCircuit
-from qiskit.pulse import library
 from qiskit.providers.fake_provider import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
@@ -665,7 +679,7 @@ qc.cx(0, 1)
 
 with pulse.build(backend) as pulse_prog:
     # Create a pulse.
-    gaussian_pulse = library.gaussian(10, 1.0, 2)
+    gaussian_pulse = pulse.Gaussian(10, 1.0, 2)
     # Get the qubit's corresponding drive channel from the backend.
     d0 = pulse.drive_channel(0)
     d1 = pulse.drive_channel(1)
@@ -758,7 +772,7 @@ The above is just a small taste of what is possible with the builder. See the re
 
 ### build
 
-<Function id="qiskit.pulse.builder.build" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L777-L824" signature="qiskit.pulse.builder.build(backend=None, schedule=None, name=None, default_alignment='left')">
+<Function id="qiskit.pulse.builder.build" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L785-L836" signature="qiskit.pulse.builder.build(backend=None, schedule=None, name=None, default_alignment='left')">
   Create a context manager for launching the imperative pulse builder DSL.
 
   To enter a building context and starting building a pulse program:
@@ -781,12 +795,16 @@ The above is just a small taste of what is possible with the builder. See the re
   backend.run(transpile(pulse_prog, backend))
   ```
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.build()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
   **Parameters**
 
   *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A Qiskit backend. If not supplied certain builder functionality will be unavailable.
   *   **schedule** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") *| None*) – A pulse `ScheduleBlock` in which your pulse program will be built.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse program to be built.
-  *   **default\_alignment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind") *| None*) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of pulse program to be built.
+  *   **default\_alignment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind") *| None*) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
 
   **Returns**
 
@@ -812,14 +830,18 @@ with pulse.build(backend) as drive_sched:
     print(d0)
 ```
 
-```python
+```text
 DriveChannel(0)
 ```
 
 #### acquire\_channel
 
-<Function id="qiskit.pulse.builder.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1428-L1448" signature="qiskit.pulse.builder.acquire_channel(qubit)">
+<Function id="qiskit.pulse.builder.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1475-L1498" signature="qiskit.pulse.builder.acquire_channel(qubit)">
   Return `AcquireChannel` for `qubit` on the active builder backend.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.acquire_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -837,6 +859,10 @@ DriveChannel(0)
     Requires the active builder context to have a backend set.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
   [*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
@@ -844,10 +870,14 @@ DriveChannel(0)
 
 #### control\_channels
 
-<Function id="qiskit.pulse.builder.control_channels" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1451-L1481" signature="qiskit.pulse.builder.control_channels(*qubits)">
+<Function id="qiskit.pulse.builder.control_channels" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1501-L1534" signature="qiskit.pulse.builder.control_channels(*qubits)">
   Return `ControlChannel` for `qubit` on the active builder backend.
 
   Return the secondary drive channel for the given qubit – typically utilized for controlling multi-qubit interactions.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.control_channels()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -866,7 +896,7 @@ DriveChannel(0)
 
   **Parameters**
 
-  **qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
+  **qubits** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
 
   **Returns**
 
@@ -874,13 +904,17 @@ DriveChannel(0)
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[qiskit.pulse.channels.ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
 </Function>
 
 #### drive\_channel
 
-<Function id="qiskit.pulse.builder.drive_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1382-L1402" signature="qiskit.pulse.builder.drive_channel(qubit)">
+<Function id="qiskit.pulse.builder.drive_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1423-L1446" signature="qiskit.pulse.builder.drive_channel(qubit)">
   Return `DriveChannel` for `qubit` on the active builder backend.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.drive_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -898,6 +932,10 @@ DriveChannel(0)
     Requires the active builder context to have a backend set.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
   [*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
@@ -905,8 +943,12 @@ DriveChannel(0)
 
 #### measure\_channel
 
-<Function id="qiskit.pulse.builder.measure_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1405-L1425" signature="qiskit.pulse.builder.measure_channel(qubit)">
+<Function id="qiskit.pulse.builder.measure_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1449-L1472" signature="qiskit.pulse.builder.measure_channel(qubit)">
   Return `MeasureChannel` for `qubit` on the active builder backend.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.measure_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -923,6 +965,10 @@ DriveChannel(0)
   <Admonition title="Note" type="note">
     Requires the active builder context to have a backend set.
   </Admonition>
+
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
 
   **Return type**
 
@@ -943,7 +989,7 @@ with pulse.build(backend) as drive_sched:
     d0 = pulse.drive_channel(0)
     a0 = pulse.acquire_channel(0)
 
-    pulse.play(pulse.library.Constant(10, 1.0), d0)
+    pulse.play(pulse.Constant(10, 1.0), d0)
     pulse.delay(20, d0)
     pulse.shift_phase(3.14/2, d0)
     pulse.set_phase(3.14, d0)
@@ -951,8 +997,8 @@ with pulse.build(backend) as drive_sched:
     pulse.set_frequency(5e9, d0)
 
     with pulse.build() as temp_sched:
-        pulse.play(pulse.library.Gaussian(20, 1.0, 3.0), d0)
-        pulse.play(pulse.library.Gaussian(20, -1.0, 3.0), d0)
+        pulse.play(pulse.Gaussian(20, 1.0, 3.0), d0)
+        pulse.play(pulse.Gaussian(20, -1.0, 3.0), d0)
 
     pulse.call(temp_sched)
     pulse.acquire(30, a0, pulse.MemorySlot(0))
@@ -960,12 +1006,16 @@ with pulse.build(backend) as drive_sched:
 drive_sched.draw()
 ```
 
-![../\_images/pulse-4.png](/images/api/qiskit/dev/pulse-4.png)
+![../\_images/pulse-15.png](/images/api/qiskit/dev/pulse-15.png)
 
 #### acquire
 
-<Function id="qiskit.pulse.builder.acquire" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1540-L1590" signature="qiskit.pulse.builder.acquire(duration, qubit_or_channel, register, **metadata)">
+<Function id="qiskit.pulse.builder.acquire" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1599-L1652" signature="qiskit.pulse.builder.acquire(duration, qubit_or_channel, register, **metadata)">
   Acquire for a `duration` on a `channel` and store the result in a `register`.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.acquire()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -989,8 +1039,8 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration to acquire data for
-  *   **qubit\_or\_channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| chans.AcquireChannel*) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Duration to acquire data for
+  *   **qubit\_or\_channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| chans.AcquireChannel*) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
   *   **register** (*StorageLocation*) – Location to store measured result.
   *   **metadata** (*Unpack\[\_MetaDataType]*) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
 
@@ -1001,7 +1051,7 @@ drive_sched.draw()
 
 #### barrier
 
-<Function id="qiskit.pulse.builder.barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1926-L1995" signature="qiskit.pulse.builder.barrier(*channels_or_qubits, name=None)">
+<Function id="qiskit.pulse.builder.barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2020-L2102" signature="qiskit.pulse.builder.barrier(*channels_or_qubits, name=None)">
   Barrier directive for a set of channels and qubits.
 
   This directive prevents the compiler from moving instructions across the barrier. Consider the case where we want to enforce that one pulse happens after another on separate channels, this can be done with:
@@ -1041,38 +1091,50 @@ drive_sched.draw()
 
   ```python
   import math
+  from qiskit import pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
+
+  backend = FakeOpenPulse2Q()
 
   d0 = pulse.DriveChannel(0)
 
   with pulse.build(backend) as pulse_prog:
       with pulse.align_right():
-          pulse.call(backend.defaults.instruction_schedule_map.get('x', (1,)))
+          pulse.call(backend.defaults().instruction_schedule_map.get('u1', (1,)))
           # Barrier qubit 1 and d0.
           pulse.barrier(1, d0)
           # Due to barrier this will play before the gate on qubit 1.
           pulse.play(pulse.Constant(10, 1.0), d0)
           # This will end at the same time as the pulse above due to
           # the barrier.
-          pulse.call(backend.defaults.instruction_schedule_map.get('x', (1,)))
+          pulse.call(backend.defaults().instruction_schedule_map.get('u1', (1,)))
   ```
 
   <Admonition title="Note" type="note">
     Requires the active builder context to have a backend set if qubits are barriered on.
   </Admonition>
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.barrier()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
   **Parameters**
 
-  *   **channels\_or\_qubits** (*chans.Channel |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Channels or qubits to barrier.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name for the barrier
+  *   **channels\_or\_qubits** (*chans.Channel |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Channels or qubits to barrier.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name for the barrier
 </Function>
 
 #### call
 
-<Function id="qiskit.pulse.builder.call" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1706-L1897" signature="qiskit.pulse.builder.call(target, name=None, value_dict=None, **kw_params)">
+<Function id="qiskit.pulse.builder.call" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1781-L1988" signature="qiskit.pulse.builder.call(target, name=None, value_dict=None, **kw_params)">
   Call the subroutine within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 
   <Admonition title="Note" type="note">
     If the `target` program is a [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), then a [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction will be created and appended to the current context. The `target` program will be immediately assigned to the current scope as a subroutine. If the `target` program is [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), it will be wrapped by the `Call` instruction and appended to the current context to avoid a mixed representation of [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") and [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"). If the `target` program is a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") it will be scheduled and the new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") will be added as a `Call` instruction.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.call()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
   </Admonition>
 
   **Examples**
@@ -1094,7 +1156,7 @@ drive_sched.draw()
   print(pulse_prog)
   ```
 
-  ```python
+  ```text
   ScheduleBlock(
       ScheduleBlock(
           Play(
@@ -1115,7 +1177,7 @@ drive_sched.draw()
   print(pulse_prog.references)
   ```
 
-  ```python
+  ```text
   ReferenceManager:
     - ('block0', '634b3b50bd684e26a673af1fbd2d6c81'): ScheduleBlock(Play(Gaussian(...
   ```
@@ -1135,7 +1197,7 @@ drive_sched.draw()
   print(pulse_prog)
   ```
 
-  ```python
+  ```text
   ScheduleBlock(
       ScheduleBlock(
           Play(
@@ -1174,7 +1236,7 @@ drive_sched.draw()
   print(pulse_prog)
   ```
 
-  ```python
+  ```text
   ScheduleBlock(
       ScheduleBlock(
           Play(Gaussian(duration=160, amp=(0.1+0j), sigma=40), DriveChannel(0)),
@@ -1198,7 +1260,7 @@ drive_sched.draw()
   print(pulse_prog)
   ```
 
-  ```python
+  ```text
   ScheduleBlock(
       Call(
           Schedule(
@@ -1230,15 +1292,19 @@ drive_sched.draw()
   **Parameters**
 
   *   **target** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") *| None*) – Target circuit or pulse schedule to call.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optional. A unique name of subroutine if defined. When the name is explicitly provided, one cannot call different schedule blocks with the same name.
-  *   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[ParameterValueType, ParameterValueType] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Optional. A unique name of subroutine if defined. When the name is explicitly provided, one cannot call different schedule blocks with the same name.
+  *   **value\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[ParameterValueType, ParameterValueType] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
   *   **kw\_params** (*ParameterValueType*) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
 </Function>
 
 #### delay
 
-<Function id="qiskit.pulse.builder.delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1485-L1504" signature="qiskit.pulse.builder.delay(duration, channel, name=None)">
+<Function id="qiskit.pulse.builder.delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1538-L1560" signature="qiskit.pulse.builder.delay(duration, channel, name=None)">
   Delay on a `channel` for a `duration`.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.delay()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1253,15 +1319,19 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of cycles to delay for on `channel`.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of cycles to delay for on `channel`.
   *   **channel** (*chans.Channel*) – Channel to delay on.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
 #### play
 
-<Function id="qiskit.pulse.builder.play" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1507-L1529" signature="qiskit.pulse.builder.play(pulse, channel, name=None)">
+<Function id="qiskit.pulse.builder.play" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1563-L1588" signature="qiskit.pulse.builder.play(pulse, channel, name=None)">
   Play a `pulse` on a `channel`.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.play()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1278,12 +1348,12 @@ drive_sched.draw()
 
   *   **pulse** (*library.Pulse | np.ndarray*) – Pulse to play.
   *   **channel** (*chans.PulseChannel*) – Channel to play pulse on.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the pulse.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the pulse.
 </Function>
 
 #### reference
 
-<Function id="qiskit.pulse.builder.reference" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1900-L1922" signature="qiskit.pulse.builder.reference(name, *extra_keys)">
+<Function id="qiskit.pulse.builder.reference" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1991-L2016" signature="qiskit.pulse.builder.reference(name, *extra_keys)">
   Refer to undefined subroutine by string keys.
 
   A [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction is implicitly created and a schedule can be separately registered to the reference at a later stage.
@@ -1300,16 +1370,24 @@ drive_sched.draw()
   main_prog.assign_references(subroutine_dict={("x_gate", "q0"): subroutine})
   ```
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.reference()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
   **Parameters**
 
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of subroutine.
-  *   **extra\_keys** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Helper keys to uniquely specify the subroutine.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name of subroutine.
+  *   **extra\_keys** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Helper keys to uniquely specify the subroutine.
 </Function>
 
 #### set\_frequency
 
-<Function id="qiskit.pulse.builder.set_frequency" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1593-L1612" signature="qiskit.pulse.builder.set_frequency(frequency, channel, name=None)">
+<Function id="qiskit.pulse.builder.set_frequency" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1655-L1677" signature="qiskit.pulse.builder.set_frequency(frequency, channel, name=None)">
   Set the `frequency` of a pulse `channel`.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.set_frequency()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1324,15 +1402,19 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Frequency in Hz to set channel to.
+  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Frequency in Hz to set channel to.
   *   **channel** (*chans.PulseChannel*) – Channel to set frequency of.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
 #### set\_phase
 
-<Function id="qiskit.pulse.builder.set_phase" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1638-L1660" signature="qiskit.pulse.builder.set_phase(phase, channel, name=None)">
+<Function id="qiskit.pulse.builder.set_phase" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1705-L1729" signature="qiskit.pulse.builder.set_phase(phase, channel, name=None)">
   Set the `phase` of a pulse `channel`.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.set_phase()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1349,15 +1431,19 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Phase in radians to set channel carrier signal to.
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Phase in radians to set channel carrier signal to.
   *   **channel** (*chans.PulseChannel*) – Channel to set phase of.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
 #### shift\_frequency
 
-<Function id="qiskit.pulse.builder.shift_frequency" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1615-L1635" signature="qiskit.pulse.builder.shift_frequency(frequency, channel, name=None)">
+<Function id="qiskit.pulse.builder.shift_frequency" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1680-L1702" signature="qiskit.pulse.builder.shift_frequency(frequency, channel, name=None)">
   Shift the `frequency` of a pulse `channel`.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.shift_frequency()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1372,15 +1458,19 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Frequency in Hz to shift channel frequency by.
+  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Frequency in Hz to shift channel frequency by.
   *   **channel** (*chans.PulseChannel*) – Channel to shift frequency of.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
 #### shift\_phase
 
-<Function id="qiskit.pulse.builder.shift_phase" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1663-L1684" signature="qiskit.pulse.builder.shift_phase(phase, channel, name=None)">
+<Function id="qiskit.pulse.builder.shift_phase" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1732-L1756" signature="qiskit.pulse.builder.shift_phase(phase, channel, name=None)">
   Shift the `phase` of a pulse `channel`.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.shift_phase()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1397,15 +1487,19 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Phase in radians to shift channel carrier signal by.
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Phase in radians to shift channel carrier signal by.
   *   **channel** (*chans.PulseChannel*) – Channel to shift phase of.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction.
 </Function>
 
 #### snapshot
 
-<Function id="qiskit.pulse.builder.snapshot" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1687-L1703" signature="qiskit.pulse.builder.snapshot(label, snapshot_type='statevector')">
+<Function id="qiskit.pulse.builder.snapshot" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1759-L1778" signature="qiskit.pulse.builder.snapshot(label, snapshot_type='statevector')">
   Simulator snapshot.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.snapshot()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1418,8 +1512,8 @@ drive_sched.draw()
 
   **Parameters**
 
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Label for snapshot.
-  *   **snapshot\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Type of snapshot.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Label for snapshot.
+  *   **snapshot\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Type of snapshot.
 </Function>
 
 ### Contexts
@@ -1442,16 +1536,20 @@ with pulse.build() as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-5.png](/images/api/qiskit/dev/pulse-5.png)
+![../\_images/pulse-33.png](/images/api/qiskit/dev/pulse-33.png)
 
 #### align\_equispaced
 
-<Function id="qiskit.pulse.builder.align_equispaced" signature="qiskit.pulse.builder.align_equispaced(duration)">
+<Function id="qiskit.pulse.builder.align_equispaced" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1174-L1224" signature="qiskit.pulse.builder.align_equispaced(duration)">
   Equispaced alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled with the same interval spacing such that the total length of the context block is `duration`. If the total free `duration` cannot be evenly divided by the number of instructions within the context, the modulo is split and then prepended and appended to the returned schedule. Delay instructions are automatically inserted in between pulses.
 
   This context is convenient to write a schedule for periodical dynamic decoupling or the Hahn echo sequence.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.align_equispaced()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1471,11 +1569,11 @@ pulse_prog.draw()
   hahn_echo.draw()
   ```
 
-  ![../\_images/pulse-6.png](/images/api/qiskit/dev/pulse-6.png)
+  ![../\_images/pulse-34.png](/images/api/qiskit/dev/pulse-34.png)
 
   **Parameters**
 
-  **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
+  **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
 
   **Yields**
 
@@ -1492,12 +1590,16 @@ pulse_prog.draw()
 
 #### align\_func
 
-<Function id="qiskit.pulse.builder.align_func" signature="qiskit.pulse.builder.align_func(duration, func)">
+<Function id="qiskit.pulse.builder.align_func" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1227-L1287" signature="qiskit.pulse.builder.align_func(duration, func)">
   Callback defined alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled at the location specified by arbitrary callback function position that takes integer index and returns the associated fractional location within \[0, 1]. Delay instruction is automatically inserted in between pulses.
 
   This context may be convenient to write a schedule of arbitrary dynamical decoupling sequences such as Uhrig dynamical decoupling.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.align_func()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1522,12 +1624,12 @@ pulse_prog.draw()
   udd_sched.draw()
   ```
 
-  ![../\_images/pulse-7.png](/images/api/qiskit/dev/pulse-7.png)
+  ![../\_images/pulse-35.png](/images/api/qiskit/dev/pulse-35.png)
 
   **Parameters**
 
-  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
-  *   **func** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
+  *   **func** (*Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
   **Yields**
 
@@ -1544,10 +1646,14 @@ pulse_prog.draw()
 
 #### align\_left
 
-<Function id="qiskit.pulse.builder.align_left" signature="qiskit.pulse.builder.align_left()">
+<Function id="qiskit.pulse.builder.align_left" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1051-L1089" signature="qiskit.pulse.builder.align_left()">
   Left alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled as early as possible by shifting them left to the earliest available time.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.align_left()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1574,15 +1680,19 @@ pulse_prog.draw()
 
   **Return type**
 
-  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[None, None, None]
 </Function>
 
 #### align\_right
 
-<Function id="qiskit.pulse.builder.align_right" signature="qiskit.pulse.builder.align_right()">
+<Function id="qiskit.pulse.builder.align_right" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1092-L1130" signature="qiskit.pulse.builder.align_right()">
   Right alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled as late as possible by shifting them right to the latest available time.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.align_right()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1609,15 +1719,19 @@ pulse_prog.draw()
 
   **Return type**
 
-  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[None, None, None]
 </Function>
 
 #### align\_sequential
 
-<Function id="qiskit.pulse.builder.align_sequential" signature="qiskit.pulse.builder.align_sequential()">
+<Function id="qiskit.pulse.builder.align_sequential" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1133-L1171" signature="qiskit.pulse.builder.align_sequential()">
   Sequential alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled sequentially in time such that no two instructions will be played at the same time.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.align_sequential()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1644,19 +1758,25 @@ pulse_prog.draw()
 
   **Return type**
 
-  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[None, None, None]
 </Function>
 
 #### frequency\_offset
 
-<Function id="qiskit.pulse.builder.frequency_offset" signature="qiskit.pulse.builder.frequency_offset(frequency, *channels, compensate_phase=False)">
+<Function id="qiskit.pulse.builder.frequency_offset" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1355-L1419" signature="qiskit.pulse.builder.frequency_offset(frequency, *channels, compensate_phase=False)">
   Shift the frequency of inputs channels on entry into context and undo on exit.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.frequency_offset()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
   ```python
   from qiskit import pulse
+  from qiskit.providers.fake_provider import FakeOpenPulse2Q
 
+  backend = FakeOpenPulse2Q()
   d0 = pulse.DriveChannel(0)
 
   with pulse.build(backend) as pulse_prog:
@@ -1678,9 +1798,9 @@ pulse_prog.draw()
 
   **Parameters**
 
-  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of frequency offset in Hz.
+  *   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Amount of frequency offset in Hz.
   *   **channels** (*PulseChannel*) – Channels to offset frequency of.
-  *   **compensate\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
+  *   **compensate\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
 
   **Yields**
 
@@ -1688,13 +1808,17 @@ pulse_prog.draw()
 
   **Return type**
 
-  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[None, None, None]
 </Function>
 
 #### phase\_offset
 
-<Function id="qiskit.pulse.builder.phase_offset" signature="qiskit.pulse.builder.phase_offset(phase, *channels)">
+<Function id="qiskit.pulse.builder.phase_offset" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L1316-L1352" signature="qiskit.pulse.builder.phase_offset(phase, *channels)">
   Shift the phase of input channels on entry into context and undo on exit.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.phase_offset()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1714,7 +1838,7 @@ pulse_prog.draw()
 
   **Parameters**
 
-  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of phase offset in radians.
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Amount of phase offset in radians.
   *   **channels** (*PulseChannel*) – Channels to offset phase of.
 
   **Yields**
@@ -1723,7 +1847,7 @@ pulse_prog.draw()
 
   **Return type**
 
-  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.12)")\[None, None, None]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[None, None, None]
 </Function>
 
 ### Macros
@@ -1741,13 +1865,13 @@ with pulse.build(backend) as measure_sched:
     print(mem_slot)
 ```
 
-```python
+```text
 MemorySlot(0)
 ```
 
 #### measure
 
-<Function id="qiskit.pulse.builder.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2055-L2140" signature="qiskit.pulse.builder.measure(qubits, registers=None)">
+<Function id="qiskit.pulse.builder.measure" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2166-L2258" signature="qiskit.pulse.builder.measure(qubits, registers=None)">
   Measure a qubit within the currently active builder context.
 
   At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](#qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](#qiskit.pulse.builder.play "qiskit.pulse.builder.play").
@@ -1786,10 +1910,14 @@ MemorySlot(0)
     Requires the active builder context to have a backend set.
   </Admonition>
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.measure()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
   **Parameters**
 
-  *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Physical qubit to measure.
-  *   **registers** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[StorageLocation] | StorageLocation*) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
+  *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Physical qubit to measure.
+  *   **registers** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[StorageLocation] | StorageLocation*) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
 
   **Returns**
 
@@ -1797,15 +1925,19 @@ MemorySlot(0)
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[StorageLocation] | StorageLocation
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[StorageLocation] | StorageLocation
 </Function>
 
 #### measure\_all
 
-<Function id="qiskit.pulse.builder.measure_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2143-L2183" signature="qiskit.pulse.builder.measure_all()">
+<Function id="qiskit.pulse.builder.measure_all" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2261-L2304" signature="qiskit.pulse.builder.measure_all()">
   Measure all qubits within the currently active builder context.
 
   A simple macro function to measure all of the qubits in the device at the same time. This is useful for handling device `meas_map` and single measurement constraints.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.measure_all()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1830,13 +1962,17 @@ MemorySlot(0)
 
   **Return type**
 
-  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[qiskit.pulse.channels.MemorySlot](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[qiskit.pulse.channels.MemorySlot](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
 </Function>
 
 #### delay\_qubits
 
-<Function id="qiskit.pulse.builder.delay_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2186-L2213" signature="qiskit.pulse.builder.delay_qubits(duration, *qubits)">
+<Function id="qiskit.pulse.builder.delay_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L2307-L2337" signature="qiskit.pulse.builder.delay_qubits(duration, *qubits)">
   Insert delays on all the `channels.Channel`s that correspond to the input `qubits` at the same time.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.delay_qubits()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1857,8 +1993,8 @@ MemorySlot(0)
 
   **Parameters**
 
-  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration to delay for.
-  *   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Physical qubits to delay on. Delays will be inserted based on the channels returned by `pulse.qubit_channels()`.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Duration to delay for.
+  *   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Physical qubits to delay on. Delays will be inserted based on the channels returned by `pulse.qubit_channels()`.
 </Function>
 
 ### Utilities
@@ -1884,7 +2020,7 @@ with pulse.build(backend) as u3_sched:
         seconds, pulse.seconds_to_samples(1e-6)))
 ```
 
-```python
+```text
 Number of qubits in backend: 1
 There are 160 samples in 3.5555555555555554e-08 seconds
 There are 1e-06 seconds in 4500 samples.
@@ -1892,8 +2028,12 @@ There are 1e-06 seconds in 4500 samples.
 
 #### active\_backend
 
-<Function id="qiskit.pulse.builder.active_backend" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L850-L865" signature="qiskit.pulse.builder.active_backend()">
+<Function id="qiskit.pulse.builder.active_backend" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L862-L878" signature="qiskit.pulse.builder.active_backend()">
   Get the backend of the currently active builder context.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.active_backend()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   **Returns**
 
@@ -1912,8 +2052,12 @@ There are 1e-06 seconds in 4500 samples.
 
 #### num\_qubits
 
-<Function id="qiskit.pulse.builder.num_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L900-L923" signature="qiskit.pulse.builder.num_qubits()">
+<Function id="qiskit.pulse.builder.num_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L915-L941" signature="qiskit.pulse.builder.num_qubits()">
   Return number of qubits in the currently active backend.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.num_qubits()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1927,7 +2071,7 @@ There are 1e-06 seconds in 4500 samples.
       print(pulse.num_qubits())
   ```
 
-  ```python
+  ```text
   2
   ```
 
@@ -1937,13 +2081,17 @@ There are 1e-06 seconds in 4500 samples.
 
   **Return type**
 
-  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
 </Function>
 
 #### qubit\_channels
 
-<Function id="qiskit.pulse.builder.qubit_channels" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L957-L1007" signature="qiskit.pulse.builder.qubit_channels(qubit)">
+<Function id="qiskit.pulse.builder.qubit_channels" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L977-L1030" signature="qiskit.pulse.builder.qubit_channels(qubit)">
   Returns the set of channels associated with a qubit.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.qubit_channels()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   Examples:
 
@@ -1957,7 +2105,7 @@ There are 1e-06 seconds in 4500 samples.
       print(pulse.qubit_channels(0))
   ```
 
-  ```python
+  ```text
   {MeasureChannel(0), ControlChannel(0), DriveChannel(0), AcquireChannel(0), ControlChannel(1)}
   ```
 
@@ -1969,19 +2117,27 @@ There are 1e-06 seconds in 4500 samples.
     A channel may still be associated with another qubit in this list such as in the case where significant crosstalk exists.
   </Admonition>
 
+  **Parameters**
+
+  **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
   **Return type**
 
-  [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[[qiskit.pulse.channels.Channel](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+  [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.13)")\[[qiskit.pulse.channels.Channel](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 </Function>
 
 #### samples\_to\_seconds
 
-<Function id="qiskit.pulse.builder.samples_to_seconds" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L944-L954" signature="qiskit.pulse.builder.samples_to_seconds(samples)">
+<Function id="qiskit.pulse.builder.samples_to_seconds" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L963-L974" signature="qiskit.pulse.builder.samples_to_seconds(samples)">
   Obtain the time in seconds that will elapse for the input number of samples on the active backend.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.samples_to_seconds()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 
   **Parameters**
 
-  **samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| np.ndarray*) – Number of samples to convert to time in seconds.
+  **samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| np.ndarray*) – Number of samples to convert to time in seconds.
 
   **Returns**
 
@@ -1989,19 +2145,23 @@ There are 1e-06 seconds in 4500 samples.
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | np.ndarray
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") | np.ndarray
 </Function>
 
 #### seconds\_to\_samples
 
-<Function id="qiskit.pulse.builder.seconds_to_samples" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L926-L941" signature="qiskit.pulse.builder.seconds_to_samples(seconds)">
+<Function id="qiskit.pulse.builder.seconds_to_samples" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/builder.py#L944-L960" signature="qiskit.pulse.builder.seconds_to_samples(seconds)">
   Obtain the number of samples that will elapse in `seconds` on the active backend.
 
   Rounds down.
 
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.builder.seconds_to_samples()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
   **Parameters**
 
-  **seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| np.ndarray*) – Time in seconds to convert to samples.
+  **seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| np.ndarray*) – Time in seconds to convert to samples.
 
   **Returns**
 
@@ -2009,7 +2169,7 @@ There are 1e-06 seconds in 4500 samples.
 
   **Return type**
 
-  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") | np.ndarray
+  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") | np.ndarray
 </Function>
 
 ## Configuration
@@ -2022,41 +2182,71 @@ There are 1e-06 seconds in 4500 samples.
 
 ### PulseError
 
-<Class id="qiskit.pulse.PulseError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L17-L27" signature="qiskit.pulse.PulseError(*message)" modifiers="exception">
+<Class id="qiskit.pulse.PulseError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L18-L29" signature="qiskit.pulse.PulseError(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   Errors raised by the pulse module.
 
   Set the error message.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.exceptions.PulseError` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 </Class>
 
 ### BackendNotSet
 
-<Class id="qiskit.pulse.BackendNotSet" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L30-L31" signature="qiskit.pulse.BackendNotSet(*message)" modifiers="exception">
+<Class id="qiskit.pulse.BackendNotSet" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L32-L33" signature="qiskit.pulse.BackendNotSet(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if the builder context does not have a backend.
 
   Set the error message.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.exceptions.PulseError` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 </Class>
 
 ### NoActiveBuilder
 
-<Class id="qiskit.pulse.NoActiveBuilder" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L34-L35" signature="qiskit.pulse.NoActiveBuilder(*message)" modifiers="exception">
+<Class id="qiskit.pulse.NoActiveBuilder" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L36-L37" signature="qiskit.pulse.NoActiveBuilder(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if no builder context is active.
 
   Set the error message.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.exceptions.PulseError` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 </Class>
 
 ### UnassignedDurationError
 
-<Class id="qiskit.pulse.UnassignedDurationError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L38-L39" signature="qiskit.pulse.UnassignedDurationError(*message)" modifiers="exception">
+<Class id="qiskit.pulse.UnassignedDurationError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L40-L41" signature="qiskit.pulse.UnassignedDurationError(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if instruction duration is unassigned.
 
   Set the error message.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.exceptions.PulseError` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 </Class>
 
 ### UnassignedReferenceError
 
-<Class id="qiskit.pulse.UnassignedReferenceError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L42-L43" signature="qiskit.pulse.UnassignedReferenceError(*message)" modifiers="exception">
+<Class id="qiskit.pulse.UnassignedReferenceError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/pulse/exceptions.py#L44-L45" signature="qiskit.pulse.UnassignedReferenceError(*message)" modifiers="exception">
+  Bases: [`PulseError`](#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError")
+
   Raised if subroutine is unassigned.
 
   Set the error message.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.exceptions.PulseError` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
 </Class>
 

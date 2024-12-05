@@ -20,21 +20,38 @@ test("ExternalLink constructor ignores anchors", () => {
 });
 
 test.describe("ExternalLink.check()", () => {
+  let originalFetch: typeof global.fetch;
+
+  test.beforeEach(() => {
+    originalFetch = global.fetch;
+  });
+
+  test.afterEach(() => {
+    global.fetch = originalFetch;
+  });
+
   test("valid link", async () => {
-    let link = new ExternalLink("https://github.com/Qiskit", [
-      "/testorigin.mdx",
-    ]);
+    global.fetch = () => Promise.resolve(new Response());
+    let link = new ExternalLink("https://good-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
     expect(result).toBeUndefined();
   });
 
-  test("Validate existing external links", async () => {
-    let link = new ExternalLink("https://github.com/QiskitNotExistingRepo", [
-      "/testorigin.mdx",
-    ]);
+  test("invalid link", async () => {
+    global.fetch = () => Promise.resolve(new Response("", { status: 404 }));
+    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
     const result = await link.check();
     expect(result).toEqual(
-      "❌ Could not find link 'https://github.com/QiskitNotExistingRepo'. Appears in:\n    /testorigin.mdx",
+      "❌ Could not find link 'https://bad-link.com'. Appears in:\n    /testorigin.mdx",
+    );
+  });
+
+  test("exception handling", async () => {
+    global.fetch = () => Promise.reject(new Error("some issue"));
+    let link = new ExternalLink("https://bad-link.com", ["/testorigin.mdx"]);
+    const result = await link.check();
+    expect(result).toEqual(
+      "❌ Failed to fetch 'https://bad-link.com': some issue. Appears in:\n    /testorigin.mdx",
     );
   });
 });

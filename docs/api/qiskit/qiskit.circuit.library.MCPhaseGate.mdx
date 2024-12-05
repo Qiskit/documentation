@@ -1,6 +1,6 @@
 ---
-title: MCPhaseGate
-description: API reference for qiskit.circuit.library.MCPhaseGate
+title: MCPhaseGate (latest version)
+description: API reference for qiskit.circuit.library.MCPhaseGate in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.MCPhaseGate
@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
 # MCPhaseGate
 
-<Class id="qiskit.circuit.library.MCPhaseGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/p.py#L310-L432" signature="qiskit.circuit.library.MCPhaseGate(lam, num_ctrl_qubits, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.MCPhaseGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/p.py#L310-L441" signature="qiskit.circuit.library.MCPhaseGate(lam, num_ctrl_qubits, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
   Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
   Multi-controlled-Phase gate.
@@ -19,7 +19,7 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
   **Circuit symbol:**
 
-  ```python
+  ```text
       q_0: ───■────
               │
               .
@@ -37,6 +37,13 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
   Create new MCPhase gate.
 
   ## Attributes
+
+  **Parameters**
+
+  *   **lam** (*ParameterValueType*) –
+  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
 
   ### base\_class
 
@@ -63,12 +70,20 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
   <Attribute id="qiskit.circuit.library.MCPhaseGate.condition">
     The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### condition\_bits
 
   <Attribute id="qiskit.circuit.library.MCPhaseGate.condition_bits">
     Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### ctrl\_state
@@ -93,6 +108,10 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
   <Attribute id="qiskit.circuit.library.MCPhaseGate.duration">
     Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### label
@@ -136,7 +155,7 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
   </Attribute>
 
   ### num\_qubits
@@ -156,7 +175,7 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
 
     **Raises**
 
@@ -167,21 +186,25 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
   <Attribute id="qiskit.circuit.library.MCPhaseGate.unit">
     Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ## Methods
 
   ### control
 
-  <Function id="qiskit.circuit.library.MCPhaseGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/p.py#L394-L428" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.MCPhaseGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/p.py#L395-L429" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Controlled version of this gate.
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – An optional label for the gate \[Default: `None`]
+    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – control state expressed as integer, string (e.g.\`\`’110’`), or ``None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
 
     **Returns**
 
@@ -194,8 +217,12 @@ python_api_name: qiskit.circuit.library.MCPhaseGate
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.MCPhaseGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/p.py#L430-L432" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.MCPhaseGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/p.py#L431-L433" signature="inverse(annotated=False)">
     Return inverted MCPhase gate ($MCPhase(\lambda)^{\dagger} = MCPhase(-\lambda)$)
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
   </Function>
 </Class>
 

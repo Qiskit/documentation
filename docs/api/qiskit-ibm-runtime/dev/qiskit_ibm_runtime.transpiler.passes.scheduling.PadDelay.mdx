@@ -1,6 +1,6 @@
 ---
-title: PadDelay
-description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
+title: PadDelay (dev version)
+description: API reference for qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay in the dev version of qiskit-ibm-runtime
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
@@ -8,7 +8,9 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
 # PadDelay
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L26-L97" signature="PadDelay(durations, fill_very_end=True, schedule_idle_qubits=False, block_ordering_callable=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/pad_delay.py#L26-L97" signature="PadDelay(*args, **kwargs)" modifiers="class">
+  Bases: [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.block_base_padder.BlockBasePadder")
+
   Padding idle time with Delay instructions.
 
   Consecutive delays will be merged in the output of this pass.
@@ -31,10 +33,10 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
   **Parameters**
 
-  *   **durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.2)")) – Durations of instructions to be used in scheduling.
-  *   **fill\_very\_end** (`bool`) – Set `True` to fill the end of circuit with delay.
-  *   **schedule\_idle\_qubits** (`bool`) – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
-  *   **block\_ordering\_callable** (`Optional`\[`Callable`\[\[[`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.2)")], `Generator`\[[`DAGOpNode`](/api/qiskit/qiskit.dagcircuit.DAGOpNode "(in Qiskit v1.2)"), `None`, `None`]]]) – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
+  *   **durations** – Durations of instructions to be used in scheduling.
+  *   **fill\_very\_end** – Set `True` to fill the end of circuit with delay.
+  *   **schedule\_idle\_qubits** – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
+  *   **block\_ordering\_callable** – A callable used to produce an ordering of the nodes to minimize the number of blocks needed. If not provided, `block_order_op_nodes()` will be used.
 
   ## Attributes
 
@@ -66,13 +68,13 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
     *   **circuit** (*QuantumCircuit*) – The dag on which the pass is run.
     *   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place.
 
-    **Return type**
-
-    QuantumCircuit
-
     **Returns**
 
     If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
+
+    **Return type**
+
+    QuantumCircuit
   </Function>
 
   ### execute
@@ -82,17 +84,17 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Parameters**
 
-    *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
-
-    **Return type**
-
-    `tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")]
+    *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable | None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
     Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    tuple\[*Any*, [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")]
   </Function>
 
   ### name
@@ -102,7 +104,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Return type**
 
-    `str`
+    str
   </Function>
 
   ### run
@@ -112,7 +114,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Parameters**
 
-    **dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.2)")) – DAG to be checked.
+    **dag** ([*DAGCircuit*](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.3)")) – DAG to be checked.
 
     **Returns**
 
@@ -134,16 +136,16 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay
 
     **Parameters**
 
-    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – Pass manager state to update.
-    *   **run\_state** (`RunState`) – Completion status of current task.
-
-    **Return type**
-
-    [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
 
     **Returns**
 
     Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.3)")
   </Function>
 </Class>
 

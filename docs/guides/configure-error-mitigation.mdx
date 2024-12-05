@@ -11,7 +11,13 @@ results in quantum pre-processing overhead related to model training and
 classical post-processing overhead to mitigate errors in the raw results
 by using the generated model.
 
-Primitives support several error mitigation techniques, including [TREX](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#measure_mitigation), [ZNE](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#zne), [PEC](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#pec), and [PEA](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each. When using primitives, you can turn on or off individual methods. See the [Custom error settings](#advanced-error) section for details.
+The Estimator primitive supports several error mitigation techniques, including [TREX](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#measure_mitigation), [ZNE](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#zne), [PEC](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#pec), and [PEA](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each. When using primitives, you can turn on or off individual methods. See the [Custom error settings](#advanced-error) section for details.
+
+<Admonition type="note">
+
+Sampler does not support error mitigation, but you can use the [mthree](https://qiskit.github.io/qiskit-addon-mthree/) (matrix-free measurement mitigation) package to perform error mitigation locally.
+
+</Admonition>
 
 Estimator also supports `resilience_level`. The resilience level specifies how much resilience to build against
 errors. Higher levels generate more accurate results, at the expense of
@@ -58,7 +64,7 @@ applied at each resilience level.
 
 ## Configure Estimator with resilience levels
 
-You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings.](#advanced-error) You cannot specify resilience levels in Sampler. However, you can set custom techniques individually.
+You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings.](#advanced-error)
 
 <details>
 <summary>Resilience Level 0</summary>
@@ -137,7 +143,7 @@ You can turn on and off individual error mitigation and suppression methods, inc
 
 <Admonition type = "note" title = "Notes">
 - Not all options are available for both primitives.   See the [available options table](runtime-options-overview#options-table) for the list of available options.
-- Not all methods work together on all types of circuits.  See the [options compatibility table](runtime-options-overview#options-compatibility-table) for details.
+- Not all methods work together on all types of circuits.  See the [feature compatibility table](runtime-options-overview#options-compatibility-table) for details.
 </Admonition>
 
 <Tabs>

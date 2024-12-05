@@ -1,6 +1,6 @@
 ---
-title: transpiler
-description: API reference for qiskit.transpiler
+title: transpiler (latest version)
+description: API reference for qiskit.transpiler in the latest version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.transpiler
@@ -13,8 +13,6 @@ python_api_name: qiskit.transpiler
 <span id="transpiler-qiskit-transpiler" />
 
 # Transpiler
-
-<span id="module-qiskit.transpiler" />
 
 `qiskit.transpiler`
 
@@ -192,7 +190,7 @@ target.add_instruction(
 print(target)
 ```
 
-```python
+```text
 Target
 Number of qubits: 3
 Instructions:
@@ -486,7 +484,7 @@ A few things to highlight. First, the circuit has gotten longer with respect to 
 print('Original depth:', qc.depth(), 'Decomposed Depth:', qc_basis.depth())
 ```
 
-```python
+```text
 Original depth: 4 Decomposed Depth: 10
 ```
 
@@ -503,7 +501,7 @@ It is important to highlight two special cases:
     print(backend.operation_names)
     ```
 
-    ```python
+    ```text
     ['id', 'rz', 'sx', 'x', 'cx', 'measure', 'delay']
     ```
 
@@ -764,7 +762,7 @@ When running scheduling analysis passes on a circuit, you must keep in mind that
 
 The DAG representation of `QuantumCircuit` respects the node ordering in the classical register wires, though theoretically two conditional instructions conditioned on the same register could commute, i.e. read-access to the classical register doesn’t change its state.
 
-```python
+```text
 qc = QuantumCircuit(2, 1)
 qc.delay(100, 0)
 qc.x(0).c_if(0, True)
@@ -773,7 +771,7 @@ qc.x(1).c_if(0, True)
 
 The scheduler SHOULD comply with the above topological ordering policy of the DAG circuit. Accordingly, the asap-scheduled circuit will become
 
-```python
+```text
      ┌────────────────┐   ┌───┐
 q_0: ┤ Delay(100[dt]) ├───┤ X ├──────────────
      ├────────────────┤   └─╥─┘      ┌───┐
@@ -790,7 +788,7 @@ Note that this scheduling might be inefficient in some cases, because the second
 
 In the dispersive QND readout scheme, the qubit (Q) is measured by sending a microwave stimulus, followed by a resonator ring-down (depopulation). This microwave signal is recorded in the buffer memory (B) with the hardware kernel, then a discriminated (D) binary value is moved to the classical register (C). A sequence from t0 to t1 of the measure instruction interval could be modeled as follows:
 
-```python
+```text
 Q ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
 B ░░▒▒▒▒▒▒▒▒░░░░░░░░░
 D ░░░░░░░░░░▒▒▒▒▒▒░░░
@@ -801,7 +799,7 @@ However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.Qu
 
 The lack of precision representing the physical model may induce edge cases in the scheduling:
 
-```python
+```text
         ┌───┐
 q_0: ───┤ X ├──────
         └─╥─┘   ┌─┐
@@ -813,7 +811,7 @@ c: 1/╡ c_0=0x1 ╞═╩═
 
 In this example, a user may intend to measure the state of `q_1` after the [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") is applied to `q_0`. This is the correct interpretation from the viewpoint of topological node ordering, i.e. The [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") node comes in front of the [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") node. However, according to the measurement model above, the data in the register is unchanged during the application of the stimulus, so two nodes are simultaneously operated. If one tries to alap-schedule this circuit, it may return following circuit:
 
-```python
+```text
      ┌────────────────┐   ┌───┐
 q_0: ┤ Delay(500[dt]) ├───┤ X ├──────
      └────────────────┘   └─╥─┘   ┌─┐
@@ -825,7 +823,7 @@ c: 1/══════════════════╡ c_0=0x1 ╞═╩
 
 Note that there is no delay on the `q_1` wire, and the measure instruction immediately starts after t=0, while the conditional gate starts after the delay. It looks like the topological ordering between the nodes is flipped in the scheduled view. This behavior can be understood by considering the control flow model described above,
 
-```python
+```text
 : Quantum Circuit, first-measure
 0 ░░░░░░░░░░░░▒▒▒▒▒▒░
 1 ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
@@ -847,7 +845,7 @@ This behavior can be controlled by `clbit_write_latency` and `conditional_latenc
 
 Due to default latencies, the alap-scheduled circuit of above example may become
 
-```python
+```text
         ┌───┐
 q_0: ───┤ X ├──────
         └─╥─┘   ┌─┐
@@ -859,7 +857,7 @@ c: 1/╡ c_0=0x1 ╞═╩═
 
 If the backend microarchitecture supports smart scheduling of the control flow instructions, such as separately scheduling qubits and classical registers, the insertion of the delay yields an unnecessarily longer total execution time.
 
-```python
+```text
 : Quantum Circuit, first-XGate
 0 ░▒▒▒░░░░░░░░░░░░░░░
 1 ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
@@ -875,7 +873,7 @@ C ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ (zero latency, sched
 
 However, this result is much more intuitive in the topological ordering view. If a finite conditional latency value is provided, for example, 30 dt, the circuit is scheduled as follows:
 
-```python
+```text
      ┌───────────────┐   ┌───┐
 q_0: ┤ Delay(30[dt]) ├───┤ X ├──────
      ├───────────────┤   └─╥─┘   ┌─┐
@@ -887,7 +885,7 @@ c: 1/═════════════════╡ c_0=0x1 ╞═╩═
 
 with the timing model:
 
-```python
+```text
 : Quantum Circuit, first-xgate
 0 ░░▒▒▒░░░░░░░░░░░░░░░
 1 ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
@@ -907,10 +905,10 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 ### Transpiler Target
 
-|                                                                                                                                       |                                                                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                                 | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
-| [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error, ...]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
+|                                                                                                                                  |                                                                                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                            | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
+| [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
 
 ### Pass Manager Construction
 
@@ -945,7 +943,9 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### TranspilerError
 
-<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+  Bases: [`TranspilerAccessError`](#qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.exceptions.TranspilerAccessError")
+
   Exceptions raised during transpilation.
 
   Set the error message.
@@ -953,7 +953,9 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### TranspilerAccessError
 
-<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+  Bases: [`PassManagerError`](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
+
   DEPRECATED: Exception of access error in the transpiler passes.
 
   Set the error message.
@@ -961,7 +963,9 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### CouplingError
 
-<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   Base class for errors raised by the coupling graph object.
 
   Set the error message.
@@ -969,7 +973,9 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### LayoutError
 
-<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   Errors raised by the layout object.
 
   Set the error message.
@@ -977,7 +983,9 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### CircuitTooWideForTarget
 
-<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+  Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
+
   Error raised if the circuit is too wide for the target.
 
   Set the error message.
@@ -985,7 +993,9 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### InvalidLayoutError
 
-<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+  Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
+
   Error raised when a user provided layout is invalid.
 
   Set the error message.

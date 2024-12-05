@@ -14,35 +14,110 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES = new Set([
-  "public/api/qiskit-ibm-runtime/0.14/objects.inv",
-  "public/api/qiskit-ibm-runtime/0.15/objects.inv",
-  "public/api/qiskit-ibm-runtime/0.16/objects.inv",
-]);
+export const IGNORED_FILES: Set<string> = new Set([]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
 // -----------------------------------------------------------------------------------
 
+// These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
-  // StackOverflow rate limits us.
+  "https://support.us.ovhcloud.com/hc/en-us/articles/360002245784-Creating-Your-First-Public-Cloud-Project",
+  "https://support.google.com/accounts/answer/27441?hl",
+  "https://colab.research.google.com/",
+  "https://colab.research.google.com/#create=true",
+  "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://code.visualstudio.com/",
+  "https://doi.org/10.1002/qute.201800012",
   "https://stackoverflow.com/",
   "https://stackoverflow.com/questions/1049722/what-is-2s-complement",
   "https://quantumcomputing.stackexchange.com/help/how-to-ask",
   "https://quantumcomputing.stackexchange.com/questions/",
   "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
+  "https://www.science.org/doi/10.1126/science.273.5278.1073",
+  "https://journals.aps.org/prx/abstract/10.1103/PhysRevX.10.011022",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.99.032331",
+  "https://link.aps.org/doi/10.1103/PhysRevLett.103.110501",
+  "https://link.aps.org/doi/10.1103/PhysRevA.83.012308",
+  "https://link.aps.org/doi/10.1103/PhysRevA.100.032328",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.71.052330",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.024034",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.105.032620",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.94.052325",
+  "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.064027",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.131.210601",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.033154",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.042303",
+  "https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.6.033309",
+  "https://www.cs.bham.ac.uk/~xin/papers/published_tec_sep00_constraint.pdf",
+  "https://https://arxiv.org/abs/quant-ph/0403071",
+  "https://doi.org/10.1103/PhysRevApplied.5.034007",
+  "http://dx.doi.org/10.1103/PhysRevA.83.012308",
+  "https://doi.org/10.1103/PhysRevLett.103.150502",
+  "https://doi.org/10.1103/PhysRevA.99.032331",
 ];
 
+// These external URLs cause actual 404s and should probably be fixed.
 const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [];
 
 export const ALWAYS_IGNORED_URLS = new Set([
   ...ALWAYS_IGNORED_URLS__EXPECTED,
   ...ALWAYS_IGNORED_URLS__SHOULD_FIX,
 ]);
+
+// -----------------------------------------------------------------------------------
+// Always ignored URL regexes - be careful using this
+// -----------------------------------------------------------------------------------
+
+function _addonsObjectsInvRegexes(): string[] {
+  // Addons have non-API docs in their Sphinx build that translate into invalid links
+  // we should ignore
+  return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
+    (path) => [
+      // Latest version
+      `\/api\/qiskit-addon-[^\/]+\/${path}(\/.*|#.*|$)`,
+      // Historical versions
+      `\/api\/qiskit-addon-[^\/]+\/[0-9]+\.[0-9]\/${path}(\/.*|#.*|$)`,
+    ],
+  );
+}
+
+function _runtimeObjectsInvRegexes(): string[] {
+  // Runtime has non-API docs in their Sphinx build that translate into invalid links
+  // we should ignore
+  return [
+    "errors",
+    "migrate",
+    "cloud",
+    "faqs",
+    "index",
+    "sessions",
+    "primitives",
+    "compare",
+    "retired",
+  ].map(
+    (path) =>
+      `\/api\/qiskit-ibm-runtime\/(0.16|0.15|0.14)\/${path}(\/.*|#.*|$)`,
+  );
+}
+
+export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
+  ..._addonsObjectsInvRegexes(),
+  ..._runtimeObjectsInvRegexes(),
+];
+
+// -----------------------------------------------------------------------------------
+// Always ignored URL prefixes - be careful using this
+// -----------------------------------------------------------------------------------
+
+export const ALWAYS_IGNORED_URL_PREFIXES: string[] = [
+  "/announcements/product-updates",
+];
 
 // -----------------------------------------------------------------------------------
 // Files to ignores
@@ -78,7 +153,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
     ),
   );
   const legacy2 = Object.fromEntries(
-    ["", "0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
+    ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
       (vers) => [
         `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
@@ -88,7 +163,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
     ),
   );
   const latest = Object.fromEntries(
-    ["dev/", "0.29/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
+    ["", "dev/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
       (vers) => [
         `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
@@ -104,7 +179,7 @@ function _qiskitUtilsData(): FilesToIgnores {
   // Qiskit docs used .. py:data:: incorrectly. We didn't fix these versions of the docs
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
-    ["1.0/", "1.1/"].map((vers) => [
+    ["0.45/", "1.0/", "1.1/"].map((vers) => [
       `public/api/qiskit/${vers}objects.inv`,
       [
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
@@ -144,8 +219,22 @@ function _qiskitUtilsData(): FilesToIgnores {
     ]),
   );
   const utilsFile = Object.fromEntries(
-    ["1.0/", "1.1/"].map((vers) => [
-      `docs/api/qiskit/${vers}utils.mdx`,
+    [
+      "0.35",
+      "0.36",
+      "0.37",
+      "0.38",
+      "0.39",
+      "0.40",
+      "0.41",
+      "0.42",
+      "0.43",
+      "0.44",
+      "0.45",
+      "1.0",
+      "1.1",
+    ].map((vers) => [
+      `docs/api/qiskit/${vers}/utils.mdx`,
       [
         "#qiskit.utils.optionals.HAS_TESTTOOLS",
         "#qiskit.utils.optionals.HAS_GRAPHVIZ",
@@ -166,7 +255,7 @@ function _patternsReorg(): FilesToIgnores {
   // We have redirects for all these files. It's best to update API docs to point directly to the new URL,
   // but we don't bother updating old docs.
   const qiskit = Object.fromEntries(
-    ["", "0.46/", "1.0/", "1.1/"].flatMap((vers) => [
+    ["", "0.45/", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
         ["/build/circuit-construction"],
@@ -242,10 +331,48 @@ function _patternsReorg(): FilesToIgnores {
   };
 }
 
+function _legacyQiskitSDKIssues(): FilesToIgnores {
+  // These are all issues due to quirks in our old docs. They
+  // are all safe to ignore and not worth the effort to fix.
+
+  // The module page is missing the expected anchor, even in the original Sphinx. However,
+  // the page is small enough that the link to the transpile function is easy to access.
+  const transpileAnchor = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42", "43"].map((vers) => [
+      `docs/api/qiskit/0.${vers}/qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager.mdx`,
+      ["compiler#qiskit.compiler.transpile"],
+    ]),
+  );
+  // The capitalization of the anchor link changes between the class page and the referring
+  // page, and it's inconsistent in the original Sphinx. However, it doesn't matter
+  // because the anchor is at the top of the page anyways.
+  const pulseLibraryAnchorCapitalization = Object.fromEntries(
+    ["37", "38", "39", "40", "41", "42"].flatMap((vers) => [
+      [
+        `docs/api/qiskit/0.${vers}/qiskit.pulse.library.gaussian_square.mdx`,
+        ["qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian"],
+      ],
+      [
+        `docs/api/qiskit/0.${vers}/pulse.mdx`,
+        [
+          "qiskit.pulse.library.constant#qiskit.pulse.library.constant",
+          "qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian",
+          "qiskit.pulse.library.drag#qiskit.pulse.library.drag",
+        ],
+      ],
+    ]),
+  );
+  return {
+    ...transpileAnchor,
+    ...pulseLibraryAnchorCapitalization,
+  };
+}
+
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
+  _legacyQiskitSDKIssues(),
 );
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};

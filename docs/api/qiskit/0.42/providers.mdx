@@ -1,6 +1,6 @@
 ---
-title: providers
-description: API reference for qiskit.providers
+title: providers (v0.42)
+description: API reference for qiskit.providers in qiskit v0.42
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.providers
@@ -10,9 +10,9 @@ python_api_name: qiskit.providers
 
 <span id="qiskit-providers" />
 
-# Providers Interface
+<span id="providers-interface-qiskit-providers" />
 
-<span id="module-qiskit.providers" />
+# Providers Interface
 
 `qiskit.providers`
 
@@ -94,6 +94,8 @@ If you have a quantum device or simulator that you would like to integrate with 
 
 For a simple example of a provider, see the [qiskit-aqt-provider](https://github.com/Qiskit-Partners/qiskit-aqt-provider)
 
+<span id="id1" />
+
 ## Provider
 
 A provider class serves a single purpose: to get backend objects that enable executing circuits on a device or simulator. The expectation is that any required credentials and/or authentication will be handled in the initialization of a provider object. The provider object will then provide a list of backends, and methods to filter and acquire backends (using the provided credentials if required). An example provider class looks like:
@@ -119,6 +121,8 @@ class MyProvider(Provider):
 ```
 
 Ensure that any necessary information for authentication (if required) are present in the class and that the backends method matches the required interface. The rest is up to the specific provider on how to implement.
+
+<span id="id2" />
 
 ## Backend
 
@@ -312,6 +316,8 @@ def run(self, circuits. **kwargs):
     return MyJob(self. job_handle, job_json, circuit)
 ```
 
+<span id="id3" />
+
 ### Options
 
 There are often several options for a backend that control how a circuit is run. The typical example of this is something like the number of `shots` which is how many times the circuit is to be executed. The options available for a backend are defined using an [`Options`](qiskit.providers.Options "qiskit.providers.Options") object. This object is initially created by the `_default_options` method of a Backend class. The default options returns an initialized [`Options`](qiskit.providers.Options "qiskit.providers.Options") object with all the default values for all the options a backend supports. For example, if the backend supports only supports `shots` the `_default_options` method would look like:
@@ -329,6 +335,8 @@ self.options.set_validator("shots", (1, 4096))
 ```
 
 you can refer to the [`set_validator()`](qiskit.providers.Options#set_validator "qiskit.providers.Options.set_validator") documentation for a full list of validation options.
+
+<span id="id4" />
 
 ## Job
 
@@ -422,6 +430,8 @@ While not directly part of the provider interface, the [`qiskit.primitives`](pri
 For example, if your backends were well suited to leverage [mthree](https://github.com/Qiskit-Partners/mthree/) measurement mitigation to improve the quality of the results, you could implement a provider-specific [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler") implementation that leverages the `M3Mitigation` class internally to run the circuits and return quasi-probabilities directly from mthree in the result. Doing this would enable algorithms from [`qiskit.algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") to get the best results with mitigation applied directly from your backends. You can refer to the documentation in [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") on how to write custom implementations. Also the built-in implementations: [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler"), [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator"), [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler"), and [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") can serve as references/models on how to implement these as well.
 
 # Migrating between Backend API Versions
+
+<span id="backendv1-backendv2" />
 
 ## BackendV1 -> BackendV2
 

@@ -1,0 +1,37 @@
+---
+title: Multi-product formulas (MPF) release notes
+description: Changes made to Multi-product formulas (MPF)
+in_page_toc_max_heading_level: 2
+---
+
+<span id="release-notes" />
+
+<span id="id1" />
+
+# Multi-product formulas (MPF) release notes
+
+<span id="release-notes-0-2-0" />
+
+<span id="id2" />
+
+## 0.2.0
+
+<span id="release-notes-0-2-0-new-features" />
+
+### New Features
+
+*   Adds the ability to compute dynamic (i.e. time-dependent) MPF coefficients. For more details, refer to [`qiskit_addon_mpf.dynamic`](dynamic#module-qiskit_addon_mpf.dynamic "qiskit_addon_mpf.dynamic").
+
+<span id="release-notes-0-2-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   The code for the static MPF coefficients has been moved. It functions the same as before, but you have to update your imports and function names as summarized in the table below:
+
+    | Old                                                           | New                                                               |
+    | ------------------------------------------------------------- | ----------------------------------------------------------------- |
+    | `from qiskit_addon_mpf.static import setup_lse`               | `from qiskit_addon_mpf.static import setup_static_lse`            |
+    | `from qiskit_addon_mpf.static import LSE`                     | `from qiskit_addon_mpf.costs import LSE`                          |
+    | `from qiskit_addon_mpf.static import setup_exact_model`       | `from qiskit_addon_mpf.costs import setup_exact_problem`          |
+    | `from qiskit_addon_mpf.static import setup_approximate_model` | `from qiskit_addon_mpf.costs import setup_sum_of_squares_problem` |
+

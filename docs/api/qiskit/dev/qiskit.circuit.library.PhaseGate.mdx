@@ -1,6 +1,6 @@
 ---
-title: PhaseGate
-description: API reference for qiskit.circuit.library.PhaseGate
+title: PhaseGate (dev version)
+description: API reference for qiskit.circuit.library.PhaseGate in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.PhaseGate
@@ -19,41 +19,41 @@ python_api_name: qiskit.circuit.library.PhaseGate
 
   **Circuit symbol:**
 
-  ```python
+  ```text
        ┌──────┐
-  q_0: ┤ P(λ) ├
+  q_0: ┤ P(θ) ├
        └──────┘
   ```
 
   **Matrix Representation:**
 
 $$
-P(\lambda) =
+P(\theta) =
 \begin{pmatrix}
 1 & 0 \\
-0 & e^{i\lambda}
+0 & e^{i\theta}
 \end{pmatrix}
 $$
 
   **Examples:**
 
   > $$
-  > P(\lambda = \pi) = Z
+  > P(\theta = \pi) = Z
   > $$
   >
   > $$
-  > P(\lambda = \pi/2) = S
+  > P(\theta = \pi/2) = S
   > $$
   >
   > $$
-  > P(\lambda = \pi/4) = T
+  > P(\theta = \pi/4) = T
   > $$
 
   <Admonition title="See also" type="note">
     `RZGate`: This gate is equivalent to RZ up to a phase factor.
 
     > $$
-    > P(\lambda) = e^{i{\lambda}/2} RZ(\lambda)
+    > P(\theta) = e^{i{\theta}/2} RZ(\theta)
     > $$
 
     Reference for virtual Z gate implementation: [1612.00858](https://arxiv.org/abs/1612.00858)
@@ -62,6 +62,11 @@ $$
   Create new Phase gate.
 
   ## Attributes
+
+  **Parameters**
+
+  *   **theta** (*ParameterValueType*) –
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 
   ### base\_class
 
@@ -88,12 +93,20 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseGate.condition">
     The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of Qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### condition\_bits
 
   <Attribute id="qiskit.circuit.library.PhaseGate.condition_bits">
     Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of Qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### decompositions
@@ -112,6 +125,10 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseGate.duration">
     Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### label
@@ -156,6 +173,10 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseGate.unit">
     Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ## Methods
@@ -167,10 +188,10 @@ $$
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of control qubits.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – An optional label for the gate \[Default: `None`]
-    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – control state expressed as integer, string (e.g. `'110'`), or `None`. If `None`, use all 1s.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – An optional label for the gate \[Default: `None`]
+    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – control state expressed as integer, string (e.g. `'110'`), or `None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
 
     **Returns**
 
@@ -188,7 +209,7 @@ $$
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always another `PGate` with an inverse parameter value.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as the inverse of this gate is always another `PGate` with an inverse parameter value.
 
     **Returns**
 
@@ -208,8 +229,8 @@ $$
 
     **Parameters**
 
-    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power to raise the gate to
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
 
     **Returns**
 

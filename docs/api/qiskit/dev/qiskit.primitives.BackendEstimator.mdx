@@ -1,6 +1,6 @@
 ---
-title: BackendEstimator
-description: API reference for qiskit.primitives.BackendEstimator
+title: BackendEstimator (dev version)
+description: API reference for qiskit.primitives.BackendEstimator in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.primitives.BackendEstimator
@@ -8,7 +8,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
 # BackendEstimator
 
-<Class id="qiskit.primitives.BackendEstimator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/backend_estimator.py#L91-L415" signature="qiskit.primitives.BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)" modifiers="class">
+<Class id="qiskit.primitives.BackendEstimator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/backend_estimator.py#L94-L418" signature="qiskit.primitives.BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)" modifiers="class">
   Bases: [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")\[[`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.primitive_job.PrimitiveJob")\[[`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.base.estimator_result.EstimatorResult")]]
 
   Evaluates expectation value using Pauli rotation gates.
@@ -18,16 +18,16 @@ python_api_name: qiskit.primitives.BackendEstimator
   Initialize a new BackendEstimator (V1) instance
 
   <Admonition title="Deprecated since version 1.2" type="danger">
-    The class `qiskit.primitives.backend_estimator.BackendEstimator` is deprecated as of qiskit 1.2. It will be removed no earlier than 3 months after the release date. All implementations of the BaseEstimatorV1 interface have been deprecated in favor of their V2 counterparts. The V2 alternative for the BackendEstimator class is BackendEstimatorV2.
+    The class `qiskit.primitives.backend_estimator.BackendEstimator` is deprecated as of Qiskit 1.2. It will be removed no earlier than 3 months after the release date. All implementations of the BaseEstimatorV1 interface have been deprecated in favor of their V2 counterparts. The V2 alternative for the BackendEstimator class is BackendEstimatorV2.
   </Admonition>
 
   **Parameters**
 
   *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – (required) the backend to run the primitive on
-  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
-  *   **abelian\_grouping** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the observable should be grouped into commuting
+  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) – Default options.
+  *   **abelian\_grouping** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether the observable should be grouped into commuting
   *   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
-  *   **skip\_transpilation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this object is called.
+  *   **skip\_transpilation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this object is called.
 
   ## Attributes
 
@@ -73,7 +73,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
   ### run
 
-  <Function id="qiskit.primitives.BackendEstimator.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_estimator.py#L121-L178" signature="run(circuits, observables, parameter_values=None, **run_options)">
+  <Function id="qiskit.primitives.BackendEstimator.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/base/base_estimator.py#L123-L180" signature="run(circuits, observables, parameter_values=None, **run_options)">
     Run the job of the estimation of expectation value(s).
 
     `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
@@ -91,14 +91,14 @@ python_api_name: qiskit.primitives.BackendEstimator
     with bound parameters
 
     ```python
-    values = parameter_values[i].
+    values = parameter_values[i]
     ```
 
     **Parameters**
 
     *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – one or more circuit objects.
-    *   **observables** (*Sequence\[BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
-    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] |* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – concrete parameters to be bound.
+    *   **observables** (*Sequence\[BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] |* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – concrete parameters to be bound.
     *   **run\_options** – runtime options used for circuit execution.
 
     **Returns**
@@ -107,8 +107,8 @@ python_api_name: qiskit.primitives.BackendEstimator
 
     **Raises**
 
-    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – Invalid argument type given.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid argument values given.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – Invalid argument type given.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Invalid argument values given.
 
     **Return type**
 
@@ -127,7 +127,7 @@ python_api_name: qiskit.primitives.BackendEstimator
 
   ### set\_transpile\_options
 
-  <Function id="qiskit.primitives.BackendEstimator.set_transpile_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/backend_estimator.py#L162-L168" signature="set_transpile_options(**fields)">
+  <Function id="qiskit.primitives.BackendEstimator.set_transpile_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/primitives/backend_estimator.py#L165-L171" signature="set_transpile_options(**fields)">
     Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options
   </Function>
 </Class>

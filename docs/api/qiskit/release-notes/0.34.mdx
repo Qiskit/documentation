@@ -60,7 +60,7 @@ Qiskit Terra 0.19.2 is predominantly a bugfix release, but also now comes with w
     qc.to_instruction()
     ```
 
-*   Registers will now correctly reject duplicate bits. Fixed [#7446](https://github.com/Qiskit/qiskit-terra/issues/7446).
+*   Registers will now correctly reject duplicate bits. Fixed [#7446](https://github.com/Qiskit/qiskit/issues/7446).
 
 *   The `FakeOpenPulse2Q` mock backend now has T2 times and readout errors stored for its qubits. These are arbitrary values, approximately consistent with real backends at the time of its creation.
 
@@ -161,7 +161,7 @@ Qiskit Terra 0.19.2 is predominantly a bugfix release, but also now comes with w
 
 *   Stopped the parser in [`QuantumCircuit.from_qasm_str()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#from_qasm_str "qiskit.circuit.QuantumCircuit.from_qasm_str") and [`from_qasm_file()`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit#from_qasm_file "qiskit.circuit.QuantumCircuit.from_qasm_file") from accepting OpenQASM programs that identified themselves as being from a language version other than 2.0. This parser is only for OpenQASM 2.0; support for imported circuits from OpenQASM 3.0 will be added in an upcoming release.
 
-*   Fixed QPY serialization of [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects that contained control flow instructions. Previously if you attempted to serialize a circuit containing [`IfElseOp`](/api/qiskit/0.45/qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp"), [`WhileLoopOp`](/api/qiskit/0.45/qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), or [`ForLoopOp`](/api/qiskit/0.45/qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") the serialization would fail. Fixed [#7583](https://github.com/Qiskit/qiskit-terra/issues/7583).
+*   Fixed QPY serialization of [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects that contained control flow instructions. Previously if you attempted to serialize a circuit containing [`IfElseOp`](/api/qiskit/0.45/qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp"), [`WhileLoopOp`](/api/qiskit/0.45/qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), or [`ForLoopOp`](/api/qiskit/0.45/qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") the serialization would fail. Fixed [#7583](https://github.com/Qiskit/qiskit/issues/7583).
 
 *   Fixed QPY serialization of [`QuantumCircuit`](/api/qiskit/0.45/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") containing subsets of bits from a [`QuantumRegister`](/api/qiskit/0.45/qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") or [`ClassicalRegister`](/api/qiskit/0.45/qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"). Previously if you tried to serialize a circuit like this it would incorrectly treat these bits as standalone [`Qubit`](/api/qiskit/0.45/qiskit.circuit.Qubit "qiskit.circuit.Qubit") or [`Clbit`](/api/qiskit/0.45/qiskit.circuit.Clbit "qiskit.circuit.Clbit") without having a register set. For example, if you try to serialize a circuit like:
 

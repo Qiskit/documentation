@@ -14,7 +14,11 @@ import { join } from "path/posix";
 
 import { findSeparateReleaseNotesVersions } from "./releaseNotes.js";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage.js";
-import { TocGrouping, QISKIT_TOC_GROUPING } from "./TocGrouping.js";
+import {
+  TocGrouping,
+  QISKIT_TOC_GROUPING,
+  QISKIT_ADDON_MPF_GROUPING,
+} from "./TocGrouping.js";
 
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
@@ -40,11 +44,19 @@ export class Pkg {
   readonly type: PackageType;
   readonly releaseNotesConfig: ReleaseNotesConfig;
   readonly tocGrouping?: TocGrouping;
+  /// Convert URLs like `my_pkg.SomeClass` to `some-class` for better SEO.
+  readonly kebabCaseAndShortenUrls: boolean;
 
   static VALID_NAMES = [
     "qiskit",
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
+    "qiskit-addon-aqc-tensor",
+    "qiskit-addon-obp",
+    "qiskit-addon-mpf",
+    "qiskit-addon-sqd",
+    "qiskit-addon-cutting",
+    "qiskit-addon-utils",
   ];
 
   constructor(kwargs: {
@@ -56,6 +68,7 @@ export class Pkg {
     type: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
+    kebabCaseAndShortenUrls: boolean;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -66,6 +79,7 @@ export class Pkg {
     this.releaseNotesConfig =
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
     this.tocGrouping = kwargs.tocGrouping;
+    this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
   }
 
   static async fromArgs(
@@ -86,30 +100,80 @@ export class Pkg {
       return new Pkg({
         ...args,
         title: "Qiskit SDK",
-        name: "qiskit",
         githubSlug: "qiskit/qiskit",
         releaseNotesConfig: new ReleaseNotesConfig({
           separatePagesVersions: releaseNoteEntries,
         }),
         tocGrouping: QISKIT_TOC_GROUPING,
+        kebabCaseAndShortenUrls: false,
       });
     }
 
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime Client",
-        name: "qiskit-ibm-runtime",
+        title: "Qiskit Runtime client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
+        kebabCaseAndShortenUrls: false,
       });
     }
 
     if (name === "qiskit-ibm-transpiler") {
       return new Pkg({
         ...args,
-        title: "Qiskit Transpiler Service Client",
-        name: "qiskit-ibm-transpiler",
+        title: "Qiskit Transpiler Service client",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
+        kebabCaseAndShortenUrls: false,
+      });
+    }
+
+    if (name === "qiskit-addon-aqc-tensor") {
+      return new Pkg({
+        ...args,
+        title: "Approximate quantum compilation (AQC-Tensor)",
+        githubSlug: "Qiskit/qiskit-addon-aqc-tensor",
+        kebabCaseAndShortenUrls: true,
+      });
+    }
+    if (name === "qiskit-addon-obp") {
+      return new Pkg({
+        ...args,
+        title: "Operator backpropagation (OBP)",
+        githubSlug: "Qiskit/qiskit-addon-obp",
+        kebabCaseAndShortenUrls: true,
+      });
+    }
+    if (name === "qiskit-addon-mpf") {
+      return new Pkg({
+        ...args,
+        title: "Multi-product formulas (MPF)",
+        githubSlug: "Qiskit/qiskit-addon-mpf",
+        kebabCaseAndShortenUrls: true,
+        tocGrouping: QISKIT_ADDON_MPF_GROUPING,
+      });
+    }
+    if (name === "qiskit-addon-sqd") {
+      return new Pkg({
+        ...args,
+        title: "Sample-based quantum diagonalization (SQD)",
+        githubSlug: "Qiskit/qiskit-addon-sqd",
+        kebabCaseAndShortenUrls: true,
+      });
+    }
+    if (name === "qiskit-addon-cutting") {
+      return new Pkg({
+        ...args,
+        title: "Circuit cutting",
+        githubSlug: "Qiskit/qiskit-addon-cutting",
+        kebabCaseAndShortenUrls: true,
+      });
+    }
+    if (name === "qiskit-addon-utils") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit addon utilities",
+        githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
       });
     }
 
@@ -125,6 +189,7 @@ export class Pkg {
     type?: PackageType;
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
+    kebabCaseAndShortenUrls?: boolean;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -135,6 +200,7 @@ export class Pkg {
       type: kwargs.type ?? "latest",
       releaseNotesConfig: kwargs.releaseNotesConfig,
       tocGrouping: kwargs.tocGrouping,
+      kebabCaseAndShortenUrls: kwargs.kebabCaseAndShortenUrls ?? false,
     });
   }
 

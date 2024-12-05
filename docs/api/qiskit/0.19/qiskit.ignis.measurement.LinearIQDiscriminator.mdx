@@ -1,6 +1,6 @@
 ---
-title: LinearIQDiscriminator
-description: API reference for qiskit.ignis.measurement.LinearIQDiscriminator
+title: LinearIQDiscriminator (v0.19)
+description: API reference for qiskit.ignis.measurement.LinearIQDiscriminator in qiskit v0.19
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
@@ -22,17 +22,23 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
 
   ## Attributes
 
+  <span id="lineariqdiscriminator-expected-states" />
+
   ### expected\_states
 
   <Attribute id="qiskit.ignis.measurement.LinearIQDiscriminator.expected_states">
     Returns the expected states used to train the discriminator.
   </Attribute>
 
+  <span id="lineariqdiscriminator-fitted" />
+
   ### fitted
 
   <Attribute id="qiskit.ignis.measurement.LinearIQDiscriminator.fitted">
     True if the discriminator has been fitted to calibration data.
   </Attribute>
+
+  <span id="lineariqdiscriminator-schedules" />
 
   ### schedules
 
@@ -41,6 +47,8 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
   </Attribute>
 
   ## Methods
+
+  <span id="lineariqdiscriminator-add-data" />
 
   ### add\_data
 
@@ -52,6 +60,8 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
     *   **refit** (`bool`) – refit the discriminator if True.
     *   **schedules** (`Union`\[`List`\[`str`], `List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")], `None`]) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
   </Function>
+
+  <span id="lineariqdiscriminator-discriminate" />
 
   ### discriminate
 
@@ -71,11 +81,15 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
     The discriminated x\_data as a list of labels.
   </Function>
 
+  <span id="lineariqdiscriminator-fit" />
+
   ### fit
 
   <Function id="qiskit.ignis.measurement.LinearIQDiscriminator.fit" signature="LinearIQDiscriminator.fit()">
     Fits the discriminator using self.\_xdata and self.\_ydata.
   </Function>
+
+  <span id="lineariqdiscriminator-format-iq-data" />
 
   ### format\_iq\_data
 
@@ -98,6 +112,8 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
 
     [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if the measurement return type is unknown
   </Function>
+
+  <span id="lineariqdiscriminator-get-xdata" />
 
   ### get\_xdata
 
@@ -123,6 +139,8 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
     [**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if IQ data could not be found
   </Function>
 
+  <span id="lineariqdiscriminator-get-ydata" />
+
   ### get\_ydata
 
   <Function id="qiskit.ignis.measurement.LinearIQDiscriminator.get_ydata" signature="LinearIQDiscriminator.get_ydata(results, schedule_type_to_get, schedules=None)">
@@ -145,6 +163,8 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
     list
   </Function>
 
+  <span id="lineariqdiscriminator-is-calibration" />
+
   ### is\_calibration
 
   <Function id="qiskit.ignis.measurement.LinearIQDiscriminator.is_calibration" signature="LinearIQDiscriminator.is_calibration(result_name)">
@@ -164,6 +184,8 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
 
     bool
   </Function>
+
+  <span id="lineariqdiscriminator-plot" />
 
   ### plot
 
@@ -193,6 +215,8 @@ python_api_name: qiskit.ignis.measurement.LinearIQDiscriminator
 
     **QiskitError** – If matplotlib is not installed, or there is invalid input
   </Function>
+
+  <span id="lineariqdiscriminator-plot-xdata" />
 
   ### plot\_xdata
 

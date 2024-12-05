@@ -777,7 +777,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
     ```python
     def get_backend(self, name=None, **kwargs):
-      backend = self.backends(name, **kwargs)
+      backends = self.backends(name, **kwargs)
       if len(backends) > 1:
           raise QiskitBackendNotFoundError("More than one backend matches the criteria")
       if not backends:
@@ -827,7 +827,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 *   Fixed an issue with the [`SparsePauliOp.apply_layout()`](/api/qiskit/1.1/qiskit.quantum_info.SparsePauliOp#apply_layout "qiskit.quantum_info.SparsePauliOp.apply_layout") and [`Pauli.apply_layout()`](/api/qiskit/1.1/qiskit.quantum_info.Pauli#apply_layout "qiskit.quantum_info.Pauli.apply_layout") methods when an invalid array with duplicate or negative indices were passed in for the `layout` argument. Previously this wouldn’t result in an error and the transformation performed would not be valid. These methods will now raise a [`QiskitError`](/api/qiskit/1.1/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if duplicate indices or negative indices are provided as part of a layout.
 
-*   Fixed a performance issue in the [`BackendSamplerV2`](/api/qiskit/1.1/qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2") and [`BackendEstimatorV2`](/api/qiskit/1.1/qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2"). Fixed [#12290](https://github.com/Qiskit/qiskit-terra/issues/12290)
+*   Fixed a performance issue in the [`BackendSamplerV2`](/api/qiskit/1.1/qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2") and [`BackendEstimatorV2`](/api/qiskit/1.1/qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2"). Fixed [#12290](https://github.com/Qiskit/qiskit/issues/12290)
 
 *   Fixed an issue with the [`convert_to_target()`](/api/qiskit/1.1/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") where the converter would incorrectly ignore control flow instructions if they were specified in the `BackendConfiguration.supported_instructions` attribute which is the typical location that control flow instructions are specified in a [`BackendConfiguration`](/api/qiskit/1.1/qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object. Fixed [#11872](https://github.com/Qiskit/qiskit/issues/11872).
 
