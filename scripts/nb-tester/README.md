@@ -16,10 +16,6 @@ test-docs-notebooks path/to/notebook.ipynb path/to/another.ipynb
 * To set a time limit for each cell, include the `--cell-timeout` argument,
   followed by the time in seconds.
 
-```
-test-docs-notebooks --write path/to/notebook.ipynb
-```
-
 ## Patches
 
 A key feature of this tool is tricking notebooks into running jobs on a
@@ -37,7 +33,7 @@ You specify patch information as a TOML dict string. This dict _must_ inculde a
 one of our built-in patches (choose from `qiskit-fake-provider`,
 `qiskit-ibm-runtime`, or `qiskit-fake-provider`).
 
-```toml
+```
 { patch="patch-name" }
 ```
 
@@ -48,22 +44,23 @@ code using `.format(**args)`. For example, here's a simplified version of our
 built-in `qiskit-fake-provider` patch:
 
 ```python
+# Example patch file
 from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit_ibm_runtime import QiskitRuntimeService
 QiskitRuntimeService.least_busy = lambda *_: GenericBackendV2(num_qubits={num_qubits})
 ```
 
-Note the variable `{num_qubits}`. To use this patch, you include the values of
-any variables as extra arguments in the TOML dict.
+Note the variable `{num_qubits}`. To use this patch, include the values of any
+variables as extra arguments in the TOML dict.
 
-```toml
+```
 { patch="qiskit-fake-provider", num_qubits=3 }
 ```
 
 There are two ways to provide patches: Through the CLI or through a config file.
 You cannot use both at the same time.
 
-### Setting patches through the CLI
+### Set patches through the CLI
 
 Use the `--patch` argument to provide patch information, followed by a list of
 filenames that the patch should apply to. Filenames passed before a `--patch`
@@ -96,13 +93,13 @@ This will execute:
 
 </details>
 
-### Setting patches through a config file
+### Set patches through a config file
 
 You can also choose how to patch notebooks through a TOML file. This config
 file contains groups of notebook paths, and each group includes information on
 how to patch that group in different situations, known as "test strategies".
 
-```toml
+```
 # Example config file
 default-strategy = "<strategy-name>"
 
@@ -125,13 +122,13 @@ default-strategy = "main"
 [test-strategies]
 mock = { timeout = 300 }
 
-[groups.no-mock]
+[groups.group1]
 test-strategies.main = {}
 notebooks = [
     "notebook.ipynb",
 ]
 
-[groups.mock]
+[groups.group2]
 test-strategies.main = {}
 test-strategies.mock = { patch="qiskit-fake-provider", num_qubits=6 }
 notebooks = [
@@ -154,10 +151,10 @@ Here's a few different commands you could run:
   ```
 
   This runs the same config file but with test strategy "mock". This will skip
-  `notebook.ipynb`, as it does not have a "mock" strategy defined, and will run
-  `another-notebook.ipynb` with a 6-qubit simulator. The "mock" strategy also
-  has a timeout defined, so each cell will timeout after 300s. You can override
-  this with your own `--timeout` argument.
+  `notebook.ipynb`, as its group does not have a "mock" strategy defined, and
+  will run `another-notebook.ipynb` with a 6-qubit simulator. The "mock"
+  strategy also has a timeout defined, so each cell will timeout after 300s.
+  You can override this with your own `--timeout` argument.
 
 * ```
   test-docs-notebooks notebook.ipynb --config-path config.toml
