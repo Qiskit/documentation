@@ -43,6 +43,7 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.99.032331",
   "https://link.aps.org/doi/10.1103/PhysRevLett.103.110501",
   "https://link.aps.org/doi/10.1103/PhysRevA.83.012308",
+  "https://link.aps.org/doi/10.1103/PhysRevA.100.032328",
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.71.052330",
   "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.93.032318",
   "https://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.20.024034",

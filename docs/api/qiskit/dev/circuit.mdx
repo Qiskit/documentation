@@ -250,6 +250,8 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 #### Bit
 
 <Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/bit.py#L21-L94" signature="qiskit.circuit.Bit(register=None, index=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Implement a generic bit.
 
   <Admonition title="Note" type="note">
@@ -290,6 +292,8 @@ A collection bits of the same type can be encapsulated in a register of the matc
 #### Register
 
 <Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L26-L233" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
   Implement a generic register.
 
   <Admonition title="Note" type="note">
@@ -341,6 +345,11 @@ Each of the defined bit subtypes has an associated register, which have the same
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
 
   Implement a quantum register.
+
+  **Parameters**
+
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 </Class>
 
 #### ClassicalRegister
@@ -349,6 +358,11 @@ Each of the defined bit subtypes has an associated register, which have the same
   Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
 
   Implement a classical register.
+
+  **Parameters**
+
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 </Class>
 
 #### AncillaRegister
@@ -357,6 +371,11 @@ Each of the defined bit subtypes has an associated register, which have the same
   Bases: [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
 
   Implement an ancilla register.
+
+  **Parameters**
+
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 </Class>
 
 A common way to instantiate several bits at once is to create a register, such as by `QuantumRegister("my_qreg", 5)`. This has the advantage that you can give that collection of bits a name, which will appear during circuit visualizations ([`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw")) and exports to interchange languages (see [`qasm2`](qasm2#module-qiskit.qasm2 "qiskit.qasm2") and [`qasm3`](qasm3#module-qiskit.qasm3 "qiskit.qasm3")). You can also pass a name and a list of pre-constructed bits, but this creates an “aliasing register”, which are very poorly supported on hardware.
@@ -432,19 +451,34 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
 #### InverseModifier
 
 <Class id="qiskit.circuit.InverseModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L33-L37" signature="qiskit.circuit.InverseModifier" modifiers="class">
+  Bases: `Modifier`
+
   Inverse modifier: specifies that the operation is inverted.
 </Class>
 
 #### ControlModifier
 
 <Class id="qiskit.circuit.ControlModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L40-L50" signature="qiskit.circuit.ControlModifier(num_ctrl_qubits=0, ctrl_state=None)" modifiers="class">
+  Bases: `Modifier`
+
   Control modifier: specifies that the operation is controlled by `num_ctrl_qubits` and has control state `ctrl_state`.
+
+  **Parameters**
+
+  *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 </Class>
 
 #### PowerModifier
 
 <Class id="qiskit.circuit.PowerModifier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/annotated_operation.py#L53-L57" signature="qiskit.circuit.PowerModifier(power)" modifiers="class">
+  Bases: `Modifier`
+
   Power modifier: specifies that the operation is raised to the power `power`.
+
+  **Parameters**
+
+  **power** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
 </Class>
 
 For information on how to create custom gates and instructions, including how to build one-off objects, and re-usable parametric gates via subclassing, see [Creating custom instructions](#circuit-custom-gates) below. The Qiskit circuit library in [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") contains many predefined gates and circuits for you to use.
@@ -553,7 +587,7 @@ qc.store(creg[0], parity)
 
   <Function id="qiskit.circuit.Store.c_if" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/store.py#L92-L97" signature="c_if(classical, val)">
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The method `qiskit.circuit.store.Store.c_if()` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+      The method `qiskit.circuit.store.Store.c_if()` is deprecated as of Qiskit 1.3.0. It will be removed in 2.0.0.
     </Admonition>
   </Function>
 
@@ -874,7 +908,7 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
   circ.draw(output='mpl')
   ```
 
-  ![../\_images/circuit-2.png](/images/api/qiskit/dev/circuit-2.png)
+  ![../\_images/circuit-3.png](/images/api/qiskit/dev/circuit-3.png)
 
   **Parameters**
 
@@ -946,6 +980,8 @@ Almost all circuit functions and methods will raise a [`CircuitError`](#qiskit.c
 ### CircuitError
 
 <Class id="qiskit.circuit.CircuitError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/exceptions.py#L18-L19" signature="qiskit.circuit.CircuitError(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
   Base class for errors raised while processing a circuit.
 
   Set the error message.
@@ -991,7 +1027,7 @@ If we draw this circuit, we will see that Qiskit places the zeroth qubit on the 
 qc.draw("mpl")
 ```
 
-![../\_images/circuit-4.png](/images/api/qiskit/dev/circuit-4.png)
+![../\_images/circuit-5.png](/images/api/qiskit/dev/circuit-5.png)
 
 ### Matrix representations
 

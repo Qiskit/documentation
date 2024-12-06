@@ -20,7 +20,7 @@ python_api_name: qiskit.utils
 
 ### add\_deprecation\_to\_docstring
 
-<Function id="qiskit.utils.add_deprecation_to_docstring" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L418-L490" signature="qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)">
+<Function id="qiskit.utils.add_deprecation_to_docstring" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L310-L382" signature="qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)">
   Dynamically insert the deprecation message into `func`’s docstring.
 
   **Parameters**
@@ -29,11 +29,15 @@ python_api_name: qiskit.utils
   *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The full deprecation message.
   *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The version the deprecation started at.
   *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Is the deprecation still pending?
+
+  **Return type**
+
+  None
 </Function>
 
 ### deprecate\_arg
 
-<Function id="qiskit.utils.deprecate_arg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L105-L205" signature="qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')">
+<Function id="qiskit.utils.deprecate_arg" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L105-L205" signature="qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='Qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')">
   Decorator to indicate an argument has been deprecated in some way.
 
   This decorator may be used multiple times on the same function, once per deprecated argument. It should be placed beneath other decorators like `@staticmethod` and property decorators.
@@ -45,7 +49,7 @@ python_api_name: qiskit.utils
   *   **deprecation\_description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – What is being deprecated? E.g. “Setting my\_func()’s my\_arg argument to None.” If not set, will default to “\{func\_name}’s argument \{name}”.
   *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Put here any additional information, such as what to use instead (if new\_alias is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
   *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set to True if the deprecation is still pending.
-  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The PyPI package name, e.g. “qiskit-nature”.
+  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The package name shown in the deprecation message (e.g. the PyPI package name).
   *   **new\_alias** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
   *   **predicate** (*Callable\[\[Any],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
   *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
@@ -59,29 +63,9 @@ python_api_name: qiskit.utils
   Callable
 </Function>
 
-### deprecate\_arguments
-
-<Function id="qiskit.utils.deprecate_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L208-L277" signature="qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)">
-  Deprecated. Instead, use @deprecate\_arg.
-
-  **Parameters**
-
-  *   **kwarg\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None]*) – A dictionary of the old argument name to the new name.
-  *   **category** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.13)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
-
-  **Returns**
-
-  The decorated callable.
-
-  **Return type**
-
-  Callable
-</Function>
-
 ### deprecate\_func
 
-<Function id="qiskit.utils.deprecate_func" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L24-L102" signature="qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False, stacklevel=2)">
+<Function id="qiskit.utils.deprecate_func" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L24-L102" signature="qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='Qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False, stacklevel=2)">
   Decorator to indicate a function has been deprecated.
 
   It should be placed beneath other decorators like @staticmethod and property decorators.
@@ -93,7 +77,7 @@ python_api_name: qiskit.utils
   *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
   *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
   *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Set to `True` if the deprecation is still pending.
-  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The PyPI package name, e.g. “qiskit-nature”.
+  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The package name shown in the deprecation message (e.g. the PyPI package name).
   *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
   *   **is\_property** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
   *   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Stack level passed to [`warnings.warn()`](https://docs.python.org/3/library/warnings.html#warnings.warn "(in Python v3.13)").
@@ -101,27 +85,6 @@ python_api_name: qiskit.utils
   **Returns**
 
   The decorated callable.
-
-  **Return type**
-
-  Callable
-</Function>
-
-### deprecate\_function
-
-<Function id="qiskit.utils.deprecate_function" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/deprecation.py#L280-L313" signature="qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)">
-  Deprecated. Instead, use @deprecate\_func.
-
-  **Parameters**
-
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Warning message to emit.
-  *   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The warning stacklevel to use, defaults to 2.
-  *   **category** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.13)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
-
-  **Returns**
-
-  The decorated, deprecated callable.
 
   **Return type**
 
@@ -155,6 +118,11 @@ python_api_name: qiskit.utils
   **Raises**
 
   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `units` aren’t recognized.
+
+  **Parameters**
+
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) –
+  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
 
   **Return type**
 
@@ -197,6 +165,11 @@ python_api_name: qiskit.utils
 
   *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `value` is out of range.
   *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the `value` is not real number.
+
+  **Parameters**
+
+  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
+  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
 
   **Return type**
 
@@ -254,7 +227,7 @@ A helper function for calling a custom function with Python [`ProcessPoolExecuto
 
 ### parallel\_map
 
-<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L121-L191" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)">
+<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L121-L193" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)">
   Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
   ```python
@@ -512,6 +485,8 @@ from qiskit.utils import LazyImportTester
 #### LazyDependencyManager
 
 <Class id="qiskit.utils.LazyDependencyManager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L44-L238" signature="qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
   A mananger for some optional features that are expensive to import, or to verify the existence of.
 
   These objects can be used as Booleans, such as `if x`, and will evaluate `True` if the dependency they test for is available, and `False` if not. The presence of the dependency will only be tested when the Boolean is evaluated, so it can be used as a runtime test in functions and methods without requiring an import-time test.
@@ -619,11 +594,17 @@ from qiskit.utils import LazyImportTester
 #### LazyImportTester
 
 <Class id="qiskit.utils.LazyImportTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L241-L323" signature="qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
+  Bases: [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.lazy_tester.LazyDependencyManager")
+
   A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
   **Parameters**
 
-  **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
+  *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*], None] | None*) –
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 
   **Raises**
 
@@ -633,11 +614,17 @@ from qiskit.utils import LazyImportTester
 #### LazySubprocessTester
 
 <Class id="qiskit.utils.LazySubprocessTester" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/lazy_tester.py#L326-L363" signature="qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)" modifiers="class">
+  Bases: [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.lazy_tester.LazyDependencyManager")
+
   A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 
   **Parameters**
 
-  **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
+  *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*], None] | None*) –
+  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 
   **Raises**
 
