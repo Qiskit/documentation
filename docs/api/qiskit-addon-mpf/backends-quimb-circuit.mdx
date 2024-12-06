@@ -44,9 +44,9 @@ The [`IdentityStateFactory`](dynamic#identitystatefactory "qiskit_addon_mpf.dyna
 >>> identity_factory = CircuitState
 ```
 
-The setup of the [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") is slightly more involved. It requires a **parametrized** [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") object as its input where the [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)") should take the place of the Trotter methods time step (`dt`).
+The setup of the [`CircuitEvolver`](backends-quimb-circuit-circuit-evolver "qiskit_addon_mpf.backends.quimb_circuit.CircuitEvolver") is slightly more involved. It requires a **parameterized** [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") object as its input where the [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)") should take the place of the Trotter methods time step (`dt`).
 
-To show how such a parametrized Trotter circuit template is constructed, we reuse the same Hamiltonian and second-order Suzuki-Trotter formula as in [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers").
+To show how such a parameterized Trotter circuit template is constructed, we reuse the same Hamiltonian and second-order Suzuki-Trotter formula as in [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers").
 
 ```python
 >>> from qiskit.quantum_info import SparsePauliOp
@@ -76,7 +76,7 @@ But this time, we specify a [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "
   It is **necessary** that the name of the [`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)") is `dt`!
 </Admonition>
 
-We can choose a higher order Trotter formula for the `exact_evolver_factory`. But note, that we must once again use a parametrized circuit, even if we immediately bind its parameter when constructing the `partial` function.
+We can choose a higher order Trotter formula for the `exact_evolver_factory`. But note, that we must once again use a parameterized circuit, even if we immediately bind its parameter when constructing the `partial` function.
 
 ```python
 >>> suzuki_4 = generate_time_evolution_circuit(hamil, time=dt, synthesis=SuzukiTrotter(order=4))

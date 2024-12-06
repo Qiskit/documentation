@@ -8,7 +8,9 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
 # BlockBasePadder
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L38-L645" signature="BlockBasePadder(schedule_idle_qubits=False, block_ordering_callable=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/transpiler/passes/scheduling/block_base_padder.py#L38-L645" signature="BlockBasePadder(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](/api/qiskit/qiskit.transpiler.TransformationPass "(in Qiskit v1.2)")
+
   The base class of padding pass.
 
   This pass requires one of scheduling passes to be executed before itself. Since there are multiple scheduling strategies, the selection of scheduling pass is left in the hands of the pass manager designer. Once a scheduling analysis pass is run, `node_start_time` is generated in the `property_set`. This information is represented by a python dictionary of the expected instruction execution times keyed on the node instances. The padding pass expects all `DAGOpNode` in the circuit to be scheduled.
@@ -52,13 +54,13 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
     *   **circuit** (*QuantumCircuit*) – The dag on which the pass is run.
     *   **property\_set** (*PropertySet | dict | None*) – Input/output property set. An analysis pass might change the property set in-place.
 
-    **Return type**
-
-    QuantumCircuit
-
     **Returns**
 
     If on transformation pass, the resulting QuantumCircuit. If analysis pass, the input circuit.
+
+    **Return type**
+
+    QuantumCircuit
   </Function>
 
   ### execute
@@ -68,17 +70,17 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
     **Parameters**
 
-    *   **passmanager\_ir** (`Any`) – Qiskit IR to optimize.
-    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** (`Optional`\[`Callable`]) – A callback function which is caller per execution of optimization task.
-
-    **Return type**
-
-    `tuple`\[`Any`, [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")]
+    *   **passmanager\_ir** (*Any*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** (*Callable | None*) – A callback function which is caller per execution of optimization task.
 
     **Returns**
 
     Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    tuple\[*Any*, [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")]
   </Function>
 
   ### name
@@ -88,7 +90,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
     **Return type**
 
-    `str`
+    str
   </Function>
 
   ### run
@@ -98,7 +100,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
     **Parameters**
 
-    **dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.2)")) – DAG to be checked.
+    **dag** ([*DAGCircuit*](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v1.2)")) – DAG to be checked.
 
     **Returns**
 
@@ -120,16 +122,16 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder
 
     **Parameters**
 
-    *   **state** ([`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – Pass manager state to update.
-    *   **run\_state** (`RunState`) – Completion status of current task.
-
-    **Return type**
-
-    [`PassManagerState`](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")
+    *   **state** ([*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
 
     **Returns**
 
     Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/api/qiskit/qiskit.passmanager.PassManagerState "(in Qiskit v1.2)")
   </Function>
 </Class>
 

@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
 # TwoLocal
 
-<Class id="qiskit.circuit.library.TwoLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/n_local/two_local.py#L29-L282" signature="qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)" modifiers="class">
+<Class id="qiskit.circuit.library.TwoLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/n_local/two_local.py#L30-L289" signature="qiskit.circuit.library.TwoLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='TwoLocal', flatten=None)" modifiers="class">
   Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
   The two-local circuit.
@@ -44,7 +44,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
   ```python
   >>> two = TwoLocal(3, 'ry', 'cx', 'linear', reps=2, insert_barriers=True)
-  >>> print(two)  # decompose the layers into standard gates
+  >>> print(two.decompose())  # decompose the layers into standard gates
        ┌──────────┐ ░            ░ ┌──────────┐ ░            ░ ┌──────────┐
   q_0: ┤ Ry(θ[0]) ├─░───■────────░─┤ Ry(θ[3]) ├─░───■────────░─┤ Ry(θ[6]) ├
        ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤ ░ ┌─┴─┐      ░ ├──────────┤
@@ -55,10 +55,10 @@ python_api_name: qiskit.circuit.library.TwoLocal
   ```
 
   ```python
-  >>> two = TwoLocal(3, ['ry','rz'], 'cz', 'full', reps=1, insert_barriers=True)
+  >>> two = TwoLocal(3, ['ry','rz'], 'cz', 'full', reps=1, insert_barriers=True, flatten=True)
   >>> qc = QuantumCircuit(3)
   >>> qc &= two
-  >>> print(qc.decompose().draw())
+  >>> print(qc.draw())
        ┌──────────┐┌──────────┐ ░           ░ ┌──────────┐ ┌──────────┐
   q_0: ┤ Ry(θ[0]) ├┤ Rz(θ[3]) ├─░──■──■─────░─┤ Ry(θ[6]) ├─┤ Rz(θ[9]) ├
        ├──────────┤├──────────┤ ░  │  │     ░ ├──────────┤┌┴──────────┤
@@ -70,7 +70,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
   ```python
   >>> entangler_map = [[0, 1], [1, 2], [2, 0]]  # circular entanglement for 3 qubits
-  >>> two = TwoLocal(3, 'x', 'crx', entangler_map, reps=1)
+  >>> two = TwoLocal(3, 'x', 'crx', entangler_map, reps=1, flatten=True)
   >>> print(two)  # note: no barriers inserted this time!
           ┌───┐                             ┌──────────┐┌───┐
   q_0: |0>┤ X ├─────■───────────────────────┤ Rx(θ[2]) ├┤ X ├
@@ -83,9 +83,9 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
   ```python
   >>> entangler_map = [[0, 3], [0, 2]]  # entangle the first and last two-way
-  >>> two = TwoLocal(4, [], 'cry', entangler_map, reps=1)
+  >>> two = TwoLocal(4, [], 'cry', entangler_map, reps=1, flatten=True)
   >>> circuit = two.compose(two)
-  >>> print(circuit.decompose().draw())  # note, that the parameters are the same!
+  >>> print(circuit.draw())  # note, that the parameters are the same!
   q_0: ─────■───────────■───────────■───────────■──────
             │           │           │           │
   q_1: ─────┼───────────┼───────────┼───────────┼──────
@@ -99,7 +99,8 @@ python_api_name: qiskit.circuit.library.TwoLocal
   ```python
   >>> layer_1 = [(0, 1), (0, 2)]
   >>> layer_2 = [(1, 2)]
-  >>> two = TwoLocal(3, 'x', 'cx', [layer_1, layer_2], reps=2, insert_barriers=True)
+  >>> two = TwoLocal(3, 'x', 'cx', [layer_1, layer_2], reps=2, insert_barriers=True,
+  ... flatten=True)
   >>> print(two)
        ┌───┐ ░            ░ ┌───┐ ░       ░ ┌───┐
   q_0: ┤ X ├─░───■────■───░─┤ X ├─░───────░─┤ X ├
@@ -109,6 +110,10 @@ python_api_name: qiskit.circuit.library.TwoLocal
   q_2: ┤ X ├─░──────┤ X ├─░─┤ X ├─░─┤ X ├─░─┤ X ├
        └───┘ ░      └───┘ ░ └───┘ ░ └───┘ ░ └───┘
   ```
+
+  <Admonition title="Deprecated since version 1.3_pending" type="danger">
+    The class `qiskit.circuit.library.n_local.two_local.TwoLocal` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the function qiskit.circuit.library.n\_local instead.
+  </Admonition>
 
   **Parameters**
 
@@ -123,6 +128,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
   *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
   *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object to prepend to the circuit.
   *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
 
   ## Attributes
 
@@ -138,6 +144,10 @@ python_api_name: qiskit.circuit.library.TwoLocal
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
   </Attribute>
 
   ### clbits
@@ -158,6 +168,16 @@ python_api_name: qiskit.circuit.library.TwoLocal
     **Return type**
 
     QuantumCircuitData
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.TwoLocal.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.TwoLocal.unit "qiskit.circuit.library.TwoLocal.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### entanglement
@@ -214,7 +234,7 @@ python_api_name: qiskit.circuit.library.TwoLocal
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.TwoLocal.instances" attributeValue="186" />
+  <Attribute id="qiskit.circuit.library.TwoLocal.instances" attributeValue="195" />
 
   ### layout
 
@@ -476,6 +496,16 @@ python_api_name: qiskit.circuit.library.TwoLocal
     The blocks in the rotation layers.
   </Attribute>
 
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.TwoLocal.unit">
+    The unit that [`duration`](#qiskit.circuit.library.TwoLocal.duration "qiskit.circuit.library.TwoLocal.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### name
 
   <Attribute id="qiskit.circuit.library.TwoLocal.name" attributeTypeHint="str">
@@ -488,24 +518,18 @@ python_api_name: qiskit.circuit.library.TwoLocal
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.TwoLocal.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.TwoLocal.unit "qiskit.circuit.library.TwoLocal.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.TwoLocal.unit">
-    The unit that [`duration`](#qiskit.circuit.library.TwoLocal.duration "qiskit.circuit.library.TwoLocal.duration") is specified in.
-  </Attribute>
-
   ## Methods
 
   ### get\_entangler\_map
 
-  <Function id="qiskit.circuit.library.TwoLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/n_local/two_local.py#L276-L282" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+  <Function id="qiskit.circuit.library.TwoLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/n_local/two_local.py#L283-L289" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
     Overloading to handle the special case of 1 qubit where the entanglement are ignored.
+
+    **Parameters**
+
+    *   **rep\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+    *   **block\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+    *   **num\_block\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
 
     **Return type**
 
