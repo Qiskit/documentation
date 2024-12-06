@@ -145,21 +145,34 @@ class Config:
             raise ValueError("Can't set --patch with --config-file or --test-strategy")
 
         if not args.config_path:
-            patch_info = parse_patch_arg(args.patch)
-            if patch_info != {}:
-                print("Patching all notebooks with:", patch_info)
+            groups = []
+            if args.filenames:
+                groups.append(
+                    {
+                        "name": "no-patch",
+                        "notebooks": args.filenames,
+                        "test-strategies": {"custom": {}},
+                    }
+                )
+            for index, (patch_info, *filenames) in enumerate(args.patch or []):
+                groups.append(
+                    {
+                        "name": f"patch-{index}",
+                        "notebooks": filenames,
+                        "test-strategies": {"custom": parse_patch_arg(patch_info)},
+                    }
+                )
+
+            all_filenames = args.filenames + [
+                filepath for group in groups
+                for filepath in group["notebooks"]
+            ]
             return cls(
-                cli_filenames=args.filenames,
+                cli_filenames=all_filenames,
                 cell_timeout=args.cell_timeout,
                 test_strategy="custom",
                 write=args.write,
-                groups=[
-                    {
-                        "name": "main",
-                        "notebooks": args.filenames,
-                        "test-strategies": {"custom": patch_info},
-                    }
-                ],
+                groups=groups,
             )
 
         try:
@@ -167,7 +180,7 @@ class Config:
             config_file = tomllib.loads(config_path.read_text())
         except TypeError as err:
             raise ValueError(
-                f"Couldn't read config from {config_path}; check it exists and the"
+                f"Couldn't read config from {args.config_path}; check it exists and the"
                 " entries are correct."
             ) from err
 
@@ -202,7 +215,7 @@ class Config:
 
         valid_patch_names = list(BUILT_IN_PATCHES.keys())
         raise ValueError(
-            f"Could not find patch \"{patch_name}\". "
+            f'Could not find patch "{patch_name}". '
             f"Patch names must be one of {valid_patch_names} or a path to a file."
         )
 
@@ -253,7 +266,10 @@ def get_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--patch",
-        help='If not providing a config file, an optional TOML string with the patch information. For example, \'{ provider="qiskit-ibm-runtime", backend="test-eagle" }\'',
+        action="append",
+        nargs="+",
+        metavar=("patch", "filenames"),
+        help='If not providing a config file, an optional TOML string with the patch information, followed by a list of filenames to run with that patch. For example, \'{ provider="qiskit-ibm-runtime", backend="test-eagle" }\'',
     )
     parser.add_argument(
         "--cell-timeout",

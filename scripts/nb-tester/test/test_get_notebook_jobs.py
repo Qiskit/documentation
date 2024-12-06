@@ -51,10 +51,10 @@ def test_no_config_file_no_filenames():
 def test_cli_patch():
     args = parser.parse_args(
         [
-            "path/to/notebook.ipynb",
             "--write",
             "--patch",
             '{ patch="qiskit-ibm-runtime", backend="test-eagle", qiskit_runtime_service_args="" }',
+            "path/to/notebook.ipynb",
         ]
     )
     expected_patch = dedent(
@@ -230,9 +230,9 @@ def test_config_with_different_patches_per_notebook():
 def test_patch_file():
     args = parser.parse_args(
         [
-            "path/to/notebook.ipynb",
             "--patch",
             '{ patch="path/to/file.txt", text="Hello, world!" }',
+            "path/to/notebook.ipynb",
         ]
     )
 
@@ -253,3 +253,49 @@ def test_patch_file():
         )
     ]
 
+def test_patch_file_multiple_groups():
+    args = parser.parse_args(
+        [
+            "no-patch.ipynb",
+            "--patch",
+            '{ patch="qiskit-fake-provider", num_qubits=3 }',
+            "fake-provider-3q-1.ipynb",
+            "fake-provider-3q-2.ipynb",
+            "--patch",
+            '{ patch="qiskit-fake-provider", num_qubits=5 }',
+            "fake-provider-5q.ipynb",
+        ]
+    )
+
+    jobs = list(get_notebook_jobs(args))
+
+    assert jobs == [
+        NotebookJob(
+            path=Path("no-patch.ipynb"),
+            pre_execute_code=PRE_EXECUTE_CODE,
+            backend_patch=None,
+            cell_timeout=None,
+            write=Result(False, "--write arg not set"),
+        ),
+        NotebookJob(
+            path=Path("fake-provider-3q-1.ipynb"),
+            pre_execute_code=PRE_EXECUTE_CODE,
+            backend_patch=QISKIT_PROVIDER_PATCH.replace("5", "3"),
+            cell_timeout=None,
+            write=Result(False, "hardware was mocked"),
+        ),
+        NotebookJob(
+            path=Path("fake-provider-3q-2.ipynb"),
+            pre_execute_code=PRE_EXECUTE_CODE,
+            backend_patch=QISKIT_PROVIDER_PATCH.replace("5", "3"),
+            cell_timeout=None,
+            write=Result(False, "hardware was mocked"),
+        ),
+        NotebookJob(
+            path=Path("fake-provider-5q.ipynb"),
+            pre_execute_code=PRE_EXECUTE_CODE,
+            backend_patch=QISKIT_PROVIDER_PATCH,
+            cell_timeout=None,
+            write=Result(False, "hardware was mocked"),
+        ),
+    ]
