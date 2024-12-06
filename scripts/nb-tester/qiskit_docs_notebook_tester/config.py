@@ -31,7 +31,8 @@ _set_mpl_loglevel("critical")
 """
 
 BUILT_IN_PATCHES = {
-  "qiskit-fake-provider": dedent("""
+    "qiskit-fake-provider": dedent(
+        """
         import warnings
         from qiskit.providers.fake_provider import GenericBackendV2
         from qiskit_ibm_runtime import QiskitRuntimeService
@@ -43,9 +44,10 @@ BUILT_IN_PATCHES = {
             return GenericBackendV2(num_qubits={num_qubits})
 
         QiskitRuntimeService.least_busy = patched_least_busy
-        """),
-
-  "runtime-fake-provider": dedent("""
+        """
+    ),
+    "runtime-fake-provider": dedent(
+        """
         import warnings
         from qiskit_ibm_runtime import QiskitRuntimeService
 
@@ -57,9 +59,10 @@ BUILT_IN_PATCHES = {
             return provider.backend("{backend}")
 
         QiskitRuntimeService.least_busy = patched_least_busy
-        """),
-
-  "qiskit-ibm-runtime": dedent("""
+        """
+    ),
+    "qiskit-ibm-runtime": dedent(
+        """
         from qiskit_ibm_runtime import QiskitRuntimeService
 
         def patched_least_busy(self, *args, **kwargs):
@@ -67,8 +70,10 @@ BUILT_IN_PATCHES = {
             return service.backend("{backend}")
 
         QiskitRuntimeService.least_busy = patched_least_busy
-        """)
+        """
+    ),
 }
+
 
 @dataclass
 class Result:
@@ -163,12 +168,11 @@ class Config:
                     }
                 )
 
-            all_filenames = args.filenames + [
-                filepath for group in groups
-                for filepath in group["notebooks"]
+            cli_filenames = args.filenames + [
+                filepath for group in groups for filepath in group["notebooks"]
             ]
             return cls(
-                cli_filenames=all_filenames,
+                cli_filenames=cli_filenames,
                 cell_timeout=args.cell_timeout,
                 test_strategy="custom",
                 write=args.write,
@@ -203,7 +207,7 @@ class Config:
         )
 
     def get_patch_for_group(self, group: dict) -> str | None:
-        patch_config = group["test-strategies"].get(self.test_strategy, {})
+        patch_config = group["test-strategies"][self.test_strategy]
 
         patch_name = patch_config.get("patch", None)
         if patch_name is None:

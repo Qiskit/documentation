@@ -227,6 +227,7 @@ def test_config_with_different_patches_per_notebook():
         ),
     ]
 
+
 def test_patch_file():
     args = parser.parse_args(
         [
@@ -252,6 +253,7 @@ def test_patch_file():
             write=Result(False, "hardware was mocked"),
         )
     ]
+
 
 def test_patch_file_multiple_groups():
     args = parser.parse_args(
