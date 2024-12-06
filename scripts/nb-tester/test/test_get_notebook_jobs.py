@@ -13,15 +13,15 @@ from qiskit_docs_notebook_tester.config import (
 parser = get_parser()
 
 QISKIT_PROVIDER_PATCH = """
-from qiskit_ibm_runtime import QiskitRuntimeService
 import warnings
+from qiskit.providers.fake_provider import GenericBackendV2
+from qiskit_ibm_runtime import QiskitRuntimeService
 
 warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
 warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 
-from qiskit.providers.fake_provider import GenericBackendV2
 def patched_least_busy(self, *args, **kwargs):
-    return GenericBackendV2()
+    return GenericBackendV2(num_qubits=5)
 
 QiskitRuntimeService.least_busy = patched_least_busy
 """
@@ -54,16 +54,12 @@ def test_cli_patch():
             "path/to/notebook.ipynb",
             "--write",
             "--patch",
-            '{ provider="qiskit-ibm-runtime", backend="test-eagle" }',
+            '{ patch="qiskit-ibm-runtime", backend="test-eagle", qiskit_runtime_service_args="" }',
         ]
     )
     expected_patch = dedent(
         """
         from qiskit_ibm_runtime import QiskitRuntimeService
-        import warnings
-
-        warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
-        warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
 
         def patched_least_busy(self, *args, **kwargs):
             service = QiskitRuntimeService()
@@ -96,7 +92,7 @@ def test_config_file():
         
         [groups]
         [groups.default]
-        test-strategies.ci = { provider="qiskit-fake-provider" }
+        test-strategies.ci = { patch="qiskit-fake-provider", num_qubits=5 }
         notebooks = ["path/to/notebook.ipynb"]
                          
         [groups.other]
@@ -207,7 +203,7 @@ def test_config_with_different_patches_per_notebook():
         test-strategies.default = {}
         notebooks = ["path/to/notebook.ipynb"]
         [groups.patch]
-        test-strategies.default = { provider="qiskit-fake-provider" }
+        test-strategies.default = { patch="qiskit-fake-provider", num_qubits=5 }
         notebooks = ["path/to/another.ipynb"]
         """
     )
@@ -230,3 +226,30 @@ def test_config_with_different_patches_per_notebook():
             write=Result(False, "hardware was mocked"),
         ),
     ]
+
+def test_patch_file():
+    args = parser.parse_args(
+        [
+            "path/to/notebook.ipynb",
+            "--patch",
+            '{ patch="path/to/file.txt", text="Hello, world!" }',
+        ]
+    )
+
+    patch_file = "print('{text}')"
+
+    with mock.patch("pathlib.Path.exists", lambda _: True):
+        with mock.patch("pathlib.Path.read_text", lambda _: patch_file):
+            jobs = list(get_notebook_jobs(args))
+
+    assert jobs[0].backend_patch == "print('Hello, world!')"
+    assert jobs == [
+        NotebookJob(
+            path=Path("path/to/notebook.ipynb"),
+            pre_execute_code=PRE_EXECUTE_CODE,
+            backend_patch="print('Hello, world!')",
+            cell_timeout=None,
+            write=Result(False, "hardware was mocked"),
+        )
+    ]
+

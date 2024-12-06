@@ -18,7 +18,7 @@ from textwrap import dedent
 from dataclasses import dataclass
 from pathlib import Path
 import tomllib
-from typing import Iterator, Literal
+from typing import Iterator
 
 
 # We always run the following code in the kernel before running the notebook
@@ -30,6 +30,45 @@ from matplotlib import set_loglevel as _set_mpl_loglevel
 _set_mpl_loglevel("critical")
 """
 
+BUILT_IN_PATCHES = {
+  "qiskit-fake-provider": dedent("""
+        import warnings
+        from qiskit.providers.fake_provider import GenericBackendV2
+        from qiskit_ibm_runtime import QiskitRuntimeService
+
+        warnings.filterwarnings("ignore", message="Options {{.*}} have no effect in local testing mode.")
+        warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
+
+        def patched_least_busy(self, *args, **kwargs):
+            return GenericBackendV2(num_qubits={num_qubits})
+
+        QiskitRuntimeService.least_busy = patched_least_busy
+        """),
+
+  "runtime-fake-provider": dedent("""
+        import warnings
+        from qiskit_ibm_runtime import QiskitRuntimeService
+
+        warnings.filterwarnings("ignore", message="Options {{.*}} have no effect in local testing mode.")
+        warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
+
+        def patched_least_busy(self, *args, **kwargs):
+            provider = FakeProviderForBackendV2()
+            return provider.backend("{backend}")
+
+        QiskitRuntimeService.least_busy = patched_least_busy
+        """),
+
+  "qiskit-ibm-runtime": dedent("""
+        from qiskit_ibm_runtime import QiskitRuntimeService
+
+        def patched_least_busy(self, *args, **kwargs):
+            service = QiskitRuntimeService({qiskit_runtime_service_args})
+            return service.backend("{backend}")
+
+        QiskitRuntimeService.least_busy = patched_least_busy
+        """)
+}
 
 @dataclass
 class Result:
@@ -152,13 +191,19 @@ class Config:
 
     def get_patch_for_group(self, group: dict) -> str | None:
         patch_config = group["test-strategies"].get(self.test_strategy, {})
-        if patch_config == {}:
+
+        patch_name = patch_config.get("patch", None)
+        if patch_name is None:
             return None
-        return generate_backend_patch(
-            backend_name=patch_config.get("backend", "fake_athens"),
-            provider=patch_config.get("provider", "qiskit-ibm-runtime"),
-            generic_backend_kwargs=patch_config.get("generic_backend_kwargs", None),
-            runtime_service_kwargs=patch_config.get("runtime_service_kwargs", None),
+        if Path(patch_name).exists():
+            return Path(patch_name).read_text().format(**patch_config)
+        if patch_name in BUILT_IN_PATCHES:
+            return BUILT_IN_PATCHES[patch_name].format(**patch_config)
+
+        valid_patch_names = list(BUILT_IN_PATCHES.keys())
+        raise ValueError(
+            f"Could not find patch \"{patch_name}\". "
+            f"Patch names must be one of {valid_patch_names} or a path to a file."
         )
 
 
@@ -227,73 +272,3 @@ def get_parser() -> argparse.ArgumentParser:
         ),
     )
     return parser
-
-
-def generate_backend_patch(
-    backend_name: str,
-    provider: Literal[
-        "qiskit-ibm-runtime", "qiskit-fake-provider", "runtime-fake-provider"
-    ] = "qiskit-ibm-runtime",
-    generic_backend_kwargs: dict[str, any] = None,
-    runtime_service_kwargs: dict[str, any] = None,
-) -> str:
-    """
-    Generate code for fetching a custom backend to inject into a notebook.
-    """
-
-    def render_kwarg(arg: str, val: any):
-        if isinstance(val, str):
-            return f'{arg}="{val}"'
-        return f"{arg}={val}"
-
-    def render_kwargs(kwargs: dict[str, any]):
-        return ", ".join(render_kwarg(arg, val) for arg, val in kwargs.items())
-
-    patch = dedent(
-        """
-        from qiskit_ibm_runtime import QiskitRuntimeService
-        import warnings
-
-        warnings.filterwarnings("ignore", message="Options {.*} have no effect in local testing mode.")
-        warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
-        """
-    )
-
-    if provider == "qiskit-fake-provider":
-        qiskit_fake_provider_args = render_kwargs(generic_backend_kwargs or {})
-        patch += dedent(
-            f"""
-            from qiskit.providers.fake_provider import GenericBackendV2
-            def patched_least_busy(self, *args, **kwargs):
-                return GenericBackendV2({qiskit_fake_provider_args})
-            """
-        )
-
-    elif provider == "runtime-fake-provider":
-        patch += dedent(
-            f"""
-            from qiskit_ibm_runtime.fake_provider import FakeProviderForBackendV2
-
-            def patched_least_busy(self, *args, **kwargs):
-                provider = FakeProviderForBackendV2()
-                return provider.backend("{backend_name}")
-            """
-        )
-
-    elif provider == "qiskit-ibm-runtime":
-        qiskit_runtime_service_args = render_kwargs(runtime_service_kwargs or {})
-
-        patch += dedent(
-            f"""
-            def patched_least_busy(self, *args, **kwargs):
-                service = QiskitRuntimeService({qiskit_runtime_service_args})
-                return service.backend("{backend_name}")
-            """
-        )
-
-    else:
-        raise ValueError(f'Please specify a valid provider. "{provider}" is invalid.')
-
-    patch += "\nQiskitRuntimeService.least_busy = patched_least_busy\n"
-
-    return patch
