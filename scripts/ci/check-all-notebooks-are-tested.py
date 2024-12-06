@@ -23,8 +23,8 @@ config_path = Path("scripts/config/notebook-testing.toml")
 config = tomllib.loads(config_path.read_text())
 
 categorized_notebooks = set()
-for group in config.values():
-    for path in group:
+for group in config["groups"].values():
+    for path in group.get("notebooks", []):
         categorized_notebooks.add(Path(path))
 
 uncategorized = [
