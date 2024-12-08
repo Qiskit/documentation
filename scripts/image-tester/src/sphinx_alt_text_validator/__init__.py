@@ -28,7 +28,6 @@ def main() -> None:
     skip_list = args.skip if args.skip is not None else []
     files = glob.glob(f"{args.folder}/**/*.py", recursive=True)
     filtered_files = [file for file in files if file not in skip_list]
-    print(filtered_files)
 
     with multiprocessing.Pool() as pool:
         results = pool.map(validate_image, filtered_files)
