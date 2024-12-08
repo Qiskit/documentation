@@ -38,9 +38,6 @@ def is_valid_image(options: list[str]) -> bool:
 def validate_image(file_path: str) -> tuple[str, list[str]]:
     """Validate all the images of a single file"""
 
-    if file_path:
-        return [file_path, []]
-
     invalid_images: list[str] = []
 
     lines = Path(file_path).read_text().splitlines()
