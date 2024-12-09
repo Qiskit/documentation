@@ -18,6 +18,7 @@ from textwrap import dedent
 from dataclasses import dataclass
 from pathlib import Path
 import tomllib
+import importlib
 from typing import Iterator
 
 
@@ -29,50 +30,6 @@ from matplotlib import set_loglevel as _set_mpl_loglevel
 # See https://github.com/matplotlib/matplotlib/issues/23326#issuecomment-1164772708
 _set_mpl_loglevel("critical")
 """
-
-BUILT_IN_PATCHES = {
-    "qiskit-fake-provider": dedent(
-        """
-        import warnings
-        from qiskit.providers.fake_provider import GenericBackendV2
-        from qiskit_ibm_runtime import QiskitRuntimeService
-
-        warnings.filterwarnings("ignore", message="Options {{.*}} have no effect in local testing mode.")
-        warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
-
-        def patched_least_busy(self, *args, **kwargs):
-            return GenericBackendV2(num_qubits={num_qubits})
-
-        QiskitRuntimeService.least_busy = patched_least_busy
-        """
-    ),
-    "runtime-fake-provider": dedent(
-        """
-        import warnings
-        from qiskit_ibm_runtime import QiskitRuntimeService
-
-        warnings.filterwarnings("ignore", message="Options {{.*}} have no effect in local testing mode.")
-        warnings.filterwarnings("ignore", message="Session is not supported in local testing mode or when using a simulator.")
-
-        def patched_least_busy(self, *args, **kwargs):
-            provider = FakeProviderForBackendV2()
-            return provider.backend("{backend}")
-
-        QiskitRuntimeService.least_busy = patched_least_busy
-        """
-    ),
-    "qiskit-ibm-runtime": dedent(
-        """
-        from qiskit_ibm_runtime import QiskitRuntimeService
-
-        def patched_least_busy(self, *args, **kwargs):
-            service = QiskitRuntimeService({qiskit_runtime_service_args})
-            return service.backend("{backend}")
-
-        QiskitRuntimeService.least_busy = patched_least_busy
-        """
-    ),
-}
 
 
 @dataclass
@@ -212,12 +169,16 @@ class Config:
         patch_name = patch_config.get("patch", None)
         if patch_name is None:
             return None
+
+        built_in_patch_dir = importlib.resources.files("patches")
+        built_in_patch = built_in_patch_dir / patch_name
+        if built_in_patch.exists():
+            return built_in_patch.read_text().format(**patch_config)
+
         if Path(patch_name).exists():
             return Path(patch_name).read_text().format(**patch_config)
-        if patch_name in BUILT_IN_PATCHES:
-            return BUILT_IN_PATCHES[patch_name].format(**patch_config)
 
-        valid_patch_names = list(BUILT_IN_PATCHES.keys())
+        valid_patch_names = list(path.name for path in built_in_patch_dir.iterdir())
         raise ValueError(
             f'Could not find patch "{patch_name}". '
             f"Patch names must be one of {valid_patch_names} or a path to a file."

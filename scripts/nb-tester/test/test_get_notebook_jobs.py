@@ -12,7 +12,7 @@ from qiskit_docs_notebook_tester.config import (
 
 parser = get_parser()
 
-QISKIT_PROVIDER_PATCH = """
+QISKIT_PROVIDER_PATCH = """\
 import warnings
 from qiskit.providers.fake_provider import GenericBackendV2
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -57,8 +57,9 @@ def test_cli_patch():
             "path/to/notebook.ipynb",
         ]
     )
-    expected_patch = dedent(
-        """
+    expected_patch = (
+        dedent(
+            """
         from qiskit_ibm_runtime import QiskitRuntimeService
 
         def patched_least_busy(self, *args, **kwargs):
@@ -67,6 +68,8 @@ def test_cli_patch():
 
         QiskitRuntimeService.least_busy = patched_least_busy
         """
+        ).strip()
+        + "\n"
     )
     jobs = list(get_notebook_jobs(args))
     # Separate assertions make it easier to see diff in failed tests
@@ -99,8 +102,16 @@ def test_config_file():
         notebooks = ["path/to/another.ipynb"]
         """
     )
-    # Patch all read operations to return the config file
-    with mock.patch("pathlib.Path.read_text", lambda _: config_file):
+
+    # Patch read operation to return the config file if file name is "config.toml"
+    original_read_text = Path.read_text
+
+    def patched_read_text(self):
+        if self.name == "config.toml":
+            return config_file
+        return original_read_text(self)
+
+    with mock.patch("pathlib.Path.read_text", patched_read_text):
         jobs = list(get_notebook_jobs(args))
 
     # Separate assertions make it easier to see diff in failed tests
@@ -207,8 +218,16 @@ def test_config_with_different_patches_per_notebook():
         notebooks = ["path/to/another.ipynb"]
         """
     )
-    # Patch all read operations to return the config file
-    with mock.patch("pathlib.Path.read_text", lambda _: config_file):
+
+    # Patch read operation to return the config file if file name is "config.toml"
+    original_read_text = Path.read_text
+
+    def patched_read_text(self):
+        if self.name == "config.toml":
+            return config_file
+        return original_read_text(self)
+
+    with mock.patch("pathlib.Path.read_text", patched_read_text):
         jobs = list(get_notebook_jobs(args))
     assert jobs == [
         NotebookJob(
