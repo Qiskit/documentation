@@ -60,7 +60,7 @@ variables as extra arguments in the TOML dict.
 There are two ways to provide patches: Through the CLI or through a config file.
 You cannot use both at the same time.
 
-### Set patches through the CLI
+### Set patches through the CLI
 
 Use the `--patch` argument to provide patch information, followed by a list of
 filenames that the patch should apply to. Filenames passed before a `--patch`
