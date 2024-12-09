@@ -24,7 +24,7 @@ def main() -> None:
     parser.add_argument("-s", "--skip", nargs="+")
     args = parser.parse_args()
 
-    skip_list = args.skip if args.skip is not None else []
+    skip_list = args.skip or []
     files = glob.glob(f"{args.folder}/**/*.py", recursive=True)
     filtered_files = [file for file in files if file not in skip_list]
 
