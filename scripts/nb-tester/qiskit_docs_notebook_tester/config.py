@@ -170,13 +170,13 @@ class Config:
         if patch_name is None:
             return None
 
+        if Path(patch_name).exists():
+            return Path(patch_name).read_text().format(**patch_config)
+
         built_in_patch_dir = importlib.resources.files("patches")
         built_in_patch = built_in_patch_dir / patch_name
         if built_in_patch.exists():
             return built_in_patch.read_text().format(**patch_config)
-
-        if Path(patch_name).exists():
-            return Path(patch_name).read_text().format(**patch_config)
 
         valid_patch_names = list(path.name for path in built_in_patch_dir.iterdir())
         raise ValueError(
