@@ -19,11 +19,10 @@ import argparse
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog='verify_images.py')
-    parser.add_argument('-f', "--folder", required=True)
-    parser.add_argument('-s', "--skip", nargs='+')
+    parser = argparse.ArgumentParser(prog="verify_images.py")
+    parser.add_argument("-f", "--folder", required=True)
+    parser.add_argument("-s", "--skip", nargs="+")
     args = parser.parse_args()
-
 
     skip_list = args.skip if args.skip is not None else []
     files = glob.glob(f"{args.folder}/**/*.py", recursive=True)
@@ -32,7 +31,9 @@ def main() -> None:
     with multiprocessing.Pool() as pool:
         results = pool.map(validate_image, filtered_files)
 
-    failed_files = {file: image_errors for file, image_errors in results if image_errors}
+    failed_files = {
+        file: image_errors for file, image_errors in results if image_errors
+    }
 
     if not failed_files:
         print("✅ All images have alt text")
@@ -56,7 +57,3 @@ def main() -> None:
     )
 
     sys.exit(1)
-
-
-if __name__ == "__main__":
-    main()

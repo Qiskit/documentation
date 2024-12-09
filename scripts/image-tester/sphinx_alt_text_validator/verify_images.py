@@ -15,6 +15,7 @@
 
 from pathlib import Path
 
+
 def is_image(line: str) -> bool:
     """Determine if a line is an image"""
     return line.strip().startswith((".. image:", ".. plot:"))
@@ -65,6 +66,3 @@ def validate_image(file_path: str) -> tuple[str, list[str]]:
         options = []
 
     return (file_path, invalid_images)
-
-
-
