@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
 # StagedPassManager
 
-<Class id="qiskit.transpiler.StagedPassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passmanager.py#L260-L451" signature="qiskit.transpiler.StagedPassManager(stages=None, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.StagedPassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passmanager.py#L260-L451" signature="qiskit.transpiler.StagedPassManager(stages=None, **kwargs)" modifiers="class">
   Bases: [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.passmanager.PassManager")
 
   A pass manager pipeline built from individual stages.
@@ -64,7 +64,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### append
 
-  <Function id="qiskit.transpiler.StagedPassManager.append" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passmanager.py#L397-L401" signature="append(passes)">
+  <Function id="qiskit.transpiler.StagedPassManager.append" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passmanager.py#L397-L401" signature="append(passes)">
     Append a Pass Set to the schedule of passes.
 
     **Parameters**
@@ -74,17 +74,21 @@ python_api_name: qiskit.transpiler.StagedPassManager
     **Raises**
 
     [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
+
+    **Return type**
+
+    None
   </Function>
 
   ### draw
 
-  <Function id="qiskit.transpiler.StagedPassManager.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passmanager.py#L447-L451" signature="draw(filename=None, style=None, raw=False)">
+  <Function id="qiskit.transpiler.StagedPassManager.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passmanager.py#L447-L451" signature="draw(filename=None, style=None, raw=False)">
     Draw the staged pass manager.
   </Function>
 
   ### remove
 
-  <Function id="qiskit.transpiler.StagedPassManager.remove" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passmanager.py#L411-L412" signature="remove(index)">
+  <Function id="qiskit.transpiler.StagedPassManager.remove" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passmanager.py#L411-L412" signature="remove(index)">
     Removes a particular pass in the scheduler.
 
     **Parameters**
@@ -94,22 +98,30 @@ python_api_name: qiskit.transpiler.StagedPassManager
     **Raises**
 
     [**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
+
+    **Return type**
+
+    None
   </Function>
 
   ### replace
 
-  <Function id="qiskit.transpiler.StagedPassManager.replace" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passmanager.py#L403-L408" signature="replace(index, passes)">
+  <Function id="qiskit.transpiler.StagedPassManager.replace" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passmanager.py#L403-L408" signature="replace(index, passes)">
     Replace a particular pass in the scheduler.
 
     **Parameters**
 
     *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Pass index to replace, based on the position in passes().
     *   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[BasePass]*) – A pass set to be added to the pass manager schedule.
+
+    **Return type**
+
+    None
   </Function>
 
   ### run
 
-  <Function id="qiskit.transpiler.StagedPassManager.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passmanager.py#L433-L441" signature="run(circuits, output_name=None, callback=None, num_processes=None)">
+  <Function id="qiskit.transpiler.StagedPassManager.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passmanager.py#L433-L441" signature="run(circuits, output_name=None, callback=None, num_processes=None)">
     Run all the passes on the specified `circuits`.
 
     **Parameters**
@@ -161,7 +173,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### to\_flow\_controller
 
-  <Function id="qiskit.transpiler.StagedPassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/transpiler/passmanager.py#L443-L445" signature="to_flow_controller()">
+  <Function id="qiskit.transpiler.StagedPassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/transpiler/passmanager.py#L443-L445" signature="to_flow_controller()">
     Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
 
     **Returns**

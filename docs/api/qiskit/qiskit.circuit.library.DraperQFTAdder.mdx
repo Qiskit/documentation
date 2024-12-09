@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
 # DraperQFTAdder
 
-<Class id="qiskit.circuit.library.DraperQFTAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py#L24-L116" signature="qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')" modifiers="class">
+<Class id="qiskit.circuit.library.DraperQFTAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py#L24-L129" signature="qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')" modifiers="class">
   Bases: `Adder`
 
   A circuit that uses QFT to perform in-place addition on two qubit registers.
@@ -17,7 +17,7 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
   As an example, a non-fixed\_point QFT adder circuit that performs addition on two 2-qubit sized registers is as follows:
 
-  ```python
+  ```text
    a_0:   ─────────■──────■────────────────────────■────────────────
                    │      │                        │
    a_1:   ─────────┼──────┼────────■──────■────────┼────────────────
@@ -29,6 +29,18 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
   cout_0: ┤2     ├────────────────────────■────────■───────┤2      ├
           └──────┘                                         └───────┘
   ```
+
+  <Admonition title="See also" type="note">
+    The following generic gate objects perform additions, like this circuit class, but allow the compiler to select the optimal decomposition based on the context. Specific implementations can be set via the [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig"), e.g. this circuit can be chosen via `Adder=["qft_d00"]`.
+
+    **[`ModularAdderGate`](qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate"): A generic inplace adder, modulo $2^n$. This**
+
+    is functionally equivalent to `kind="fixed"`.
+
+    **[`HalfAdderGate`](qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate"): A generic inplace adder. This**
+
+    is functionally equivalent to `kind="half"`.
+  </Admonition>
 
   **References:**
 
@@ -62,6 +74,10 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
   </Attribute>
 
   ### clbits
@@ -84,6 +100,16 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
     QuantumCircuitData
   </Attribute>
 
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.DraperQFTAdder.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.DraperQFTAdder.unit "qiskit.circuit.library.DraperQFTAdder.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### global\_phase
 
   <Attribute id="qiskit.circuit.library.DraperQFTAdder.global_phase">
@@ -92,7 +118,7 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.DraperQFTAdder.instances" attributeValue="160" />
+  <Attribute id="qiskit.circuit.library.DraperQFTAdder.instances" attributeValue="157" />
 
   ### layout
 
@@ -262,6 +288,16 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
     A list of `Qubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.DraperQFTAdder.unit">
+    The unit that [`duration`](#qiskit.circuit.library.DraperQFTAdder.duration "qiskit.circuit.library.DraperQFTAdder.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### name
 
   <Attribute id="qiskit.circuit.library.DraperQFTAdder.name" attributeTypeHint="str">
@@ -278,18 +314,6 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
   <Attribute id="qiskit.circuit.library.DraperQFTAdder.cregs" attributeTypeHint="list[ClassicalRegister]">
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.DraperQFTAdder.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.DraperQFTAdder.unit "qiskit.circuit.library.DraperQFTAdder.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.DraperQFTAdder.unit">
-    The unit that [`duration`](#qiskit.circuit.library.DraperQFTAdder.duration "qiskit.circuit.library.DraperQFTAdder.duration") is specified in.
   </Attribute>
 </Class>
 
