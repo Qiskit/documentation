@@ -1,0 +1,7 @@
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+def patched_least_busy(self, *args, **kwargs):
+    service = QiskitRuntimeService({qiskit_runtime_service_args})
+    return service.backend("{backend}")
+
+QiskitRuntimeService.least_busy = patched_least_busy
