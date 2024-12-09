@@ -28,7 +28,7 @@ A patch is just Python code that we run in the kernel before executing your
 notebook's code. You can provide your own patch code, or use one of our
 built-in patches.
 
-You specify patch information as a TOML dict string. This dict _must_ inculde a
+You can specify patch information as a TOML dict string. This dict _must_ include a
 `patch` key, which is either a filepath to your custom patch, or the name of
 one of our built-in patches (choose from `qiskit-fake-provider`,
 `qiskit-ibm-runtime`, or `qiskit-fake-provider`).
