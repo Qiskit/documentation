@@ -41,7 +41,7 @@ def validate_image(file_path: str) -> tuple[str, list[str]]:
 
     invalid_images: list[str] = []
 
-    lines = Path(file_path).read_text().splitlines()
+    lines = Path(file_path).read_text(encoding="utf-8").splitlines()
 
     image_found = False
     options: list[str] = []
