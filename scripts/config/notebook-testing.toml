@@ -6,9 +6,9 @@ extended = { timeout = 1000 }  # Extended checks using test-eagle
 
 # For notebooks to be tested in CI "normally" (no mocking)
 [groups.normal]
-test-strategies.ci = {}
-test-strategies.extended = {}
-test-strategies.hardware = {}
+test-strategies.ci = { patch="qiskit-ibm-runtime-open" }
+test-strategies.extended = { patch="qiskit-ibm-runtime-open" }
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
     "docs/guides/build-noise-models.ipynb",
     "docs/guides/circuit-library.ipynb",
@@ -51,7 +51,7 @@ notebooks = [
 [groups.local-sim]
 test-strategies.ci = { patch="qiskit-fake-provider", num_qubits=6 }
 test-strategies.extended = { patch="qiskit-fake-provider", num_qubits=6 }
-test-strategies.hardware = {}
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
     "docs/guides/debug-qiskit-runtime-jobs.ipynb",
     "docs/guides/primitive-input-output.ipynb",
@@ -63,7 +63,7 @@ notebooks = [
 # only a backend name (string) rather than a `Backend` object.
 [groups.test-eagle]
 test-strategies.extended = { patch="qiskit-ibm-runtime", backend="test_eagle_us-east", qiskit_runtime_service_args="" }
-test-strategies.hardware = {}
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
     "docs/guides/primitives-examples.ipynb",
     "docs/guides/get-started-with-primitives.ipynb",
@@ -76,7 +76,7 @@ notebooks = [
 
 # Only run the following notebooks in our fortnightly cron job on real hardware.
 [groups.cron-job-only]
-test-strategies.hardware = {}
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
     "docs/guides/hello-world.ipynb",
 

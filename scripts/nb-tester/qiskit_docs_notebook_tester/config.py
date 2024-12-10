@@ -74,7 +74,7 @@ def get_notebook_jobs(args: argparse.Namespace) -> Iterator[NotebookJob]:
 
             patch = config.get_patch_for_group(group)
 
-            if patch:
+            if patch and not "# nb-tester: allow-write" in patch:
                 write = Result(False, "hardware was mocked")
             elif not config.write:
                 write = Result(False, "--write arg not set")
