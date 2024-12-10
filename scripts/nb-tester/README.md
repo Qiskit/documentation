@@ -166,3 +166,21 @@ Here's a few different commands you could run:
   wasn't passed as a filename arg.
 
 </details>
+
+### Patches and writing to disk
+
+By default, this tool will **not** allow writing patched notebooks to disk.
+This is to reduce the risk of accidentally displaying results from patched
+notebooks to users.
+
+For example, if we write the output of a notebook patched with
+`qiskit-fake-provider`, it will appear the results in the notebook come from
+the least busy IBM Quantum backend when they actually come from a noiseless
+simulator. This could be considered false advertising.
+
+If you have a patch that you know is OK to generate user-facing results, you
+can allow writing results from it by adding the comment `# nb-tester:
+allow-write` anywhere in the patch file. An example of a safe patch is the
+built-in `qiskit-ibm-runtime-open` patch: This only selects a real hardware
+backend that's included in the open plan. We use this to select open-access
+backends but submit jobs using our dedicated testing instance.
