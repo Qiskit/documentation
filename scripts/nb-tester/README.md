@@ -1,4 +1,4 @@
-# Qiskit documentation notebook tester
+# Qiskit documentation notebook tester :sunglesses:
 
 A tool to execute notebooks for testing, with certain features useful for
 notebooks that run jobs on IBM Quantum backends.
