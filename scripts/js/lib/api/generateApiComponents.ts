@@ -92,14 +92,7 @@ function prepareProps(
   const prepMethod = () =>
     prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id);
   const prepAttributeOrProperty = () =>
-    prepareAttributeOrPropertyProps(
-      $,
-      $child,
-      $dl,
-      priorApiType,
-      githubSourceLink,
-      id,
-    );
+    prepareAttributeOrPropertyProps($, $child, $dl, githubSourceLink, id);
 
   const preparePropsPerApiType: Record<
     Exclude<ApiType, "module">,
@@ -116,16 +109,9 @@ function prepareProps(
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
 
-  // Remove the attributes and properties modifiers as we don't show their signatures,
-  // but we still use them to create their headers
-  if (apiType == "attribute" || apiType == "property") {
-    findByText($, $child, "em.property", apiType).remove();
-  }
-
   if (!(apiType in preparePropsPerApiType)) {
     throw new Error(`Unhandled Python type: ${apiType}`);
   }
-
   return preparePropsPerApiType[apiType]();
 }
 
@@ -203,10 +189,30 @@ function prepareAttributeOrPropertyProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: ApiType | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
+  // Properties/attributes have multiple `em.property` values to set:
+  //
+  //  - the modifiers, like `property` or `abstract property`
+  //  - the type hint
+  //  - the default value
+  //
+  // We need to remove the modifiers `em.property` to not mess up creating the heading, although
+  // we must first extract any modifiers. Attributes will not have modifiers, whereas
+  // properties will have `property` or possibly `abstract property`. If the modifier is simply
+  // `property`, then we do not save its value because there is no practical difference for end-users
+  // between an attribute and property. However, we preserve the full string if it's `abstract property`.
+  //
+  // Meanwhile, we preserve the non-modifier `em.property` elements to be processed below.
+  const rawModifiers = $child
+    .find("em.property")
+    .filter((i, el) => $(el).text().includes("property"));
+  const modifiersText = rawModifiers.text().trim();
+  const filteredModifiers =
+    modifiersText === "property" ? undefined : modifiersText;
+  rawModifiers.remove();
+
   const text = $child.text();
 
   // Index of the default value of the attribute
@@ -235,9 +241,11 @@ function prepareAttributeOrPropertyProps(
     attributeTypeHint,
     attributeValue,
     githubSourceLink,
+    modifiers: filteredModifiers,
   };
 
-  if (!priorApiType && id) {
+  const pageHeading = $dl.siblings("h1").text();
+  if (pageHeading && id.endsWith(pageHeading)) {
     $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
     return {
       ...props,
@@ -271,7 +279,7 @@ function prepareFunctionProps(
   };
 
   const pageHeading = $dl.siblings("h1").text();
-  if (id.endsWith(pageHeading) && pageHeading != "") {
+  if (pageHeading && id.endsWith(pageHeading)) {
     // Page is already dedicated to apiType; no heading needed
     return {
       ...props,
