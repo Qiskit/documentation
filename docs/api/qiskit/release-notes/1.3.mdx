@@ -14,9 +14,57 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.3.1
+
+<span id="relnotes-1-3-1-prelude" />
+
+### Prelude
+
+Qiskit 1.3.1 is a minor bugfix release for the 1.3 series.
+
+<span id="relnotes-1-3-1-circuits-upgrade-notes" />
+
+### Circuits Upgrade Notes
+
+*   The generic control method for gates now avoids attempting to translate gates into a supported basis when the gate is already supported. This may slightly change the synthesis of the controlled gate, but it should not increase the two-qubit gate count.
+
+<span id="relnotes-1-3-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug where calling [`QuantumCircuit.decompose()`](/api/qiskit/qiskit.circuit.QuantumCircuit#decompose "qiskit.circuit.QuantumCircuit.decompose") on an instruction that had no definition inside a `c_if` block would raise an error. Fixed [#13493](https://github.com/Qiskit/qiskit/issues/13493).
+
+*   Operations inside a control flow operation (e.g. [`QuantumCircuit.for_loop()`](/api/qiskit/qiskit.circuit.QuantumCircuit#for_loop "qiskit.circuit.QuantumCircuit.for_loop")) were not correctly decomposed when calling [`QuantumCircuit.decompose()`](/api/qiskit/qiskit.circuit.QuantumCircuit#decompose "qiskit.circuit.QuantumCircuit.decompose"). Fixed [#13544](https://github.com/Qiskit/qiskit/issues/13544).
+
+*   Added default definitions for [`FullAdderGate`](/api/qiskit/qiskit.circuit.library.FullAdderGate "qiskit.circuit.library.FullAdderGate"), [`HalfAdderGate`](/api/qiskit/qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate"), [`ModularAdderGate`](/api/qiskit/qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate") and [`MultiplierGate`](/api/qiskit/qiskit.circuit.library.MultiplierGate "qiskit.circuit.library.MultiplierGate") gates, allowing [`Operator`](/api/qiskit/qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")s to be constructed from quantum circuits containing these gates.
+
+*   Corrected the number of clean ancilla qubits required by [`FullAdderSynthesisV95`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95"), [`HalfAdderSynthesisV95`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95"), and [`ModularAdderSynthesisV95`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95") plugins.
+
+*   Added missing [`FullAdderSynthesisDefault`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault") plugin that chooses the best decomposition for [`FullAdderGate`](/api/qiskit/qiskit.circuit.library.FullAdderGate "qiskit.circuit.library.FullAdderGate") based on the number of clean ancilla qubits available.
+
+*   Fixed [`HalfAdderSynthesisDefault`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault") and [`ModularAdderSynthesisDefault`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault") plugins, for [`HalfAdderGate`](/api/qiskit/qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate") and [`ModularAdderGate`](/api/qiskit/qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate") respectively, to choose the best decomposition based on the number of clean ancilla qubits available.
+
+*   Fixed an incorrect caching behavior during parameter assignment that could result in definitions within the [`EquivalenceLibrary`](/api/qiskit/qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") becoming corrupted. This resolves unexpected issues when running basis translation in parallel. Fixed [#13504](https://github.com/Qiskit/qiskit/issues/13504).
+
+*   Fixed a series of bugs when processing circuits with parameterized global phases in which the global phase was not properly assigned during parameter assignment. Known cases this affected include:
+
+    *   assigning parameters after calling [`QuantumCircuit.decompose()`](/api/qiskit/qiskit.circuit.QuantumCircuit#decompose "qiskit.circuit.QuantumCircuit.decompose") on a circuit, where the decomposition introduces a global phase
+    *   assigning parameters on a circuit constructed from a DAG via [`dag_to_circuit()`](/api/qiskit/converters#qiskit.converters.dag_to_circuit "qiskit.converters.dag_to_circuit")
+    *   assigning parameters on circuits created with [`pauli_twirl_2q_gates()`](/api/qiskit/circuit#qiskit.circuit.pauli_twirl_2q_gates "qiskit.circuit.pauli_twirl_2q_gates"), where the circuit to be twirled had a parameterized global phase
+
+    Fixed [#13534](https://github.com/Qiskit/qiskit/issues/13534).
+
+*   Fixed a bug in [`RZGate.control()`](/api/qiskit/qiskit.circuit.library.RZGate#control "qiskit.circuit.library.RZGate.control") for more than 1 control qubit, which used an unnecessarily expensive decomposition. Fixed [#13473](https://github.com/Qiskit/qiskit/issues/13473).
+
+<span id="relnotes-1-3-0" />
+
+<span id="id2" />
+
 ## 1.3.0
 
 <span id="relnotes-1-3-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -490,6 +538,8 @@ $$
 
 <span id="relnotes-1-3-0-circuits-upgrade-notes" />
 
+<span id="id4" />
+
 ### Circuits Upgrade Notes
 
 *   The [`QuantumVolume`](/api/qiskit/qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume") class will generate circuits with different unitary matrices and permutations for a given seed value from the previous Qiskit release. This is due to using a new internal random number generator for the circuit generation that will generate the circuit more quickly. If you need an exact circuit with the same seed you can use the previous release of Qiskit and generate the circuit with the `flatten=True` argument and export the circuit with [`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") and then load it with this release.
@@ -757,6 +807,8 @@ $$
     *   [`qiskit.scheduler.ScheduleConfig`](/api/qiskit/scheduler#qiskit.scheduler.ScheduleConfig "qiskit.scheduler.ScheduleConfig")
 
 <span id="relnotes-1-3-0-bug-fixes" />
+
+<span id="id5" />
 
 ### Bug Fixes
 
