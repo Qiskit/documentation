@@ -8,7 +8,7 @@ description: Migrate to the primitives interface in external providers
 
 ## Motivation and context
 
-The evolution of quantum algorithms with the scaling of quantum processing units (QPUs) motivated the 
+The evolution of quantum algorithms and scaling of quantum processing units (QPUs) motivated the 
 introduction of the Qiskit primitives interface (link to primitives guide) to provide a higher-level abstraction for 
 accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development: 
 circuit sampling (Sampler) and expectation value estimation (Estimator).
@@ -62,7 +62,7 @@ class CustomEstimator(BackendEstimatorV2):
             extra_flag_used_in_estimation:  if `False`, do this.
             another_extra_flag: if `True`, do that,
         """
-        
+
         # preprocess arguments if necessary according to custom flags
         processed_backend = ...
         processed_options = ...
@@ -87,7 +87,7 @@ understanding of the PUB data model for input/output handling (link to pub expla
 
 The following snippet shows a minimal example of an implementation of a custom Sampler primitive following this strategy.
 This example has been extracted and generalized from the `StatevectorSampler` (link) implementation. It has been simplified
-for readability purposes. The full original implementation can be found in the StatevectorSampler (link) source code.
+for readability purposes. The full original implementation can be found in the `StatevectorSampler` (link) source code.
 
 ``` python
 from qiskit.primitives.base import BaseSamplerV2
@@ -114,7 +114,7 @@ class CustomStatevectorSampler(BaseSamplerV2):
         job = PrimitiveJob(self._run, coerced_pubs)
         job._submit()
         return job
-      
+
     def _run(self, pubs: Iterable[SamplerPub]) -> PrimitiveResult[SamplerPubResult]:
         results = [self._run_pub(pub) for pub in pubs]
         return PrimitiveResult(results, metadata={"version": 2})
@@ -131,7 +131,7 @@ class CustomStatevectorSampler(BaseSamplerV2):
             for item in meas_info
         }
         for index, bound_circuit in enumerate(bound_circuits):
-            
+
             # ACCESS PROVIDER RESOURCE HERE
             # in this case, we are showing an illustrative implementation
             samples_array = ProviderResource.sample(bound_circuit)
@@ -147,13 +147,13 @@ class CustomStatevectorSampler(BaseSamplerV2):
         return SamplerPubResult(
             DataBin(**meas, shape=pub.shape),
             metadata={"shots": pub.shots, "circuit_metadata": pub.circuit.metadata},
-        )    
+        )
 ```
 
 The mechanics to implement a custom Estimator are analogous to the Sampler, but may require a different pre/post-processing 
 step in the `run`  method to extract expectation values from samples. Similarly to the Sampler
 example, this snippet has been modified and simplified for generality and readability purposes. 
-The full original implementation can be found in the StatevectorEstimator (link) source code.
+The full original implementation can be found in the `StatevectorEstimator` (link) source code.
 
 ``` python
 from .base import BaseEstimatorV2
