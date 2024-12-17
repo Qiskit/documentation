@@ -13,19 +13,19 @@ introduction of the Qiskit [primitives interface](/guides/primitives) to provide
 accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development: expectation value estimation (Estimator) and
 circuit sampling (Sampler).
 
-After a time of co-existence of the `backend.run` model and primitives model, where the primitives
+After a time of co-existence of the `backend.run` model and primitives model, when the primitives
 evolved to the updated V2 primitives, the `backend.run` model was finally deprecated in favor of
 these newer interfaces to streamline quantum workload execution.
 
-The existing collection of migration guides helps users [transition to the runtime provider](/migration-guides/qiskit-runtime) and
+The existing collection of migration guides helps users [transition to the Qiskit Runtime provider](/migration-guides/qiskit-runtime) and
 [update their user code to the V2 primitives interface](/migration-guides/v2-primitives) in time for the upcoming removal of `backend.run`.
 To complement that, this guide supports external providers (both existing and upcoming)
 in implementing their own version of the primitives V2 interface (Estimator or Sampler) that integrates seamlessly into the
 standard Qiskit workflow.
 
 These implementations can be used to wrap any custom provider hardware access function
-(for example: `execute_workload(QPU)` or `resource.access()`), or local simulator,
-as long as the final inputs and outputs conform to the established standards from the primitive interfaces.
+(for example: `execute_workload(QPU)` or `resource.access()`) or local simulator,
+as long as the final inputs and outputs conform to the established standards set by the primitive interfaces.
 
 ## If your provider already implemented `backend.run`
 
@@ -34,11 +34,11 @@ through subclassing; these are the [`BackendEstimatorV2`](/api/qiskit/qiskit.pri
 to the primitives should follow the Primitive Unified Bloc (PUB) syntax specified in the V2 primitives interface. See the [Overview of PUBs section](/guides/primitive-input-output#pubs) in the Primitive inputs and outputs guide for details.
 
 An advantage of this strategy is that the wrapper can handle the input and output manipulation, so knowledge of the PUB data
-model is not required. However, this might result in a sub-optimal runtime, which could be refined through a fully
+model is not required. However, this might result in a suboptimal runtime, which could be refined through a fully
 custom primitives implementation.
 
-The snippets below show how to create a custom Estimator instance following the strategy described above.
-The process would be analogous for a custom Sampler, modifying the base class to `BackendSamplerV2`.
+The following snippets show how to create a custom Estimator instance following the strategy described above.
+The process is analogous for a custom Sampler, modifying the base class to `BackendSamplerV2`.
 
 ``` python
 from qiskit.primitives import BackendEstimatorV2
@@ -81,7 +81,7 @@ class CustomEstimator(BackendEstimatorV2):
 ## If your provider didn't implement `backend.run` or you prefer a fully custom implementation
 
 If a new provider is developed that doesn't conform to the legacy `backend.run` interface, the pre-packaged
-wrapper might not be the optimal route for implementing the primtives. Instead, you should implement a particular
+wrapper might not be the optimal route for implementing the primitives. Instead, you should implement a particular
 instance of the abstract base primitive interfaces ([BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2) or [BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2)). This process requires an
 understanding of the PUB data model for input and output handling.
 
@@ -150,7 +150,7 @@ class CustomStatevectorSampler(BaseSamplerV2):
         )
 ```
 
-The mechanics to implement a custom Estimator are analogous to the Sampler, but might require a different pre or post-processing
+The mechanics to implement a custom Estimator are analogous to those for the Sampler, but might require a different pre- or post-processing
 step in the `run`  method to extract expectation values from samples. Similar to the Sampler
 example, this snippet has been modified and simplified for generality and readability.
 The full original implementation can be found in the [`StatevectorEstimator` source code.](https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/primitives/statevector_estimator.py#L31-L174)
