@@ -9,18 +9,18 @@ description: Migrate to the primitives interface in external providers
 ## Motivation and context
 
 The evolution of quantum algorithms and scaling of quantum processing units (QPUs) motivated the
-introduction of the Qiskit primitives interface (link to primitives guide) to provide a higher-level abstraction for
-accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development:
-circuit sampling (Sampler) and expectation value estimation (Estimator).
+introduction of the Qiskit [primitives interface](https://docs.quantum.ibm.com/guides/primitives) to provide a higher-level abstraction for
+accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development: expectation value estimation (Estimator) and
+circuit sampling (Sampler).
 
 After a time of co-existence of the `backend.run` model and primitives model, where the primitives
-evolved to the updated V2 primitives (link to v2 primitives guide?), the `backend.run` model was finally deprecated in favor of
+evolved to the updated V2 primitives, the `backend.run` model was finally deprecated in favor of
 these newer interfaces to streamline quantum workload execution.
 
-The existing collection of migration guides (link relevant guides) allow users to transition to the runtime provider and
-update their user code to the new primitives V2 interface in time for the upcoming removal of `backend.run`.
+The existing collection of migration guides allow users to [transition to the runtime provider](https://docs.quantum.ibm.com/migration-guides/qiskit-runtime) and
+[update their user code to the new primitives V2 interface](/migration-guides/v2-primitives) in time for the upcoming removal of `backend.run`.
 To complement that, this guide focuses on supporting external providers (both existing and upcoming)
-in the implementation their own flavor of the primitives V2 interface (Sampler or Estimator) to integrate seamlessly into the
+in the implementation their own flavor of the primitives V2 interface (Estimator or Sampler) to integrate seamlessly into the
 standard Qiskit workflow.
 
 These implementations can be used to wrap any custom provider hardware access function
@@ -86,8 +86,8 @@ instance of the abstract base primitive interfaces ([BaseEstimatorV2](/api/qiski
 understanding of the PUB data model for input/output handling.
 
 The following snippet shows a minimal example of an implementation of a custom Sampler primitive following this strategy.
-This example has been extracted and generalized from the `StatevectorSampler` (link) implementation. It has been simplified
-for readability purposes. The full original implementation can be found in the `StatevectorSampler` (link) source code.
+This example has been extracted and generalized from the [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler) implementation. It has been simplified
+for readability purposes. The full original implementation can be found in the [`StatevectorSampler` source code.](https://github.com/Qiskit/qiskit/blob/stable/1.3/qiskit/primitives/statevector_sampler.py)
 
 ``` python
 from qiskit.primitives.base import BaseSamplerV2
@@ -153,7 +153,7 @@ class CustomStatevectorSampler(BaseSamplerV2):
 The mechanics to implement a custom Estimator are analogous to the Sampler, but may require a different pre/post-processing
 step in the `run`  method to extract expectation values from samples. Similarly to the Sampler
 example, this snippet has been modified and simplified for generality and readability purposes.
-The full original implementation can be found in the `StatevectorEstimator` (link) source code.
+The full original implementation can be found in the [`StatevectorEstimator` source code.](https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/primitives/statevector_estimator.py#L31-L174)
 
 ``` python
 from .base import BaseEstimatorV2
