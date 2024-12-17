@@ -8,36 +8,36 @@ description: Migrate to the primitives interface in external providers
 
 ## Motivation and context
 
-The evolution of quantum algorithms and scaling of quantum processing units (QPUs) motivated the 
-introduction of the Qiskit primitives interface (link to primitives guide) to provide a higher-level abstraction for 
-accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development: 
+The evolution of quantum algorithms and scaling of quantum processing units (QPUs) motivated the
+introduction of the Qiskit primitives interface (link to primitives guide) to provide a higher-level abstraction for
+accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development:
 circuit sampling (Sampler) and expectation value estimation (Estimator).
 
-After a time of co-existence of the `backend.run` model and primitives model, where the primitives 
-evolved to the updated V2 primitives (link to v2 primitives guide?), the `backend.run` model was finally deprecated in favor of 
-these newer interfaces to streamline quantum workload execution. 
+After a time of co-existence of the `backend.run` model and primitives model, where the primitives
+evolved to the updated V2 primitives (link to v2 primitives guide?), the `backend.run` model was finally deprecated in favor of
+these newer interfaces to streamline quantum workload execution.
 
 The existing collection of migration guides (link relevant guides) allow users to transition to the runtime provider and
-update their user code to the new primitives V2 interface in time for the upcoming removal of `backend.run`. 
+update their user code to the new primitives V2 interface in time for the upcoming removal of `backend.run`.
 To complement that, this guide focuses on supporting external providers (both existing and upcoming)
-in the implementation their own flavor of the primitives V2 interface (Sampler or Estimator) to integrate seamlessly into the 
-standard Qiskit workflow. 
+in the implementation their own flavor of the primitives V2 interface (Sampler or Estimator) to integrate seamlessly into the
+standard Qiskit workflow.
 
-These implementations can be used to wrap any custom provider hardware access function 
-(for example: `execute_workload(QPU)` or `resource.access()`), or local simulator, 
+These implementations can be used to wrap any custom provider hardware access function
+(for example: `execute_workload(QPU)` or `resource.access()`), or local simulator,
 as long as the final inputs and outputs conform to the established contract from the primitive interfaces.
 
 ## If your provider already implemented `backend.run`
 
 The Qiskit SDK offers ready-to-go wrappers for `backend.run` that can be easily adapted to a custom primitives workflow
-through subclassing, these are the `BackendSamplerV2` (API ref link) and `BackendEstimatorV2` (API ref link). The inputs 
-to the primitives should follow the pub syntax specified in the V2 primitives interface (link to pub docs). 
+through subclassing, these are the [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) The inputs
+to the primitives should follow the Primitive Unified Bloc (PUB) syntax specified in the V2 primitives interface. See the [Overview of PUBs section](/guides/primitive-input-output#pubs) in the Primitive inputs and outputs guide for details.
 
 An advantage of this strategy is that the wrapper can handle the input/output manipulation, so knowledge of the PUB data
 model is not required. However, this might result in a sub-optimal runtime, which could be refined through a fully
 custom primitives implementation.
 
-The snippets below show how to create a custom Estimator instance following the strategy described above. 
+The snippets below show how to create a custom Estimator instance following the strategy described above.
 The process would be analogous for a custom Sampler, modifying the base class to `BackendSamplerV2`.
 
 ``` python
@@ -81,9 +81,9 @@ class CustomEstimator(BackendEstimatorV2):
 ## If your provider didn't implement `backend.run` or you prefer a fully custom implementation
 
 If a new provider is developed that doesn't conform to the legacy `backend.run` interface, the pre-packaged
-wrapper may not be the optimal route for implementing primitives. Instead, you should implement a particular
-instance of the abstract base primitive interfaces (link to BaseSamplerV2 and BaseEstimatorV2). This route requires an
-understanding of the PUB data model for input/output handling (link to pub explanation).
+wrapper may not be the most optimal route for implementing the primtives. Instead, you should implement a particular
+instance of the abstract base primitive interfaces ([BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2) or [BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2)). This route requires an
+understanding of the PUB data model for input/output handling.
 
 The following snippet shows a minimal example of an implementation of a custom Sampler primitive following this strategy.
 This example has been extracted and generalized from the `StatevectorSampler` (link) implementation. It has been simplified
@@ -135,7 +135,7 @@ class CustomStatevectorSampler(BaseSamplerV2):
             # ACCESS PROVIDER RESOURCE HERE
             # in this case, we are showing an illustrative implementation
             samples_array = ProviderResource.sample(bound_circuit)
-            
+
             # post-processing of the sampling output to fit the required format
             for item in meas_info:
                 ary = _samples_to_packed_array(samples_array, item.num_bits, item.qreg_indices)
@@ -150,9 +150,9 @@ class CustomStatevectorSampler(BaseSamplerV2):
         )
 ```
 
-The mechanics to implement a custom Estimator are analogous to the Sampler, but may require a different pre/post-processing 
+The mechanics to implement a custom Estimator are analogous to the Sampler, but may require a different pre/post-processing
 step in the `run`  method to extract expectation values from samples. Similarly to the Sampler
-example, this snippet has been modified and simplified for generality and readability purposes. 
+example, this snippet has been modified and simplified for generality and readability purposes.
 The full original implementation can be found in the `StatevectorEstimator` (link) source code.
 
 ``` python
@@ -200,7 +200,7 @@ class CustomStatevectorEstimator(BaseEstimatorV2):
             # ACCESS PROVIDER RESOURCE HERE
             # in this case, we are showing an illustrative implementation
             samples_array = ProviderResource.sample(bound_circuit, rng, precision)
-            
+
             # post-processing of the sampling output to extract expectation value
             expectation_value = compute_expectation_value(samples_array, obs)
             evs[index] = expectation_value
