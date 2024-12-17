@@ -3,6 +3,26 @@
 A tool to execute notebooks for testing, with certain features useful for
 notebooks that run jobs on IBM Quantum backends.
 
+## Installing
+
+To install, run the following command:
+
+```
+pip install git+https://github.com/Qiskit/documentation.git@main#subdirectory=scripts/nb-tester
+```
+
+> [!NOTE]
+> If adding this package as a dependency, change `main` to point to a specific
+> commit. For example:
+> ```
+> git+https://github.com/Qiskit/documentation.git@91bce99173f46be985698cc78ec4521856bf83b6#subdirectory=scripts/nb-tester
+> ```
+> This means changes to this repository won't break your tests. You can update
+> the commit when you're ready to pull in our changes.
+
+If adding this as a dependency to a `tox.ini` file, escape the `#` with a
+backslash like this: `\#`.
+
 ## Basic usage
 
 To use this tool, just run the `test-docs-notebooks` command, followed by a
