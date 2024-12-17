@@ -24,6 +24,7 @@ import { FileBatch } from "../lib/links/FileBatch.js";
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
+  "docs/api/qiskit-ibm-transpiler-rest/index.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
