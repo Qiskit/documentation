@@ -6,34 +6,34 @@ description: Migrate to the primitives interface in external providers
 
 # Motivation
 
-As quantum processing units (QPUs) scale and quantum algorithms evolve, 
-the Qiskit Primitives interface was introduced to provide a higher-level abstraction for 
-accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development: 
+As quantum processing units (QPUs) scaled and quantum algorithms evolved,
+the Qiskit Primitives interface was introduced to provide a higher-level abstraction for
+accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development:
 circuit sampling (Sampler) and expectation value estimation (Estimator).
 
 The Primitives interface has replaced the legacy `backend.run` model for user access of IBM Quantum Hardware,
 resulting in its deprecation and removal from the Qiskit Runtime service. A series of migration guides have
-been developed for users to upgrade their workflows to use the different primitive implementations available 
+been developed for users to upgrade their workflows to use the different primitive implementations available
 in the qiskit ecosystem, including the runtime primitives for real hardware access, the statevector primitives
 for local statevector simulation, or the aer primitives for access to local noisy simulation.
 
-This migration guide, however, has been designed to help external providers implement their own flavor of the 
-primitives V2 interface (Sampler or Estimator) for easier pluggability into the standard qiskit workflow. These 
-implementations can be used to wrap any custom provider hardware access function 
+This migration guide, however, has been designed to help external providers implement their own flavor of the
+primitives V2 interface (Sampler or Estimator) for easier pluggability into the standard qiskit workflow. These
+implementations can be used to wrap any custom provider hardware access function
 (for example: `execute_workload(QPU)` or `resource.access()`)
 as long as the final inputs and outputs conform to the established contract from the interface.
 
 ## If the external provider already implemented `backend.run`
 
 The qiskit SDK offers ready-to-go wrappers for `backend.run` that can be easily adapted to a custom primitives workflow
-through subclassing, these are the `BackendSamplerV2` (API ref link) and `BackendEstimatorV2` (API ref link). The inputs 
-to the primitives should follow the pub syntax specified in the V2 primitives interface (link to pub docs). 
+through subclassing, these are the `BackendSamplerV2` (API ref link) and `BackendEstimatorV2` (API ref link). The inputs
+to the primitives should follow the pub syntax specified in the V2 primitives interface (link to pub docs).
 
 An advantage of this strategy is that the wrapper can handle the input/output manipulation, so knowledge of the PUB data
 model is not required. However, this might result in a sub-optimal runtime, which could be refined through a fully
 custom primitives implementation.
 
-The snippets below show how to create a custom Estimator instance following the strategy described above. 
+The snippets below show how to create a custom Estimator instance following the strategy described above.
 The process would be analogous for a custom Sampler, modifying the base class to BackendSamplerV2.
 
 ``` python
@@ -56,7 +56,7 @@ class CustomEstimator(BackendEstimatorV2):
             extra_flag_used_in_estimation:  if `False`, do this.
             another_extra_flag: if `True`, do that,
         """
-        
+
         # preprocess arguments if necessary according to custom flags
         processed_backend = ...
         processed_options = ...
@@ -80,7 +80,7 @@ instance of the abstract base primitive interfaces (link to BaseSamplerV2 and Ba
 understanding of the PUB data model for input/output handling.
 
 The following snippet shows a minimal example of an implementation of a custom Sampler primitive following this strategy.
-This example has been extracted and generalized from the StatevectorSampler implementation. The full original 
+This example has been extracted and generalized from the StatevectorSampler implementation. The full original
 implementation can be found in the StatevectorSampler source code.
 
 ``` python
@@ -107,7 +107,7 @@ class CustomStatevectorSampler(BaseSamplerV2):
         """
         self._default_shots = default_shots
         self._seed = seed
-    
+
     ...
 
     def run(
@@ -126,7 +126,7 @@ class CustomStatevectorSampler(BaseSamplerV2):
         job = PrimitiveJob(self._run, coerced_pubs)
         job._submit()
         return job
-      
+
     def _run(self, pubs: Iterable[SamplerPub]) -> PrimitiveResult[SamplerPubResult]:
         results = [self._run_pub(pub) for pub in pubs]
         return PrimitiveResult(results, metadata={"version": 2})
@@ -141,11 +141,11 @@ class CustomStatevectorSampler(BaseSamplerV2):
             for item in meas_info
         }
         for index, bound_circuit in enumerate(bound_circuits):
-            
+
             # ACCESS PROVIDER RESOURCE HERE
             # in this case, we are showing an illustrative implementation
             samples_array = ProviderResource.sample()
-            
+
             for item in meas_info:
                 ary = _samples_to_packed_array(samples_array, item.num_bits, item.qreg_indices)
                 arrays[item.creg_name][index] = ary
@@ -156,10 +156,10 @@ class CustomStatevectorSampler(BaseSamplerV2):
         return SamplerPubResult(
             DataBin(**meas, shape=pub.shape),
             metadata={"shots": pub.shots, "circuit_metadata": pub.circuit.metadata},
-        )    
+        )
 ```
 
-The mechanics to implement a custom Estimator are analogous to the Sampler, but may require an extra pre/post-processing 
+The mechanics to implement a custom Estimator are analogous to the Sampler, but may require an extra pre/post-processing
 step in the run method to extract expectation values from samples. In the case of the custom SatevectorEstimator that will be
 used as reference, we encapsulate thi computation in the `_statevector_from_circuit` utility function.
 
