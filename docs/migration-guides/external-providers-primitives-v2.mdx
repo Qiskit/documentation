@@ -46,6 +46,9 @@ from qiskit.primitives import BackendEstimatorV2
 class CustomEstimator(BackendEstimatorV2):
     """Estimator primitive for custom provider."""
 
+    # This line is for type checking purposes.
+    # We are changing the type of self._backend from qiskit's
+    # BackendV1/BackendV2 classes to our custom provider resource.
     _backend: CustomProviderResource
 
     def __init__(
