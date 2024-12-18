@@ -77,6 +77,7 @@ You can preview the docs locally by following these two steps:
 
 1. Ensure Docker is running. For example, open Rancher Desktop.
 2. Run `./start` in your terminal, and open http://localhost:3000 in your browser.
+   - On Windows, run `python start` instead. Alternatively, use Windows Subsystem for Linux and run `./start`.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
