@@ -79,7 +79,7 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
   // the API repo should catch it.
   //
   // If an image is missed by the API repo's linter, it will still have an alt text defined,
-  // although it won't be very useful.
+  // although it won't be very useful. That's because Sphinx auto-generates alt text.
   const globs = [
     "docs/**/*.{ipynb,mdx}",
     args.apis ? "!docs/api/*/([0-9]*)/*.mdx" : "!docs/api/**/*.mdx",
