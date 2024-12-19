@@ -6,24 +6,34 @@ description: Migrate to the primitives interface in external providers
 
 # Migrate provider interfaces from `backend.run` to primitives
 
-## Motivation and context
+## Why implement primitives for external providers?
 
-The evolution of quantum algorithms and scaling of quantum processing units (QPUs) motivated the
-introduction of the Qiskit [primitives interface](/guides/primitives) to provide a higher-level abstraction for
-accessing QPUs. This interface is optimized for two core tasks in quantum algorithm development: expectation value estimation (Estimator) and
-circuit sampling (Sampler).
+Similar to the early days of classical computers, when developers had to manipulate CPU registers directly, 
+the early interface to QPUs simply returned the raw data coming out of the control electronics. 
+This was not a huge issue when QPUs lived in labs and only allowed direct access by researchers. 
+When IBM first brought its QPUs to the cloud, we recognized most developers would not and 
+should not be familiar with distilling such raw data into 0s and 1s. Therefore, 
+we introduced `backend.run`, our first abstraction for accessing QPUs. This allowed developers 
+to operate on a data format they were more familiar with and focus on the bigger picture.
 
-After a time of co-existence of the `backend.run` model and primitives model, when the primitives
-evolved to the updated V2 primitives, the `backend.run` model was finally deprecated in favor of
-these newer interfaces to streamline quantum workload execution.
+As access to QPUs became more wide spread, and with more quantum algorithms being developed, 
+we again recognized the need for a higher-level abstraction. This led to the introduction of 
+the Qiskit [primitives interface](/guides/primitives), which are optimized for two core tasks in quantum algorithm development: 
+expectation value estimation (Estimator) and circuit sampling (Sampler). The goal is once 
+again to help developers to focus more on innovation and less on data conversion. 
 
-The existing collection of migration guides helps users [transition to the Qiskit Runtime provider](/migration-guides/qiskit-runtime) and
-[update their user code to the V2 primitives interface](/migration-guides/v2-primitives) in time for the upcoming removal of `backend.run`.
-To complement that, this guide supports external providers (both existing and upcoming)
-in implementing their own version of the primitives V2 interface (Estimator or Sampler) that integrates seamlessly into the
-standard Qiskit workflow.
+For backwards compatibility purposes, the `backend.run` interface continues to exist in Qiskit. However, it is deprecated 
+in Qiskit Runtime, as most of the IBM Quantum users have migrated to V2 primitives due to their improved 
+usability and efficiency. There is already a collection of migration guides for users to 
+[transition to the Qiskit Runtime provider](/migration-guides/qiskit-runtime) and
+[update their user code to the V2 primitives interface](/migration-guides/v2-primitives) in 
+time for the upcoming removal of `backend.run` in Qiskit Runtime.
 
-These implementations can be used to wrap any custom provider hardware access function
+This migration guide shifts the focus from users and aims to help service providers to migrate from the 
+`backend.run` interface to primitives, 
+so their users can also benefit from their improvements.
+
+Custom primitive implementations can be used to wrap any service provider hardware access function
 (for example: `execute_workload(QPU)` or `resource.access()`) or local simulator,
 as long as the final inputs and outputs conform to the established standards set by the primitive interfaces.
 
