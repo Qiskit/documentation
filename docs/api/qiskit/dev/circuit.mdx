@@ -1038,7 +1038,7 @@ $$
    \leftrightarrow \begin{pmatrix} \alpha \\ \beta \end{pmatrix}
 $$
 
-where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
+where $\alpha$ and $\beta$ are complex numbers. We store the statevector as a 1D Numpy [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)") with data `sv = [alpha, beta]`, *i.e.* `sv[0] == alpha` and `sv[1] == beta`; note that the indices into the statevector match the ket labels.
 
 We construct [the tensor product of two qubit states](https://en.wikipedia.org/wiki/Tensor_product) in matrix algebra using [the Kronecker product](https://en.wikipedia.org/wiki/Kronecker_product), with qubit 0 on the right and qubit 1 on the left, such that the $Z$ basis state $\lvert x\rangle$ (where $x$ is the integer interpretation of the bitstring) has its non-zero term in the statevector `sv` at `sv[x]`:
 
