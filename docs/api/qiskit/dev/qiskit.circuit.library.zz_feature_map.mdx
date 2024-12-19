@@ -43,8 +43,8 @@ python_api_name: qiskit.circuit.library.zz_feature_map
   ```
 
   ```python
-  >>> from qiskit.circuit.library import EfficientSU2
-  >>> classifier = zz_feature_map(3) + EfficientSU2(3)
+  >>> from qiskit.circuit.library import efficient_su2
+  >>> classifier = zz_feature_map(3).compose(efficient_su2(3))
   >>> classifier.num_parameters
   15
   >>> classifier.parameters  # 'x' for the data preparation, 'θ' for the SU2 parameters
