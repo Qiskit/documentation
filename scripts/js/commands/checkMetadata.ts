@@ -22,7 +22,6 @@ const ALLOWED_VIOLATIONS: Set<string> = new Set([...qiskitLegacyIgnores()]);
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
-  translations: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -32,11 +31,6 @@ const readArgs = (): Arguments => {
       type: "boolean",
       default: false,
       description: "Check the API docs?",
-    })
-    .option("translations", {
-      type: "boolean",
-      default: false,
-      description: "Check the translations?",
     })
     .parseSync();
 };
@@ -99,10 +93,6 @@ async function determineFiles(args: Arguments): Promise<[string[], string[]]> {
     const apiIgnore = `!docs/api/**/*`;
     mdGlobs.push(apiIgnore);
     notebookGlobs.push(apiIgnore);
-  }
-  if (args.translations) {
-    mdGlobs.push("translations/**/*.{md,mdx}");
-    notebookGlobs.push("translations/**/*.ipynb");
   }
   return [await globby(mdGlobs), await globby(notebookGlobs)];
 }
