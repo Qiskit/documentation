@@ -1,0 +1,96 @@
+---
+title: Circuit Cutting
+description: Overview of the addon for circuit cutting to build utility-scale workloads
+---
+
+# Circuit cutting
+
+Circuit cutting is a technique to increase the size of circuits we can run on quantum hardware at the cost of an additional sampling overhead This package implements this technique; where a handful of gates and/or wires are cut, resulting in smaller circuits that are better suited for execution on hardware. These smaller circuits are then executed and the results of the original circuit are reconstructed through using classical post-processing. However, the trade-off is that the overall number of shots must increase by a factor exponential in the number of cuts made. Circuit cutting can also be used to engineer gates between distant qubits which would otherwise require a large swap overhead.
+
+### Key terms
+
+- **subcircuits**: The set of circuits resulting from cutting gates in a `QuantumCircuit` and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`s](../api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate) and are used to instantiate each subexperiment.
+
+- **subexperiment**: A term used to describe the unique circuit samples associated with a subcircuit which are sent to a QPU for execution.
+
+## Install the circuit cutting package
+
+There are three ways to install the circuit cutting package: PyPI, building from source, and running within a containerized environment. It is recommended to install these packages in a [virtual environment](https://docs.python.org/3.10/tutorial/venv.html) to ensure separation between package dependencies.
+
+### Install from PyPI
+
+The most straightforward way to install the `qiskit-addon-cutting` package is via PyPI
+```bash
+pip install qiskit-addon-cutting
+```
+
+### Install from source
+
+<details>
+<summary>
+Click here to read how to install this package manually.
+</summary>
+
+If you wish to contribute to this package or want to install it manually, first clone the repository:
+
+```bash
+git clone git@github.com:Qiskit/qiskit-addon-cutting.git
+```
+and install the package via `pip`. If you plan on running the tutorials found in the package repository, install the notebook dependencies as well. If you plan on developing in the repository, you may also want to install the `dev` dependencies.
+```bash
+pip install tox notebook -e '.[notebook-dependencies,dev]'
+```
+
+</details>
+
+### Use within Docker
+
+A dockerfile is included in the addon repository which can be used to build a docker image. There is also a `compose.yaml` file which allows you to use the Docker image with the following commands
+
+<details>
+<summary>
+Click here to read how to use this package within Docker
+</summary>
+
+```bash
+git clone git@github.com:Qiskit/qiskit-addon-cutting.git
+cd qiskit-addon-cutting
+docker compose build
+docker compose up
+```
+<Admonition type="note" title="Note">
+    If you are using `podman` and `podman-compose` instead of `docker`, the commands are:
+    ```bash
+    podman machine start
+    podman-compose --podman-pull-args short-name-mode="permissive" build
+    podman-compose up
+    ```
+</Admonition>
+
+Once the container is running, you should see a message similar to:
+```
+notebook_1  |     To access the server, open this file in a browser:
+notebook_1  |         file:///home/jovyan/.local/share/jupyter/runtime/jpserver-7-open.html
+notebook_1  |     Or copy and paste one of these URLs:
+notebook_1  |         http://e4a04564eb39:8888/lab?token=00ed70b5342f79f0a970ee9821c271eeffaf760a7dcd36ec
+notebook_1  |      or http://127.0.0.1:8888/lab?token=00ed70b5342f79f0a970ee9821c271eeffaf760a7dcd36ec
+```
+
+The *last* URL in this message will give you access to the Jupyter notebook interface. 
+
+Additionally, the home directory includes a subdirectory named persistent-volume. All work you would like to save should be placed in this directory, as it is the only one that will be saved across different container runs.
+
+
+</details>
+
+## Theoretical Background
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Read through the page on [getting started with circuit cutting](/guides/qiskit-addons-cuttng-get-started)
+</Admonition>
+
+
+## References
