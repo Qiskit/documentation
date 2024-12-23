@@ -31,7 +31,7 @@ function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
     return pkg.isDev();
   } else {
     // Else, if the pkg has only a single release note file, only 'latest' should copy images.
-    return pkg.isLatest();
+    return !pkg.isLatest();
   }
 }
 
