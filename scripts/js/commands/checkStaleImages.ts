@@ -12,42 +12,60 @@
 
 import { $ } from "zx";
 import { globby } from "globby";
-import { zip } from "lodash-es";
 
 import { zxMain } from "../lib/zx.js";
 
+// Files that are used in closed source, so should not be removed.
+// Format: full file path, e.g. "public/images/guides/paulibasis.png"
+const ALLOW_LIST = new Set<string>([]);
+
 zxMain(async () => {
   const paths = await getStrippedImagePaths();
-  const results = await Promise.all(paths.map((fp) => isImageUnused(fp)));
-  const unused = zip(paths, results)
-    .filter(([_fp, result]) => result)
-    .map(([fp]) => `public/${fp}`);
-  if (unused.length === 0) {
+  let allGood = true;
+  let numFilesChecked = 0;
+  for (const fp of paths) {
+    numFilesChecked++;
+    const isUnused = await isImageUnused(fp);
+    if (isUnused) {
+      console.error(`❌ image is unused: public/${fp}`);
+      allGood = false;
+    }
+
+    // This script can be slow, so log progress every 20 files.
+    if (numFilesChecked % 20 == 0) {
+      console.log(`⏳ Checked ${numFilesChecked} / ${paths.size} images`);
+    }
+  }
+
+  if (allGood) {
     console.log("✅ all images used");
   } else {
     console.error(
-      `🙅 ${
-        unused.length
-      } stale images found. These images should usually be deleted:\n\n${unused.join(
-        "\n",
-      )}`,
+      "\n\n❌ Some images are unused. They should usually be deleted to reduce our repository size.",
+    );
+    console.warn(
+      "⚠️ Be careful that some of these images be used in close source. Before deleting files, check for their usage there. If they're unused, add it to the allowlist.",
     );
     process.exit(1);
   }
 });
 
-async function getStrippedImagePaths(): Promise<string[]> {
+async function getStrippedImagePaths(): Promise<Set<string>> {
   const fullPaths = await globby("public/images/**");
-  return fullPaths.map((fp) =>
-    fp
-      .split("public/")[1]
-      // Dark mode variants won't show up in search. But as long
-      // as the path with `@dark` removed is found, it's a valid file.
-      .replace(/@dark/g, ""),
+  return new Set(
+    fullPaths.map((fp) =>
+      fp
+        .split("public/")[1]
+        // Dark mode variants aren't explicitly loaded in images in Markdown.
+        // As long as the path with `@dark` removed is found, it's a valid file.
+        .replace(/@dark/g, ""),
+    ),
   );
 }
 
-async function isImageUnused(fp: string): Promise<boolean> {
-  const grep = await $`git grep ${fp}`.quiet().catch((result) => result);
-  return grep.stdout === "";
+async function isImageUnused(strippedFp: string): Promise<boolean> {
+  const grep = await $`rg -l ${strippedFp} docs/`
+    .quiet()
+    .catch((result) => result);
+  return grep.stdout === "" && !ALLOW_LIST.has(`public/${strippedFp}`);
 }
