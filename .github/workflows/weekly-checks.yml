@@ -57,9 +57,27 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: npm run check:external-links -- 'docs/**/*.{md,mdx,ipynb}'
 
+  stale-images:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
+      - name: Install ripgrep
+        run: |
+          sudo apt-get update
+          sudo apt-get install ripgrep
+      - name: Check for stale images
+        run: npx tsx scripts/js/commands/checkStaleImages.ts
+
   make_issue:
     name: Make issue on failure
-    needs: [external-link-checker, pages-render]
+    needs: [external-link-checker, pages-render, stale-images]
     if: ${{ failure() && github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     steps:
@@ -78,7 +96,7 @@ jobs:
             github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: "Extended checks failed",
+              title: "Weekly quality checks failed",
               body: message,
               labels: ["infra 🏗️"],
             })
