@@ -18,11 +18,7 @@ import { readMarkdown } from "../lib/markdownReader.js";
 
 // Known APIs containing images without alt text that will be skipped
 // by the checker.
-const APIS_TO_IGNORE__SHOULD_FIX: string[] = [
-  "qiskit",
-  "qiskit-ibm-runtime",
-  "qiskit-addon-cutting",
-];
+const APIS_TO_IGNORE__SHOULD_FIX: string[] = ["qiskit"];
 
 interface Arguments {
   [x: string]: unknown;
