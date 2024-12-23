@@ -44,7 +44,7 @@ zxMain(async () => {
       "\n\n❌ Some images are unused. They should usually be deleted to reduce our repository size.",
     );
     console.warn(
-      "⚠️ Be careful that some of these images may be used in closed source. Before deleting files, check for their usage there. If they're unused, add it to the allowlist.",
+      "⚠️ Be careful that some of these images may be used in closed source. Before deleting files, check for their usage there. If they're unused, add it to ALLOW_LIST in scripts/js/commands/checkStaleImages.ts.",
     );
     process.exit(1);
   }
