@@ -96,7 +96,7 @@ zxMain(async () => {
     // This script can be slow, so log progress every 10 files.
     if (numFilesChecked % 10 == 0) {
       console.log(
-        `Checked ${numFilesChecked} / ${files.length} pages ` +
+        `⏳ Checked ${numFilesChecked} / ${files.length} pages ` +
           `(~${mean(renderTimes).toFixed(0)}ms per page)`,
       );
       renderTimes = [];
