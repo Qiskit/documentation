@@ -19,6 +19,7 @@ import { readApiFullVersion } from "../../lib/apiVersions.js";
 import {
   generateVersion,
   determineMinorVersion,
+  resetVisuallyUnchangedImages,
   Arguments,
 } from "./updateApiDocs.js";
 
@@ -52,9 +53,13 @@ zxMain(async () => {
 
   if (qiskitUrl) {
     await regenDocs("qiskit", qiskitVersion);
+    await resetVisuallyUnchangedImages(`public/images/api/qiskit/dev/`);
   }
   if (runtimeUrl) {
     await regenDocs("qiskit-ibm-runtime", runtimeVersion);
+    await resetVisuallyUnchangedImages(
+      `public/images/api/qiskit-ibm-runtime/dev/`,
+    );
   }
 });
 

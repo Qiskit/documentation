@@ -12,6 +12,7 @@
 
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { $ } from "zx";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
@@ -156,4 +157,43 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     );
     await generateVersion(pkg, args);
   });
+}
+
+export async function resetVisuallyUnchangedImages(dir: string): Promise<void> {
+  const changedImages = (await $`git diff --name-only ${dir}`).stdout
+    .trim()
+    .split("\n")
+    .filter((file) => file.endsWith(".png"));
+
+  if (!changedImages.length) return;
+
+  const backupExtension = "-backup.png";
+  await Promise.all(
+    changedImages.map(
+      (filePath) => $`cp ${filePath} ${filePath}${backupExtension}`,
+    ),
+  );
+
+  await $`git restore ${changedImages}`;
+
+  async function resetImageIfUnchanged(filePath: string): Promise<void> {
+    const backupFile = filePath + backupExtension;
+
+    // See https://imagemagick.org/script/compare.php
+    // Command is a bit strange: Returns exit code 1 if files are different and writes difference metric to stderr
+    const difference = (
+      await $`magick compare -metric AE -channel all ${filePath} ${backupFile} /dev/null 2>&1`.nothrow()
+    ).stdout;
+
+    if (Number(difference) < 500) {
+      console.log(`Resetting image due to low visual change: ${filePath}`);
+      await $`rm ${backupFile}`;
+    } else {
+      await $`mv ${backupFile} ${filePath}`;
+    }
+  }
+
+  await Promise.all(
+    changedImages.map((filePath) => resetImageIfUnchanged(filePath)),
+  );
 }
