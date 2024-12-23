@@ -22,9 +22,6 @@ const APIS_TO_IGNORE__SHOULD_FIX: string[] = [
   "qiskit",
   "qiskit-ibm-runtime",
   "qiskit-addon-cutting",
-  "qiskit-addon-mpf",
-  "qiskit-addon-obp",
-  "qiskit-addon-utils",
 ];
 
 interface Arguments {
