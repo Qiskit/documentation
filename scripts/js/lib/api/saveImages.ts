@@ -18,6 +18,23 @@ import { Pkg } from "./Pkg.js";
 import { Image } from "./HtmlToMdResult.js";
 import { pathExists, rmFilesInFolder } from "../fs.js";
 
+function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
+  const isReleaseNote =
+    imgFileName.includes("release_notes") ||
+    imgFileName.includes("release-notes");
+  if (!isReleaseNote) return false;
+
+  if (pkg.hasSeparateReleaseNotes()) {
+    // If the pkg has dedicated release notes per release, we should copy its images
+    // unless it's the dev version. We don't (yet) support release notes for dev versions:
+    // https://github.com/Qiskit/documentation/issues/1296
+    return pkg.isDev();
+  } else {
+    // Else, if the pkg has only a single release note file, only 'latest' should copy images.
+    return pkg.isLatest();
+  }
+}
+
 export async function saveImages(
   images: Image[],
   originalImagesFolderPath: string,
@@ -34,14 +51,7 @@ export async function saveImages(
   }
 
   await pMap(images, async (img) => {
-    // For packages with only a single release notes file, the release notes images are only saved
-    // in the current version to avoid having duplicate files.
-    if (
-      pkg.isHistorical() &&
-      (img.fileName.includes("release_notes") ||
-        img.fileName.includes("release-notes")) &&
-      !pkg.hasSeparateReleaseNotes()
-    ) {
+    if (skipReleaseNote(img.fileName, pkg)) {
       return;
     }
 
