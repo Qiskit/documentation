@@ -159,6 +159,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   });
 }
 
+/**
+ * Create a backup of the new image, restore the original image using Git, then compare the two.
+ * If they're within a similarity threshold, delete the backup and keep the original, otherwise keep the new file.
+ */
 export async function resetVisuallyUnchangedImages(dir: string): Promise<void> {
   const changedImages = (await $`git diff --name-only ${dir}`).stdout
     .trim()
