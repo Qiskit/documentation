@@ -8,7 +8,9 @@ python_api_name: qiskit_ibm_runtime.options.NoiseLearnerOptions
 
 # NoiseLearnerOptions
 
-<Class id="qiskit_ibm_runtime.options.NoiseLearnerOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/options/noise_learner_options.py#L25-L124" signature="NoiseLearnerOptions(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.options.NoiseLearnerOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.34/qiskit_ibm_runtime/options/noise_learner_options.py#L25-L124" signature="NoiseLearnerOptions(_VERSION=2, max_execution_time=Unset, environment=<factory>, simulator=<factory>, max_layers_to_learn=Unset, shots_per_randomization=Unset, num_randomizations=Unset, layer_pair_depths=Unset, twirling_strategy=Unset, experimental=Unset)" modifiers="class">
+  Bases: `OptionsV2`
+
   Options for [`NoiseLearner`](qiskit_ibm_runtime.noise_learner.NoiseLearner "qiskit_ibm_runtime.noise_learner.NoiseLearner").
 
   <Admonition title="Note" type="note">
@@ -22,6 +24,19 @@ python_api_name: qiskit_ibm_runtime.options.NoiseLearnerOptions
   1.  E. van den Berg, Z. Minev, A. Kandala, K. Temme, *Probabilistic error cancellation with sparse Pauli–Lindblad models on noisy quantum processors*, Nature Physics volume 19, pages 1116–1121 (2023). [arXiv:2201.09866 \[quant-ph\]](https://arxiv.org/abs/2201.09866)
 
   ## Attributes
+
+  **Parameters**
+
+  *   **\_VERSION** (*int*)
+  *   **max\_execution\_time** (*UnsetType | int*)
+  *   **environment** ([*EnvironmentOptions*](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.environment_options.EnvironmentOptions") *| Dict*)
+  *   **simulator** ([*SimulatorOptions*](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.simulator_options.SimulatorOptions") *| Dict*)
+  *   **max\_layers\_to\_learn** (*UnsetType | int | None*)
+  *   **shots\_per\_randomization** (*UnsetType | int*)
+  *   **num\_randomizations** (*UnsetType | int*)
+  *   **layer\_pair\_depths** (*UnsetType | List\[int]*)
+  *   **twirling\_strategy** (*UnsetType | Literal\['active', 'active-accum', 'active-circuit', 'all']*)
+  *   **experimental** (*UnsetType | dict*)
 
   ### environment
 
@@ -105,12 +120,16 @@ python_api_name: qiskit_ibm_runtime.options.NoiseLearnerOptions
 
   ### update
 
-  <Function id="qiskit_ibm_runtime.options.NoiseLearnerOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.33/qiskit_ibm_runtime/options/options.py#L146-L155" signature="update(**kwargs)">
+  <Function id="qiskit_ibm_runtime.options.NoiseLearnerOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.34/qiskit_ibm_runtime/options/options.py#L146-L155" signature="update(**kwargs)">
     Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
 
     **Return type**
 
-    `None`
+    None
   </Function>
 </Class>
 

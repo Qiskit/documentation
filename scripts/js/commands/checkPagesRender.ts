@@ -24,12 +24,11 @@ const PORT = 3000;
 interface Arguments {
   [x: string]: unknown;
   fromFile?: string;
-  nonApi: boolean;
-  currentApis: boolean;
-  devApis: boolean;
-  historicalApis: boolean;
-  qiskitReleaseNotes: boolean;
-  translations: boolean;
+  nonApi?: boolean;
+  currentApis?: boolean;
+  devApis?: boolean;
+  historicalApis?: boolean;
+  qiskitReleaseNotes?: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -38,40 +37,39 @@ const readArgs = (): Arguments => {
     .option("from-file", {
       type: "string",
       normalize: true,
+      conflicts: [
+        "non-api",
+        "current-apis",
+        "dev-apis",
+        "historical-apis",
+        "qiskit-release-notes",
+      ],
       description:
-        "Read the file path for file paths and globs to check, like `docs/start/index.md`. Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb).",
+        "Read the file path for file paths and globs to check, like `docs/start/index.md`. " +
+        "Entries should be separated by a newline and should be valid file types (.md, .mdx, .ipynb). " +
+        "Mutually exclusive with the other args.",
     })
     .option("non-api", {
       type: "boolean",
-      default: false,
       description: "Check all the non-API docs, like start/.",
     })
     .option("current-apis", {
       type: "boolean",
-      default: false,
       description: "Check the pages in the current API docs.",
     })
     .option("dev-apis", {
       type: "boolean",
-      default: false,
       description: "Check the /dev API docs.",
     })
     .option("historical-apis", {
       type: "boolean",
-      default: false,
       description:
         "Check the pages in the historical API docs, e.g. `api/qiskit/0.44`. " +
         "Warning: this is slow.",
     })
     .option("qiskit-release-notes", {
       type: "boolean",
-      default: false,
       description: "Check the pages in the `api/qiskit/release-notes` folder.",
-    })
-    .option("translations", {
-      type: "boolean",
-      default: false,
-      description: "Check the pages in the `translations/` subfolders.",
     })
     .parseSync();
 };
@@ -98,7 +96,7 @@ zxMain(async () => {
     // This script can be slow, so log progress every 10 files.
     if (numFilesChecked % 10 == 0) {
       console.log(
-        `Checked ${numFilesChecked} / ${files.length} pages ` +
+        `⏳ Checked ${numFilesChecked} / ${files.length} pages ` +
           `(~${mean(renderTimes).toFixed(0)}ms per page)`,
       );
       renderTimes = [];
@@ -141,7 +139,6 @@ async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
 function pathToUrl(path: string): string {
   const strippedPath = path
     .replace("docs/", "")
-    .replace("translations/", "")
     .replace(/\.(?:md|mdx|ipynb)$/g, "");
   return `http://localhost:${PORT}/${strippedPath}`;
 }
@@ -167,12 +164,12 @@ async function validateDockerRunning(): Promise<void> {
 }
 
 async function determineFilePaths(args: Arguments): Promise<string[]> {
-  const globs = [];
   if (args.fromFile) {
     const content = await fs.readFile(args.fromFile, "utf-8");
-    globs.push(...content.split("\n").filter((entry) => entry));
+    return globby(content.split("\n").filter((entry) => entry));
   }
 
+  const globs = [];
   if (args.nonApi) {
     globs.push("docs/**/*.{ipynb,mdx}");
   }
@@ -182,7 +179,6 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     [args.historicalApis, "docs/api/*/[0-9]*/*.mdx"],
     [args.devApis, "docs/api/*/dev/*.mdx"],
     [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
-    [args.translations, "translations/**/*.{ipynb,mdx}"],
   ]) {
     const prefix = isIncluded ? "" : "!";
     globs.push(`${prefix}${glob}`);

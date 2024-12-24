@@ -24,6 +24,7 @@ import { FileBatch } from "../lib/links/FileBatch.js";
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
+  "docs/api/qiskit-ibm-transpiler-rest/index.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
@@ -151,10 +152,15 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
     ADDON_GLOBS_TO_LOAD,
     { check: args.historicalApis },
   );
+  const mpf = await determineHistoricalFileBatches(
+    "qiskit-addon-mpf",
+    ADDON_GLOBS_TO_LOAD,
+    { check: args.historicalApis },
+  );
 
   // This is intentionally ordered so that the smallest APIs are checked first,
   // since they are much faster to check.
-  result.push(...transpiler, ...sqd, ...runtime, ...qiskit);
+  result.push(...transpiler, ...sqd, ...mpf, ...runtime, ...qiskit);
 
   if (args.qiskitLegacyReleaseNotes) {
     result.push(await determineQiskitLegacyReleaseNotes());

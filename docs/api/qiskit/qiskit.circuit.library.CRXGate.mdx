@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.CRXGate
 
 # CRXGate
 
-<Class id="qiskit.circuit.library.CRXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/rx.py#L154-L302" signature="qiskit.circuit.library.CRXGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.CRXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rx.py#L154-L303" signature="qiskit.circuit.library.CRXGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
   Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
   Controlled-RX gate.
@@ -17,7 +17,7 @@ python_api_name: qiskit.circuit.library.CRXGate
 
   **Circuit symbol:**
 
-  ```python
+  ```text
   q_0: ────■────
        ┌───┴───┐
   q_1: ┤ Rx(ϴ) ├
@@ -42,7 +42,7 @@ $$
   <Admonition title="Note" type="note">
     In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In many textbooks, controlled gates are presented with the assumption of more significant qubits as control, which in our case would be q\_1. Thus a textbook matrix for this gate will be:
 
-    ```python
+    ```text
          ┌───────┐
     q_0: ┤ Rx(ϴ) ├
          └───┬───┘
@@ -66,6 +66,12 @@ $$
   Create new CRX gate.
 
   ## Attributes
+
+  **Parameters**
+
+  *   **theta** (*ParameterValueType*) –
+  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) –
+  *   **ctrl\_state** (*Optional\[Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) –
 
   ### base\_class
 
@@ -92,12 +98,20 @@ $$
 
   <Attribute id="qiskit.circuit.library.CRXGate.condition">
     The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### condition\_bits
 
   <Attribute id="qiskit.circuit.library.CRXGate.condition_bits">
     Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### ctrl\_state
@@ -122,6 +136,10 @@ $$
 
   <Attribute id="qiskit.circuit.library.CRXGate.duration">
     Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### label
@@ -196,13 +214,17 @@ $$
 
   <Attribute id="qiskit.circuit.library.CRXGate.unit">
     Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ## Methods
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.CRXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/circuit/library/standard_gates/rx.py#L269-L281" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.CRXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rx.py#L270-L282" signature="inverse(annotated=False)">
     Return inverse CRX gate (i.e. with the negative rotation angle).
 
     **Parameters**

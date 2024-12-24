@@ -27,10 +27,11 @@ jobs:
         with:
           ibm-quantum-token: ${{ secrets.IBM_QUANTUM_TEST_TOKEN }}
           instance: "client-enablement/documentation/qiskit-documenta"
+          install-linux-deps: true
 
       - name: Execute notebooks
         timeout-minutes: 350
-        run: tox -- --write --only-submit-jobs
+        run: tox -- --write --test-strategy hardware
 
       - name: Detect changed notebooks
         id: changed-notebooks
@@ -87,5 +88,5 @@ jobs:
               repo: context.repo.repo,
               title: "Weekly notebook test failed",
               body: message,
-              assignees: ["frankharkins", "javabster",]
+              labels: ["needs triage 🤔"],
             })

@@ -1,68 +1,121 @@
-# For notebooks to be tested "normally" (no mocking)
-notebooks_normal_test = [
-    "docs/guides/construct-circuits.ipynb",
+default-strategy = "ci"
+
+[test-strategies]
+ci = { timeout = 300 }         # For regular CI
+extended = { timeout = 1000 }  # Extended checks using test-eagle
+
+# For notebooks to be tested in CI "normally" (no mocking)
+[groups.normal]
+test-strategies.ci = {}
+test-strategies.extended = {}
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
+notebooks = [
+    "docs/guides/build-noise-models.ipynb",
     "docs/guides/circuit-library.ipynb",
-    "docs/guides/visualize-circuits.ipynb",
     "docs/guides/classical-feedforward-and-control-flow.ipynb",
-    "docs/guides/operators-overview.ipynb",
-    "docs/guides/pulse.ipynb",
-    "docs/guides/save-circuits.ipynb",
-    "docs/guides/dynamic-circuits-considerations.ipynb",
-    "docs/guides/get-qpu-information.ipynb",
-    "docs/guides/visualize-results.ipynb",
     "docs/guides/common-parameters.ipynb",
+    "docs/guides/construct-circuits.ipynb",
     "docs/guides/create-transpiler-plugin.ipynb",
     "docs/guides/custom-backend.ipynb",
     "docs/guides/custom-transpiler-pass.ipynb",
     "docs/guides/defaults-and-configuration-options.ipynb",
+    "docs/guides/dynamic-circuits-considerations.ipynb",
     "docs/guides/dynamical-decoupling-pass-manager.ipynb",
+    "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
+    "docs/guides/get-qpu-information.ipynb",
+    "docs/guides/local-testing-mode.ipynb",
+    "docs/guides/operator-class.ipynb",
+    "docs/guides/operators-overview.ipynb",
+    "docs/guides/plot-quantum-states.ipynb",
+    "docs/guides/pulse.ipynb",
+    "docs/guides/qiskit-addons-aqc-get-started.ipynb",
+    "docs/guides/qiskit-addons-mpf-get-started.ipynb",
+    "docs/guides/qiskit-addons-mpf.ipynb",
     "docs/guides/represent-quantum-computers.ipynb",
+    "docs/guides/save-circuits.ipynb",
+    "docs/guides/save-jobs.ipynb",
+    "docs/guides/serverless-first-program.ipynb",
+    "docs/guides/serverless-manage-resources.ipynb",
+    "docs/guides/serverless-run-first-workload.ipynb",
     "docs/guides/set-optimization.ipynb",
+    "docs/guides/simulate-stabilizer-circuits.ipynb",
+    "docs/guides/simulate-with-qiskit-aer.ipynb",
+    "docs/guides/specify-observables-pauli.ipynb",
     "docs/guides/transpile-with-pass-managers.ipynb",
     "docs/guides/transpiler-plugins.ipynb",
     "docs/guides/transpiler-stages.ipynb",
-    "docs/guides/build-noise-models.ipynb",
-    "docs/guides/local-testing-mode.ipynb",
-    "docs/guides/plot-quantum-states.ipynb",
-    "docs/guides/simulate-with-qiskit-aer.ipynb",
-    "docs/guides/simulate-stabilizer-circuits.ipynb",
-    "docs/guides/operator-class.ipynb",
-    "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
-    "docs/guides/serverless-first-program.ipynb",
-    "docs/guides/serverless-run-first-workload.ipynb",
-    "docs/guides/specify-observables-pauli.ipynb",
-    "docs/guides/qiskit-addons-aqc-get-started.ipynb",
+    "docs/guides/visualize-circuits.ipynb",
+    "docs/guides/visualize-results.ipynb",
 ]
 
-# Don't test the following notebooks (this section can include glob patterns)
-notebooks_exclude = [
-    "**/.ipynb_checkpoints/**",
-    "docs/guides/qedma-qesem.ipynb",
-    "docs/guides/q-ctrl-optimization-solver.ipynb",
-    "docs/guides/q-ctrl-performance-management.ipynb",
-    "docs/guides/algorithmiq-tem.ipynb",
-    "docs/guides/functions.ipynb",
-    "docs/guides/qunasys-quri-chemistry.ipynb",
-    "docs/guides/multiverse-computing-singularity.ipynb",
-    "docs/guides/ibm-circuit-function.ipynb",
-    "docs/guides/qiskit-addons-sqd-get-started.ipynb",
-    "docs/guides/fractional-gates.ipynb",
-    "docs/guides/save-jobs.ipynb",
-]
-
-# The following notebooks submit jobs that can be mocked with a simulator
-notebooks_that_submit_jobs = [
-    "docs/guides/primitive-input-output.ipynb",
+# Mock the following notebooks using a 6-qubit local simulator
+[groups.local-sim]
+test-strategies.ci = { patch="qiskit-fake-provider", num_qubits=6 }
+test-strategies.extended = { patch="qiskit-fake-provider", num_qubits=6 }
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
+notebooks = [
     "docs/guides/debug-qiskit-runtime-jobs.ipynb",
+    "docs/guides/primitive-input-output.ipynb",
+    "docs/guides/specify-runtime-options.ipynb",
 ]
 
-# The following notebooks submit jobs that are too big to mock with a simulator (or use functions that aren't supported on sims)
-# A job is "too big" if a cell can't run in under 5 mins, or we run out of
-# memory on a reasonable device.
-notebooks_no_mock = [
+# Mock the following notebooks in our extended checks using IBM Quantum's
+# test-eagle device, which returns nonsense results. Use this to test notebooks
+# that submit large jobs to test notebooks that use functions, which accept
+# only a backend name (string) rather than a `Backend` object.
+[groups.test-eagle]
+test-strategies.extended = { patch="qiskit-ibm-runtime", backend="test_eagle_us-east", qiskit_runtime_service_args="" }
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
+notebooks = [
+    "docs/guides/algorithmiq-tem.ipynb",
+    "docs/guides/fractional-gates.ipynb",
+    "docs/guides/functions.ipynb",
     "docs/guides/get-started-with-primitives.ipynb",
-    "docs/guides/hello-world.ipynb",
-    "docs/guides/serverless-manage-resources.ipynb",
-    "docs/guides/noise-learning.ipynb",
+    "docs/guides/ibm-circuit-function.ipynb",
+    "docs/guides/primitives-examples.ipynb",
     "docs/guides/qiskit-addons-obp-get-started.ipynb",
+    "docs/guides/qiskit-addons-sqd-get-started.ipynb",
+]
+
+# Only run the following notebooks in our fortnightly cron job on real hardware.
+[groups.cron-job-only]
+test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
+notebooks = [
+    "docs/guides/hello-world.ipynb",
+
+    # The following notebooks don't seem to work with `test-eagle`, but I'm not
+    # sure why. I've added them here to run on the next cron job so we can
+    # confirm on actual hardware.
+
+    #   This timed out for me, even though I saw the job finish. Maybe it needs
+    #   longer? Running in cron job to remove time limit.
+    "docs/guides/noise-learning.ipynb",
+
+    #   This timed out with no jobs submitted. Adding to the cron to see if it
+    #   needs longer.
+    "docs/guides/qedma-qesem.ipynb",
+
+    #   Got `KeyError: 'qsci_energy'`; might be due to nonsense results from
+    #   test-eagle? Running in cron job to test on a real backend.
+    "docs/guides/qunasys-quri-chemistry.ipynb",
+
+    #   Got: `QiskitServerlessException: "Q-CTRL: Failed to execute Qiskit
+    #   Function. Failed to compile the circuit.
+    #   compiler_exceptions=[TranspilerError('More virtual qubits
+    #   exist than physical.')]"`
+    "docs/guides/q-ctrl-optimization-solver.ipynb",
+
+    #   Got: `QiskitServerlessException: "Q-CTRL: Failed to execute Qiskit
+    #   Function. could not broadcast input array from shape (3996,5) into
+    #   shape (4000,5)"`
+    #   Timed out when I re-ran it.
+    "docs/guides/q-ctrl-performance-management.ipynb",
+]
+
+# Don't ever test the following notebooks
+[groups.exclude]
+notebooks = [
+    # This notebook contains undefined variables so can't run at all.
+    "docs/guides/multiverse-computing-singularity.ipynb",
+    "docs/guides/function-template-hamiltonian-simulation.ipynb",
 ]

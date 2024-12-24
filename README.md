@@ -77,6 +77,7 @@ You can preview the docs locally by following these two steps:
 
 1. Ensure Docker is running. For example, open Rancher Desktop.
 2. Run `./start` in your terminal, and open http://localhost:3000 in your browser.
+   - On Windows, run `python start` instead. Alternatively, use Windows Subsystem for Linux and run `./start`.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
@@ -289,6 +290,24 @@ npm run check:metadata -- --apis
 npm run check
 ```
 
+## Check images
+
+Every image needs to have alt text for accessibility and must use markdown syntax. To avoid changing the styling of the images, the use of the `<img>` HTML tag is not allowed. The lint job in CI will fail if images do not have alt text defined or if an `<img>` tag is found.
+
+You can check it locally by running:
+
+```bash
+# Only check images
+npm run check:images
+
+# By default, only the non-API docs are checked. You can add the
+# below argument to also check API docs.
+npm run check:images -- --apis
+
+# Or, run all the checks
+npm run check
+```
+
 ## Spellcheck
 
 We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
@@ -457,7 +476,7 @@ If your file will have non-trivial code in it, please create a Jupyter notebook 
 
 Add the file to these places:
 
-- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension.
+- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` to that page's entry.
 - The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
 - qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
 
@@ -555,6 +574,8 @@ $$
 
 Tables are supported: https://www.markdownguide.org/extended-syntax/.
 
+Warning: do not use `|` inside LaTeX/math expressions. Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
+
 ## Comments
 
 Example comment: `{/* Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html */}`
@@ -626,6 +647,8 @@ To use a `DefinitionTooltip`, use the following syntax:
 ```
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
+
+Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
 
 ### Tabs
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.timeline_drawer
 
 # qiskit.visualization.timeline\_drawer
 
-<Function id="qiskit.visualization.timeline_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/visualization/timeline/interface.py#L31-L424" signature="qiskit.visualization.timeline_drawer(program, style=None, time_range=None, disable_bits=None, show_clbits=None, idle_wires=None, plot_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None, *, show_idle=None, show_barriers=None)">
+<Function id="qiskit.visualization.timeline_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/visualization/timeline/interface.py#L33-L436" signature="qiskit.visualization.timeline_drawer(program, style=None, time_range=None, disable_bits=None, show_clbits=None, idle_wires=None, plot_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None, target=None, *, show_idle=None, show_barriers=None)">
   Generate visualization data for scheduled circuit programs.
 
   <Admonition title="Deprecated since version 1.1.0_pending" type="danger">
@@ -56,6 +56,8 @@ python_api_name: qiskit.visualization.timeline_drawer
   *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters uses given axis instead of internally initializing a figure object. This object format depends on the plotter. See plotters section for details.
 
   *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – If provided the output image is dumped into a file under the filename.
+
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.target.Target") *| None*) – The target for the backend the timeline is being generated for.
 
   *   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – DEPRECATED.
 
@@ -259,6 +261,36 @@ python_api_name: qiskit.visualization.timeline_drawer
   *   **layout.bit\_arrange** – Callback function that sorts bits. See `layouts` for more details. No default layout is set. (default None).
 
   *   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layouts` for more details. No default layout is set. (default None).
+
+  *   **program** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) –
+
+  *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*] | None*) –
+
+  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+
+  *   **disable\_bits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[Bits]*) –
+
+  *   **show\_clbits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **show\_delays** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **show\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+
+  *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+
+  *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)") *| None*) –
+
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.target.Target") *| None*) –
+
+  *   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **show\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
 
   **Examples**
 
