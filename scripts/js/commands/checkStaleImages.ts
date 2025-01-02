@@ -51,7 +51,12 @@ zxMain(async () => {
 });
 
 async function getStrippedImagePaths(): Promise<Set<string>> {
-  const fullPaths = await globby(["public/images/**", "!public/images/api/**"]);
+  const fullPaths = await globby([
+    "public/images/**",
+    // We don't check API images because the API pipeline will already ensure there are no
+    // stale images when regenerating API docs.
+    "!public/images/api/**",
+  ]);
   return new Set(
     fullPaths.map((fp) =>
       fp
