@@ -13,7 +13,7 @@
 import { $ } from "zx";
 import { globby } from "globby";
 
-import { zxMain } from "../lib/zx.js";
+import { zxMain, isInstalled } from "../lib/zx.js";
 
 // Files that are used in closed source, so should not be removed.
 // Format: full file path, e.g. "public/images/guides/paulibasis.png"
@@ -51,7 +51,7 @@ zxMain(async () => {
 });
 
 async function getStrippedImagePaths(): Promise<Set<string>> {
-  const fullPaths = await globby("public/images/**");
+  const fullPaths = await globby(["public/images/**", "!public/images/api/**"]);
   return new Set(
     fullPaths.map((fp) =>
       fp
@@ -64,8 +64,9 @@ async function getStrippedImagePaths(): Promise<Set<string>> {
 }
 
 async function isImageUnused(strippedFp: string): Promise<boolean> {
-  const grep = await $`rg -l ${strippedFp} docs/`
-    .quiet()
-    .catch((result) => result);
-  return grep.stdout === "" && !ALLOW_LIST.has(`public/${strippedFp}`);
+  const args = (await isInstalled("rg"))
+    ? ["rg", "-l", strippedFp, "docs", "-g", "!docs/api"]
+    : ["git", "grep", "-l", strippedFp, "docs", ":!docs/api"];
+  const proc = await $`${args}`.quiet().catch((result) => result);
+  return proc.stdout === "" && !ALLOW_LIST.has(`public/${strippedFp}`);
 }
