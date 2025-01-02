@@ -16,7 +16,7 @@ import { copyFile } from "fs/promises";
 
 import { Pkg } from "./Pkg.js";
 import { Image } from "./HtmlToMdResult.js";
-import { pathExists, rmFilesInFolder } from "../fs.js";
+import { pathExists } from "../fs.js";
 
 function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
   const isReleaseNote =
@@ -44,10 +44,6 @@ export async function saveImages(
   const destFolder = pkg.outputDir(`${publicBaseFolder}/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
-  } else if (pkg.isDev()) {
-    // We don't want to store images from other versions when we generate a
-    // different dev version
-    await rmFilesInFolder(destFolder);
   }
 
   await pMap(images, async (img) => {
