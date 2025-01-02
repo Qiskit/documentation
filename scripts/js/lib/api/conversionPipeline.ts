@@ -75,9 +75,9 @@ async function determineFilePaths(
   docsBaseFolder: string,
   pkg: Pkg,
 ): Promise<[string[], string, ObjectsInv | undefined]> {
-  const maybeObjectsInv = await (pkg.hasObjectsInv()
-    ? ObjectsInv.fromFile(htmlPath)
-    : undefined);
+  const maybeObjectsInv = await (pkg.isProblematicLegacyQiskit()
+    ? undefined
+    : ObjectsInv.fromFile(htmlPath));
   const files = await globby(
     [
       "apidocs/**.html",

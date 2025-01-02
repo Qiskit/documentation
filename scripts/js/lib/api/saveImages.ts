@@ -24,6 +24,10 @@ function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
     imgFileName.includes("release-notes");
   if (!isReleaseNote) return false;
 
+  // Release note images before Qiskit 0.45 were not actually used and we don't have
+  // the image files stored.
+  if (pkg.isProblematicLegacyQiskit()) return true;
+
   if (pkg.hasSeparateReleaseNotes()) {
     // If the pkg has dedicated release notes per release, we should copy its images
     // unless it's the dev version. We don't (yet) support release notes for dev versions:
