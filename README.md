@@ -55,6 +55,16 @@ Before opening a PR, remember to do the following:
 
 # How to work with this repo
 
+## Git clone tip
+
+This repository is very large, so it is slow to clone the first time. We recommend instead using the argument `--filter=blob:none`:
+
+```bash
+git clone --filter=blob:none https://github.com/Qiskit/documentation.git
+```
+
+`--filter=blob:none` means that Git will _lazily_ download file contents when you need them, rather than eagerly downloading everything on the initial clone.
+
 ## Prerequisites to building the docs locally
 
 These tools will also run in CI, but it can be convenient when iterating to run the tools locally.
