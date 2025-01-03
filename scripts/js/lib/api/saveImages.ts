@@ -16,13 +16,17 @@ import { copyFile } from "fs/promises";
 
 import { Pkg } from "./Pkg.js";
 import { Image } from "./HtmlToMdResult.js";
-import { pathExists, rmFilesInFolder } from "../fs.js";
+import { pathExists } from "../fs.js";
 
 function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
   const isReleaseNote =
     imgFileName.includes("release_notes") ||
     imgFileName.includes("release-notes");
   if (!isReleaseNote) return false;
+
+  // Release note images before Qiskit 0.45 were not actually used and we don't have
+  // the image files stored.
+  if (pkg.isProblematicLegacyQiskit()) return true;
 
   if (pkg.hasSeparateReleaseNotes()) {
     // If the pkg has dedicated release notes per release, we should copy its images
@@ -44,10 +48,6 @@ export async function saveImages(
   const destFolder = pkg.outputDir(`${publicBaseFolder}/images`);
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
-  } else if (pkg.isDev()) {
-    // We don't want to store images from other versions when we generate a
-    // different dev version
-    await rmFilesInFolder(destFolder);
   }
 
   await pMap(images, async (img) => {

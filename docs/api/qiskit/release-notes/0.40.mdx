@@ -56,7 +56,7 @@ Qiskit Terra 0.23.0 is a major feature release that includes a multitude of new 
 >
 > *   Performance improvements to [`SabreLayout`](/api/qiskit/0.45/qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout"). The pass is now primarily written in Rust which can lead to a runtime improvement, however the bigger improvement is in the quality of the output (on average, fewer [`SwapGate`](/api/qiskit/0.45/qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate") gates introduced by [`SabreSwap`](/api/qiskit/0.45/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")). For example, running [`SabreLayout`](/api/qiskit/0.45/qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") and [`SabreSwap`](/api/qiskit/0.45/qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") on Bernstein Vazirani circuits targeting the [`FakeSherbrooke`](/api/qiskit/0.45/qiskit.providers.fake_provider.FakeSherbrooke "qiskit.providers.fake_provider.FakeSherbrooke") backend yields the following results:
 >
->     ![\_images/legacy\_release\_notes-2.png](/images/api/qiskit/legacy_release_notes-2.png)
+>     ![\_images/legacy\_release\_notes-2.png](/images/api/qiskit/legacy-release-notes/0.40-1.png)
 
 This release also deprecates support for running with Python 3.7. A `DeprecationWarning` will now be emitted if you run Qiskit with Python 3.7. Support for Python 3.7 will be removed as part of the 0.25.0 release (currently planned for release in July 2023), at which point you will need Python 3.8 or newer to use Qiskit.
 
@@ -346,7 +346,7 @@ This release also deprecates support for running with Python 3.7. A `Deprecation
     circuit.draw("mpl")
     ```
 
-    ![\_images/legacy\_release\_notes-3.png](/images/api/qiskit/legacy_release_notes-3.png)
+    ![\_images/legacy\_release\_notes-3.png](/images/api/qiskit/legacy-release-notes/0.40-2.png)
 
 *   The [`Clifford`](/api/qiskit/0.45/qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") class now takes an optional `copy` keyword argument in its constructor. If set to `False`, then a `StabilizerTable` provided as input will not be copied, but will be used directly. This can have performance benefits, if the data in the table will never be mutated by any other means.
 
@@ -596,7 +596,7 @@ This release also deprecates support for running with Python 3.7. A `Deprecation
     out.draw('mpl')
     ```
 
-    ![\_images/legacy\_release\_notes-4.png](/images/api/qiskit/legacy_release_notes-4.png)
+    ![\_images/legacy\_release\_notes-4.png](/images/api/qiskit/legacy-release-notes/0.40-3.png)
 
 *   Random-circuit generation with [`qiskit.circuit.random.random_circuit()`](/api/qiskit/0.45/circuit#qiskit.circuit.random.random_circuit "qiskit.circuit.random.random_circuit") is now significantly faster for large circuits.
 
