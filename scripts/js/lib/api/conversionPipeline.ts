@@ -75,9 +75,9 @@ async function determineFilePaths(
   docsBaseFolder: string,
   pkg: Pkg,
 ): Promise<[string[], string, ObjectsInv | undefined]> {
-  const maybeObjectsInv = await (pkg.hasObjectsInv()
-    ? ObjectsInv.fromFile(htmlPath)
-    : undefined);
+  const maybeObjectsInv = await (pkg.isProblematicLegacyQiskit()
+    ? undefined
+    : ObjectsInv.fromFile(htmlPath));
   const files = await globby(
     [
       "apidocs/**.html",
@@ -133,8 +133,6 @@ async function copyImages(
   publicBaseFolder: string,
   results: HtmlToMdResultWithUrl[],
 ): Promise<void> {
-  // Some historical versions don't have the `_images` folder in the artifact store in Box (https://ibm.ent.box.com/folder/246867452622)
-  if (pkg.isHistorical() && !(await pathExists(`${htmlPath}/_images`))) return;
   console.log("Saving images");
   const allImages = uniqBy(
     results.flatMap((result) => result.images),

@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { ProcessOutput } from "zx";
+import { ProcessOutput, $ } from "zx";
 
 export function zxMain(mainFn: () => Promise<void>) {
   enableCliColors();
@@ -28,4 +28,17 @@ export function enableCliColors() {
 
 export function disableCliColors() {
   process.env.FORCE_COLOR = "0";
+}
+
+export async function isInstalled(binary: string): Promise<boolean> {
+  try {
+    if (process.platform === "win32") {
+      await $`where ${binary}`.quiet();
+    } else {
+      await $`which ${binary}`.quiet();
+    }
+    return true;
+  } catch {
+    return false;
+  }
 }
