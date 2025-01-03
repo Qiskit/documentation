@@ -32,7 +32,11 @@ export function disableCliColors() {
 
 export async function isInstalled(binary: string): Promise<boolean> {
   try {
-    await $`which ${binary}`.quiet();
+    if (process.platform === "win32") {
+      await $`where ${binary}`.quiet();
+    } else {
+      await $`which ${binary}`.quiet();
+    }
     return true;
   } catch {
     return false;
