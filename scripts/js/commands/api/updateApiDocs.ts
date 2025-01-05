@@ -79,7 +79,7 @@ export async function generateVersion(
   args: Arguments,
 ): Promise<void> {
   const sphinxArtifactFolder = await prepareSphinxFolder(pkg, args);
-  await deleteExistingMarkdown(pkg);
+  await deleteExistingFiles(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runConversionPipeline(sphinxArtifactFolder, "docs", "public", pkg);
@@ -127,13 +127,18 @@ async function prepareSphinxFolder(pkg: Pkg, args: Arguments): Promise<string> {
   return `${sphinxArtifactFolder}/artifact`;
 }
 
-async function deleteExistingMarkdown(pkg: Pkg): Promise<void> {
+async function deleteExistingFiles(pkg: Pkg): Promise<void> {
   const markdownDir = pkg.outputDir("docs");
-  if (!(await pathExists(markdownDir))) return;
+  if (await pathExists(markdownDir)) {
+    await rmFilesInFolder(markdownDir);
+  }
+  const imagesDir = pkg.outputDir("public/images");
+  if (await pathExists(imagesDir)) {
+    await rmFilesInFolder(imagesDir);
+  }
   console.log(
-    `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    `Deleted existing markdown & images for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await rmFilesInFolder(markdownDir);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
