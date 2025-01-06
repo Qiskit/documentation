@@ -460,7 +460,7 @@ Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on M
 
 ## How to add a new page
 
-Choose which existing folder from `docs/` your new page belongs to (probably `guides`) (probably `guides`).
+Choose which existing folder from `docs/` your new page belongs to (probably `guides`).
 
 Next, choose the file name. The file name will determine the URL. For example, `start/my-new-page.mdx` results in the URL `start/my-new-page`. Choose a file name that will be stable over the page's lifespan and that is unlikely to clash with other topics. Use `-` rather than `_` as the delimiter. You can also ask for help choosing a name in the GitHub issue or pull request.
 
