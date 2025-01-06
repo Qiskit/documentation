@@ -309,15 +309,31 @@ npm run check
 
 There are two ways to deal with cSpell incorrectly complaining about a word, such as abbreviations.
 
-1. Ignore the word in the local markdown file by adding a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere (inside a markdown cell, in the source part). Note that in the text editor, each line is surrounded by quotes and ends with \n.  So it looks like this:  "{/* cspell:ignore hellllooooo, ayyyyy */}\n"
+1. Ignore the word in the local file:
 
-```
-{/* cspell:ignore hellllooooo, ayyyyy */}
+   - For a markdown file, add a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
 
-# Hellllooooo!
+     ``` markdown
+     {/* cspell:ignore hellllooooo, ayyyyy */}
 
-Ayyyyy, this is a fake description.
-```
+     # Hellllooooo!
+
+     Ayyyyy, this is a fake description.
+     ```
+
+   - For a Jupyter notebook, add the comment inside a markdown cell in the source part. Each line should be surrounded by quotes and end with "\n".
+
+     ``` python
+     {
+      "cell_type": "markdown",
+      "id": "552b1077",
+      "metadata": {},
+      "source": [
+       "# Hello world\n",
+       "{/* cspell:ignore helloooooo */}\n"
+      ]
+     },
+     ```
 
 2. If the word is a name, add it to the `scripts/config/cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `scripts/config/cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `scripts/config/cspell/cSpell.json`. The word is not case-sensitive.
 
