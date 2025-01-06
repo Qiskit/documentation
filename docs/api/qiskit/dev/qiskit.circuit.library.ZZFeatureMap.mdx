@@ -1,6 +1,6 @@
 ---
-title: ZZFeatureMap
-description: API reference for qiskit.circuit.library.ZZFeatureMap
+title: ZZFeatureMap (dev version)
+description: API reference for qiskit.circuit.library.ZZFeatureMap in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.ZZFeatureMap
@@ -8,14 +8,14 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
 # ZZFeatureMap
 
-<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/_zz_feature_map.py#L21-L127" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')" modifiers="class">
+<Class id="qiskit.circuit.library.ZZFeatureMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/_zz_feature_map.py#L21-L150" signature="qiskit.circuit.library.ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')" modifiers="class">
   Bases: [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
 
   Second-order Pauli-Z evolution circuit.
 
   For 3 qubits and 1 repetition and linear entanglement the circuit is represented by:
 
-  ```python
+  ```text
   ┌───┐┌────────────────┐
   ┤ H ├┤ P(2.0*φ(x[0])) ├──■───────────────────────────■───────────────────────────────────
   ├───┤├────────────────┤┌─┴─┐┌─────────────────────┐┌─┴─┐
@@ -27,12 +27,15 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   where $\varphi$ is a classical non-linear function, which defaults to $\varphi(x) = x$ if and $\varphi(x,y) = (\pi - x)(\pi - y)$.
 
-  **Examples**
+  Examples:
 
   ```python
-  >>> from qiskit.circuit.library import ZZFeatureMap
-  >>> prep = ZZFeatureMap(2, reps=1)
-  >>> print(prep.decompose())
+  from qiskit.circuit.library import ZZFeatureMap
+  prep = ZZFeatureMap(2, reps=1)
+  print(prep.decompose())
+  ```
+
+  ```text
        ┌───┐┌─────────────┐
   q_0: ┤ H ├┤ P(2.0*x[0]) ├──■──────────────────────────────────────■──
        ├───┤├─────────────┤┌─┴─┐┌────────────────────────────────┐┌─┴─┐
@@ -41,11 +44,20 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
   ```
 
   ```python
-  >>> from qiskit.circuit.library import EfficientSU2
-  >>> classifier = ZZFeatureMap(3) + EfficientSU2(3)
-  >>> classifier.num_parameters
-  15
-  >>> classifier.parameters  # 'x' for the data preparation, 'θ' for the SU2 parameters
+  from qiskit.circuit.library import EfficientSU2
+  classifier = ZZFeatureMap(3).compose(EfficientSU2(3))
+  classifier.num_parameters
+  ```
+
+  ```text
+  27
+  ```
+
+  ```python
+  classifier.parameters  # 'x' for the data preparation, 'θ' for the SU2 parameters
+  ```
+
+  ```text
   ParameterView([
       ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
       ParameterVectorElement(x[2]), ParameterVectorElement(θ[0]),
@@ -62,7 +74,13 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
       ParameterVectorElement(θ[21]), ParameterVectorElement(θ[22]),
       ParameterVectorElement(θ[23])
   ])
-  >>> classifier.count_ops()
+  ```
+
+  ```python
+  classifier.count_ops()
+  ```
+
+  ```text
   OrderedDict([('ZZFeatureMap', 1), ('EfficientSU2', 1)])
   ```
 
@@ -74,16 +92,16 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   **Parameters**
 
-  *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of features.
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of repeated circuits, has a min. value of 1.
-  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]] |* [*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]]]*) – Specifies the entanglement structure. Refer to [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") for detail.
-  *   **data\_map\_func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A mapping function for data x.
-  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The prefix used if default parameters are generated.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
+  *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of features.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of repeated circuits, has a min. value of 1.
+  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]] |* [*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]]]*) – Specifies the entanglement structure. Refer to [`PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.PauliFeatureMap") for detail.
+  *   **data\_map\_func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.13)")*\[\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*) – A mapping function for data x.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The prefix used if default parameters are generated.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the feature dimension is smaller than 2.
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the feature dimension is smaller than 2.
 
   ## Attributes
 
@@ -109,6 +127,10 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
     Return calibration dictionary.
 
     The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
   </Attribute>
 
   ### clbits
@@ -119,7 +141,27 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.data" />
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.data">
+    The circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.ZZFeatureMap.unit "qiskit.circuit.library.ZZFeatureMap.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
 
   ### entanglement
 
@@ -133,7 +175,13 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   ### entanglement\_blocks
 
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.entanglement_blocks" />
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.entanglement_blocks">
+    The blocks in the entanglement layers.
+
+    **Returns**
+
+    The blocks in the entanglement layers.
+  </Attribute>
 
   ### feature\_dimension
 
@@ -179,7 +227,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.instances" attributeValue="157" />
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.instances" attributeValue="161" />
 
   ### layout
 
@@ -247,7 +295,9 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.num_parameters" />
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
   ### num\_parameters\_settable
 
@@ -286,7 +336,7 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
   </Attribute>
 
   ### ordered\_parameters
@@ -327,7 +377,61 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.parameters" />
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
   ### paulis
 
@@ -385,6 +489,16 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
     The blocks in the rotation layers.
   </Attribute>
 
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.ZZFeatureMap.unit">
+    The unit that [`duration`](#qiskit.circuit.library.ZZFeatureMap.duration "qiskit.circuit.library.ZZFeatureMap.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
   ### name
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.name" attributeTypeHint="str">
@@ -395,18 +509,6 @@ python_api_name: qiskit.circuit.library.ZZFeatureMap
 
   <Attribute id="qiskit.circuit.library.ZZFeatureMap.cregs" attributeTypeHint="list[ClassicalRegister]">
     A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.duration" attributeTypeHint="int | float | None">
-    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.ZZFeatureMap.unit "qiskit.circuit.library.ZZFeatureMap.unit").
-  </Attribute>
-
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.ZZFeatureMap.unit">
-    The unit that [`duration`](#qiskit.circuit.library.ZZFeatureMap.duration "qiskit.circuit.library.ZZFeatureMap.duration") is specified in.
   </Attribute>
 </Class>
 

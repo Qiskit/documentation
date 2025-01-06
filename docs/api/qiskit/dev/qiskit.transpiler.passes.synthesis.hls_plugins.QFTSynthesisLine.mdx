@@ -1,6 +1,6 @@
 ---
-title: QFTSynthesisLine
-description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine
+title: QFTSynthesisLine (dev version)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine
@@ -8,12 +8,14 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine
 
 # QFTSynthesisLine
 
-<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L557-L600" signature="qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine" modifiers="class">
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L613-L661" signature="qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine" modifiers="class">
   Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
 
   Synthesis plugin for QFT gates using linear connectivity.
 
   This plugin name is :`qft.line` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  Note that the plugin mechanism is not applied if the gate is called `qft` but is not an instance of `QFTGate`. This allows users to create custom gates with name `qft`.
 
   The plugin supports the following additional options:
 
@@ -34,7 +36,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L585-L600" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.QFTSynthesisLine.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/synthesis/hls_plugins.py#L645-L661" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
     Run synthesis for the given QFTGate.
   </Function>
 </Class>

@@ -11,7 +11,13 @@ results in quantum pre-processing overhead related to model training and
 classical post-processing overhead to mitigate errors in the raw results
 by using the generated model.
 
-Primitives support several error mitigation techniques, including [TREX](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#measure_mitigation), [ZNE](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#zne), [PEC](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#pec), and [PEA](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each. When using primitives, you can turn on or off individual methods. See the [Custom error settings](#advanced-error) section for details.
+The Estimator primitive supports several error mitigation techniques, including [TREX](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#measure_mitigation), [ZNE](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#zne), [PEC](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ResilienceOptionsV2#pec), and [PEA](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each. When using primitives, you can turn on or off individual methods. See the [Custom error settings](#advanced-error) section for details.
+
+<Admonition type="note">
+
+Sampler does not support error mitigation, but you can use the [mthree](https://qiskit.github.io/qiskit-addon-mthree/) (matrix-free measurement mitigation) package to perform error mitigation locally.
+
+</Admonition>
 
 Estimator also supports `resilience_level`. The resilience level specifies how much resilience to build against
 errors. Higher levels generate more accurate results, at the expense of
@@ -56,18 +62,9 @@ basis. Specific error mitigation methods are not guaranteed to be
 applied at each resilience level.
 </Admonition>
 
-<Admonition type="note">
-  If using an IBM Cloud&reg; Qiskit Runtime service instance with Q-CTRL performance management enabled, do not specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
-
-  Setting `optimization_level` or `resilience_level` equal to 0 will result in an
-  execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
-  Setting other options will likewise not impact performance, and it may result in a
-  runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
-</Admonition>
-
 ## Configure Estimator with resilience levels
 
-You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings.](#advanced-error) You cannot specify resilience levels in Sampler. However, you can set custom techniques individually.
+You can use resilience levels to specify error mitigation techniques, or you can set custom techniques individually as described in [Custom error settings.](#advanced-error) 
 
 <details>
 <summary>Resilience Level 0</summary>
@@ -196,7 +193,6 @@ For instructions to turn off all error mitigation, see the [Turn off all error s
 
 <Admonition type="tip" title="Recommendations">
   - Walk through an example that uses error mitigation in the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
-  - Learn more about [Q-CTRL](https://docs.q-ctrl.com/q-ctrl-embedded).
   - Learn more about [error mitigation and error suppression techniques.](error-mitigation-and-suppression-techniques)
   - [Configure error suppression.](configure-error-suppression)
   - Explore other [options.](runtime-options-overview)

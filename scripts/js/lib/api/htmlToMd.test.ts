@@ -100,9 +100,10 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 // Transform code blocks
 // ------------------------------------------------------------------
 
-test("translate codeblocks to code fences with lang python", async () => {
+test("translate codeblocks to code fences with default lang python", async () => {
   expect(
     await toMd(`
+    <div class='highlight-default notranslate'>
     <div role='main'>
 <pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
     <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
@@ -110,8 +111,31 @@ test("translate codeblocks to code fences with lang python", async () => {
     <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
 </pre>
     </div>
+    </div>
     `),
   ).toEqual(`\`\`\`python
+QiskitRuntimeService.backends(
+    filters=lambda b: b.max_shots > 50000)
+QiskitRuntimeService.backends(
+    filters=lambda x: ("rz" in x.basis_gates )
+\`\`\`
+`);
+});
+
+test("translate codeblocks to code fences with lang c", async () => {
+  expect(
+    await toMd(`
+    <div class='highlight-c notranslate'>
+    <div role='main'>
+<pre><span></span><span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>b</span><span class='p'>:</span> <span class='n'>b</span><span class='o'>.</span><span class='n'>max_shots</span> <span class='o'>&gt;</span> <span class='mi'>50000</span><span class='p'>)</span>
+<span class='n'>QiskitRuntimeService</span><span class='o'>.</span><span class='n'>backends</span><span class='p'>(</span>
+    <span class='n'>filters</span><span class='o'>=</span><span class='k'>lambda</span> <span class='n'>x</span><span class='p'>:</span> <span class='p'>(</span><span class='s2'>&quot;rz&quot;</span> <span class='ow'>in</span> <span class='n'>x</span><span class='o'>.</span><span class='n'>basis_gates</span> <span class='p'>)</span>
+</pre>
+    </div>
+    </div>
+    `),
+  ).toEqual(`\`\`\`c
 QiskitRuntimeService.backends(
     filters=lambda b: b.max_shots > 50000)
 QiskitRuntimeService.backends(
@@ -278,6 +302,18 @@ test("preserve <span> with ids", async () => {
 
 # Circuit Assembler
 `);
+});
+
+test("preserve ids of divs with class section", async () => {
+  expect(
+    await toMd(
+      `<div role="main"><div class="section" id="my-id"><p>Some text</p></div></div>`,
+    ),
+  ).toEqual(`<span id="my-id" />\n\nSome text\n`);
+  // The class `section` must be set.
+  expect(
+    await toMd(`<div role="main"><div id="my-id"><p>Some text</p></div></div>`),
+  ).toEqual(`Some text\n`);
 });
 
 test("merge contiguous <em> removing spaces", async () => {
@@ -880,8 +916,6 @@ test("convert module headings removing () around the title", async () => {
 <span id="qiskit-runtime-qiskit-ibm-runtime" />
 
 # Qiskit Runtime
-
-<span id="module-qiskit_ibm_runtime" />
 
 \`qiskit_ibm_runtime\`
 

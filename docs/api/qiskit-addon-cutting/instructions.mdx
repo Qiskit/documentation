@@ -1,0 +1,73 @@
+---
+title: instructions (latest version)
+description: API reference for qiskit_addon_cutting.instructions in the latest version of qiskit-addon-cutting
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_cutting.instructions
+---
+
+<span id="module-qiskit_addon_cutting.instructions" />
+
+<span id="instructions-qiskit-addon-cutting-instructions" />
+
+# Instructions
+
+`qiskit_addon_cutting.instructions`
+
+Quantum circuit `Instruction`s useful for circuit cutting.
+
+### CutWire
+
+<Class id="qiskit_addon_cutting.instructions.CutWire" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/instructions/cut_wire.py" signature="CutWire(label=None)" modifiers="class">
+  An instruction for denoting a wire cut location.
+
+  Create CutWire instruction.
+</Class>
+
+### Move
+
+<Class id="qiskit_addon_cutting.instructions.Move" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/instructions/move.py" signature="Move(label=None)" modifiers="class">
+  A two-qubit instruction representing a reset of the second qubit followed by a swap.
+
+  **Circuit Symbol:**
+
+  ```python
+       ┌───────┐
+  q_0: ┤0      ├       q_0: ──────X─
+       │  Move │   =              │
+  q_1: ┤1      ├       q_1: ─|0>──X─
+       └───────┘
+  ```
+
+  The desired effect of this instruction, typically, is to move the state of the first qubit to the second qubit. For this to work as expected, the second incoming qubit must share no entanglement with the remainder of the system. If this qubit *is* entangled, then performing the reset operation will in turn implement a quantum channel on the other qubit(s) with which it is entangled, resulting in the partial collapse of those qubits.
+
+  The simplest way to ensure that the second (i.e., destination) qubit shares no entanglement with the remainder of the system is to use a fresh qubit which has not been used since initialization.
+
+  Another valid way is to use, as a desination qubit, a qubit whose immediate prior use was as the source (i.e., first) qubit of a preceding [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") operation.
+
+  The following circuit contains two [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") operations, corresponding to each of the aforementioned cases:
+
+  ```python
+  import numpy as np
+  from qiskit import QuantumCircuit
+  from qiskit_addon_cutting.instructions import Move
+
+  qc = QuantumCircuit(4)
+  qc.ryy(np.pi / 4, 0, 1)
+  qc.rx(np.pi / 4, 3)
+  qc.append(Move(), [1, 2])
+  qc.rz(np.pi / 4, 0)
+  qc.ryy(np.pi / 4, 2, 3)
+  qc.append(Move(), [2, 1])
+  qc.ryy(np.pi / 4, 0, 1)
+  qc.rx(np.pi / 4, 3)
+  qc.draw("mpl")
+  ```
+
+  ![../\_images/qiskit\_addon\_cutting-instructions-1.svg](/images/api/qiskit-addon-cutting/qiskit_addon_cutting-instructions-1.svg)
+
+  A full demonstration of the [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction is available in [the introductory tutorial on wire cutting](https://qiskit.github.io/qiskit-addon-cutting/tutorials/03_wire_cutting_via_move_instruction.html).
+
+  Create a [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction.
+</Class>
+

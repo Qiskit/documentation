@@ -1,6 +1,6 @@
 ---
-title: MCXVChain
-description: API reference for qiskit.circuit.library.MCXVChain
+title: MCXVChain (dev version)
+description: API reference for qiskit.circuit.library.MCXVChain in the dev version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.MCXVChain
@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
 # MCXVChain
 
-<Class id="qiskit.circuit.library.MCXVChain" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1399-L1527" signature="qiskit.circuit.library.MCXVChain(num_ctrl_qubits=None, dirty_ancillas=False, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None, relative_phase=False, action_only=False)" modifiers="class">
+<Class id="qiskit.circuit.library.MCXVChain" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1401-L1529" signature="qiskit.circuit.library.MCXVChain(num_ctrl_qubits=None, dirty_ancillas=False, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None, relative_phase=False, action_only=False)" modifiers="class">
   Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
 
   Implement the multi-controlled X gate using a V-chain of CX gates.
@@ -19,9 +19,9 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
   **Parameters**
 
-  *   **dirty\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, the method applies an optimized multicontrolled-X gate up to a relative phase using dirty ancillary qubits with the properties of lemmas 7 and 8 from arXiv:1501.06911, with at most 8\*k - 6 CNOT gates. For k within the range \{1, …, ceil(n/2)}. And for n representing the total number of qubits.
-  *   **relative\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, the method applies the optimized multicontrolled-X gate up to a relative phase, in a way that, by lemma 7 of arXiv:1501.06911, the relative phases of the `action part` cancel out with the phases of the `reset part`.
-  *   **action\_only** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, the method applies only the action part of lemma 8 from arXiv:1501.06911.
+  *   **dirty\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, the method applies an optimized multicontrolled-X gate up to a relative phase using dirty ancillary qubits with the properties of lemmas 7 and 8 from arXiv:1501.06911, with at most 8\*k - 6 CNOT gates. For k within the range \{1, …, ceil(n/2)}. And for n representing the total number of qubits.
+  *   **relative\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, the method applies the optimized multicontrolled-X gate up to a relative phase, in a way that, by lemma 7 of arXiv:1501.06911, the relative phases of the `action part` cancel out with the phases of the `reset part`.
+  *   **action\_only** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, the method applies only the action part of lemma 8 from arXiv:1501.06911.
 
   ## Attributes
 
@@ -50,12 +50,20 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
   <Attribute id="qiskit.circuit.library.MCXVChain.condition">
     The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### condition\_bits
 
   <Attribute id="qiskit.circuit.library.MCXVChain.condition_bits">
     Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### ctrl\_state
@@ -80,6 +88,10 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
   <Attribute id="qiskit.circuit.library.MCXVChain.duration">
     Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ### label
@@ -129,7 +141,7 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
   </Attribute>
 
   ### num\_qubits
@@ -149,7 +161,7 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
 
     **Raises**
 
@@ -160,24 +172,28 @@ python_api_name: qiskit.circuit.library.MCXVChain
 
   <Attribute id="qiskit.circuit.library.MCXVChain.unit">
     Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
   </Attribute>
 
   ## Methods
 
   ### get\_num\_ancilla\_qubits
 
-  <Function id="qiskit.circuit.library.MCXVChain.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1503-L1506" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='v-chain')" modifiers="static">
+  <Function id="qiskit.circuit.library.MCXVChain.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1505-L1508" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='v-chain')" modifiers="static">
     Get the number of required ancilla qubits.
   </Function>
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.MCXVChain.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1483-L1501" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.MCXVChain.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/x.py#L1485-L1503" signature="inverse(annotated=False)">
     Invert this gate. The MCX is its own inverse.
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
 
     **Returns**
 

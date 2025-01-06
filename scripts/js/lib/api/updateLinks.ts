@@ -26,6 +26,7 @@ import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
+import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -58,6 +59,7 @@ export function normalizeUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
   itemNames: Set<string>,
+  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
 ): string {
   if (isAbsoluteUrl(url)) return url;
   if (url.startsWith("/")) return url;
@@ -67,36 +69,61 @@ export function normalizeUrl(
 
   const urlParts = url.split("/");
   const initialUrlParts = initial(urlParts);
-  const [path, hash] = last(urlParts)!.split("#") as [
+  const [page, hash] = last(urlParts)!.split("#") as [
     string,
     string | undefined,
   ];
 
+  const normalizedPage = kwargs.kebabCaseAndShorten
+    ? kebabCaseAndShortenPage(page, kwargs.pkgName)
+    : page;
+  const normalizedUrlWithoutHash = [...initialUrlParts, normalizedPage].join(
+    "/",
+  );
+
+  // Default case. We'll then check if the hash should be transformed
+  // for a few edge cases.
+  url = hash ? `${normalizedUrlWithoutHash}#${hash}` : normalizedUrlWithoutHash;
+
   // qiskit_ibm_runtime.RuntimeJob
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
-  if (itemNames.has(path)) {
-    if (hash === path) {
-      url = [...initialUrlParts, path].join("/");
+  if (itemNames.has(page)) {
+    if (hash === page) {
+      url = normalizedUrlWithoutHash;
     }
 
+    // Rather than linking to the component like `Function` or `Attribute`, we link to the header.
+    // This is necessary because until we implement https://github.com/Qiskit/documentation/issues/1395, the
+    // anchor for the component would take you too low in the page, given that the header is above the component.
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
-    if (hash?.startsWith(`${path}.`)) {
-      const member = removePrefix(hash, `${path}.`);
-      url = [...initialUrlParts, path].join("/") + `#${member}`;
+    //
+    // TODO(#2217): Remove this special case and use the full ID instead.
+    if (hash?.startsWith(`${page}.`)) {
+      let member = removePrefix(hash, `${page}.`);
+      // Also check for inline classes, which often show up on module pages.
+      // qiskit_addon_obp.utils.truncating#qiskit_addon_obp.utils.truncating.TruncationErrorBudget.p_norm
+      // -> qiskit_addon_obp.utils.truncating#p_norm, whereas without this check
+      // it would be qiskit_addon_obp.utils.truncating#TruncationErrorBudget.p_norm.
+      if (member.includes(".")) {
+        member = member.split(".", 2)[1];
+      }
+      url = `${normalizedUrlWithoutHash}#${member}`;
     }
   }
 
   // qiskit_ibm_runtime.QiskitRuntimeService.job -> qiskit_ibm_runtime.QiskitRuntimeService#job
-  const pathParts = path.split(".");
+  const pathParts = page.split(".");
   const member = last(pathParts);
   const initialPathParts = initial(pathParts);
   const parentName = initialPathParts.join(".");
   if ("class" === resultsByName[parentName]?.meta.apiType) {
-    url = [...initialUrlParts, parentName].join("/") + "#" + member;
+    const normalizedParentName = kwargs.kebabCaseAndShorten
+      ? kebabCaseAndShortenPage(parentName, kwargs.pkgName)
+      : parentName;
+    url = [...initialUrlParts, normalizedParentName].join("/") + "#" + member;
   }
 
-  url = lowerCaseIfMarkdownAnchor(url);
-  return url;
+  return lowerCaseIfMarkdownAnchor(url);
 }
 
 export function relativizeLink(link: Link): Link | undefined {
@@ -126,6 +153,7 @@ export function relativizeLink(link: Link): Link | undefined {
 
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
+  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
   maybeObjectsInv?: ObjectsInv,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
@@ -153,7 +181,7 @@ export async function updateLinks(
               textNode.value = relativizedLink.text;
             }
           }
-          node.url = normalizeUrl(node.url, resultsByName, itemNames);
+          node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });
       })
       .use(remarkStringify, remarkStringifyOptions)
@@ -163,6 +191,6 @@ export async function updateLinks(
   }
 
   maybeObjectsInv?.updateUris((uri: string) =>
-    normalizeUrl(uri, resultsByName, itemNames),
+    normalizeUrl(uri, resultsByName, itemNames, kwargs),
   );
 }

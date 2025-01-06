@@ -1,6 +1,6 @@
 ---
-title: library
-description: API reference for qiskit.circuit.library
+title: library (dev version)
+description: API reference for qiskit.circuit.library in the dev version of qiskit
 in_page_toc_min_heading_level: 2
 python_api_type: module
 python_api_name: qiskit.circuit.library
@@ -13,8 +13,6 @@ python_api_name: qiskit.circuit.library
 <span id="circuit-library-qiskit-circuit-library" />
 
 # Circuit Library
-
-<span id="module-qiskit.circuit.library" />
 
 `qiskit.circuit.library`
 
@@ -50,7 +48,7 @@ print(gate.power(1/2).to_matrix())  # √X gate
 print(gate.control(1).to_matrix())  # CX (controlled X) gate
 ```
 
-```python
+```text
 [[0.+0.j 1.+0.j]
  [1.+0.j 0.+0.j]]
 [[0.5+0.5j 0.5-0.5j]
@@ -87,7 +85,7 @@ print(gate.control(1).to_matrix())  # CX (controlled X) gate
 | [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate")(\*args\[, \_force\_mutable])                             | An echoed cross-resonance gate.                                     |
 | [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")(\*args\[, \_force\_mutable])                                   | Single-qubit Hadamard gate.                                         |
 | [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate")(\*args\[, \_force\_mutable])                                   | Identity gate.                                                      |
-| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])                               | MSGate has been deprecated.                                         |
+| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])                               | The Mølmer–Sørensen gate.                                           |
 | [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate")(theta\[, label, duration, unit])                   | Single-qubit rotation about the Z axis.                             |
 | [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate")(\*args\[, \_force\_mutable])                          | The simplified Toffoli gate, also referred to as Margolus gate.     |
 | [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate")(\*args\[, \_force\_mutable])                          | The simplified 3-controlled Toffoli gate.                           |
@@ -136,24 +134,24 @@ Operations are non-reversible changes in the quantum state of the circuit.
 These “gates” (many are [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") subclasses) allow to set the amount of qubits involved at instantiation time.
 
 ```python
-from qiskit.circuit.library import Diagonal
+from qiskit.circuit.library import DiagonalGate
 
-diagonal = Diagonal([1, 1])
+diagonal = DiagonalGate([1, 1j])
 print(diagonal.num_qubits)
 
-diagonal = Diagonal([1, 1, 1, 1])
+diagonal = DiagonalGate([1, 1, 1, -1])
 print(diagonal.num_qubits)
 ```
 
-```python
+```text
 1
 2
 ```
 
 |                                                                                                                                 |                                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                           | Diagonal circuit.                                                                                        |
-| [`DiagonalGate`](qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate")(diag)                               | Gate implementing a diagonal transformation.                                                             |
+| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                           | Circuit implementing a diagonal transformation.                                                          |
+| [`DiagonalGate`](qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate")(diag)                               | A generic diagonal quantum gate.                                                                         |
 | [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)               | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.                  |
 | [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, ...)             | The MCMT implementation using the CCX V-chain.                                                           |
 | [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])         | An n\_qubit circuit that permutes qubits.                                                                |
@@ -163,6 +161,7 @@ print(diagonal.num_qubits)
 | [`GRX`](qiskit.circuit.library.GRX "qiskit.circuit.library.GRX")(num\_qubits, theta)                                            | Global RX gate.                                                                                          |
 | [`GRY`](qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                            | Global RY gate.                                                                                          |
 | [`GRZ`](qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                              | Global RZ gate.                                                                                          |
+| [`MCMTGate`](qiskit.circuit.library.MCMTGate "qiskit.circuit.library.MCMTGate")(gate, num\_ctrl\_qubits, ...\[, ...])           | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate.                  |
 | [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate")(lam, num\_ctrl\_qubits\[, label, ...]) | Multi-controlled-Phase gate.                                                                             |
 | [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate")(\[num\_ctrl\_qubits, label, ...])                  | The general, multi-controlled X gate.                                                                    |
 | [`MCXGrayCode`](qiskit.circuit.library.MCXGrayCode "qiskit.circuit.library.MCXGrayCode")(\[num\_ctrl\_qubits, label, ...])      | Implement the multi-controlled X gate using the Gray code.                                               |
@@ -183,12 +182,31 @@ print(diagonal.num_qubits)
 
 These are [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") subclasses that implement boolean logic operations, such as the logical or of a set of qubit states.
 
-|                                                                                                              |                                                                                                |
-| ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| [`AND`](qiskit.circuit.library.AND "qiskit.circuit.library.AND")(num\_variable\_qubits\[, flags, mcx\_mode]) | A circuit implementing the logical AND operation on a number of qubits.                        |
-| [`OR`](qiskit.circuit.library.OR "qiskit.circuit.library.OR")(num\_variable\_qubits\[, flags, mcx\_mode])    | A circuit implementing the logical OR operation on a number of qubits.                         |
-| [`XOR`](qiskit.circuit.library.XOR "qiskit.circuit.library.XOR")(num\_qubits\[, amount, seed])               | An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`.                  |
-| [`InnerProduct`](qiskit.circuit.library.InnerProduct "qiskit.circuit.library.InnerProduct")(num\_qubits)     | A 2n-qubit Boolean function that computes the inner product of two n-qubit vectors over $F_2$. |
+|                                                                                                                        |                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [`AND`](qiskit.circuit.library.AND "qiskit.circuit.library.AND")(num\_variable\_qubits\[, flags, mcx\_mode])           | A circuit implementing the logical AND operation on a number of qubits.                        |
+| [`AndGate`](qiskit.circuit.library.AndGate "qiskit.circuit.library.AndGate")(num\_variable\_qubits\[, flags])          | A gate representing the logical AND operation on a number of qubits.                           |
+| [`OR`](qiskit.circuit.library.OR "qiskit.circuit.library.OR")(num\_variable\_qubits\[, flags, mcx\_mode])              | A circuit implementing the logical OR operation on a number of qubits.                         |
+| [`OrGate`](qiskit.circuit.library.OrGate "qiskit.circuit.library.OrGate")(num\_variable\_qubits\[, flags])             | A gate representing the logical OR operation on a number of qubits.                            |
+| [`XOR`](qiskit.circuit.library.XOR "qiskit.circuit.library.XOR")(num\_qubits\[, amount, seed])                         | An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`.                  |
+| [`BitwiseXorGate`](qiskit.circuit.library.BitwiseXorGate "qiskit.circuit.library.BitwiseXorGate")(num\_qubits, amount) | An n-qubit gate for bitwise xor-ing the input with some integer `amount`.                      |
+| [`InnerProduct`](qiskit.circuit.library.InnerProduct "qiskit.circuit.library.InnerProduct")(num\_qubits)               | A 2n-qubit Boolean function that computes the inner product of two n-qubit vectors over $F_2$. |
+| [`InnerProductGate`](qiskit.circuit.library.InnerProductGate "qiskit.circuit.library.InnerProductGate")(num\_qubits)   | A 2n-qubit Boolean function that computes the inner product of two n-qubit vectors over $F_2$. |
+
+### random\_bitwise\_xor
+
+<Function id="qiskit.circuit.library.random_bitwise_xor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/boolean_logic/quantum_xor.py#L154-L165" signature="qiskit.circuit.library.random_bitwise_xor(num_qubits, seed)">
+  Create a random BitwiseXorGate.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the width of circuit.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – random seed in case a random xor is requested.
+
+  **Return type**
+
+  [*BitwiseXorGate*](qiskit.circuit.library.BitwiseXorGate "qiskit.circuit.library.boolean_logic.quantum_xor.BitwiseXorGate")
+</Function>
 
 ## Basis Change Circuits
 
@@ -256,19 +274,455 @@ These [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCi
 
 ## Particular Quantum Circuits
 
-|                                                                                                                                              |                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`FourierChecking`](qiskit.circuit.library.FourierChecking "qiskit.circuit.library.FourierChecking")(f, g)                                   | Fourier checking circuit.                                                |
-| [`GraphState`](qiskit.circuit.library.GraphState "qiskit.circuit.library.GraphState")(adjacency\_matrix)                                     | Circuit to prepare a graph state.                                        |
-| [`HiddenLinearFunction`](qiskit.circuit.library.HiddenLinearFunction "qiskit.circuit.library.HiddenLinearFunction")(adjacency\_matrix)       | Circuit to solve the hidden linear function problem.                     |
-| [`IQP`](qiskit.circuit.library.IQP "qiskit.circuit.library.IQP")(interactions)                                                               | Instantaneous quantum polynomial (IQP) circuit.                          |
-| [`QuantumVolume`](qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume")(num\_qubits\[, depth, seed, ...])             | A quantum volume model circuit.                                          |
-| [`PhaseEstimation`](qiskit.circuit.library.PhaseEstimation "qiskit.circuit.library.PhaseEstimation")(num\_evaluation\_qubits, unitary)       | Phase Estimation circuit.                                                |
-| [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator")(oracle\[, state\_preparation, ...])        | The Grover operator.                                                     |
-| [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")(expression\[, synthesizer, var\_order])             | Phase Oracle.                                                            |
-| [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")(operator\[, time, label, ...]) | Time-evolution of an operator consisting of Paulis.                      |
-| [`HamiltonianGate`](qiskit.circuit.library.HamiltonianGate "qiskit.circuit.library.HamiltonianGate")(data, time\[, label])                   | Class for representing evolution by a Hamiltonian operator as a gate.    |
-| [`UnitaryOverlap`](qiskit.circuit.library.UnitaryOverlap "qiskit.circuit.library.UnitaryOverlap")(unitary1, unitary2\[, ...])                | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
+|                                                                                                                                               |                                                                          |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`FourierChecking`](qiskit.circuit.library.FourierChecking "qiskit.circuit.library.FourierChecking")(f, g)                                    | Fourier checking circuit.                                                |
+| [`fourier_checking`](#qiskit.circuit.library.fourier_checking "qiskit.circuit.library.fourier_checking")(f, g)                                | Fourier checking circuit.                                                |
+| [`GraphState`](qiskit.circuit.library.GraphState "qiskit.circuit.library.GraphState")(adjacency\_matrix)                                      | Circuit to prepare a graph state.                                        |
+| [`GraphStateGate`](qiskit.circuit.library.GraphStateGate "qiskit.circuit.library.GraphStateGate")(adjacency\_matrix)                          | A gate representing a graph state.                                       |
+| [`HiddenLinearFunction`](qiskit.circuit.library.HiddenLinearFunction "qiskit.circuit.library.HiddenLinearFunction")(adjacency\_matrix)        | Circuit to solve the hidden linear function problem.                     |
+| [`hidden_linear_function`](#qiskit.circuit.library.hidden_linear_function "qiskit.circuit.library.hidden_linear_function")(adjacency\_matrix) | Circuit to solve the hidden linear function problem.                     |
+| [`IQP`](qiskit.circuit.library.IQP "qiskit.circuit.library.IQP")(interactions)                                                                | Instantaneous quantum polynomial (IQP) circuit.                          |
+| [`QuantumVolume`](qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume")(num\_qubits\[, depth, seed, ...])              | A quantum volume model circuit.                                          |
+| [`quantum_volume`](qiskit.circuit.library.quantum_volume "qiskit.circuit.library.quantum_volume")(num\_qubits\[, depth, seed])                | A quantum volume model circuit.                                          |
+| [`PhaseEstimation`](qiskit.circuit.library.PhaseEstimation "qiskit.circuit.library.PhaseEstimation")(num\_evaluation\_qubits, unitary)        | Phase Estimation circuit.                                                |
+| [`phase_estimation`](#qiskit.circuit.library.phase_estimation "qiskit.circuit.library.phase_estimation")(num\_evaluation\_qubits, unitary)    | Phase Estimation circuit.                                                |
+| [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator")(oracle\[, state\_preparation, ...])         | The Grover operator.                                                     |
+| [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")(expression\[, synthesizer, var\_order])              | Phase Oracle.                                                            |
+| [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")(operator\[, time, label, ...])  | Time-evolution of an operator consisting of Paulis.                      |
+| [`HamiltonianGate`](qiskit.circuit.library.HamiltonianGate "qiskit.circuit.library.HamiltonianGate")(data, time\[, label])                    | Class for representing evolution by a Hamiltonian operator as a gate.    |
+| [`UnitaryOverlap`](qiskit.circuit.library.UnitaryOverlap "qiskit.circuit.library.UnitaryOverlap")(unitary1, unitary2\[, ...])                 | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
+| [`unitary_overlap`](#qiskit.circuit.library.unitary_overlap "qiskit.circuit.library.unitary_overlap")(unitary1, unitary2\[, ...])             | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
+
+### iqp
+
+<Function id="qiskit.circuit.library.iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L84-L143" signature="qiskit.circuit.library.iqp(interactions)">
+  Instantaneous quantum polynomial time (IQP) circuit.
+
+  The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
+
+  The circuit is parameterized by an $n \times n$ interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
+
+  **Reference Circuit:**
+
+  ![../\_images/circuit\_library-2.png](/images/api/qiskit/dev/circuit_library-2.png)
+
+  **Expanded Circuit:**
+
+  > ![../\_images/circuit\_library-3.png](/images/api/qiskit/dev/circuit_library-3.png)
+
+  **References:**
+
+  \[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
+
+  **Parameters**
+
+  **interactions** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – The interactions as symmetric square matrix. If `None`, then the `num_qubits` argument must be set and a random IQP circuit will be generated.
+
+  **Returns**
+
+  An IQP circuit.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Function>
+
+### random\_iqp
+
+<Function id="qiskit.circuit.library.random_iqp" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/iqp.py#L146-L175" signature="qiskit.circuit.library.random_iqp(num_qubits, seed=None)">
+  A random instantaneous quantum polynomial time (IQP) circuit.
+
+  See [`iqp()`](#qiskit.circuit.library.iqp "qiskit.circuit.library.iqp") for more details on the IQP circuit.
+
+  Example:
+
+  ```python
+  from qiskit.circuit.library import random_iqp
+
+  circuit = random_iqp(3)
+  circuit.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-4.png](/images/api/qiskit/dev/circuit_library-4.png)
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits in the circuit.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed for the random number generator, in case the interactions matrix is randomly generated.
+
+  **Returns**
+
+  An IQP circuit.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
+
+### fourier\_checking
+
+<Function id="qiskit.circuit.library.fourier_checking" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/fourier_checking.py#L103-L158" signature="qiskit.circuit.library.fourier_checking(f, g)">
+  Fourier checking circuit.
+
+  The circuit for the Fourier checking algorithm, introduced in \[1], involves a layer of Hadamards, the function $f$, another layer of Hadamards, the function $g$, followed by a final layer of Hadamards. The functions $f$ and $g$ are classical functions realized as phase oracles (diagonal operators with \{-1, 1} on the diagonal).
+
+  The probability of observing the all-zeros string is $p(f,g)$. The algorithm solves the promise Fourier checking problem, which decides if f is correlated with the Fourier transform of g, by testing if $p(f,g) <= 0.01$ or $p(f,g) >= 0.05$, promised that one or the other of these is true.
+
+  The functions $f$ and $g$ are currently implemented from their truth tables but could be represented concisely and implemented efficiently for special classes of functions.
+
+  Fourier checking is a special case of $k$-fold forrelation \[2].
+
+  **Reference Circuit:**
+
+  ```python
+  from qiskit.circuit.library import fourier_checking
+  circuit = fourier_checking([1, -1, -1, -1], [1, 1, -1, -1])
+  circuit.draw('mpl')
+  ```
+
+  ![../\_images/circuit\_library-5.png](/images/api/qiskit/dev/circuit_library-5.png)
+
+  **Reference:**
+
+  \[1] S. Aaronson, BQP and the Polynomial Hierarchy, 2009 (Section 3.2). [arXiv:0910.4698](https://arxiv.org/abs/0910.4698)
+
+  \[2] S. Aaronson, A. Ambainis, Forrelation: a problem that optimally separates quantum from classical computing, 2014. [arXiv:1411.5729](https://arxiv.org/abs/1411.5729)
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Function>
+
+### hidden\_linear\_function
+
+<Function id="qiskit.circuit.library.hidden_linear_function" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/hidden_linear_function.py#L91-L161" signature="qiskit.circuit.library.hidden_linear_function(adjacency_matrix)">
+  Circuit to solve the hidden linear function problem.
+
+  The 2D Hidden Linear Function problem is determined by a 2D adjacency matrix A, where only elements that are nearest-neighbor on a grid have non-zero entries. Each row/column corresponds to one binary variable $x_i$.
+
+  The hidden linear function problem is as follows:
+
+  Consider the quadratic form
+
+$$
+q(x) = \sum_{i,j=1}^{n}{x_i x_j} ~(\mathrm{mod}~ 4)
+$$
+
+  and restrict $q(x)$ onto the nullspace of A. This results in a linear function.
+
+$$
+2 \sum_{i=1}^{n}{z_i x_i} ~(\mathrm{mod}~ 4)  \forall  x \in \mathrm{Ker}(A)
+$$
+
+  and the goal is to recover this linear function (equivalently a vector $[z_0, ..., z_{n-1}]$). There can be multiple solutions.
+
+  In \[1] it is shown that the present circuit solves this problem on a quantum computer in constant depth, whereas any corresponding solution on a classical computer would require circuits that grow logarithmically with $n$. Thus this circuit is an example of quantum advantage with shallow circuits.
+
+  **Reference Circuit:**
+
+  ```python
+  from qiskit.circuit.library import hidden_linear_function
+  A = [[1, 1, 0], [1, 0, 1], [0, 1, 1]]
+  circuit = hidden_linear_function(A)
+  circuit.draw('mpl')
+  ```
+
+  ![../\_images/circuit\_library-6.png](/images/api/qiskit/dev/circuit_library-6.png)
+
+  **Parameters**
+
+  **adjacency\_matrix** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *| np.ndarray*) – a symmetric n-by-n list of 0-1 lists. n will be the number of qubits.
+
+  **Raises**
+
+  [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If A is not symmetric.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+  **Reference:**
+
+  \[1] S. Bravyi, D. Gosset, R. Koenig, Quantum Advantage with Shallow Circuits, 2017. [arXiv:1704.00690](https://arxiv.org/abs/1704.00690)
+</Function>
+
+### unitary\_overlap
+
+<Function id="qiskit.circuit.library.unitary_overlap" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/overlap.py#L105-L182" signature="qiskit.circuit.library.unitary_overlap(unitary1, unitary2, prefix1='p1', prefix2='p2', insert_barrier=False)">
+  Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$.
+
+  The input quantum circuits must represent unitary operations, since they must be invertible. If the inputs will have parameters, they are replaced by [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")s with names “p1” (for circuit `unitary1`) and “p2” (for circuit `unitary_2`) in the output circuit.
+
+  This circuit is usually employed in computing the fidelity:
+
+$$
+\left|\langle 0| U_2^{\dag} U_1|0\rangle\right|^{2}
+$$
+
+  by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $|0\rangle\langle 0|$.
+
+  **Reference Circuit:**
+
+  ```python
+  import numpy as np
+  from qiskit.circuit.library import EfficientSU2, unitary_overlap
+
+  # get two circuit to prepare states of which we compute the overlap
+  circuit = EfficientSU2(2, reps=1)
+  unitary1 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
+  unitary2 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
+
+  # create the overlap circuit
+  overlap = unitary_overlap(unitary1, unitary2)
+  overlap.draw('mpl')
+  ```
+
+  ![../\_images/circuit\_library-7.png](/images/api/qiskit/dev/circuit_library-7.png)
+
+  **Parameters**
+
+  *   **unitary1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary acting on the ket vector.
+  *   **unitary2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary whose inverse operates on the bra vector.
+  *   **prefix1** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the parameter vector associated to `unitary1`, if it is parameterized. Defaults to `"p1"`.
+  *   **prefix2** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the parameter vector associated to `unitary2`, if it is parameterized. Defaults to `"p2"`.
+  *   **insert\_barrier** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert a barrier between the two unitaries.
+
+  **Raises**
+
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Number of qubits in `unitary1` and `unitary2` does not match.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Inputs contain measurements and/or resets.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Function>
+
+### phase\_estimation
+
+<Function id="qiskit.circuit.library.phase_estimation" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/phase_estimation.py#L107-L175" signature="qiskit.circuit.library.phase_estimation(num_evaluation_qubits, unitary, name='QPE')">
+  Phase Estimation circuit.
+
+  In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|\psi\rangle$. That is
+
+$$
+U|\psi\rangle = e^{2\pi i\phi} |\psi\rangle
+$$
+
+  This estimation (and thereby this circuit) is a central routine to several well-known algorithms, such as Shor’s algorithm or Quantum Amplitude Estimation.
+
+  **Parameters**
+
+  *   **num\_evaluation\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of evaluation qubits.
+  *   **unitary** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The unitary operation $U$ which will be repeated and controlled.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  **Reference Circuit:**
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import phase_estimation
+  unitary = QuantumCircuit(2)
+  unitary.x(0)
+  unitary.y(1)
+  circuit = phase_estimation(3, unitary)
+  circuit.draw('mpl')
+  ```
+
+  ![../\_images/circuit\_library-8.png](/images/api/qiskit/dev/circuit_library-8.png)
+
+  **References:**
+
+  **\[1]: Kitaev, A. Y. (1995). Quantum measurements and the Abelian Stabilizer Problem. 1–22.**
+
+  [quant-ph/9511026](http://arxiv.org/abs/quant-ph/9511026)
+
+  **\[2]: Michael A. Nielsen and Isaac L. Chuang. 2011.**
+
+  Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.). Cambridge University Press, New York, NY, USA.
+
+  **\[3]: Qiskit**
+
+  [textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
+</Function>
+
+### grover\_operator
+
+<Function id="qiskit.circuit.library.grover_operator" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/grover_operator.py#L27-L278" signature="qiskit.circuit.library.grover_operator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, name='Q')">
+  Construct the Grover operator.
+
+  Grover’s search algorithm \[1, 2] consists of repeated applications of the so-called Grover operator used to amplify the amplitudes of the desired output states. This operator, $\mathcal{Q}$, consists of the phase oracle, $\mathcal{S}_f$, zero phase-shift or zero reflection, $\mathcal{S}_0$, and an input state preparation $\mathcal{A}$:
+
+$$
+\mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f
+
+
+$$
+
+  In the standard Grover search we have $\mathcal{A} = H^{\otimes n}$:
+
+$$
+\mathcal{Q} = H^{\otimes n} \mathcal{S}_0 H^{\otimes n} \mathcal{S}_f
+= D \mathcal{S_f}
+
+
+$$
+
+  The operation $D = H^{\otimes n} \mathcal{S}_0 H^{\otimes n}$ is also referred to as diffusion operator. In this formulation we can see that Grover’s operator consists of two steps: first, the phase oracle multiplies the good states by -1 (with $\mathcal{S}_f$) and then the whole state is reflected around the mean (with $D$).
+
+  This class allows setting a different state preparation, as in quantum amplitude amplification (a generalization of Grover’s algorithm), $\mathcal{A}$ might not be a layer of Hardamard gates \[3].
+
+  The action of the phase oracle $\mathcal{S}_f$ is defined as
+
+$$
+\mathcal{S}_f: |x\rangle \mapsto (-1)^{f(x)}|x\rangle
+
+
+$$
+
+  where $f(x) = 1$ if $x$ is a good state and 0 otherwise. To highlight the fact that this oracle flips the phase of the good states and does not flip the state of a result qubit, we call $\mathcal{S}_f$ a phase oracle.
+
+  Note that you can easily construct a phase oracle from a bitflip oracle by sandwiching the controlled X gate on the result qubit by a X and H gate. For instance
+
+  ```python
+  Bitflip oracle     Phaseflip oracle
+  q_0: ──■──         q_0: ────────────■────────────
+       ┌─┴─┐              ┌───┐┌───┐┌─┴─┐┌───┐┌───┐
+  out: ┤ X ├         out: ┤ X ├┤ H ├┤ X ├┤ H ├┤ X ├
+       └───┘              └───┘└───┘└───┘└───┘└───┘
+  ```
+
+  There is some flexibility in defining the oracle and $\mathcal{A}$ operator. Before the Grover operator is applied in Grover’s algorithm, the qubits are first prepared with one application of the $\mathcal{A}$ operator (or Hadamard gates in the standard formulation). Thus, we always have operation of the form $\mathcal{A} \mathcal{S}_f \mathcal{A}^\dagger$. Therefore it is possible to move bitflip logic into $\mathcal{A}$ and leaving the oracle only to do phaseflips via Z gates based on the bitflips. One possible use-case for this are oracles that do not uncompute the state qubits.
+
+  The zero reflection $\mathcal{S}_0$ is usually defined as
+
+$$
+\mathcal{S}_0 = 2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n
+
+
+$$
+
+  where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
+
+  **Examples**
+
+  We can construct a Grover operator just from the phase oracle:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import grover_operator
+
+  oracle = QuantumCircuit(2)
+  oracle.z(0)  # good state = first qubit is |1>
+  grover_op = grover_operator(oracle, insert_barriers=True)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-9.png](/images/api/qiskit/dev/circuit_library-9.png)
+
+  We can also modify the state preparation:
+
+  ```python
+  oracle = QuantumCircuit(1)
+  oracle.z(0)  # the qubit state |1> is the good state
+  state_preparation = QuantumCircuit(1)
+  state_preparation.ry(0.2, 0)  # non-uniform state preparation
+  grover_op = grover_operator(oracle, state_preparation)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-10\_00.png](/images/api/qiskit/dev/circuit_library-10_00.png)
+
+  ![../\_images/circuit\_library-10\_01.png](/images/api/qiskit/dev/circuit_library-10_01.png)
+
+  In addition, we can also mark which qubits the zero reflection should act on. This is useful in case that some qubits are just used as scratch space but should not affect the oracle:
+
+  ```python
+  oracle = QuantumCircuit(4)
+  oracle.z(3)
+  reflection_qubits = [0, 3]
+  state_preparation = QuantumCircuit(4)
+  state_preparation.cry(0.1, 0, 3)
+  state_preparation.ry(0.5, 3)
+  grover_op = grover_operator(oracle, state_preparation, reflection_qubits=reflection_qubits)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-11\_00.png](/images/api/qiskit/dev/circuit_library-11_00.png)
+
+  ![../\_images/circuit\_library-11\_01.png](/images/api/qiskit/dev/circuit_library-11_01.png)
+
+  ![../\_images/circuit\_library-11\_02.png](/images/api/qiskit/dev/circuit_library-11_02.png)
+
+  The oracle and the zero reflection can also be passed as [`qiskit.quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") objects:
+
+  ```python
+  from qiskit.quantum_info import Statevector, DensityMatrix, Operator
+
+  mark_state = Statevector.from_label("011")
+  reflection = 2 * DensityMatrix.from_label("000") - Operator.from_label("III")
+  grover_op = grover_operator(oracle=mark_state, zero_reflection=reflection)
+  grover_op.draw("mpl")
+  ```
+
+  ![../\_images/circuit\_library-12\_00.png](/images/api/qiskit/dev/circuit_library-12_00.png)
+
+  ![../\_images/circuit\_library-12\_01.png](/images/api/qiskit/dev/circuit_library-12_01.png)
+
+  ![../\_images/circuit\_library-12\_02.png](/images/api/qiskit/dev/circuit_library-12_02.png)
+
+  ![../\_images/circuit\_library-12\_03.png](/images/api/qiskit/dev/circuit_library-12_03.png)
+
+  For a large number of qubits, the multi-controlled X gate used for the zero-reflection can be synthesized in different fashions. Depending on the number of available qubits, the compiler will choose a different implementation:
+
+  ```python
+  from qiskit import transpile, Qubit
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import grover_operator
+
+  oracle = QuantumCircuit(10)
+  oracle.z(oracle.qubits)
+  grover_op = grover_operator(oracle)
+
+  # without extra qubit space, the MCX synthesis is expensive
+  basis_gates = ["u", "cx"]
+  tqc = transpile(grover_op, basis_gates=basis_gates)
+  is_2q = lambda inst: len(inst.qubits) == 2
+  print("2q depth w/o scratch qubits:", tqc.depth(filter_function=is_2q))  # > 350
+
+  # add extra bits that can be used as scratch space
+  grover_op.add_bits([Qubit() for _ in range(num_qubits)])
+  tqc = transpile(grover_op, basis_gates=basis_gates)
+  print("2q depth w/ scratch qubits:", tqc.depth(filter_function=is_2q)) # < 100
+  ```
+
+  **Parameters**
+
+  *   **oracle** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
+  *   **state\_preparation** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
+  *   **zero\_reflection** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")  *|*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *| None*) – The reflection about the zero state, $\mathcal{S}_0$.
+  *   **reflection\_qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Qubits on which the zero reflection acts on.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether barriers should be inserted between the reflections and A.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+
+  **References**
+
+  **\[1]: L. K. Grover (1996), A fast quantum mechanical algorithm for database search,**
+
+  [arXiv:quant-ph/9605043](https://arxiv.org/abs/quant-ph/9605043).
+
+  **\[2]: I. Chuang & M. Nielsen, Quantum Computation and Quantum Information,**
+
+  Cambridge: Cambridge University Press, 2000. Chapter 6.1.2.
+
+  **\[3]: Brassard, G., Hoyer, P., Mosca, M., & Tapp, A. (2000).**
+
+  Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://arxiv.org/abs/quant-ph/0005055).
+</Function>
 
 ## N-local circuits
 
@@ -323,7 +777,15 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_2a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_1.py#L24-L32" signature="qiskit.circuit.library.templates.nct.template_nct_2a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_1.py#L18-L34" signature="qiskit.circuit.library.templates.nct.template_nct_2a_1()">
+  Template 2a\_1:
+
+  ```text
+       ┌───┐┌───┐
+  q_0: ┤ X ├┤ X ├
+       └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -335,7 +797,16 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_2a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_2.py#L25-L33" signature="qiskit.circuit.library.templates.nct.template_nct_2a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_2.py#L18-L35" signature="qiskit.circuit.library.templates.nct.template_nct_2a_2()">
+  Template 2a\_2:
+
+  ```text
+  q_0: ──■────■──
+       ┌─┴─┐┌─┴─┐
+  q_1: ┤ X ├┤ X ├
+       └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -347,7 +818,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_2a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_3.py#L27-L35" signature="qiskit.circuit.library.templates.nct.template_nct_2a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_2a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_2a_3.py#L18-L37" signature="qiskit.circuit.library.templates.nct.template_nct_2a_3()">
+  Template 2a\_3:
+
+  ```text
+  q_0: ──■────■──
+         │    │
+  q_1: ──■────■──
+       ┌─┴─┐┌─┴─┐
+  q_2: ┤ X ├┤ X ├
+       └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -359,7 +841,22 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_1.py#L31-L41" signature="qiskit.circuit.library.templates.nct.template_nct_4a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_4a_1()">
+  Template 4a\_1:
+
+  ```text
+  q_0: ───────■─────────■──
+              │         │
+  q_1: ──■────┼────■────┼──
+         │    │    │    │
+  q_2: ──■────■────■────■──
+         │  ┌─┴─┐  │  ┌─┴─┐
+  q_3: ──┼──┤ X ├──┼──┤ X ├
+       ┌─┴─┐└───┘┌─┴─┐└───┘
+  q_4: ┤ X ├─────┤ X ├─────
+       └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -371,7 +868,20 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_2.py#L29-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_4a_2()">
+  Template 4a\_2:
+
+  ```text
+  q_0: ──■─────────■───────
+         │         │
+  q_1: ──■────■────■────■──
+         │  ┌─┴─┐  │  ┌─┴─┐
+  q_2: ──┼──┤ X ├──┼──┤ X ├
+       ┌─┴─┐└───┘┌─┴─┐└───┘
+  q_3: ┤ X ├─────┤ X ├─────
+       └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -383,7 +893,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_3.py#L27-L37" signature="qiskit.circuit.library.templates.nct.template_nct_4a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4a_3.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4a_3()">
+  Template 4a\_3:
+
+  ```text
+  q_0: ──■────■────■────■──
+         │  ┌─┴─┐  │  ┌─┴─┐
+  q_1: ──┼──┤ X ├──┼──┤ X ├
+       ┌─┴─┐└───┘┌─┴─┐└───┘
+  q_2: ┤ X ├─────┤ X ├─────
+       └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -395,7 +916,20 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4b\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4b_1.py#L29-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4b_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4b_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_4b_1()">
+  Template 4b\_1:
+
+  ```text
+  q_0: ───────■─────────■──
+              │         │
+  q_1: ──■────┼────■────┼──
+         │    │    │    │
+  q_2: ──■────■────■────■──
+       ┌─┴─┐┌─┴─┐┌─┴─┐┌─┴─┐
+  q_3: ┤ X ├┤ X ├┤ X ├┤ X ├
+       └───┘└───┘└───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -407,7 +941,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_4b\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4b_2.py#L27-L37" signature="qiskit.circuit.library.templates.nct.template_nct_4b_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_4b_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_4b_2.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_4b_2()">
+  Template 4b\_2:
+
+  ```text
+  q_0: ──■─────────■───────
+         │         │
+  q_1: ──■────■────■────■──
+       ┌─┴─┐┌─┴─┐┌─┴─┐┌─┴─┐
+  q_2: ┤ X ├┤ X ├┤ X ├┤ X ├
+       └───┘└───┘└───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -419,7 +964,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_1.py#L27-L38" signature="qiskit.circuit.library.templates.nct.template_nct_5a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_1.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_1()">
+  Template 5a\_1:
+
+  ```text
+  q_0: ──■────■────■────■────■──
+         │  ┌─┴─┐  │  ┌─┴─┐  │
+  q_1: ──■──┤ X ├──■──┤ X ├──┼──
+       ┌─┴─┐└───┘┌─┴─┐└───┘┌─┴─┐
+  q_2: ┤ X ├─────┤ X ├─────┤ X ├
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -431,7 +987,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_2.py#L27-L38" signature="qiskit.circuit.library.templates.nct.template_nct_5a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_2.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_2()">
+  Template 5a\_2:
+
+  ```text
+  q_0: ──■─────────■─────────■──
+         │  ┌───┐  │  ┌───┐  │
+  q_1: ──■──┤ X ├──■──┤ X ├──┼──
+       ┌─┴─┐└───┘┌─┴─┐└───┘┌─┴─┐
+  q_2: ┤ X ├─────┤ X ├─────┤ X ├
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -443,7 +1010,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_3.py#L27-L38" signature="qiskit.circuit.library.templates.nct.template_nct_5a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_3.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_5a_3()">
+  Template 5a\_3:
+
+  ```text
+  q_0: ───────■─────────■────■──
+            ┌─┴─┐     ┌─┴─┐  │
+  q_1: ──■──┤ X ├──■──┤ X ├──┼──
+       ┌─┴─┐└───┘┌─┴─┐└───┘┌─┴─┐
+  q_2: ┤ X ├─────┤ X ├─────┤ X ├
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -455,7 +1033,17 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_5a\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_4.py#L26-L37" signature="qiskit.circuit.library.templates.nct.template_nct_5a_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_5a_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_5a_4.py#L18-L39" signature="qiskit.circuit.library.templates.nct.template_nct_5a_4()">
+  Template 5a\_4:
+
+  ```text
+            ┌───┐     ┌───┐
+  q_0: ──■──┤ X ├──■──┤ X ├
+       ┌─┴─┐└───┘┌─┴─┐├───┤
+  q_1: ┤ X ├─────┤ X ├┤ X ├
+       └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -467,7 +1055,17 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_1.py#L26-L38" signature="qiskit.circuit.library.templates.nct.template_nct_6a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_1.py#L18-L40" signature="qiskit.circuit.library.templates.nct.template_nct_6a_1()">
+  Template 6a\_1:
+
+  ```text
+            ┌───┐     ┌───┐     ┌───┐
+  q_0: ──■──┤ X ├──■──┤ X ├──■──┤ X ├
+       ┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘
+  q_1: ┤ X ├──■──┤ X ├──■──┤ X ├──■──
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -479,7 +1077,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_2.py#L27-L39" signature="qiskit.circuit.library.templates.nct.template_nct_6a_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_2()">
+  Template 6a\_2:
+
+  ```text
+  q_0: ──■────■────■────■────■────■──
+         │  ┌─┴─┐  │  ┌─┴─┐  │  ┌─┴─┐
+  q_1: ──■──┤ X ├──■──┤ X ├──■──┤ X ├
+       ┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘
+  q_2: ┤ X ├──■──┤ X ├──■──┤ X ├──■──
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -491,7 +1100,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_3.py#L27-L39" signature="qiskit.circuit.library.templates.nct.template_nct_6a_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_3.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_3()">
+  Template 6a\_3:
+
+  ```text
+  q_0: ───────■─────────■────■────■──
+            ┌─┴─┐     ┌─┴─┐  │  ┌─┴─┐
+  q_1: ──■──┤ X ├──■──┤ X ├──■──┤ X ├
+       ┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘
+  q_2: ┤ X ├──■──┤ X ├──■──┤ X ├──■──
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -503,7 +1123,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6a\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_4.py#L27-L39" signature="qiskit.circuit.library.templates.nct.template_nct_6a_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6a_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6a_4.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6a_4()">
+  Template 6a\_4:
+
+  ```text
+  q_0: ───────■──────────────■───────
+            ┌─┴─┐     ┌───┐  │  ┌───┐
+  q_1: ──■──┤ X ├──■──┤ X ├──■──┤ X ├
+       ┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘
+  q_2: ┤ X ├──■──┤ X ├──■──┤ X ├──■──
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -515,7 +1146,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6b\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6b_1.py#L27-L39" signature="qiskit.circuit.library.templates.nct.template_nct_6b_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6b_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6b_1()">
+  Template 6b\_1:
+
+  ```text
+  q_0: ──■─────────■────■─────────■──
+         │       ┌─┴─┐  │       ┌─┴─┐
+  q_1: ──■────■──┤ X ├──■────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -527,7 +1169,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6b\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6b_2.py#L27-L39" signature="qiskit.circuit.library.templates.nct.template_nct_6b_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6b_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6b_2.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6b_2()">
+  Template 6b\_2:
+
+  ```text
+  q_0: ───────■────■─────────■────■──
+              │  ┌─┴─┐       │  ┌─┴─┐
+  q_1: ──■────■──┤ X ├──■────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -539,7 +1192,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_6c\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_6c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6c_1.py#L27-L39" signature="qiskit.circuit.library.templates.nct.template_nct_6c_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_6c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_6c_1.py#L18-L41" signature="qiskit.circuit.library.templates.nct.template_nct_6c_1()">
+  Template 6c\_1:
+
+  ```text
+  q_0: ──■─────────■─────────■────■──
+         │  ┌───┐  │  ┌───┐  │  ┌─┴─┐
+  q_1: ──■──┤ X ├──■──┤ X ├──■──┤ X ├
+       ┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐└─┬─┘
+  q_2: ┤ X ├──■──┤ X ├──■──┤ X ├──■──
+       └───┘     └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -551,7 +1215,19 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7a_1.py#L28-L41" signature="qiskit.circuit.library.templates.nct.template_nct_7a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7a_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7a_1()">
+  Template 7a\_1:
+
+  ```text
+       ┌───┐                    ┌───┐
+  q_0: ┤ X ├──■─────────■────■──┤ X ├──■──
+       └─┬─┘┌─┴─┐       │  ┌─┴─┐└─┬─┘  │
+  q_1: ──■──┤ X ├──■────■──┤ X ├──■────■──
+            └───┘┌─┴─┐┌─┴─┐└───┘     ┌─┴─┐
+  q_2: ──────────┤ X ├┤ X ├──────────┤ X ├
+                 └───┘└───┘          └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -563,7 +1239,19 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7b\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7b_1.py#L28-L41" signature="qiskit.circuit.library.templates.nct.template_nct_7b_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7b_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7b_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7b_1()">
+  Template 7b\_1:
+
+  ```text
+       ┌───┐                    ┌───┐
+  q_0: ┤ X ├──■─────────■────■──┤ X ├──■──
+       └───┘┌─┴─┐       │  ┌─┴─┐└───┘  │
+  q_1: ─────┤ X ├──■────■──┤ X ├───────■──
+            └───┘┌─┴─┐┌─┴─┐└───┘     ┌─┴─┐
+  q_2: ──────────┤ X ├┤ X ├──────────┤ X ├
+                 └───┘└───┘          └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -575,7 +1263,19 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7c\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7c_1.py#L28-L41" signature="qiskit.circuit.library.templates.nct.template_nct_7c_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7c_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7c_1()">
+  Template 7c\_1:
+
+  ```text
+       ┌───┐                    ┌───┐
+  q_0: ┤ X ├──■─────────■────■──┤ X ├──■──
+       └───┘┌─┴─┐       │  ┌─┴─┐└───┘  │
+  q_1: ─────┤ X ├──■────■──┤ X ├───────■──
+            └─┬─┘┌─┴─┐┌─┴─┐└─┬─┘     ┌─┴─┐
+  q_2: ───────■──┤ X ├┤ X ├──■───────┤ X ├
+                 └───┘└───┘          └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -587,7 +1287,19 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7d\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7d_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7d_1.py#L28-L41" signature="qiskit.circuit.library.templates.nct.template_nct_7d_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7d_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7d_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7d_1()">
+  Template 7d\_1:
+
+  ```text
+       ┌───┐                    ┌───┐
+  q_0: ┤ X ├──■─────────■────■──┤ X ├──■──
+       └─┬─┘┌─┴─┐       │  ┌─┴─┐└─┬─┘  │
+  q_1: ──■──┤ X ├──■────■──┤ X ├──■────■──
+            └─┬─┘┌─┴─┐┌─┴─┐└─┬─┘     ┌─┴─┐
+  q_2: ───────■──┤ X ├┤ X ├──■───────┤ X ├
+                 └───┘└───┘          └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -599,7 +1311,19 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_7e\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_7e_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7e_1.py#L28-L41" signature="qiskit.circuit.library.templates.nct.template_nct_7e_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_7e_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_7e_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_7e_1()">
+  Template 7e\_1:
+
+  ```text
+       ┌───┐                    ┌───┐
+  q_0: ┤ X ├──■─────────■────■──┤ X ├──■──
+       └───┘┌─┴─┐       │  ┌─┴─┐└───┘  │
+  q_1: ─────┤ X ├───────┼──┤ X ├───────┼──
+            └─┬─┘┌───┐┌─┴─┐└─┬─┘     ┌─┴─┐
+  q_2: ───────■──┤ X ├┤ X ├──■───────┤ X ├
+                 └───┘└───┘          └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -611,7 +1335,19 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9a\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9a_1.py#L28-L43" signature="qiskit.circuit.library.templates.nct.template_nct_9a_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9a_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9a_1.py#L18-L45" signature="qiskit.circuit.library.templates.nct.template_nct_9a_1()">
+  Template 9a\_1:
+
+  ```text
+       ┌───┐     ┌───┐          ┌───┐
+  q_0: ┤ X ├──■──┤ X ├──■────■──┤ X ├──■──
+       └─┬─┘┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐
+  q_1: ──■──┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├
+            └─┬─┘  │  ├───┤└─┬─┘┌───┐└─┬─┘
+  q_2: ───────■────■──┤ X ├──■──┤ X ├──■──
+                      └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -623,7 +1359,17 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_1.py#L26-L41" signature="qiskit.circuit.library.templates.nct.template_nct_9c_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_9c_1()">
+  Template 9c\_1:
+
+  ```text
+       ┌───┐     ┌───┐┌───┐     ┌───┐          ┌───┐
+  q_0: ┤ X ├──■──┤ X ├┤ X ├─────┤ X ├──■───────┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌───┐└─┬─┘┌─┴─┐┌───┐└─┬─┘
+  q_1: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -635,7 +1381,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_2.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_2.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_2()">
+  Template 9c\_2:
+
+  ```text
+  q_0: ───────■────■──────────────■────■─────────■──
+       ┌───┐  │  ┌─┴─┐┌───┐     ┌─┴─┐  │       ┌─┴─┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├─────┤ X ├──■───────┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌───┐└─┬─┘┌─┴─┐┌───┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -647,7 +1404,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_3.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_3.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_3()">
+  Template 9c\_3:
+
+  ```text
+  q_0: ───────■────────────────────────■────────────
+       ┌───┐  │  ┌───┐┌───┐     ┌───┐  │       ┌───┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├─────┤ X ├──■───────┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌───┐└─┬─┘┌─┴─┐┌───┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -659,7 +1427,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_4.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_4.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_4()">
+  Template 9c\_4:
+
+  ```text
+  q_0: ──■────■─────────■──────────────■────────────
+       ┌─┴─┐  │  ┌───┐┌─┴─┐     ┌───┐  │       ┌───┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├─────┤ X ├──■───────┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌───┐└─┬─┘┌─┴─┐┌───┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -671,7 +1450,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_5
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_5.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_5()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_5.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_5()">
+  Template 9c\_5:
+
+  ```text
+  q_0: ────────────■─────────■──────────────■───────
+       ┌───┐     ┌─┴─┐┌───┐  │  ┌───┐       │  ┌───┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├──┼──┤ X ├──■────┼──┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -683,7 +1473,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_6
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_6" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_6.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_6()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_6" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_6.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_6()">
+  Template 9c\_6:
+
+  ```text
+  q_0: ───────■────■─────────■─────────■────■───────
+       ┌───┐  │  ┌─┴─┐┌───┐  │  ┌───┐  │    │  ┌───┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├──┼──┤ X ├──■────┼──┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -695,7 +1496,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_7
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_7" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_7.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_7()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_7" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_7.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_7()">
+  Template 9c\_7:
+
+  ```text
+  q_0: ──■────■────■────■────■─────────■────■───────
+       ┌─┴─┐  │  ┌─┴─┐┌─┴─┐  │  ┌───┐  │    │  ┌───┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├──┼──┤ X ├──■────┼──┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -707,7 +1519,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_8
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_8" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_8.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_8()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_8" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_8.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_8()">
+  Template 9c\_8:
+
+  ```text
+  q_0: ──■─────────■────■─────────■──────────────■──
+       ┌─┴─┐     ┌─┴─┐┌─┴─┐     ┌─┴─┐          ┌─┴─┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├─────┤ X ├──■───────┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌───┐└─┬─┘┌─┴─┐┌───┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -719,7 +1542,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_9
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_9" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_9.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_9()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_9" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_9.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_9()">
+  Template 9c\_9:
+
+  ```text
+  q_0: ──■────■────■────■─────────■────■─────────■──
+       ┌─┴─┐  │  ┌─┴─┐┌─┴─┐     ┌─┴─┐  │       ┌─┴─┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├─────┤ X ├──■───────┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌───┐└─┬─┘┌─┴─┐┌───┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -731,7 +1565,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_10
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_10" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_10.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_10()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_10" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_10.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_10()">
+  Template 9c\_10:
+
+  ```text
+  q_0: ──■─────────■────■────■────■─────────■────■──
+       ┌─┴─┐     ┌─┴─┐┌─┴─┐  │  ┌─┴─┐       │  ┌─┴─┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├──┼──┤ X ├──■────┼──┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -743,7 +1588,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_11
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_11" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_11.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_11()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_11" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_11.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_11()">
+  Template 9c\_11:
+
+  ```text
+  q_0: ───────■────■─────────■────■────■────■────■──
+       ┌───┐  │  ┌─┴─┐┌───┐  │  ┌─┴─┐  │    │  ┌─┴─┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├──┼──┤ X ├──■────┼──┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -755,7 +1611,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9c\_12
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_12" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_12.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9c_12()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9c_12" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9c_12.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9c_12()">
+  Template 9c\_12:
+
+  ```text
+  q_0: ──■────■────■────■────■────■────■────■────■──
+       ┌─┴─┐  │  ┌─┴─┐┌─┴─┐  │  ┌─┴─┐  │    │  ┌─┴─┐
+  q_1: ┤ X ├──■──┤ X ├┤ X ├──┼──┤ X ├──■────┼──┤ X ├
+       └─┬─┘┌─┴─┐└───┘└─┬─┘┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ──■──┤ X ├───────■──┤ X ├──■──┤ X ├┤ X ├──■──
+            └───┘          └───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -767,7 +1634,17 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_1
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_1.py#L26-L41" signature="qiskit.circuit.library.templates.nct.template_nct_9d_1()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_1.py#L18-L43" signature="qiskit.circuit.library.templates.nct.template_nct_9d_1()">
+  Template 9d\_1:
+
+  ```text
+                 ┌───┐          ┌───┐          ┌───┐
+  q_0: ──■───────┤ X ├───────■──┤ X ├───────■──┤ X ├
+       ┌─┴─┐┌───┐└─┬─┘┌───┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘
+  q_1: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -779,7 +1656,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_2
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_2.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_2()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_2.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_2()">
+  Template 9d\_2:
+
+  ```text
+  q_0: ──■────■────■──────────────■──────────────■──
+         │    │  ┌─┴─┐          ┌─┴─┐          ┌─┴─┐
+  q_1: ──■────┼──┤ X ├───────■──┤ X ├───────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -791,7 +1679,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_3
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_3.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_3()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_3.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_3()">
+  Template 9d\_3:
+
+  ```text
+  q_0: ──■────■───────────────────■─────────────────
+         │    │  ┌───┐          ┌─┴─┐          ┌───┐
+  q_1: ──■────┼──┤ X ├───────■──┤ X ├───────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -803,7 +1702,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_4
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_4.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_4()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_4.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_4()">
+  Template 9d\_4:
+
+  ```text
+  q_0: ───────■─────────■──────────────■────────────
+              │  ┌───┐  │       ┌───┐  │       ┌───┐
+  q_1: ──■────┼──┤ X ├──┼────■──┤ X ├──┼────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -815,7 +1725,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_5
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_5.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_5()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_5.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_5()">
+  Template 9d\_5:
+
+  ```text
+  q_0: ──■────■─────────■─────────■────■────────────
+         │    │  ┌───┐  │       ┌─┴─┐  │       ┌───┐
+  q_1: ──■────┼──┤ X ├──┼────■──┤ X ├──┼────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -827,7 +1748,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_6
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_6" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_6.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_6()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_6" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_6.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_6()">
+  Template 9d\_6:
+
+  ```text
+  q_0: ──■────■──────────────■────■─────────■───────
+         │    │  ┌───┐       │  ┌─┴─┐       │  ┌───┐
+  q_1: ──■────┼──┤ X ├───────■──┤ X ├───────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -839,7 +1771,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_7
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_7" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_7.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_7()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_7" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_7.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_7()">
+  Template 9d\_7:
+
+  ```text
+  q_0: ──■────■─────────■────■────■────■────■───────
+         │    │  ┌───┐  │    │  ┌─┴─┐  │    │  ┌───┐
+  q_1: ──■────┼──┤ X ├──┼────■──┤ X ├──┼────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -851,7 +1794,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_8
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_8" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_8.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_8()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_8" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_8.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_8()">
+  Template 9d\_8:
+
+  ```text
+  q_0: ──■────■────■────■─────────■────■─────────■──
+         │    │  ┌─┴─┐  │       ┌─┴─┐  │       ┌─┴─┐
+  q_1: ──■────┼──┤ X ├──┼────■──┤ X ├──┼────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -863,7 +1817,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_9
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_9" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_9.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_9()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_9" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_9.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_9()">
+  Template 9d\_9:
+
+  ```text
+  q_0: ──■────■────■─────────■────■─────────■────■──
+         │    │  ┌─┴─┐       │  ┌─┴─┐       │  ┌─┴─┐
+  q_1: ──■────┼──┤ X ├───────■──┤ X ├───────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘┌───┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -875,7 +1840,18 @@ Template circuits for [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.lib
 
 #### template\_nct\_9d\_10
 
-<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_10" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_10.py#L27-L42" signature="qiskit.circuit.library.templates.nct.template_nct_9d_10()">
+<Function id="qiskit.circuit.library.templates.nct.template_nct_9d_10" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/nct/template_nct_9d_10.py#L18-L44" signature="qiskit.circuit.library.templates.nct.template_nct_9d_10()">
+  Template 9d\_10:
+
+  ```text
+  q_0: ──■────■────■────■────■────■────■────■────■──
+         │    │  ┌─┴─┐  │    │  ┌─┴─┐  │    │  ┌─┴─┐
+  q_1: ──■────┼──┤ X ├──┼────■──┤ X ├──┼────■──┤ X ├
+       ┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘┌─┴─┐┌─┴─┐└─┬─┘
+  q_2: ┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──┤ X ├┤ X ├──■──
+       └───┘└───┘     └───┘└───┘     └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -891,7 +1867,15 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_1
 
-<Function id="qiskit.circuit.library.clifford_2_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_1.py#L25-L33" signature="qiskit.circuit.library.clifford_2_1()">
+<Function id="qiskit.circuit.library.clifford_2_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_1.py#L18-L34" signature="qiskit.circuit.library.clifford_2_1()">
+  Clifford template 2\_1:
+
+  ```text
+  q_0: ─■──■─
+        │  │
+  q_1: ─■──■─
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -903,7 +1887,16 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_2
 
-<Function id="qiskit.circuit.library.clifford_2_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_2.py#L26-L34" signature="qiskit.circuit.library.clifford_2_2()">
+<Function id="qiskit.circuit.library.clifford_2_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_2.py#L18-L35" signature="qiskit.circuit.library.clifford_2_2()">
+  Clifford template 2\_2:
+
+  ```text
+  q_0: ──■────■──
+       ┌─┴─┐┌─┴─┐
+  q_1: ┤ X ├┤ X ├
+       └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -915,7 +1908,15 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_3
 
-<Function id="qiskit.circuit.library.clifford_2_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_3.py#L24-L32" signature="qiskit.circuit.library.clifford_2_3()">
+<Function id="qiskit.circuit.library.clifford_2_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_3.py#L18-L34" signature="qiskit.circuit.library.clifford_2_3()">
+  Clifford template 2\_3:
+
+  ```text
+       ┌───┐┌───┐
+  q_0: ┤ H ├┤ H ├
+       └───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -927,7 +1928,15 @@ Template circuits over Clifford gates.
 
 #### clifford\_2\_4
 
-<Function id="qiskit.circuit.library.clifford_2_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_4.py#L25-L33" signature="qiskit.circuit.library.clifford_2_4()">
+<Function id="qiskit.circuit.library.clifford_2_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_2_4.py#L18-L34" signature="qiskit.circuit.library.clifford_2_4()">
+  Clifford template 2\_4:
+
+  ```text
+  q_0: ─X──X─
+        │  │
+  q_1: ─X──X─
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -939,7 +1948,15 @@ Template circuits over Clifford gates.
 
 #### clifford\_3\_1
 
-<Function id="qiskit.circuit.library.clifford_3_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_3_1.py#L25-L34" signature="qiskit.circuit.library.clifford_3_1()">
+<Function id="qiskit.circuit.library.clifford_3_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_3_1.py#L18-L35" signature="qiskit.circuit.library.clifford_3_1()">
+  Clifford template 3\_1:
+
+  ```text
+       ┌───┐┌───┐┌───┐
+  q_0: ┤ S ├┤ S ├┤ Z ├
+       └───┘└───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -951,7 +1968,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_1
 
-<Function id="qiskit.circuit.library.clifford_4_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_1.py#L27-L37" signature="qiskit.circuit.library.clifford_4_1()">
+<Function id="qiskit.circuit.library.clifford_4_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_1.py#L18-L38" signature="qiskit.circuit.library.clifford_4_1()">
+  Clifford template 4\_1:
+
+  ```text
+            ┌───┐
+  q_0: ──■──┤ X ├──■───X─
+       ┌─┴─┐└─┬─┘┌─┴─┐ │
+  q_1: ┤ X ├──■──┤ X ├─X─
+       └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -963,7 +1990,16 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_2
 
-<Function id="qiskit.circuit.library.clifford_4_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_2.py#L26-L36" signature="qiskit.circuit.library.clifford_4_2()">
+<Function id="qiskit.circuit.library.clifford_4_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_2.py#L18-L37" signature="qiskit.circuit.library.clifford_4_2()">
+  Clifford template 4\_2:
+
+  ```text
+  q_0: ───────■────────■─
+       ┌───┐┌─┴─┐┌───┐ │
+  q_1: ┤ H ├┤ X ├┤ H ├─■─
+       └───┘└───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -975,7 +2011,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_3
 
-<Function id="qiskit.circuit.library.clifford_4_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_3.py#L27-L37" signature="qiskit.circuit.library.clifford_4_3()">
+<Function id="qiskit.circuit.library.clifford_4_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_3.py#L18-L38" signature="qiskit.circuit.library.clifford_4_3()">
+  Clifford template 4\_3:
+
+  ```text
+       ┌───┐     ┌─────┐
+  q_0: ┤ S ├──■──┤ SDG ├──■──
+       └───┘┌─┴─┐└─────┘┌─┴─┐
+  q_1: ─────┤ X ├───────┤ X ├
+            └───┘       └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -987,7 +2033,16 @@ Template circuits over Clifford gates.
 
 #### clifford\_4\_4
 
-<Function id="qiskit.circuit.library.clifford_4_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_4.py#L26-L36" signature="qiskit.circuit.library.clifford_4_4()">
+<Function id="qiskit.circuit.library.clifford_4_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_4_4.py#L18-L37" signature="qiskit.circuit.library.clifford_4_4()">
+  Clifford template 4\_4:
+
+  ```text
+       ┌───┐   ┌─────┐
+  q_0: ┤ S ├─■─┤ SDG ├─■─
+       └───┘ │ └─────┘ │
+  q_1: ──────■─────────■─
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -999,7 +2054,18 @@ Template circuits over Clifford gates.
 
 #### clifford\_5\_1
 
-<Function id="qiskit.circuit.library.clifford_5_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_5_1.py#L28-L39" signature="qiskit.circuit.library.clifford_5_1()">
+<Function id="qiskit.circuit.library.clifford_5_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_5_1.py#L18-L40" signature="qiskit.circuit.library.clifford_5_1()">
+  Clifford template 5\_1:
+
+  > ```text
+  > q_0: ──■─────────■─────────■──
+  >      ┌─┴─┐     ┌─┴─┐       │
+  > q_1: ┤ X ├──■──┤ X ├──■────┼──
+  >      └───┘┌─┴─┐└───┘┌─┴─┐┌─┴─┐
+  > q_2: ─────┤ X ├─────┤ X ├┤ X ├
+  >           └───┘     └───┘└───┘
+  > ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1011,7 +2077,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_1
 
-<Function id="qiskit.circuit.library.clifford_6_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_1.py#L27-L39" signature="qiskit.circuit.library.clifford_6_1()">
+<Function id="qiskit.circuit.library.clifford_6_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_1.py#L18-L40" signature="qiskit.circuit.library.clifford_6_1()">
+  Clifford template 6\_1:
+
+  > ```text
+  >      ┌───┐     ┌───┐┌───┐
+  > q_0: ┤ H ├──■──┤ H ├┤ X ├
+  >      ├───┤┌─┴─┐├───┤└─┬─┘
+  > q_1: ┤ H ├┤ X ├┤ H ├──■──
+  >      └───┘└───┘└───┘
+  > ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1023,7 +2099,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_2
 
-<Function id="qiskit.circuit.library.clifford_6_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_2.py#L27-L39" signature="qiskit.circuit.library.clifford_6_2()">
+<Function id="qiskit.circuit.library.clifford_6_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_2.py#L18-L40" signature="qiskit.circuit.library.clifford_6_2()">
+  Clifford template 6\_2:
+
+  > ```text
+  >      ┌───┐
+  > q_0: ┤ S ├──■───────────■───■─
+  >      ├───┤┌─┴─┐┌─────┐┌─┴─┐ │
+  > q_1: ┤ S ├┤ X ├┤ SDG ├┤ X ├─■─
+  >      └───┘└───┘└─────┘└───┘
+  > ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1035,7 +2121,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_3
 
-<Function id="qiskit.circuit.library.clifford_6_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_3.py#L27-L39" signature="qiskit.circuit.library.clifford_6_3()">
+<Function id="qiskit.circuit.library.clifford_6_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_3.py#L18-L40" signature="qiskit.circuit.library.clifford_6_3()">
+  Clifford template 6\_3:
+
+  ```text
+             ┌───┐     ┌───┐
+  q_0: ─X──■─┤ H ├──■──┤ X ├─────
+        │  │ └───┘┌─┴─┐└─┬─┘┌───┐
+  q_1: ─X──■──────┤ X ├──■──┤ H ├
+                  └───┘     └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1047,7 +2143,15 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_4
 
-<Function id="qiskit.circuit.library.clifford_6_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_4.py#L25-L37" signature="qiskit.circuit.library.clifford_6_4()">
+<Function id="qiskit.circuit.library.clifford_6_4" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_4.py#L18-L38" signature="qiskit.circuit.library.clifford_6_4()">
+  Clifford template 6\_4:
+
+  ```text
+       ┌───┐┌───┐┌───┐┌───┐┌───┐┌───┐
+  q_0: ┤ S ├┤ H ├┤ S ├┤ H ├┤ S ├┤ H ├
+       └───┘└───┘└───┘└───┘└───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1059,7 +2163,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_6\_5
 
-<Function id="qiskit.circuit.library.clifford_6_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_5.py#L27-L39" signature="qiskit.circuit.library.clifford_6_5()">
+<Function id="qiskit.circuit.library.clifford_6_5" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_6_5.py#L18-L40" signature="qiskit.circuit.library.clifford_6_5()">
+  Clifford template 6\_5:
+
+  ```text
+                ┌───┐
+  q_0: ─■───■───┤ S ├───■───────
+        │ ┌─┴─┐┌┴───┴┐┌─┴─┐┌───┐
+  q_1: ─■─┤ X ├┤ SDG ├┤ X ├┤ S ├
+          └───┘└─────┘└───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1071,7 +2185,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_8\_1
 
-<Function id="qiskit.circuit.library.clifford_8_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_1.py#L27-L41" signature="qiskit.circuit.library.clifford_8_1()">
+<Function id="qiskit.circuit.library.clifford_8_1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_1.py#L18-L42" signature="qiskit.circuit.library.clifford_8_1()">
+  Clifford template 8\_1:
+
+  ```text
+                 ┌───┐ ┌───┐ ┌───┐┌─────┐
+  q_0: ──■───────┤ X ├─┤ S ├─┤ X ├┤ SDG ├
+       ┌─┴─┐┌───┐└─┬─┘┌┴───┴┐└─┬─┘└┬───┬┘
+  q_1: ┤ X ├┤ H ├──■──┤ SDG ├──■───┤ H ├─
+       └───┘└───┘     └─────┘      └───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1083,7 +2207,17 @@ Template circuits over Clifford gates.
 
 #### clifford\_8\_2
 
-<Function id="qiskit.circuit.library.clifford_8_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_2.py#L27-L41" signature="qiskit.circuit.library.clifford_8_2()">
+<Function id="qiskit.circuit.library.clifford_8_2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_2.py#L18-L42" signature="qiskit.circuit.library.clifford_8_2()">
+  Clifford template 8\_2:
+
+  ```text
+                       ┌───┐
+  q_0: ──■─────────■───┤ S ├───■────────────
+       ┌─┴─┐┌───┐┌─┴─┐┌┴───┴┐┌─┴─┐┌───┐┌───┐
+  q_1: ┤ X ├┤ H ├┤ X ├┤ SDG ├┤ X ├┤ S ├┤ H ├
+       └───┘└───┘└───┘└─────┘└───┘└───┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1095,7 +2229,16 @@ Template circuits over Clifford gates.
 
 #### clifford\_8\_3
 
-<Function id="qiskit.circuit.library.clifford_8_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_3.py#L26-L40" signature="qiskit.circuit.library.clifford_8_3()">
+<Function id="qiskit.circuit.library.clifford_8_3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/clifford/clifford_8_3.py#L18-L41" signature="qiskit.circuit.library.clifford_8_3()">
+  Clifford template 8\_3:
+
+  ```text
+  q_0: ─────────────────■───────────────────────■──
+       ┌───┐┌───┐┌───┐┌─┴─┐┌─────┐┌───┐┌─────┐┌─┴─┐
+  q_1: ┤ S ├┤ H ├┤ S ├┤ X ├┤ SDG ├┤ H ├┤ SDG ├┤ X ├
+       └───┘└───┘└───┘└───┘└─────┘└───┘└─────┘└───┘
+  ```
+
   **Returns**
 
   template as a quantum circuit.
@@ -1111,37 +2254,110 @@ Template circuits with [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circui
 
 #### rzx\_yz
 
-<Function id="qiskit.circuit.library.rzx_yz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_yz.py#L30-L43" signature="qiskit.circuit.library.rzx_yz(theta=None)">
-  Template for CX - RYGate - CX.
+<Function id="qiskit.circuit.library.rzx_yz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_yz.py#L23-L45" signature="qiskit.circuit.library.rzx_yz(theta=None)">
+  RZX-based template for CX - RYGate - CX.
+
+  ```text
+            ┌────────┐     ┌─────────┐┌─────────┐┌──────────┐
+  q_0: ──■──┤ RY(-ϴ) ├──■──┤ RX(π/2) ├┤0        ├┤ RX(-π/2) ├
+       ┌─┴─┐└────────┘┌─┴─┐└─────────┘│  RZX(ϴ) │└──────────┘
+  q_1: ┤ X ├──────────┤ X ├───────────┤1        ├────────────
+       └───┘          └───┘           └─────────┘
+  ```
 </Function>
 
 #### rzx\_xz
 
-<Function id="qiskit.circuit.library.rzx_xz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_xz.py#L36-L53" signature="qiskit.circuit.library.rzx_xz(theta=None)">
-  Template for CX - RXGate - CX.
+<Function id="qiskit.circuit.library.rzx_xz" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_xz.py#L23-L54" signature="qiskit.circuit.library.rzx_xz(theta=None)">
+  RZX-based template for CX - RXGate - CX.
+
+  ```text
+       ┌───┐         ┌───┐┌─────────┐┌─────────┐┌─────────┐┌──────────┐»
+  q_0: ┤ X ├─────────┤ X ├┤ RZ(π/2) ├┤ RX(π/2) ├┤ RZ(π/2) ├┤0         ├»
+       └─┬─┘┌───────┐└─┬─┘└─────────┘└─────────┘└─────────┘│  RZX(-ϴ) │»
+  q_1: ──■──┤ RX(ϴ) ├──■───────────────────────────────────┤1         ├»
+            └───────┘                                      └──────────┘»
+  «     ┌─────────┐┌─────────┐┌─────────┐
+  «q_0: ┤ RZ(π/2) ├┤ RX(π/2) ├┤ RZ(π/2) ├
+  «     └─────────┘└─────────┘└─────────┘
+  «q_1: ─────────────────────────────────
+  «
+  ```
 </Function>
 
 #### rzx\_cy
 
-<Function id="qiskit.circuit.library.rzx_cy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_cy.py#L31-L46" signature="qiskit.circuit.library.rzx_cy(theta=None)">
-  Template for CX - RYGate - CX.
+<Function id="qiskit.circuit.library.rzx_cy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_cy.py#L23-L47" signature="qiskit.circuit.library.rzx_cy(theta=None)">
+  RZX-based template for CX - RYGate - CX.
+
+  ```text
+                                                         ┌──────────┐
+  q_0: ──■─────────────■─────────────────────────────────┤0         ├───────────
+       ┌─┴─┐┌───────┐┌─┴─┐┌────────┐┌──────────┐┌───────┐│  RZX(-ϴ) │┌─────────┐
+  q_1: ┤ X ├┤ RY(ϴ) ├┤ X ├┤ RY(-ϴ) ├┤ RZ(-π/2) ├┤ RX(ϴ) ├┤1         ├┤ RZ(π/2) ├
+       └───┘└───────┘└───┘└────────┘└──────────┘└───────┘└──────────┘└─────────┘
+  ```
 </Function>
 
 #### rzx\_zz1
 
-<Function id="qiskit.circuit.library.rzx_zz1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz1.py#L40-L67" signature="qiskit.circuit.library.rzx_zz1(theta=None)">
-  Template for CX - RZGate - CX.
+<Function id="qiskit.circuit.library.rzx_zz1" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz1.py#L23-L69" signature="qiskit.circuit.library.rzx_zz1(theta=None)">
+  RZX-based template for CX - RZGate - CX.
+
+  ```text
+                                                                              »
+  q_0: ──■────────────────────────────────────────────■───────────────────────»
+       ┌─┴─┐┌───────┐┌────┐┌───────┐┌────┐┌────────┐┌─┴─┐┌────────┐┌─────────┐»
+  q_1: ┤ X ├┤ RZ(ϴ) ├┤ √X ├┤ RZ(π) ├┤ √X ├┤ RZ(3π) ├┤ X ├┤ RZ(-ϴ) ├┤ RZ(π/2) ├»
+       └───┘└───────┘└────┘└───────┘└────┘└────────┘└───┘└────────┘└─────────┘»
+  «                                    ┌──────────┐                      »
+  «q_0: ───────────────────────────────┤0         ├──────────────────────»
+  «     ┌─────────┐┌─────────┐┌───────┐│  RZX(-ϴ) │┌─────────┐┌─────────┐»
+  «q_1: ┤ RX(π/2) ├┤ RZ(π/2) ├┤ RX(ϴ) ├┤1         ├┤ RZ(π/2) ├┤ RX(π/2) ├»
+  «     └─────────┘└─────────┘└───────┘└──────────┘└─────────┘└─────────┘»
+  «
+  «q_0: ───────────
+  «     ┌─────────┐
+  «q_1: ┤ RZ(π/2) ├
+  «     └─────────┘
+  ```
 </Function>
 
 #### rzx\_zz2
 
-<Function id="qiskit.circuit.library.rzx_zz2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz2.py#L36-L58" signature="qiskit.circuit.library.rzx_zz2(theta=None)">
-  Template for CX - RZGate - CX.
+<Function id="qiskit.circuit.library.rzx_zz2" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz2.py#L23-L59" signature="qiskit.circuit.library.rzx_zz2(theta=None)">
+  RZX-based template for CX - PhaseGate - CX.
+
+  ```text
+                                                                            »
+  q_0: ──■────────────■─────────────────────────────────────────────────────»
+       ┌─┴─┐┌──────┐┌─┴─┐┌───────┐┌─────────┐┌─────────┐┌─────────┐┌───────┐»
+  q_1: ┤ X ├┤ P(ϴ) ├┤ X ├┤ P(-ϴ) ├┤ RZ(π/2) ├┤ RX(π/2) ├┤ RZ(π/2) ├┤ RX(ϴ) ├»
+       └───┘└──────┘└───┘└───────┘└─────────┘└─────────┘└─────────┘└───────┘»
+  «     ┌──────────┐
+  «q_0: ┤0         ├─────────────────────────────────
+  «     │  RZX(-ϴ) │┌─────────┐┌─────────┐┌─────────┐
+  «q_1: ┤1         ├┤ RZ(π/2) ├┤ RX(π/2) ├┤ RZ(π/2) ├
+  «     └──────────┘└─────────┘└─────────┘└─────────┘
+  ```
 </Function>
 
 #### rzx\_zz3
 
-<Function id="qiskit.circuit.library.rzx_zz3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz3.py#L35-L57" signature="qiskit.circuit.library.rzx_zz3(theta=None)">
-  Template for CX - RZGate - CX.
+<Function id="qiskit.circuit.library.rzx_zz3" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/templates/rzx/rzx_zz3.py#L23-L59" signature="qiskit.circuit.library.rzx_zz3(theta=None)">
+  RZX-based template for CX - RZGate - CX.
+
+  ```text
+                                                                              »
+  q_0: ──■─────────────■──────────────────────────────────────────────────────»
+       ┌─┴─┐┌───────┐┌─┴─┐┌────────┐┌─────────┐┌─────────┐┌─────────┐┌───────┐»
+  q_1: ┤ X ├┤ RZ(ϴ) ├┤ X ├┤ RZ(-ϴ) ├┤ RZ(π/2) ├┤ RX(π/2) ├┤ RZ(π/2) ├┤ RX(ϴ) ├»
+       └───┘└───────┘└───┘└────────┘└─────────┘└─────────┘└─────────┘└───────┘»
+  «     ┌──────────┐
+  «q_0: ┤0         ├─────────────────────────────────
+  «     │  RZX(-ϴ) │┌─────────┐┌─────────┐┌─────────┐
+  «q_1: ┤1         ├┤ RZ(π/2) ├┤ RX(π/2) ├┤ RZ(π/2) ├
+  «     └──────────┘└─────────┘└─────────┘└─────────┘
+  ```
 </Function>
 

@@ -1,6 +1,6 @@
 ---
-title: LinearPauliRotations
-description: API reference for qiskit.circuit.library.LinearPauliRotations
+title: LinearPauliRotations (latest version)
+description: API reference for qiskit.circuit.library.LinearPauliRotations in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.circuit.library.LinearPauliRotations
@@ -38,11 +38,11 @@ $$
 
   **Parameters**
 
-  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits representing the state $|x\rangle$.
-  *   **slope** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The slope of the controlled rotation.
-  *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The offset of the controlled rotation.
-  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits representing the state $|x\rangle$.
+  *   **slope** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The slope of the controlled rotation.
+  *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The offset of the controlled rotation.
+  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit object.
 
   ## Attributes
 
@@ -80,7 +80,17 @@ $$
 
   ### data
 
-  <Attribute id="qiskit.circuit.library.LinearPauliRotations.data" />
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.data">
+    The circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
 
   ### global\_phase
 
@@ -158,7 +168,9 @@ $$
 
   ### num\_parameters
 
-  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_parameters" />
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
 
   ### num\_qubits
 
@@ -209,12 +221,66 @@ $$
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
   </Attribute>
 
   ### parameters
 
-  <Attribute id="qiskit.circuit.library.LinearPauliRotations.parameters" />
+  <Attribute id="qiskit.circuit.library.LinearPauliRotations.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
 
   ### prefix
 

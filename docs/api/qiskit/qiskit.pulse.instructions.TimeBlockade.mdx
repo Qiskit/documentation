@@ -1,6 +1,6 @@
 ---
-title: TimeBlockade
-description: API reference for qiskit.pulse.instructions.TimeBlockade
+title: TimeBlockade (latest version)
+description: API reference for qiskit.pulse.instructions.TimeBlockade in the latest version of qiskit
 in_page_toc_min_heading_level: 1
 python_api_type: class
 python_api_name: qiskit.pulse.instructions.TimeBlockade
@@ -8,7 +8,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
 # TimeBlockade
 
-<Class id="qiskit.pulse.instructions.TimeBlockade" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/instructions/directives.py#L61-L146" signature="qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)" modifiers="class">
+<Class id="qiskit.pulse.instructions.TimeBlockade" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.2/qiskit/pulse/instructions/directives.py#L61-L151" signature="qiskit.pulse.instructions.TimeBlockade(duration, channel, name=None)" modifiers="class">
   Bases: `Directive`
 
   Pulse `TimeBlockade` directive.
@@ -20,6 +20,8 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
   This schedule plays constant pulse at t0 = 120.
 
   ```python
+  from qiskit.pulse import Schedule, Play, Constant, DriveChannel
+
   schedule = Schedule()
   schedule.insert(120, Play(Constant(10, 0.1), DriveChannel(0)))
   ```
@@ -27,6 +29,9 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
   This schedule block is expected to be identical to above at a time of execution.
 
   ```python
+  from qiskit.pulse import ScheduleBlock, Play, Constant, DriveChannel
+  from qiskit.pulse.instructions import TimeBlockade
+
   block = ScheduleBlock()
   block.append(TimeBlockade(120, DriveChannel(0)))
   block.append(Play(Constant(10, 0.1), DriveChannel(0)))
@@ -48,9 +53,9 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
   **Parameters**
 
-  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Length of time of the occupation in terms of dt.
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Length of time of the occupation in terms of dt.
   *   **channel** (*chans.Channel*) – The channel that will be the occupied.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the time blockade for display purposes.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the time blockade for display purposes.
 
   ## Attributes
 
@@ -124,7 +129,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
     **Parameters**
 
     *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
 
     **Returns**
 
@@ -146,7 +151,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
   </Function>
 
   ### ch\_start\_time
@@ -160,7 +165,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
   </Function>
 
   ### ch\_stop\_time
@@ -174,7 +179,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
   </Function>
 
   ### insert
@@ -184,9 +189,9 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
     **Parameters**
 
-    *   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
+    *   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Time to insert the schedule schedule
     *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
 
     **Returns**
 
@@ -204,7 +209,7 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
   </Function>
 
   ### shift
@@ -214,8 +219,8 @@ python_api_name: qiskit.pulse.instructions.TimeBlockade
 
     **Parameters**
 
-    *   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
-    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
+    *   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Time to shift by
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
 
     **Returns**
 

@@ -1,0 +1,66 @@
+---
+title: observable_grouping (latest version)
+description: API reference for qiskit_addon_cutting.utils.observable_grouping in the latest version of qiskit-addon-cutting
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_cutting.utils.observable_grouping
+---
+
+<span id="module-qiskit_addon_cutting.utils.observable_grouping" />
+
+<span id="observable-grouping-qiskit-addon-cutting-utils-observable-grouping" />
+
+# Observable grouping
+
+`qiskit_addon_cutting.utils.observable_grouping`
+
+Module for conducting Pauli observable grouping.
+
+### observables\_restricted\_to\_subsystem
+
+<Function id="qiskit_addon_cutting.utils.observable_grouping.observables_restricted_to_subsystem" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/observable_grouping.py" signature="observables_restricted_to_subsystem(qubits, global_observables, /)">
+  Restrict each observable to its support on a given subsystem.
+
+  A [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.2)") will be returned if a [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.2)") is provided; otherwise, a `list[Pauli]` will be returned.
+
+  Any phase information will be discarded, consistent with the standard behavior when slicing a Pauli.
+
+  **Parameters**
+
+  *   **qubits** (Sequence\[int]) – The qubits in a subsystem
+  *   **global\_observables** (Sequence\[Pauli] | PauliList) – The list of observables
+
+  **Return type**
+
+  list\[Pauli] | PauliList
+
+  **Returns**
+
+  Each [`Pauli`](/api/qiskit/qiskit.quantum_info.Pauli "(in Qiskit v1.2)") restricted to the subsystem.
+
+  ```python
+  >>> observables_restricted_to_subsystem([1, 3], PauliList(["IXYZ", "iZZXX"]))
+  PauliList(['IY', 'ZX'])
+  ```
+</Function>
+
+### CommutingObservableGroup
+
+<Class id="qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/observable_grouping.py" signature="CommutingObservableGroup(general_observable, commuting_observables)" modifiers="class">
+  Set of mutually qubit-wise commuting observables.
+</Class>
+
+### ObservableCollection
+
+<Class id="qiskit_addon_cutting.utils.observable_grouping.ObservableCollection" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/utils/observable_grouping.py" signature="ObservableCollection(observables, /)" modifiers="class">
+  Collection of observables organized for efficient taking of measurements.
+
+  The observables are automatically organized into sets of mutually qubit-wise commuting observables, each represented by a [`CommutingObservableGroup`](#qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup "qiskit_addon_cutting.utils.observable_grouping.CommutingObservableGroup").
+
+  Assign member variables.
+
+  **Parameters**
+
+  **observables** (PauliList | Iterable\[Pauli]) – Observables of interest
+</Class>
+
