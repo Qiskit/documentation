@@ -11,6 +11,7 @@
 // that they have been altered from the originals.
 
 import path from "node:path";
+
 import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 
 import { Image } from "./HtmlToMdResult.js";
@@ -97,6 +98,8 @@ export function loadImages(
       const fileName = $img.attr("src")!.split("/").pop()!;
       const fileExtension = path.extname(fileName);
 
+      // We convert PNG and JPG to AVIF for reduced file size. The image-copying
+      // logic detects changed extensions and converts the files.
       // Remove `false &&` when ready to switch to AVIF
       let dest =
         false && [".png", ".jpg", ".jpeg"].includes(fileExtension)

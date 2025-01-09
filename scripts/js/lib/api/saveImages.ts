@@ -10,14 +10,15 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { mkdirp } from "mkdirp";
-import pMap from "p-map";
 import { copyFile } from "fs/promises";
 import { extname } from "node:path";
-import { $ } from "zx";
 
-import { Pkg } from "./Pkg.js";
+import pMap from "p-map";
+import { $ } from "zx";
+import { mkdirp } from "mkdirp";
+
 import { Image } from "./HtmlToMdResult.js";
+import { Pkg } from "./Pkg.js";
 import { pathExists } from "../fs.js";
 
 function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
