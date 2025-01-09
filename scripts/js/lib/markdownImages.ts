@@ -35,6 +35,16 @@ export async function collectInvalidImageErrors(
         if (!node.alt || node.alt.endsWith(imageName!)) {
           imagesErrors.add(`The image '${node.url}' does not have alt text.`);
         }
+        if (node.url.match(/\.(png|jpe?g)$/)) {
+          const urlWithAvifExtension = node.url.replace(
+            /\.(png|jpe?g)$/,
+            ".avif",
+          );
+          imagesErrors.add(
+            `Convert '${imageName}' to AVIF. You can use the command \`magick public${node.url} public${urlWithAvifExtension}\`. ` +
+              `If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php.`,
+          );
+        }
       });
       visit(tree, "html", (node) => {
         const $ = load(node.value);
