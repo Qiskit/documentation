@@ -62,7 +62,14 @@ export async function saveImages(
     if (extname(source) === extname(dest)) {
       await copyFile(source, dest);
     } else {
-      await $`magick ${source} ${dest}`;
+      try {
+        await $`magick ${source} ${dest}`;
+      } catch (err) {
+        console.log(
+          "Image conversion failed, make sure you have ImageMagick installed (https://imagemagick.org/index.php)",
+        );
+        throw err;
+      }
     }
   });
 }
