@@ -13,6 +13,8 @@
 import { mkdirp } from "mkdirp";
 import pMap from "p-map";
 import { copyFile } from "fs/promises";
+import { extname } from "node:path";
+import { $ } from "zx";
 
 import { Pkg } from "./Pkg.js";
 import { Image } from "./HtmlToMdResult.js";
@@ -54,10 +56,13 @@ export async function saveImages(
     if (skipReleaseNote(img.fileName, pkg)) {
       return;
     }
+    const source = `${originalImagesFolderPath}/${img.fileName}`;
+    const dest = `${publicBaseFolder}/${img.dest}`;
 
-    await copyFile(
-      `${originalImagesFolderPath}/${img.fileName}`,
-      `${publicBaseFolder}/${img.dest}`,
-    );
+    if (extname(source) === extname(dest)) {
+      await copyFile(source, dest);
+    } else {
+      await $`magick ${source} ${dest}`;
+    }
   });
 }
