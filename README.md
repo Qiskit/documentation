@@ -303,8 +303,9 @@ npm run check
 ## Check images
 
 Every image needs to have alt text for accessibility and must use markdown syntax. To avoid changing the styling of the images, the use of the `<img>` HTML tag is not allowed. The lint job in CI will fail if images do not have alt text defined or if an `<img>` tag is found.
+We also require raster images (PNG, JPEG) to be converted to AVIF format to save space and make the website faster for users. You can convert images to AVIF using [ImageMagick](https://imagemagick.org/index.php).
 
-You can check it locally by running:
+You can check images locally by running:
 
 ```bash
 # Only check images
