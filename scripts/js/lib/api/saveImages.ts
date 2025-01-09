@@ -65,7 +65,7 @@ export async function saveImages(
       try {
         await $`magick ${source} ${dest}`;
       } catch (err) {
-        console.log(
+        console.error(
           "Image conversion failed, make sure you have ImageMagick installed (https://imagemagick.org/index.php)",
         );
         throw err;
