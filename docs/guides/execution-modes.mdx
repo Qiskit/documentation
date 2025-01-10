@@ -5,11 +5,8 @@ description: An overview of the available execution modes in Qiskit Runtime; ses
 ---
 # Introduction to Qiskit Runtime execution modes
 
-There are several ways to run workloads, depending on your needs.
+There are several ways to run workloads, depending on your needs.  Execution modes determine how your jobs are scheduled, and choosing the right execution mode allows your jobs to run efficiently within your time budget.
 
-<Admonition type="note">
-The `mode` option requires `qiskit-ibm-runtime` 0.24 or later.
-</Admonition>
 
 **Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](primitives-examples) for examples.
 
@@ -17,24 +14,108 @@ The `mode` option requires `qiskit-ibm-runtime` 0.24 or later.
 
 [**Session mode**](sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously, taking advantage of parallelism in the stack. Use sessions for iterative workloads or experiments that require dedicated access.  To run in session mode, specify `mode=session` when instantiating a primitive, or run the job in a session context manager. Learn more about sessions in the [Introduction to sessions,](/guides/sessions) and see [Run jobs in a session](run-jobs-session) for examples.
 
+<Admonition type="note">
+The `mode` option requires `qiskit-ibm-runtime` 0.24 or later.
+</Admonition>
+
+## How long do workloads run?
+
+The amount of time an execution runs depends on the values for maximum timeout (or _time to live_ (TTL)), interactive timeout (or _interactive time to live_ (ITTL)). Additionally, the time your workload actively runs is probably different from the amount of wall clock time a workload takes.
+
+**Maximum timeout (TTL)** - Determines how long (in _quantum time_) a session or batch can run.  Quantum time is the time spent by the QPU complex to process the workload. This timer starts when the first job in the workload starts being processed and continues running until the value is reached. After this value is reached, the workload is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session or batch are put into a failed state. You can set this value with the `max_time` parameter for [batches](/run-jobs-batch#specify-batch-length) or [sessions](/run-jobs-session#specify-length).
+
+**Interactive timeout (ITTL)** - This value cannot be configured. If no jobs are queued for the active session or batch within that window, the workload is temporarily deactivated. A job submitted to the session or batch reactivates the deactivated workload if the maximum timeout value has not been reached.
+
+For full details about these values, including how to determine the ITTL value, review the [Maximum execution time guide.](/max-execution-time)
+
+## Basic workflow
+
+The basic workflow for batches and sessions is similar:
+
+1. The first job in a batch or session enters the normal queue. Note: for batches, the entire batch of jobs is scheduled together.
+2. When the first job starts running, the TTL clock starts.
+3. The ITTL timer starts after each job is completed.  If there are no workload jobs ready within the ITTL window, the workload is temporarily deactivated and normal job selection resumes. A job can reactivate the deactivated workload if the batch or session has not reached its TTL value.
+   <Admonition type="note">
+   The job must go through the normal queue to reactivate the workload.
+   </Admonition>
+3. If the TTL value is reached, the workload ends and any remaining queued jobs fail. However, any jobs already running will run to completion.
+
+The following video illustrates the session basic workflow, using sessions as an example:
+
+<video title="A user starts a session job and becomes the priority user.  They submit jobs to the QPU while other users wait. After the prioritized user's session finishes, the next person's jobs can begin processing." className="max-w-auto h-auto" controls>
+  <source src="/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
+</video>
+
 <span id="sessions-versus-batch-usage" />
 
-## Choose batch or sessions mode
+## Choose the right execution mode
+
+Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as _usage_, overall execution time, ITTL requirement, and time between jobs.
+
+The following table summarizes the differences:
+
+|     Mode     |                                                                                                        Benefits                                                                                                        |
+|:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Batch mode   | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch are usually run close together.                                                                     |
+| Session mode | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
+| Job mode     | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
+
+Using batch mode has these benefits:
+
+-  The jobs' classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially.
+-  There is usually minimal delay between jobs, which can help avoid drift.
+-  If you partition your workload into multiple jobs and run them in batch mode, you can get results from individual jobs, which makes them more flexible to work with.  For example, if a job's results don't meet your expectations, you can cancel the remaining jobs. Also, if one job fails, you can re-submit it instead of re-running the entire workload.
+
+Test table:
+| title                                       | heading |   |   |   |
+|---------------------------------------------|---------|---|---|---|
+| one thing<br></br>second thing<br></br><br></br>two spaces |         |   |   |   |
+|                                             |         |   |   |   |
+|                                             |         |   |   |   |
+
+
+### Recommendations and best practices
 
 Generally, you can use batch mode unless you have workloads that don’t have all inputs ready at the outset.
 
-The differences are summarized in the following table:
+- Use **batch** mode to submit multiple primitive jobs simultaneously to shorten processing time.
+- Use **session** mode for iterative workloads, or if you need dedicated access to the QPU (quantum processing unit).
+- Use **job** mode to submit a single primitive request for quick testing.
 
-|     Mode     |                  Usage                  |                                                                                                        Benefit                                                                                                        |
-|------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Job mode     | Quantum computation only.               | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
-| Batch mode   | Quantum computation only.               | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch usually run close together.                                                                     |
-| Session mode | Both classical and quantum computation. | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
+To ensure the most efficient use of the execution modes, the following practices are recommended:
+
+- There is a fixed overhead associated with running a job. In general, if each of your jobs uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
+
+    A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Workloads](https://quantum.ibm.com/workloads) page, or you can  query it by running this command: `job.metrics()["usage"]["quantum_seconds"]` in `qiskit-ibm-runtime`.
+
+- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#partition) or [session](run-jobs-session#two-vqe) execution mode.
+
+The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost-effective because it can reduce wall clock time.
+
+### Usage
+
+Usage is an important consideration when choosing which execution mode to use.  It is a measurement of the amount of time the QPU is locked for your workload.
+
+* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
+* Batch usage is the sum of quantum time of all jobs in the batch.
+* Single job usage is the quantum time the job uses in processing.
+
+![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing on the QPU.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
+
+#### Usage differences between execution modes
+
+The differences between job, batch, and session mode usage are summarized in the following table:
+
+|     Mode     |                  Usage                              |
+|------------|-------------------------------------------------------|
+| Batch mode   | Quantum computation only.               |
+| Session mode | Both classical and quantum computation. |
+| Job mode     | Quantum computation only.               |
 
 <span id="usage"></span>
-## Batch and session usage calculation
+#### Usage calculation
 
-The _usage_ reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
+The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
 * Single job usage is the quantum time they use in processing.
 * Batch usage is the amount of time all jobs spend on the QPU.
@@ -46,8 +127,9 @@ If you are calling the REST API directly, the usage time is the `elapsed_time` v
 
 ![This image shows multiple sets of jobs.  One set is being run in batch mode and the other is being run in session mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Batch compared to sessions')
 
+
 <span id="failed-job"></span>
-### Failed and canceled jobs
+#### Usage for failed and canceled jobs
 
 When a job is failed or canceled, the reported usage is as follows:
 
@@ -55,18 +137,9 @@ When a job is failed or canceled, the reported usage is as follows:
 
 * Session mode: the reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
 
-<span id="best-practices"></span>
-## Prepare to use execution modes
+## Examples
 
-To ensure the most efficient use of the execution modes, the following practices are recommended:
-
-- There is a fixed overhead associated with running a job. In general, if each of your jobs uses less than one minute of QPU time, consider combining several into one larger job (this applies to all execution modes). "QPU time" refers to time spent by the QPU complex to process your job.
-
-    A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Workloads](https://quantum.ibm.com/workloads) page, or you can  query it by running this command: `job.metrics()["usage"]["quantum_seconds"]` in `qiskit-ibm-runtime`.
-
-- If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](run-jobs-batch#partition) or [session](run-jobs-session#two-vqe) execution mode.
-
-The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost-effective because it can reduce wall clock time.
+Give some examples - e.g. what should you expect when running an iterative workload using session vs batch vs job
 
 ## Next steps
 
