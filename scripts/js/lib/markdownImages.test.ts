@@ -28,6 +28,10 @@ test("Test the finding of invalid images", async () => {
 
 ![](/images/invalid_img2.png)
 
+![Here's an actual valid image](/images/valid.avif)
+
+![And a valid SVG](/images/valid.svg)
+
 <img src="/images/HTMLexample1.jpg" alt="" width="200"/>
 
 <img src="/images/HTMLexample2.jpg" alt="Example" width="200"/>
