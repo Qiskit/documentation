@@ -106,7 +106,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     twirled_circuit.draw("mpl")
     ```
 
-    ![\_images/release\_notes-1.png](/images/api/qiskit/release_notes-1.png)
+    ![\_images/release\_notes-1.png](/images/api/qiskit/release_notes-1.avif)
 
 *   Added binary arithmetic gates for inplace addition of two $n$-qubit registers, that is $|a\rangle |b\rangle \mapsto |a\rangle |a+b\rangle$. The [`ModularAdderGate`](/api/qiskit/qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate") implements addition modulo $2^n$, the [`HalfAdderGate`](/api/qiskit/qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate") includes a carry-out qubit, and the [`FullAdderGate`](/api/qiskit/qiskit.circuit.library.FullAdderGate "qiskit.circuit.library.FullAdderGate") includes both a carry-in and a carry-out qubit. See the respective documentation for details and examples.
 
@@ -139,7 +139,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     grover_op.draw('mpl')
     ```
 
-    ![\_images/release\_notes-2.png](/images/api/qiskit/release_notes-2.png)
+    ![\_images/release\_notes-2.png](/images/api/qiskit/release_notes-2.avif)
 
 *   A new data attribute, [`qiskit.circuit.CONTROL_FLOW_OP_NAMES`](/api/qiskit/circuit#qiskit.circuit.CONTROL_FLOW_OP_NAMES "qiskit.circuit.CONTROL_FLOW_OP_NAMES"), is available to easily find and check whether a given [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "qiskit.circuit.Instruction") is a control-flow operation by name.
 
@@ -176,7 +176,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     random_iqp.draw('mpl')
     ```
 
-    ![\_images/release\_notes-3.png](/images/api/qiskit/release_notes-3.png)
+    ![\_images/release\_notes-3.png](/images/api/qiskit/release_notes-3.avif)
 
 *   Added the [`MCMTGate`](/api/qiskit/qiskit.circuit.library.MCMTGate "qiskit.circuit.library.MCMTGate") to represent a multi-control multi-target operation as a gate. This gate representation of the existing [`MCMT`](/api/qiskit/qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT") circuit allows the compiler to select the best available implementation according to the number and the state of auxiliary qubits present in the circuit.
 
@@ -372,7 +372,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     tqc.draw(output='mpl')
     ```
 
-    ![\_images/release\_notes-4.png](/images/api/qiskit/release_notes-4.png)
+    ![\_images/release\_notes-4.png](/images/api/qiskit/release_notes-4.avif)
 
     This code snippet uses the [Rustiq](https://github.com/smartiel/rustiq-core) plugin to synthesize [`PauliEvolutionGate`](/api/qiskit/qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") objects in the quantum circuit qc. The plugin is called with the additional option `upto_phase = False`, allowing you to obtain smaller circuits at the expense of possibly not preserving the global phase. For the full list of supported options, see the documentation for [`PauliEvolutionSynthesisRustiq`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq").
 
@@ -416,7 +416,7 @@ $$
     tqc.draw('mpl')
     ```
 
-    ![\_images/release\_notes-5.png](/images/api/qiskit/release_notes-5.png)
+    ![\_images/release\_notes-5.png](/images/api/qiskit/release_notes-5.avif)
 
 <span id="relnotes-1-3-0-transpiler-features" />
 
@@ -453,7 +453,7 @@ $$
     transpile(qc).draw('mpl', fold=-1)
     ```
 
-    ![\_images/release\_notes-6.png](/images/api/qiskit/release_notes-6.png)
+    ![\_images/release\_notes-6.png](/images/api/qiskit/release_notes-6.avif)
 
     For the first MCX gate, qubits `5` and `6` can be used as clean ancillas, and the best available synthesis method `synth_mcx_n_clean_m15` will get chosen. For the second MCX gate, qubit `6` can be used as a clean ancilla, the method `synth_mcx_n_clean_m15` no longer applies, so the method `synth_mcx_1_clean_b95` will get chosen. For the third MCX gate, there are no ancilla qubits, and the method `synth_mcx_noaux_v24` will get chosen.
 
@@ -494,7 +494,7 @@ $$
 
 *   Added a new transpiler pass, [`RemoveIdentityEquivalent`](/api/qiskit/qiskit.transpiler.passes.RemoveIdentityEquivalent "qiskit.transpiler.passes.RemoveIdentityEquivalent") that is used to remove gates that are equivalent to an identity up to some tolerance. For example if you had a circuit like:
 
-    > ![\_images/release\_notes-7.png](/images/api/qiskit/release_notes-7.png)
+    > ![\_images/release\_notes-7.png](/images/api/qiskit/release_notes-7.avif)
 
     running the pass would eliminate the [`CPhaseGate`](/api/qiskit/qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate"):
 
@@ -510,7 +510,7 @@ $$
     > result.draw("mpl")
     > ```
     >
-    > ![\_images/release\_notes-8.png](/images/api/qiskit/release_notes-8.png)
+    > ![\_images/release\_notes-8.png](/images/api/qiskit/release_notes-8.avif)
 
 *   The [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") pass will now run the equivalent of the [`Collect2qBlocks`](/api/qiskit/qiskit.transpiler.passes.Collect2qBlocks "qiskit.transpiler.passes.Collect2qBlocks") pass internally if it was not run in a pass manager prior to the pass. Previously, [`Collect2qBlocks`](/api/qiskit/qiskit.transpiler.passes.Collect2qBlocks "qiskit.transpiler.passes.Collect2qBlocks") or [`Collect1qRuns`](/api/qiskit/qiskit.transpiler.passes.Collect1qRuns "qiskit.transpiler.passes.Collect1qRuns") had to be run before [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") for [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") to do anything. By doing the collection internally, the overhead from the pass is reduced. If [`Collect2qBlocks`](/api/qiskit/qiskit.transpiler.passes.Collect2qBlocks "qiskit.transpiler.passes.Collect2qBlocks") or [`Collect1qRuns`](/api/qiskit/qiskit.transpiler.passes.Collect1qRuns "qiskit.transpiler.passes.Collect1qRuns") are run prior to [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks"), the collected runs by those passes from the property set are used and there is no change in behavior for the pass.
 
