@@ -35,8 +35,9 @@ export async function collectInvalidImageErrors(
         if (!node.alt || node.alt.endsWith(imageName!)) {
           imagesErrors.add(`The image '${node.url}' does not have alt text.`);
         }
-        // Remove `false &&` when ready to switch to AVIF
-        if (false && node.url.match(/\.(png|jpe?g)$/)) {
+
+        // Ask to convert PNG and JPEG to AVIF
+        if (node.url.match(/\.(png|jpe?g)$/)) {
           const urlWithAvifExtension = node.url.replace(
             /\.(png|jpe?g)$/,
             ".avif",
