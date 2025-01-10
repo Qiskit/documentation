@@ -52,26 +52,13 @@ The following video illustrates the session basic workflow, using sessions as an
 
 Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as _usage_, overall execution time, ITTL requirement, and time between jobs.
 
-The following table summarizes the differences:
+The following table summarizes the benefits of each:
 
-|     Mode     |                                                                                                        Benefits                                                                                                        |
-|:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| Batch mode   | The entire batch of jobs is scheduled together and there is no additional queuing time for each. Jobs in a batch are usually run close together.                                                                     |
-| Session mode | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.  |
-| Job mode     | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                     |
-
-Using batch mode has these benefits:
-
--  The jobs' classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially.
--  There is usually minimal delay between jobs, which can help avoid drift.
--  If you partition your workload into multiple jobs and run them in batch mode, you can get results from individual jobs, which makes them more flexible to work with.  For example, if a job's results don't meet your expectations, you can cancel the remaining jobs. Also, if one job fails, you can re-submit it instead of re-running the entire workload.
-
-Test table:
-| title                                       | heading |   |   |   |
-|---------------------------------------------|---------|---|---|---|
-| one thing<br></br>second thing<br></br><br></br>two spaces |         |   |   |   |
-|                                             |         |   |   |   |
-|                                             |         |   |   |   |
+| Mode    | Benefits                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Batch   | The entire batch of jobs is scheduled together and there is no additional queuing time for each.<br></br>The jobs' classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially.<br></br>There is usually minimal delay between jobs, which can help avoid drift.<br></br>If you partition your workload into multiple jobs and run them in batch mode, you can get results from individual jobs, which makes them more flexible to work with. |
+| Session | Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run. This is particularly useful for workloads that don’t have all inputs ready at the outset.                                                                                                                                                                                                                                                                                                               |
+| Job     | Easiest to use when running a small experiment. Might run sooner than batch mode.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 <span id="best-practices"></span>
 ### Recommendations and best practices
@@ -89,6 +76,7 @@ To ensure the most efficient use of the execution modes, the following practices
     A job's QPU time is listed in the **Usage** column on the IBM Quantum Platform [Workloads](https://quantum.ibm.com/workloads) page, or you can  query it by running this command: `job.metrics()["usage"]["quantum_seconds"]` in `qiskit-ibm-runtime`.
 
 - If each of your jobs consumes more than one minute of QPU time, or if combining jobs is not practical, you can still run multiple jobs in parallel. Every job goes through both classical and quantum processing. While a QPU can process only one job at a time, up to five classical jobs can be processed in parallel. You can take advantage of this by submitting multiple jobs in [batch](/guides/run-jobs-batch#partition) or [session](/guides/run-jobs-session#two-vqe) execution mode.
+- Do not run a session with a single job in it.
 
 The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost-effective because it can reduce wall clock time.
 
