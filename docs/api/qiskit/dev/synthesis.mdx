@@ -20,14 +20,14 @@ python_api_name: qiskit.synthesis
 
 ## Evolution Synthesis
 
-|                                                                                                            |                                                                                                                                               |
-| ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")()        | Interface for evolution synthesis algorithms.                                                                                                 |
-| [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.ProductFormula")(order\[, reps, ...]) | Product formula base class for the decomposition of non-commuting operator exponentials.                                                      |
-| [`LieTrotter`](qiskit.synthesis.LieTrotter "qiskit.synthesis.LieTrotter")(\[reps, insert\_barriers, ...])  | The Lie-Trotter product formula.                                                                                                              |
-| [`SuzukiTrotter`](qiskit.synthesis.SuzukiTrotter "qiskit.synthesis.SuzukiTrotter")(\[order, reps, ...])    | The (higher order) Suzuki-Trotter product formula.                                                                                            |
-| [`MatrixExponential`](qiskit.synthesis.MatrixExponential "qiskit.synthesis.MatrixExponential")()           | Exact operator evolution via matrix exponentiation and unitary synthesis.                                                                     |
-| [`QDrift`](qiskit.synthesis.QDrift "qiskit.synthesis.QDrift")(\[reps, insert\_barriers, ...])              | The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. |
+|                                                                                                            |                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [`EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")()        | Interface for evolution synthesis algorithms.                                                                                            |
+| [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.ProductFormula")(order\[, reps, ...]) | Product formula base class for the decomposition of non-commuting operator exponentials.                                                 |
+| [`LieTrotter`](qiskit.synthesis.LieTrotter "qiskit.synthesis.LieTrotter")(\[reps, insert\_barriers, ...])  | The Lie-Trotter product formula.                                                                                                         |
+| [`SuzukiTrotter`](qiskit.synthesis.SuzukiTrotter "qiskit.synthesis.SuzukiTrotter")(\[order, reps, ...])    | The (higher order) Suzuki-Trotter product formula.                                                                                       |
+| [`MatrixExponential`](qiskit.synthesis.MatrixExponential "qiskit.synthesis.MatrixExponential")()           | Exact operator evolution via matrix exponentiation and unitary synthesis.                                                                |
+| [`QDrift`](qiskit.synthesis.QDrift "qiskit.synthesis.QDrift")(\[reps, insert\_barriers, ...])              | The QDrift Trotterization method, which selects each term in the Trotterization randomly, with a probability proportional to its weight. |
 
 ## Linear Function Synthesis
 
@@ -872,7 +872,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_n\_dirty\_i15
 
-<Function id="qiskit.synthesis.synth_mcx_n_dirty_i15" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L29-L131" signature="qiskit.synthesis.synth_mcx_n_dirty_i15(num_ctrl_qubits, relative_phase=False, action_only=False)">
+<Function id="qiskit.synthesis.synth_mcx_n_dirty_i15" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L29-L134" signature="qiskit.synthesis.synth_mcx_n_dirty_i15(num_ctrl_qubits, relative_phase=False, action_only=False)">
   Synthesize a multi-controlled X gate with $k$ controls using $k - 2$ dirty ancillary qubits producing a circuit with $2 * k - 1$ qubits and at most $8 * k - 6$ CX gates, by Iten et. al. \[1].
 
   **Parameters**
@@ -896,7 +896,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_n\_clean\_m15
 
-<Function id="qiskit.synthesis.synth_mcx_n_clean_m15" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L134-L174" signature="qiskit.synthesis.synth_mcx_n_clean_m15(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_n_clean_m15" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L137-L177" signature="qiskit.synthesis.synth_mcx_n_clean_m15(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k$ controls using $k - 2$ clean ancillary qubits with producing a circuit with $2 * k - 1$ qubits and at most $6 * k - 6$ CX gates, by Maslov \[1].
 
   **Parameters**
@@ -918,7 +918,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_1\_clean\_b95
 
-<Function id="qiskit.synthesis.synth_mcx_1_clean_b95" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L177-L235" signature="qiskit.synthesis.synth_mcx_1_clean_b95(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_1_clean_b95" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L180-L238" signature="qiskit.synthesis.synth_mcx_1_clean_b95(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k$ controls using a single clean ancillary qubit producing a circuit with $k + 2$ qubits and at most $16 * k - 8$ CX gates, by Barenco et al. \[1].
 
   **Parameters**
@@ -940,7 +940,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_noaux\_v24
 
-<Function id="qiskit.synthesis.synth_mcx_noaux_v24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L261-L297" signature="qiskit.synthesis.synth_mcx_noaux_v24(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_noaux_v24" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L264-L300" signature="qiskit.synthesis.synth_mcx_noaux_v24(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k$ controls based on the implementation for MCPhaseGate.
 
   In turn, the MCPhase gate uses the decomposition for multi-controlled special unitaries described in \[1].
@@ -966,7 +966,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_mcx\_gray\_code
 
-<Function id="qiskit.synthesis.synth_mcx_gray_code" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L238-L258" signature="qiskit.synthesis.synth_mcx_gray_code(num_ctrl_qubits)">
+<Function id="qiskit.synthesis.synth_mcx_gray_code" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L241-L261" signature="qiskit.synthesis.synth_mcx_gray_code(num_ctrl_qubits)">
   Synthesize a multi-controlled X gate with $k$ controls using the Gray code.
 
   Produces a quantum circuit with $k + 1$ qubits. This method produces exponentially many CX gates and should be used only for small values of $k$.
@@ -986,7 +986,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_c3x
 
-<Function id="qiskit.synthesis.synth_c3x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L300-L333" signature="qiskit.synthesis.synth_c3x()">
+<Function id="qiskit.synthesis.synth_c3x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L303-L336" signature="qiskit.synthesis.synth_c3x()">
   Efficient synthesis of 3-controlled X-gate.
 
   **Return type**
@@ -996,7 +996,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ### synth\_c4x
 
-<Function id="qiskit.synthesis.synth_c4x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L336-L356" signature="qiskit.synthesis.synth_c4x()">
+<Function id="qiskit.synthesis.synth_c4x" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/multi_controlled/mcx_synthesis.py#L339-L359" signature="qiskit.synthesis.synth_c4x()">
   Efficient synthesis of 4-controlled X-gate.
 
   **Return type**
@@ -1176,7 +1176,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 #### multiplier\_cumulative\_h18
 
-<Function id="qiskit.synthesis.multiplier_cumulative_h18" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/multipliers/hrs_cumulative_multiplier.py#L21-L102" signature="qiskit.synthesis.multiplier_cumulative_h18(num_state_qubits, num_result_qubits=None)">
+<Function id="qiskit.synthesis.multiplier_cumulative_h18" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/multipliers/hrs_cumulative_multiplier.py#L21-L103" signature="qiskit.synthesis.multiplier_cumulative_h18(num_state_qubits, num_result_qubits=None)">
   A multiplication circuit to store product of two input registers out-of-place.
 
   The circuit uses the approach from Ref. \[1]. As an example, a multiplier circuit that performs a non-modular multiplication on two 3-qubit sized registers is:
@@ -1189,7 +1189,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
   circuit.draw("mpl")
   ```
 
-  ![../\_images/synthesis-1.png](/images/api/qiskit/dev/synthesis-1.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/synthesis-1.avif)
 
   Multiplication in this circuit is implemented in a classical approach by performing a series of shifted additions using one of the input registers while the qubits from the other input register act as control qubits for the adders.
 
@@ -1213,7 +1213,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 #### multiplier\_qft\_r17
 
-<Function id="qiskit.synthesis.multiplier_qft_r17" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/multipliers/rg_qft_multiplier.py#L25-L99" signature="qiskit.synthesis.multiplier_qft_r17(num_state_qubits, num_result_qubits=None)">
+<Function id="qiskit.synthesis.multiplier_qft_r17" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/multipliers/rg_qft_multiplier.py#L25-L100" signature="qiskit.synthesis.multiplier_qft_r17(num_state_qubits, num_result_qubits=None)">
   A QFT multiplication circuit to store product of two input registers out-of-place.
 
   Multiplication in this circuit is implemented using the procedure of Fig. 3 in \[1], where weighted sum rotations are implemented as given in Fig. 5 in \[1]. QFT is used on the output register and is followed by rotations controlled by input registers. The rotations transform the state into the product of two input registers in QFT base, which is reverted from QFT base using inverse QFT. For example, on 3 state qubits, a full multiplier is given by:
@@ -1226,7 +1226,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
   circuit.draw("mpl")
   ```
 
-  ![../\_images/synthesis-2.png](/images/api/qiskit/dev/synthesis-2.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/synthesis-2.avif)
 
   **Parameters**
 

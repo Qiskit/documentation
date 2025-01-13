@@ -10,12 +10,15 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { mkdirp } from "mkdirp";
-import pMap from "p-map";
 import { copyFile } from "fs/promises";
+import { extname } from "node:path";
 
-import { Pkg } from "./Pkg.js";
+import pMap from "p-map";
+import { $ } from "zx";
+import { mkdirp } from "mkdirp";
+
 import { Image } from "./HtmlToMdResult.js";
+import { Pkg } from "./Pkg.js";
 import { pathExists } from "../fs.js";
 
 function skipReleaseNote(imgFileName: string, pkg: Pkg): boolean {
@@ -54,10 +57,20 @@ export async function saveImages(
     if (skipReleaseNote(img.fileName, pkg)) {
       return;
     }
+    const source = `${originalImagesFolderPath}/${img.fileName}`;
+    const dest = `${publicBaseFolder}/${img.dest}`;
 
-    await copyFile(
-      `${originalImagesFolderPath}/${img.fileName}`,
-      `${publicBaseFolder}/${img.dest}`,
-    );
+    if (extname(source) === extname(dest)) {
+      await copyFile(source, dest);
+    } else {
+      try {
+        await $`magick ${source} ${dest}`;
+      } catch (err) {
+        console.error(
+          "Image conversion failed, make sure you have ImageMagick installed (https://imagemagick.org/index.php)",
+        );
+        throw err;
+      }
+    }
   });
 }
