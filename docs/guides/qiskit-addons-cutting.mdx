@@ -5,7 +5,7 @@ description: Overview of the addon for circuit cutting to build utility-scale wo
 
 # Circuit cutting
 
-Circuit cutting is a technique to increase the size of circuits we can run on quantum hardware at the cost of an additional sampling overhead This package implements this technique; where a handful of gates and/or wires are cut, resulting in smaller circuits that are better suited for execution on hardware. These smaller circuits are then executed and the results of the original circuit are reconstructed through using classical post-processing. However, the trade-off is that the overall number of shots must increase by a factor that is dependent on the number and type of cuts made (known as the sampling overhead). Circuit cutting can also be used to engineer gates between distant qubits which would otherwise require a large swap overhead.
+Circuit cutting is a technique to increase the size of circuits that can run on quantum hardware, at the cost of an additional sampling overhead. This addon implements this technique, in which a handful of gates, wires, or both are cut, resulting in smaller circuits that are better suited for execution on hardware. These smaller circuits are then executed, and the results of the original circuit are reconstructed through classical post-processing. However, the trade-off is that the overall number of shots must increase by a factor that is dependent on the number and type of cuts made (known as the sampling overhead). Circuit cutting can also be used to engineer gates between distant qubits which would otherwise require a large swap overhead.
 
 ### Important terms
 
@@ -36,7 +36,7 @@ If you wish to contribute to this package or want to install it manually, first 
 ```bash
 git clone git@github.com:Qiskit/qiskit-addon-cutting.git
 ```
-and install the package with `pip`. To run the tutorials found in the package repository, install the notebook dependencies as well. Install the `deve` dependencies if you plan on developing in the repository.
+and install the package with `pip`. To run the tutorials found in the package repository, install the notebook dependencies as well. Install the `dev` dependencies if you plan on developing in the repository.
 ```bash
 pip install tox notebook -e '.[notebook-dependencies,dev]'
 ```
