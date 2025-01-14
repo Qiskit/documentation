@@ -603,7 +603,7 @@ with pulse.build(name='pulse_programming_in') as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-1.png](/images/api/qiskit/pulse-1.png)
+![Output from the previous code.](/images/api/qiskit/pulse-1.avif)
 
 To begin pulse programming we must first initialize our program builder context with [`build()`](#qiskit.pulse.builder.build "qiskit.pulse.builder.build"), after which we can begin adding program statements. For example, below we write a simple program that [`play()`](#qiskit.pulse.builder.play "qiskit.pulse.builder.play")s a pulse:
 
@@ -618,7 +618,7 @@ with pulse.build() as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-2.png](/images/api/qiskit/pulse-2.png)
+![Output from the previous code.](/images/api/qiskit/pulse-2.avif)
 
 The builder initializes a [`pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), `pulse_prog` and then begins to construct the program within the context. The output pulse schedule will survive after the context is exited and can be used like a normal Qiskit schedule.
 
@@ -659,7 +659,7 @@ with pulse.build(backend) as decoupled_bell_prep_and_measure:
 decoupled_bell_prep_and_measure.draw()
 ```
 
-![../\_images/pulse-3.png](/images/api/qiskit/pulse-3.png)
+![Output from the previous code.](/images/api/qiskit/pulse-3.avif)
 
 With the pulse builder we are able to blend programming on qubits and channels. While the pulse schedule is based on instructions that operate on channels, the pulse builder automatically handles the mapping from qubits to channels for you.
 
@@ -772,7 +772,7 @@ The above is just a small taste of what is possible with the builder. See the re
 
 ### build
 
-<Function id="qiskit.pulse.builder.build" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L777-L825" signature="qiskit.pulse.builder.build(backend=None, schedule=None, name=None, default_alignment='left')">
+<Function id="qiskit.pulse.builder.build" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L782-L830" signature="qiskit.pulse.builder.build(backend=None, schedule=None, name=None, default_alignment='left')">
   Create a context manager for launching the imperative pulse builder DSL.
 
   To enter a building context and starting building a pulse program:
@@ -836,7 +836,7 @@ DriveChannel(0)
 
 #### acquire\_channel
 
-<Function id="qiskit.pulse.builder.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1445-L1466" signature="qiskit.pulse.builder.acquire_channel(qubit)">
+<Function id="qiskit.pulse.builder.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1452-L1473" signature="qiskit.pulse.builder.acquire_channel(qubit)">
   Return `AcquireChannel` for `qubit` on the active builder backend.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -870,7 +870,7 @@ DriveChannel(0)
 
 #### control\_channels
 
-<Function id="qiskit.pulse.builder.control_channels" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1469-L1500" signature="qiskit.pulse.builder.control_channels(*qubits)">
+<Function id="qiskit.pulse.builder.control_channels" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1476-L1507" signature="qiskit.pulse.builder.control_channels(*qubits)">
   Return `ControlChannel` for `qubit` on the active builder backend.
 
   Return the secondary drive channel for the given qubit – typically utilized for controlling multi-qubit interactions.
@@ -909,7 +909,7 @@ DriveChannel(0)
 
 #### drive\_channel
 
-<Function id="qiskit.pulse.builder.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1397-L1418" signature="qiskit.pulse.builder.drive_channel(qubit)">
+<Function id="qiskit.pulse.builder.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1404-L1425" signature="qiskit.pulse.builder.drive_channel(qubit)">
   Return `DriveChannel` for `qubit` on the active builder backend.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -943,7 +943,7 @@ DriveChannel(0)
 
 #### measure\_channel
 
-<Function id="qiskit.pulse.builder.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1421-L1442" signature="qiskit.pulse.builder.measure_channel(qubit)">
+<Function id="qiskit.pulse.builder.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1428-L1449" signature="qiskit.pulse.builder.measure_channel(qubit)">
   Return `MeasureChannel` for `qubit` on the active builder backend.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1006,11 +1006,11 @@ with pulse.build(backend) as drive_sched:
 drive_sched.draw()
 ```
 
-![../\_images/pulse-4.png](/images/api/qiskit/pulse-4.png)
+![Output from the previous code.](/images/api/qiskit/pulse-4.avif)
 
 #### acquire
 
-<Function id="qiskit.pulse.builder.acquire" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1561-L1612" signature="qiskit.pulse.builder.acquire(duration, qubit_or_channel, register, **metadata)">
+<Function id="qiskit.pulse.builder.acquire" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1568-L1619" signature="qiskit.pulse.builder.acquire(duration, qubit_or_channel, register, **metadata)">
   Acquire for a `duration` on a `channel` and store the result in a `register`.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1051,7 +1051,7 @@ drive_sched.draw()
 
 #### barrier
 
-<Function id="qiskit.pulse.builder.barrier" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1955-L2029" signature="qiskit.pulse.builder.barrier(*channels_or_qubits, name=None)">
+<Function id="qiskit.pulse.builder.barrier" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1962-L2036" signature="qiskit.pulse.builder.barrier(*channels_or_qubits, name=None)">
   Barrier directive for a set of channels and qubits.
 
   This directive prevents the compiler from moving instructions across the barrier. Consider the case where we want to enforce that one pulse happens after another on separate channels, this can be done with:
@@ -1126,7 +1126,7 @@ drive_sched.draw()
 
 #### call
 
-<Function id="qiskit.pulse.builder.call" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1733-L1925" signature="qiskit.pulse.builder.call(target, name=None, value_dict=None, **kw_params)">
+<Function id="qiskit.pulse.builder.call" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1740-L1932" signature="qiskit.pulse.builder.call(target, name=None, value_dict=None, **kw_params)">
   Call the subroutine within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 
   <Admonition title="Note" type="note">
@@ -1299,7 +1299,7 @@ drive_sched.draw()
 
 #### delay
 
-<Function id="qiskit.pulse.builder.delay" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1504-L1524" signature="qiskit.pulse.builder.delay(duration, channel, name=None)">
+<Function id="qiskit.pulse.builder.delay" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1511-L1531" signature="qiskit.pulse.builder.delay(duration, channel, name=None)">
   Delay on a `channel` for a `duration`.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1326,7 +1326,7 @@ drive_sched.draw()
 
 #### play
 
-<Function id="qiskit.pulse.builder.play" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1527-L1550" signature="qiskit.pulse.builder.play(pulse, channel, name=None)">
+<Function id="qiskit.pulse.builder.play" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1534-L1557" signature="qiskit.pulse.builder.play(pulse, channel, name=None)">
   Play a `pulse` on a `channel`.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1353,7 +1353,7 @@ drive_sched.draw()
 
 #### reference
 
-<Function id="qiskit.pulse.builder.reference" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1928-L1951" signature="qiskit.pulse.builder.reference(name, *extra_keys)">
+<Function id="qiskit.pulse.builder.reference" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1935-L1958" signature="qiskit.pulse.builder.reference(name, *extra_keys)">
   Refer to undefined subroutine by string keys.
 
   A [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction is implicitly created and a schedule can be separately registered to the reference at a later stage.
@@ -1382,7 +1382,7 @@ drive_sched.draw()
 
 #### set\_frequency
 
-<Function id="qiskit.pulse.builder.set_frequency" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1615-L1635" signature="qiskit.pulse.builder.set_frequency(frequency, channel, name=None)">
+<Function id="qiskit.pulse.builder.set_frequency" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1622-L1642" signature="qiskit.pulse.builder.set_frequency(frequency, channel, name=None)">
   Set the `frequency` of a pulse `channel`.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1409,7 +1409,7 @@ drive_sched.draw()
 
 #### set\_phase
 
-<Function id="qiskit.pulse.builder.set_phase" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1662-L1685" signature="qiskit.pulse.builder.set_phase(phase, channel, name=None)">
+<Function id="qiskit.pulse.builder.set_phase" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1669-L1692" signature="qiskit.pulse.builder.set_phase(phase, channel, name=None)">
   Set the `phase` of a pulse `channel`.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1438,7 +1438,7 @@ drive_sched.draw()
 
 #### shift\_frequency
 
-<Function id="qiskit.pulse.builder.shift_frequency" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1638-L1659" signature="qiskit.pulse.builder.shift_frequency(frequency, channel, name=None)">
+<Function id="qiskit.pulse.builder.shift_frequency" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1645-L1666" signature="qiskit.pulse.builder.shift_frequency(frequency, channel, name=None)">
   Shift the `frequency` of a pulse `channel`.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1465,7 +1465,7 @@ drive_sched.draw()
 
 #### shift\_phase
 
-<Function id="qiskit.pulse.builder.shift_phase" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1688-L1710" signature="qiskit.pulse.builder.shift_phase(phase, channel, name=None)">
+<Function id="qiskit.pulse.builder.shift_phase" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1695-L1717" signature="qiskit.pulse.builder.shift_phase(phase, channel, name=None)">
   Shift the `phase` of a pulse `channel`.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1494,7 +1494,7 @@ drive_sched.draw()
 
 #### snapshot
 
-<Function id="qiskit.pulse.builder.snapshot" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1713-L1730" signature="qiskit.pulse.builder.snapshot(label, snapshot_type='statevector')">
+<Function id="qiskit.pulse.builder.snapshot" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1720-L1737" signature="qiskit.pulse.builder.snapshot(label, snapshot_type='statevector')">
   Simulator snapshot.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1536,11 +1536,11 @@ with pulse.build() as pulse_prog:
 pulse_prog.draw()
 ```
 
-![../\_images/pulse-5.png](/images/api/qiskit/pulse-5.png)
+![Output from the previous code.](/images/api/qiskit/pulse-5.avif)
 
 #### align\_equispaced
 
-<Function id="qiskit.pulse.builder.align_equispaced" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1151-L1201" signature="qiskit.pulse.builder.align_equispaced(duration)">
+<Function id="qiskit.pulse.builder.align_equispaced" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1156-L1207" signature="qiskit.pulse.builder.align_equispaced(duration)">
   Equispaced alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled with the same interval spacing such that the total length of the context block is `duration`. If the total free `duration` cannot be evenly divided by the number of instructions within the context, the modulo is split and then prepended and appended to the returned schedule. Delay instructions are automatically inserted in between pulses.
@@ -1569,7 +1569,7 @@ pulse_prog.draw()
   hahn_echo.draw()
   ```
 
-  ![../\_images/pulse-6.png](/images/api/qiskit/pulse-6.png)
+  ![Output from the previous code.](/images/api/qiskit/pulse-6.avif)
 
   **Parameters**
 
@@ -1590,7 +1590,7 @@ pulse_prog.draw()
 
 #### align\_func
 
-<Function id="qiskit.pulse.builder.align_func" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1204-L1264" signature="qiskit.pulse.builder.align_func(duration, func)">
+<Function id="qiskit.pulse.builder.align_func" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1210-L1271" signature="qiskit.pulse.builder.align_func(duration, func)">
   Callback defined alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled at the location specified by arbitrary callback function position that takes integer index and returns the associated fractional location within \[0, 1]. Delay instruction is automatically inserted in between pulses.
@@ -1624,7 +1624,7 @@ pulse_prog.draw()
   udd_sched.draw()
   ```
 
-  ![../\_images/pulse-7.png](/images/api/qiskit/pulse-7.png)
+  ![Output from the previous code.](/images/api/qiskit/pulse-7.avif)
 
   **Parameters**
 
@@ -1646,7 +1646,7 @@ pulse_prog.draw()
 
 #### align\_left
 
-<Function id="qiskit.pulse.builder.align_left" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1034-L1070" signature="qiskit.pulse.builder.align_left()">
+<Function id="qiskit.pulse.builder.align_left" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1039-L1075" signature="qiskit.pulse.builder.align_left()">
   Left alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled as early as possible by shifting them left to the earliest available time.
@@ -1685,7 +1685,7 @@ pulse_prog.draw()
 
 #### align\_right
 
-<Function id="qiskit.pulse.builder.align_right" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1073-L1109" signature="qiskit.pulse.builder.align_right()">
+<Function id="qiskit.pulse.builder.align_right" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1078-L1114" signature="qiskit.pulse.builder.align_right()">
   Right alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled as late as possible by shifting them right to the latest available time.
@@ -1724,7 +1724,7 @@ pulse_prog.draw()
 
 #### align\_sequential
 
-<Function id="qiskit.pulse.builder.align_sequential" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1112-L1148" signature="qiskit.pulse.builder.align_sequential()">
+<Function id="qiskit.pulse.builder.align_sequential" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1117-L1153" signature="qiskit.pulse.builder.align_sequential()">
   Sequential alignment pulse scheduling context.
 
   Pulse instructions within this context are scheduled sequentially in time such that no two instructions will be played at the same time.
@@ -1763,7 +1763,7 @@ pulse_prog.draw()
 
 #### frequency\_offset
 
-<Function id="qiskit.pulse.builder.frequency_offset" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1330-L1393" signature="qiskit.pulse.builder.frequency_offset(frequency, *channels, compensate_phase=False)">
+<Function id="qiskit.pulse.builder.frequency_offset" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1337-L1400" signature="qiskit.pulse.builder.frequency_offset(frequency, *channels, compensate_phase=False)">
   Shift the frequency of inputs channels on entry into context and undo on exit.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1813,7 +1813,7 @@ pulse_prog.draw()
 
 #### phase\_offset
 
-<Function id="qiskit.pulse.builder.phase_offset" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1293-L1327" signature="qiskit.pulse.builder.phase_offset(phase, *channels)">
+<Function id="qiskit.pulse.builder.phase_offset" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L1300-L1334" signature="qiskit.pulse.builder.phase_offset(phase, *channels)">
   Shift the phase of input channels on entry into context and undo on exit.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -1871,7 +1871,7 @@ MemorySlot(0)
 
 #### measure
 
-<Function id="qiskit.pulse.builder.measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L2093-L2179" signature="qiskit.pulse.builder.measure(qubits, registers=None)">
+<Function id="qiskit.pulse.builder.measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L2101-L2187" signature="qiskit.pulse.builder.measure(qubits, registers=None)">
   Measure a qubit within the currently active builder context.
 
   At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](#qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](#qiskit.pulse.builder.play "qiskit.pulse.builder.play").
@@ -1930,7 +1930,7 @@ MemorySlot(0)
 
 #### measure\_all
 
-<Function id="qiskit.pulse.builder.measure_all" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L2182-L2223" signature="qiskit.pulse.builder.measure_all()">
+<Function id="qiskit.pulse.builder.measure_all" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L2190-L2231" signature="qiskit.pulse.builder.measure_all()">
   Measure all qubits within the currently active builder context.
 
   A simple macro function to measure all of the qubits in the device at the same time. This is useful for handling device `meas_map` and single measurement constraints.
@@ -1967,7 +1967,7 @@ MemorySlot(0)
 
 #### delay\_qubits
 
-<Function id="qiskit.pulse.builder.delay_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L2226-L2254" signature="qiskit.pulse.builder.delay_qubits(duration, *qubits)">
+<Function id="qiskit.pulse.builder.delay_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L2234-L2262" signature="qiskit.pulse.builder.delay_qubits(duration, *qubits)">
   Insert delays on all the `channels.Channel`s that correspond to the input `qubits` at the same time.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -2028,7 +2028,7 @@ There are 1e-06 seconds in 4500 samples.
 
 #### active\_backend
 
-<Function id="qiskit.pulse.builder.active_backend" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L851-L867" signature="qiskit.pulse.builder.active_backend()">
+<Function id="qiskit.pulse.builder.active_backend" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L856-L872" signature="qiskit.pulse.builder.active_backend()">
   Get the backend of the currently active builder context.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -2052,7 +2052,7 @@ There are 1e-06 seconds in 4500 samples.
 
 #### num\_qubits
 
-<Function id="qiskit.pulse.builder.num_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L902-L926" signature="qiskit.pulse.builder.num_qubits()">
+<Function id="qiskit.pulse.builder.num_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L907-L931" signature="qiskit.pulse.builder.num_qubits()">
   Return number of qubits in the currently active backend.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -2086,7 +2086,7 @@ There are 1e-06 seconds in 4500 samples.
 
 #### qubit\_channels
 
-<Function id="qiskit.pulse.builder.qubit_channels" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L962-L1013" signature="qiskit.pulse.builder.qubit_channels(qubit)">
+<Function id="qiskit.pulse.builder.qubit_channels" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L967-L1018" signature="qiskit.pulse.builder.qubit_channels(qubit)">
   Returns the set of channels associated with a qubit.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -2128,7 +2128,7 @@ There are 1e-06 seconds in 4500 samples.
 
 #### samples\_to\_seconds
 
-<Function id="qiskit.pulse.builder.samples_to_seconds" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L948-L959" signature="qiskit.pulse.builder.samples_to_seconds(samples)">
+<Function id="qiskit.pulse.builder.samples_to_seconds" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L953-L964" signature="qiskit.pulse.builder.samples_to_seconds(samples)">
   Obtain the time in seconds that will elapse for the input number of samples on the active backend.
 
   <Admonition title="Deprecated since version 1.3" type="danger">
@@ -2150,7 +2150,7 @@ There are 1e-06 seconds in 4500 samples.
 
 #### seconds\_to\_samples
 
-<Function id="qiskit.pulse.builder.seconds_to_samples" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L929-L945" signature="qiskit.pulse.builder.seconds_to_samples(seconds)">
+<Function id="qiskit.pulse.builder.seconds_to_samples" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/pulse/builder.py#L934-L950" signature="qiskit.pulse.builder.seconds_to_samples(seconds)">
   Obtain the number of samples that will elapse in `seconds` on the active backend.
 
   Rounds down.

@@ -100,11 +100,9 @@ export function loadImages(
 
       // We convert PNG and JPG to AVIF for reduced file size. The image-copying
       // logic detects changed extensions and converts the files.
-      // Remove `false &&` when ready to switch to AVIF
-      let dest =
-        false && [".png", ".jpg", ".jpeg"].includes(fileExtension)
-          ? `${imageDestination}/${path.basename(fileName, fileExtension)}.avif`
-          : `${imageDestination}/${fileName}`;
+      let dest = [".png", ".jpg", ".jpeg"].includes(fileExtension)
+        ? `${imageDestination}/${path.basename(fileName, fileExtension)}.avif`
+        : `${imageDestination}/${fileName}`;
 
       if (isReleaseNotes && !hasSeparateReleaseNotes) {
         // If the Pkg only has a single release notes file for all versions,
