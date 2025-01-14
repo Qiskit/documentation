@@ -16,17 +16,6 @@ import { hideBin } from "yargs/helpers";
 import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdown } from "../lib/markdownReader.js";
 
-// Known APIs containing images without alt text that will be skipped
-// by the checker.
-const APIS_TO_IGNORE__SHOULD_FIX: string[] = [
-  "qiskit",
-  "qiskit-ibm-runtime",
-  "qiskit-addon-cutting",
-  "qiskit-addon-mpf",
-  "qiskit-addon-obp",
-  "qiskit-addon-utils",
-];
-
 interface Arguments {
   [x: string]: unknown;
   apis: boolean;
@@ -83,7 +72,8 @@ async function determineTocFiles(args: Arguments): Promise<string[]> {
   const globs = [
     "docs/**/*.{ipynb,mdx}",
     args.apis ? "!docs/api/*/([0-9]*)/*.mdx" : "!docs/api/**/*.mdx",
-    ...APIS_TO_IGNORE__SHOULD_FIX.map((api) => `!docs/api/${api}/**/*.mdx`),
+    // Remove when https://github.com/Qiskit/documentation/issues/2564 is fixed
+    `!docs/api/qiskit/release-notes/*.mdx`,
   ];
 
   return await globby(globs);

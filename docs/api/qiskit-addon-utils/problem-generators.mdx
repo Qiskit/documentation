@@ -61,7 +61,7 @@ $$
 
   **Parameters**
 
-  *   **coupling** ([*CouplingMap*](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.2)")  *|*[*PyGraph*](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.15)")  *|*[*PyDiGraph*](https://www.rustworkx.org/apiref/rustworkx.PyDiGraph.html#rustworkx.PyDiGraph "(in rustworkx v0.15)")) – The qubit subgraph on which to map the Hamiltonian. Directionality of graph edges will be ignored, and parallel edges will be treated as a single edge during generation of the operator.
+  *   **coupling** ([*CouplingMap*](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.3)")  *|*[*PyGraph*](https://www.rustworkx.org/apiref/rustworkx.PyGraph.html#rustworkx.PyGraph "(in rustworkx v0.15)")  *|*[*PyDiGraph*](https://www.rustworkx.org/apiref/rustworkx.PyDiGraph.html#rustworkx.PyDiGraph "(in rustworkx v0.15)")) – The qubit subgraph on which to map the Hamiltonian. Directionality of graph edges will be ignored, and parallel edges will be treated as a single edge during generation of the operator.
   *   **coupling\_constants** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – The real-valued coupling constants, $J_i$, in each Cartesian axis.
   *   **ext\_magnetic\_field** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – The coefficients, $h_i$, representing a magnetic field along each Cartesian axis.
   *   **pauli\_order\_strategy** ([*PauliOrderStrategy*](#qiskit_addon_utils.problem_generators.PauliOrderStrategy "qiskit_addon_utils.problem_generators.generate_xyz_hamiltonian.PauliOrderStrategy")) – Indicates the iteration strategy in which the Pauli terms will be generated. See [`PauliOrderStrategy`](#qiskit_addon_utils.problem_generators.PauliOrderStrategy "qiskit_addon_utils.problem_generators.PauliOrderStrategy") for more details.
@@ -78,12 +78,12 @@ $$
 
   **Return type**
 
-  [*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)")
+  [*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.3)")
 </Function>
 
 ### generate\_time\_evolution\_circuit
 
-<Function id="qiskit_addon_utils.problem_generators.generate_time_evolution_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/problem_generators/generate_time_evolution_circuit.py#L23-L76" signature="generate_time_evolution_circuit(operator, *, synthesis=None, time=1.0)">
+<Function id="qiskit_addon_utils.problem_generators.generate_time_evolution_circuit" github="https://github.com/Qiskit/qiskit-addon-utils/tree/stable/0.1/qiskit_addon_utils/problem_generators/generate_time_evolution_circuit.py#L23-L77" signature="generate_time_evolution_circuit(operator, *, synthesis=None, time=1.0)">
   Model the time evolution of an operator.
 
   ```python
@@ -114,21 +114,21 @@ $$
   >>> _ = circ.draw("mpl", fold=-1)
   ```
 
-  ![../\_images/qiskit\_addon\_utils-problem\_generators-1.png](/images/api/qiskit-addon-utils/qiskit_addon_utils-problem_generators-1.png)
+  ![Output from the previous code.](/images/api/qiskit-addon-utils/qiskit_addon_utils-problem_generators-1.avif)
 
   **Parameters**
 
-  *   **operator** ([*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.2)")) – The operator for which to model the time evolution.
-  *   **synthesis** ([*EvolutionSynthesis*](/api/qiskit/qiskit.synthesis.EvolutionSynthesis "(in Qiskit v1.2)") *| None*) – A synthesis strategy. If `None`, the default synthesis is the Lie-Trotter product formula with a single repetition.
+  *   **operator** ([*SparsePauliOp*](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.3)")) – The operator for which to model the time evolution.
+  *   **synthesis** ([*EvolutionSynthesis*](/api/qiskit/qiskit.synthesis.EvolutionSynthesis "(in Qiskit v1.3)") *| None*) – A synthesis strategy. If `None`, the default synthesis is the Lie-Trotter product formula with a single repetition.
   *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The evolution time.
 
   **Returns**
 
-  A [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)") implementing a time-evolved operator.
+  A [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)") implementing a time-evolved operator.
 
   **Return type**
 
-  [*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")
+  [*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.3)")
 </Function>
 
 ### PauliOrderStrategy
