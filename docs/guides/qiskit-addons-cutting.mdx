@@ -1,5 +1,5 @@
 ---
-title: Circuit Cutting
+title: Circuit cutting
 description: Overview of the addon for circuit cutting to build utility-scale workloads
 ---
 
@@ -7,11 +7,11 @@ description: Overview of the addon for circuit cutting to build utility-scale wo
 
 Circuit cutting is a technique to increase the size of circuits we can run on quantum hardware at the cost of an additional sampling overhead This package implements this technique; where a handful of gates and/or wires are cut, resulting in smaller circuits that are better suited for execution on hardware. These smaller circuits are then executed and the results of the original circuit are reconstructed through using classical post-processing. However, the trade-off is that the overall number of shots must increase by a factor exponential in the number of cuts made. Circuit cutting can also be used to engineer gates between distant qubits which would otherwise require a large swap overhead.
 
-### Key terms
+### Important terms
 
-- **subcircuits**: The set of circuits resulting from cutting gates in a `QuantumCircuit` and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`s](../api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate) and are used to instantiate each subexperiment.
+- **subcircuits**: The set of circuits resulting from cutting gates in a `QuantumCircuit` and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`s](/api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate) and are used to instantiate each subexperiment.
 
-- **subexperiment**: A term used to describe the unique circuit samples associated with a subcircuit which are sent to a QPU for execution.
+- **subexperiment**: A term used to describe the unique circuit samples associated with a subcircuit, which are sent to a QPU for execution.
 
 ## Install the circuit cutting package
 
@@ -19,7 +19,7 @@ There are three ways to install the circuit cutting package: PyPI, building from
 
 ### Install from PyPI
 
-The most straightforward way to install the `qiskit-addon-cutting` package is via PyPI
+The most straightforward way to install the `qiskit-addon-cutting` package is with PyPI:
 ```bash
 pip install qiskit-addon-cutting
 ```
@@ -45,11 +45,11 @@ pip install tox notebook -e '.[notebook-dependencies,dev]'
 
 ### Use within Docker
 
-A dockerfile is included in the addon repository which can be used to build a docker image. There is also a `compose.yaml` file which allows you to use the Docker image with the following commands
+The dockerfile included in the addon repository can be used to build a Docker image. There is also a `compose.yaml` file that allows you to use the Docker image with the following commands.
 
 <details>
 <summary>
-Click here to read how to use this package within Docker
+Click here to read how to use this package within Docker.
 </summary>
 
 ```bash
@@ -83,9 +83,9 @@ Additionally, the home directory includes a subdirectory named persistent-volume
 
 </details>
 
-## Theoretical Background
+## Theoretical background
 
-In the process of circuit cutting, there are two types of cuts: a **gate** or "space-like" cut where a cut goes through a gate operating on two (or more) qubits, and a **wire** or "time-like" cut which cut directly through a qubit wire (essentially a single-qubit identity gate that has been cut into two pieces). 
+In the circuit cutting process, there are two types of cuts: a **gate** or "space-like" cut, where a cut goes through a gate operating on two (or more) qubits, and a **wire** or "time-like" cut, which cuts directly through a qubit wire (essentially a single-qubit identity gate that has been cut into two pieces). 
 
 There are also three scenarios to consider when preparing a circuit cutting workflow; which center around the availability of classical communication between the circuit executions. The first is where only local operations (LO) are available while the other two introduce classical communication between executions known as local operations and classical communication (LOCC). The LOCC scenarios are then grouped into either near-time, one-directional communication between circuit executions or real-time, bi-directional communication (which you might see in a multi-QPU environment).
 
