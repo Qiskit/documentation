@@ -160,7 +160,7 @@ graphviz`.
   ```
 - To only execute specific notebooks, pass them as arguments.
   ```sh
-  tox -- path/to/notebook.ipynb path/to/another-notbook.ipynb
+  tox -- <path/to/notebook>.ipynb <path/to/another-notbook>.ipynb
   ```
 - To write the execution results to the file, pass the `--write` argument.
   ```sh
@@ -230,7 +230,7 @@ Some problems can be fixed automatically. To fix these problems, run:
 tox -e fix
 
 # Fix problems in a specific notebook
-tox -e fix -- path/to/notebook
+tox -e fix -- <path/to/notebook>
 ```
 
 If you use the Jupyter notebook editor, consider adding squeaky as a [pre-save
