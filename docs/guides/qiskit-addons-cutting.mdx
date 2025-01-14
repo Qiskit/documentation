@@ -5,7 +5,7 @@ description: Overview of the addon for circuit cutting to build utility-scale wo
 
 # Circuit cutting
 
-Circuit cutting is a technique to increase the size of circuits we can run on quantum hardware at the cost of an additional sampling overhead This package implements this technique; where a handful of gates and/or wires are cut, resulting in smaller circuits that are better suited for execution on hardware. These smaller circuits are then executed and the results of the original circuit are reconstructed through using classical post-processing. However, the trade-off is that the overall number of shots must increase by a factor exponential in the number of cuts made. Circuit cutting can also be used to engineer gates between distant qubits which would otherwise require a large swap overhead.
+Circuit cutting is a technique to increase the size of circuits we can run on quantum hardware at the cost of an additional sampling overhead This package implements this technique; where a handful of gates and/or wires are cut, resulting in smaller circuits that are better suited for execution on hardware. These smaller circuits are then executed and the results of the original circuit are reconstructed through using classical post-processing. However, the trade-off is that the overall number of shots must increase by a factor that is dependent on the number and type of cuts made (known as the sampling overhead). Circuit cutting can also be used to engineer gates between distant qubits which would otherwise require a large swap overhead.
 
 ### Important terms
 
@@ -36,7 +36,7 @@ If you wish to contribute to this package or want to install it manually, first 
 ```bash
 git clone git@github.com:Qiskit/qiskit-addon-cutting.git
 ```
-and install the package via `pip`. If you plan on running the tutorials found in the package repository, install the notebook dependencies as well. If you plan on developing in the repository, you may also want to install the `dev` dependencies.
+and install the package with `pip`. To run the tutorials found in the package repository, install the notebook dependencies as well. Install the `deve` dependencies if you plan on developing in the repository.
 ```bash
 pip install tox notebook -e '.[notebook-dependencies,dev]'
 ```
@@ -85,7 +85,9 @@ Additionally, the home directory includes a subdirectory named persistent-volume
 
 ## Theoretical background
 
-In the circuit cutting process, there are two types of cuts: a **gate** or "space-like" cut, where a cut goes through a gate operating on two (or more) qubits, and a **wire** or "time-like" cut, which cuts directly through a qubit wire (essentially a single-qubit identity gate that has been cut into two pieces). 
+In the circuit cutting process, there are two types of cuts: a **gate** or "space-like" cut, where a cut goes through a gate operating on two (or more) qubits, and a **wire** or "time-like" cut, which cuts directly through a qubit wire (essentially a single-qubit identity gate that has been cut into two pieces).
+
+![Diagram of circuit cutting by taking one larger circuit and cutting it into two smaller ones](/images/guides/qiskit-addons/circuit-cutting-diagram.png)
 
 There are also three scenarios to consider when preparing a circuit cutting workflow; which center around the availability of classical communication between the circuit executions. The first is where only local operations (LO) are available while the other two introduce classical communication between executions known as local operations and classical communication (LOCC). The LOCC scenarios are then grouped into either near-time, one-directional communication between circuit executions or real-time, bi-directional communication (which you might see in a multi-QPU environment).
 
