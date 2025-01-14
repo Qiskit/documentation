@@ -9,9 +9,9 @@ Circuit cutting is a technique to increase the size of circuits that can run on 
 
 ### Important terms
 
-- **subcircuits**: The set of circuits resulting from cutting gates in a `QuantumCircuit` and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`s](/api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate) and are used to instantiate each subexperiment.
+- **Subcircuits**: The set of circuits resulting from cutting gates in a `QuantumCircuit` and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`s](/api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate) and are used to instantiate each subexperiment.
 
-- **subexperiment**: A term used to describe the unique circuit samples associated with a subcircuit, which are sent to a QPU for execution.
+- **Subexperiment**: A term used to describe the unique circuit samples associated with a subcircuit, which are sent to a QPU for execution.
 
 ## Install the circuit cutting package
 
@@ -45,7 +45,7 @@ pip install tox notebook -e '.[notebook-dependencies,dev]'
 
 ### Use within Docker
 
-The dockerfile included in the addon repository can be used to build a Docker image. There is also a `compose.yaml` file that allows you to use the Docker image with the following commands.
+The dockerfile included in the addon repository can be used to build a Docker image. The included `compose.yaml` file allows you to use the Docker image with the following commands.
 
 <details>
 <summary>
@@ -89,9 +89,9 @@ In the circuit cutting process, there are two types of cuts: a **gate** or "spac
 
 ![Diagram of circuit cutting by taking one larger circuit and cutting it into two smaller ones](/images/guides/qiskit-addons/circuit-cutting-diagram.avif)
 
-There are also three scenarios to consider when preparing a circuit cutting workflow; which center around the availability of classical communication between the circuit executions. The first is where only local operations (LO) are available while the other two introduce classical communication between executions known as local operations and classical communication (LOCC). The LOCC scenarios are then grouped into either near-time, one-directional communication between circuit executions or real-time, bi-directional communication (which you might see in a multi-QPU environment).
+There are three scenarios to consider when preparing a circuit cutting workflow, which center around the availability of classical communication between the circuit executions. The first is where only local operations (LO) are available, while the other two introduce classical communication between executions known as local operations and classical communication (LOCC). The LOCC scenarios are then grouped into either near-time, one-directional communication between circuit executions, or real-time, bi-directional communication (which you might see in a multi-QPU environment).
 
-While circuit cutting can be used to execute quantum circuits larger than what is possible on currently available hardware, it does come at a cost. Because the technique can be framed as a quasiprobability decomposition (QPD) problem, there is an exponential sampling overhead required in order to reconstruct the results. This overhead is the factor by which the overall number of shots must increase in order for the quasiprobability decomposition to result in the same amount of error, $\epsilon$, as you would get by executing the original circuit. Each cut gate contributes to this overhead and the amount of overhead added is dependent on the type of gate that was cut (more details on the overhead sampling can be found in final appendix of [[1]](#references)).
+While circuit cutting can be used to execute quantum circuits larger than what is possible on currently available hardware, it does come at a cost. Because the technique can be framed as a quasi-probability decomposition (QPD) problem, there is an exponential sampling overhead required in order to reconstruct the results. This overhead is the factor by which the overall number of shots must increase in order for the quasi-probability decomposition to result in the same amount of error, $\epsilon$, as you would get by executing the original circuit. Each cut gate contributes to this overhead, and the amount of overhead added depends on the type of gate that was cut (more details on the overhead sampling can be found in final appendix of [[1]](#references)).
 
 For example, a single cut CNOT gate incurs a sampling overhead of 9 [[2,6]](#references) and a circuit with $n$ wire cuts incurs a sampling overhead of $\mathcal{O}(16^n)$ when classical communication is not available (the LO scenario). This is reduced to $\mathcal{O}(4^n)$ when classical communication becomes available (LOCC scenario) [[4]](#references). However, wire cutting with classical communication (LOCC) is not yet supported by this package.
 
@@ -105,7 +105,7 @@ The results equivalent to the desired channel $\mathcal{U}$ are obtained by firs
 
 ### A short example: cutting a RZZGate
 
-As a basic explicit example, let's consider the decomposition of a cut RZZGate (all the details can be found in [[2]](#references)). A quantum circuit which contains an RZZGate can be simulated by performing six subexperiments where the RZZGate has been replaced with only single-qubit operations (these are the $\mathcal{F}_i$'s from the equation above). The results of this circuit are reconstructed by combining the results of each subexperiment alongside a set of coefficients (the $a_i$'s from the equation above) which can be either positive or negative.
+As a basic explicit example, consider the decomposition of a cut RZZGate (details can be found in [[2]](#references)). A quantum circuit that contains an RZZGate can be simulated by performing six subexperiments where the RZZGate has been replaced with only single-qubit operations (these are the $\mathcal{F}_i$'s from the equation above). The results of this circuit are reconstructed by combining the results of each subexperiment alongside a set of coefficients (the $a_i$'s from the equation above), which can be either positive or negative.
 
 For some chosen $\theta$ parameter for the RZZGate, the six subexperiments are as follows:
 1. With coefficient $a_1 = \cos^2(\theta/2)$, do nothing ($I\otimes I$)
@@ -117,7 +117,7 @@ For some chosen $\theta$ parameter for the RZZGate, the six subexperiments are a
 
 ### Sampling overhead reference table
 
-The below table provides the sampling overhead factor for a variety of two-qubit instructions, provided that only a single instruction is cut.
+The following table provides the sampling overhead factor for a variety of two-qubit instructions, provided that only a single instruction is cut.
 | Instructions | KAK decomposition angles | Sampling overhead factor |
 | --- | --- | --- |
 | CSGate, CSdgGate, CSXGate | $\left(\pi/8, 0, 0\right)$ | $3+2\sqrt(2) \approx 2.828$ |
@@ -132,7 +132,7 @@ The below table provides the sampling overhead factor for a variety of two-qubit
 ## Next steps
 
 <Admonition type="tip" title="Recommendations"> 
-    - Read through the page on [getting started with circuit cutting using wire cuts](/guides/qiskit-addons-cutting-wires)
+    - Read the [Get started with circuit cutting using wire cuts](/guides/qiskit-addons-cutting-wires) guide.
 </Admonition>
 
 
