@@ -29,7 +29,7 @@ To use this tool, just run the `test-docs-notebooks` command, followed by a
 list of notebooks you'd like to execute.
 
 ```
-test-docs-notebooks <path/to/notebook>.ipynb <path/to/another>.ipynb
+test-docs-notebooks <path/to/notebook.ipynb> <path/to/another.ipynb>
 ```
 
 * To write the executed notebooks to disk, include the `--write` argument.

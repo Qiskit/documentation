@@ -160,7 +160,7 @@ graphviz`.
   ```
 - To only execute specific notebooks, pass them as arguments.
   ```sh
-  tox -- <path/to/notebook>.ipynb <path/to/another-notbook>.ipynb
+  tox -- <path/to/notebook.ipynb> <path/to/another-notebook.ipynb>
   ```
 - To write the execution results to the file, pass the `--write` argument.
   ```sh
