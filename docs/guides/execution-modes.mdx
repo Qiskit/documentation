@@ -50,7 +50,7 @@ The following video illustrates the session basic workflow, using sessions as an
 
 ## Choose the right execution mode
 
-Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as _usage_, overall execution time, ITTL requirement, and time between jobs.
+Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as _usage_, overall execution time (TTL), and time between jobs (ITTL).
 
 The following table summarizes the benefits of each:
 
@@ -87,6 +87,13 @@ Usage is an important consideration when choosing which execution mode to use.  
 * Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens **last**.
 * Batch usage is the sum of quantum time of all jobs in the batch.
 * Single job usage is the quantum time the job uses in processing.
+
+<Admonition>
+Your usage has different impacts, depending on which channel you're using:
+
+- For Qiskit Runtime on IBM Cloud&reg; users, the usage determines how much the job costs.  See [Manage cost](/guides/manage-cost#manage-cost) for details.
+- For IBM Quantum Platform users. this translates to shares. The [fair-share scheduler](/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
+</Admonition>
 
 ![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing on the QPU.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')
 
