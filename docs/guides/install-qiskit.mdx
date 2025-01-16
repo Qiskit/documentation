@@ -45,27 +45,27 @@ Whether you will work locally or in a cloud environment, the first step for all 
 
     One important advantage of a virtual environment is that if your Python environment becomes corrupted somewhere along the way, you can easily delete the virtual environment and start over!
 
-    Choose a preferred location in which to store information about your virtual environments. Commonly they're stored in a directory named `.venv` within a user's home directory.
+    Choose a preferred location in which to store information about your virtual environments. Typically they're stored in a directory named `.venv` within each project directory you're working in.
     </details>
 
-    First, create a minimal environment with only Python installed in it.
+    First, navigate to your project directory and create a minimal environment with only Python installed in it.
 
         <OperatingSystemTabs>
           <TabItem value="mac" label="macOS">
             ```shell
-            python3 -m venv </path/to/virtual/environment>
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="linux" label="Linux">
             ```shell
-            python3 -m venv </path/to/virtual/environment>
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="win" label="Windows">
             ```text
-            python3 -m venv c:<\path\to\virtual\environment>
+            python -m venv .venv
             ```
           </TabItem>
          </OperatingSystemTabs>
@@ -75,19 +75,31 @@ Whether you will work locally or in a cloud environment, the first step for all 
          <OperatingSystemTabs>
            <TabItem value="mac" label="macOS">
              ```shell
-             source </path/to/virtual/environment>/bin/activate
+             source .venv
              ```
            </TabItem>
 
            <TabItem value="linux" label="Linux">
              ```shell
-             source </path/to/virtual/environment>/bin/activate
+             source .venv
              ```
            </TabItem>
 
            <TabItem value="win" label="Windows">
+              If using PowerShell:
+
              ```text
-             c:<\path\to\virtual\environment>\Scripts\Activate.ps1
+             .venv\Scripts\Activate.ps1
+             ```
+             If using Git Bash:
+
+             ```text
+             .venv/source/Activate
+             ```
+              If using command prompt:
+
+             ```text
+             .venv\Scripts\activate
              ```
            </TabItem>
          </OperatingSystemTabs>
