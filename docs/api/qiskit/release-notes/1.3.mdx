@@ -14,9 +14,59 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.3.1
+
+<span id="relnotes-1-3-1-prelude" />
+
+### Prelude
+
+Qiskit 1.3.1 is a minor bugfix release for the 1.3 series.
+
+<span id="relnotes-1-3-1-circuits-upgrade-notes" />
+
+### Circuits Upgrade Notes
+
+*   The generic control method for gates now avoids attempting to translate gates into a supported basis when the gate is already supported. This may slightly change the synthesis of the controlled gate, but it should not increase the two-qubit gate count.
+
+<span id="relnotes-1-3-1-bug-fixes" />
+
+<span id="id2" />
+
+### Bug Fixes
+
+*   Fixed a bug where calling [`QuantumCircuit.decompose()`](/api/qiskit/qiskit.circuit.QuantumCircuit#decompose "qiskit.circuit.QuantumCircuit.decompose") on an instruction that had no definition inside a `c_if` block would raise an error. Fixed [#13493](https://github.com/Qiskit/qiskit/issues/13493).
+
+*   Operations inside a control flow operation (e.g. [`QuantumCircuit.for_loop()`](/api/qiskit/qiskit.circuit.QuantumCircuit#for_loop "qiskit.circuit.QuantumCircuit.for_loop")) were not correctly decomposed when calling [`QuantumCircuit.decompose()`](/api/qiskit/qiskit.circuit.QuantumCircuit#decompose "qiskit.circuit.QuantumCircuit.decompose"). Fixed [#13544](https://github.com/Qiskit/qiskit/issues/13544).
+
+*   Added default definitions for [`FullAdderGate`](/api/qiskit/qiskit.circuit.library.FullAdderGate "qiskit.circuit.library.FullAdderGate"), [`HalfAdderGate`](/api/qiskit/qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate"), [`ModularAdderGate`](/api/qiskit/qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate") and [`MultiplierGate`](/api/qiskit/qiskit.circuit.library.MultiplierGate "qiskit.circuit.library.MultiplierGate") gates, allowing [`Operator`](/api/qiskit/qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")s to be constructed from quantum circuits containing these gates.
+
+*   Corrected the number of clean ancilla qubits required by [`FullAdderSynthesisV95`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisV95"), [`HalfAdderSynthesisV95`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisV95"), and [`ModularAdderSynthesisV95`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95 "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisV95") plugins.
+
+*   Added missing [`FullAdderSynthesisDefault`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.FullAdderSynthesisDefault") plugin that chooses the best decomposition for [`FullAdderGate`](/api/qiskit/qiskit.circuit.library.FullAdderGate "qiskit.circuit.library.FullAdderGate") based on the number of clean ancilla qubits available.
+
+*   Fixed [`HalfAdderSynthesisDefault`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault") and [`ModularAdderSynthesisDefault`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.ModularAdderSynthesisDefault") plugins, for [`HalfAdderGate`](/api/qiskit/qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate") and [`ModularAdderGate`](/api/qiskit/qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate") respectively, to choose the best decomposition based on the number of clean ancilla qubits available.
+
+*   Fixed an incorrect caching behavior during parameter assignment that could result in definitions within the [`EquivalenceLibrary`](/api/qiskit/qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") becoming corrupted. This resolves unexpected issues when running basis translation in parallel. Fixed [#13504](https://github.com/Qiskit/qiskit/issues/13504).
+
+*   Fixed a series of bugs when processing circuits with parameterized global phases in which the global phase was not properly assigned during parameter assignment. Known cases this affected include:
+
+    *   assigning parameters after calling [`QuantumCircuit.decompose()`](/api/qiskit/qiskit.circuit.QuantumCircuit#decompose "qiskit.circuit.QuantumCircuit.decompose") on a circuit, where the decomposition introduces a global phase
+    *   assigning parameters on a circuit constructed from a DAG via [`dag_to_circuit()`](/api/qiskit/converters#qiskit.converters.dag_to_circuit "qiskit.converters.dag_to_circuit")
+    *   assigning parameters on circuits created with [`pauli_twirl_2q_gates()`](/api/qiskit/circuit#qiskit.circuit.pauli_twirl_2q_gates "qiskit.circuit.pauli_twirl_2q_gates"), where the circuit to be twirled had a parameterized global phase
+
+    Fixed [#13534](https://github.com/Qiskit/qiskit/issues/13534).
+
+*   Fixed a bug in [`RZGate.control()`](/api/qiskit/qiskit.circuit.library.RZGate#control "qiskit.circuit.library.RZGate.control") for more than 1 control qubit, which used an unnecessarily expensive decomposition. Fixed [#13473](https://github.com/Qiskit/qiskit/issues/13473).
+
+<span id="relnotes-1-3-0" />
+
+<span id="id3" />
+
 ## 1.3.0
 
 <span id="relnotes-1-3-0-prelude" />
+
+<span id="id4" />
 
 ### Prelude
 
@@ -56,7 +106,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     twirled_circuit.draw("mpl")
     ```
 
-    ![\_images/release\_notes-1.png](/images/api/qiskit/release_notes-1.png)
+    ![\_images/release\_notes-1.png](/images/api/qiskit/release_notes-1.avif)
 
 *   Added binary arithmetic gates for inplace addition of two $n$-qubit registers, that is $|a\rangle |b\rangle \mapsto |a\rangle |a+b\rangle$. The [`ModularAdderGate`](/api/qiskit/qiskit.circuit.library.ModularAdderGate "qiskit.circuit.library.ModularAdderGate") implements addition modulo $2^n$, the [`HalfAdderGate`](/api/qiskit/qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate") includes a carry-out qubit, and the [`FullAdderGate`](/api/qiskit/qiskit.circuit.library.FullAdderGate "qiskit.circuit.library.FullAdderGate") includes both a carry-in and a carry-out qubit. See the respective documentation for details and examples.
 
@@ -89,7 +139,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     grover_op.draw('mpl')
     ```
 
-    ![\_images/release\_notes-2.png](/images/api/qiskit/release_notes-2.png)
+    ![\_images/release\_notes-2.png](/images/api/qiskit/release_notes-2.avif)
 
 *   A new data attribute, [`qiskit.circuit.CONTROL_FLOW_OP_NAMES`](/api/qiskit/circuit#qiskit.circuit.CONTROL_FLOW_OP_NAMES "qiskit.circuit.CONTROL_FLOW_OP_NAMES"), is available to easily find and check whether a given [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "qiskit.circuit.Instruction") is a control-flow operation by name.
 
@@ -126,7 +176,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     random_iqp.draw('mpl')
     ```
 
-    ![\_images/release\_notes-3.png](/images/api/qiskit/release_notes-3.png)
+    ![\_images/release\_notes-3.png](/images/api/qiskit/release_notes-3.avif)
 
 *   Added the [`MCMTGate`](/api/qiskit/qiskit.circuit.library.MCMTGate "qiskit.circuit.library.MCMTGate") to represent a multi-control multi-target operation as a gate. This gate representation of the existing [`MCMT`](/api/qiskit/qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT") circuit allows the compiler to select the best available implementation according to the number and the state of auxiliary qubits present in the circuit.
 
@@ -322,7 +372,7 @@ Qiskit version 1.3.0 brings in major performance and quality improvements for th
     tqc.draw(output='mpl')
     ```
 
-    ![\_images/release\_notes-4.png](/images/api/qiskit/release_notes-4.png)
+    ![\_images/release\_notes-4.png](/images/api/qiskit/release_notes-4.avif)
 
     This code snippet uses the [Rustiq](https://github.com/smartiel/rustiq-core) plugin to synthesize [`PauliEvolutionGate`](/api/qiskit/qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") objects in the quantum circuit qc. The plugin is called with the additional option `upto_phase = False`, allowing you to obtain smaller circuits at the expense of possibly not preserving the global phase. For the full list of supported options, see the documentation for [`PauliEvolutionSynthesisRustiq`](/api/qiskit/qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq "qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq").
 
@@ -366,7 +416,7 @@ $$
     tqc.draw('mpl')
     ```
 
-    ![\_images/release\_notes-5.png](/images/api/qiskit/release_notes-5.png)
+    ![\_images/release\_notes-5.png](/images/api/qiskit/release_notes-5.avif)
 
 <span id="relnotes-1-3-0-transpiler-features" />
 
@@ -403,7 +453,7 @@ $$
     transpile(qc).draw('mpl', fold=-1)
     ```
 
-    ![\_images/release\_notes-6.png](/images/api/qiskit/release_notes-6.png)
+    ![\_images/release\_notes-6.png](/images/api/qiskit/release_notes-6.avif)
 
     For the first MCX gate, qubits `5` and `6` can be used as clean ancillas, and the best available synthesis method `synth_mcx_n_clean_m15` will get chosen. For the second MCX gate, qubit `6` can be used as a clean ancilla, the method `synth_mcx_n_clean_m15` no longer applies, so the method `synth_mcx_1_clean_b95` will get chosen. For the third MCX gate, there are no ancilla qubits, and the method `synth_mcx_noaux_v24` will get chosen.
 
@@ -444,7 +494,7 @@ $$
 
 *   Added a new transpiler pass, [`RemoveIdentityEquivalent`](/api/qiskit/qiskit.transpiler.passes.RemoveIdentityEquivalent "qiskit.transpiler.passes.RemoveIdentityEquivalent") that is used to remove gates that are equivalent to an identity up to some tolerance. For example if you had a circuit like:
 
-    > ![\_images/release\_notes-7.png](/images/api/qiskit/release_notes-7.png)
+    > ![\_images/release\_notes-7.png](/images/api/qiskit/release_notes-7.avif)
 
     running the pass would eliminate the [`CPhaseGate`](/api/qiskit/qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate"):
 
@@ -460,7 +510,7 @@ $$
     > result.draw("mpl")
     > ```
     >
-    > ![\_images/release\_notes-8.png](/images/api/qiskit/release_notes-8.png)
+    > ![\_images/release\_notes-8.png](/images/api/qiskit/release_notes-8.avif)
 
 *   The [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") pass will now run the equivalent of the [`Collect2qBlocks`](/api/qiskit/qiskit.transpiler.passes.Collect2qBlocks "qiskit.transpiler.passes.Collect2qBlocks") pass internally if it was not run in a pass manager prior to the pass. Previously, [`Collect2qBlocks`](/api/qiskit/qiskit.transpiler.passes.Collect2qBlocks "qiskit.transpiler.passes.Collect2qBlocks") or [`Collect1qRuns`](/api/qiskit/qiskit.transpiler.passes.Collect1qRuns "qiskit.transpiler.passes.Collect1qRuns") had to be run before [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") for [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks") to do anything. By doing the collection internally, the overhead from the pass is reduced. If [`Collect2qBlocks`](/api/qiskit/qiskit.transpiler.passes.Collect2qBlocks "qiskit.transpiler.passes.Collect2qBlocks") or [`Collect1qRuns`](/api/qiskit/qiskit.transpiler.passes.Collect1qRuns "qiskit.transpiler.passes.Collect1qRuns") are run prior to [`ConsolidateBlocks`](/api/qiskit/qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks"), the collected runs by those passes from the property set are used and there is no change in behavior for the pass.
 
@@ -489,6 +539,8 @@ $$
 *   The minimum supported version of Python is now 3.9, this has been raised from the previous minimum support version of 3.8. This change was necessary because the upstream cPython project no longer supports Python 3.8.
 
 <span id="relnotes-1-3-0-circuits-upgrade-notes" />
+
+<span id="id5" />
 
 ### Circuits Upgrade Notes
 
@@ -757,6 +809,8 @@ $$
     *   [`qiskit.scheduler.ScheduleConfig`](/api/qiskit/scheduler#qiskit.scheduler.ScheduleConfig "qiskit.scheduler.ScheduleConfig")
 
 <span id="relnotes-1-3-0-bug-fixes" />
+
+<span id="id6" />
 
 ### Bug Fixes
 

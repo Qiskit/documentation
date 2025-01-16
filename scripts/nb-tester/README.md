@@ -3,6 +3,26 @@
 A tool to execute notebooks for testing, with certain features useful for
 notebooks that run jobs on IBM Quantum backends.
 
+## Installing
+
+To install, run the following command:
+
+```
+pip install git+https://github.com/Qiskit/documentation.git@main#subdirectory=scripts/nb-tester
+```
+
+> [!NOTE]
+> If adding this package as a dependency, change `main` to point to a specific
+> commit. For example:
+> ```
+> git+https://github.com/Qiskit/documentation.git@91bce99173f46be985698cc78ec4521856bf83b6#subdirectory=scripts/nb-tester
+> ```
+> This means changes to this repository won't break your tests. You can update
+> the commit when you're ready to pull in our changes.
+
+If adding this as a dependency to a `tox.ini` file, escape the `#` with a
+backslash like this: `\#`.
+
 ## Basic usage
 
 To use this tool, just run the `test-docs-notebooks` command, followed by a
@@ -166,3 +186,21 @@ Here's a few different commands you could run:
   wasn't passed as a filename arg.
 
 </details>
+
+### Patches and writing to disk
+
+By default, this tool will **not** allow writing patched notebooks to disk.
+This is to reduce the risk of accidentally displaying results from patched
+notebooks to users.
+
+For example, if we write the output of a notebook patched with
+`qiskit-fake-provider`, it will appear the results in the notebook come from
+the least busy IBM Quantum backend when they actually come from a noiseless
+simulator. This could be considered false advertising.
+
+If you have a patch that you know is OK to generate user-facing results, you
+can allow writing results from it by adding the comment `# nb-tester:
+allow-write` anywhere in the patch file. An example of a safe patch is the
+built-in `qiskit-ibm-runtime-open` patch: This only selects a real hardware
+backend that's included in the open plan. We use this to select open-access
+backends but submit jobs using our dedicated testing instance.

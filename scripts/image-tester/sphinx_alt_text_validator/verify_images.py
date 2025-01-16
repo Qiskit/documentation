@@ -18,7 +18,7 @@ from pathlib import Path
 
 def is_image(line: str) -> bool:
     """Determine if a line is an image"""
-    return line.strip().startswith((".. image:", ".. plot:"))
+    return line.strip().startswith((".. image::", ".. plot::"))
 
 
 def is_option(line: str) -> bool:
@@ -36,12 +36,12 @@ def is_valid_image(options: list[str]) -> bool:
     return alt_exists or nofigs_exists
 
 
-def validate_image(file_path: str) -> tuple[str, list[str]]:
-    """Validate all the images of a single file"""
+def validate_images(file_content: str) -> list[str]:
+    """Validate all the images found on a given reStructured Text"""
 
     invalid_images: list[str] = []
 
-    lines = Path(file_path).read_text().splitlines()
+    lines = file_content.splitlines()
 
     image_found = False
     options: list[str] = []
@@ -65,4 +65,11 @@ def validate_image(file_path: str) -> tuple[str, list[str]]:
         image_found = is_image(line)
         options = []
 
+    return invalid_images
+
+
+def validate_file(file_path: str) -> tuple[str, list[str]]:
+    """Validate all the images of a single file"""
+    file_content = Path(file_path).read_text(encoding="utf-8")
+    invalid_images = validate_images(file_content)
     return (file_path, invalid_images)

@@ -40,7 +40,7 @@ $$
 
   Below, we provide an example using the [`quimb_tebd`](backends-quimb-tebd#module-qiskit_addon_mpf.backends.quimb_tebd "qiskit_addon_mpf.backends.quimb_tebd") backend. We briefly explain each element.
 
-  First, we initialize a simple Heisenberg Hamiltonian which we would like to time-evolve. Since we are using a time-evolver based on [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.9)"), we also initialize the Hamiltonian using that library.
+  First, we initialize a simple Heisenberg Hamiltonian which we would like to time-evolve. Since we are using a time-evolver based on [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)"), we also initialize the Hamiltonian using that library.
 
   ```python
   >>> from quimb.tensor import ham_1d_heis
@@ -48,7 +48,7 @@ $$
   >>> hamil = ham_1d_heis(num_qubits, 0.8, 0.3, cyclic=False)
   ```
 
-  Next, we define the number of Trotter steps to make up our MPF, the target evolution time as well as the initial state ($\psi_{in}$ in \[1] and $\psi_0$ in \[2], resp.) with respect to which we compute the overlap between the time-evolution states. Here, we simply use the Néel state which we also construct using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.9)"):
+  Next, we define the number of Trotter steps to make up our MPF, the target evolution time as well as the initial state ($\psi_{in}$ in \[1] and $\psi_0$ in \[2], resp.) with respect to which we compute the overlap between the time-evolution states. Here, we simply use the Néel state which we also construct using [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)"):
 
   ```python
   >>> trotter_steps = [3, 4]
@@ -78,7 +78,7 @@ $$
 
   The [`ExactEvolverFactory`](#qiskit_addon_mpf.dynamic.ExactEvolverFactory "qiskit_addon_mpf.dynamic.ExactEvolverFactory") function should take a [`State`](backends#state "qiskit_addon_mpf.backends.State") object as its only positional argument and should return a [`Evolver`](backends#evolver "qiskit_addon_mpf.backends.Evolver") object, which will be used for computing the LHS of the $L_i$ elements (i.e. it should produce the exact time-evolution state, $\rho(t)$).
 
-  Here, we approximate the exact time-evolved state with a fourth-order Suzuki-Trotter formula using a small time step of 0.05. We also specify some [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.9)")-specific truncation options to bound the maximum bond dimension of the underlying tensor network as well as the minimum singular values of the split tensor network bonds.
+  Here, we approximate the exact time-evolved state with a fourth-order Suzuki-Trotter formula using a small time step of 0.05. We also specify some [`quimb`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/index.html#module-quimb "(in quimb v1.10)")-specific truncation options to bound the maximum bond dimension of the underlying tensor network as well as the minimum singular values of the split tensor network bonds.
 
   ```python
   >>> from qiskit_addon_mpf.backends.quimb_tebd import TEBDEvolver

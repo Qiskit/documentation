@@ -122,9 +122,7 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/open-source",
         "public/videos",
         "public/images/guides",
-        "public/images/migration",
         "public/images/optimize",
-        "public/images/qiskit-ibm-runtime",
         "public/images/qiskit-patterns",
     ]:
         dest = (

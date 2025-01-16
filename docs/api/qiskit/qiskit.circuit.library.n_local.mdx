@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.n_local
 
 # n\_local
 
-<Class id="qiskit.circuit.library.n_local" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/n_local/n_local.py#L54-L260" signature="qiskit.circuit.library.n_local(num_qubits, rotation_blocks, entanglement_blocks, entanglement='full', reps=3, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, name='nlocal')" modifiers="class">
+<Class id="qiskit.circuit.library.n_local" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/n_local/n_local.py#L54-L265" signature="qiskit.circuit.library.n_local(num_qubits, rotation_blocks, entanglement_blocks, entanglement='full', reps=3, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, name='nlocal')" modifiers="class">
   Bases:
 
   Construct an n-local variational circuit.
@@ -78,7 +78,7 @@ python_api_name: qiskit.circuit.library.n_local
   circuit.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-n\_local-1.png](/images/api/qiskit/qiskit-circuit-library-n_local-1.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-n_local-1.avif)
 
   Multiple gates per layer can be set by passing a list. Here, for example, we use Pauli-Y and Pauli-Z rotations in the rotation layer:
 
@@ -87,9 +87,7 @@ python_api_name: qiskit.circuit.library.n_local
   circuit.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-n\_local-2\_00.png](/images/api/qiskit/qiskit-circuit-library-n_local-2_00.png)
-
-  ![../\_images/qiskit-circuit-library-n\_local-2\_01.png](/images/api/qiskit/qiskit-circuit-library-n_local-2_01.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-n_local-2.avif)
 
   To omit rotation or entanglement layers, the block can be set to an empty list:
 
@@ -98,11 +96,7 @@ python_api_name: qiskit.circuit.library.n_local
   circuit.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-n\_local-3\_00.png](/images/api/qiskit/qiskit-circuit-library-n_local-3_00.png)
-
-  ![../\_images/qiskit-circuit-library-n\_local-3\_01.png](/images/api/qiskit/qiskit-circuit-library-n_local-3_01.png)
-
-  ![../\_images/qiskit-circuit-library-n\_local-3\_02.png](/images/api/qiskit/qiskit-circuit-library-n_local-3_02.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-n_local-3.avif)
 
   The entanglement can be set explicitly via the `entanglement` argument:
 
@@ -112,15 +106,21 @@ python_api_name: qiskit.circuit.library.n_local
   circuit.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-n\_local-4\_00.png](/images/api/qiskit/qiskit-circuit-library-n_local-4_00.png)
-
-  ![../\_images/qiskit-circuit-library-n\_local-4\_01.png](/images/api/qiskit/qiskit-circuit-library-n_local-4_01.png)
-
-  ![../\_images/qiskit-circuit-library-n\_local-4\_02.png](/images/api/qiskit/qiskit-circuit-library-n_local-4_02.png)
-
-  ![../\_images/qiskit-circuit-library-n\_local-4\_03.png](/images/api/qiskit/qiskit-circuit-library-n_local-4_03.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-n_local-4.avif)
 
   We can set different entanglements per layer, by specifing a callable that takes as input the current layer index, and returns the entanglement structure. For example, the following uses different entanglements for odd and even layers:
+
+  ```python
+  def entanglement(layer_index):
+      if layer_index % 2 == 0:
+          return [[0, 1], [0, 2]]
+      return [[1, 2]]
+
+  circuit = n_local(3, "x", "cx", entanglement, reps=3, insert_barriers=True)
+  circuit.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-n_local-5.avif)
 
   **Parameters**
 

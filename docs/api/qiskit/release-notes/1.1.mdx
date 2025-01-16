@@ -557,7 +557,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 *   Added a new optimization transpiler pass, [`ElidePermutations`](/api/qiskit/1.1/qiskit.transpiler.passes.ElidePermutations "qiskit.transpiler.passes.ElidePermutations"), which is designed to run prior to the [Layout Stage](/api/qiskit/1.1/transpiler#layout-stage) and will optimize away any [`SwapGate`](/api/qiskit/1.1/qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s and [`PermutationGate`](/api/qiskit/1.1/qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")s in a circuit by permuting virtual qubits. For example, taking a circuit with [`SwapGate`](/api/qiskit/1.1/qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s:
 
-    ![\_images/release\_notes-1.png](/images/api/qiskit/1.1/release_notes-1.png)
+    ![\_images/release\_notes-1.png](/images/api/qiskit/1.1/release_notes-1.avif)
 
     will remove the swaps when the pass is run:
 
@@ -575,7 +575,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
     ElidePermutations()(qc).draw("mpl")
     ```
 
-    ![\_images/release\_notes-2.png](/images/api/qiskit/1.1/release_notes-2.png)
+    ![\_images/release\_notes-2.png](/images/api/qiskit/1.1/release_notes-2.avif)
 
     The pass also sets the `virtual_permutation_layout` property set, storing the permutation of the virtual qubits at the end of the circuit that was optimized away.
 
@@ -640,7 +640,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
 
 *   Added a new transpiler pass, [`RemoveFinalReset`](/api/qiskit/1.1/qiskit.transpiler.passes.RemoveFinalReset "qiskit.transpiler.passes.RemoveFinalReset"), which will remove any [`Reset`](/api/qiskit/1.1/circuit#qiskit.circuit.Reset "qiskit.circuit.Reset") operation which is the final instruction on a qubit wire. For example, taking a circuit with final [`Reset`](/api/qiskit/1.1/circuit#qiskit.circuit.Reset "qiskit.circuit.Reset")s:
 
-    ![\_images/release\_notes-3.png](/images/api/qiskit/1.1/release_notes-3.png)
+    ![\_images/release\_notes-3.png](/images/api/qiskit/1.1/release_notes-3.avif)
 
     will remove the final resets when the pass is run:
 
@@ -657,11 +657,11 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
     RemoveFinalReset()(qc).draw("mpl")
     ```
 
-    ![\_images/release\_notes-4.png](/images/api/qiskit/1.1/release_notes-4.png)
+    ![\_images/release\_notes-4.png](/images/api/qiskit/1.1/release_notes-4.avif)
 
 *   Added a new transpiler pass [`StarPreRouting`](/api/qiskit/1.1/qiskit.transpiler.passes.StarPreRouting "qiskit.transpiler.passes.StarPreRouting") which is designed to identify star connectivity subcircuits and then replace them with an optimal linear routing. This is useful for certain circuits that are composed of this circuit connectivity such as Bernstein-Vazirani and QFT. For example:
 
-    ![\_images/release\_notes-5.png](/images/api/qiskit/1.1/release_notes-5.png)
+    ![\_images/release\_notes-5.png](/images/api/qiskit/1.1/release_notes-5.avif)
 
     ```python
     from qiskit.circuit import QuantumCircuit
@@ -673,7 +673,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
     StarPreRouting()(qc).draw("mpl")
     ```
 
-    ![\_images/release\_notes-6.png](/images/api/qiskit/1.1/release_notes-6.png)
+    ![\_images/release\_notes-6.png](/images/api/qiskit/1.1/release_notes-6.avif)
 
     Alternatively, an existing preset pass manager can be extended by:
 
@@ -693,7 +693,7 @@ The Qiskit 1.1.0 release is a minor feature release that includes a myriad of ne
     result.draw("mpl")
     ```
 
-    ![\_images/release\_notes-7.png](/images/api/qiskit/1.1/release_notes-7.png)
+    ![\_images/release\_notes-7.png](/images/api/qiskit/1.1/release_notes-7.avif)
 
 <span id="relnotes-1-1-0-visualization-features" />
 

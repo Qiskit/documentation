@@ -23,6 +23,7 @@ export const IGNORED_FILES: Set<string> = new Set([]);
 // These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
+  "https://auth.quantum.ibm.com/api",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
@@ -60,6 +61,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
   "https://doi.org/10.1103/PhysRevLett.103.150502",
   "https://doi.org/10.1103/PhysRevA.99.032331",
+  "https://aip.scitation.org/doi/10.1063/1.5019371",
+  "https://aip.scitation.org/doi/10.1063/1.5141835",
+  "https://pubs.aip.org/aip/rsi/article/88/10/104703/836456",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
