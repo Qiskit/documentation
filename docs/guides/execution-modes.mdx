@@ -5,7 +5,7 @@ description: An overview of the available execution modes in Qiskit Runtime; ses
 ---
 # Introduction to Qiskit Runtime execution modes
 
-There are several ways to run workloads, depending on your needs.  Execution modes determine how your jobs are scheduled, and choosing the right execution mode allows your jobs to run efficiently within your time budget.
+There are several ways to run workloads, depending on your needs.  Execution modes determine how your jobs are scheduled, and choosing the right execution mode allows your jobs to run efficiently within your budget.
 
 
 **Job mode**: A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](/guides/primitives-examples) for examples.
@@ -60,8 +60,9 @@ The the benefits of each are summarazed below:
    - There is usually minimal delay between jobs, which can help avoid drift.
    - If you partition your workload into multiple jobs and run them in batch mode, you can get results from individual jobs, which makes them more flexible to work with.
 - **Session**
-   - Dedicated and exclusive access to the QPU during the session active window, and no other users’ or QPU jobs can run.
-   - Useful for workloads that don’t have all inputs ready at the outset.
+   - Dedicated and exclusive access to the QPU during the session active window.
+   - Can run multiple experiments simultaneously.
+   - Useful for workloads that don’t have all inputs ready at the outset or for iterative workloads that require dedicated access.
 - **Job**
    - Easiest to use when running a small experiment.
    - Might run sooner than batch mode.
