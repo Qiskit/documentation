@@ -14,13 +14,13 @@ There are several ways to run workloads, depending on your needs.  Execution mod
 The queuing time does not decrease for the first job submitted within a session or batch. Therefore, sessions and batches do not provide any benefits when running a single job. Additionally, sessions and batches do not work on simulators because simulators do not have a queue.
 </Admonition>
 
-[**Batch mode**](/guides/run-jobs-batch): A multi-job manager for efficiently running an experiment that is comprised of bundles of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.
+**Batch mode**: A multi-job manager for efficiently running an experiment that is comprised of bundles of independent jobs. Use batch mode to submit multiple primitive jobs simultaneously.
 
 To run in batch mode, specify `mode=batch` when instantiating a primitive or run the job in a batch context manager. See [Run jobs in a batch](/guides/run-jobs-batch) for examples.
 
-[**Session mode**](/guides/sessions): A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously, taking advantage of parallelism in the stack. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources.
+**Session mode**: A dedicated window for running a multi-job workload. This allows users to experiment with variational algorithms in a more predictable way and even run multiple experiments simultaneously, taking advantage of parallelism in the stack. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources.
 
- To run in session mode, specify `mode=session` when instantiating a primitive, or run the job in a session context manager. Learn more about sessions in the [Introduction to sessions,](/guides/sessions) and see [Run jobs in a session](/guides/run-jobs-session) for examples.
+ To run in session mode, specify `mode=session` when instantiating a primitive, or run the job in a session context manager. See [Run jobs in a session](/guides/run-jobs-session) for examples.
 
  <Admonition type="note">
 Session execution mode is not supported in the Open Plan. Jobs will run in job mode instead.
