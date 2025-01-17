@@ -22,6 +22,32 @@ from qiskit_ibm_runtime import QiskitRuntimeService, Session, SamplerV2 as Sampl
 service = QiskitRuntimeService()
 ```
 
+## Usage patterns
+
+Sessions are especially useful for algorithms that require classical post-processing, where jobs submitted within the interactive time-out are processed immediately. If you want to submit jobs in a batch instead, see [Run jobs in a batch.](run-jobs-batch)
+
+Example: Run an iterative workload that uses the classical SciPy optimizer to minimize a cost function. In this model, SciPy uses the output of the cost function to calculate its next input.
+
+```python
+def cost_func(params, ansatz, hamiltonian, estimator):
+    # Return estimate of energy from estimator
+
+    energy = estimator.run(ansatz, hamiltonian, parameter_values=params).result().values[0]
+    return energy
+
+x0 = 2 * np.pi * np.random.random(num_params)
+
+session = Session(backend=backend)
+
+# If using qiskit-ibm-runtime earlier than 0.24.0, change `mode=` to `session=`
+estimator = Estimator(mode=session, options={"shots": int(1e4)})
+res = minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method="cobyla")
+
+# Close the session because we didn't use a context manager.
+session.close()
+```
+
+
 ## Open a session
 
 You can open a runtime session by using the context manager `with Session(...)` or by initializing the `Session`
@@ -74,8 +100,22 @@ To determine a session's max TTL or ITTL, follow the instructions in [Determine 
 
 For more information about these settings, see [Session maximum execution time.](/guides/max-execution-time#session-max-time)
 
+<span id="ends"></span>
+## End a session
+
+A session ends in the following circumstances:
+
+* The maximum timeout (TTL) value is reached, resulting in the cancelation of all queued jobs.
+* The session is manually canceled, resulting in the cancelation of all queued jobs.
+* The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
+* If you use Session as a context manager, that is,  `with Session()`, the session is automatically closed when the context ends (the same behavior as using `session.close()`).
+
+<Admonition type = "note">
+When a session ends, the QPU finishes running any job that is currently running.
+</Admonition>
+
 <span id="close"></span>
-## Close a session
+### Close a session
 
 A session automatically closes when it exits the context manager. When the session context manager is exited, the session is put into "In progress, not accepting new jobs" status. This means that the session finishes processing all running or queued jobs until the maximum timeout value is reached. After all jobs are completed, the session is immediately closed. This allows the scheduler to run the next job without waiting for the session interactive timeout, thereby reducing the average job queuing time. You cannot submit jobs to a closed session.
 
@@ -109,7 +149,7 @@ session.close()
 ```
 
 <span id="cancel"></span>
-## Cancel a session
+### Cancel a session
 
 Canceling a session immediately closes it, failing all queued jobs and preventing new submission. Use the `session.cancel()` method to cancel a session.  Any jobs that are already running continue to run but queued jobs are put into a failed state and no further jobs can be submitted to the session. This is a convenient way to quickly fail all queued jobs within a session.
 
