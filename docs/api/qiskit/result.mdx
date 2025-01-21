@@ -18,11 +18,11 @@ python_api_name: qiskit.result
 
 ## Core classes
 
-|                                                                                                       |                                                            |
-| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`Result`](qiskit.result.Result "qiskit.result.Result")(backend\_name, backend\_version, ...\[, ...]) | Model for Results.                                         |
-| [`ResultError`](qiskit.result.ResultError "qiskit.result.ResultError")(error)                         | Exceptions raised due to errors in result output.          |
-| [`Counts`](qiskit.result.Counts "qiskit.result.Counts")(data\[, time\_taken, creg\_sizes, ...])       | A class to store a counts result from a circuit execution. |
+|                                                                                                |                                                            |
+| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`Result`](result-result "qiskit.result.Result")(backend\_name, backend\_version, ...\[, ...]) | Model for Results.                                         |
+| [`ResultError`](result-result-error "qiskit.result.ResultError")(error)                        | Exceptions raised due to errors in result output.          |
+| [`Counts`](result-counts "qiskit.result.Counts")(data\[, time\_taken, creg\_sizes, ...])       | A class to store a counts result from a circuit execution. |
 
 ## Marginalization
 
@@ -33,7 +33,7 @@ python_api_name: qiskit.result
 
   **Parameters**
 
-  *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")  *|*[*Result*](qiskit.result.Result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
+  *   **result** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")  *|*[*Result*](result-result "qiskit.result.result.Result")) – result to be marginalized (a Result object or a dict(str, int) of counts).
   *   **indices** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – The bit positions of interest to marginalize over. If `None` (default), do not marginalize at all.
   *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Default: False. Operates on the original Result argument if True, leading to loss of original Job Result. It has no effect if `result` is a dict.
   *   **format\_marginal** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Default: False. If True, takes the output of marginalize and formats it with placeholders between cregs and for non-indices.
@@ -47,7 +47,7 @@ python_api_name: qiskit.result
 
   **Return type**
 
-  [Result](qiskit.result.Result "qiskit.result.Result") or [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")([str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
+  [Result](result-result "qiskit.result.Result") or [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")([str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"))
 
   **Raises**
 
@@ -112,10 +112,10 @@ python_api_name: qiskit.result
 
 ## Distributions
 
-|                                                                                                               |                                                          |
-| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`ProbDistribution`](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
-| [`QuasiDistribution`](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")(data\[, shots, ...]) | A dict-like class for representing quasi-probabilities.  |
+|                                                                                                         |                                                          |
+| ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| [`ProbDistribution`](result-prob-distribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
+| [`QuasiDistribution`](result-quasi-distribution "qiskit.result.QuasiDistribution")(data\[, shots, ...]) | A dict-like class for representing quasi-probabilities.  |
 
 ## Expectation values
 
@@ -128,8 +128,8 @@ python_api_name: qiskit.result
 
   **Parameters**
 
-  *   **dist** ([*Counts*](qiskit.result.Counts "qiskit.result.Counts")  *or*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")  *or*[*ProbDistribution*](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Input sampled distribution
-  *   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or PauliOp or PauliSumOp or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
+  *   **dist** ([*Counts*](result-counts "qiskit.result.Counts")  *or*[*QuasiDistribution*](result-quasi-distribution "qiskit.result.QuasiDistribution")  *or*[*ProbDistribution*](result-prob-distribution "qiskit.result.ProbDistribution")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Input sampled distribution
+  *   **oper** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *or*[*Pauli*](quantum-info-pauli "qiskit.quantum_info.Pauli")  *or PauliOp or PauliSumOp or*[*SparsePauliOp*](quantum-info-sparse-pauli-op "qiskit.quantum_info.SparsePauliOp")) – The operator for the observable
 
   **Returns**
 
@@ -146,9 +146,9 @@ python_api_name: qiskit.result
 
 ## Mitigation
 
-|                                                                                                                                         |                           |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`BaseReadoutMitigator`](qiskit.result.BaseReadoutMitigator "qiskit.result.BaseReadoutMitigator")()                                     | This class is DEPRECATED. |
-| [`CorrelatedReadoutMitigator`](qiskit.result.CorrelatedReadoutMitigator "qiskit.result.CorrelatedReadoutMitigator")(assignment\_matrix) | This class is DEPRECATED. |
-| [`LocalReadoutMitigator`](qiskit.result.LocalReadoutMitigator "qiskit.result.LocalReadoutMitigator")(\[assignment\_matrices, ...])      | This class is DEPRECATED. |
+|                                                                                                                                    |                           |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`BaseReadoutMitigator`](result-base-readout-mitigator "qiskit.result.BaseReadoutMitigator")()                                     | This class is DEPRECATED. |
+| [`CorrelatedReadoutMitigator`](result-correlated-readout-mitigator "qiskit.result.CorrelatedReadoutMitigator")(assignment\_matrix) | This class is DEPRECATED. |
+| [`LocalReadoutMitigator`](result-local-readout-mitigator "qiskit.result.LocalReadoutMitigator")(\[assignment\_matrices, ...])      | This class is DEPRECATED. |
 

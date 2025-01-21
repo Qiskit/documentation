@@ -23,7 +23,7 @@ The fundamental element of quantum computing is the *quantum circuit*. This is a
 
   *   [the API overview of the whole circuit module](#circuit-module-api)
   *   [the detailed discussion about how circuits are represented](#circuit-repr)
-  *   the core [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class for how to build and query circuits
+  *   the core [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") class for how to build and query circuits
   *   [information on construction custom instructions](#circuit-custom-gates)
   *   [ways to work with circuit-level objects](#circuit-working-with)
   *   [discussion of Qiskit conventions for circuits, matrices and state labelling](#circuit-conventions)
@@ -38,7 +38,7 @@ In Qiskit, circuits can be defined in one of two regimes:
 
 You convert from an abstract circuit to a physical circuit by using [Qiskit’s transpilation package](transpiler#qiskit-transpiler), of which the top-level access point is [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile").
 
-In Qiskit, a quantum circuit is represented by the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class. Below is an example of a quantum circuit that makes a three-qubit Greenberger–Horne–Zeilinger (GHZ) state defined as:
+In Qiskit, a quantum circuit is represented by the [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") class. Below is an example of a quantum circuit that makes a three-qubit Greenberger–Horne–Zeilinger (GHZ) state defined as:
 
 $$
 |\psi\rangle = \left( |000\rangle + |111\rangle \right) / \sqrt{2}
@@ -149,7 +149,7 @@ When mapping to hardware, virtual qubits must be assigned to *hardware qubits*. 
 
 All objects here are described in more detail, and in their greater context in the following sections. This section provides an overview of the API elements documented here.
 
-The principal class is [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), which has its own documentation page, including an in-depth section on building circuits. Quantum data and the simplest classical data are represented by “bits” and “registers”:
+The principal class is [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"), which has its own documentation page, including an in-depth section on building circuits. Quantum data and the simplest classical data are represented by “bits” and “registers”:
 
 *   **[`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit"), an atom of data**
 
@@ -163,31 +163,31 @@ The principal class is [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.
     *   [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")
     *   [`AncillaRegister`](#qiskit.circuit.AncillaRegister "qiskit.circuit.AncillaRegister")
 
-Within a circuit, each complete [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") is made up of an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") (which might be an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), or some other subclass) and the qubit and clbit operands. The core base classes here are:
+Within a circuit, each complete [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction") is made up of an [`Operation`](circuit-operation "qiskit.circuit.Operation") (which might be an [`Instruction`](circuit-instruction "qiskit.circuit.Instruction"), a [`Gate`](circuit-gate "qiskit.circuit.Gate"), or some other subclass) and the qubit and clbit operands. The core base classes here are:
 
-*   [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction"), an operation and its operands
+*   [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction"), an operation and its operands
 
-*   [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet"), a temporary handle to a slice of circuit data
+*   [`InstructionSet`](circuit-instruction-set "qiskit.circuit.InstructionSet"), a temporary handle to a slice of circuit data
 
-*   **[`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation"), any abstract mathematical object or hardware instruction**
+*   **[`Operation`](circuit-operation "qiskit.circuit.Operation"), any abstract mathematical object or hardware instruction**
 
-    *   **[`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), a subclass with applied abstract modifiers**
+    *   **[`AnnotatedOperation`](circuit-annotated-operation "qiskit.circuit.AnnotatedOperation"), a subclass with applied abstract modifiers**
 
         *   [`InverseModifier`](#qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier")
         *   [`ControlModifier`](#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier")
         *   [`PowerModifier`](#qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier")
 
-The most common concrete subclass of the minimal, abstract [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface is the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"). While [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") can include abstract mathematical objects, an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") is something that could conceivably run directly on hardware. This is in turn subclassed by [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") and [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") that further add unitarity and controlled semantics on top:
+The most common concrete subclass of the minimal, abstract [`Operation`](circuit-operation "qiskit.circuit.Operation") interface is the [`Instruction`](circuit-instruction "qiskit.circuit.Instruction"). While [`Operation`](circuit-operation "qiskit.circuit.Operation") can include abstract mathematical objects, an [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") is something that could conceivably run directly on hardware. This is in turn subclassed by [`Gate`](circuit-gate "qiskit.circuit.Gate") and [`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate") that further add unitarity and controlled semantics on top:
 
-*   [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), representing a hardware-based instruction
-*   [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), representing a hardware instruction that is unitary
-*   [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate"), representing a gate with control structure.
+*   [`Instruction`](circuit-instruction "qiskit.circuit.Instruction"), representing a hardware-based instruction
+*   [`Gate`](circuit-gate "qiskit.circuit.Gate"), representing a hardware instruction that is unitary
+*   [`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate"), representing a gate with control structure.
 
-Qiskit includes a large library of standard gates and circuits, which is documented in [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library"). Many of these are declared as Python-object singletons. The machinery for this is described in detail in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"), of which the main classes are each a singleton form of the standard instruction–gate hierarchy:
+Qiskit includes a large library of standard gates and circuits, which is documented in [`qiskit.circuit.library`](circuit-library#module-qiskit.circuit.library "qiskit.circuit.library"). Many of these are declared as Python-object singletons. The machinery for this is described in detail in [`qiskit.circuit.singleton`](circuit-singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"), of which the main classes are each a singleton form of the standard instruction–gate hierarchy:
 
-*   [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
-*   [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
-*   [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
+*   [`SingletonInstruction`](circuit-singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
+*   [`SingletonGate`](circuit-singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
+*   [`SingletonControlledGate`](circuit-singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
 Some instructions are particularly special in that they affect the control flow or data flow of the circuit. The top-level ones are:
 
@@ -201,31 +201,31 @@ Some instructions are particularly special in that they affect the control flow 
 
 *   [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store"), to write a real-time classical expression to a storage location
 
-*   **[`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"), which has specific subclasses:**
+*   **[`ControlFlowOp`](circuit-control-flow-op "qiskit.circuit.ControlFlowOp"), which has specific subclasses:**
 
-    *   [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp"), to break out of the nearest containing loop
-    *   [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp"), to move immediately to the next iteration of the containing loop
-    *   [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp"), to loop over a fixed range of values
-    *   [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp"), to conditionally enter one of two subcircuits
-    *   [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp"), to conditionally enter one of many subcircuits
-    *   [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), to repeat a subcircuit until a condition is falsified.
+    *   [`BreakLoopOp`](circuit-break-loop-op "qiskit.circuit.BreakLoopOp"), to break out of the nearest containing loop
+    *   [`ContinueLoopOp`](circuit-continue-loop-op "qiskit.circuit.ContinueLoopOp"), to move immediately to the next iteration of the containing loop
+    *   [`ForLoopOp`](circuit-for-loop-op "qiskit.circuit.ForLoopOp"), to loop over a fixed range of values
+    *   [`IfElseOp`](circuit-if-else-op "qiskit.circuit.IfElseOp"), to conditionally enter one of two subcircuits
+    *   [`SwitchCaseOp`](circuit-switch-case-op "qiskit.circuit.SwitchCaseOp"), to conditionally enter one of many subcircuits
+    *   [`WhileLoopOp`](circuit-while-loop-op "qiskit.circuit.WhileLoopOp"), to repeat a subcircuit until a condition is falsified.
 
-[Circuits can include classical expressions that are evaluated in real time](#circuit-repr-real-time-classical), while the QPU is executing a single shot of the circuit. These are primarily documented in the module documentation of [`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical"). You might be particularly interested in the base classes (which are not exposed from the [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") root):
+[Circuits can include classical expressions that are evaluated in real time](#circuit-repr-real-time-classical), while the QPU is executing a single shot of the circuit. These are primarily documented in the module documentation of [`qiskit.circuit.classical`](circuit-classical#module-qiskit.circuit.classical "qiskit.circuit.classical"). You might be particularly interested in the base classes (which are not exposed from the [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") root):
 
-*   [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), a typed classical storage location in a circuit
-*   [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr"), a real-time-evaluated expression
-*   [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type"), the classical type of an expression.
+*   [`Var`](circuit-classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), a typed classical storage location in a circuit
+*   [`Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr"), a real-time-evaluated expression
+*   [`Type`](circuit-classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type"), the classical type of an expression.
 
 In addition to this real-time expression evaluation, which is limited by classical hardware representations of data, Qiskit has the concept of “compile-time” parametrization, which is done in abstract symbolic algebra. These are typically used to represent gate angles in high-level algorithms that might want to perform numerical derivatives, but they are an older part of Qiskit than the real-time evaluation, so are still used in some places to do general parametrization. The main related classes are:
 
-*   [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"), the atom of compile-time expressions
-*   [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"), a symbolic calculation on parameters
-*   [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector"), a convenience collection of many [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s
+*   [`Parameter`](circuit-parameter "qiskit.circuit.Parameter"), the atom of compile-time expressions
+*   [`ParameterExpression`](circuit-parameter-expression "qiskit.circuit.ParameterExpression"), a symbolic calculation on parameters
+*   [`ParameterVector`](circuit-parameter-vector "qiskit.circuit.ParameterVector"), a convenience collection of many [`Parameter`](circuit-parameter "qiskit.circuit.Parameter")s
 
 The [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") module also exposes some calculation classes that work with circuits to assist compilation workflows. These include:
 
-*   [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary"), a database of decomposition relations between gates and circuits
-*   [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"), a mutable instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") which is used by default by the compiler’s [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator").
+*   [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary"), a database of decomposition relations between gates and circuits
+*   [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"), a mutable instance of [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary") which is used by default by the compiler’s [`BasisTranslator`](transpiler-passes-basis-translator "qiskit.transpiler.passes.BasisTranslator").
 
 There is also a utility for generating random circuits:
 
@@ -239,9 +239,9 @@ Finally, the circuit module has its own exception class, to indicate when things
 
 ## Representation of circuits in Qiskit
 
-The main user-facing class for representing circuits is [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). This can be either an abstract circuit or a physical circuit. There is much more information about the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class itself and the multitude of available methods on it in its class documentation.
+The main user-facing class for representing circuits is [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"). This can be either an abstract circuit or a physical circuit. There is much more information about the [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") class itself and the multitude of available methods on it in its class documentation.
 
-Internally, a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") contains the qubits, classical bits, compile-time parameters, real-time variables, and other tracking information about the data it acts on and how it is parametrized. It then contains a sequence of [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s, which contain the particular operation (gate, measurement, etc) and its operands (the qubits and classical bits).
+Internally, a [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") contains the qubits, classical bits, compile-time parameters, real-time variables, and other tracking information about the data it acts on and how it is parametrized. It then contains a sequence of [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction")s, which contain the particular operation (gate, measurement, etc) and its operands (the qubits and classical bits).
 
 ### Bits and registers
 
@@ -378,7 +378,7 @@ Each of the defined bit subtypes has an associated register, which have the same
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 </Class>
 
-A common way to instantiate several bits at once is to create a register, such as by `QuantumRegister("my_qreg", 5)`. This has the advantage that you can give that collection of bits a name, which will appear during circuit visualizations ([`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw")) and exports to interchange languages (see [`qasm2`](qasm2#module-qiskit.qasm2 "qiskit.qasm2") and [`qasm3`](qasm3#module-qiskit.qasm3 "qiskit.qasm3")). You can also pass a name and a list of pre-constructed bits, but this creates an “aliasing register”, which are very poorly supported on hardware.
+A common way to instantiate several bits at once is to create a register, such as by `QuantumRegister("my_qreg", 5)`. This has the advantage that you can give that collection of bits a name, which will appear during circuit visualizations ([`QuantumCircuit.draw()`](circuit-quantum-circuit#draw "qiskit.circuit.QuantumCircuit.draw")) and exports to interchange languages (see [`qasm2`](qasm-2#module-qiskit.qasm2 "qiskit.qasm2") and [`qasm3`](qasm-3#module-qiskit.qasm3 "qiskit.qasm3")). You can also pass a name and a list of pre-constructed bits, but this creates an “aliasing register”, which are very poorly supported on hardware.
 
 Circuits track registers, but registers themselves impart almost no behavioral differences on circuits. The only exception is that [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s can be implicitly cast to unsigned integers for use in conditional comparisons of [control flow operations](#circuit-control-flow-repr).
 
@@ -386,67 +386,67 @@ Classical registers and bits were the original way of representing classical dat
 
 ### Instruction contexts
 
-The scalar type of the [`QuantumCircuit.data`](qiskit.circuit.QuantumCircuit#data "qiskit.circuit.QuantumCircuit.data") sequence is the “instruction context” object, [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction"). This is essentially just a data class that contains a representation of what is to be done (its [`operation`](qiskit.circuit.CircuitInstruction#operation "qiskit.circuit.CircuitInstruction.operation")), and the data it acts on (the [`qubits`](qiskit.circuit.CircuitInstruction#qubits "qiskit.circuit.CircuitInstruction.qubits") and [`clbits`](qiskit.circuit.CircuitInstruction#clbits "qiskit.circuit.CircuitInstruction.clbits")).
+The scalar type of the [`QuantumCircuit.data`](circuit-quantum-circuit#data "qiskit.circuit.QuantumCircuit.data") sequence is the “instruction context” object, [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction"). This is essentially just a data class that contains a representation of what is to be done (its [`operation`](circuit-circuit-instruction#operation "qiskit.circuit.CircuitInstruction.operation")), and the data it acts on (the [`qubits`](circuit-circuit-instruction#qubits "qiskit.circuit.CircuitInstruction.qubits") and [`clbits`](circuit-circuit-instruction#clbits "qiskit.circuit.CircuitInstruction.clbits")).
 
-|                                                                                               |                                                                                                                                                                 |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") | A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the `operation` and various operands. |
+|                                                                                         |                                                                                                                                                           |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction") | A single instruction in a [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"), comprised of the `operation` and various operands. |
 
-Programmatically, this class is actually implemented in Rust and is a constructed handle to internal data within Rust space. Mutations to instances of this class will not be reflected in the circuit. In general, you cannot mutate instruction contexts that are already in the circuit directly; the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") interface is designed for storing and building circuits, while the [transpiler and its passes](transpiler#qiskit-transpiler), and its intermediate [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") representation, are where you should look for an interface to mutate circuits.
+Programmatically, this class is actually implemented in Rust and is a constructed handle to internal data within Rust space. Mutations to instances of this class will not be reflected in the circuit. In general, you cannot mutate instruction contexts that are already in the circuit directly; the [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") interface is designed for storing and building circuits, while the [transpiler and its passes](transpiler#qiskit-transpiler), and its intermediate [`DAGCircuit`](dagcircuit-dag-circuit "qiskit.dagcircuit.DAGCircuit") representation, are where you should look for an interface to mutate circuits.
 
-The [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods that add instructions to circuits (such as [`append()`](qiskit.circuit.QuantumCircuit#append "qiskit.circuit.QuantumCircuit.append"), and all the helper standard-gate methods) return an [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet"), which is a handle to several [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s simultaneously.
+The [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") methods that add instructions to circuits (such as [`append()`](circuit-quantum-circuit#append "qiskit.circuit.QuantumCircuit.append"), and all the helper standard-gate methods) return an [`InstructionSet`](circuit-instruction-set "qiskit.circuit.InstructionSet"), which is a handle to several [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction")s simultaneously.
 
-|                                                                                                               |                                             |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")(\*\[, resource\_requester]) | Instruction collection, and their contexts. |
+|                                                                                                         |                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`InstructionSet`](circuit-instruction-set "qiskit.circuit.InstructionSet")(\*\[, resource\_requester]) | Instruction collection, and their contexts. |
 
-This [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet") is now little used in Qiskit. It provides a very minimal set of methods to perform post-append mutations on instructions (which *will* be propagated to the circuit), but these are now discouraged and you should use the alternatives noted in those methods.
+This [`InstructionSet`](circuit-instruction-set "qiskit.circuit.InstructionSet") is now little used in Qiskit. It provides a very minimal set of methods to perform post-append mutations on instructions (which *will* be propagated to the circuit), but these are now discouraged and you should use the alternatives noted in those methods.
 
 <span id="circuit-operations-instructions" />
 
 ### Operations, instructions and gates
 
-Within a [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction"), the minimal interface that any operation must fulfill is [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation"). This is a *very* high level view, and only usable for abstract circuits. The main purpose of treating operations as [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") is to allow arbitrary mathematical objects (such as [`quantum_info.Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) to be added to abstract circuits directly.
+Within a [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction"), the minimal interface that any operation must fulfill is [`Operation`](circuit-operation "qiskit.circuit.Operation"). This is a *very* high level view, and only usable for abstract circuits. The main purpose of treating operations as [`Operation`](circuit-operation "qiskit.circuit.Operation") is to allow arbitrary mathematical objects (such as [`quantum_info.Operator`](quantum-info-operator "qiskit.quantum_info.Operator")) to be added to abstract circuits directly.
 
-|                                                                      |                              |
-| -------------------------------------------------------------------- | ---------------------------- |
-| [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation")() | Quantum operation interface. |
+|                                                               |                              |
+| ------------------------------------------------------------- | ---------------------------- |
+| [`Operation`](circuit-operation "qiskit.circuit.Operation")() | Quantum operation interface. |
 
-Most operations, including all operations on physical circuits, are instances of the more concretely defined [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"). This represents any instruction that some QPU might be able to carry out natively, such as [`Measure`](#qiskit.circuit.Measure "qiskit.circuit.Measure"). [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") need not be unitary (much as [`Measure`](#qiskit.circuit.Measure "qiskit.circuit.Measure") isn’t); an instruction is specifically unitary if it is a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate").
+Most operations, including all operations on physical circuits, are instances of the more concretely defined [`Instruction`](circuit-instruction "qiskit.circuit.Instruction"). This represents any instruction that some QPU might be able to carry out natively, such as [`Measure`](#qiskit.circuit.Measure "qiskit.circuit.Measure"). [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") need not be unitary (much as [`Measure`](#qiskit.circuit.Measure "qiskit.circuit.Measure") isn’t); an instruction is specifically unitary if it is a [`Gate`](circuit-gate "qiskit.circuit.Gate").
 
-|                                                                                                                  |                              |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")(name, num\_qubits, num\_clbits, params) | Generic quantum instruction. |
+|                                                                                                           |                              |
+| --------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`Instruction`](circuit-instruction "qiskit.circuit.Instruction")(name, num\_qubits, num\_clbits, params) | Generic quantum instruction. |
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")s can be near arbitrary, provided they only act on [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s and [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s, and are parametrized by their [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params"); they should not attempt to “close over” outer circuit registers, or use hidden parameters inside themselves. [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")s can be related to other circuits to provide a decompositions by using their [`Instruction.definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute, which provides a local, one-off decomposition. This can be in whatever basis set of operations is most convenient to you, as long as the definitions of all contained gates have some topological order; that is, you cannot use a gate in a definition if its own definition depends on the parent. If the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") should be considered entirely opaque to optimizers, its [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") can be `None`. See [Creating custom instructions](#circuit-custom-gates) for more detail.
+[`Instruction`](circuit-instruction "qiskit.circuit.Instruction")s can be near arbitrary, provided they only act on [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s and [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s, and are parametrized by their [`params`](circuit-instruction#params "qiskit.circuit.Instruction.params"); they should not attempt to “close over” outer circuit registers, or use hidden parameters inside themselves. [`Instruction`](circuit-instruction "qiskit.circuit.Instruction")s can be related to other circuits to provide a decompositions by using their [`Instruction.definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition") attribute, which provides a local, one-off decomposition. This can be in whatever basis set of operations is most convenient to you, as long as the definitions of all contained gates have some topological order; that is, you cannot use a gate in a definition if its own definition depends on the parent. If the [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") should be considered entirely opaque to optimizers, its [`definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition") can be `None`. See [Creating custom instructions](#circuit-custom-gates) for more detail.
 
-The [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") of an instruction can technically be arbitrary, but in general you should attempt to stick to parametrizations in terms of real numbers, wherever possible. Qiskit itself breaks this rule in many places, and you will find all sorts of unusual types in [`Instruction.params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") fields, but these are an annoying source of bugs because they often imply the need for type-aware special casing. If your instruction is parametrized in terms of angles, you will be able to reliably use [compile-time parametrization in it](#circuit-compile-time-parameters), and it will integrate well with [`QuantumCircuit.assign_parameters()`](qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters").
+The [`params`](circuit-instruction#params "qiskit.circuit.Instruction.params") of an instruction can technically be arbitrary, but in general you should attempt to stick to parametrizations in terms of real numbers, wherever possible. Qiskit itself breaks this rule in many places, and you will find all sorts of unusual types in [`Instruction.params`](circuit-instruction#params "qiskit.circuit.Instruction.params") fields, but these are an annoying source of bugs because they often imply the need for type-aware special casing. If your instruction is parametrized in terms of angles, you will be able to reliably use [compile-time parametrization in it](#circuit-compile-time-parameters), and it will integrate well with [`QuantumCircuit.assign_parameters()`](circuit-quantum-circuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters").
 
-While [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") is not necessarily unitary, its subclass [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") implies unitarity, and adds [`to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix") and [`control()`](qiskit.circuit.Gate#control "qiskit.circuit.Gate.control") methods to all the methods inherited from [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
+While [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") is not necessarily unitary, its subclass [`Gate`](circuit-gate "qiskit.circuit.Gate") implies unitarity, and adds [`to_matrix()`](circuit-gate#to_matrix "qiskit.circuit.Gate.to_matrix") and [`control()`](circuit-gate#control "qiskit.circuit.Gate.control") methods to all the methods inherited from [`Instruction`](circuit-instruction "qiskit.circuit.Instruction").
 
-|                                                                                               |               |
-| --------------------------------------------------------------------------------------------- | ------------- |
-| [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label, ...]) | Unitary gate. |
+|                                                                                        |               |
+| -------------------------------------------------------------------------------------- | ------------- |
+| [`Gate`](circuit-gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label, ...]) | Unitary gate. |
 
-[`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") inherits all the methods for [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") and all the same considerations about its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") and [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") field, except of course that [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")s cannot act on any classical resources.
+[`Gate`](circuit-gate "qiskit.circuit.Gate") inherits all the methods for [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") and all the same considerations about its [`params`](circuit-instruction#params "qiskit.circuit.Instruction.params") and [`definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition") field, except of course that [`Gate`](circuit-gate "qiskit.circuit.Gate")s cannot act on any classical resources.
 
-[`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances can (and should) have a base [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition"), but you can also specify several different decompositions in different bases by using an [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary").
+[`Gate`](circuit-gate "qiskit.circuit.Gate") instances can (and should) have a base [`definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition"), but you can also specify several different decompositions in different bases by using an [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary").
 
-Subclassing [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), Qiskit has a special [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") class as well. This class is the base of many standard-library gates that are controlled (such as `CXGate`), which is where you are most likely to encounter it:
+Subclassing [`Gate`](circuit-gate "qiskit.circuit.Gate"), Qiskit has a special [`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate") class as well. This class is the base of many standard-library gates that are controlled (such as `CXGate`), which is where you are most likely to encounter it:
 
-|                                                                                                                      |                          |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")(name, num\_qubits, params\[, ...]) | Controlled unitary gate. |
+|                                                                                                                |                          |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| [`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate")(name, num\_qubits, params\[, ...]) | Controlled unitary gate. |
 
-Each of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") and [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") has a corresponding singleton type, built using the machinery described in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"). The module-level documentation contains full details, along with descriptions of [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate") and [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate"). From a user’s perspective, little changes based on whether the base class is a singleton or not; the intention always remains that you should call [`to_mutable()`](qiskit.circuit.Instruction#to_mutable "qiskit.circuit.Instruction.to_mutable") first if you need to get a safe-to-mutate owned copy of an instruction (you cannot assume that an arbitrary instruction is mutable), and while direct [`type`](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)") inspection is discouraged, if you do need it, the reliable way to find the “base” type of a potentially singleton instruction is to use [`base_class`](qiskit.circuit.Instruction#base_class "qiskit.circuit.Instruction.base_class").
+Each of [`Instruction`](circuit-instruction "qiskit.circuit.Instruction"), [`Gate`](circuit-gate "qiskit.circuit.Gate") and [`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate") has a corresponding singleton type, built using the machinery described in [`qiskit.circuit.singleton`](circuit-singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"). The module-level documentation contains full details, along with descriptions of [`SingletonInstruction`](circuit-singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction"), [`SingletonGate`](circuit-singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate") and [`SingletonControlledGate`](circuit-singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate"). From a user’s perspective, little changes based on whether the base class is a singleton or not; the intention always remains that you should call [`to_mutable()`](circuit-instruction#to_mutable "qiskit.circuit.Instruction.to_mutable") first if you need to get a safe-to-mutate owned copy of an instruction (you cannot assume that an arbitrary instruction is mutable), and while direct [`type`](https://docs.python.org/3/library/functions.html#type "(in Python v3.13)") inspection is discouraged, if you do need it, the reliable way to find the “base” type of a potentially singleton instruction is to use [`base_class`](circuit-instruction#base_class "qiskit.circuit.Instruction.base_class").
 
-[`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") uses the same mechanisms as [subclassing gates](#circuit-custom-gates) to define a fixed, lazy synthesis for itself. This is naturally not hardware-aware, and harder to hook into the synthesis routines of the compiler, but works better as a concrete [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") that could potentially be run natively on hardware. For cases where synthesis and abstract optimization is more important, Qiskit offers a composable class called [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), which tracks “gate modifiers” (of which [`ControlModifier`](#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier") is one) to apply to the inner [`base_op`](qiskit.circuit.AnnotatedOperation#base_op "qiskit.circuit.AnnotatedOperation.base_op").
+[`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate") uses the same mechanisms as [subclassing gates](#circuit-custom-gates) to define a fixed, lazy synthesis for itself. This is naturally not hardware-aware, and harder to hook into the synthesis routines of the compiler, but works better as a concrete [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") that could potentially be run natively on hardware. For cases where synthesis and abstract optimization is more important, Qiskit offers a composable class called [`AnnotatedOperation`](circuit-annotated-operation "qiskit.circuit.AnnotatedOperation"), which tracks “gate modifiers” (of which [`ControlModifier`](#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier") is one) to apply to the inner [`base_op`](circuit-annotated-operation#base_op "qiskit.circuit.AnnotatedOperation.base_op").
 
-|                                                                                                                    |                      |
-| ------------------------------------------------------------------------------------------------------------------ | -------------------- |
-| [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")(base\_op, modifiers) | Annotated operation. |
+|                                                                                                              |                      |
+| ------------------------------------------------------------------------------------------------------------ | -------------------- |
+| [`AnnotatedOperation`](circuit-annotated-operation "qiskit.circuit.AnnotatedOperation")(base\_op, modifiers) | Annotated operation. |
 
-The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") are:
+The available modifiers for [`AnnotatedOperation`](circuit-annotated-operation "qiskit.circuit.AnnotatedOperation") are:
 
 #### InverseModifier
 
@@ -481,18 +481,18 @@ The available modifiers for [`AnnotatedOperation`](qiskit.circuit.AnnotatedOpera
   **power** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
 </Class>
 
-For information on how to create custom gates and instructions, including how to build one-off objects, and re-usable parametric gates via subclassing, see [Creating custom instructions](#circuit-custom-gates) below. The Qiskit circuit library in [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") contains many predefined gates and circuits for you to use.
+For information on how to create custom gates and instructions, including how to build one-off objects, and re-usable parametric gates via subclassing, see [Creating custom instructions](#circuit-custom-gates) below. The Qiskit circuit library in [`qiskit.circuit.library`](circuit-library#module-qiskit.circuit.library "qiskit.circuit.library") contains many predefined gates and circuits for you to use.
 
 ### Built-in special instructions
 
-Qiskit contains a few [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") classes that are in some ways “special”. These typically have special handling in circuit code, in the transpiler, or the models of hardware. These are all generally instructions you might already be familiar with.
+Qiskit contains a few [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") classes that are in some ways “special”. These typically have special handling in circuit code, in the transpiler, or the models of hardware. These are all generally instructions you might already be familiar with.
 
 Measurements in Qiskit are of a single [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") into a single [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit"). These are the two that the instruction is applied to. Measurements are in the computational basis.
 
 #### Measure
 
 <Class id="qiskit.circuit.Measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/measure.py#L21-L44" signature="qiskit.circuit.Measure(label=None)" modifiers="class">
-  Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
+  Bases: [`SingletonInstruction`](circuit-singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 
   Quantum measurement in the computational basis.
 
@@ -506,7 +506,7 @@ Related to measurements, there is a [`Reset`](#qiskit.circuit.Reset "qiskit.circ
 #### Reset
 
 <Class id="qiskit.circuit.Reset" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/reset.py#L20-L34" signature="qiskit.circuit.Reset(label=None)" modifiers="class">
-  Bases: [`SingletonInstruction`](circuit_singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
+  Bases: [`SingletonInstruction`](circuit-singleton#qiskit.circuit.singleton.SingletonInstruction "qiskit.circuit.singleton.SingletonInstruction")
 
   Incoherently reset a qubit to the $\lvert0\rangle$ state.
 
@@ -520,7 +520,7 @@ Hardware can be instructed to apply a real-time idle period on a given qubit. A 
 #### Delay
 
 <Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/delay.py#L25-L123" signature="qiskit.circuit.Delay(duration, unit='dt')" modifiers="class">
-  Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Bases: [`Instruction`](circuit-instruction "qiskit.circuit.instruction.Instruction")
 
   Do nothing and just delay/wait/idle for a specified duration.
 
@@ -546,7 +546,7 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
 #### Barrier
 
 <Class id="qiskit.circuit.Barrier" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/barrier.py#L26-L50" signature="qiskit.circuit.Barrier(num_qubits, label=None)" modifiers="class">
-  Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Bases: [`Instruction`](circuit-instruction "qiskit.circuit.instruction.Instruction")
 
   A directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers.
 
@@ -558,7 +558,7 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – the optional label of this barrier.
 </Class>
 
-The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is particularly special, in that it allows writing the result of a [real-time classical computation expression](#circuit-repr-real-time-classical) (an [`expr.Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) in a local classical variable (a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")). It takes *neither* [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") nor [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") operands, but has an explicit [`lvalue`](#qiskit.circuit.Store.lvalue "qiskit.circuit.Store.lvalue") and [`rvalue`](#qiskit.circuit.Store.rvalue "qiskit.circuit.Store.rvalue").
+The [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction is particularly special, in that it allows writing the result of a [real-time classical computation expression](#circuit-repr-real-time-classical) (an [`expr.Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) in a local classical variable (a [`expr.Var`](circuit-classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")). It takes *neither* [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") nor [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") operands, but has an explicit [`lvalue`](#qiskit.circuit.Store.lvalue "qiskit.circuit.Store.lvalue") and [`rvalue`](#qiskit.circuit.Store.rvalue "qiskit.circuit.Store.rvalue").
 
 For example, to determine the parity of a bitstring `cr` and store it in another register `creg`, the [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction can be used in the following way:
 
@@ -572,7 +572,7 @@ qc.store(creg[0], parity)
 #### Store
 
 <Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/store.py#L56-L97" signature="qiskit.circuit.Store(lvalue, rvalue)" modifiers="class">
-  Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+  Bases: [`Instruction`](circuit-instruction "qiskit.circuit.instruction.Instruction")
 
   A manual storage of some classical value to a classical memory location.
 
@@ -580,8 +580,8 @@ qc.store(creg[0], parity)
 
   **Parameters**
 
-  *   **lvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the memory location being stored into.
-  *   **rvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the expression result being stored.
+  *   **lvalue** ([*expr.Expr*](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the memory location being stored into.
+  *   **rvalue** ([*expr.Expr*](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the expression result being stored.
 
   ##### c\_if
 
@@ -594,13 +594,13 @@ qc.store(creg[0], parity)
   ##### lvalue
 
   <Attribute id="qiskit.circuit.Store.lvalue">
-    Get the l-value [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being stored to.
+    Get the l-value [`Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being stored to.
   </Attribute>
 
   ##### rvalue
 
   <Attribute id="qiskit.circuit.Store.rvalue">
-    Get the r-value [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being written into the l-value.
+    Get the r-value [`Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node that is being written into the l-value.
   </Attribute>
 </Class>
 
@@ -609,57 +609,57 @@ qc.store(creg[0], parity)
 ### Real-time classical computation
 
 <Admonition title="See also" type="note">
-  **[`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical")**
+  **[`qiskit.circuit.classical`](circuit-classical#module-qiskit.circuit.classical "qiskit.circuit.classical")**
 
   Module-level documentation for how the variable-, expression- and type-systems work, the objects used to represent them, and the classical operations available.
 
-  **[Working with real-time typed classical data](qiskit.circuit.QuantumCircuit#circuit-real-time-methods)**
+  **[Working with real-time typed classical data](circuit-quantum-circuit#circuit-real-time-methods)**
 
-  The [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") methods for working with these variables in the context of a single circuit.
+  The [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") methods for working with these variables in the context of a single circuit.
 </Admonition>
 
 Qiskit has rudimentary low-level support for representing real-time classical computations, which happen during the QPU execution and affect the results. We are still relatively early into hardware support for these concepts as well, so beware that you will need to work closely with your hardware provider’s documentation to get the best use out of any real-time classical computation.
 
-These real-time calculations are represented by the expression and type system in [`qiskit.circuit.classical`](circuit_classical#module-qiskit.circuit.classical "qiskit.circuit.classical"). At a high level, all real-time expressions are represented by an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node, which is part of an expression “tree” representation, which has a well-defined `Type` associated with it at every level. See the module-level documentation for much more detail on the internal representations of these classes.
+These real-time calculations are represented by the expression and type system in [`qiskit.circuit.classical`](circuit-classical#module-qiskit.circuit.classical "qiskit.circuit.classical"). At a high level, all real-time expressions are represented by an [`Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") node, which is part of an expression “tree” representation, which has a well-defined `Type` associated with it at every level. See the module-level documentation for much more detail on the internal representations of these classes.
 
-The result of a real-time [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") can be used directly in certain places. Currently this is limited to conditions of [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp") and [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), and the target of [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp"). The result can also be stored in a typed classical storage location, using the [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction (or its [`QuantumCircuit.store()`](qiskit.circuit.QuantumCircuit#store "qiskit.circuit.QuantumCircuit.store") constructor), backed by a [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node.
+The result of a real-time [`Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") can be used directly in certain places. Currently this is limited to conditions of [`IfElseOp`](circuit-if-else-op "qiskit.circuit.IfElseOp") and [`WhileLoopOp`](circuit-while-loop-op "qiskit.circuit.WhileLoopOp"), and the target of [`SwitchCaseOp`](circuit-switch-case-op "qiskit.circuit.SwitchCaseOp"). The result can also be stored in a typed classical storage location, using the [`Store`](#qiskit.circuit.Store "qiskit.circuit.Store") instruction (or its [`QuantumCircuit.store()`](circuit-quantum-circuit#store "qiskit.circuit.QuantumCircuit.store") constructor), backed by a [`expr.Var`](circuit-classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node.
 
-A circuit can contain manual classical storage locations, represented internally by the [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node of the [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") tree. These have an attached classical type (like any other expression). These can either be declared and initialized within each execution of the circuit ([`add_var()`](qiskit.circuit.QuantumCircuit#add_var "qiskit.circuit.QuantumCircuit.add_var")), or be inputs to the circuit ([`add_input()`](qiskit.circuit.QuantumCircuit#add_input "qiskit.circuit.QuantumCircuit.add_input")).
+A circuit can contain manual classical storage locations, represented internally by the [`Var`](circuit-classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") node of the [`Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") tree. These have an attached classical type (like any other expression). These can either be declared and initialized within each execution of the circuit ([`add_var()`](circuit-quantum-circuit#add_var "qiskit.circuit.QuantumCircuit.add_var")), or be inputs to the circuit ([`add_input()`](circuit-quantum-circuit#add_input "qiskit.circuit.QuantumCircuit.add_input")).
 
 <span id="circuit-compile-time-parameters" />
 
 ### Compile-time parametrization
 
-Various parametric [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances in Qiskit can be parametrized in ways that are designed to be resolved at compile time. These are characterized by the use of the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") classes.
+Various parametric [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") instances in Qiskit can be parametrized in ways that are designed to be resolved at compile time. These are characterized by the use of the [`Parameter`](circuit-parameter "qiskit.circuit.Parameter") and [`ParameterExpression`](circuit-parameter-expression "qiskit.circuit.ParameterExpression") classes.
 
-|                                                                                                                                 |                                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name, \*\[, uuid])                                           | A compile-time symbolic parameter.                                      |
-| [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(symbol\_map, expr, \*\[, ...]) | ParameterExpression class to enable creating expressions of Parameters. |
+|                                                                                                                           |                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [`Parameter`](circuit-parameter "qiskit.circuit.Parameter")(name, \*\[, uuid])                                            | A compile-time symbolic parameter.                                      |
+| [`ParameterExpression`](circuit-parameter-expression "qiskit.circuit.ParameterExpression")(symbol\_map, expr, \*\[, ...]) | ParameterExpression class to enable creating expressions of Parameters. |
 
-The main way that this differs from the `expr.Var` variables used in real-time classical computation is that [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") is a symbolic representation of a mathematical expression. The semantics of the expression are those of regular mathematics over the continuous real numbers (and, in limited cases, over the complex numbers). In contrast, [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") is a handle to a variable stored on a classical computer, such as a floating-point value or an fixed-width integer, which are always discrete.
+The main way that this differs from the `expr.Var` variables used in real-time classical computation is that [`ParameterExpression`](circuit-parameter-expression "qiskit.circuit.ParameterExpression") is a symbolic representation of a mathematical expression. The semantics of the expression are those of regular mathematics over the continuous real numbers (and, in limited cases, over the complex numbers). In contrast, [`Var`](circuit-classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") is a handle to a variable stored on a classical computer, such as a floating-point value or an fixed-width integer, which are always discrete.
 
-In other words, you can expect [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") to do symbolic simplifications that are valid in mathematics, such as simplifying $(x + y - x) / y \to 1$. Such a simplification is not valid in floating-point arithmetic, and [`expr.Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") will not do this.
+In other words, you can expect [`ParameterExpression`](circuit-parameter-expression "qiskit.circuit.ParameterExpression") to do symbolic simplifications that are valid in mathematics, such as simplifying $(x + y - x) / y \to 1$. Such a simplification is not valid in floating-point arithmetic, and [`expr.Expr`](circuit-classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") will not do this.
 
-The “compile-time” part of these parameters means that you typically will want to “assign” values to the parameters before sending the circuit for execution. These parameters can typically be used anywhere that expects a mathematical angle (like a rotation gate’s parameters), with the caveat that hardware will usually require them to be assigned to a proper classically typed value before execution. You can do this assignment using [`QuantumCircuit.assign_parameters()`](qiskit.circuit.QuantumCircuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters").
+The “compile-time” part of these parameters means that you typically will want to “assign” values to the parameters before sending the circuit for execution. These parameters can typically be used anywhere that expects a mathematical angle (like a rotation gate’s parameters), with the caveat that hardware will usually require them to be assigned to a proper classically typed value before execution. You can do this assignment using [`QuantumCircuit.assign_parameters()`](circuit-quantum-circuit#assign_parameters "qiskit.circuit.QuantumCircuit.assign_parameters").
 
-You may want to use many parameters that are related to each other. To make this easier (and to avoid you needing to come up with many names), you can use the convenience constructor [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector"). The elements of the vector are all valid [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances.
+You may want to use many parameters that are related to each other. To make this easier (and to avoid you needing to come up with many names), you can use the convenience constructor [`ParameterVector`](circuit-parameter-vector "qiskit.circuit.ParameterVector"). The elements of the vector are all valid [`Parameter`](circuit-parameter "qiskit.circuit.Parameter") instances.
 
-|                                                                                                       |                                                                |
-| ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length]) | ParameterVector class to quickly generate lists of parameters. |
+|                                                                                                 |                                                                |
+| ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| [`ParameterVector`](circuit-parameter-vector "qiskit.circuit.ParameterVector")(name\[, length]) | ParameterVector class to quickly generate lists of parameters. |
 
 <span id="circuit-control-flow-repr" />
 
 ### Control flow in circuits
 
-Within [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), classical control flow is represented by specific [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")s, which are subclasses of [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp").
+Within [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"), classical control flow is represented by specific [`Instruction`](circuit-instruction "qiskit.circuit.Instruction")s, which are subclasses of [`ControlFlowOp`](circuit-control-flow-op "qiskit.circuit.ControlFlowOp").
 
-|                                                                                                    |                                                            |
-| -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")(\*args, \*\*kwargs) | Abstract class to encapsulate all control flow operations. |
+|                                                                                               |                                                            |
+| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`ControlFlowOp`](circuit-control-flow-op "qiskit.circuit.ControlFlowOp")(\*args, \*\*kwargs) | Abstract class to encapsulate all control flow operations. |
 
-For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset "(in Python v3.13)") instance containing the [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attributes of each of the control-flow operations.
+For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset "(in Python v3.13)") instance containing the [`Instruction.name`](circuit-instruction#name "qiskit.circuit.Instruction.name") attributes of each of the control-flow operations.
 
 #### qiskit.circuit.CONTROL\_FLOW\_OP\_NAMES
 
@@ -667,37 +667,37 @@ For convenience, there is a [`frozenset`](https://docs.python.org/3/library/stdt
   Set of the instruction names of Qiskit’s known control-flow operations.
 </Attribute>
 
-These control-flow operations ([`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp"), [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp"), [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") and [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp")) all have specific state that defines the branching conditions and strategies, but contain all the different subcircuit blocks that might be entered in their [`blocks`](qiskit.circuit.ControlFlowOp#blocks "qiskit.circuit.ControlFlowOp.blocks") property.
+These control-flow operations ([`IfElseOp`](circuit-if-else-op "qiskit.circuit.IfElseOp"), [`WhileLoopOp`](circuit-while-loop-op "qiskit.circuit.WhileLoopOp"), [`SwitchCaseOp`](circuit-switch-case-op "qiskit.circuit.SwitchCaseOp") and [`ForLoopOp`](circuit-for-loop-op "qiskit.circuit.ForLoopOp")) all have specific state that defines the branching conditions and strategies, but contain all the different subcircuit blocks that might be entered in their [`blocks`](circuit-control-flow-op#blocks "qiskit.circuit.ControlFlowOp.blocks") property.
 
-|                                                                                                             |                                                                                                                                                                                        |
-| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp")(condition, true\_body\[, false\_body, ...]) | A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise. |
-| [`WhileLoopOp`](qiskit.circuit.WhileLoopOp "qiskit.circuit.WhileLoopOp")(condition, body\[, label])         | A circuit operation which repeatedly executes a subcircuit (`body`) until a condition (`condition`) evaluates as False.                                                                |
-| [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp")(target, cases, \*\[, label])    | A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`.                                                 |
-| [`ForLoopOp`](qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp")(indexset, loop\_parameter, body\[, ...]) | A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.            |
+|                                                                                                        |                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`IfElseOp`](circuit-if-else-op "qiskit.circuit.IfElseOp")(condition, true\_body\[, false\_body, ...]) | A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise. |
+| [`WhileLoopOp`](circuit-while-loop-op "qiskit.circuit.WhileLoopOp")(condition, body\[, label])         | A circuit operation which repeatedly executes a subcircuit (`body`) until a condition (`condition`) evaluates as False.                                                                |
+| [`SwitchCaseOp`](circuit-switch-case-op "qiskit.circuit.SwitchCaseOp")(target, cases, \*\[, label])    | A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`.                                                 |
+| [`ForLoopOp`](circuit-for-loop-op "qiskit.circuit.ForLoopOp")(indexset, loop\_parameter, body\[, ...]) | A circuit operation which repeatedly executes a subcircuit (`body`) parameterized by a parameter `loop_parameter` through the set of integer values provided in `indexset`.            |
 
-The [`SwitchCaseOp`](qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") also understands a special value:
+The [`SwitchCaseOp`](circuit-switch-case-op "qiskit.circuit.SwitchCaseOp") also understands a special value:
 
 #### qiskit.circuit.CASE\_DEFAULT
 
 <Attribute id="qiskit.circuit.CASE_DEFAULT" attributeValue="<default case>">
-  A special object that represents the “default” case of a switch statement. If you use this as a case target, it must be the last case, and will match anything that wasn’t already matched. When using the builder interface of [`QuantumCircuit.switch()`](qiskit.circuit.QuantumCircuit#switch "qiskit.circuit.QuantumCircuit.switch"), this can also be accessed as the `DEFAULT` attribute of the bound case-builder object.
+  A special object that represents the “default” case of a switch statement. If you use this as a case target, it must be the last case, and will match anything that wasn’t already matched. When using the builder interface of [`QuantumCircuit.switch()`](circuit-quantum-circuit#switch "qiskit.circuit.QuantumCircuit.switch"), this can also be accessed as the `DEFAULT` attribute of the bound case-builder object.
 </Attribute>
 
 In addition to the block-structure control-flow operations, there are also two special instructions that affect the flow of control when within loops. These correspond to typical uses of the `break` and `continue` statements in classical programming languages.
 
-|                                                                                                                       |                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [`BreakLoopOp`](qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp")(num\_qubits, num\_clbits\[, label])          | A circuit operation which, when encountered, jumps to the end of the nearest enclosing loop.            |
-| [`ContinueLoopOp`](qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp")(num\_qubits, num\_clbits\[, label]) | A circuit operation which, when encountered, moves to the next iteration of the nearest enclosing loop. |
+|                                                                                                                  |                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [`BreakLoopOp`](circuit-break-loop-op "qiskit.circuit.BreakLoopOp")(num\_qubits, num\_clbits\[, label])          | A circuit operation which, when encountered, jumps to the end of the nearest enclosing loop.            |
+| [`ContinueLoopOp`](circuit-continue-loop-op "qiskit.circuit.ContinueLoopOp")(num\_qubits, num\_clbits\[, label]) | A circuit operation which, when encountered, moves to the next iteration of the nearest enclosing loop. |
 
 <Admonition title="Note" type="note">
   The classes representations are documented here, but please note that manually constructing these classes is a low-level operation that we do not expect users to need to do frequently.
 
-  Users should read [Adding control flow to circuits](qiskit.circuit.QuantumCircuit#circuit-control-flow-methods) for the recommended workflows for building control-flow-enabled circuits.
+  Users should read [Adding control flow to circuits](circuit-quantum-circuit#circuit-control-flow-methods) for the recommended workflows for building control-flow-enabled circuits.
 </Admonition>
 
-Since [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") subclasses are also [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclasses, this means that the way they are stored in [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") instances has them “applied” to a sequence of qubits and clbits in its [`qubits`](qiskit.circuit.CircuitInstruction#qubits "qiskit.circuit.CircuitInstruction.qubits") and [`clbits`](qiskit.circuit.CircuitInstruction#clbits "qiskit.circuit.CircuitInstruction.clbits") attributes. This can lead to subtle data-coherence problems: the [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") and [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") objects used inside the subcircuit blocks of the control-flow ops will not necessarily be identical to the corresponding objects in the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction"). Any code that consumes control-flow operations in Qiskit needs to be aware of this; within a subcircuit, you should treat `subcircuit.qubits[i]` as if it were really `outer_instruction.qubits[i]`, and so on. You can generate an easy lookup table for this by doing:
+Since [`ControlFlowOp`](circuit-control-flow-op "qiskit.circuit.ControlFlowOp") subclasses are also [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") subclasses, this means that the way they are stored in [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction") instances has them “applied” to a sequence of qubits and clbits in its [`qubits`](circuit-circuit-instruction#qubits "qiskit.circuit.CircuitInstruction.qubits") and [`clbits`](circuit-circuit-instruction#clbits "qiskit.circuit.CircuitInstruction.clbits") attributes. This can lead to subtle data-coherence problems: the [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit") and [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") objects used inside the subcircuit blocks of the control-flow ops will not necessarily be identical to the corresponding objects in the [`CircuitInstruction`](circuit-circuit-instruction "qiskit.circuit.CircuitInstruction"). Any code that consumes control-flow operations in Qiskit needs to be aware of this; within a subcircuit, you should treat `subcircuit.qubits[i]` as if it were really `outer_instruction.qubits[i]`, and so on. You can generate an easy lookup table for this by doing:
 
 ```python
 cf_instruction: CircuitInstruction = ...
@@ -712,13 +712,13 @@ for block in blocks:
 
 Remember that you will need to propagate this information if you recurse into subblocks of control-flow operations.
 
-All the subcircuit blocks in a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") are required to contain the same numbers of [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s and [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s, referring to the same outer bits in the same order, such that the `zip` loop given in the code block above works. The inner-circuit [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit") objects do not need to be literally the same objects. When using the control-flow builder interface (which, it cannot be stressed enough, is *highly* recommended for users), the builders will arrange that the inner bit objects *are* identical to the outer bit objects; the `qubit_map` in the code block above will always be a mapping `{x: x}`, but if you are consuming the blocks, you should be prepared for the case that the mapping is required.
+All the subcircuit blocks in a [`ControlFlowOp`](circuit-control-flow-op "qiskit.circuit.ControlFlowOp") are required to contain the same numbers of [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit")s and [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit")s, referring to the same outer bits in the same order, such that the `zip` loop given in the code block above works. The inner-circuit [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit") objects do not need to be literally the same objects. When using the control-flow builder interface (which, it cannot be stressed enough, is *highly* recommended for users), the builders will arrange that the inner bit objects *are* identical to the outer bit objects; the `qubit_map` in the code block above will always be a mapping `{x: x}`, but if you are consuming the blocks, you should be prepared for the case that the mapping is required.
 
-Any [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s used in a control-flow subcircuit must also be present in all containing blocks (*i.e.* any containing control-flow operations, and the outermost circuit), and all blocks in the same [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") need to contain the same registers. Again, the builder interface will arrange for this to be the case (or produce an eager error if they cannot).
+Any [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")s used in a control-flow subcircuit must also be present in all containing blocks (*i.e.* any containing control-flow operations, and the outermost circuit), and all blocks in the same [`ControlFlowOp`](circuit-control-flow-op "qiskit.circuit.ControlFlowOp") need to contain the same registers. Again, the builder interface will arrange for this to be the case (or produce an eager error if they cannot).
 
-When the low-level construction is being used the inner [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") blocks must manually close over any outer-scope [real-time classical computation variables](#circuit-repr-real-time-classical) that they use. This is marked by these being in the [`iter_captured_vars()`](qiskit.circuit.QuantumCircuit#iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") iterator for that block. Libraries constructing these blocks manually will need to track these captures when building control-flow circuit blocks and add them to the block using [`add_capture()`](qiskit.circuit.QuantumCircuit#add_capture "qiskit.circuit.QuantumCircuit.add_capture") (or the `captures` constructor argument), but user code will typically use the control-flow builder interface, which handles this automatically.
+When the low-level construction is being used the inner [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") blocks must manually close over any outer-scope [real-time classical computation variables](#circuit-repr-real-time-classical) that they use. This is marked by these being in the [`iter_captured_vars()`](circuit-quantum-circuit#iter_captured_vars "qiskit.circuit.QuantumCircuit.iter_captured_vars") iterator for that block. Libraries constructing these blocks manually will need to track these captures when building control-flow circuit blocks and add them to the block using [`add_capture()`](circuit-quantum-circuit#add_capture "qiskit.circuit.QuantumCircuit.add_capture") (or the `captures` constructor argument), but user code will typically use the control-flow builder interface, which handles this automatically.
 
-Consult [the control-flow construction documentation](qiskit.circuit.QuantumCircuit#circuit-control-flow-methods) for more information on how to build circuits with control flow.
+Consult [the control-flow construction documentation](circuit-quantum-circuit#circuit-control-flow-methods) for more information on how to build circuits with control flow.
 
 ### Investigating commutation relations
 
@@ -732,53 +732,53 @@ q_1: ───────────┤ X ├───┤ X ├───┤ X 
                 └───┘   └───┘   └───┘             └───┘
 ```
 
-Performing these optimizations are part of the transpiler, but the tools to investigate commutations are available in the [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker").
+Performing these optimizations are part of the transpiler, but the tools to investigate commutations are available in the [`CommutationChecker`](circuit-commutation-checker "qiskit.circuit.CommutationChecker").
 
-|                                                                                                       |                                                                     |
-| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker")(\[...]) | This code is essentially copy-pasted from commutative\_analysis.py. |
+|                                                                                                 |                                                                     |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`CommutationChecker`](circuit-commutation-checker "qiskit.circuit.CommutationChecker")(\[...]) | This code is essentially copy-pasted from commutative\_analysis.py. |
 
 <span id="circuit-custom-gates" />
 
 ## Creating custom instructions
 
-If you wish to create simple one-off instructions or gates that will be added to a circuit, and the blocks are just being used for visualization or grouping purposes, the easiest way to create a custom instruction or gate is simply to build its definition as a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), and then use its [`to_instruction()`](qiskit.circuit.QuantumCircuit#to_instruction "qiskit.circuit.QuantumCircuit.to_instruction") or [`to_gate()`](qiskit.circuit.QuantumCircuit#to_gate "qiskit.circuit.QuantumCircuit.to_gate") method as appropriate. The results can be given directly to [`QuantumCircuit.append()`](qiskit.circuit.QuantumCircuit#append "qiskit.circuit.QuantumCircuit.append") on the larger circuit. These methods will create base [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") or [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") instances whose [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute is the circuit as supplied, meaning it will automatically be accessible to the transpiler, and to other Qiskit functions that attempt to decompose circuits.
+If you wish to create simple one-off instructions or gates that will be added to a circuit, and the blocks are just being used for visualization or grouping purposes, the easiest way to create a custom instruction or gate is simply to build its definition as a [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"), and then use its [`to_instruction()`](circuit-quantum-circuit#to_instruction "qiskit.circuit.QuantumCircuit.to_instruction") or [`to_gate()`](circuit-quantum-circuit#to_gate "qiskit.circuit.QuantumCircuit.to_gate") method as appropriate. The results can be given directly to [`QuantumCircuit.append()`](circuit-quantum-circuit#append "qiskit.circuit.QuantumCircuit.append") on the larger circuit. These methods will create base [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") or [`Gate`](circuit-gate "qiskit.circuit.Gate") instances whose [`definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition") attribute is the circuit as supplied, meaning it will automatically be accessible to the transpiler, and to other Qiskit functions that attempt to decompose circuits.
 
-Note that standalone instructions and gates should act only on qubits and clbits; instructions that need to use complex control-flow will need to be inlined onto the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") using [`compose()`](qiskit.circuit.QuantumCircuit#compose "qiskit.circuit.QuantumCircuit.compose").
+Note that standalone instructions and gates should act only on qubits and clbits; instructions that need to use complex control-flow will need to be inlined onto the [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") using [`compose()`](circuit-quantum-circuit#compose "qiskit.circuit.QuantumCircuit.compose").
 
 ### Creating instruction subclasses
 
-The base classes [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") and [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") are all designed to be safe to subclass, and have hook points for subclasses to implement. If your custom gate is parameterless and stateless, you may also want to derive from the corresponding singleton class in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"), such as `SingletonGate`. You should consult the documentation in [`qiskit.circuit.singleton`](circuit_singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton") for additional methods and hook points for the singleton machinery.
+The base classes [`Instruction`](circuit-instruction "qiskit.circuit.Instruction"), [`Gate`](circuit-gate "qiskit.circuit.Gate") and [`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate") are all designed to be safe to subclass, and have hook points for subclasses to implement. If your custom gate is parameterless and stateless, you may also want to derive from the corresponding singleton class in [`qiskit.circuit.singleton`](circuit-singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton"), such as `SingletonGate`. You should consult the documentation in [`qiskit.circuit.singleton`](circuit-singleton#module-qiskit.circuit.singleton "qiskit.circuit.singleton") for additional methods and hook points for the singleton machinery.
 
-Subclasses should typically define a default constructor that calls the :class\`super\` constructor with the correct arguments for your instruction. It is permissible to have extra state in the class, but your subclasses will most reliably integrate with the rest of the Qiskit machinery if you depend only on your [`Instruction.params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params"), and these parameters are purely gate angles.
+Subclasses should typically define a default constructor that calls the :class\`super\` constructor with the correct arguments for your instruction. It is permissible to have extra state in the class, but your subclasses will most reliably integrate with the rest of the Qiskit machinery if you depend only on your [`Instruction.params`](circuit-instruction#params "qiskit.circuit.Instruction.params"), and these parameters are purely gate angles.
 
-Subclasses of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") (or one of its subclasses) should implement the private [`Instruction._define()`](#qiskit.circuit.Instruction._define "qiskit.circuit.Instruction._define") method, which lazily populates the hidden `_definition` cache that backs the public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") method.
+Subclasses of [`Instruction`](circuit-instruction "qiskit.circuit.Instruction") (or one of its subclasses) should implement the private [`Instruction._define()`](#qiskit.circuit.Instruction._define "qiskit.circuit.Instruction._define") method, which lazily populates the hidden `_definition` cache that backs the public [`definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition") method.
 
 #### \_define
 
 <Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/instruction.py#L291-L298" signature="Instruction._define()">
-  Populate the cached `_definition` field of this [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
+  Populate the cached `_definition` field of this [`Instruction`](circuit-instruction "qiskit.circuit.Instruction").
 
-  Subclasses should implement this method to provide lazy construction of their public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and not return a value.
+  Subclasses should implement this method to provide lazy construction of their public [`definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](circuit-instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") and not return a value.
 </Function>
 
-In subclasses of [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate"), the [`_define()`](#qiskit.circuit.Instruction._define "qiskit.circuit.Instruction._define") method should implement the decomposition only for the all-ones control state. The [`ControlledGate.definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") machinery will modify this to handle the actual control state.
+In subclasses of [`ControlledGate`](circuit-controlled-gate "qiskit.circuit.ControlledGate"), the [`_define()`](#qiskit.circuit.Instruction._define "qiskit.circuit.Instruction._define") method should implement the decomposition only for the all-ones control state. The [`ControlledGate.definition`](circuit-instruction#definition "qiskit.circuit.Instruction.definition") machinery will modify this to handle the actual control state.
 
 If the subclass is using the singleton machinery, beware that [`_define()`](#qiskit.circuit.Instruction._define "qiskit.circuit.Instruction._define") will be called eagerly immediately after the class-body statement has been executed, in order to produce the definition object for the canonical singleton object. This means that your definition must only use gates that are already defined; if you are writing a library with many singleton gates, you will have to order your files and imports to ensure that this is possible.
 
-Subclasses of [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") will also likely wish to override [the Numpy array-protocol instance method](https://numpy.org/devdocs/user/basics.interoperability.html#the-array-method), `__array__`. This is used by [`Gate.to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix"), and has the signature:
+Subclasses of [`Gate`](circuit-gate "qiskit.circuit.Gate") will also likely wish to override [the Numpy array-protocol instance method](https://numpy.org/devdocs/user/basics.interoperability.html#the-array-method), `__array__`. This is used by [`Gate.to_matrix()`](circuit-gate#to_matrix "qiskit.circuit.Gate.to_matrix"), and has the signature:
 
 #### \_\_array\_\_
 
 <Function id="object.__array__" signature="object.__array__(dtype=None, copy=None)">
-  Return a Numpy array representing the gate. This can use the gate’s [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") field, and may assume that these are numeric values (assuming the subclass expects that) and not [compile-time parameters](#circuit-compile-time-parameters).
+  Return a Numpy array representing the gate. This can use the gate’s [`params`](circuit-instruction#params "qiskit.circuit.Instruction.params") field, and may assume that these are numeric values (assuming the subclass expects that) and not [compile-time parameters](#circuit-compile-time-parameters).
 
   For greatest efficiency, the returned array should default to a dtype of [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)").
 </Function>
 
-If your custom subclass has natural representations of its controlled or inverse forms, you may also wish to override the [`inverse()`](qiskit.circuit.Instruction#inverse "qiskit.circuit.Instruction.inverse") and [`control()`](qiskit.circuit.Gate#control "qiskit.circuit.Gate.control") methods.
+If your custom subclass has natural representations of its controlled or inverse forms, you may also wish to override the [`inverse()`](circuit-instruction#inverse "qiskit.circuit.Instruction.inverse") and [`control()`](circuit-gate#control "qiskit.circuit.Gate.control") methods.
 
-As an example of defining a custom $R_{xz}$ gate; that is, a single-angle rotation about the $XZ$ axis. This is essentially `RZXGate`, if the qubits were the other way around, so we will write our definition in terms of that. We are parametric, so cannot be a singleton, but we are unitary, so should be a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"):
+As an example of defining a custom $R_{xz}$ gate; that is, a single-angle rotation about the $XZ$ axis. This is essentially `RZXGate`, if the qubits were the other way around, so we will write our definition in terms of that. We are parametric, so cannot be a singleton, but we are unitary, so should be a [`Gate`](circuit-gate "qiskit.circuit.Gate"):
 
 ```python
 import math
@@ -818,7 +818,7 @@ class RXZGate(Gate):
         ], dtype=dtype)
 ```
 
-In this example, we defined a base definition in terms of `RZXGate`, but to enable faster decompositions to a range of bases, we might want to add some more equivalences to [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"). Note that the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") translation search will search through all possible equivalences at all possible depths, so providing an equivalence in terms of (say) [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") will automatically make decompositions in terms of [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") available as well.
+In this example, we defined a base definition in terms of `RZXGate`, but to enable faster decompositions to a range of bases, we might want to add some more equivalences to [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"). Note that the [`BasisTranslator`](transpiler-passes-basis-translator "qiskit.transpiler.passes.BasisTranslator") translation search will search through all possible equivalences at all possible depths, so providing an equivalence in terms of (say) [`XGate`](circuit-library-x-gate "qiskit.circuit.library.XGate") will automatically make decompositions in terms of [`RXGate`](circuit-library-rx-gate "qiskit.circuit.library.RXGate") available as well.
 
 Let us add an equivalence in terms of $H$, $CX$ and $R_z$ for an arbitrary symbolic parameter:
 
@@ -837,7 +837,7 @@ equiv.h(0)
 SessionEquivalenceLibrary.add_equivalence(RZXGate(theta), equiv)
 ```
 
-After this, for the duration of the Python interpreter session, translators like [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") will find our new definition in their search.
+After this, for the duration of the Python interpreter session, translators like [`BasisTranslator`](transpiler-passes-basis-translator "qiskit.transpiler.passes.BasisTranslator") will find our new definition in their search.
 
 <span id="circuit-working-with" />
 
@@ -847,49 +847,49 @@ After this, for the duration of the Python interpreter session, translators like
 
 ### Converting abstract circuits to physical circuits
 
-An abstract [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") cannot reliably be run on hardware. You might be able to use some of the high-level simulators linked to in [Simulating circuits](#circuit-simulation) to produce quick results for small scale circuits, but to run utility-scale circuits, you will need to use real hardware, which involves compiling to a physical circuit.
+An abstract [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") cannot reliably be run on hardware. You might be able to use some of the high-level simulators linked to in [Simulating circuits](#circuit-simulation) to produce quick results for small scale circuits, but to run utility-scale circuits, you will need to use real hardware, which involves compiling to a physical circuit.
 
-The high-level function to do this is [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"); it takes in an abstract circuit and a hardware `backend` or `target`, and returns a physical circuit. To get more access and control over the stages of the passes that will be run, use [`generate_preset_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") to build a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") first, which you can then modify.
+The high-level function to do this is [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"); it takes in an abstract circuit and a hardware `backend` or `target`, and returns a physical circuit. To get more access and control over the stages of the passes that will be run, use [`generate_preset_pass_manager()`](transpiler-preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") to build a [`StagedPassManager`](transpiler-staged-pass-manager "qiskit.transpiler.StagedPassManager") first, which you can then modify.
 
-The full transpilation and compilation machinery is described in detail in the [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") module documentation, and detail on all the passes built into Qiskit is available in [`qiskit.transpiler.passes`](transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
+The full transpilation and compilation machinery is described in detail in the [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") module documentation, and detail on all the passes built into Qiskit is available in [`qiskit.transpiler.passes`](transpiler-passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
 
 <span id="circuit-simulation" />
 
 ### Simulating circuits
 
-While not part of the [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") interface, one of the most common needs is to get quick simulation results for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects. This section provides a quick jumping-off point to other places in the documentation to find the relevant information.
+While not part of the [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") interface, one of the most common needs is to get quick simulation results for [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") objects. This section provides a quick jumping-off point to other places in the documentation to find the relevant information.
 
-For unitary circuits, you can simulate the effects on the $\lvert0\dotsm0\rangle$ state by passing the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") directly to the [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") default constructor. You can similar get a unitary matrix representing the circuit as an operator by passing it to the [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") default constructor. If you have a physical circuit, you may want to instead pass it to [`Operator.from_circuit()`](qiskit.quantum_info.Operator#from_circuit "qiskit.quantum_info.Operator.from_circuit") method to apply transformations from the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") to map it back to the “abstract” qubit space.
+For unitary circuits, you can simulate the effects on the $\lvert0\dotsm0\rangle$ state by passing the [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") directly to the [`Statevector`](quantum-info-statevector "qiskit.quantum_info.Statevector") default constructor. You can similar get a unitary matrix representing the circuit as an operator by passing it to the [`Operator`](quantum-info-operator "qiskit.quantum_info.Operator") default constructor. If you have a physical circuit, you may want to instead pass it to [`Operator.from_circuit()`](quantum-info-operator#from_circuit "qiskit.quantum_info.Operator.from_circuit") method to apply transformations from the [`QuantumCircuit.layout`](circuit-quantum-circuit#layout "qiskit.circuit.QuantumCircuit.layout") to map it back to the “abstract” qubit space.
 
 For a more backend-like simulation experience, there are simulator-backed implementations of all the Qiskit hardware interfaces. In particular, you might be interested in:
 
-*   [`BasicProvider`](qiskit.providers.basic_provider.BasicProvider "qiskit.providers.basic_provider.BasicProvider") and the raw backends it can return to you.
-*   `StatevectorSimulator` for a backend-like wrapper around [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+*   [`BasicProvider`](providers-basic-provider-basic-provider "qiskit.providers.basic_provider.BasicProvider") and the raw backends it can return to you.
+*   `StatevectorSimulator` for a backend-like wrapper around [`Statevector`](quantum-info-statevector "qiskit.quantum_info.Statevector")
 *   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.15.0)") for full, high-performance simulation capabilities.
-*   [`StatevectorSampler`](qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") for simulator-backed reference implementations of the [Qiskit Primitives](primitives#qiskit-primitives).
+*   [`StatevectorSampler`](primitives-statevector-sampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](primitives-statevector-estimator "qiskit.primitives.StatevectorEstimator") for simulator-backed reference implementations of the [Qiskit Primitives](primitives#qiskit-primitives).
 
 ### Defining equivalence relationships
 
-A common task in mapping abstract circuits to physical hardware and optimizing the result is to find equivalence relations that map a gate to a different basis set. Qiskit stores this information in a database class called [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary").
+A common task in mapping abstract circuits to physical hardware and optimizing the result is to find equivalence relations that map a gate to a different basis set. Qiskit stores this information in a database class called [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary").
 
-|                                                                                               |                                                                                                        |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
+|                                                                                         |                                                                                                        |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary") | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
 
 Qiskit ships with a large set of predefined equivalence relationships for all of its standard gates. This base library is called [`StandardEquivalenceLibrary`](#qiskit.circuit.StandardEquivalenceLibrary "qiskit.circuit.StandardEquivalenceLibrary"), and should be treated as immutable.
 
 #### qiskit.circuit.StandardEquivalenceLibrary
 
 <Attribute id="qiskit.circuit.StandardEquivalenceLibrary">
-  A [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") that stores of all Qiskit’s built-in standard gate relationships. You should not mutate this, but instead either create your own [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary") using this one as its `base`, or modify the global-state [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary").
+  A [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary") that stores of all Qiskit’s built-in standard gate relationships. You should not mutate this, but instead either create your own [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary") using this one as its `base`, or modify the global-state [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary").
 </Attribute>
 
-Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"), which is the default equivalences used by various places in Qiskit, most notably the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") transpiler pass. You should feel free to add your own equivalences to this using its [`add_equivalence()`](qiskit.circuit.EquivalenceLibrary#add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence") method, and they will be automatically picked up by default instances of the [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator").
+Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](#qiskit.circuit.SessionEquivalenceLibrary "qiskit.circuit.SessionEquivalenceLibrary"), which is the default equivalences used by various places in Qiskit, most notably the [`BasisTranslator`](transpiler-passes-basis-translator "qiskit.transpiler.passes.BasisTranslator") transpiler pass. You should feel free to add your own equivalences to this using its [`add_equivalence()`](circuit-equivalence-library#add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence") method, and they will be automatically picked up by default instances of the [`BasisTranslator`](transpiler-passes-basis-translator "qiskit.transpiler.passes.BasisTranslator").
 
 #### qiskit.circuit.SessionEquivalenceLibrary
 
 <Attribute id="qiskit.circuit.SessionEquivalenceLibrary">
-  The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary"), which will be used by most Qiskit objects if no library is manually specified. You can feel free to add equivalences to this using [`add_equivalence()`](qiskit.circuit.EquivalenceLibrary#add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence"). It inherits all the built-in rules of [`StandardEquivalenceLibrary`](#qiskit.circuit.StandardEquivalenceLibrary "qiskit.circuit.StandardEquivalenceLibrary").
+  The default instance of [`EquivalenceLibrary`](circuit-equivalence-library "qiskit.circuit.EquivalenceLibrary"), which will be used by most Qiskit objects if no library is manually specified. You can feel free to add equivalences to this using [`add_equivalence()`](circuit-equivalence-library#add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence"). It inherits all the built-in rules of [`StandardEquivalenceLibrary`](#qiskit.circuit.StandardEquivalenceLibrary "qiskit.circuit.StandardEquivalenceLibrary").
 </Attribute>
 
 ### Generating random circuits
@@ -934,7 +934,7 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
 
   **Return type**
 
-  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  [QuantumCircuit](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit")
 
   **Raises**
 
@@ -954,15 +954,15 @@ Pauli twirling is a quantum error suppression technique that uses randomization 
 
   If you’re running this function with the intent to twirl a circuit to run on hardware this may not be the most efficient way to perform twirling. Especially if the hardware vendor has implemented the [`primitives`](primitives#module-qiskit.primitives "qiskit.primitives") execution interface with `SamplerV2` and `EstimatorV2` this most likely is not the best way to apply twirling to your circuit and you’ll want to refer to the implementation of `SamplerV2` and/or `EstimatorV2` for the specified hardware vendor.
 
-  If the intent of this function is to be run after [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") the optional `target` argument can be used so that the inserted 1 qubit Pauli gates are synthesized to be compatible with the given [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") so the output circuit(s) are still compatible.
+  If the intent of this function is to be run after [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](transpiler-pass-manager#run "qiskit.transpiler.PassManager.run") the optional `target` argument can be used so that the inserted 1 qubit Pauli gates are synthesized to be compatible with the given [`Target`](transpiler-target "qiskit.transpiler.Target") so the output circuit(s) are still compatible.
 
   **Parameters**
 
-  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The circuit to twirl
-  *   **twirling\_gate** (*None |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gate to twirl, defaults to None which means twirl all default gates: [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate"), [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"), [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate"), and [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate"). If supplied it can either be a single gate or a list of gates either as either a gate object or its string name. Currently only the names “cx”, “cz”, “ecr”, and “iswap” are supported. If a gate object is provided outside the default gates it must have a matrix defined from its `to_matrix` method for the gate to potentially be twirled. If a valid twirling configuration can’t be computed that particular gate will be silently ignored and not twirled.
+  *   **circuit** ([*QuantumCircuit*](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit")) – The circuit to twirl
+  *   **twirling\_gate** (*None |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](circuit-gate "qiskit.circuit.Gate")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Gate*](circuit-gate "qiskit.circuit.Gate")*]*) – The gate to twirl, defaults to None which means twirl all default gates: [`CXGate`](circuit-library-cx-gate "qiskit.circuit.library.CXGate"), [`CZGate`](circuit-library-cz-gate "qiskit.circuit.library.CZGate"), [`ECRGate`](circuit-library-ecr-gate "qiskit.circuit.library.ECRGate"), and [`iSwapGate`](circuit-library-i-swap-gate "qiskit.circuit.library.iSwapGate"). If supplied it can either be a single gate or a list of gates either as either a gate object or its string name. Currently only the names “cx”, “cz”, “ecr”, and “iswap” are supported. If a gate object is provided outside the default gates it must have a matrix defined from its `to_matrix` method for the gate to potentially be twirled. If a valid twirling configuration can’t be computed that particular gate will be silently ignored and not twirled.
   *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – An integer seed for the random number generator used internally by this function. If specified this must be between 0 and 18,446,744,073,709,551,615.
   *   **num\_twirls** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of twirling circuits to build. This defaults to `None` and will return a single circuit. If it is an integer a list of circuits with num\_twirls circuits will be returned.
-  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target") *| None*) – If specified an [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instance to use for running single qubit decomposition as part of the Pauli twirling to optimize and map the pauli gates added to the circuit to the specified target.
+  *   **target** ([*Target*](transpiler-target "qiskit.transpiler.Target") *| None*) – If specified an [`Target`](transpiler-target "qiskit.transpiler.Target") instance to use for running single qubit decomposition as part of the Pauli twirling to optimize and map the pauli gates added to the circuit to the specified target.
 
   **Returns**
 
@@ -970,7 +970,7 @@ Pauli twirling is a quantum error suppression technique that uses randomization 
 
   **Return type**
 
-  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+  [QuantumCircuit](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") | [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[QuantumCircuit](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit")]
 </Function>
 
 ## Exceptions
@@ -996,7 +996,7 @@ When constructing circuits out of abstract objects and more concrete matrices, t
 Qiskit’s conventions are:
 
 *   in bitstring representations, bits are labelled with the right-most bit in the string called $0$ and the left-most bit in the string of $n$ bits called $n - 1$.
-*   when using integers as bit-specifier indices in circuit-construction functions, the integer is treated as an index into [`QuantumCircuit.qubits`](qiskit.circuit.QuantumCircuit#qubits "qiskit.circuit.QuantumCircuit.qubits") (or [`clbits`](qiskit.circuit.QuantumCircuit#clbits "qiskit.circuit.QuantumCircuit.clbits")).
+*   when using integers as bit-specifier indices in circuit-construction functions, the integer is treated as an index into [`QuantumCircuit.qubits`](circuit-quantum-circuit#qubits "qiskit.circuit.QuantumCircuit.qubits") (or [`clbits`](circuit-quantum-circuit#clbits "qiskit.circuit.QuantumCircuit.clbits")).
 *   when drawing circuits, we put the lowest-index bits on top.
 *   in statevector representations, we realize the abstract tensor product as the Kronecker product, and order the arguments to this such that the amplitude of computational-basis state $\lvert x\rangle$, where $x$ is the bitstring interpreted as an integer, is at location `statevector[x]`.
 *   when controlling a gate, the control qubit(s) is placed first in the argument list, *e.g.* in the call `qc.cx(0, 1)`, qubit 0 will be the control and qubit 1 will be the target. Similarly, in the manual call `qc.append(CXGate(), [0, 1])`, qubit 0 will be the control and qubit 1 will be the target.
@@ -1077,7 +1077,7 @@ assert manual_sv[19] == 1
 assert qiskit_sv[19] == 1
 ```
 
-This feeds through to the matrix representation of operators, and joins with the conventions on bit orders for controlled operators. For example, the matrix form of [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") is:
+This feeds through to the matrix representation of operators, and joins with the conventions on bit orders for controlled operators. For example, the matrix form of [`CXGate`](circuit-library-cx-gate "qiskit.circuit.library.CXGate") is:
 
 ```python
 import numpy
@@ -1098,7 +1098,7 @@ $$
 
 This might be different to other matrix representations you have seen for $CX$, but recall that the choice of matrix representation is conventional, and this form matches Qiskit’s conventions of *control qubits come first* and *the tensor product is represented such that there is a correspondence between the index of the “one amplitude” and the bitstring value of a state*.
 
-In the case of multiple controls for a gate, such as for [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate"), the `ctrl_state` argument is interpreted as the bitstring value of the control qubits, using the same zero-based labelling conventions. For example, given that the default `ctrl_state` is the all-ones bitstring, we can see that the matrix form of [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate") with `ctrl_state = 1` is the same as if we took the all-ones control-state [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate"), but flipped the value of the higher indexed control qubit on entry and exist to the gate:
+In the case of multiple controls for a gate, such as for [`CCXGate`](circuit-library-ccx-gate "qiskit.circuit.library.CCXGate"), the `ctrl_state` argument is interpreted as the bitstring value of the control qubits, using the same zero-based labelling conventions. For example, given that the default `ctrl_state` is the all-ones bitstring, we can see that the matrix form of [`CCXGate`](circuit-library-ccx-gate "qiskit.circuit.library.CCXGate") with `ctrl_state = 1` is the same as if we took the all-ones control-state [`CCXGate`](circuit-library-ccx-gate "qiskit.circuit.library.CCXGate"), but flipped the value of the higher indexed control qubit on entry and exist to the gate:
 
 ```python
 from qiskit import QuantumCircuit
@@ -1122,7 +1122,7 @@ ccx_relative.x(1)
 assert Operator(ccx_relative) == Operator(ccx_natural)
 ```
 
-In both these cases, the matrix form of [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate") in `ctrl_state = 1` is:
+In both these cases, the matrix form of [`CCXGate`](circuit-library-ccx-gate "qiskit.circuit.library.CCXGate") in `ctrl_state = 1` is:
 
 $$
 \operatorname{array}\bigl(CCX(\text{ctrl\_state}=1)\bigr) =

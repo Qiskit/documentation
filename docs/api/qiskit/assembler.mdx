@@ -29,10 +29,10 @@ python_api_name: qiskit.assembler
 
   **Parameters**
 
-  *   **circuits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – circuit(s) to assemble
-  *   **run\_config** ([*RunConfig*](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – configuration of the runtime environment
+  *   **circuits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](circuit-quantum-circuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – circuit(s) to assemble
+  *   **run\_config** ([*RunConfig*](assembler-run-config "qiskit.assembler.run_config.RunConfig")) – configuration of the runtime environment
   *   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – identifier for the generated qobj
-  *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – header to pass to the results
+  *   **qobj\_header** ([*QobjHeader*](qobj-qobj-header "qiskit.qobj.common.QobjHeader")) – header to pass to the results
 
   **Returns**
 
@@ -40,7 +40,7 @@ python_api_name: qiskit.assembler
 
   **Return type**
 
-  [*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
+  [*QasmQobj*](qobj-qasm-qobj "qiskit.qobj.qasm_qobj.QasmQobj")
 
   **Examples**
 
@@ -74,10 +74,10 @@ python_api_name: qiskit.assembler
 
   **Parameters**
 
-  *   **schedules** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]]*) – Schedules to assemble.
+  *   **schedules** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*ScheduleBlock*](pulse-schedule-block "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](pulse-schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*Schedule*](pulse-schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]]*) – Schedules to assemble.
   *   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Identifier for the generated qobj.
-  *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – Header to pass to the results.
-  *   **run\_config** ([*RunConfig*](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – Configuration of the runtime environment.
+  *   **qobj\_header** ([*QobjHeader*](qobj-qobj-header "qiskit.qobj.common.QobjHeader")) – Header to pass to the results.
+  *   **run\_config** ([*RunConfig*](assembler-run-config "qiskit.assembler.run_config.RunConfig")) – Configuration of the runtime environment.
 
   **Returns**
 
@@ -89,7 +89,7 @@ python_api_name: qiskit.assembler
 
   **Return type**
 
-  [*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
+  [*PulseQobj*](qobj-pulse-qobj "qiskit.qobj.pulse_qobj.PulseQobj")
 
   **Examples**
 
@@ -135,7 +135,7 @@ python_api_name: qiskit.assembler
   Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.
 
   <Admonition title="Note" type="note">
-    `disassemble(assemble(qc))` is not guaranteed to produce an exactly equal circuit to the input, due to limitations in the [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") format that need to be maintained for backend system compatibility. This is most likely to be the case when using newer features of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). In most cases, the output should be equivalent, if not quite equal.
+    `disassemble(assemble(qc))` is not guaranteed to produce an exactly equal circuit to the input, due to limitations in the [`QasmQobj`](qobj-qasm-qobj "qiskit.qobj.QasmQobj") format that need to be maintained for backend system compatibility. This is most likely to be the case when using newer features of [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"). In most cases, the output should be equivalent, if not quite equal.
   </Admonition>
 
   <Admonition title="Deprecated since version 1.2" type="danger">
@@ -180,7 +180,7 @@ python_api_name: qiskit.assembler
 
 ## Classes
 
-|                                                                                                                |                              |
-| -------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| [`RunConfig`](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")(\[shots, seed\_simulator, memory, ...]) | Class for Run Configuration. |
+|                                                                                                          |                              |
+| -------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`RunConfig`](assembler-run-config "qiskit.assembler.RunConfig")(\[shots, seed\_simulator, memory, ...]) | Class for Run Configuration. |
 
