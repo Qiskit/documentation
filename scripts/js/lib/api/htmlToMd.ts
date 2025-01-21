@@ -29,6 +29,7 @@ import { HtmlToMdResult } from "./HtmlToMdResult.js";
 import { Metadata, ApiType } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
+import { externalRedirects } from "../../../config/external-redirects.js";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
@@ -39,10 +40,15 @@ export async function sphinxHtmlToMarkdown(options: {
   hasSeparateReleaseNotes: boolean;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
-  const markdown = await generateMarkdownFile(
+  let markdown = await generateMarkdownFile(
     processedHtml.html,
     processedHtml.meta,
   );
+
+  for (const redirect of externalRedirects) {
+    markdown = markdown.replaceAll(redirect.old, redirect.new);
+  }
+
   return {
     markdown,
     meta: processedHtml.meta,
