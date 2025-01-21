@@ -18,21 +18,21 @@ python_api_name: qiskit.primitives
 
 The primitives are computational building blocks to be used in larger applications whose input units, called primitive unified blocs (PUBs), require quantum resources to efficiently produce outputs for.
 
-Currently there are two types of primitives whose abstractions, in their latest versions, are defined by [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") and [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"). Samplers are responsible for accepting quantum circuits (or sweeps of values over parameterized circuits) and sampling from their classical output registers. Estimators accept combinations of circuits and observables (or sweeps thereof) to estimate expectation values of the observables.
+Currently there are two types of primitives whose abstractions, in their latest versions, are defined by [`BaseSamplerV2`](primitives-base-sampler-v-2 "qiskit.primitives.BaseSamplerV2") and [`BaseEstimatorV2`](primitives-base-estimator-v-2 "qiskit.primitives.BaseEstimatorV2"). Samplers are responsible for accepting quantum circuits (or sweeps of values over parameterized circuits) and sampling from their classical output registers. Estimators accept combinations of circuits and observables (or sweeps thereof) to estimate expectation values of the observables.
 
-Qiskit implements a reference implementation for each of these abstractions, [`StatevectorSampler`](qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator").
+Qiskit implements a reference implementation for each of these abstractions, [`StatevectorSampler`](primitives-statevector-sampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](primitives-statevector-estimator "qiskit.primitives.StatevectorEstimator").
 
 ## Overview of EstimatorV2
 
-[`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") is a primitive that estimates expectation values for provided quantum circuit and observable combinations.
+[`BaseEstimatorV2`](primitives-base-estimator-v-2 "qiskit.primitives.BaseEstimatorV2") is a primitive that estimates expectation values for provided quantum circuit and observable combinations.
 
-Following construction, an estimator is used by calling its [`run()`](qiskit.primitives.BaseEstimatorV2#run "qiskit.primitives.BaseEstimatorV2.run") method with a list of pubs (Primitive Unified Blocs). Each pub contains three values that, together, define a computation unit of work for the estimator to complete:
+Following construction, an estimator is used by calling its [`run()`](primitives-base-estimator-v-2#run "qiskit.primitives.BaseEstimatorV2.run") method with a list of pubs (Primitive Unified Blocs). Each pub contains three values that, together, define a computation unit of work for the estimator to complete:
 
-*   a single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parametrized, whose final state we define as $\psi(\theta)$,
-*   one or more observables (specified as any `ObservablesArrayLike`, including [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), `str`) that specify which expectation values to estimate, denoted $H_j$, and
+*   a single [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"), possibly parametrized, whose final state we define as $\psi(\theta)$,
+*   one or more observables (specified as any `ObservablesArrayLike`, including [`Pauli`](quantum-info-pauli "qiskit.quantum_info.Pauli"), [`SparsePauliOp`](quantum-info-sparse-pauli-op "qiskit.quantum_info.SparsePauliOp"), `str`) that specify which expectation values to estimate, denoted $H_j$, and
 *   a collection parameter value sets to bind the circuit against, $\theta_k$.
 
-Running an estimator returns a [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") object, where calling the method [`result()`](qiskit.primitives.BasePrimitiveJob#result "qiskit.primitives.BasePrimitiveJob.result") results in expectation value estimates and metadata for each pub:
+Running an estimator returns a [`BasePrimitiveJob`](primitives-base-primitive-job "qiskit.primitives.BasePrimitiveJob") object, where calling the method [`result()`](primitives-base-primitive-job#result "qiskit.primitives.BasePrimitiveJob.result") results in expectation value estimates and metadata for each pub:
 
 $$
 \langle\psi(\theta_k)|H_j|\psi(\theta_k)\rangle
@@ -81,15 +81,15 @@ print(f"The primitive-job finished with result {job_result}")
 
 ## Overview of SamplerV2
 
-[`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") is a primitive that samples outputs of quantum circuits.
+[`BaseSamplerV2`](primitives-base-sampler-v-2 "qiskit.primitives.BaseSamplerV2") is a primitive that samples outputs of quantum circuits.
 
-Following construction, a sampler is used by calling its [`run()`](qiskit.primitives.BaseSamplerV2#run "qiskit.primitives.BaseSamplerV2.run") method with a list of pubs (Primitive Unified Blocs). Each pub contains values that, together, define a computational unit of work for the sampler to complete:
+Following construction, a sampler is used by calling its [`run()`](primitives-base-sampler-v-2#run "qiskit.primitives.BaseSamplerV2.run") method with a list of pubs (Primitive Unified Blocs). Each pub contains values that, together, define a computational unit of work for the sampler to complete:
 
-*   A single [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), possibly parameterized.
+*   A single [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit"), possibly parameterized.
 *   A collection parameter value sets to bind the circuit against if it is parametric.
 *   Optionally, the number of shots to sample, determined in the run method if not set.
 
-Running an estimator returns a [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob") object, where calling the method [`result()`](qiskit.primitives.BasePrimitiveJob#result "qiskit.primitives.BasePrimitiveJob.result") results in output samples and metadata for each pub.
+Running an estimator returns a [`BasePrimitiveJob`](primitives-base-primitive-job "qiskit.primitives.BasePrimitiveJob") object, where calling the method [`result()`](primitives-base-primitive-job#result "qiskit.primitives.BasePrimitiveJob.result") results in output samples and metadata for each pub.
 
 Here is an example of how a sampler is used.
 
@@ -131,13 +131,13 @@ print(f"The primitive-job finished with result {job_result}")
 
 Estimator class estimates expectation values of quantum circuits and observables.
 
-An estimator is initialized with an empty parameter set. The estimator is used to create a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Estimator.run()`](qiskit.primitives.Estimator#run "qiskit.primitives.Estimator.run") method. This method is called with the following parameters
+An estimator is initialized with an empty parameter set. The estimator is used to create a [`JobV1`](providers-job-v-1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Estimator.run()`](primitives-estimator#run "qiskit.primitives.Estimator.run") method. This method is called with the following parameters
 
-*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects).
-*   observables ($H_j$): a list of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") objects.
+*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits (a list of [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") objects).
+*   observables ($H_j$): a list of [`SparsePauliOp`](quantum-info-sparse-pauli-op "qiskit.quantum_info.SparsePauliOp") objects.
 *   parameter values ($\theta_k$): list of sets of values to be bound to the parameters of the quantum circuits (list of list of float).
 
-The method returns a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields the a list of expectation values plus optional metadata like confidence intervals for the estimation.
+The method returns a [`JobV1`](providers-job-v-1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](providers-job-v-1#result "qiskit.providers.JobV1.result") yields the a list of expectation values plus optional metadata like confidence intervals for the estimation.
 
 $$
 \langle\psi_i(\theta_k)|H_j|\psi_i(\theta_k)\rangle
@@ -184,12 +184,12 @@ print(f"The primitive-job finished with result {job_result}")
 
 Sampler class calculates probabilities or quasi-probabilities of bitstrings from quantum circuits.
 
-A sampler is initialized with an empty parameter set. The sampler is used to create a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Sampler.run()`](qiskit.primitives.Sampler#run "qiskit.primitives.Sampler.run") method. This method is called with the following parameters
+A sampler is initialized with an empty parameter set. The sampler is used to create a [`JobV1`](providers-job-v-1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Sampler.run()`](primitives-sampler#run "qiskit.primitives.Sampler.run") method. This method is called with the following parameters
 
-*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits. (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects)
+*   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits. (a list of [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") objects)
 *   parameter values ($\theta_k$): list of sets of parameter values to be bound to the parameters of the quantum circuits. (list of list of float)
 
-The method returns a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields a [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult") object, which contains probabilities or quasi-probabilities of bitstrings, plus optional metadata like error bars in the samples.
+The method returns a [`JobV1`](providers-job-v-1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](providers-job-v-1#result "qiskit.providers.JobV1.result") yields a [`SamplerResult`](primitives-sampler-result "qiskit.primitives.SamplerResult") object, which contains probabilities or quasi-probabilities of bitstrings, plus optional metadata like error bars in the samples.
 
 Here is an example of how sampler is used.
 
@@ -262,7 +262,7 @@ The formal distinction between the Primitives V1 and V2 APIs are the base classe
 
 2.  The V2 sampler returns samples of classical outcomes, preserving the shot order in which they were measured. This is in contrast to the V1 sampler that outputs quasi-probability distributions which are instead an *estimate of the distribution* over classical outcomes. Moreover, the V2 sampler result objects organize data in terms of their input circuits’ classical register names, which provides natural compatibility with dynamic circuits.
 
-    The closest analog of quasi-probability distributions in the V2 interface is the [`get_counts()`](qiskit.primitives.BitArray#get_counts "qiskit.primitives.BitArray.get_counts") method, shown in the example below. However, we emphasize that for utility scale experiments (100+ qubits), the chances of measuring the same bitstring twice are small, so that binning like counts in a dictionary format will not typically be an efficient data processing strategy.
+    The closest analog of quasi-probability distributions in the V2 interface is the [`get_counts()`](primitives-bit-array#get_counts "qiskit.primitives.BitArray.get_counts") method, shown in the example below. However, we emphasize that for utility scale experiments (100+ qubits), the chances of measuring the same bitstring twice are small, so that binning like counts in a dictionary format will not typically be an efficient data processing strategy.
 
     ```python
     circuit = QuantumCircuit(QuantumRegister(2, "qreg"), ClassicalRegister(2, "alpha"))
@@ -284,7 +284,7 @@ The formal distinction between the Primitives V1 and V2 APIs are the base classe
     quasi_dist = QuasiDistribution({outcome: freq / shots for outcome, freq in counts.items()})
     ```
 
-3.  The V2 primitives have brought the concept of sampling overhead, inherent to all quantum systems via their inherent probabilistic nature, out of the options and into the API itself. For the sampler, this means that the `shots` argument is now part of the [`run()`](qiskit.primitives.BaseSamplerV2#run "qiskit.primitives.BaseSamplerV2.run") signature, and moreover that each pub is able to specify its own value for `shots`, which takes precedence over any value given to the method. The sampler has an analogous `precision` argument that specifies the error bars that the primitive implementation should target for expectation values estimates.
+3.  The V2 primitives have brought the concept of sampling overhead, inherent to all quantum systems via their inherent probabilistic nature, out of the options and into the API itself. For the sampler, this means that the `shots` argument is now part of the [`run()`](primitives-base-sampler-v-2#run "qiskit.primitives.BaseSamplerV2.run") signature, and moreover that each pub is able to specify its own value for `shots`, which takes precedence over any value given to the method. The sampler has an analogous `precision` argument that specifies the error bars that the primitive implementation should target for expectation values estimates.
 
     This concept is not present in the API of the V1 primitives, though all implementations of the V1 primitives have related settings somewhere in their options.
 
@@ -304,49 +304,49 @@ The formal distinction between the Primitives V1 and V2 APIs are the base classe
 
 ### Estimator V2
 
-|                                                                                                                                           |                                                                                                                                                        |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2")()                                              | Estimator V2 base class.                                                                                                                               |
-| [`StatevectorEstimator`](qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator")(\*\[, default\_precision, ...]) | Simple implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") with full state vector simulation. |
-| [`BackendEstimatorV2`](qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2")(\*, backend\[, options])              | Evaluates expectation values for provided quantum circuit and observable combinations.                                                                 |
+|                                                                                                                                     |                                                                                                                                                    |
+| ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`BaseEstimatorV2`](primitives-base-estimator-v-2 "qiskit.primitives.BaseEstimatorV2")()                                            | Estimator V2 base class.                                                                                                                           |
+| [`StatevectorEstimator`](primitives-statevector-estimator "qiskit.primitives.StatevectorEstimator")(\*\[, default\_precision, ...]) | Simple implementation of [`BaseEstimatorV2`](primitives-base-estimator-v-2 "qiskit.primitives.BaseEstimatorV2") with full state vector simulation. |
+| [`BackendEstimatorV2`](primitives-backend-estimator-v-2 "qiskit.primitives.BackendEstimatorV2")(\*, backend\[, options])            | Evaluates expectation values for provided quantum circuit and observable combinations.                                                             |
 
 ### Sampler V2
 
-|                                                                                                                                  |                                                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2")()                                           | Sampler V2 base class.                                                                                                                            |
-| [`StatevectorSampler`](qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler")(\*\[, default\_shots, seed]) | Simple implementation of [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") using full state vector simulation. |
-| [`BackendSamplerV2`](qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2")(\*, backend\[, options])           | Evaluates bitstrings for provided quantum circuits                                                                                                |
+|                                                                                                                            |                                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`BaseSamplerV2`](primitives-base-sampler-v-2 "qiskit.primitives.BaseSamplerV2")()                                         | Sampler V2 base class.                                                                                                                        |
+| [`StatevectorSampler`](primitives-statevector-sampler "qiskit.primitives.StatevectorSampler")(\*\[, default\_shots, seed]) | Simple implementation of [`BaseSamplerV2`](primitives-base-sampler-v-2 "qiskit.primitives.BaseSamplerV2") using full state vector simulation. |
+| [`BackendSamplerV2`](primitives-backend-sampler-v-2 "qiskit.primitives.BackendSamplerV2")(\*, backend\[, options])         | Evaluates bitstrings for provided quantum circuits                                                                                            |
 
 ### Results V2
 
-|                                                                                                                       |                                                                      |
-| --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`BitArray`](qiskit.primitives.BitArray "qiskit.primitives.BitArray")(array, num\_bits)                               | Stores an array of bit values.                                       |
-| [`DataBin`](qiskit.primitives.DataBin "qiskit.primitives.DataBin")(\*\[, shape])                                      | Namespace for storing data.                                          |
-| [`PrimitiveResult`](qiskit.primitives.PrimitiveResult "qiskit.primitives.PrimitiveResult")(pub\_results\[, metadata]) | A container for multiple pub results and global metadata.            |
-| [`PubResult`](qiskit.primitives.PubResult "qiskit.primitives.PubResult")(data\[, metadata])                           | Result of Primitive Unified Bloc.                                    |
-| [`SamplerPubResult`](qiskit.primitives.SamplerPubResult "qiskit.primitives.SamplerPubResult")(data\[, metadata])      | Result of Sampler Pub.                                               |
-| [`BasePrimitiveJob`](qiskit.primitives.BasePrimitiveJob "qiskit.primitives.BasePrimitiveJob")(job\_id, \*\*kwargs)    | Primitive job abstract base class.                                   |
-| [`PrimitiveJob`](qiskit.primitives.PrimitiveJob "qiskit.primitives.PrimitiveJob")(function, \*args, \*\*kwargs)       | Primitive job class for the reference implementations of Primitives. |
+|                                                                                                                 |                                                                      |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [`BitArray`](primitives-bit-array "qiskit.primitives.BitArray")(array, num\_bits)                               | Stores an array of bit values.                                       |
+| [`DataBin`](primitives-data-bin "qiskit.primitives.DataBin")(\*\[, shape])                                      | Namespace for storing data.                                          |
+| [`PrimitiveResult`](primitives-primitive-result "qiskit.primitives.PrimitiveResult")(pub\_results\[, metadata]) | A container for multiple pub results and global metadata.            |
+| [`PubResult`](primitives-pub-result "qiskit.primitives.PubResult")(data\[, metadata])                           | Result of Primitive Unified Bloc.                                    |
+| [`SamplerPubResult`](primitives-sampler-pub-result "qiskit.primitives.SamplerPubResult")(data\[, metadata])     | Result of Sampler Pub.                                               |
+| [`BasePrimitiveJob`](primitives-base-primitive-job "qiskit.primitives.BasePrimitiveJob")(job\_id, \*\*kwargs)   | Primitive job abstract base class.                                   |
+| [`PrimitiveJob`](primitives-primitive-job "qiskit.primitives.PrimitiveJob")(function, \*args, \*\*kwargs)       | Primitive job class for the reference implementations of Primitives. |
 
 ### Estimator V1
 
-|                                                                                                                         |                                                                                                                        |
-| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(\*\[, options])                    | DEPRECATED.                                                                                                            |
-| [`BaseEstimatorV1`](qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.BaseEstimatorV1")(\*\[, options])              | Estimator V1 base class.                                                                                               |
-| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(\*\[, options])                                | Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") (V1). |
-| [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                                |
-| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata)            | Result of Estimator V1.                                                                                                |
+|                                                                                                                   |                                                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [`BaseEstimator`](primitives-base-estimator "qiskit.primitives.BaseEstimator")(\*\[, options])                    | DEPRECATED.                                                                                                      |
+| [`BaseEstimatorV1`](primitives-base-estimator-v-1 "qiskit.primitives.BaseEstimatorV1")(\*\[, options])            | Estimator V1 base class.                                                                                         |
+| [`Estimator`](primitives-estimator "qiskit.primitives.Estimator")(\*\[, options])                                 | Reference implementation of [`BaseEstimator`](primitives-base-estimator "qiskit.primitives.BaseEstimator") (V1). |
+| [`BackendEstimator`](primitives-backend-estimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                          |
+| [`EstimatorResult`](primitives-estimator-result "qiskit.primitives.EstimatorResult")(values, metadata)            | Result of Estimator V1.                                                                                          |
 
 ### Sampler V1
 
-|                                                                                                                   |                                                                                                                                                                                        |
-| ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(\*\[, options])                    | DEPRECATED.                                                                                                                                                                            |
-| [`BaseSamplerV1`](qiskit.primitives.BaseSamplerV1 "qiskit.primitives.BaseSamplerV1")(\*\[, options])              | Sampler V1 base class                                                                                                                                                                  |
-| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                | Sampler V1 class.                                                                                                                                                                      |
-| [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") (V1) implementation that provides a wrapper for leveraging the Sampler V1 interface from any backend. |
-| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata)      | Result of Sampler V1.                                                                                                                                                                  |
+|                                                                                                             |                                                                                                                                                                                  |
+| ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`BaseSampler`](primitives-base-sampler "qiskit.primitives.BaseSampler")(\*\[, options])                    | DEPRECATED.                                                                                                                                                                      |
+| [`BaseSamplerV1`](primitives-base-sampler-v-1 "qiskit.primitives.BaseSamplerV1")(\*\[, options])            | Sampler V1 base class                                                                                                                                                            |
+| [`Sampler`](primitives-sampler "qiskit.primitives.Sampler")(\*\[, options])                                 | Sampler V1 class.                                                                                                                                                                |
+| [`BackendSampler`](primitives-backend-sampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A [`BaseSampler`](primitives-base-sampler "qiskit.primitives.BaseSampler") (V1) implementation that provides a wrapper for leveraging the Sampler V1 interface from any backend. |
+| [`SamplerResult`](primitives-sampler-result "qiskit.primitives.SamplerResult")(quasi\_dists, metadata)      | Result of Sampler V1.                                                                                                                                                            |
 

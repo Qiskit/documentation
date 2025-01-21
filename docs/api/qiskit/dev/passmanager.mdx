@@ -28,7 +28,7 @@ The pass manager converts the input Python object into an intermediate represent
 
 The passes may consume the hardware constraints that the Qiskit backend may provide. Finally, the IR is converted back to some Python object. Note that the input type and output type are not necessarily the same.
 
-Compilation in the pass manager is a chain of `Task` executions that take an IR and output a new IR with some optimization or data analysis. An atomic task is a *pass* which is a subclass of [`GenericPass`](qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass") that implements a `run()` method that performs some work on the received IR. A set of passes may form a *flow controller*, which is a subclass of [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.BaseController"), which can implement arbitrary compilation-state-dependent logic for deciding which pass will get run next. Passes share intermediate data via the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") object which is a free-form dictionary. A pass can populate the property set dictionary during the task execution. A flow controller can also consume the property set to control the pass execution, but this access must be read-only. The property set is portable and handed over from pass to pass at execution. In addition to the property set, tasks also receive a [`WorkflowStatus`](qiskit.passmanager.WorkflowStatus "qiskit.passmanager.WorkflowStatus") data structure. This object is initialized when the pass manager is run and handed over to underlying tasks. The status is updated after every pass is run, and contains information about the pipeline state (number of passes run, failure state, and so on) as opposed to the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet"), which contains information about the IR being optimized.
+Compilation in the pass manager is a chain of `Task` executions that take an IR and output a new IR with some optimization or data analysis. An atomic task is a *pass* which is a subclass of [`GenericPass`](passmanager-generic-pass "qiskit.passmanager.GenericPass") that implements a `run()` method that performs some work on the received IR. A set of passes may form a *flow controller*, which is a subclass of [`BaseController`](passmanager-base-controller "qiskit.passmanager.BaseController"), which can implement arbitrary compilation-state-dependent logic for deciding which pass will get run next. Passes share intermediate data via the [`PropertySet`](passmanager-property-set "qiskit.passmanager.PropertySet") object which is a free-form dictionary. A pass can populate the property set dictionary during the task execution. A flow controller can also consume the property set to control the pass execution, but this access must be read-only. The property set is portable and handed over from pass to pass at execution. In addition to the property set, tasks also receive a [`WorkflowStatus`](passmanager-workflow-status "qiskit.passmanager.WorkflowStatus") data structure. This object is initialized when the pass manager is run and handed over to underlying tasks. The status is updated after every pass is run, and contains information about the pipeline state (number of passes run, failure state, and so on) as opposed to the [`PropertySet`](passmanager-property-set "qiskit.passmanager.PropertySet"), which contains information about the IR being optimized.
 
 A pass manager is a wrapper of the flow controller, with responsibilities of
 
@@ -38,9 +38,9 @@ A pass manager is a wrapper of the flow controller, with responsibilities of
 *   Running scheduled tasks to apply a series of transformations to the IR,
 *   Converting the IR back to an output Python object.
 
-This indicates that the flow controller itself is type-agnostic, and a developer must implement a subclass of the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") to manage the data conversion steps. This *veil of ignorance* allows us to choose the most efficient data representation for a particular pass manager task, while we can reuse the flow control machinery for different input and output types.
+This indicates that the flow controller itself is type-agnostic, and a developer must implement a subclass of the [`BasePassManager`](passmanager-base-pass-manager "qiskit.passmanager.BasePassManager") to manage the data conversion steps. This *veil of ignorance* allows us to choose the most efficient data representation for a particular pass manager task, while we can reuse the flow control machinery for different input and output types.
 
-A single flow controller always takes a single IR object, and returns a single IR object. Parallelism for multiple input objects is supported by the [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") by broadcasting the flow controller via the [`parallel_map()`](utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") function.
+A single flow controller always takes a single IR object, and returns a single IR object. Parallelism for multiple input objects is supported by the [`BasePassManager`](passmanager-base-pass-manager "qiskit.passmanager.BasePassManager") by broadcasting the flow controller via the [`parallel_map()`](utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map") function.
 
 ## Examples
 
@@ -97,7 +97,7 @@ class CountDigits(GenericPass):
 analysis_task = CountDigits()
 ```
 
-Then, we wrap the remove five task with the [`ConditionalController`](qiskit.passmanager.ConditionalController "qiskit.passmanager.ConditionalController") that runs the stored tasks only when the condition is met.
+Then, we wrap the remove five task with the [`ConditionalController`](passmanager-conditional-controller "qiskit.passmanager.ConditionalController") that runs the stored tasks only when the condition is met.
 
 ```python
 def digit_condition(property_set):
@@ -134,27 +134,27 @@ With the pass manager framework, a developer can flexibly customize the optimiza
 
 ### Base classes
 
-|                                                                                                                        |                                           |
-| ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager")(\[tasks, max\_iteration]) | Pass manager base class.                  |
-| [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.BaseController")(\[options])                  | Base class of controller.                 |
-| [`GenericPass`](qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass")()                                     | Base class of a single pass manager task. |
+|                                                                                                                   |                                           |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`BasePassManager`](passmanager-base-pass-manager "qiskit.passmanager.BasePassManager")(\[tasks, max\_iteration]) | Pass manager base class.                  |
+| [`BaseController`](passmanager-base-controller "qiskit.passmanager.BaseController")(\[options])                   | Base class of controller.                 |
+| [`GenericPass`](passmanager-generic-pass "qiskit.passmanager.GenericPass")()                                      | Base class of a single pass manager task. |
 
 ### Flow controllers
 
-|                                                                                                                                          |                                                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear")(\[tasks, options])           | A standard flow controller that runs tasks one after the other.                                               |
-| [`ConditionalController`](qiskit.passmanager.ConditionalController "qiskit.passmanager.ConditionalController")(\[tasks, condition, ...]) | A flow controller runs the pipeline once if the condition is true, or does nothing if the condition is false. |
-| [`DoWhileController`](qiskit.passmanager.DoWhileController "qiskit.passmanager.DoWhileController")(\[tasks, do\_while, options])         | Run the given tasks in a loop until the `do_while` condition on the property set becomes `False`.             |
+|                                                                                                                                    |                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [`FlowControllerLinear`](passmanager-flow-controller-linear "qiskit.passmanager.FlowControllerLinear")(\[tasks, options])          | A standard flow controller that runs tasks one after the other.                                               |
+| [`ConditionalController`](passmanager-conditional-controller "qiskit.passmanager.ConditionalController")(\[tasks, condition, ...]) | A flow controller runs the pipeline once if the condition is true, or does nothing if the condition is false. |
+| [`DoWhileController`](passmanager-do-while-controller "qiskit.passmanager.DoWhileController")(\[tasks, do\_while, options])        | Run the given tasks in a loop until the `do_while` condition on the property set becomes `False`.             |
 
 ### Compilation state
 
-|                                                                                                                                  |                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet")                                                 | A default dictionary-like object.                                                  |
-| [`WorkflowStatus`](qiskit.passmanager.WorkflowStatus "qiskit.passmanager.WorkflowStatus")(\[count, completed\_passes, ...])      | Collection of compilation status of workflow, i.e. pass manager run.               |
-| [`PassManagerState`](qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")(workflow\_status, property\_set) | A portable container object that pass manager tasks communicate through generator. |
+|                                                                                                                             |                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`PropertySet`](passmanager-property-set "qiskit.passmanager.PropertySet")                                                  | A default dictionary-like object.                                                  |
+| [`WorkflowStatus`](passmanager-workflow-status "qiskit.passmanager.WorkflowStatus")(\[count, completed\_passes, ...])       | Collection of compilation status of workflow, i.e. pass manager run.               |
+| [`PassManagerState`](passmanager-pass-manager-state "qiskit.passmanager.PassManagerState")(workflow\_status, property\_set) | A portable container object that pass manager tasks communicate through generator. |
 
 ### Exceptions
 

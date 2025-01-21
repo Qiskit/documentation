@@ -24,7 +24,7 @@ Most circuits must undergo a series of transformations that make them compatible
 
 ![The transpilation process takes the input circuit, applies the transpilation       passes, then produces the output circuit.](/images/api/qiskit/dev/transpiling_core_steps.avif)
 
-Qiskit has four pre-built transpilation pipelines available here: [`qiskit.transpiler.preset_passmanagers`](transpiler_preset#module-qiskit.transpiler.preset_passmanagers "qiskit.transpiler.preset_passmanagers"). Unless the reader is familiar with quantum circuit optimization methods and their usage, it is best to use one of these ready-made routines. By default the preset pass managers are composed of six stages:
+Qiskit has four pre-built transpilation pipelines available here: [`qiskit.transpiler.preset_passmanagers`](transpiler-preset#module-qiskit.transpiler.preset_passmanagers "qiskit.transpiler.preset_passmanagers"). Unless the reader is familiar with quantum circuit optimization methods and their usage, it is best to use one of these ready-made routines. By default the preset pass managers are composed of six stages:
 
 1.  `init` - This stage runs any initial passes that are required before we start embedding the circuit to the backend. This typically involves unrolling custom instructions and converting the circuit to all 1 and 2 qubit gates.
 2.  `layout` - This stage applies a layout, mapping the virtual qubits in the circuit to the physical qubits on a backend. See [Layout Stage](#layout-stage) for more details.
@@ -33,15 +33,15 @@ Qiskit has four pre-built transpilation pipelines available here: [`qiskit.trans
 5.  `optimization` - This stage runs the main optimization loop repeatedly until a condition (such as fixed depth) is reached. See [Optimization Stage](#optimization-stage) for more details.
 6.  `scheduling` - This stage is for any hardware-aware scheduling passes. See [Scheduling Stage](#scheduling-stage) for more details.
 
-When using [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"), the implementation of each stage can be modified with the `*_method` arguments (e.g. `layout_method`). These can be set to one of the built-in methods and can also refer to available external plugins. See [`qiskit.transpiler.preset_passmanagers.plugin`](transpiler_plugins#module-qiskit.transpiler.preset_passmanagers.plugin "qiskit.transpiler.preset_passmanagers.plugin") for details on this plugin interface.
+When using [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile"), the implementation of each stage can be modified with the `*_method` arguments (e.g. `layout_method`). These can be set to one of the built-in methods and can also refer to available external plugins. See [`qiskit.transpiler.preset_passmanagers.plugin`](transpiler-plugins#module-qiskit.transpiler.preset_passmanagers.plugin "qiskit.transpiler.preset_passmanagers.plugin") for details on this plugin interface.
 
 <span id="id1" />
 
 ## Working with Preset Pass Managers
 
-Qiskit includes functions to build preset [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") objects. These preset passmanagers are used by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function for each optimization level. There are 4 optimization levels ranging from 0 to 3, where higher optimization levels take more time and computational effort but may yield a more optimal circuit. Optimization level 0 is intended for device characterization experiments and, as such, only maps the input circuit to the constraints of the target backend, without performing any optimizations. Optimization level 3 spends the most effort to optimize the circuit. However, as many of the optimization techniques in the transpiler are heuristic based, spending more computational effort does not always result in an improvement in the quality of the output circuit.
+Qiskit includes functions to build preset [`PassManager`](transpiler-pass-manager "qiskit.transpiler.PassManager") objects. These preset passmanagers are used by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function for each optimization level. There are 4 optimization levels ranging from 0 to 3, where higher optimization levels take more time and computational effort but may yield a more optimal circuit. Optimization level 0 is intended for device characterization experiments and, as such, only maps the input circuit to the constraints of the target backend, without performing any optimizations. Optimization level 3 spends the most effort to optimize the circuit. However, as many of the optimization techniques in the transpiler are heuristic based, spending more computational effort does not always result in an improvement in the quality of the output circuit.
 
-If you’d like to work directly with a preset pass manager you can use the [`generate_preset_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") function to easily generate one. For example:
+If you’d like to work directly with a preset pass manager you can use the [`generate_preset_pass_manager()`](transpiler-preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") function to easily generate one. For example:
 
 ```python
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
@@ -51,7 +51,7 @@ backend = GenericBackendV2(num_qubits=5)
 pass_manager = generate_preset_pass_manager(3, backend)
 ```
 
-which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=GenericBackendV2(5)` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
+which will generate a [`StagedPassManager`](transpiler-staged-pass-manager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`GenericBackendV2`](providers-fake-provider-generic-backend-v-2 "qiskit.providers.fake_provider.GenericBackendV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=GenericBackendV2(5)` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](transpiler-pass-manager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](transpiler-staged-pass-manager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](transpiler-passes-pad-dynamical-decoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
 
 ```python
 import numpy as np
@@ -95,11 +95,11 @@ pass_manager.pre_layout = logical_opt
 pass_manager.scheduling = scheduling_pm
 ```
 
-Now, when the staged pass manager is run via the [`run()`](qiskit.transpiler.StagedPassManager#run "qiskit.transpiler.StagedPassManager.run") method, the `logical_opt` pass manager will be called before the `layout` stage, and the `scheduling_pm` pass manager will be used for the `scheduling` stage instead of the default.
+Now, when the staged pass manager is run via the [`run()`](transpiler-staged-pass-manager#run "qiskit.transpiler.StagedPassManager.run") method, the `logical_opt` pass manager will be called before the `layout` stage, and the `scheduling_pm` pass manager will be used for the `scheduling` stage instead of the default.
 
 ## Custom Pass Managers
 
-In addition to modifying preset pass managers, it is also possible to construct a pass manager to build an entirely custom pipeline for transforming input circuits. You can use the [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") class directly to do this. You can define arbitrary stage names and populate them with a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") instance. For example, the following code creates a new [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") that has 2 stages, `init` and `translation`.:
+In addition to modifying preset pass managers, it is also possible to construct a pass manager to build an entirely custom pipeline for transforming input circuits. You can use the [`StagedPassManager`](transpiler-staged-pass-manager "qiskit.transpiler.StagedPassManager") class directly to do this. You can define arbitrary stage names and populate them with a [`PassManager`](transpiler-pass-manager "qiskit.transpiler.PassManager") instance. For example, the following code creates a new [`StagedPassManager`](transpiler-staged-pass-manager "qiskit.transpiler.StagedPassManager") that has 2 stages, `init` and `translation`.:
 
 ```python
 from qiskit.transpiler.passes import (
@@ -126,15 +126,15 @@ staged_pm = StagedPassManager(
 )
 ```
 
-There is no limit on the number of stages you can put in a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager").
+There is no limit on the number of stages you can put in a [`StagedPassManager`](transpiler-staged-pass-manager "qiskit.transpiler.StagedPassManager").
 
-The [Stage Generator Functions](transpiler_preset#stage-generators) may be useful for the construction of custom `generate_embed_passmanager` generates a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") to “embed” a selected initial [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") from a layout pass to the specified target device.
+The [Stage Generator Functions](transpiler-preset#stage-generators) may be useful for the construction of custom `generate_embed_passmanager` generates a [`PassManager`](transpiler-pass-manager "qiskit.transpiler.PassManager") to “embed” a selected initial [`Layout`](transpiler-layout "qiskit.transpiler.Layout") from a layout pass to the specified target device.
 
 ## Representing Quantum Computers
 
-To be able to compile a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") for a specific backend, the transpiler needs a specialized representation of that backend, including its constraints, instruction set, qubit properties, and more, to be able to compile and optimize effectively. While the [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") class defines an interface for querying and interacting with backends, its scope is larger than just the transpiler’s needs including managing job submission and potentially interfacing with remote services. The specific information needed by the transpiler is described by the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class
+To be able to compile a [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") for a specific backend, the transpiler needs a specialized representation of that backend, including its constraints, instruction set, qubit properties, and more, to be able to compile and optimize effectively. While the [`BackendV2`](providers-backend-v-2 "qiskit.providers.BackendV2") class defines an interface for querying and interacting with backends, its scope is larger than just the transpiler’s needs including managing job submission and potentially interfacing with remote services. The specific information needed by the transpiler is described by the [`Target`](transpiler-target "qiskit.transpiler.Target") class
 
-For example, to construct a simple [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object, one can iteratively add descriptions of the instructions it supports:
+For example, to construct a simple [`Target`](transpiler-target "qiskit.transpiler.Target") object, one can iteratively add descriptions of the instructions it supports:
 
 ```python
 from qiskit.circuit import Parameter, Measure
@@ -244,11 +244,11 @@ Instructions:
             Error Rate: 0.2
 ```
 
-This [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") represents a 3 qubit backend that supports [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") between qubits 0 and 1, [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate") on qubits 0 and 1, [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), and [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate") on qubits 1 and 2, [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate") between qubits 1 and 2, and qubits 2 and 0, and [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") on all qubits.
+This [`Target`](transpiler-target "qiskit.transpiler.Target") represents a 3 qubit backend that supports [`CXGate`](circuit-library-cx-gate "qiskit.circuit.library.CXGate") between qubits 0 and 1, [`UGate`](circuit-library-u-gate "qiskit.circuit.library.UGate") on qubits 0 and 1, [`RZGate`](circuit-library-rz-gate "qiskit.circuit.library.RZGate"), [`RXGate`](circuit-library-rx-gate "qiskit.circuit.library.RXGate"), and [`RYGate`](circuit-library-ry-gate "qiskit.circuit.library.RYGate") on qubits 1 and 2, [`CZGate`](circuit-library-cz-gate "qiskit.circuit.library.CZGate") between qubits 1 and 2, and qubits 2 and 0, and [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") on all qubits.
 
-There are also specific data structures to represent a specific subset of information from the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"). For example, the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") class is used to solely represent the connectivity constraints of a backend as a directed graph. A coupling map can be generated from a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") using the [`Target.build_coupling_map()`](qiskit.transpiler.Target#build_coupling_map "qiskit.transpiler.Target.build_coupling_map") method. These data structures typically pre-date the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class but are still used by some transpiler passes that do not work natively with a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") instance yet or when dealing with backends that aren’t using the latest [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface.
+There are also specific data structures to represent a specific subset of information from the [`Target`](transpiler-target "qiskit.transpiler.Target"). For example, the [`CouplingMap`](transpiler-coupling-map "qiskit.transpiler.CouplingMap") class is used to solely represent the connectivity constraints of a backend as a directed graph. A coupling map can be generated from a [`Target`](transpiler-target "qiskit.transpiler.Target") using the [`Target.build_coupling_map()`](transpiler-target#build_coupling_map "qiskit.transpiler.Target.build_coupling_map") method. These data structures typically pre-date the [`Target`](transpiler-target "qiskit.transpiler.Target") class but are still used by some transpiler passes that do not work natively with a [`Target`](transpiler-target "qiskit.transpiler.Target") instance yet or when dealing with backends that aren’t using the latest [`BackendV2`](providers-backend-v-2 "qiskit.providers.BackendV2") interface.
 
-For example, if we wanted to visualize the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") for the example 3 qubit [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") above:
+For example, if we wanted to visualize the [`CouplingMap`](transpiler-coupling-map "qiskit.transpiler.CouplingMap") for the example 3 qubit [`Target`](transpiler-target "qiskit.transpiler.Target") above:
 
 ```python
 from qiskit.circuit import Parameter, Measure
@@ -304,7 +304,7 @@ target.add_instruction(
 target.build_coupling_map().draw()
 ```
 
-This shows the global connectivity of the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") which is the combination of the supported qubits for [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") and [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"). To see the individual connectivity, you can pass the operation name to `CouplingMap.build_coupling_map()`:
+This shows the global connectivity of the [`Target`](transpiler-target "qiskit.transpiler.Target") which is the combination of the supported qubits for [`CXGate`](circuit-library-cx-gate "qiskit.circuit.library.CXGate") and [`CZGate`](circuit-library-cz-gate "qiskit.circuit.library.CZGate"). To see the individual connectivity, you can pass the operation name to `CouplingMap.build_coupling_map()`:
 
 ```python
 from qiskit.circuit import Parameter, Measure
@@ -418,13 +418,13 @@ target.build_coupling_map('cz').draw()
 
 ## Transpiler Stage Details
 
-Below are a description of the default transpiler stages and the problems they solve. The default passes used for each stage are described, but the specifics are configurable via the `*_method` keyword arguments for the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and [`generate_preset_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") functions which can be used to override the methods described in this section.
+Below are a description of the default transpiler stages and the problems they solve. The default passes used for each stage are described, but the specifics are configurable via the `*_method` keyword arguments for the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") and [`generate_preset_pass_manager()`](transpiler-preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") functions which can be used to override the methods described in this section.
 
 <span id="id2" />
 
 ### Translation Stage
 
-When writing a quantum circuit you are free to use any quantum gate (unitary operator) that you like, along with a collection of non-gate operations such as qubit measurements and reset operations. However, most quantum devices only natively support a handful of quantum gates and non-gate operations. The allowed instructions for a given backend can be found by querying the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the devices:
+When writing a quantum circuit you are free to use any quantum gate (unitary operator) that you like, along with a collection of non-gate operations such as qubit measurements and reset operations. However, most quantum devices only natively support a handful of quantum gates and non-gate operations. The allowed instructions for a given backend can be found by querying the [`Target`](transpiler-target "qiskit.transpiler.Target") for the devices:
 
 ```python
 from qiskit.providers.fake_provider import GenericBackendV2
@@ -454,7 +454,7 @@ qc.draw(output='mpl')
 
 ![Circuit diagram output by the previous code.](/images/api/qiskit/dev/transpiler-8.avif)
 
-We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. We can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`GenericBackendV2`](qiskit.providers.fake_provider.GenericBackendV2 "qiskit.providers.fake_provider.GenericBackendV2") class generates a fake backend with a specified number of qubits for test purposes):
+We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. We can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`GenericBackendV2`](providers-fake-provider-generic-backend-v-2 "qiskit.providers.fake_provider.GenericBackendV2") class generates a fake backend with a specified number of qubits for test purposes):
 
 ```python
 from qiskit import transpile
@@ -487,7 +487,7 @@ print('Original depth:', qc.depth(), 'Decomposed Depth:', qc_basis.depth())
 Original depth: 4 Decomposed Depth: 10
 ```
 
-Second, although we had a single controlled gate, the fact that it was not in the basis set means that, when expanded, it requires more than a single [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") to implement. All said, unrolling to the basis set of gates leads to an increase in the depth of a quantum circuit and the number of gates.
+Second, although we had a single controlled gate, the fact that it was not in the basis set means that, when expanded, it requires more than a single [`CXGate`](circuit-library-cx-gate "qiskit.circuit.library.CXGate") to implement. All said, unrolling to the basis set of gates leads to an increase in the depth of a quantum circuit and the number of gates.
 
 It is important to highlight two special cases:
 
@@ -530,19 +530,19 @@ Quantum circuits are abstract entities whose qubits are “virtual” representa
 
 By default, qiskit will do this mapping for you. The choice of mapping depends on the properties of the circuit, the particular device you are targeting, and the optimization level that is chosen. The choice of initial layout is extremely important for minimizing the number of swap operations needed to map the input circuit onto the device topology and for minimizing the loss due to non-uniform noise properties across a device. Due to the importance of this stage, the preset pass managers try a few different methods to find the best layout. Typically this involves 2 steps: first, trying to find a “perfect” layout (a layout which does not require any swap operations), and then, a heuristic pass that tries to find the best layout to use if a perfect layout cannot be found. There are 2 passes typically used for the first stage:
 
-*   [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout"): Models layout selection as a subgraph isomorphism problem and tries to find a subgraph of the connectivity graph that is isomorphic to the graph of 2 qubit interactions in the circuit. If more than one isomorphic mapping is found a scoring heuristic is run to select the mapping which would result in the lowest average error when executing the circuit.
-*   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Maps each virtual qubit to the same numbered physical qubit on the device, i.e. `[0,1,2,3,4]` -> `[0,1,2,3,4]`. This is historical behavior used only in `optimization_level=1` to try to find a perfect layout. If it fails to do so, [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") is tried next.
+*   [`VF2Layout`](transpiler-passes-vf-2-layout "qiskit.transpiler.passes.VF2Layout"): Models layout selection as a subgraph isomorphism problem and tries to find a subgraph of the connectivity graph that is isomorphic to the graph of 2 qubit interactions in the circuit. If more than one isomorphic mapping is found a scoring heuristic is run to select the mapping which would result in the lowest average error when executing the circuit.
+*   [`TrivialLayout`](transpiler-passes-trivial-layout "qiskit.transpiler.passes.TrivialLayout"): Maps each virtual qubit to the same numbered physical qubit on the device, i.e. `[0,1,2,3,4]` -> `[0,1,2,3,4]`. This is historical behavior used only in `optimization_level=1` to try to find a perfect layout. If it fails to do so, [`VF2Layout`](transpiler-passes-vf-2-layout "qiskit.transpiler.passes.VF2Layout") is tried next.
 
 Next, for the heuristic stage, 2 passes are used by default:
 
-*   [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout"): Selects a layout by starting from an initial random layout and then repeatedly running a routing algorithm (by default [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")) both forward and backward over the circuit, using the permutation caused by swap insertions to adjust that initial random layout. For more details you can refer to the paper describing the algorithm: [arXiv:1809.02573](https://arxiv.org/abs/1809.02573) [`SabreLayout`](qiskit.transpiler.passes.SabreLayout "qiskit.transpiler.passes.SabreLayout") is used to select a layout if a perfect layout isn’t found for optimization levels 1, 2, and 3.
-*   [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout"): Always used for the layout at optimization level 0.
+*   [`SabreLayout`](transpiler-passes-sabre-layout "qiskit.transpiler.passes.SabreLayout"): Selects a layout by starting from an initial random layout and then repeatedly running a routing algorithm (by default [`SabreSwap`](transpiler-passes-sabre-swap "qiskit.transpiler.passes.SabreSwap")) both forward and backward over the circuit, using the permutation caused by swap insertions to adjust that initial random layout. For more details you can refer to the paper describing the algorithm: [arXiv:1809.02573](https://arxiv.org/abs/1809.02573) [`SabreLayout`](transpiler-passes-sabre-layout "qiskit.transpiler.passes.SabreLayout") is used to select a layout if a perfect layout isn’t found for optimization levels 1, 2, and 3.
+*   [`TrivialLayout`](transpiler-passes-trivial-layout "qiskit.transpiler.passes.TrivialLayout"): Always used for the layout at optimization level 0.
 
 There are other passes than can be used for the heuristic stage, but are not included in the default pipeline, such as:
 
-*   [`DenseLayout`](qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit.
+*   [`DenseLayout`](transpiler-passes-dense-layout "qiskit.transpiler.passes.DenseLayout"): Finds the sub-graph of the device with greatest connectivity that has the same number of qubits as the circuit.
 
-Let’s see what layouts are automatically picked at various optimization levels. The circuits returned by [`qiskit.compiler.transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are annotated with this initial layout information, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"):
+Let’s see what layouts are automatically picked at various optimization levels. The circuits returned by [`qiskit.compiler.transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are annotated with this initial layout information, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](visualization-plot-circuit-layout "qiskit.visualization.plot_circuit_layout"):
 
 ```python
 from qiskit import QuantumCircuit, transpile
@@ -631,7 +631,7 @@ plot_circuit_layout(my_ghz, backend)
 
 In order to implement a 2-qubit gate between qubits in a quantum circuit that are not directly connected on a quantum device, one or more swap gates must be inserted into the circuit to move the qubit states around until they are adjacent on the device gate map. Each swap gate typically represents an expensive and noisy operation to perform. Thus, finding the minimum number of swap gates needed to map a circuit onto a given device, is an important step (if not the most important) in the whole execution process.
 
-However, as with many important things in life, finding the optimal swap mapping is hard. In fact it is in a class of problems called NP-hard, and is thus prohibitively expensive to compute for all but the smallest quantum devices and input circuits. To get around this, by default Qiskit uses a stochastic heuristic algorithm called [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") to compute a good, but not necessarily optimal swap mapping. The use of a stochastic method means the circuits generated by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are not guaranteed to be the same over repeated runs. Indeed, running the same circuit repeatedly will in general result in a distribution of circuit depths and gate counts at the output.
+However, as with many important things in life, finding the optimal swap mapping is hard. In fact it is in a class of problems called NP-hard, and is thus prohibitively expensive to compute for all but the smallest quantum devices and input circuits. To get around this, by default Qiskit uses a stochastic heuristic algorithm called [`SabreSwap`](transpiler-passes-sabre-swap "qiskit.transpiler.passes.SabreSwap") to compute a good, but not necessarily optimal swap mapping. The use of a stochastic method means the circuits generated by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") are not guaranteed to be the same over repeated runs. Indeed, running the same circuit repeatedly will in general result in a distribution of circuit depths and gate counts at the output.
 
 In order to highlight this, we run a GHZ circuit 100 times, using a “bad” (disconnected) `initial_layout` in a heavy hex coupling map:
 
@@ -669,9 +669,9 @@ plt.ylabel('Counts', fontsize=14);
 
 ![Output from the previous code.](/images/api/qiskit/dev/transpiler-18.avif)
 
-This distribution is quite wide, signaling the difficulty the swap mapper is having in computing the best mapping. Most circuits will have a distribution of depths, perhaps not as wide as this one, due to the stochastic nature of the default swap mapper. Of course, we want the best circuit we can get, especially in cases where the depth is critical to success or failure. The [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") pass will by default by run its algorithm in parallel with multiple seed values and select the output which uses the fewest swaps. If you would like to increase the number of trials [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") runs you can refer to [Working with Preset Pass Managers](#working-with-preset-pass-managers) and modify the `routing` stage with a custom instance of [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") with a larger value for the `trials` argument.
+This distribution is quite wide, signaling the difficulty the swap mapper is having in computing the best mapping. Most circuits will have a distribution of depths, perhaps not as wide as this one, due to the stochastic nature of the default swap mapper. Of course, we want the best circuit we can get, especially in cases where the depth is critical to success or failure. The [`SabreSwap`](transpiler-passes-sabre-swap "qiskit.transpiler.passes.SabreSwap") pass will by default by run its algorithm in parallel with multiple seed values and select the output which uses the fewest swaps. If you would like to increase the number of trials [`SabreSwap`](transpiler-passes-sabre-swap "qiskit.transpiler.passes.SabreSwap") runs you can refer to [Working with Preset Pass Managers](#working-with-preset-pass-managers) and modify the `routing` stage with a custom instance of [`SabreSwap`](transpiler-passes-sabre-swap "qiskit.transpiler.passes.SabreSwap") with a larger value for the `trials` argument.
 
-Typically, following the swap mapper, the routing stage in the preset pass managers also includes running the [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") pass. As its name implies, [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") uses the same basic algorithm as [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout"), but instead of using it to find a perfect initial layout, it is designed to run after mapping and try to find a layout on qubits with lower error rates which will result in better output fidelity when running the circuit. The details of this algorithm are described in [arXiv:2209.15512](https://arxiv.org/abs/2209.15512).
+Typically, following the swap mapper, the routing stage in the preset pass managers also includes running the [`VF2PostLayout`](transpiler-passes-vf-2-post-layout "qiskit.transpiler.passes.VF2PostLayout") pass. As its name implies, [`VF2PostLayout`](transpiler-passes-vf-2-post-layout "qiskit.transpiler.passes.VF2PostLayout") uses the same basic algorithm as [`VF2Layout`](transpiler-passes-vf-2-layout "qiskit.transpiler.passes.VF2Layout"), but instead of using it to find a perfect initial layout, it is designed to run after mapping and try to find a layout on qubits with lower error rates which will result in better output fidelity when running the circuit. The details of this algorithm are described in [arXiv:2209.15512](https://arxiv.org/abs/2209.15512).
 
 <span id="id5" />
 
@@ -751,7 +751,7 @@ You can see here that the transpiler inserted [`Delay`](circuit#qiskit.circuit.D
 
 ![Output from circuit timeline drawer.](/images/api/qiskit/dev/transpiler-23.avif)
 
-The scheduling of a circuit involves two parts: analysis and constraint mapping, followed by a padding pass. The first part requires running a scheduling analysis pass such as `ALAPSchedulingAnalysis` or `ASAPSchedulingAnalysis` which analyzes the circuit and records the start time of each instruction in the circuit using a scheduling algorithm (“as late as possible” for `ALAPSchedulingAnalysis` and “as soon as possible” for `ASAPSchedulingAnalysis`) in the property set. Once the circuit has an initial scheduling, additional passes can be run to account for any timing constraints on the target backend, such as alignment constraints. This is typically done with the [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule") pass which will adjust the scheduling set in the property set to the constraints of the target backend. Once all the scheduling and adjustments/rescheduling are finished, a padding pass, such as [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay") or [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") is run to insert the instructions into the circuit, which completes the scheduling.
+The scheduling of a circuit involves two parts: analysis and constraint mapping, followed by a padding pass. The first part requires running a scheduling analysis pass such as `ALAPSchedulingAnalysis` or `ASAPSchedulingAnalysis` which analyzes the circuit and records the start time of each instruction in the circuit using a scheduling algorithm (“as late as possible” for `ALAPSchedulingAnalysis` and “as soon as possible” for `ASAPSchedulingAnalysis`) in the property set. Once the circuit has an initial scheduling, additional passes can be run to account for any timing constraints on the target backend, such as alignment constraints. This is typically done with the [`ConstrainedReschedule`](transpiler-passes-constrained-reschedule "qiskit.transpiler.passes.ConstrainedReschedule") pass which will adjust the scheduling set in the property set to the constraints of the target backend. Once all the scheduling and adjustments/rescheduling are finished, a padding pass, such as [`PadDelay`](transpiler-passes-pad-delay "qiskit.transpiler.passes.PadDelay") or [`PadDynamicalDecoupling`](transpiler-passes-pad-dynamical-decoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") is run to insert the instructions into the circuit, which completes the scheduling.
 
 #### Scheduling Analysis with control flow instructions
 
@@ -794,7 +794,7 @@ D ░░░░░░░░░░▒▒▒▒▒▒░░░
 C ░░░░░░░░░░░░░░░░▒▒░
 ```
 
-However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`circuit.Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
+However, the [`QuantumCircuit`](circuit-quantum-circuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`circuit.Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
 
 The lack of precision representing the physical model may induce edge cases in the scheduling:
 
@@ -808,7 +808,7 @@ c: 1/╡ c_0=0x1 ╞═╩═
      └─────────┘ 0
 ```
 
-In this example, a user may intend to measure the state of `q_1` after the [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") is applied to `q_0`. This is the correct interpretation from the viewpoint of topological node ordering, i.e. The [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") node comes in front of the [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") node. However, according to the measurement model above, the data in the register is unchanged during the application of the stimulus, so two nodes are simultaneously operated. If one tries to alap-schedule this circuit, it may return following circuit:
+In this example, a user may intend to measure the state of `q_1` after the [`XGate`](circuit-library-x-gate "qiskit.circuit.library.XGate") is applied to `q_0`. This is the correct interpretation from the viewpoint of topological node ordering, i.e. The [`XGate`](circuit-library-x-gate "qiskit.circuit.library.XGate") node comes in front of the [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") node. However, according to the measurement model above, the data in the register is unchanged during the application of the stimulus, so two nodes are simultaneously operated. If one tries to alap-schedule this circuit, it may return following circuit:
 
 ```text
      ┌────────────────┐   ┌───┐
@@ -904,39 +904,39 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 ### Transpiler Target
 
-|                                                                                                                                  |                                                                                                                                                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                            | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
-| [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
+|                                                                                                                            |                                                                                                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`Target`](transpiler-target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                             | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
+| [`InstructionProperties`](transpiler-instruction-properties "qiskit.transpiler.InstructionProperties")(\[duration, error]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
 
 ### Pass Manager Construction
 
-|                                                                                                                           |                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager")(\[stages])               | A pass manager pipeline built from individual stages.                  |
-| [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])                 | Manager for a set of Passes and their scheduling during transpilation. |
-| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, ...]) | Pass Manager Configuration.                                            |
+|                                                                                                                      |                                                                        |
+| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`StagedPassManager`](transpiler-staged-pass-manager "qiskit.transpiler.StagedPassManager")(\[stages])               | A pass manager pipeline built from individual stages.                  |
+| [`PassManager`](transpiler-pass-manager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])                  | Manager for a set of Passes and their scheduling during transpilation. |
+| [`PassManagerConfig`](transpiler-pass-manager-config "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, ...]) | Pass Manager Configuration.                                            |
 
 ### Layout and Topology
 
-|                                                                                                                          |                                                           |
-| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
-| [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                                          | Two-ways dict to represent a Layout.                      |
-| [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description])             | Directed graph specifying fixed coupling.                 |
-| [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")(initial\_layout, ...\[, ...]) | Layout attributes for the output circuit from transpiler. |
+|                                                                                                                    |                                                           |
+| ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| [`Layout`](transpiler-layout "qiskit.transpiler.Layout")(\[input\_dict])                                           | Two-ways dict to represent a Layout.                      |
+| [`CouplingMap`](transpiler-coupling-map "qiskit.transpiler.CouplingMap")(\[couplinglist, description])             | Directed graph specifying fixed coupling.                 |
+| [`TranspileLayout`](transpiler-transpile-layout "qiskit.transpiler.TranspileLayout")(initial\_layout, ...\[, ...]) | Layout attributes for the output circuit from transpiler. |
 
 ### Scheduling
 
-|                                                                                                                                          |                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
+|                                                                                                                                    |                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [`InstructionDurations`](transpiler-instruction-durations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
 
 ### Abstract Passes
 
-|                                                                                                                         |                                                      |
-| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
-| [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                   | An analysis pass: change property set, not DAG.      |
+|                                                                                                                   |                                                      |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`TransformationPass`](transpiler-transformation-pass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
+| [`AnalysisPass`](transpiler-analysis-pass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                   | An analysis pass: change property set, not DAG.      |
 
 ### Exceptions
 
