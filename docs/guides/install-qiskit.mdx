@@ -45,27 +45,27 @@ Whether you will work locally or in a cloud environment, the first step for all 
 
     One important advantage of a virtual environment is that if your Python environment becomes corrupted somewhere along the way, you can easily delete the virtual environment and start over!
 
-    Choose a preferred location in which to store information about your virtual environments. Commonly they're stored in a directory named `.venv` within a user's home directory.
+    Choose a preferred location in which to store information about your virtual environments. Typically they're stored in a directory named `.venv` within each project directory you're working in.
     </details>
 
-    First, create a minimal environment with only Python installed in it.
+    First, navigate to your project directory and create a minimal environment with only Python installed in it.
 
         <OperatingSystemTabs>
           <TabItem value="mac" label="macOS">
             ```shell
-            python3 -m venv /path/to/virtual/environment
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="linux" label="Linux">
             ```shell
-            python3 -m venv /path/to/virtual/environment
+            python3 -m venv .venv
             ```
           </TabItem>
 
           <TabItem value="win" label="Windows">
             ```text
-            python3 -m venv c:\path\to\virtual\environment
+            python -m venv .venv
             ```
           </TabItem>
          </OperatingSystemTabs>
@@ -75,19 +75,31 @@ Whether you will work locally or in a cloud environment, the first step for all 
          <OperatingSystemTabs>
            <TabItem value="mac" label="macOS">
              ```shell
-             source /path/to/virtual/environment/bin/activate
+             source .venv/bin/activate
              ```
            </TabItem>
 
            <TabItem value="linux" label="Linux">
              ```shell
-             source /path/to/virtual/environment/bin/activate
+             source .venv/bin/activate
              ```
            </TabItem>
 
            <TabItem value="win" label="Windows">
+              If using PowerShell:
+
              ```text
-             c:\path\to\virtual\environment\Scripts\Activate.ps1
+             .venv\Scripts\Activate.ps1
+             ```
+             If using Git Bash:
+
+             ```text
+             source .venv/scripts/activate
+             ```
+              If using command prompt:
+
+             ```text
+             .venv\Scripts\activate
              ```
            </TabItem>
          </OperatingSystemTabs>
@@ -122,7 +134,7 @@ Whether you will work locally or in a cloud environment, the first step for all 
     </Tabs>
 
 
-1. If you want to run a Jupyter notebook with the Qiskit packages you just installed, you will need to install Jupyter in your environment.
+1. If you want to run a Jupyter notebook with the Qiskit packages you just installed, you need to install Jupyter in your environment.
 
       ```shell
       pip install jupyter
@@ -130,7 +142,7 @@ Whether you will work locally or in a cloud environment, the first step for all 
     Then open your notebook as follows:
 
       ```shell
-      jupyter notebook path/to/notebook.ipynb
+      jupyter notebook <path/to/notebook.ipynb>
       ```
 
 If you are planning to work locally and use simulators built into Qiskit, then your installation is done. If you want to run jobs on IBM QPUs, next [select an access channel](setup-channel) and finish your setup.
