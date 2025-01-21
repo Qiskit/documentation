@@ -16,6 +16,7 @@ import { basename, join } from "path";
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
 import { removeSuffix } from "../../lib/stringUtils.js";
+import { kebabCaseAndShortenPage } from "../../lib/api/normalizeResultUrls.js";
 
 const OUTPUT_FILE = "./scripts/config/historical-pages-to-latest.json";
 
@@ -23,9 +24,14 @@ export async function generateHistoricalRedirects(): Promise<void> {
   console.log(`Generating ${OUTPUT_FILE}`);
   const redirectData: HistoricalRedirectData = {};
   for (const packageName of Pkg.VALID_NAMES) {
-    redirectData[packageName] = await getRedirectsForPackage(
-      join("docs/api", packageName),
-    );
+    const { redirectsByVersion, kebabCaseRedirectsForPackage } =
+      await getRedirectsForPackage(join("docs/api", packageName), packageName);
+
+    redirectData[packageName] = {
+      ...redirectsByVersion,
+      // Redirects shared for multiple API versions to avoid massive duplications
+      commonRedirects: kebabCaseRedirectsForPackage,
+    };
   }
   await writeFile(OUTPUT_FILE, JSON.stringify(redirectData, null, 2) + "\n");
 }
@@ -56,7 +62,11 @@ type Redirects = {
 
 async function getRedirectsForPackage(
   packagePath: string,
-): Promise<{ [version: string]: Redirects }> {
+  packageName: string,
+): Promise<{
+  redirectsByVersion: { [version: string]: Redirects };
+  kebabCaseRedirectsForPackage: Redirects;
+}> {
   const latestPages: string[] = [];
   const versionPaths: string[] = [];
   for (const entry of await readdir(packagePath, { withFileTypes: true })) {
@@ -68,22 +78,31 @@ async function getRedirectsForPackage(
     }
   }
   const redirectsByVersion: { [api: string]: Redirects } = {};
+  let kebabCaseRedirectsForPackage: Redirects = {};
   for (const path of versionPaths) {
     const version = basename(path);
-    redirectsByVersion[version] = await getRedirectsForVersion(
+    const { redirects, kebabCaseRedirects } = await getRedirectsForVersion(
       join(packagePath, path),
       latestPages,
+      packageName,
     );
+    redirectsByVersion[version] = redirects;
+    kebabCaseRedirectsForPackage = {
+      ...kebabCaseRedirectsForPackage,
+      ...kebabCaseRedirects,
+    };
   }
-  return redirectsByVersion;
+  return { redirectsByVersion, kebabCaseRedirectsForPackage };
 }
 
 async function getRedirectsForVersion(
   versionPath: string,
   latestPages: string[],
-): Promise<Redirects> {
+  packageName: string,
+): Promise<{ redirects: Redirects; kebabCaseRedirects: Redirects }> {
   const mdPaths = await readdir(versionPath);
-  const redirects: { [from: string]: string } = {};
+  const redirects: Redirects = {};
+  const kebabCaseRedirects: Redirects = {};
   for (const path of mdPaths) {
     if (latestPages.includes(basename(path))) {
       continue;
@@ -106,10 +125,19 @@ async function getRedirectsForVersion(
       continue;
     }
 
+    const kebabCasePath = kebabCaseAndShortenPage(
+      removeSuffix(path, ".mdx"),
+      packageName,
+    );
+    if (latestPages.includes(`${kebabCasePath}.mdx`)) {
+      kebabCaseRedirects[pageName] = `/${kebabCasePath}`;
+      continue;
+    }
+
     // Otherwise, redirect to the top-level.
     redirects[pageName] = "/";
   }
-  return redirects;
+  return { redirects, kebabCaseRedirects };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

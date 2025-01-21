@@ -105,7 +105,7 @@ export class Pkg {
           separatePagesVersions: releaseNoteEntries,
         }),
         tocGrouping: QISKIT_TOC_GROUPING,
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: +args.versionWithoutPatch >= 1.3,
       });
     }
 
@@ -114,7 +114,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Runtime client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: +args.versionWithoutPatch >= 0.34,
       });
     }
 
@@ -123,7 +123,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Transpiler Service client",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: +args.versionWithoutPatch >= 0.1,
       });
     }
 
