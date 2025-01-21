@@ -110,9 +110,60 @@ function _runtimeObjectsInvRegexes(): string[] {
   );
 }
 
+function _apisToQiskitOldLinks(): string[] {
+  // These are links from all the historical APIs pointing to the old
+  // non kebab-case Qiskit URL.
+  return [
+    // Transpiler
+    "/api/qiskit/qiskit.passmanager.PassManagerState",
+    "/api/qiskit/qiskit.transpiler.TransformationPass",
+    "/api/qiskit/qiskit.circuit.QuantumCircuit",
+    "/api/qiskit/qiskit.circuit.library.LinearFunction",
+    "/api/qiskit/qiskit.dagcircuit.DAGCircuit",
+    // sqd addon
+    "/api/qiskit/qiskit.quantum_info.SparsePauliOp",
+    "/api/qiskit/qiskit.quantum_info.Pauli",
+    // Runtime
+    "/api/qiskit/qiskit.providers.BackendV1",
+    "/api/qiskit/qiskit.providers.BackendV2",
+    "/api/qiskit/qiskit.primitives.BaseEstimatorV2",
+    "/api/qiskit/qiskit.transpiler.Target",
+    "/api/qiskit/qiskit.transpiler.CouplingMap",
+    "/api/qiskit/qiskit.transpiler.InstructionDurations",
+    "/api/qiskit/qiskit.pulse.InstructionScheduleMap",
+    "/api/qiskit/qiskit.circuit.Instruction",
+    "/api/qiskit/qiskit.providers.models.QasmBackendConfiguration",
+    "/api/qiskit/qiskit.providers.QubitProperties",
+    "/api/qiskit/providers_models",
+    "/api/qiskit/qiskit.providers.JobV1",
+    "/api/qiskit/qiskit.providers.JobStatus",
+    "/api/qiskit/qiskit.providers.Backend",
+    "/api/qiskit/qiskit.primitives.BasePrimitiveJob",
+    "/api/qiskit/qiskit.primitives.PrimitiveResult",
+    "/api/qiskit/qiskit.primitives.BaseSamplerV2",
+    "/api/qiskit/qiskit.primitives.PubResult",
+    "/api/qiskit/qiskit.providers.Job",
+    "/api/qiskit/qiskit.pulse.ScheduleBlock",
+    "/api/qiskit/qiskit.pulse.Schedule",
+    "/api/qiskit/qiskit.circuit.library.RZGate",
+    "/api/qiskit/qiskit.circuit.library.IGate",
+    "/api/qiskit/transpiler_preset#.*",
+    "api/qiskit/qiskit.transpiler.StagedPassManager",
+    "/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps",
+    "/api/qiskit/qiskit.primitives.DataBin",
+    "/api/qiskit/qiskit.circuit.Parameter",
+    "/api/qiskit/qiskit.dagcircuit.DAGOpNode",
+    "/api/qiskit/qiskit.circuit.Gate",
+    "/api/qiskit/qiskit.providers.Options",
+    "/api/qiskit/qiskit.primitives.EstimatorResult",
+    "/api/qiskit/qiskit.primitives.SamplerResult",
+  ];
+}
+
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
   ..._runtimeObjectsInvRegexes(),
+  ..._apisToQiskitOldLinks(),
 ];
 
 // -----------------------------------------------------------------------------------
