@@ -48,15 +48,15 @@ Select any QPU on the [Compute resources](https://quantum.ibm.com/services/resou
 
 | Name |  Notes |
 | :--- | :--- |
-| [CZ](/api/qiskit/qiskit.circuit.library.CZGate) | two-qubit gate |
-| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
-| [SX](/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
-| [X](/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
-| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
+| [CZ](/api/qiskit/circuit-library-cz-gate) | two-qubit gate |
+| [RZ](/api/qiskit/circuit-library-rz-gate) | single-qubit gate |
+| [SX](/api/qiskit/circuit-library-sx-gate)  |single-qubit gate |
+| [X](/api/qiskit/circuit-library-x-gate)  | single-qubit gate |
+| [ID](/api/qiskit/circuit-library-i-gate) | single-qubit gate wait cycle |
 | [reset](/api/qiskit/circuit#qiskit.circuit.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
-| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
-| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
-| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
+| [if_else](/api/qiskit/circuit-if-else-op) | control flow for classical feedforward |
+| [for_loop](/api/qiskit/circuit-for-loop-op) | control flow for classical feedforward |
+| [switch_case](/api/qiskit/circuit-switch-case-op) | control flow for classical feedforward |
 | [measure](/api/qiskit/circuit#qiskit.circuit.Measure) | |
 | [delay](/api/qiskit/circuit#qiskit.circuit.Delay) |  |
 
@@ -64,15 +64,15 @@ Select any QPU on the [Compute resources](https://quantum.ibm.com/services/resou
 
 | Name |  Notes |
 | :--- | :--- |
-| [ECR](/api/qiskit/qiskit.circuit.library.ECRGate) | two-qubit gate |
-| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
-| [SX](/api/qiskit/qiskit.circuit.library.SXGate)  |single-qubit gate |
-| [X](/api/qiskit/qiskit.circuit.library.XGate)  | single-qubit gate |
-| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
+| [ECR](/api/qiskit/circuit-library-ecr-gate) | two-qubit gate |
+| [RZ](/api/qiskit/circuit-library-rz-gate) | single-qubit gate |
+| [SX](/api/qiskit/circuit-library-sx-gate)  |single-qubit gate |
+| [X](/api/qiskit/circuit-library-x-gate)  | single-qubit gate |
+| [ID](/api/qiskit/circuit-library-i-gate) | single-qubit gate wait cycle |
 | [reset](/api/qiskit/circuit#qiskit.circuit.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
-| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
-| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
-| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
+| [if_else](/api/qiskit/circuit-if-else-op) | control flow for classical feedforward |
+| [for_loop](/api/qiskit/circuit-for-loop-op) | control flow for classical feedforward |
+| [switch_case](/api/qiskit/circuit-switch-case-op) | control flow for classical feedforward |
 | [measure](/api/qiskit/circuit#qiskit.circuit.Measure) | |
 | [delay](/api/qiskit/circuit#qiskit.circuit.Delay) |  |
 
@@ -80,20 +80,20 @@ Select any QPU on the [Compute resources](https://quantum.ibm.com/services/resou
 
 | Name |  Notes |
 | :--- | :--- |
-| [CX](/api/qiskit/qiskit.circuit.library.CXGate)  | two-qubit gate |
-| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | single-qubit gate |
-| [ID](/api/qiskit/qiskit.circuit.library.IGate) | single-qubit gate wait cycle |
+| [CX](/api/qiskit/circuit-library-cx-gate)  | two-qubit gate |
+| [RZ](/api/qiskit/circuit-library-rz-gate) | single-qubit gate |
+| [ID](/api/qiskit/circuit-library-i-gate) | single-qubit gate wait cycle |
 | [reset](/api/qiskit/circuit#qiskit.circuit.Reset)  | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
-| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | control flow for classical feedforward |
-| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | control flow for classical feedforward |
-| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | control flow for classical feedforward |
+| [if_else](/api/qiskit/circuit-if-else-op) | control flow for classical feedforward |
+| [for_loop](/api/qiskit/circuit-for-loop-op) | control flow for classical feedforward |
+| [switch_case](/api/qiskit/circuit-switch-case-op) | control flow for classical feedforward |
 | [measure](/api/qiskit/circuit#qiskit.circuit.Measure) | |
 | [delay](/api/qiskit/circuit#qiskit.circuit.Delay) |  |
 
 
 <Admonition type="tip" title="The init_qubits flag">
 
-The `init_qubits` flag, set as a [primitive execution option,](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ExecutionOptionsV2) controls whether qubits are reset to the zero state at the start of each circuit. Its default value is `True`, indicating that the qubits should be reset. If `False`, the qubits will begin in the final state from the previous shot, and you must manually insert [resets](/api/qiskit/circuit#qiskit.circuit.Reset) if you want to reset them to the zero state. If a job consists of multiple circuits, then the shots are executed in a "round-robin" fashion. That is, each circuit will be executed in sequence to obtain one shot from each circuit. This process is then repeated until the requested number of shots has been obtained from all circuits.
+The `init_qubits` flag, set as a [primitive execution option,](/api/qiskit-ibm-runtime/options-execution-options-v-2) controls whether qubits are reset to the zero state at the start of each circuit. Its default value is `True`, indicating that the qubits should be reset. If `False`, the qubits will begin in the final state from the previous shot, and you must manually insert [resets](/api/qiskit/circuit#qiskit.circuit.Reset) if you want to reset them to the zero state. If a job consists of multiple circuits, then the shots are executed in a "round-robin" fashion. That is, each circuit will be executed in sequence to obtain one shot from each circuit. This process is then repeated until the requested number of shots has been obtained from all circuits.
 </Admonition>
 
 ## Next steps

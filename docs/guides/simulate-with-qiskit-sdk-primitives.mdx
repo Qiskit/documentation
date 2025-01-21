@@ -16,10 +16,10 @@ The following sections show how to use the reference primitives to run your work
 ## Use the reference Estimator
 
 The reference implementation of `EstimatorV2` in `qiskit.primitives` that runs on a local statevector
-simulators is the [`StatevectorEstimator`](../api/qiskit/qiskit.primitives.StatevectorEstimator) class. It can take circuits, observables, and parameters as inputs and returns the locally computed expectation values.
+simulators is the [`StatevectorEstimator`](../api/qiskit/primitives-statevector-estimator) class. It can take circuits, observables, and parameters as inputs and returns the locally computed expectation values.
 
 The following code prepares the inputs that will be used in the examples that follow. The expected input type for the
-observables is [`qiskit.quantum_info.SparsePauliOp`](../api/qiskit/qiskit.quantum_info.SparsePauliOp). Note that
+observables is [`qiskit.quantum_info.SparsePauliOp`](../api/qiskit/quantum-info-sparse-pauli-op). Note that
 the circuit in the example is parametrized, but you can also run the Estimator on non-parametrized circuits.
 
 <Admonition type="note">
@@ -65,7 +65,7 @@ parameter_values = [[0], [np.pi/6], [np.pi/2]]
 
 ### Initialize Estimator
 
-Instantiate a [`qiskit.primitives.StatevectorEstimator`](../api/qiskit/qiskit.primitives.StatevectorEstimator).
+Instantiate a [`qiskit.primitives.StatevectorEstimator`](../api/qiskit/primitives-statevector-estimator).
 
 ```python
 from qiskit.primitives import StatevectorEstimator
@@ -74,11 +74,11 @@ estimator = StatevectorEstimator()
 
 ### Run and get results
 
-This example only uses one circuit (of type [`QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)) and one
+This example only uses one circuit (of type [`QuantumCircuit`](../api/qiskit/circuit-quantum-circuit)) and one
 observable.
 
-Run the estimation by calling the [`StatevectorEstimator.run`](../api/qiskit/qiskit.primitives.StatevectorEstimator#run) method, which returns an instance of a [`PrimitiveJob`](/api/qiskit/qiskit.primitives.PrimitiveJob) object. You can get the results from the job (as a [`qiskit.primitives.PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult) object)
-with the [`qiskit.primitives.PrimitiveJob.result`](../api/qiskit/qiskit.primitives.PrimitiveJob#result) method.
+Run the estimation by calling the [`StatevectorEstimator.run`](../api/qiskit/primitives-statevector-estimator#run) method, which returns an instance of a [`PrimitiveJob`](/api/qiskit/primitives-primitive-job) object. You can get the results from the job (as a [`qiskit.primitives.PrimitiveResult`](../api/qiskit/primitives-primitive-result) object)
+with the [`qiskit.primitives.PrimitiveJob.result`](../api/qiskit/primitives-primitive-job#result) method.
 
 ```python
 job = estimator.run([(isa_circuit, isa_observable, parameter_values)])
@@ -91,9 +91,9 @@ print(f" > Result class: {type(result)}")
 
 #### Get the expected value from the result
 
-The primitives result outputs an array of [`PubResult`s](/api/qiskit/qiskit.primitives.PubResult#pubresult), where each item of the array is a `PubResult` object that contains in its data the array of evaluations corresponding to every circuit-observable combination in the PUB.
+The primitives result outputs an array of [`PubResult`s](/api/qiskit/primitives-pub-result#pubresult), where each item of the array is a `PubResult` object that contains in its data the array of evaluations corresponding to every circuit-observable combination in the PUB.
 
-To retrieve the expectation values and metadata for the first (and in this case, only) circuit evaluation, we must access the evaluation [`data`](/api/qiskit/qiskit.primitives.PubResult#data) for PUB 0:
+To retrieve the expectation values and metadata for the first (and in this case, only) circuit evaluation, we must access the evaluation [`data`](/api/qiskit/primitives-pub-result#data) for PUB 0:
 
 ```python
 print(f" > Expectation value: {result[0].data.evs}")
@@ -107,7 +107,7 @@ print(f" > Metadata: {result[0].metadata}")
 ### Set Estimator run options
 
 By default, the reference Estimator performs an exact statevector calculation based on the
-[`quantum_info.Statevector`](../api/qiskit/qiskit.quantum_info.Statevector) class.
+[`quantum_info.Statevector`](../api/qiskit/quantum-info-statevector) class.
 However, this can be modified to introduce the effect of the sampling overhead (also known as "shot noise").
 
 Estimator accepts a `precision` argument that expresses the error bars that the
@@ -124,7 +124,7 @@ For a full example, see the [Primitives examples](primitives-examples#estimator-
 
 ## Use the reference Sampler
 
-The reference implementations of `SamplerV2` in `qiskit.primitives` is the [`StatevectorSampler`](../api/qiskit/qiskit.primitives.StatevectorSampler) class. It takes circuits and parameters as inputs and returns the results from sampling from the output probability distributions as a quasi-probability distribution of output states.
+The reference implementations of `SamplerV2` in `qiskit.primitives` is the [`StatevectorSampler`](../api/qiskit/primitives-statevector-sampler) class. It takes circuits and parameters as inputs and returns the results from sampling from the output probability distributions as a quasi-probability distribution of output states.
 
 The following code prepares the inputs used in the examples that follow. Note that
 these examples run a single parametrized circuit, but you can also run the Sampler
@@ -160,7 +160,7 @@ Any quantum circuit passed to a Sampler **must** include measurements.
 
 ### Initialize `SamplerV2`
 
-Instantiate [`qiskit.primitives.StatevectorSampler`](../api/qiskit/qiskit.primitives.StatevectorSampler):
+Instantiate [`qiskit.primitives.StatevectorSampler`](../api/qiskit/primitives-statevector-sampler):
 
 ```python
 from qiskit.primitives import StatevectorSampler
@@ -252,7 +252,7 @@ The counts are: {'11': 503, '00': 521}
 ### Change run options
 
 By default, the reference Sampler performs an exact statevector calculation based on the
-[`quantum_info.Statevector`](../api/qiskit/qiskit.quantum_info.Statevector) class.
+[`quantum_info.Statevector`](../api/qiskit/quantum-info-statevector) class.
 However, this can be modified to introduce the effect of the sampling overhead (also known as "shot noise"). To help manage this overhead, the Sampler interface accepts a `shots` argument that can be defined at the PUB level.
 
 This example assumes you have defined two circuits.
@@ -272,8 +272,8 @@ For a full example, see the [Primitives examples](./primitives-examples#sampler-
 <Admonition type="tip" title="Recommendations">
   - For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, see [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
   - To learn how to use Quantum Composer for simulation, try the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
-  - Read the [Qiskit Estimator API](/api/qiskit/qiskit.primitives.Estimator) reference.
-  - Read the [Qiskit Sampler API](/api/qiskit/qiskit.primitives.Sampler) reference.
+  - Read the [Qiskit Estimator API](/api/qiskit/primitives-estimator) reference.
+  - Read the [Qiskit Sampler API](/api/qiskit/primitives-sampler) reference.
   - Learn how to run on a QPU in the [Run](./execute-on-hardware) step of the Qiskit patterns workflow.
   - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
 </Admonition>

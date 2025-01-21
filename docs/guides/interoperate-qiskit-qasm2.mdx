@@ -6,13 +6,13 @@ description: How to convert code between OpenQASM 2 and the Qiskit SDK.
 
 # OpenQASM 2 and the Qiskit SDK
 
-The Qiskit SDK provides some tools for converting between OpenQASM representations of quantum programs, and the [QuantumCircuit](/api/qiskit/qiskit.circuit.QuantumCircuit) class.
+The Qiskit SDK provides some tools for converting between OpenQASM representations of quantum programs, and the [QuantumCircuit](/api/qiskit/circuit-quantum-circuit) class.
 
 <span id="qasm2-import"></span>
 ## Import an OpenQASM 2 program into Qiskit
 
 Two functions import OpenQASM 2 programs into Qiskit.
-These are [`qasm2.load()`](../api/qiskit/qasm2#load), which takes a filename, and [`qasm2.loads()`](../api/qiskit/qasm2#loads), which takes the OpenQASM 2 program as a string.
+These are [`qasm2.load()`](../api/qiskit/qasm-2#load), which takes a filename, and [`qasm2.loads()`](../api/qiskit/qasm-2#loads), which takes the OpenQASM 2 program as a string.
 
 ```python
 import qiskit.qasm2
@@ -21,7 +21,7 @@ qiskit.qasm2.load(filename, include_path=('.',), include_input_directory='append
 qiskit.qasm2.loads(program, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)
 ```
 
-See the [OpenQASM 2 Qiskit API](/api/qiskit/qasm2) for more information.
+See the [OpenQASM 2 Qiskit API](/api/qiskit/qasm-2) for more information.
 
 ### Import simple programs
 
@@ -65,10 +65,10 @@ circuit = qiskit.qasm2.load("myfile.qasm")
 
 By default, Qiskit's OpenQASM 2 importer treats the include file `"qelib1.inc"` as a *de facto* standard library.
 The importer treats this file as containing precisely the gates it is described to contain in [the original paper defining OpenQASM 2](https://arxiv.org/abs/1707.03429).
-Qiskit will use the built-in gates in [the circuit library](../api/qiskit/circuit_library) to represent the gates in `"qelib1.inc"`.
-Gates defined in the program by manual OpenQASM 2 `gate` statements will, by default, be constructed as custom [Qiskit `Gate` subclasses](../api/qiskit/qiskit.circuit.Gate).
+Qiskit will use the built-in gates in [the circuit library](../api/qiskit/circuit-library) to represent the gates in `"qelib1.inc"`.
+Gates defined in the program by manual OpenQASM 2 `gate` statements will, by default, be constructed as custom [Qiskit `Gate` subclasses](../api/qiskit/circuit-gate).
 
-You can tell the importer to use specific [`Gate`](../api/qiskit/qiskit.circuit.Gate) classes for the given `gate` statements it encounters.
+You can tell the importer to use specific [`Gate`](../api/qiskit/circuit-gate) classes for the given `gate` statements it encounters.
 You can also use this mechanism to treat additional gate names as "built-in", that is, not requiring an explicit definition.
 If you specify which gate classes to use for `gate` statements outside of `"qelib1.inc"`, the resulting circuit will typically be more efficient to work with.
 
@@ -80,7 +80,7 @@ See [the specific example on working with the legacy exporter](#qasm2-import-leg
 This discrepancy is legacy behavior of Qiskit, and [it will be resolved in a later release of Qiskit](https://github.com/Qiskit/qiskit/issues/10737).
 </Admonition>
 
-To pass information about a custom instruction to the OpenQASM 2 importer, use [the `qasm2.CustomInstruction` class](../api/qiskit/qasm2#qiskit.qasm2.CustomInstruction).
+To pass information about a custom instruction to the OpenQASM 2 importer, use [the `qasm2.CustomInstruction` class](../api/qiskit/qasm-2#qiskit.qasm2.CustomInstruction).
 This has four required pieces of information, in order:
 
 * The **name** of the gate, used in the OpenQASM 2 program
@@ -89,22 +89,22 @@ This has four required pieces of information, in order:
 * The Python **constructor** class or function for the gate, which takes the gate parameters (but not qubits) as individual arguments
 
 If the importer encounters a `gate` definition that matches a given custom instruction, it will use that custom information to reconstruct the gate object.
-If a `gate` statement is encountered that matches the `name` of a custom instruction, but does not match both the number of parameters and the number of qubits, the importer will raise a [`QASM2ParseError`](../api/qiskit/qasm2#qasm2parseerror), to indicate the mismatch between the supplied information and program.
+If a `gate` statement is encountered that matches the `name` of a custom instruction, but does not match both the number of parameters and the number of qubits, the importer will raise a [`QASM2ParseError`](../api/qiskit/qasm-2#qasm2parseerror), to indicate the mismatch between the supplied information and program.
 
 In addition, a fifth argument `builtin` can be optionally set to `True` to make the gate automatically available within the OpenQASM 2 program, even if it is not explicitly defined.
 If the importer does encounter an explicit `gate` definition for a built-in custom instruction, it will accept it silently.
-As before, if an explicit definition of the same name is not compatible with the provided custom instruction, a [`QASM2ParseError`](../api/qiskit/qasm2#qasm2parseerror) will be raised.
+As before, if an explicit definition of the same name is not compatible with the provided custom instruction, a [`QASM2ParseError`](../api/qiskit/qasm-2#qasm2parseerror) will be raised.
 This is useful for compatibility with older OpenQASM 2 exporters, and with certain other quantum platforms that treat the "basis gates" of their hardware as built-in instructions.
 
 Qiskit provides a data attribute for working with OpenQASM 2 programs produced by legacy versions of [Qiskit's OpenQASM 2 exporting capabilities](#qasm2-export).
-This is [`qasm2.LEGACY_CUSTOM_INSTRUCTIONS`](../api/qiskit/qasm2#legacy-compatibility), which can be given as the `custom_instructions` argument to [`qasm2.load()`](../api/qiskit/qasm2#load) and [`qasm2.loads()`](../api/qiskit/qasm2#loads).
+This is [`qasm2.LEGACY_CUSTOM_INSTRUCTIONS`](../api/qiskit/qasm-2#legacy-compatibility), which can be given as the `custom_instructions` argument to [`qasm2.load()`](../api/qiskit/qasm-2#load) and [`qasm2.loads()`](../api/qiskit/qasm-2#loads).
 
 
 <span id="qasm2-import-legacy"></span>
 #### Example: import a program created by Qiskit's legacy exporter
 
 This OpenQASM 2 program uses gates that are not in the original version of `"qelib1.inc"` without declaring them, but are standard gates in Qiskit's library.
-You can use [`qasm2.LEGACY_CUSTOM_INSTRUCTIONS`](../api/qiskit/qasm2#legacy-compatibility) to easily tell the importer to use the same set of gates that Qiskit's OpenQASM 2 exporter previously used.
+You can use [`qasm2.LEGACY_CUSTOM_INSTRUCTIONS`](../api/qiskit/qasm-2#legacy-compatibility) to easily tell the importer to use the same set of gates that Qiskit's OpenQASM 2 exporter previously used.
 
 ```python
 from qiskit import qasm2
@@ -215,7 +215,7 @@ circuit = qasm2.loads(
 ### Define custom classical functions
 
 OpenQASM 2 includes some built-in classical functions to use in gate arguments.
-You can extend the language with more functions by using the `custom_classical` argument to [`qasm2.load()`](../api/qiskit/qasm2#load) and [`qasm2.loads()`](../api/qiskit/qasm3#loads), with the [`qasm2.CustomClassical`](../api/qiskit/qasm2#qiskit.qasm2.CustomClassical) class.
+You can extend the language with more functions by using the `custom_classical` argument to [`qasm2.load()`](../api/qiskit/qasm-2#load) and [`qasm2.loads()`](../api/qiskit/qasm-3#loads), with the [`qasm2.CustomClassical`](../api/qiskit/qasm-2#qiskit.qasm2.CustomClassical) class.
 
 To define a custom classical function, you must supply:
 
@@ -267,9 +267,9 @@ However, you can use the "letter-of-the-spec" mode with `strict=True`.
 <span id="qasm2-export"></span>
 ## Export a Qiskit circuit to OpenQASM 2
 
-Qiskit can also export a [`QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) to OpenQASM 2.
-You use the function [`qasm2.dump()`](../api/qiskit/qasm2#dump) to write to a file, and [`qasm2.dumps()`](../api/qiskit/qasm2#dumps) to write to a string.
-These functions currently have a very simple interface: they accept a circuit and, only in the case of [`qasm2.dump()`](../api/qiskit/qasm2#dump), a location to write the output to.
+Qiskit can also export a [`QuantumCircuit`](../api/qiskit/circuit-quantum-circuit) to OpenQASM 2.
+You use the function [`qasm2.dump()`](../api/qiskit/qasm-2#dump) to write to a file, and [`qasm2.dumps()`](../api/qiskit/qasm-2#dumps) to write to a string.
+These functions currently have a very simple interface: they accept a circuit and, only in the case of [`qasm2.dump()`](../api/qiskit/qasm-2#dump), a location to write the output to.
 
 <Admonition type="warning">
 Qiskit's OpenQASM 2 exporter still assumes a legacy, non-standard version of the `"qelib1.inc"` include file.
@@ -300,7 +300,7 @@ qasm2.dump(circuit, "my_file.qasm")
 
 <Admonition type="tip" title="Recommendations">
     - Learn how to generate OpenQASM code in the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
-    - See the [OpenQASM 2 Qiskit API](/api/qiskit/qasm2) reference.
+    - See the [OpenQASM 2 Qiskit API](/api/qiskit/qasm-2) reference.
     - Review the [Verify your program](./debugging-tools) topic.
     - Visit the [OpenQASM Live Specification](https://openqasm.com/).
 </Admonition>

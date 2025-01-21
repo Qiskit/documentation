@@ -13,7 +13,7 @@ Doing so requires creating a package which supports requests for quantum compute
 Additionally, the package must allow users to submit jobs and retrieve their results through an implementation of the `qiskit.primitives` objects.
 
 ## Providing access to backends
-In order for users to transpile and execute `QuantumCircuit` objects using external resources, they need to instantiate an object containing a [`Target`](../api/qiskit/qiskit.transpiler.Target) which provides information about a QPU's constraints such as its connectivity, basis gates, and number of qubits. This can be provided through an interface similar to the [`QiskitRuntimeService`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService) through which a user can make requests for a QPU. This object should, at minimum, contain a `Target`, but a simpler approach would be to return a [`BackendV2`](../api/qiskit/qiskit.providers.BackendV2) instance.
+In order for users to transpile and execute `QuantumCircuit` objects using external resources, they need to instantiate an object containing a [`Target`](../api/qiskit/transpiler-target) which provides information about a QPU's constraints such as its connectivity, basis gates, and number of qubits. This can be provided through an interface similar to the [`QiskitRuntimeService`](../api/qiskit-ibm-runtime/qiskit-runtime-service) through which a user can make requests for a QPU. This object should, at minimum, contain a `Target`, but a simpler approach would be to return a [`BackendV2`](../api/qiskit/providers-backend-v-2) instance.
 
 An example implementation may look something like:
 
@@ -42,11 +42,11 @@ class ProviderService:
 ```
 
 ## Providing an interface for execution
-In addition to providing a service returning hardware configurations, a service providing access to external QPU resources also might also support the execution of quantum workloads. Exposing that capability can be done by creating implementations of the Qiskit primitives interfaces; for example the [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob), [`BaseEstimatorV2`](../api/qiskit/qiskit.primitives.BaseEstimatorV2) and [`BaseSamplerV2`](../api/qiskit/qiskit.primitives.BaseSamplerV2) among others. At minimum, these interfaces should be able to provide a method for execution, querying job status, and returning the job results.
+In addition to providing a service returning hardware configurations, a service providing access to external QPU resources also might also support the execution of quantum workloads. Exposing that capability can be done by creating implementations of the Qiskit primitives interfaces; for example the [`BasePrimitiveJob`](../api/qiskit/primitives-base-primitive-job), [`BaseEstimatorV2`](../api/qiskit/primitives-base-estimator-v-2) and [`BaseSamplerV2`](../api/qiskit/primitives-base-sampler-v-2) among others. At minimum, these interfaces should be able to provide a method for execution, querying job status, and returning the job results.
 
-To handle job status and results, the Qiskit SDK provides a [`DataBin`](../api/qiskit/qiskit.primitives.DataBin), [`PubResult`](../api/qiskit/qiskit.primitives.PubResult), [`PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult), and [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob) objects should be used.
+To handle job status and results, the Qiskit SDK provides a [`DataBin`](../api/qiskit/primitives-data-bin), [`PubResult`](../api/qiskit/primitives-pub-result), [`PrimitiveResult`](../api/qiskit/primitives-primitive-result), and [`BasePrimitiveJob`](../api/qiskit/primitives-base-primitive-job) objects should be used.
 
-See the `qiskit.primitives` [API documentation](../api/qiskit/primitives) as well as the reference implementations [`BackendEstimatorV2`](../api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSampleV2`](../api/qiskit/qiskit.primitives.BackendSampler) for more information.
+See the `qiskit.primitives` [API documentation](../api/qiskit/primitives) as well as the reference implementations [`BackendEstimatorV2`](../api/qiskit/primitives-backend-estimator-v-2) and [`BackendSampleV2`](../api/qiskit/primitives-backend-sampler) for more information.
 
 An example implementation of the Estimator primitive may look like:
 

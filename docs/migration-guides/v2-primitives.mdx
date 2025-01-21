@@ -16,11 +16,11 @@ Their support was removed on 15 August 2024.
 
 With the deprecation of the V1 primitives, all code should be migrated to use the V2 interfaces. This guide describes what changed in the Qiskit Runtime V2 primitives (available with qiskit-ibm-runtime 0.21.0) and why, describes each new primitive in detail, and gives examples to help you migrate code from using the legacy primitives to the V2 primitives.  The examples in the guide all use the Qiskit Runtime primitives, but in general, the same changes apply to the other primitive implementations.  The functions unique to Qiskit Runtime such as error mitigation remain unique to Qiskit Runtime.
 
-For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/qiskit.primitives.StatevectorSampler) and [StatevectorEstimator](/api/qiskit/qiskit.primitives.StatevectorEstimator) for V2 primitive reference implementations.
+For information about the changes to the Qiskit reference primitives (now called *statevector* primitives), see [the qiskit.primitives section](qiskit-1.0-features#qiskit.primitives) in the Qiskit 1.0 feature changes page.  See [StatevectorSampler](/api/qiskit/primitives-statevector-sampler) and [StatevectorEstimator](/api/qiskit/primitives-statevector-estimator) for V2 primitive reference implementations.
 
 ## Overview
 
-Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2) and [BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2)), along with new types for their inputs and outputs.
+Version 2 of the primitives is introduced with a new base class for both Sampler and Estimator ([BaseSamplerV2](/api/qiskit/primitives-base-sampler-v-2) and [BaseEstimatorV2](/api/qiskit/primitives-base-estimator-v-2)), along with new types for their inputs and outputs.
 
 The new interface lets you specify a single circuit and multiple observables (if using Estimator) and parameter value sets for that circuit, so that sweeps over parameter value sets and observables can be efficiently specified. Previously, you had to specify the same circuit multiple times to match the size of the data to be combined.  Also, while you can still use  `resilience_level` (if using Estimator) as the simple knob, V2 primitives give you the flexibility to turn on or off individual error mitigation / suppression methods to customize them for your needs.
 
@@ -28,7 +28,7 @@ To reduce the total job execution time, V2 primitives only accept circuits and o
 
 Sampler V2 is simplified to focus on its core task of sampling the output register from execution of quantum circuits. It returns the samples, whose type is defined by the program, without weights. The output data is also separated by the output register names defined by the program. This change enables future support for circuits with classical control flow.
 
-See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2) for full details.
+See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/estimator-v-2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/sampler-v-2) for full details.
 
 ## Major changes
 
@@ -110,7 +110,7 @@ sampler.run([
 
 #### Output
 
-The output is now in the [`PubResult`](/api/qiskit/qiskit.primitives.PubResult) format. A `PubResult` is the data and metadata resulting from a single PUB’s execution.
+The output is now in the [`PubResult`](/api/qiskit/primitives-pub-result) format. A `PubResult` is the data and metadata resulting from a single PUB’s execution.
 
 * Estimator V2 continues to return expectation values.
 * The `data` portion of a Estimator V2 PubResult contains both expectation values and standard errors (`stds`). V1 returned variance in metadata.
@@ -453,7 +453,7 @@ V2 primitives support only circuits that adhere to the Instruction Set Architect
 
 ### Job status
 
-The V2 primitives have a new `RuntimeJobV2` class, which inherits from `BasePrimitiveJob`. The `status()` method of this new class returns a string instead of a JobStatus enum from Qiskit. See the [RuntimeJobV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJobV2) for details.
+The V2 primitives have a new `RuntimeJobV2` class, which inherits from `BasePrimitiveJob`. The `status()` method of this new class returns a string instead of a JobStatus enum from Qiskit. See the [RuntimeJobV2 API reference](/api/qiskit-ibm-runtime/runtime-job-v-2) for details.
 
 <Tabs>
   <TabItem value="V2" label="V2 primitives">
