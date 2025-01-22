@@ -123,7 +123,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Transpiler Service client",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: true,
       });
     }
 
