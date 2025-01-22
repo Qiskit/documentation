@@ -1,4 +1,4 @@
-# Writing for IBM Quantum: common IBM Style "gotchas"
+# Writing for IBM Quantum: Common IBM Style "gotchas"
 
 The following [IBM Style guidelines](https://ibmdocs-test.dcs.ibm.com/docs/en/ibm-style) highlight grammatical and stylistic situations that frequently appear in IBM Quantum content.
 
