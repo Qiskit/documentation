@@ -8,88 +8,35 @@ description: Migrate to the primitives interface in external providers
 
 ## Why implement primitives for external providers?
 
-Similar to the early days of classical computers, when developers had to manipulate CPU registers directly, 
-the early interface to QPUs simply returned the raw data coming out of the control electronics. 
-This was not a huge issue when QPUs lived in labs and only allowed direct access by researchers. 
-When IBM first brought its QPUs to the cloud, we recognized most developers would not and 
-should not be familiar with distilling such raw data into 0s and 1s. Therefore, 
-we introduced `backend.run`, our first abstraction for accessing QPUs. This allowed developers 
+Similar to the early days of classical computers, when developers had to manipulate CPU registers directly,
+the early interface to QPUs simply returned the raw data coming out of the control electronics.
+This was not a huge issue when QPUs lived in labs and only allowed direct access by researchers.
+When IBM first brought its QPUs to the cloud, we recognized most developers would not and
+should not be familiar with distilling such raw data into 0s and 1s. Therefore,
+we introduced `backend.run`, our first abstraction for accessing QPUs. This allowed developers
 to operate on a data format they were more familiar with and focus on the bigger picture.
 
-As access to QPUs became more wide spread, and with more quantum algorithms being developed, 
-we again recognized the need for a higher-level abstraction. This led to the introduction of 
-the Qiskit [primitives interface](/guides/primitives), which are optimized for two core tasks in quantum algorithm development: 
-expectation value estimation (Estimator) and circuit sampling (Sampler). The goal is once 
-again to help developers to focus more on innovation and less on data conversion. 
+As access to QPUs became more widespread, and with more quantum algorithms being developed,
+we again recognized the need for a higher-level abstraction. This led to the introduction of
+the Qiskit [primitives interface](/guides/primitives), which are optimized for two core tasks in quantum algorithm development:
+expectation value estimation (Estimator) and circuit sampling (Sampler). The goal is once
+again to help developers to focus more on innovation and less on data conversion.
 
-For backwards compatibility purposes, the `backend.run` interface continues to exist in Qiskit. However, it is deprecated 
-in Qiskit Runtime, as most of the IBM Quantum users have migrated to V2 primitives due to their improved 
-usability and efficiency. There is already a collection of migration guides for users to 
+For backward compatibility, the `backend.run` interface continues to exist in Qiskit. However, it is deprecated
+in Qiskit Runtime, as most of the IBM Quantum users have migrated to V2 primitives due to their improved
+usability and efficiency. There is already a collection of migration guides for users to
 [transition to the Qiskit Runtime provider](/migration-guides/qiskit-runtime) and
-[update their user code to the V2 primitives interface](/migration-guides/v2-primitives) in 
+[update their user code to the V2 primitives interface](/migration-guides/v2-primitives) in
 time for the upcoming removal of `backend.run` in Qiskit Runtime.
 
-This migration guide shifts the focus from users and aims to help service providers to migrate from the 
-`backend.run` interface to primitives, 
+This migration guide shifts the focus from users and aims to help service providers to migrate from the
+`backend.run` interface to primitives,
 so their users can also benefit from their improvements.
 
 Custom primitive implementations can be used to wrap any service provider hardware access function
 (for example: `execute_workload(QPU)` or `resource.access()`) or local simulator,
 as long as the final inputs and outputs conform to the established standards set by the primitive interfaces.
 
-## If your provider already implemented `backend.run`
-
-The Qiskit SDK offers wrappers for `backend.run` that can be easily adapted to a custom primitives workflow
-through subclassing; these are the [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) The inputs
-to the primitives should follow the Primitive Unified Bloc (PUB) syntax specified in the V2 primitives interface. See the [Overview of PUBs section](/guides/primitive-input-output#pubs) in the Primitive inputs and outputs guide for details.
-
-An advantage of this strategy is that the wrapper can handle the input and output manipulation, so knowledge of the PUB data
-model is not required. However, this might result in a suboptimal runtime, which could be refined through a fully
-custom primitives implementation.
-
-The following snippets show how to create a custom Estimator instance following the strategy described above.
-The process is analogous for a custom Sampler, modifying the base class to `BackendSamplerV2`.
-
-``` python
-from qiskit.primitives import BackendEstimatorV2
-
-class CustomEstimator(BackendEstimatorV2):
-    """Estimator primitive for custom provider."""
-
-    # This line is for type checking purposes.
-    # We are changing the type of self._backend from qiskit's
-    # BackendV1/BackendV2 classes to our custom provider resource.
-    _backend: CustomProviderResource
-
-    def __init__(
-        self,
-        backend: CustomProviderResource,
-        options: dict | None = None,
-        extra_flag_used_in_estimation: bool = True,
-        another_extra_flag: bool = False,
-    ) -> None:
-        """
-        Args:
-            backend: custom provider resource to evaluate circuits on.
-            options: options passed to through to the underlying BackendEstimatorV2.
-            extra_flag_used_in_estimation:  if `False`, do this.
-            another_extra_flag: if `True`, do that,
-        """
-
-        # preprocess arguments if necessary according to custom flags
-        processed_backend = ...
-        processed_options = ...
-
-        super().__init__(
-            processed_backend,
-            options=processed_options,
-        )
-
-    @property
-    def backend(self) -> CustomProviderResource:
-        """Computing resource used for circuit evaluation."""
-        return self._backend
-```
 
 ## If your provider didn't implement `backend.run` or you prefer a fully custom implementation
 

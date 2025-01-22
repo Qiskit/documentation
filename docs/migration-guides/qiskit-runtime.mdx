@@ -21,6 +21,25 @@ The `qiskit-ibm-runtime` package provides cloud access to the IBM QPUs (quantum 
 
 The Qiskit Runtime primitives implement the reference Sampler V2 and Estimator V2 interfaces found in `qiskit.primitives`, and enable capabilities not available with the legacy `backend.run()` interface. These capabilities include application of advanced processing techniques for error suppression and mitigation in Estimator, the ability to efficiently sweep between arrays of parameter value sets or observables in both Sampler and Estimator, and access to the new local testing mode. Additionally, Qiskit Runtime lets users run iterative algorithm circuits back to back (session mode) or in collections of circuits without having to re-queue each job (batch mode). This results in more efficient quantum processor use and reduces the time spent running complex computations.
 
+## Why migrate to Qiskit Runtime primitives?
+
+Similar to the early days of classical computers, when developers had to manipulate CPU registers directly,
+the early interface to QPUs simply returned the raw data coming out of the control electronics.
+This was not a huge issue when QPUs lived in labs and only allowed direct access by researchers.
+When IBM first brought its QPUs to the cloud, we recognized most developers would not and
+should not be familiar with distilling such raw data into 0s and 1s. Therefore,
+we introduced `backend.run`, our first abstraction for accessing QPUs. This allowed developers
+to operate on a data format they were more familiar with and focus on the bigger picture.
+
+As access to QPUs became more widespread, and with more quantum algorithms being developed,
+we again recognized the need for a higher-level abstraction. This led to the introduction of
+the Qiskit [primitives interface](/guides/primitives), which are optimized for two core tasks in quantum algorithm development:
+expectation value estimation (Estimator) and circuit sampling (Sampler). The goal is once
+again to help developers to focus more on innovation and less on data conversion.
+
+For backward compatibility, the `backend.run` interface continues to exist in Qiskit. However, it is deprecated
+in Qiskit Runtime, as most of the IBM Quantum users have migrated to V2 primitives due to their improved
+usability and efficiency.
 
 ## Basic steps to migrate to primitives
 
@@ -61,6 +80,12 @@ See the following topics for instructions:
 - [Migrate options](qiskit-runtime-options)
 - Common use cases [Options section](qiskit-runtime-use-case#migrate-options)
 
+## Information to share with your users
+
+There is already a collection of migration guides for users to help with the following tasks:
+
+- [Transition to the Qiskit Runtime provider](/migration-guides/qiskit-runtime)
+- [Update user code to the V2 primitives interface](/migration-guides/v2-primitives)
 
 ## Next steps
 
