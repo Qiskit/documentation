@@ -40,7 +40,7 @@ test.describe("loadImages()", () => {
     expect(images).toEqual([
       {
         fileName: "logo.png",
-        dest: "/my-images/logo.png",
+        dest: "/my-images/logo.avif",
       },
       {
         fileName: "view-page-source-icon.svg",
@@ -48,7 +48,7 @@ test.describe("loadImages()", () => {
       },
     ]);
     doc.expectHtml(
-      `<img src="/my-images/logo.png" alt="Logo"><img src="/my-images/view-page-source-icon.svg">`,
+      `<img src="/my-images/logo.avif" alt="Logo"><img src="/my-images/view-page-source-icon.svg">`,
     );
   });
 

@@ -58,13 +58,13 @@ $$
 
   ### expand
 
-  <Function id="qiskit.synthesis.LieTrotter.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/synthesis/evolution/suzuki_trotter.py#L130-L181" signature="expand(evolution)">
+  <Function id="qiskit.synthesis.LieTrotter.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/synthesis/evolution/suzuki_trotter.py#L132-L183" signature="expand(evolution)">
     Expand the Hamiltonian into a Suzuki-Trotter sequence of sparse gates.
 
     For example, the Hamiltonian `H = IX + ZZ` for an evolution time `t` and 1 repetition for an order 2 formula would get decomposed into a list of 3-tuples containing `(pauli, indices, rz_rotation_angle)`, that is:
 
     ```text
-    ("X", [0], t), ("ZZ", [0, 1], 2t), ("X", [0], 2)
+    ("X", [0], t), ("ZZ", [0, 1], 2t), ("X", [0], t)
     ```
 
     Note that the rotation angle contains a factor of 2, such that that evolution of a Pauli $P$ over time $t$, which is $e^{itP}$, is represented by `(P, indices, 2 * t)`.

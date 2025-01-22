@@ -10,6 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import path from "node:path";
+
 import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 
 import { Image } from "./HtmlToMdResult.js";
@@ -94,8 +96,14 @@ export function loadImages(
       const $img = $(img);
 
       const fileName = $img.attr("src")!.split("/").pop()!;
+      const fileExtension = path.extname(fileName);
 
-      let dest = `${imageDestination}/${fileName}`;
+      // We convert PNG and JPG to AVIF for reduced file size. The image-copying
+      // logic detects changed extensions and converts the files.
+      let dest = [".png", ".jpg", ".jpeg"].includes(fileExtension)
+        ? `${imageDestination}/${path.basename(fileName, fileExtension)}.avif`
+        : `${imageDestination}/${fileName}`;
+
       if (isReleaseNotes && !hasSeparateReleaseNotes) {
         // If the Pkg only has a single release notes file for all versions,
         // then the images should point to the current version.
