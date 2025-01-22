@@ -47,11 +47,11 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
       print(f"Estimator results: {job.result()}")
   ```
 
-  The example above uses the dedicated [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler") and [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator") classes. You can also use the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method directly to invoke a Qiskit Runtime program.
+  The example above uses the dedicated [`Sampler`](sampler "qiskit_ibm_runtime.Sampler") and [`Estimator`](estimator "qiskit_ibm_runtime.Estimator") classes. You can also use the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method directly to invoke a Qiskit Runtime program.
 
-  If the program has any interim results, you can use the `callback` parameter of the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`RuntimeJob.stream_results()`](qiskit_ibm_runtime.RuntimeJob#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
+  If the program has any interim results, you can use the `callback` parameter of the [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method to stream the interim results. Alternatively, you can use the [`RuntimeJob.stream_results()`](runtime-job#stream_results "qiskit_ibm_runtime.RuntimeJob.stream_results") method to stream the results at a later time, but before the job finishes.
 
-  The [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method returns a [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob") object. You can use its methods to perform tasks like checking job status, getting job result, and canceling job.
+  The [`run()`](#qiskit_ibm_runtime.QiskitRuntimeService.run "qiskit_ibm_runtime.QiskitRuntimeService.run") method returns a [`RuntimeJob`](runtime-job "qiskit_ibm_runtime.RuntimeJob") object. You can use its methods to perform tasks like checking job status, getting job result, and canceling job.
 
   QiskitRuntimeService constructor
 
@@ -173,7 +173,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
 
-    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](ibm-backend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
 
         More complex filters, such as lambda functions. For example:
 
@@ -203,7 +203,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    `List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]
+    `List`\[[`IBMBackend`](ibm-backend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]
 
     **Returns**
 
@@ -323,7 +323,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
+    [`RuntimeJob`](runtime-job "qiskit_ibm_runtime.runtime_job.RuntimeJob")
 
     **Returns**
 
@@ -356,7 +356,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    `List`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")]
+    `List`\[[`RuntimeJob`](runtime-job "qiskit_ibm_runtime.runtime_job.RuntimeJob")]
 
     **Returns**
 
@@ -378,7 +378,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **instance** (`Optional`\[`str`]) – This is only supported for `ibm_quantum` runtime and is in the hub/group/project format.
 
-    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
+    *   **filters** (`Optional`\[`Callable`\[\[`List`\[[`IBMBackend`](ibm-backend "qiskit_ibm_runtime.ibm_backend.IBMBackend")]], `bool`]]) –
 
         Filters can be defined as for the [`backends()`](#qiskit_ibm_runtime.QiskitRuntimeService.backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") method. An example to get the operational backends with 5 qubits:
 
@@ -388,7 +388,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
+    [`IBMBackend`](ibm-backend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
 
     **Returns**
 
@@ -430,7 +430,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    [`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")
+    [`RuntimeProgram`](runtime-program "qiskit_ibm_runtime.runtime_program.RuntimeProgram")
 
     **Returns**
 
@@ -457,7 +457,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    `List`\[[`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")]
+    `List`\[[`RuntimeProgram`](runtime-program "qiskit_ibm_runtime.runtime_program.RuntimeProgram")]
 
     **Returns**
 
@@ -473,9 +473,9 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **program\_id** (`str`) – Program ID.
 
-    *   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
+    *   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](parameter-namespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
 
-    *   **options** (`Union`\[[`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.runtime_options.RuntimeOptions"), `Dict`, `None`]) – Runtime options that control the execution environment. See [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
+    *   **options** (`Union`\[[`RuntimeOptions`](runtime-options "qiskit_ibm_runtime.runtime_options.RuntimeOptions"), `Dict`, `None`]) – Runtime options that control the execution environment. See [`RuntimeOptions`](runtime-options "qiskit_ibm_runtime.RuntimeOptions") for all available options.
 
     *   **callback** (`Optional`\[`Callable`]) –
 
@@ -492,7 +492,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     **Return type**
 
-    [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob")
+    [`RuntimeJob`](runtime-job "qiskit_ibm_runtime.runtime_job.RuntimeJob")
 
     **Returns**
 
