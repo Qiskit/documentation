@@ -1,11 +1,11 @@
 # Writing for IBM Quantum: Common IBM Style "gotchas"
 
-The following [IBM Style guidelines](https://ibmdocs-test.dcs.ibm.com/docs/en/ibm-style) highlight grammatical and stylistic situations that frequently appear in IBM Quantum content.
+The following IBM Style guidelines highlight grammatical and stylistic situations that frequently appear in IBM Quantum content.
 
 > [!TIP]
 > If you are writing a piece of technical documentation - for example, authoring a guide for the IBM Quantum Platform docs - note that technical writing avoids conversational language because it must be translatable, accessible, usable by AI, and understood by a variety of audiences. Effective technical writing is direct, bland, and bossy! (And that's ok!) Feel free to contact @abbycross or @beckykd about these guidelines or any other style questions.
 
-IBM Quantum content follows [IBM style guidelines](https://ibmdocs-test.dcs.ibm.com/docs/en/ibm-style), which include rules for ensuring clear translation, correct [terminology usage](https://w3.terminology.g11n.ibm.com/standards/terminology/), accessibility, and general guidelines that helps all IBM content have the same look and feel. An added bonus when you follow these guidelines is that the text is easier for AI to "understand" and use. There are specific [Writing guidelines for AI](https://w3.ibm.com/w3publisher/ai-content-workstream/guidelines), but in general, those guidelines echo the same general tenets of brevity and clarity.
+IBM Quantum content follows IBM style guidelines, which include rules for ensuring clear translation, correct terminology usage, accessibility, and general guidelines that helps all IBM content have the same look and feel. An added bonus when you follow these guidelines is that the text is easier for AI to "understand" and use.
 
 ## Titles and headers
 
