@@ -24,6 +24,7 @@ import {
   removeColonSpans,
   removeMatplotlibFigCaptions,
   replaceViewcodeLinksWithGitHub,
+  updateRedirectedExternalLinks,
   convertRubricsToHeaders,
   processMembersAndSetMeta,
   handleFootnotes,
@@ -311,6 +312,26 @@ test("addLanguageClassToCodeBlocks()", () => {
       </code></pre>
       </div>
     </div>`);
+});
+
+test("updateRedirectedExternalLinks()", () => {
+  const redirects = {
+    "https://ibm.com/old": "https://ibm.com/new",
+    "https://basename.example-website.com/old#anchor?and=query":
+      "https://newbasename.example.com/new#newanchor?query=new",
+  };
+  // Assumes that removeHtmlExtensionsInRelativeLinks() has already removed .html from the URL.
+  const doc = CheerioDoc.load(
+    `<a href="https://ibm.com/old">https://ibm.com/old</a>
+    <a href="https://basename.example-website.com/old#anchor?and=query"></a>
+    <p>https://ibm.com/old</p>`,
+  );
+  updateRedirectedExternalLinks(doc.$, doc.$main, redirects);
+  doc.expectHtml(
+    `<a href="https://ibm.com/new">https://ibm.com/old</a>
+    <a href="https://newbasename.example.com/new#newanchor?query=new"></a>
+    <p>https://ibm.com/old</p>`
+  );
 });
 
 test("replaceSourceLinksWithGitHub()", () => {
