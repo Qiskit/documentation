@@ -330,7 +330,7 @@ test("updateRedirectedExternalLinks()", () => {
   doc.expectHtml(
     `<a href="https://ibm.com/new">https://ibm.com/old</a>
     <a href="https://newbasename.example.com/new#newanchor?query=new"></a>
-    <p>https://ibm.com/old</p>`
+    <p>https://ibm.com/old</p>`,
   );
 });
 
