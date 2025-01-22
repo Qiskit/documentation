@@ -191,19 +191,19 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.mdx",
     "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.mdx",
     "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.mdx",
-    "docs/api/qiskit-ibm-runtime/0.26/qiskit_ibm_runtime.{Sampler,Estimator}{,V1}.mdx",
+    "docs/api/qiskit-ibm-runtime/0.26/{sampler,estimator}{,-v-1}.mdx",
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
     "docs/api/qiskit/release-notes/1.*.mdx",
     // Used by release notes.
-    "docs/api/qiskit-ibm-runtime/0.20/qiskit_ibm_runtime.Sampler.mdx",
-    "docs/api/qiskit-ibm-runtime/0.21/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
-    "docs/api/qiskit-ibm-runtime/0.25/qiskit_ibm_runtime.RuntimeOptions.mdx",
-    "docs/api/qiskit-ibm-runtime/0.27/qiskit_ibm_runtime.options.ResilienceOptions.mdx",
-    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.QiskitRuntimeService.mdx",
-    "docs/api/qiskit-ibm-runtime/0.29/qiskit_ibm_runtime.Session.mdx",
-    "docs/api/qiskit-ibm-runtime/0.30/qiskit_ibm_runtime.RuntimeJob.mdx",
+    "docs/api/qiskit-ibm-runtime/0.20/sampler.mdx",
+    "docs/api/qiskit-ibm-runtime/0.21/qiskit-runtime-service.mdx",
+    "docs/api/qiskit-ibm-runtime/0.25/runtime-options.mdx",
+    "docs/api/qiskit-ibm-runtime/0.27/options-resilience-options.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/qiskit-runtime-service.mdx",
+    "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
+    "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
   ];
 
   if (args.currentApis) {

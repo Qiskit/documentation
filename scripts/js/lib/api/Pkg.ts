@@ -114,7 +114,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Runtime client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: true,
       });
     }
 
