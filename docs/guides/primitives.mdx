@@ -43,7 +43,7 @@ There are two types of Qiskit primitives: the base classes, and their implementa
 
 These are implementations of the primitives base classes:
 
-- The Qiskit Runtime primitives ([`EstimatorV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [`SamplerV2`](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2)) provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service. This implementation of the base primitives is used to access IBM Quantum&trade; hardware.  They are accessed through IBM Qiskit Runtime.
+- The Qiskit Runtime primitives ([`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v-2) and [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v-2)) provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service. This implementation of the base primitives is used to access IBM Quantum&trade; hardware.  They are accessed through IBM Qiskit Runtime.
 
 - [`StatevectorEstimator`](/api/qiskit/qiskit.primitives.StatevectorEstimator) and [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler#statevectorsampler) - Reference implementations of the primitives that use the simulator built into Qiskit. They are built with the Qiskit [`quantum_info`](/api/qiskit/quantum_info#quantum-information) module, producing results based on ideal statevector simulations.  They are accessed through Qiskit.
 
@@ -54,7 +54,7 @@ These are implementations of the primitives base classes:
 With primitives, Qiskit users can write quantum code for a specific QPU without having to explicitly
 manage every detail. Also, because of the additional layer of abstraction, you might be able to more easily
 access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives,
-you can take advantage of the latest advancements in error mitigation and suppression by toggling options such as the primitive's [`resilience_level`,](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions#resilience_level) rather than building your own implementation of these techniques.
+you can take advantage of the latest advancements in error mitigation and suppression by toggling options such as the primitive's [`resilience_level`,](/api/qiskit-ibm-runtime/options-estimator-options#resilience_level) rather than building your own implementation of these techniques.
 
 For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box”
 way to access your hardware features such as advanced post-processing techniques. It is therefore easier for your users to benefit from your hardware's best capabilities.
@@ -116,7 +116,7 @@ sampler.run([
     - Read [Get started with primitives](get-started-with-primitives) to implement primitives in your work.
     - Review detailed [primitives examples.](primitives-examples)
     - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
-    - See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.EstimatorV2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.SamplerV2).
+    - See the [EstimatorV2 API reference](/api/qiskit-ibm-runtime/estimator-v-2) and [SamplerV2 API reference](/api/qiskit-ibm-runtime/sampler-v-2).
     - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
 </Admonition>
 
