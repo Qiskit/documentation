@@ -13,6 +13,7 @@
 import path from "node:path";
 
 import { CheerioAPI, Cheerio, load, Element } from "cheerio";
+import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiType } from "./Metadata.js";
@@ -219,6 +220,8 @@ export function updateRedirectedExternalLinks(
     const replacement = href && redirects[href];
     if (replacement) {
       $a.attr("href", replacement);
+      const regexp = new RegExp(`${escapeRegExp(href)}(?=$|[\\s<'"])`, "g");
+      $a.text($a.text().replaceAll(regexp, replacement));
     }
   });
 }
