@@ -1,26 +1,31 @@
 ---
-title: Session (v0.24)
-description: API reference for qiskit_ibm_runtime.Session in qiskit-ibm-runtime v0.24
+title: Batch (v0.24)
+description: API reference for qiskit_ibm_runtime.Batch in qiskit-ibm-runtime v0.24
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_runtime.Session
+python_api_name: qiskit_ibm_runtime.Batch
 ---
 
-# Session
+# Batch
 
-<Class id="qiskit_ibm_runtime.Session" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L48-L399" signature="Session(service=None, backend=None, max_time=None)" modifiers="class">
-  Class for creating a Qiskit Runtime session.
+<Class id="qiskit_ibm_runtime.Batch" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/batch.py#L23-L102" signature="Batch(service=None, backend=None, max_time=None)" modifiers="class">
+  Class for running jobs in batch execution mode.
 
-  A Qiskit Runtime `session` allows you to group a collection of iterative calls to the quantum computer. A session is started when the first job within the session is started. Subsequent jobs within the session are prioritized by the scheduler.
+  Similar to a `session`, a Qiskit Runtime `batch` groups a collection of iterative calls to the quantum computer. Batch mode can shorten processing time if all jobs can be provided at the outset. To submit iterative jobs, use sessions instead.
 
-  You can open a Qiskit Runtime session using this `Session` class and submit jobs to one or more primitives.
+  **Using batch mode has these benefits:**
+
+  *   The jobs’ classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially.
+  *   There is minimal delay between job, which can help avoid drift.
+
+  You can open a Qiskit Runtime batch by using this `Batch` class, then submit jobs to one or more primitives.
 
   For example:
 
   ```python
   from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
   from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
-  from qiskit_ibm_runtime import Session, SamplerV2 as Sampler
+  from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler
 
   service = QiskitRuntimeService()
   backend = service.least_busy(operational=True, simulator=False)
@@ -36,21 +41,21 @@ python_api_name: qiskit_ibm_runtime.Session
   pm = generate_preset_pass_manager(backend=backend, optimization_level=1)
   isa_circuit = pm.run(qc)
 
-  with Session(backend=backend) as session:
-      sampler = Sampler(session=session)
+  with Batch(backend=backend) as batch:
+      sampler = Sampler(batch)
       job = sampler.run([isa_circuit])
       pub_result = job.result()[0]
       print(f"Sampler job ID: {job.job_id()}")
       print(f"Counts: {pub_result.data.cr.get_counts()}")
   ```
 
-  Session constructor.
+  Batch constructor.
 
   **Parameters**
 
-  *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
-  *   **backend** (`Union`\[`str`, `BackendV1`, `BackendV2`, `None`]) – Optional instance of `Backend` class or string name of backend. If not specified, a backend will be selected automatically (IBM Cloud channel only).
-  *   **max\_time** (`Union`\[`int`, `str`, `None`]) – Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/run/max-execution-time).
+  *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
+  *   **backend** (`Union`\[`str`, `BackendV1`, `BackendV2`, `None`]) – Optional instance of `Backend` class or backend string name.
+  *   **max\_time** (`Union`\[`int`, `str`, `None`]) – Maximum amount of time a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](/run/max-execution-time).
 
   **Raises**
 
@@ -60,21 +65,21 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### service
 
-  <Attribute id="qiskit_ibm_runtime.Session.service">
+  <Attribute id="qiskit_ibm_runtime.Batch.service">
     Return service associated with this session.
 
     **Return type**
 
-    [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")
+    [`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")
 
     **Returns**
 
-    [`qiskit_ibm_runtime.QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") associated with this session.
+    [`qiskit_ibm_runtime.QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") associated with this session.
   </Attribute>
 
   ### session\_id
 
-  <Attribute id="qiskit_ibm_runtime.Session.session_id">
+  <Attribute id="qiskit_ibm_runtime.Batch.session_id">
     Return the session ID.
 
     **Return type**
@@ -90,7 +95,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.Session.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L244-L252" signature="backend()">
+  <Function id="qiskit_ibm_runtime.Batch.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L244-L252" signature="backend()">
     Return backend for this session.
 
     **Return type**
@@ -104,7 +109,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### cancel
 
-  <Function id="qiskit_ibm_runtime.Session.cancel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L230-L234" signature="cancel()">
+  <Function id="qiskit_ibm_runtime.Batch.cancel" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L230-L234" signature="cancel()">
     Cancel all pending jobs in a session.
 
     **Return type**
@@ -114,7 +119,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### close
 
-  <Function id="qiskit_ibm_runtime.Session.close" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L236-L242" signature="close()">
+  <Function id="qiskit_ibm_runtime.Batch.close" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L236-L242" signature="close()">
     Close the session so new jobs will no longer be accepted, but existing queued or running jobs will run to completion. The session will be terminated once there are no more pending jobs.
 
     **Return type**
@@ -124,7 +129,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### details
 
-  <Function id="qiskit_ibm_runtime.Session.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L281-L323" signature="details()">
+  <Function id="qiskit_ibm_runtime.Batch.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L281-L323" signature="details()">
     Return session details.
 
     **Return type**
@@ -153,14 +158,14 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Session.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L343-L386" signature="from_id(session_id, service=None)" modifiers="classmethod">
+  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L343-L386" signature="from_id(session_id, service=None)" modifiers="classmethod">
     Construct a Session object with a given session\_id
 
     **Parameters**
 
     *   **session\_id** (`str`) – the id of the session to be created. This must be an already existing session id.
 
-    *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) –
+    *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) –
 
         **instance of the `QiskitRuntimeService` class.**
 
@@ -172,7 +177,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
     **Return type**
 
-    [`Session`](#qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")
+    [`Session`](session "qiskit_ibm_runtime.session.Session")
 
     **Returns**
 
@@ -181,19 +186,19 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.Session.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L165-L223" signature="run(program_id, inputs, options=None, callback=None, result_decoder=None)">
+  <Function id="qiskit_ibm_runtime.Batch.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L165-L223" signature="run(program_id, inputs, options=None, callback=None, result_decoder=None)">
     Run a program in the session.
 
     **Parameters**
 
     *   **program\_id** (`str`) – Program ID.
     *   **inputs** (`Dict`) – Program input parameters. These input values are passed to the runtime program.
-    *   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
+    *   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](runtime-options "qiskit_ibm_runtime.RuntimeOptions") for all available options.
     *   **callback** (`Optional`\[`Callable`]) – Callback function to be invoked for any interim results and final result.
 
     **Return type**
 
-    `Union`\[[`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.runtime_job.RuntimeJob"), [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")]
+    `Union`\[[`RuntimeJob`](runtime-job "qiskit_ibm_runtime.runtime_job.RuntimeJob"), [`RuntimeJobV2`](runtime-job-v-2 "qiskit_ibm_runtime.runtime_job_v2.RuntimeJobV2")]
 
     **Returns**
 
@@ -202,7 +207,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### status
 
-  <Function id="qiskit_ibm_runtime.Session.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L254-L279" signature="status()">
+  <Function id="qiskit_ibm_runtime.Batch.status" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.24/qiskit_ibm_runtime/session.py#L254-L279" signature="status()">
     Return current session status.
 
     **Return type**
