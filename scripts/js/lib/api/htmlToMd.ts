@@ -39,11 +39,10 @@ export async function sphinxHtmlToMarkdown(options: {
   hasSeparateReleaseNotes: boolean;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
-  let markdown = await generateMarkdownFile(
+  const markdown = await generateMarkdownFile(
     processedHtml.html,
     processedHtml.meta,
   );
-
   return {
     markdown,
     meta: processedHtml.meta,
