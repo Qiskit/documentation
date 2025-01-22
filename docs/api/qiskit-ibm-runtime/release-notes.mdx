@@ -18,9 +18,9 @@ in_page_toc_max_heading_level: 2
 
 *   Added support for noise model and level 1 data to local sampler
 
-    The `simulator.noise_model` option of [`SamplerV2`](qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.SamplerV2") is now passed through to the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") as a noise\_model option under run\_options if the primitive supports the run\_options option (support was added in Qiskit v1.3).
+    The `simulator.noise_model` option of [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2") is now passed through to the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") as a noise\_model option under run\_options if the primitive supports the run\_options option (support was added in Qiskit v1.3).
 
-    Similarly, the `execution.meas_type` option of [`SamplerV2`](qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.SamplerV2") is now translated into `meas_level` and `meas_return` options under `run_options` of the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") if it supports `run_options`. This change allows support for level 1 data in local testing mode, where previously only level 2 (classified) data was supported. ([1990](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1990))
+    Similarly, the `execution.meas_type` option of [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2") is now translated into `meas_level` and `meas_return` options under `run_options` of the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") if it supports `run_options`. This change allows support for level 1 data in local testing mode, where previously only level 2 (classified) data was supported. ([1990](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1990))
 
 *   A new function `validate_rzz_pubs` was added. The function verifies that `rzz` parameters are in the range between `0` and `pi/2`, for numeric parameters (e.g., `rzz(np.pi/4, 0)`), and for unbounded parameters (`rzz(theta, 0)`) with values to substitute provided in the pub. Parameter expressions (e.g., `rzz(theta + phi, 0)`) are still not validated. ([2021](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2021))
 
@@ -31,8 +31,8 @@ in_page_toc_max_heading_level: 2
 ### Bug Fixes
 
 *   Fixed an issue where `FakeBackendV2.refresh()` wouldn’t always refresh the backend properties, defaults, and configuration. ([2020](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2020))
-*   `CouplingMap` was added to [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder") so it can now be passed to the [`NoiseLearner`](qiskit_ibm_runtime.noise_learner.NoiseLearner "qiskit_ibm_runtime.noise_learner.NoiseLearner") program. ([2026](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2026))
-*   The behavior of the `use_fractional_gates` argument of [`QiskitRuntimeService.backend()`](qiskit_ibm_runtime.QiskitRuntimeService#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") has been changed. When the option is set to `False`, it now filters all references to fractional gates out of the configuration and properties data from the API. Likewise, when the option is set to `True`, all dynamic circuit instructions are filtered from the configuration and properties data. Previously, this option only impacted the creation of the backend’s target, which meant that the instructions in the target were not consistent with those in the configuration and properties data. For the most part, this change should be transparent to users, but if there is code relying on the configuration and properties data containing all instructions, it will need to be updated (note that setting `use_fractional_gates` to `None` will load all instructions without filtering). ([2031](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2031))
+*   `CouplingMap` was added to [`RuntimeEncoder`](runtime-encoder "qiskit_ibm_runtime.RuntimeEncoder") so it can now be passed to the [`NoiseLearner`](noise-learner-noise-learner "qiskit_ibm_runtime.noise_learner.NoiseLearner") program. ([2026](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2026))
+*   The behavior of the `use_fractional_gates` argument of [`QiskitRuntimeService.backend()`](qiskit-runtime-service#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") has been changed. When the option is set to `False`, it now filters all references to fractional gates out of the configuration and properties data from the API. Likewise, when the option is set to `True`, all dynamic circuit instructions are filtered from the configuration and properties data. Previously, this option only impacted the creation of the backend’s target, which meant that the instructions in the target were not consistent with those in the configuration and properties data. For the most part, this change should be transparent to users, but if there is code relying on the configuration and properties data containing all instructions, it will need to be updated (note that setting `use_fractional_gates` to `None` will load all instructions without filtering). ([2031](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2031))
 *   Invalid or non-existing backend configurations on the server will no longer prevent all backends from being retrieved with `service.backends()`. ([2048](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2048))
 *   Pin `pydantic` dependency version to `<2.10` to avoid a regression breaking the build process. ([2049](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2049))
 
@@ -78,8 +78,8 @@ in_page_toc_max_heading_level: 2
 
 ### New Features
 
-*   Added [`draw_layer_errors_swarm()`](qiskit_ibm_runtime.visualization.draw_layer_errors_swarm "qiskit_ibm_runtime.visualization.draw_layer_errors_swarm") which draws a swarm plot of one or more [`LayerError`](qiskit_ibm_runtime.utils.noise_learner_result.LayerError "qiskit_ibm_runtime.utils.noise_learner_result.LayerError") objects. Also added the convenience method [`draw_swarm()`](qiskit_ibm_runtime.utils.noise_learner_result.LayerError#draw_swarm "qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_swarm") to invoke the drawing function on a particular instance. ([1988](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1988))
-*   Added [`TwirledSliceSpan`](qiskit_ibm_runtime.execution_span.TwirledSliceSpan "qiskit_ibm_runtime.execution_span.TwirledSliceSpan"), an `ExecutionSpan` to be used when twirling is enabled in the Sampler. In particular, it keeps track of an extra shape axis corresponding to twirling randomizations, and also whether this axis exists at the front of the shape tuple, or right before the shots axis. ([2011](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2011))
+*   Added [`draw_layer_errors_swarm()`](visualization-draw-layer-errors-swarm "qiskit_ibm_runtime.visualization.draw_layer_errors_swarm") which draws a swarm plot of one or more [`LayerError`](utils-noise-learner-result-layer-error "qiskit_ibm_runtime.utils.noise_learner_result.LayerError") objects. Also added the convenience method [`draw_swarm()`](utils-noise-learner-result-layer-error#draw_swarm "qiskit_ibm_runtime.utils.noise_learner_result.LayerError.draw_swarm") to invoke the drawing function on a particular instance. ([1988](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1988))
+*   Added [`TwirledSliceSpan`](execution-span-twirled-slice-span "qiskit_ibm_runtime.execution_span.TwirledSliceSpan"), an `ExecutionSpan` to be used when twirling is enabled in the Sampler. In particular, it keeps track of an extra shape axis corresponding to twirling randomizations, and also whether this axis exists at the front of the shape tuple, or right before the shots axis. ([2011](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2011))
 
 <span id="id8" />
 
@@ -101,7 +101,7 @@ in_page_toc_max_heading_level: 2
 
 ### New Features
 
-*   Added [`draw_execution_spans()`](qiskit_ibm_runtime.visualization.draw_execution_spans "qiskit_ibm_runtime.visualization.draw_execution_spans"), a function for creating a Plotly figure that visualizes one or more [`ExecutionSpans`](qiskit_ibm_runtime.execution_span.ExecutionSpans "qiskit_ibm_runtime.execution_span.ExecutionSpans") objects. Also added the convenience method [`draw()`](qiskit_ibm_runtime.execution_span.ExecutionSpans#draw "qiskit_ibm_runtime.execution_span.ExecutionSpans.draw") to invoke the drawing function on a particular instance. ([1923](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1923))
+*   Added [`draw_execution_spans()`](visualization-draw-execution-spans "qiskit_ibm_runtime.visualization.draw_execution_spans"), a function for creating a Plotly figure that visualizes one or more [`ExecutionSpans`](execution-span-execution-spans "qiskit_ibm_runtime.execution_span.ExecutionSpans") objects. Also added the convenience method [`draw()`](execution-span-execution-spans#draw "qiskit_ibm_runtime.execution_span.ExecutionSpans.draw") to invoke the drawing function on a particular instance. ([1923](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1923))
 
     ```python
     from qiskit_ibm_runtime.visualization import draw_execution_spans
@@ -117,9 +117,9 @@ in_page_toc_max_heading_level: 2
 
 *   Added a new method, `backend.refresh()` that refreshes the current backend target with the latest updates from the server. ([1955](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1955))
 
-*   Added [`DoubleSliceSpan`](qiskit_ibm_runtime.execution_span.DoubleSliceSpan "qiskit_ibm_runtime.execution_span.DoubleSliceSpan"), an `ExecutionSpan` for batching with two slices. ([1982](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1982))
+*   Added [`DoubleSliceSpan`](execution-span-double-slice-span "qiskit_ibm_runtime.execution_span.DoubleSliceSpan"), an `ExecutionSpan` for batching with two slices. ([1982](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1982))
 
-*   Each of [`SamplerV2`](qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.SamplerV2"), [`EstimatorV2`](qiskit_ibm_runtime.EstimatorV2 "qiskit_ibm_runtime.EstimatorV2"), and [`noise_learner.NoiseLearner`](qiskit_ibm_runtime.noise_learner.NoiseLearner "qiskit_ibm_runtime.noise_learner.NoiseLearner") now has a `backend()` method that returns the backend that the class is configured with. ([1995](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1995))
+*   Each of [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2"), [`EstimatorV2`](estimator-v-2 "qiskit_ibm_runtime.EstimatorV2"), and [`noise_learner.NoiseLearner`](noise-learner-noise-learner "qiskit_ibm_runtime.noise_learner.NoiseLearner") now has a `backend()` method that returns the backend that the class is configured with. ([1995](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1995))
 
 <span id="id12" />
 
@@ -181,7 +181,7 @@ in_page_toc_max_heading_level: 2
 
 *   Added `ConvertISAToClifford` transpilation pass to convert the gates of a circuit to Clifford gates. ([1887](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1887))
 
-*   Added `url_resolver` optional input to [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") constructor to enable custom generation of the Qiskit Runtime API URL based on the provided `url`, `instance` and `private_endpoint`. If not specified, the default resolver will be used.
+*   Added `url_resolver` optional input to [`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService") constructor to enable custom generation of the Qiskit Runtime API URL based on the provided `url`, `instance` and `private_endpoint`. If not specified, the default resolver will be used.
 
     ```python
     # Define a custom resolver. In this case returns the concatenation of the provided `url` and the `instance`
@@ -240,7 +240,7 @@ in_page_toc_max_heading_level: 2
 
 ### New Features
 
-*   We added new classes, [`ExecutionSpan`](qiskit_ibm_runtime.execution_span.ExecutionSpan "qiskit_ibm_runtime.execution_span.ExecutionSpan") and `ExecutionSpanSet`. These classes are used in the primitive result metadata, to convey information about start and stop times of batch jobs. ([1833](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1833))
+*   We added new classes, [`ExecutionSpan`](execution-span-execution-span "qiskit_ibm_runtime.execution_span.ExecutionSpan") and `ExecutionSpanSet`. These classes are used in the primitive result metadata, to convey information about start and stop times of batch jobs. ([1833](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1833))
 *   Added a new `private` option under `EnvironmentOptions`. ([1888](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1888))
 *   Added `fallback` option to ZNE extrapolators. ([1902](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1902))
 
@@ -382,11 +382,11 @@ in_page_toc_max_heading_level: 2
 
     `qiskit_ibm_runtime.Session.run()` is deprecated and will be replaced by a private method `qiskit_ibm_runtime.Session._run()`.
 
-    `qiskit_ibm_runtime.RuntimeJob.program_id()` is deprecated and will be replaced by [`qiskit_ibm_runtime.RuntimeJob.primitive_id()`](qiskit_ibm_runtime.RuntimeJob#primitive_id "qiskit_ibm_runtime.RuntimeJob.primitive_id"). ([1238](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1238))
+    `qiskit_ibm_runtime.RuntimeJob.program_id()` is deprecated and will be replaced by [`qiskit_ibm_runtime.RuntimeJob.primitive_id()`](runtime-job#primitive_id "qiskit_ibm_runtime.RuntimeJob.primitive_id"). ([1238](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1238))
 
 *   The `backend` argument in [Sampler](/guides/get-started-with-primitives#3-initialize-the-qiskit-runtime-sampler) and [Estimator](/guides/get-started-with-primitives#3-initialize-qiskit-runtime-estimator) has been deprecated. Please use `mode` instead. The `session` argument in [Sampler](/guides/get-started-with-primitives#3-initialize-the-qiskit-runtime-sampler) and [Estimator](/guides/get-started-with-primitives#3-initialize-qiskit-runtime-estimator) has also been deprecated. Please use `mode` instead. ([1556](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1556))
 
-*   `qiskit_ibm_runtime.QiskitRuntimeService.get_backend()` is deprecated. Please [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](qiskit_ibm_runtime.QiskitRuntimeService#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") use instead. The V1 fake backends, `FakeBackend`, along with `FakeProvider` are also being deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2 "qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2"). ([1689](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1689))
+*   `qiskit_ibm_runtime.QiskitRuntimeService.get_backend()` is deprecated. Please [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](qiskit-runtime-service#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") use instead. The V1 fake backends, `FakeBackend`, along with `FakeProvider` are also being deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](fake-provider-fake-provider-for-backend-v-2 "qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2"). ([1689](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1689))
 
 *   Specifying options without the full dictionary structure is deprecated. Instead, pass in a fully structured dictionary. For example, use `{'environment': {'log_level': 'INFO'}}` instead of `{'log_level': 'INFO'}`. ([1731](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1731))
 
@@ -404,7 +404,7 @@ in_page_toc_max_heading_level: 2
 
 *   When saving an account, there is a new parameter, `private_endpoint` that if set to `True`, allows users to connect to a private IBM Cloud API. This parameter can also be used when the service is initialized, for example: `QiskitRuntimeService(private_endpoint = True)`. ([1699](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1699))
 
-*   New opt-in feature to support fractional gates is added to [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend"). IBM backends currently support dynamic circuits and fractional gates exclusively and the two features cannot be used in the same primitive job. In addition, some error mitigation protocols you can use with the estimator primitive, such as PEC or PEA, may not support gate twirling with the fractional gates. Since Qiskit Target model doesn’t represent such constraint, we adopted the opt-in approach, where your backend target includes only fractional gates (control flow instructions) when the backend is (not) opted. This feature is controlled when you retrieve the target backend from the [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService").
+*   New opt-in feature to support fractional gates is added to [`IBMBackend`](ibm-backend "qiskit_ibm_runtime.IBMBackend"). IBM backends currently support dynamic circuits and fractional gates exclusively and the two features cannot be used in the same primitive job. In addition, some error mitigation protocols you can use with the estimator primitive, such as PEC or PEA, may not support gate twirling with the fractional gates. Since Qiskit Target model doesn’t represent such constraint, we adopted the opt-in approach, where your backend target includes only fractional gates (control flow instructions) when the backend is (not) opted. This feature is controlled when you retrieve the target backend from the [`QiskitRuntimeService`](qiskit-runtime-service "qiskit_ibm_runtime.QiskitRuntimeService").
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
@@ -421,13 +421,13 @@ in_page_toc_max_heading_level: 2
 
     Note that this pattern may be modified or removed without deprecation when the IBM backends is updated in future development. ([1715](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1715))
 
-*   You can now use the experimental option in [`qiskit_ibm_runtime.options.EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions") to enable Probabilistic Error Amplification (PEA) error mitigation method for your estimator jobs. ([1728](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1728))
+*   You can now use the experimental option in [`qiskit_ibm_runtime.options.EstimatorOptions`](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions") to enable Probabilistic Error Amplification (PEA) error mitigation method for your estimator jobs. ([1728](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1728))
 
 *   Qiskit version `1.1` is now supported and required. ([1700](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1700))
 
 ### Upgrade Notes
 
-*   [`QiskitRuntimeService.backends()`](qiskit_ibm_runtime.QiskitRuntimeService#backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") now always returns a new `IBMBackend` instance even when the same query is used. The backend properties and defaults data are retrieved from the server for every instance when they are accessed for the first time, while the configuration data is cached internally in the service instance. ([1732](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1732))
+*   [`QiskitRuntimeService.backends()`](qiskit-runtime-service#backends "qiskit_ibm_runtime.QiskitRuntimeService.backends") now always returns a new `IBMBackend` instance even when the same query is used. The backend properties and defaults data are retrieved from the server for every instance when they are accessed for the first time, while the configuration data is cached internally in the service instance. ([1732](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1732))
 
 <span id="id47" />
 
@@ -435,7 +435,7 @@ in_page_toc_max_heading_level: 2
 
 *   Fixed an issue where retrieving jobs with [job()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#job) and [jobs()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs) would only return `RuntimeJob` instances, even if the job was run with a V2 primitive. Now, V2 primitive jobs will be returned correctly as `RuntimeJobV2` instances. ([1471](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1471))
 *   To avoid network disruptions during long job processes, websocket errors will no longer be raised. ([1518](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1518))
-*   Fixed the combination of `insert_multiple_cycles` and `coupling_map` options in [`PadDynamicalDecoupling`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling"). This combination allows to select staggered dynamical decoupling with multiple sequence cycles in each delay that crosses the threshold set by `sequence_min_length_ratios`. ([1630](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1630))
+*   Fixed the combination of `insert_multiple_cycles` and `coupling_map` options in [`PadDynamicalDecoupling`](transpiler-passes-scheduling-pad-dynamical-decoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling"). This combination allows to select staggered dynamical decoupling with multiple sequence cycles in each delay that crosses the threshold set by `sequence_min_length_ratios`. ([1630](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1630))
 *   Fixed a serialization issue where decoding job metadata resulted in an error. ([1682](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1682))
 *   Fixed measurement twirling docstring which incorrectly indicated it’s enabled by default for Sampler. ([1722](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1722))
 *   Fixed nested experimental suboptions override non-experimental suboptions. ([1731](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1731))
@@ -457,19 +457,19 @@ in_page_toc_max_heading_level: 2
 ### New Features
 
 *   Printing `Options` and `OptionsV2` will now be formatted as a table. ([1490](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1490))
-*   Add `block_ordering_callable` argument to [`BlockBasePadder`](qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder"), [`PadDynamicalDecoupling`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling"), [`PadDelay`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay"), and `BaseDynamicCircuitAnalysis`. This allows the user to construct blocks using an algorithm of their choosing. No assumptions or checks are made on the validity of the output that the `block_ordering_callable` produces. The motivation for this argument is that for some families of circuits, the existing function `block_order_op_nodes` can be very slow. ([1531](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1531))
+*   Add `block_ordering_callable` argument to [`BlockBasePadder`](transpiler-passes-scheduling-block-base-padder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder"), [`PadDynamicalDecoupling`](transpiler-passes-scheduling-pad-dynamical-decoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling"), [`PadDelay`](transpiler-passes-scheduling-pad-delay "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay"), and `BaseDynamicCircuitAnalysis`. This allows the user to construct blocks using an algorithm of their choosing. No assumptions or checks are made on the validity of the output that the `block_ordering_callable` produces. The motivation for this argument is that for some families of circuits, the existing function `block_order_op_nodes` can be very slow. ([1531](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1531))
 *   The Sampler and Estimator V2 Primitives have been enhanced to incorporate custom validation procedures when the channel\_strategy property is set as “q-ctrl.” This customized validation logic effectively rectifies incorrect input options and safeguards users against inadvertently disabling Q-CTRL’s performance enhancements. ([1550](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1550))
-*   [`SamplerV2`](qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.SamplerV2") now supports twirling. Twirling will only be applied to those measurement registers not involved within a conditional logic. ([1557](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1557))
+*   [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2") now supports twirling. Twirling will only be applied to those measurement registers not involved within a conditional logic. ([1557](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1557))
 *   Session [details()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session#details) now includes a new field, `usage_time`. Usage is defined as the time a quantum system is committed to complete a job. ([1567](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1567))
 
 <span id="id51" />
 
 ### Bug Fixes
 
-*   [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2") will no longer error when the API returns an unknown status. Instead, the status from the API will directly be returned. ([1476](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1476))
+*   [`RuntimeJobV2`](runtime-job-v-2 "qiskit_ibm_runtime.RuntimeJobV2") will no longer error when the API returns an unknown status. Instead, the status from the API will directly be returned. ([1476](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1476))
 *   Fixed a bug where custom headers were not being sent in the `/jobs` request. ([1508](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1508))
 *   Fixed a bug with encoding/decoding `ParameterExpression`. ([1521](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1521))
-*   Fixed an issue where the [in\_final\_state()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJobV2#in_final_state) method in [`RuntimeJobV2`](qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2") would not update the status when called. ([1547](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1547))
+*   Fixed an issue where the [in\_final\_state()](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.RuntimeJobV2#in_final_state) method in [`RuntimeJobV2`](runtime-job-v-2 "qiskit_ibm_runtime.RuntimeJobV2") would not update the status when called. ([1547](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1547))
 
 <span id="id52" />
 
@@ -479,7 +479,7 @@ in_page_toc_max_heading_level: 2
 
 ### Upgrade Notes
 
-*   Modify `skip_reset_qubits` optional flag to the constructor for [`PadDynamicalDecoupling`](qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling"). If `False`, dynamical decoupling is applied on qubits regardless of their state, even on delays that are at the beginning of a circuit. This option now matches the behavior in Qiskit. ([1409](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1409))
+*   Modify `skip_reset_qubits` optional flag to the constructor for [`PadDynamicalDecoupling`](transpiler-passes-scheduling-pad-dynamical-decoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling"). If `False`, dynamical decoupling is applied on qubits regardless of their state, even on delays that are at the beginning of a circuit. This option now matches the behavior in Qiskit. ([1409](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1409))
 
 <span id="id54" />
 
@@ -704,7 +704,7 @@ Sessions are now thread-safe and allow for multiple concurrent interactive exper
 
 ### New Features
 
-*   A new module [qiskit\_ibm\_runtime.fake\_provider](fake_provider#module-qiskit_ibm_runtime.fake_provider), has been added to provide access to a series of fake backends derived from snapshots of IBM Quantum devices. This functionality was originally provided by the `qiskit.providers.fake_provider` module, but will soon be deprecated in favor of [qiskit\_ibm\_runtime.fake\_provider](fake_provider#module-qiskit_ibm_runtime.fake_provider).
+*   A new module [qiskit\_ibm\_runtime.fake\_provider](fake-provider#module-qiskit_ibm_runtime.fake_provider), has been added to provide access to a series of fake backends derived from snapshots of IBM Quantum devices. This functionality was originally provided by the `qiskit.providers.fake_provider` module, but will soon be deprecated in favor of [qiskit\_ibm\_runtime.fake\_provider](fake-provider#module-qiskit_ibm_runtime.fake_provider).
 
     The snapshots provided by the fake backends are useful for local testing of the transpiler and performing local noisy simulations of the system before running on real devices. Here is an example of using a fake backend for transpilation and simulation:
 
