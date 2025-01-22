@@ -37,9 +37,9 @@ A dedicated window for running a multi-job workload. This allows users to experi
 Session execution mode is not supported in the Open Plan. Jobs will run in job mode instead.
 </Admonition>
 
-# How long do workloads run?
+## How long do workloads run?
 
-The amount of time an execution runs depends on the values for maximum execution time (or _time to live_ (TTL)), interactive timeout (or _interactive time to live_ (ITTL)), and, for Qiskit Runtime on IBM Cloud&reg;, the specified Cost limit. Additionally, the time your workload actively runs is probably different from the amount of wall clock time a workload takes.
+The amount of time an execution runs depends on the values for maximum execution time (or _time to live_ (TTL)), interactive timeout (or _interactive time to live_ (ITTL)), and, for Qiskit Runtime on IBM Cloud&reg;, the specified Cost limit.
 
 **Maximum execution time (TTL)** - Determines how long (in _quantum time_) a session or batch can run.  This is the smaller of the value set for `max_execution_time` and the QPU-determined job timeout value.  Quantum time is the time spent by the QPU complex to process the workload. This timer starts when the first job in the workload starts being processed and continues running until the value is reached. After this value is reached, the workload is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session or batch are put into a failed state. You can set this value with the `max_time` parameter for [batches](/guides/run-jobs-batch#specify-batch-length) or [sessions](/guides/run-jobs-session#specify-length).
 
@@ -47,7 +47,11 @@ The amount of time an execution runs depends on the values for maximum execution
 
 For full details about these values, including how to determine the ITTL value, review the [Maximum execution time guide.](/guides/max-execution-time)
 
-# Basic workflow
+<Admonition>
+The time your workload actively runs is probably different from the amount of wall clock time a workload takes.
+</Admonition>
+
+## Basic workflow
 
 The basic workflow for batches and sessions is similar:
 
@@ -67,7 +71,7 @@ The following video illustrates the session basic workflow, using sessions as an
 
 <span id="sessions-versus-batch-usage" />
 
-# Choose the right execution mode
+## Choose the right execution mode
 
 Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as _usage_, overall execution time (TTL), and time between jobs (ITTL).
 
@@ -87,13 +91,14 @@ The the benefits of each are summarazed below:
    - Might run sooner than batch mode.
 
 <span id="best-practices"></span>
-## Recommendations and best practices
+### Recommendations and best practices
 
 Generally, you can use batch mode unless you have workloads that don’t have all inputs ready at the outset.
 
 - Use **batch** mode to submit multiple primitive jobs simultaneously to shorten processing time.
 - Use **session** mode for iterative workloads, or if you need dedicated access to the QPU (quantum processing unit).
 - Always use **job** mode to submit a single primitive request.
+- Because sessions are generally more expensive, it is recommended that you use batch whenever you don't need the additional benefits from using sessions.
 
 To ensure the most efficient use of the execution modes, the following practices are recommended:
 
@@ -104,7 +109,7 @@ To ensure the most efficient use of the execution modes, the following practices
 The above are general guidelines, and you should tune your workload to find the optimal ratio, especially when using sessions. For example, if you are using a session to get exclusive access to a backend, consider breaking up large jobs into smaller ones and running them in parallel. This might be more cost-effective because it can reduce wall clock time.
 
 <span id="usage"></span>
-## Usage
+### Usage
 
 Usage is an important consideration when choosing which execution mode to use.  It is a measurement of the amount of time the QPU is locked for your workload.
 
@@ -127,7 +132,7 @@ Your usage has different impacts, depending on which channel you're using:
 - For IBM Quantum Platform users, this translates to shares. The [fair-share scheduler](/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
 
 <span id="failed-job"></span>
-### Usage for failed and canceled jobs
+#### Usage for failed and canceled jobs
 
 When a job is failed or canceled, the reported usage is as follows:
 
@@ -135,9 +140,9 @@ When a job is failed or canceled, the reported usage is as follows:
 
 * Session mode: The reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
 
-## Examples
+### Examples
 
-### Run a quantum variational algorithm
+#### Run a quantum variational algorithm
 
 Running a quantum variational algorithm typically follows this flow:
 
@@ -150,7 +155,7 @@ In this case, if you were using job or batch mode, each job generated by step (2
 
 In addition, if you use [PEA](/guides/error-mitigation-and-suppression-techniques#pea) or [PEC](/guides/error-mitigation-and-suppression-techniques#pec), you can learn the noise model once and apply it to subsequent jobs when running in dedicated session. This usually doesn't work with batch or job mode because the noise model could become stale by the time the next iteration runs.
 
-### Compare error mitigation settings
+#### Compare error mitigation settings
 
 To compare the effects of the available error mitigation methods, you might follow this flow:
 
