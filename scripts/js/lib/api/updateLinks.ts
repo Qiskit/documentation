@@ -62,7 +62,10 @@ export function normalizeUrl(
   kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
 ): string {
   if (isAbsoluteUrl(url)) return url;
-  if (url.startsWith("/")) return url;
+  // We only want to normalize the API URLs to transform them to kebab-case
+  // Todo: update URLs from other APIs, when they all use kebab-case.
+  if (url.startsWith("/") && !url.startsWith(`/api/${kwargs.pkgName}`))
+    return url;
   url = transformSpecialCaseUrl(url);
 
   url = removePart(url, "/", ["stubs", "apidocs", "apidoc", ".."]);
