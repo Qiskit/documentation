@@ -96,7 +96,7 @@ async function getRedirectsForVersion(
       pageName.includes("qiskit-transpiler-service")
     ) {
       redirects[pageName] =
-        `/${pageName.replace("qiskit-transpiler-service", "qiskit-ibm-transpiler")}`;
+        `/${pageName.replace("qiskit-transpiler-service-", "")}`;
       continue;
     }
 
