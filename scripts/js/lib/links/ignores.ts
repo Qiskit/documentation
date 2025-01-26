@@ -297,15 +297,15 @@ function _patternsReorg(): FilesToIgnores {
         ],
       ],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v-1.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
         ["/api/migration-guides/v2-primitives"],
       ],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v-1.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
         ["/api/migration-guides/v2-primitives"],
       ],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v-2.mdx`, ["/run"]],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v-2.mdx`, ["/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/run"]],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/noise-learner-noise-learner.mdx`,
         ["/run"],

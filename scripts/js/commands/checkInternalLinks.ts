@@ -191,7 +191,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit/0.46/qiskit.utils.QuantumInstance.mdx",
     "docs/api/qiskit/0.46/qiskit.primitives.Base{Estimator,Sampler}.mdx",
     "docs/api/qiskit/0.44/qiskit.extensions.{Hamiltonian,Unitary}Gate.mdx",
-    "docs/api/qiskit-ibm-runtime/0.26/{sampler,estimator}{,-v-1}.mdx",
+    "docs/api/qiskit-ibm-runtime/0.26/{sampler,estimator}{,-v1}.mdx",
     // Release notes referenced in files.
     "docs/api/qiskit/release-notes/index.mdx",
     "docs/api/qiskit/release-notes/0.45.mdx",
