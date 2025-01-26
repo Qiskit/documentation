@@ -18,9 +18,9 @@ in_page_toc_max_heading_level: 2
 
 *   Added support for noise model and level 1 data to local sampler
 
-    The `simulator.noise_model` option of [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2") is now passed through to the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") as a noise\_model option under run\_options if the primitive supports the run\_options option (support was added in Qiskit v1.3).
+    The `simulator.noise_model` option of [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2") is now passed through to the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") as a noise\_model option under run\_options if the primitive supports the run\_options option (support was added in Qiskit v1.3).
 
-    Similarly, the `execution.meas_type` option of [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2") is now translated into `meas_level` and `meas_return` options under `run_options` of the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") if it supports `run_options`. This change allows support for level 1 data in local testing mode, where previously only level 2 (classified) data was supported. ([1990](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1990))
+    Similarly, the `execution.meas_type` option of [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2") is now translated into `meas_level` and `meas_return` options under `run_options` of the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "(in Qiskit v1.3)") if it supports `run_options`. This change allows support for level 1 data in local testing mode, where previously only level 2 (classified) data was supported. ([1990](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1990))
 
 *   A new function `validate_rzz_pubs` was added. The function verifies that `rzz` parameters are in the range between `0` and `pi/2`, for numeric parameters (e.g., `rzz(np.pi/4, 0)`), and for unbounded parameters (`rzz(theta, 0)`) with values to substitute provided in the pub. Parameter expressions (e.g., `rzz(theta + phi, 0)`) are still not validated. ([2021](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2021))
 
@@ -119,7 +119,7 @@ in_page_toc_max_heading_level: 2
 
 *   Added [`DoubleSliceSpan`](execution-span-double-slice-span "qiskit_ibm_runtime.execution_span.DoubleSliceSpan"), an `ExecutionSpan` for batching with two slices. ([1982](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1982))
 
-*   Each of [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2"), [`EstimatorV2`](estimator-v-2 "qiskit_ibm_runtime.EstimatorV2"), and [`noise_learner.NoiseLearner`](noise-learner-noise-learner "qiskit_ibm_runtime.noise_learner.NoiseLearner") now has a `backend()` method that returns the backend that the class is configured with. ([1995](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1995))
+*   Each of [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2"), [`EstimatorV2`](estimator-v2 "qiskit_ibm_runtime.EstimatorV2"), and [`noise_learner.NoiseLearner`](noise-learner-noise-learner "qiskit_ibm_runtime.noise_learner.NoiseLearner") now has a `backend()` method that returns the backend that the class is configured with. ([1995](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1995))
 
 <span id="id12" />
 
@@ -386,7 +386,7 @@ in_page_toc_max_heading_level: 2
 
 *   The `backend` argument in [Sampler](/guides/get-started-with-primitives#3-initialize-the-qiskit-runtime-sampler) and [Estimator](/guides/get-started-with-primitives#3-initialize-qiskit-runtime-estimator) has been deprecated. Please use `mode` instead. The `session` argument in [Sampler](/guides/get-started-with-primitives#3-initialize-the-qiskit-runtime-sampler) and [Estimator](/guides/get-started-with-primitives#3-initialize-qiskit-runtime-estimator) has also been deprecated. Please use `mode` instead. ([1556](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1556))
 
-*   `qiskit_ibm_runtime.QiskitRuntimeService.get_backend()` is deprecated. Please [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](qiskit-runtime-service#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") use instead. The V1 fake backends, `FakeBackend`, along with `FakeProvider` are also being deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](fake-provider-fake-provider-for-backend-v-2 "qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2"). ([1689](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1689))
+*   `qiskit_ibm_runtime.QiskitRuntimeService.get_backend()` is deprecated. Please [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](qiskit-runtime-service#backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") use instead. The V1 fake backends, `FakeBackend`, along with `FakeProvider` are also being deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](fake-provider-fake-provider-for-backend-v2 "qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2"). ([1689](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1689))
 
 *   Specifying options without the full dictionary structure is deprecated. Instead, pass in a fully structured dictionary. For example, use `{'environment': {'log_level': 'INFO'}}` instead of `{'log_level': 'INFO'}`. ([1731](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1731))
 
@@ -459,17 +459,17 @@ in_page_toc_max_heading_level: 2
 *   Printing `Options` and `OptionsV2` will now be formatted as a table. ([1490](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1490))
 *   Add `block_ordering_callable` argument to [`BlockBasePadder`](transpiler-passes-scheduling-block-base-padder "qiskit_ibm_runtime.transpiler.passes.scheduling.BlockBasePadder"), [`PadDynamicalDecoupling`](transpiler-passes-scheduling-pad-dynamical-decoupling "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling"), [`PadDelay`](transpiler-passes-scheduling-pad-delay "qiskit_ibm_runtime.transpiler.passes.scheduling.PadDelay"), and `BaseDynamicCircuitAnalysis`. This allows the user to construct blocks using an algorithm of their choosing. No assumptions or checks are made on the validity of the output that the `block_ordering_callable` produces. The motivation for this argument is that for some families of circuits, the existing function `block_order_op_nodes` can be very slow. ([1531](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1531))
 *   The Sampler and Estimator V2 Primitives have been enhanced to incorporate custom validation procedures when the channel\_strategy property is set as “q-ctrl.” This customized validation logic effectively rectifies incorrect input options and safeguards users against inadvertently disabling Q-CTRL’s performance enhancements. ([1550](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1550))
-*   [`SamplerV2`](sampler-v-2 "qiskit_ibm_runtime.SamplerV2") now supports twirling. Twirling will only be applied to those measurement registers not involved within a conditional logic. ([1557](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1557))
+*   [`SamplerV2`](sampler-v2 "qiskit_ibm_runtime.SamplerV2") now supports twirling. Twirling will only be applied to those measurement registers not involved within a conditional logic. ([1557](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1557))
 *   Session [details()](/api/qiskit-ibm-runtime/session#details) now includes a new field, `usage_time`. Usage is defined as the time a quantum system is committed to complete a job. ([1567](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1567))
 
 <span id="id51" />
 
 ### Bug Fixes
 
-*   [`RuntimeJobV2`](runtime-job-v-2 "qiskit_ibm_runtime.RuntimeJobV2") will no longer error when the API returns an unknown status. Instead, the status from the API will directly be returned. ([1476](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1476))
+*   [`RuntimeJobV2`](runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") will no longer error when the API returns an unknown status. Instead, the status from the API will directly be returned. ([1476](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1476))
 *   Fixed a bug where custom headers were not being sent in the `/jobs` request. ([1508](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1508))
 *   Fixed a bug with encoding/decoding `ParameterExpression`. ([1521](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1521))
-*   Fixed an issue where the [in\_final\_state()](/api/qiskit-ibm-runtime/runtime-job-v-2#in_final_state) method in [`RuntimeJobV2`](runtime-job-v-2 "qiskit_ibm_runtime.RuntimeJobV2") would not update the status when called. ([1547](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1547))
+*   Fixed an issue where the [in\_final\_state()](/api/qiskit-ibm-runtime/runtime-job-v2#in_final_state) method in [`RuntimeJobV2`](runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") would not update the status when called. ([1547](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1547))
 
 <span id="id52" />
 
