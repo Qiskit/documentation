@@ -32,9 +32,9 @@ Options can be defined before a primitive is constructed and passed to the primi
 
 <Tabs>
   <TabItem value="Estimator" label="Estimator">
-  - [Resilience](../api/qiskit-ibm-runtime/options-resilience-options-v-2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC.
+  - [Resilience](../api/qiskit-ibm-runtime/options-resilience-options-v2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC.
   - [Dynamical decoupling](../api/qiskit-ibm-runtime/options-dynamical-decoupling-options): Options for dynamical decoupling.
-  - [Execution](../api/qiskit-ibm-runtime/options-execution-options-v-2): Primitive execution options, including whether to initialize qubits and the repetition delay.
+  - [Execution](../api/qiskit-ibm-runtime/options-execution-options-v2): Primitive execution options, including whether to initialize qubits and the repetition delay.
   - [Twirling](../api/qiskit-ibm-runtime/options-twirling-options): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
   - [Environment](../api/qiskit-ibm-runtime/options-environment-options): Execution environment options, such as the logging level to set and job tags to add.
   - [Simulator](../api/qiskit-ibm-runtime/options-simulator-options): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to local testing mode only.
@@ -42,7 +42,7 @@ Options can be defined before a primitive is constructed and passed to the primi
 
   <TabItem value="Sampler" label="Sampler">
   - [Dynamical decoupling](../api/qiskit-ibm-runtime/options-dynamical-decoupling-options): Options for dynamical decoupling.
-  - [Execution](../api/qiskit-ibm-runtime/options-execution-options-v-2): Primitive execution options, including whether to initialize qubits and the repetition delay.
+  - [Execution](../api/qiskit-ibm-runtime/options-execution-options-v2): Primitive execution options, including whether to initialize qubits and the repetition delay.
   - [Twirling](../api/qiskit-ibm-runtime/options-twirling-options): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
   - [Environment](../api/qiskit-ibm-runtime/options-environment-options): Execution environment options, such as the logging level to set and job tags to add.
   - [Simulator](../api/qiskit-ibm-runtime/options-simulator-options): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to local testing mode only.
@@ -76,17 +76,17 @@ Scroll to see the full table.
 |                      | callback                 |                         |Callable function that receives Job ID and Job result.                             |`None`                           |                      |
 |                      | job_tags                 |                         |List of tags                                                                     |`None`                           |                      |
 |                      | private                  |                         |`True`/`False`                                                                      |`False`                           |                      |
-| [execution](../api/qiskit-ibm-runtime/options-execution-options-v-2)            |                          |                         |               |                           | execution            |
+| [execution](../api/qiskit-ibm-runtime/options-execution-options-v2)            |                          |                         |               |                           | execution            |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |                      |
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.       | Given by `backend.default_rep_delay`.|                      |
 | [max_execution_time](../api/qiskit-ibm-runtime/options-estimator-options)   |                          |       | Integer number of seconds in the range  [1, 10800]    | `10800` (3 hours)   | max_execution_time   |
-| [resilience](../api/qiskit-ibm-runtime/options-resilience-options-v-2)           |                          |      |                               |                      | resilience    |
+| [resilience](../api/qiskit-ibm-runtime/options-resilience-options-v2)           |                          |      |                               |                      | resilience    |
 |                      | [layer_noise_learning](/api/qiskit-ibm-runtime/options-layer-noise-learning-options)     |      | `True`/`False`                | `True`               |      |
 |                      |                          | max_layers_to_learn     |  `None`/ integer >= 1                                                                      | `4`                    |                      |
 |                      |                          | shots_per_randomization |  integer >= 1                                                                         |  `128`                    |                      |
 |                      |                          | num_randomizations      |   integer >= 1                                                                            |  `32`                    |                      |
 |                      |                          | layer_pair_depths       |  list[int] of 2-10 values in the range [0, 200]                           | `(0, 1, 2, 4, 16, 32)`              |                      |
-|                      | [layer_noise_model](/api/qiskit-ibm-runtime/options-resilience-options-v-2#layer_noise_model)       |        | `NoiseLearnerResult`/`Sequence[LayerError]`                      | `None`                      |                      |
+|                      | [layer_noise_model](/api/qiskit-ibm-runtime/options-resilience-options-v2#layer_noise_model)       |        | `NoiseLearnerResult`/`Sequence[LayerError]`                      | `None`                      |                      |
 |                      | measure_mitigation       |        | `True`/`False`                      | `True`                      |                      |
 |                      | [measure_noise_learning](/api/qiskit-ibm-runtime/options-measure-noise-learning-options)   | num_randomizations      |  integer >= 1  | `32`                      |                      |
 |                      |                          | shots_per_randomization |  integer                                                                                | 'auto'                    |                      |
@@ -130,7 +130,7 @@ Scroll to see the full table.
 |                      | callback                 |                         |Callable function that receives Job ID and Job result.                                    |`None`                           |                    |
 |                      | job_tags                 |                         |List of tags                                                                              |`None`                           |                    |
 |                      | private                  |                         |`True`/`False`                                                                      |`False`                           |                      |
-| [execution](../api/qiskit-ibm-runtime/options-execution-options-v-2)            |                          |                         |                     |                           |                    |
+| [execution](../api/qiskit-ibm-runtime/options-execution-options-v2)            |                          |                         |                     |                           |                    |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |    execution    |
 |                      | meas_type                |                         | `classified`/`kerneled`/`avg_kerneled`                              | `classified`|                    |
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.                                | Given by `backend.default_rep_delay`.|                    |
@@ -254,8 +254,8 @@ Due to differences in the device compilation process, certain runtime features c
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Find more details about the `EstimatorV2` methods in the [Estimator API reference](../api/qiskit-ibm-runtime/estimator-v-2).
-    - Find more details about the `SamplerV2` methods in the [Sampler API reference](../api/qiskit-ibm-runtime/sampler-v-2).
+    - Find more details about the `EstimatorV2` methods in the [Estimator API reference](../api/qiskit-ibm-runtime/estimator-v2).
+    - Find more details about the `SamplerV2` methods in the [Sampler API reference](../api/qiskit-ibm-runtime/sampler-v2).
     - Find details about how to configure [error suppression](configure-error-suppression) and [error mitigation](configure-error-mitigation).
     - Learn how to [specify options](specify-runtime-options).
 </Admonition>
