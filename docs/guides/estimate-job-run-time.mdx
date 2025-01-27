@@ -59,8 +59,40 @@ Output:
 {'quantum_seconds': 4.1058720028432445}
 ```
 
+<span id="usage"></span>
+## Usage
+
+Usage is an important consideration when choosing which execution mode to use.  It is a measurement of the amount of time the QPU is locked for your workload.
+
+* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens last. It includes both classical and quantum time.
+* Batch usage is the sum of quantum time of all jobs in the batch.
+* Single job usage is the quantum time the job uses in processing.
+
+![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (interactive time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing on the QPU.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')\
+
+The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
+
+
+To find the usage time for your batch or session, in `qiskit-ibm-runtime` 0.30 or later, run `batch.usage()` or `session.usage()`. When using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
+
+If you call the REST API directly, the usage time is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both batch and session workloads.
+
+Your usage has different impacts, depending on which channel you're using:
+
+- For Qiskit Runtime on IBM Cloud users, the usage determines how much the job costs.  See [Manage cost](/guides/manage-cost#manage-cost) for details.
+- For IBM Quantum Platform users, this translates to shares. The [fair-share scheduler](/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
+
+<span id="failed-job"></span>
+### Usage for failed and canceled jobs
+
+When a job is failed or canceled, the reported usage is as follows:
+
+* Job or batch mode: The reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the value that Qiskit Runtime returns as `consumed`. Thus, some failed jobs do not appear in your reported usage and others do.
+
+* Session mode: The reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
+
 <span id="view-usage"></span>
-## View the estimated workload (job) usage on IBM Quantum Platform
+### View the estimated workload (job) usage on IBM Quantum Platform
 
 You can view the estimated usage (how much quantum time the workload will take to run) in two places on IBM Quantum Platform:
 
