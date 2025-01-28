@@ -64,6 +64,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://aip.scitation.org/doi/10.1063/1.5019371",
   "https://aip.scitation.org/doi/10.1063/1.5141835",
   "https://pubs.aip.org/aip/rsi/article/88/10/104703/836456",
+  "https://ieeexplore.ieee.org/document/1323804",
+  "https://ieeexplore.ieee.org/document/880982",
+  "https://ieeexplore.ieee.org/document/657661",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
