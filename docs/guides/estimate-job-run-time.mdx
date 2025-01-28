@@ -68,8 +68,6 @@ Usage is an important consideration when choosing which execution mode to use.  
 * Batch usage is the sum of quantum time of all jobs in the batch.
 * Single job usage is the quantum time the job uses in processing.
 
-![This image shows multiple sets of jobs.  One set is being run in session mode and the other is being run in batch mode.  For session mode, between each job is the interactive TTL (interactive time to live).  The active window starts when the first job starts and ends after the last job is completed. After the final job of the first set of jobs completes, the active window ends and the session is paused (but not closed).  Another set of jobs then starts and jobs continue in a similar manner. The QPU is reserved for your use during the entire session.  For batch mode, the classical computation part of each job happens simultaneously, then all jobs are sent to the QPU.  The QPU is locked for your use from the time the first job reaches the QPU until the last job is done processing on the QPU.  There is no gap between jobs where the QPU is idle.](/images/guides/execution-modes/SessionVsBatch.svg 'Sessions compared to batch')\
-
 The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
 
