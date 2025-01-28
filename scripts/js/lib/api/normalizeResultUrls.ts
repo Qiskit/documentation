@@ -16,6 +16,7 @@ import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { removePart } from "../stringUtils.js";
 
 export function kebabCaseAndShortenPage(page: string, pkgName: string): string {
+  // Transform the URLs to kebab-case. We also replace values like -v-2 with -v2
   const kebab = kebabCase(page).replace(/-v-([0-9]+)/g, `-v$1`);
   return kebab === pkgName ? kebab : kebab.replace(`${pkgName}-`, "");
 }
