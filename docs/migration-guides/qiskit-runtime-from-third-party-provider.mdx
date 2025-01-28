@@ -12,8 +12,8 @@ The Qiskit SDK offers wrappers for `backend.run` that can be easily adapted to a
 through subclassing; these are the [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) and [`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) The inputs
 to the primitives should follow the Primitive Unified Bloc (PUB) syntax specified in the V2 primitives interface. See the [Overview of PUBs section](/guides/primitive-input-output#pubs) in the Primitive inputs and outputs guide for details.
 
-An advantage of this strategy is that the wrapper can handle the input and output manipulation, so knowledge of the PUB data
-model is not required. However, this might result in a suboptimal runtime, which could be refined through a fully
+An advantage of this strategy is that the wrapper can handle the input and output manipulation, so the third-party providers do not need to know about the PUB data
+model. However, this might result in a suboptimal runtime, which could be refined through a fully
 custom primitives implementation.
 
 The following snippets show how to create a custom Estimator instance following the strategy described above.
