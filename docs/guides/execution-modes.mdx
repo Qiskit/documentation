@@ -5,11 +5,11 @@ description: An overview of the available execution modes in Qiskit Runtime; ses
 ---
 # Introduction to Qiskit Runtime execution modes
 
-When Qiskit Runtime was first introduced, users could only execute circuits as individual jobs. As different types of quantum workloads emerged, we recognized the need for different scheduling strategies. The execution modes determine how your jobs are scheduled, and choosing the right execution mode allows your workload to run efficiently within your budget. There are three execution modes: job mode, session mode, and batch mode.
+When Qiskit Runtime was introduced, users could only execute circuits as individual jobs. As different types of quantum workloads emerged, the need for different scheduling strategies became evident. The execution modes determine how your jobs are scheduled, and choosing the right execution mode allows your workload to run efficiently within your budget. There are three execution modes: job, session, and batch.
 
 ## Job mode
 
-A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](/guides/primitives-examples) for examples.
+A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](/guides/primitives-examples) for usage.
 
 ## Batch mode
 
@@ -46,8 +46,8 @@ To run in session mode, specify `mode=session` when instantiating a primitive, o
 
 The basic workflow for batches and sessions is similar:
 
-1. The first job in a batch or session enters the normal queue. Note: for batches, the entire batch of jobs is scheduled together.
-2. When the first job starts running, the maximum time to live (TTL) timer starts (and does not stop or pause until the end is reached).
+1. The first job in a batch or session enters the normal queue. For batches, the entire batch of jobs is scheduled together.
+2. When the first job starts running, the maximum time to live (TTL) timer starts, and does not stop or pause until the end is reached.
 3. The interactive TTL timer starts after each job is completed.  If there are no workload jobs ready within the interactive TTL window, the workload is temporarily deactivated and normal job selection resumes. A job can reactivate the deactivated workload if the batch or session has not reached its maximum TTL value.
    <Admonition type="note">
    The job must go through the normal queue to reactivate the workload.

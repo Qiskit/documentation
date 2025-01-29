@@ -6,7 +6,7 @@ description: Choose the right execution mode for Qiskit Runtime; sessions, batch
 <span id="sessions-versus-batch-usage" />
 # Choose the right execution mode
 
-Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as _usage_, overall execution time (maximum TTL), and time between jobs (interactive TTL).
+Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as _usage_, overall execution time (maximum time to live, or TTL), and time between jobs (interactive TTL).
 
 The the benefits of each are summarazed below:
 
@@ -66,7 +66,7 @@ To compare the effects of the available error mitigation methods, you might foll
 
 In this case, all jobs (which are related but independant) are available at the outset. If you use batch mode, they are scheduled collectively so you only have to wait for them to go through the queue once.  Additionally, because the goal is to compare the effects of various error mitigation methods, it's beneficial that they run as closely together as possible. Thus, batch would be a good choice.  You _could_ run these jobs in a session, but because sessions are generally more expensive, it is recommended that you use batch whenever you don't need the additional benefits from using sessions.
 
-# Next steps
+## Next steps
 
 <Admonition type="tip" title="Recommendations">
     - [Run a job in batch mode.](/guides/run-jobs-batch/)
