@@ -64,6 +64,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://aip.scitation.org/doi/10.1063/1.5019371",
   "https://aip.scitation.org/doi/10.1063/1.5141835",
   "https://pubs.aip.org/aip/rsi/article/88/10/104703/836456",
+  "https://ieeexplore.ieee.org/document/1323804",
+  "https://ieeexplore.ieee.org/document/880982",
+  "https://ieeexplore.ieee.org/document/657661",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
@@ -274,15 +277,15 @@ function _patternsReorg(): FilesToIgnores {
   const runtime = Object.fromEntries(
     [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26].flatMap((vers) => [
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.Batch.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/batch.mdx`,
         ["/run/run-jobs-batch", "/run/max-execution-time"],
       ],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.Session.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/session.mdx`,
         ["/run/max-execution-time"],
       ],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.options.Options.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/options-options.mdx`,
         [
           "/run/max-execution-time",
           "/run/configure-error-mitigation",
@@ -290,30 +293,24 @@ function _patternsReorg(): FilesToIgnores {
         ],
       ],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.options.EstimatorOptions.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/options-estimator-options.mdx`,
         [
           "/run/configure-error-mitigation",
           "/run/configure-runtime-compilation",
         ],
       ],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.EstimatorV1.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
         ["/api/migration-guides/v2-primitives"],
       ],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.SamplerV1.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
         ["/api/migration-guides/v2-primitives"],
       ],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/run"]],
       [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.EstimatorV2.mdx`,
-        ["/run"],
-      ],
-      [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.SamplerV2.mdx`,
-        ["/run"],
-      ],
-      [
-        `docs/api/qiskit-ibm-runtime/0.${vers}/qiskit_ibm_runtime.noise_learner.NoiseLearner.mdx`,
+        `docs/api/qiskit-ibm-runtime/0.${vers}/noise-learner-noise-learner.mdx`,
         ["/run"],
       ],
       [`docs/api/qiskit-ibm-runtime/0.${vers}/transpiler.mdx`, ["/transpile"]],

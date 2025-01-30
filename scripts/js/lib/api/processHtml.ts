@@ -13,10 +13,12 @@
 import path from "node:path";
 
 import { CheerioAPI, Cheerio, load, Element } from "cheerio";
+import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiType } from "./Metadata.js";
 import { processMdxComponent } from "./generateApiComponents.js";
+import { externalRedirects } from "../../../config/external-redirects.js";
 
 export type ProcessedHtml = {
   html: string;
@@ -66,6 +68,7 @@ export async function processHtml(options: {
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
+  updateRedirectedExternalLinks($, $main, externalRedirects);
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
@@ -203,6 +206,23 @@ export function addLanguageClassToCodeBlocks(
     $pre.replaceWith(
       `<pre><code class="${languageClass}">${$pre.html()}</code></pre>`,
     );
+  });
+}
+
+export function updateRedirectedExternalLinks(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  redirects: { [old: string]: string },
+): void {
+  $main.find("a").each((_, a) => {
+    const $a = $(a);
+    const href = $a.attr("href");
+    const replacement = href && redirects[href];
+    if (replacement) {
+      $a.attr("href", replacement);
+      const regexp = new RegExp(`${escapeRegExp(href)}(?=$|[\\s<'"])`, "g");
+      $a.text($a.text().replaceAll(regexp, replacement));
+    }
   });
 }
 
