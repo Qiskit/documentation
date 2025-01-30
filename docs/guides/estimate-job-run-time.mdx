@@ -60,20 +60,15 @@ Output:
 ```
 
 <span id="usage"></span>
-## Usage
+## Workload usage
 
-Usage is an important consideration when choosing which execution mode to use.  It is a measurement of the amount of time the QPU is locked for your workload.
+Usage is a measurement of the amount of time the QPU is locked for your workload, and it is calculated differently, depending on which execution mode you're using.
 
 * Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens last. It includes both classical and quantum time.
 * Batch usage is the sum of quantum time of all jobs in the batch.
 * Single job usage is the quantum time the job uses in processing.
 
 The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
-
-
-To find the usage time for your batch or session, run `batch.usage()` or `session.usage()`.
-
-If you call the REST API directly, the usage time is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both batch and session workloads.
 
 Your usage has different impacts, depending on which channel you're using:
 
@@ -89,12 +84,20 @@ When a job is failed or canceled, the reported usage is as follows:
 
 * Session mode: The reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
 
+### Determine a workload's actual usage
+
+After a workload has completed, there are several ways to view its actual usage:
+
+- On the IBM Quantum Platform [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows actual usage for completed workloads.
+- Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`.](/api/qiskit-ibm-runtime/session#usage)
+- Call the [GET usage](/api/runtime/tags/usage#tags__usage) REST API directly. The reported usage is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both batch and session workloads.
+
 <span id="view-usage"></span>
-### View the estimated workload (job) usage on IBM Quantum Platform
+### View the estimated workload (job) usage
 
-You can view the estimated usage (how much quantum time the workload will take to run) in two places on IBM Quantum Platform:
+After a workload is submitted but before it completes, you can view its estimated usage (how much quantum time the workload will take to run) in two places on IBM Quantum Platform:
 
-- On the [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows the estimated usage for pending workloads, or actual usage for completed workloads.
+- On the [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows the estimated usage for pending workloads.
 - On the workload's details page. From the [Dashboard](https://quantum.ibm.com/) or [Workloads table](https://quantum.ibm.com/workloads), click the ID to open its details page.  The estimated usage is shown in the Status timeline.
 
 ## Next steps
