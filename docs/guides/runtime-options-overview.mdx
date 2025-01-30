@@ -35,7 +35,7 @@ Options can be defined before a primitive is constructed and passed to the primi
   - [Dynamical decoupling](/api/qiskit-ibm-runtime/options-dynamical-decoupling-options): Options for dynamical decoupling.
   - [Environment](/api/qiskit-ibm-runtime/options-environment-options): Execution environment options, such as the logging level to set and job tags to add.
   - [Execution](/api/qiskit-ibm-runtime/options-execution-options-v2): Primitive execution options, including whether to initialize qubits and the repetition delay.
-  - [Resilience](/api/qiskit-ibm-runtime/options-resiliance-options-v2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC.
+  - [Resilience](/api/qiskit-ibm-runtime//options-resilience-options-v2): Advanced options for configuring error mitigation methods such as measurement error mitigation, ZNE, and PEC.
   - [Simulator](/api/qiskit-ibm-runtime/options-simulator-options): Simulator options, such as the basis gates, simulator seed, and coupling map. Applies to [local testing mode](/guides/local-testing-mode) only.
   - [Twirling](/api/qiskit-ibm-runtime/options-twirling-options): Twirling options, such as whether to apply two-qubit gate twirling and the number of shots to run for each random sample.
   </TabItem>
@@ -71,7 +71,7 @@ Scroll to see the full table.
 |                      | scheduling_method        |                         | `asap`/`alap`                                                                      | `alap`                    |                      |
 |                      | sequence_type            |                         | `XX`/`XpXm`/`XY4`                                                         | `XX`                      |                      |
 |                      | skip_reset_qubits       |                         | `True`/`False`                                                                                   | `False`                 |                    |
-| [environment](/api/qiskit-ibm-runtime/qiskit_ibm_options-environment-options)          |                          |     |             |                                  | environment          |
+| [environment](/api/qiskit-ibm-runtime/options-environment-options)          |                          |     |             |                                  | environment          |
 |                      | callback                 |                         |Callable function that receives Job ID and Job result.                             |`None`                           |                      |
 |                      | job_tags                 |                         |List of tags                                                                     |`None`                           |                      |
 |                      | log_level              |                         |`DEBUG`/`INFO`/`WARNING`/`ERROR`/`CRITICAL`                 |`WARNING`                          |                      |
@@ -79,7 +79,7 @@ Scroll to see the full table.
 | [execution](/api/qiskit-ibm-runtime/options-execution-options-v2)            |                          |                         |               |                           | execution            |
 |                      | init_qubits              |                         | `True`/`False`                                                                         | `True`                    |                      |
 |                      | rep_delay                |                         | Value in the range supplied by `backend.rep_delay_range`.       | Given by `backend.default_rep_delay`.|                      |
-| [max_execution_time](/api/qiskit-ibm-runtime/options-estimator-options#max_estimation_time)   |                          |       | Integer number of seconds in the range  [1, 10800]    | `10800` (3 hours)   | max_execution_time   |
+| [max_execution_time](/api/qiskit-ibm-runtime/options-estimator-options#max_execution_time)   |                          |       | Integer number of seconds in the range  [1, 10800]    | `10800` (3 hours)   | max_execution_time   |
 | [resilience](/api/qiskit-ibm-runtime/options-resilience-options-v2)           |                          |      |                               |                      | resilience    |
 |                      | [layer_noise_learning](/api/qiskit-ibm-runtime/options-resilience-options-v2#layer_noise_learning)     |                         |                    |                            |      |
 |                      |                          | layer_pair_depths       |  list[int] of 2-10 values in the range [0, 200]                           | `(0, 1, 2, 4, 16, 32)`              |                      |
