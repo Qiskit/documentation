@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 # Get the latest digest by running `docker pull icr.io/qc-open-source-docs-public/preview:latest`.
-IMAGE_DIGEST = "sha256:568505fc541a78af1c2df12b5fdef7a79883a88371f0f16af2fa0293c62fff07"
+IMAGE_DIGEST = "sha256:c93a25a2473e180c4fd04d2f520d8745f9ad861ce1ce33389d7038c0b9567eef"
 
 # Docker on Windows uses `/` rather than `\`, so we need to call `.as_posix()`:
 # https://medium.com/@kale.miller96/how-to-mount-your-current-working-directory-to-your-docker-container-in-windows-74e47fa104d7
@@ -44,7 +44,7 @@ def main() -> None:
         "docker",
         "run",
         "-v",
-        f"{PWD}/docs:/home/node/app/docs",
+        f"{PWD}/docs:/home/node/app/docs/en",
         *skip_apis(),
         "-v",
         f"{PWD}/public:/home/node/app/packages/preview/public",
