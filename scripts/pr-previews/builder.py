@@ -151,7 +151,7 @@ def _extract_docker_files(root_dir: Path) -> None:
     logger.info("Docker contents extracted")
 
 def _add_locale_to_docs(dir: Path) -> Path:
-    return dir.replace("docs/", "docs/en/")
+    return Path(str(dir).replace("docs/", "docs/en/"))
 
 if __name__ == "__main__":
     configure_logging()
