@@ -166,7 +166,7 @@ The 0.7 release introduces an automated cut finding code for the new circuit cut
 
 ### Bug Fixes
 
-*   It is now possible to serialize [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s using [`qpy`](/api/qiskit/qpy#module-qiskit.qpy "(in Qiskit v1.3)"), but some other issues with serialization and deserialization still remain. See issue [#455](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/445) for details.
+*   It is now possible to serialize [`SingleQubitQPDGate`](qpd-single-qubit-qpd-gate "qiskit_addon_cutting.qpd.SingleQubitQPDGate")s using [`qpy`](/api/qiskit/qpy#module-qiskit.qpy "(in Qiskit v1.3)"), but some other issues with serialization and deserialization still remain. See issue [#455](https://github.com/Qiskit/qiskit-addon-cutting/issues/445) for details.
 
 <span id="release-notes-0-6-0-other-notes" />
 
@@ -208,7 +208,7 @@ The primary purpose of this release is to swap the order of the classical regist
 
 ### Other Notes
 
-*   `qiskit-nature` is now pinned to version 0.6.X, as the entanglement forging code has not yet been updated to work with Qiskit Nature 0.7.0. Compatibility with Qiskit Nature 0.7.0 is tracked by [issue #406](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/406).
+*   `qiskit-nature` is now pinned to version 0.6.X, as the entanglement forging code has not yet been updated to work with Qiskit Nature 0.7.0. Compatibility with Qiskit Nature 0.7.0 is tracked by [issue #406](https://github.com/Qiskit/qiskit-addon-cutting/issues/406).
 
 <span id="release-notes-0-4-0" />
 
@@ -307,7 +307,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 *   Numpy 1.23.0 or later is now required. The [`kron()`](https://numpy.org/doc/stable/reference/generated/numpy.kron.html#numpy.kron "(in NumPy v2.2)") method in earlier versions [has known performance issues](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/pull/70#issuecomment-1500514513), and this method is used heavily by the CutQC wire cutting module.
 
-*   The dependency on the `qiskit.opflow` module has been removed from entanglement forging. With this change, Qiskit Nature 0.6.0 is now required. However, Qiskit Nature 0.6.0 is incompatible with Quantum Serverless, so users that wish to use entanglement forging with Quantum Serverless must remain on version 0.2 of the Circuit Knitting Toolbox until [issue #108](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/108) is resolved.
+*   The dependency on the `qiskit.opflow` module has been removed from entanglement forging. With this change, Qiskit Nature 0.6.0 is now required. However, Qiskit Nature 0.6.0 is incompatible with Quantum Serverless, so users that wish to use entanglement forging with Quantum Serverless must remain on version 0.2 of the Circuit Knitting Toolbox until [issue #108](https://github.com/Qiskit/qiskit-addon-cutting/issues/108) is resolved.
 
 *   [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.BaseQPDGate") instances in subcircuits returned from [`partition_circuit_qubits()`](qiskit-addon-cutting#partition_circuit_qubits "qiskit_addon_cutting.partition_circuit_qubits") and [`partition_problem()`](qiskit-addon-cutting#partition_problem "qiskit_addon_cutting.partition_problem") will now have labels prefixed with “cut”, rather than “qpd”.
 
