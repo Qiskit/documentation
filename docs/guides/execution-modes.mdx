@@ -11,6 +11,7 @@ When Qiskit Runtime was introduced, users could only execute circuits as individ
 
 A single primitive request of the estimator or the sampler made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Primitives examples](/guides/primitives-examples) for usage.
 
+<span id="batch-mode"></span>
 ## Batch mode
 
 A multi-job manager for efficiently running experiments comprising multi-job workloads. These workloads are made up of independently executable jobs that have no conditional relationship with each other. With batch mode, users submit their jobs all at once. The system parallelizes or threads the pre-processing step of each primitive job to more tightly package quantum execution across jobs, and then runs the quantum execution of each job in quick succession to deliver the most efficient results.
