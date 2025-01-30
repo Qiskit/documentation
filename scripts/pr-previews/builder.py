@@ -130,14 +130,14 @@ def _copy_local_content(root_dir: Path) -> None:
             if dir.startswith("public")
             else root_dir / dir
         )
-        shutil.copytree(dir, dest)
+        shutil.copytree(dir, _add_locale_to_docs(dest))
 
     for fp in [
         "docs/support.mdx",
         "docs/responsible-quantum-computing.mdx",
         "docs/faq.mdx",
     ]:
-        shutil.copy2(fp, root_dir / fp)
+        shutil.copy2(fp, root_dir / _add_locale_to_docs(fp))
 
     logger.info("local content files copied")
 
@@ -150,6 +150,8 @@ def _extract_docker_files(root_dir: Path) -> None:
         run_subprocess(["docker", "rm", container_id])
     logger.info("Docker contents extracted")
 
+def _add_locale_to_docs(dir: Path) -> Path:
+    return dir.replace("docs/", "docs/en/")
 
 if __name__ == "__main__":
     configure_logging()
