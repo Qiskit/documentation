@@ -55,6 +55,16 @@ Before opening a PR, remember to do the following:
 
 # How to work with this repo
 
+## Git clone tip
+
+This repository is very large, so it is slow to clone the first time. We recommend instead using the argument `--filter=blob:none`:
+
+```bash
+git clone --filter=blob:none https://github.com/Qiskit/documentation.git
+```
+
+`--filter=blob:none` means that Git will _lazily_ download file contents when you need them, rather than eagerly downloading everything on the initial clone.
+
 ## Prerequisites to building the docs locally
 
 These tools will also run in CI, but it can be convenient when iterating to run the tools locally.
@@ -77,6 +87,7 @@ You can preview the docs locally by following these two steps:
 
 1. Ensure Docker is running. For example, open Rancher Desktop.
 2. Run `./start` in your terminal, and open http://localhost:3000 in your browser.
+   - On Windows, run `python start` instead. Alternatively, use Windows Subsystem for Linux and run `./start`.
 
 The preview application does not include the top nav bar. Instead, navigate to the folder you want with the links in the home page. You can return to the home page at any time by clicking "IBM Quantum Documentation Preview" in the top-left of the header.
 
@@ -149,7 +160,7 @@ graphviz`.
   ```
 - To only execute specific notebooks, pass them as arguments.
   ```sh
-  tox -- path/to/notebook.ipynb path/to/another-notbook.ipynb
+  tox -- <path/to/notebook.ipynb> <path/to/another-notebook.ipynb>
   ```
 - To write the execution results to the file, pass the `--write` argument.
   ```sh
@@ -219,7 +230,7 @@ Some problems can be fixed automatically. To fix these problems, run:
 tox -e fix
 
 # Fix problems in a specific notebook
-tox -e fix -- path/to/notebook
+tox -e fix -- <path/to/notebook>
 ```
 
 If you use the Jupyter notebook editor, consider adding squeaky as a [pre-save
@@ -292,8 +303,9 @@ npm run check
 ## Check images
 
 Every image needs to have alt text for accessibility and must use markdown syntax. To avoid changing the styling of the images, the use of the `<img>` HTML tag is not allowed. The lint job in CI will fail if images do not have alt text defined or if an `<img>` tag is found.
+We also require raster images (PNG, JPEG) to be converted to AVIF format to save space and make the website faster for users. You can convert images to AVIF using [ImageMagick](https://imagemagick.org/index.php).
 
-You can check it locally by running:
+You can check images locally by running:
 
 ```bash
 # Only check images
@@ -329,15 +341,31 @@ npm run check
 
 There are two ways to deal with cSpell incorrectly complaining about a word, such as abbreviations.
 
-1. Ignore the word in the local markdown file by adding a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
+1. Ignore the word in the local file:
 
-```
-{/* cspell:ignore hellllooooo, ayyyyy */}
+   - For a markdown file, add a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
 
-# Hellllooooo!
+     ``` markdown
+     {/* cspell:ignore hellllooooo, ayyyyy */}
 
-Ayyyyy, this is a fake description.
-```
+     # Hellllooooo!
+
+     Ayyyyy, this is a fake description.
+     ```
+
+   - For a Jupyter notebook, add the comment inside a markdown cell in the source part. Each line should be surrounded by quotes and end with "\n".
+
+     ``` python
+     {
+      "cell_type": "markdown",
+      "id": "552b1077",
+      "metadata": {},
+      "source": [
+       "# Hello world\n",
+       "{/* cspell:ignore helloooooo */}\n"
+      ]
+     },
+     ```
 
 2. If the word is a name, add it to the `scripts/config/cspell/dictionaries/people.txt` file. If it is a scientific or quantum specific word, add it to the `scripts/config/cspell/dictionaries/qiskit.txt` file. If it doesn't fit in either category, add it to the `words` section in `scripts/config/cspell/cSpell.json`. The word is not case-sensitive.
 

@@ -114,7 +114,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Runtime client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: true,
       });
     }
 
@@ -123,7 +123,7 @@ export class Pkg {
         ...args,
         title: "Qiskit Transpiler Service client",
         githubSlug: "qiskit/qiskit-ibm-transpiler",
-        kebabCaseAndShortenUrls: false,
+        kebabCaseAndShortenUrls: true,
       });
     }
 
@@ -230,8 +230,8 @@ export class Pkg {
     return this.type == "latest";
   }
 
-  hasObjectsInv(): boolean {
-    return this.name !== "qiskit" || +this.versionWithoutPatch >= 0.45;
+  isProblematicLegacyQiskit(): boolean {
+    return this.name === "qiskit" && +this.versionWithoutPatch < 0.45;
   }
 
   hasSeparateReleaseNotes(): boolean {

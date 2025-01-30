@@ -93,10 +93,10 @@ async function getRedirectsForVersion(
 
     if (
       versionPath.includes("qiskit-ibm-transpiler") &&
-      pageName.includes("qiskit_transpiler_service")
+      pageName.includes("qiskit-transpiler-service")
     ) {
       redirects[pageName] =
-        `/${pageName.replace("qiskit_transpiler_service", "qiskit_ibm_transpiler")}`;
+        `/${pageName.replace("qiskit-transpiler-service-", "")}`;
       continue;
     }
 

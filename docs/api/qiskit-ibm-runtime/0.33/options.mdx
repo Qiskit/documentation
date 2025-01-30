@@ -40,7 +40,7 @@ estimator = EstimatorV2(mode=backend)
 estimator.options.update(resilience_level=1)
 ```
 
-Refer to [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions") and [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions") for V2 Sampler and V2 Estimator options, respectively.
+Refer to [`SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions") and [`EstimatorOptions`](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions") for V2 Sampler and V2 Estimator options, respectively.
 
 <Admonition title="Note" type="note">
   If an option is not specified, the server default value is used. The default values are subject to change. Refer to this current module’s documentation for the latest defaults.
@@ -50,25 +50,25 @@ Refer to [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ib
 
 ### Base primitive options
 
-|                                                                                                                 |                           |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`EstimatorOptions`](qiskit_ibm_runtime.options.EstimatorOptions "qiskit_ibm_runtime.options.EstimatorOptions") | Options for V2 Estimator. |
-| [`SamplerOptions`](qiskit_ibm_runtime.options.SamplerOptions "qiskit_ibm_runtime.options.SamplerOptions")       | Options for V2 Sampler.   |
+|                                                                                               |                           |
+| --------------------------------------------------------------------------------------------- | ------------------------- |
+| [`EstimatorOptions`](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions") | Options for V2 Estimator. |
+| [`SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions")       | Options for V2 Sampler.   |
 
 ### Suboptions
 
-|                                                                                                                                                  |                                                                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`NoiseLearnerOptions`](qiskit_ibm_runtime.options.NoiseLearnerOptions "qiskit_ibm_runtime.options.NoiseLearnerOptions")                         | Options for [`NoiseLearner`](qiskit_ibm_runtime.noise_learner.NoiseLearner "qiskit_ibm_runtime.noise_learner.NoiseLearner").                                  |
-| [`DynamicalDecouplingOptions`](qiskit_ibm_runtime.options.DynamicalDecouplingOptions "qiskit_ibm_runtime.options.DynamicalDecouplingOptions")    | Options for dynamical decoupling (DD).                                                                                                                        |
-| [`ResilienceOptionsV2`](qiskit_ibm_runtime.options.ResilienceOptionsV2 "qiskit_ibm_runtime.options.ResilienceOptionsV2")                         | Resilience options for V2 Estimator.                                                                                                                          |
-| [`LayerNoiseLearningOptions`](qiskit_ibm_runtime.options.LayerNoiseLearningOptions "qiskit_ibm_runtime.options.LayerNoiseLearningOptions")       | Options for learning layer noise.                                                                                                                             |
-| [`MeasureNoiseLearningOptions`](qiskit_ibm_runtime.options.MeasureNoiseLearningOptions "qiskit_ibm_runtime.options.MeasureNoiseLearningOptions") | Options for measurement noise learning.                                                                                                                       |
-| [`PecOptions`](qiskit_ibm_runtime.options.PecOptions "qiskit_ibm_runtime.options.PecOptions")                                                    | Probabalistic error cancellation mitigation options.                                                                                                          |
-| [`ZneOptions`](qiskit_ibm_runtime.options.ZneOptions "qiskit_ibm_runtime.options.ZneOptions")                                                    | Zero noise extrapolation mitigation options.                                                                                                                  |
-| [`TwirlingOptions`](qiskit_ibm_runtime.options.TwirlingOptions "qiskit_ibm_runtime.options.TwirlingOptions")                                     | Twirling options.                                                                                                                                             |
-| [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2")                            | Execution options for V2 primitives.                                                                                                                          |
-| [`SamplerExecutionOptionsV2`](qiskit_ibm_runtime.options.SamplerExecutionOptionsV2 "qiskit_ibm_runtime.options.SamplerExecutionOptionsV2")       | Extension of [`ExecutionOptionsV2`](qiskit_ibm_runtime.options.ExecutionOptionsV2 "qiskit_ibm_runtime.options.ExecutionOptionsV2") for the sampler primitive. |
-| [`EnvironmentOptions`](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.EnvironmentOptions")                            | Options related to the execution environment.                                                                                                                 |
-| [`SimulatorOptions`](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.SimulatorOptions")                                  | Simulator options.                                                                                                                                            |
+|                                                                                                                                  |                                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`NoiseLearnerOptions`](options-noise-learner-options "qiskit_ibm_runtime.options.NoiseLearnerOptions")                          | Options for [`NoiseLearner`](noise-learner-noise-learner "qiskit_ibm_runtime.noise_learner.NoiseLearner").                                   |
+| [`DynamicalDecouplingOptions`](options-dynamical-decoupling-options "qiskit_ibm_runtime.options.DynamicalDecouplingOptions")     | Options for dynamical decoupling (DD).                                                                                                       |
+| [`ResilienceOptionsV2`](options-resilience-options-v2 "qiskit_ibm_runtime.options.ResilienceOptionsV2")                          | Resilience options for V2 Estimator.                                                                                                         |
+| [`LayerNoiseLearningOptions`](options-layer-noise-learning-options "qiskit_ibm_runtime.options.LayerNoiseLearningOptions")       | Options for learning layer noise.                                                                                                            |
+| [`MeasureNoiseLearningOptions`](options-measure-noise-learning-options "qiskit_ibm_runtime.options.MeasureNoiseLearningOptions") | Options for measurement noise learning.                                                                                                      |
+| [`PecOptions`](options-pec-options "qiskit_ibm_runtime.options.PecOptions")                                                      | Probabalistic error cancellation mitigation options.                                                                                         |
+| [`ZneOptions`](options-zne-options "qiskit_ibm_runtime.options.ZneOptions")                                                      | Zero noise extrapolation mitigation options.                                                                                                 |
+| [`TwirlingOptions`](options-twirling-options "qiskit_ibm_runtime.options.TwirlingOptions")                                       | Twirling options.                                                                                                                            |
+| [`ExecutionOptionsV2`](options-execution-options-v2 "qiskit_ibm_runtime.options.ExecutionOptionsV2")                             | Execution options for V2 primitives.                                                                                                         |
+| [`SamplerExecutionOptionsV2`](options-sampler-execution-options-v2 "qiskit_ibm_runtime.options.SamplerExecutionOptionsV2")       | Extension of [`ExecutionOptionsV2`](options-execution-options-v2 "qiskit_ibm_runtime.options.ExecutionOptionsV2") for the sampler primitive. |
+| [`EnvironmentOptions`](options-environment-options "qiskit_ibm_runtime.options.EnvironmentOptions")                              | Options related to the execution environment.                                                                                                |
+| [`SimulatorOptions`](options-simulator-options "qiskit_ibm_runtime.options.SimulatorOptions")                                    | Simulator options.                                                                                                                           |
 

@@ -11,7 +11,7 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from .verify_images import validate_image
+from .verify_images import validate_file
 import multiprocessing
 import glob
 import sys
@@ -24,12 +24,12 @@ def main() -> None:
     parser.add_argument("-s", "--skip", nargs="+")
     args = parser.parse_args()
 
-    skip_list = args.skip or []
+    skip_list = set(args.skip or [])
     files = glob.glob(f"{args.folder}/**/*.py", recursive=True)
     filtered_files = [file for file in files if file not in skip_list]
 
     with multiprocessing.Pool() as pool:
-        results = pool.map(validate_image, filtered_files)
+        results = pool.map(validate_file, filtered_files)
 
     failed_files = {
         file: image_errors for file, image_errors in results if image_errors

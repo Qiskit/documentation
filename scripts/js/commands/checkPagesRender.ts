@@ -29,7 +29,6 @@ interface Arguments {
   devApis?: boolean;
   historicalApis?: boolean;
   qiskitReleaseNotes?: boolean;
-  translations?: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -44,7 +43,6 @@ const readArgs = (): Arguments => {
         "dev-apis",
         "historical-apis",
         "qiskit-release-notes",
-        "translations",
       ],
       description:
         "Read the file path for file paths and globs to check, like `docs/start/index.md`. " +
@@ -73,10 +71,6 @@ const readArgs = (): Arguments => {
       type: "boolean",
       description: "Check the pages in the `api/qiskit/release-notes` folder.",
     })
-    .option("translations", {
-      type: "boolean",
-      description: "Check the pages in the `translations/` subfolders.",
-    })
     .parseSync();
 };
 
@@ -102,7 +96,7 @@ zxMain(async () => {
     // This script can be slow, so log progress every 10 files.
     if (numFilesChecked % 10 == 0) {
       console.log(
-        `Checked ${numFilesChecked} / ${files.length} pages ` +
+        `⏳ Checked ${numFilesChecked} / ${files.length} pages ` +
           `(~${mean(renderTimes).toFixed(0)}ms per page)`,
       );
       renderTimes = [];
@@ -145,7 +139,6 @@ async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
 function pathToUrl(path: string): string {
   const strippedPath = path
     .replace("docs/", "")
-    .replace("translations/", "")
     .replace(/\.(?:md|mdx|ipynb)$/g, "");
   return `http://localhost:${PORT}/${strippedPath}`;
 }
@@ -186,7 +179,6 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     [args.historicalApis, "docs/api/*/[0-9]*/*.mdx"],
     [args.devApis, "docs/api/*/dev/*.mdx"],
     [args.qiskitReleaseNotes, "docs/api/qiskit/release-notes/*.mdx"],
-    [args.translations, "translations/**/*.{ipynb,mdx}"],
   ]) {
     const prefix = isIncluded ? "" : "!";
     globs.push(`${prefix}${glob}`);

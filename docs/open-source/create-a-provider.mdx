@@ -13,7 +13,7 @@ Doing so requires creating a package that supports requests for quantum compute 
 Additionally, the package must allow users to submit jobs and retrieve their results through an implementation of the `qiskit.primitives` objects.
 
 ## Providing access to backends
-In order for users to transpile and execute `QuantumCircuit` objects using external resources, they need to instantiate an object containing a [`Target`](../api/qiskit/qiskit.transpiler.Target) which provides information about a QPU's constraints such as its connectivity, basis gates, and number of qubits. This can be provided through an interface similar to the [`QiskitRuntimeService`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService) through which a user can make requests for a QPU. This object should, at minimum, contain a `Target`, but a simpler approach would be to return a [`BackendV2`](../api/qiskit/qiskit.providers.BackendV2) instance.
+In order for users to transpile and execute `QuantumCircuit` objects using external resources, they need to instantiate an object containing a [`Target`](../api/qiskit/qiskit.transpiler.Target) which provides information about a QPU's constraints such as its connectivity, basis gates, and number of qubits. This can be provided through an interface similar to the [`QiskitRuntimeService`](../api/qiskit-ibm-runtime/qiskit-runtime-service) through which a user can make requests for a QPU. This object should, at minimum, contain a `Target`, but a simpler approach would be to return a [`BackendV2`](../api/qiskit/qiskit.providers.BackendV2) instance.
 
 An example implementation may look something like:
 

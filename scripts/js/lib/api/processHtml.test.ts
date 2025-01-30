@@ -24,6 +24,7 @@ import {
   removeColonSpans,
   removeMatplotlibFigCaptions,
   replaceViewcodeLinksWithGitHub,
+  updateRedirectedExternalLinks,
   convertRubricsToHeaders,
   processMembersAndSetMeta,
   handleFootnotes,
@@ -40,7 +41,7 @@ test.describe("loadImages()", () => {
     expect(images).toEqual([
       {
         fileName: "logo.png",
-        dest: "/my-images/logo.png",
+        dest: "/my-images/logo.avif",
       },
       {
         fileName: "view-page-source-icon.svg",
@@ -48,7 +49,7 @@ test.describe("loadImages()", () => {
       },
     ]);
     doc.expectHtml(
-      `<img src="/my-images/logo.png" alt="Logo"><img src="/my-images/view-page-source-icon.svg">`,
+      `<img src="/my-images/logo.avif" alt="Logo"><img src="/my-images/view-page-source-icon.svg">`,
     );
   });
 
@@ -311,6 +312,33 @@ test("addLanguageClassToCodeBlocks()", () => {
       </code></pre>
       </div>
     </div>`);
+});
+
+test("updateRedirectedExternalLinks()", () => {
+  const redirects = {
+    "https://ibm.com/old": "https://ibm.com/new",
+    "https://basename.example-website.com/old#anchor?and=query":
+      "https://newbasename.example.com/new#newanchor?query=new",
+  };
+  const doc = CheerioDoc.load(
+    `<a href="https://ibm.com/old">https://ibm.com/old</a>
+    <a href="https://ibm.com/old">https://ibm.com/old (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected#anchor?and=query">https://ibm.com/old-but-not-redirected#anchor?and=query</a>
+    <a href="https://basename.example-website.com/old#anchor?and=query"></a>
+    <p>https://ibm.com/old</p>`,
+  );
+  updateRedirectedExternalLinks(doc.$, doc.$main, redirects);
+  doc.expectHtml(
+    `<a href="https://ibm.com/new">https://ibm.com/new</a>
+    <a href="https://ibm.com/new">https://ibm.com/new (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected</a>
+    <a href="https://ibm.com/old-but-not-redirected">https://ibm.com/old-but-not-redirected (v3)</a>
+    <a href="https://ibm.com/old-but-not-redirected#anchor?and=query">https://ibm.com/old-but-not-redirected#anchor?and=query</a>
+    <a href="https://newbasename.example.com/new#newanchor?query=new"></a>
+    <p>https://ibm.com/old</p>`,
+  );
 });
 
 test("replaceSourceLinksWithGitHub()", () => {

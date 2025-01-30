@@ -29,7 +29,7 @@ jobs:
       - name: File metadata
         run: npm run check:metadata
       - name: Check images
-        run: npm run check:images -- --apis
+        run: npm run check:images
       - name: Spellcheck
         run: npm run check:spelling
       - name: Check Qiskit bot config
@@ -40,6 +40,8 @@ jobs:
         run: npm run check:internal-links
       - name: Check orphaned pages
         run: npm run check:orphan-pages
+      - name: Check stale images
+        run: npm run check:stale-images
       - name: Formatting
         run: npm run check:fmt
       - name: Typecheck
@@ -86,3 +88,6 @@ jobs:
               "To fix, install tox and run `tox -e fix`."
             )
             sys.exit(1)
+
+      - name: Test packages
+        run: tox -e tests

@@ -28,6 +28,10 @@ test("Test the finding of invalid images", async () => {
 
 ![](/images/invalid_img2.png)
 
+![Here's an actual valid image](/images/valid.avif)
+
+![And a valid SVG](/images/valid.svg)
+
 <img src="/images/HTMLexample1.jpg" alt="" width="200"/>
 
 <img src="/images/HTMLexample2.jpg" alt="Example" width="200"/>
@@ -38,6 +42,11 @@ test("Test the finding of invalid images", async () => {
     `;
   const images = await collectInvalidImageErrors(markdown);
   const correct_images = new Set([
+    "Convert 'img1.png' to AVIF. You can use the command `magick public/images/img1.png public/images/img1.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
+    "Convert 'img2.png' to AVIF. You can use the command `magick public/images/img2.png public/images/img2.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
+    "Convert 'invalid_img1.png' to AVIF. You can use the command `magick public/images/invalid_img1.png public/images/invalid_img1.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
+    "Convert 'invalid_img2.png' to AVIF. You can use the command `magick public/images/invalid_img2.png public/images/invalid_img2.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
+    "Convert 'invalid_img3.png' to AVIF. You can use the command `magick public/images/invalid_img3.png public/images/invalid_img3.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
     "The image '/images/HTMLexample1.jpg' uses an HTML <img> tag instead of markdown syntax.",
     "The image '/images/HTMLexample2.jpg' uses an HTML <img> tag instead of markdown syntax.",
     "The image '/images/invalid_img1.png' does not have alt text.",

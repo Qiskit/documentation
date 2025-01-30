@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.grover_operator
 
 # grover\_operator
 
-<Class id="qiskit.circuit.library.grover_operator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/grover_operator.py#L27-L278" signature="qiskit.circuit.library.grover_operator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, name='Q')" modifiers="class">
+<Class id="qiskit.circuit.library.grover_operator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/grover_operator.py#L27-L282" signature="qiskit.circuit.library.grover_operator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, name='Q')" modifiers="class">
   Bases:
 
   Construct the Grover operator.
@@ -82,7 +82,7 @@ $$
   grover_op.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-grover\_operator-1.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-1.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-grover_operator-1.avif)
 
   We can also modify the state preparation:
 
@@ -95,9 +95,7 @@ $$
   grover_op.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-grover\_operator-2\_00.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-2_00.png)
-
-  ![../\_images/qiskit-circuit-library-grover\_operator-2\_01.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-2_01.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-grover_operator-2.avif)
 
   In addition, we can also mark which qubits the zero reflection should act on. This is useful in case that some qubits are just used as scratch space but should not affect the oracle:
 
@@ -112,11 +110,7 @@ $$
   grover_op.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-grover\_operator-3\_00.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-3_00.png)
-
-  ![../\_images/qiskit-circuit-library-grover\_operator-3\_01.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-3_01.png)
-
-  ![../\_images/qiskit-circuit-library-grover\_operator-3\_02.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-3_02.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-grover_operator-3.avif)
 
   The oracle and the zero reflection can also be passed as [`qiskit.quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") objects:
 
@@ -129,13 +123,7 @@ $$
   grover_op.draw("mpl")
   ```
 
-  ![../\_images/qiskit-circuit-library-grover\_operator-4\_00.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-4_00.png)
-
-  ![../\_images/qiskit-circuit-library-grover\_operator-4\_01.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-4_01.png)
-
-  ![../\_images/qiskit-circuit-library-grover\_operator-4\_02.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-4_02.png)
-
-  ![../\_images/qiskit-circuit-library-grover\_operator-4\_03.png](/images/api/qiskit/qiskit-circuit-library-grover_operator-4_03.png)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/qiskit-circuit-library-grover_operator-4.avif)
 
   For a large number of qubits, the multi-controlled X gate used for the zero-reflection can be synthesized in different fashions. Depending on the number of available qubits, the compiler will choose a different implementation:
 

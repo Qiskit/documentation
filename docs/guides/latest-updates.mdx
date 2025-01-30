@@ -5,10 +5,10 @@ description: The latest updates from Qiskit and IBM Quantum, including the lates
 
 # Latest updates
 
-*Last updated 4 December 2024*
+*Last updated 28 January 2025
 {/* remember to update the date in the previous line each time this page is updated!!! */}
 
-Keep up with the latest and greatest from Qiskit and IBM Quantum&trade;! Gathered here are the the most recent Qiskit package release summaries, documentation updates, blogs, community events, and more.
+Keep up with the latest and greatest from Qiskit and IBM Quantum&trade;! Gathered here are the most recent Qiskit package release summaries, documentation updates, blogs, community events, and more.
 
 ## Latest release summaries
 
@@ -46,7 +46,7 @@ Explore the [v1.3 release notes](/api/qiskit/release-notes/1.3), and read about 
 
 #### New features
 
-- You can now use the `layer_noise_model` option in `ResilienceOptionsV2` to pass in a noise model. When this field is set, all the mitigation strategies that require noise data skip the noise learning stage, and instead gather the required information from `layer_noise_model`. You can use the [NoiseLearner](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.noise_learner.NoiseLearner) class to learn noise and use it in a subsequent `Estimator` call.
+- You can now use the `layer_noise_model` option in `ResilienceOptionsV2` to pass in a noise model. When this field is set, all the mitigation strategies that require noise data skip the noise learning stage, and instead gather the required information from `layer_noise_model`. You can use the [NoiseLearner](/api/qiskit-ibm-runtime/noise-learner-noise-learner) class to learn noise and use it in a subsequent `Estimator` call.
 
 See the full [0.28.0 release notes](/api/qiskit-ibm-runtime/release-notes#0280-2024-08-15).
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
@@ -73,7 +73,7 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
 
 ### 15 August 2024
 
-- Probabilistic error amplification (PEA) error mitigation method is now available for Estimator V2. See the [`ZneOptions` API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.ZneOptions) for more details.
+- Probabilistic error amplification (PEA) error mitigation method is now available for Estimator V2. See the [`ZneOptions` API reference](/api/qiskit-ibm-runtime/options-zne-options) for more details.
 - A new helper program `noise-learner` is now available. It allows characterizing the noise processes affecting the gates in one or more circuits of interest, based on the Pauli-Lindblad noise model. The output noise model can then be passed to Estimator via the `layer_noise_model` option.
 - V1 primitives are no longer supported.
 
@@ -90,7 +90,7 @@ The `optimization_level` option is deprecated for Estimator V2 and will be remov
 
 ### 3 June 2024
 
-Probabilistic error amplification (PEA) error mitigation method is now available as an experimental option for Estimator V2. See the [`EstimatorOptions` API reference](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.EstimatorOptions) for more details.
+Probabilistic error amplification (PEA) error mitigation method is now available as an experimental option for Estimator V2. See the [`EstimatorOptions` API reference](/api/qiskit-ibm-runtime/options-estimator-options) for more details.
 
 ### 28 March 2024
 
@@ -124,17 +124,20 @@ Users can purchase licenses for the following functions contributed by our partn
 To get started, explore the [Qiskit Functions documentation](/guides/functions).
 
 
-## IBM Quantum blog: IBM Quantum delivers on performance challenge
+## IBM Quantum blog: Two new blogs in January
 
 *Browse all blogs at the [IBM Quantum blog page](https://www.ibm.com/quantum/blog).*
 
 {/* Bring over the Quantum news (blog) announcement post */}
 
-Two years ago, IBM set a challenge for both itself and the quantum community. We asked quantum researchers to work on developing quantum algorithms incorporating circuits with 100 qubits and gate depths of 100. In exchange, we would build a quantum computer capable of returning accurate values for those circuits in less than a day’s runtime.
+The first IBM Quantum blog post of the year takes a look back at some of the amazing tools released in 2024 that help make quantum software development easier and more accessible than ever before.
+The blog provides recaps of major releases from last year, including Qiskit v1.x, Qiskit addons, Qiskit Transpiler Service, and more - all with code examples and documentation links to help readers get started using them.
 
-On 11 November 2024, at the first-ever IBM Quantum Developer Conference (QDC), IBM announced the fulfillment of that promise: a quantum computer capable of running quantum circuits with up to 5,000 two-qubit gate operations.
+*Blog: [A year of simplifying quantum software development tools with Qiskit](https://www.ibm.com/quantum/blog/dev-tools)*
 
-On the IBM Quantum blog, we take a deep dive into the many hardware advances, software innovations, and research partnerships that have made this achievement possible, and offer a preview of what's coming next. Visit the [blog](https://www.ibm.com/quantum/blog/qdc-2024) to learn more.
+Next, read how dynamic circuits can enable remarkably efficient long-range entanglement between qubits in a quantum chip. The method was first demonstrated by IBM researchers via a recent paper published in PRX Quantum, and the researchers behind it say their technique could greatly enhance the level of complexity we can represent in quantum circuits through qubit entanglement. The blog explores the power of dynamic circuits and explains how the new method differs from traditional approaches for establishing entanglement between qubits that are not directly connected to each other.
+
+*Blog: [Using dynamic circuits to efficiently implement quantum states with long-range entanglement](https://www.ibm.com/quantum/blog/long-range-entanglement)*
 
 ## What's new in the documentation
 
@@ -146,50 +149,57 @@ IBM Quantum documentation recently added a number of user-facing improvements, i
 
 **New pages**
 
-New pages include documentation for [Qiskit Functions](/guides/functions), [Qiskit addons](/guides/addons), and [Qiskit Code Assistant](/guides/qiskit-code-assistant), as well as a guide about [job limits](/guides/job-limits). 
+Visit the newest content in the documentation!
 
-- Qiskit Functions [Introduction](/guides/functions)
-- [IBM&reg; Circuit function](/guides/ibm-circuit-function)
-- [Algorithmiq TEM function](/guides/algorithmiq-tem)
-- [Q-CTRL Performance Management](/guides/q-ctrl-performance-management)
-- [Qedma QESEM](/guides/qedma-qesem)
-- [Q-CTRL Optimization Solver](/guides/q-ctrl-optimization-solver)
-- [QunaSys QURI Chemistry](/guides/qunasys-quri-chemistry)
-- Qiskit Code Assistant [Overview](/guides/qiskit-code-assistant)
-- [Use Qiskit Code Assistant in JupyterLab](/guides/qiskit-code-assistant-jupyterlab)
-- [Use Qiskit Code Assistant in Visual Studio Code](/guides/qiskit-code-assistant-vscode)
+- Introductory and get-started material for these [Qiskit addons](/guides/addons): 
+  - [Sample-based quantum diagonalization (SQD)](/guides/qiskit-addons-sqd)
+  - [Approximate quantum compiler with tensor networks (AQC-Tensor)](/guides/qiskit-addons-aqc)
+  - [Operator backpropagation (OBP)](/guides/qiskit-addons-obp)
+  - [Multi-product formulas (MPF)](/guides/qiskit-addons-mpf)
+
+- [Debug Qiskit Runtime jobs](/guides/debug-qiskit-runtime-jobs) with the NEAT class
+
+- [Integrate external quantum resources with Qiskit](/open-source/create-a-provider) guide in Open-source resources
+
+- New migration guide: [Migrate from Qiskit Pulse to fractional gates](/migration-guides/pulse-migration)
+
+- New Qiskit Functions guide: [Singularity Machine Learning - Classification](/guides/multiverse-computing-singularity)
+
+- [Use Qiskit Code Assistant in local mode](/guides/qiskit-code-assistant-local)
 
 **Content additions and improvements**
 
-- Added content to the [Execution modes](/guides/execution-modes) guides and improved explanatory content in the [Introduction to primitives](/guides/primitives) page
+- Guidance on how to [securely manage your API token](/guides/setup-channel#set-up-to-use-ibm-quantum-platform), as part of the guide to set up an IBM Quantum channel
 
-- Clarified how the [Estimator primitive calculates error](/guides/primitive-input-output#how-the-estimator-calculates-error)
+- Revisions by Qunasys to the Qiskit Functions [QURI Chemistry](/guides/qunasys-quri-chemistry) guide 
 
-- A new [FAQ](/faq) page
+- Updated code examples to fix a bug in [Get started with primitives](/guides/get-started-with-primitives)
 
-- Improvements to the [Support](/support) page
-
-- Some error codes now link out to relevant documentation ([example](/errors#8055))
-
-- Information about [benchmarking and the Benchpress package](/guides#benchmarking-and-the-benchpress-package)
+- Updates to [Introduction to options](/guides/runtime-options-overview) to include the new [gen3-turbo](/guides/runtime-options-overview#experimental-option-note) options
 
 - Copyediting and typo fixes across the documentation, including bugs reported by open-source contributors - thank you!
 
-**New API reference documentation**
+### New API reference documentation
 
-- [qiskit-ibm-runtime 0.29-0.31](/api/qiskit-ibm-runtime/release-notes)
-- [qiskit-ibm-transpiler 0.7](/api/qiskit-ibm-transpiler/release-notes)
+- [Qiskit SDK v1.3](/api/qiskit/release-notes)
+- [qiskit-ibm-runtime v0.32-0.34](/api/qiskit-ibm-runtime/release-notes)
+- [qiskit-ibm-transpiler v0.8-0.9](/api/qiskit-ibm-transpiler/release-notes)
+- Qiskit addons:
+  - [qiskit-addon-aqc-tensor](/api/qiskit-addon-aqc-tensor/release-notes)
+  - [qiskit-addon-cutting](/api/qiskit-addon-cutting/release-notes)
+  - [qiskit-addon-obp](/api/qiskit-addon-obp/release-notes)
+  - [qiskit-addon-mpf](/api/qiskit-addon-mpf/release-notes)
+  - [qiskit-addon-sqd](/api/qiskit-addon-sqd/release-notes)
+  - [qiskit-addon-utils](/api/qiskit-addon-utils/release-notes)
 
 ### User experience improvements
 
 Updates to the infrastructure and design of the documentation include the following:
 
-- We fixed GitHub source code links for functions using decorators - thanks to the open-source contributor who opened an issue for this!
-- When you change the version in the left sidebar of the API reference docs, you arrive at the equivalent page in the new version. If the page does not exist in the new version, you land on the index page.
-- We improved the design and color of the warning banner for when you access outdated API pages to make it more obvious that newer docs are available. The banner persists as you scroll down the page.
-- Source code links and release notes have been added to the [Qiskit Transpiler Service client API documentation](/api/qiskit-ibm-transpiler).
-- Code blocks that write to a file now display the file path; see examples in this [Qiskit Serverless guide](/guides/serverless-first-program).
-- Tips to use the Qiskit Code Assistant now appear throughout the guides.
+- The required versions of packages used in code examples are now listed at the top of each guide.
+- Bug in menu view on mobile devices is now fixed.
+- Search bar is now bigger for increased discoverability, and your search query is preserved after you close the search modal.
+- All code examples have been updated to work with Qiskit SDK v1.3 and Qiskit Runtime v0.34
 
 *A huge thank you goes out to everyone in the open-source community who contributed and gave feedback!* Please [open an issue](https://github.com/Qiskit/documentation/issues/new/choose) if you find a bug, have a suggestion, or want to share your experience.
 
