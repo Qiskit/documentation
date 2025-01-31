@@ -28,7 +28,7 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/api/runtime/tags/usage.mdx"
+  "docs/api/runtime/tags/usage.mdx",
 ];
 
 interface Arguments {
