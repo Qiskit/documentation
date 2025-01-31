@@ -111,15 +111,12 @@ batch.close()
 For a comprehensive overview of a batch's configuration and status, including its interactive and max TTL, use the  `batch.details() method`.
 
 ``` python
-from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService, batch, SamplerV2 as Sampler
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
 with Batch(backend=backend) as batch:
-    sampler = Sampler()
-    for partition in partitions:
-        job = sampler.run(partition)
     print(batch.details())
 ```
 

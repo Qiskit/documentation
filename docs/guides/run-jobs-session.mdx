@@ -93,10 +93,6 @@ A session ends in the following circumstances:
 * The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
 * If you use Session as a context manager, that is,  `with Session()`, the session is automatically closed when the context ends (the same behavior as using `session.close()`).
 
-<Admonition type = "note">
-When a session ends, the QPU finishes running any job that is currently running.
-</Admonition>
-
 <span id="close"></span>
 ### Close a session
 
@@ -155,8 +151,6 @@ service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
 
 with Session(backend=backend) as session:
-    estimator = Estimator()
-    job = estimator.run([(circuit, observable)])
     print(session.details())
 ```
 
