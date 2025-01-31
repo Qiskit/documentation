@@ -8,13 +8,14 @@ description: Choose the right execution mode for Qiskit Runtime; sessions, batch
 
 Utility-scale workloads can take many hours to complete, so it is important that both the classical and quantum resources are scheduled efficiently to streamline the execution. Execution modes provide flexibility in balancing the cost and time tradeoff to use resources optimally for your workloads. There are several aspects to consider when choosing which execution mode to use, such as overall execution time (maximum time to live, or TTL) and time between jobs (interactive TTL).
 
-The the benefits of each are summarazed below:
+The benefits of each are summarized below:
 
 - **Batch**
    - The entire batch of jobs is scheduled together and there is no additional queuing time for each.
    - The jobs' classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially.
    - There is usually minimal delay between jobs, which can help avoid drift.
    - If you partition your workload into multiple jobs and run them in batch mode, you can get results from individual jobs, which makes them more flexible to work with. For example, if a job's results don't meet your expectations, you can cancel the remaining jobs. Also, if one job fails, you can re-submit it instead of re-running the entire workload.
+   - Is generally less expensive than sessions.
 - **Session**
    - All the benefits from batch mode.
    - Dedicated and exclusive access to the QPU during the session active window.
@@ -26,12 +27,12 @@ The the benefits of each are summarazed below:
 <span id="best-practices"></span>
 ## Recommendations and best practices
 
-Generally, you can use batch mode unless you have workloads that don’t have all inputs ready at the outset.
+Generally, use batch mode unless you have workloads that don’t have all inputs ready at the outset.
 
 - Use **batch** mode to submit multiple primitive jobs simultaneously to shorten processing time.
 - Use **session** mode for iterative workloads, or if you need dedicated access to the QPU.
 - Always use **job** mode to submit a single primitive request.
-- Because sessions are generally more expensive, it is recommended that you use batch whenever you don't need the additional benefits from using sessions.
+- Because _sessions are generally more expensive_, it is recommended that you use batch whenever you don't need the additional benefits from using sessions.
 
 To ensure the most efficient use of the execution modes, the following practices are recommended:
 

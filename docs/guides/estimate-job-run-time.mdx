@@ -89,7 +89,7 @@ When a job is failed or canceled, the reported usage is as follows:
 After a workload has completed, there are several ways to view its actual usage:
 
 - On the IBM Quantum Platform [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows actual usage for completed workloads.
-- Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`.](/api/qiskit-ibm-runtime/session#usage)
+- Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
 - Call the [GET usage](/api/runtime/tags/usage#tags__usage) REST API directly. The reported usage is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both batch and session workloads.
 
 <span id="view-usage"></span>
