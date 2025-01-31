@@ -1,10 +1,43 @@
 ---
-title: Estimate job run time
-description: Estimate how long a job that uses a primitive will take to run
+title: Workload usage
+description: Explains what usage is and how to estimeate how long a job that uses a primitive will take to run
 
 ---
 
-# Estimate job run time
+<span id="usage"></span>
+# Workload usage
+
+Usage is a measurement of the amount of time the QPU is locked for your workload, and it is calculated differently, depending on which execution mode you're using.
+
+* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens last. It includes both classical and quantum time.
+* Batch usage is the sum of quantum time of all jobs in the batch.
+* Single job usage is the quantum time the job uses in processing.
+
+The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
+
+Your usage has different impacts, depending on which channel you're using:
+
+- For Qiskit Runtime on IBM Cloud users, the usage determines how much the job costs.  See [Manage cost](/guides/manage-cost#manage-cost) for details.
+- For IBM Quantum Platform users, this translates to shares. The [fair-share scheduler](/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
+
+<span id="failed-job"></span>
+## Usage for failed and canceled jobs
+
+When a job is failed or canceled, the reported usage is as follows:
+
+* Job or batch mode: The reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the value that Qiskit Runtime returns as `consumed`. Thus, some failed jobs do not appear in your reported usage and others do.
+
+* Session mode: The reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
+
+## Determine a workload's actual usage
+
+After a workload has completed, there are several ways to view its actual usage:
+
+- On the IBM Quantum Platform [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows actual usage for completed workloads.
+- Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
+- Call the [GET usage](/api/runtime/tags/usage#tags__usage) REST API directly. The reported usage is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both batch and session workloads.
+
+## Estimate workload usage
 
 After submitting a job to the IBM Quantum&trade; channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Alternatively, you can [view this information on the IBM Quantum Platform user interface](#view-usage).
 
@@ -58,47 +91,6 @@ Output:
 ```python
 {'quantum_seconds': 4.1058720028432445}
 ```
-
-<span id="usage"></span>
-## Workload usage
-
-Usage is a measurement of the amount of time the QPU is locked for your workload, and it is calculated differently, depending on which execution mode you're using.
-
-* Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens last. It includes both classical and quantum time.
-* Batch usage is the sum of quantum time of all jobs in the batch.
-* Single job usage is the quantum time the job uses in processing.
-
-The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
-
-Your usage has different impacts, depending on which channel you're using:
-
-- For Qiskit Runtime on IBM Cloud users, the usage determines how much the job costs.  See [Manage cost](/guides/manage-cost#manage-cost) for details.
-- For IBM Quantum Platform users, this translates to shares. The [fair-share scheduler](/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
-
-<span id="failed-job"></span>
-### Usage for failed and canceled jobs
-
-When a job is failed or canceled, the reported usage is as follows:
-
-* Job or batch mode: The reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the value that Qiskit Runtime returns as `consumed`. Thus, some failed jobs do not appear in your reported usage and others do.
-
-* Session mode: The reported usage is the wall-clock time from the when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
-
-### Determine a workload's actual usage
-
-After a workload has completed, there are several ways to view its actual usage:
-
-- On the IBM Quantum Platform [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows actual usage for completed workloads.
-- Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
-- Call the [GET usage](/api/runtime/tags/usage#tags__usage) REST API directly. The reported usage is the `elapsed_time` value returned by the `GET /sessions/{id}` endpoint, for both batch and session workloads.
-
-<span id="view-usage"></span>
-### View the estimated workload (job) usage
-
-After a workload is submitted but before it completes, you can view its estimated usage (how much quantum time the workload will take to run) in two places on IBM Quantum Platform:
-
-- On the [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows the estimated usage for pending workloads.
-- On the workload's details page. From the [Dashboard](https://quantum.ibm.com/) or [Workloads table](https://quantum.ibm.com/workloads), click the ID to open its details page.  The estimated usage is shown in the Status timeline.
 
 ## Next steps
 
