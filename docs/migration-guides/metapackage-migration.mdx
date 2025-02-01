@@ -1,25 +1,25 @@
 ---
 title: Understand the breaking packaging changes
-description: Understand the packaging changes that occurred with the release of Qiskit 1.0
+description: Understand the packaging changes that occurred with the release of Qiskit v1.0
 ---
 
-# Understand the breaking Qiskit 1.0 package changes
+# Understand the breaking Qiskit v1.0 package changes
 
-Qiskit 1.0 uses a different packaging structure than previous Qiskit versions and will likely cause problems in environments that use packages that are not ready for Qiskit 1.0.
+Qiskit v1.0 uses a different packaging structure than previous Qiskit versions and will likely cause problems in environments that use packages that are not ready for Qiskit v1.0.
 
 <Admonition type="caution">
-Do not try to upgrade an existing Python virtual environment to Qiskit 1.0 in-place. 
+Do not try to upgrade an existing Python virtual environment to Qiskit v1.0 in-place. 
 
-We will not make similar breaking packaging changes in the future. This is a one-time event, at the release of Qiskit 1.0, specifically so that our packaging story will be as easy as possible in the future.
+We will not make similar breaking packaging changes in the future. This is a one-time event, at the release of Qiskit v1.0, specifically so that our packaging story will be as easy as possible in the future.
 </Admonition>
 
 This page contains detailed information about the pre-1.0 Qiskit package and why we made the breaking packaging changes.
 
-We know that the change is inconvenient, but this restores Qiskit to the simple package structure that most Python packages use, which will be easier for users, developers, and library authors after the Qiskit 1.0 transition is complete.
+We know that the change is inconvenient, but this restores Qiskit to the simple package structure that most Python packages use, which will be easier for users, developers, and library authors after the Qiskit v1.0 transition is complete.
 
 
 ## Preface: glossary of Python packaging terminology
-To better explain how the old Qiskit metapackage was structured and how that has changed with the release of Qiskit 1.0, below is a glossary of commonly used Python-packaging jargon. The following words have specific meanings that we'll use in this document.
+To better explain how the old Qiskit metapackage was structured and how that has changed with the release of Qiskit v1.0, below is a glossary of commonly used Python-packaging jargon. The following words have specific meanings that we'll use in this document.
 <details>
 <summary> **Click here to read through this page's glossary** </summary>
 
@@ -68,7 +68,7 @@ Historically, Qiskit was comprised of many Python distributions: `qiskit-terra`,
 For user ease, we also provided a Python distribution called `qiskit`, which contained no code of its own, but caused all the other components to be installed.
 We called this the _metapackage_, by analogy to similar concepts in other package managers.
 The code of the core of Qiskit lived in `qiskit-terra`, which owned the root of the Python package `qiskit`. In other words, `qiskit-terra` controlled what happened when you ran `import qiskit`.
-Until Qiskit 1.0, the `qiskit` package was a namespace package and contained a second namespace package at `qiskit.providers`.
+Until Qiskit v1.0, the `qiskit` package was a namespace package and contained a second namespace package at `qiskit.providers`.
 
 This organization caused us and our users quite a few problems.
 
@@ -84,12 +84,12 @@ When installing or upgrading distributions with a `pip install` command, `pip` a
 Because there were two packages, upgrading a package that required `qiskit-terra` to be upgraded caused an invalid environment; `pip` upgraded `qiskit-terra` but left `qiskit` untouched.
 It issued a warning on this and all subsequent `pip install` commands, but because nothing appeared broken, users typically ignored the warning, and `pip` did not raise an error status or forbid operations.
 
-Over time, we removed elements from the `qiskit` metapackage until, starting with Qiskit 0.44, only `qiskit-terra` remains.
+Over time, we removed elements from the `qiskit` metapackage until, starting with Qiskit v0.44, only `qiskit-terra` remains.
 Of these components, `qiskit-aer` still exists and is actively updated, but it is now installed as a separate distribution.
 
 Similarly, we ever more strongly discouraged other libraries from using the namespace hooks.
-We removed the last Qiskit use of the hooks in non-obsolete packages with the release of Qiskit Aer 0.11 and its new `qiskit_aer` Python package, although until Qiskit 1.0 we also forced the namespace path `qiskit.providers.aer` to work.
-Starting with Qiskit 1.0, we have removed the ability for packages to extend any `qiskit` namespace. Thus, `pip uninstall` on the correct distribution in a valid environment now works as expected.
+We removed the last Qiskit use of the hooks in non-obsolete packages with the release of Qiskit Aer v0.11 and its new `qiskit_aer` Python package, although until Qiskit v1.0 we also forced the namespace path `qiskit.providers.aer` to work.
+Starting with Qiskit v1.0, we have removed the ability for packages to extend any `qiskit` namespace. Thus, `pip uninstall` on the correct distribution in a valid environment now works as expected.
 
 
 ## The new Qiskit structure
@@ -101,8 +101,8 @@ The `qiskit-terra` distribution on PyPI will never be updated to version 1.0 or 
 The name `qiskit-terra` is no longer involved in the installation.
 However, the `qiskit-terra` package is not being removed from PyPI, and we will leave its most recent version in a working state, so old scientific code and legacy packages can more easily continue to use it.
 
-Unfortunately, because of the metapackage legacy and deficiencies in `pip` as a package manager, it is not possible for us to make a completely smooth upgrade path for users to Qiskit 1.0, especially while some packages depend on earlier versions of Qiskit, and some require only Qiskit 1.0+.
-These problems will lessen as more of the ecosystem migrates to Qiskit 1.0.
+Unfortunately, because of the metapackage legacy and deficiencies in `pip` as a package manager, it is not possible for us to make a completely smooth upgrade path for users to Qiskit v1.0, especially while some packages depend on earlier versions of Qiskit, and some require only Qiskit v1.0+.
+These problems will lessen as more of the ecosystem migrates to Qiskit v1.0.
 
 ## Where did the application modules go?
 
@@ -110,4 +110,4 @@ You may notice that the command `pip install qiskit` will no longer includes pac
 
 Before the release of the Qiskit SDK v1.0, Qiskit was comprised of many different Python distributions, such as `qiskit-terra`, the compiler core; `qiskit-aer`, the high-performance simulator; the original IBM Quantum™ provider; and several now-obsolete packages providing particular exploratory algorithmic or experiment-running features.
 
-If you want to install the packages that used to be included in the Qiskit metapackage, visit the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) to find a range of packages to suit your needs. You can also read the [v1.0 migration guide](./qiskit-1.0-installation) for more information about how to install the new distribution.
+If you want to install the packages that were previously included in the Qiskit metapackage, visit the [Qiskit ecosystem](https://www.ibm.com/quantum/ecosystem) to find a range of packages to suit your needs. You can also read the [v1.0 migration guide](./qiskit-1.0-installation) for more information about how to install the new distribution.
