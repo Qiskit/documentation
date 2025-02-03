@@ -5,21 +5,23 @@ description: Adapt to changes in installing and depending on Qiskit 1.0
 
 {/* cspell:ignore jupyterlab */}
 
-# Qiskit 1.0 packaging changes
+# Install the new Qiskit 1.0 package
 
-Qiskit 1.0 uses a different packaging structure than previous Qiskit versions and might cause problems in environments that use packages that are not ready for Qiskit 1.0.
+Qiskit 1.0 uses a different packaging structure than previous Qiskit versions and will likely cause problems in environments that use packages that are not ready for Qiskit 1.0.
 
 <Admonition type="caution">
 Do not try to upgrade an existing Python virtual environment to Qiskit 1.0 in-place.
+
+We will not make similar breaking packaging changes in the future. This is a one-time event, at the release of Qiskit 1.0, specifically so that our packaging story will be as easy as possible in the future.
 </Admonition>
 
 This guide is divided into the following sections.  You only need to review the sections that are relevant to you.
 
 * Users should read the [For users](#for-users) section.
 * If you develop or maintain a package that depends on Qiskit, read the [For developers](#for-developers) section.
-* If you are interested, review the [What is changing and why it changed](#why-did-this-happen) section.
 * If you encounter problems installing or importing Qiskit 1.0, review the [Troubleshooting](#troubleshooting) section.
 
+If you are interested in understanding the old package structure and why it changed, review the [overview of the breaking package changes](./metapackage-migration).
 
 <span id="for-users"></span>
 ## For users
@@ -347,103 +349,6 @@ commands_pre =
   pip install 'git+https://github.com/Qiskit/qiskit@main'
 # All other sections, like the dependencies and the 'commands' section are inherited.
 ```
-
-
-<span id="why-did-this-happen"></span>
-## Why these changes happened
-
-This section contains detailed information about pre-1.0 Qiskit packaging and why we made the breaking packaging change.
-
-We know that the change is inconvenient, but this restores Qiskit to the simple package structure that most Python packages use, which will be easier for users, developers, and library authors after the Qiskit 1.0 transition is complete.
-
-<Admonition type="info" title="Python packaging terminology">
-This section uses some Python-packaging jargon to better explain what was happening.
-The following words have special meanings:
-
-* *module*: A single Python file.
-
-* *package*: A directory containing an `__init__.py` and other files or packages that Python can read.
-  This is the actual code as installed on your computer, and is what executes when you run `import something`.
-  Python considers any directory that is on the search path to be something you can import (and will import many additional items).
-
-  This is not the same object that you `pip install` (which is a *distribution*), but typically what you `pip install` and what you `import` have the same name.
-
-* *submodule*, *subpackage*: These are imprecise terms, but are commonly used.
-  The _sub_ part means "contained inside a package".
-  A submodule is a module and a subpackage is a package, but they are part of a larger package.
-
-* *namespace package*: A package that can have submodules or subpackages installed into it by other _distributions_.
-  Critically, no one distribution contributing to a namespace package necessarily owns all the installed files, so it can be tricky to completely uninstall
-  or upgrade one.
-
-* *distribution*: The compressed Python files, data files, and metadata that are downloaded when you run `pip install something`.
-  Often, a distribution contains exactly one package and the metadata about how to install it (its requirements and so on), but this is not required.
-  A distribution can contain zero or more modules or packages.
-
-  If you are familiar with "package managers" outside the context of Python, such as `apt` from Debian/Ubuntu or Homebrew on macOS, then what they call a "package", Python calls a distribution, and there is no exact match for what Python calls a package.
-
-  Most sources talking about Python packaging use the term _package_ to mean both distributions and packages, and you must refer to the context to understand what is meant.
-  In general, if you `import` it, the source means "package", and if you `pip install` it, the source means "distribution".
-
-* *search path*: When trying to `import something`, Python searches a predefined list of places for a module or package called `something`.
-  The list of places is the _search path_.
-  You can see and modify the search path in `sys.path`.
-
-* *requirement*: A distribution contains information on other distributions it depends on when installed.
-  Any other distribution that is necessary is a _requirement_, and the package manager (usually `pip` or `conda`) should ensure that all requirements are installed with compatible versions.
-
-Python is highly dynamic, and many complexities can arise; for example, it's possible that a module or package does not correspond to files on disk, or that they are compiled extensions.
-The search path is not only a search over directories, but for this discussion, only files on disk are relevant.
-Further complications aren't necessary to understand the problems described in this section, so you can use the model described above.
-</Admonition>
-
-### The old Qiskit structure
-
-Historically, Qiskit was comprised of many Python distributions: `qiskit-terra`, the compiler core; `qiskit-aer`, the high-performance simulator; the original IBM Quantum&trade; provider; and several now-obsolete packages providing particular exploratory algorithmic or experiment-running features.
-For user ease, we also provided a Python distribution called `qiskit`, which contained no code of its own, but caused all the other components to be installed.
-We called this the _metapackage_, by analogy to similar concepts in other package managers.
-The code of the core of Qiskit lived in `qiskit-terra`, which owned the root of the Python package `qiskit`. In other words, `qiskit-terra` controlled what happened when you ran `import qiskit`.
-Until Qiskit 1.0, the `qiskit` package was a namespace package and contained a second namespace package at `qiskit.providers`.
-
-This organization caused us and our users quite a few problems.
-
-For example, downstream libraries that depended on Qiskit often only actually needed the compiler core, and did not require the rest of the large ecosystem that came with `pip install qiskit`.
-They would therefore correctly specify their requirement as `qiskit-terra`.
-However, when people tried to uninstall Qiskit by running `pip uninstall qiskit`, `pip` encountered problems:
-
-* `pip` does not remove distributions that are now unused. So `pip uninstall qiskit` did almost nothing; there was no code in the distribution, so no code was removed.
-* Even if it were to remove code, many downstream distributions would remain installed because they depended on `qiskit-terra`.
-* Even if `qiskit-terra` was uninstalled, it might still leave an importable `qiskit` directory with no usable code, because it was a namespace package.
-
-When installing or upgrading distributions with a `pip install` command, `pip` also does not take into account previous requirement resolutions.
-Because there were two packages, upgrading a package that required `qiskit-terra` to be upgraded caused an invalid environment; `pip` upgraded `qiskit-terra` but left `qiskit` untouched.
-It issued a warning on this and all subsequent `pip install` commands, but because nothing appeared broken, users typically ignored the warning, and `pip` did not raise an error status or forbid operations.
-
-Over time, we removed elements from the `qiskit` metapackage until, starting with Qiskit 0.44, only `qiskit-terra` remains.
-Of these components, `qiskit-aer` still exists and is actively updated, but it is now installed as a separate distribution.
-
-Similarly, we ever more strongly discouraged other libraries from using the namespace hooks.
-We removed the last Qiskit use of the hooks in non-obsolete packages with the release of Qiskit Aer 0.11 and its new `qiskit_aer` Python package, although until Qiskit 1.0 we also forced the namespace path `qiskit.providers.aer` to work.
-Starting with Qiskit 1.0, we have removed the ability for packages to extend any `qiskit` namespace. Thus, `pip uninstall` on the correct distribution in a valid environment now works as expected.
-
-
-### The new Qiskit structure
-
-Starting with version 1.0, Qiskit comprises a single distribution, called `qiskit`, which installs one single package, also called `qiskit`, which owns all the code contained in its directory.
-This is the normal structure of Python code, and is the simplest and least error-prone structure.
-
-The `qiskit-terra` distribution on PyPI will never be updated to version 1.0 or beyond; it is entirely superseded by `qiskit`.
-The name `qiskit-terra` is no longer involved in the installation.
-However, the `qiskit-terra` package is not being removed from PyPI, and we will leave its most recent version in a working state, so old scientific code and legacy packages can more easily continue to use it.
-
-Unfortunately, because of the metapackage legacy and deficiencies in `pip` as a package manager, it is not possible for us to make a completely smooth upgrade path for users to Qiskit 1.0, especially while some packages depend on earlier versions of Qiskit, and some require only Qiskit 1.0+.
-These problems will lessen as more of the ecosystem migrates to Qiskit 1.0.
-
-<Admonition type="note">
-We will not make similar breaking packaging changes in the future.
-This is a one-time event, at the release of Qiskit 1.0, specifically so that our packaging story will be as easy as possible in the future.
-</Admonition>
-
 
 <span id="troubleshooting"></span>
 ## Troubleshooting
