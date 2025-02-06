@@ -67,8 +67,6 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://ieeexplore.ieee.org/document/1323804",
   "https://ieeexplore.ieee.org/document/880982",
   "https://ieeexplore.ieee.org/document/657661",
-  "/guides/choose-execution-mode",
-  "/guides/execution-modes#session-mode",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
