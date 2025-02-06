@@ -206,6 +206,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.29/qiskit-runtime-service.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
+    "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
   ];
 
   if (args.currentApis) {
