@@ -41,7 +41,7 @@ circuit.measure_all()
 circuit.draw('mpl', style="iqp")
 ```
 
-![\[Circuit diagram output by the previous code.\]](/images/api/qiskit-ibm-runtime/fake_provider-1.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/fake_provider-1.avif)
 
 ```python
 # Transpile the ideal circuit to a circuit that can be
@@ -50,7 +50,7 @@ transpiled_circuit = transpile(circuit, backend)
 transpiled_circuit.draw('mpl', style="iqp")
 ```
 
-![\[Circuit diagram output by the previous code.\]](/images/api/qiskit-ibm-runtime/fake_provider-2.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/fake_provider-2.avif)
 
 ```python
 # Run the transpiled circuit using the simulated fake backend
@@ -61,7 +61,7 @@ counts = pub_result.data.meas.get_counts()
 plot_histogram(counts)
 ```
 
-![\[Histogram output by the previous code.\]](/images/api/qiskit-ibm-runtime/fake_provider-3.avif)
+![Histogram output by the previous code.](/images/api/qiskit-ibm-runtime/fake_provider-3.avif)
 
 <Admonition title="Important" type="danger">
   Please note that the simulation is done using a noise model generated from system snapshots obtained in the past (sometimes a few years ago) and the results are not representative of the latest behaviours of the real quantum system which the fake backend is mimicking. If you want to run noisy simulations to compare with the real quantum system, you should use the `qiskit_aer` library. After installation, you can follow the steps below to generate a simulator that mimics a real quantum system with the latest calibration results.
@@ -112,6 +112,7 @@ Fake V2 backends are fake backends with IBM Quantum systems snapshots implemente
 | [`FakeCasablancaV2`](fake-provider-fake-casablanca-v2 "qiskit_ibm_runtime.fake_provider.FakeCasablancaV2")                | A fake 7 qubit backend.                                                               |
 | [`FakeCusco`](fake-provider-fake-cusco "qiskit_ibm_runtime.fake_provider.FakeCusco")                                      | A fake 127 qubit backend.                                                             |
 | [`FakeEssexV2`](fake-provider-fake-essex-v2 "qiskit_ibm_runtime.fake_provider.FakeEssexV2")                               | A fake 5 qubit backend.                                                               |
+| [`FakeFez`](fake-provider-fake-fez "qiskit_ibm_runtime.fake_provider.FakeFez")                                            | A fake 156 qubit backend.                                                             |
 | [`FakeGeneva`](fake-provider-fake-geneva "qiskit_ibm_runtime.fake_provider.FakeGeneva")                                   | A fake 27 qubit backend.                                                              |
 | [`FakeGuadalupeV2`](fake-provider-fake-guadalupe-v2 "qiskit_ibm_runtime.fake_provider.FakeGuadalupeV2")                   | A fake 16 qubit backend.                                                              |
 | [`FakeHanoiV2`](fake-provider-fake-hanoi-v2 "qiskit_ibm_runtime.fake_provider.FakeHanoiV2")                               | A fake 27 qubit backend.                                                              |
@@ -127,6 +128,7 @@ Fake V2 backends are fake backends with IBM Quantum systems snapshots implemente
 | [`FakeLondonV2`](fake-provider-fake-london-v2 "qiskit_ibm_runtime.fake_provider.FakeLondonV2")                            | A fake 5 qubit backend.                                                               |
 | [`FakeManhattanV2`](fake-provider-fake-manhattan-v2 "qiskit_ibm_runtime.fake_provider.FakeManhattanV2")                   | A fake Manhattan backend.                                                             |
 | [`FakeManilaV2`](fake-provider-fake-manila-v2 "qiskit_ibm_runtime.fake_provider.FakeManilaV2")                            | A fake 5 qubit backend.                                                               |
+| [`FakeMarrakesh`](fake-provider-fake-marrakesh "qiskit_ibm_runtime.fake_provider.FakeMarrakesh")                          | A fake 156 qubit backend.                                                             |
 | [`FakeMelbourneV2`](fake-provider-fake-melbourne-v2 "qiskit_ibm_runtime.fake_provider.FakeMelbourneV2")                   | A fake 14 qubit backend.                                                              |
 | [`FakeMontrealV2`](fake-provider-fake-montreal-v2 "qiskit_ibm_runtime.fake_provider.FakeMontrealV2")                      | A fake 27 qubit backend.                                                              |
 | [`FakeMumbaiV2`](fake-provider-fake-mumbai-v2 "qiskit_ibm_runtime.fake_provider.FakeMumbaiV2")                            | A fake 27 qubit backend.                                                              |
