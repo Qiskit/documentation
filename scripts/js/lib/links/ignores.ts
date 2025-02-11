@@ -82,7 +82,7 @@ export const ALWAYS_IGNORED_URLS = new Set([
 // -----------------------------------------------------------------------------------
 
 function _addonsObjectsInvRegexes(): string[] {
-  // Addons have non-API docs in their Sphinx build that translate into invalid links
+  // addons have non-API docs in their Sphinx build that translate into invalid links
   // we should ignore
   return ["how-tos", "how_tos", "install", "index", "explanations"].flatMap(
     (path) => [

@@ -42,7 +42,7 @@ const INDEX_PAGE_URLS: Set<string> = new Set([
   "/guides/optimize-for-hardware",
   "/guides/execute-on-hardware",
   "/guides/post-process-results",
-  "/guides/intro-to-patterns",
+  "/guides/introduction-to-patterns",
 ]);
 
 const INDEX_PAGE_FILES = Array.from(INDEX_PAGE_URLS).map(
