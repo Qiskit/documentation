@@ -32,7 +32,7 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/save-jobs",
   "docs/guides/visualize-results",
   "docs/guides/create-transpiler-plugin",
-  "docs/guides/introduction-to-patterns",
+  "docs/guides/intro-to-patterns",
   "docs/guides/optimize-for-hardware",
   "docs/guides/post-process-results",
   "docs/guides/configure-error-suppression",
