@@ -33,6 +33,8 @@ test("parseAnchors()", () => {
 
   ## header_using\_underscores
 
+  ## Header: With colon
+
   ## UpperCase Should Be lowercase
 
   ## repeated
@@ -58,6 +60,7 @@ test("parseAnchors()", () => {
       "#code-header",
       "#headerwith-periods-and-wild-punctuation-and-numbers-1234-8-parentheses",
       "#header_using_underscores",
+      "#header-with-colon",
       "#uppercase-should-be-lowercase",
       "#this-is-a-hardcoded-anchor",
       "#another_span",
