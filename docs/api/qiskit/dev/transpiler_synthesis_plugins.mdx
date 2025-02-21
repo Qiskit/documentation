@@ -176,7 +176,7 @@ creates a high-level synthesis configuration that uses the `acg` plugin for synt
 
 For each high-level object, the list of given plugins are tried in sequence until one of them succeeds (in the example above, each list only contains a single plugin). In addition to specifying a plugin by its name, you can instead pass a `(name, options)` tuple, where the second element of the tuple is a dictionary containing options for the plugin.
 
-Once created you then pass this [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object into the `hls_config` argument for [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") which will use the specified plugins as part of the larger compilation workflow.
+Once created you then pass this [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object into the `hls_config` argument for [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") which will use the specified plugins as part of the larger compilation workflow.
 
 To get a list of installed high level synthesis plugins for any given [`Operation.name`](qiskit.circuit.Operation#name "qiskit.circuit.Operation.name"), you can use the [`high_level_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.high_level_synthesis_plugin_names") function, passing the desired `name` as the argument:
 
@@ -208,13 +208,7 @@ Below are the synthesis plugin classes available in Qiskit. These classes should
 
 <span id="module-qiskit.transpiler.passes.synthesis.unitary_synthesis" />
 
-<span id="unitary-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-unitary-synthesis" />
-
-#### Unitary Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.unitary_synthesis`](#module-qiskit.transpiler.passes.synthesis.unitary_synthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis"))
-
-|                                                                                                                                                                                            |                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| [`DefaultUnitarySynthesis`](qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis")() | The default unitary synthesis plugin. |
+Unitary Synthesis Transpiler Pass
 
 <span id="module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis" />
 
