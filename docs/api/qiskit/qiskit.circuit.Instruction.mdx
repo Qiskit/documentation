@@ -8,12 +8,16 @@ python_api_name: qiskit.circuit.Instruction
 
 # Instruction
 
-<Class id="qiskit.circuit.Instruction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L56-L697" signature="qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)" modifiers="class">
+<Class id="qiskit.circuit.Instruction" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L56-L703" signature="qiskit.circuit.Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)" modifiers="class">
   Bases: [`Operation`](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")
 
   Generic quantum instruction.
 
   Create a new instruction.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The parameters `duration` and `unit` are deprecated since Qiskit 1.3, and they will be removed in 2.0 or later. An instruction’s duration is defined in a backend’s Target object.
+  </Admonition>
 
   **Parameters**
 
@@ -21,8 +25,8 @@ python_api_name: qiskit.circuit.Instruction
   *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – instruction’s qubit width
   *   **num\_clbits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – instruction’s clbit width
   *   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*|*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*|ndarray|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
-  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – instruction’s duration. it must be integer if `unit` is ‘dt’
-  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – time unit of duration
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – (DEPRECATED) instruction’s duration. it must be an integer if `unit` is `'dt'`
+  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – (DEPRECATED) time unit of duration
   *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *or None*) – An optional label for identifying the instruction.
 
   **Raises**
@@ -147,13 +151,13 @@ python_api_name: qiskit.circuit.Instruction
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.Instruction.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L353-L358" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.Instruction.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L359-L364" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### assemble
 
-  <Function id="qiskit.circuit.Instruction.assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L382-L392" signature="assemble()">
+  <Function id="qiskit.circuit.Instruction.assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L388-L398" signature="assemble()">
     Assemble a QasmQobjInstruction
 
     <Admonition title="Deprecated since version 1.2" type="danger">
@@ -163,7 +167,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.Instruction.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L566-L595" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.Instruction.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L572-L601" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -182,7 +186,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### c\_if
 
-  <Function id="qiskit.circuit.Instruction.c_if" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L521-L540" signature="c_if(classical, val)">
+  <Function id="qiskit.circuit.Instruction.c_if" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L527-L546" signature="c_if(classical, val)">
     Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
     <Admonition title="Note" type="note">
@@ -196,7 +200,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### copy
 
-  <Function id="qiskit.circuit.Instruction.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L542-L557" signature="copy(name=None)">
+  <Function id="qiskit.circuit.Instruction.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L548-L563" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -214,7 +218,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### inverse
 
-  <Function id="qiskit.circuit.Instruction.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L464-L519" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.Instruction.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L470-L525" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -238,13 +242,13 @@ python_api_name: qiskit.circuit.Instruction
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.Instruction.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L318-L323" signature="is_parameterized()">
+  <Function id="qiskit.circuit.Instruction.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L324-L329" signature="is_parameterized()">
     Return whether the [`Instruction`](#qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
   </Function>
 
   ### repeat
 
-  <Function id="qiskit.circuit.Instruction.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L605-L647" signature="repeat(n)">
+  <Function id="qiskit.circuit.Instruction.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L611-L653" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
 
     If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
@@ -268,7 +272,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.Instruction.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L438-L462" signature="reverse_ops()">
+  <Function id="qiskit.circuit.Instruction.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L444-L468" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -286,7 +290,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.Instruction.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L249-L289" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.Instruction.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L255-L295" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -304,7 +308,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.Instruction.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L168-L176" signature="to_mutable()">
+  <Function id="qiskit.circuit.Instruction.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L174-L182" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -312,7 +316,7 @@ python_api_name: qiskit.circuit.Instruction
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.Instruction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L314-L316" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.Instruction.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L320-L322" signature="validate_parameter(parameter)">
     Instruction parameters has no validation or normalization.
   </Function>
 </Class>
