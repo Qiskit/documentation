@@ -1,0 +1,104 @@
+---
+title: Qiskit Code Assistant - OpenAI API compatibility
+description: Learn how to integrate the Qiskit Code Assistant with other applications through the OpenAI completions API.
+---
+
+<Admonition type="note" title="Notes">
+    - The Qiskit Code Assistant's OpenAI API compatibility is in preview release status and is subject to change.
+    - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
+</Admonition>
+
+# Qiskit Code Assistant - OpenAI API Compatibility
+
+The Qiskit Code Assistant offers compatibility with a subset of the OpenAI API specification, espeficially with the [completions API endpoints](https://platform.openai.com/docs/api-reference/completions). The goal of this compatibility is to allow third party packages to connect to the Qiskit Code Assistant seamlessly by using well known AI-related libraries and methods such as [openai](https://github.com/openai/openai-python), [litellm](https://github.com/BerriAI/litellm), or others.
+
+## OpenAI API endpoints supported
+
+| Method | Path | Comment |
+|--|--|---|
+| **GET** | `/v1/models` | List all models |
+| **GET** | `/v1/model/{model}` | Get model detail |
+| **POST** | `/v1/completions` | Send prompt to model for completion |
+
+> [!NOTE]
+> The `/v1/completions` endpoint fails with a `403` error if the model disclaimer has been accepted. See below for how to view and accept the model disclaimer.
+
+Additional endpoints (not part of OpenAI schema, provided for convenience) include:
+
+| Method | Path | Comment |
+|--|--|---|
+| **GET** | `/v1/model/{model}/disclaimer` | Get model's disclaimer |
+| **POST** | `/v1/model/{model}/disclaimer` | Accept model's disclaimer |
+| **POST** | `/v1/completions/accept` | Accept or reject completion |
+
+To retrieve/view the model disclaimer, make a **GET** request to the disclaimer endpoint. For example:
+
+```
+curl -X 'GET' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-8b-qiskit/disclaimer' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <IBM Quantum API token>'
+```
+
+If you agree with the model disclaimer, to accept it, **POST** to the disclaimer endpoint providing the disclaimer's ID and whether it is accepted or rejected. For example:
+
+```
+curl -X 'POST' \
+  'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-8b-qiskit/disclaimer' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <IBM Quantum API token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "disclaimer": "<DISCLAIMER_ID>",
+  "accepted": true
+}'
+```
+
+
+## Examples
+
+### Using the official OpenAI python library
+
+The OpenAI Python library provides convenient access to the OpenAI REST API (such as the one provided by the Qiskit Code Assistant) from any Python 3.8+ application. Check out the details about installation in https://github.com/openai/openai-python?tab=readme-ov-file#installation
+
+
+```
+from openai import OpenAI
+
+# Initialize the client with your API key
+client = OpenAI(api_key=auth_token_iqp, base_url=assistant_url)
+
+# Make a request to the completions API
+try:
+    response = client.completions.create(
+        model=model,  # or another compatible model
+        prompt="#Transpile a random circuit using the Qiskit Transpiler Service",
+    )
+
+    # Print the generated text
+    print(response.choices[0].text)
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+```
+
+### Using LiteLLM
+
+LiteLLM is a convenient Python library to access multiple LLM APIs using the OpenAI format [Bedrock, Huggingface, VertexAI, TogetherAI, Azure, OpenAI, Groq etc.]. Check out how to install it in https://github.com/BerriAI/litellm?tab=readme-ov-file#usage-docs
+
+```
+from litellm import completion
+
+response = completion(
+    model=f"text-completion-openai/{model}",
+    base_url= assistant_url,
+    messages=[
+        {"role": "user", "content": "#Transpile a random circuit using the Qiskit Transpiler Service"}
+    ],
+    api_key=<IBM Quantum API token>
+)
+
+completion_response = response.json()
+print(completion_response)
+
+```
