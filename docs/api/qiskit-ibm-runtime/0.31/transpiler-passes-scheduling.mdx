@@ -17,7 +17,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling
 A collection of scheduling passes for working with IBM Quantum’s next-generation backends that support advanced “dynamic circuit” capabilities. Ie., circuits with support for classical control-flow/feedback based off of measurement results.
 
 <Admonition title="Warning" type="caution">
-  You should not mix these scheduling passes with Qiskit’s builtin scheduling passes as they will negatively interact with the scheduling routines for dynamic circuits. This includes setting `scheduling_method` in [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v1.2)") or [`generate_preset_pass_manager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "(in Qiskit v1.2)").
+  You should not mix these scheduling passes with Qiskit’s builtin scheduling passes as they will negatively interact with the scheduling routines for dynamic circuits. This includes setting `scheduling_method` in [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v1.2)") or [generate\_preset\_pass\_manager()](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "(in Qiskit v1.2)").
 </Admonition>
 
 ## Classes
@@ -107,7 +107,7 @@ dd_teleport.draw(output="mpl", style="iqp")
 
 ![../\_images/qiskit\_ibm\_runtime.transpiler.passes.scheduling\_1\_0.png](/images/api/qiskit-ibm-runtime/0.31/qiskit_ibm_runtime.transpiler.passes.scheduling_1_0.avif)
 
-When compiling a circuit with Qiskit, it is more efficient and more robust to perform all the transformations in a single transpilation. This has been done above by extending Qiskit’s preset pass managers. For example, Qiskit’s [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v1.2)") function internally builds its pass set by using [`generate_preset_pass_manager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "(in Qiskit v1.2)"). This returns instances of [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager "(in Qiskit v1.2)"), which can be extended.
+When compiling a circuit with Qiskit, it is more efficient and more robust to perform all the transformations in a single transpilation. This has been done above by extending Qiskit’s preset pass managers. For example, Qiskit’s [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v1.2)") function internally builds its pass set by using [generate\_preset\_pass\_manager()](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager "(in Qiskit v1.2)"). This returns instances of [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager "(in Qiskit v1.2)"), which can be extended.
 
 <span id="scheduling-old-format-c-if-conditioned-gates" />
 
