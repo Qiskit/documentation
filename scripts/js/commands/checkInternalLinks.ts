@@ -112,6 +112,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/pulse.ipynb",
   "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
+  "docs/guides/transpiler-stages.ipynb",
+  "docs/api/qiskit/providers.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
