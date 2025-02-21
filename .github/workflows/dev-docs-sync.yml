@@ -29,7 +29,8 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo curl https://imagemagick.org/archive/binaries/magick --output /usr/bin/magick
+          curl https://imagemagick.org/archive/binaries/magick --output ~/bin/magick
+          sudo chmod +x ~/bin/magick && export PATH="$HOME/bin:$PATH"
           npm ci
 
       - name: Sync dev docs
