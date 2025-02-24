@@ -8,7 +8,7 @@ python_api_name: qiskit.providers.BackendV2
 
 # BackendV2
 
-<Class id="qiskit.providers.BackendV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L277-L667" signature="qiskit.providers.BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)" modifiers="class">
+<Class id="qiskit.providers.BackendV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L277-L667" signature="qiskit.providers.BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)" modifiers="class">
   Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
 
   Abstract class for Backends
@@ -19,13 +19,13 @@ python_api_name: qiskit.providers.BackendV2
 
   If migrating a provider from [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") one thing to keep in mind is for backwards compatibility you might need to add a configuration method that will build a [`BackendConfiguration`](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object and [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") from the attributes defined in this class for backwards compatibility.
 
-  A backend object can optionally contain methods named `get_translation_stage_plugin` and `get_scheduling_stage_plugin`. If these methods are present on a backend object and this object is used for [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") the transpilation process will default to using the output from those methods as the scheduling stage and the translation compilation stage. This enables a backend which has custom requirements for compilation to specify a stage plugin for these stages to enable custom transformation of the circuit to ensure it is runnable on the backend. These hooks are enabled by default and should only be used to enable extra compilation steps if they are **required** to ensure a circuit is executable on the backend or have the expected level of performance. These methods are passed no input arguments and are expected to return a `str` representing the method name which should be a stage plugin (see: [`qiskit.transpiler.preset_passmanagers.plugin`](transpiler_plugins#module-qiskit.transpiler.preset_passmanagers.plugin "qiskit.transpiler.preset_passmanagers.plugin") for more details on plugins). The typical expected use case is for a backend provider to implement a stage plugin for `translation` or `scheduling` that contains the custom compilation passes and then for the hook methods on the backend object to return the plugin name so that [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") will use it by default when targetting the backend.
+  A backend object can optionally contain methods named `get_translation_stage_plugin` and `get_scheduling_stage_plugin`. If these methods are present on a backend object and this object is used for [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager") the transpilation process will default to using the output from those methods as the scheduling stage and the translation compilation stage. This enables a backend which has custom requirements for compilation to specify a stage plugin for these stages to enable custom transformation of the circuit to ensure it is runnable on the backend. These hooks are enabled by default and should only be used to enable extra compilation steps if they are **required** to ensure a circuit is executable on the backend or have the expected level of performance. These methods are passed no input arguments and are expected to return a `str` representing the method name which should be a stage plugin (see: [`qiskit.transpiler.preset_passmanagers.plugin`](transpiler_plugins#module-qiskit.transpiler.preset_passmanagers.plugin "qiskit.transpiler.preset_passmanagers.plugin") for more details on plugins). The typical expected use case is for a backend provider to implement a stage plugin for `translation` or `scheduling` that contains the custom compilation passes and then for the hook methods on the backend object to return the plugin name so that [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") will use it by default when targetting the backend.
 
   Subclasses of this should override the public method [`run()`](#qiskit.providers.BackendV2.run "qiskit.providers.BackendV2.run") and the internal [`_default_options()`](#qiskit.providers.BackendV2._default_options "qiskit.providers.BackendV2._default_options"):
 
   ### \_default\_options
 
-  <Function id="qiskit.providers.BackendV2._default_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L430-L444" signature="_default_options()" modifiers="abstract classmethod">
+  <Function id="qiskit.providers.BackendV2._default_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L430-L444" signature="_default_options()" modifiers="abstract classmethod">
     Return the default options
 
     This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
@@ -218,7 +218,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### acquire\_channel
 
-  <Function id="qiskit.providers.BackendV2.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L566-L580" signature="acquire_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L566-L580" signature="acquire_channel(qubit)">
     Return the acquisition channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -246,7 +246,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### control\_channel
 
-  <Function id="qiskit.providers.BackendV2.control_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L582-L603" signature="control_channel(qubits)">
+  <Function id="qiskit.providers.BackendV2.control_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L582-L603" signature="control_channel(qubits)">
     Return the secondary drive channel for the given qubit
 
     This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
@@ -276,7 +276,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### drive\_channel
 
-  <Function id="qiskit.providers.BackendV2.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L534-L548" signature="drive_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L534-L548" signature="drive_channel(qubit)">
     Return the drive channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -304,7 +304,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### measure\_channel
 
-  <Function id="qiskit.providers.BackendV2.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L550-L564" signature="measure_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L550-L564" signature="measure_channel(qubit)">
     Return the measure stimulus channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -332,7 +332,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### qubit\_properties
 
-  <Function id="qiskit.providers.BackendV2.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L500-L532" signature="qubit_properties(qubit)">
+  <Function id="qiskit.providers.BackendV2.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L500-L532" signature="qubit_properties(qubit)">
     Return QubitProperties for a given qubit.
 
     If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
@@ -356,7 +356,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### run
 
-  <Function id="qiskit.providers.BackendV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L643-L667" signature="run(run_input, **options)" modifiers="abstract">
+  <Function id="qiskit.providers.BackendV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L643-L667" signature="run(run_input, **options)" modifiers="abstract">
     Run on the backend.
 
     This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that runs circuits. Depending on the backend this may be either an async or sync call. It is at the discretion of the provider to decide whether running should block until the execution is finished or not: the Job class can handle either situation.
@@ -377,7 +377,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### set\_options
 
-  <Function id="qiskit.providers.BackendV2.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/providers/backend.py#L605-L622" signature="set_options(**fields)">
+  <Function id="qiskit.providers.BackendV2.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L605-L622" signature="set_options(**fields)">
     Set the options fields for the backend
 
     This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.

@@ -1,0 +1,170 @@
+---
+title: Qiskit SDK 1.4 release notes
+description: Changes made in Qiskit SDK 1.4
+in_page_toc_max_heading_level: 3
+---
+
+<span id="qiskit-version-release-notes" />
+
+<span id="release-notes" />
+
+# Qiskit SDK 1.4 release notes
+
+<span id="relnotes-1-4-0" />
+
+<span id="id1" />
+
+## 1.4.0
+
+<span id="relnotes-1-4-0-prelude" />
+
+### Prelude
+
+The Qiskit v1.4.0 release is the final minor version release for the v1.x series. This release contains minimal features, and primarily adds new deprecation warnings for API changes coming in the future major version release v2.0.0. It is fully compatible with the Qiskit v1.3.x releases. It is strongly recommended that you upgrade from v1.3.x to v1.4.0 so that you’re able to see the warnings about which interfaces will change with Qiskit 2.0.0. The v1.4.x release series will continue to be supported and receive bugfixes for 6 months and security fixes for 1 year after this release. The fixes will take place via patch releases. For more details on the release schedule and support cycle see: [open-source/qiskit-sdk-version-strategy](/open-source/qiskit-sdk-version-strategy) which documents the release schedule in more detail.
+
+<span id="relnotes-1-4-0-circuits-features" />
+
+### Circuits Features
+
+*   Added a new method, [`QuantumCircuit.estimate_duration()`](/api/qiskit/qiskit.circuit.QuantumCircuit#estimate_duration "qiskit.circuit.QuantumCircuit.estimate_duration"), to compute the estimated duration of a scheduled circuit output from the [`transpiler`](/api/qiskit/transpiler#module-qiskit.transpiler "qiskit.transpiler"). This should be used if you need an estimate of the full circuit duration instead of the deprecated [`QuantumCircuit.duration`](/api/qiskit/qiskit.circuit.QuantumCircuit#duration "qiskit.circuit.QuantumCircuit.duration") attribute.
+
+<span id="relnotes-1-4-0-circuits-deprecations" />
+
+### Circuits Deprecations
+
+*   Subclassing [`Register`](/api/qiskit/circuit#qiskit.circuit.Register "qiskit.circuit.Register") or [`Bit`](/api/qiskit/circuit#qiskit.circuit.Bit "qiskit.circuit.Bit"), or any subclass of them (for example, [`QuantumRegister`](/api/qiskit/circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") or [`Qubit`](/api/qiskit/circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) is deprecated as of Qiskit v1.4.0. Subclassing these types was never explicitly supported by Qiskit, and its meaning was never defined. In Qiskit v2.0.0, the subclassing may become impossible due to technical limitations, and will certainly not be stored in a circuit. This is due to the move of the data model to the Rust space to improve performance.
+
+*   The `dag` optional parameter in the constructor of `DAGNode` subclasses (namely `DAGOpNode`), which has been unused and ignored since Qiskit v1.2.0, is now deprecated as of Qiskit v1.4.0 and will be removed in Qiskit v2.0.0.
+
+*   The Multiple-Control-Multiple-Target (MCMT) class in `MCMT` is now deprecated and replaced by [`MCMTGate`](/api/qiskit/qiskit.circuit.library.MCMTGate "qiskit.circuit.library.MCMTGate"), which is a proper [`Gate`](/api/qiskit/qiskit.circuit.Gate "qiskit.circuit.Gate") subclass. Using a gate instead of a circuit allows the compiler to reason about the object at a higher level of abstraction and unlocks the use of multiple synthesis plugins.
+
+*   The [`qiskit.circuit.classicalfunction`](/api/qiskit/classicalfunction#module-qiskit.circuit.classicalfunction "qiskit.circuit.classicalfunction") module, and with it the [`ClassicalFunction`](/api/qiskit/qiskit.circuit.classicalfunction.ClassicalFunction "qiskit.circuit.classicalfunction.ClassicalFunction") class and its related [`classical_function()`](/api/qiskit/classicalfunction#qiskit.circuit.classicalfunction.classical_function "qiskit.circuit.classicalfunction.classical_function") and [`BooleanExpression`](/api/qiskit/qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression") utilities, have been deprecated as of Qiskit v1.4.0 and will be removed in Qiskit v2.0.0.
+
+    This change is performed to avoid a dependency on the external library `tweedledum`, which is no longer compatible with all of Qiskit’s supported platforms and Python versions. For a similar functionality please use the [`PhaseOracle`](/api/qiskit/qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") which is going to have an implementation that doesn’t use `tweedledum`, and the `BitFlipOracle` which will be added in Qiskit v2.0.0.
+
+    Until `BitFlipOracle` is added, a phase-flip oracle can be converted to a bit-flip oracle by conditioning it on the result qubit, and applying Hadamard gates before and after the application of the oracle, as in the following example (where the oracle is on `qr_x` and the result is on `qr_y`):
+
+    ```python
+    from qiskit import QuantumRegister, QuantumCircuit
+    from qiskit.circuit.library.phase_oracle import PhaseOracle
+
+    bool_expr = "(x0 & x1 | ~x2) & x4"
+    qr_x = QuantumRegister(4, "x")
+    qr_y = QuantumRegister(1, "y")
+
+    bit_flip_oracle = QuantumCircuit(qr_x, qr_y)
+    phase_flip_oracle = PhaseOracle(bool_expr)
+    controlled_phase_flip_oracle = phase_flip_oracle.control(1)
+    bit_flip_oracle.h(qr_y)
+    bit_flip_oracle.compose(controlled_phase_flip_oracle, qubits=[*qr_y, *qr_x], inplace=True)
+    bit_flip_oracle.h(qr_y)
+
+    print(bit_flip_oracle)
+    ```
+
+    Which results in
+
+    ```text
+              ┌───────────────┐     
+    x_0: ─────┤0              ├─────
+              │               │     
+    x_1: ─────┤1              ├─────
+              │  Phase Oracle │     
+    x_2: ─────┤2              ├─────
+              │               │     
+    x_3: ─────┤3              ├─────
+        ┌───┐└───────┬───────┘┌───┐
+     y: ┤ H ├────────■────────┤ H ├
+        └───┘                 └───┘
+    ```
+
+<span id="relnotes-1-4-0-primitives-deprecations" />
+
+### Primitives Deprecations
+
+*   Providing inputs of type [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") to the `backend` argument of [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2") and [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2") is deprecated as of Qiskit 1.4 and will be removed in Qiskit 2.0. Use an instance of [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") instead.
+
+<span id="relnotes-1-4-0-providers-deprecations" />
+
+### Providers Deprecations
+
+*   The [`BackendV2Converter`](/api/qiskit/qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") class and [`convert_to_target()`](/api/qiskit/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") functions have been deprecated in Qiskit v1.4.0 following the deprecation of [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1"). [`convert_to_target()`](/api/qiskit/qiskit.providers.convert_to_target "qiskit.providers.convert_to_target") is used to build a [`Target`](/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") instance from a series of objects from the deprecated [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") workflow: [`BackendConfiguration`](/api/qiskit/qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration"), [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`PulseDefaults`](/api/qiskit/qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults"). [`BackendV2Converter`](/api/qiskit/qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") is used for converting [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") to [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "qiskit.providers.BackendV2"), and cannot be maintained once [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") is removed.
+
+*   The [`BasicSimulator.run_experiment()`](/api/qiskit/qiskit.providers.basic_provider.BasicSimulator#run_experiment "qiskit.providers.basic_provider.BasicSimulator.run_experiment") method has been deprecated and will be removed in Qiskit v2.0.0. The method takes a [`QasmQobjExperiment`](/api/qiskit/qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") as input argument, which has been deprecated together with the `Qobj` class and other related functionality. You can call [`BasicSimulator.run()`](/api/qiskit/qiskit.providers.basic_provider.BasicSimulator#run "qiskit.providers.basic_provider.BasicSimulator.run") with a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") input instead.
+
+*   The error types [`BackendPropertyError`](/api/qiskit/providers#qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError") and [`BackendConfigurationError`](/api/qiskit/providers#qiskit.providers.BackendConfigurationError "qiskit.providers.BackendConfigurationError") have been deprecated in Qiskit 1.4 and will be removed in Qiskit 2.0. These errors are only used when retrieving items from the deprecated [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") and [`BackendConfiguration`](/api/qiskit/qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") objects.
+
+*   The classes [`GateProperties`](/api/qiskit/qiskit.providers.models.GateProperties "qiskit.providers.models.GateProperties"), [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus"), and [`qiskit.providers.models.JobStatus`](/api/qiskit/qiskit.providers.models.JobStatus "qiskit.providers.models.JobStatus"), which are part of the legacy [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") workflow, are now deprecated. These should have been deprecated in Qiskit 1.2 together with the related elements in [`qiskit.providers.models`](/api/qiskit/providers_models#module-qiskit.providers.models "qiskit.providers.models").
+
+<span id="relnotes-1-4-0-synthesis-deprecations" />
+
+### Synthesis Deprecations
+
+*   The signature of the argument `atomic_evolution` in the constructor of the classes [`LieTrotter`](/api/qiskit/qiskit.synthesis.LieTrotter "qiskit.synthesis.LieTrotter"), [`ProductFormula`](/api/qiskit/qiskit.synthesis.ProductFormula "qiskit.synthesis.ProductFormula"), and [`SuzukiTrotter`](/api/qiskit/qiskit.synthesis.SuzukiTrotter "qiskit.synthesis.SuzukiTrotter") was modified in Qiskit v1.2.0 to improve the visualization of the output circuit. The older signature has now been deprecated in favor of the new alternative. From Qiskit 2.0.0, only the new alternative will be valid.
+
+    To migrate, please modify the callable from `Callable[[Pauli | SparsePauliOp, float], QuantumCircuit]` to `Callable[[QuantumCircuit, Pauli | SparsePauliOp, float], None]`.
+
+<span id="relnotes-1-4-0-transpiler-deprecations" />
+
+### Transpiler Deprecations
+
+*   The [`DAGOpNode.sort_key`](/api/qiskit/qiskit.dagcircuit.DAGOpNode#sort_key "qiskit.dagcircuit.DAGOpNode.sort_key"), [`DAGOutNode.sort_key`](/api/qiskit/qiskit.dagcircuit.DAGOutNode#sort_key "qiskit.dagcircuit.DAGOutNode.sort_key"), and [`DAGInNode.sort_key`](/api/qiskit/qiskit.dagcircuit.DAGInNode#sort_key "qiskit.dagcircuit.DAGInNode.sort_key") attributes have been deprecated and will be removed in the Qiskit v2.0.0 release. These attributes were originally used as a lexicographical key for topological sorting nodes in a [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). However, the key is no longer used for this as the sorting is done internally in Rust code now. If you’re using this attribute, you can recreate the key from the other attributes of a node. For example, you can use a function like:
+
+    ```python
+    def get_sort_key(node: DAGNode):
+        if isinstance(node, (DAGInNode, DAGOutNode)):
+            return str(node.wire)
+        return ",".join(
+            f"{dag.find_bit(q).index:04d}" for q in itertools.chain(node.qargs, node.cargs)
+        )
+    ```
+
+    which will generate a string like the sort key does.
+
+*   The following uses of the [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object in the transpilation pipeline have been deprecated as of Qiskit v1.4.0 and will be removed in Qiskit v2.0.0:
+
+    *   `backend_prop` input argument in [`DenseLayout`](/api/qiskit/qiskit.transpiler.passes.DenseLayout "qiskit.transpiler.passes.DenseLayout")
+    *   `properties` input argument in [`VF2Layout`](/api/qiskit/qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout")
+    *   `properties` and `coupling_map` input arguments in [`VF2PostLayout`](/api/qiskit/qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout"). Note that `coupling_map` was only used in the presence of `properties`.
+    *   `backend_props` input argument in [`UnitarySynthesis`](/api/qiskit/qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")
+    *   `backend_properties` input argument in [`PassManagerConfig`](/api/qiskit/qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")
+    *   `backend_properties` in [`Target.from_configuration()`](/api/qiskit/qiskit.transpiler.Target#from_configuration "qiskit.transpiler.Target.from_configuration")
+    *   `backend_properties` in [`generate_routing_passmanager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_routing_passmanager "qiskit.transpiler.preset_passmanagers.generate_routing_passmanager")
+    *   `backend_properties` in [`generate_translation_passmanager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_translation_passmanager "qiskit.transpiler.preset_passmanagers.generate_translation_passmanager")
+
+    The [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") class has been deprecated since Qiskit v1.2.0, together with other elements from the [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") workflow, and will be removed in Qiskit v2.0.0. The alternative path for communicating hardware information to the transpilation argument is the [`Target`](/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") class, which can be set using the `target` input argument. Specific instruction properties such as gate errors or durations can be added to a [`Target`](/api/qiskit/qiskit.transpiler.Target "qiskit.transpiler.Target") upon construction through the [`Target.add_instruction()`](/api/qiskit/qiskit.transpiler.Target#add_instruction "qiskit.transpiler.Target.add_instruction") method.
+
+    In the case of [`generate_routing_passmanager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_routing_passmanager "qiskit.transpiler.preset_passmanagers.generate_routing_passmanager") and [`generate_translation_passmanager()`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_translation_passmanager "qiskit.transpiler.preset_passmanagers.generate_translation_passmanager"), the `backend_properties` argument is optional and is superseded when the required `target` argument is populated. Usage of the argument can safely be removed in 1.x as long as you were passing in a target, which was the recommended use.
+
+*   The Pulse deprecation in Qiskit v1.3.0, included calibration builder passes such as [`RXCalibrationBuilder`](/api/qiskit/qiskit.transpiler.passes.RXCalibrationBuilder "qiskit.transpiler.passes.RXCalibrationBuilder"). The [`NormalizeRXAngle`](/api/qiskit/qiskit.transpiler.passes.NormalizeRXAngle "qiskit.transpiler.passes.NormalizeRXAngle") pass is a requirement of [`RXCalibrationBuilder`](/api/qiskit/qiskit.transpiler.passes.RXCalibrationBuilder "qiskit.transpiler.passes.RXCalibrationBuilder"); hence, it is being deprecated in Qiskit v1.4.0. The [`rzx_templates()`](/api/qiskit/transpiler_passes#qiskit.transpiler.passes.rzx_templates "qiskit.transpiler.passes.rzx_templates") function in the calibration module is also being deprecated as it is not used in our codebase.
+
+<span id="relnotes-1-4-0-visualization-deprecations" />
+
+### Visualization Deprecations
+
+*   The parameters `show_idle` and `show_barrier` in the timeline drawers are deprecated as of Qiskit v1.4.0. The alternatives are, respectively, the `idle_wires` and `plot_barriers` parameters, introduced in Qiskit v1.1.0, which are fully equivalent. The legacy parameter names will be removed in Qiskit v2.0.0.
+
+*   In Qiskit v1.4.0, the timeline drawer `draw()` function will issue a deprecation warning if a `target` is not specified to get the duration of instructions. From Qiskit v2.0.0 on, `target` will be required and `draw()` will fail if it is not specified.
+
+*   Providing inputs of type [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1 "qiskit.providers.BackendV1") to the `backend` argument of [`plot_gate_map()`](/api/qiskit/qiskit.visualization.plot_gate_map "qiskit.visualization.plot_gate_map"), [`plot_circuit_layout()`](/api/qiskit/qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"), and [`plot_error_map()`](/api/qiskit/qiskit.visualization.plot_error_map "qiskit.visualization.plot_error_map") are deprecated as of Qiskit 1.4 and will be removed in Qiskit 2.0. Use an instance of [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "qiskit.providers.BackendV2") instead.
+
+<span id="relnotes-1-4-0-misc-deprecations" />
+
+### Misc. Deprecations
+
+*   The use of positional arguments in the constructor of [`Result`](/api/qiskit/qiskit.result.Result "qiskit.result.Result") is deprecated as of Qiskit 1.4, and will be disabled in Qiskit 2.0. Please set all arguments using kwarg syntax, i.e: `Result(backend_name="name", ....)`. In addition to this, the `qobj_id` argument is deprecated and will no longer be used in Qiskit 2.0. It will, however, still be possible to set `qobj_id` as a generic kwarg, which will land in the metadata field with the other generic kwargs.
+
+<span id="relnotes-1-4-0-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed an issue in [`Target.has_calibration()`](/api/qiskit/qiskit.transpiler.Target#has_calibration "qiskit.transpiler.Target.has_calibration") and [`Target.get_calibration()`](/api/qiskit/qiskit.transpiler.Target#get_calibration "qiskit.transpiler.Target.get_calibration") where passing a parameterized Gate didn’t work as expected. Refer to [qiskit/#11657](https://github.com/Qiskit/qiskit/issues/11657) and [qiskit/#11658](https://github.com/Qiskit/qiskit/issues/11658) for more information.
+
+<span id="relnotes-1-4-0-other-notes" />
+
+### Other Notes
+
+*   Passing `property_set` as an arbitrary keyword argument to the [`run()`](/api/qiskit/qiskit.passmanager.BasePassManager#run "qiskit.passmanager.BasePassManager.run") method of a subclass of [`BasePassManager`](/api/qiskit/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") will change behavior in Qiskit v2.0.0. It is currently forwarded to the internal representation converting functions of the pass manager, as is any arbitrary keyword argument to that method. Starting from Qiskit v2.0.0, the option will instead be used to set the seed of the [`PropertySet`](/api/qiskit/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") for the pipeline run, and the argument will not be passed to the conversion functions.
+
+    This note only concerns implementers of subclasses of [`BasePassManager`](/api/qiskit/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") who have chosen their `_passmanager_frontend` and `_passmanager_backend` implementations to accept a keyword argument called `property_set`.
+

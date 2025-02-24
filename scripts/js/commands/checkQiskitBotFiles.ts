@@ -28,8 +28,6 @@ const ALLOWED_OWNERLESS_FILES = new Set([
   "docs/guides/using-ibm-quantum-simulators",
   "docs/guides/circuit-execution",
   "docs/guides/configure-runtime-compilation",
-  "docs/guides/execution-modes-faq",
-  "docs/guides/execution-modes",
   "docs/guides/native-gates",
   "docs/guides/save-jobs",
   "docs/guides/visualize-results",

@@ -28,6 +28,8 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
+  "docs/api/runtime/tags/usage.mdx",
+  "docs/api/runtime/tags/sessions.mdx",
 ];
 
 interface Arguments {
@@ -110,6 +112,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/pulse.ipynb",
   "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
+  "docs/guides/transpiler-stages.ipynb",
+  "docs/api/qiskit/providers.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
@@ -204,6 +208,7 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.29/qiskit-runtime-service.mdx",
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
+    "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
   ];
 
   if (args.currentApis) {
