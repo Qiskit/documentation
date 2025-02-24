@@ -70,11 +70,11 @@ def get_package_versions(python_code: str, requirements_txt: str) -> str:
 
 def get_used_modules(source: str) -> Iterable[str]:
     # Remove Jupyter magics
-    source = "\n".join(
+    source_without_magics = "\n".join(
         line for line in source.split("\n")
         if not line.strip().startswith("%")
    )
-    for node in ast.iter_child_nodes(ast.parse(source=source, filename="_.py")):
+    for node in ast.iter_child_nodes(ast.parse(source=source_without_magics, filename="_.py")):
         if isinstance(node, ast.Import):
             for module in node.names:
                 yield module.name.split(".")[0]
