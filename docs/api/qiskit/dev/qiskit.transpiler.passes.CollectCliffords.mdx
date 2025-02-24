@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.CollectCliffords
 
 # CollectCliffords
 
-<Class id="qiskit.transpiler.passes.CollectCliffords" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_cliffords.py#L29-L74" signature="qiskit.transpiler.passes.CollectCliffords(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.CollectCliffords" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/optimization/collect_cliffords.py#L29-L79" signature="qiskit.transpiler.passes.CollectCliffords(*args, **kwargs)" modifiers="class">
   Bases: [`CollectAndCollapse`](qiskit.transpiler.passes.CollectAndCollapse "qiskit.transpiler.passes.optimization.collect_and_collapse.CollectAndCollapse")
 
   Collects blocks of Clifford gates and replaces them by a [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford") object.
@@ -23,6 +23,7 @@ python_api_name: qiskit.transpiler.passes.CollectCliffords
   *   **split\_layers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
   *   **collect\_from\_back** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – specifies if blocks should be collected started from the end of the circuit.
   *   **matrix\_based** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – specifies whether to collect unitary gates which are Clifford gates only for certain parameters (based on their unitary matrix).
+  *   **max\_block\_width** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – specifies the maximum width of the block (that is, the number of qubits over which the block is defined) for the block to be collected.
 
   ## Attributes
 

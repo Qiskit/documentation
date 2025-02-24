@@ -182,7 +182,7 @@ $$
   </Admonition>
 
   <Admonition title="Note" type="note">
-    The canonical form produced by [`simplify()`](#qiskit.quantum_info.SparseObservable.simplify "qiskit.quantum_info.SparseObservable.simplify") will still not universally detect all observables that are equivalent due to the over-complete basis alphabet; it is not computationally feasible to do this at scale. For example, on observable built from `+` and `-` components will not canonicalize to a single `X` term.
+    The canonical form produced by [`simplify()`](#qiskit.quantum_info.SparseObservable.simplify "qiskit.quantum_info.SparseObservable.simplify") alone will not universally detect all observables that are equivalent due to the over-complete basis alphabet. To obtain a unique expression, you can first represent the observable using Pauli terms only by calling [`as_paulis()`](#qiskit.quantum_info.SparseObservable.as_paulis "qiskit.quantum_info.SparseObservable.as_paulis"), followed by [`simplify()`](#qiskit.quantum_info.SparseObservable.simplify "qiskit.quantum_info.SparseObservable.simplify"). Note that the projector expansion (e.g. `+` into `I` and `X`) is not computationally feasible at scale.
   </Admonition>
 
   ### Indexing
@@ -211,7 +211,7 @@ $$
     ##### coeff
 
     <Attribute id="qiskit.quantum_info.SparseObservable.Term.coeff">
-      The complex coefficient of the term.
+      The term’s coefficient.
     </Attribute>
 
     ##### copy
@@ -231,7 +231,7 @@ $$
     ##### num\_qubits
 
     <Attribute id="qiskit.quantum_info.SparseObservable.Term.num_qubits">
-      Number of qubits the entire term applies to.
+      The number of qubits the term is defined on.
     </Attribute>
 
     ##### pauli\_base
@@ -298,6 +298,17 @@ $$
   | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
   | [`zero()`](#qiskit.quantum_info.SparseObservable.zero "qiskit.quantum_info.SparseObservable.zero")             | The zero operator on a given number of qubits.     |
   | [`identity()`](#qiskit.quantum_info.SparseObservable.identity "qiskit.quantum_info.SparseObservable.identity") | The identity operator on a given number of qubits. |
+
+  ## Conversions
+
+  An existing [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") can be converted into other [`quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") operators or generic formats. Beware that other objects may not be able to represent the same observable as efficiently as [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"), including potentially needed exponentially more memory.
+
+  | Method                                                                                                                           | Summary                                                                                                                                                      |
+  | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | [`as_paulis()`](#qiskit.quantum_info.SparseObservable.as_paulis "qiskit.quantum_info.SparseObservable.as_paulis")                | Create a new [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable"), expanding in terms of Pauli operators only. |
+  | [`to_sparse_list()`](#qiskit.quantum_info.SparseObservable.to_sparse_list "qiskit.quantum_info.SparseObservable.to_sparse_list") | Express the observable in a sparse list format with elements `(bit_terms, indices, coeff)`.                                                                  |
+
+  In addition, [`SparsePauliOp.from_sparse_observable()`](qiskit.quantum_info.SparsePauliOp#from_sparse_observable "qiskit.quantum_info.SparsePauliOp.from_sparse_observable") is available for conversion from this class to [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"). Beware that this method suffers from the same exponential-memory usage concerns as [`as_paulis()`](#qiskit.quantum_info.SparseObservable.as_paulis "qiskit.quantum_info.SparseObservable.as_paulis").
 
   ## Mathematical manipulation
 
@@ -407,6 +418,48 @@ $$
     A new [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") with the provided layout applied.
   </Function>
 
+  #### as\_paulis
+
+  <Function id="qiskit.quantum_info.SparseObservable.as_paulis" signature="as_paulis()">
+    Express the observable in Pauli terms only, by writing each projector as sum of Pauli terms.
+
+    Note that there is no guarantee of the order the resulting Pauli terms. Use [`SparseObservable.simplify()`](#qiskit.quantum_info.SparseObservable.simplify "qiskit.quantum_info.SparseObservable.simplify") in addition to obtain a canonical representation.
+
+    <Admonition title="Warning" type="caution">
+      Beware that this will use at least $2^n$ terms if there are $n$ single-qubit projectors present, which can lead to an exponential number of terms.
+    </Admonition>
+
+    **Returns**
+
+    The same observable, but expressed in Pauli terms only.
+
+    **Examples**
+
+    Rewrite an observable in terms of projectors into Pauli operators:
+
+    ```python
+    >>> obs = SparseObservable("+")
+    >>> obs.as_paulis()
+    <SparseObservable with 2 terms on 1 qubit: (0.5+0j)() + (0.5+0j)(X_0)>
+    >>> direct = SparseObservable.from_list([("I", 0.5), ("Z", 0.5)])
+    >>> assert direct.simplify() == obs.as_paulis().simplify()
+    ```
+
+    For small operators, this can be used with [`simplify()`](#qiskit.quantum_info.SparseObservable.simplify "qiskit.quantum_info.SparseObservable.simplify") as a unique canonical form:
+
+    ```python
+    >>> left = SparseObservable.from_list([("+", 0.5), ("-", 0.5)])
+    >>> right = SparseObservable.from_list([("r", 0.5), ("l", 0.5)])
+    >>> assert left.as_paulis().simplify() == right.as_paulis().simplify()
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`SparsePauliOp.from_sparse_observable()`](qiskit.quantum_info.SparsePauliOp#from_sparse_observable "qiskit.quantum_info.SparsePauliOp.from_sparse_observable")**
+
+      A constructor of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") that can convert a [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") in the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") dense Pauli representation.
+    </Admonition>
+  </Function>
+
   #### clear
 
   <Function id="qiskit.quantum_info.SparseObservable.clear" signature="clear()">
@@ -419,7 +472,7 @@ $$
     ```python
     >>> obs = SparseObservable.from_list([("IX+-rl", 2.0), ("01YZII", -1j)])
     >>> obs.clear()
-    >>> assert obs == SparseObservable.zero(obs.num_qubits)
+    >>> assert obs == SparseObservable.zero(obs.py_num_qubits())
     ```
   </Function>
 
@@ -683,6 +736,12 @@ $$
     ... ])
     >>> assert from_list == from_sparse_list
     ```
+
+    <Admonition title="See also" type="note">
+      **[`to_sparse_list()`](#qiskit.quantum_info.SparseObservable.to_sparse_list "qiskit.quantum_info.SparseObservable.to_sparse_list")**
+
+      The reverse of this method.
+    </Admonition>
   </Function>
 
   #### from\_sparse\_pauli\_op
@@ -833,6 +892,27 @@ $$
       [`expand()`](#qiskit.quantum_info.SparseObservable.expand "qiskit.quantum_info.SparseObservable.expand")
 
       > The same function, but with the order of arguments flipped. This can be useful if you like using the casting behavior for the argument, but you want your existing [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") to be on the right-hand side of the tensor ordering.
+    </Admonition>
+  </Function>
+
+  #### to\_sparse\_list
+
+  <Function id="qiskit.quantum_info.SparseObservable.to_sparse_list" signature="to_sparse_list()">
+    Express the observable in terms of a sparse list format.
+
+    This can be seen as counter-operation of [`SparseObservable.from_sparse_list()`](#qiskit.quantum_info.SparseObservable.from_sparse_list "qiskit.quantum_info.SparseObservable.from_sparse_list"), however the order of terms is not guaranteed to be the same at after a roundtrip to a sparse list and back.
+
+    **Examples**
+
+    ```python
+    >>> obs = SparseObservable.from_list([("IIXIZ", 2j), ("IIZIX", 2j)])
+    >>> reconstructed = SparseObservable.from_sparse_list(obs.to_sparse_list(), obs.num_qubits)
+    ```
+
+    <Admonition title="See also" type="note">
+      **[`from_sparse_list()`](#qiskit.quantum_info.SparseObservable.from_sparse_list "qiskit.quantum_info.SparseObservable.from_sparse_list")**
+
+      The constructor that can interpret these lists.
     </Admonition>
   </Function>
 

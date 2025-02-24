@@ -62,7 +62,7 @@ python_api_name: qiskit.synthesis
 
 ### synth\_cnot\_depth\_line\_kms
 
-<Function id="qiskit.synthesis.synth_cnot_depth_line_kms" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/linear_depth_lnn.py#L241-L276" signature="qiskit.synthesis.synth_cnot_depth_line_kms(mat)">
+<Function id="qiskit.synthesis.synth_cnot_depth_line_kms" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/linear/linear_depth_lnn.py#L32-L61" signature="qiskit.synthesis.synth_cnot_depth_line_kms(mat)">
   Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method.
 
   Synthesis algorithm for linear reversible circuits from \[1], section 7. This algorithm synthesizes any linear reversible circuit of $n$ qubits over a linear nearest-neighbor architecture using CX gates with depth at most $5n$.
@@ -804,11 +804,12 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 ## Two-Qubit Synthesis
 
-|                                                                                                                                                 |                                                                                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer")(gate\[, ...])                  | A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qubit basis gate.                                                                                      |
-| [`XXDecomposer`](qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer")(\[basis\_fidelity, euler\_basis, ...])                          | A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of `XX` type (i.e., each locally equivalent to $CAN(\alpha, 0, 0)$ for a possibly varying $alpha$). |
-| [`TwoQubitWeylDecomposition`](qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition")(unitary\_matrix\[, ...]) | Two-qubit Weyl decomposition.                                                                                                                                                       |
+|                                                                                                                                                          |                                                                                                                                                                                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`TwoQubitBasisDecomposer`](qiskit.synthesis.TwoQubitBasisDecomposer "qiskit.synthesis.TwoQubitBasisDecomposer")(gate\[, ...])                           | A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qubit basis gate.                                                                                                                      |
+| [`XXDecomposer`](qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer")(\[basis\_fidelity, euler\_basis, ...])                                   | A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of `XX` type (i.e., each locally equivalent to $CAN(\alpha, 0, 0)$ for a possibly varying $alpha$).                                 |
+| [`TwoQubitWeylDecomposition`](qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition")(unitary\_matrix\[, ...])          | Two-qubit Weyl decomposition.                                                                                                                                                                                       |
+| [`TwoQubitControlledUDecomposer`](qiskit.synthesis.TwoQubitControlledUDecomposer "qiskit.synthesis.TwoQubitControlledUDecomposer")(...\[, euler\_basis]) | Decompose two-qubit unitary in terms of a desired $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"). |
 
 ### two\_qubit\_cnot\_decompose
 
