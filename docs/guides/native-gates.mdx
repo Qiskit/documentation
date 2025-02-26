@@ -4,11 +4,23 @@ description: Summary of the native gates and operations supported by IBM quantum
 
 ---
 
+
 # Native gates and operations
+
+<LegacyContent>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/native-gates)
+</Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/native-gates)
+</Admonition>
+</CloudContent>
 
 Each [processor family](processor-types) has a native gate set. By default, the QPUs in each family only support running the gates and operations in the native gate set. Thus, every gate in the circuit must be translated (by the transpiler) to the elements of this set.
 
-You can view the native gates and operations for a QPU either [with Qiskit](#native-gates-with-qiskit) or on the IBM Quantum&trade; Platform [Compute resources page](#native-gates-on-platform).
+You can view the native gates and operations for a QPU either [with Qiskit](#native-gates-with-qiskit) or on the IBM Quantum&reg; Platform [Compute resources page](#native-gates-on-platform).
 
 <Admonition type="note" title="Basis gates">
 The terms native gates and basis gates are often used interchangeably. However, you can specify a different set of basis gates to use, while the native gate set never changes. For information about changing the basis gates, see the [Represent quantum computers](./represent-quantum-computers#basis-gates) topic.
@@ -18,7 +30,7 @@ The terms native gates and basis gates are often used interchangeably. However, 
 
 <span id="native-gates-with-qiskit"></span>
 ### With Qiskit
-
+<LegacyContent>
 ```python
 
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -36,12 +48,35 @@ for backend in service.backends():
         print(f"        {instruction}")
     print()
 ```
+</LegacyContent>
+<CloudContent>
+```python
+
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService(channel="ibm_cloud")
+
+for backend in service.backends():
+    config = backend.configuration()
+    if "simulator" in config.backend_name:
+        continue
+    print(f"Backend: {config.backend_name}")
+    print(f"    Processor type: {config.processor_type}")
+    print(f"    Supported instructions:")
+    for instruction in config.supported_instructions:
+        print(f"        {instruction}")
+    print()
+```
+</CloudContent>
 
 <span id="native-gates-on-platform"></span>
 ### On IBM Quantum Platform
-
+<LegacyContent>
 Select any QPU on the [Compute resources](https://quantum.ibm.com/services/resources) tab. The default gates for that QPU are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit described above to see all native gates and operations for a QPU.
-
+</LegacyContent>
+<CloudContent>
+Select any QPU on the [Compute resources](https://quantum.cloud.ibm.com/computers) tab. The default gates for that QPU are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit described above to see all native gates and operations for a QPU.
+</CloudContent>
 ## Tables of gates and operations, by processor family
 
 ### Heron
