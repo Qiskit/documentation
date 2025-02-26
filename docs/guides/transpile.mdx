@@ -42,7 +42,7 @@ Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
 
 ## Transpile with pass managers
 
-The recommended way to transpile a circuit is to create a staged pass manager and then execute its `run` method with your circuit as input. You can use the [`generate_preset_pass_manager`](/api/qiskit/transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager) function to generate a staged pass manager with reasonable defaults.
+The recommended way to transpile a circuit is to create a staged pass manager and then execute its `run` method with your circuit as input. You can use the [`generate_preset_pass_manager`](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager#qiskit.transpiler.generate_preset_pass_manager) function to generate a staged pass manager with reasonable defaults.
 
 More advanced users can customize a set of `PassManager` and `StagedPassManager` objects and determine the order in which each stage is run.  This can dramatically change the final output circuit. In fact, a custom approach to transpiling a quantum algorithm often produces more efficient error suppression than the default approach.  A custom approach involves rewriting quantum circuits to match hardware constraints and suppress the effects of noise.  The flow of logic for this tool chain is customizable and need not be linear.  The transpilation process can prepare iterative loops, conditional branches, and other complex behaviors.  A good starting place when developing a set of custom passes is to examine the default sequence of transformations.
 
