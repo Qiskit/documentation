@@ -37,6 +37,21 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/guides/qunasys-quri-chemistry",
 ]);
 
+// URLs that show up in the INDEX_PAGES >1 time. This can happen when we
+// have distinc <CloudContent> and <LegacyContent> lists with some shared entries.
+const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([
+  "/guides/processor-types",
+  "/guides/qpu-information",
+  "/guides/get-qpu-information",
+  "/guides/native-gates",
+  "/guides/repetition-rate-execution",
+  "/guides/retired-qpus",
+  "/guides/dynamic-circuits-considerations",
+  "/guides/instances",
+  "/guides/fair-share-scheduler",
+  "/guides/manage-cost",
+]);
+
 const INDEX_PAGE_URLS: Set<string> = new Set([
   "/guides/map-problem-to-circuits",
   "/guides/optimize-for-hardware",
@@ -118,7 +133,10 @@ async function deduplicateEntries(
   const errors: string[] = [];
 
   for (const entry of entries) {
-    if (deduplicatedPages.has(entry)) {
+    if (
+      deduplicatedPages.has(entry) &&
+      !ALLOWLIST_DUPLICATE_ENTRIES.has(entry)
+    ) {
       errors.push(`❌ ${filePath}: The entry ${entry} is duplicated`);
     } else {
       deduplicatedPages.add(entry);
