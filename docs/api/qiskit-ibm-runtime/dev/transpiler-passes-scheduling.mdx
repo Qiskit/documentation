@@ -143,19 +143,18 @@ qc_if_dd.draw(output="mpl", style="iqp")
 
 ![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-4.avif)
 
-If you are not using the transpiler plugin stages to work around this please manually run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v1.3)") prior to your scheduling pass.
+If you are not using the transpiler plugin stages to work around this please manually run the pass [`qiskit.transpiler.passes.ConvertConditionsToIfOps`](/api/qiskit/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v1.3)") prior to your scheduling pass. This is only necessary in Qiskit 1.x.
 
 ```python
-from qiskit.transpiler.passes import ConvertConditionsToIfOps
+from qiskit.transpiler import passes
 
 pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
-pm.scheduling = PassManager(
-      [
-          ConvertConditionsToIfOps(),
-          ALAPScheduleAnalysis(durations),
-          PadDelay(durations),
-      ]
-)
+
+scheduling = [ALAPScheduleAnalysis(durations), PadDelay(durations)]
+if (convert_pass := getattr(passes, "ConvertConditionsToIfOps", None)) is not None:
+    # This pass is neither present nor necessary in Qiskit 2.x.
+    scheduling = [convert_pass()] + scheduling
+pm.scheduling = PassManager(scheduling)
 
 qc_if_dd = pm.run(qc_c_if)
 qc_if_dd.draw(output="mpl", style="iqp")

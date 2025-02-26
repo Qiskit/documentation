@@ -356,13 +356,11 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
     **Returns**
 
-    **The list of dag nodes containing control flow ops. If there**
-
-    are no control flow nodes None is returned
+    The list of dag nodes containing control flow ops.
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")] | None
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
   </Function>
 
   ### copy\_empty\_like
@@ -968,7 +966,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### substitute\_node
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node" signature="substitute_node(node, op, inplace=False, propagate_condition=True)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node" signature="substitute_node(node, op, inplace=False, propagate_condition=None)">
     Replace a DAGOpNode with a single operation. qargs, cargs and conditions for the new operation will be inferred from the node to be replaced. The new operation will be checked to match the shape of the replaced operation.
 
     **Parameters**
@@ -976,7 +974,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – Node to be replaced
     *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") instance to be added to the DAG
     *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
-    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Optional, default True. If True, a condition on the `node` to be replaced will be applied to the new `op`. This is the legacy behaviour. If either node is a control-flow operation, this will be ignored. If the `op` already has a condition, [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") is raised.
+    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – DEPRECATED a legacy option that used to control the behavior of handling control flow. It has no effect anymore, left it for backwards compatibility. Will be removed in Qiskit 3.0.
 
     **Returns**
 
@@ -994,7 +992,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### substitute\_node\_with\_dag
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" signature="substitute_node_with_dag(node, input_dag, wires=None, propagate_condition=True)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" signature="substitute_node_with_dag(node, input_dag, wires=None, propagate_condition=None)">
     Replace one node with dag.
 
     **Parameters**
@@ -1002,7 +1000,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – node to substitute
     *   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
     *   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
-    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")\ s (i.e. treated as if it is `False`); replacements of those must already fulfill the same conditional logic or this function would be close to useless for them.
+    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – DEPRECATED a legacy option that used to control the behavior of handling control flow. It has no effect anymore, left it for backwards compatibility. Will be removed in Qiskit 3.0.
 
     **Returns**
 
