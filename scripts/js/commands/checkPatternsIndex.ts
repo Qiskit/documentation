@@ -24,6 +24,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/addons",
   "/guides/function-template-hamiltonian-simulation",
   "/guides/qiskit-addons-utils",
+  "/guides/qiskit-code-assistant-openai-api"
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under
