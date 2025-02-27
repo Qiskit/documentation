@@ -8,20 +8,16 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
 # NoiseLearner
 
-<Class id="qiskit_ibm_runtime.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.34/qiskit_ibm_runtime/noise_learner/noise_learner.py#L48-L273" signature="NoiseLearner(mode=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/noise_learner/noise_learner.py#L48-L268" signature="NoiseLearner(mode=None, options=None)" modifiers="class">
   Bases: `object`
 
   Class for executing noise learning experiments.
 
-  <Admonition title="Note" type="note">
-    Currently, the [`NoiseLearner`](#qiskit_ibm_runtime.noise_learner.NoiseLearner "qiskit_ibm_runtime.noise_learner.NoiseLearner") is released an experimental feature. As such, it is subject to change without notification and its stability is not guaranteed.
-  </Admonition>
-
   The noise learner class allows characterizing the noise processes affecting the gates in one or more circuits of interest, based on the Pauli-Lindblad noise model described in \[1].
 
-  The [`run()`](#qiskit_ibm_runtime.noise_learner.NoiseLearner.run "qiskit_ibm_runtime.noise_learner.NoiseLearner.run") method allows runnig a noise learner job for a list of circuits. After the job is submitted, the gates are collected into independent layers, and subsequently the resulting layers are are characterized individually.
+  The [`run()`](#qiskit_ibm_runtime.noise_learner.NoiseLearner.run "qiskit_ibm_runtime.noise_learner.NoiseLearner.run") method allows running a noise learner job for a list of circuits. After the job is submitted, the gates are collected into independent layers, and subsequently the resulting layers are characterized individually.
 
-  The way in which the gates are collected into layers depends on the twirling `strategy` specified in the given `options` (see `NoiseLearnerOptions` for more details). Note that all strategies obey barriers. For example, if you have three ISA entangling layers of interest, consider putting them into one circuit separated by barriers acting on the qubits you wish to twirl, and select `strategy="active-circuit"`.
+  The way in which the gates are collected into layers depends on the twirling `strategy` specified in the given `options` (see [`NoiseLearnerOptions`](options-noise-learner-options "qiskit_ibm_runtime.options.NoiseLearnerOptions") for more details). Note that all strategies obey barriers. For example, if you have three ISA entangling layers of interest, consider putting them into one circuit separated by barriers acting on the qubits you wish to twirl, and select `strategy="active-circuit"`.
 
   The following snippet shows an example where the noise learner is used to characterized the layers of two GHZ circuits.
 
@@ -89,7 +85,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.34/qiskit_ibm_runtime/noise_learner/noise_learner.py#L224-L226" signature="backend()">
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/noise_learner/noise_learner.py#L219-L221" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
@@ -99,7 +95,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.34/qiskit_ibm_runtime/noise_learner/noise_learner.py#L145-L217" signature="run(circuits)">
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.36/qiskit_ibm_runtime/noise_learner/noise_learner.py#L140-L212" signature="run(circuits)">
     Submit a request to the noise learner program.
 
     This function breaks the given list of circuits into a list of unique layers, following the strategy set by the `twirling_strategy` field specified in the `options` (see `NoiseLearnerOptions` for more details) and sorting them based on the number of times they occur in the various circuits. Then, it runs the noise learning experiment for as many layers as specified by the `max_layers_to_learn` field in the `options`, prioritizing layers that occurr more frequently.

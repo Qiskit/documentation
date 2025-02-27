@@ -6,6 +6,17 @@ description: Migrate from backend.run in qiskit-ibm-provider to using Qiskit Run
 
 # Migrate from `qiskit_ibm_provider`
 
+<LegacyContent>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/migration-guides/qiskit-runtime-from-ibm-provider)
+</Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/migration-guides/qiskit-runtime-from-ibm-provider)
+</Admonition>
+</CloudContent>
+
 This topic shows how to migrate code that implemented `IBMBackend.run()`
 by using `qiskit_ibm_provider` to use `qiskit_ibm_runtime`.
 
@@ -15,22 +26,34 @@ Use the updated code to save accounts.
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
+<LegacyContent>
 The new syntax accepts credentials for
-Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
+Qiskit Runtime on IBM Cloud&reg; or IBM Quantum Platform. For more
 information on retrieving account credentials, see [Install and set up](/guides/setup-channel).
-
-``` python
+</LegacyContent>
+<CloudContent>
+For information on retrieving account credentials, see [Install and set up](/guides/cloud-setup).
+</CloudContent>
+<LegacyContent>
+```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 # IBM Quantum channel; set to default
 
 QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, set_as_default=True)
 ```
+</LegacyContent>
+<CloudContent>
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
 
+QiskitRuntimeService.save_account(channel="ibm_cloud", token="<API_TOKEN>", overwrite=True, set_as_default=True)
+```
+</CloudContent>
 Additionally, you can now name your saved credentials and load the credentials by name.
 
-
-``` python
+<LegacyContent>
+```python
 # Save different accounts for open and premium access
 
 QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h1/g1/p1", name="premium")
@@ -40,16 +63,29 @@ QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", in
 
 service = QiskitRuntimeService(name="open")
 ```
+</LegacyContent>
+<CloudContent>
+```python
+# Save different accounts for open and premium access
+
+QiskitRuntimeService.save_account(channel="ibm_cloud", token="<API_TOKEN>", instance="<CRN for premium instance>", name="premium")
+QiskitRuntimeService.save_account(channel="ibm_cloud", token="<API_TOKEN>", instance="<CRN for open instance>", name="open")
+
+# Load the "open" credentials
+
+service = QiskitRuntimeService(name="open")
+```
+</CloudContent>
   </TabItem>
 
   <TabItem value="legacy" label="backend.run">
-``` python
+```python
 IBMProvider.save_account(token='MY_API_TOKEN')
 ```
   </TabItem>
 </Tabs>
 
-
+<LegacyContent>
 ## Load accounts
 
 Use the updated code to load accounts.
@@ -60,7 +96,7 @@ The `channel` input parameter is
 optional. If multiple accounts have been saved in one device and no
 `channel` is provided, the default is `"ibm_cloud"`.
 
-``` python
+```python
 # To access saved credentials for the IBM cloud channel
 service = QiskitRuntimeService(channel="ibm_cloud")
 
@@ -70,37 +106,48 @@ service = QiskitRuntimeService(channel="ibm_quantum")
   </TabItem>
 
   <TabItem value="legacy" label="backend.run">
-``` python
+```python
 provider = IBMProvider()
 ```
   </TabItem>
 </Tabs>
-
+</LegacyContent>
 
 ## Instance selection (get a provider)
-
+<LegacyContent>
 Use the updated code to select a hub, group, and project.
 
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
-When using the `ibm_quantum` channel,
+The new syntax combines the functionality from `load_account()` and
+`get_provider()` in one statement. When using the `ibm_quantum` channel,
 the `hub`, `group`, and `project` are specified through the new
 `instance` keyword.
 
-``` python
+```python
 # To access saved credentials for the IBM quantum channel and select an instance
 service = QiskitRuntimeService(channel="ibm_quantum", instance="my_hub/my_group/my_project")
 ```
   </TabItem>
 
   <TabItem value="legacy" label="backend.run">
-``` python
-provider = IBMProvider(instance="my_hub/my_group/my_project")
-
+```python
+provider = IBMQ.get_provider(project="my_project", group="my_group", hub="my_hub")
 ```
   </TabItem>
 </Tabs>
+</LegacyContent>
+<CloudContent>
+Use the updated code to select an instance.
 
+The new syntax combines the functionality from `load_account()` and
+`get_provider()` in one statement. Use the `instance` keyword to specify your Cloud Resource Name (CRN).
+
+```python
+# To access saved credentials for the IBM quantum channel and select an instance
+service = QiskitRuntimeService(channel="ibm_cloud", instance="<CRN>")
+```
+</CloudContent>
 ## Get a backend
 
 Use the updated code to specify a backend.
@@ -108,7 +155,7 @@ Use the updated code to specify a backend.
 <Tabs>
   <TabItem value="updated" label="Runtime primitives">
 
-``` python
+```python
 # You can specify the instance in service.backend() instead of initializing a new service
 backend = service.backend("ibm_backend", instance="h1/g1/p1")
 ```
@@ -135,7 +182,7 @@ backend = FakeManilaV2()
   </TabItem>
 
   <TabItem value="legacy" label="backend.run">
-``` python
+```python
 provider = ibm.get_provider(hub="h1", group="g1", project="p1")
 backend = provider.get_backend("ibm_backend")
 ```
@@ -196,6 +243,12 @@ print(f" > Counts: {job.result().get_counts()}")
 
 
 ## Example: Use sessions
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 <Tabs>
   <TabItem value="Updated" label="Runtime primitives">

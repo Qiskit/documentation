@@ -8,13 +8,17 @@ description: Describes how long a Qiskit Runtime job can run, regardless of what
 
 To ensure fairness and help control costs, there is a maximum amount of time each Qiskit Runtime job can run. If a job exceeds this time limit, it is forcibly canceled and a `RuntimeJobMaxTimeoutError` exception is raised.
 
+ <Admonition>
+   If you use Qiskit Runtime on IBM Cloud&reg;, the session or batch is immediately terminated when the cost limit is reached.
+</Admonition>
+
 <span id="max-job"></span>
 ## Job maximum execution time
 
 The maximum execution time for a job is the smaller of these values:
 
 - The value set for `max_execution_time`
-- The QPU-determined job timeout value
+- The service-determined job timeout value
 
 The `max_execution_time` value is based on _quantum time_, not wall clock time. Quantum time is the time spent by the QPU complex to process the job. Simulator jobs use wall clock time because they do not have quantum time.
 
@@ -49,34 +53,20 @@ For example, if you specify `max_execution_time=5000` (approximately 83 minutes)
 <span id="batch-max-time"></span>
 ## Batch maximum execution time
 
-When a batch is started, it is assigned a maximum TTL value. After this TTL is reached, the batch is terminated, any jobs that are already running continue running, and any queued jobs that remain in the batch are put into a failed state. For instructions to set the batch maximum TTL, see [Specify the batch length.](./run-jobs-batch#specify-batch-length)
+When a batch is started, it is assigned a maximum time to live (maximum TTL) value. After this TTL is reached, the batch is terminated, any jobs that are already running continue running, and any queued jobs that remain in the batch are put into a failed state.
 
-Batches also have an ITTL value between jobs that cannot be configured. If you don't explicitly close a batch, it is deactivated after the ITTL expires and can be reactivated at any time until it reaches its  maximum TTL.
+Batches also have an interactive time to live (interactive TTL) value between jobs that cannot be configured. If you don't explicitly close a batch, it is deactivated after the interactive TTL expires and can be reactivated at any time until it reaches its  maximum TTL.
 
-| Instance type (Open or Premium Plan) | ITTL | Maximum TTL |
-| --- | --- | --- |
-| Both Open and Premium Plan | 1 sec | 10 min |
-
-To determine the ITTL and maximum TTL values for a batch programmatically, use the [`batch.details()`  method](run-jobs-batch#batch-details) and look for the `interactive_timeout` and `max_time` values, respectively.
+For instructions to work with these values, see [Run jobs in a batch.](/guides/run-jobs-batch)
 
 <span id="session-max-time"></span>
 ## Session maximum execution time
 
-When a session is started, it is assigned a maximum time to live (TTL) value that determines how long a session can run. After this TTL is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state.
+When a session is started, it is assigned a maximum TTL value that determines how long a session can run. After this TTL is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state.
 
-You can set this value with the `max_time` parameter. For instructions, see [Specify the session length.](./run-jobs-session#specify-length)
+There is also an interactive TTL value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
 
-There is also an interactive time to live (ITTL) value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
-
-| Instance type (Open or Premium Plan) | ITTL | Maximum TTL |
-| --- | --- | --- |
-| Premium Plan | 60 sec* | 8 h* |
-| Open Plan | sessions run in job mode | sessions run in job mode |
-
-
-*\* Certain Premium Plan instances might be configured to have a different value.*
-
-To determine the maximum TTL and ITTL values for a session programmatically, use the [`session.details()` method](run-jobs-session#session-details) and look for the `max_time` and  `interactive_timeout` values, respectively.
+For instructions to work with these values, see [Run jobs in a session.](/guides/run-jobs-session)
 
 ## Other limitations
 
@@ -86,6 +76,6 @@ To determine the maximum TTL and ITTL values for a session programmatically, use
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - [Estimate job run time](estimate-job-run-time).
+    - [Workload usage](estimate-job-run-time).
     - Review these tips: [Minimize job run time](minimize-time).
 </Admonition>
