@@ -1,0 +1,118 @@
+---
+title: LinearPauliRotationsGate (dev version)
+description: API reference for qiskit.circuit.library.LinearPauliRotationsGate in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.LinearPauliRotationsGate
+---
+
+# LinearPauliRotationsGate
+
+<Class id="qiskit.circuit.library.LinearPauliRotationsGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/arithmetic/linear_pauli_rotations.py#L172-L243" signature="qiskit.circuit.library.LinearPauliRotationsGate(num_state_qubits, slope=1, offset=0, basis='Y', label=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Linearly-controlled X, Y or Z rotation.
+
+  For a register of state qubits $|x\rangle$, a target qubit $|0\rangle$ and the basis `'Y'` this circuit acts as:
+
+  ```python
+      q_0: ─────────────────────────■───────── ... ──────────────────────
+                                    │
+                                    .
+                                    │
+  q_(n-1): ─────────────────────────┼───────── ... ───────────■──────────
+            ┌────────────┐  ┌───────┴───────┐       ┌─────────┴─────────┐
+      q_n: ─┤ RY(offset) ├──┤ RY(2^0 slope) ├  ...  ┤ RY(2^(n-1) slope) ├
+            └────────────┘  └───────────────┘       └───────────────────┘
+  ```
+
+  This can for example be used to approximate linear functions, with $a =$ `slope`$/2$ and $b =$ `offset`$/2$ and the basis `'Y'`:
+
+$$
+|x\rangle |0\rangle \mapsto \cos(ax + b)|x\rangle|0\rangle + \sin(ax + b)|x\rangle |1\rangle
+$$
+
+  Since for small arguments $\sin(x) \approx x$ this operator can be used to approximate linear functions.
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits representing the state $|x\rangle$.
+  *   **slope** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The slope of the controlled rotation.
+  *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The offset of the controlled rotation.
+  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The type of Pauli rotation (‘X’, ‘Y’, ‘Z’).
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The label of the gate.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.LinearPauliRotationsGate.base_class "qiskit.circuit.library.LinearPauliRotationsGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.LinearPauliRotationsGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+</Class>
+

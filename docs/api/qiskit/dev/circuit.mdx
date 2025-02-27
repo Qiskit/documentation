@@ -425,9 +425,9 @@ The [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.par
 
 While [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") is not necessarily unitary, its subclass [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") implies unitarity, and adds [`to_matrix()`](qiskit.circuit.Gate#to_matrix "qiskit.circuit.Gate.to_matrix") and [`control()`](qiskit.circuit.Gate#control "qiskit.circuit.Gate.control") methods to all the methods inherited from [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
 
-|                                                                                               |               |
-| --------------------------------------------------------------------------------------------- | ------------- |
-| [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label, ...]) | Unitary gate. |
+|                                                                                          |               |
+| ---------------------------------------------------------------------------------------- | ------------- |
+| [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label]) | Unitary gate. |
 
 [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") inherits all the methods for [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") and all the same considerations about its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") and [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") field, except of course that [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")s cannot act on any classical resources.
 
@@ -520,7 +520,7 @@ Hardware can be instructed to apply a real-time idle period on a given qubit. A 
 
 #### Delay
 
-<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L26-L131" signature="qiskit.circuit.Delay(duration, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L25-L126" signature="qiskit.circuit.Delay(duration, unit='dt')" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Do nothing and just delay/wait/idle for a specified duration.
@@ -546,7 +546,7 @@ it is forbidden for the optimizer to cancel out the two $X$ instructions.
 
 #### Barrier
 
-<Class id="qiskit.circuit.Barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/barrier.py#L27-L52" signature="qiskit.circuit.Barrier(num_qubits, label=None)" modifiers="class">
+<Class id="qiskit.circuit.Barrier" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/barrier.py#L25-L46" signature="qiskit.circuit.Barrier(num_qubits, label=None)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   A directive for circuit compilation to separate pieces of a circuit so that any optimizations or re-writes are constrained to only act between barriers.
@@ -572,7 +572,7 @@ qc.store(creg[0], parity)
 
 #### Store
 
-<Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/store.py#L56-L97" signature="qiskit.circuit.Store(lvalue, rvalue)" modifiers="class">
+<Class id="qiskit.circuit.Store" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/store.py#L55-L89" signature="qiskit.circuit.Store(lvalue, rvalue)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   A manual storage of some classical value to a classical memory location.
@@ -583,14 +583,6 @@ qc.store(creg[0], parity)
 
   *   **lvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the memory location being stored into.
   *   **rvalue** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr")) – the expression result being stored.
-
-  ##### c\_if
-
-  <Function id="qiskit.circuit.Store.c_if" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/store.py#L92-L97" signature="c_if(classical, val)">
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The method `qiskit.circuit.store.Store.c_if()` is deprecated as of Qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Function>
 
   ##### lvalue
 
@@ -781,7 +773,7 @@ Subclasses of [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruc
 
 #### \_define
 
-<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L296-L303" signature="Instruction._define()">
+<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L259-L266" signature="Instruction._define()">
   Populate the cached `_definition` field of this [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction").
 
   Subclasses should implement this method to provide lazy construction of their public [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and not return a value.
@@ -921,7 +913,7 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
 
 #### random\_circuit
 
-<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L24-L289" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None, num_operand_distribution=None)">
+<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L24-L295" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None, num_operand_distribution=None)">
   Generate random circuit of arbitrary size and form.
 
   This function will generate a random circuit by randomly selecting gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
