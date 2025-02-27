@@ -19,6 +19,9 @@ import { mean } from "lodash-es";
 
 import { zxMain } from "../lib/zx.js";
 
+// These are expected to 404 due to being legacy only.
+const ALLOWLIST: Set<string> = new Set(["docs/guides/setup-channel.mdx"]);
+
 const PORT = 3000;
 
 interface Arguments {
@@ -166,7 +169,8 @@ async function validateDockerRunning(): Promise<void> {
 async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (args.fromFile) {
     const content = await fs.readFile(args.fromFile, "utf-8");
-    return globby(content.split("\n").filter((entry) => entry));
+    const result = await globby(content.split("\n").filter((entry) => entry));
+    return result.filter((fp) => !ALLOWLIST.has(fp));
   }
 
   const globs = [];
@@ -183,5 +187,6 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     const prefix = isIncluded ? "" : "!";
     globs.push(`${prefix}${glob}`);
   }
-  return globby(globs);
+  const result = await globby(globs);
+  return result.filter((fp) => !ALLOWLIST.has(fp));
 }
