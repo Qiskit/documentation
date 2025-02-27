@@ -6,55 +6,54 @@ description: How to manage costs of running jobs on QPUs when using the Standard
 
 # Manage cost on the Standard Plan
 
-<LegacyContent>
-<Admonition type="note">
-This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/guides/manage-cost)
-</Admonition>
-</LegacyContent>
-
 <CloudContent>
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/manage-cost)
+<Admonition type="note" title="Notes">
+* This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/manage-cost)
+* The information in this topic only applies to those who are using the Standard Plan for Qiskit Runtime.  There are no costs associated with the IBM Quantum Platform Open Plan.
 </Admonition>
-</CloudContent>
 
+Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; Platform.
+
+</CloudContent>
 <LegacyContent>
+<Admonition type="note" title="Notes">
+* This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/guides/manage-cost)
+* The information in this topic only applies to those who are using the Standard Plan for Qiskit Runtime on IBM Cloud.  There are no costs associated with the IBM Quantum Platform Open Plan.
+</Admonition>
+
 The IBM Cloud&reg; Quantum Standard plan is not free, except when running jobs on simulators. Use the information in this topic to help you understand how much you’re paying and how to limit your costs.
 
-<Admonition type="note">
-  The information in this topic only applies to those who are using the Standard Plan for Qiskit Runtime on IBM Cloud.  There are no costs associated with the IBM Quantum Platform Open Plan.
-</Admonition>
-
-For instructions, see the [Manage costs](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-cost) topic in the IBM Cloud documentation.
-
 Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; Platform.
-
-<Admonition type="note">
-  The information in this topic only applies to those who are using the Standard Plan for Qiskit Runtime.  There are no costs associated with the IBM Quantum Platform Open Plan.
-</Admonition>
 </LegacyContent>
-<CloudContent>
-Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; Platform.
 
-<Admonition type="note">
-  The information in this topic only applies to those who are using the Standard Plan for Qiskit Runtime.  There are no costs associated with the IBM Quantum Platform Open Plan.
-</Admonition>
-</CloudContent>
-## Set a cost limit
+<span id="cost-limit"></span>
+## Set or change a cost limit or instance limit
 
-An instance administrator can limit how much is spent.
+An instance administrator can limit how much is spent. There are several ways to set this limit:
 
-To set cost limits on a Standard Plan instance, navigate to the [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances), then click the instance and set the **Cost limit**. The cost limit refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
+* IBM Cloud CLI: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
+
+   ```cli
+   ibmcloud resource service-instance-update $INSTANCE_CRN_OR_NAME -p '{"instance_limit_seconds":"1234"}'
+   ```
+* User interface: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then click the instance and set the **Cost limit**.
+
+The cost limit or instance limit refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
 
     <Admonition type="note">
       The cost limit is always specified in US dollars (USD), then converted to runtime seconds. However, for monthly billing purposes, you are charged in your local currency, specified on your IBM Cloud account. Because currency exchange rates can fluctuate, the cost for X runtime seconds might be different when initially calculated in USD than when you’re actually charged in your local currency. As a result, if your local currency is not USD, the total amount charged for the number of seconds specified in this field could vary from the dollar amount you specify.
     </Admonition>
 
-## How to remove a cost limit
+## Remove a cost limit or instance limit
 
-An instance administrator can remove the cost limit.
+An instance administrator can remove the cost limit in several ways:
 
-To remove a cost limit on a Standard Plan instance, navigate to the [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances), then open the instance and click the edit button by the **Cost limit**. Delete the value and click **Save**.
+* IBM Cloud CLI: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
+
+   ```cli
+   ibmcloud resource service-instance-update $INSTANCE_CRN_OR_NAME -p '{"instance_limit_seconds":null}'
+   ```
+* User interface: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then open the instance and click the edit button by the **Cost limit**. Delete the value and click **Save**.
 
 ### What happens when the cost limit is reached
 
@@ -70,7 +69,7 @@ Additionally, you can determine cost per instance or per job at any time.
 
 ### View instance cost
 
-To determine how much has been billed to an instance during the current billing cycle, from the [Instances page](https://cloud.ibm.com/quantum/instances), click the instance to open its details page.
+To determine how much has been billed to an instance during the current billing cycle, from the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, click the instance to open its details page.
 
 These are the fields relevant to cost:
 
@@ -83,7 +82,7 @@ You can view your billing cycle on the [Billing and usage page](https://cloud.ib
 
 ### View job cost
 
-To determine how much has been billed to each job associated with an instance, from the [Instances page](https://cloud.ibm.com/quantum/instances), click the instance to open its details page. Next, on the left side, click Jobs.
+To determine how much has been billed to each job associated with an instance, from the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, click the instance to open its details page. Next, on the left side, click Jobs.
 
 These are the columns relevant to cost:
 
