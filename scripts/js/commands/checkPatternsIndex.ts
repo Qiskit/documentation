@@ -38,7 +38,7 @@ const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
 ]);
 
 // URLs that show up in the INDEX_PAGES >1 time. This can happen when we
-// have distinc <CloudContent> and <LegacyContent> lists with some shared entries.
+// have distinct <CloudContent> and <LegacyContent> lists with some shared entries.
 const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([
   "/guides/processor-types",
   "/guides/qpu-information",
