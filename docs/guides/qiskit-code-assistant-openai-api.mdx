@@ -1,16 +1,16 @@
 ---
 title: Qiskit Code Assistant - OpenAI API compatibility
-description: Learn how to integrate the Qiskit Code Assistant with other applications through the OpenAI completions API.
+description: Learn how to integrate Qiskit Code Assistant with other applications through the OpenAI completions API.
 ---
 
 <Admonition type="note" title="Notes">
-    - The Qiskit Code Assistant's OpenAI API compatibility is in preview release status and is subject to change.
+    - Qiskit Code Assistant's OpenAI API compatibility is in preview release status and is subject to change.
     - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
 </Admonition>
 
-# Qiskit Code Assistant - OpenAI API Compatibility
+# Qiskit Code Assistant - OpenAI API compatibility
 
-The Qiskit Code Assistant offers compatibility with a subset of the OpenAI API specification, specifically with the [completions API endpoints](https://platform.openai.com/docs/api-reference/completions). The goal of this compatibility is to allow third party packages to connect to the Qiskit Code Assistant seamlessly by using well known AI-related libraries and methods such as [OpenAI](https://github.com/openai/openai-python), [LiteLLM](https://github.com/BerriAI/litellm), or others.
+Qiskit Code Assistant offers compatibility with a subset of the OpenAI API specification, specifically with the [completions API endpoints](https://platform.openai.com/docs/api-reference/completions). The goal of this compatibility is to allow third-party packages to connect to Qiskit Code Assistant seamlessly by using well-known AI-related libraries and methods such as [OpenAI](https://github.com/openai/openai-python), [LiteLLM](https://github.com/BerriAI/litellm), or others.
 
 ## OpenAI API endpoints supported
 
@@ -20,8 +20,9 @@ The Qiskit Code Assistant offers compatibility with a subset of the OpenAI API s
 | **GET** | `/v1/model/{model}` | Get model detail |
 | **POST** | `/v1/completions` | Send prompt to model for completion |
 
-> [!NOTE]
-> The `/v1/completions` endpoint fails with a `403` error if the model disclaimer has been accepted. See below for how to view and accept the model disclaimer.
+<Admonition type="note">
+The `/v1/completions` endpoint fails with a `403` error if the model disclaimer has been accepted. See the following for how to view and accept the model disclaimer.
+</Admonition>
 
 Additional endpoints (not part of OpenAI schema, provided for convenience) include:
 
@@ -57,9 +58,9 @@ curl -X 'POST' \
 
 ## Examples
 
-### Using the official OpenAI python library
+### Use the official OpenAI Python library
 
-The OpenAI Python library provides convenient access to the OpenAI REST API (such as the one provided by the Qiskit Code Assistant) from any Python 3.8+ application. Check out the details about installation in https://github.com/openai/openai-python?tab=readme-ov-file#installation
+The OpenAI Python library provides convenient access to the OpenAI REST API (such as the one provided by Qiskit Code Assistant) from any Python 3.8+ application. See more details in the [Installation section](https://github.com/openai/openai-python?tab=readme-ov-file#installation) of the OpenAI Python API library Readme.
 
 
 ```
@@ -82,9 +83,9 @@ except Exception as e:
     print(f"An error occurred: {e}")
 ```
 
-### Using LiteLLM
+### Use LiteLLM
 
-LiteLLM is a convenient Python library to access multiple LLM APIs using the OpenAI format [Bedrock, Huggingface, VertexAI, TogetherAI, Azure, OpenAI, Groq etc.]. Check out how to install it in https://github.com/BerriAI/litellm?tab=readme-ov-file#usage-docs
+LiteLLM is a convenient Python library to access multiple LLM APIs using the OpenAI format (Bedrock, Huggingface, VertexAI, TogetherAI, Azure, OpenAI, Groq, and so on). See the [LiteLLM docs](https://github.com/BerriAI/litellm?tab=readme-ov-file#usage-docs) for more details.
 
 ```
 from litellm import completion
