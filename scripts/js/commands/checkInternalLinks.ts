@@ -23,6 +23,7 @@ import { FileBatch } from "../lib/links/FileBatch.js";
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
+  "docs/administration/quickstart-org.mdx",
   "docs/errors.mdx",
   "docs/api/qiskit-ibm-transpiler-rest/index.mdx",
   "docs/api/runtime/index.mdx",
