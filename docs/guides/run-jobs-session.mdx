@@ -7,10 +7,13 @@ description: How to run a quantum computing job in a Qiskit Runtime session.
 # Run jobs in a session
 
 Use sessions when you need dedicated and exclusive access to the QPU.
-
+<LegacyContent>
 <Admonition type="note">
 Session execution mode is not supported in the Open Plan. Jobs will run in job mode instead.
 </Admonition>
+</LegacyContent>
+<CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
+
 
 ## Set up to use sessions
 
@@ -34,6 +37,12 @@ If you open a session but do not submit any jobs to it for 30 minutes, the sessi
 
 **Session class**
 
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
+
 ``` python
 from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
@@ -48,6 +57,12 @@ session.close()
 **Context manager**
 
 The context manager automatically opens and closes the session.
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 ``` python
 from qiskit_ibm_runtime import Session, SamplerV2 as Sampler, EstimatorV2 as Estimator
@@ -64,6 +79,12 @@ with Session(backend=backend):
 The maximum session time to live (TTL) determines how long a session can run.  You can set this value with the `max_time` parameter. This should exceed the longest job's execution time.
 
 This timer starts when the session starts.  When the value is reached, the session is closed.  Any jobs that are running will finish, but jobs still queued are failed.
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 ``` python
 with Session(backend=backend, max_time="25m"):
@@ -98,6 +119,12 @@ A session ends in the following circumstances:
 
 A session automatically closes when it exits the context manager. When the session context manager is exited, the session is put into "In progress, not accepting new jobs" status. This means that the session finishes processing all running or queued jobs until the maximum timeout value is reached. After all jobs are completed, the session is immediately closed. This allows the scheduler to run the next job without waiting for the session interactive timeout, thereby reducing the average job queuing time. You cannot submit jobs to a closed session.
 
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
+
 ``` python
 with Session(backend=backend) as session:
     estimator = Estimator()
@@ -112,6 +139,12 @@ result2 = job2.result()
 <Admonition type="tip">
 If you are not using a context manager, manually close the session to avoid unwanted cost. You can close a session as soon as you are done submitting jobs to it. When a session is closed with `session.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
 </Admonition>
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 ``` python
 session = Session(backend=backend)
@@ -130,7 +163,7 @@ session.close()
 <span id="session-status"></span>
 ## Check session status
 
-You can query a session's status to understand its current state by using  `session.status()` or by viewing the Jobs page for your channel.
+You can query a session's status to understand its current state by using  `session.status()` or by viewing the Workloads page for your channel.
 
 Session status can be one of the following:
 
@@ -143,6 +176,12 @@ Session status can be one of the following:
 ## Determine session details
 
 For a comprehensive overview of a session's configuration and status, use the  `session.details() method`.
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 ``` python
 from qiskit_ibm_runtime import QiskitRuntimeService, Session, EstimatorV2 as Estimator
@@ -159,6 +198,12 @@ with Session(backend=backend) as session:
 Sessions are especially useful for algorithms that require frequent communication between classical and quantum resources.
 
 Example: Run an iterative workload that uses the classical SciPy optimizer to minimize a cost function. In this model, SciPy uses the output of the cost function to calculate its next input.
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 ```python
 def cost_func(params, ansatz, hamiltonian, estimator):
@@ -183,6 +228,12 @@ session.close()
 ## Run two VQE algorithms in a session by using threading
 
 You can get more out of a session by running multiple workloads simultaneously. The following example shows how you can run two VQE algorithms, each using a different classical optimizer, simultaneously inside a single session. Job tags are also used to differentiate jobs from each workload.
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 ```python
 from concurrent.futures import ThreadPoolExecutor
