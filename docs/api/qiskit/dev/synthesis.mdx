@@ -1247,3 +1247,81 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
   \[1] Ruiz-Perez et al., Quantum arithmetic with the Quantum Fourier Transform, 2017. [arXiv:1411.5949](https://arxiv.org/pdf/1411.5949.pdf)
 </Function>
 
+### Sums
+
+#### synth\_weighted\_sum\_carry
+
+<Function id="qiskit.synthesis.synth_weighted_sum_carry" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/weighted_sum.py#L26-L155" signature="qiskit.synthesis.synth_weighted_sum_carry(weighted_sum)">
+  Synthesize a weighted sum gate, by the number of state qubits and the qubit weights.
+
+  This method is described in Appendix A of \[1].
+
+  Reference:
+
+  > **\[1] Stamatopoulos et al. Option Pricing using Quantum Computers (2020)**
+  >
+  > [Quantum 4, 291](https://doi.org/10.22331/q-2020-07-06-291)
+
+  **Parameters**
+
+  **weighted\_sum** ([*WeightedSumGate*](qiskit.circuit.library.WeightedSumGate "qiskit.circuit.library.WeightedSumGate")) –
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
+
+## Unary Arithmetic Synthesis
+
+### Integer comparators
+
+#### synth\_integer\_comparator\_2s
+
+<Function id="qiskit.synthesis.synth_integer_comparator_2s" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/comparators/compare_2s.py#L20-L98" signature="qiskit.synthesis.synth_integer_comparator_2s(num_state_qubits, value, geq=True)">
+  Implement an integer comparison based on 2s complement.
+
+  This is based on Appendix B of \[1].
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits encoding the value to compare to.
+  *   **value** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The value to compare to.
+  *   **geq** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True` flip the target bit if the qubit state is $\geq$ than the value, otherwise implement $<$.
+
+  **Returns**
+
+  A circuit implementing the integer comparator.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+
+  **References**
+
+  **\[1] J. Gacon et al. “Quantum-enhanced simulation-based optimization”**
+
+  [arXiv:2005.10780](https://arxiv.org/abs/2005.10780).
+</Function>
+
+#### synth\_integer\_comparator\_greedy
+
+<Function id="qiskit.synthesis.synth_integer_comparator_greedy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/comparators/compare_greedy.py#L19-L66" signature="qiskit.synthesis.synth_integer_comparator_greedy(num_state_qubits, value, geq=True)">
+  Implement an integer comparison based on value-by-value comparison.
+
+  For `value` smaller than `2 ** (num_state_qubits - 1)` this circuit implements `value` multi-controlled gates with control states 0, 1, …, `value - 1`, such that the target qubit is flipped if the qubit state represents any of the allowed values. For `value` larger than that, `geq` is flipped. This implementation can require an exponential number of gates. If auxiliary qubits are available, the implementation provided by [`synth_integer_comparator_2s()`](#qiskit.synthesis.synth_integer_comparator_2s "qiskit.synthesis.synth_integer_comparator_2s") is more efficient.
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits encoding the value to compare to.
+  *   **value** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The value to compare to.
+  *   **geq** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True` flip the target bit if the qubit state is $\geq$ than the value, otherwise implement $<$.
+
+  **Returns**
+
+  A circuit implementing the integer comparator.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Function>
+
