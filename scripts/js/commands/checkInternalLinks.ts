@@ -31,6 +31,7 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
   "docs/api/runtime/tags/usage.mdx",
   "docs/api/runtime/tags/sessions.mdx",
+  "docs/api/qiskit-runtime-rest/tags/instances",
 ];
 
 interface Arguments {
