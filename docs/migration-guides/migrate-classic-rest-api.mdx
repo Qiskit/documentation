@@ -44,10 +44,6 @@ You can see the instances you have access to on the dashboard, or by clicking th
 
 IBM Cloud Identity and Access Management (IAM) bearer tokens are short-lived tokens that are used to authenticate requests to the REST API, and are generated using your account's API key. To generate one, call the [IAM Identity Services API](https://cloud.ibm.com/apidocs/iam-identity-token-api#create-api-key) as shown in the following sample request:
 
-
-<Tabs>
-
-   <TabItem value="Curl" label="Curl">
    ```bash
    curl -X POST 'https://iam.cloud.ibm.com/identity/token' \
    -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -63,27 +59,6 @@ IBM Cloud Identity and Access Management (IAM) bearer tokens are short-lived tok
       "expiration": 1473188353
    }
    ```
-   </TabItem>
-
-   <TabItem value="Python" label="Python">
-   ```python
-   # Use 'service' to invoke operations.
-   import requests
-   import json
-
-   url = 'https://iam.cloud.ibm.com/identity/token'
-   api_key = 'MY_APIKEY'
-   headers = {
-    'Content-Type': 'application/x-www-form-urlendcoded',
-   }
-   data = f'grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey={api_key}'
-   response = requests.post(url, headers=headers, data=data)
-
-   # Bearer token to authorize requests to the REST API
-   bearer_token = response.json()['access_token']
-   ```
-   </TabItem>
-</Tabs>
 
 <Admonition type="note" title="What is a bearer token?">
 A bearer token is a temporary credential that expires after no more than one hour. After the acquired token expires, you must generate a new one to continue calling IBM Cloud or other service APIs. You can only perform actions that are allowed by your level of assigned access within all accounts.
@@ -95,10 +70,10 @@ Use the response property `expires_in` in the API response to identify the lengt
 
 ```bash
 curl -X 'GET' \
-   'https://quantum.cloud.ibm.com/api/qiskit-runtime-rest/usage' \
-   '-H accept: application/json' \
-   '-H authorization: Bearer <BEARER_TOKEN>' \
-   '-H Service-CRN: crn:v1:bluemix:public:quantum-computing:us-east:a/b947c1c5a9378d64aed96696e4d76e8e:a3a7f181-35aa-42c8-94d6-7c8ed6e1a94b::'
+   'https://quantum.cloud.ibm.com/api/v1/analytics/usage' \
+   -H 'accept: application/json' \
+   -H 'Authorization: Bearer <BEARER_TOKEN>' \
+   -H 'Service-CRN: crn:v1:bluemix:public:quantum-computing:us-east:a/b947c1c5a9378d64aed96696e4d76e8e:a3a7f181-35aa-42c8-94d6-7c8ed6e1a94b::'
 ```
 
 ### Changes to the endpoints of the REST API
