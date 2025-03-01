@@ -34,13 +34,6 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 ## Abstract Classes
 
-### Provider
-
-|                                                                             |                                                               |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider")()       | Base common type for all versioned Provider abstract classes. |
-| [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.ProviderV1")() | Base class for a Backend Provider.                            |
-
 ### Backend
 
 |                                                                                                                                   |                                                                                                                                                                                                                    |
@@ -137,8 +130,6 @@ If you have a quantum device or simulator that you would like to integrate with 
 
 For a simple example of a provider, see the [qiskit-aqt-provider](https://github.com/qiskit-community/qiskit-aqt-provider)
 
-<span id="id1" />
-
 ### Provider
 
 A provider class serves a single purpose: to get backend objects that enable executing circuits on a device or simulator. The expectation is that any required credentials and/or authentication will be handled in the initialization of a provider object. The provider object will then provide a list of backends, and methods to filter and acquire backends (using the provided credentials if required). An example provider class looks like:
@@ -164,7 +155,7 @@ class MyProvider:
 
 Ensure that any necessary information for authentication (if required) are present in the class and that the backends method matches the required interface. The rest is up to the specific provider on how to implement.
 
-<span id="id2" />
+<span id="id1" />
 
 ### Backend
 
@@ -242,7 +233,7 @@ class Mybackend(Backend):
 
 The key piece of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") object is how it describes itself to the compiler. This is handled with the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class which defines a model of a backend for the transpiler. A backend object will need to return a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object from the [`target`](qiskit.providers.BackendV2#target "qiskit.providers.BackendV2.target") attribute which the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function will use as its model of a backend target for compilation.
 
-<span id="id3" />
+<span id="id2" />
 
 #### Custom Basis Gates
 
@@ -410,7 +401,7 @@ self.options.set_validator("shots", (1, 4096))
 
 you can refer to the [`set_validator()`](qiskit.providers.Options#set_validator "qiskit.providers.Options.set_validator") documentation for a full list of validation options.
 
-<span id="id4" />
+<span id="id3" />
 
 ### Job
 
@@ -501,7 +492,7 @@ class MySyncJob(Job):
 
 While not directly part of the provider interface, the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is tightly coupled with providers. Specifically the primitive interfaces, such as [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") and [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), are designed to enable provider implementations to provide custom implementations which are optimized for the provider’s backends. This can include customizations like circuit transformations, additional pre- and post-processing, batching, caching, error mitigation, etc. The concept of the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is to explicitly enable this as the primitive objects are higher level abstractions to produce processed higher level outputs (such as probability distributions and expectation values) that abstract away the mechanics of getting the best result efficiently, to concentrate on higher level applications using these outputs.
 
-For example, if your backends were well suited to leverage [mthree](https://github.com/Qiskit/qiskit-addon-mthree) measurement mitigation to improve the quality of the results, you could implement a provider-specific [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler") implementation that leverages the `M3Mitigation` class internally to run the circuits and return quasi-probabilities directly from mthree in the result. Doing this would enable algorithms to get the best results with mitigation applied directly from your backends. You can refer to the documentation in [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") on how to write custom implementations. Also the built-in implementations: [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler"), [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator"), [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler"), and [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") can serve as references/models on how to implement these as well.
+For example, if your backends were well suited to leverage [mthree](https://github.com/Qiskit/qiskit-addon-mthree) measurement mitigation to improve the quality of the results, you could implement a provider-specific [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler") implementation that leverages the `M3Mitigation` class internally to run the circuits and return quasi-probabilities directly from mthree in the result. Doing this would enable algorithms to get the best results with mitigation applied directly from your backends. You can refer to the documentation in [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") on how to write custom implementations. Also, the built-in implementations: [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler"), [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator"), [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler"), and [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") can serve as references/models on how to implement these as well.
 
 ## Migrating from BackendV1 to BackendV2
 

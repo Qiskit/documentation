@@ -46,7 +46,7 @@ The expression system is based on tree representation. All nodes in the tree are
 
 #### Expr
 
-<Class id="qiskit.circuit.classical.expr.Expr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L48-L80" signature="qiskit.circuit.classical.expr.Expr" modifiers="class">
+<Class id="qiskit.circuit.classical.expr.Expr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L48-L81" signature="qiskit.circuit.classical.expr.Expr" modifiers="class">
   Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
 
   Root base class of all nodes in the expression tree. The base case should never be instantiated directly.
@@ -58,11 +58,13 @@ The expression system is based on tree representation. All nodes in the tree are
 
 These objects are mutable and should not be reused in a different location without a copy.
 
+All :class\`Expr\` instances define a boolean `const` attribute, which indicates whether the expression can be evaluated at compile time. Most expression classes infer this during construction based on the const-ness of their operands.
+
 The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var"), which can be either an arbitrarily typed real-time variable, or a wrapper around a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") or [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister").
 
 #### Var
 
-<Class id="qiskit.circuit.classical.expr.Var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L110-L197" signature="qiskit.circuit.classical.expr.Var(var, type, *, name=None)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L113-L203" signature="qiskit.circuit.classical.expr.Var(var, type, *, name=None)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A classical variable.
@@ -85,7 +87,7 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
 
   ##### new
 
-  <Function id="qiskit.circuit.classical.expr.Var.new" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L147-L150" signature="new(name, type)" modifiers="classmethod">
+  <Function id="qiskit.circuit.classical.expr.Var.new" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L151-L154" signature="new(name, type)" modifiers="classmethod">
     Generate a new named variable that owns its own backing storage.
 
     **Parameters**
@@ -105,11 +107,11 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
   </Attribute>
 </Class>
 
-Similarly, literals used in expressions (such as integers) should be lifted to [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes with associated types.
+Similarly, literals used in expressions (such as integers) should be lifted to [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes with associated types. A [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") is always considered a constant expression.
 
 #### Value
 
-<Class id="qiskit.circuit.classical.expr.Value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L200-L217" signature="qiskit.circuit.classical.expr.Value(value, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L206-L224" signature="qiskit.circuit.classical.expr.Value(value, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A single scalar value.
@@ -124,7 +126,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
 #### Unary
 
-<Class id="qiskit.circuit.classical.expr.Unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L220-L273" signature="qiskit.circuit.classical.expr.Unary(op, operand, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L227-L282" signature="qiskit.circuit.classical.expr.Unary(op, operand, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A unary expression.
@@ -137,7 +139,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
   ##### Op
 
-  <Class id="qiskit.circuit.classical.expr.Unary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L232-L254" signature="Op(value)" modifiers="class">
+  <Class id="qiskit.circuit.classical.expr.Unary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L239-L261" signature="Op(value)" modifiers="class">
     Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
 
     Enumeration of the opcodes for unary operations.
@@ -162,7 +164,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
 #### Binary
 
-<Class id="qiskit.circuit.classical.expr.Binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L276-L365" signature="qiskit.circuit.classical.expr.Binary(op, left, right, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L285-L376" signature="qiskit.circuit.classical.expr.Binary(op, left, right, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A binary expression.
@@ -176,7 +178,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
   ##### Op
 
-  <Class id="qiskit.circuit.classical.expr.Binary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L289-L344" signature="Op(value)" modifiers="class">
+  <Class id="qiskit.circuit.classical.expr.Binary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L298-L353" signature="Op(value)" modifiers="class">
     Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
 
     Enumeration of the opcodes for binary operations.
@@ -273,7 +275,7 @@ Bit-like types (unsigned integers) can be indexed by integer types, represented 
 
 #### Index
 
-<Class id="qiskit.circuit.classical.expr.Index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L368-L397" signature="qiskit.circuit.classical.expr.Index(target, index, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L379-L410" signature="qiskit.circuit.classical.expr.Index(target, index, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   An indexing expression.
@@ -291,7 +293,7 @@ Expressions in this system are defined to act only on certain sets of types. How
 
 #### Cast
 
-<Class id="qiskit.circuit.classical.expr.Cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L83-L107" signature="qiskit.circuit.classical.expr.Cast(operand, type, implicit=False)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L84-L110" signature="qiskit.circuit.classical.expr.Cast(operand, type, implicit=False)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A cast from one type to another, implied by the use of an expression in a different context.
