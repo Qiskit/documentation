@@ -102,7 +102,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L75-L206" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=13)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L75-L206" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=14)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -334,6 +334,32 @@ The file header is immediately followed by the circuit payloads. Each individual
 The `STANDALONE_VARS` are new in QPY version 12; before that, there was no data between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-14" />
+
+### Version 14
+
+Version 14 adds support for additional [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") classes.
+
+<span id="changes-to-expr-type" />
+
+#### Changes to EXPR\_TYPE
+
+The following table shows the new type classes added in the version:
+
+| Qiskit class                                                                                             | Type code | Payload |
+| -------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| [`Float`](circuit_classical#qiskit.circuit.classical.types.Float "qiskit.circuit.classical.types.Float") | `f`       | None.   |
+
+<span id="changes-to-expr-value" />
+
+#### Changes to EXPR\_VALUE
+
+The classical expression’s type system now supports new encoding types for value literals, in addition to the existing encodings for int and bool. The new value type encodings are below:
+
+| Python type | Type code | Payload             |
+| ----------- | --------- | ------------------- |
+| `float`     | `f`       | One `double value`. |
 
 <span id="qpy-version-13" />
 

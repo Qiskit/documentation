@@ -8,7 +8,7 @@ python_api_name: qiskit.providers.BackendV2
 
 # BackendV2
 
-<Class id="qiskit.providers.BackendV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L277-L667" signature="qiskit.providers.BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)" modifiers="class">
+<Class id="qiskit.providers.BackendV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L276-L665" signature="qiskit.providers.BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)" modifiers="class">
   Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
 
   Abstract class for Backends
@@ -25,7 +25,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### \_default\_options
 
-  <Function id="qiskit.providers.BackendV2._default_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L430-L444" signature="_default_options()" modifiers="abstract classmethod">
+  <Function id="qiskit.providers.BackendV2._default_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L428-L442" signature="_default_options()" modifiers="abstract classmethod">
     Return the default options
 
     This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
@@ -45,7 +45,7 @@ python_api_name: qiskit.providers.BackendV2
 
   **Parameters**
 
-  *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.provider.Provider")) – An optional backwards reference to the [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider") object that the backend is from
+  *   **provider** – An optional backwards reference to the provider object that the backend is from
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – An optional name for the backend
   *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – An optional description of the backend
   *   **online\_date** ([*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.13)")) – An optional datetime the backend was brought online
@@ -165,15 +165,15 @@ python_api_name: qiskit.providers.BackendV2
   ### provider
 
   <Attribute id="qiskit.providers.BackendV2.provider">
-    Return the backend Provider.
+    Return the backend provider.
 
     **Returns**
 
-    the Provider responsible for the backend.
+    the provider responsible for the backend.
 
     **Return type**
 
-    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    provider
   </Attribute>
 
   ### target
@@ -218,7 +218,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### acquire\_channel
 
-  <Function id="qiskit.providers.BackendV2.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L566-L580" signature="acquire_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L564-L578" signature="acquire_channel(qubit)">
     Return the acquisition channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -246,7 +246,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### control\_channel
 
-  <Function id="qiskit.providers.BackendV2.control_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L582-L603" signature="control_channel(qubits)">
+  <Function id="qiskit.providers.BackendV2.control_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L580-L601" signature="control_channel(qubits)">
     Return the secondary drive channel for the given qubit
 
     This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
@@ -276,7 +276,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### drive\_channel
 
-  <Function id="qiskit.providers.BackendV2.drive_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L534-L548" signature="drive_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2.drive_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L532-L546" signature="drive_channel(qubit)">
     Return the drive channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -304,7 +304,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### measure\_channel
 
-  <Function id="qiskit.providers.BackendV2.measure_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L550-L564" signature="measure_channel(qubit)">
+  <Function id="qiskit.providers.BackendV2.measure_channel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L548-L562" signature="measure_channel(qubit)">
     Return the measure stimulus channel for the given qubit.
 
     This is required to be implemented if the backend supports Pulse scheduling.
@@ -332,7 +332,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### qubit\_properties
 
-  <Function id="qiskit.providers.BackendV2.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L500-L532" signature="qubit_properties(qubit)">
+  <Function id="qiskit.providers.BackendV2.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L498-L530" signature="qubit_properties(qubit)">
     Return QubitProperties for a given qubit.
 
     If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
@@ -356,7 +356,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### run
 
-  <Function id="qiskit.providers.BackendV2.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L643-L667" signature="run(run_input, **options)" modifiers="abstract">
+  <Function id="qiskit.providers.BackendV2.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L641-L665" signature="run(run_input, **options)" modifiers="abstract">
     Run on the backend.
 
     This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that runs circuits. Depending on the backend this may be either an async or sync call. It is at the discretion of the provider to decide whether running should block until the execution is finished or not: the Job class can handle either situation.
@@ -377,7 +377,7 @@ python_api_name: qiskit.providers.BackendV2
 
   ### set\_options
 
-  <Function id="qiskit.providers.BackendV2.set_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L605-L622" signature="set_options(**fields)">
+  <Function id="qiskit.providers.BackendV2.set_options" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/providers/backend.py#L603-L620" signature="set_options(**fields)">
     Set the options fields for the backend
 
     This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.
