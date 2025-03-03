@@ -22,6 +22,7 @@ notebooks = [
     "docs/guides/dynamic-circuits-considerations.ipynb",
     "docs/guides/dynamical-decoupling-pass-manager.ipynb",
     "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
+    "docs/guides/get-qpu-information.ipynb",
     "docs/guides/local-testing-mode.ipynb",
     "docs/guides/operator-class.ipynb",
     "docs/guides/operators-overview.ipynb",
@@ -43,6 +44,7 @@ notebooks = [
     "docs/guides/transpiler-stages.ipynb",
     "docs/guides/visualize-circuits.ipynb",
     "docs/guides/visualize-results.ipynb",
+    "docs/guides/qiskit-addons-cutting-wires.ipynb",
     "docs/guides/qiskit-addons-utils.ipynb",
 ]
 
@@ -81,6 +83,9 @@ notebooks = [
 test-strategies.hardware = { patch="qiskit-ibm-runtime-open" }
 notebooks = [
     "docs/guides/hello-world.ipynb",
+    # The following notebook takes >300s to run and should be executed in the
+    # cron job. Even though it does not use real hardware
+    "docs/guides/qiskit-addons-cutting-gates.ipynb",
 
     # The following notebooks don't seem to work with `test-eagle`, but I'm not
     # sure why. I've added them here to run on the next cron job so we can
@@ -123,8 +128,4 @@ notebooks = [
 
     # This notebook might work but we didn't have time to test it before merging
     "docs/guides/kipu-optimization.ipynb",
-
-    # These were temporarily broken from the Cloud docs migration.
-    # It's a priority to fix them.
-    "docs/guides/get-qpu-information.ipynb",
 ]
