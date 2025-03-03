@@ -75,15 +75,22 @@ async def execute_notebook(job: NotebookJob) -> Result:
         print(f"▶️ Executing {job.path}")
 
     working_directory = tempfile.TemporaryDirectory()
-    possible_exceptions = (
+    execution_exceptions = (
         nbclient.exceptions.CellExecutionError,
         nbclient.exceptions.CellTimeoutError,
     )
     try:
         nb = await _execute_notebook(job, working_directory.name)
-    except possible_exceptions as err:
+    except execution_exceptions as err:
         print(f"❌ Problem in {job.path}:\n{err}")
         return Result(False, reason="Exception in notebook")
+    except SyntaxError as err:
+        print(
+            f"❌ Problem in {job.path}:\n"
+            f"Error parsing code while post-processing (line {err.lineno}):\n"
+            f"  {err.text}"
+        )
+        return Result(False, reason="Invalid syntax")
     finally:
         working_directory.cleanup()
 
