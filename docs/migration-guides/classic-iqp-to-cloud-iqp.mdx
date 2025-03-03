@@ -21,7 +21,7 @@ There are a few major changes you will see in the updated IBM Quantum Platform:
 
 * For Open Plan users, there is no longer a limit to the number of jobs you can have in the queue.
 * Open Plan users cannot run session jobs.  Previously, if you tried to run a job in a session, it was run in job mode.  Now, if you try to run a job in a session, the job fails.  Instead, Open Plan users should explicitly write their code to run in job or batch mode. See [execution modes](/guides/execution-modes) to learn how to set the execution mode.
-* When activating the service, an instance is required, and the channel must be set to `ibm_cloud`. The instance is specified by the its cloud resource name (CRN).
+* When activating the service, an instance is required, and the channel must be set to `ibm_cloud`. The instance is specified by using its cloud resource name (CRN).
 * Quantum computers powered by the state-of-the-art IBM Quantum Heron processor are available through the Open Plan.
 * For classic IBM Quantum Platform users, the hierarchical authorization structure has changed.  That is, there are no hubs, groups, or projects in the new platform. All user management is done through IBM Cloud [identity and access management (IAM)](https://cloud.ibm.com/docs/account?topic=account-iamoverview). By default, access groups are created for you when you create an instance through the IBM Quantum Platform user interface.
 
@@ -74,7 +74,7 @@ Follow these steps to start using the new version of IBM Quantum Platform.
 
 1. Create an API key from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com/)
    <Admonition type="note">
-   This API key is only visible for a short amount of time so be sure to store it in a safe place.  To manage your API key, including copying it again, you need to use IBM Cloud.  See [Managing user API keys](https://cloud.ibm.com/docs/account?topic=account-userapikey) for instructions.
+   This API key is only visible for a short amount of time so be sure to store it in a safe place.  To manage your API key, use IBM Cloud.  See [Managing user API keys](https://cloud.ibm.com/docs/account?topic=account-userapikey) for instructions.
    </Admonition>
 2. Use your API key to activate your Python virtual environment.  See the [installation instructions](/guides/install-qiskit#local) if you do not already have a virtual environment set up.
 
@@ -110,7 +110,7 @@ Follow these steps to start using the new version of IBM Quantum Platform.
       * If you previously saved an IBM Quantum Platform account as the default, specify `set_as_default=True` for your new cloud account when you use the `save_account()` method.
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
-1. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (for example, a public computer), change your API key after each use by creating a new one on the [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com/) to reduce risk. To initialize the service in this situation, you can use code like the following:
+1. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (for example, a public computer), change your API key after each use by following the instructions in the [Delete an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) section to reduce risk. To initialize the service in this situation, you can use code like the following:
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
@@ -123,7 +123,7 @@ Follow these steps to start using the new version of IBM Quantum Platform.
     <Admonition type="caution">
       When sharing code with others, ensure that your API key is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
 
-      If you accidentally share your token with someone or include it in version control like Git, immediately revoke your token by creating a new one on the [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com/) to reduce risk.
+      If you accidentally share your token with someone or include it in version control like Git, immediately revoke your token by following these instructions to [delete an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) to reduce risk.
     </Admonition>
 
 ## Current Qiskit Runtime on IBM Cloud users
