@@ -9,7 +9,7 @@ The [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) class re-defined
 user access for most properties of a
 backend to make them work with native Qiskit data structures and have flatter
 access patterns. However this means when using a provider that upgrades
-from [`BackendV1`](/api/qiskit/0.46/qiskit.providers.BackendV1) to 
+from [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) to 
 [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) existing access patterns will need
 to be adjusted. It is expected for existing providers to deprecate the old
 access where possible to provide a graceful migration, but eventually users
@@ -31,16 +31,16 @@ detailed in the full coupling map returned by
 it might be necessary to look deeper than just the equivalent access with
 [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2).
 
-Below is a table of example access patterns in [`BackendV1`](/api/qiskit/0.46/qiskit.providers.BackendV1) and the new form
+Below is a table of example access patterns in [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) and the new form
 with [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2):
 
-|[`BackendV1`](/api/qiskit/0.46/qiskit.providers.BackendV1) | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) | Notes |
+|[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) | Notes |
 | --- | --- | --- |
 |`backend.configuration().n_qubits` | `backend.num_qubits`| |
-|`backend.configuration().coupling_map` | `backend.coupling_map` | The return from [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) is a [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap) object. while in [`BackendV1`](/api/qiskit/0.46/qiskit.providers.BackendV1) it is an edge list. Also this is just a view of the information contained in `backend.target` which may only be a subset of the information contained in the [`Target`](/api/qiskit/qiskit.transpiler.Target) object. |
+|`backend.configuration().coupling_map` | `backend.coupling_map` | The return from [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) is a [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap) object. while in [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) it is an edge list. Also this is just a view of the information contained in `backend.target` which may only be a subset of the information contained in the [`Target`](/api/qiskit/qiskit.transpiler.Target) object. |
 |`backend.configuration().backend_name` | `backend.name` | |
 |`backend.configuration().backend_version` | `backend.backend_version` | The `BackendV2.version` attribute represents the version of the abstract [`Backend`](/api/qiskit/qiskit.providers.Backend) interface the object implements while `BackendV2.backend_version` is metadata about the version of the backend itself. |
-|`backend.configuration().basis_gates` | `backend.operation_names` | The [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) return is a list of operation names contained in the ``backend.target`` attribute. The [`Target`](/api/qiskit/qiskit.transpiler.Target) may contain more information that can be expressed by this list of names. For example, that some operations only work on a subset of qubits or that some names implement the same gate with different parameters.|
+|`backend.configuration().basis_gates` | `backend.operation_names` | The [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) return is a list of operation names contained in the `backend.target` attribute. The [`Target`](/api/qiskit/qiskit.transpiler.Target) may contain more information that can be expressed by this list of names. For example, that some operations only work on a subset of qubits or that some names implement the same gate with different parameters.|
 |`backend.configuration().dt`|`backend.dt`| |
 |`backend.configuration().dtm`|`backend.dtm` | |
 |`backend.configuration().max_experiments` |`backend.max_circuits` | |
@@ -50,5 +50,5 @@ with [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2):
 |`backend.properties().t1(0)`|`backend.qubit_properties(0).t1`| |
 |`backend.properties().t2(0)`|`backend.qubit_properties(0).t2`| |
 |`backend.properties().frequency(0)`|`backend.qubit_properties(0).frequency`| |
-|`backend.properties().readout_error(0)`|`backend.target["measure"][(0,)].error`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) the error rate for the [`Measure`](/api/qiskit/qiskit.circuit.library.Measure) operation on a given qubit is used to model the readout error. However a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
-|`backend.properties().readout_length(0)`|`backend.target["measure"][(0,)].duration`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) the duration for the [`Measure`](/api/qiskit/qiskit.circuit.library.Measure) operation on a given qubit is used to model the readout length. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
+|`backend.properties().readout_error(0)`|`backend.target["measure"][(0,)].error`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) the error rate for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout error. However a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
+|`backend.properties().readout_length(0)`|`backend.target["measure"][(0,)].duration`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) the duration for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout length. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
