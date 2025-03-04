@@ -93,6 +93,8 @@ $$
 
     The numeric structure of these is that they are all four-bit values of which the low two bits are the (phase-less) symplectic representation of the Pauli operator related to the object, where the low bit denotes a contribution by $Z$ and the second lowest a contribution by $X$, while the upper two bits are `00` for a Pauli operator, `01` for the negative-eigenstate projector, and `10` for the positive-eigenstate projector.
 
+    ### Values
+
     #### X
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.X" attributeValue="2">
@@ -145,6 +147,14 @@ $$
 
     <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.ONE" attributeValue="5">
       The projector to the negative eigenstate of the $Z$ operator: $\lvert1\rangle\langle1\rvert$. Uses the single-letter label `"1"`.
+    </Attribute>
+
+    ### Attributes
+
+    #### label
+
+    <Attribute id="qiskit.quantum_info.SparseObservable.BitTerm.label">
+      The single-character string label used to represent this term in the [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") alphabet.
     </Attribute>
   </Class>
 
@@ -326,7 +336,7 @@ $$
   The tensor product is calculated with [`tensor()`](#qiskit.quantum_info.SparseObservable.tensor "qiskit.quantum_info.SparseObservable.tensor") (for standard, juxtaposition ordering of Pauli labels) or [`expand()`](#qiskit.quantum_info.SparseObservable.expand "qiskit.quantum_info.SparseObservable.expand") (for the reverse order). The `^` operator is overloaded to be equivalent to [`tensor()`](#qiskit.quantum_info.SparseObservable.tensor "qiskit.quantum_info.SparseObservable.tensor").
 
   <Admonition title="Note" type="note">
-    When using the binary operators `^` ([`tensor()`](#qiskit.quantum_info.SparseObservable.tensor "qiskit.quantum_info.SparseObservable.tensor")) and `&` (`compose()`), beware that [Python’s operator-precedence rules](https://docs.python.org/3/reference/expressions.html#operator-precedence) may cause the evaluation order to be different to your expectation. In particular, the operator `+` binds more tightly than `^` or `&`, just like `*` binds more tightly than `+`.
+    When using the binary operators `^` ([`tensor()`](#qiskit.quantum_info.SparseObservable.tensor "qiskit.quantum_info.SparseObservable.tensor")) and `&` ([`compose()`](#qiskit.quantum_info.SparseObservable.compose "qiskit.quantum_info.SparseObservable.compose")), beware that [Python’s operator-precedence rules](https://docs.python.org/3/reference/expressions.html#operator-precedence) may cause the evaluation order to be different to your expectation. In particular, the operator `+` binds more tightly than `^` or `&`, just like `*` binds more tightly than `+`.
 
     When using the operators in mixed expressions, it is safest to use parentheses to group the operands of tensor products.
   </Admonition>
@@ -474,6 +484,34 @@ $$
     >>> obs.clear()
     >>> assert obs == SparseObservable.zero(obs.py_num_qubits())
     ```
+  </Function>
+
+  #### compose
+
+  <Function id="qiskit.quantum_info.SparseObservable.compose" signature="compose(other, /, qargs=None, *, front=False)">
+    Compose another [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") onto this one.
+
+    In terms of operator algebras, composition corresponds to left-multiplication: `c = a.compose(b)` corresponds to \$C = B A\$. In other words, `a.compose(b)` returns an operator that “performs `a`, and then performs `b` on the result”. The argument `front=True` instead makes this a right multiplication.
+
+    `self` and `other` must be the same size, unless `qargs` is given, in which case `other` can be smaller than `self`, provided the number of qubits in `other` and the length of `qargs` match. `qargs` can never contain duplicates or indices of qubits that do not exist in `self`.
+
+    Beware that this function can cause exponential explosion of the memory usage of the observable, as the alphabet of [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable") is not closed under composition; the composition of two single-bit terms can be a sum, which multiplies the total number of terms. This memory usage is not \_necessarily\_ inherent to the resultant observable, but finding an efficient re-factorization of the sum is generally equally computationally hard. It’s better to use domain knowledge of your observables to minimize the number of terms that ever exist, rather than trying to simplify them after the fact.
+
+    **Parameters**
+
+    *   **other** – the observable used to left-multiply `self`.
+
+    *   **qargs** –
+
+        if given, the qubits in `self` to be associated with the qubits in `other`. Put another way: if this is given, it is similar to a more efficient implementation of:
+
+        ```python
+        self.compose(other.apply_layout(qargs, self.num_qubits))
+        ```
+
+        as no temporary observable is created to store the applied-layout form of `other`.
+
+    *   **front** – if `True`, then right-multiply by `other` instead of left-multiplying (default `False`). The `qargs` are still applied to `other`. This is most useful when `qargs` is set, or `other` might be an object that must be coerced to [`SparseObservable`](#qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable").
   </Function>
 
   #### conjugate
