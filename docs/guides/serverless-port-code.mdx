@@ -33,7 +33,7 @@ from qiskit.circuit.random import random_circuit
 qc_random = [(random_circuit(20, 20, measure=True)) for _ in range(30)]
 optimization_level = 3
 
-service = QiskitRuntimeService(channel="ibm_quantum")
+service = QiskitRuntimeService()
 backend = service.get_backend(backend_name)
 
 pass_manager = generate_preset_pass_manager(
@@ -85,7 +85,7 @@ def transpile_parallel(circuit, pass_manager):
 
 try:
     # Get backend
-    service = QiskitRuntimeService(channel="ibm_quantum")
+    service = QiskitRuntimeService()
     backend = service.get_backend(backend_name)
 
     # run distributed tasks as async function
@@ -176,7 +176,7 @@ def transpile_parallel(circuit, pass_manager):
 
 try:
     # Get backend
-    service = QiskitRuntimeService(channel="ibm_cloud")
+    service = QiskitRuntimeService()
     backend = service.get_backend(backend_name)
 
     # run distributed tasks as async function
