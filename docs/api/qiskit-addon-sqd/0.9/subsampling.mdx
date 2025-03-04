@@ -1,0 +1,81 @@
+---
+title: subsampling (v0.9)
+description: API reference for qiskit_addon_sqd.subsampling in qiskit-addon-sqd v0.9
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_sqd.subsampling
+---
+
+<span id="module-qiskit_addon_sqd.subsampling" />
+
+<span id="subsampling-qiskit-addon-sqd-subsampling" />
+
+# Subsampling
+
+`qiskit_addon_sqd.subsampling`
+
+Functions for creating batches of samples from a bitstring matrix.
+
+### subsample
+
+<Function id="qiskit_addon_sqd.subsampling.subsample" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.9/qiskit_addon_sqd/subsampling.py#L87-L151" signature="subsample(bitstring_matrix, probabilities, samples_per_batch, num_batches, rand_seed=None)">
+  Subsample batches of bit arrays from an input `bitstring_matrix`.
+
+  Each individual batch will be sampled without replacement from the input `bitstring_matrix`. Samples will be replaced after creation of each batch, so different batches may contain identical samples.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
+  *   **probabilities** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 1D array specifying a probability distribution over the bitstrings
+  *   **samples\_per\_batch** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw for each batch
+  *   **num\_batches** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of batches to generate
+  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.2)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed to control random behavior
+
+  **Returns**
+
+  A list of bitstring matrices subsampled from the input bitstring matrix.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of elements in `probabilities` must equal the number of rows in `bitstring_matrix`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Samples per batch and number of batches must be positive integers.
+
+  **Return type**
+
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+</Function>
+
+### postselect\_and\_subsample
+
+<Function id="qiskit_addon_sqd.subsampling.postselect_and_subsample" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.9/qiskit_addon_sqd/subsampling.py#L23-L84" signature="postselect_and_subsample(bitstring_matrix, probabilities, *, hamming_right, hamming_left, samples_per_batch, num_batches, rand_seed=None)">
+  Subsample batches of bit arrays with correct hamming weight from an input `bitstring_matrix`.
+
+  Bitstring samples with incorrect hamming weight on either their left or right half will not be sampled.
+
+  Each individual batch will be sampled without replacement from the input `bitstring_matrix`. Samples will be replaced after creation of each batch, so different batches may contain identical samples.
+
+  **Parameters**
+
+  *   **bitstring\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 2D array of `bool` representations of bit values such that each row represents a single bitstring.
+  *   **probabilities** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")) – A 1D array specifying a probability distribution over the bitstrings
+  *   **hamming\_right** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The target hamming weight for the right half of sampled bitstrings
+  *   **hamming\_left** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The target hamming weight for the left half of sampled bitstrings
+  *   **samples\_per\_batch** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of samples to draw for each batch
+  *   **num\_batches** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of batches to generate
+  *   **rand\_seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v2.2)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – A seed to control random behavior
+
+  **Returns**
+
+  A list of bitstring matrices with correct hamming weight subsampled from the input bitstring matrix
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – The number of elements in `probabilities` must equal the number of rows in `bitstring_matrix`.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Hamming weights must be non-negative integers.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Samples per batch and number of batches must be positive integers.
+
+  **Return type**
+
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+</Function>
+
