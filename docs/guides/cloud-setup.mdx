@@ -31,8 +31,11 @@ Available IBM Cloud plans:
 
 1. Before setting up with IBM Cloud, ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/guides/install-qiskit#local).
 1. If you do not already have one, set up an [IBM Cloud account.](https://cloud.ibm.com/registration?cm_sp=quantum&utm_content=quantum-next&target=https%3A%2F%2Fquantum.cloud.ibm.com&error_uri=)
+   <Admonition type="note">
+   You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the top header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
+   </Admonition>
 1. Create an instance, if necessary. Go to the [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com). If you have one or more instances shown, continue to the next step.
-   1. Click **Create instance**. Choose a name and the plan to use. Next, scroll down to see the **Terms** link.  After reading the terms, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Next**.
+   1. Make sure that you have the correct account selected from the account switcher in the top header. Click **Create instance**. Choose a name and the plan to use. Next, scroll down to see the **Terms** link.  After reading the terms, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Next**.
    1. On the Plan inheritance page, leave the default setting (toggle is not enabled) and click **Next** if you're setting up an Open instance.  If you are not setting up an Open instance and you want different QPUs to be available on this instance, enable the "Customize allocated compute resources" toggle, choose the QPUs you want this instance to be able to access, then click **Next**.
       <Admonition type="note">
       If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later.
@@ -161,7 +164,7 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
 
 <Admonition type="caution">
 
-Because of the security risks posed by executing code that contains your API key, the recommended authentication method is to first create an environment variable for your API key, but only do so **if you are working in a trusted Python environment (such as on a personal laptop or workstation).** 
+Because of the security risks posed by executing code that contains your API key, the recommended authentication method is to first create an environment variable for your API key, but only do so **if you are working in a trusted Python environment (such as on a personal laptop or workstation).**
 
 [Skip to the next step](#rest-untrusted) if you are not using a trusted environment, such as a shared or public computer.
 
