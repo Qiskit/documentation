@@ -17,6 +17,9 @@ This documentation is relevant to the new IBM Quantum&reg; Platform. If you need
 </CloudContent>
 
 The following example demonstrates how to port existing code to leverage Qiskit Serverless.
+<Admonition type="note">
+The following code assumes that you have saved your credentials. If you have not, follow the instructions in <LegacyContent>[Set up an IBM Quantum channel](/guides/setup-channel#iqp)</LegacyContent><CloudContent>[Set up your IBM Cloud account](/guides/cloud-setup#cloud-untrusted)</CloudContent> to authenticate with your API key.
+</Admonition>
 
 ## Update the experiment
 <LegacyContent>
@@ -40,7 +43,7 @@ pass_manager = generate_preset_pass_manager(
 # @distribute_task(target={"cpu": 1})
 def transpile_parallel(circuit, pass_manager):
     """Distributed transpilation for an abstract circuit into an ISA circuit for a given backend."""
-    
+
     isa_circuit = pass_manager.run(circuit)
 
     return isa_circuit
@@ -75,7 +78,7 @@ pass_manager = generate_preset_pass_manager(
 @distribute_task(target={"cpu": 1})
 def transpile_parallel(circuit, pass_manager):
     """Distributed transpilation for an abstract circuit into an ISA circuit for a given backend."""
-    
+
     isa_circuit = pass_manager.run(circuit)
 
     return isa_circuit
@@ -101,7 +104,7 @@ try:
     })
 
 except Exception as e:
-    # Exception handling 
+    # Exception handling
     import traceback
     print(traceback.format_exc())
 ```
@@ -131,7 +134,7 @@ pass_manager = generate_preset_pass_manager(
 # @distribute_task(target={"cpu": 1})
 def transpile_parallel(circuit, pass_manager):
     """Distributed transpilation for an abstract circuit into an ISA circuit for a given backend."""
-    
+
     isa_circuit = pass_manager.run(circuit)
 
     return isa_circuit
@@ -166,7 +169,7 @@ pass_manager = generate_preset_pass_manager(
 @distribute_task(target={"cpu": 1})
 def transpile_parallel(circuit, pass_manager):
     """Distributed transpilation for an abstract circuit into an ISA circuit for a given backend."""
-    
+
     isa_circuit = pass_manager.run(circuit)
 
     return isa_circuit
@@ -192,7 +195,7 @@ try:
     })
 
 except Exception as e:
-    # Exception handling 
+    # Exception handling
     import traceback
     print(traceback.format_exc())
 ```
@@ -209,7 +212,7 @@ Follow the instructions on the [Introduction to Qiskit Functions](/guides/functi
 from qiskit_ibm_catalog import QiskitServerless, QiskitFunction
 
 # Authenticate to the remote cluster and submit the pattern for remote execution.
-serverless = QiskitServerless() 
+serverless = QiskitServerless()
 
 transpile_remote_demo = QiskitFunction(
     title="transpile_remote_serverless",
