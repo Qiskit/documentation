@@ -27,6 +27,22 @@ Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; P
 </LegacyContent>
 
 <span id="cost-limit"></span>
+## View the cost limit or instance limit
+
+There are several ways to view the current cost limit:
+
+* **API**:
+   * New IBM Quantum Platform users: [`GET /v1/instances/configuration`](/api/qiskit-runtime-rest/tags/instances).
+   * Classic Qiskit Runtime on IBM Cloud users: [`GET /instances/configuration`](https://cloud.ibm.com/apidocs/quantum-computing#get-instance)
+
+* **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
+
+   ```cli
+   ibmcloud resource service-instance $INSTANCE_CRN_OR_NAME -o JSON
+   ```
+{/** **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then open the instance and click the edit button by the Cost limit. Delete the value and click **Save**. */}
+
+
 ## Set or change a cost limit or instance limit
 
 An instance administrator can limit how much is spent. There are several ways to set this limit:
@@ -47,21 +63,6 @@ The cost limit or instance limit refers to the total cost of all jobs run with t
     <Admonition type="note">
       The cost limit is always specified in US dollars (USD), then converted to runtime seconds. However, for monthly billing purposes, you are charged in your local currency, specified on your IBM Cloud account. Because currency exchange rates can fluctuate, the cost for X runtime seconds might be different when initially calculated in USD than when you’re actually charged in your local currency. As a result, if your local currency is not USD, the total amount charged for the number of seconds specified in this field could vary from the dollar amount you specify.
     </Admonition>
-
-## View the cost limit or instance limit
-
-There are several ways to view the current cost limit:
-
-* **API**:
-   * New IBM Quantum Platform users: [`GET /v1/instances/configuration`](/api/qiskit-runtime-rest/tags/instances).
-   * Classic Qiskit Runtime on IBM Cloud users: [`GET /instances/configuration`](https://cloud.ibm.com/apidocs/quantum-computing#get-instance)
-
-* **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
-
-   ```cli
-   ibmcloud resource service-instance-update $INSTANCE_CRN_OR_NAME -p '{"instance_limit_seconds":null}'
-   ```
-{/** **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then open the instance and click the edit button by the Cost limit. Delete the value and click **Save**. */}
 
 
 ## Remove a cost limit or instance limit
