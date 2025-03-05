@@ -48,23 +48,30 @@ An instance administrator can limit how much is spent. There are several ways to
       3. Return to the CLI window and paste the code.
    1. Establish the API: `ibmcloud api cloud.ibm.com`.
    1. Update an instance's cost limit:
+
       ```cli
          ibmcloud resource service-instance-update <instance_CRN> -p
          '{"instance_limit_seconds":"<seconds>"}'
       ```
+
       where:
 
       \<`instance_CRN`\> is the CRN of the instance you want to update. You can get it from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com)
 
-      \<`seconds`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds $(1000 * \$1.6 = \$1,600)$, enter this command:
+      \<`seconds`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds $(1000*\$1.6=\$1,600)$, enter this command:
+
       ```cli
          ibmcloud resource service-instance-update <instance_CRN> -p '{"instance_limit_seconds":"1000"}'
       ```
+
    1. View the instance details to verify that it was updated:
+
       ```cli
          ibmcloud resource service-instance <instance_CRN> -o json
       ```
+
       This command returns the information in JSON.  For example:
+
       ```json
           [
             {
@@ -93,6 +100,7 @@ There are several ways to view the current cost limit:
    ibmcloud resource service-instance-update <instance_CRN> -p
       '{"instance_limit_seconds":null}'
    ```
+
 {/** **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then open the instance and click the edit button by the Cost limit. Delete the value and click **Save**. */}
 
 
@@ -110,6 +118,7 @@ An instance administrator can remove the cost limit in several ways:
    ibmcloud resource service-instance-update <instance_CRN> -p
       '{"instance_limit_seconds":null}'
    ```
+
 {/* * **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then open the instance and click the edit button by the Cost limit. Delete the value and click **Save**. */}
 
 ### What happens when the cost limit is reached
