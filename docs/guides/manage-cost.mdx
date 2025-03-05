@@ -44,7 +44,7 @@ An instance administrator can limit how much is spent. There are several ways to
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
    1. Log in to the CLI: `ibmcloud login --sso`.
       1. When you press return, you are asked whether you want to open a browser.  Type `Y`.
-      2. After logging in to the browser that opens, a code is shown.  Click the copy button.
+      2. After logging in to the browser that opens, a code is shown.  Click copy.
       3. Return to the CLI window and paste in the code.
    1. Establish the API: `ibmcloud api cloud.ibm.com`
    1. Update an instance's cost limit:
@@ -56,7 +56,7 @@ An instance administrator can limit how much is spent. There are several ways to
 
       \<`INSTANCE_CRN`\> is the CRN of the instance you want to update. You can get it from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com)
 
-      \<`SECONDS`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds (1000 * $1.6 = $1,600)
+      \<`SECONDS`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds (1000 * $1.6 = $1,600), enter this command: `ibmcloud resource service-instance-update <YOUR_CRN> -p '{"instance_limit_seconds":"1000"}'`
    1. View the instance details to verify that it was updated: `ibmcloud resource service-instance <INSTANCE_CRN> -o json`
       This command returns a JSON.  For example:
       ```json
