@@ -236,6 +236,56 @@ Qiskit strives to support as many operating systems as possible, but due to limi
 
 Additionally, Qiskit only supports the CPython implementation of the Python language. Running with other Python interpreters such as PyPy is not supported.
 
+### Qiskit 2.x
+
+In the Qiskit 2.x release series the supported platforms are:
+
+<details>
+  <summary>
+    Tier 1
+  </summary>
+  Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
+
+  Tier 1 operating systems:
+
+  - Linux x86_64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification).
+  - macOS x86_64 (10.12 or later)
+  - macOS ARM64 (11.0 or newer)
+  - Windows 64-bit (Windows 10 and later supported)
+  - Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+</details>
+
+<details>
+  <summary>
+    Tier 2
+  </summary>
+  Tier 2 operating systems are not tested as part of development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process and these packages can be expected to be installed with just a functioning Python environment.
+
+  Tier 2 operating systems:
+
+  -
+
+</details>
+
+<details>
+  <summary>
+    Tier 3
+  </summary>
+  Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with just a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
+
+  Tier 3 operating systems:
+
+  - Linux ppc64le (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/)packaging specification)
+  - Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+</details>
+
+Starting in Qiskit 2.0.0 only 64 bit platforms are supported and 32 bit platforms are not supported. You will not be able to build from source
+on 32 bit platforms either, as internally the Qiskit Rust code assumes a 64 bit pointer width.
+
+### Qiskit 1.x
+
+In the Qiskit 1.x release series the supported platforms are:
+
 <details>
   <summary>
     Tier 1
