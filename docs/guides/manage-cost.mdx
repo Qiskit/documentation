@@ -49,22 +49,25 @@ An instance administrator can limit how much is spent. There are several ways to
    1. Establish the API: `ibmcloud api cloud.ibm.com`
    1. Update an instance's cost limit:
       ```cli
-         ibmcloud resource service-instance-update <INSTANCE_CRN> -p
-         '{"instance_limit_seconds":"<SECONDS>"}'
+         ibmcloud resource service-instance-update <instance_CRN> -p
+         '{"instance_limit_seconds":"<seconds>"}'
       ```
       where:
 
-      \<`INSTANCE_CRN`\> is the CRN of the instance you want to update. You can get it from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com)
+      \<`instance_CRN`\> is the CRN of the instance you want to update. You can get it from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com)
 
-      \<`SECONDS`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds (1000 * $1.6 /= /$1,600), enter this command: `ibmcloud resource service-instance-update <YOUR_CRN> -p '{"instance_limit_seconds":"1000"}'`
-   1. View the instance details to verify that it was updated: `ibmcloud resource service-instance <INSTANCE_CRN> -o json`
+      \<`seconds`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds (1000 * $1.6 /= /$1,600), enter this command: `ibmcloud resource service-instance-update <instance_CRN> -p '{"instance_limit_seconds":"1000"}'`
+   1. View the instance details to verify that it was updated:
+      ```cli
+         `ibmcloud resource service-instance <instance_CRN> -o json`
+      ```
       This command returns a JSON.  For example:
       ```json
           [
             {
             ...
             "parameters": {
-            "instance_limit_seconds": "<SECONDS>"
+            "instance_limit_seconds": "<seconds>"
             }
             ...
             }
