@@ -58,19 +58,19 @@ An instance administrator can limit how much is spent. There are several ways to
 
       \<`seconds`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds $(1000 * \$1.6 = \$1,600)$, enter this command:
       ```cli
-      `ibmcloud resource service-instance-update <instance_CRN> -p '{"instance_limit_seconds":"1000"}'`
+         ibmcloud resource service-instance-update <instance_CRN> -p '{"instance_limit_seconds":"1000"}'
       ```
    1. View the instance details to verify that it was updated:
       ```cli
-         `ibmcloud resource service-instance <instance_CRN> -o json`
+         ibmcloud resource service-instance <instance_CRN> -o json
       ```
-      This command returns a JSON object.  For example:
+      This command returns the information in JSON.  For example:
       ```json
           [
             {
             ...
             "parameters": {
-            "instance_limit_seconds": "<seconds>"
+            "instance_limit_seconds": "1000"
             }
             ...
             }
