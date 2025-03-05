@@ -27,7 +27,9 @@ Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; P
 </LegacyContent>
 
 <span id="cost-limit"></span>
-## Set or change a cost limit or instance limit
+## Set, change, and view a cost limit or instance limit
+
+ADD NEW PILL
 
 An instance administrator can limit how much is spent. There are several ways to set this limit:
 
@@ -36,10 +38,33 @@ An instance administrator can limit how much is spent. There are several ways to
    * Classic Qiskit Runtime on IBM Cloud users: [`PUT /instances/configuration  "instance_limit":<seconds>`](https://cloud.ibm.com/apidocs/quantum-computing#replace-instance-data)
 
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI.](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
+   1. Log in to the CLI: `ibmcloud login --sso`.
+      * When you press return, you are asked whether you want to open a browser.  Type `Y`.
+      * Enter your email and password in the browser that opens, then a code is shown.  Click the copy button.
+      * Go back to the CLI window and paste in the code.
+   1. Establish the API: `ibmcloud api cloud.ibm.com`
+   1. Update the max cost limit of an instance:
+      ```cli
+         ibmcloud resource service-instance-update <INSTANCE_CRN> -p
+         '{"instance_limit_seconds":"<SECONDS>"}'
+      ```
+      where:
+      \<`INSTANCE_CRN`\>: The CRN of the instance you want to update. You can get it from the [IBM Quantum Platform dashboard.]((https://quantum.cloud.ibm.com))
+      \<`SECONDS`\>: The maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds (1000 * $1.6 = $1,600)
+   1. View the limit to verify that it was updated: `ibmcloud resource service-instance <INSTANCE_CRN> -o json`
+      This command returns a JSON.  For example:
+      ```json
+          [
+            {
+            ...
+            "parameters": {
+            "instance_limit_seconds": "<SECONDS>"
+            }
+            ...
+            }
+          ]
+      ```
 
-   ```cli
-   ibmcloud resource service-instance-update $INSTANCE_CRN_OR_NAME -p '{"instance_limit_seconds":"1234"}'
-   ```
 {/* * **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then click the instance and set the cost limit. */}
 
 The cost limit or instance limit refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
