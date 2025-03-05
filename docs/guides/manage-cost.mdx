@@ -12,7 +12,7 @@ description: How to manage costs of running jobs on QPUs when using the Standard
 * The information in this topic only applies to those who are using the Standard Plan for Qiskit Runtime.  There are no costs associated with the IBM Quantum Platform Open Plan.
 </Admonition>
 
-Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; Platform.
+This guide describes how to set a cost limit or instance limit.  You can also manage cost by [minimizing a workload's quantum time.](minimize-time)
 
 </CloudContent>
 <LegacyContent>
@@ -23,13 +23,13 @@ Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; P
 
 The IBM Cloud&reg; Quantum Standard plan is not free, except when running jobs on simulators. Use the information in this topic to help you understand how much you’re paying and how to limit your costs.
 
-Learn how to limit your costs when using the Standard Plan on IBM Quantum&reg; Platform.
+Learn how to limit your costs when using the Standard Plan on IBM Quantum Platform.
 </LegacyContent>
 
 The _cost limit_ or _instance limit_ refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
 
     <Admonition type="note">
-      The cost limit is always specified in US dollars (USD), then converted to runtime seconds. However, for monthly billing purposes, you are charged in your local currency, specified on your IBM Cloud account. Because currency exchange rates can fluctuate, the cost for X runtime seconds might be different when initially calculated in USD than when you’re actually charged in your local currency. As a result, if your local currency is not USD, the total amount charged for the number of seconds specified in this field could vary from the dollar amount you specify.
+      The cost limit is always specified in US dollars (USD), then converted to runtime seconds. However, for monthly billing purposes, you are charged in your local currency, specified on your IBM Cloud&reg; account. Because currency exchange rates can fluctuate, the cost for X runtime seconds might be different when initially calculated in USD than when you’re actually charged in your local currency. As a result, if your local currency is not USD, the total amount charged for the number of seconds specified in this field could vary from the dollar amount you specify.
     </Admonition>
 
 <span id="cost-limit"></span>
@@ -45,8 +45,8 @@ An instance administrator can limit how much is spent. There are several ways to
    1. Log in to the CLI: `ibmcloud login --sso`.
       1. When you press return, you are asked whether you want to open a browser.  Type `Y`.
       2. After logging in to the browser that opens, a code is shown.  Click copy.
-      3. Return to the CLI window and paste in the code.
-   1. Establish the API: `ibmcloud api cloud.ibm.com`
+      3. Return to the CLI window and paste the code.
+   1. Establish the API: `ibmcloud api cloud.ibm.com`.
    1. Update an instance's cost limit:
       ```cli
          ibmcloud resource service-instance-update <instance_CRN> -p
@@ -56,12 +56,15 @@ An instance administrator can limit how much is spent. There are several ways to
 
       \<`instance_CRN`\> is the CRN of the instance you want to update. You can get it from the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com)
 
-      \<`seconds`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds $(1000 * /$1.6 = /$1,600)$, enter this command: `ibmcloud resource service-instance-update <instance_CRN> -p '{"instance_limit_seconds":"1000"}'`
+      \<`seconds`\> is the maximum number of seconds that can be consumed by the instance. For example, to establish a limit of 1000 seconds $(1000 * \$1.6 = \$1,600)$, enter this command:
+      ```cli
+      `ibmcloud resource service-instance-update <instance_CRN> -p '{"instance_limit_seconds":"1000"}'`
+      ```
    1. View the instance details to verify that it was updated:
       ```cli
          `ibmcloud resource service-instance <instance_CRN> -o json`
       ```
-      This command returns a JSON.  For example:
+      This command returns a JSON object.  For example:
       ```json
           [
             {
