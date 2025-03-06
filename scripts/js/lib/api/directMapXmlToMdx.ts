@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { XMLParser } from "fast-xml-parser";
 import type {
   Root,
   BlockContent,
@@ -19,12 +18,6 @@ import type {
   List,
   ListItem,
 } from "mdast";
-
-export const parser = new XMLParser({
-  preserveOrder: true,
-  alwaysCreateTextNode: true,
-  trimValues: false,
-});
 
 // This type represents a node where all descendents have a 1:1 mapping with an mdx
 // node. For example:

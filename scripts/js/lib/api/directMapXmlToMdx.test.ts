@@ -13,22 +13,13 @@
 import { expect, test } from "@playwright/test";
 import { toMarkdown } from "mdast-util-to-markdown";
 
-import { directMapXmlToMdx, parser } from "./directMapXmlToMdx.js";
-
-// Extra whitespace in the XML can appear in the MDX output.
-// This shouldn't affect how it renders on the site so we trim it to reduce noise.
-// TODO: Move this to lib and run on output
-function collapseWhitespace(mdx: string): string {
-  return mdx
-    .replaceAll("&#x20;", " ")
-    .replace(/\n(\s*\n)+/gm, "\n\n")
-    .trim();
-}
+import { directMapXmlToMdx } from "./directMapXmlToMdx.js";
+import { xmlParser, collapseWhitespace } from "./xmlToMdx.js";
 
 // Helper function to parse string input and stringify output
 // This is easier than writing and reading the XML and MDX ASTs.
 function directMapXmlToMdxString(xml: string): string {
-  const parsedXml = parser.parse(xml);
+  const parsedXml = xmlParser.parse(xml);
   // console.log(JSON.stringify(parsedXml));
   const mdastRoot = directMapXmlToMdx(parsedXml);
   // console.log(JSON.stringify(mdastRoot, null, 2));
