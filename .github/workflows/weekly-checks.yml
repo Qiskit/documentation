@@ -39,8 +39,7 @@ jobs:
           --qiskit-release-notes
           --current-apis
           --dev-apis
-          --historical-apis &
-          sleep 1
+          --historical-apis
       - name: Stop Docker preview (cloud app)
         if: steps.all-changed-files.outputs.any_changed == 'true'
         run: docker ps -q | xargs docker stop
