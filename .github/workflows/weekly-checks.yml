@@ -39,7 +39,11 @@ jobs:
           --qiskit-release-notes
           --current-apis
           --dev-apis
-          --historical-apis
+          --historical-apis &
+          sleep 1
+      - name: Stop Docker preview (cloud app)
+        if: steps.all-changed-files.outputs.any_changed == 'true'
+        run: docker ps -q | xargs docker stop
       - name: Start local Docker preview (legacy app)
         run: |
           ./start --legacy &
