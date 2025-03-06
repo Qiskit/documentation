@@ -20,7 +20,9 @@ import { mean } from "lodash-es";
 import { zxMain } from "../lib/zx.js";
 
 // These are expected to 404 in the cloud app due to being legacy only.
-const LEGACY_ONLY_PAGES: Set<string> = new Set(["docs/guides/setup-channel.mdx"]);
+const LEGACY_ONLY_PAGES: Set<string> = new Set([
+  "docs/guides/setup-channel.mdx",
+]);
 
 // These are expected to 404 in the legacy app due to being cloud only.
 const CLOUD_ONLY_PAGES: Set<string> = new Set([
@@ -210,9 +212,9 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   return result.filter((fp) => filterPlatformSpecificPage(fp, args.legacy));
 }
 
-function filterPlatformSpecificPage(page: string, legacy?: boolean){
-  if (legacy){
-    return !CLOUD_ONLY_PAGES.has(page) && !page.startsWith('/docs/api');
+function filterPlatformSpecificPage(page: string, legacy?: boolean) {
+  if (legacy) {
+    return !CLOUD_ONLY_PAGES.has(page) && !page.startsWith("/docs/api");
   }
 
   return !LEGACY_ONLY_PAGES.has(page);
