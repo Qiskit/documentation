@@ -1,6 +1,6 @@
 // This code is a Qiskit project.
 //
-// (C) Copyright IBM 2023.
+// (C) Copyright IBM 2025.
 //
 // This code is licensed under the Apache License, Version 2.0. You may
 // obtain a copy of this license in the LICENSE file in the root directory
@@ -13,7 +13,7 @@
 import { expect, test } from "@playwright/test";
 import { toMarkdown } from "mdast-util-to-markdown";
 
-import { directMapXmlToMdx, parser } from "./xmlToMdx.js";
+import { directMapXmlToMdx, parser } from "./directMapXmlToMdx.js";
 
 // Extra whitespace in the XML can appear in the MDX output.
 // This shouldn't affect how it renders on the site so we trim it to reduce noise.
