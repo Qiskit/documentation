@@ -1,9 +1,17 @@
-import { XMLParser, XMLBuilder, XMLValidator } from "fast-xml-parser";
-import type { Root } from "mdast";
+import { XMLParser } from "fast-xml-parser";
+import type {
+  Root,
+  BlockContent,
+  Text,
+  PhrasingContent,
+  List,
+  ListItem,
+} from "mdast";
 
 export const parser = new XMLParser({
   preserveOrder: true,
   alwaysCreateTextNode: true,
+  trimValues: false,
 });
 
 // This type represents a node where all descendents have a 1:1 mapping with an mdx
@@ -14,24 +22,57 @@ export const parser = new XMLParser({
 //   to a list, but how would we map back?). Therefore, MdxMappableXmlNodes can't
 //   have this as a descendent.
 type MdxMappableXmlNode =
-  | { "#text": string }
+  | XmlTextNode
+  | XmlListNode
   | { title: MdxMappableXmlNode[] }
   | { para: MdxMappableXmlNode[] }
-  | { computeroutput: MdxMappableXmlNode[] }
-  | { verbatim: MdxMappableXmlNode[] };
+  | { computeroutput: XmlTextNode[] }
+  | { verbatim: XmlTextNode[] };
+type XmlTextNode = { "#text": string };
+type XmlListNode = { itemizedlist: Array<{ listitem: MdxMappableXmlNode[] }> };
 
 /**
  * The <sect1> nodes are the prose docstrings of the function and can be mapped to standard markdown.
  * TODO: Back this up with a source
  */
-export function directMapXmlToMdx(node: MdxMappableXmlNode[]): Root {
+export function directMapXmlToMdx(nodes: MdxMappableXmlNode[]): Root {
   return {
     type: "root",
-    children: [
-      {
-        type: "paragraph",
-        children: [{ type: "text", value: "Hello, world!" }],
-      },
-    ],
+    children: nodes.map(directMapNode),
   };
+}
+
+function directMapNode(
+  node: MdxMappableXmlNode,
+): BlockContent | PhrasingContent | Text {
+  if ("#text" in node) return { type: "text", value: node["#text"] };
+  if ("para" in node)
+    return { type: "paragraph", children: node.para.map(directMapNode) };
+  if ("title" in node)
+    return { type: "heading", children: node.title.map(directMapNode) };
+  if ("verbatim" in node)
+    return {
+      type: "code",
+      lang: "C",
+      value: extractText(node.verbatim).trimRight(),
+    };
+  if ("computeroutput" in node)
+    // TODO: Handle xrefs in computeroutput nodes
+    return { type: "inlineCode", value: extractText(node.computeroutput) };
+  if ("itemizedlist" in node) return parseList(node);
+  throw new Error(`Can't map XML node: ${JSON.stringify(node)}`);
+}
+
+function parseList(node: XmlListNode): List {
+  const children: ListItem[] = node.itemizedlist
+    .filter((n) => !!n.listitem)
+    .map((n) => ({
+      type: "listItem",
+      children: n.listitem.map(directMapNode),
+    }));
+  return { type: "list", children };
+}
+
+function extractText(textNodes: XmlTextNode[]): string {
+  return textNodes.map((node) => node["#text"]).join();
 }
