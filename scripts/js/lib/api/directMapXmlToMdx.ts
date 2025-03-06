@@ -13,10 +13,12 @@
 import type {
   Root,
   BlockContent,
+  Heading,
   Text,
   PhrasingContent,
   List,
   ListItem,
+  Paragraph,
 } from "mdast";
 
 // This type represents a node where all descendents have a 1:1 mapping with an mdx
@@ -37,43 +39,85 @@ type XmlTextNode = { "#text": string };
 type XmlListNode = { itemizedlist: Array<{ listitem: MdxMappableXmlNode[] }> };
 
 /**
- * The <sect1> nodes are the prose docstrings of the function and can be mapped to standard markdown.
- * TODO: Back this up with a source
+ * Try to map the XML tree to a markdown AST (mdast) as closely as possible.
  */
 export function directMapXmlToMdx(nodes: MdxMappableXmlNode[]): Root {
   return {
     type: "root",
-    children: nodes.map(directMapNode),
+    children: nodes.flatMap((n) => xmlToBlockNodes(n, 1)),
   };
 }
 
-function directMapNode(
+/*
+ * Map an XML node (and it's children) to an array of mdast `Block` nodes
+ */
+function xmlToBlockNodes(
   node: MdxMappableXmlNode,
-): BlockContent | PhrasingContent | Text {
-  if ("#text" in node) return { type: "text", value: node["#text"] };
-  if ("para" in node)
-    return { type: "paragraph", children: node.para.map(directMapNode) };
+  headingDepth: Heading["depth"],
+): BlockContent[] {
   if ("title" in node)
-    return { type: "heading", children: node.title.map(directMapNode) };
+    return [
+      {
+        type: "heading",
+        depth: headingDepth,
+        children: node.title.map(xmlToPhrasingNode),
+      },
+    ];
+  if ("para" in node) return xmlParagraphToBlockNode(node, headingDepth);
   if ("verbatim" in node)
-    return {
-      type: "code",
-      lang: "C",
-      value: extractText(node.verbatim).trimRight(),
-    };
+    return [
+      {
+        type: "code",
+        lang: "C",
+        value: extractText(node.verbatim).trimEnd(),
+      },
+    ];
+  if ("itemizedlist" in node) return [xmlListToMdx(node)];
+  // If the node isn't a recognised block node, try wrapping in a paragraph and
+  // converting to a phrasing node.
+  return [{ type: "paragraph", children: [xmlToPhrasingNode(node)] }];
+}
+
+/**
+ * Map an XML node (and it's children) to an array of mdast `Phrasing` nodes
+ */
+function xmlToPhrasingNode(node: MdxMappableXmlNode): PhrasingContent | Text {
+  if ("#text" in node) return { type: "text", value: node["#text"] };
   if ("computeroutput" in node)
     // TODO: Handle xrefs in computeroutput nodes
     return { type: "inlineCode", value: extractText(node.computeroutput) };
-  if ("itemizedlist" in node) return parseList(node);
   throw new Error(`Can't map XML node: ${JSON.stringify(node)}`);
 }
 
-function parseList(node: XmlListNode): List {
+function xmlParagraphToBlockNode(
+  node: { para: MdxMappableXmlNode[] },
+  headingDepth: Heading["depth"],
+): BlockContent[] {
+  // Doxygen XML sometimes nests block nodes (such as lists) in paragraphs, which
+  // markdown doesn't allow. If we encounter a When processing a block node in a
+  // paragraph's children, we close the paragraph, add the block node, then start a
+  // new paragraph.
+  const blocks: BlockContent[] = [];
+  let currentParagraph: Paragraph = { type: "paragraph", children: [] };
+  for (const child of node.para) {
+    try {
+      currentParagraph.children.push(xmlToPhrasingNode(child));
+    } catch {
+      if (currentParagraph.children.length > 0) blocks.push(currentParagraph);
+      blocks.push(...xmlToBlockNodes(child, headingDepth));
+      currentParagraph = { type: "paragraph", children: [] };
+    }
+  }
+  if (currentParagraph.children.length > 0) blocks.push(currentParagraph);
+  return blocks;
+}
+
+function xmlListToMdx(node: XmlListNode): List {
   const children: ListItem[] = node.itemizedlist
     .filter((n) => !!n.listitem)
     .map((n) => ({
       type: "listItem",
-      children: n.listitem.map(directMapNode),
+      children: n.listitem.flatMap((n) => xmlToBlockNodes(n, 1)),
     }));
   return { type: "list", children };
 }

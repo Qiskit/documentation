@@ -80,7 +80,7 @@ test.describe("directMapXmlToMdx", () => {
     );
   });
 
-  test("list with nesting", async () => {
+  test("list with inline code", async () => {
     const xmlString = `
       <title>Safety</title><para>Behavior is undefined if any of the following conditions are violated:</para>
       <para><itemizedlist>
@@ -105,6 +105,23 @@ test.describe("directMapXmlToMdx", () => {
         *   \`indices\` is a pointer to a \`uint32_t\` array of length \`num_bits\`, which is term-wise sorted in strict ascending order, and every element is smaller than \`num_qubits\`
 
         *   \`boundaries\` is a pointer to a \`size_t\` array of length \`num_terms + 1\`, which is sorted in ascending order, the first element is 0 and the last element is smaller than \`num_terms\`
+      `),
+    );
+  });
+
+  test("list with nested code blocks", async () => {
+    const xmlString = `
+      <para><itemizedlist>
+      <listitem><para><verbatim>print("Hello, world!")</verbatim></para>
+      </listitem></itemizedlist>
+      </para>
+    `;
+    const result = directMapXmlToMdxString(xmlString);
+    expect(result).toEqual(
+      dedentAndTrim(`
+        *   \`\`\`C
+            print("Hello, world!")
+            \`\`\`
       `),
     );
   });
