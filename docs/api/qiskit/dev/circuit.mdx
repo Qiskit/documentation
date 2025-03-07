@@ -520,15 +520,19 @@ Hardware can be instructed to apply a real-time idle period on a given qubit. A 
 
 #### Delay
 
-<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L25-L126" signature="qiskit.circuit.Delay(duration, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.Delay" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/delay.py#L27-L157" signature="qiskit.circuit.Delay(duration, unit=None)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Do nothing and just delay/wait/idle for a specified duration.
 
   **Parameters**
 
-  *   **duration** – the length of time of the duration. Given in units of `unit`.
-  *   **unit** – the unit of the duration. Must be `"dt"` or an SI-prefixed seconds unit.
+  *   **duration** – the length of time of the duration. If this is an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr"), it must be a constant expression of type [`Duration`](circuit_classical#qiskit.circuit.classical.types.Duration "qiskit.circuit.classical.types.Duration") and the `unit` parameter should be omitted (or MUST be “expr” if it is specified).
+  *   **unit** – the unit of the duration, if `duration` is a numeric value. Must be `"dt"`, an SI-prefixed seconds unit, or “expr”.
+
+  **Raises**
+
+  [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – A `duration` expression was specified with a resolved type that is not timing-based, or the `unit` was improperly specified.
 </Class>
 
 The [`Barrier`](#qiskit.circuit.Barrier "qiskit.circuit.Barrier") instruction can span an arbitrary number of qubits and clbits, and is a no-op in hardware. During transpilation and optimization, however, it blocks any optimizations from “crossing” the barrier; that is, in:
@@ -665,7 +669,7 @@ The [`get_control_flow_name_mapping()`](#qiskit.circuit.get_control_flow_name_ma
 
 #### get\_control\_flow\_name\_mapping
 
-<Function id="qiskit.circuit.get_control_flow_name_mapping" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/__init__.py#L31-L57" signature="qiskit.circuit.get_control_flow_name_mapping()">
+<Function id="qiskit.circuit.get_control_flow_name_mapping" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/controlflow/__init__.py#L32-L59" signature="qiskit.circuit.get_control_flow_name_mapping()">
   Return a dictionary mapping the names of control-flow operations to their corresponding classes.”
 
   **Examples**
@@ -751,9 +755,9 @@ q_1: ───────────┤ X ├───┤ X ├───┤ X 
 
 Performing these optimizations are part of the transpiler, but the tools to investigate commutations are available in the [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker").
 
-|                                                                                                       |                                                                     |
-| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker")(\[...]) | This code is essentially copy-pasted from commutative\_analysis.py. |
+|                                                                                                       |                                       |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker")(\[...]) | Check commutations of two operations. |
 
 <span id="circuit-custom-gates" />
 
@@ -936,14 +940,7 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
   *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle measurements and conditionals
   *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle resets
   *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – sets random seed (optional)
-  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – a distribution of gates that specifies the ratio
-  *   **1-qubit** (*of*) –
-  *   **2-qubit** –
-  *   **3-qubit** –
-  *   **...** –
-  *   **a** (*n-qubit gates in the random circuit. Expect*) –
-  *   **requested** (*deviation from the specified ratios that depends on the size of the*) –
-  *   **circuit.** (*random*) –
+  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – a distribution of gates that specifies the ratio of 1-qubit, 2-qubit, 3-qubit, …, n-qubit gates in the random circuit. Expect a deviation from the specified ratios that depends on the size of the requested random circuit. (optional)
 
   **Returns**
 
