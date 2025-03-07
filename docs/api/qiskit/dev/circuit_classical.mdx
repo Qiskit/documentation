@@ -46,7 +46,7 @@ The expression system is based on tree representation. All nodes in the tree are
 
 #### Expr
 
-<Class id="qiskit.circuit.classical.expr.Expr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L48-L81" signature="qiskit.circuit.classical.expr.Expr" modifiers="class">
+<Class id="qiskit.circuit.classical.expr.Expr" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L50-L83" signature="qiskit.circuit.classical.expr.Expr" modifiers="class">
   Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
 
   Root base class of all nodes in the expression tree. The base case should never be instantiated directly.
@@ -64,7 +64,7 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
 
 #### Var
 
-<Class id="qiskit.circuit.classical.expr.Var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L113-L203" signature="qiskit.circuit.classical.expr.Var(var, type, *, name=None)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L115-L205" signature="qiskit.circuit.classical.expr.Var(var, type, *, name=None)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A classical variable.
@@ -87,7 +87,7 @@ The base for dynamic variables is the [`Var`](#qiskit.circuit.classical.expr.Var
 
   ##### new
 
-  <Function id="qiskit.circuit.classical.expr.Var.new" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L151-L154" signature="new(name, type)" modifiers="classmethod">
+  <Function id="qiskit.circuit.classical.expr.Var.new" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L153-L156" signature="new(name, type)" modifiers="classmethod">
     Generate a new named variable that owns its own backing storage.
 
     **Parameters**
@@ -111,7 +111,7 @@ Similarly, literals used in expressions (such as integers) should be lifted to [
 
 #### Value
 
-<Class id="qiskit.circuit.classical.expr.Value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L206-L224" signature="qiskit.circuit.classical.expr.Value(value, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L277-L295" signature="qiskit.circuit.classical.expr.Value(value, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A single scalar value.
@@ -122,11 +122,54 @@ Similarly, literals used in expressions (such as integers) should be lifted to [
   *   **type** ([*Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.types.Type")) –
 </Class>
 
+Stretch variables for use in duration expressions are represented by the [`Stretch`](#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") node.
+
+#### Stretch
+
+<Class id="qiskit.circuit.classical.expr.Stretch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L208-L274" signature="qiskit.circuit.classical.expr.Stretch(var, name)" modifiers="final class">
+  Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
+
+  A stretch variable.
+
+  In general, construction of stretch variables for use in programs should use [`Stretch.new()`](#qiskit.circuit.classical.expr.Stretch.new "qiskit.circuit.classical.expr.Stretch.new") or `QuantumCircuit.add_stretch()`.
+
+  **Parameters**
+
+  *   **var** ([*UUID*](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.13)")) –
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+  ##### name
+
+  <Attribute id="qiskit.circuit.classical.expr.Stretch.name" attributeTypeHint="str">
+    The name of the stretch variable.
+  </Attribute>
+
+  ##### new
+
+  <Function id="qiskit.circuit.classical.expr.Stretch.new" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L236-L239" signature="new(name)" modifiers="classmethod">
+    Generate a new named stretch variable.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self "(in Python v3.13)")
+  </Function>
+
+  ##### var
+
+  <Attribute id="qiskit.circuit.classical.expr.Stretch.var" attributeTypeHint="UUID">
+    A [`UUID`](https://docs.python.org/3/library/uuid.html#uuid.UUID "(in Python v3.13)") to uniquely identify this stretch.
+  </Attribute>
+</Class>
+
 The operations traditionally associated with pre-, post- or infix operators in programming are represented by the [`Unary`](#qiskit.circuit.classical.expr.Unary "qiskit.circuit.classical.expr.Unary") and [`Binary`](#qiskit.circuit.classical.expr.Binary "qiskit.circuit.classical.expr.Binary") nodes as appropriate. These each take an operation type code, which are exposed as enumerations inside each class as [`Unary.Op`](#qiskit.circuit.classical.expr.Unary.Op "qiskit.circuit.classical.expr.Unary.Op") and [`Binary.Op`](#qiskit.circuit.classical.expr.Binary.Op "qiskit.circuit.classical.expr.Binary.Op") respectively.
 
 #### Unary
 
-<Class id="qiskit.circuit.classical.expr.Unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L227-L282" signature="qiskit.circuit.classical.expr.Unary(op, operand, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L298-L353" signature="qiskit.circuit.classical.expr.Unary(op, operand, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A unary expression.
@@ -139,7 +182,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
   ##### Op
 
-  <Class id="qiskit.circuit.classical.expr.Unary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L239-L261" signature="Op(value)" modifiers="class">
+  <Class id="qiskit.circuit.classical.expr.Unary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L310-L332" signature="Op(value)" modifiers="class">
     Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
 
     Enumeration of the opcodes for unary operations.
@@ -164,7 +207,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
 #### Binary
 
-<Class id="qiskit.circuit.classical.expr.Binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L285-L393" signature="qiskit.circuit.classical.expr.Binary(op, left, right, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L356-L464" signature="qiskit.circuit.classical.expr.Binary(op, left, right, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A binary expression.
@@ -178,7 +221,7 @@ The operations traditionally associated with pre-, post- or infix operators in p
 
   ##### Op
 
-  <Class id="qiskit.circuit.classical.expr.Binary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L298-L370" signature="Op(value)" modifiers="class">
+  <Class id="qiskit.circuit.classical.expr.Binary.Op" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L369-L441" signature="Op(value)" modifiers="class">
     Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
 
     Enumeration of the opcodes for binary operations.
@@ -301,7 +344,7 @@ Bit-like types (unsigned integers) can be indexed by integer types, represented 
 
 #### Index
 
-<Class id="qiskit.circuit.classical.expr.Index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L396-L427" signature="qiskit.circuit.classical.expr.Index(target, index, type)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L467-L498" signature="qiskit.circuit.classical.expr.Index(target, index, type)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   An indexing expression.
@@ -319,7 +362,7 @@ Expressions in this system are defined to act only on certain sets of types. How
 
 #### Cast
 
-<Class id="qiskit.circuit.classical.expr.Cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L84-L110" signature="qiskit.circuit.classical.expr.Cast(operand, type, implicit=False)" modifiers="final class">
+<Class id="qiskit.circuit.classical.expr.Cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/expr.py#L86-L112" signature="qiskit.circuit.classical.expr.Cast(operand, type, implicit=False)" modifiers="final class">
   Bases: [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
   A cast from one type to another, implied by the use of an expression in a different context.
@@ -1016,14 +1059,14 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
 #### ExprVisitor
 
-<Class id="qiskit.circuit.classical.expr.ExprVisitor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L30-L59" signature="qiskit.circuit.classical.expr.ExprVisitor" modifiers="class">
+<Class id="qiskit.circuit.classical.expr.ExprVisitor" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L32-L64" signature="qiskit.circuit.classical.expr.ExprVisitor" modifiers="class">
   Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`_T_co`]
 
   Base class for visitors to the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") tree. Subclasses should override whichever of the `visit_*` methods that they are able to handle, and should be organized such that non-existent methods will never be called.
 
   ##### visit\_binary
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L52-L53" signature="visit_binary(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_binary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L57-L58" signature="visit_binary(node, /)">
     **Parameters**
 
     **node** ([*Binary*](#qiskit.circuit.classical.expr.Binary "qiskit.circuit.classical.expr.expr.Binary")) –
@@ -1035,7 +1078,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ##### visit\_cast
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L55-L56" signature="visit_cast(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_cast" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L60-L61" signature="visit_cast(node, /)">
     **Parameters**
 
     **node** ([*Cast*](#qiskit.circuit.classical.expr.Cast "qiskit.circuit.classical.expr.expr.Cast")) –
@@ -1047,7 +1090,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ##### visit\_generic
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_generic" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L40-L41" signature="visit_generic(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_generic" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L42-L43" signature="visit_generic(node, /)">
     **Parameters**
 
     **node** ([*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) –
@@ -1059,7 +1102,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ##### visit\_index
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L58-L59" signature="visit_index(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L63-L64" signature="visit_index(node, /)">
     **Parameters**
 
     **node** ([*Index*](#qiskit.circuit.classical.expr.Index "qiskit.circuit.classical.expr.expr.Index")) –
@@ -1069,9 +1112,21 @@ A typical consumer of the expression tree wants to recursively walk through the 
     *\_T\_co*
   </Function>
 
+  ##### visit\_stretch
+
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_stretch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L48-L49" signature="visit_stretch(node, /)">
+    **Parameters**
+
+    **node** ([*Stretch*](#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.expr.Stretch")) –
+
+    **Return type**
+
+    *\_T\_co*
+  </Function>
+
   ##### visit\_unary
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L49-L50" signature="visit_unary(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_unary" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L54-L55" signature="visit_unary(node, /)">
     **Parameters**
 
     **node** ([*Unary*](#qiskit.circuit.classical.expr.Unary "qiskit.circuit.classical.expr.expr.Unary")) –
@@ -1083,7 +1138,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ##### visit\_value
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L46-L47" signature="visit_value(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_value" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L51-L52" signature="visit_value(node, /)">
     **Parameters**
 
     **node** ([*Value*](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.expr.Value")) –
@@ -1095,7 +1150,7 @@ A typical consumer of the expression tree wants to recursively walk through the 
 
   ##### visit\_var
 
-  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L43-L44" signature="visit_var(node, /)">
+  <Function id="qiskit.circuit.classical.expr.ExprVisitor.visit_var" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L45-L46" signature="visit_var(node, /)">
     **Parameters**
 
     **node** ([*Var*](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")) –
@@ -1112,7 +1167,7 @@ For the convenience of simple visitors that only need to inspect the variables i
 
 #### iter\_vars
 
-<Function id="qiskit.circuit.classical.expr.iter_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L89-L106" signature="qiskit.circuit.classical.expr.iter_vars(node)">
+<Function id="qiskit.circuit.classical.expr.iter_vars" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L125-L147" signature="qiskit.circuit.classical.expr.iter_vars(node)">
   Get an iterator over the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") nodes referenced at any level in the given [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr").
 
   **Examples**
@@ -1131,6 +1186,12 @@ For the convenience of simple visitors that only need to inspect the variables i
           print(node.var.name)
   ```
 
+  <Admonition title="See also" type="note">
+    **[`iter_identifiers()`](#qiskit.circuit.classical.expr.iter_identifiers "qiskit.circuit.classical.expr.iter_identifiers")**
+
+    Get an iterator over all identifier nodes in the expression, including both [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") and [`Stretch`](#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.expr.Stretch") nodes.
+  </Admonition>
+
   **Parameters**
 
   **node** ([*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) –
@@ -1140,11 +1201,49 @@ For the convenience of simple visitors that only need to inspect the variables i
   [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.13)")\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
 </Function>
 
+To iterator over all variables including stretch variables, the iterator method [`iter_identifiers()`](#qiskit.circuit.classical.expr.iter_identifiers "qiskit.circuit.classical.expr.iter_identifiers") is provided.
+
+#### iter\_identifiers
+
+<Function id="qiskit.circuit.classical.expr.iter_identifiers" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L150-L171" signature="qiskit.circuit.classical.expr.iter_identifiers(node)">
+  Get an iterator over the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") and [`Stretch`](#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.expr.Stretch") nodes referenced at any level in the given [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr").
+
+  **Examples**
+
+  Print out the name of each [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") encountered:
+
+  ```python
+  from qiskit.circuit import ClassicalRegister
+  from qiskit.circuit.classical import expr
+
+  cr1 = ClassicalRegister(3, "a")
+  cr2 = ClassicalRegister(3, "b")
+
+  for node in expr.iter_vars(expr.bit_and(expr.bit_not(cr1), cr2)):
+      if isinstance(node.var, ClassicalRegister):
+          print(node.var.name)
+  ```
+
+  <Admonition title="See also" type="note">
+    **[`iter_vars()`](#qiskit.circuit.classical.expr.iter_vars "qiskit.circuit.classical.expr.iter_vars")**
+
+    Get an iterator over just the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") nodes in the expression.
+  </Admonition>
+
+  **Parameters**
+
+  **node** ([*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) –
+
+  **Return type**
+
+  [*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.13)")\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") | [*Stretch*](#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.expr.Stretch")]
+</Function>
+
 Two expressions can be compared for direct structural equality by using the built-in Python `==` operator. In general, though, one might want to compare two expressions slightly more semantically, allowing that the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes inside them are bound to different memory-location descriptions between two different circuits. In this case, one can use [`structurally_equivalent()`](#qiskit.circuit.classical.expr.structurally_equivalent "qiskit.circuit.classical.expr.structurally_equivalent") with two suitable “key” functions to do the comparison.
 
 #### structurally\_equivalent
 
-<Function id="qiskit.circuit.classical.expr.structurally_equivalent" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L185-L234" signature="qiskit.circuit.classical.expr.structurally_equivalent(left, right, left_var_key=None, right_var_key=None)">
+<Function id="qiskit.circuit.classical.expr.structurally_equivalent" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L255-L304" signature="qiskit.circuit.classical.expr.structurally_equivalent(left, right, left_var_key=None, right_var_key=None)">
   Do these two expressions have exactly the same tree structure, up to some key function for the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") objects?
 
   In other words, are these two expressions the exact same trees, except we compare the [`Var.var`](#qiskit.circuit.classical.expr.Var.var "qiskit.circuit.classical.expr.Var.var") fields by calling the appropriate `*_var_key` function on them, and comparing that output for equality. This function does not allow any semantic “equivalences” such as asserting that `a == b` is equivalent to `b == a`; the evaluation order of the operands could, in general, cause such a statement to be false (consider hypothetical `extern` functions that access global state).
@@ -1191,7 +1290,7 @@ Some expressions have associated memory locations, and others may be purely temp
 
 #### is\_lvalue
 
-<Function id="qiskit.circuit.classical.expr.is_lvalue" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L262-L302" signature="qiskit.circuit.classical.expr.is_lvalue(node, /)">
+<Function id="qiskit.circuit.classical.expr.is_lvalue" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classical/expr/visitors.py#L335-L375" signature="qiskit.circuit.classical.expr.is_lvalue(node, /)">
   Return whether this expression can be used in l-value positions, that is, whether it has a well-defined location in memory, such as one that might be writeable.
 
   Being an l-value is a necessary but not sufficient for this location to be writeable; it is permissible that a larger object containing this memory location may not allow writing from the scope that attempts to write to it. This would be an access property of the containing program, however, and not an inherent property of the expression system.
