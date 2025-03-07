@@ -83,7 +83,7 @@ python_api_name: qiskit.circuit.library.Permutation
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.Permutation.instances" attributeValue="223" />
+  <Attribute id="qiskit.circuit.library.Permutation.instances" attributeValue="230" />
 
   ### layout
 
@@ -109,6 +109,14 @@ python_api_name: qiskit.circuit.library.Permutation
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.Permutation.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.Permutation.num_input_vars "qiskit.circuit.library.Permutation.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.Permutation.num_captured_vars">
@@ -123,12 +131,28 @@ python_api_name: qiskit.circuit.library.Permutation
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.Permutation.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.Permutation.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.Permutation.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.Permutation.num_vars "qiskit.circuit.library.Permutation.num_vars") + [`num_stretches()`](#qiskit.circuit.library.Permutation.num_stretches "qiskit.circuit.library.Permutation.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -149,6 +173,14 @@ python_api_name: qiskit.circuit.library.Permutation
 
   <Attribute id="qiskit.circuit.library.Permutation.num_qubits">
     Return number of qubits.
+  </Attribute>
+
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.Permutation.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
   </Attribute>
 
   ### num\_vars
