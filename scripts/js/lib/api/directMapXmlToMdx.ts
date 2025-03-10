@@ -28,24 +28,21 @@ import type {
 // * The XML `<parameterlist>` does NOT have a 1:1 mapping in MDX (we could map
 //   to a list, but how would we map back?). Therefore, MdxMappableXmlNodes can't
 //   have this as a descendent.
-type MdxMappableXmlNode =
+export type MdxMappableXmlNode =
   | XmlTextNode
   | XmlListNode
   | { title: MdxMappableXmlNode[] }
   | { para: MdxMappableXmlNode[] }
   | { computeroutput: XmlTextNode[] }
   | { verbatim: XmlTextNode[] };
-type XmlTextNode = { "#text": string };
+export type XmlTextNode = { "#text": string };
 type XmlListNode = { itemizedlist: Array<{ listitem: MdxMappableXmlNode[] }> };
 
 /**
  * Try to map the XML tree to a markdown AST (mdast) as closely as possible.
  */
-export function directMapXmlToMdx(nodes: MdxMappableXmlNode[]): Root {
-  return {
-    type: "root",
-    children: nodes.flatMap((n) => xmlToBlockNodes(n, 1)),
-  };
+export function directMapXmlToMdx(nodes: MdxMappableXmlNode[]): BlockContent[] {
+  return nodes.flatMap((n) => xmlToBlockNodes(n, 1));
 }
 
 /*
@@ -81,7 +78,9 @@ function xmlToBlockNodes(
 /**
  * Map an XML node (and it's children) to an array of mdast `Phrasing` nodes
  */
-function xmlToPhrasingNode(node: MdxMappableXmlNode): PhrasingContent | Text {
+export function xmlToPhrasingNode(
+  node: MdxMappableXmlNode,
+): PhrasingContent | Text {
   if ("#text" in node) return { type: "text", value: node["#text"] };
   if ("computeroutput" in node)
     // TODO: Handle xrefs in computeroutput nodes
@@ -122,6 +121,6 @@ function xmlListToMdx(node: XmlListNode): List {
   return { type: "list", children };
 }
 
-function extractText(textNodes: XmlTextNode[]): string {
+export function extractText(textNodes: XmlTextNode[]): string {
   return textNodes.map((node) => node["#text"]).join();
 }

@@ -21,7 +21,7 @@ import { xmlParser, collapseWhitespace } from "./xmlToMdx.js";
 function directMapXmlToMdxString(xml: string): string {
   const parsedXml = xmlParser.parse(xml);
   // console.log(JSON.stringify(parsedXml));
-  const mdastRoot = directMapXmlToMdx(parsedXml);
+  const mdastRoot = { type: "root", children: directMapXmlToMdx(parsedXml) };
   // console.log(JSON.stringify(mdastRoot, null, 2));
   return collapseWhitespace(toMarkdown(mdastRoot));
 }
