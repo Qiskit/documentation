@@ -19,11 +19,15 @@ In job mode, a single primitive request of the Estimator or the Sampler is made 
 
 A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources. More details about Sessions can be found in the [documentation](./execution-modes).
 
-<CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
+<CloudContent>
+<Admonition type="note">
+Open Plan users cannot submit session jobs.
+</Admonition>
+</CloudContent>
 
 ### Start a session
 
-Begin with creating a session and obtaining a session ID.
+Begin by creating a session and obtaining a session ID.
 
 <LegacyContent>
 ```python
@@ -44,7 +48,7 @@ payload = json.dumps({
   "instance": "hub1/group1/project1",
 })
 
-response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
+response = requests.request("POST", sessionsUrl, data=payload, headers=headersList)
 
 sessionId = response.json()['id']
 
@@ -144,7 +148,7 @@ Session closure response ok?: True
 
 ## Batch mode with REST API
 
-Alternatively, you can submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. More details about batch mode can be found in the [documentation](./run-jobs-batch).
+Alternatively, you can submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. Learn about batch mode in the [introduction to execution modes](./execution-modes#batch-mode) guide.
 
 <LegacyContent>
 ```python
