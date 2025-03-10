@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.CRZGate
 
 # CRZGate
 
-<Class id="qiskit.circuit.library.CRZGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rz.py#L166-L319" signature="qiskit.circuit.library.CRZGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.CRZGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/rz.py#L166-L319" signature="qiskit.circuit.library.CRZGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
   Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
   Controlled-RZ gate.
@@ -30,10 +30,10 @@ python_api_name: qiskit.circuit.library.CRZGate
 
 $$
 CRZ(\theta)\ q_0, q_1 =
-I \otimes |0\rangle\langle 0| + RZ(\theta) \otimes |1\rangle\langle 1| =
+I \otimes |0\rangle\langle 0| + RZ(\phi=\theta) \otimes |1\rangle\langle 1| =
 \begin{pmatrix}
 1 & 0 & 0 & 0 \\
-0 & e^{-i\frac{\lambda}{2}} & 0 & 0 \\
+0 & e^{-i\frac{\theta}{2}} & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & e^{i\frac{\theta}{2}}
 \end{pmatrix}
@@ -226,7 +226,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.CRZGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rz.py#L284-L296" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.CRZGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/rz.py#L284-L296" signature="inverse(annotated=False)">
     Return inverse CRZ gate (i.e. with the negative rotation angle).
 
     **Parameters**

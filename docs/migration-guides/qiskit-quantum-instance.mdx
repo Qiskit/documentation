@@ -3,8 +3,19 @@ title: QuantumInstance migration guide
 description: Stop using the deprecated Qiskit `QuantumInstance` class
 ---
 
-# QuantumInstance migration guide
 
+
+# QuantumInstance migration guide
+<LegacyContent>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/migration-guides/qiskit-quantum-instance)
+</Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/migration-guides/qiskit-quantum-instance)
+</Admonition>
+</CloudContent>
 <Admonition type="caution">
   **Deprecation Notice**
 
@@ -131,10 +142,10 @@ primitives expose a similar setting through their interface:
 | Measurement error mitigation: `measurement_error_mitigation_cls`, `cals_matrix_refresh_period`, | No | No | Sampler default > M3 (*) | No |
 | Job management: `job_callback`, `max_job_retries`, `timeout`, `wait` | Does not apply | Does not apply | Sessions, callback (**) | No |
 
-(\*) For more information on error mitigation and setting options on Qiskit Runtime Primitives, see
-[Advanced Runtime Options](/guides/runtime-options-overview).
+(\*) For more information about error mitigation and setting options on Qiskit Runtime primitives, see
+[Advanced Runtime Options.](/guides/runtime-options-overview)
 
-(\*\*) For more information on Runtime sessions, see [About Sessions](/guides/sessions).
+(\*\*) For more information about sessions, see [Introduction to execution modes.](/guides/execution-modes)
 
 ## Code examples
 
@@ -391,7 +402,7 @@ is the closest alternative to the QuantumInstance measurement error mitigation i
 is not a one-to-one replacement.
 
 For more information about the error mitigation options in the Qiskit Runtime primitives, see [Configure Error Mitigation](/guides/configure-error-mitigation).
-
+<LegacyContent>
 ```python
 from qiskit import QuantumCircuit
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
@@ -413,6 +424,30 @@ quasi_dists = result.quasi_dists
 
 print("Quasi dists: ", quasi_dists)
 ```
+</LegacyContent>
+<CloudContent>
+```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+
+circuit = QuantumCircuit(2)
+circuit.x(0)
+circuit.x(1)
+circuit.measure_all()
+
+service = QiskitRuntimeService(channel="ibm_cloud")
+backend = service.backend("ibmq_montreal")
+
+options = Options(resilience_level = 1) # 1 = measurement error mitigation
+sampler = Sampler(session=backend, options=options)
+
+# Run
+result = sampler.run(circuit, shots=4000).result()
+quasi_dists = result.quasi_dists
+
+print("Quasi dists: ", quasi_dists)
+```
+</CloudContent>
 
 ```text
 Quasi dists: [{2: 0.0008492371522941081, 3: 0.9968874384378738, 0: -0.0003921227905920063,

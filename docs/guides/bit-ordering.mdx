@@ -31,7 +31,7 @@ Qubit(QuantumRegister(2, 'q'), 0)
 
 ### Circuit diagrams
 
-On a circuit diagram, qubit $0$ is the topmost qubit, and qubit $n$ the
+On a circuit diagram, qubit $0$ is the topmost qubit, and qubit $n-1$ the
 bottommost qubit. You can change this with the `reverse_bits` argument of
 `QuantumCircuit.draw` (see [Change ordering in
 Qiskit](#change-ordering-in-qiskit)).
@@ -51,7 +51,7 @@ q_1: ┤ X ├
 ### Integers
 
 When interpreting bits as a number, bit $0$ is the least significant bit, and
-bit $n$ the most significant. This is helpful when coding because each bit has
+bit $n-1$ the most significant. This is helpful when coding because each bit has
 the value $2^\text{label}$ (label being the qubit's index in
 `QuantumCircuit.qubits`). For example, the following circuit execution ends
 with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as the
@@ -74,9 +74,9 @@ print(f" > Counts: {result[0].data.meas.get_counts()}")
 ### Strings
 
 When displaying or interpreting a list of bits (or qubits) as a string, bit
-$n$ is the leftmost bit, and bit $0$ is the rightmost bit. This is because we
+$n-1$ is the leftmost bit, and bit $0$ is the rightmost bit. This is because we
 usually write numbers with the most significant digit on the left, and in
-Qiskit, bit $n$ is interpreted as the most significant bit.
+Qiskit, bit $n-1$ is interpreted as the most significant bit.
 
 For example, the following cell defines a `Statevector` from a string of
 single-qubit states. In this case, qubit $0$ is in state $|+\rangle$, and
@@ -94,7 +94,7 @@ sv.probabilities_dict()
 
 This occasionally causes confusion when interpreting a string of bits, as you
 might expect the leftmost bit to be bit $0$, whereas it usually represents bit
-$n$.
+$n-1$.
 
 ### Statevector matrices
 

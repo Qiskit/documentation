@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.RZGate
 
 # RZGate
 
-<Class id="qiskit.circuit.library.RZGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rz.py#L26-L163" signature="qiskit.circuit.library.RZGate(phi, label=None, *, duration=None, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.library.RZGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/rz.py#L26-L163" signature="qiskit.circuit.library.RZGate(phi, label=None, *, duration=None, unit='dt')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Single-qubit rotation about the Z axis.
@@ -21,17 +21,17 @@ python_api_name: qiskit.circuit.library.RZGate
 
   ```text
        ┌───────┐
-  q_0: ┤ Rz(λ) ├
+  q_0: ┤ Rz(φ) ├
        └───────┘
   ```
 
   **Matrix Representation:**
 
 $$
-RZ(\lambda) = \exp\left(-i\frac{\lambda}{2}Z\right) =
+RZ(\phi) = \exp\left(-i\frac{\phi}{2}Z\right) =
 \begin{pmatrix}
-e^{-i\frac{\lambda}{2}} & 0 \\
-0 & e^{i\frac{\lambda}{2}}
+e^{-i\frac{\phi}{2}} & 0 \\
+0 & e^{i\frac{\phi}{2}}
 \end{pmatrix}
 $$
 
@@ -39,7 +39,7 @@ $$
     `U1Gate` This gate is equivalent to U1 up to a phase factor.
 
     > $$
-    > U1(\lambda) = e^{i{\lambda}/2}RZ(\lambda)
+    > U1(\theta=\phi) = e^{i{\phi}/2}RZ(\phi)
     > $$
 
     Reference for virtual Z gate implementation: [1612.00858](https://arxiv.org/abs/1612.00858)
@@ -169,7 +169,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.RZGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rz.py#L91-L129" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.RZGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/rz.py#L91-L129" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return a (multi-)controlled-RZ gate.
 
     **Parameters**
@@ -190,7 +190,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.RZGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rz.py#L131-L145" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.RZGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/rz.py#L131-L145" signature="inverse(annotated=False)">
     Return inverted RZ gate
 
     $RZ(\lambda)^{\dagger} = RZ(-\lambda)$
@@ -210,7 +210,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.RZGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/circuit/library/standard_gates/rz.py#L156-L158" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.RZGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/rz.py#L156-L158" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.

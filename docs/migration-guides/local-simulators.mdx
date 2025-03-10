@@ -5,7 +5,7 @@ description: Migrate from using the IBM Quantum cloud simulators to using Qiskit
 
 # Migrate from cloud simulators to local simulators
 
-In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&trade; cloud simulators were retired on 15 May 2024. This guide explains the retirement in more detail, and how to migrate from cloud-based simulators, such as `ibmq_qasm_simulator`, to local simulators.
+In quantum computing, the choice between using simulators and quantum hardware is crucial for making progress in the field. While simulators are useful for testing and debugging, in this era of quantum utility, quantum development and industry advancement requires actual hardware. As part of the move to quantum utility, IBM Quantum&reg; cloud simulators were retired on 15 May 2024. This guide explains the retirement in more detail, and how to migrate from cloud-based simulators, such as `ibmq_qasm_simulator`, to local simulators.
 
 ## Why are the cloud simulators being retired?
 
@@ -115,6 +115,13 @@ result = sampler.run([isa_qc]).result()
 You can use local testing mode with simulators from [Qiskit Aer](/guides/simulate-with-qiskit-aer), which provides higher-performance simulation that can handle larger circuits and [custom noise models](/guides/build-noise-models). It also supports Clifford simulation mode, which can efficiently simulate Clifford circuits with a large number of qubits.
 
 Example with sessions, without noise:
+<CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
+
+<CloudContent>
+<Admonition type="caution">
+The following code block will return an error for users on the Open Plan, because it uses sessions. Workloads on the Open Plan can run only in [job mode](/guides/execution-modes#job-mode) or [batch mode](/guides/execution-modes#batch-mode).
+</Admonition>
+</CloudContent>
 
 ```python
 from qiskit_aer import AerSimulator

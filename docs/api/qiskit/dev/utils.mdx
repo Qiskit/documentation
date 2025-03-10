@@ -95,7 +95,7 @@ python_api_name: qiskit.utils
 
 ### apply\_prefix
 
-<Function id="qiskit.utils.apply_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L21-L68" signature="qiskit.utils.apply_prefix(value, unit)">
+<Function id="qiskit.utils.apply_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L24-L71" signature="qiskit.utils.apply_prefix(value, unit)">
   Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
   **Parameters**
@@ -131,7 +131,7 @@ python_api_name: qiskit.utils
 
 ### detach\_prefix
 
-<Function id="qiskit.utils.detach_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L71-L143" signature="qiskit.utils.detach_prefix(value, decimal=None)">
+<Function id="qiskit.utils.detach_prefix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/units.py#L74-L146" signature="qiskit.utils.detach_prefix(value, decimal=None)">
   Given a SI unit value, find the most suitable prefix to scale the value.
 
   For example, the `value = 1.3e8` will be converted into a tuple of `(130.0, "M")`, which represents a scaled value and auxiliary unit that may be used to display the value. In above example, that value might be displayed as `130 MHz` (unit is arbitrary here).
@@ -201,12 +201,52 @@ python_api_name: qiskit.utils
 
 ## Multiprocessing
 
+### default\_num\_processes
+
+<Function id="qiskit.utils.default_num_processes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L97-L130" signature="qiskit.utils.default_num_processes()">
+  Get the number of processes that a multiprocessing parallel call will use by default.
+
+  Such functions typically also accept a `num_processes` keyword argument that will supersede the value returned from this function.
+
+  In order of priority (highest to lowest), the return value will be:
+
+  1.  The `QISKIT_NUM_PROCS` environment variable, if set.
+  2.  The `num_processes` key of the Qiskit user configuration file, if set.
+  3.  Half of the logical CPUs available to this process, if this can be determined. This is a proxy for the number of physical CPUs, assuming two-fold simultaneous multithreading (SMT); empirically, multiprocessing performance of Qiskit seems to be worse when attempting to use SMT cores.
+  4.  1, if all else fails.
+
+  If a user-configured value is set to a number less than 1, it is treated as if it were 1.
+
+  **Return type**
+
+  [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+</Function>
+
+### is\_main\_process
+
+<Function id="qiskit.utils.is_main_process" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L151-L162" signature="qiskit.utils.is_main_process()">
+  Checks whether the current process is the main one.
+
+  Since Python 3.8, this is identical to the standard Python way of calculating this:
+
+  ```python
+  >>> import multiprocessing
+  >>> multiprocessing.parent_process() is None
+  ```
+
+  This function is left for backwards compatibility, but there is little reason not to use the built-in tooling of Python.
+
+  **Return type**
+
+  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+</Function>
+
 ### local\_hardware\_info
 
-<Function id="qiskit.utils.local_hardware_info" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/multiprocessing.py#L20-L46" signature="qiskit.utils.local_hardware_info()">
+<Function id="qiskit.utils.local_hardware_info" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L133-L148" signature="qiskit.utils.local_hardware_info()">
   Basic hardware information about the local machine.
 
-  Gives actual number of CPU’s in the machine, even when hyperthreading is turned on. CPU count defaults to 1 when true count can’t be determined.
+  Attempts to estimate the number of physical CPUs in the machine, even when hyperthreading is turned on. CPU count defaults to 1 when true count can’t be determined.
 
   **Returns**
 
@@ -217,24 +257,67 @@ python_api_name: qiskit.utils
   [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
 </Function>
 
-### is\_main\_process
+### should\_run\_in\_parallel
 
-<Function id="qiskit.utils.is_main_process" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/multiprocessing.py#L49-L56" signature="qiskit.utils.is_main_process()">
-  Checks whether the current process is the main one
+<Function id="qiskit.utils.should_run_in_parallel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L171-L221" signature="qiskit.utils.should_run_in_parallel(num_processes=None)">
+  Decide whether a multiprocessing function should spawn subprocesses for parallelization.
+
+  In particular, this is how [`parallel_map()`](#qiskit.utils.parallel_map "qiskit.utils.parallel_map") decides whether to use multiprocessing or not. The `num_processes` argument alone does not enforce parallelism; by default, Qiskit will only use process-based parallelism when a `fork`-like process spawning start method is in effect. You can override this decision either by setting the [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing "(in Python v3.13)") start method you use, setting the `QISKIT_PARALLEL` environment variable to `"TRUE"`, or setting `parallel = true` in your user settings file.
+
+  This function includes two context managers that can be used to temporarily modify the return value of this function:
+
+  ### override
+
+  <Function id="qiskit.utils.should_run_in_parallel.override" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L244-L261" signature="should_run_in_parallel.override(value)">
+    A context manager within which [`should_run_in_parallel()`](#qiskit.utils.should_run_in_parallel "qiskit.utils.should_run_in_parallel") will return the given `value`.
+
+    This is not a *complete* override; Qiskit will never attempt to parallelize if only a single process is available, and will not allow process-based parallelism at a depth greater than 1.
+
+    **Parameters**
+
+    **value** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+  </Function>
+
+  ### ignore\_user\_settings
+
+  <Function id="qiskit.utils.should_run_in_parallel.ignore_user_settings" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L224-L241" signature="should_run_in_parallel.ignore_user_settings()">
+    A context manager within which [`should_run_in_parallel()`](#qiskit.utils.should_run_in_parallel "qiskit.utils.should_run_in_parallel") will ignore environmental configuration variables.
+
+    In particular, the `QISKIT_PARALLEL` environment variable and the user-configuration file are ignored within this context.
+  </Function>
+
+  **Parameters**
+
+  **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – the maximum number of processes requested for use (`None` implies the default).
+
+  **Return type**
+
+  [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+
+  **Examples**
+
+  Temporarily override the configured settings to disable parallelism:
+
+  ```python
+  >>> with should_run_in_parallel.override(True):
+  ...     assert should_run_in_parallel(8)
+  >>> with should_run_in_parallel.override(False):
+  ...     assert not should_run_in_parallel(8)
+  ```
 </Function>
 
 A helper function for calling a custom function with Python [`ProcessPoolExecutor`](https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor "(in Python v3.13)"). Tasks can be executed in parallel using this function.
 
 ### parallel\_map
 
-<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L121-L193" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)">
+<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L268-L318" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs=None, num_processes=None)">
   Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
   ```python
   result = [task(value, *task_args, **task_kwargs) for value in values]
   ```
 
-  This will parallelise the results if the number of `values` is greater than one, and the current system configuration permits parallelization.
+  This will parallelise the results if the number of `values` is greater than one and [`should_run_in_parallel()`](#qiskit.utils.should_run_in_parallel "qiskit.utils.should_run_in_parallel") returns `True`. If not, it will run in serial.
 
   **Parameters**
 
@@ -242,7 +325,7 @@ A helper function for calling a custom function with Python [`ProcessPoolExecuto
   *   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
   *   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Optional additional arguments to the `task` function.
   *   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Optional additional keyword argument to the `task` function.
-  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of processes to spawn.
+  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of processes to spawn. If not given, the return value of [`default_num_processes()`](#qiskit.utils.default_num_processes "qiskit.utils.default_num_processes") is used.
 
   **Returns**
 
@@ -251,10 +334,6 @@ A helper function for calling a custom function with Python [`ProcessPoolExecuto
   **Return type**
 
   result
-
-  **Raises**
-
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If user interrupts via keyboard.
 
   **Examples**
 
@@ -436,6 +515,12 @@ Qiskit has several features that are enabled only if certain *optional* dependen
   [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.
 </Attribute>
 
+##### qiskit.utils.optionals.HAS\_SYMPY
+
+<Attribute id="qiskit.utils.optionals.HAS_SYMPY">
+  [SymPy](https://www.sympy.org/en/index.html) is Python library for symbolic mathematics. Sympy was historically used for the implementation of the [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") class but isn’t any longer. However it is needed for some legacy functionality that uses [`ParameterExpression.sympify()`](qiskit.circuit.ParameterExpression#sympify "qiskit.circuit.ParameterExpression.sympify"). It is also used in some visualization functions.
+</Attribute>
+
 ##### qiskit.utils.optionals.HAS\_TESTTOOLS
 
 <Attribute id="qiskit.utils.optionals.HAS_TESTTOOLS">
@@ -445,7 +530,7 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 ##### qiskit.utils.optionals.HAS\_TWEEDLEDUM
 
 <Attribute id="qiskit.utils.optionals.HAS_TWEEDLEDUM">
-  [Tweedledum](https://github.com/boschmitt/tweedledum) is an extension library for synthesis and optimization of circuits that may involve classical oracles. Qiskit’s [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") uses this, which is used in turn by amplification algorithms via the `AmplificationProblem`.
+  [Tweedledum](https://github.com/boschmitt/tweedledum) is an extension library for synthesis and optimization of circuits that may involve classical oracles. In the past Qiskit’s [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") used this but it is no longer used by Qiskit.
 </Attribute>
 
 ##### qiskit.utils.optionals.HAS\_Z3

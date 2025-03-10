@@ -21,6 +21,7 @@ import tomllib
 import importlib
 from typing import Iterator
 
+from . import patches
 
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
@@ -173,7 +174,7 @@ class Config:
         if Path(patch_name).exists():
             return Path(patch_name).read_text().format(**patch_config)
 
-        built_in_patch_dir = importlib.resources.files("patches")
+        built_in_patch_dir = importlib.resources.files(patches)
         built_in_patch = built_in_patch_dir / patch_name
         if built_in_patch.exists():
             return built_in_patch.read_text().format(**patch_config)

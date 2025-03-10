@@ -8,12 +8,12 @@ python_api_name: qiskit.transpiler.passes.InstructionDurationCheck
 
 # InstructionDurationCheck
 
-<Class id="qiskit.transpiler.passes.InstructionDurationCheck" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/alignments/check_durations.py#L20-L78" signature="qiskit.transpiler.passes.InstructionDurationCheck(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.InstructionDurationCheck" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/alignments/check_durations.py#L20-L70" signature="qiskit.transpiler.passes.InstructionDurationCheck(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Duration validation pass for reschedule.
 
-  This pass investigates the input quantum circuit and checks if the circuit requires rescheduling for execution. Note that this pass can be triggered without scheduling. This pass only checks the duration of delay instructions and user defined pulse gates, which report duration values without pre-scheduling.
+  This pass investigates the input quantum circuit and checks if the circuit requires rescheduling for execution. Note that this pass can be triggered without scheduling. This pass only checks the duration of delay instructions, which report duration values without pre-scheduling.
 
   This pass assumes backend supported instructions, i.e. basis gates, have no violation of the hardware alignment constraints, which is true in general.
 
@@ -79,7 +79,7 @@ python_api_name: qiskit.transpiler.passes.InstructionDurationCheck
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.InstructionDurationCheck.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/alignments/check_durations.py#L53-L78" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.InstructionDurationCheck.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passes/scheduling/alignments/check_durations.py#L53-L70" signature="run(dag)">
     Run duration validation passes.
 
     **Parameters**
