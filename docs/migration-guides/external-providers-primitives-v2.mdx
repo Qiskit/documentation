@@ -8,14 +8,14 @@ description: Migrate to the primitives interface in external providers
 
 ## Why implement primitives for external providers?
 
-The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime##Why migrate to Qiskit Runtime primitives?)
+The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime#why-migrate-to-qiskit-runtime-primitives?)
 has led to the `backend.run` interface being superseded by the Qiskit Primitives (`Sampler` and `Estimator`).
 
 After a period of overlap between `backend.run` and primitives where users have gradually transitioned to the 
 primitives access model, the `qiskit-ibm-runtime` provider has finally discontinued access to IBM QPUs through `backend.run`.
 
 This guide is for you if you are in charge of a third-party provider, your interface is still based on `backend.run`,
-and you are looking for guidence to implement your own native `Sampler` and `Estimator` primitives.
+and you are looking for guidance to implement your own native `Sampler` and `Estimator` primitives.
 This will enable users whose code is based on primitives to seamlessly transition between providers.
 
 
