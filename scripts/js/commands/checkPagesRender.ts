@@ -214,7 +214,9 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
 
 function filterPlatformSpecificPage(page: string, legacy?: boolean) {
   if (legacy) {
-    return !CLOUD_ONLY_PAGES.has(page) && !page.startsWith("/docs/api");
+    // API docs should never be checked with the legacy app because they render
+    // identically in the cloud app.
+    return !CLOUD_ONLY_PAGES.has(page) && !page.startsWith("docs/api");
   }
 
   return !LEGACY_ONLY_PAGES.has(page);
