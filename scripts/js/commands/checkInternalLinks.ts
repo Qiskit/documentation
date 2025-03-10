@@ -23,6 +23,8 @@ import { FileBatch } from "../lib/links/FileBatch.js";
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
+  "docs/administration/quickstart-org.mdx",
+  "docs/administration/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/qiskit-ibm-transpiler-rest/index.mdx",
   "docs/api/runtime/index.mdx",
@@ -30,6 +32,7 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
   "docs/api/runtime/tags/usage.mdx",
   "docs/api/runtime/tags/sessions.mdx",
+  "docs/api/qiskit-runtime-rest/tags/instances.mdx",
 ];
 
 interface Arguments {
@@ -73,7 +76,7 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/{images,videos}/**/*")).map(
+    ...(await globby("public/{images,videos,open-source}/**/*")).map(
       (fp) => new File(fp, new Set()),
     ),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
@@ -112,6 +115,8 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/pulse.ipynb",
   "docs/guides/primitives.mdx",
   "docs/guides/configure-qiskit-local.mdx",
+  "docs/guides/transpiler-stages.ipynb",
+  "docs/api/qiskit/providers.mdx",
 ];
 // This is reused amongst all the addons to make this config less verbose.
 const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];

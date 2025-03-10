@@ -1,0 +1,145 @@
+---
+title: PhaseOracleGate (dev version)
+description: API reference for qiskit.circuit.library.PhaseOracleGate in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PhaseOracleGate
+---
+
+# PhaseOracleGate
+
+<Class id="qiskit.circuit.library.PhaseOracleGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/phase_oracle.py#L132-L239" signature="qiskit.circuit.library.PhaseOracleGate(expression, var_order=None, label=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Implements a phase oracle.
+
+  The Phase Oracle Gate object constructs circuits for any arbitrary input logical expressions. A logical expression is composed of logical operators & (logical AND), | (logical OR), \~ (logical NOT), and ^ (logical XOR). as well as symbols for literals (variables). For example, ‘a & b’, and (v0 | \~v1) & (\~v2 & v3) are both valid string representation of boolean logical expressions.
+
+  A phase oracle for a boolean function f(x) performs the following quantum operation:
+
+$$
+|x\rangle \mapsto (-1)^{f(x)}|x\rangle
+$$
+
+  For convenience, this oracle, in addition to parsing arbitrary logical expressions, also supports input strings in the [DIMACS CNF format](https://web.archive.org/web/20190325181937/https://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals. See `qiskit.circuit.library.phase_oracle.PhaseOracleGate.from_dimacs_file()`.
+
+  From 16 variables on, possible performance issues should be expected when using the default synthesizer.
+
+  **Parameters**
+
+  *   **expression** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – A Python-like boolean expression.
+  *   **var\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) – A list with the order in which variables will be created. (default: by appearance)
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – A label for the gate to display in visualizations. Per default, the label is set to display the textual represntation of the boolean expression (truncated if needed)
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.PhaseOracleGate.base_class "qiskit.circuit.library.PhaseOracleGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.PhaseOracleGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ## Methods
+
+  ### from\_dimacs\_file
+
+  <Function id="qiskit.circuit.library.PhaseOracleGate.from_dimacs_file" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/phase_oracle.py#L193-L239" signature="from_dimacs_file(filename)" modifiers="classmethod">
+    Create a PhaseOracle from the string in the DIMACS format.
+
+    It is possible to build a PhaseOracle from a file in [DIMACS CNF format](https://web.archive.org/web/20190325181937/https://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
+
+    The following is an example of a CNF expressed in the DIMACS format:
+
+    ```text
+    c DIMACS CNF file with 3 satisfying assignments: 1 -2 3, -1 -2 -3, 1 2 -3.
+    p cnf 3 5
+    -1 -2 -3 0
+    1 -2 3 0
+    1 2 -3 0
+    1 -2 -3 0
+    -1 2 3 0
+    ```
+
+    The first line, following the c character, is a comment. The second line specifies that the CNF is over three boolean variables — let us call them $x_1, x_2, x_3$, and contains five clauses. The five clauses, listed afterwards, are implicitly joined by the logical AND operator, $\land$, while the variables in each clause, represented by their indices, are implicitly disjoined by the logical OR operator, $\lor$. The $-$ symbol preceding a boolean variable index corresponds to the logical NOT operator, $\lnot$. Character 0 (zero) marks the end of each clause. Essentially, the code above corresponds to the following CNF:
+
+    $(\lnot x_1 \lor \lnot x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor x_3) \land (x_1 \lor x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor \lnot x_3) \land (\lnot x_1 \lor x_2 \lor x_3)$.
+
+    **Parameters**
+
+    **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – A file in DIMACS format.
+
+    **Returns**
+
+    A quantum circuit with a phase oracle.
+
+    **Return type**
+
+    [PhaseOracleGate](#qiskit.circuit.library.PhaseOracleGate "qiskit.circuit.library.PhaseOracleGate")
+  </Function>
+</Class>
+

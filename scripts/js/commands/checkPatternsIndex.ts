@@ -24,6 +24,7 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
   "/guides/addons",
   "/guides/function-template-hamiltonian-simulation",
   "/guides/qiskit-addons-utils",
+  "/guides/qiskit-code-assistant-openai-api",
 ]);
 
 // URLs that show up in the INDEX_PAGES, but are not in the left ToC under
@@ -35,6 +36,21 @@ const ALLOWLIST_MISSING_FROM_INDEX: Set<string> = new Set([
 const ALLOWLIST_MISSING_FROM_TOC: Set<string> = new Set([
   "/guides/q-ctrl-optimization-solver",
   "/guides/qunasys-quri-chemistry",
+]);
+
+// URLs that show up in the INDEX_PAGES >1 time. This can happen when we
+// have distinct <CloudContent> and <LegacyContent> lists with some shared entries.
+const ALLOWLIST_DUPLICATE_ENTRIES: Set<string> = new Set([
+  "/guides/processor-types",
+  "/guides/qpu-information",
+  "/guides/get-qpu-information",
+  "/guides/native-gates",
+  "/guides/repetition-rate-execution",
+  "/guides/retired-qpus",
+  "/guides/dynamic-circuits-considerations",
+  "/guides/instances",
+  "/guides/fair-share-scheduler",
+  "/guides/manage-cost",
 ]);
 
 const INDEX_PAGE_URLS: Set<string> = new Set([
@@ -118,7 +134,10 @@ async function deduplicateEntries(
   const errors: string[] = [];
 
   for (const entry of entries) {
-    if (deduplicatedPages.has(entry)) {
+    if (
+      deduplicatedPages.has(entry) &&
+      !ALLOWLIST_DUPLICATE_ENTRIES.has(entry)
+    ) {
       errors.push(`❌ ${filePath}: The entry ${entry} is duplicated`);
     } else {
       deduplicatedPages.add(entry);
