@@ -250,133 +250,80 @@ Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circu
 
 #### Bit
 
-<Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/bit.py#L21-L94" signature="qiskit.circuit.Bit(register=None, index=None)" modifiers="class">
+<Class id="qiskit.circuit.Bit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Bit" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Implement a generic bit.
 
   <Admonition title="Note" type="note">
-    This class should not be instantiated directly. This is just a superclass for [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") and [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit").
+    This class cannot be instantiated directly. Its only purpose is to allow generic type checking for [`Clbit`](#qiskit.circuit.Clbit "qiskit.circuit.Clbit") and [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit").
   </Admonition>
-
-  Create a new generic bit.
 </Class>
 
 #### Qubit
 
-<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L26-L47" signature="qiskit.circuit.Qubit(register=None, index=None)" modifiers="class">
-  Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
+<Class id="qiskit.circuit.Qubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Qubit" modifiers="class">
+  Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit")
 
-  Implement a quantum bit.
+  A qubit, which can be compared between different circuits.
 </Class>
 
 #### Clbit
 
-<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalregister.py#L26-L47" signature="qiskit.circuit.Clbit(register=None, index=None)" modifiers="class">
-  Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.bit.Bit")
+<Class id="qiskit.circuit.Clbit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Clbit" modifiers="class">
+  Bases: [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit")
 
-  Implement a classical bit.
+  A clbit, which can be compared between different circuits.
 </Class>
 
 Qubits and clbits are instantiated by users with no arguments, such as by `Qubit()`. Bits compare equal if they are the same Python object, or if they were both created by a register of the same name and size, and they refer to the same index within that register. There is also a special type tag for “ancilla” qubits, but this is little used in the current state of Qiskit:
 
 #### AncillaQubit
 
-<Class id="qiskit.circuit.AncillaQubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L60-L65" signature="qiskit.circuit.AncillaQubit(register=None, index=None)" modifiers="class">
-  Bases: [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")
+<Class id="qiskit.circuit.AncillaQubit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.AncillaQubit" modifiers="class">
+  Bases: [`Qubit`](#qiskit.circuit.Qubit "qiskit.circuit.Qubit")
 
-  A qubit used as ancillary qubit.
+  A qubit used as an ancilla.
 </Class>
 
 A collection bits of the same type can be encapsulated in a register of the matching type. The base functionality is in a base class that is not directly instantiated:
 
 #### Register
 
-<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L26-L233" signature="qiskit.circuit.Register(size=None, name=None, bits=None)" modifiers="class">
+<Class id="qiskit.circuit.Register" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.Register" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Implement a generic register.
 
   <Admonition title="Note" type="note">
-    This class should not be instantiated directly. This is just a superclass for [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister").
+    This class cannot be instantiated directly. Its only purpose is to allow generic type checking for [`ClassicalRegister`](#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") and [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister").
   </Admonition>
-
-  Create a new generic register.
-
-  Either the `size` or the `bits` argument must be provided. If `size` is not None, the register will be pre-populated with bits of the correct type.
-
-  **Parameters**
-
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Optional. The number of bits to include in the register.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
-  *   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Bit*](#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
-
-  **Raises**
-
-  *   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if both the `size` and `bits` arguments are provided, or if neither are.
-  *   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `size` is not valid.
-  *   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `name` is not a valid name according to the OpenQASM spec.
-  *   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained duplicated bits.
-  *   [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if `bits` contained bits of an incorrect type.
-
-  ##### index
-
-  <Function id="qiskit.circuit.Register.index" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/register.py#L181-L189" signature="index(bit)">
-    Find the index of the provided bit within this register.
-  </Function>
-
-  ##### name
-
-  <Attribute id="qiskit.circuit.Register.name">
-    Get the register name.
-  </Attribute>
-
-  ##### size
-
-  <Attribute id="qiskit.circuit.Register.size">
-    Get the register size.
-  </Attribute>
 </Class>
 
 Each of the defined bit subtypes has an associated register, which have the same constructor signatures, methods and properties as the base class:
 
 #### QuantumRegister
 
-<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L50-L57" signature="qiskit.circuit.QuantumRegister(size=None, name=None, bits=None)" modifiers="class">
-  Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
+<Class id="qiskit.circuit.QuantumRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.QuantumRegister" modifiers="class">
+  Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.Register")
 
-  Implement a quantum register.
-
-  **Parameters**
-
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  Implement a register.
 </Class>
 
 #### ClassicalRegister
 
-<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/classicalregister.py#L50-L57" signature="qiskit.circuit.ClassicalRegister(size=None, name=None, bits=None)" modifiers="class">
-  Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.register.Register")
+<Class id="qiskit.circuit.ClassicalRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.ClassicalRegister" modifiers="class">
+  Bases: [`Register`](#qiskit.circuit.Register "qiskit.circuit.Register")
 
-  Implement a classical register.
-
-  **Parameters**
-
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+  Implement a register.
 </Class>
 
 #### AncillaRegister
 
-<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumregister.py#L68-L75" signature="qiskit.circuit.AncillaRegister(size=None, name=None, bits=None)" modifiers="class">
-  Bases: [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")
+<Class id="qiskit.circuit.AncillaRegister" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.AncillaRegister" modifiers="class">
+  Bases: [`QuantumRegister`](#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
 
   Implement an ancilla register.
-
-  **Parameters**
-
-  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
 </Class>
 
 A common way to instantiate several bits at once is to create a register, such as by `QuantumRegister("my_qreg", 5)`. This has the advantage that you can give that collection of bits a name, which will appear during circuit visualizations ([`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw")) and exports to interchange languages (see [`qasm2`](qasm2#module-qiskit.qasm2 "qiskit.qasm2") and [`qasm3`](qasm3#module-qiskit.qasm3 "qiskit.qasm3")). You can also pass a name and a list of pre-constructed bits, but this creates an “aliasing register”, which are very poorly supported on hardware.
