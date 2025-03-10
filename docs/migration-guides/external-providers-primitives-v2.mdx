@@ -8,7 +8,7 @@ description: Migrate to the primitives interface in external providers
 
 ## Why should third-party providers implement primitives?
 
-The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime#why-migrate-to-qiskit-runtime-primitives?)
+The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime#why-migrate-to-qiskit-runtime-primitives)
 has led to the `backend.run` interface being superseded by the Qiskit Primitives (`Sampler` and `Estimator`).
 
 After a period of overlap between `backend.run` and primitives where users have gradually transitioned to the 
@@ -30,7 +30,7 @@ instances of any of the abstract base primitive interfaces: ([BaseEstimatorV2](/
 and/or [BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2)). The `Estimator` interfaces exposes a tool to calculate
 expectation values of observables with respect to quantum states, while the `Sampler` outputs the counts or probability distributions
 obtained from sampling from a quantum state in a QPU. The base interfaces provide methods for execution, querying job status, 
-and returning the job results. See the `qiskit.primitives` [API documentation](link) for more information.
+and returning the job results. See the `qiskit.primitives` [API documentation](/api/qiskit/primitives) for more information.
 
 Once you know which primitive to implement, you should review the PUB data model for input and output handling. See the following 
 guide for more details on [PUBs](/guides/primitive-input-output#pubs). To handle job status and results, 
