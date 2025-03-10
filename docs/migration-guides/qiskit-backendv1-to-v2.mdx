@@ -5,16 +5,32 @@ description: How to update your code to use `BackendV2` instead of `BackendV1`.
 
 # Migrate from `BackendV1` to `BackendV2`
 
+The Qiskit [`Backend`](/api/qiskit/qiskit.providers.Backend) model was designed to enable the Qiskit SDK 
+to reason quantum computers at a level of abstraction that was relevant for the scope the SDK. 
+The first iteration of the model was introduced with the 
+[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) class. This class stored the backend information in a series
+of data containers, namely the [`BackendConfiguration`](/api/qiskit/qiskit.providers.models.BackendConfiguration) and 
+[`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties) classes. 
+
 The [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) class redefined
 user access for most backend properties to make them work with native Qiskit data structures and have flatter
-access patterns. However, this means when using a provider that upgraded
-from [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) to
-[`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), existing access patterns need
-to be adjusted. It is expected that existing providers will deprecate the old
+access patterns. The core of the [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) model is the 
+[`Target`](/api/qiskit/qiskit.transpiler.Target) class, a representation
+of the QPU that contains the transpilation constraints that Qiskit can use to optimize circuits for execution.
+
+The Qiskit SDK has been updated to work exclusively with [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) inputs,
+and most providers have upgraded from [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) to
+[`BackendV2`](/api/qiskit/qiskit.providers.BackendV2). It is expected that existing providers will deprecate the old
 access where possible to provide a graceful migration, but eventually users
 will need to adjust their code.
 
-The biggest change in [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap) is
+This migration guides show the small adjustments needed in existing access patterns for users of 
+providers that upgraded from [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) to
+[`BackendV2`](/api/qiskit/qiskit.providers.BackendV2). 
+
+Most attributes have a direct drop-in replacement, simplifying the migration efforts.
+The only point of mismatch between interfaces is in the [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap).
+The principle behind [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) is
 that most of the information accessible about a backend is contained in its
 [`Target`](/api/qiskit/qiskit.transpiler.Target) object, and the backend's attributes often query
 its `BackendV2.target` attribute to return information. However, in many cases the attributes only provide
