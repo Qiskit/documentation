@@ -4,83 +4,115 @@ description: Migrate to the primitives interface in external providers
 
 ---
 
-# Migrate provider interfaces from `backend.run` to primitives
+# Migrate third-party provider interfaces from `backend.run` to primitives
 
 ## Why implement primitives for external providers?
 
-Similar to the early days of classical computers, when developers had to manipulate CPU registers directly,
-the early interface to QPUs simply returned the raw data coming out of the control electronics.
-This was not a huge issue when QPUs lived in labs and only allowed direct access by researchers.
-When IBM first brought its QPUs to the cloud, we recognized most developers would not and
-should not be familiar with distilling such raw data into 0s and 1s. Therefore,
-we introduced `backend.run`, our first abstraction for accessing QPUs. This allowed developers
-to operate on a data format they were more familiar with and focus on the bigger picture.
+The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime##Why migrate to Qiskit Runtime primitives?)
+has led to the `backend.run` interface being superseded by the Qiskit Primitives (`Sampler` and `Estimator`).
 
-As access to QPUs became more widespread, and with more quantum algorithms being developed,
-we again recognized the need for a higher-level abstraction. This led to the introduction of
-the Qiskit [primitives interface](/guides/primitives), which are optimized for two core tasks in quantum algorithm development:
-expectation value estimation (Estimator) and circuit sampling (Sampler). The goal is once
-again to help developers to focus more on innovation and less on data conversion.
+After a period of overlap between `backend.run` and primitives where users have gradually transitioned to the 
+primitives access model, the `qiskit-ibm-runtime` provider has finally discontinued access to IBM QPUs through `backend.run`.
 
-For backward compatibility, the `backend.run` interface continues to exist in Qiskit. However, it is deprecated
-in Qiskit Runtime, as most of the IBM Quantum users have migrated to V2 primitives due to their improved
-usability and efficiency. There is already a collection of migration guides for users to
-[transition to the Qiskit Runtime provider](/migration-guides/qiskit-runtime) and
-[update their user code to the V2 primitives interface](/migration-guides/v2-primitives) in
-time for the upcoming removal of `backend.run` in Qiskit Runtime.
+This guide is for you if you are in charge of a third-party provider, your interface is still based on `backend.run`,
+and you are looking for guidence to implement your own native `Sampler` and `Estimator` primitives.
+This will enable users whose code is based on primitives to seamlessly transition between providers.
 
-This migration guide shifts the focus from users and aims to help service providers to migrate from the
-`backend.run` interface to primitives,
-so their users can also benefit from their improvements.
+
+## Exposing custom `Sampler` and `Estimator` implementations
 
 Custom primitive implementations can be used to wrap any service provider hardware access function
 (for example: `execute_workload(QPU)` or `resource.access()`) or local simulator,
 as long as the final inputs and outputs conform to the established standards set by the primitive interfaces.
 
+Depending on the scope of your provider and what workflows you want to enable, you can choose to implement 
+instances of any of the abstract base primitive interfaces: ([BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2) 
+and/or [BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2)). The `Estimator` interfaces exposes a tool to calculate
+expectation values of observables with respect to quantum states, while the `Sampler` outputs the counts or probability distributions
+obtained from sampling from a quantum state in a QPU. The base interfaces provide methods for execution, querying job status, 
+and returning the job results. See the `qiskit.primitives` [API documentation](link) for more information.
 
-## If your provider didn't implement `backend.run` or you prefer a fully custom implementation
+Once you know which primitive to implement, you should review the PUB data model for input and output handling. See the following 
+guide for more details on [PUBs](/guides/primitive-input-output#pubs). To handle job status and results, 
+the Qiskit SDK provides [`DataBin`](../api/qiskit/qiskit.primitives.DataBin), 
+[`PubResult`](../api/qiskit/qiskit.primitives.PubResult), [`PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult), 
+and [`BasePrimitiveJob`](../api/qiskit/qiskit.primitives.BasePrimitiveJob) objects.
 
-If a new provider is developed that doesn't conform to the legacy `backend.run` interface, the pre-packaged
-wrapper might not be the optimal route for implementing the primitives. Instead, you should implement a particular
-instance of the abstract base primitive interfaces ([BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2) or [BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2)). This process requires an
-understanding of the PUB data model for input and output handling.
 
-The following snippet shows a minimal example of an implementation of a custom Sampler primitive following this strategy.
-This example has been extracted and generalized from the [`StatevectorSampler`](/api/qiskit/qiskit.primitives.StatevectorSampler) implementation. It has been simplified
-for readability. The full original implementation can be found in the [`StatevectorSampler` source code.](https://github.com/Qiskit/qiskit/blob/stable/1.3/qiskit/primitives/statevector_sampler.py)
+An example of custom `Sampler` implementation for a third-party provider may look like:
 
 ``` python
-from qiskit.primitives.base import BaseSamplerV2
-from qiskit.primitives.containers import (
+from qiskit.primitives import (
+    BaseSamplerV2
     BitArray,
     DataBin,
     PrimitiveResult,
     SamplerPubResult,
     SamplerPubLike,
+    PrimitiveJob
 )
 from qiskit.primitives.containers.sampler_pub import SamplerPub
-from qiskit.primitives.primitive_job import PrimitiveJob
-...
 
-class CustomStatevectorSampler(BaseSamplerV2):
-
-    ...
-
+class CustomSampler(BaseSamplerV2):
+    """
+    Custom Sampler implementation for a third-party `backend`.
+    """
+    def __init__(
+        self,
+        *,
+        backend: BackendV2, # object representing QPU/ hardware resource
+        options: dict # options can be a dict or a subclass of the qiskit Options class
+    ):
+        self._hw_resource = backend
+        self._options = options
+        self._default_shots = 1024
+        
+    @property 
+    def backend(self) -> BackendV2:
+        """ Return the Sampler's backend/hardware resource"""
+        return self._hw_resource
+ 
     def run(
         self, pubs: Iterable[SamplerPubLike], *, shots: int | None = None
-    ) -> PrimitiveJob[PrimitiveResult[SamplerPubResult]]:
-        ...
+    ) -> BasePrimitiveJob[PrimitiveResult[SamplerPubResult]]:
+        """ 
+        Execution method. Steps to implement: 
+            1. Define a default number of shots if none is given 
+            2. Validate pub format
+            3. Instantiate an object which inherits from BasePrimitiveJob 
+                containing pub and runtime information
+            4. Send the job to the execution service of the provider
+            5. Return the data in some format
+        """
+
+        # 1. Define default shots
+        if shots is None:
+            shots = self._default_shots
+
+        # 2. validate SamplerPub format
         coerced_pubs = [SamplerPub.coerce(pub, shots) for pub in pubs]
+
+        # 3. Instantiate job object, see _run and _run_pub for more details
         job = PrimitiveJob(self._run, coerced_pubs)
+
+        # 4. Send the job to the execution service of the provider
         job._submit()
+
+        # 5. Return the data
         return job
 
     def _run(self, pubs: Iterable[SamplerPub]) -> PrimitiveResult[SamplerPubResult]:
+        """
+        Iterate over input pubs and call _run_pub.
+        """
         results = [self._run_pub(pub) for pub in pubs]
+        # return results wrapped in PrimitiveResult
         return PrimitiveResult(results, metadata={"version": 2})
 
     def _run_pub(self, pub: SamplerPub) -> SamplerPubResult:
-
+        """
+        This internal method handles the access to the provider resource.
+        """
         # pre-processing of the sampling inputs to fit the required format
         circuit, qargs, meas_info = _preprocess_circuit(pub.circuit)
         bound_circuits = pub.parameter_values.bind_all(circuit)
@@ -90,30 +122,31 @@ class CustomStatevectorSampler(BaseSamplerV2):
             )
             for item in meas_info
         }
-        for index, bound_circuit in enumerate(bound_circuits):
 
+        # iterate over pub elements
+        for index, bound_circuit in enumerate(bound_circuits):
             # ACCESS PROVIDER RESOURCE HERE
             # in this case, we are showing an illustrative implementation
-            samples_array = ProviderResource.sample(bound_circuit)
+            samples_array = self._hw_resource.sample(bound_circuit)
 
             # post-processing of the sampling output to fit the required format
             for item in meas_info:
                 ary = _samples_to_packed_array(samples_array, item.num_bits, item.qreg_indices)
                 arrays[item.creg_name][index] = ary
-
         meas = {
             item.creg_name: BitArray(arrays[item.creg_name], item.num_bits) for item in meas_info
         }
+        # return results wrapped in SamplerPubResult
         return SamplerPubResult(
             DataBin(**meas, shape=pub.shape),
             metadata={"shots": pub.shots, "circuit_metadata": pub.circuit.metadata},
         )
 ```
 
-The mechanics to implement a custom Estimator are analogous to those for the Sampler, but might require a different pre- or post-processing
-step in the `run`  method to extract expectation values from samples. Similar to the Sampler
-example, this snippet has been modified and simplified for generality and readability.
-The full original implementation can be found in the [`StatevectorEstimator` source code.](https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/primitives/statevector_estimator.py#L31-L174)
+This implementation is based on the [`StatevectorSampler` source code](/api/qiskit/qiskit.primitives.StatevectorSampler),
+with some additions to represent the backend/hardware resource access, as the `StatevectorSampler` class is designed for local statevector simulator.
+
+An example of custom `Estimator` implementation for a third-party provider may look like:
 
 ``` python
 from .base import BaseEstimatorV2
@@ -122,24 +155,66 @@ from .containers.estimator_pub import EstimatorPub
 from .primitive_job import PrimitiveJob
 ...
 
-class CustomStatevectorEstimator(BaseEstimatorV2):
+class CustomEstimator(BaseEstimatorV2):
 
-    ...
-
+    """
+    Custom Estimator implementation for a third-party `backend`.
+    """
+    def __init__(
+        self,
+        *,
+        backend: BackendV2, # object representing QPU/ hardware resource
+        options: dict # options can be a dict or a subclass of the qiskit Options class
+    ):
+        self._hw_resource = backend
+        self._options = options
+        self._default_precision = 1024
+        
+    @property 
+    def backend(self) -> BackendV2:
+        """ Return the Estimator's backend/hardware resource"""
+        return self._hw_resource
+ 
     def run(
         self, pubs: Iterable[EstimatorPubLike], *, precision: float | None = None
     ) -> PrimitiveJob[PrimitiveResult[PubResult]]:
-        ...
+        """ 
+        Execution method. Steps to implement: 
+            1. Define a default precision if none is given 
+            2. Validate pub format
+            3. Instantiate an object which inherits from BasePrimitiveJob 
+                containing pub and runtime information
+            4. Send the job to the execution service of the provider
+            5. Return the data in some format
+        """
+
+        # 1. Define default precision
+        if precision is None:
+            precision = self._default_precision
+
+        # 2. validate EstimatorPub format
         coerced_pubs = [EstimatorPub.coerce(pub, precision) for pub in pubs]
 
+        # 3. Instantiate job object, see _run and _run_pub for more details
         job = PrimitiveJob(self._run, coerced_pubs)
+
+        # 4. Send the job to the execution service of the provider
         job._submit()
+
+        # 5. Return the data
         return job
 
     def _run(self, pubs: list[EstimatorPub]) -> PrimitiveResult[PubResult]:
+        """
+        Iterate over input pubs and call _run_pub.
+        """
         return PrimitiveResult([self._run_pub(pub) for pub in pubs], metadata={"version": 2})
 
     def _run_pub(self, pub: EstimatorPub) -> PubResult:
+        """
+        This internal method handles the access to the provider resource.
+        """
+        # pre-processing of the estimator inputs to fit the required format
         rng = np.random.default_rng(self._seed)
         circuit = pub.circuit
         observables = pub.observables
@@ -150,8 +225,9 @@ class CustomStatevectorEstimator(BaseEstimatorV2):
         evs = np.zeros_like(bc_circuits, dtype=np.float64)
         stds = np.zeros_like(bc_circuits, dtype=np.float64)
 
+        # iterate over pub elements
         for index in np.ndindex(*bc_circuits.shape):
-            # pre-processing of the sampling inputs to fit the required format
+            # further pre-processing of the inputs to fit the required format
             bound_circuit = bc_circuits[index]
             observable = bc_obs[index]
             paulis, coeffs = zip(*observable.items())
@@ -159,15 +235,18 @@ class CustomStatevectorEstimator(BaseEstimatorV2):
 
             # ACCESS PROVIDER RESOURCE HERE
             # in this case, we are showing an illustrative implementation
-            samples_array = ProviderResource.sample(bound_circuit, rng, precision)
+            samples_array = self._hw_resource.sample(bound_circuit, rng, precision)
 
             # post-processing of the sampling output to extract expectation value
             expectation_value = compute_expectation_value(samples_array, obs)
             evs[index] = expectation_value
 
+        # return results wrapped in PubResult
         data = DataBin(evs=evs, stds=stds, shape=evs.shape)
         return PubResult(
             data, metadata={"target_precision": precision, "circuit_metadata": pub.circuit.metadata}
         )
 ```
 
+Similarly to the `Sampler` example, this implementation is based on the [`StatevectorEstimator` source code](/api/qiskit/qiskit.primitives.StatevectorEstimator),
+with some additions to represent the backend/hardware resource access, as the `StatevectorEstimator` class is designed for local statevector simulator.
