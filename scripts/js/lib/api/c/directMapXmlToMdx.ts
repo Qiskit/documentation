@@ -28,24 +28,23 @@ import type {
 // * The XML `<parameterlist>` does NOT have a 1:1 mapping in MDX (we could map
 //   to a list, but how would we map back?). Therefore, MdxMappableXmlNodes can't
 //   have this as a descendent.
-type MdxMappableXmlNode =
+export type MdxMappableXmlNode =
   | XmlTextNode
   | XmlListNode
   | { title: MdxMappableXmlNode[] }
   | { para: MdxMappableXmlNode[] }
   | { computeroutput: MdxMappableXmlNode[] }
   | { verbatim: XmlTextNode[] };
-type XmlTextNode = { "#text": string };
+export type XmlTextNode = { "#text": string };
 type XmlListNode = { itemizedlist: Array<{ listitem: MdxMappableXmlNode[] }> };
 
 /**
  * Try to map the XML tree to a markdown AST (mdast) as closely as possible.
  */
-export function directMapXmlToMdx(nodes: MdxMappableXmlNode[]): MdastRoot {
-  return {
-    type: "root",
-    children: nodes.flatMap((n) => xmlToBlockNodes(n, 1)),
-  };
+export function directMapXmlToMdx(
+  nodes: MdxMappableXmlNode[],
+): MdastBlockContent[] {
+  return nodes.flatMap((n) => xmlToBlockNodes(n, 1));
 }
 
 /**
@@ -131,7 +130,7 @@ function xmlListToMdx(node: XmlListNode): MdastList {
   return { type: "list", children };
 }
 
-function extractText(textNodes: XmlTextNode[]): string {
+export function extractText(textNodes: XmlTextNode[]): string {
   return textNodes.map((node) => node["#text"]).join();
 }
 

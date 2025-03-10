@@ -12,6 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 import { toMarkdown } from "mdast-util-to-markdown";
+import { Root as MdastRoot } from "mdast";
 
 import { directMapXmlToMdx } from "./directMapXmlToMdx.js";
 import { xmlParser, collapseWhitespace } from "./xmlToMdx.js";
@@ -20,7 +21,10 @@ import { xmlParser, collapseWhitespace } from "./xmlToMdx.js";
 // This is easier than writing and reading the XML and MDX ASTs.
 function directMapXmlToMdxString(xml: string): string {
   const parsedXml = xmlParser.parse(xml);
-  const mdastRoot = directMapXmlToMdx(parsedXml);
+  const mdastRoot: MdastRoot = {
+    type: "root",
+    children: directMapXmlToMdx(parsedXml),
+  };
   return collapseWhitespace(toMarkdown(mdastRoot));
 }
 
