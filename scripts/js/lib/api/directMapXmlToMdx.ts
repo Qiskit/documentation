@@ -102,10 +102,10 @@ function xmlParagraphToBlockNode(
   node: { para: MdxMappableXmlNode[] },
   headingDepth: MdastHeading["depth"],
 ): MdastBlockContent[] {
-  // Doxygen XML sometimes nests block nodes (such as lists) in paragraphs, which
-  // markdown doesn't allow. If we encounter a When processing a block node in a
-  // paragraph's children, we close the paragraph, add the block node, then start a
-  // new paragraph.
+  // Doxygen XML sometimes nests block nodes (such as lists) in paragraphs,
+  // which markdown doesn't allow. If we encounter a block node in a paragraph's
+  // children, we close the paragraph, add the block node, then start a new
+  // paragraph.
   const blocks: MdastBlockContent[] = [];
   let currentParagraph: MdastParagraph = { type: "paragraph", children: [] };
   for (const child of node.para) {
