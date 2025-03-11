@@ -253,4 +253,11 @@ def get_parser() -> argparse.ArgumentParser:
             "This affects which notebooks are run and how they're patched."
         ),
     )
+    parser.add_argument(
+        "--cancel-trailing-jobs",
+        action="store_true",
+        help=(
+            "Cancels any trailing jobs if submitted with QiskitRuntimeService"
+        ),
+    )
     return parser
