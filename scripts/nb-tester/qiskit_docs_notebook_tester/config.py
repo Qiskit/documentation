@@ -254,10 +254,10 @@ def get_parser() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--cancel-trailing-jobs",
+        "--ignore-trailing-jobs",
         action="store_true",
         help=(
-            "Cancels any trailing jobs if submitted with QiskitRuntimeService"
+            "Ignores cancellation of trailing jobs with QiskitRuntimeService"
         ),
     )
     return parser
