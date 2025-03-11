@@ -125,4 +125,20 @@ test.describe("directMapXmlToMdx", () => {
       `),
     );
   });
+
+  test.fail("computeroutput with nested markup", async () => {
+    const xmlString = `
+      <computeroutput><ref refid="structQkSparseTerm" kindref="compound">Hello</ref>, world!</computeroutput>
+    `;
+    const result = directMapXmlToMdxString(xmlString);
+    // We'll probably want to hang onto some kind of 'Ref' tag so we can compile
+    // the cross-references later and replace these with <a> tags. We'll also
+    // need to make a minor change to inner-source to expose the `<Code>` MDX
+    // components.
+    expect(result).toEqual(
+      dedentAndTrim(`
+        <Code><Ref refid="structQkSparseTerm" kindref="compound">Hello</Ref>, world!</Code>
+      `),
+    );
+  });
 });

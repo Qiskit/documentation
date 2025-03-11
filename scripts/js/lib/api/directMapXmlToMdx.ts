@@ -33,7 +33,7 @@ type MdxMappableXmlNode =
   | XmlListNode
   | { title: MdxMappableXmlNode[] }
   | { para: MdxMappableXmlNode[] }
-  | { computeroutput: XmlTextNode[] }
+  | { computeroutput: MdxMappableXmlNode[] }
   | { verbatim: XmlTextNode[] };
 type XmlTextNode = { "#text": string };
 type XmlListNode = { itemizedlist: Array<{ listitem: MdxMappableXmlNode[] }> };
@@ -83,9 +83,16 @@ function xmlToBlockNodes(
  */
 function xmlToPhrasingNode(node: MdxMappableXmlNode): PhrasingContent | Text {
   if ("#text" in node) return { type: "text", value: node["#text"] };
-  if ("computeroutput" in node)
+  if ("computeroutput" in node) {
     // TODO: Handle xrefs in computeroutput nodes
-    return { type: "inlineCode", value: extractText(node.computeroutput) };
+    if (isTextOnly(node.computeroutput))
+      return { type: "inlineCode", value: extractText(node.computeroutput) };
+    else
+      throw new Error(
+        "Can't yet handle markup inside <computeroutput> tags. " +
+          `Problem tag: ${JSON.stringify(node)}`,
+      );
+  }
   throw new Error(`Can't map XML node: ${JSON.stringify(node)}`);
 }
 
@@ -124,4 +131,8 @@ function xmlListToMdx(node: XmlListNode): List {
 
 function extractText(textNodes: XmlTextNode[]): string {
   return textNodes.map((node) => node["#text"]).join();
+}
+
+function isTextOnly(node: MdxMappableXmlNode[]): node is XmlTextNode[] {
+  return node.every((child) => "#text" in child);
 }
