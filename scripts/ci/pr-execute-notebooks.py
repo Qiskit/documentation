@@ -40,7 +40,7 @@ changed_notebooks = [
 ]
 config_changed = any(path.startswith("scripts/") for path in all_changed_files)
 
-args = ["tox", "--", "--write", "--cancel-trailing-jobs"]
+args = ["tox", "--", "--write"]
 if changed_notebooks and not config_changed:
   args.extend(changed_notebooks)
 
