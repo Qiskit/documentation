@@ -28,13 +28,13 @@ the Primitive Unified Bloc (PUB) syntax, and the output formats should follow th
 The two main differences with the implementations of [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2) 
 and [`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2) are:
 
-1.  The `backend` input passed during the "backend primitive" instantiation. This input argument allows access to the internal provider through `backend.run()` and should not be confused
+1.  The `backend` input passed during the "backend primitive" instantiation. This input argument allows access 
+to the internal provider through `backend.run()` and should not be confused
 with the `mode` input argument of [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2) 
 and [`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2).
 
-2. The use of `options`, which contains one more level of nesting compared to provider-specific primitives and
-is initially provided as a `dict` instead of an `Options` instance.
-In the first level of nesting, `BackendSamplerV2` includes `default_shots`, `seed_simulator` and `run_options`;
+2. What `options` can be set. Options should be provided as a `dict` instead of an `Options` instance.
+`BackendSamplerV2` includes `default_shots`, `seed_simulator` and `run_options`;
 `BackendEstimatorV2` includes `default_precision`, `abelian_grouping`, `seed_simulator` and `run_options`.
 The `run_options` field defines the options to pass through to the `.run()` method of the wrapped backend instance.
 
