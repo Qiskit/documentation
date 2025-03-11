@@ -20,9 +20,7 @@ import { xmlParser, collapseWhitespace } from "./xmlToMdx.js";
 // This is easier than writing and reading the XML and MDX ASTs.
 function directMapXmlToMdxString(xml: string): string {
   const parsedXml = xmlParser.parse(xml);
-  // console.log(JSON.stringify(parsedXml));
   const mdastRoot = directMapXmlToMdx(parsedXml);
-  // console.log(JSON.stringify(mdastRoot, null, 2));
   return collapseWhitespace(toMarkdown(mdastRoot));
 }
 
