@@ -37,6 +37,7 @@ async def _main() -> None:
     if not args.ignore_trailing_jobs:
         print("Checking for trailing jobs...")
         results.append(cancel_trailing_jobs(start_time))
+
     if not all(results):
         sys.exit(1)
 

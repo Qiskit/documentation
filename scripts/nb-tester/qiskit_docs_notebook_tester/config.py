@@ -257,7 +257,8 @@ def get_parser() -> argparse.ArgumentParser:
         "--ignore-trailing-jobs",
         action="store_true",
         help=(
-            "Ignores cancellation of trailing jobs with QiskitRuntimeService"
+            "Do not cancel trailing jobs with QiskitRuntimeService. This is "
+            "useful to set if your patch does not use QiskitRuntimeService"
         ),
     )
     return parser
