@@ -17,8 +17,10 @@ export const xmlParser = new XMLParser({
   trimValues: false,
 });
 
-// Extra whitespace in the XML can appear in the MDX output.
-// This shouldn't affect how it renders on the site so we trim it to reduce noise.
+/**
+ * Extra whitespace in the XML can appear in the MDX output.
+ * This shouldn't affect how it renders on the site so we trim it to reduce noise.
+ */
 export function collapseWhitespace(mdx: string): string {
   return mdx
     .replaceAll("&#x20;", " ")

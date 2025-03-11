@@ -48,8 +48,8 @@ export function directMapXmlToMdx(nodes: MdxMappableXmlNode[]): MdastRoot {
   };
 }
 
-/*
- * Map an XML node (and it's children) to an array of mdast `Block` nodes
+/**
+ * Map an XML node (and its children) to an array of mdast `Block` nodes
  */
 function xmlToBlockNodes(
   node: MdxMappableXmlNode,
@@ -79,7 +79,7 @@ function xmlToBlockNodes(
 }
 
 /**
- * Map an XML node (and it's children) to an array of mdast `Phrasing` nodes
+ * Map an XML node (and its children) to an array of mdast `Phrasing` nodes
  */
 function xmlToPhrasingNode(
   node: MdxMappableXmlNode,
