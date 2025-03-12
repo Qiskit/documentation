@@ -235,6 +235,9 @@ function readFunction(memberDef: MemberDef): FunctionData {
       .flatMap((tag) => {
         return directMapXmlToMdx(tag as MdxMappableXmlNode[]);
       }),
+    extendedDescription: directMapXmlToMdx(
+      getChild(detailedDescription, 'sect1') as MdxMappableXmlNode[]
+    ),
   };
 }
 

@@ -113,5 +113,8 @@ test.describe("directMapXmlToMdx", () => {
     expect(toMarkdown(func?.returns)).toEqual(
       "A pointer to the created observable.",
     );
-  });
+    expect(toMarkdown(func?.extendedDescription)).toEqual(
+      "# Example\n\n\`\`\`C\nQkSparseObservable *zero = qk_obs_zero(100);\n\`\`\`",
+    );
+});
 });
