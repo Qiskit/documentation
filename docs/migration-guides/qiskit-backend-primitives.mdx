@@ -6,7 +6,7 @@ description: Migrate to primitives for users of third-party providers with `back
 
 # Migrate to primitives for users of third-party providers with `backend.run`
 
-The `backend.run` interface was the primary access point to quantum hardware and simulators offered by third-party providers that integrate with Qiskit. The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime#why-migrate-to-qiskit-runtime-primitives) has led to the Qiskit primitives (Sampler and Estimator) superseding this interface. However, not all third-party providers have transitioned to the primitives framework, and `backend.run` remains in Qiskit for backward compatibility.
+The `backend.run` interface was the primary access point to quantum hardware and simulators offered by third-party providers that integrate with Qiskit. The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime#why-migrate-to-qiskit-runtime-primitives) has led to the Qiskit primitives (`Sampler` and `Estimator`) superseding this interface. However, not all third-party providers have transitioned to the primitives framework, and `backend.run` remains in Qiskit for backward compatibility.
 
 This guide is for you if you have written or want to write code using `Sampler` and `Estimator` 
 primitives but need to interact with a provider that still relies on `backend.run`. If you are a 
@@ -39,7 +39,7 @@ and [`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2).
 The `run_options` field defines the options to pass through to the `.` method of the wrapped backend instance.
 
 Note that because these wrappers are independent of `qiskit_ibm_runtime`, they do not offer access to execution
-modes (`Session`/`batch`), local testing modes, or any other `qiskit_ibm_runtime`-specific feature. These are up to the
+modes (`Session`/`Batch`), local testing modes, or any other `qiskit_ibm_runtime`-specific feature. These are up to the
 third-party provider to implement and expose, ideally through a native primitive. 
 If the use of the third-party backend requires a more fine-grained option handling
 strategy that is not covered by the out-of-the-box wrapper, it is always possible to extend the 
