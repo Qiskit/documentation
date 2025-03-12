@@ -34,6 +34,7 @@ export async function processHtml(options: {
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
+  isCApi: boolean;
 }): Promise<ProcessedHtml> {
   const {
     html,
@@ -42,6 +43,7 @@ export async function processHtml(options: {
     determineGithubUrl,
     releaseNotesTitle,
     hasSeparateReleaseNotes,
+    isCApi,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
@@ -77,7 +79,7 @@ export async function processHtml(options: {
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta);
-  maybeSetModuleMetadata($, $main, meta);
+  maybeSetModuleMetadata($, $main, meta, isCApi);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
   }
@@ -341,7 +343,7 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data",
+        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data, dl.cpp.function, dl.cpp.struct",
       )
       // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
       .not("td > dl")
@@ -400,8 +402,9 @@ export function maybeSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
+  isCApi: boolean,
 ): void {
-  const modulePrefix = "module-";
+  const modulePrefix = isCApi ? "group__" : "module-";
   const moduleIdWithPrefix = $main
     .find("span, section, div.section")
     .toArray()
@@ -463,6 +466,7 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     "attribute",
     "module",
     "data",
+    "struct",
   ]) {
     if ($dl.hasClass(className)) {
       return className as ApiType;
