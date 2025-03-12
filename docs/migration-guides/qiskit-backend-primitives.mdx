@@ -6,49 +6,49 @@ description: Migrate to primitives for users of third-party providers with `back
 
 # Migrate to primitives for users of third-party providers with `backend.run`
 
-The `backend.run` interface was the primary access point to quantum hardware and simulators offered by third-party providers that integrate with Qiskit. The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime#why-migrate-to-qiskit-runtime-primitives) has led to the Qiskit primitives (`Sampler` and `Estimator`) superseding this interface. However, not all third-party providers have transitioned to the primitives framework, and `backend.run` remains in Qiskit for backward compatibility.
+The `backend.run` interface was the primary access point to quantum hardware and simulators offered by third-party providers that integrate with Qiskit. The evolution of [user access patterns for QPUs](/migration-guides/qiskit-runtime#why-migrate-to-qiskit-runtime-primitives) led to the Qiskit primitives (`Sampler` and `Estimator`) superseding this interface. However, not all third-party providers have transitioned to the primitives framework, and `backend.run` remains in Qiskit for backward compatibility.
 
-This guide is for you if you have written or want to write code using `Sampler` and `Estimator` 
-primitives but need to interact with a provider that still relies on `backend.run`. If you are a 
-provider developer looking to implement and expose your own `Sampler` and 
-`Estimator` primitives, you can find guidance in the [Migrate provider interfaces from backend.run to primitives](/migration-guides/external-providers-primitives-v2) guide.  
+This guide is for you if you have written or want to write code using `Sampler` and `Estimator`
+primitives but need to interact with a provider that still relies on `backend.run`. If you are a
+provider developer looking to implement and expose your own `Sampler` and
+`Estimator` primitives, see the [Migrate provider interfaces from backend.run to primitives](/migration-guides/external-providers-primitives-v2) guide instead.
 
-For providers that don't expose native primitives, the Qiskit SDK offers wrappers for `backend.run` that you can 
-use out-of the box: the [`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) and 
+For providers that don't expose native primitives, the Qiskit SDK offers wrappers for `backend.run` that you can
+use out-of the box: the [`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) and
 [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) classes.
 
-If you are already familiar with the [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2) 
-and [`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2) interfaces, the transition to 
-[`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) and 
+If you are already familiar with the [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2)
+and [`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2) interfaces, the transition to
+[`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) and
 [`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) is seamless, as
-these classes follow the same usage patterns. The inputs to the primitives should follow 
-the Primitive Unified Bloc (PUB) syntax, and the output formats should follow the
-`PrimitiveResult` interface. See the [Primitive inputs and outputs](/guides/primitive-input-output) for more details.
+these classes follow the same usage patterns. The inputs to the primitives should follow
+the primitive unified bloc (PUB) syntax, and the output formats should follow the
+`PrimitiveResult` interface. See the [Primitive inputs and outputs](/guides/primitive-input-output) for details.
 
-The two main differences with the implementations of [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2) 
+The two main differences with the implementations of [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2)
 and [`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2) are:
 
-1.  The `backend` input passed during the "backend primitive" instantiation. This input argument allows access 
-to the internal provider through `backend.` and should not be confused
-with the `mode` input argument of [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2) 
+1.  The `backend` input passed during the "backend primitive" instantiation. This input argument allows internal provider access
+through `backend` and should not be confused
+with the `mode` input argument of [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2)
 and [`EstimatorV2`](/api/qiskit-ibm-runtime/estimator-v2).
 
-2. What `options` can be set. Options should be provided as a `dict` instead of an `Options` instance.
-`BackendSamplerV2` includes `default_shots`, `seed_simulator` and `run_options`;
-`BackendEstimatorV2` includes `default_precision`, `abelian_grouping`, `seed_simulator` and `run_options`.
-The `run_options` field defines the options to pass through to the `.` method of the wrapped backend instance.
+2. Which `options` can be set. Options should be provided as a `dict` instead of an `Options` instance.
+  * `BackendSamplerV2` includes `default_shots`, `seed_simulator` and `run_options`.
+  * `BackendEstimatorV2` includes `default_precision`, `abelian_grouping`, `seed_simulator`, and `run_options`.
+  * The `run_options` field defines the options to pass through to the `.` method of the wrapped backend instance.
 
-Note that because these wrappers are independent of `qiskit_ibm_runtime`, they do not offer access to execution
-modes (`Session`/`Batch`), local testing modes, or any other `qiskit_ibm_runtime`-specific feature. These are up to the
-third-party provider to implement and expose, ideally through a native primitive. 
-If the use of the third-party backend requires a more fine-grained option handling
-strategy that is not covered by the out-of-the-box wrapper, it is always possible to extend the 
-[`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) and 
-[`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) interfaces through subclassing to fit the specific 
+Because these wrappers are independent of `qiskit_ibm_runtime`, they do not offer access to execution
+modes (`Session` and `Batch`), local testing modes, or any other `qiskit_ibm_runtime`-specific feature. These are up to the
+third-party provider to implement and expose, ideally through a native primitive.
+If the third-party backend requires a more fine-grained option handling
+strategy that is not covered by the out-of-the-box wrapper, you can extend the
+[`BackendSamplerV2`.](/api/qiskit/qiskit.primitives.BackendSamplerV2) and
+[`BackendEstimatorV2`](/api/qiskit/qiskit.primitives.BackendEstimatorV2) interfaces through subclassing to fit the specific
 interface needs.
 
-The following is an example usage of the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2) 
-class with a fictional third-party provider backend that only implements `backend.`:
+The following is an example usage of the [`BackendSamplerV2`](/api/qiskit/qiskit.primitives.BackendSamplerV2)
+class with a fictional third-party provider backend that only implements `backend`:
 
 ``` python
 from qiskit import QuantumCircuit, generate_preset_pass_manager
@@ -59,13 +59,13 @@ from qiskit_fictional_provider import BackendRunProvider
 backend = BackendRunProvider("").get_backend("fictional_backend")
 sampler = BackendSamplerV2(backend, options={"default_shots": 1000})
 
-# from this point onwards, use sampler as any SamplerV2
+# from this point on, use sampler as any SamplerV2
 qc = QuantumCircuit(2)
 qc.cx(0, 1)
 qc.measure_all()
 
 # assuming that third-party backend is compatible with our transpilation pipeline
-# (whether this step is required or not will depend on the provider)
+# (whether this step is required or not depends on the provider)
 pm = generate_preset_pass_manager(backend=backend)
 tqc = pm.run(qc)
 
