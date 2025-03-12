@@ -13,9 +13,6 @@
 // The core of this file is the `readXml` function, which parses a Doxygen
 // XML file and returns a `PageData` object. `PageData` contains all the
 // relevant information needed to render a C API page.
-//
-// This file is mostly types, this is because `readXml` is basically just a
-// mapping from the XML type to our `PageData` type.
 
 import { XMLParser } from "fast-xml-parser";
 
@@ -189,56 +186,49 @@ function readFunction(memberDef: MemberDef): FunctionData {
     ),
     parameters: detailedDescription
       .filter((tag) => "para" in tag)
-      .filter((tag: any) => !!getChild(tag.para, "parameterlist"))
-      .map(
-        (tag: any) =>
-          getChild(
-            tag.para,
-            "parameterlist",
-          ) as FunctionParameters["parameterlist"],
-      )
-      .map((tag: FunctionParameters["parameterlist"]) => {
-        const parameterItem = getChild(
-          tag,
-          "parameteritem",
-        ) as XmlArray<FunctionParameterItem>;
-        let name: string;
-        try {
-          name = extractText(
-            getChild(
-              getChild(parameterItem, "parameternamelist") as any,
-              "parametername",
-            ),
-          );
-        } catch {
-          throw new Error(
-            `Could not get parameter name: ${JSON.stringify(tag)}`,
-          );
-        }
-        const description = directMapXmlToMdx(
-          getChild(
-            parameterItem,
-            "parameterdescription",
-          ) as MdxMappableXmlNode[],
-        );
-        return { name, description };
-      }),
+      .flatMap((tag: any) => {
+        const parameterList = getChild(tag.para, "parameterlist") as
+          | FunctionParameters["parameterlist"]
+          | undefined;
+        if (!parameterList) return [];
+        return parameterList
+          .filter((tag) => "parameteritem" in tag)
+          .map((tag: any) => tag.parameteritem);
+      })
+      .map(getParameters),
     returns: detailedDescription
-      .filter((tag): tag is any => "para" in tag)
-      .filter((tag: any) => !!getChild(tag.para, "simplesect"))
-      .map(
-        (tag: any) =>
-          getChild(tag.para, "simplesect") as XmlArray<FunctionReturn>,
-      )
+      .filter((tag: any) => "para" in tag && !!getChild(tag.para, "simplesect"))
       // TODO: Check for @kind="return"
       // and remove `as MdxMappableXmlNode[]`
-      .flatMap((tag) => {
-        return directMapXmlToMdx(tag as MdxMappableXmlNode[]);
+      .flatMap((tag: any) => {
+        const simplesect = getChild(
+          tag.para,
+          "simplesect",
+        ) as XmlArray<FunctionReturn>;
+        return directMapXmlToMdx(simplesect as MdxMappableXmlNode[]);
       }),
     extendedDescription: directMapXmlToMdx(
-      getChild(detailedDescription, 'sect1') as MdxMappableXmlNode[]
+      getChild(detailedDescription, "sect1") as MdxMappableXmlNode[],
     ),
   };
+}
+
+function getParameters(item: XmlArray<FunctionParameterItem>): {
+  name: string;
+  description: BlockContent[];
+} {
+  const nameList = getChild(item, "parameternamelist") as
+    | XmlArray<{ parametername: XmlTextNode[] }>
+    | undefined;
+  const nameTag =
+    nameList && (getChild(nameList, "parametername") as XmlTextNode[]);
+  if (!nameTag)
+    throw new Error(`Could not get parameter name: ${JSON.stringify(item)}`);
+  const name = extractText(nameTag);
+  const description = directMapXmlToMdx(
+    getChild(item, "parameterdescription") as MdxMappableXmlNode[],
+  );
+  return { name, description };
 }
 
 /**
