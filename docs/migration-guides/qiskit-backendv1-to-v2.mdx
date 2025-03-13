@@ -5,7 +5,7 @@ description: How to update your code to use `BackendV2` instead of `BackendV1`.
 
 # Migrate from `BackendV1` to `BackendV2`
 
-The Qiskit [`BackendV1`](/api/qiskit/1.4/qiskit.providers.BackendV1) class has been deprecated and will be removed from service.  
+The Qiskit [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) class has been deprecated and will be removed from service.  
 This guide describes how to migrate to [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2).
 
 ## Changes in `BackendV2`
@@ -13,9 +13,9 @@ This guide describes how to migrate to [`BackendV2`](/api/qiskit/qiskit.provider
 The Qiskit [`Backend`](/api/qiskit/qiskit.providers.Backend) model was designed to provide the Qiskit SDK with an abstraction 
 layer that enabled reasoning about quantum computers within the scope of the SDK.
 The first iteration of the model was introduced with the 
-[`BackendV1`](/api/qiskit/1.4/qiskit.providers.BackendV1) class. This class stored the backend information in a series
-of data containers, namely the [`BackendConfiguration`](/api/qiskit/1.4/qiskit.providers.models.BackendConfiguration) and 
-[`BackendProperties`](/api/qiskit/1.4/qiskit.providers.models.BackendProperties) classes. 
+[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) class. This class stored the backend information in a series
+of data containers, namely the [`BackendConfiguration`](/api/qiskit/qiskit.providers.models.BackendConfiguration) and 
+[`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties) classes. 
 
 The [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) class redefined
 user access for most backend properties to make them work with native Qiskit data structures and have flatter
@@ -24,13 +24,13 @@ access patterns. The core of the [`BackendV2`](/api/qiskit/qiskit.providers.Back
 of the QPU that contains the transpilation constraints that Qiskit can use to optimize circuits for execution.
 
 The Qiskit SDK has been updated to work exclusively with [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) inputs,
-and most providers have upgraded from [`BackendV1`](/api/qiskit/1.4/qiskit.providers.BackendV1) to
+and most providers have upgraded from [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) to
 [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2). It is expected that existing providers will deprecate the old
 access where possible to provide a graceful migration, but eventually users
 will need to adjust their code.
 
 This migration guides show the small adjustments needed in existing access patterns for users of 
-providers that upgraded from [`BackendV1`](/api/qiskit/1.4/qiskit.providers.BackendV1) to
+providers that upgraded from [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) to
 [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2). 
 
 Most attributes have a direct drop-in replacement, simplifying the migration efforts.
@@ -51,13 +51,13 @@ detailed in the full coupling map returned by
 it might be necessary to look deeper than just the equivalent access with
 [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2).
 
-Below is a table of example access patterns in [`BackendV1`](/api/qiskit/1.4/qiskit.providers.BackendV1) and the new form
+Below is a table of example access patterns in [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) and the new form
 with [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2):
 
-|[`BackendV1`](/api/qiskit/1.4/qiskit.providers.BackendV1) | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) | Notes |
+|[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) | Notes |
 | --- | --- | --- |
 |`backend.configuration().n_qubits` | `backend.num_qubits`| |
-|`backend.configuration().coupling_map` | `backend.coupling_map` | The return from [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) is a [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap) object. In [`BackendV1`](/api/qiskit/1.4/qiskit.providers.BackendV1) it is an edge list. Also, this is just a view of the information contained in `backend.target` which may only be a subset of the information contained in the [`Target`](/api/qiskit/qiskit.transpiler.Target) object. |
+|`backend.configuration().coupling_map` | `backend.coupling_map` | The return from [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) is a [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap) object. In [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) it is an edge list. Also, this is just a view of the information contained in `backend.target` which may only be a subset of the information contained in the [`Target`](/api/qiskit/qiskit.transpiler.Target) object. |
 |`backend.configuration().backend_name` | `backend.name` | |
 |`backend.configuration().backend_version` | `backend.backend_version` | The `BackendV2.version` attribute represents the version of the abstract [`Backend`](/api/qiskit/qiskit.providers.Backend) interface that the object implements, while `BackendV2.backend_version` is metadata about the version of the backend itself. |
 |`backend.configuration().basis_gates` | `backend.operation_names` | The [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) returns a list of operation names contained in the `backend.target` attribute. The [`Target`](/api/qiskit/qiskit.transpiler.Target) might contain more information than can be expressed by this list of names. For example, some operations only work on a subset of qubits, and some names implement the same gate with different parameters.|
