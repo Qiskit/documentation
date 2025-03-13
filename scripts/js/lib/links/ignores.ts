@@ -14,7 +14,11 @@
 // Ignored files
 // -----------------------------------------------------------------------------------
 
-export const IGNORED_FILES: Set<string> = new Set([]);
+export const IGNORED_FILES: Set<string> = new Set([
+  // TODO(#2767): Check this files once we handle them correctly in the Qiskit SDK C API
+  "docs/api/qiskit-c/release-notes.mdx",
+  "public/api/qiskit-c/objects.inv",
+]);
 
 // -----------------------------------------------------------------------------------
 // Always ignored URLs - prefer to use more precise ignores
