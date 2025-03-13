@@ -20,6 +20,7 @@ const DEFAULT_ARGS = {
     `https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/${fileName}.py`,
   releaseNotesTitle: "My Quantum release notes",
   hasSeparateReleaseNotes: false,
+  determineSignatureUrl: (rawLink: string) => rawLink,
 };
 
 async function toMd(

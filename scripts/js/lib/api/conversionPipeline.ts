@@ -107,6 +107,7 @@ async function convertFilesToMarkdown(
       html,
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
+      determineSignatureUrl: pkg.determineSignatureUrlFn(),
       imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),

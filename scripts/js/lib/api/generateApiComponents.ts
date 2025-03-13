@@ -15,6 +15,8 @@ import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
+import { visit } from "unist-util-visit";
+import { toText } from "hast-util-to-text";
 
 import { ApiType } from "./Metadata.js";
 import {
@@ -22,6 +24,7 @@ import {
   removeSuffix,
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils.js";
+import { Root } from "mdast";
 
 export type ComponentProps = {
   id?: string;
@@ -52,6 +55,7 @@ export async function processMdxComponent(
   priorApiType: ApiType | undefined,
   apiType: Exclude<ApiType, "module">,
   id: string,
+  determineSignatureUrl: (rawLink: string) => string,
 ): Promise<[string, string]> {
   const tagName = APITYPE_TO_TAG[apiType];
 
@@ -71,7 +75,10 @@ export async function processMdxComponent(
   );
   addExtraSignatures(componentProps, extraProps);
 
-  return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
+  return [
+    await createOpeningTag(tagName, componentProps, determineSignatureUrl),
+    `</${tagName}>`,
+  ];
 }
 
 // ------------------------------------------------------------------
@@ -310,6 +317,7 @@ function prepareFunctionProps(
 export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
+  determineSignatureUrl: (rawLink: string) => string,
 ): Promise<string> {
   const attributeTypeHint = props.attributeTypeHint?.replaceAll(
     "'",
@@ -319,10 +327,15 @@ export async function createOpeningTag(
     "'",
     APOSTROPHE_HEX_CODE,
   );
-  const signature = await htmlSignatureToMd(props.rawSignature!);
+  const signature = await htmlSignatureToMd(
+    props.rawSignature!,
+    determineSignatureUrl,
+  );
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
-    extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
+    extraSignatures.push(
+      `"${await htmlSignatureToMd(sig!, determineSignatureUrl)}"`,
+    );
   }
 
   return `<${tagName} 
@@ -398,14 +411,45 @@ export function addExtraSignatures(
  */
 export async function htmlSignatureToMd(
   signatureHtml: string,
+  determineSignatureUrl: (rawLink: string) => string,
 ): Promise<string> {
   if (!signatureHtml) {
     return "";
   }
 
+  // The `code` tag helps us remove some undesired elements like asterisks surrounding
+  // the parameters.
   const html = `<code>${signatureHtml}</code>`;
   const file = await unified()
     .use(rehypeParse)
+    .use(() => (tree: Root) => {
+      visit(tree, { tagName: "a" }, (node: any) => {
+        // We transform the links into markdown as `text` nodes to avoid losing them once
+        // transforming the signature from HTML to markdown. This could happen because we
+        // have the signatures inside a `code` element. Moreover, we have more freedom by
+        // manually creating the links as text.
+        if (!node.properties?.href || !node.children?.length) {
+          return;
+        }
+
+        // We encode some conflicting characters that could make the markdown link break
+        // by using URL-encoding form.
+        const href = determineSignatureUrl(node.properties.href)
+          .replaceAll('"', "%22")
+          .replaceAll("(", "%28")
+          .replaceAll(")", "%29");
+        const isExternal = href.startsWith("http");
+        const title = node.properties.title;
+
+        // We only show the title if it's from an external link
+        const link = title && isExternal ? `${href} "${title}"` : `${href}`;
+
+        node.type = "text";
+        // The hast `Element` nodes only have one child:
+        // https://github.com/syntax-tree/hast?tab=readme-ov-file#element
+        node.value = `[${toText(node.children[0])}](${link})`;
+      });
+    })
     .use(rehypeRemark)
     .use(remarkStringify)
     .process(html);

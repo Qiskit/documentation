@@ -23,8 +23,13 @@ import { CheerioDoc } from "../testUtils.js";
 
 const RAW_SIGNATURE_EXAMPLE = `<span class='sig-prename descclassname'><span class='pre'>Estimator.</span></span><span class='sig-name descname'><span class='pre'>run</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>circuits</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>observables</span></span></em>, <em class='sig-param'><span class='n'><span class='pre'>parameter_values</span></span><span class='o'><span class='pre'>=</span></span><span class='default_value'><span class='pre'>None</span></span></em>, <em class='sig-param'><span class='o'><span class='pre'>**</span></span><span class='n'><span class='pre'>kwargs</span></span></em><span class='sig-paren'>)</span></dt>`;
 
+const determineSignatureUrl = (rawLink: string) => rawLink;
+
 test("htmlSignatureToMd", async () => {
-  const result = await htmlSignatureToMd(RAW_SIGNATURE_EXAMPLE);
+  const result = await htmlSignatureToMd(
+    RAW_SIGNATURE_EXAMPLE,
+    determineSignatureUrl,
+  );
   expect(result).toEqual(
     `Estimator.run(circuits, observables, parameter_values=None, **kwargs)`,
   );
@@ -71,7 +76,11 @@ test.describe("createOpeningTag()", () => {
       rawSignature: RAW_SIGNATURE_EXAMPLE,
     };
 
-    const tag = await createOpeningTag("Function", componentProps);
+    const tag = await createOpeningTag(
+      "Function",
+      componentProps,
+      determineSignatureUrl,
+    );
     expect(tag).toEqual(`<Function 
     id='qiskit_ibm_runtime.Estimator.run'
     attributeTypeHint='undefined'
@@ -92,7 +101,11 @@ test.describe("createOpeningTag()", () => {
       extraRawSignatures: [RAW_SIGNATURE_EXAMPLE, RAW_SIGNATURE_EXAMPLE],
     };
 
-    const tag = await createOpeningTag("Function", componentProps);
+    const tag = await createOpeningTag(
+      "Function",
+      componentProps,
+      determineSignatureUrl,
+    );
     expect(tag).toEqual(`<Function 
     id='qiskit_ibm_runtime.Estimator.run'
     attributeTypeHint='undefined'
@@ -113,7 +126,11 @@ test.describe("createOpeningTag()", () => {
       attributeValue: "None",
     };
 
-    const tag = await createOpeningTag("Attribute", componentProps);
+    const tag = await createOpeningTag(
+      "Attribute",
+      componentProps,
+      determineSignatureUrl,
+    );
     expect(tag).toEqual(`<Attribute 
     id='qiskit.circuit.QuantumCircuit.instance'
     attributeTypeHint='str | None'
@@ -132,7 +149,11 @@ test.describe("createOpeningTag()", () => {
       id: "qiskit.circuit.Sampler",
     };
 
-    const tag = await createOpeningTag("Class", componentProps);
+    const tag = await createOpeningTag(
+      "Class",
+      componentProps,
+      determineSignatureUrl,
+    );
     expect(tag).toEqual(`<Class 
     id='qiskit.circuit.Sampler'
     attributeTypeHint='undefined'
