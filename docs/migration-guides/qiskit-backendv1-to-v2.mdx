@@ -82,10 +82,15 @@ Scroll to the right to see important notes.
 |`configuration().dtm`|`dtm` | |
 |`configuration().max_experiments` |`max_circuits` | |
 |`configuration().online_date` | `online_date`| |
-|`InstructionDurations.`  \n`from_backend(backend)`|`backend.instruction_durations`| |
 |`defaults().instruction_schedule_map`|`instruction_schedule_map`| |
 |`properties().t1(0)`|`qubit_properties(0).t1`| |
 |`properties().t2(0)`|`qubit_properties(0).t2`| |
 |`properties().frequency(0)`|`qubit_properties(0).frequency`| |
 |`properties().readout_error(0)`|`target["measure"][(0,)].error`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), the error rate for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout error. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) object can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
 |`properties().readout_length(0)`|`target["measure"][(0,)].duration`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), the duration for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout length. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) object can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
+
+Other
+
+|[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) |
+| --- | --- |
+|`InstructionDurations.from_backend(backend)`|`backend.instruction_durations`|
