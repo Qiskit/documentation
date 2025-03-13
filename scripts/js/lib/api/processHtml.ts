@@ -32,6 +32,7 @@ export async function processHtml(options: {
   fileName: string;
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
+  determineSignatureUrl: (rawLink: string) => string;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
@@ -41,6 +42,7 @@ export async function processHtml(options: {
     fileName,
     imageDestination,
     determineGithubUrl,
+    determineSignatureUrl,
     releaseNotesTitle,
     hasSeparateReleaseNotes,
     isCApi,
@@ -78,7 +80,7 @@ export async function processHtml(options: {
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta);
+  await processMembersAndSetMeta($, $main, meta, determineSignatureUrl);
   maybeSetModuleMetadata($, $main, meta, isCApi);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
@@ -337,6 +339,7 @@ export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
+  determineSignatureUrl: (rawLink: string) => string,
 ): Promise<void> {
   let continueMapMembers = true;
   while (continueMapMembers) {
@@ -390,6 +393,7 @@ export async function processMembersAndSetMeta(
         priorApiType,
         apiType!,
         id,
+        determineSignatureUrl,
       );
       $dl.replaceWith(
         `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
