@@ -63,7 +63,7 @@ Refer to [the MDX guide](./mdx-guide.md#trademark-symbols) for how to add the sy
 
 - IBM&reg;
 - IBM Cloud&reg;
-- IBM Quantum&trade;
+- IBM Quantum&reg;
 </details>
 
 **Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
