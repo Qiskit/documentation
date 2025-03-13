@@ -285,7 +285,7 @@ test("addLanguageClassToCodeBlocks()", () => {
   // as with this example. Also this name is misleading. Really what we are doing here is dealing with RST's `.. parsed-literal ::`
   // (https://docutils.sourceforge.io/docs/ref/rst/directives.html#parsed-literal-block), which we tend to use to put code literals
   // along with gate text representations like the above.
-  addLanguageClassToCodeBlocks(doc1.$, doc1.$main);
+  addLanguageClassToCodeBlocks(doc1.$, doc1.$main, false);
   doc1.expectHtml(`<p><strong>Circuit symbol:</strong></p>
     <div class="highlight-default notranslate"><div class="highlight"><pre><code class="language-python"><span></span>     ┌──────────┐
     q_0: ┤ U(ϴ,φ,λ) ├
@@ -302,7 +302,7 @@ test("addLanguageClassToCodeBlocks()", () => {
       </pre>
       </div>
     </div>`);
-  addLanguageClassToCodeBlocks(doc2.$, doc2.$main);
+  addLanguageClassToCodeBlocks(doc2.$, doc2.$main, false);
   doc2.expectHtml(`<div class="highlight-default notranslate">
       <div class="highlight">
       <pre><code class="language-python"><span></span><span class="kn">from</span> <span class="nn">qiskit_ibm_runtime.options</span> <span class="kn">import</span> <span class="n">Options</span>
