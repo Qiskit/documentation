@@ -197,6 +197,9 @@ export class Pkg {
         title: "Qiskit SDK C API",
         kebabCaseAndShortenUrls: true,
         language: "C",
+        releaseNotesConfig: new ReleaseNotesConfig({
+          enabled: false,
+        }),
       });
     }
 

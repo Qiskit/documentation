@@ -170,6 +170,8 @@ async function writeMarkdownResults(
   for (const result of results) {
     let path = `${docsBaseFolder}${result.url}.mdx`;
     if (path.endsWith("release-notes.mdx")) {
+      if (!pkg.releaseNotesConfig.enabled) continue;
+
       const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
       if (!shouldWriteResult) continue;
     }

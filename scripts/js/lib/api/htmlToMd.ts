@@ -43,7 +43,6 @@ export async function sphinxHtmlToMarkdown(options: {
   const markdown = await generateMarkdownFile(
     processedHtml.html,
     processedHtml.meta,
-    options.isCApi,
   );
   return {
     markdown,
@@ -56,9 +55,8 @@ export async function sphinxHtmlToMarkdown(options: {
 async function generateMarkdownFile(
   mainHtml: string,
   meta: Metadata,
-  isCApi: boolean,
 ): Promise<string> {
-  const handlers = prepareHandlers(meta, isCApi);
+  const handlers = prepareHandlers(meta);
   const mdFile = await unified()
     .use(rehypeParse)
     .use(remarkGfm)
@@ -74,10 +72,7 @@ async function generateMarkdownFile(
   return mdFile.toString().replaceAll(`<!---->`, "");
 }
 
-function prepareHandlers(
-  meta: Metadata,
-  isCApi: boolean,
-): Record<string, Handle> {
+function prepareHandlers(meta: Metadata): Record<string, Handle> {
   const handlers: Record<string, Handle> = {
     br(h, node: any) {
       return all(h, node);
