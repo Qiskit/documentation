@@ -8,7 +8,7 @@ python_api_name: qiskit.primitives.BackendEstimatorV2
 
 # BackendEstimatorV2
 
-<Class id="qiskit.primitives.BackendEstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/primitives/backend_estimator_v2.py#L74-L414" signature="qiskit.primitives.BackendEstimatorV2(*, backend, options=None)" modifiers="class">
+<Class id="qiskit.primitives.BackendEstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/backend_estimator_v2.py#L75-L431" signature="qiskit.primitives.BackendEstimatorV2(*, backend, options=None)" modifiers="class">
   Bases: [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.base.base_estimator.BaseEstimatorV2")
 
   Evaluates expectation values for provided quantum circuit and observable combinations.
@@ -35,6 +35,10 @@ $$
 
   \[1] O. Crawford, B. van Straaten, D. Wang, T. Parks, E. Campbell, St. Brierley, Efficient quantum measurement of Pauli operators in the presence of finite sampling error. [Quantum 5, 385](https://doi.org/10.22331/q-2021-01-20-385)
 
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    The method `BackendEstimatorV2.__init__` will stop supporting inputs of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") in the backend parameter in a future release no earlier than 2.0. [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") is deprecated and implementations should move to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
+  </Admonition>
+
   **Parameters**
 
   *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
@@ -58,7 +62,7 @@ $$
 
   ### run
 
-  <Function id="qiskit.primitives.BackendEstimatorV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.3/qiskit/primitives/backend_estimator_v2.py#L160-L169" signature="run(pubs, *, precision=None)">
+  <Function id="qiskit.primitives.BackendEstimatorV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/backend_estimator_v2.py#L177-L186" signature="run(pubs, *, precision=None)">
     Estimate expectation values for each provided pub (Primitive Unified Bloc).
 
     **Parameters**

@@ -21,6 +21,7 @@ import tomllib
 import importlib
 from typing import Iterator
 
+from . import patches
 
 # We always run the following code in the kernel before running the notebook
 PRE_EXECUTE_CODE = """\
@@ -173,7 +174,7 @@ class Config:
         if Path(patch_name).exists():
             return Path(patch_name).read_text().format(**patch_config)
 
-        built_in_patch_dir = importlib.resources.files("patches")
+        built_in_patch_dir = importlib.resources.files(patches)
         built_in_patch = built_in_patch_dir / patch_name
         if built_in_patch.exists():
             return built_in_patch.read_text().format(**patch_config)
@@ -250,6 +251,14 @@ def get_parser() -> argparse.ArgumentParser:
         help=(
             "If using a config file, the name of the testing strategy to use. "
             "This affects which notebooks are run and how they're patched."
+        ),
+    )
+    parser.add_argument(
+        "--ignore-trailing-jobs",
+        action="store_true",
+        help=(
+            "Do not cancel trailing jobs with QiskitRuntimeService. This is "
+            "useful to set if your patch does not use QiskitRuntimeService"
         ),
     )
     return parser

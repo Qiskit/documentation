@@ -5,13 +5,28 @@ description: Describes how long a Qiskit Runtime job can run, regardless of what
 ---
 
 # Maximum execution time for Qiskit Runtime workloads
+<LegacyContent>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/guides/max-execution-time)
+</Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/max-execution-time)
+</Admonition>
+</CloudContent>
 
 To ensure fairness and help control costs, there is a maximum amount of time each Qiskit Runtime job can run. If a job exceeds this time limit, it is forcibly canceled and a `RuntimeJobMaxTimeoutError` exception is raised.
-
+<LegacyContent>
  <Admonition>
    If you use Qiskit Runtime on IBM Cloud&reg;, the session or batch is immediately terminated when the cost limit is reached.
 </Admonition>
-
+</LegacyContent>
+<CloudContent>
+ <Admonition>
+   The session or batch is immediately terminated when the cost limit is reached.
+</Admonition>
+</CloudContent>
 <span id="max-job"></span>
 ## Job maximum execution time
 
@@ -69,10 +84,14 @@ There is also an interactive TTL value that cannot be configured.  If no session
 For instructions to work with these values, see [Run jobs in a session.](/guides/run-jobs-session)
 
 ## Other limitations
-
+<LegacyContent>
 *   Inputs to jobs cannot exceed 64MB in size.
-*   Open plan users can use up to 10 minutes of QPU execution time per month (resets at 00:00 UTC on the first of each month). QPU execution time is the amount of time that the QPU is dedicated to processing your job. You can track your monthly usage on the [Platform dashboard,](https://quantum.ibm.com/)  [IBM Quantum&trade; Platform Workloads page,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) page.
-
+*   Open Plan users can use up to 10 minutes of QPU execution time per month (resets at 00:00 UTC on the first of each month). QPU execution time is the amount of time that the QPU is dedicated to processing your job. You can track your monthly usage on the [Platform dashboard,](https://quantum.ibm.com/)  [IBM Quantum&reg; Platform Workloads page,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) page.
+</LegacyContent>
+<CloudContent>
+*   Inputs to jobs cannot exceed 64MB in size.
+*   Open Plan users can use up to 10 minutes of QPU execution time per month. QPU execution time is the amount of time that the QPU is dedicated to processing your job. You can track your monthly usage on the [Platform dashboard](https://quantum.cloud.ibm.com/)  or the [IBM Quantum&reg; Platform Workloads page.](https://quantum.cloud.ibm.com/workloads)
+</CloudContent>
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">

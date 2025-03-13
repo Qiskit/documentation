@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.XXMinusYYGate
 
 # XXMinusYYGate
 
-<Class id="qiskit.circuit.library.XXMinusYYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L36-L235" signature="qiskit.circuit.library.XXMinusYYGate(theta, beta=0, label='(XX-YY)', *, duration=None, unit='dt')" modifiers="class">
+<Class id="qiskit.circuit.library.XXMinusYYGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L36-L202" signature="qiskit.circuit.library.XXMinusYYGate(theta, beta=0, label='(XX-YY)')" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   XX-YY interaction gate.
@@ -39,31 +39,6 @@ RZ_1(\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX-YY}{2}\right) \cdot RZ_
 -i\sin\left(\rotationangle\right)e^{i\beta} & 0 & 0 & \cos\left(\rotationangle\right)
 \end{pmatrix}
 $$
-
-  <Admonition title="Note" type="note">
-    In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in adding the (optional) phase defined by $\beta$ on q\_1. Instead, if we apply it on (q\_1, q\_0), the phase is added on q\_0. If $\beta$ is set to its default value of $0$, the gate is equivalent in big and little endian.
-
-    ```text
-         ┌───────────────┐
-    q_0: ┤1              ├
-         │  (XX-YY)(θ,β) │
-    q_1: ┤0              ├
-         └───────────────┘
-    ```
-
-$$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
-
-R_{XX-YY}(\theta, \beta) q_1, q_0 =
-RZ_0(\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX-YY}{2}\right) \cdot RZ_0(-\beta) =
-\begin{pmatrix}
-\cos\left(\rotationangle\right) & 0 & 0 & -i\sin\left(\rotationangle\right)e^{i\beta} \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 1 & 0 \\
--i\sin\left(\rotationangle\right)e^{-i\beta} & 0 & 0 & \cos\left(\rotationangle\right)
-\end{pmatrix}
-$$
-  </Admonition>
 
   Create new XX-YY gate.
 
@@ -96,26 +71,6 @@ $$
     In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
   </Attribute>
 
-  ### condition
-
-  <Attribute id="qiskit.circuit.library.XXMinusYYGate.condition">
-    The classical condition on the instruction.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of Qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Attribute>
-
-  ### condition\_bits
-
-  <Attribute id="qiskit.circuit.library.XXMinusYYGate.condition_bits">
-    Get Clbits in condition.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of Qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Attribute>
-
   ### decompositions
 
   <Attribute id="qiskit.circuit.library.XXMinusYYGate.decompositions">
@@ -126,16 +81,6 @@ $$
 
   <Attribute id="qiskit.circuit.library.XXMinusYYGate.definition">
     Return definition in terms of other basic gates.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.XXMinusYYGate.duration">
-    Get the duration.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
-    </Admonition>
   </Attribute>
 
   ### label
@@ -176,21 +121,11 @@ $$
     The parameters of this `Instruction`. Ideally these will be gate angles.
   </Attribute>
 
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.XXMinusYYGate.unit">
-    Get the time unit of duration.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
-    </Admonition>
-  </Attribute>
-
   ## Methods
 
   ### control
 
-  <Function id="qiskit.circuit.library.XXMinusYYGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L162-L193" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.XXMinusYYGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L129-L160" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return a (multi-)controlled-(XX-YY) gate.
 
     **Parameters**
@@ -211,7 +146,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.XXMinusYYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L195-L209" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.XXMinusYYGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L162-L176" signature="inverse(annotated=False)">
     Inverse gate.
 
     **Parameters**
@@ -229,7 +164,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.XXMinusYYGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L228-L230" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.XXMinusYYGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/standard_gates/xx_minus_yy.py#L195-L197" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.

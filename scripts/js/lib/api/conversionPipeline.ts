@@ -30,7 +30,6 @@ import addFrontMatter from "./addFrontMatter.js";
 import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds.js";
 import removeMathBlocksIndentation from "./removeMathBlocksIndentation.js";
 import { Pkg } from "./Pkg.js";
-import { pathExists } from "../fs.js";
 import {
   maybeUpdateReleaseNotesFolder,
   handleReleaseNotesFile,
@@ -78,14 +77,13 @@ async function determineFilePaths(
   const maybeObjectsInv = await (pkg.isProblematicLegacyQiskit()
     ? undefined
     : ObjectsInv.fromFile(htmlPath));
+
+  const extraFiles =
+    pkg.language == "C"
+      ? ["cdoc/**.html"]
+      : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
   const files = await globby(
-    [
-      "apidocs/**.html",
-      "apidoc/**.html",
-      "stubs/**.html",
-      "release_notes.html",
-      "release-notes.html",
-    ],
+    [...extraFiles, "release_notes.html", "release-notes.html"],
     {
       cwd: htmlPath,
     },
@@ -112,6 +110,7 @@ async function convertFilesToMarkdown(
       imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
+      isCApi: pkg.language == "C",
     });
 
     // Avoid creating an empty markdown file for HTML files without content
@@ -171,6 +170,8 @@ async function writeMarkdownResults(
   for (const result of results) {
     let path = `${docsBaseFolder}${result.url}.mdx`;
     if (path.endsWith("release-notes.mdx")) {
+      if (!pkg.releaseNotesConfig.enabled) continue;
+
       const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
       if (!shouldWriteResult) continue;
     }

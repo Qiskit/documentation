@@ -44,7 +44,7 @@ export function parseAnchors(markdown: string): Set<string> {
         .toLowerCase()
         .trim()
         .replaceAll(" ", "-")
-        .replaceAll(/[\.,;!?`\\\(\)]/g, "");
+        .replaceAll(/[\.,;:!?`\\\(\)]/g, "");
       let deduplicated = normalized;
       let i = 1;
       while (anchors.has(`#${deduplicated}`)) {
