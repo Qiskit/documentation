@@ -350,8 +350,8 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 
    - For a markdown file, add a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
 
-     ``` markdown
-     {/* cspell:ignore hellllooooo, ayyyyy */}
+     ```markdown
+     {/_ cspell:ignore hellllooooo, ayyyyy _/}
 
      # Hellllooooo!
 
@@ -360,7 +360,7 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 
    - For a Jupyter notebook, add the comment inside a markdown cell in the source part. Each line should be surrounded by quotes and end with "\n".
 
-     ``` python
+     ```python
      {
       "cell_type": "markdown",
       "id": "552b1077",
