@@ -1,6 +1,6 @@
 # Qiskit documentation
 
-The documentation content home for https://docs.quantum.ibm.com (excluding API reference).
+The documentation content home for https://quantum.cloud.ibm.com/docs and https://docs.quantum.ibm.com (excluding API reference).
 
 Refer to:
 
