@@ -68,7 +68,7 @@ export async function processHtml(options: {
   removeDownloadSourceCode($main);
   removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
-  addLanguageClassToCodeBlocks($, $main);
+  addLanguageClassToCodeBlocks($, $main, isCApi);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   updateRedirectedExternalLinks($, $main, externalRedirects);
   convertRubricsToHeaders($, $main);
@@ -183,16 +183,17 @@ export function handleSphinxDesignCards(
   });
 }
 
-function detectLanguage($pre: Cheerio<any>): string | null {
+function detectLanguage($pre: Cheerio<any>, isCApi: boolean): string | null {
+  const defaultLanguage = isCApi ? "c" : "python";
   // Two levels up from `pre` should have class `highlight-<language>`
   const detectedLanguage = $pre
     .parent()
     .parent()[0]
     .attribs.class.match(/(?<=highlight-)\w+/);
-  if (!detectedLanguage) return "python";
+  if (!detectedLanguage) return defaultLanguage;
   const langName = detectedLanguage[0];
   if (langName === "none") return null;
-  if (langName === "default") return "python";
+  if (langName === "default") return defaultLanguage;
   if (langName === "ipython3") return "python";
   return langName;
 }
@@ -200,10 +201,11 @@ function detectLanguage($pre: Cheerio<any>): string | null {
 export function addLanguageClassToCodeBlocks(
   $: CheerioAPI,
   $main: Cheerio<any>,
+  isCApi: boolean,
 ): void {
   $main.find("pre").each((_, pre) => {
     const $pre = $(pre);
-    const language = detectLanguage($pre);
+    const language = detectLanguage($pre, isCApi);
     const languageClass = language ? `language-${language}` : "";
     $pre.replaceWith(
       `<pre><code class="${languageClass}">${$pre.html()}</code></pre>`,
