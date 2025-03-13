@@ -351,7 +351,7 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
    - For a markdown file, add a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
 
      ```markdown
-     {/_ cspell:ignore hellllooooo, ayyyyy _/}
+     {/* cspell:ignore hellllooooo, ayyyyy */}
 
      # Hellllooooo!
 
