@@ -63,7 +63,7 @@ make --version  # optional, but recommended
 
 ### Building
 
-To build the C header and library, we provide a Make command[^1] in Qiskit root, 
+To build the C header and library, you can run the following Make command[^1] in Qiskit root, 
 [^1]: If you did not install Make, check the `Makefile` in Qiskit root for the required commands. (Or just install Make, it's not too late.)
 ```bash
 make c
@@ -71,6 +71,7 @@ make c
 which will provide the compiled shared library in ``dist/c/lib`` and the ``qiskit.h`` header with
 all function declarations in ``dist/c/include``. Note that the precise library name depends 
 on the platform, e.g ``libqiskit.so`` on Unix and ``libqiskit.dylib`` on MacOS.
+(Note that this step currently emits a lot of warnings. This is fine, we're working on it.)
 
 We can then compile a C program using the Qiskit C header and library, by
 ```bash
