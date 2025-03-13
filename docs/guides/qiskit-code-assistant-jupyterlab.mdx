@@ -5,24 +5,24 @@ description: How to install, use, and configure Qiskit Code Assistant in Jupyter
 
 # Use Qiskit Code Assistant in JupyterLab
 
-<LegacyContent>
-<Admonition type="note">
-This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/qiskit-code-assistant-jupyterlab)
-</Admonition>
-</LegacyContent>
-<CloudContent>
-<Admonition type="note">
-This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/qiskit-code-assistant-jupyterlab)
-</Admonition>
-</CloudContent>
-
 Learn how to install, use, configure, and uninstall the official Qiskit Code Assistant extension in JupyterLab.
 
+<LegacyContent>
 <Admonition type="note" title="Notes">
+    - This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/qiskit-code-assistant-jupyterlab)
     - This is an experimental feature available only to IBM Quantum&reg; Premium Plan users.
     - Qiskit Code Assistant is in preview release status and is subject to change.
     - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
 </Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note" title="Notes">
+    - This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/qiskit-code-assistant-jupyterlab)
+    - This is an experimental feature available only to IBM Quantum&reg; Premium Plan users.
+    - Qiskit Code Assistant is in preview release status and is subject to change.
+    - If you have feedback or want to contact the developer team, use the [Qiskit Slack Workspace channel](https://qiskit.enterprise.slack.com/archives/C07LYA6PL83) or the related public GitHub repositories.
+</Admonition>
+</CloudContent>
 
 
 <video title="A user uses Qiskit Code Assistant in JupyterLab. The user has a comment in the code to get the available backends for their account in IBM Quantum, Qiskit Code Assistant gives a code suggestion to get the available backends. The user executes the code, gets the available backends in IBM Quantum Platform for the current account. The user asks Qiskit Code Assistant to generate the code to get the T1, T2 and other properties for the qubit 1 in the device ibm_brisbane. The assistant gives a code suggestion. The user runs the suggested code and gets the desired output." className="max-w-auto h-auto" controls>
@@ -42,11 +42,7 @@ After installing the extension, start JupyterLab:
 jupyter lab
 ```
 
-The extension loads automatically and is listed on the bottom of the JupyterLab window.
-
-![Screenshot of the bar on the bottom of JupyterLab.](/images/guides/qiskit-code-assistant/jupyterlab-selected-model.avif)
-
-Refer to the [JupyterLab documentation.](https://jupyterlab.readthedocs.io/en/latest/) for help working with JupyterLab
+The extension loads automatically and is listed on the bottom of the JupyterLab window. Refer to the [JupyterLab documentation](https://jupyterlab.readthedocs.io/en/latest/) for help working with JupyterLab.
 
 ## Configure extension settings
 
@@ -79,11 +75,7 @@ After installing the extension, it tries to authenticate you. By default, the pa
 
 By default, the extension uses the `granite-8b-qiskit` model, which is listed in the Model Picker in the bottom status bar.
 
-![The bottom status bar is shown, with `granite-8b-qiskit` listed.](/images/guides/qiskit-code-assistant/vscode-selected-model.avif)
-
-The first time you use the `granite-8b-qiskit` model a modal opens, listing some major restrictions that you should be aware of when using the model. Clicking `Accept` will accept the disclaimer and enable the model for code generation.
-
-![The window that opens upon first use contains restrictions tha must be accepted.](/images/guides/qiskit-code-assistant/eula.avif)
+The first time you use the `granite-8b-qiskit` model, a window opens that lists some major restrictions that you should be aware of when using the model. Click `Accept` to enable the model for code generation.
 
 ### Generate code
 
@@ -127,8 +119,6 @@ The service can sometimes take a few seconds to return a suggestion, you can see
 Jupyterlab also includes a traditional suggestion context menu. Use the `Tab` key to run and display the context menu.
 
 The context menu includes suggestions from JupyterLab in addition to suggestions made by Qiskit Code Assistant. The context menu also sanitizes and trims the suggestions, making it less useful for reviewing the code suggestion before inserting it.
-
-![The context menu is shown, with suggested code from Qiskit, as well as suggestions from JupyterLab.](/images/guides/qiskit-code-assistant/jupyterlab-tab-complete.avif)
 
 ## Uninstall the JupyterLab extension
 
