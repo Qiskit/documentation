@@ -7,17 +7,17 @@ Refer to:
 - Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
 - Our [style guide](./style-guide.md) for technical writing guidance.
 
-## Improving IBM Quantum & Qiskit Documentation
+## Improving IBM Quantum and Qiskit documentation
 
-Maintaining up-to-date documentation is a huge challenge for any software project, especially in a field like quantum computing where the pace at which advances in new research and technological capabilities happen incredibly fast. As a result, we greatly appreciate any who take the time to support us in keeping this content accurate and up to the highest quality standard possible to benefit the broadest range of users.
+Maintaining up-to-date documentation is a huge challenge for any software project, but especially for a field like quantum computing, because advances in new research and technological capabilities come at a face pace. As a result, we greatly appreciate anyone who takes the time to support us in keeping this content accurate and up to the highest quality standard possible, to benefit the broadest range of users.
 
 Read on for more information about how to support this project:
 
-### Best ways to contribute to Documentation
+### Best ways to contribute to documentation
 
-#### 1. Report bugs, inaccuracies or general content issues
+#### 1. Report bugs, inaccuracies, or general content issues
 
-This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&trade; documentation. There are a few different ways to report issues, depending on where it was found:
+This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&reg; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit SDK API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
 - For problems you've found in the [Qiskit Runtime client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
@@ -25,7 +25,7 @@ This is the quickest, easiest, and most helpful way to contribute to this projec
 
 #### 2. Suggest new content
 
-If you think there are gaps in our documentation, or sections that could be expanded upon, we invite you to open a new content request issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
+If you think there are gaps in our documentation, or sections that could be expanded upon, we invite you to open a [new content request issue](https://github.com/Qiskit/documentation/issues/new/choose).
 
 Not every new content suggestion is a good fit for docs, nor are we able to prioritize every request immediately. However, we will do our best to respond to content requests in a timely manner, and we greatly appreciate our community's efforts in generating new ideas.
 
@@ -46,7 +46,7 @@ You can look through the open issues we have in this repo and address them with 
 
 Before getting started on an issue, remember to do the following:
 
-1. Read the [Code of Conduct](https://docs.quantum.ibm.com/open-source/code-of-conduct)
+1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/en/open-source/code-of-conduct)
 2. Check for open, unassigned issues with the "good first issue" label
 3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
 
@@ -342,7 +342,7 @@ npm run check
 
 2. Use the VSCode extension [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).
 
-### Fixing false positives
+### Fix false positives
 
 There are two ways to deal with cSpell incorrectly complaining about a word, such as abbreviations.
 
@@ -413,7 +413,7 @@ Alternatively, you can also regenerate one specific version:
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-runtime`, or `qiskit-ibm-transpiler`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
-   e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+   e.g., `npm run gen-api -- -p qiskit -v 0.45.0`
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
