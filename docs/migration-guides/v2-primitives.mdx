@@ -496,8 +496,8 @@ print(f"Job {job.job_id()} is still running: {job.status() is JobStatus.RUNNING}
 6. Estimator V2 job results are grouped by PUBs. You can see the expectation value and standard error for each PUB by indexing to it. For example:
   ```python
   pub_result = job.result()[0]
-  print(f"Expectation values: {pub_result.data.evs}")
-  print(f"Standard errors: {pub_result.data.stds}")
+  print(f">>> Expectation values: {pub_result.data.evs}")
+  print(f">>> Standard errors: {pub_result.data.stds}")
   ```
 
 ## Estimator full examples
@@ -603,8 +603,8 @@ job = estimator.run([(isa_circuits[0], isa_observables[0]),(isa_circuits[1], isa
 job_result = job.result()
 for idx in range(len(job_result)):
     pub_result = job_result[idx]
-    print(f"Expectation values for PUB {idx}: {pub_result.data.evs}")
-    print(f"Standard errors for PUB {idx}: {pub_result.data.stds}")
+    print(f">>> Expectation values for PUB {idx}: {pub_result.data.evs}")
+    print(f">>> Standard errors for PUB {idx}: {pub_result.data.stds}")
 ```
   </TabItem>
 
@@ -699,9 +699,9 @@ estimator = Estimator(backend, options={"default_shots": int(1e4)})
 job = estimator.run([(chsh_isa_circuit, reshaped_ops, individual_phases)])
 # Get results for the first (and only) PUB
 pub_result = job.result()[0]
-print(f"Expectation values: {pub_result.data.evs}")
-print(f"Standard errors: {pub_result.data.stds}")
-print(f"Metadata: {pub_result.metadata}")
+print(f">>> Expectation values: {pub_result.data.evs}")
+print(f">>> Standard errors: {pub_result.data.stds}")
+print(f">>> Metadata: {pub_result.metadata}")
 ```
   </TabItem>
 
@@ -883,8 +883,8 @@ print(f" > Expectation values job 2: {another_result.values}")
 6. Sampler V2 job results are grouped by PUBs. You can see the output data for each PUB by indexing to it. While Sampler V2 returns unweighted samples, the result class has a convenience method to get counts instead. For example:
   ```python
   pub_result = job.result()[0]
-  print(f"Counts: {pub_result.data.meas.get_counts()}")
-  print(f"Per-shot measurement: {pub_result.data.meas.get_counts()}")
+  print(f">>> Counts: {pub_result.data.meas.get_counts()}")
+  print(f">>> Per-shot measurement: {pub_result.data.meas.get_counts()}")
   ```
   <Admonition type="note">
   You need the classical register name to get the results.  By default, it is named `meas` when you use `measure_all()`. When defining your circuit, if you create one or more classical registers with a non-default name, use that name to get the results. You can find the classical register name by running `<circuit_name>.cregs`. For example, `qc.cregs`.

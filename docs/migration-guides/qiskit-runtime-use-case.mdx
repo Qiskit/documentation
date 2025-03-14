@@ -87,7 +87,7 @@ sampler = Sampler(backend)
 job = sampler.run([dynamic_circ])
 
 pub_result = job.result()[0]
-print(f"Hardware counts: {pub_result.data.meas.get_counts()}")
+print(f">>> Hardware counts: {pub_result.data.meas.get_counts()}")
 ```
   </TabItem>
 
@@ -237,7 +237,7 @@ sampler = Sampler(backend)
 sampler.options.execution.meas_type = "avg_kerneled"
 job = sampler.run([isa_circuit], shots=10)
 pub_result = job.result()[0]
-print(f"Averaged IQ data: {pub_result.data.meas}")
+print(f">>> Averaged IQ data: {pub_result.data.meas}")
 ```
   </TabItem>
 
