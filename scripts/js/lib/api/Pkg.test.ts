@@ -113,3 +113,71 @@ test("Pkg.determineGithubUrlFn()", () => {
     "https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/foo.py",
   );
 });
+
+test("Pkg.determineSignatureUrlFn()", () => {
+  const runtime = Pkg.mock({
+    name: "qiskit-ibm-runtime",
+    type: "latest",
+    versionWithoutPatch: "0.15",
+    kebabCaseAndShortenUrls: true,
+  }).determineSignatureUrlFn();
+
+  const qiskit = Pkg.mock({
+    name: "qiskit",
+    type: "latest",
+    versionWithoutPatch: "0.45",
+    kebabCaseAndShortenUrls: false,
+  }).determineSignatureUrlFn();
+
+  const historicalQiskit = Pkg.mock({
+    name: "qiskit",
+    type: "historical",
+    versionWithoutPatch: "0.32",
+    kebabCaseAndShortenUrls: false,
+  }).determineSignatureUrlFn();
+
+  const devQiskit = Pkg.mock({
+    name: "qiskit",
+    type: "dev",
+    version: "1.0.0-dev",
+    kebabCaseAndShortenUrls: false,
+  }).determineSignatureUrlFn();
+
+  const qiskitC = Pkg.mock({
+    name: "qiskit-c",
+    type: "latest",
+    versionWithoutPatch: "2.0.0",
+    kebabCaseAndShortenUrls: true,
+  }).determineSignatureUrlFn();
+
+  expect(runtime("../stubs/ibm_backend")).toEqual(
+    "/api/qiskit-ibm-runtime/ibm-backend",
+  );
+  expect(runtime("apidoc/qiskit-ibm-runtime.ibm_backend")).toEqual(
+    "/api/qiskit-ibm-runtime/ibm-backend",
+  );
+
+  expect(qiskit("../stubs/exceptions")).toEqual("/api/qiskit/exceptions");
+  expect(qiskit("apidocs/qasm2#anchor")).toEqual("/api/qiskit/qasm2#anchor");
+  expect(qiskit("/apidoc/qasm3")).toEqual("/api/qiskit/qasm3");
+  expect(qiskit("qiskit.transpiler.preset_passmanagers")).toEqual(
+    "/api/qiskit/qiskit.transpiler.preset_passmanagers",
+  );
+  expect(qiskit("#test")).toEqual("#test");
+
+  expect(devQiskit("../stubs/exceptions")).toEqual(
+    "/api/qiskit/dev/exceptions",
+  );
+
+  expect(historicalQiskit("../apidocs/preset_passmanager")).toEqual(
+    "/api/qiskit/0.32/preset_passmanager",
+  );
+  expect(
+    historicalQiskit("stubs/qiskit.transpiler.preset_passmanagers"),
+  ).toEqual("/api/qiskit/0.32/qiskit.transpiler.preset_passmanagers");
+
+  expect(qiskitC("#test")).toEqual("#test");
+  expect(qiskitC("cdoc/sparse_observable#test")).toEqual(
+    "/api/qiskit-c/sparse-observable#test",
+  );
+});
