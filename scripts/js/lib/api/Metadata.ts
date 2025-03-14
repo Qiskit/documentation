@@ -18,7 +18,8 @@ export type ApiType =
   | "module"
   | "function"
   | "exception"
-  | "data";
+  | "data"
+  | "struct";
 
 export type Metadata = {
   apiName?: string;

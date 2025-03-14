@@ -39,5 +39,5 @@ export function normalizeResultUrls(
 }
 
 function omitRootFolders(path: string): string {
-  return removePart(path, "/", ["stubs", "apidocs", "apidoc"]);
+  return removePart(path, "/", ["stubs", "apidocs", "apidoc", "cdoc"]);
 }
