@@ -71,7 +71,11 @@ export async function maybeUpdateReleaseNotesFolder(
   pkg: Pkg,
   markdownPath: string,
 ): Promise<void> {
-  if (!pkg.hasSeparateReleaseNotes() || !pkg.isLatest()) {
+  if (
+    !pkg.hasSeparateReleaseNotes() ||
+    !pkg.isLatest() ||
+    !pkg.releaseNotesConfig.enabled
+  ) {
     return;
   }
   addNewReleaseNotes(pkg);

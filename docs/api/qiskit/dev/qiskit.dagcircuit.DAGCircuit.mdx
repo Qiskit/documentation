@@ -17,18 +17,6 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ## Attributes
 
-  ### calibrations
-
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.calibrations">
-    Return calibration dictionary.
-
-    **The custom pulse definition of a given gate is of the form**
-
-    \{‘gate\_name’: \{(qubits, params): schedule}}
-
-    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 2.0.0
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.clbits">
@@ -49,7 +37,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### cregs
 
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.cregs" />
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.cregs">
+    Returns the dict containing the QuantumRegisters in the circuit
+  </Attribute>
 
   ### duration
 
@@ -115,7 +105,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### qregs
 
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.qregs" />
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.qregs">
+    Returns the dict containing the QuantumRegisters in the circuit
+  </Attribute>
 
   ### qubits
 
@@ -149,23 +141,14 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ## Methods
 
-  ### add\_calibration
+  ### add\_captured\_stretch
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.add_calibration" signature="add_calibration(gate, qubits, schedule, params=None)">
-    Register a low-level, custom pulse definition for the given gate.
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_captured_stretch" signature="add_captured_stretch(var)">
+    Add a captured stretch to the circuit.
 
     **Parameters**
 
-    *   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – Gate information.
-    *   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – List of qubits to be measured.
-    *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-    *   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
-
-    **Raises**
-
-    [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.13)") – if the gate is of type string and params is None.
-
-    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 2.0.0
+    **var** – the stretch to add.
   </Function>
 
   ### add\_captured\_var
@@ -188,6 +171,16 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.add_creg" signature="add_creg(creg)">
     Add all wires in a classical register.
+  </Function>
+
+  ### add\_declared\_stretch
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_declared_stretch" signature="add_declared_stretch(var)">
+    Add a declared stretch to the circuit.
+
+    **Parameters**
+
+    **var** – the stretch to add.
   </Function>
 
   ### add\_declared\_var
@@ -525,12 +518,24 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
   </Function>
 
-  ### has\_calibration\_for
+  ### has\_identifier
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.has_calibration_for" signature="has_calibration_for(node)">
-    Return True if the dag has a calibration defined for the node operation. In this case, the operation does not need to be translated to the device basis.
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_identifier" signature="has_identifier(var)">
+    Is this identifier in the DAG?
 
-    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 2.0.0
+    **Parameters**
+
+    **var** – the identifier or name to check.
+  </Function>
+
+  ### has\_stretch
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_stretch" signature="has_stretch(var)">
+    Is this stretch in the DAG?
+
+    **Parameters**
+
+    **var** – the stretch or name to check.
   </Function>
 
   ### has\_var
@@ -573,10 +578,28 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Checks if a second node is in the successors of node.
   </Function>
 
+  ### iter\_captured\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_captured_stretches" signature="iter_captured_stretches()">
+    Iterable over the captured stretches tracked by the circuit.
+  </Function>
+
   ### iter\_captured\_vars
 
   <Function id="qiskit.dagcircuit.DAGCircuit.iter_captured_vars" signature="iter_captured_vars()">
     Iterable over the captured classical variables tracked by the circuit.
+  </Function>
+
+  ### iter\_captures
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_captures" signature="iter_captures()">
+    Iterable over all captured identifiers tracked by the circuit.
+  </Function>
+
+  ### iter\_declared\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_declared_stretches" signature="iter_declared_stretches()">
+    Iterable over the declared stretches tracked by the circuit.
   </Function>
 
   ### iter\_declared\_vars
@@ -589,6 +612,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.iter_input_vars" signature="iter_input_vars()">
     Iterable over the input classical variables tracked by the circuit.
+  </Function>
+
+  ### iter\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_stretches" signature="iter_stretches()">
+    Iterable over all the stretches tracked by the circuit.
   </Function>
 
   ### iter\_vars

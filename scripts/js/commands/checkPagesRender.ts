@@ -19,8 +19,18 @@ import { mean } from "lodash-es";
 
 import { zxMain } from "../lib/zx.js";
 
-// These are expected to 404 due to being legacy only.
-const ALLOWLIST: Set<string> = new Set(["docs/guides/setup-channel.mdx"]);
+// These are expected to 404 in the cloud app due to being legacy only.
+const LEGACY_ONLY_PAGES: Set<string> = new Set([
+  "docs/guides/setup-channel.mdx",
+]);
+
+// These are expected to 404 in the legacy app due to being cloud only.
+const CLOUD_ONLY_PAGES: Set<string> = new Set([
+  "docs/guides/calibration-jobs.mdx",
+  "docs/guides/cloud-setup.mdx",
+  "docs/guides/upgrade-from-open.mdx",
+  "docs/guides/view-cost.mdx",
+]);
 
 const PORT = 3000;
 
@@ -32,6 +42,7 @@ interface Arguments {
   devApis?: boolean;
   historicalApis?: boolean;
   qiskitReleaseNotes?: boolean;
+  legacy?: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -73,6 +84,16 @@ const readArgs = (): Arguments => {
     .option("qiskit-release-notes", {
       type: "boolean",
       description: "Check the pages in the `api/qiskit/release-notes` folder.",
+    })
+    .option("legacy", {
+      type: "boolean",
+      description: "Check that the non-API pages render in the legacy app.",
+      conflicts: [
+        "current-apis",
+        "dev-apis",
+        "historical-apis",
+        "qiskit-release-notes",
+      ],
     })
     .parseSync();
 };
@@ -170,11 +191,11 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (args.fromFile) {
     const content = await fs.readFile(args.fromFile, "utf-8");
     const result = await globby(content.split("\n").filter((entry) => entry));
-    return result.filter((fp) => !ALLOWLIST.has(fp));
+    return result.filter((fp) => filterPlatformSpecificPage(fp, args.legacy));
   }
 
   const globs = [];
-  if (args.nonApi) {
+  if (args.nonApi || args.legacy) {
     globs.push("docs/**/*.{ipynb,mdx}");
   }
 
@@ -188,5 +209,15 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
     globs.push(`${prefix}${glob}`);
   }
   const result = await globby(globs);
-  return result.filter((fp) => !ALLOWLIST.has(fp));
+  return result.filter((fp) => filterPlatformSpecificPage(fp, args.legacy));
+}
+
+function filterPlatformSpecificPage(page: string, legacy?: boolean) {
+  if (legacy) {
+    // API docs should never be checked with the legacy app because they render
+    // identically in the cloud app.
+    return !CLOUD_ONLY_PAGES.has(page) && !page.startsWith("docs/api");
+  }
+
+  return !LEGACY_ONLY_PAGES.has(page);
 }
