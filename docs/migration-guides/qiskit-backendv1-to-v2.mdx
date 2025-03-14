@@ -70,27 +70,3 @@ Scroll to the right to see important notes.
 |`backend.properties().frequency(0)`|`backend.qubit_properties(0).frequency`| |
 |`backend.properties().readout_error(0)`|`backend.target["measure"][(0,)].error`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), the error rate for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout error. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) object can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
 |`backend.properties().readout_length(0)`|`backend.target["measure"][(0,)].duration`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), the duration for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout length. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) object can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
-
-|[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) method | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) method | Notes |
-| --- | --- | --- |
-|`configuration().n_qubits` | `num_qubits`| |
-|`configuration().coupling_map` | `coupling_map` | The return from [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) is a [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap) object. In [`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) it is an edge list. Also, this is just a view of the information contained in `backend.target` which may only be a subset of the information contained in the [`Target`](/api/qiskit/qiskit.transpiler.Target) object. |
-|`configuration().backend_name` | `name` | |
-|`configuration().backend_version` | `backend_version` | The `BackendV2.version` attribute represents the version of the abstract [`Backend`](/api/qiskit/qiskit.providers.Backend) interface that the object implements, while `BackendV2.backend_version` is metadata about the version of the backend itself. |
-|`configuration().basis_gates` | `operation_names` | The [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) returns a list of operation names contained in the `backend.target` attribute. The [`Target`](/api/qiskit/qiskit.transpiler.Target) might contain more information than can be expressed by this list of names. For example, some operations only work on a subset of qubits, and some names implement the same gate with different parameters.|
-|`configuration().dt`|`dt`| |
-|`configuration().dtm`|`dtm` | |
-|`configuration().max_experiments` |`max_circuits` | |
-|`configuration().online_date` | `online_date`| |
-|`defaults().instruction_schedule_map`|`instruction_schedule_map`| |
-|`properties().t1(0)`|`qubit_properties(0).t1`| |
-|`properties().t2(0)`|`qubit_properties(0).t2`| |
-|`properties().frequency(0)`|`qubit_properties(0).frequency`| |
-|`properties().readout_error(0)`|`target["measure"][(0,)].error`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), the error rate for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout error. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) object can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
-|`properties().readout_length(0)`|`target["measure"][(0,)].duration`| In [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2), the duration for the [`Measure`](/api/qiskit/circuit#measure) operation on a given qubit is used to model the readout length. However, a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) object can implement multiple measurement types and list them separately in a [`Target`](/api/qiskit/qiskit.transpiler.Target).|
-
-Other
-
-|[`BackendV1`](/api/qiskit/qiskit.providers.BackendV1) | [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) |
-| --- | --- |
-|`InstructionDurations.from_backend(backend)`|`backend.instruction_durations`|
