@@ -55,7 +55,7 @@ and then loading that file will return a list with all the circuits
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qpy/interface.py#L238-L377" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qpy/interface.py#L238-L391" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, trust_payload=False)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
@@ -83,6 +83,15 @@ and then loading that file will return a list with all the circuits
 
   *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – A file like object that contains the QPY binary data for a circuit or pulse schedule.
   *   **metadata\_deserializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
+  *   **trust\_payload** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if set to `False` (the default), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") objects in the payload that were serialized using `sympy` are not allowed and will error. This is because the `sympy` parsing uses [`eval()`](https://docs.python.org/3/library/functions.html#eval "(in Python v3.13)"), which can allow for arbitrary code execution. The flag should only be set to `True` if you trust the QPY payload you are loading.
+
+  **Return type**
+
+  [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+
+  <Admonition title="Warning" type="caution">
+    If `trust_payload` is set to `True` this can enable arbitrary code execution because internally `sympy` relies on [`eval()`](https://docs.python.org/3/library/functions.html#eval "(in Python v3.13)").
+  </Admonition>
 
   **Returns**
 
@@ -92,6 +101,12 @@ and then loading that file will return a list with all the circuits
 
   *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `file_obj` is not a valid QPY file
   *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – When invalid data type is loaded.
+
+  **Parameters**
+
+  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) –
+  *   **metadata\_deserializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONDecoder] | None*) –
+  *   **trust\_payload** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
 
   **Return type**
 
