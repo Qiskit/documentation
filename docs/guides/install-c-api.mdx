@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     QkObs *obs = qk_obs_zero(num_qubits);  
 
     // add the term 2 * (X0 Y1 Z2) to the observable
-    complex double coeff = 2;  // the coefficient
+    complex double coeff = 2;  // use _Dcomplex coeff = {2, 0}; on MSVC 
     QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};  // bit terms: X Y Z
     uint32_t indices[3] = {0, 1, 2};  // indices: 0 1 2
     QkObsTerm term = {coeff, 3, bit_terms, indices, num_qubits};
@@ -44,9 +44,11 @@ int main(int argc, char* argv[]) {
 }
 ```
 
+### Unix
+
 In the following we provide build instructions for Unix systems.
 
-### Requirements
+#### Requirements
 
 We require the following tools for the compilation:
 * A Rust compiler: see e.g. the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source).
@@ -64,7 +66,7 @@ cbindgen --version
 make --version  # optional, but recommended
 ```
 
-### Building
+#### Building
 
 To build the C header and library, you can run the following Make command[^1] in Qiskit root, 
 [^1]: If you did not install Make, check the `Makefile` in Qiskit root for the required commands. (Or just install Make, it's not too late.)
@@ -106,9 +108,58 @@ num_terms: 1
 observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
 ```
 
+### Windows (experimental)
+
+_Warning: Windows support is currently experimental. Instructions are work in progress.__
+
+#### Requirements
+
+We require the following tools for the compilation:
+* A Rust compiler: see e.g. the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source).
+* A C compiler: we'll use MSVC and the native command prompt offering the ``cl`` command
+* [``cbindgen``](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can e.g. install via ``cargo install cbindgen``. 
+    Note that running the tool from the command line should be enabled, which might require exporting your ``PATH`` variable 
+    to include ``/path/to/.cargo/bin``.
+
+#### Building 
+
+First, we compile the ``qiskit_cext`` dynamic library, by running the following in Qiskit root
+```bash
+cargo rustc --release --crate-type cdylib -p qiskit-cext
+```
+This will generate the ``.dll`` dynamic library in ``target/release``.
+Next, we have to generate the header via
+```bash
+cbindgen --crate qiskit-cext --lang C --output target\release\qiskit.h
+```
+which will write the MSVC-compatible header in the same directory as the library.
+
+Now we can use ``cl`` to compile the C program. For simplicity we assume the file is 
+located in ``target/release``.
+```bash
+cl example.c qiskit_cext.dll.lib -I.
+```
+If your source file has another location ensure to update the 
+local ``PATH`` variable to include the location of the dynamic library and the include path set
+via ``-I``.
+
+Finally we can run the executable 
+```bash
+.\example.exe
+```
+which should print
+```
+num_qubits: 100
+num_terms: 1
+observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
+```
+
+If running the executable causes missing library errors, you can try updating the local ``PATH`` 
+variable to include the necessary locations.
+
 ## Qiskit with Python and C
 
-_Warning: Under construction (both the text and the build system, this is a bit involved right now)_
+_Warning: Windows build instructions are in progress and not currently available._
 
 To accelerate your Qiskit Python programs with C, we can use Qiskit's C extension for Python.
 This requires additional steps to the standalone C usage. 
@@ -134,7 +185,7 @@ it to Python. We can convert a C-side ``QkObs*`` to a Python-side ``SparseObserv
 (both are backed by the same Rust data structure), using the provided converter
 ``qk_obs_to_python``:
 ```c
-// file: cextension.c
+// file: extension.c
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>  // include Python header for access to PyObject
 #define QISKIT_C_PYTHON_INTERFACE  // enable C->Python conversion functions
