@@ -78,7 +78,7 @@ export async function processHtml(options: {
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta);
+  await processMembersAndSetMeta($, $main, meta, isCApi);
   maybeSetModuleMetadata($, $main, meta, isCApi);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
@@ -339,6 +339,7 @@ export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
+  isCApi: boolean,
 ): Promise<void> {
   let continueMapMembers = true;
   while (continueMapMembers) {
@@ -357,7 +358,13 @@ export async function processMembersAndSetMeta(
     }
 
     const $dl = $(dl);
-    const id = $dl.find("dt").attr("id") || "";
+    const id =
+      (isCApi
+        ? // IDs in the C API have a bunch of extra information (e.g.
+          // `_CPPv415qk_obs_free8uint32_t`) whereas we just want to display the
+          // function name (e.g. `qk_obs_free`).
+          $dl.find("span.sig-name.descname").text()
+        : $dl.find("dt").attr("id")) || "";
     const apiType = getApiType($dl);
 
     if (apiType && apiType === "module") {
