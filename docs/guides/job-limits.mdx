@@ -7,6 +7,12 @@ description: Job limits imposed by the job validation service for jobs sent to I
 
 When you send a job to an IBM&reg; QPU, it is first sent to the job validation service.  This service tries to ensure that the job will be able to run on the QPU so you don't have to wait for it to go through the queue and then have the job fail.  These checks include enforcing the described limits.
 
+<Admonition type="note">
+Certain primitive options increase the circuit size.  The described limits are checked _after_ the expected increase in circuit size. In particular, these options increase circuit size:
+  - Dynamical decoupling and gate-folding ZNE introduce additional gates that are included in the instructions for the [Maximum number of low-level instructions per qubit](#per-qubit) limit.
+  - Gate-folding ZNE introduces additional two-qubit gates relevant to the [Maximum number of two-qubit gates per job](#2-qubit-limit) limit. The number of two-qubit gates is multiplied by the sum of noise factors requested in gate-folding ZNE.
+</Admonition>
+
 <span id="max-shots"></span>
 ## Maximum executions
 
@@ -39,15 +45,7 @@ The service permits up to **26.8 million control-system instructions per qubit**
 <span id="2-qubit-limit"></span>
 ## Maximum number of single- and two-qubit gates per circuit
 
-
-<Admonition type="note">
-Certain primitive options increase the circuit size. The described limits are checked *after* the expected increase in circuit size. In particular, these options increase circuit size:
-
-- Dynamical decoupling and twirling introduce additional single-qubit gates.
-- Gate-folding ZNE introduces additional two-qubit gates. The number of two-qubit gates is multiplied by the sum of noise factors requested in gate-folding ZNE.
-</Admonition>
-
-The maximum number of single qubit gates are as follows:
+The maximum number of single-qubit gates are as follows:
 - 2.4 million RZ gates
 - 1.6 million SX gates
 
