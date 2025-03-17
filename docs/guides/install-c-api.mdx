@@ -1,12 +1,14 @@
+---
+title: Installing Qiskit's C API
+description: How to install and use Qiskit's C API as standalone library
+---
+
 # Installing Qiskit's C API
 
 This guide describes how to install and use Qiskit's C API. To see how to extend your 
 Qiskit Python workflow with C, check the guide on [Extending Python with Qiskit's C API](./c-extension-for-python.mdx).
 
-## Qiskit C
-
-Qiskit's C API can be built as standalone library by compiling the `cext` crate. This allows 
-to use Qiskit free from Python and write programs in C only, e.g. 
+As example program we consider building an observable with C:
 ```c
 // file: example.c
 #include <stdio.h>
@@ -38,11 +40,11 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-### Unix
+## Unix
 
 In the following we provide build instructions for Unix systems.
 
-#### Requirements
+### Requirements
 
 We require the following tools for the compilation:
 * A Rust compiler: see e.g. the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source).
@@ -60,7 +62,7 @@ cbindgen --version
 make --version  # optional, but recommended
 ```
 
-#### Building
+### Building
 
 To build the C header and library, you can run the following Make command[^1] in Qiskit root, 
 [^1]: If you did not install Make, check the `Makefile` in Qiskit root for the required commands. (Or just install Make, it's not too late.)
@@ -102,11 +104,11 @@ num_terms: 1
 observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
 ```
 
-### Windows (experimental)
+## Windows (experimental)
 
 _Warning: Windows support is currently experimental. Instructions are work in progress.__
 
-#### Requirements
+### Requirements
 
 We require the following tools for the compilation:
 * A Rust compiler: see e.g. the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source).
@@ -115,7 +117,7 @@ We require the following tools for the compilation:
     Note that running the tool from the command line should be enabled, which might require exporting your ``PATH`` variable 
     to include ``/path/to/.cargo/bin``.
 
-#### Building 
+### Building 
 
 First, we compile the ``qiskit_cext`` dynamic library, by running the following in Qiskit root
 ```bash
@@ -150,118 +152,3 @@ observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 
 
 If running the executable causes missing library errors, you can try updating the local ``PATH`` 
 variable to include the necessary locations.
-
-## Qiskit with Python and C
-
-_Warning: Windows build instructions are in progress and not currently available._
-
-To accelerate your Qiskit Python programs with C, we can use Qiskit's C extension for Python.
-This requires additional steps to the standalone C usage. 
-
-### Requirements
-
-As base, we need the same requirements as the [C standalone usage](#qiskit-c-standalone).
-In addition we need to install Qiskit's Python interface,
-```bash
-pip install -r requirements.txt -c constraints.txt 
-pip install . 
-```
-
-### Defining the C extension
-
-There are various options to write a C extension for Python. Here, we will describe an approach
-using Python's built-in [``ctypes``](https://docs.python.org/3/library/ctypes.html) module 
-which requires minimal overhead. See [below](#manual-c-extension) for another example which is 
-manually building the C extension using Python's C API.
-
-As example, assume we write a C function to build an observable and would like to return 
-it to Python. We can convert a C-side ``QkObs*`` to a Python-side ``SparseObservable`` object
-(both are backed by the same Rust data structure), using the provided converter
-``qk_obs_to_python``:
-```c
-// file: extension.c
-#define PY_SSIZE_T_CLEAN
-#include <Python.h>  // include Python header for access to PyObject
-#define QISKIT_C_PYTHON_INTERFACE  // enable C->Python conversion functions
-#include <qiskit.h>
-
-PyObject *build_observable(void) {
-    QkObs *obs = qk_obs_zero(100);
-    // build the observable ...
-    PyObject *pyobj = qk_obs_to_python(obs); // convert to Qiskit's Python ``SparseObservable``
-    qk_obs_free(obs); 
-    return pyobj;
-}
-```
-
-Below we will show how to compile this into a shared library, say ``qiskit_cextension.so``.
-Once this is done, we will be able to call the C program from Python as 
-```python
-# file: main.py
-import qiskit
-import ctypes
-
-# Load the extension, ensuring the global interpreter lock (GIL) is acquired for function calls,
-# which we need for the C->Python object conversion.
-lib = ctypes.PyDLL("/path/to/qiskit_cextension.so")
-lib.build_observable.argtypes = None  # set argument types to the function
-lib.build_observable.restype = ctypes.py_object  # set return type
-
-# now we can directly call the function
-obs = lib.build_observable()
-print("SparseObservable instance?", isinstance(obs, qiskit.quantum_info.SparseObservable))
-print(obs)
-```
-
-### Building
-
-First, we have to build Qiskit's Python extension. This will include the C symbols so we can
-access both interfaces via the same shared library. This is important to ensure data ensured 
-across C and Python has the same ABI.
-```bash
-python setup.py build_rust --inplace --release
-```
-The shared library is called ``_accelerate.<platform-specific-part>``, whose location and name we can find as
-```bash
-QKLIB=$(python -c "import os; import qiskit; print(os.path.dirname(qiskit._accelerate.__file__))")
-QKNAME=$(python -c "import os; import qiskit; print(os.path.basename(qiskit._accelerate.__file__))")
-```
-
-We will need to know the location of the environments Python includes (``Python.h``) and libraries (``libpython.<suffix>``).
-These can, for example, be identified via
-```bash
-PYINCLUDE=$(python -c "import sysconfig; print(sysconfig.get_path('include'))")  
-PYLIB=$(python -c "import sysconfig; print(sysconfig.get_config_var('LIBDIR'))")  
-PYNAME=$(find $PYLIB -maxdepth 1 -name "libpython*" | grep -oE "[^/]+$" | grep -oE "python[0-9]+\.[0-9]+" || echo "python")
-```
-(If you just know these locations and names, you can also just set them directly.)
-
-#### Linux
-
-Linking can slightly differ between platforms, here we first describe a solution for linkers 
-supporting libraries with arbitrary names, using the `-l:` flag. See below if your linker 
-requires the library to be called `lib<something>`.
-
-We can build the extension specifying the full name of the `_accelerate` library:
-```bash
-gcc extension.c -fpic -shared -o cextension.so \
-  -I/path/to/dist/c/include -L$QKLIB -l:$QKNAME \
-  -I$PYINCLUDE -L$PYLIB -l$PYNAME
-```
-And then simply ``python main.py`` to run the Python program.
-
-#### MacOS 
-
-An alternative to using the exact library name with `-l:` is to symlink the `_accelerate` library 
-to the desired name. This solution works on Mac (and also Linux if you replace all occurences of ``.dylib`` with ``.so``).
-To include the `_accelerate` shared library we symlink it to the linkers expected format of ``lib<library name>.<suffix>``,
-```bash
-ln -s $QKLIB/$QKNAME $QKLIB/libqiskit.dylib
-```
-which allows to use ``qiskit`` as library name:
-```bash
-gcc extension.c -fpic -shared -o qiskit_cextension.so \
-  -I/path/to/dist/c/include -L$QKLIB -lqiskit \
-  -I$PYINCLUDE -L$PYLIB -l$PYNAME
-```
-Then simply ``python main.py`` to run the Python program.

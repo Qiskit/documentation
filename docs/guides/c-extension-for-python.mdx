@@ -1,17 +1,16 @@
-# Installing Qiskit's C API
+---
+title: Extending Qiskit in Python with C
+description: Extend a Python workflow with Qiskit's C API
+---
 
-This guide describes extending Python with Qiskit's C API.
+# A little C with your Python
+
+To accelerate your Qiskit Python programs with C, we can use Qiskit's C extension for Python.
+This requires additional steps to the standalone C usage, see the [respective guide](./install-c-api.mdx).
 
 _Note: These instructions have only been tested on unix-based systems. Windows instructions are in progress._
 
-## Qiskit with Python and C
-
-_Warning: Windows build instructions are in progress and not currently available._
-
-To accelerate your Qiskit Python programs with C, we can use Qiskit's C extension for Python.
-This requires additional steps to the standalone C usage. 
-
-### Requirements
+## Requirements
 
 As base, we need the same requirements as the [C standalone usage](#qiskit-c-standalone).
 In addition we need to install Qiskit's Python interface,
@@ -20,7 +19,7 @@ pip install -r requirements.txt -c constraints.txt
 pip install . 
 ```
 
-### Defining the C extension
+## Defining the C extension
 
 There are various options to write a C extension for Python. Here, we will describe an approach
 using Python's built-in [``ctypes``](https://docs.python.org/3/library/ctypes.html) module 
@@ -66,7 +65,7 @@ print("SparseObservable instance?", isinstance(obs, qiskit.quantum_info.SparseOb
 print(obs)
 ```
 
-### Building
+## Building
 
 First, we have to build Qiskit's Python extension. This will include the C symbols so we can
 access both interfaces via the same shared library. This is important to ensure data ensured 
@@ -89,7 +88,7 @@ PYNAME=$(find $PYLIB -maxdepth 1 -name "libpython*" | grep -oE "[^/]+$" | grep -
 ```
 (If you just know these locations and names, you can also just set them directly.)
 
-#### Linux
+### Linux
 
 Linking can slightly differ between platforms, here we first describe a solution for linkers 
 supporting libraries with arbitrary names, using the `-l:` flag. See below if your linker 
@@ -103,7 +102,7 @@ gcc extension.c -fpic -shared -o cextension.so \
 ```
 And then simply ``python main.py`` to run the Python program.
 
-#### MacOS 
+### MacOS 
 
 An alternative to using the exact library name with `-l:` is to symlink the `_accelerate` library 
 to the desired name. This solution works on Mac (and also Linux if you replace all occurences of ``.dylib`` with ``.so``).
@@ -119,7 +118,7 @@ gcc extension.c -fpic -shared -o qiskit_cextension.so \
 ```
 Then simply ``python main.py`` to run the Python program.
 
-### Manual C extension
+## Manual C extension
 
 Instead of using ``ctypes``, it is possible to manually build an extension for Python using [Python's 
 C API](https://docs.python.org/3/c-api/intro.html) directly. This has the potential to be 
