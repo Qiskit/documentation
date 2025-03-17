@@ -1,4 +1,3 @@
-// TODO(#2761): Remove this script once Qiskit 2.0 is released
 export const QISKIT_REMOVED_PAGES = [
   "assembler",
   "classicalfunction",
