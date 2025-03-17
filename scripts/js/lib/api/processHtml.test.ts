@@ -640,7 +640,7 @@ marked as builtins since they are not actually present in any include file this 
   });
 
   test("C API function ID", async () => {
-      const html = `<dl class="cpp function">
+    const html = `<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv415qk_obs_identity8uint32_t">
 <span id="_CPPv315qk_obs_identity8uint32_t"></span><span id="_CPPv215qk_obs_identity8uint32_t"></span><span id="qk_obs_identity__uint32_t"></span><span class="target" id="group__QkSparseObservable_1ga535fe356c00797365924811926b0ce37"></span><span class="n"><span class="pre">QkSparseObservable</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">qk_obs_identity</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">num_qubits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415qk_obs_identity8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct the identity observable.</p>
@@ -659,10 +659,10 @@ marked as builtins since they are not actually present in any include file this 
 </dd>
 </dl>
 </dd></dl>`;
-      const doc = CheerioDoc.load(html);
-      const meta: Metadata = {};
-      await processMembersAndSetMeta(doc.$, doc.$main, meta, true);
-      doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
+    const doc = CheerioDoc.load(html);
+    const meta: Metadata = {};
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, true);
+    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
   
 <div><p>Construct the identity observable.</p>
 <section id=\"group__QkSparseObservable_1autotoc_md4\">
@@ -681,10 +681,9 @@ marked as builtins since they are not actually present in any include file this 
 </dl>
 </div>
 </function></div>`);
-expect(meta).toEqual({
-        apiType: "function",
-        apiName: "qk_obs_identity",
-      });
+    expect(meta).toEqual({
+      apiType: "function",
+      apiName: "qk_obs_identity",
     });
-
+  });
 });
