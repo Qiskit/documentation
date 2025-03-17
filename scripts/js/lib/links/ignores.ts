@@ -122,6 +122,8 @@ function _runtimeObjectsInvRegexes(): string[] {
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
   ..._runtimeObjectsInvRegexes(),
+  // TODO(#2761): Move the links to globs to load in `checkInternalLinks.ts` once Qiskit 1.4 becomes historical
+  ...QISKIT_REMOVED_PAGES.map((link) => `\/api\/qiskit/1.4\/${link}(|#.*|$)`),
 ];
 
 // -----------------------------------------------------------------------------------
@@ -383,52 +385,11 @@ function _legacyQiskitSDKIssues(): FilesToIgnores {
   };
 }
 
-// TODO(#2761): Move the links to globs to load for guides in `checkInternalLinks.ts` once Qiskit 1.4 becomes historical
-function _nonApiDocsQiskitRemoved(): FilesToIgnores {
-  // Some files need to ignore additional anchors
-  const docsWithLinksToIgnore: [string, string[]][] = [
-    ["docs/guides/custom-backend.ipynb", []],
-    ["docs/guides/pulse.ipynb", ["pulse#parametric-pulse-representation"]],
-    ["docs/guides/qpu-information.mdx", []],
-    [
-      "docs/guides/represent-quantum-computers.ipynb",
-      ["qiskit.transpiler.passes.PulseGates#pulsegates"],
-    ],
-    ["docs/guides/simulate-with-qiskit-sdk-primitives.mdx", []],
-    ["docs/guides/specify-observables-pauli.ipynb", []],
-    ["docs/guides/transpiler-stages.ipynb", []],
-    [
-      "docs/migration-guides/qiskit-1.0-features.mdx",
-      [
-        "pulse#call",
-        "qiskit.circuit.QuantumCircuit#add_calibration",
-        "qiskit.pulse.library.SymbolicPulse#get_waveform",
-      ],
-    ],
-    ["docs/migration-guides/qiskit-algorithms-module.mdx", []],
-    ["docs/migration-guides/qiskit-opflow-module.mdx", []],
-    [
-      "docs/migration-guides/qiskit-quantum-instance.mdx",
-      ["qiskit.primitives.Sampler#run", "qiskit.primitives.Estimator#run"],
-    ],
-    ["docs/open-source/create-a-provider.mdx", []],
-  ];
-
-  const prefix = "/api/qiskit/1.4/";
-  return Object.fromEntries(
-    docsWithLinksToIgnore.map(([key, vals]): [string, string[]] => [
-      key,
-      [...vals, ...QISKIT_REMOVED_PAGES].map((val) => `${prefix}${val}`),
-    ]),
-  );
-}
-
 const FILES_TO_IGNORES__EXPECTED: FilesToIgnores = mergeFilesToIgnores(
   _qiskitUtilsData(),
   _patternsReorg(),
   _runtimeObjectsInv(),
   _legacyQiskitSDKIssues(),
-  _nonApiDocsQiskitRemoved(),
 );
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = {};
