@@ -1,15 +1,9 @@
 # Installing Qiskit's C API
 
-This guide describes two parts:
-* [Using Qiskit's C API on it's own](#qiskit-c): basic access to observable creation/manipulation in C
-* [Extending Python with Qiskit's C API](#qiskit-with-python-and-c): extend a Qiskit Python workflow with a C program
-
-_Note: These instructions have only been tested on unix-based systems. Windows instructions are in progress. This process should mostly work on Windows,
-but depending on your compiler the complex number support may need special care._
+This guide describes how to install and use Qiskit's C API. To see how to extend your 
+Qiskit Python workflow with C, check the guide on [Extending Python with Qiskit's C API](./c-extension-for-python.mdx).
 
 ## Qiskit C
-
-_Warning: Under construction_
 
 Qiskit's C API can be built as standalone library by compiling the `cext` crate. This allows 
 to use Qiskit free from Python and write programs in C only, e.g. 
@@ -26,7 +20,7 @@ int main(int argc, char* argv[]) {
     QkObs *obs = qk_obs_zero(num_qubits);  
 
     // add the term 2 * (X0 Y1 Z2) to the observable
-    complex double coeff = 2;  // use _Dcomplex coeff = {2, 0}; on MSVC 
+    complex double coeff = 2;  // on MSVC use: _Dcomplex coeff = {2, 0}
     QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};  // bit terms: X Y Z
     uint32_t indices[3] = {0, 1, 2};  // indices: 0 1 2
     QkObsTerm term = {coeff, 3, bit_terms, indices, num_qubits};
