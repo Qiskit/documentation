@@ -6,30 +6,32 @@ description: How to build a C extension for your Qiskit workflow in Python
 # A little C with your Python
 
 To accelerate your Qiskit Python programs with C, we can use Qiskit's C extension for Python.
-This requires additional steps to the standalone C usage, see the [respective guide](./install-c-api.mdx).
+This requires additional steps to the standalone C usage, see the [respective guide](./install-c-api).
 
-_Note: These instructions have only been tested on unix-based systems. Windows instructions are in progress._
+<Admonition type="note">
+  These instructions have only been tested on unix-based systems. Windows instructions are in progress._
+</Admonition>
 
 ## Requirements
 
-As base, we need the same requirements as the [C standalone usage](#qiskit-c-standalone).
+As base, we need the same requirements as the [C standalone usage](./install-c-api).
 In addition we need to install Qiskit's Python interface,
 ```bash
-pip install -r requirements.txt -c constraints.txt 
-pip install . 
+pip install -r requirements.txt -c constraints.txt
+pip install .
 ```
 
 ## Defining the C extension
 
 There are various options to write a C extension for Python. Here, we will describe an approach
-using Python's built-in [``ctypes``](https://docs.python.org/3/library/ctypes.html) module 
-which requires minimal overhead. See [below](#manual-c-extension) for another example which is 
+using Python's built-in [`ctypes`](https://docs.python.org/3/library/ctypes.html) module
+which requires minimal overhead. See [below](#manual-c-extension) for another example which is
 manually building the C extension using Python's C API.
 
-As example, assume we write a C function to build an observable and would like to return 
-it to Python. We can convert a C-side ``QkObs*`` to a Python-side ``SparseObservable`` object
+As example, assume we write a C function to build an observable and would like to return
+it to Python. We can convert a C-side `QkObs*` to a Python-side `SparseObservable` object
 (both are backed by the same Rust data structure), using the provided converter
-``qk_obs_to_python``:
+`qk_obs_to_python`:
 ```c
 // file: extension.c
 #define PY_SSIZE_T_CLEAN
@@ -41,13 +43,13 @@ PyObject *build_observable(void) {
     QkObs *obs = qk_obs_zero(100);
     // build the observable ...
     PyObject *pyobj = qk_obs_to_python(obs); // convert to Qiskit's Python ``SparseObservable``
-    qk_obs_free(obs); 
+    qk_obs_free(obs);
     return pyobj;
 }
 ```
 
-Below we will show how to compile this into a shared library, say ``qiskit_cextension.so``.
-Once this is done, we will be able to call the C program from Python as 
+Below we will show how to compile this into a shared library, say `qiskit_cextension.so`.
+Once this is done, we will be able to call the C program from Python as
 ```python
 # file: main.py
 import qiskit
@@ -68,7 +70,7 @@ print(obs)
 ## Building
 
 First, we have to build Qiskit's Python extension. This will include the C symbols so we can
-access both interfaces via the same shared library. This is important to ensure data ensured 
+access both interfaces via the same shared library. This is important to ensure data ensured
 across C and Python has the same ABI.
 ```bash
 python setup.py build_rust --inplace --release
@@ -82,16 +84,16 @@ QKNAME=$(python -c "import os; import qiskit; print(os.path.basename(qiskit._acc
 We will need to know the location of the environments Python includes (``Python.h``) and libraries (``libpython.<suffix>``).
 These can, for example, be identified via
 ```bash
-PYINCLUDE=$(python -c "import sysconfig; print(sysconfig.get_path('include'))")  
-PYLIB=$(python -c "import sysconfig; print(sysconfig.get_config_var('LIBDIR'))")  
+PYINCLUDE=$(python -c "import sysconfig; print(sysconfig.get_path('include'))")
+PYLIB=$(python -c "import sysconfig; print(sysconfig.get_config_var('LIBDIR'))")
 PYNAME=$(find $PYLIB -maxdepth 1 -name "libpython*" | grep -oE "[^/]+$" | grep -oE "python[0-9]+\.[0-9]+" || echo "python")
 ```
 (If you just know these locations and names, you can also just set them directly.)
 
 ### Linux
 
-Linking can slightly differ between platforms, here we first describe a solution for linkers 
-supporting libraries with arbitrary names, using the `-l:` flag. See below if your linker 
+Linking can slightly differ between platforms, here we first describe a solution for linkers
+supporting libraries with arbitrary names, using the `-l:` flag. See below if your linker
 requires the library to be called `lib<something>`.
 
 We can build the extension specifying the full name of the `_accelerate` library:
@@ -102,15 +104,15 @@ gcc extension.c -fpic -shared -o cextension.so \
 ```
 And then simply ``python main.py`` to run the Python program.
 
-### MacOS 
+### MacOS
 
-An alternative to using the exact library name with `-l:` is to symlink the `_accelerate` library 
-to the desired name. This solution works on Mac (and also Linux if you replace all occurences of ``.dylib`` with ``.so``).
-To include the `_accelerate` shared library we symlink it to the linkers expected format of ``lib<library name>.<suffix>``,
+An alternative to using the exact library name with `-l:` is to symlink the `_accelerate` library
+to the desired name. This solution works on Mac (and also Linux if you replace all occurences of `.dylib` with `.so`).
+To include the `_accelerate` shared library we symlink it to the linkers expected format of `lib<library name>.<suffix>`,
 ```bash
 ln -s $QKLIB/$QKNAME $QKLIB/libqiskit.dylib
 ```
-which allows to use ``qiskit`` as library name:
+which allows to use `qiskit` as library name:
 ```bash
 gcc extension.c -fpic -shared -o qiskit_cextension.so \
   -I/path/to/dist/c/include -L$QKLIB -lqiskit \
@@ -120,9 +122,9 @@ Then simply ``python main.py`` to run the Python program.
 
 ## Manual C extension
 
-Instead of using ``ctypes``, it is possible to manually build an extension for Python using [Python's 
-C API](https://docs.python.org/3/c-api/intro.html) directly. This has the potential to be 
-faster than using ``ctypes``, albeit requires more effort to implement.
+Instead of using `ctypes`, it is possible to manually build an extension for Python using [Python's
+C API](https://docs.python.org/3/c-api/intro.html) directly. This has the potential to be
+faster than using `ctypes`, albeit requires more effort to implement.
 In the following we provide a brief example on how this can be achieved
 
 ```c
@@ -137,7 +139,7 @@ In the following we provide a brief example on how this can be achieved
 QkObs *build_observable() {
     // build a 100-qubit empty observable
     u_int32_t num_qubits = 100;
-    QkObs *obs = qk_obs_zero(num_qubits);  
+    QkObs *obs = qk_obs_zero(num_qubits);
 
     // add the term 2 * (X0 Y1 Z2) to the observable
     complex double coeff = 2;  // the coefficient
@@ -149,13 +151,13 @@ QkObs *build_observable() {
     return obs;
 }
 
-/// Define the Python function, which will internally build the QkObs using the 
+/// Define the Python function, which will internally build the QkObs using the
 /// C function defined above, and then convert the C object to the Python equivalent:
 /// a SparseObservable, handled as PyObject.
 static PyObject *cextension_build_observable(PyObject *self, PyObject *args) {
     // At this point, ``args`` could be parsed for arguments. See PyArg_ParseTuple for details.
     QkObs *obs = build_observable();  // call the C function to build the observable
-    PyObject *py_obs = qk_obs_to_python(obs);  // convert QkObs to the Python-equivalent 
+    PyObject *py_obs = qk_obs_to_python(obs);  // convert QkObs to the Python-equivalent
     return py_obs;
 }
 
@@ -214,9 +216,9 @@ exception:
     Py_ExitStatusException(status);
 }
 ```
-To compile a shared library, we link both the Python and Qiskit libraries, as described in 
-the [Building](#building) section above. The Python script then does not need ``ctypes`` 
-but can directly import ``cextension`` module:
+To compile a shared library, we link both the Python and Qiskit libraries, as described in
+the [Building](#building) section above. The Python script then does not need `ctypes`
+but can directly import `cextension` module:
 ```python
 # file: main.py
 import qiskit

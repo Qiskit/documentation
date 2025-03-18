@@ -5,8 +5,8 @@ description: How to install and use Qiskit's C API as standalone library
 
 # Installing Qiskit's C API
 
-This guide describes how to install and use Qiskit's C API. To see how to extend your 
-Qiskit Python workflow with C, check the guide on [Extending Python with Qiskit's C API](./c-extension-for-python.mdx).
+This guide describes how to install and use Qiskit's C API. To see how to extend your
+Qiskit Python workflow with C, check the guide on [Extending Python with Qiskit's C API](./c-extension-for-python).
 
 As example program we consider building an observable with C:
 ```c
@@ -19,7 +19,7 @@ As example program we consider building an observable with C:
 int main(int argc, char* argv[]) {
     // build a 100-qubit empty observable
     u_int32_t num_qubits = 100;
-    QkObs *obs = qk_obs_zero(num_qubits);  
+    QkObs *obs = qk_obs_zero(num_qubits);
 
     // add the term 2 * (X0 Y1 Z2) to the observable
     complex double coeff = 2;  // on MSVC use: _Dcomplex coeff = {2, 0}
@@ -49,9 +49,9 @@ In the following we provide build instructions for Unix systems.
 We require the following tools for the compilation:
 * A Rust compiler: see e.g. the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source).
 * A C compiler: we'll use GCC on Linux and Clang on MacOS
-* [``cbindgen``](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can e.g. install via ``cargo install cbindgen``. 
-    Note that running the tool from the command line should be enabled, which might require exporting your ``PATH`` variable 
-    to include ``/path/to/.cargo/bin``.
+* [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can e.g. install via `cargo install cbindgen`.
+    Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable
+    to include `/path/to/.cargo/bin`.
 * Make: this is optional, but we recommend the installation to use automated install processes
 
 You can check everything is installed via
@@ -64,21 +64,21 @@ make --version  # optional, but recommended
 
 ### Building
 
-To build the C header and library, you can run the following Make command[^1] in Qiskit root, 
+To build the C header and library, you can run the following Make command[^1] in Qiskit root,
 [^1]: If you did not install Make, check the `Makefile` in Qiskit root for the required commands. (Or just install Make, it's not too late.)
 ```bash
 make c
 ```
-which will provide the compiled shared library in ``dist/c/lib`` and the ``qiskit.h`` header with
-all function declarations in ``dist/c/include``. Note that the precise library name depends 
-on the platform, e.g ``libqiskit.so`` on Unix and ``libqiskit.dylib`` on MacOS.
+which will provide the compiled shared library in `dist/c/lib` and the `qiskit.h` header with
+all function declarations in `dist/c/include`. Note that the precise library name depends
+on the platform, e.g `libqiskit.so` on Unix and `libqiskit.dylib` on MacOS.
 (Note that this step currently emits a lot of warnings. This is fine, we're working on it.)
 
 We can then compile a C program using the Qiskit C header and library, by
 ```bash
 gcc example.c -o example.o -I /path/to/dist/c/include -L /path/to/dist/c/lib -lqiskit
 ```
-To ensure the library is found during execution, set the runtime library path to 
+To ensure the library is found during execution, set the runtime library path to
 include `/path/to/dist/c/lib`. This depends on the platform, e.g. on Linux
 ```bash
 export LD_LIBRARY_PATH=/path/to/dist/c/lib:$LD_LIBRARY_PATH
@@ -93,7 +93,7 @@ Alternatively, we can set the runtime library path during compilation by adding
 ```
 to the compiler flags.
 
-Now we can execute the binary, 
+Now we can execute the binary,
 ```bash
 ./example.o
 ```
@@ -106,40 +106,42 @@ observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 
 
 ## Windows (experimental)
 
-_Warning: Windows support is currently experimental. Instructions are work in progress.__
+<Admonition type="caution">
+  Windows support is currently experimental. Instructions are work in progress.
+</Admonition>
 
 ### Requirements
 
 We require the following tools for the compilation:
 * A Rust compiler: see e.g. the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source).
 * A C compiler: we'll use MSVC and the native command prompt offering the ``cl`` command
-* [``cbindgen``](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can e.g. install via ``cargo install cbindgen``. 
-    Note that running the tool from the command line should be enabled, which might require exporting your ``PATH`` variable 
-    to include ``/path/to/.cargo/bin``.
+* [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can e.g. install via `cargo install cbindgen`.
+    Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable
+    to include `/path/to/.cargo/bin`.
 
-### Building 
+### Building
 
-First, we compile the ``qiskit_cext`` dynamic library, by running the following in Qiskit root
+First, we compile the `qiskit_cext` dynamic library, by running the following in Qiskit root
 ```bash
 cargo rustc --release --crate-type cdylib -p qiskit-cext
 ```
-This will generate the ``.dll`` dynamic library in ``target/release``.
+This will generate the ``.dll`` dynamic library in `target/release`.
 Next, we have to generate the header via
 ```bash
 cbindgen --crate qiskit-cext --lang C --output target\release\qiskit.h
 ```
 which will write the MSVC-compatible header in the same directory as the library.
 
-Now we can use ``cl`` to compile the C program. For simplicity we assume the file is 
-located in ``target/release``.
+Now we can use `cl` to compile the C program. For simplicity we assume the file is
+located in `target/release`.
 ```bash
 cl example.c qiskit_cext.dll.lib -I.
 ```
-If your source file has another location ensure to update the 
-local ``PATH`` variable to include the location of the dynamic library and the include path set
-via ``-I``.
+If your source file has another location ensure to update the
+local `PATH` variable to include the location of the dynamic library and the include path set
+via `-I`.
 
-Finally we can run the executable 
+Finally we can run the executable
 ```bash
 .\example.exe
 ```
@@ -150,5 +152,5 @@ num_terms: 1
 observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
 ```
 
-If running the executable causes missing library errors, you can try updating the local ``PATH`` 
+If running the executable causes missing library errors, you can try updating the local `PATH`
 variable to include the necessary locations.
