@@ -389,11 +389,11 @@ You can also check that API docs render by using any of these arguments: `npm ru
 
 CI will check on every PR that any changed files render correctly. We also run a weekly cron job to check that every page renders correctly.
 
-## Format README and TypeScript files
+## Format TypeScript files
 
-Run `npm run fmt` to automatically format the README, `.github` folder, and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
+Run `npm run fmt` to automatically format the `.github` folder and `scripts/` folder. You should run this command if you get the error in CI `run Prettier to fix`.
 
-To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
+To check that formatting is valid without actually making changes, run `npm run check:fmt`.
 
 ## Regenerate an existing API docs version
 
