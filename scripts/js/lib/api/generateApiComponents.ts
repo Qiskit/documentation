@@ -361,7 +361,7 @@ export function prepareGitHubLink(
     return undefined;
   }
   const href = originalLink.attr("href")!;
-  originalLink.first().remove();
+  originalLink.remove();
   return !isMethod || href.includes(".py#") ? href : undefined;
 }
 
