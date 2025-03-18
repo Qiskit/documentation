@@ -14,15 +14,55 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 1.4.2
+
+<span id="relnotes-1-4-2-prelude" />
+
+### Prelude
+
+Qiskit 1.4.2 is a patch release that fixes bugs found in the 1.4 release series.
+
+<span id="relnotes-1-4-2-new-features" />
+
+### New Features
+
+*   Added a new flag `trust_payload`, to the [`qpy.load()`](/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load") function. This is used to force the function to load a payload that is potentially insecure. If the payload contains [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") objects (either standalone or as part of [`QuantumCircuit.calibrations`](/api/qiskit/qiskit.circuit.QuantumCircuit#calibrations "qiskit.circuit.QuantumCircuit.calibrations")) and the symbolic encoding in the QPY file is set to `sympy` then the payload is potentially insecure and loading it could allow for arbitrary code execution. Since this flag is for controlling the deserialization of [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") instances which do not exist in Qiskit >= 2.0.0 this flag will only exist in Qiskit 1.4.x and will not exist in Qiskit >=2.0.0.
+
+<span id="relnotes-1-4-2-upgrade-notes" />
+
+### Upgrade Notes
+
+*   By default, `qpy.load` will now raise a [`QpyError`](/api/qiskit/qpy#qiskit.qpy.QpyError "qiskit.qpy.QpyError") when called with a QPY payload that contains a [`ScheduleBlock`](/api/qiskit/qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") object (either standalone or as part of [`QuantumCircuit.calibrations`](/api/qiskit/qiskit.circuit.QuantumCircuit#calibrations "qiskit.circuit.QuantumCircuit.calibrations")) which is using `sympy` for encoding symbolic expressions. This is because the payload is potentially vulnerable and should only be loaded if you trust the contents. If you are certain that the payload is not malicious, you can set the new `trust_payload` argument of `qpy.load` to `True`, and this will enable loading the payload.
+
+<span id="relnotes-1-4-2-security-issues" />
+
+### Security Issues
+
+*   Fixed a security vulnerability in [`qpy.load()`](/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load") when loading payloads that use `sympy` to serialize [`ParameterExpression`](/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects and other symbolic expressions. This potentially includes any QPY payload using QPY version \< 10, and optionally 10, 11, and 12 depending on the symbolic encoding used in the serialization step ([`qpy.dump()`](/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump")).
+
+<span id="relnotes-1-4-2-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug in the basis approximation generation for [`SolovayKitaev`](/api/qiskit/qiskit.transpiler.passes.SolovayKitaev "qiskit.transpiler.passes.SolovayKitaev"). Previously, generating discrete basis approximations using `generate_basis_approximations` for a basis containing `"sx"` or `"sxdg"` gates would fail. This has now been fixed.
+
+<span id="relnotes-1-4-1" />
+
+<span id="id2" />
+
 ## 1.4.1
 
 <span id="relnotes-1-4-1-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extended support series.
 
 <span id="relnotes-1-4-1-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -45,13 +85,13 @@ Qiskit 1.4.1 is a small patch release, fixing some bugs found in the 1.4 extende
 
 <span id="relnotes-1-4-0" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 1.4.0
 
 <span id="relnotes-1-4-0-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -191,7 +231,7 @@ The Qiskit v1.4 release is the final minor version release for the v1.x series. 
 
 <span id="relnotes-1-4-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Bug Fixes
 
