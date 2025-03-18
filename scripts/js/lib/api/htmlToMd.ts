@@ -35,7 +35,8 @@ export async function sphinxHtmlToMarkdown(options: {
   fileName: string;
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
-  determineSignatureUrl: (rawLink: string) => string;
+  pkgName: string;
+  kebabCaseAndShorten: boolean;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;

@@ -200,6 +200,7 @@ test("normalizeUrl()", () => {
     `#qiskit_ibm_runtime.RuntimeJob.job`,
     `qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run`,
     `stubs/qiskit_ibm_runtime.RuntimeJob`,
+    `#_CPPv415qk_obs_identity8uint32_t`,
   ];
   const resultsByName: { [key: string]: HtmlToMdResultWithUrl } = {
     "qiskit_ibm_runtime.RuntimeJob": {
@@ -242,6 +243,7 @@ test("normalizeUrl()", () => {
     "#qiskit_ibm_runtime.RuntimeJob.job",
     "qiskit_ibm_runtime.RuntimeJob#run",
     "qiskit_ibm_runtime.RuntimeJob",
+    "#_cppv415qk_obs_identity8uint32_t",
   ]);
 
   const kebabResults = urls.map((url) =>
@@ -261,6 +263,7 @@ test("normalizeUrl()", () => {
     "#qiskit_ibm_runtime.RuntimeJob.job",
     "runtime-job#run",
     "runtime-job",
+    "#_cppv415qk_obs_identity8uint32_t",
   ]);
 });
 

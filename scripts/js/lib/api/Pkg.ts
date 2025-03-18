@@ -19,8 +19,6 @@ import {
   QISKIT_TOC_GROUPING,
   QISKIT_ADDON_MPF_GROUPING,
 } from "./TocGrouping.js";
-import { removePart } from "../stringUtils.js";
-import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
@@ -273,38 +271,6 @@ export class Pkg {
       ? ` ${this.versionWithoutPatch}`
       : "";
     return `${this.title}${versionStr} release notes`;
-  }
-
-  determineSignatureUrlFn(): (rawLink: string) => string {
-    let basePath = `/api/${this.name}`;
-    if (this.isHistorical()) basePath += `/${this.versionWithoutPatch}`;
-    if (this.isDev()) basePath += `/dev`;
-
-    return (rawLink: string) => {
-      if (rawLink.startsWith("http") || rawLink.startsWith("#")) return rawLink;
-
-      const [rawHref, rawAnchor] = rawLink.split("#", 2);
-
-      const href = removePart(rawHref, "/", [
-        "stubs",
-        "apidocs",
-        "apidoc",
-        "cdoc",
-        "..",
-      ]);
-
-      const segment = this.kebabCaseAndShortenUrls
-        ? kebabCaseAndShortenPage(href, this.name)
-        : href;
-
-      const anchor = rawAnchor ? `#${rawAnchor}` : "";
-      const link = `${segment}${anchor}`;
-
-      if (link.startsWith(basePath)) return link;
-
-      const separator = link.startsWith("/") ? "" : "/";
-      return `${basePath}${separator}${link}`;
-    };
   }
 
   /**

@@ -25,6 +25,7 @@ import {
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils.js";
 import { Root } from "mdast";
+import { normalizeUrl, relativizeLink } from "./updateLinks.js";
 
 export type ComponentProps = {
   id?: string;
@@ -55,7 +56,10 @@ export async function processMdxComponent(
   priorApiType: ApiType | undefined,
   apiType: Exclude<ApiType, "module">,
   id: string,
-  determineSignatureUrl: (rawLink: string) => string,
+  options: {
+    pkgName: string;
+    kebabCaseAndShorten: boolean;
+  },
 ): Promise<[string, string]> {
   const tagName = APITYPE_TO_TAG[apiType];
 
@@ -76,7 +80,7 @@ export async function processMdxComponent(
   addExtraSignatures(componentProps, extraProps);
 
   return [
-    await createOpeningTag(tagName, componentProps, determineSignatureUrl),
+    await createOpeningTag(tagName, componentProps, options),
     `</${tagName}>`,
   ];
 }
@@ -317,7 +321,10 @@ function prepareFunctionProps(
 export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
-  determineSignatureUrl: (rawLink: string) => string,
+  options: {
+    pkgName: string;
+    kebabCaseAndShorten: boolean;
+  },
 ): Promise<string> {
   const attributeTypeHint = props.attributeTypeHint?.replaceAll(
     "'",
@@ -327,15 +334,10 @@ export async function createOpeningTag(
     "'",
     APOSTROPHE_HEX_CODE,
   );
-  const signature = await htmlSignatureToMd(
-    props.rawSignature!,
-    determineSignatureUrl,
-  );
+  const signature = await htmlSignatureToMd(props.rawSignature!, options);
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
-    extraSignatures.push(
-      `"${await htmlSignatureToMd(sig!, determineSignatureUrl)}"`,
-    );
+    extraSignatures.push(`"${await htmlSignatureToMd(sig!, options)}"`);
   }
 
   return `<${tagName} 
@@ -411,11 +413,16 @@ export function addExtraSignatures(
  */
 export async function htmlSignatureToMd(
   signatureHtml: string,
-  determineSignatureUrl: (rawLink: string) => string,
+  options: {
+    pkgName: string;
+    kebabCaseAndShorten: boolean;
+  },
 ): Promise<string> {
   if (!signatureHtml) {
     return "";
   }
+
+  const { pkgName, kebabCaseAndShorten } = options;
 
   // The `code` tag helps us remove some undesired elements like asterisks surrounding
   // the parameters.
@@ -432,9 +439,17 @@ export async function htmlSignatureToMd(
           return;
         }
 
+        const relativeHref = relativizeLink({ url: node.properties.href });
+        const normalizedHref = normalizeUrl(
+          relativeHref?.url ?? node.properties.href,
+          {},
+          new Set<string>(),
+          { kebabCaseAndShorten, pkgName },
+        );
+
         // We encode some conflicting characters that could make the markdown link break
         // by using URL-encoding form.
-        const href = determineSignatureUrl(node.properties.href)
+        const href = normalizedHref
           .replaceAll('"', "%22")
           .replaceAll("(", "%28")
           .replaceAll(")", "%29");

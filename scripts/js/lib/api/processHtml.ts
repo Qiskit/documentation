@@ -32,7 +32,8 @@ interface ProcessHtmlOptions {
   fileName: string;
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
-  determineSignatureUrl: (rawLink: string) => string;
+  pkgName: string;
+  kebabCaseAndShorten: boolean;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
@@ -46,10 +47,8 @@ export async function processHtml(
     fileName,
     imageDestination,
     determineGithubUrl,
-    determineSignatureUrl,
     releaseNotesTitle,
     hasSeparateReleaseNotes,
-    isCApi,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
@@ -350,7 +349,8 @@ export async function processMembersAndSetMeta(
   meta: Metadata,
   options: {
     isCApi: boolean;
-    determineSignatureUrl: (rawLink: string) => string;
+    pkgName: string;
+    kebabCaseAndShorten: boolean;
   },
 ): Promise<void> {
   let continueMapMembers = true;
@@ -412,7 +412,7 @@ export async function processMembersAndSetMeta(
         priorApiType,
         apiType!,
         id,
-        options.determineSignatureUrl,
+        options,
       );
       $dl.replaceWith(
         `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
