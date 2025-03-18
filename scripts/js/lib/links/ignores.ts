@@ -10,6 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import { QISKIT_REMOVED_PAGES } from "./QiskitRemovedPages";
+
 // -----------------------------------------------------------------------------------
 // Ignored files
 // -----------------------------------------------------------------------------------
@@ -120,6 +122,8 @@ function _runtimeObjectsInvRegexes(): string[] {
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
   ..._runtimeObjectsInvRegexes(),
+  // TODO(#2761): Move the links to globs to load in `checkInternalLinks.ts` once Qiskit 1.4 becomes historical
+  ...QISKIT_REMOVED_PAGES.map((link) => `\/api\/qiskit/1.4\/${link}(|#.*|$)`),
 ];
 
 // -----------------------------------------------------------------------------------
@@ -174,14 +178,22 @@ function _runtimeObjectsInv(): FilesToIgnores {
     ),
   );
   const latest = Object.fromEntries(
-    ["", "dev/", "0.30/", "0.31/", "0.32/", "0.33/", "0.34/", "0.35/"].map(
-      (vers) => [
-        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
-        [
-          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
-        ],
+    [
+      "",
+      "dev/",
+      "0.30/",
+      "0.31/",
+      "0.32/",
+      "0.33/",
+      "0.34/",
+      "0.35/",
+      "0.36/",
+    ].map((vers) => [
+      `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      [
+        `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
       ],
-    ),
+    ]),
   );
   return { ...legacy, ...legacy2, ...latest };
 }

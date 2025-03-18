@@ -27,7 +27,7 @@ export type ProcessedHtml = {
   isReleaseNotes: boolean;
 };
 
-export async function processHtml(options: {
+interface ProcessHtmlOptions {
   html: string;
   fileName: string;
   imageDestination: string;
@@ -36,7 +36,11 @@ export async function processHtml(options: {
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
-}): Promise<ProcessedHtml> {
+}
+
+export async function processHtml(
+  options: ProcessHtmlOptions,
+): Promise<ProcessedHtml> {
   const {
     html,
     fileName,
@@ -70,7 +74,7 @@ export async function processHtml(options: {
   removeDownloadSourceCode($main);
   removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
-  addLanguageClassToCodeBlocks($, $main);
+  addLanguageClassToCodeBlocks($, $main, options);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   updateRedirectedExternalLinks($, $main, externalRedirects);
   convertRubricsToHeaders($, $main);
@@ -80,8 +84,8 @@ export async function processHtml(options: {
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta, determineSignatureUrl);
-  maybeSetModuleMetadata($, $main, meta, isCApi);
+  await processMembersAndSetMeta($, $main, meta, options);
+  maybeSetModuleMetadata($, $main, meta, options);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
   }
@@ -185,16 +189,20 @@ export function handleSphinxDesignCards(
   });
 }
 
-function detectLanguage($pre: Cheerio<any>): string | null {
+function detectLanguage(
+  $pre: Cheerio<any>,
+  options: { isCApi: boolean },
+): string | null {
+  const defaultLanguage = options.isCApi ? "c" : "python";
   // Two levels up from `pre` should have class `highlight-<language>`
   const detectedLanguage = $pre
     .parent()
     .parent()[0]
     .attribs.class.match(/(?<=highlight-)\w+/);
-  if (!detectedLanguage) return "python";
+  if (!detectedLanguage) return defaultLanguage;
   const langName = detectedLanguage[0];
   if (langName === "none") return null;
-  if (langName === "default") return "python";
+  if (langName === "default") return defaultLanguage;
   if (langName === "ipython3") return "python";
   return langName;
 }
@@ -202,10 +210,11 @@ function detectLanguage($pre: Cheerio<any>): string | null {
 export function addLanguageClassToCodeBlocks(
   $: CheerioAPI,
   $main: Cheerio<any>,
+  options: { isCApi: boolean },
 ): void {
   $main.find("pre").each((_, pre) => {
     const $pre = $(pre);
-    const language = detectLanguage($pre);
+    const language = detectLanguage($pre, options);
     const languageClass = language ? `language-${language}` : "";
     $pre.replaceWith(
       `<pre><code class="${languageClass}">${$pre.html()}</code></pre>`,
@@ -339,7 +348,10 @@ export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-  determineSignatureUrl: (rawLink: string) => string,
+  options: {
+    isCApi: boolean;
+    determineSignatureUrl: (rawLink: string) => string;
+  },
 ): Promise<void> {
   let continueMapMembers = true;
   while (continueMapMembers) {
@@ -358,7 +370,14 @@ export async function processMembersAndSetMeta(
     }
 
     const $dl = $(dl);
-    const id = $dl.find("dt").attr("id") || "";
+    const id =
+      (options.isCApi
+        ? // IDs in the C API have a bunch of extra information (e.g.
+          // `_CPPv415qk_obs_free8uint32_t`) whereas we just want to display the
+          // function name (e.g. `qk_obs_free`). This is safe because C does not
+          // have function overloading so the function name is unique.
+          $dl.find("span.sig-name.descname").text()
+        : $dl.find("dt").attr("id")) || "";
     const apiType = getApiType($dl);
 
     if (apiType && apiType === "module") {
@@ -393,7 +412,7 @@ export async function processMembersAndSetMeta(
         priorApiType,
         apiType!,
         id,
-        determineSignatureUrl,
+        options.determineSignatureUrl,
       );
       $dl.replaceWith(
         `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
@@ -406,9 +425,9 @@ export function maybeSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-  isCApi: boolean,
+  options: { isCApi: boolean },
 ): void {
-  const modulePrefix = isCApi ? "group__" : "module-";
+  const modulePrefix = options.isCApi ? "group__" : "module-";
   const moduleIdWithPrefix = $main
     .find("span, section, div.section")
     .toArray()

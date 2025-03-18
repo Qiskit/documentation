@@ -55,7 +55,7 @@ parameter_values = [[0], [np.pi/6], [np.pi/2]]
 
   ```python
   # Generate a pass manager without providing a backend
-  from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+  from qiskit.transpiler import generate_preset_pass_manager
 
   pm = generate_preset_pass_manager(optimization_level=1)
   isa_circuit = pm.run(qc)
@@ -150,7 +150,7 @@ Any quantum circuit passed to a Sampler **must** include measurements.
 
   ```python
   # Generate a pass manager without providing a backend
-  from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+  from qiskit.transpiler import generate_preset_pass_manager
 
   pm = generate_preset_pass_manager(optimization_level=1)
   isa_circuit = pm.run(qc)
@@ -183,7 +183,7 @@ print(f" > Result class: {type(pub_result)}")
 Primitives accept multiple PUBs as inputs, and each PUB gets its own result. Therefore, you can run different circuits with various parameter/observable combinations, and retrieve the PUB results:
 
 ```python
-from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.transpiler import generate_preset_pass_manager
 
 # create two circuits
 circuit1 = qc.copy()
@@ -272,8 +272,8 @@ For a full example, see the [Primitives examples](./primitives-examples#sampler-
 <Admonition type="tip" title="Recommendations">
   - For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, see [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
   - To learn how to use Quantum Composer for simulation, try the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
-  - Read the [Qiskit Estimator API](/api/qiskit/qiskit.primitives.Estimator) reference.
-  - Read the [Qiskit Sampler API](/api/qiskit/qiskit.primitives.Sampler) reference.
+  - Read the [Qiskit Estimator API](/api/qiskit/1.4/qiskit.primitives.Estimator) reference.
+  - Read the [Qiskit Sampler API](/api/qiskit/1.4/qiskit.primitives.Sampler) reference.
   - Learn how to run on a QPU in the [Run](./execute-on-hardware) step of the Qiskit patterns workflow.
   - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
 </Admonition>

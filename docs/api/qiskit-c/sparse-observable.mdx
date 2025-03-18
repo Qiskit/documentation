@@ -16,16 +16,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
 **Functions**
 
-### \_CPPv411qk\_obs\_zero8uint32\_t
+### qk\_obs\_zero
 
-<Function id="_CPPv411qk_obs_zero8uint32_t" signature="QkSparseObservable *qk_obs_zero(uint32_t num_qubits)">
+<Function id="qk_obs_zero" signature="QkSparseObservable *qk_obs_zero(uint32_t num_qubits)">
   Construct the zero observable (without any terms).
 
   <span id="group__QkSparseObservable_1autotoc_md3" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *zero = qk_obs_zero(100);
   ```
 
@@ -38,16 +38,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the created observable.
 </Function>
 
-### \_CPPv415qk\_obs\_identity8uint32\_t
+### qk\_obs\_identity
 
-<Function id="_CPPv415qk_obs_identity8uint32_t" signature="QkSparseObservable *qk_obs_identity(uint32_t num_qubits)">
+<Function id="qk_obs_identity" signature="QkSparseObservable *qk_obs_identity(uint32_t num_qubits)">
   Construct the identity observable.
 
   <span id="group__QkSparseObservable_1autotoc_md4" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *identity = qk_obs_identity(100);
   ```
 
@@ -60,16 +60,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the created observable.
 </Function>
 
-### \_CPPv410qk\_obs\_new8uint32\_t8uint64\_t8uint64\_tP11QkComplex64P9QkBitTermP8uint32\_tP9uintptr\_t
+### qk\_obs\_new
 
-<Function id="_CPPv410qk_obs_new8uint32_t8uint64_t8uint64_tP11QkComplex64P9QkBitTermP8uint32_tP9uintptr_t" signature="QkSparseObservable *qk_obs_new(uint32_t num_qubits, uint64_t num_terms, uint64_t num_bits, QkComplex64 *coeffs, QkBitTerm *bit_terms, uint32_t *indices, uintptr_t *boundaries)">
+<Function id="qk_obs_new" signature="QkSparseObservable *qk_obs_new(uint32_t num_qubits, uint64_t num_terms, uint64_t num_bits, QkComplex64 *coeffs, QkBitTerm *bit_terms, uint32_t *indices, uintptr_t *boundaries)">
   Construct a new observable from raw data.
 
   <span id="group__QkSparseObservable_1autotoc_md5" />
 
   ## Example
 
-  ```python
+  ```c
   // define the raw data for the 100-qubit observable |01><01|_{0, 1} - |+-><+-|_{98, 99}
   uint32_t num_qubits = 100;
   uint64_t num_terms = 2;  // we have 2 terms: |01><01|, -1 * |+-><+-|
@@ -113,16 +113,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   If the input data was coherent and the construction successful, the result is a pointer to the observable. Otherwise a null pointer is returned.
 </Function>
 
-### \_CPPv411qk\_obs\_freeP18QkSparseObservable
+### qk\_obs\_free
 
-<Function id="_CPPv411qk_obs_freeP18QkSparseObservable" signature="void qk_obs_free(QkSparseObservable *obs)">
+<Function id="qk_obs_free" signature="void qk_obs_free(QkSparseObservable *obs)">
   Free the observable.
 
   <span id="group__QkSparseObservable_1autotoc_md7" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_zero(100);
   qk_obs_free(obs);
   ```
@@ -140,16 +140,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   **obs** – A pointer to the observable to free.
 </Function>
 
-### \_CPPv415qk\_obs\_add\_termP18QkSparseObservablePK12QkSparseTerm
+### qk\_obs\_add\_term
 
-<Function id="_CPPv415qk_obs_add_termP18QkSparseObservablePK12QkSparseTerm" signature="QkExitCode qk_obs_add_term(QkSparseObservable *obs, const QkSparseTerm *cterm)">
+<Function id="qk_obs_add_term" signature="QkExitCode qk_obs_add_term(QkSparseObservable *obs, const QkSparseTerm *cterm)">
   Add a term to the observable.
 
   <span id="group__QkSparseObservable_1autotoc_md9" />
 
   ## Example
 
-  ```python
+  ```c
   uint32_t num_qubits = 100;
   QkSparseObservable *obs = qk_obs_zero(num_qubits);
 
@@ -182,9 +182,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   An exit code. This is `>0` if the term is incoherent or adding the term fails.
 </Function>
 
-### \_CPPv411qk\_obs\_termP18QkSparseObservable8uint64\_tP12QkSparseTerm
+### qk\_obs\_term
 
-<Function id="_CPPv411qk_obs_termP18QkSparseObservable8uint64_tP12QkSparseTerm" signature="QkExitCode qk_obs_term(QkSparseObservable *obs, uint64_t index, QkSparseTerm *out)">
+<Function id="qk_obs_term" signature="QkExitCode qk_obs_term(QkSparseObservable *obs, uint64_t index, QkSparseTerm *out)">
   Get an observable term by reference.
 
   A \[CSparseTerm] contains pointers to the indices and bit terms in the term, which can be used to modify the internal data of the observable. This can leave the observable in an incoherent state and should be avoided, unless great care is taken. It is generally safer to construct a new observable instead of attempting in-place modifications.
@@ -193,7 +193,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   QkSparseTerm term;
   int exit_code = qk_obs_term(obs, 0, &term);
@@ -223,16 +223,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   An exit code.
 </Function>
 
-### \_CPPv416qk\_obs\_num\_termsPK18QkSparseObservable
+### qk\_obs\_num\_terms
 
-<Function id="_CPPv416qk_obs_num_termsPK18QkSparseObservable" signature="uintptr_t qk_obs_num_terms(const QkSparseObservable *obs)">
+<Function id="qk_obs_num_terms" signature="uintptr_t qk_obs_num_terms(const QkSparseObservable *obs)">
   Get the number of terms in the observable.
 
   <span id="group__QkSparseObservable_1autotoc_md13" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   size_t num_terms = qk_obs_num_terms(obs);  // num_terms==1
   ```
@@ -254,16 +254,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   The number of terms in the observable.
 </Function>
 
-### \_CPPv417qk\_obs\_num\_qubitsPK18QkSparseObservable
+### qk\_obs\_num\_qubits
 
-<Function id="_CPPv417qk_obs_num_qubitsPK18QkSparseObservable" signature="uint32_t qk_obs_num_qubits(const QkSparseObservable *obs)">
+<Function id="qk_obs_num_qubits" signature="uint32_t qk_obs_num_qubits(const QkSparseObservable *obs)">
   Get the number of qubits the observable is defined on.
 
   <span id="group__QkSparseObservable_1autotoc_md15" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   uint32_t num_qubits = qk_obs_num_qubits(obs);  // num_qubits==100
   ```
@@ -285,16 +285,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   The number of qubits the observable is defined on.
 </Function>
 
-### \_CPPv410qk\_obs\_lenPK18QkSparseObservable
+### qk\_obs\_len
 
-<Function id="_CPPv410qk_obs_lenPK18QkSparseObservable" signature="uintptr_t qk_obs_len(const QkSparseObservable *obs)">
+<Function id="qk_obs_len" signature="uintptr_t qk_obs_len(const QkSparseObservable *obs)">
   Get the number of bit terms/indices in the observable.
 
   <span id="group__QkSparseObservable_1autotoc_md17" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   size_t len = qk_obs_len(obs);  // len==0, as there are no non-trivial bit terms
   ```
@@ -316,9 +316,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   The number of terms in the observable.
 </Function>
 
-### \_CPPv413qk\_obs\_coeffsP18QkSparseObservable
+### qk\_obs\_coeffs
 
-<Function id="_CPPv413qk_obs_coeffsP18QkSparseObservable" signature="QkComplex64 *qk_obs_coeffs(QkSparseObservable *obs)">
+<Function id="qk_obs_coeffs" signature="QkComplex64 *qk_obs_coeffs(QkSparseObservable *obs)">
   Get a pointer to the coefficients.
 
   This can be used to read and modify the observable’s coefficients. The resulting pointer is valid to read for `qk_obs_num_terms(obs)` elements of `complex double`.
@@ -327,7 +327,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   size_t num_terms = qk_obs_num_terms(obs);
   complex double *coeffs = qk_obs_coeffs(obs);
@@ -354,9 +354,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the coefficients.
 </Function>
 
-### \_CPPv414qk\_obs\_indicesP18QkSparseObservable
+### qk\_obs\_indices
 
-<Function id="_CPPv414qk_obs_indicesP18QkSparseObservable" signature="uint32_t *qk_obs_indices(QkSparseObservable *obs)">
+<Function id="qk_obs_indices" signature="uint32_t *qk_obs_indices(QkSparseObservable *obs)">
   Get a pointer to the indices.
 
   This can be used to read and modify the observable’s indices. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint32_t`.
@@ -365,7 +365,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   ## Example
 
-  ```python
+  ```c
   uint32_t num_qubits = 100;
   QkSparseObservable *obs = qk_obs_zero(num_qubits);
 
@@ -400,9 +400,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the indices.
 </Function>
 
-### \_CPPv417qk\_obs\_boundariesP18QkSparseObservable
+### qk\_obs\_boundaries
 
-<Function id="_CPPv417qk_obs_boundariesP18QkSparseObservable" signature="uintptr_t *qk_obs_boundaries(QkSparseObservable *obs)">
+<Function id="qk_obs_boundaries" signature="uintptr_t *qk_obs_boundaries(QkSparseObservable *obs)">
   Get a pointer to the term boundaries.
 
   This can be used to read and modify the observable’s term boundaries. The resulting pointer is valid to read for `qk_obs_num_terms(obs) + 1` elements of size `size_t`.
@@ -411,7 +411,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   ## Example
 
-  ```python
+  ```c
   uint32_t num_qubits = 100;
   QkSparseObservable *obs = qk_obs_zero(num_qubits);
 
@@ -446,9 +446,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the boundaries.
 </Function>
 
-### \_CPPv416qk\_obs\_bit\_termsP18QkSparseObservable
+### qk\_obs\_bit\_terms
 
-<Function id="_CPPv416qk_obs_bit_termsP18QkSparseObservable" signature="QkBitTerm *qk_obs_bit_terms(QkSparseObservable *obs)">
+<Function id="qk_obs_bit_terms" signature="QkBitTerm *qk_obs_bit_terms(QkSparseObservable *obs)">
   Get a pointer to the bit terms.
 
   This can be used to read and modify the observable’s bit terms. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint8_t`.
@@ -457,7 +457,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   ## Example
 
-  ```python
+  ```c
   uint32_t num_qubits = 100;
   QkSparseObservable *obs = qk_obs_zero(num_qubits);
 
@@ -492,16 +492,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the bit terms.
 </Function>
 
-### \_CPPv415qk\_obs\_multiplyPK18QkSparseObservablePK11QkComplex64
+### qk\_obs\_multiply
 
-<Function id="_CPPv415qk_obs_multiplyPK18QkSparseObservablePK11QkComplex64" signature="QkSparseObservable *qk_obs_multiply(const QkSparseObservable *obs, const QkComplex64 *coeff)">
+<Function id="qk_obs_multiply" signature="QkSparseObservable *qk_obs_multiply(const QkSparseObservable *obs, const QkComplex64 *coeff)">
   Multiply the observable by a complex coefficient.
 
   <span id="group__QkSparseObservable_1autotoc_md27" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   QkSparseObservable *result = qk_obs_multiply(obs, 2);
   ```
@@ -523,16 +523,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   *   **coeff** – The coefficient to multiply the observable with.
 </Function>
 
-### \_CPPv423qk\_obs\_multiply\_inplaceP18QkSparseObservablePK11QkComplex64
+### qk\_obs\_multiply\_inplace
 
-<Function id="_CPPv423qk_obs_multiply_inplaceP18QkSparseObservablePK11QkComplex64" signature="void qk_obs_multiply_inplace(QkSparseObservable *obs, const QkComplex64 *coeff)">
+<Function id="qk_obs_multiply_inplace" signature="void qk_obs_multiply_inplace(QkSparseObservable *obs, const QkComplex64 *coeff)">
   Multiply the observable by a complex coefficient inplace.
 
   <span id="group__QkSparseObservable_1autotoc_md29" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   qk_obs_multiply_inplace(obs, 2);
   ```
@@ -554,16 +554,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   *   **coeff** – The coefficient to multiply the observable with.
 </Function>
 
-### \_CPPv414qk\_obs\_composePK18QkSparseObservablePK18QkSparseObservable
+### qk\_obs\_compose
 
-<Function id="_CPPv414qk_obs_composePK18QkSparseObservablePK18QkSparseObservable" signature="QkSparseObservable *qk_obs_compose(const QkSparseObservable *right, const QkSparseObservable *left)">
+<Function id="qk_obs_compose" signature="QkSparseObservable *qk_obs_compose(const QkSparseObservable *right, const QkSparseObservable *left)">
   Compose (multiply) two observables.
 
   <span id="group__QkSparseObservable_1autotoc_md31" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *left = qk_obs_identity(100);
   QkSparseObservable *right = qk_obs_zero(100);
   QkSparseObservable *result = qk_obs_compose(right, left);
@@ -587,16 +587,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   `right.compose(left)` which equals the observable `result = left @ right`, in terms of the matrix multiplication `@`.
 </Function>
 
-### \_CPPv410qk\_obs\_addPK18QkSparseObservablePK18QkSparseObservable
+### qk\_obs\_add
 
-<Function id="_CPPv410qk_obs_addPK18QkSparseObservablePK18QkSparseObservable" signature="QkSparseObservable *qk_obs_add(const QkSparseObservable *left, const QkSparseObservable *right)">
+<Function id="qk_obs_add" signature="QkSparseObservable *qk_obs_add(const QkSparseObservable *left, const QkSparseObservable *right)">
   Add two observables.
 
   <span id="group__QkSparseObservable_1autotoc_md33" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *left = qk_obs_identity(100);
   QkSparseObservable *right = qk_obs_zero(100);
   QkSparseObservable *result = qk_obs_add(left, right);
@@ -620,16 +620,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the result `left + right`.
 </Function>
 
-### \_CPPv413qk\_obs\_appendP18QkSparseObservablePK18QkSparseObservable
+### qk\_obs\_append
 
-<Function id="_CPPv413qk_obs_appendP18QkSparseObservablePK18QkSparseObservable" signature="void qk_obs_append(QkSparseObservable *obs, const QkSparseObservable *other)">
+<Function id="qk_obs_append" signature="void qk_obs_append(QkSparseObservable *obs, const QkSparseObservable *other)">
   Add two observables.
 
   <span id="group__QkSparseObservable_1autotoc_md35" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *left = qk_obs_identity(100);
   QkSparseObservable *right = qk_obs_zero(100);
   QkSparseObservable *result = qk_obs_add(left, right);
@@ -653,16 +653,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to the result `left + right`.
 </Function>
 
-### \_CPPv419qk\_obs\_canonicalizePK18QkSparseObservabled
+### qk\_obs\_canonicalize
 
-<Function id="_CPPv419qk_obs_canonicalizePK18QkSparseObservabled" signature="QkSparseObservable *qk_obs_canonicalize(const QkSparseObservable *obs, double tol)">
+<Function id="qk_obs_canonicalize" signature="QkSparseObservable *qk_obs_canonicalize(const QkSparseObservable *obs, double tol)">
   Calculate the canonical representation of the observable.
 
   <span id="group__QkSparseObservable_1autotoc_md37" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *iden = qk_obs_identity(100);
   QkSparseObservable *two = qk_obs_add(iden, iden);
 
@@ -688,16 +688,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   The canonical representation of the observable.
 </Function>
 
-### \_CPPv411qk\_obs\_copyPK18QkSparseObservable
+### qk\_obs\_copy
 
-<Function id="_CPPv411qk_obs_copyPK18QkSparseObservable" signature="QkSparseObservable *qk_obs_copy(const QkSparseObservable *obs)">
+<Function id="qk_obs_copy" signature="QkSparseObservable *qk_obs_copy(const QkSparseObservable *obs)">
   Copy the observable.
 
   <span id="group__QkSparseObservable_1autotoc_md39" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *original = qk_obs_identity(100);
   QkSparseObservable *copied = qk_obs_copy(original);
   ```
@@ -719,9 +719,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   A pointer to a copy of the observable.
 </Function>
 
-### \_CPPv412qk\_obs\_equalPK18QkSparseObservablePK18QkSparseObservable
+### qk\_obs\_equal
 
-<Function id="_CPPv412qk_obs_equalPK18QkSparseObservablePK18QkSparseObservable" signature="bool qk_obs_equal(const QkSparseObservable *obs, const QkSparseObservable *other)">
+<Function id="qk_obs_equal" signature="bool qk_obs_equal(const QkSparseObservable *obs, const QkSparseObservable *other)">
   Compare two observables for equality.
 
   Note that this does not compare mathematical equality, but data equality. This means that two observables might represent the same observable but not compare as equal.
@@ -730,7 +730,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *observable = qk_obs_identity(100);
   QkSparseObservable *other = qk_obs_identity(100);
   bool are_equal = qk_obs_equal(observable, other);
@@ -754,16 +754,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   `true` if the observables are equal, `false` otherwise.
 </Function>
 
-### \_CPPv412qk\_obs\_printPK18QkSparseObservable
+### qk\_obs\_print
 
-<Function id="_CPPv412qk_obs_printPK18QkSparseObservable" signature="void qk_obs_print(const QkSparseObservable *obs)">
+<Function id="qk_obs_print" signature="void qk_obs_print(const QkSparseObservable *obs)">
   Print the observable.
 
   <span id="group__QkSparseObservable_1autotoc_md43" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   qk_obs_print(obs);
   ```
@@ -789,16 +789,16 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 
 **Functions**
 
-### \_CPPv416qk\_obsterm\_printPK12QkSparseTerm
+### qk\_obsterm\_print
 
-<Function id="_CPPv416qk_obsterm_printPK12QkSparseTerm" signature="QkExitCode qk_obsterm_print(const QkSparseTerm *term)">
+<Function id="qk_obsterm_print" signature="QkExitCode qk_obsterm_print(const QkSparseTerm *term)">
   Print the sparse term.
 
   <span id="group__QkSparseTerm_1autotoc_md45" />
 
   ## Example
 
-  ```python
+  ```c
   QkSparseObservable *obs = qk_obs_identity(100);
   QkSparseTerm term;
   qk_obs_term(obs, &term, 0);
@@ -822,9 +822,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
   The function exit code. This is `>0` if reading the term failed.
 </Function>
 
-### \_CPPv412QkSparseTerm
+### QkSparseTerm
 
-<Class id="_CPPv412QkSparseTerm" signature="struct QkSparseTerm">
+<Class id="QkSparseTerm" signature="struct QkSparseTerm">
   *#include \<qiskit.h>*
 
   A term in a \[SparseObservable].
@@ -849,16 +849,16 @@ This is a group of functions for interacting with an opaque (Rust-space) BitTerm
 
 **Functions**
 
-### \_CPPv416qk\_bitterm\_label9QkBitTerm
+### qk\_bitterm\_label
 
-<Function id="_CPPv416qk_bitterm_label9QkBitTerm" signature="uint8_t qk_bitterm_label(QkBitTerm bit_term)">
+<Function id="qk_bitterm_label" signature="uint8_t qk_bitterm_label(QkBitTerm bit_term)">
   Get the label for a bit term.
 
   <span id="group__QkBitTerm_1autotoc_md47" />
 
   ## Example
 
-  ```python
+  ```c
   QkBitTerm bit_term = QkBitTerm_Y;
   // cast the uint8_t to char
   char label = qk_bitterm_label(bit_term);
