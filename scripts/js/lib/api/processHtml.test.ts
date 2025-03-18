@@ -467,7 +467,7 @@ test.describe("processMembersAndSetMeta()", () => {
 </dd>`;
     const doc = CheerioDoc.load(html);
     const meta: Metadata = {};
-    await processMembersAndSetMeta(doc.$, doc.$main, meta, false);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, { isCApi: false });
     doc.expectHtml(`      <h1>Circuit Converters</h1>
 <h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
   
