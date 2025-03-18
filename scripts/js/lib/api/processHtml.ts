@@ -37,7 +37,9 @@ interface ProcessHtmlOptions {
   isCApi: boolean;
 }
 
-export async function processHtml(options: ProcessHtmlOptions): Promise<ProcessedHtml> {
+export async function processHtml(
+  options: ProcessHtmlOptions,
+): Promise<ProcessedHtml> {
   const {
     html,
     fileName,
@@ -185,7 +187,10 @@ export function handleSphinxDesignCards(
   });
 }
 
-function detectLanguage($pre: Cheerio<any>, options: { isCApi: boolean }): string | null {
+function detectLanguage(
+  $pre: Cheerio<any>,
+  options: { isCApi: boolean },
+): string | null {
   const defaultLanguage = options.isCApi ? "c" : "python";
   // Two levels up from `pre` should have class `highlight-<language>`
   const detectedLanguage = $pre
