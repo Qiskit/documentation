@@ -42,8 +42,8 @@ async function main() {
   const args = readArgs();
   const tocFiles = await findTocFiles(args.apis);
 
-  const orphanGroups = await Promise.all(tocFiles.map(findOrphans))
-  const orphans = flatten(orphanGroups)
+  const orphanGroups = await Promise.all(tocFiles.map(findOrphans));
+  const orphans = flatten(orphanGroups);
 
   if (orphans.length > 0) {
     console.error(
