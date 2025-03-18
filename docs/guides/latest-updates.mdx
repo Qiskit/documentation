@@ -49,22 +49,26 @@ Explore the [v1.3 release notes](/api/qiskit/release-notes/1.3), and read about 
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
-### Qiskit Runtime client 0.28.0
+### Qiskit Runtime client 0.37.0
 
 *To see the release notes for all versions, visit the [Qiskit Runtime client release notes](/api/qiskit-ibm-runtime/release-notes).*
 
-**Highlights from the 0.28.0 (2024-08-15) version release**
+**Highlights from the 0.37.0 (13 March 2025) version release**
 
-#### Removal
+#### Deprecation
 
-- The V1 primitives `SamplerV1` and `EstimatorV1` have been completely removed. Refer to the [migration guide](/migration-guides/v2-primitives) for instructions on migrating to V2 primitives.
-- The `service` parameter is now required in `Session.from_id()`.
+The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits` have all been deprecated. These attribute values used to represent the maximum number of shots and circuits that could be submitted in one job. See [job limits](/guides/job-limits#job-limits) for details.
 
 #### New features
 
-- You can now use the `layer_noise_model` option in `ResilienceOptionsV2` to pass in a noise model. When this field is set, all the mitigation strategies that require noise data skip the noise learning stage, and instead gather the required information from `layer_noise_model`. You can use the [NoiseLearner](/api/qiskit-ibm-runtime/noise-learner-noise-learner) class to learn noise and use it in a subsequent `Estimator` call.
+qiskit-ibm-runtime is now compatible with Qiskit 2.0. This means that classes and methods removed in Qiskit 2.0 have also been removed or handled accordingly.  The `pulse` and `channel` related changes are highlighted below. See the [Pulse migration guide](/migration-guides/pulse-migration) for details.
 
-See the full [0.28.0 release notes](/api/qiskit-ibm-runtime/release-notes#0280-2024-08-15).
+   - `Channel` methods in `IBMBackend` have been removed.
+   - The backend configuration class `PulseBackendConfiguration` has been removed, so all backends will now be returned as `QasmBackendConfiguration`.
+   - `PulseDefaults` (backend defaults) can still be retrieved but they are no longer necessary when creating a backend `Target`.
+
+
+See the full [0.37.0 release notes](/api/qiskit-ibm-runtime/release-notes#00370-2025-03-13).
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
 
 ### Qiskit Transpiler Service client v0.3.0
