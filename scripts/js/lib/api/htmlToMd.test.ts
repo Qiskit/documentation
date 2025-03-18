@@ -1203,9 +1203,9 @@ test("handle <dl> with className function", async () => {
     ),
   ).toEqual(`Links of functions:
 
-### \\_CPPv411qk\\_obs\\_zero8uint32\\_t
+### qk\\_obs\\_zero
 
-<Function id="_CPPv411qk_obs_zero8uint32_t" signature="QkSparseObservable *qk_obs_zero(uint32_t num_qubits)">
+<Function id="qk_obs_zero" signature="QkSparseObservable *qk_obs_zero(uint32_t num_qubits)">
   Construct the zero observable (without any terms).
 
   **Parameters**
@@ -1246,9 +1246,9 @@ test("handle <dl> with className struct", async () => {
     ),
   ).toEqual(`Links of structs:
 
-### \\_CPPv412QkSparseTerm
+### QkSparseTerm
 
-<Class id="_CPPv412QkSparseTerm" signature="struct QkSparseTerm">
+<Class id="QkSparseTerm" signature="struct QkSparseTerm">
   *#include \\<qiskit.h>*
 
   This is a struct.
