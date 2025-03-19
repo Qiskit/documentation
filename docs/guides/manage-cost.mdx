@@ -37,6 +37,11 @@ The _cost limit_ or _instance limit_ refers to the total cost of all jobs run wi
 
 An instance administrator can limit how much is spent. There are several ways to set or change this limit:
 
+* **IBM Quantum Platform**: Click the main menu icon in the upper left corner and choose **Administration**. Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/admin/instances) Find the instance you want to limit, click the overflow menu at the end of the row, then click **Edit details**. Set the total cost limit or the usage (in seconds), then click **Save changes**.
+   <Admonition type = "note">
+   You can also set the cost or usage limit when creating a new Standard Plan instance.
+   </Admonition>
+
 * **API**: Set the instance limit in seconds.
    * New IBM Quantum Platform users: [`PUT /v1/instances/configuration "instance_limit":<seconds>`](/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data).
    * Classic Qiskit Runtime on IBM Cloud users: [`PUT /instances/configuration  "instance_limit":<seconds>`](https://cloud.ibm.com/apidocs/quantum-computing#replace-instance-data)
@@ -85,8 +90,6 @@ An instance administrator can limit how much is spent. There are several ways to
           ]
       ```
 
-{/* * **User interface**: Navigate to the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, then click the instance and set the cost limit. */}
-
 ## View the cost limit or instance limit
 
 There are several ways to view the current cost limit:
@@ -108,6 +111,8 @@ There are several ways to view the current cost limit:
 ## Remove a cost limit or instance limit
 
 An instance administrator can remove the cost limit in several ways:
+
+* **IBM Quantum Platform**: Click the main menu icon in the upper left corner and choose **Administration**. Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/admin/instances) Find the instance you want to update, click the overflow menu at the end of the row, then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
 
 * **API**: Set the instance limit to `null`.
    * New IBM Quantum Platform users: [`PUT /v1/instances/configuration "instance_limit":null`](/api/qiskit-runtime-rest/tags/instances).
