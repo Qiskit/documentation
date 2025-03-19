@@ -25,7 +25,7 @@ import {
   removeSuffix,
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils.js";
-import { normalizeUrl, relativizeLink, UrlOptions } from "./updateLinks.js";
+import { UrlOptions } from "./updateLinks.js";
 
 export type ComponentProps = {
   id?: string;
@@ -48,6 +48,12 @@ const APITYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
   data: "attribute",
   struct: "class",
 };
+
+export const SIGNATURE_PLACEHOLDER = "[[SignatureLinkPlaceholder]]";
+export const SIGNATURE_PLACEHOLDER_ESCAPED = SIGNATURE_PLACEHOLDER.replaceAll(
+  /(\[|\])/g,
+  "\\$1",
+);
 
 export async function processMdxComponent(
   $: CheerioAPI,
@@ -430,31 +436,30 @@ export async function htmlSignatureToMd(
           return;
         }
 
-        const relativeHref = relativizeLink({ url: node.properties.href });
-        const normalizedHref = normalizeUrl(
-          relativeHref?.url ?? node.properties.href,
-          {},
-          new Set<string>(),
-          { kebabCaseAndShorten, pkgName },
-        );
-
         // We encode some conflicting characters that could make the markdown link break
         // by using URL-encoding form.
-        const href = normalizedHref
+        const href = node.properties.href
           .replaceAll('"', "%22")
           .replaceAll("(", "%28")
           .replaceAll(")", "%29");
-        const isExternal = href.startsWith("http");
         const title = node.properties.title;
 
-        // We only show the title if it's from an external link to make the UX
-        // less noisy.
-        const link = title && isExternal ? `${href} "${title}"` : `${href}`;
+        // We use a placeholder in the link to be able to easily find it and update it once the
+        // whole markdown file has been generated. We can't update the link here because we need
+        // the context of all the pages to decide if it's already correct or not.
+        const hrefWithPlaceholder = `${SIGNATURE_PLACEHOLDER}${href}${SIGNATURE_PLACEHOLDER}`;
 
-        node.type = "text";
+        // We only show the title if exists
+        const link = title
+          ? `${hrefWithPlaceholder} \'${title}\'`
+          : `${hrefWithPlaceholder}`;
+
         // The hast `Element` nodes only have one child:
         // https://github.com/syntax-tree/hast?tab=readme-ov-file#element
-        node.value = `[${toText(node.children[0])}](${link})`;
+        const linkText = toText(node.children[0]);
+
+        node.type = "text";
+        node.value = `[${linkText}](${link})`;
       });
     })
     .use(rehypeRemark)

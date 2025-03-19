@@ -475,7 +475,7 @@ test.describe("processMembersAndSetMeta()", () => {
     const meta: Metadata = {};
     await processMembersAndSetMeta(doc.$, doc.$main, meta, OPTIONS);
     doc.expectHtml(`      <h1>Circuit Converters</h1>
-<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)[¶](#qiskit.converters.circuit_to_dag)" modifiers="" extrasignatures="[]">
+<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)[¶]([[SignatureLinkPlaceholder]]#qiskit.converters.circuit_to_dag[[SignatureLinkPlaceholder]] 'Permalink to this definition')" modifiers="" extrasignatures="[]">
   
 <div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
 <dl class="field-list simple">
@@ -523,7 +523,7 @@ backends may not have this attribute.</p>
     const meta: Metadata = {};
     await processMembersAndSetMeta(doc.$, doc.$main, meta, OPTIONS);
     doc.expectHtml(`<h1>least_busy</h1>
-<div><function id="qiskit_ibm_provider.least_busy" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)[¶](#qiskit_ibm_provider.least_busy)" modifiers="" extrasignatures="[]">
+<div><function id="qiskit_ibm_provider.least_busy" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)[¶]([[SignatureLinkPlaceholder]]#qiskit_ibm_provider.least_busy[[SignatureLinkPlaceholder]] 'Link to this definition')" modifiers="" extrasignatures="[]">
   
 <div><p>Return the least busy backend from a list.</p>
 <p>Return the least busy available backend for those that
@@ -585,7 +585,7 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
-<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)[¶](#qiskit.exceptions.QiskitError)" modifiers="exception" extrasignatures="[]">
+<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" attributetypehint="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)[¶]([[SignatureLinkPlaceholder]]#qiskit.exceptions.QiskitError[[SignatureLinkPlaceholder]] 'Permalink to this definition')" modifiers="exception" extrasignatures="[]">
   
 <div><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
@@ -671,7 +671,7 @@ marked as builtins since they are not actually present in any include file this 
       ...OPTIONS,
       isCApi: true,
     });
-    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)[¶](#_cppv415qk_obs_identity8uint32_t)\" modifiers=\"\" extrasignatures=\"[]\">
+    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)[¶]([[SignatureLinkPlaceholder]]#_CPPv415qk_obs_identity8uint32_t[[SignatureLinkPlaceholder]] 'Permalink to this definition')\" modifiers=\"\" extrasignatures=\"[]\">
   
 <div><p>Construct the identity observable.</p>
 <section id=\"group__QkSparseObservable_1autotoc_md4\">

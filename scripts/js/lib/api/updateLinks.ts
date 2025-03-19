@@ -23,7 +23,10 @@ import remarkStringify from "remark-stringify";
 
 import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
-import { remarkStringifyOptions } from "./commonParserConfig.js";
+import {
+  SIGNATURE_PLACEHOLDER,
+  SIGNATURE_PLACEHOLDER_ESCAPED,
+} from "./generateApiComponents.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
@@ -37,6 +40,10 @@ export interface Link {
   url: string; // Where the link goes
   text?: string; // What the user sees
 }
+
+const SIGNATURE_PLACEHOLDER_REGEX = new RegExp(
+  `${SIGNATURE_PLACEHOLDER_ESCAPED}((?!${SIGNATURE_PLACEHOLDER_ESCAPED}).)*${SIGNATURE_PLACEHOLDER_ESCAPED}`,
+);
 
 /**
  * Anchors generated from markdown headings are always lower case but, if these
@@ -160,6 +167,29 @@ export function relativizeLink(link: Link): Link | undefined {
   return { url: `${newPrefix}/${url}`, text: newText };
 }
 
+function normalizeLinkNode(
+  node: any,
+  resultsByName: { [key: string]: HtmlToMdResultWithUrl },
+  itemNames: Set<string>,
+  kwargs: UrlOptions,
+) {
+  const textNode =
+    node.children?.[0]?.type === "text" ? node.children?.[0] : undefined;
+  const relativizedLink = relativizeLink({
+    url: node.url,
+    text: textNode?.value,
+  });
+  if (relativizedLink) {
+    node.url = relativizedLink.url;
+    if (textNode && relativizedLink.text) {
+      textNode.value = relativizedLink.text;
+    }
+  }
+  node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
+}
+
+// This function should be executed once the markdown files have been fully generated to correctly
+// update all the links.
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
   kwargs: UrlOptions,
@@ -175,25 +205,31 @@ export async function updateLinks(
       .use(remarkGfm)
       .use(remarkMdx)
       .use(() => async (tree: Root) => {
-        visit(tree, "link", (node) => {
-          const textNode =
-            node.children?.[0]?.type === "text"
-              ? node.children?.[0]
-              : undefined;
-          const relativizedLink = relativizeLink({
-            url: node.url,
-            text: textNode?.value,
-          });
-          if (relativizedLink) {
-            node.url = relativizedLink.url;
-            if (textNode && relativizedLink.text) {
-              textNode.value = relativizedLink.text;
-            }
-          }
-          node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
+        visit(tree, "link", (node) =>
+          normalizeLinkNode(node, resultsByName, itemNames, kwargs),
+        );
+        visit(tree, "mdxJsxFlowElement", (node) => {
+          // The only `mdxJsxFlowElement` elements with signatures are `Function` and `Class`.
+          if (node.name != "Function" && node.name != "Class") return;
+
+          const signatureNode = node.attributes?.find(
+            (attr) => "name" in attr && attr.name == "signature",
+          );
+
+          // We get the whole extraSignature prop and handle it as a string
+          const extraSignatureNode = node.attributes?.find(
+            (attr) => "name" in attr && attr.name == "extraSignatures",
+          )?.value;
+
+          updateSignatureLinks(
+            [signatureNode, extraSignatureNode],
+            resultsByName,
+            itemNames,
+            kwargs,
+          );
         });
       })
-      .use(remarkStringify, remarkStringifyOptions)
+      .use(remarkStringify)
       .process(result.markdown);
 
     result.markdown = output?.toString();
@@ -202,4 +238,43 @@ export async function updateLinks(
   maybeObjectsInv?.updateUris((uri: string) =>
     normalizeUrl(uri, resultsByName, itemNames, kwargs),
   );
+}
+
+export function updateSignatureLinks(
+  signatureNodes: any,
+  resultsByName: { [key: string]: HtmlToMdResultWithUrl },
+  itemNames: Set<string>,
+  kwargs: UrlOptions,
+) {
+  signatureNodes.forEach((signatureNode: any) => {
+    // The overloaded signatures could not exist.
+    if (!signatureNode || !signatureNode.value) return;
+
+    // The signature could not have any link
+    if (!(signatureNode.value as string).match(SIGNATURE_PLACEHOLDER_REGEX))
+      return;
+
+    const signatureLinkSplit: string[] = (signatureNode.value as string).split(
+      SIGNATURE_PLACEHOLDER,
+    );
+
+    signatureLinkSplit
+      // We only want the links, which are located in between placeholders (idx % 2 == 1).
+      .filter((_, idx) => idx % 2 == 1)
+      // The signature can have more than one link
+      .forEach((url) => {
+        const linkNode = {
+          type: "link",
+          url,
+        };
+
+        normalizeLinkNode(linkNode, resultsByName, itemNames, kwargs);
+
+        // Update the link and remove the placeholders
+        signatureNode.value = (signatureNode.value as string).replace(
+          SIGNATURE_PLACEHOLDER_REGEX,
+          linkNode.url,
+        );
+      });
+  });
 }

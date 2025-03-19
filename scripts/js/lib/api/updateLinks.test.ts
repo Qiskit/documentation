@@ -13,8 +13,38 @@
 import { expect, test } from "@playwright/test";
 import { ObjectsInv } from "./objectsInv";
 
-import { updateLinks, normalizeUrl, relativizeLink } from "./updateLinks.js";
+import {
+  updateLinks,
+  normalizeUrl,
+  relativizeLink,
+  updateSignatureLinks,
+} from "./updateLinks.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { SIGNATURE_PLACEHOLDER } from "./generateApiComponents";
+
+const RESULTS_BY_NAME: { [key: string]: HtmlToMdResultWithUrl } = {
+  "qiskit_ibm_runtime.RuntimeJob": {
+    markdown: "",
+    meta: {
+      apiType: "class",
+      apiName: "qiskit_ibm_runtime.RuntimeJob",
+    },
+    url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+    images: [],
+    isReleaseNotes: false,
+  },
+  "qiskit_ibm_runtime.Sampler": {
+    markdown: "",
+    meta: {
+      apiType: "class",
+      apiName: "qiskit_ibm_runtime.Sampler",
+    },
+    url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+    images: [],
+    isReleaseNotes: false,
+  },
+};
+const ITEM_NAMES = new Set(["qiskit_ibm_runtime.RuntimeJob"]);
 
 test.describe("updateLinks", () => {
   const data: HtmlToMdResultWithUrl[] = [
@@ -202,32 +232,9 @@ test("normalizeUrl()", () => {
     `stubs/qiskit_ibm_runtime.RuntimeJob`,
     `#_CPPv415qk_obs_identity8uint32_t`,
   ];
-  const resultsByName: { [key: string]: HtmlToMdResultWithUrl } = {
-    "qiskit_ibm_runtime.RuntimeJob": {
-      markdown: "",
-      meta: {
-        apiType: "class",
-        apiName: "qiskit_ibm_runtime.RuntimeJob",
-      },
-      url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
-      images: [],
-      isReleaseNotes: false,
-    },
-    "qiskit_ibm_runtime.Sampler": {
-      markdown: "",
-      meta: {
-        apiType: "class",
-        apiName: "qiskit_ibm_runtime.Sampler",
-      },
-      url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
-      images: [],
-      isReleaseNotes: false,
-    },
-  };
-  const itemNames = new Set(["qiskit_ibm_runtime.RuntimeJob"]);
 
   const newUrls = urls.map((url) =>
-    normalizeUrl(url, resultsByName, itemNames, {
+    normalizeUrl(url, RESULTS_BY_NAME, ITEM_NAMES, {
       kebabCaseAndShorten: false,
       pkgName: "qiskit-ibm-runtime",
     }),
@@ -247,7 +254,7 @@ test("normalizeUrl()", () => {
   ]);
 
   const kebabResults = urls.map((url) =>
-    normalizeUrl(url, resultsByName, itemNames, {
+    normalizeUrl(url, RESULTS_BY_NAME, ITEM_NAMES, {
       kebabCaseAndShorten: true,
       pkgName: "qiskit-ibm-runtime",
     }),
@@ -316,5 +323,50 @@ test.describe("relativizeLink()", () => {
     const url = "https://qiskit.org/documentation/apidoc/algorithms.html";
     expect(relativizeLink({ url, text: url })?.text).toEqual("algorithms");
     expect(relativizeLink({ url, text: "my text" })?.text).toBeUndefined();
+  });
+});
+
+test.describe("updateSignatureLinks()", () => {
+  const signaturesInput = (runtimeJobLink: string) => [
+    {
+      type: "mdxJsxAttribute",
+      name: "signature",
+      value: `method_with_links(arg1: [tuple[int, int]]([[SignatureLinkPlaceholder]]#anchor[[SignatureLinkPlaceholder]]), arg2: [My-arg]([[SignatureLinkPlaceholder]]${runtimeJobLink}[[SignatureLinkPlaceholder]]))`,
+    },
+    {
+      type: "mdxJsxAttributeValueExpression",
+      value:
+        '["overloaded_func2(arg1: tuple[int, int], arg2: list[int], arg3: bool, arg4: set[[Electron]([[SignatureLinkPlaceholder]]#api_example.Electron[[SignatureLinkPlaceholder]])]) → None", "overloaded_func2(arg1: tuple[int, int], arg2: list[int], arg3: bool, arg4: set[[Electron]([[SignatureLinkPlaceholder]]#api_example.Electron[[SignatureLinkPlaceholder]])]) → None"]',
+    },
+  ];
+
+  const signaturesExpected = (runtimeJobLink: string) => {
+    return signaturesInput(runtimeJobLink).map((signature) => ({
+      ...signature,
+      value: signature.value.replaceAll(SIGNATURE_PLACEHOLDER, ""),
+    }));
+  };
+
+  test("update signature links with `resultsByName` defined", () => {
+    const signatures = signaturesInput("qiskit_ibm_runtime.RuntimeJob.job#wut");
+    updateSignatureLinks(signatures, RESULTS_BY_NAME, ITEM_NAMES, {
+      kebabCaseAndShorten: false,
+      pkgName: "qiskit-ibm-runtime",
+    });
+
+    expect(signatures).toEqual(
+      signaturesExpected("qiskit_ibm_runtime.RuntimeJob#job"),
+    );
+  });
+  test("update signature links with `resultsByName` undefined", () => {
+    const signatures = signaturesInput("qiskit_ibm_runtime.RuntimeJob.job#wut");
+    updateSignatureLinks(signatures, {}, new Set<string>(), {
+      kebabCaseAndShorten: false,
+      pkgName: "qiskit-ibm-runtime",
+    });
+
+    expect(signatures).toEqual(
+      signaturesExpected("qiskit_ibm_runtime.RuntimeJob.job#wut"),
+    );
   });
 });
