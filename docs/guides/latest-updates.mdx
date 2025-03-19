@@ -61,7 +61,7 @@ The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the pr
 
 #### New features
 
-qiskit-ibm-runtime is now compatible with Qiskit 2.0. This means that classes and methods removed in Qiskit 2.0 have also been removed or handled accordingly.  The `pulse` and `channel` related changes are highlighted below. See the [Pulse migration guide](/migration-guides/pulse-migration) for details.
+qiskit-ibm-runtime is now compatible with Qiskit v2.0. This means that classes and methods removed in Qiskit v2.0 have also been removed or handled accordingly.  The `pulse` and `channel` related changes are highlighted below. See the [Pulse migration guide](/migration-guides/pulse-migration) for details.
 
    - `Channel` methods in `IBMBackend` have been removed.
    - The backend configuration class `PulseBackendConfiguration` has been removed, so all backends will now be returned as `QasmBackendConfiguration`.
@@ -100,14 +100,15 @@ In this release, Open and Pay-As-You-Go users can begin the onboarding experienc
 As an incentive to migrate, all users, including Open Plan, can access an IBM Quantum Heron QPU (IBM Torino) when using the new IBM Quantum Platform.
 
 <Admonition type="note">
-Premium Plan, Dedicated service, and Startup program users will receive guided migration support through their administrators in the coming months. In the meantime, they can create a free Open plan account to explore the new platform.
+Premium Plan, Dedicated service, and Startup program users will receive guided migration support through their administrators in the coming months. In the meantime, they can create a free Open Plan account to explore the new platform.
 </Admonition>
 
 Read more details in the [blog.](https://www.ibm.com/quantum/blog/iqp-upgrade)
 
 ### 2 February 2025
 
-A new version of [dynamic circuits](/guides/classical-feedforward-and-control-flow) will start rolling out on 2 June 2025. This new version lets you run dynamic circuits at utility scale and comes with improvements in speed, quality, and usability that will gradually be added throughout the year.  Improvements include the following:
+Starting 2 June 2025 and continuing through the year, IBM Quantum will begin a gradual rollout of new features to [dynamic circuits](/guides/classical-feedforward-and-control-flow) that will enable them at the utility scale.
+Improvements include the following:
 
 - Using the Gen3 engine stack that gives a 75x speedup in execution
 - Executing branches in parallel to reduce circuit duration and improves result quality
@@ -115,16 +116,16 @@ A new version of [dynamic circuits](/guides/classical-feedforward-and-control-fl
 - Improving integration with dynamical decoupling
 - Improving circuit timing information visibility
 
-To accelerate their roll-out, the following capabilities are now deprecated and will be no longer supported on or around 2 June 2025:
+To accelerate the rollout, the following capabilities are now deprecated and will be no longer supported on or around 2 June 2025:
 
-- The while, for, and switch control flow constructs
-- The ability to use control flow instructions inside the body of a branch (that is, nested control flow)
+- The `while`, `for`, and `switch` control flow constructs
+- The ability to use control flow instructions inside the body of a branch (as in, nested control flow)
 - Conditional measurements
 
 
 ### 7 January 2025
 
-The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the gen3 path using the [`gen3-turbo` experimental option.](/guides/runtime-options-overview#available-options) Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
+The rollout of the Gen3 engine stack begins today. This engine stack gives a 75x speedup in execution.  The rollout will be done on one QPU at a time, where a percentage of the jobs on the QPU will use the Gen3 path.  You can also force the Gen3 path using the [`gen3-turbo` experimental option.](/guides/runtime-options-overview#available-options) Note that this engine stack is not compatible with fractional gates, pulse gates, or dynamic circuits.
 
 ### 15 October 2024
 
