@@ -447,7 +447,8 @@ export async function htmlSignatureToMd(
         const isExternal = href.startsWith("http");
         const title = node.properties.title;
 
-        // We only show the title if it's from an external link
+        // We only show the title if it's from an external link to make the UX
+        // less noisy.
         const link = title && isExternal ? `${href} "${title}"` : `${href}`;
 
         node.type = "text";
