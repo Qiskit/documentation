@@ -23,6 +23,7 @@ import remarkStringify from "remark-stringify";
 
 import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { remarkStringifyOptions } from "./commonParserConfig.js";
 import {
   SIGNATURE_PLACEHOLDER,
   SIGNATURE_PLACEHOLDER_ESCAPED,
@@ -229,7 +230,7 @@ export async function updateLinks(
           );
         });
       })
-      .use(remarkStringify)
+      .use(remarkStringify, remarkStringifyOptions)
       .process(result.markdown);
 
     result.markdown = output?.toString();
