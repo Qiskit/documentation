@@ -28,6 +28,11 @@ import { ObjectsInv } from "./objectsInv.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 
+export type UrlOptions = {
+  kebabCaseAndShorten: boolean;
+  pkgName: string;
+};
+
 export interface Link {
   url: string; // Where the link goes
   text?: string; // What the user sees
@@ -59,7 +64,7 @@ export function normalizeUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
   itemNames: Set<string>,
-  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
+  kwargs: UrlOptions,
 ): string {
   if (isAbsoluteUrl(url)) return url;
   // Absolute URLs are already normalized, except those pointing to the same API docs.
@@ -157,7 +162,7 @@ export function relativizeLink(link: Link): Link | undefined {
 
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
-  kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
+  kwargs: UrlOptions,
   maybeObjectsInv?: ObjectsInv,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);

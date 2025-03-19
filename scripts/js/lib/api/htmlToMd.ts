@@ -29,18 +29,19 @@ import { HtmlToMdResult } from "./HtmlToMdResult.js";
 import { Metadata, ApiType } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
+import { UrlOptions } from "./updateLinks.js";
 
-export async function sphinxHtmlToMarkdown(options: {
-  html: string;
-  fileName: string;
-  imageDestination: string;
-  determineGithubUrl: (fileName: string) => string;
-  pkgName: string;
-  kebabCaseAndShorten: boolean;
-  releaseNotesTitle: string;
-  hasSeparateReleaseNotes: boolean;
-  isCApi: boolean;
-}): Promise<HtmlToMdResult> {
+export async function sphinxHtmlToMarkdown(
+  options: UrlOptions & {
+    html: string;
+    fileName: string;
+    imageDestination: string;
+    determineGithubUrl: (fileName: string) => string;
+    releaseNotesTitle: string;
+    hasSeparateReleaseNotes: boolean;
+    isCApi: boolean;
+  },
+): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(
     processedHtml.html,

@@ -15,6 +15,7 @@ import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
+import { Root } from "mdast";
 import { visit } from "unist-util-visit";
 import { toText } from "hast-util-to-text";
 
@@ -24,8 +25,7 @@ import {
   removeSuffix,
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils.js";
-import { Root } from "mdast";
-import { normalizeUrl, relativizeLink } from "./updateLinks.js";
+import { normalizeUrl, relativizeLink, UrlOptions } from "./updateLinks.js";
 
 export type ComponentProps = {
   id?: string;
@@ -56,10 +56,7 @@ export async function processMdxComponent(
   priorApiType: ApiType | undefined,
   apiType: Exclude<ApiType, "module">,
   id: string,
-  options: {
-    pkgName: string;
-    kebabCaseAndShorten: boolean;
-  },
+  options: UrlOptions,
 ): Promise<[string, string]> {
   const tagName = APITYPE_TO_TAG[apiType];
 
@@ -321,10 +318,7 @@ function prepareFunctionProps(
 export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
-  options: {
-    pkgName: string;
-    kebabCaseAndShorten: boolean;
-  },
+  options: UrlOptions,
 ): Promise<string> {
   const attributeTypeHint = props.attributeTypeHint?.replaceAll(
     "'",
@@ -413,10 +407,7 @@ export function addExtraSignatures(
  */
 export async function htmlSignatureToMd(
   signatureHtml: string,
-  options: {
-    pkgName: string;
-    kebabCaseAndShorten: boolean;
-  },
+  options: UrlOptions,
 ): Promise<string> {
   if (!signatureHtml) {
     return "";
