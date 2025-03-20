@@ -19,6 +19,7 @@ import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiType } from "./Metadata.js";
 import { processMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
+import { UrlOptions } from "./updateLinks.js";
 
 export type ProcessedHtml = {
   html: string;
@@ -27,7 +28,7 @@ export type ProcessedHtml = {
   isReleaseNotes: boolean;
 };
 
-interface ProcessHtmlOptions {
+interface ProcessHtmlOptions extends UrlOptions {
   html: string;
   fileName: string;
   imageDestination: string;
@@ -47,7 +48,6 @@ export async function processHtml(
     determineGithubUrl,
     releaseNotesTitle,
     hasSeparateReleaseNotes,
-    isCApi,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
@@ -346,7 +346,9 @@ export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-  options: { isCApi: boolean },
+  options: UrlOptions & {
+    isCApi: boolean;
+  },
 ): Promise<void> {
   let continueMapMembers = true;
   while (continueMapMembers) {
@@ -407,6 +409,7 @@ export async function processMembersAndSetMeta(
         priorApiType,
         apiType!,
         id,
+        options,
       );
       $dl.replaceWith(
         `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,

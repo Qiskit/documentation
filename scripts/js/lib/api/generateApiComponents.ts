@@ -15,6 +15,9 @@ import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
+import { Root } from "mdast";
+import { visit } from "unist-util-visit";
+import { toText } from "hast-util-to-text";
 
 import { ApiType } from "./Metadata.js";
 import {
@@ -22,6 +25,7 @@ import {
   removeSuffix,
   APOSTROPHE_HEX_CODE,
 } from "../stringUtils.js";
+import { UrlOptions } from "./updateLinks.js";
 
 export type ComponentProps = {
   id?: string;
@@ -45,6 +49,12 @@ const APITYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
   struct: "class",
 };
 
+export const SIGNATURE_PLACEHOLDER = "[[SignatureLinkPlaceholder]]";
+export const SIGNATURE_PLACEHOLDER_ESCAPED = SIGNATURE_PLACEHOLDER.replaceAll(
+  /(\[|\])/g,
+  "\\$1",
+);
+
 export async function processMdxComponent(
   $: CheerioAPI,
   signatures: Cheerio<Element>[],
@@ -52,6 +62,7 @@ export async function processMdxComponent(
   priorApiType: ApiType | undefined,
   apiType: Exclude<ApiType, "module">,
   id: string,
+  options: UrlOptions,
 ): Promise<[string, string]> {
   const tagName = APITYPE_TO_TAG[apiType];
 
@@ -71,7 +82,10 @@ export async function processMdxComponent(
   );
   addExtraSignatures(componentProps, extraProps);
 
-  return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
+  return [
+    await createOpeningTag(tagName, componentProps, options),
+    `</${tagName}>`,
+  ];
 }
 
 // ------------------------------------------------------------------
@@ -310,6 +324,7 @@ function prepareFunctionProps(
 export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
+  options: UrlOptions,
 ): Promise<string> {
   const attributeTypeHint = props.attributeTypeHint?.replaceAll(
     "'",
@@ -319,10 +334,10 @@ export async function createOpeningTag(
     "'",
     APOSTROPHE_HEX_CODE,
   );
-  const signature = await htmlSignatureToMd(props.rawSignature!);
+  const signature = await htmlSignatureToMd(props.rawSignature!, options);
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
-    extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
+    extraSignatures.push(`"${await htmlSignatureToMd(sig!, options)}"`);
   }
 
   return `<${tagName} 
@@ -398,14 +413,55 @@ export function addExtraSignatures(
  */
 export async function htmlSignatureToMd(
   signatureHtml: string,
+  options: UrlOptions,
 ): Promise<string> {
   if (!signatureHtml) {
     return "";
   }
 
+  const { pkgName, kebabCaseAndShorten } = options;
+
+  // The `code` tag helps us remove some undesired elements like asterisks surrounding
+  // the parameters.
   const html = `<code>${signatureHtml}</code>`;
   const file = await unified()
     .use(rehypeParse)
+    .use(() => (tree: Root) => {
+      visit(tree, { tagName: "a" }, (node: any) => {
+        // We transform the links into markdown as `text` nodes to avoid losing them once
+        // transforming the signature from HTML to markdown. This could happen because we
+        // have the signatures inside a `code` element. Moreover, we have more freedom by
+        // manually creating the links as text.
+        if (!node.properties?.href || !node.children?.length) {
+          return;
+        }
+
+        // We encode some conflicting characters that could make the markdown link break
+        // by using URL-encoding form.
+        const href = node.properties.href
+          .replaceAll('"', "%22")
+          .replaceAll("(", "%28")
+          .replaceAll(")", "%29");
+        const title = node.properties.title;
+
+        // We use a placeholder in the link to be able to easily find it and update it once the
+        // whole markdown file has been generated. We can't update the link here because we need
+        // the context of all the pages to decide if it's already correct or not.
+        const hrefWithPlaceholder = `${SIGNATURE_PLACEHOLDER}${href}${SIGNATURE_PLACEHOLDER}`;
+
+        // We only show the title if exists
+        const link = title
+          ? `${hrefWithPlaceholder} \'${title}\'`
+          : `${hrefWithPlaceholder}`;
+
+        // The hast `Element` nodes only have one child:
+        // https://github.com/syntax-tree/hast?tab=readme-ov-file#element
+        const linkText = toText(node.children[0]);
+
+        node.type = "text";
+        node.value = `[${linkText}](${link})`;
+      });
+    })
     .use(rehypeRemark)
     .use(remarkStringify)
     .process(html);
