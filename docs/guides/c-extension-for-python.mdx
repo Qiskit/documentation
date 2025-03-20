@@ -67,11 +67,10 @@ print("SparseObservable instance?", isinstance(obs, qiskit.quantum_info.SparseOb
 print(obs)
 ```
 
-## Building
+## Build
 
-First, we have to build Qiskit's Python extension. This will include the C symbols so we can
-access both interfaces via the same shared library. This is important to ensure data ensured
-across C and Python has the same ABI.
+First, you have to build the Qiskit Python extension. This includes the C symbols so you can access both interfaces via the same shared library. This is important to ensure data can be passed
+correctly across C and Python.
 ```bash
 python setup.py build_rust --inplace --release
 ```
