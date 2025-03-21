@@ -53,6 +53,7 @@ export async function processMdxComponent(
   priorApiType: ApiType | undefined,
   apiType: Exclude<ApiType, "module">,
   id: string,
+  options: { isCApi: boolean },
 ): Promise<[string, string]> {
   const tagName = APITYPE_TO_TAG[apiType];
 
@@ -64,11 +65,20 @@ export async function processMdxComponent(
     priorApiType,
     apiType,
     id,
+    options,
   );
 
   const extraProps = signatures.flatMap(
     ($overloadedSignature) =>
-      prepareProps($, $overloadedSignature, $dl, apiType, apiType, id) ?? [],
+      prepareProps(
+        $,
+        $overloadedSignature,
+        $dl,
+        apiType,
+        apiType,
+        id,
+        options,
+      ) ?? [],
   );
   addExtraSignatures(componentProps, extraProps);
 
@@ -86,9 +96,10 @@ function prepareProps(
   priorApiType: ApiType | undefined,
   apiType: Exclude<ApiType, "module">,
   id: string,
+  options: { isCApi: boolean },
 ): ComponentProps {
   const prepClassOrException = () =>
-    prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id);
+    prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id, options);
   const prepFunction = () =>
     prepareFunctionProps($, $child, $dl, githubSourceLink, id);
   const prepMethod = () =>
@@ -125,6 +136,7 @@ function prepareClassOrExceptionProps(
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
+  options: { isCApi: boolean },
 ): ComponentProps {
   const modifiers = getAndRemoveModifiers($child);
   const props = {
@@ -138,7 +150,7 @@ function prepareClassOrExceptionProps(
   // Manually created class pages like Qiskit 1.1+'s `QuantumCircuit`
   // sometimes have ' class' in their h1.
   pageHeading = removeSuffix(pageHeading, " class");
-  if (id.endsWith(pageHeading) && pageHeading != "") {
+  if (!options.isCApi && id.endsWith(pageHeading) && pageHeading != "") {
     // Page is already dedicated to the class
     return {
       ...props,

@@ -407,6 +407,7 @@ export async function processMembersAndSetMeta(
         priorApiType,
         apiType!,
         id,
+        options,
       );
       $dl.replaceWith(
         `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
