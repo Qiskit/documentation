@@ -1,0 +1,44 @@
+---
+title: QkBitTerm (latest version)
+description: API reference for QkBitTerm in the latest version of qiskit-c
+in_page_toc_min_heading_level: 1
+python_api_type: typedef
+python_api_name: QkBitTerm
+---
+
+# QkBitTerm
+
+This is a group of functions for interacting with an opaque (Rust-space) BitTerm instance.
+
+### QkBitTerm
+
+<Class id="QkBitTerm" signature="typedef uint8_t QkBitTerm" />
+
+## Functions
+
+### qk\_bitterm\_label
+
+<Function id="qk_bitterm_label" signature="uint8_t qk_bitterm_label(QkBitTerm bit_term)">
+  Get the label for a bit term.
+
+  **Example**
+
+  ```c
+  QkBitTerm bit_term = QkBitTerm_Y;
+  // cast the uint8_t to char
+  char label = qk_bitterm_label(bit_term);
+  ```
+
+  **Safety**
+
+  The behavior is undefined if `bit_term` is not a valid `uint8_t` value of a \[BitTerm].
+
+  **Parameters**
+
+  **bit\_term** – The bit term.
+
+  **Returns**
+
+  The label as `uint8_t`, which can be cast to `char` to obtain the character.
+</Function>
+
