@@ -20,7 +20,7 @@ export type ApiType =
   | "exception"
   | "data"
   | "struct"
-  | "type";
+  | "typedef";
 
 export type Metadata = {
   apiName?: string;

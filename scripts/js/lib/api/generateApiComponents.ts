@@ -43,7 +43,7 @@ const APITYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
   method: "function",
   data: "attribute",
   struct: "class",
-  type: "class",
+  typedef: "class",
 };
 
 export async function processMdxComponent(
@@ -119,7 +119,7 @@ function prepareProps(
     function: prepFunction,
     data: prepAttributeOrProperty,
     struct: prepClassOrException,
-    type: prepClassOrException,
+    typedef: prepClassOrException,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");

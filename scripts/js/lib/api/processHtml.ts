@@ -475,7 +475,8 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     return "property";
   }
 
-  for (const className of [
+  const apiClassNames = [
+    "type",
     "function",
     "class",
     "exception",
@@ -485,10 +486,11 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     "module",
     "data",
     "struct",
-    "type",
-  ]) {
+  ] as const;
+  for (const className of apiClassNames) {
     if ($dl.hasClass(className)) {
-      return className as ApiType;
+      if (className === "type") return "typedef";
+      return className;
     }
   }
 
