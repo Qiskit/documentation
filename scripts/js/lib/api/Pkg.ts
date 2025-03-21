@@ -258,6 +258,10 @@ export class Pkg {
     return this.type == "latest";
   }
 
+  isCApi(): boolean {
+    return this.language === "C";
+  }
+
   isProblematicLegacyQiskit(): boolean {
     return this.name === "qiskit" && +this.versionWithoutPatch < 0.45;
   }
