@@ -72,6 +72,8 @@ function getModulesAndItems(
     (result) => !isEmpty(result.meta.apiName),
   );
 
+  // We group Python packages by module for better organization.
+  // However, C does not have modules.
   const modules = options.isCApi
     ? resultsWithName
     : resultsWithName.filter((result) => result.meta.apiType === "module");
