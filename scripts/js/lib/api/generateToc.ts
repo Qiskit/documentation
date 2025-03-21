@@ -31,7 +31,9 @@ type Toc = {
 };
 
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
-  const [modules, items] = getModulesAndItems(results);
+  const [modules, items] = getModulesAndItems(results, {
+    isCApi: pkg.language === "C",
+  });
   const tocModules = generateTocModules(modules);
   const tocModulesByTitle = new Map(
     tocModules.map((entry) => [entry.title, entry]),
@@ -64,14 +66,15 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
 
 function getModulesAndItems(
   results: HtmlToMdResultWithUrl[],
+  options: { isCApi: boolean },
 ): [HtmlToMdResultWithUrl[], HtmlToMdResultWithUrl[]] {
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.apiName),
   );
 
-  const modules = resultsWithName.filter(
-    (result) => result.meta.apiType === "module",
-  );
+  const modules = options.isCApi
+    ? resultsWithName
+    : resultsWithName.filter((result) => result.meta.apiType === "module");
   const items = resultsWithName.filter(
     (result) =>
       result.meta.apiType &&
