@@ -78,10 +78,9 @@ async function determineFilePaths(
     ? undefined
     : ObjectsInv.fromFile(htmlPath));
 
-  const extraFiles =
-    pkg.language == "C"
-      ? ["cdoc/**.html"]
-      : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
+  const extraFiles = pkg.isCApi()
+    ? ["cdoc/**.html"]
+    : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
   const files = await globby(
     [...extraFiles, "release_notes.html", "release-notes.html"],
     {
@@ -110,7 +109,7 @@ async function convertFilesToMarkdown(
       imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
-      isCApi: pkg.language == "C",
+      isCApi: pkg.isCApi(),
     });
 
     // Avoid creating an empty markdown file for HTML files without content
