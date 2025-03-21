@@ -83,6 +83,8 @@ function getModulesAndItems(
         "property",
         "attribute",
         "data",
+        "struct",
+        "type",
       ].includes(result.meta.apiType),
   );
 
