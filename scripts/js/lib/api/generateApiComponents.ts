@@ -34,7 +34,7 @@ export type ComponentProps = {
   isDedicatedPage?: boolean;
 };
 
-const APITYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
+const API_TYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
   class: "class",
   exception: "class",
   attribute: "attribute",
@@ -55,7 +55,7 @@ export async function processMdxComponent(
   id: string,
   options: { isCApi: boolean },
 ): Promise<[string, string]> {
-  const tagName = APITYPE_TO_TAG[apiType];
+  const tagName = API_TYPE_TO_TAG[apiType];
 
   const $firstSignature = signatures.shift()!;
   const componentProps = prepareProps(
