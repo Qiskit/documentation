@@ -32,7 +32,7 @@ type Toc = {
 
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
   const [modules, items] = getModulesAndItems(results, {
-    isCApi: pkg.language === "C",
+    isCApi: pkg.isCApi(),
   });
   const tocModules = generateTocModules(modules);
   const tocModulesByTitle = new Map(
