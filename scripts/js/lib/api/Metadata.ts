@@ -20,7 +20,9 @@ export type ApiType =
   | "exception"
   | "data"
   | "struct"
-  | "typedef";
+  | "typedef"
+  | "enum"
+  | "enumerator";
 
 export type Metadata = {
   apiName?: string;

@@ -90,6 +90,8 @@ function getModulesAndItems(
         "data",
         "struct",
         "type",
+        "enum",
+        "enumerator",
       ].includes(result.meta.apiType),
   );
 
