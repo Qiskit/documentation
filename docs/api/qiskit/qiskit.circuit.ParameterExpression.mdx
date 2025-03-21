@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
 # ParameterExpression
 
-<Class id="qiskit.circuit.ParameterExpression" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L103-L687" signature="qiskit.circuit.ParameterExpression(symbol_map, expr, *, _qpy_replay=None)" modifiers="class">
+<Class id="qiskit.circuit.ParameterExpression" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L103-L692" signature="qiskit.circuit.ParameterExpression(symbol_map, expr, *, _qpy_replay=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   ParameterExpression class to enable creating expressions of Parameters.
@@ -34,7 +34,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
   ### abs
 
-  <Function id="qiskit.circuit.ParameterExpression.abs" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L593-L595" signature="abs()">
+  <Function id="qiskit.circuit.ParameterExpression.abs" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L596-L598" signature="abs()">
     Absolute of a ParameterExpression
   </Function>
 
@@ -146,7 +146,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
   ### is\_real
 
-  <Function id="qiskit.circuit.ParameterExpression.is_real" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L616-L627" signature="is_real()">
+  <Function id="qiskit.circuit.ParameterExpression.is_real" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L621-L632" signature="is_real()">
     Return whether the expression is real
   </Function>
 
@@ -158,7 +158,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
   ### numeric
 
-  <Function id="qiskit.circuit.ParameterExpression.numeric" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L629-L673" signature="numeric()">
+  <Function id="qiskit.circuit.ParameterExpression.numeric" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L634-L678" signature="numeric()">
     Return a Python number representing this object, using the most restrictive of [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)"), [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") and [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)") that is valid for this object.
 
     In general, an [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") is only returned if the expression only involved symbolic integers. If floating-point values were used during the evaluation, the return value will be a [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") regardless of whether the represented value is an integer. This is because floating-point values “infect” symbolic computations by their inexact nature, and symbolic libraries will use inexact floating-point semantics not exact real-number semantics when they are involved. If you want to assert that all floating-point calculations *were* carried out at infinite precision (i.e. [`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") could represent every intermediate value exactly), you can use [`float.is_integer()`](https://docs.python.org/3/library/stdtypes.html#float.is_integer "(in Python v3.13)") to check if the return float represents an integer and cast it using [`int`](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") if so. This would be an unusual pattern; typically one requires this by only ever using explicitly [`Rational`](https://docs.python.org/3/library/numbers.html#numbers.Rational "(in Python v3.13)") objects while working with symbolic expressions.
@@ -217,7 +217,7 @@ python_api_name: qiskit.circuit.ParameterExpression
 
   ### sympify
 
-  <Function id="qiskit.circuit.ParameterExpression.sympify" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L675-L687" signature="sympify()">
+  <Function id="qiskit.circuit.ParameterExpression.sympify" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/parameterexpression.py#L680-L692" signature="sympify()">
     Return symbolic expression as a raw Sympy or Symengine object.
 
     Symengine is used preferentially; if both are available, the result will always be a `symengine` object. Symengine is a separate library but has integration with Sympy.

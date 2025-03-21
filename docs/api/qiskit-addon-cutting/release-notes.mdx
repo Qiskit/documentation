@@ -303,7 +303,7 @@ The 0.3.0 release introduces significant new features while maintaining backward
 
 ### Upgrade Notes
 
-*   `execute_experiments()` no longer creates separate jobs for each subcircuit by default. Now, separate jobs are only created if separate [`BaseSampler`](/api/qiskit/qiskit.primitives.BaseSampler "(in Qiskit v1.3)") instances are provided for each circuit partition.
+*   `execute_experiments()` no longer creates separate jobs for each subcircuit by default. Now, separate jobs are only created if separate [BaseSampler](/api/qiskit/1.4/qiskit.primitives.BaseSampler "(in Qiskit v1.3)") instances are provided for each circuit partition.
 
 *   Numpy 1.23.0 or later is now required. The [`kron()`](https://numpy.org/doc/stable/reference/generated/numpy.kron.html#numpy.kron "(in NumPy v2.2)") method in earlier versions [has known performance issues](https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/pull/70#issuecomment-1500514513), and this method is used heavily by the CutQC wire cutting module.
 
@@ -374,7 +374,7 @@ Additionally, 0.2.0 includes a set of functions which allow for easy implementat
 
 *   The `circuit_cutting` package only supports [`PauliList`](/api/qiskit/qiskit.quantum_info.PauliList "(in Qiskit v1.3)") observables for calculating expectation values. Support for calculating expectation values for more observable types, including [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp "(in Qiskit v1.3)"), is expected no sooner than 0.3.0.
 
-*   The `Sampler`s from Qiskit and Qiskit Aer do not support mid-circuit measurements in statevector mode. For more on generating exact quasi-distributions using the [`BaseSampler`](/api/qiskit/qiskit.primitives.BaseSampler "(in Qiskit v1.3)") interface, check out our [how-to guide](https://github.com/Qiskit/qiskit-addon-cutting/blob/stable/0.7/docs/circuit_cutting/how-tos/how_to_generate_exact_quasi_dists_from_sampler.ipynb).
+*   The `Sampler`s from Qiskit and Qiskit Aer do not support mid-circuit measurements in statevector mode. For more on generating exact quasi-distributions using the [BaseSampler](/api/qiskit/1.4/qiskit.primitives.BaseSampler "(in Qiskit v1.3)") interface, check out our [how-to guide](https://github.com/Qiskit/qiskit-addon-cutting/blob/stable/0.7/docs/circuit_cutting/how-tos/how_to_generate_exact_quasi_dists_from_sampler.ipynb).
 
 *   The `circuit_cutting` package generally does not yet support input circuits with user-added classical bits, so by extension, it does not yet support dynamic circuits.
 
