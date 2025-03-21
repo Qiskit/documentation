@@ -1,0 +1,668 @@
+---
+title: QkObs (latest version)
+description: API reference for QkObs in the latest version of qiskit-c
+in_page_toc_min_heading_level: 1
+python_api_type: typedef
+python_api_name: QkObs
+---
+
+# QkObs
+
+This is a group of functions for interacting with an opaque (Rust-space) SparseObservable instance.
+
+### QkObs
+
+<Class id="QkObs" signature="typedef struct QkObs QkObs">
+  An observable over Pauli bases that stores its data in a qubit-sparse format.
+
+  See \[PySparseObservable] for detailed docs.
+</Class>
+
+## Functions
+
+### qk\_obs\_zero
+
+<Function id="qk_obs_zero" signature="QkObs *qk_obs_zero(uint32_t num_qubits)">
+  Construct the zero observable (without any terms).
+
+  **Example**
+
+  ```c
+  QkObs *zero = qk_obs_zero(100);
+  ```
+
+  **Parameters**
+
+  **num\_qubits** – The number of qubits the observable is defined on.
+
+  **Returns**
+
+  A pointer to the created observable.
+</Function>
+
+### qk\_obs\_identity
+
+<Function id="qk_obs_identity" signature="QkObs *qk_obs_identity(uint32_t num_qubits)">
+  Construct the identity observable.
+
+  **Example**
+
+  ```c
+  QkObs *identity = qk_obs_identity(100);
+  ```
+
+  **Parameters**
+
+  **num\_qubits** – The number of qubits the observable is defined on.
+
+  **Returns**
+
+  A pointer to the created observable.
+</Function>
+
+### qk\_obs\_new
+
+<Function id="qk_obs_new" signature="QkObs *qk_obs_new(uint32_t num_qubits, uint64_t num_terms, uint64_t num_bits, QkComplex64 *coeffs, QkBitTerm *bit_terms, uint32_t *indices, uintptr_t *boundaries)">
+  Construct a new observable from raw data.
+
+  **Example**
+
+  ```c
+  // define the raw data for the 100-qubit observable |01><01|_{0, 1} - |+-><+-|_{98, 99}
+  uint32_t num_qubits = 100;
+  uint64_t num_terms = 2;  // we have 2 terms: |01><01|, -1 * |+-><+-|
+  uint64_t num_bits = 4; // we have 4 non-identity bits: 0, 1, +, -
+
+  complex double coeffs[2] = {1, -1};
+  QkBitTerm bits[4] = {QkBitTerm_Zero, QkBitTerm_One, QkBitTerm_Plus, QkBitTerm_Minus};
+  uint32_t indices[4] = {0, 1, 98, 99};  // <-- e.g. {1, 0, 99, 98} would be invalid
+  size_t boundaries[3] = {0, 2, 4};
+
+  QkObs *obs = qk_obs_new(
+      num_qubits, num_terms, num_bits, coeffs, bits, indices, boundaries
+  );
+  ```
+
+  **Safety**
+
+  Behavior is undefined if any of the following conditions are violated:
+
+  *   `coeffs` is a pointer to a `complex double` array of length `num_terms`
+  *   `bit_terms` is a pointer to an array of valid `QkBitTerm` elements of length `num_bits`
+  *   `indices` is a pointer to a `uint32_t` array of length `num_bits`, which is term-wise sorted in strict ascending order, and every element is smaller than `num_qubits`
+  *   `boundaries` is a pointer to a `size_t` array of length `num_terms + 1`, which is sorted in ascending order, the first element is 0 and the last element is smaller than `num_terms`
+
+  **Parameters**
+
+  *   **num\_qubits** – The number of qubits the observable is defined on.
+  *   **num\_terms** – The number of terms.
+  *   **num\_bits** – The total number of non-identity bit terms.
+  *   **coeffs** – A pointer to the first element of the coefficients array, which has length `num_terms`.
+  *   **bit\_terms** – A pointer to the first element of the bit terms array, which has length `num_bits`.
+  *   **indices** – A pointer to the first element of the indices array, which has length `num_bits`. Note that, per term, these *must* be sorted incrementally.
+  *   **boundaries** – A pointer to the first element of the boundaries array, which has length `num_terms + 1`.
+
+  **Returns**
+
+  If the input data was coherent and the construction successful, the result is a pointer to the observable. Otherwise a null pointer is returned.
+</Function>
+
+### qk\_obs\_free
+
+<Function id="qk_obs_free" signature="void qk_obs_free(QkObs *obs)">
+  Free the observable.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_zero(100);
+  qk_obs_free(obs);
+  ```
+
+  **Safety**
+
+  Behavior is undefined if `obs` is not either null or a valid pointer to a \[SparseObservable].
+
+  **Parameters**
+
+  **obs** – A pointer to the observable to free.
+</Function>
+
+### qk\_obs\_add\_term
+
+<Function id="qk_obs_add_term" signature="ExitCode qk_obs_add_term(QkObs *obs, const QkObsTerm *cterm)">
+  Add a term to the observable.
+
+  **Example**
+
+  ```c
+  uint32_t num_qubits = 100;
+  QkObs *obs = qk_obs_zero(num_qubits);
+
+  complex double coeff = 1;
+  QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
+  uint32_t indices[3] = {0, 1, 2};
+  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+
+  int exit_code = qk_obs_add_term(obs, &term);
+  ```
+
+  **Safety**
+
+  Behavior is undefined if any of the following is violated:
+
+  *   `obs` is a valid, non-null pointer to a `QkObs`
+  *   `cterm` is a valid, non-null pointer to a `QkObsTerm`
+
+  **Parameters**
+
+  *   **obs** – A pointer to the observable.
+  *   **cterm** – A pointer to the term to add.
+
+  **Returns**
+
+  An exit code. This is `>0` if the term is incoherent or adding the term fails.
+</Function>
+
+### qk\_obs\_term
+
+<Function id="qk_obs_term" signature="ExitCode qk_obs_term(QkObs *obs, uint64_t index, QkObsTerm *out)">
+  Get an observable term by reference.
+
+  A \[CSparseTerm] contains pointers to the indices and bit terms in the term, which can be used to modify the internal data of the observable. This can leave the observable in an incoherent state and should be avoided, unless great care is taken. It is generally safer to construct a new observable instead of attempting in-place modifications.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  QkObsTerm term;
+  int exit_code = qk_obs_term(obs, 0, &term);
+  // out-of-bounds indices return an error code
+  // int error = qk_obs_term(obs, 12, &term);
+  ```
+
+  **Safety**
+
+  Behavior is undefined if any of the following is violated
+
+  *   `obs` is a valid, non-null pointer to a `QkObs`
+  *   `out` is a valid, non-null pointer to a `QkObsTerm`
+
+  **Parameters**
+
+  *   **obs** – A pointer to the observable.
+  *   **index** – The index of the term to get.
+  *   **out** – A pointer to a \[CSparseTerm] used to return the observable term.
+
+  **Returns**
+
+  An exit code.
+</Function>
+
+### qk\_obs\_num\_terms
+
+<Function id="qk_obs_num_terms" signature="uintptr_t qk_obs_num_terms(const QkObs *obs)">
+  Get the number of terms in the observable.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  size_t num_terms = qk_obs_num_terms(obs);  // num_terms==1
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  The number of terms in the observable.
+</Function>
+
+### qk\_obs\_num\_qubits
+
+<Function id="qk_obs_num_qubits" signature="uint32_t qk_obs_num_qubits(const QkObs *obs)">
+  Get the number of qubits the observable is defined on.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  uint32_t num_qubits = qk_obs_num_qubits(obs);  // num_qubits==100
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  The number of qubits the observable is defined on.
+</Function>
+
+### qk\_obs\_len
+
+<Function id="qk_obs_len" signature="uintptr_t qk_obs_len(const QkObs *obs)">
+  Get the number of bit terms/indices in the observable.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  size_t len = qk_obs_len(obs);  // len==0, as there are no non-trivial bit terms
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  The number of terms in the observable.
+</Function>
+
+### qk\_obs\_coeffs
+
+<Function id="qk_obs_coeffs" signature="QkComplex64 *qk_obs_coeffs(QkObs *obs)">
+  Get a pointer to the coefficients.
+
+  This can be used to read and modify the observable’s coefficients. The resulting pointer is valid to read for `qk_obs_num_terms(obs)` elements of `complex double`.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  size_t num_terms = qk_obs_num_terms(obs);
+  complex double *coeffs = qk_obs_coeffs(obs);
+
+  for (size_t i = 0; i < num_terms; i++) {
+      printf("%f + i%f\n", creal(coeffs[i]), cimag(coeffs[i]));
+  }
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  A pointer to the coefficients.
+</Function>
+
+### qk\_obs\_indices
+
+<Function id="qk_obs_indices" signature="uint32_t *qk_obs_indices(QkObs *obs)">
+  Get a pointer to the indices.
+
+  This can be used to read and modify the observable’s indices. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint32_t`.
+
+  **Example**
+
+  ```c
+  uint32_t num_qubits = 100;
+  QkObs *obs = qk_obs_zero(num_qubits);
+
+  complex double coeff = 1;
+  QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
+  uint32_t indices[3] = {0, 1, 2};
+  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+  qk_obs_add_term(obs, &term);
+
+  size_T len = qk_obs_len(obs);
+  uint32_t *indices = qk_obs_indices(obs);
+
+  for (size_t i = 0; i < len; i++) {
+      printf("index %i: %i\n", i, indices[i]);
+  }
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  A pointer to the indices.
+</Function>
+
+### qk\_obs\_boundaries
+
+<Function id="qk_obs_boundaries" signature="uintptr_t *qk_obs_boundaries(QkObs *obs)">
+  Get a pointer to the term boundaries.
+
+  This can be used to read and modify the observable’s term boundaries. The resulting pointer is valid to read for `qk_obs_num_terms(obs) + 1` elements of size `size_t`.
+
+  **Example**
+
+  ```c
+  uint32_t num_qubits = 100;
+  QkObs *obs = qk_obs_zero(num_qubits);
+
+  complex double coeff = 1;
+  QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
+  uint32_t indices[3] = {0, 1, 2};
+  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+  qk_obs_add_term(obs, &term);
+
+  size_t num_terms = qk_obs_num_terms(obs);
+  uint32_t *boundaries = qk_obs_boundaries(obs);
+
+  for (size_t i = 0; i < num_terms + 1; i++) {
+      printf("boundary %i: %i\n", i, boundaries[i]);
+  }
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  A pointer to the boundaries.
+</Function>
+
+### qk\_obs\_bit\_terms
+
+<Function id="qk_obs_bit_terms" signature="QkBitTerm *qk_obs_bit_terms(QkObs *obs)">
+  Get a pointer to the bit terms.
+
+  This can be used to read and modify the observable’s bit terms. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint8_t`.
+
+  **Example**
+
+  ```c
+  uint32_t num_qubits = 100;
+  QkObs *obs = qk_obs_zero(num_qubits);
+
+  complex double coeff = 1;
+  QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};
+  uint32_t indices[3] = {0, 1, 2};
+  QkObsTerm term = {&coeff, 3, bit_terms, indices, num_qubits};
+  qk_obs_add_term(obs, &term);
+
+  size_t len = qk_obs_len(obs);
+  QkBitTerm *bits = qk_obs_bit_terms(obs);
+
+  for (size_t i = 0; i < len; i++) {
+      printf("bit term %i: %i\n", i, bits[i]);
+  }
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`, or if invalid valus are written into the resulting `QkBitTerm` pointer.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  A pointer to the bit terms.
+</Function>
+
+### qk\_obs\_multiply
+
+<Function id="qk_obs_multiply" signature="QkObs *qk_obs_multiply(const QkObs *obs, const QkComplex64 *coeff)">
+  Multiply the observable by a complex coefficient.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  complex double coeff = 2;
+  QkObs *result = qk_obs_multiply(obs, &coeff);
+  ```
+
+  **Safety**
+
+  Behavior is undefined if any of the following is violated
+
+  *   `obs` is a valid, non-null pointer to a `QkObs`
+  *   `coeff` is a valid, non-null pointer to a `complex double`
+
+  **Parameters**
+
+  *   **obs** – A pointer to the observable.
+  *   **coeff** – The coefficient to multiply the observable with.
+</Function>
+
+### qk\_obs\_add
+
+<Function id="qk_obs_add" signature="QkObs *qk_obs_add(const QkObs *left, const QkObs *right)">
+  Add two observables.
+
+  **Example**
+
+  ```c
+  QkObs *left = qk_obs_identity(100);
+  QkObs *right = qk_obs_zero(100);
+  QkObs *result = qk_obs_add(left, right);
+  ```
+
+  **Safety**
+
+  Behavior is undefined if `left` or `right` are not valid, non-null pointers to `QkObs`\ s.
+
+  **Parameters**
+
+  *   **left** – A pointer to the left observable.
+  *   **right** – A pointer to the right observable.
+
+  **Returns**
+
+  A pointer to the result `left + right`.
+</Function>
+
+### qk\_obs\_compose
+
+<Function id="qk_obs_compose" signature="QkObs *qk_obs_compose(const QkObs *first, const QkObs *second)">
+  Compose (multiply) two observables.
+
+  **Example**
+
+  ```c
+  QkObs *first = qk_obs_zero(100);
+  QkObs *second = qk_obs_identity(100);
+  QkObs *result = qk_obs_compose(first, second);
+  ```
+
+  **Safety**
+
+  Behavior is undefined if `first` or `second` are not valid, non-null pointers to `QkObs`\ s.
+
+  **Parameters**
+
+  *   **first** – One observable.
+  *   **second** – The other observable.
+
+  **Returns**
+
+  `first.compose(second)` which equals the observable `result = second @ first`, in terms of the matrix multiplication `@`.
+</Function>
+
+### qk\_obs\_compose\_map
+
+<Function id="qk_obs_compose_map" signature="QkObs *qk_obs_compose_map(const QkObs *first, const QkObs *second, const uint32_t *qargs)">
+  Compose (multiply) two observables according to a custom qubit order.
+
+  Notably, this allows composing two observables of different size.
+
+  **Example**
+
+  ```c
+  QkObs *first = qk_obs_zero(100);
+  QkObs *second = qk_obs_identity(100);
+  QkObs *result = qk_obs_compose(first, second);
+  ```
+
+  **Safety**
+
+  To call this function safely
+
+  *   `first` and `second` must be valid, non-null pointers to `QkObs`\ s
+  *   `qargs` must point to an array of `uint32_t`, readable for `qk_obs_num_qubits(second)` elements (meaning the number of qubits in `second`)
+
+  **Parameters**
+
+  *   **first** – One observable.
+  *   **second** – The other observable. The number of qubits must match the length of `qargs`.
+  *   **qargs** – The qubit arguments specified which indices in `first` to associate with the ones in `second`.
+
+  **Returns**
+
+  `first.compose(second)` which equals the observable `result = second @ first`, in terms of the matrix multiplication `@`.
+</Function>
+
+### qk\_obs\_canonicalize
+
+<Function id="qk_obs_canonicalize" signature="QkObs *qk_obs_canonicalize(const QkObs *obs, double tol)">
+  Calculate the canonical representation of the observable.
+
+  **Example**
+
+  ```c
+  QkObs *iden = qk_obs_identity(100);
+  QkObs *two = qk_obs_add(iden, iden);
+
+  double tol = 1e-6;
+  QkObs *canonical = qk_obs_canonicalize(two);
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  *   **obs** – A pointer to the observable.
+  *   **tol** – The tolerance below which coefficients are considered to be zero.
+
+  **Returns**
+
+  The canonical representation of the observable.
+</Function>
+
+### qk\_obs\_copy
+
+<Function id="qk_obs_copy" signature="QkObs *qk_obs_copy(const QkObs *obs)">
+  Copy the observable.
+
+  **Example**
+
+  ```c
+  QkObs *original = qk_obs_identity(100);
+  QkObs *copied = qk_obs_copy(original);
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  **Parameters**
+
+  **obs** – A pointer to the observable.
+
+  **Returns**
+
+  A pointer to a copy of the observable.
+</Function>
+
+### qk\_obs\_equal
+
+<Function id="qk_obs_equal" signature="bool qk_obs_equal(const QkObs *obs, const QkObs *other)">
+  Compare two observables for equality.
+
+  Note that this does not compare mathematical equality, but data equality. This means that two observables might represent the same observable but not compare as equal.
+
+  **Example**
+
+  ```c
+  QkObs *observable = qk_obs_identity(100);
+  QkObs *other = qk_obs_identity(100);
+  bool are_equal = qk_obs_equal(observable, other);
+  ```
+
+  **Safety**
+
+  Behavior is undefined if `obs` or `other` are not valid, non-null pointers to `QkObs`\ s.
+
+  **Parameters**
+
+  *   **obs** – A pointer to one observable.
+  *   **other** – A pointer to another observable.
+
+  **Returns**
+
+  `true` if the observables are equal, `false` otherwise.
+</Function>
+
+### qk\_obs\_str
+
+<Function id="qk_obs_str" signature="char *qk_obs_str(const QkObs *obs)">
+  Return a string representation of a `SparseObservable`.
+
+  **Example**
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  char *string = qk_obs_str(obs);
+  qk_str_free(string);
+  ```
+
+  **Safety**
+
+  Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  The string must not be freed with the normal C free, you must use `qk_str_free` to free the memory consumed by the String. Not calling `qk_str_free` will lead to a memory leak.
+
+  Do not change the length of the string after it’s returned (by writing a nul byte somewhere inside the string or removing the final one), although values can be mutated.
+
+  **Parameters**
+
+  **obs** – A pointer to the `SparseObservable` to get the string for.
+
+  **Returns**
+
+  A pointer to a nul-terminated char array of the string representation for `obs`
+</Function>
+
+### qk\_str\_free
+
+<Function id="qk_str_free" signature="void qk_str_free(char *string)">
+  Free a string representation.
+
+  **Safety**
+
+  Behavior is undefined if `str` is not a pointer returned by `qk_obs_str` or `qk_obsterm_str`.
+
+  **Parameters**
+
+  **string** – A pointer to the returned string representation from `qk_obs_str` or `qk_obsterm_str`.
+</Function>
+
