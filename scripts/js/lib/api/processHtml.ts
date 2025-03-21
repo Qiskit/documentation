@@ -353,7 +353,7 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data, dl.cpp.function, dl.cpp.struct, dl.cpp.type",
+        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data, dl.cpp.function, dl.cpp.struct, dl.cpp.type, dl.cpp.enum, dl.cpp.enumerator",
       )
       // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
       .not("td > dl")
@@ -371,7 +371,7 @@ export async function processMembersAndSetMeta(
           // `_CPPv415qk_obs_free8uint32_t`) whereas we just want to display the
           // function name (e.g. `qk_obs_free`). This is safe because C does not
           // have function overloading so the function name is unique.
-          $dl.find("span.sig-name.descname").text()
+          $dl.find("span.sig-name.descname").first().text()
         : $dl.find("dt").attr("id")) || "";
     const apiType = getApiType($dl);
 
@@ -486,6 +486,8 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     "module",
     "data",
     "struct",
+    "enum",
+    "enumerator",
   ] as const;
   for (const className of apiClassNames) {
     if ($dl.hasClass(className)) {
