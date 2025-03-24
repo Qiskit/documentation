@@ -327,7 +327,7 @@ export async function createOpeningTag(
     extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
   }
 
-  return `<${tagName}
+  return `<${tagName} 
     id='${props.id}'
     attributeTypeHint='${attributeTypeHint}'
     attributeValue='${attributeValue}'
