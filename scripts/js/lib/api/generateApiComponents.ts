@@ -16,7 +16,7 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
-import { ApiTypeName, API_TYPES } from "./Metadata.js";
+import { ApiTypeName, ApiObjectName, API_OBJECTS } from "./Metadata.js";
 import {
   getLastPartFromFullIdentifier,
   removeSuffix,
@@ -38,12 +38,12 @@ export async function processMdxComponent(
   $: CheerioAPI,
   signatures: Cheerio<Element>[],
   $dl: Cheerio<any>,
-  priorApiType: ApiTypeName | "module" | undefined,
-  apiType: ApiTypeName,
+  priorApiType: ApiTypeName | undefined,
+  apiType: ApiObjectName,
   id: string,
   options: { isCApi: boolean },
 ): Promise<[string, string]> {
-  const tagName = API_TYPES[apiType].tagName;
+  const tagName = API_OBJECTS[apiType].tagName;
 
   const $firstSignature = signatures.shift()!;
   const componentProps = prepareProps(
@@ -81,8 +81,8 @@ function prepareProps(
   $: CheerioAPI,
   $child: Cheerio<Element>,
   $dl: Cheerio<any>,
-  priorApiType: ApiTypeName | "module" | undefined,
-  apiType: ApiTypeName,
+  priorApiType: ApiTypeName | undefined,
+  apiType: ApiObjectName,
   id: string,
   options: { isCApi: boolean },
 ): ComponentProps {
@@ -95,7 +95,7 @@ function prepareProps(
   const prepAttributeOrProperty = () =>
     prepareAttributeOrPropertyProps($, $child, $dl, githubSourceLink, id);
 
-  const preparePropsPerApiType: Record<ApiTypeName, () => ComponentProps> = {
+  const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
     class: prepClassOrException,
     exception: prepClassOrException,
     property: prepAttributeOrProperty,
@@ -158,7 +158,7 @@ function prepareMethodProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: ApiTypeName | "module" | undefined,
+  priorApiType: ApiTypeName | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
@@ -327,7 +327,7 @@ export async function createOpeningTag(
     extraSignatures.push(`"${await htmlSignatureToMd(sig!)}"`);
   }
 
-  return `<${tagName} 
+  return `<${tagName}
     id='${props.id}'
     attributeTypeHint='${attributeTypeHint}'
     attributeValue='${attributeValue}'

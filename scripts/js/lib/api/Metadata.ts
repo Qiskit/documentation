@@ -10,7 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-export type ApiTypeName =
+export type ApiTypeName = ApiObjectName | "module";
+export type ApiObjectName =
   // Python API types
   | "class"
   | "method"
@@ -26,7 +27,7 @@ export type ApiTypeName =
   | "enum"
   | "enumerator";
 
-interface ApiType {
+interface ApiObjectInfo {
   cssSelector: string;
   tagName: "class" | "function" | "attribute";
 }
@@ -37,7 +38,7 @@ interface ApiType {
  * in the Sphinx HTML, and the `tagName` is the tag we transform it to (and how
  * it'll be displayed on the website).
  */
-export const API_TYPES: { [K in ApiTypeName]: ApiType } = {
+export const API_OBJECTS: { [K in ApiObjectName]: ApiObjectInfo } = {
   class: { cssSelector: "dl.py.class", tagName: "class" },
   exception: { cssSelector: "dl.py.exception", tagName: "class" },
   attribute: { cssSelector: "dl.py.attribute", tagName: "attribute" },
@@ -54,6 +55,6 @@ export const API_TYPES: { [K in ApiTypeName]: ApiType } = {
 
 export type Metadata = {
   apiName?: string;
-  apiType?: ApiTypeName | "module";
+  apiType?: ApiTypeName;
   hardcodedFrontmatter?: string;
 };

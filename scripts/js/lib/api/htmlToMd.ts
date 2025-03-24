@@ -203,7 +203,7 @@ function findNodeWithProperty(nodeList: any[], propertyName: string) {
 function buildDt(
   h: H,
   node: any,
-  apiType?: ApiTypeName | "module",
+  apiType?: ApiTypeName,
 ): void | Content | Content[] {
   if (apiType === "class" || apiType === "module") {
     return [

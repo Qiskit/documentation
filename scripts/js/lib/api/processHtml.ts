@@ -16,7 +16,7 @@ import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
-import { Metadata, ApiTypeName, API_TYPES } from "./Metadata.js";
+import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
 import { processMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
 
@@ -353,7 +353,7 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        Object.values(API_TYPES)
+        Object.values(API_OBJECTS)
           .map((x) => x.cssSelector)
           .join(", "),
       )
@@ -469,7 +469,7 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
     });
 }
 
-function getApiType($dl: Cheerio<any>): ApiTypeName | undefined {
+function getApiType($dl: Cheerio<any>): ApiObjectName | undefined {
   // Historical versions were generating properties incorrectly as methods.
   // We can fix this by looking at the modifier before the signature.
   // See https://github.com/Qiskit/documentation/issues/1352 for more information.
@@ -477,13 +477,13 @@ function getApiType($dl: Cheerio<any>): ApiTypeName | undefined {
     return "property";
   }
 
-  for (const [apiTypeName, apiType] of Object.entries(API_TYPES)) {
+  for (const [apiTypeName, apiType] of Object.entries(API_OBJECTS)) {
     const className = apiType.cssSelector.split(".").pop();
     if (!className)
       throw new Error(
         `'cssSelector' attribute must be of form 'dl.py.class', found '${apiType}'.`,
       );
-    if ($dl.hasClass(className)) return apiTypeName as ApiTypeName;
+    if ($dl.hasClass(className)) return apiTypeName as ApiObjectName;
   }
 
   return undefined;
