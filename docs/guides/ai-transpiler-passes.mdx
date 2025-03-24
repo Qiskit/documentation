@@ -49,7 +49,7 @@ ai_passmanager = PassManager([
   AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize", local_mode=True)
 ])
 
-circuit = efficient_su2(101, entanglement="circular", reps=1).decompose()
+circuit = efficient_su2(101, entanglement="circular", reps=1)
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
@@ -84,7 +84,7 @@ ai_passmanager = PassManager([
   AIPauliNetworkSynthesis(backend_name="ibm_cairo", local_mode=False),  # Re-synthesize Pauli Network blocks. Only available in the Qiskit Transpiler Service
 ])
 
-circuit = efficient_su2(10, entanglement="full", reps=1).decompose()
+circuit = efficient_su2(10, entanglement="full", reps=1)
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
@@ -131,7 +131,7 @@ The `qiskit-ibm-transpiler` allows you to configure a hybrid pass manager that c
     backend = QiskitRuntimeService().backend("ibm_fez")
     fez_coupling_map = backend.coupling_map
 
-    su2_circuit = efficient_su2(101, entanglement="circular", reps=1).decompose()
+    su2_circuit = efficient_su2(101, entanglement="circular", reps=1)
 
     ai_transpiler_pass_manager = generate_ai_pass_manager(
         coupling_map=fez_coupling_map,
