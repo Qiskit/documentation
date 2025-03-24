@@ -44,6 +44,8 @@ const API_TYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
   data: "attribute",
   struct: "class",
   typedef: "class",
+  enum: "class",
+  enumerator: "attribute",
 };
 
 export async function processMdxComponent(
@@ -120,6 +122,8 @@ function prepareProps(
     data: prepAttributeOrProperty,
     struct: prepClassOrException,
     typedef: prepClassOrException,
+    enum: prepClassOrException,
+    enumerator: prepAttributeOrProperty,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
