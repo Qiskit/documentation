@@ -46,13 +46,38 @@ zxMain(async () => {
   const args = readArgs();
   const cspellCmd = ["npx", "cspell", "--no-progress", "--config", args.config];
 
-  await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`.pipe(process.stdout);
-  if (args.apis) {
-    await $`${cspellCmd} docs/api/**/*.mdx`.pipe(process.stdout);
+  try {
+    await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`.pipe(process.stdout);
+    if (args.apis) {
+      await $`${cspellCmd} docs/api/**/*.mdx`.pipe(process.stdout);
+    }
+  } catch (p) {
+    explainHowToFix("mdx");
   }
 
   await checkAllNotebooks(args.config);
 });
+
+function explainHowToFix(format: "mdx" | "jupyter"): void {
+  const dictionary =
+    "2. If you expect this word to appear in other files, add it to a dictionary. " +
+    "Add names to the `scripts/config/cspell/dictionaries/people.txt` file. " +
+    "Add scientific or quantum specific words to the `scripts/config/cspell/dictionaries/qiskit.txt` file. " +
+    "If it doesn't fit in either category, add it to the `words` section in `scripts/config/cspell/cSpell. json`. " +
+    "The word is not case-sensitive.";
+  const formatFix =
+    format === "mdx"
+      ? "1. Add a comment on a dedicated line near the top of the MDX file, between the page metadata " +
+        "and the H1 heading, such as: {/* cspell:ignore hellllooooo, ayyyyy */}"
+      : "1. Add a comment on a dedicated line to the first markdown cell in the Jupyter notebook.  " +
+         "(This cell should have the page title.) For example, add the " +
+        "following above the H1 heading: {/* cspell:ignore helloooooo */}";
+  console.error(
+    "\n\n---------------\n\n🙅 There are unrecognized words (see above). If " +
+      `the word is a not a typo, there are two ways to allowlist it:\n\n${formatFix}` +
+      `\n\n${dictionary}`,
+  );
+}
 
 async function checkAllNotebooks(configPath: string): Promise<void> {
   const paths = await globby("docs/**/*.ipynb");
@@ -69,6 +94,7 @@ async function checkAllNotebooks(configPath: string): Promise<void> {
   });
 
   if (!allGood) {
+    explainHowToFix("jupyter");
     process.exit(1);
   }
 }
