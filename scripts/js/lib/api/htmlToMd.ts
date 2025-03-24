@@ -37,6 +37,7 @@ export async function sphinxHtmlToMarkdown(options: {
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
+  isCApi: boolean;
 }): Promise<HtmlToMdResult> {
   const processedHtml = await processHtml(options);
   const markdown = await generateMarkdownFile(

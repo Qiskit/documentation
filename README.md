@@ -1,26 +1,31 @@
 # Qiskit documentation
 
-The documentation content home for https://docs.quantum.ibm.com (excluding API reference).
+The documentation content home for https://quantum.cloud.ibm.com/docs and https://docs.quantum.ibm.com (excluding API reference).
 
-# Improving IBM Quantum & Qiskit Documentation
+Refer to:
 
-Maintaining up-to-date documentation is a huge challenge for any software project, especially in a field like quantum computing where the pace at which advances in new research and technological capabilities happen incredibly fast. As a result, we greatly appreciate any who take the time to support us in keeping this content accurate and up to the highest quality standard possible to benefit the broadest range of users.
+- Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
+- Our [style guide](./style-guide.md) for technical writing guidance.
+
+## Improving IBM Quantum and Qiskit documentation
+
+Maintaining up-to-date documentation is a huge challenge for any software project, but especially for a field like quantum computing, because advances in new research and technological capabilities come at a fast pace. As a result, we greatly appreciate anyone who takes the time to support us in keeping this content accurate and up to the highest quality standard possible, to benefit the broadest range of users.
 
 Read on for more information about how to support this project:
 
-## Best ways to contribute to Documentation
+### Best ways to contribute to documentation
 
-### 1. Report bugs, inaccuracies or general content issues
+#### 1. Report bugs, inaccuracies, or general content issues
 
-This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&trade; documentation. There are a few different ways to report issues, depending on where it was found:
+This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&reg; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit SDK API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
 - For problems you've found in the [Qiskit Runtime client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
 - For problems you've found in any other section of [docs](https://docs.quantum.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
-### 2. Suggest new content
+#### 2. Suggest new content
 
-If you think there are gaps in our documentation, or sections that could be expanded upon, we invite you to open a new content request issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
+If you think there are gaps in our documentation, or sections that could be expanded upon, we invite you to open a [new content request issue](https://github.com/Qiskit/documentation/issues/new/choose).
 
 Not every new content suggestion is a good fit for docs, nor are we able to prioritize every request immediately. However, we will do our best to respond to content requests in a timely manner, and we greatly appreciate our community's efforts in generating new ideas.
 
@@ -28,20 +33,20 @@ If you are interested in writing the new content yourself, or already have some 
 
 Please note: we DO NOT accept unsolicited PRs for new pages or large updates to existing content. The content that we include in docs is carefully planned and curated by our content team and must go through the appropriate review process to ensure the quality is of the highest possible standard before deploying to production. As a result we are very selective with which content suggestions are approved, and it is unlikely that PRs submitted without an associated approved content request will be accepted.
 
-### 3. Validate existing issues
+#### 3. Validate existing issues
 
 You can help the team prioritize already-open issues by doing the following:
 
 - For bug reports, leave a comment in the issue if you have also been experiencing the same problem and can reproduce it (include as much information as you can, e.g., browser type, Qiskit version, etc.).
 - For new content requests, leave a comment or upvote (👍) in the issue if you also would like to see that new content added.
 
-### 4. Fix an open issue
+#### 4. Fix an open issue
 
 You can look through the open issues we have in this repo and address them with a PR. We recommend focusing on issues with the "good first issue" label.
 
 Before getting started on an issue, remember to do the following:
 
-1. Read the [Code of Conduct](https://docs.quantum.ibm.com/open-source/code-of-conduct)
+1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/en/open-source/code-of-conduct)
 2. Check for open, unassigned issues with the "good first issue" label
 3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
 
@@ -53,9 +58,9 @@ Before opening a PR, remember to do the following:
 2. Run the quality control checks with `npm run check`
 3. Use the GitHub "fixes" notation to [link your PR to the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) you are addressing
 
-# How to work with this repo
+## Set up this repository
 
-## Git clone tip
+### Git clone tip
 
 This repository is very large, so it is slow to clone the first time. We recommend instead using the argument `--filter=blob:none`:
 
@@ -65,7 +70,7 @@ git clone --filter=blob:none https://github.com/Qiskit/documentation.git
 
 `--filter=blob:none` means that Git will _lazily_ download file contents when you need them, rather than eagerly downloading everything on the initial clone.
 
-## Prerequisites to building the docs locally
+### Prerequisites to building the docs locally
 
 These tools will also run in CI, but it can be convenient when iterating to run the tools locally.
 
@@ -337,7 +342,7 @@ npm run check
 
 2. Use the VSCode extension [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).
 
-### Fixing false positives
+### Fix false positives
 
 There are two ways to deal with cSpell incorrectly complaining about a word, such as abbreviations.
 
@@ -345,7 +350,7 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 
    - For a markdown file, add a comment to the file, like below. The word is not case-sensitive, and the comment can be placed anywhere.
 
-     ``` markdown
+     ```markdown
      {/* cspell:ignore hellllooooo, ayyyyy */}
 
      # Hellllooooo!
@@ -355,7 +360,7 @@ There are two ways to deal with cSpell incorrectly complaining about a word, suc
 
    - For a Jupyter notebook, add the comment inside a markdown cell in the source part. Each line should be surrounded by quotes and end with "\n".
 
-     ``` python
+     ```python
      {
       "cell_type": "markdown",
       "id": "552b1077",
@@ -408,7 +413,7 @@ Alternatively, you can also regenerate one specific version:
 
 1. Choose which documentation you want to generate (`qiskit`, `qiskit-ibm-runtime`, or `qiskit-ibm-transpiler`) and its version.
 2. Run `npm run gen-api -- -p <pkg-name> -v <version>`,
-   e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+   e.g., `npm run gen-api -- -p qiskit -v 0.45.0`
 
 If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
@@ -484,343 +489,3 @@ You can land the API generation separately from the `requirements.txt` version u
 ## Deploy guides & API docs
 
 See the section "Syncing content with open source repo" in the internal docs repo's README.
-
-# How to write the documentation
-
-Refer to our [style guide](./style-guide.md) for technical writing guidance.
-
-We use [MDX](https://mdxjs.com), which is like normal markdown but adds extensions for custom components we have.
-
-Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on Markdown. The below guide focuses on the other features you can use when writing docs.
-
-## How to add a new page
-
-Choose which existing folder from `docs/` your new page belongs to (probably `guides`).
-
-Next, choose the file name. The file name will determine the URL. For example, `start/my-new-page.mdx` results in the URL `start/my-new-page`. Choose a file name that will be stable over the page's lifespan and that is unlikely to clash with other topics. Use `-` rather than `_` as the delimiter. You can also ask for help choosing a name in the GitHub issue or pull request.
-
-If your file will have non-trivial code in it, please create a Jupyter notebook ending in `.ipynb`, rather than an MDX file. We prefer Jupyter notebooks when there is code because we have tests to make sure that the code still executes properly, whereas MDX is not tested.
-
-Add the file to these places:
-
-- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` to that page's entry.
-- The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
-- qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
-
-## Page metadata
-
-Every page must set a `title` and `description`:
-
-- The title is used for browser tabs and the top line of search results. It should usually match the title used in the `_toc.json` file.
-- The description should describe the page in at least 50 but no more than 160 characters, ideally using some keywords. The description is what shows up as the text in search results. See https://github.com/Qiskit/documentation/issues/131 for some tips.
-
-In MDX files, set the metadata at the top of the file like this:
-
-```
----
-title: Representing quantum computers
-description: Learn about coupling maps, basis gates, and backend errors for transpiling
----
-```
-
-In Jupyter notebooks, set `title` and `description` in the `metadata` section for the file. In VSCode, you can set up the metadata with these instructions:
-
-1. Open up the file with the "Open With..." option (one way to do this is to right-click the file name to find the "Open With..." option) and then "Text Editor".
-2. Scroll down to the bottom of the file for the top-level key "metadata". Ensure that this is the metadata for the entire file and not for a single code block. You should see in the "metadata" section other entries like "language_info" and "nbconvert_exporter".
-3. Add new keys in the "metadata" section for "title" and "description".
-
-```json
-"metadata": {
-  "description": "Get started using Qiskit with IBM Quantum hardware in this Hello World example",
-  "title": "Hello world",
-  "celltoolbar": "Raw Cell Format",
-  "kernelspec": { ...
-}
-```
-
-## Links
-
-Internal URLs referring to other docs pages should start with `/` and not include the file extension. For example:
-
-- `[Qiskit SDK](/api/qiskit)`
-- `[Bit ordering in the Qiskit SDK](/guides/bit-ordering)`
-
-External URLs should use the entire URL, such as `[GitHub](https://github.com)`.
-
-## Images
-
-Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/images/guides/my-file/img1.png`.
-
-To use the image:
-
-```markdown
-![Alt text for the image](/images/guides/your-file/your_image.png)
-```
-
-To add an inline images:
-
-```markdown
-Inline ![Alt text for the image](/images/guides/your-file/your_image.png) image
-```
-
-To include a caption:
-
-```markdown
-![Alt text for the image](/images/guides/your-file/your_image.png "Image caption")
-```
-
-You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
-
-## Videos
-
-Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/videos/guides/my-file/video1.mp4`.
-
-To add a video:
-
-```markdown
-<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
-    <source src="/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
-</video>
-```
-
-## Math
-
-We use [LaTeX](https://www.latex-project.org) to write math, which gets rendered by the library [KaTeX](https://katex.org).
-
-Inline math expressions should start with `$` and end with `$`, e.g. `$\frac{123}{2}$`.
-
-Multi-line expressions should start with `$$` and end with `$$`:
-
-```markdown
-$$
-L = \frac{123}{2} \rho v^2 S C_1s
-$$
-```
-
-## Tables
-
-Tables are supported: https://www.markdownguide.org/extended-syntax/.
-
-Warning: do not use `|` inside LaTeX/math expressions. Markdown will incorrectly interpret `|` as the divider between cells. Instead, use `\vert`.
-
-## Comments
-
-Example comment: `{/* Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html */}`
-
-## Collapsible sections
-
-For content that you don't want to show by default, use a collapsible section. The user will need to expand the section to read its contents. Refer to GitHub's guide on [`<details>` and `<summary>`](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-collapsed-sections).
-
-## Footnotes
-
-```
-Footnote 1 link[^first].
-
-Footnote 2 link[^second].
-
-Duplicated footnote reference[^second].
-
-[^first]: Footnote **can have markup**
-
-    and multiple paragraphs.
-
-[^second]: Second footnote text.
-```
-
-## Custom components
-
-These are components that we expose through MDX. You can use them in both
-`.mdx` and `.ipynb` files. In Jupyter notebooks, use Markdown cells.
-
-### Admonitions
-
-To use an `Admonition`, use the following syntax
-
-```mdx
-<Admonition type="note">This is an example of a note.</Admonition>
-```
-
-Available types are `note, tip, info, caution, danger`. This is what they look like:
-
-![types](https://github.com/Qiskit/documentation/assets/66339736/9911d171-2dbb-45a2-af84-6502d5fc0ae0)
-
-By default, the title is the `type` capitalized. You can customize it by setting `title`:
-
-```mdx
-<Admonition type="note" title="Custom title">
-  This is a __note__ example
-</Admonition>
-```
-
-We also have a specialized admonition for Qiskit Code Assistant prompt suggestions. Warning: avoid a trailing comma on the last entry in `prompts`!
-
-```mdx
-<CodeAssistantAdmonition
-  tagLine="Need help? Try asking Qiskit Code Assistant."
-  prompts={[
-    "# Print the version of Qiskit we're using",
-    "# Return True if the version of Qiskit is 1.0 or greater",
-    "# Install Qiskit 1.0.2"
-  ]}
-/>
-```
-
-### Definition Tooltip
-
-To use a `DefinitionTooltip`, use the following syntax:
-
-```mdx
-<DefinitionTooltip definition="Definition for the Term">Term</DefinitionTooltip>
-```
-
-For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
-
-Warning: do not use LaTeX/math expressions in the same paragraph as a definition tooltip because it will break the styling. Use a new line to separate out the two into separate paragraphs.
-
-### Tabs
-
-To use a `Tabs` component, use the following syntax:
-
-```mdx
-<Tabs>
-  <TabItem value="pulses" label="Pulses">
-    This is the text for pulses
-  </TabItem>
-
-  <TabItem value="qasm" label="QASM">
-    This is the text for QASM
-  </TabItem>
-</Tabs>
-```
-
-By default, the first tab is selected. You can change that by using the `defaultValue` prop.
-
-```mdx
-<Tabs defaultValue="qasm">
-  <TabItem value="pulses" label="Pulses">
-    This is the text for pulses
-  </TabItem>
-
-  <TabItem value="qasm" label="QASM">
-    This is the text for QASM
-  </TabItem>
-</Tabs>
-```
-
-There are situations where you want to repeat the same tabs in several part of the page. In this situation, you can use the prop `group` to synchronize the selected tab in all usages.
-
-```mdx
-<Tabs group="my-group">
-  <TabItem value="pulses" label="Pulses">
-    This is the text for pulses
-  </TabItem>
-
-  <TabItem value="qasm" label="QASM">
-    This is the text for QASM
-  </TabItem>
-</Tabs>
-```
-
-There is a specific use case where you want to show instructions for different operating systems. In this situation, you can replace the `Tabs` component by a `OperatingSystemTabs`. The default value of the tab will be selected based on the user's operating system.
-
-```mdx
-<OperatingSystemTabs>
-  <TabItem value="mac" label="macOS">
-    Open a terminal and write the command
-  </TabItem>
-  <TabItem value="linux" label="Linux">
-    Open a terminal and write the command
-  </TabItem>
-  <TabItem value="win" label="Windows">
-    Go to windows/run and write `cmd`. It will open a command line. Execute this
-    command
-  </TabItem>
-</OperatingSystemTabs>
-```
-
-### CodeCellPlaceholder
-
-This component only works in notebooks. Notebook code cells are always at the
-top-level of content, but sometimes you'll want to have them nested in other
-components, such as in tabs or in a list. While you could write your code
-as a markdown block, it's usually preferable to keep the code as a code block
-so that it is executed and its code can be later used in the notebook. The
-CodeCellPlaceholder component allows you to still use a code block, but move
-it to render somewhere else in the notebook.
-
-To use this component, add a tag
-starting with `id-` to the code cell you'd like to move, then add a
-`<CodeCellPlaceholder tag="id-tag" />` component with the same tag somewhere in
-your markdown. This will move that code cell into the place of the component.
-
-You can then use this component anywhere in your markdown. While you can move code
-cells anywhere, try to keep them relatively close to their position in the
-notebook and preserve their order to avoid confusion.
-
-Here's an example of what this might look like in your notebook source.
-
-```json
-{
- "cell_type": "code",
- "execution_count": 1,
- "metadata": {
-  "tags": [
-   "id-example-cell"
-  ]
- },
- "outputs": [
-  {
-   "data": {
-    "text/plain": [
-     "Hello, world!"
-    ]
-   },
-  }
- ],
- "source": [
-  "# This is a code cell\n",
-  "print(\"Hello, world!\")"
- ]
-},
-{
- "cell_type": "markdown",
- "source": [
-  "This is a notebook markdown cell.",
-  "\n",
-  "<Tabs>\n",
-  "<TabItem value=\"Example\" label=\"Example\">\n",
-  "  This `TabItem` contains a notebook code cell\n",
-  "  <CodeCellPlaceholder tag=\"id-example-cell\" />\n",
-  "</TabItem>\n",
-  "</Tabs>"
- ]
-}
-```
-
-## Proper marking and attribution
-
-**All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
-
-Some companies require a special attribution notice. View a list of the companies to include in a special attribution notice at the [Special attributions](https://www.ibm.com/legal/copyright-trademark#special) section of the IBM Legal site.
-
-<details>
-<summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
-
-- IBM&reg;
-- IBM Cloud&reg;
-- IBM Quantum&trade;
-</details>
-
-**Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
-
-See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.
-
-### Trademark symbols
-
-To create the symbols in markdown:
-
-Use `&reg;` to get &reg; for registered trademarks.
-
-use `&trade;` to get &trade; for nonregistered trademarks.
-
-⚠️ **Note**: Do not include trademarks in headings. The code will display rather than the symbol.

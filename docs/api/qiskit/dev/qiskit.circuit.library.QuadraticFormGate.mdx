@@ -1,0 +1,156 @@
+---
+title: QuadraticFormGate (dev version)
+description: API reference for qiskit.circuit.library.QuadraticFormGate in the dev version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QuadraticFormGate
+---
+
+# QuadraticFormGate
+
+<Class id="qiskit.circuit.library.QuadraticFormGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/quadratic_form.py#L191-L364" signature="qiskit.circuit.library.QuadraticFormGate(num_result_qubits=None, quadratic=None, linear=None, offset=None, label='Q(x)')" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Implements a quadratic form on binary variables encoded in qubit registers.
+
+  A quadratic form on binary variables is a quadratic function $Q$ acting on a binary variable of $n$ bits, $x = x_0 ... x_{n-1}$. For an integer matrix $A$, an integer vector $b$ and an integer $c$ the function can be written as
+
+$$
+Q(x) = x^T A x + x^T b + c
+$$
+
+  If $A$, $b$ or $c$ contain scalar values, this circuit computes only an approximation of the quadratic form.
+
+  Provided with $m$ qubits to encode the value, this circuit computes $Q(x) \mod 2^m$ in \[two’s complement]\([https://stackoverflow.com/questions/1049722/what-is-2s-complement](https://stackoverflow.com/questions/1049722/what-is-2s-complement)) representation.
+
+$$
+|x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
+$$
+
+  Since we use two’s complement e.g. the value of $Q(x) = 3$ requires 2 bits to represent the value and 1 bit for the sign: 3 = ‘011’ where the first 0 indicates a positive value. On the other hand, $Q(x) = -3$ would be -3 = ‘101’, where the first 1 indicates a negative value and 01 is the two’s complement of 3.
+
+  If the value of $Q(x)$ is too large to be represented with m qubits, the resulting bitstring is $(Q(x) + 2^m) \mod 2^m)$.
+
+  The implementation of this circuit is discussed in \[1], Fig. 6.
+
+  **References**
+
+  **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
+
+  [arXiv:1912.04088](https://arxiv.org/pdf/1912.04088.pdf)
+
+  Create a new gate.
+
+  **Parameters**
+
+  *   **name** – The Qobj name of the gate.
+  *   **num\_qubits** – The number of qubits the gate acts on.
+  *   **params** – A list of parameters.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – An optional label for the gate.
+  *   **num\_result\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+  *   **quadratic** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) –
+  *   **linear** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) –
+  *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) –
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.QuadraticFormGate.base_class "qiskit.circuit.library.QuadraticFormGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ## Methods
+
+  ### required\_result\_qubits
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.required_result_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/quadratic_form.py#L266-L298" signature="required_result_qubits(quadratic, linear, offset)" modifiers="static">
+    Get the number of required result qubits.
+
+    **Parameters**
+
+    *   **quadratic** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – A matrix containing the quadratic coefficients.
+    *   **linear** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – An array containing the linear coefficients.
+    *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – A constant offset.
+
+    **Returns**
+
+    The number of qubits needed to represent the value of the quadratic form in twos complement.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/quadratic_form.py#L300-L315" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
+

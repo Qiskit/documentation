@@ -10,19 +10,61 @@ in_page_toc_max_heading_level: 2
 
 # Sample-based quantum diagonalization (SQD) release notes
 
-<span id="release-notes-upcoming-release" />
+<span id="release-notes-0-10-0" />
 
-## Upcoming release
+<span id="id2" />
 
-<span id="release-notes-upcoming-release-bug-fixes" />
+## 0.10.0
+
+<span id="release-notes-0-10-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   Removed `qiskit_addon_sqd.fermion.flip_orbital_occupancies()`. Users no longer need to flip the orbital occupancies output from [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") and [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals"); they will be output in the order expected by [`qiskit_addon_sqd.configuration_recovery.recover_configurations()`](configuration-recovery#recover_configurations "qiskit_addon_sqd.configuration_recovery.recover_configurations"): `tuple(array([occ_a_0, ..., occ_a_N]), array([occ_b_0, ..., occ_b_N]))`.
+
+<span id="release-notes-0-10-0-deprecation-notes" />
+
+### Deprecation Notes
+
+*   The `avg_occupancies` argument to [`qiskit_addon_sqd.configuration_recovery.recover_configurations()`](configuration-recovery#recover_configurations "qiskit_addon_sqd.configuration_recovery.recover_configurations") should now be a length-2 tuple containing the spin-up and spin-down occupancies, respectively.
+
+    Old format: `array([occ_b_N, ..., occ_b_0, occ_a_N, ..., occ_a_0])`
+
+    New format: `tuple(array([occ_a_0, ..., occ_a_N]), array([occ_b_0, ..., occ_b_N]))`
+
+<span id="release-notes-0-10-0-bug-fixes" />
 
 ### Bug Fixes
+
+*   Fixed a bug which would cause the energy output from [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") to be incorrect when the input `spin_sq` deviates from the spin^2 of the output wavefunction.
+
+<span id="release-notes-0-9-0" />
+
+<span id="id3" />
+
+## 0.9.0
+
+<span id="release-notes-0-9-0-upgrade-notes" />
+
+<span id="id4" />
+
+### Upgrade Notes
+
+*   [`qiskit_addon_sqd.fermion.optimize_orbitals()`](fermion#optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") and [`qiskit_addon_sqd.fermion.rotate_integrals()`](fermion#rotate_integrals "qiskit_addon_sqd.fermion.rotate_integrals") now require `k_flat` to specify the upper triangle (not including diagonal) of the rotation matrix, rather than the entire matrix.
+
+<span id="release-notes-0-9-0-bug-fixes" />
+
+<span id="id5" />
+
+### Bug Fixes
+
+*   Fixed an indexing error in [`qiskit_addon_sqd.configuration_recovery()`](configuration-recovery#module-qiskit_addon_sqd.configuration_recovery "qiskit_addon_sqd.configuration_recovery") which caused bits in the right half of the bitstring to be flipped with respect to the occupancies of the oritals associated with the left half of the bitstring.
 
 *   pyscf is no longer considered a dependency on Windows, where it fails to install. However, Windows remains an unsupported platform.
 
 <span id="release-notes-0-8-0" />
 
-<span id="id2" />
+<span id="id6" />
 
 ## 0.8.0
 
@@ -36,19 +78,21 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-8-0-upgrade-notes" />
 
+<span id="id7" />
+
 ### Upgrade Notes
 
 *   The ground state returned by [`qiskit_addon_sqd.fermion.solve_fermion()`](fermion#solve_fermion "qiskit_addon_sqd.fermion.solve_fermion") will now be an instance of [`qiskit_addon_sqd.fermion.SCIState`](fermion#scistate "qiskit_addon_sqd.fermion.SCIState"), rather than a PySCF `SCIVector` instance.
 
 <span id="release-notes-0-7-0" />
 
-<span id="id3" />
+<span id="id8" />
 
 ## 0.7.0
 
 <span id="release-notes-0-7-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id9" />
 
 ### Bug Fixes
 
@@ -58,13 +102,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0" />
 
-<span id="id5" />
+<span id="id10" />
 
 ## 0.6.0
 
 <span id="release-notes-0-6-0-upgrade-notes" />
 
-<span id="id6" />
+<span id="id11" />
 
 ### Upgrade Notes
 
@@ -115,6 +159,8 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-deprecation-notes" />
 
+<span id="id12" />
+
 ### Deprecation Notes
 
 *   The [`qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()`](fermion#bitstring_matrix_to_sorted_addresses "qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses") function has been deprecated in favor of [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs"). These two functions behave the same with one key exception – [`qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses()`](fermion#bitstring_matrix_to_sorted_addresses "qiskit_addon_sqd.fermion.bitstring_matrix_to_sorted_addresses") returns the configurations as `tuple(spin_dn, spin_up)`; whereas, [`qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs()`](fermion#bitstring_matrix_to_ci_strs "qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs") returns the configurations as `tuple(spin_up, spin_dn)`.
@@ -142,7 +188,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-bug-fixes" />
 
-<span id="id7" />
+<span id="id13" />
 
 ### Bug Fixes
 
@@ -152,13 +198,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-0" />
 
-<span id="id8" />
+<span id="id14" />
 
 ## 0.5.0
 
 <span id="release-notes-0-5-0-upgrade-notes" />
 
-<span id="id9" />
+<span id="id15" />
 
 ### Upgrade Notes
 
@@ -216,7 +262,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-4-0" />
 
-<span id="id10" />
+<span id="id16" />
 
 ## 0.4.0
 
@@ -228,7 +274,7 @@ This is a minor release which introduces a couple of small, but important, break
 
 <span id="release-notes-0-4-0-upgrade-notes" />
 
-<span id="id11" />
+<span id="id17" />
 
 ### Upgrade Notes
 

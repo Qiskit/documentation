@@ -61,7 +61,11 @@ export class InternalLink {
     if (this.value === "") {
       return [originFile];
     }
-    if (this.value.startsWith("/images") || this.value.startsWith("/videos")) {
+    if (
+      this.value.startsWith("/images") ||
+      this.value.startsWith("/videos") ||
+      this.value.endsWith(".pdf")
+    ) {
       return [path.join("public/", this.value)];
     }
 

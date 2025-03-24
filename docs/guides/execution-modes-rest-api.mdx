@@ -5,6 +5,17 @@ description: How to run a quantum computing job in a Qiskit Runtime session.
 
 # Execution modes using REST API
 
+<LegacyContent>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.](https://quantum.cloud.ibm.com/docs/guides/execution-modes-rest-api)
+</Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/guides/execution-modes-rest-api)
+</Admonition>
+</CloudContent>
+
 You can run your Qiskit primitive workloads using REST APIs in one of three execution modes, depending on your needs: job, session, and batch. This topic explains these modes.
 
 <Admonition type="note">
@@ -17,26 +28,70 @@ In job mode, a single primitive request of the Estimator or the Sampler is made 
 
 ## Session mode with REST API
 
-A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources. More details about Sessions can be found in the [documentation](./sessions).
+A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources. More details about Sessions can be found in the [documentation](./execution-modes).
+
+<CloudContent>
+<Admonition type="note">
+Open Plan users cannot submit session jobs.
+</Admonition>
+</CloudContent>
 
 ### Start a session
 
-Begin with creating a session and obtaining a session ID.
+Begin by creating a session and obtaining a session ID.
 
+<LegacyContent>
 ```python
 import json
 
 sessionsUrl = "https://api.quantum-computing.ibm.com/runtime/sessions"
+auth_id = "Bearer <YOUR_API_TOKEN>"
+backend = "<BACKEND_NAME>"
 
 headersList = {
   "Accept": "application/json",
-  'x-access-token':auth_id,
+  'Authorization':auth_id,
   "Content-Type": "application/json"
 }
 
 payload = json.dumps({
   "backend": backend,
   "instance": "hub1/group1/project1",
+})
+
+response = requests.request("POST", sessionsUrl, data=payload, headers=headersList)
+
+sessionId = response.json()['id']
+
+print(response.json())
+```
+Output
+```text
+{'id': 'crw9s7cdbt40008jxesg'}
+```
+</LegacyContent>
+
+
+<CloudContent>
+```python
+import json
+import requests
+
+sessionsUrl = "https://quantum.cloud.ibm.com/api/qiskit-runtime-rest/v1/sessions"
+auth_id = "Bearer <YOUR_BEARER_TOKEN>"
+backend = "<BACKEND_NAME>"
+crn = "<SERVICE-CRN>"
+
+headersList = {
+  "Accept": "application/json",
+  "Content-Type": "application/json",
+  "Authorization": auth_id,
+  "Service-CRN": crn
+}
+
+payload = json.dumps({
+  "backend": backend,
+  "mode": 'dedicated',
 })
 
 response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
@@ -49,24 +104,26 @@ Output
 ```text
 {'id': 'crw9s7cdbt40008jxesg'}
 ```
-
+</CloudContent>
 
 ### Close a session
 
 It is good practice to close a `Session` when all jobs are done. This will reduce wait time for subsequent users.
 
+<LegacyContent>
 ```python
 closureURL="https://api.quantum-computing.ibm.com/runtime/sessions/"+sessionId+"/close"
 
 headersList = {
   "Accept": "application/json",
-  'x-access-token':auth_id,
+  "Authorization": auth_id,
 }
 
 closure_response = requests.request(
     "DELETE",
     closureURL,
-    headers=headersList)
+    headers=headersList
+    )
 
 print("Session closure response ok?:",closure_response.ok,closure_response.text)
 ```
@@ -74,20 +131,47 @@ Output
 ```text
 Session closure response ok?: True
 ```
+</LegacyContent>
+
+<CloudContent>
+```python
+closureURL="https://quantum.cloud.ibm.com/api/qiskit-runtime-rest/v1/sessions/"+sessionId+"/close"
+
+headersList = {
+  "Accept": "application/json",
+  "Authorization": auth_id,
+  "Service-CRN": crn
+}
+
+closure_response = requests.request(
+    "DELETE",
+    closureURL,
+    headers=headersList
+    )
+
+print("Session closure response ok?:",closure_response.ok,closure_response.text)
+```
+Output
+```text
+Session closure response ok?: True
+```
+</CloudContent>
 
 ## Batch mode with REST API
 
-Alternatively, you can submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. More details about batch mode can be found in the [documentation](./run-jobs-batch).
+Alternatively, you can submit a batch job by specifying the `mode` in the request payload. Batch mode can help shorten processing time if all jobs can be provided at the outset. Learn about batch mode in the [introduction to execution modes](./execution-modes#batch-mode) guide.
 
+<LegacyContent>
 ```python
 import json
+import requests
 
 sessionsUrl = "https://api.quantum-computing.ibm.com/runtime/sessions"
 
 headersList = {
   "Accept": "application/json",
-  'x-access-token':auth_id,
-  "Content-Type": "application/json"
+  'Authorization':auth_id,
+  'Content-Type': 'application/json'
 }
 
 payload = json.dumps({
@@ -100,6 +184,33 @@ response = requests.request("POST", sessionsUrl, data=payload,  headers=headersL
 
 sessionId = response.json()['id']
 ```
+</LegacyContent>
+
+<CloudContent>
+```python
+import json
+import requests
+
+sessionsUrl = "https://quantum.cloud.ibm.com/api/qiskit-runtime-rest/sessions"
+
+headersList = {
+  "Accept": "application/json",
+  "Authorization": auth_id,
+  "Service-CRN": crn,
+  'Content-Type': 'application/json'
+}
+
+payload = json.dumps({
+  "backend": backend,
+  "instance": "hub1/group1/project1",
+  "mode": "batch"
+})
+
+response = requests.request("POST", sessionsUrl, data=payload,  headers=headersList)
+
+sessionId = response.json()['id']
+```
+</CloudContent>
 
 ## Examples of jobs submitted in a session
 
@@ -111,6 +222,7 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
 
 ### Estimator jobs in session mode
 
+<LegacyContent>
 <Tabs>
   <TabItem value="1 circuit, 4 observables" label="1 circuit, 4 observables">
     ```python
@@ -122,11 +234,10 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
     "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session
     "params": {
-        "pubs": [[resulting_qasm, [obs1, obs2, obs3, obs4]]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
-        "version": 2, #this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm, [obs1, obs2, obs3, obs4]]], #primitive unified blocs (PUBs) containing one circuit each
         "options":{
                 "transpilation":{"optimization_level": 1},
-                "twirling": {"enable_gates": True,"enable_measure": True}, #c.f. documentation at https://docs.quantum.ibm.com/run/configure-error-mitigation#custom-error-settings-v2-primitives
+                "twirling": {"enable_gates": True,"enable_measure": True},
                 # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
                     },
     }
@@ -146,11 +257,10 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
     "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session
     "params": {
-        "pubs": [[resulting_qasm, [[obs1], [obs2], [obs3], [obs4]], [[vals1], [vals2]]]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
-        "version": 2, #this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm, [[obs1], [obs2], [obs3], [obs4]], [[vals1], [vals2]]]], #primitive unified blocs (PUBs) containing one circuit each
         "options":{
                 "transpilation":{"optimization_level": 1},
-                "twirling": {"enable_gates": True,"enable_measure": True}, #c.f. documentation at https://docs.quantum.ibm.com/run/configure-error-mitigation#custom-error-settings-v2-primitives
+                "twirling": {"enable_gates": True,"enable_measure": True},
                 # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
                     },
     }
@@ -169,11 +279,10 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
     "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session
     "params": {
-        "pubs": [[resulting_qasm, obs1],[resulting_qasm, obs2]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
-        "version": 2, #this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm, obs1],[resulting_qasm, obs2]], #primitive unified blocs (PUBs) containing one circuit each
         "options":{
                 "transpilation":{"optimization_level": 1},
-                "twirling": {"enable_gates": True,"enable_measure": True}, #c.f. documentation at https://docs.quantum.ibm.com/run/configure-error-mitigation#custom-error-settings-v2-primitives
+                "twirling": {"enable_gates": True,"enable_measure": True},
                 # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
                     },
     }
@@ -195,11 +304,10 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
     "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session
     "params": {
-        "pubs": [[resulting_qasm]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
-        "version": 2, #this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm]], #primitive unified blocs (PUBs) containing one circuit each
         "options":{
                 "transpilation":{"optimization_level": 1},
-                "twirling": {"enable_gates": True,"enable_measure": True}, #c.f. documentation at https://docs.quantum.ibm.com/run/configure-error-mitigation#custom-error-settings-v2-primitives
+                "twirling": {"enable_gates": True,"enable_measure": True},
                 # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
                     },
     }
@@ -219,11 +327,10 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
     "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session
     "params": {
-        "pubs": [[resulting_qasm, [vals1, vals2, vals3]]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
-        "version": 2, #this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm, [vals1, vals2, vals3]]], #primitive unified blocs (PUBs) containing one circuit each
         "options":{
                 "transpilation":{"optimization_level": 1},
-                "twirling": {"enable_gates": True,"enable_measure": True}, #c.f. documentation at https://docs.quantum.ibm.com/run/configure-error-mitigation#custom-error-settings-v2-primitives
+                "twirling": {"enable_gates": True,"enable_measure": True},
                 # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
                     },
     }
@@ -242,11 +349,10 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
     "project": "project1",
     "session_id": sessionId, # This specifies the previously created Session
     "params": {
-        "pubs": [[resulting_qasm, [val1]],[resulting_qasm,None,100]], #primitive unified blocs (PUBs) containing one circuit each. c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
-        "version": 2, #this defines the version of the Qiskit Runtime Primitive to use, c.f. https://docs.quantum.ibm.com/migration-guides/v2-primitives
+        "pubs": [[resulting_qasm, [val1]],[resulting_qasm,None,100]], #primitive unified blocs (PUBs) containing one circuit each
         "options":{
                 "transpilation":{"optimization_level": 1},
-                "twirling": {"enable_gates": True,"enable_measure": True}, #c.f. documentation at https://docs.quantum.ibm.com/run/configure-error-mitigation#custom-error-settings-v2-primitives
+                "twirling": {"enable_gates": True,"enable_measure": True},
                 # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
                     },
     }
@@ -254,8 +360,131 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
 ```
   </TabItem>
 </Tabs>
+</LegacyContent>
 
 
+
+<CloudContent>
+  <Tabs>
+    <TabItem value="1 circuit, 4 observables" label="1 circuit, 4 observables">
+      ```python
+      job_input = {
+      'program_id': 'estimator',
+      "backend": backend,
+      "session_id": sessionId, # This specifies the previously created Session
+      "params": {
+          "pubs": [[resulting_qasm, [obs1, obs2, obs3, obs4]]], #primitive unified blocs (PUBs) containing one circuit each.
+          "options":{
+                  "transpilation":{"optimization_level": 1},
+                  "twirling": {"enable_gates": True,"enable_measure": True},
+                  # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
+                      },
+      }
+
+  }
+  ```
+    </TabItem>
+
+    <TabItem value="1 circuit, 4 observables, 2 parameter sets" label="1 circuit, 4 observables, 2 parameter sets">
+
+      ```python
+      job_input = {
+      'program_id': 'estimator',
+      "backend": backend,
+      "session_id": sessionId, # This specifies the previously created Session
+      "params": {
+          "pubs": [[resulting_qasm, [[obs1], [obs2], [obs3], [obs4]], [[vals1], [vals2]]]], #primitive unified blocs (PUBs) containing one circuit each
+          "options":{
+                  "transpilation":{"optimization_level": 1},
+                  "twirling": {"enable_gates": True,"enable_measure": True},
+                  # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
+                      },
+      }
+  }
+  ```
+    </TabItem>
+
+    <TabItem value="2 circuits, 2 observables" label="2 circuits, 2 observables">
+
+    ```python
+      job_input = {
+      'program_id': 'estimator',
+      "backend": backend,
+      "session_id": sessionId, # This specifies the previously created Session
+      "params": {
+          "pubs": [[resulting_qasm, obs1],[resulting_qasm, obs2]], #primitive unified blocs (PUBs) containing one circuit each
+          "options":{
+                  "transpilation":{"optimization_level": 1},
+                  "twirling": {"enable_gates": True,"enable_measure": True},
+                  # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
+                      },
+      }
+  }
+  ```
+    </TabItem>
+  </Tabs>
+
+### Sampler jobs in session mode
+
+  <Tabs>
+    <TabItem value="1 circuit, no parameters" label="1 circuit, no parameters">
+      ```python
+      job_input = {
+      'program_id': 'sampler',
+      "backend": backend,
+      "session_id": sessionId, # This specifies the previously created Session
+      "params": {
+          "pubs": [[resulting_qasm]], #primitive unified blocs (PUBs) containing one circuit each
+          "options":{
+                  "transpilation":{"optimization_level": 1},
+                  "twirling": {"enable_gates": True,"enable_measure": True},
+                  # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
+                      },
+      }
+
+  }
+  ```
+    </TabItem>
+
+    <TabItem value="1 circuit, 3 parameter sets" label="1 circuit, 3 parameter sets">
+
+      ```python
+      job_input = {
+      'program_id': 'sampler',
+      "backend": backend,
+      "session_id": sessionId, # This specifies the previously created Session
+      "params": {
+          "pubs": [[resulting_qasm, [vals1, vals2, vals3]]], #primitive unified blocs (PUBs) containing one circuit each
+          "options":{
+                  "transpilation":{"optimization_level": 1},
+                  "twirling": {"enable_gates": True,"enable_measure": True},
+                  # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
+                      },
+      }
+  }
+  ```
+    </TabItem>
+
+    <TabItem value="2 circuits, 1 parameter set" label="2 circuits, 1 parameter set">
+
+    ```python
+      job_input = {
+      'program_id': 'sampler',
+      "backend": backend,
+      "session_id": sessionId, # This specifies the previously created Session
+      "params": {
+          "pubs": [[resulting_qasm, [val1]],[resulting_qasm,None,100]], #primitive unified blocs (PUBs) containing one circuit each
+          "options":{
+                  "transpilation":{"optimization_level": 1},
+                  "twirling": {"enable_gates": True,"enable_measure": True},
+                  # "dynamical_decoupling": {"enable": True, "sequence_type": "XpXm"},   #(optional)
+                      },
+      }
+  }
+  ```
+    </TabItem>
+  </Tabs>
+</CloudContent>
 
 ## Next steps
 
@@ -263,6 +492,6 @@ Once a session is set up, one or more Sampler or Estimator jobs can be submitted
     - Review detailed [Sampler and Estimator](primitives-rest-api) primitives examples using REST API.
     - Learn how to [transpile circuits using REST API](./transpile-rest-api).
     - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
-    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum&trade; Learning.
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum&reg; Learning.
     - Learn how to transpile locally in the [Transpile](./transpile) section.
 </Admonition>

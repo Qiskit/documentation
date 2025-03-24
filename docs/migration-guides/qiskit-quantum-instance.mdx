@@ -3,8 +3,19 @@ title: QuantumInstance migration guide
 description: Stop using the deprecated Qiskit `QuantumInstance` class
 ---
 
-# QuantumInstance migration guide
 
+
+# QuantumInstance migration guide
+<LegacyContent>
+<Admonition type="note">
+This documentation is relevant to IBM Quantum&reg; Platform Classic. If you need the newer version, go to the new [IBM Quantum Platform documentation.]( https://quantum.cloud.ibm.com/docs/migration-guides/qiskit-quantum-instance)
+</Admonition>
+</LegacyContent>
+<CloudContent>
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/migration-guides/qiskit-quantum-instance)
+</Admonition>
+</CloudContent>
 <Admonition type="caution">
   **Deprecation Notice**
 
@@ -29,7 +40,7 @@ The following table summarizes the migration alternatives for the [`qiskit.utils
 
 | QuantumInstance method | Alternative |
 | --- | --- |
-| [`qiskit.utils.QuantumInstance.execute`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#execute) | [`qiskit.primitives.Sampler.run`](/api/qiskit/qiskit.primitives.Sampler#run) or [`qiskit.primitives.Estimator.run`](/api/qiskit/qiskit.primitives.Estimator#run) |
+| [`qiskit.utils.QuantumInstance.execute`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#execute) | [`qiskit.primitives.Sampler.run`](/api/qiskit/1.4/qiskit.primitives.Sampler#run) or [`qiskit.primitives.Estimator.run`](/api/qiskit/1.4/qiskit.primitives.Estimator#run) |
 | [`qiskit.utils.QuantumInstance.transpile`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#transpile) | [`qiskit.compiler.transpile`](/api/qiskit/compiler#qiskit.compiler.transpile) or [`qiskit.transpiler.pass_manager.PassManager.run`](/api/qiskit/qiskit.transpiler.PassManager#run)|
 | [`qiskit.utils.QuantumInstance.assemble`](/api/qiskit/0.46/qiskit.utils.QuantumInstance#assemble) | [`qiskit.compiler.assemble`](/api/qiskit/compiler#qiskit.compiler.assemble) [Deprecated: no longer part of the workflow]|
 
@@ -43,8 +54,8 @@ The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execut
 
   There are two types of primitives: Sampler and Estimator.
 
-  Qiskit provides reference implementations in [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator). Additionally,
-  [`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator) are
+  Qiskit provides reference implementations in [`qiskit.primitives.Sampler`](/api/qiskit/1.4/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](/api/qiskit/1.4/qiskit.primitives.Estimator). Additionally,
+  [`qiskit.primitives.BackendSampler`](/api/qiskit/1.4/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](/api/qiskit/1.4/qiskit.primitives.BackendEstimator) are
   wrappers for `backend.run()` that follow the primitives interface.
 
   Providers can implement these primitives as subclasses of [`qiskit.primitives.BaseSampler`](/api/qiskit/0.46/qiskit.primitives.BaseSampler) and [`qiskit.primitives.BaseEstimator`](/api/qiskit/0.46/qiskit.primitives.BaseEstimator), respectively.
@@ -52,11 +63,11 @@ The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execut
 
   This guide uses the following naming convention:
 
-  - *Primitives* - Any Sampler or Estimator implementation using base classes [`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) and a [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator).
-  - *Reference primitives* -  [`qiskit.primitives.Sampler`](/api/qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](/api/qiskit/qiskit.primitives.Estimator) are reference implementations that come with Qiskit.
+  - *Primitives* - Any Sampler or Estimator implementation using base classes [`qiskit.primitives.BackendSampler`](/api/qiskit/1.4/qiskit.primitives.BackendSampler) and a [`qiskit.primitives.BackendEstimator`](/api/qiskit/1.4/qiskit.primitives.BackendEstimator).
+  - *Reference primitives* -  [`qiskit.primitives.Sampler`](/api/qiskit/1.4/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](/api/qiskit/1.4/qiskit.primitives.Estimator) are reference implementations that come with Qiskit.
   - *Aer primitives* - The [Aer](https://qiskit.org/ecosystem/aer) primitive implementations [`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html) and [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html).
   - *Qiskit Runtime primitives* - The Qiskit Runtime primitive implementations [`qiskit_ibm_runtime.Sampler`](/api/qiskit-ibm-runtime/0.26/sampler) and [`qiskit_ibm_runtime.Estimator`](/api/qiskit-ibm-runtime/0.26/estimator).
-  - *`Backend` primitives* - Instances of [`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator). These allow any processor to implement primitive interfaces.
+  - *`Backend` primitives* - Instances of [`qiskit.primitives.BackendSampler`](/api/qiskit/1.4/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](/api/qiskit/1.4/qiskit.primitives.BackendEstimator). These allow any processor to implement primitive interfaces.
 
 </Admonition>
 
@@ -131,10 +142,10 @@ primitives expose a similar setting through their interface:
 | Measurement error mitigation: `measurement_error_mitigation_cls`, `cals_matrix_refresh_period`, | No | No | Sampler default > M3 (*) | No |
 | Job management: `job_callback`, `max_job_retries`, `timeout`, `wait` | Does not apply | Does not apply | Sessions, callback (**) | No |
 
-(\*) For more information on error mitigation and setting options on Qiskit Runtime Primitives, see
-[Advanced Runtime Options](/guides/runtime-options-overview).
+(\*) For more information about error mitigation and setting options on Qiskit Runtime primitives, see
+[Advanced Runtime Options.](/guides/runtime-options-overview)
 
-(\*\*) For more information on Runtime sessions, see [About Sessions](/guides/sessions).
+(\*\*) For more information about sessions, see [Introduction to execution modes.](/guides/execution-modes)
 
 ## Code examples
 
@@ -391,7 +402,7 @@ is the closest alternative to the QuantumInstance measurement error mitigation i
 is not a one-to-one replacement.
 
 For more information about the error mitigation options in the Qiskit Runtime primitives, see [Configure Error Mitigation](/guides/configure-error-mitigation).
-
+<LegacyContent>
 ```python
 from qiskit import QuantumCircuit
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
@@ -413,6 +424,30 @@ quasi_dists = result.quasi_dists
 
 print("Quasi dists: ", quasi_dists)
 ```
+</LegacyContent>
+<CloudContent>
+```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Options
+
+circuit = QuantumCircuit(2)
+circuit.x(0)
+circuit.x(1)
+circuit.measure_all()
+
+service = QiskitRuntimeService(channel="ibm_cloud")
+backend = service.backend("ibmq_montreal")
+
+options = Options(resilience_level = 1) # 1 = measurement error mitigation
+sampler = Sampler(session=backend, options=options)
+
+# Run
+result = sampler.run(circuit, shots=4000).result()
+quasi_dists = result.quasi_dists
+
+print("Quasi dists: ", quasi_dists)
+```
+</CloudContent>
 
 ```text
 Quasi dists: [{2: 0.0008492371522941081, 3: 0.9968874384378738, 0: -0.0003921227905920063,
@@ -436,7 +471,7 @@ When using the primitives:
 * You cannot explicitly access their transpilation routine.
 * The mechanism to apply custom transpilation passes to the Aer, Runtime, and `Backend` primitives is to pre-transpile
     locally and set `skip_transpilation=True` in the corresponding primitive.
-* The only primitives that accept a custom **bound** transpiler pass manager are instances of [`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) or [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator).
+* The only primitives that accept a custom **bound** transpiler pass manager are instances of [`qiskit.primitives.BackendSampler`](/api/qiskit/1.4/qiskit.primitives.BackendSampler) or [`qiskit.primitives.BackendEstimator`](/api/qiskit/1.4/qiskit.primitives.BackendEstimator).
     If a `bound_pass_manager` is defined, the `skip_transpilation=True` option does **not** skip this bound pass.
 
     <Admonition type="caution">
@@ -447,7 +482,7 @@ When using the primitives:
     </Admonition>
 
 Note that the primitives do handle parameter bindings, so that even if a `bound_pass_manager` is defined in a
-[`qiskit.primitives.BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) or [`qiskit.primitives.BackendEstimator`](/api/qiskit/qiskit.primitives.BackendEstimator), you do not have to manually assign parameters as expected in the QuantumInstance workflow.
+[`qiskit.primitives.BackendSampler`](/api/qiskit/1.4/qiskit.primitives.BackendSampler) or [`qiskit.primitives.BackendEstimator`](/api/qiskit/1.4/qiskit.primitives.BackendEstimator), you do not have to manually assign parameters as expected in the QuantumInstance workflow.
 
 The two-stage transpilation was added to the `QuantumInstance` to allow running pulse-efficient transpilation passes with the [`qiskit.opflow.converters.CircuitSampler`](/api/qiskit/0.46/qiskit.opflow.converters.CircuitSampler) class. The following
 example shows how to migrate this use case, where the `QuantumInstance.execute()` method is called by the [`qiskit.opflow.converters.CircuitSampler`](/api/qiskit/0.46/qiskit.opflow.converters.CircuitSampler) code.
