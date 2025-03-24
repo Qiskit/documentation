@@ -16,7 +16,7 @@ import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
-import { Metadata, ApiType } from "./Metadata.js";
+import { Metadata, ApiTypeName, API_TYPES } from "./Metadata.js";
 import { processMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
 
@@ -353,7 +353,9 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data, dl.cpp.function, dl.cpp.struct, dl.cpp.type, dl.cpp.enum, dl.cpp.enumerator",
+        Object.values(API_TYPES)
+          .map((x) => x.cssSelector)
+          .join(", "),
       )
       // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
       .not("td > dl")
@@ -375,8 +377,8 @@ export async function processMembersAndSetMeta(
         : $dl.find("dt").attr("id")) || "";
     const apiType = getApiType($dl);
 
-    if (apiType && apiType === "module") {
-      throw new Error("Did not expect apiType to be 'module'");
+    if (!apiType) {
+      throw new Error(`Could not determine apiType for '${$dl}'`);
     }
 
     const priorApiType = meta.apiType;
@@ -467,7 +469,7 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
     });
 }
 
-function getApiType($dl: Cheerio<any>): ApiType | undefined {
+function getApiType($dl: Cheerio<any>): ApiTypeName | undefined {
   // Historical versions were generating properties incorrectly as methods.
   // We can fix this by looking at the modifier before the signature.
   // See https://github.com/Qiskit/documentation/issues/1352 for more information.
@@ -475,25 +477,13 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     return "property";
   }
 
-  const apiClassNames = [
-    "type",
-    "function",
-    "class",
-    "exception",
-    "method",
-    "property",
-    "attribute",
-    "module",
-    "data",
-    "struct",
-    "enum",
-    "enumerator",
-  ] as const;
-  for (const className of apiClassNames) {
-    if ($dl.hasClass(className)) {
-      if (className === "type") return "typedef";
-      return className;
-    }
+  for (const [apiTypeName, apiType] of Object.entries(API_TYPES)) {
+    const className = apiType.cssSelector.split(".").pop();
+    if (!className)
+      throw new Error(
+        `'cssSelector' attribute must be of form 'dl.py.class', found '${apiType}'.`,
+      );
+    if ($dl.hasClass(className)) return apiTypeName as ApiTypeName;
   }
 
   return undefined;
