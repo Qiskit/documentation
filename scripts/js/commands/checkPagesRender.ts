@@ -172,15 +172,14 @@ async function validateDockerRunning(): Promise<void> {
     const response = await fetch(`http://localhost:${PORT}`);
     if (response.status !== 200) {
       console.error(
-        "Failed to access http://localhost:3000. Have you started the Docker server with `./start`? " +
-          "Refer to the README for instructions.",
+        "Failed to access http://localhost:3000. Have you started the Docker server with `./start` in another shell? ",
       );
       process.exit(1);
     }
   } catch (error) {
     console.error(
       "Error when accessing http://localhost:3000. Make sure that you've started the Docker server " +
-        "with `./start`. Refer to the README for instructions.\n\n" +
+        "with `./start` in another shell.\n\n" +
         `${error}`,
     );
     process.exit(1);
