@@ -172,6 +172,7 @@ print(f">>> measurement error mitigation is turned on: {estimator.options.resili
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 # Estimator and Sampler have different options
+sampler = Sampler(backend)
 options = sampler.options
 
 options.dynamical_decoupling.enable = True
