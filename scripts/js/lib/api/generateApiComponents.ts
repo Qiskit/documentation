@@ -108,6 +108,7 @@ function prepareProps(
     typedef: prepClassOrException,
     enum: prepClassOrException,
     enumerator: prepAttributeOrProperty,
+    structMember: prepAttributeOrProperty,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
