@@ -25,7 +25,8 @@ export type ApiObjectName =
   | "cFunction"
   | "typedef"
   | "enum"
-  | "enumerator";
+  | "enumerator"
+  | "structMember";
 
 interface ApiObjectInfo {
   htmlSelector: string;
@@ -51,6 +52,7 @@ export const API_OBJECTS: { [K in ApiObjectName]: ApiObjectInfo } = {
   typedef: { htmlSelector: "dl.cpp.type", tagName: "class" },
   enum: { htmlSelector: "dl.cpp.enum", tagName: "class" },
   enumerator: { htmlSelector: "dl.cpp.enumerator", tagName: "attribute" },
+  structMember: { htmlSelector: "dl.cpp.var", tagName: "attribute" },
 } as const;
 
 export type Metadata = {
