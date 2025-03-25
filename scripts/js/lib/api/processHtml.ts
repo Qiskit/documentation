@@ -17,7 +17,11 @@ import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
-import { processMdxComponent } from "./generateApiComponents.js";
+import {
+  getHeaderLevel,
+  processMdxComponent,
+  setMinimumHeadingLevel,
+} from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
 
 export type ProcessedHtml = {
@@ -419,18 +423,22 @@ export async function processMembersAndSetMeta(
     if (signatures.length == 0) {
       $dl.replaceWith(`<div>${bodyElements.join("\n")}</div>`);
     } else {
+      const headerLevel = getHeaderLevel($, $dl);
       const [openTag, closeTag] = await processMdxComponent(
         $,
         signatures,
         $dl,
         priorApiType,
-        apiType!,
+        apiType,
         id,
+        headerLevel,
         options,
       );
-      $dl.replaceWith(
-        `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
-      );
+      const $body = $("<div>" + bodyElements.join("\n") + "</div>");
+      if (!openTag.includes("isDedicatedPage='true'")) {
+        setMinimumHeadingLevel($, $body, headerLevel + 1);
+      }
+      $dl.replaceWith(`<div>${openTag}\n${$body.html()}\n${closeTag}</div>`);
     }
   }
 }

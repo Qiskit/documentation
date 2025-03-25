@@ -41,6 +41,7 @@ export async function processMdxComponent(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
+  headerLevel: number,
   options: { isCApi: boolean },
 ): Promise<[string, string]> {
   const tagName = API_OBJECTS[apiType].tagName;
@@ -53,6 +54,7 @@ export async function processMdxComponent(
     priorApiType,
     apiType,
     id,
+    headerLevel,
     options,
   );
 
@@ -65,6 +67,7 @@ export async function processMdxComponent(
         apiType,
         apiType,
         id,
+        headerLevel,
         options,
       ) ?? [],
   );
@@ -84,16 +87,40 @@ function prepareProps(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
+  headerLevel: number,
   options: { isCApi: boolean },
 ): ComponentProps {
   const prepClassOrException = () =>
-    prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id, options);
+    prepareClassOrExceptionProps(
+      $,
+      $child,
+      $dl,
+      githubSourceLink,
+      id,
+      headerLevel,
+      options,
+    );
   const prepFunction = () =>
-    prepareFunctionProps($, $child, $dl, githubSourceLink, id);
+    prepareFunctionProps($, $child, $dl, githubSourceLink, id, headerLevel);
   const prepMethod = () =>
-    prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id);
+    prepareMethodProps(
+      $,
+      $child,
+      $dl,
+      priorApiType,
+      githubSourceLink,
+      id,
+      headerLevel,
+    );
   const prepAttributeOrProperty = () =>
-    prepareAttributeOrPropertyProps($, $child, $dl, githubSourceLink, id);
+    prepareAttributeOrPropertyProps(
+      $,
+      $child,
+      $dl,
+      githubSourceLink,
+      id,
+      headerLevel,
+    );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
     class: prepClassOrException,
@@ -125,6 +152,7 @@ function prepareClassOrExceptionProps(
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
   options: { isCApi: boolean },
 ): ComponentProps {
   const modifiers = getAndRemoveModifiers($child);
@@ -146,7 +174,6 @@ function prepareClassOrExceptionProps(
       isDedicatedPage: true,
     };
   }
-  const headerLevel = getHeaderLevel($, $dl);
   const name = getLastPartFromFullIdentifier(id);
   const htag = `h${headerLevel}`;
   $(`<${htag} data-header-type="class-header">${name}</${htag}>`).insertBefore(
@@ -162,6 +189,7 @@ function prepareMethodProps(
   priorApiType: ApiTypeName | undefined,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
 ): ComponentProps {
   const modifiers = getAndRemoveModifiers($child);
   const props = {
@@ -180,7 +208,6 @@ function prepareMethodProps(
         isDedicatedPage: true,
       };
     } else if ($child.attr("id")) {
-      const headerLevel = getHeaderLevel($, $dl);
       const htag = `h${headerLevel}`;
       $(
         `<${htag} data-header-type="method-header">${name}</${htag}>`,
@@ -196,6 +223,7 @@ function prepareAttributeOrPropertyProps(
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
 ): ComponentProps {
   // Properties/attributes have multiple `em.property` values to set:
   //
@@ -259,7 +287,6 @@ function prepareAttributeOrPropertyProps(
   }
 
   // Else, the attribute is embedded on the class
-  const headerLevel = getHeaderLevel($, $dl);
   const htag = `h${headerLevel}`;
   $(
     `<${htag} data-header-type="attribute-header">${name}</${htag}>`,
@@ -274,6 +301,7 @@ function prepareFunctionProps(
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
 ): ComponentProps {
   const modifiers = getAndRemoveModifiers($child);
   const props = {
@@ -291,7 +319,6 @@ function prepareFunctionProps(
       isDedicatedPage: true,
     };
   }
-  const headerLevel = getHeaderLevel($, $dl);
   const name = getLastPartFromFullIdentifier(id);
   const htag = `h${headerLevel}`;
   $(`<${htag} data-header-type="method-header">${name}</${htag}>`).insertBefore(
@@ -421,7 +448,7 @@ export async function htmlSignatureToMd(
     .replace(/`$/, "");
 }
 
-function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
+export function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
   // We don't allow the header to be h1 or h2 because it's too large design-wise for API components.
   // We try to ensure that the API docs are set up so there is always at least an h2 above the API
   // component, but this is not always the case, especially with historical API docs. That means that
@@ -464,4 +491,43 @@ function getPriorHeaderLevel(
   // The parent of a component is always a <div>, and the previous element of that <div> is the header
   // we are looking for.
   return $dl.closest("class").parent().prev().get(0)?.tagName.substring(1);
+}
+
+/**
+ * Sets the minimum heading level for the elements children, increasing each
+ * heading if needed to preserve the hierarchy.
+ *
+ * For example, `level=3` will convert:
+ * `<h1>Heading</h1><h2>Subheading</h2>`
+ * to
+ * `<h3>Heading</h3><h4>Subheading</h4>`
+ */
+export function setMinimumHeadingLevel(
+  $: CheerioAPI,
+  $dl: Cheerio<any>,
+  minLevel: number,
+): void {
+  const detectedHeadingLevels = [1, 2, 3, 4, 5, 6].filter(
+    (level) => $dl.find(`h${level}`).length !== 0,
+  );
+  if (!detectedHeadingLevels) return;
+  const currentMinimumLevel = Math.min(...detectedHeadingLevels);
+  const numberToIncreaseEachHeadingBy = minLevel - currentMinimumLevel;
+  if (numberToIncreaseEachHeadingBy === 0) return;
+
+  for (const oldLevel of detectedHeadingLevels) {
+    const newLevel = oldLevel + numberToIncreaseEachHeadingBy;
+    const oldTag = `h${oldLevel}`;
+    const newTag: string = (() => {
+      if (newLevel < 7) return `h${newLevel}`;
+      console.warn(
+        "Heading hierarchy not preserved as it would result in an invalid heading tag (>h6)",
+      );
+      return "strong";
+    })();
+
+    $dl
+      .find(oldTag)
+      .replaceWith((_, el) => `<${newTag}>${$(el).html()}</${newTag}>`);
+  }
 }
