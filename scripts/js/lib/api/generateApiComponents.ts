@@ -16,7 +16,7 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
-import { ApiType } from "./Metadata.js";
+import { ApiTypeName, ApiObjectName, API_OBJECTS } from "./Metadata.js";
 import {
   getLastPartFromFullIdentifier,
   removeSuffix,
@@ -34,30 +34,16 @@ export type ComponentProps = {
   isDedicatedPage?: boolean;
 };
 
-const API_TYPE_TO_TAG: Record<Exclude<ApiType, "module">, string> = {
-  class: "class",
-  exception: "class",
-  attribute: "attribute",
-  property: "attribute",
-  function: "function",
-  method: "function",
-  data: "attribute",
-  struct: "class",
-  typedef: "class",
-  enum: "class",
-  enumerator: "attribute",
-};
-
 export async function processMdxComponent(
   $: CheerioAPI,
   signatures: Cheerio<Element>[],
   $dl: Cheerio<any>,
-  priorApiType: ApiType | undefined,
-  apiType: Exclude<ApiType, "module">,
+  priorApiType: ApiTypeName | undefined,
+  apiType: ApiObjectName,
   id: string,
   options: { isCApi: boolean },
 ): Promise<[string, string]> {
-  const tagName = API_TYPE_TO_TAG[apiType];
+  const tagName = API_OBJECTS[apiType].tagName;
 
   const $firstSignature = signatures.shift()!;
   const componentProps = prepareProps(
@@ -95,8 +81,8 @@ function prepareProps(
   $: CheerioAPI,
   $child: Cheerio<Element>,
   $dl: Cheerio<any>,
-  priorApiType: ApiType | undefined,
-  apiType: Exclude<ApiType, "module">,
+  priorApiType: ApiTypeName | undefined,
+  apiType: ApiObjectName,
   id: string,
   options: { isCApi: boolean },
 ): ComponentProps {
@@ -109,21 +95,20 @@ function prepareProps(
   const prepAttributeOrProperty = () =>
     prepareAttributeOrPropertyProps($, $child, $dl, githubSourceLink, id);
 
-  const preparePropsPerApiType: Record<
-    Exclude<ApiType, "module">,
-    () => ComponentProps
-  > = {
+  const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
     class: prepClassOrException,
     exception: prepClassOrException,
     property: prepAttributeOrProperty,
     attribute: prepAttributeOrProperty,
     method: prepMethod,
     function: prepFunction,
+    cFunction: prepFunction,
     data: prepAttributeOrProperty,
     struct: prepClassOrException,
     typedef: prepClassOrException,
     enum: prepClassOrException,
     enumerator: prepAttributeOrProperty,
+    structMember: prepAttributeOrProperty,
   };
 
   const githubSourceLink = prepareGitHubLink($child, apiType === "method");
@@ -174,7 +159,7 @@ function prepareMethodProps(
   $: CheerioAPI,
   $child: Cheerio<any>,
   $dl: Cheerio<any>,
-  priorApiType: ApiType | undefined,
+  priorApiType: ApiTypeName | undefined,
   githubSourceLink: string | undefined,
   id: string,
 ): ComponentProps {
