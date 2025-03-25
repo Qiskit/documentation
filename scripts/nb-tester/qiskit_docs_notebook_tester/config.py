@@ -253,4 +253,12 @@ def get_parser() -> argparse.ArgumentParser:
             "This affects which notebooks are run and how they're patched."
         ),
     )
+    parser.add_argument(
+        "--ignore-trailing-jobs",
+        action="store_true",
+        help=(
+            "Do not cancel trailing jobs with QiskitRuntimeService. This is "
+            "useful to set if your patch does not use QiskitRuntimeService"
+        ),
+    )
     return parser

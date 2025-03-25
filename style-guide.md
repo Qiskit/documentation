@@ -1,5 +1,10 @@
 # Writing for IBM Quantum: Common IBM Style "gotchas"
 
+Refer to:
+
+- The [README](./README.md) for how to set up the project and run quality checks.
+- Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
+
 The following IBM Style guidelines highlight grammatical and stylistic situations that frequently appear in IBM Quantum content.
 
 > [!TIP]
@@ -44,3 +49,23 @@ IBM Quantum content follows IBM style guidelines, which include rules for ensuri
 
 - "and/or" is very hard to translate, so do not use
 - Don't rely only on color to describe something. Instead, use at least one other way (thickness, pattern, and so forth) to distinguish an item
+
+## Proper marking and attribution
+
+**All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
+
+Some companies require a special attribution notice. View a list of the companies to include in a special attribution notice at the [Special attributions](https://www.ibm.com/legal/copyright-trademark#special) section of the IBM Legal site.
+
+Refer to [the MDX guide](./mdx-guide.md#trademark-symbols) for how to add the symbols to markdown.
+
+<details>
+<summary>A (non-exhaustive) list of trademarked names found in our docs:</summary>
+
+- IBM&reg;
+- IBM Cloud&reg;
+- IBM Quantum&reg;
+</details>
+
+**Note**: Although Qiskit is a registered trademark of IBM, we do not mark it as such.
+
+See the Usage section of the IBM Quantum Experience Guide for guidance on when to use IBM and when to use IBM Quantum.

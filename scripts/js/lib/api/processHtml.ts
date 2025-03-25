@@ -16,7 +16,7 @@ import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
-import { Metadata, ApiType } from "./Metadata.js";
+import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
 import { processMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
 
@@ -27,14 +27,19 @@ export type ProcessedHtml = {
   isReleaseNotes: boolean;
 };
 
-export async function processHtml(options: {
+interface ProcessHtmlOptions {
   html: string;
   fileName: string;
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
-}): Promise<ProcessedHtml> {
+  isCApi: boolean;
+}
+
+export async function processHtml(
+  options: ProcessHtmlOptions,
+): Promise<ProcessedHtml> {
   const {
     html,
     fileName,
@@ -42,6 +47,7 @@ export async function processHtml(options: {
     determineGithubUrl,
     releaseNotesTitle,
     hasSeparateReleaseNotes,
+    isCApi,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
@@ -66,7 +72,7 @@ export async function processHtml(options: {
   removeDownloadSourceCode($main);
   removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
-  addLanguageClassToCodeBlocks($, $main);
+  addLanguageClassToCodeBlocks($, $main, options);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   updateRedirectedExternalLinks($, $main, externalRedirects);
   convertRubricsToHeaders($, $main);
@@ -76,8 +82,8 @@ export async function processHtml(options: {
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta);
-  maybeSetModuleMetadata($, $main, meta);
+  await processMembersAndSetMeta($, $main, meta, options);
+  maybeSetModuleMetadata($, $main, meta, options);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
   }
@@ -181,16 +187,20 @@ export function handleSphinxDesignCards(
   });
 }
 
-function detectLanguage($pre: Cheerio<any>): string | null {
+function detectLanguage(
+  $pre: Cheerio<any>,
+  options: { isCApi: boolean },
+): string | null {
+  const defaultLanguage = options.isCApi ? "c" : "python";
   // Two levels up from `pre` should have class `highlight-<language>`
   const detectedLanguage = $pre
     .parent()
     .parent()[0]
     .attribs.class.match(/(?<=highlight-)\w+/);
-  if (!detectedLanguage) return "python";
+  if (!detectedLanguage) return defaultLanguage;
   const langName = detectedLanguage[0];
   if (langName === "none") return null;
-  if (langName === "default") return "python";
+  if (langName === "default") return defaultLanguage;
   if (langName === "ipython3") return "python";
   return langName;
 }
@@ -198,10 +208,11 @@ function detectLanguage($pre: Cheerio<any>): string | null {
 export function addLanguageClassToCodeBlocks(
   $: CheerioAPI,
   $main: Cheerio<any>,
+  options: { isCApi: boolean },
 ): void {
   $main.find("pre").each((_, pre) => {
     const $pre = $(pre);
-    const language = detectLanguage($pre);
+    const language = detectLanguage($pre, options);
     const languageClass = language ? `language-${language}` : "";
     $pre.replaceWith(
       `<pre><code class="${languageClass}">${$pre.html()}</code></pre>`,
@@ -335,13 +346,16 @@ export async function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
+  options: { isCApi: boolean },
 ): Promise<void> {
   let continueMapMembers = true;
   while (continueMapMembers) {
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data",
+        Object.values(API_OBJECTS)
+          .map((x) => x.htmlSelector)
+          .join(", "),
       )
       // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
       .not("td > dl")
@@ -353,11 +367,18 @@ export async function processMembersAndSetMeta(
     }
 
     const $dl = $(dl);
-    const id = $dl.find("dt").attr("id") || "";
+    const id =
+      (options.isCApi
+        ? // IDs in the C API have a bunch of extra information (e.g.
+          // `_CPPv415qk_obs_free8uint32_t`) whereas we just want to display the
+          // function name (e.g. `qk_obs_free`). This is safe because C does not
+          // have function overloading so the function name is unique.
+          $dl.find("span.sig-name.descname").first().text()
+        : $dl.find("dt").attr("id")) || "";
     const apiType = getApiType($dl);
 
-    if (apiType && apiType === "module") {
-      throw new Error("Did not expect apiType to be 'module'");
+    if (!apiType) {
+      throw new Error(`Could not determine apiType for '${$dl}'`);
     }
 
     const priorApiType = meta.apiType;
@@ -388,6 +409,7 @@ export async function processMembersAndSetMeta(
         priorApiType,
         apiType!,
         id,
+        options,
       );
       $dl.replaceWith(
         `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
@@ -400,8 +422,9 @@ export function maybeSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
+  options: { isCApi: boolean },
 ): void {
-  const modulePrefix = "module-";
+  const modulePrefix = options.isCApi ? "group__" : "module-";
   const moduleIdWithPrefix = $main
     .find("span, section, div.section")
     .toArray()
@@ -446,7 +469,7 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
     });
 }
 
-function getApiType($dl: Cheerio<any>): ApiType | undefined {
+function getApiType($dl: Cheerio<any>): ApiObjectName | undefined {
   // Historical versions were generating properties incorrectly as methods.
   // We can fix this by looking at the modifier before the signature.
   // See https://github.com/Qiskit/documentation/issues/1352 for more information.
@@ -454,19 +477,13 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     return "property";
   }
 
-  for (const className of [
-    "function",
-    "class",
-    "exception",
-    "method",
-    "property",
-    "attribute",
-    "module",
-    "data",
-  ]) {
-    if ($dl.hasClass(className)) {
-      return className as ApiType;
-    }
+  for (const [apiTypeName, apiType] of Object.entries(API_OBJECTS)) {
+    const className = apiType.htmlSelector.split(".").pop();
+    if (!className)
+      throw new Error(
+        `'htmlSelector' attribute must be of form '<tag>.<lang>.<apiType>' (e.g. 'dl.py.function'), found '${apiType}'.`,
+      );
+    if ($dl.hasClass(className)) return apiTypeName as ApiObjectName;
   }
 
   return undefined;
