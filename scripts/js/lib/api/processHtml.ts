@@ -70,6 +70,7 @@ export async function processHtml(
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
+  removePublicMembersRubric($main);
   removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main, options);
@@ -155,6 +156,13 @@ export function removePermalinks($main: Cheerio<any>): void {
 
 export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
+}
+
+function removePublicMembersRubric($main: Cheerio<any>): void {
+  $main
+    .find("p.breathe-sectiondef-title.rubric")
+    .filter((i, el) => load(el).text() === "Public members")
+    .remove();
 }
 
 export function removeMatplotlibFigCaptions($main: Cheerio<any>): void {
