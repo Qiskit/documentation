@@ -158,6 +158,15 @@ export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
 }
 
+/**
+ * This is because the rubric appears to have the same level at the fields
+ * themselves. We decided the best solution to avoid a confusing information
+ * hierarcy is to remove the rubric.
+ *
+ * A better solution is to implement https://github.com/Qiskit/documentation/issues/1395.
+ * Once implemented, we should rename "Public members" to "Fields" as C does not
+ * have methods and all fields are public (breathe is more targeted towards C++).
+ */
 function removePublicMembersRubric($main: Cheerio<any>): void {
   $main
     .find("p.breathe-sectiondef-title.rubric")
