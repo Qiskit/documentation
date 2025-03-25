@@ -28,29 +28,29 @@ export type ApiObjectName =
   | "enumerator";
 
 interface ApiObjectInfo {
-  cssSelector: string;
+  htmlSelector: string;
   tagName: "class" | "function" | "attribute";
 }
 
 /**
  * This object defines every API type we support. The key is the name we use to
- * refer to the API type in this script, the `cssSelector` is the CSS selector
+ * refer to the API type in this script, the `htmlSelector` is the HTML selector
  * in the Sphinx HTML, and the `tagName` is the tag we transform it to (and how
  * it'll be displayed on the website).
  */
 export const API_OBJECTS: { [K in ApiObjectName]: ApiObjectInfo } = {
-  class: { cssSelector: "dl.py.class", tagName: "class" },
-  exception: { cssSelector: "dl.py.exception", tagName: "class" },
-  attribute: { cssSelector: "dl.py.attribute", tagName: "attribute" },
-  property: { cssSelector: "dl.py.property", tagName: "attribute" },
-  function: { cssSelector: "dl.py.function", tagName: "function" },
-  cFunction: { cssSelector: "dl.cpp.function", tagName: "function" },
-  method: { cssSelector: "dl.py.method", tagName: "function" },
-  data: { cssSelector: "dl.py.data", tagName: "attribute" },
-  struct: { cssSelector: "dl.cpp.struct", tagName: "class" },
-  typedef: { cssSelector: "dl.cpp.type", tagName: "class" },
-  enum: { cssSelector: "dl.cpp.enum", tagName: "class" },
-  enumerator: { cssSelector: "dl.cpp.enumerator", tagName: "attribute" },
+  class: { htmlSelector: "dl.py.class", tagName: "class" },
+  exception: { htmlSelector: "dl.py.exception", tagName: "class" },
+  attribute: { htmlSelector: "dl.py.attribute", tagName: "attribute" },
+  property: { htmlSelector: "dl.py.property", tagName: "attribute" },
+  function: { htmlSelector: "dl.py.function", tagName: "function" },
+  cFunction: { htmlSelector: "dl.cpp.function", tagName: "function" },
+  method: { htmlSelector: "dl.py.method", tagName: "function" },
+  data: { htmlSelector: "dl.py.data", tagName: "attribute" },
+  struct: { htmlSelector: "dl.cpp.struct", tagName: "class" },
+  typedef: { htmlSelector: "dl.cpp.type", tagName: "class" },
+  enum: { htmlSelector: "dl.cpp.enum", tagName: "class" },
+  enumerator: { htmlSelector: "dl.cpp.enumerator", tagName: "attribute" },
 } as const;
 
 export type Metadata = {

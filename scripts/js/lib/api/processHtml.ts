@@ -354,7 +354,7 @@ export async function processMembersAndSetMeta(
     const dl = $main
       .find(
         Object.values(API_OBJECTS)
-          .map((x) => x.cssSelector)
+          .map((x) => x.htmlSelector)
           .join(", "),
       )
       // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
@@ -478,10 +478,10 @@ function getApiType($dl: Cheerio<any>): ApiObjectName | undefined {
   }
 
   for (const [apiTypeName, apiType] of Object.entries(API_OBJECTS)) {
-    const className = apiType.cssSelector.split(".").pop();
+    const className = apiType.htmlSelector.split(".").pop();
     if (!className)
       throw new Error(
-        `'cssSelector' attribute must be of form 'dl.py.class', found '${apiType}'.`,
+        `'htmlSelector' attribute must be of form '<tag>.<lang>.<apiType>' (e.g. 'dl.py.function'), found '${apiType}'.`,
       );
     if ($dl.hasClass(className)) return apiTypeName as ApiObjectName;
   }
