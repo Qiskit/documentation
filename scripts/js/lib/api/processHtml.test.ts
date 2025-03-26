@@ -400,7 +400,16 @@ test.describe("maybeSetModuleMetadata()", () => {
     const html = `<h1>Hello</h1>`;
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta, { isCApi: false });
+    maybeSetModuleMetadata(doc.$, doc.$main, meta, false, { isCApi: false });
+    doc.expectHtml(html);
+    expect(meta).toEqual({});
+  });
+
+  test("C API index", () => {
+    const html = `<h1>Qiskit C API (qiskit.h)</h1>`;
+    const meta: Metadata = {};
+    const doc = CheerioDoc.load(html);
+    maybeSetModuleMetadata(doc.$, doc.$main, meta, false, { isCApi: true });
     doc.expectHtml(html);
     expect(meta).toEqual({});
   });
@@ -412,7 +421,7 @@ test.describe("maybeSetModuleMetadata()", () => {
   ): void => {
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta, { isCApi });
+    maybeSetModuleMetadata(doc.$, doc.$main, meta, false, { isCApi });
     doc.expectHtml(html);
     expect(meta).toEqual({
       apiType: "module",
@@ -442,12 +451,8 @@ test.describe("maybeSetModuleMetadata()", () => {
     );
   });
 
-  test("C API group", () => {
-    checkModuleFound(
-      `<section id="group__QkSparseObservable"><h1>Hello</h1></section>`,
-      "QkSparseObservable",
-      true,
-    );
+  test("C API", () => {
+    checkModuleFound("<h1>QkSparseObservable</h1>", "QkSparseObservable", true);
   });
 });
 
