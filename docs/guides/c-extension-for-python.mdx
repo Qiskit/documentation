@@ -1,12 +1,12 @@
 ---
-title: Extending Qiskit in Python with C
+title: Extend Qiskit in Python with C
 description: How to build a C extension for your Qiskit workflow in Python
 ---
 
-# A little C with your Python
+# Extend Qiskit in Python with C
 
-To accelerate your Qiskit Python programs with C, we can use Qiskit's C extension for Python.
-This requires additional steps to the standalone C usage, see the [respective guide](./install-c-api).
+To accelerate your Qiskit Python programs with C, you can use the Qiskit C extension for Python.
+This requires additional steps to the standalone C usage; for more details, see the [Install the Qiskit C API guide](/guides/install-c-api).
 
 <Admonition type="note">
   These instructions have only been tested on unix-based systems. Windows instructions are in progress._
@@ -14,22 +14,18 @@ This requires additional steps to the standalone C usage, see the [respective gu
 
 ## Requirements
 
-As base, we need the same requirements as the [C standalone usage](./install-c-api).
-In addition we need to install Qiskit's Python interface,
+Start by ensuring you have installed the [Qiskit C API](/guides/install-c-api). Next, install the Qiskit Python interface, as follows:
 ```bash
 pip install -r requirements.txt -c constraints.txt
 pip install .
 ```
 
-## Defining the C extension
+## Define the C extension
 
-There are various options to write a C extension for Python. Here, we will describe an approach
-using Python's built-in [`ctypes`](https://docs.python.org/3/library/ctypes.html) module
-which requires minimal overhead. See [below](#manual-c-extension) for another example which is
-manually building the C extension using Python's C API.
+There are various options to write a C extension for Python. This guide starts with an approach that uses Python's built-in [`ctypes`](https://docs.python.org/3/library/ctypes.html) module, because it requires minimal overhead.  In the next section, the [the Manual C extension](#manual-c-extension) section provides an example of manually building the C extension using Python's C API.
 
-As example, assume we write a C function to build an observable and would like to return
-it to Python. We can convert a C-side `QkObs*` to a Python-side `SparseObservable` object
+As an example, assume you write a C function to build an observable and would like to return
+it to Python. You can convert a C-side `QkObs*` to a Python-side `SparseObservable` object
 (both are backed by the same Rust data structure), using the provided converter
 `qk_obs_to_python`:
 ```c
@@ -48,20 +44,20 @@ PyObject *build_observable(void) {
 }
 ```
 
-Below we will show how to compile this into a shared library, say `qiskit_cextension.so`.
-Once this is done, we will be able to call the C program from Python as
+The following demonstrates how to compile this into a shared library - for example, `qiskit_cextension.so`.
+Once this is done, you can call the C program from Python:
 ```python
 # file: main.py
 import qiskit
 import ctypes
 
 # Load the extension, ensuring the global interpreter lock (GIL) is acquired for function calls,
-# which we need for the C->Python object conversion.
+# which you need for the C->Python object conversion.
 lib = ctypes.PyDLL("/path/to/qiskit_cextension.so")
 lib.build_observable.argtypes = None  # set argument types to the function
 lib.build_observable.restype = ctypes.py_object  # set return type
 
-# now we can directly call the function
+# now you can directly call the function
 obs = lib.build_observable()
 print("SparseObservable instance?", isinstance(obs, qiskit.quantum_info.SparseObservable))
 print(obs)
@@ -74,40 +70,40 @@ correctly across C and Python.
 ```bash
 python setup.py build_rust --inplace --release
 ```
-The shared library is called ``_accelerate.<platform-specific-part>``, whose location and name we can find as
+The shared library is called ``_accelerate.<platform-specific-part>``. Find its location and name as follows:
 ```bash
 QKLIB=$(python -c "import os; import qiskit; print(os.path.dirname(qiskit._accelerate.__file__))")
 QKNAME=$(python -c "import os; import qiskit; print(os.path.basename(qiskit._accelerate.__file__))")
 ```
 
-We will need to know the location of the environments Python includes (``Python.h``) and libraries (``libpython.<suffix>``).
-These can, for example, be identified via
+You will need to know the location of the environments Python includes (``Python.h``) and libraries (``libpython.<suffix>``).
+These can, for example, be identified with
 ```bash
 PYINCLUDE=$(python -c "import sysconfig; print(sysconfig.get_path('include'))")
 PYLIB=$(python -c "import sysconfig; print(sysconfig.get_config_var('LIBDIR'))")
 PYNAME=$(find $PYLIB -maxdepth 1 -name "libpython*" | grep -oE "[^/]+$" | grep -oE "python[0-9]+\.[0-9]+" || echo "python")
 ```
-(If you just know these locations and names, you can also just set them directly.)
+(If you already know these locations and names, you can also just set them directly.)
 
 ### Linux
 
-Linking can slightly differ between platforms, here we first describe a solution for linkers
+Linking can differ among platforms. The following describes a solution for linkers
 supporting libraries with arbitrary names, using the `-l:` flag. See below if your linker
 requires the library to be called `lib<something>`.
 
-We can build the extension specifying the full name of the `_accelerate` library:
+You can build the extension specifying the full name of the `_accelerate` library:
 ```bash
 gcc extension.c -fpic -shared -o cextension.so \
   -I/path/to/dist/c/include -L$QKLIB -l:$QKNAME \
   -I$PYINCLUDE -L$PYLIB -l$PYNAME
 ```
-And then simply ``python main.py`` to run the Python program.
+Then,  simply enter ``python main.py`` to run the Python program.
 
 ### MacOS
 
 An alternative to using the exact library name with `-l:` is to symlink the `_accelerate` library
 to the desired name. This solution works on Mac (and also Linux if you replace all occurences of `.dylib` with `.so`).
-To include the `_accelerate` shared library we symlink it to the linkers expected format of `lib<library name>.<suffix>`,
+To include the `_accelerate` shared library, symlink it to the linker's expected format of `lib<library name>.<suffix>`:
 ```bash
 ln -s $QKLIB/$QKNAME $QKLIB/libqiskit.dylib
 ```
@@ -117,14 +113,14 @@ gcc extension.c -fpic -shared -o qiskit_cextension.so \
   -I/path/to/dist/c/include -L$QKLIB -lqiskit \
   -I$PYINCLUDE -L$PYLIB -l$PYNAME
 ```
-Then simply ``python main.py`` to run the Python program.
+Then, simply enter ``python main.py`` to run the Python program.
 
 ## Manual C extension
 
 Instead of using `ctypes`, it is possible to manually build an extension for Python using [Python's
 C API](https://docs.python.org/3/c-api/intro.html) directly. This has the potential to be
-faster than using `ctypes`, albeit requires more effort to implement.
-In the following we provide a brief example on how this can be achieved
+faster than using `ctypes`, though it requires more effort to implement.
+The following code is a brief example on how to achieve this.
 
 ```c
 // file: extension.c
@@ -166,7 +162,7 @@ static PyMethodDef CExtMethods[] = {
     {NULL, NULL, 0, NULL}, // sentinel
 };
 
-/// Define the module, which we will call ``cextension``.
+/// Define the module, which here is called ``cextension``.
 static struct PyModuleDef cextension = {
     PyModuleDef_HEAD_INIT,
     "cextension", // module name
@@ -215,8 +211,8 @@ exception:
     Py_ExitStatusException(status);
 }
 ```
-To compile a shared library, we link both the Python and Qiskit libraries, as described in
-the [Building](#building) section above. The Python script then does not need `ctypes`
+To compile a shared library, link both the Python and Qiskit libraries, as described in
+the [Build](#build) section above. The Python script then does not need `ctypes`
 but can directly import `cextension` module:
 ```python
 # file: main.py
