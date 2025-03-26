@@ -658,7 +658,7 @@ marked as builtins since they are not actually present in any include file this 
   
 <div><p>Construct the identity observable.</p>
 <section id=\"group__QkSparseObservable_1autotoc_md4\">
-<h2>Example<a class=\"headerlink\" href=\"#group__QkSparseObservable_1autotoc_md4\" title=\"Permalink to this heading\">¶</a></h2>
+<h4>Example<a class=\"headerlink\" href=\"#group__QkSparseObservable_1autotoc_md4\" title=\"Permalink to this heading\">¶</a></h4>
 <div class=\"highlight-default notranslate\" id=\"group__QkSparseObservable_1autotoc_md4\"><div class=\"highlight\"><pre><span></span><span class=\"n\">QkSparseObservable</span> <span class=\"o\">*</span><span class=\"n\">identity</span> <span class=\"o\">=</span> <span class=\"n\">qk_obs_identity</span><span class=\"p\">(</span><span class=\"mi\">100</span><span class=\"p\">);</span>
 </pre></div>
 </div>

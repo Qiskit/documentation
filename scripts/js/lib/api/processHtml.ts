@@ -17,7 +17,7 @@ import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
-import { processMdxComponent } from "./generateApiComponents.js";
+import { createMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
 
 export type ProcessedHtml = {
@@ -421,18 +421,17 @@ export async function processMembersAndSetMeta(
     if (signatures.length == 0) {
       $dl.replaceWith(`<div>${bodyElements.join("\n")}</div>`);
     } else {
-      const [openTag, closeTag] = await processMdxComponent(
+      const mdxComponent = await createMdxComponent(
         $,
         signatures,
         $dl,
+        bodyElements,
         priorApiType,
-        apiType!,
+        apiType,
         id,
         options,
       );
-      $dl.replaceWith(
-        `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
-      );
+      $dl.replaceWith(`<div>${mdxComponent}</div>`);
     }
   }
 }
