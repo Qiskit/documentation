@@ -430,12 +430,12 @@ export async function processMembersAndSetMeta(
         headerLevel,
         options,
       );
-      const $body = $(`<div>${bodyElements.join("\n")}</div>`);
+      const $componentBody = $(`<div>${bodyElements.join("\n")}</div>`);
       const minHeadingLevel = openTag.includes("isDedicatedPage='true'")
         ? 2
         : headerLevel + 1;
-      setMinimumHeadingLevel($, $body, minHeadingLevel);
-      $dl.replaceWith(`<div>${openTag}\n${$body.html()}\n${closeTag}</div>`);
+      setMinimumHeadingLevel($, $componentBody, minHeadingLevel);
+      $dl.replaceWith(`<div>${openTag}\n${$componentBody.html()}\n${closeTag}</div>`);
     }
   }
 }
@@ -576,7 +576,7 @@ function setMinimumHeadingLevel(
     (level) => $dl.find(`h${level}`).length !== 0,
   );
   if (detectedHeadingLevels.length === 0) return;
-  const currentMinimumLevel = Math.min(...detectedHeadingLevels);
+  const currentMinimumLevel = detectedHeadingLevels[0];
   const numberToIncreaseEachHeadingBy = minLevel - currentMinimumLevel;
   if (numberToIncreaseEachHeadingBy === 0) return;
 
