@@ -44,23 +44,18 @@ This section summarizes the recent enhancements and new features for IBM Quantum
 
 For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
 </CloudContent>
+
 <span id="latest-qiskit-sdk"></span>
-## Qiskit SDK v1.3.0
+## Qiskit SDK v1.4.0
 
 *To see the release notes for all versions, visit the [Qiskit SDK release notes](/api/qiskit/release-notes).*
 
-The latest Qiskit version, 1.3, has just been released on [GitHub](https://github.com/Qiskit/qiskit/releases/tag/1.3.0) and [PyPI](https://pypi.org/project/qiskit/). The main changes include the following:
+**21 Feb 2025**
 
-- We improved performance by porting additional key components to Rust, including:
-  - Core data structures, such as `DAGCircuit` or `Target`
-  - Transpiler passes, including `BasisTranslator`, `CommutationAnalysis`, or `UnitarySynthesis`, making the transpilation around six times faster compared to v1.2.4
-  - Circuit library and synthesis routines, such as `PauliEvolutionGate` or `n_local`
+- The latest Qiskit version, 1.4.0, has been released on GitHub and is available on [PyPi](https://pypi.org/project/qiskit/). Even if you recently upgraded to v1.3.3, you should still upgrade to Qiskit 1.4, because this is the last minor version of the v1.x series, and contains all of the deprecation warnings for API changes in Qiskit v2.0. Install it now, and see what to change to be ready for 2.0!
 
-- The circuit library is now faster and allows for better high-level optimization, in particular with context-aware updates to `HighLevelSynthesis`.
+Wondering what will change? Read the [release changelog](https://github.com/Qiskit/qiskit/releases/tag/1.4.0) and the [release notes](/api/qiskit/release-notes/1.4).
 
-- Python 3.13 is now officially supported. Python 3.9 is now the *minimum* supported version.
-
-Explore the [v1.3 release notes](/api/qiskit/release-notes/1.3), and read about this release on the [IBM Quantum blog](https://www.ibm.com/quantum/blog/qiskit-1-3-release-summary).
 
 {/* use url format /api/qiskit/release-notes/X.X to link to the specific X.X version of the release notes */}
 
@@ -69,20 +64,19 @@ Explore the [v1.3 release notes](/api/qiskit/release-notes/1.3), and read about 
 
 *To see the release notes for all versions, visit the [Qiskit Runtime client release notes](/api/qiskit-ibm-runtime/release-notes).*
 
-**Highlights from the 0.37.0 (13 March 2025) version release**
+**13 March 2025**
 
-**Deprecation**
+- Deprecation
 
-The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits`, have all been deprecated. These attribute values used to represent the maximum number of shots and circuits that could be submitted in one job. See [job limits](/guides/job-limits#job-limits) for details.
+  The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits`, have all been deprecated. These attribute values used to represent the maximum number of shots and circuits that could be submitted in one job. See [job limits](/guides/job-limits#job-limits) for details.
 
-**New features**
+- New features
 
-`qiskit-ibm-runtime` is now compatible with Qiskit v2.0. This means that classes and methods removed in Qiskit v2.0 have also been removed or handled accordingly.  The `pulse`- and `channel`-related changes are highlighted in the following list. See the [Pulse migration guide](/migration-guides/pulse-migration) for details.
+  `qiskit-ibm-runtime` is now compatible with Qiskit v2.0. This means that classes and methods removed in Qiskit v2.0 have also been removed or handled accordingly.  The `pulse`- and `channel`-related changes are highlighted in the following list. See the [Pulse migration guide](/migration-guides/pulse-migration) for details.
 
   - `Channel` methods in `IBMBackend` have been removed.
   - The backend configuration class `PulseBackendConfiguration` has been removed, so all backends will now be returned as `QasmBackendConfiguration`.
   - `PulseDefaults` (backend defaults) can still be retrieved but they are no longer necessary when creating a backend `Target`.
-
 
 See the full [0.37.0 release notes](/api/qiskit-ibm-runtime/release-notes#0370-2025-03-13).
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
@@ -94,7 +88,7 @@ This summary of the latest changes to the Qiskit Runtime service applies to anyo
 
 **3 February 2025**
 
-Pulse-level control on all IBM Quantum processors has been removed.  Additionally, the pulse module is scheduled for removal in Qiskit SDK v2.0.  Instead, you can use fractional gates that are now built into the Instruction Set Architecture (ISA). For full details and help migrating your code, refer to [Migrate from Qiskit Pulse to fractional gates.](/migration-guides/pulse-migration)
+- Pulse-level control on all IBM Quantum processors has been removed.  Additionally, the pulse module is scheduled for removal in Qiskit SDK v2.0.  Instead, you can use fractional gates that are now built into the Instruction Set Architecture (ISA). For full details and help migrating your code, refer to [Migrate from Qiskit Pulse to fractional gates.](/migration-guides/pulse-migration)
 
 <details>
 <summary><b>Previous updates</b></summary>
@@ -156,13 +150,15 @@ Qiskit Runtime primitives now support OpenQASM 3 as the input format for circuit
 </details>
 
 <span id="latest-qiskit-transpiler-service"></span>
-## Qiskit Transpiler Service client v0.3.0
+## Qiskit Transpiler Service client v0.11.0
 
-We’re pleased to share that the beta release of the Qiskit Transpiler Service is now available to all IBM Quantum&reg; Premium Plan users.
+*To see the release notes for all versions, visit the [Qiskit Transpiler Service client release notes](/api/qiskit-ibm-transpiler/release-notes).*
 
 The Qiskit Transpiler Service leverages the resources of IBM Cloud&reg; to provide users with the latest transpilation capabilities from the Qiskit SDK. It offers a Python library that helps users seamlessly integrate the service into their current Qiskit patterns and workflows. Perhaps most importantly, the service invites users to experiment with new and improved AI-powered transpiler passes — cutting-edge tools that might be faster and produce better results than traditional transpilation methods.
 
-On the IBM Quantum blog, we take a deep dive into the new beta release with a special focus on the new AI-powered passes. The blog includes detailed explanations showing how to use the Qiskit Transpiler Service for both full circuit transpilation and standalone AI-powered passes, with code examples for each. [Take a look.](https://www.ibm.com/quantum/blog/ai-transpiler-passes)
+**25 March 2025**
+
+- See the [v0.11.0 release notes](/api/qiskit-ibm-transpiler/release-notes#0110-2025-03-25).
 
 {/* no other release notes available yet */}
 
@@ -211,64 +207,52 @@ To get started, explore the [Qiskit Functions documentation](/guides/functions).
 
 IBM Quantum documentation recently added a number of user-facing improvements, including content updates and new features. Many of these changes are a result of specific user requests! Check out the highlights below.
 
-### Updated content
+**18 December 2024**
 
-**New pages**
+- New pages
 
-Visit the newest content in the documentation!
+  - Introductory and get-started material for these [Qiskit addons](/guides/addons):
+[SQD](/guides/qiskit-addons-sqd) | [AQC-Tensor](/guides/qiskit-addons-aqc) | [OBP](/guides/qiskit-addons-obp) | [MPF](/guides/qiskit-addons-mpf)
 
-- Introductory and get-started material for these [Qiskit addons](/guides/addons):
-  - [Sample-based quantum diagonalization (SQD)](/guides/qiskit-addons-sqd)
-  - [Approximate quantum compiler with tensor networks (AQC-Tensor)](/guides/qiskit-addons-aqc)
-  - [Operator backpropagation (OBP)](/guides/qiskit-addons-obp)
-  - [Multi-product formulas (MPF)](/guides/qiskit-addons-mpf)
+  - [Debug Qiskit Runtime jobs](/guides/debug-qiskit-runtime-jobs) with the NEAT class
 
-- [Debug Qiskit Runtime jobs](/guides/debug-qiskit-runtime-jobs) with the NEAT class
+  - [Integrate external quantum resources with Qiskit](/open-source/create-a-provider) guide in Open-source resources
 
-- [Integrate external quantum resources with Qiskit](/open-source/create-a-provider) guide in Open-source resources
+  - New migration guide: [Migrate from Qiskit Pulse to fractional gates](/migration-guides/pulse-migration)
 
-- New migration guide: [Migrate from Qiskit Pulse to fractional gates](/migration-guides/pulse-migration)
+  - New Qiskit Functions guide: [Singularity Machine Learning - Classification](/guides/multiverse-computing-singularity)
 
-- New Qiskit Functions guide: [Singularity Machine Learning - Classification](/guides/multiverse-computing-singularity)
+  - [Use Qiskit Code Assistant in local mode](/guides/qiskit-code-assistant-local)
 
-- [Use Qiskit Code Assistant in local mode](/guides/qiskit-code-assistant-local)
+- Content additions and improvements
 
-**Content additions and improvements**
-<LegacyContent>
-- Guidance to [securely manage your API token](/guides/setup-channel#set-up-to-use-ibm-quantum-platform), as part of the guide to set up an IBM Quantum channel
-</LegacyContent>
-<CloudContent>
-- Guidance to [securely manage your API key](/guides/cloud-setup)
-</CloudContent>
-- Revisions by Qunasys to the Qiskit Functions [QURI Chemistry](/guides/qunasys-quri-chemistry) guide
+  <LegacyContent>
+  - Guidance to [securely manage your API token](/guides/setup-channel#set-up-to-use-ibm-quantum-platform), as part of the guide to set up an IBM Quantum channel
+  </LegacyContent>
+  <CloudContent>
+  - Guidance to [securely manage your API key](/guides/cloud-setup)
+  </CloudContent>
+  - Revisions by Qunasys to the Qiskit Functions [QURI Chemistry](/guides/qunasys-quri-chemistry) guide
 
-- Updated code examples to fix a bug in [Get started with primitives](/guides/get-started-with-primitives)
+  - Updated code examples to fix a bug in [Get started with primitives](/guides/get-started-with-primitives)
 
-- Updates to [Introduction to options](/guides/runtime-options-overview) to include the new [gen3-turbo](/guides/runtime-options-overview#experimental-option-note) options
+  - Updates to [Introduction to options](/guides/runtime-options-overview) to include the new [gen3-turbo](/guides/runtime-options-overview#experimental-option-note) options
 
-- Copyediting and typo fixes across the documentation, including bugs reported by open-source contributors - thank you!
+  - Copyediting and typo fixes across the documentation, including bugs reported by open-source contributors - thank you!
 
-### New API reference documentation
+- New API reference documentation
 
-- [Qiskit SDK v1.3](/api/qiskit/release-notes)
-- [qiskit-ibm-runtime v0.32-0.34](/api/qiskit-ibm-runtime/release-notes)
-- [qiskit-ibm-transpiler v0.8-0.9](/api/qiskit-ibm-transpiler/release-notes)
-- Qiskit addons:
-  - [qiskit-addon-aqc-tensor](/api/qiskit-addon-aqc-tensor/release-notes)
-  - [qiskit-addon-cutting](/api/qiskit-addon-cutting/release-notes)
-  - [qiskit-addon-obp](/api/qiskit-addon-obp/release-notes)
-  - [qiskit-addon-mpf](/api/qiskit-addon-mpf/release-notes)
-  - [qiskit-addon-sqd](/api/qiskit-addon-sqd/release-notes)
-  - [qiskit-addon-utils](/api/qiskit-addon-utils/release-notes)
+  - [Qiskit SDK v1.3](/api/qiskit/release-notes)
+  - [qiskit-ibm-runtime v0.32-0.34](/api/qiskit-ibm-runtime/release-notes)
+  - [qiskit-ibm-transpiler v0.8-0.9](/api/qiskit-ibm-transpiler/release-notes)
+  - Qiskit addons: [qiskit-addon-aqc-tensor](/api/qiskit-addon-aqc-tensor/release-notes) | [qiskit-addon-cutting](/api/qiskit-addon-cutting/release-notes) | [qiskit-addon-obp](/api/qiskit-addon-obp/release-notes) | [qiskit-addon-mpf](/api/qiskit-addon-mpf/release-notes) | [qiskit-addon-sqd](/api/qiskit-addon-sqd/release-notes) | [qiskit-addon-utils](/api/qiskit-addon-utils/release-notes)
 
-### User experience improvements
+- User experience improvements
 
-Updates to the infrastructure and design of the documentation include the following:
-
-- The required versions of packages used in code examples are now listed at the top of each guide.
-- Bug in menu view on mobile devices is now fixed.
-- Search bar is now bigger for increased discoverability, and your search query is preserved after you close the search modal.
-- All code examples have been updated to work with Qiskit SDK v1.3 and Qiskit Runtime v0.34
+  - The required versions of packages used in code examples are now listed at the top of each guide.
+  - Bug in menu view on mobile devices is now fixed.
+  - Search bar is now bigger for increased discoverability, and your search query is preserved after you close the search modal.
+  - All code examples have been updated to work with Qiskit SDK v1.3 and Qiskit Runtime v0.34.
 
 *A huge thank you goes out to everyone in the open-source community who contributed and gave feedback!* Please [open an issue](https://github.com/Qiskit/documentation/issues/new/choose) if you find a bug, have a suggestion, or want to share your experience.
 
