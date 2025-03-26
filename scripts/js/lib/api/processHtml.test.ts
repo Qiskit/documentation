@@ -28,6 +28,7 @@ import {
   convertRubricsToHeaders,
   processMembersAndSetMeta,
   handleFootnotes,
+  maybeSetPythonModuleMetadata,
 } from "./processHtml.js";
 import { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -395,21 +396,12 @@ test("handleFootnotes()", () => {
     <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
 });
 
-test.describe("maybeSetModuleMetadata()", () => {
+test.describe("maybeSetPythonModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta, false, { isCApi: false });
-    doc.expectHtml(html);
-    expect(meta).toEqual({});
-  });
-
-  test("C API index", () => {
-    const html = `<h1>Qiskit C API (qiskit.h)</h1>`;
-    const meta: Metadata = {};
-    const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta, false, { isCApi: true });
+    maybeSetPythonModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({});
   });
@@ -421,7 +413,7 @@ test.describe("maybeSetModuleMetadata()", () => {
   ): void => {
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta, false, { isCApi });
+    maybeSetPythonModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({
       apiType: "module",
@@ -449,10 +441,6 @@ test.describe("maybeSetModuleMetadata()", () => {
       `<section id="module-qiskit_ibm_provider.transpiler.passes.basis"><h1>Hello</h1></section>`,
       "qiskit_ibm_provider.transpiler.passes.basis",
     );
-  });
-
-  test("C API", () => {
-    checkModuleFound("<h1>QkSparseObservable</h1>", "QkSparseObservable", true);
   });
 });
 
