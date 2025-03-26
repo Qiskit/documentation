@@ -16,7 +16,7 @@ import {
   addLanguageClassToCodeBlocks,
   loadImages,
   handleSphinxDesignCards,
-  maybeSetModuleMetadata,
+  maybeSetPythonModuleMetadata,
   renameAllH1s,
   removeHtmlExtensionsInRelativeLinks,
   removeDownloadSourceCode,
@@ -28,7 +28,6 @@ import {
   convertRubricsToHeaders,
   processMembersAndSetMeta,
   handleFootnotes,
-  maybeSetPythonModuleMetadata,
 } from "./processHtml.js";
 import { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
