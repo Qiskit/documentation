@@ -34,18 +34,20 @@ export type ComponentProps = {
   isDedicatedPage?: boolean;
 };
 
-export async function processMdxComponent(
+export async function createMdxComponent(
   $: CheerioAPI,
   signatures: Cheerio<Element>[],
   $dl: Cheerio<any>,
+  bodyElements: string[],
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
   options: { isCApi: boolean },
-): Promise<[string, string]> {
+): Promise<string> {
   const tagName = API_OBJECTS[apiType].tagName;
 
   const $firstSignature = signatures.shift()!;
+  const headerLevel = getHeaderLevel($, $dl);
   const componentProps = prepareProps(
     $,
     $firstSignature,
@@ -53,6 +55,7 @@ export async function processMdxComponent(
     priorApiType,
     apiType,
     id,
+    headerLevel,
     options,
   );
 
@@ -65,12 +68,21 @@ export async function processMdxComponent(
         apiType,
         apiType,
         id,
+        headerLevel,
         options,
       ) ?? [],
   );
   addExtraSignatures(componentProps, extraProps);
 
-  return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
+  const minHeadingLevel = componentProps.isDedicatedPage ? 2 : headerLevel + 1;
+  const $componentBody = $(`<div>${bodyElements.join("\n")}</div>`);
+  setMinimumHeadingLevel($, $componentBody, minHeadingLevel);
+
+  return [
+    await createOpeningTag(tagName, componentProps),
+    $componentBody.html(),
+    `</${tagName}>`,
+  ].join("\n");
 }
 
 // ------------------------------------------------------------------
@@ -84,16 +96,40 @@ function prepareProps(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
+  headerLevel: number,
   options: { isCApi: boolean },
 ): ComponentProps {
   const prepClassOrException = () =>
-    prepareClassOrExceptionProps($, $child, $dl, githubSourceLink, id, options);
+    prepareClassOrExceptionProps(
+      $,
+      $child,
+      $dl,
+      githubSourceLink,
+      id,
+      headerLevel,
+      options,
+    );
   const prepFunction = () =>
-    prepareFunctionProps($, $child, $dl, githubSourceLink, id);
+    prepareFunctionProps($, $child, $dl, githubSourceLink, id, headerLevel);
   const prepMethod = () =>
-    prepareMethodProps($, $child, $dl, priorApiType, githubSourceLink, id);
+    prepareMethodProps(
+      $,
+      $child,
+      $dl,
+      priorApiType,
+      githubSourceLink,
+      id,
+      headerLevel,
+    );
   const prepAttributeOrProperty = () =>
-    prepareAttributeOrPropertyProps($, $child, $dl, githubSourceLink, id);
+    prepareAttributeOrPropertyProps(
+      $,
+      $child,
+      $dl,
+      githubSourceLink,
+      id,
+      headerLevel,
+    );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
     class: prepClassOrException,
@@ -125,6 +161,7 @@ function prepareClassOrExceptionProps(
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
   options: { isCApi: boolean },
 ): ComponentProps {
   const modifiers = getAndRemoveModifiers($child);
@@ -146,7 +183,6 @@ function prepareClassOrExceptionProps(
       isDedicatedPage: true,
     };
   }
-  const headerLevel = getHeaderLevel($, $dl);
   const name = getLastPartFromFullIdentifier(id);
   const htag = `h${headerLevel}`;
   $(`<${htag} data-header-type="class-header">${name}</${htag}>`).insertBefore(
@@ -162,6 +198,7 @@ function prepareMethodProps(
   priorApiType: ApiTypeName | undefined,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
 ): ComponentProps {
   const modifiers = getAndRemoveModifiers($child);
   const props = {
@@ -180,7 +217,6 @@ function prepareMethodProps(
         isDedicatedPage: true,
       };
     } else if ($child.attr("id")) {
-      const headerLevel = getHeaderLevel($, $dl);
       const htag = `h${headerLevel}`;
       $(
         `<${htag} data-header-type="method-header">${name}</${htag}>`,
@@ -196,6 +232,7 @@ function prepareAttributeOrPropertyProps(
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
 ): ComponentProps {
   // Properties/attributes have multiple `em.property` values to set:
   //
@@ -259,7 +296,6 @@ function prepareAttributeOrPropertyProps(
   }
 
   // Else, the attribute is embedded on the class
-  const headerLevel = getHeaderLevel($, $dl);
   const htag = `h${headerLevel}`;
   $(
     `<${htag} data-header-type="attribute-header">${name}</${htag}>`,
@@ -274,6 +310,7 @@ function prepareFunctionProps(
   $dl: Cheerio<any>,
   githubSourceLink: string | undefined,
   id: string,
+  headerLevel: number,
 ): ComponentProps {
   const modifiers = getAndRemoveModifiers($child);
   const props = {
@@ -291,7 +328,6 @@ function prepareFunctionProps(
       isDedicatedPage: true,
     };
   }
-  const headerLevel = getHeaderLevel($, $dl);
   const name = getLastPartFromFullIdentifier(id);
   const htag = `h${headerLevel}`;
   $(`<${htag} data-header-type="method-header">${name}</${htag}>`).insertBefore(
@@ -429,15 +465,11 @@ function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
   // API components.
   const minLevel = 3;
   const priorHeaderLevel = getPriorHeaderLevel($, $dl);
-  if (priorHeaderLevel) {
-    if (+priorHeaderLevel == 6) {
-      throw new Error("API component cannot set non-existent header: <h7>");
-    }
-
-    return Math.max(minLevel, +priorHeaderLevel + 1);
+  if (!priorHeaderLevel) return minLevel;
+  if (+priorHeaderLevel == 6) {
+    throw new Error("API component cannot set non-existent header: <h7>");
   }
-
-  return minLevel;
+  return Math.max(minLevel, +priorHeaderLevel + 1);
 }
 
 function getPriorHeaderLevel(
@@ -464,4 +496,43 @@ function getPriorHeaderLevel(
   // The parent of a component is always a <div>, and the previous element of that <div> is the header
   // we are looking for.
   return $dl.closest("class").parent().prev().get(0)?.tagName.substring(1);
+}
+
+/**
+ * Sets the minimum heading level for the elements children, increasing each
+ * heading if needed to preserve the hierarchy.
+ *
+ * For example, `level=3` will convert:
+ * `<h1>Heading</h1><h2>Subheading</h2>`
+ * to
+ * `<h3>Heading</h3><h4>Subheading</h4>`
+ */
+export function setMinimumHeadingLevel(
+  $: CheerioAPI,
+  $dl: Cheerio<any>,
+  minLevel: number,
+): void {
+  const detectedHeadingLevels = [1, 2, 3, 4, 5, 6].filter(
+    (level) => $dl.find(`h${level}`).length !== 0,
+  );
+  if (detectedHeadingLevels.length === 0) return;
+  const currentMinimumLevel = detectedHeadingLevels[0];
+  const numberToIncreaseEachHeadingBy = minLevel - currentMinimumLevel;
+  if (numberToIncreaseEachHeadingBy === 0) return;
+
+  for (const oldLevel of detectedHeadingLevels) {
+    const newLevel = oldLevel + numberToIncreaseEachHeadingBy;
+    const oldTag = `h${oldLevel}`;
+    const newTag: string = (() => {
+      if (newLevel < 7) return `h${newLevel}`;
+      console.warn(
+        "Heading hierarchy not preserved as it would result in an invalid heading tag (>h6)",
+      );
+      return "strong";
+    })();
+
+    $dl
+      .find(oldTag)
+      .replaceWith((_, el) => `<${newTag}>${$(el).html()}</${newTag}>`);
+  }
 }
