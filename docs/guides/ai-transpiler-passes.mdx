@@ -42,14 +42,14 @@ The `AIRouting` pass acts both as a layout stage and a routing stage. It can be 
 
 ```python
 from qiskit.transpiler import PassManager
-from qiskit.circuit.library import EfficientSU2
+from qiskit.circuit.library import efficient_su2
 from qiskit_ibm_transpiler.ai.routing import AIRouting
 
 ai_passmanager = PassManager([
   AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize", local_mode=True)
 ])
 
-circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
+circuit = efficient_su2(101, entanglement="circular", reps=1)
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
@@ -74,7 +74,7 @@ from qiskit_ibm_transpiler.ai.synthesis import AILinearFunctionSynthesis
 from qiskit_ibm_transpiler.ai.collection import CollectLinearFunctions
 from qiskit_ibm_transpiler.ai.synthesis import AIPauliNetworkSynthesis
 from qiskit_ibm_transpiler.ai.collection import CollectPauliNetworks
-from qiskit.circuit.library import EfficientSU2
+from qiskit.circuit.library import efficient_su2
 
 ai_passmanager = PassManager([
   AIRouting(backend_name="ibm_cairo", optimization_level=3, layout_mode="optimize", local_mode=True),  # Route circuit
@@ -84,7 +84,7 @@ ai_passmanager = PassManager([
   AIPauliNetworkSynthesis(backend_name="ibm_cairo", local_mode=False),  # Re-synthesize Pauli Network blocks. Only available in the Qiskit Transpiler Service
 ])
 
-circuit = EfficientSU2(10, entanglement="full", reps=1).decompose()
+circuit = efficient_su2(10, entanglement="full", reps=1)
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
@@ -125,13 +125,13 @@ The `qiskit-ibm-transpiler` allows you to configure a hybrid pass manager that c
 
 ```python
     from qiskit_ibm_transpiler import generate_ai_pass_manager
-    from qiskit.circuit.library import EfficientSU2
+    from qiskit.circuit.library import efficient_su2
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     backend = QiskitRuntimeService().backend("ibm_fez")
     fez_coupling_map = backend.coupling_map
 
-    su2_circuit = EfficientSU2(101, entanglement="circular", reps=1).decompose()
+    su2_circuit = efficient_su2(101, entanglement="circular", reps=1)
 
     ai_transpiler_pass_manager = generate_ai_pass_manager(
         coupling_map=fez_coupling_map,
