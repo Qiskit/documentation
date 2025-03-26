@@ -23,10 +23,12 @@ import {
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
   readonly separatePagesVersions: string[];
+  readonly pointToPackage?: string;
 
-  constructor(kwargs: { enabled?: boolean; separatePagesVersions?: string[] }) {
+  constructor(kwargs: { enabled?: boolean; separatePagesVersions?: string[]; pointToPackage?: string; }) {
     this.enabled = kwargs.enabled ?? true;
     this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
+    this.pointToPackage = kwargs.pointToPackage;
   }
 }
 
@@ -198,7 +200,8 @@ export class Pkg {
         kebabCaseAndShortenUrls: true,
         language: "C",
         releaseNotesConfig: new ReleaseNotesConfig({
-          enabled: false,
+          enabled: true,
+          pointToPackage: 'qiskit',
         }),
       });
     }
@@ -275,6 +278,10 @@ export class Pkg {
       ? ` ${this.versionWithoutPatch}`
       : "";
     return `${this.title}${versionStr} release notes`;
+  }
+
+  releaseNotesPackageName(): string {
+    return this.releaseNotesConfig.pointToPackage ?? this.name;
   }
 
   /**
