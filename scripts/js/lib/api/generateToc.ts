@@ -233,7 +233,7 @@ function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
     title: "Release notes",
   };
   if (!pkg.hasSeparateReleaseNotes())
-    return { url: releaseNotesUrl, ...releaseNotesEntry };
+    return { ...releaseNotesEntry, url: releaseNotesUrl };
   releaseNotesEntry.children = pkg.releaseNotesConfig.separatePagesVersions.map(
     (vers) => ({
       title: vers,

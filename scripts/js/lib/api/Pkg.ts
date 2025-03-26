@@ -23,16 +23,16 @@ import {
 export class ReleaseNotesConfig {
   readonly enabled: boolean;
   readonly separatePagesVersions: string[];
-  readonly pointToPackage?: string;
+  readonly linkToPackage?: string;
 
   constructor(kwargs: {
     enabled?: boolean;
     separatePagesVersions?: string[];
-    pointToPackage?: string;
+    linkToPackage?: string;
   }) {
     this.enabled = kwargs.enabled ?? true;
     this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
-    this.pointToPackage = kwargs.pointToPackage;
+    this.linkToPackage = kwargs.linkToPackage;
   }
 }
 
@@ -205,7 +205,7 @@ export class Pkg {
         language: "C",
         releaseNotesConfig: new ReleaseNotesConfig({
           enabled: true,
-          pointToPackage: "qiskit",
+          linkToPackage: "qiskit",
         }),
       });
     }
@@ -285,7 +285,7 @@ export class Pkg {
   }
 
   releaseNotesPackageName(): string {
-    return this.releaseNotesConfig.pointToPackage ?? this.name;
+    return this.releaseNotesConfig.linkToPackage ?? this.name;
   }
 
   /**
