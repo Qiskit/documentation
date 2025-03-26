@@ -507,7 +507,7 @@ function getPriorHeaderLevel(
  * to
  * `<h3>Heading</h3><h4>Subheading</h4>`
  */
-function setMinimumHeadingLevel(
+export function setMinimumHeadingLevel(
   $: CheerioAPI,
   $dl: Cheerio<any>,
   minLevel: number,
