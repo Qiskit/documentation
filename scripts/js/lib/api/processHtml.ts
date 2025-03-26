@@ -430,10 +430,11 @@ export async function processMembersAndSetMeta(
         headerLevel,
         options,
       );
-      const $body = $("<div>" + bodyElements.join("\n") + "</div>");
-      if (!openTag.includes("isDedicatedPage='true'")) {
-        setMinimumHeadingLevel($, $body, headerLevel + 1);
-      }
+      const $body = $(`<div>${bodyElements.join("\n")}</div>`);
+      const minHeadingLevel = openTag.includes("isDedicatedPage='true'")
+        ? 2
+        : headerLevel + 1;
+      setMinimumHeadingLevel($, $body, minHeadingLevel);
       $dl.replaceWith(`<div>${openTag}\n${$body.html()}\n${closeTag}</div>`);
     }
   }
@@ -524,15 +525,11 @@ function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
   // API components.
   const minLevel = 3;
   const priorHeaderLevel = getPriorHeaderLevel($, $dl);
-  if (priorHeaderLevel) {
-    if (+priorHeaderLevel == 6) {
-      throw new Error("API component cannot set non-existent header: <h7>");
-    }
-
-    return Math.max(minLevel, +priorHeaderLevel + 1);
+  if (!priorHeaderLevel) return minLevel;
+  if (+priorHeaderLevel == 6) {
+    throw new Error("API component cannot set non-existent header: <h7>");
   }
-
-  return minLevel;
+  return Math.max(minLevel, +priorHeaderLevel + 1);
 }
 
 function getPriorHeaderLevel(
@@ -578,7 +575,7 @@ function setMinimumHeadingLevel(
   const detectedHeadingLevels = [1, 2, 3, 4, 5, 6].filter(
     (level) => $dl.find(`h${level}`).length !== 0,
   );
-  if (!detectedHeadingLevels) return;
+  if (detectedHeadingLevels.length === 0) return;
   const currentMinimumLevel = Math.min(...detectedHeadingLevels);
   const numberToIncreaseEachHeadingBy = minLevel - currentMinimumLevel;
   if (numberToIncreaseEachHeadingBy === 0) return;
