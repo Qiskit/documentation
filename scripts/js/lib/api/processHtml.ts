@@ -84,7 +84,7 @@ export async function processHtml(
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta, options);
-  maybeSetModuleMetadata($, $main, meta, options);
+  maybeSetModuleMetadata($, $main, meta, isReleaseNotes, options);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
   }
@@ -439,9 +439,20 @@ export function maybeSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
+  isReleaseNotes: boolean,
   options: { isCApi: boolean },
 ): void {
-  const modulePrefix = options.isCApi ? "group__" : "module-";
+  if (options.isCApi) {
+    // Every page in the C API should be displayed as a module except the index
+    // and the release notes.
+    const topHeadingText = $main.find("h1").first().text();
+    const isIndex = topHeadingText === "Qiskit C API (qiskit.h)";
+    if (isIndex || isReleaseNotes) return;
+    meta.apiType = "module";
+    meta.apiName = topHeadingText;
+    return;
+  }
+  const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
     .find("span, section, div.section")
     .toArray()
