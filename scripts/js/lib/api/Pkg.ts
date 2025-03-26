@@ -25,7 +25,11 @@ export class ReleaseNotesConfig {
   readonly separatePagesVersions: string[];
   readonly pointToPackage?: string;
 
-  constructor(kwargs: { enabled?: boolean; separatePagesVersions?: string[]; pointToPackage?: string; }) {
+  constructor(kwargs: {
+    enabled?: boolean;
+    separatePagesVersions?: string[];
+    pointToPackage?: string;
+  }) {
     this.enabled = kwargs.enabled ?? true;
     this.separatePagesVersions = kwargs.separatePagesVersions ?? [];
     this.pointToPackage = kwargs.pointToPackage;
@@ -201,7 +205,7 @@ export class Pkg {
         language: "C",
         releaseNotesConfig: new ReleaseNotesConfig({
           enabled: true,
-          pointToPackage: 'qiskit',
+          pointToPackage: "qiskit",
         }),
       });
     }

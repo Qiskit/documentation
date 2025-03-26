@@ -232,12 +232,14 @@ function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (!pkg.hasSeparateReleaseNotes()) return { url: releaseNotesUrl, ...releaseNotesEntry };
-  releaseNotesEntry.children =
-    pkg.releaseNotesConfig.separatePagesVersions.map((vers) => ({
+  if (!pkg.hasSeparateReleaseNotes())
+    return { url: releaseNotesUrl, ...releaseNotesEntry };
+  releaseNotesEntry.children = pkg.releaseNotesConfig.separatePagesVersions.map(
+    (vers) => ({
       title: vers,
       url: `${releaseNotesUrl}/${vers}`,
-    }));
+    }),
+  );
   return releaseNotesEntry;
 }
 
