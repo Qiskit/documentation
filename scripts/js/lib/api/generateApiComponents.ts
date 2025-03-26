@@ -34,19 +34,20 @@ export type ComponentProps = {
   isDedicatedPage?: boolean;
 };
 
-export async function processMdxComponent(
+export async function createMdxComponent(
   $: CheerioAPI,
   signatures: Cheerio<Element>[],
   $dl: Cheerio<any>,
+  bodyElements: string[],
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
-  headerLevel: number,
   options: { isCApi: boolean },
-): Promise<[string, string]> {
+): Promise<string> {
   const tagName = API_OBJECTS[apiType].tagName;
 
   const $firstSignature = signatures.shift()!;
+  const headerLevel = getHeaderLevel($, $dl);
   const componentProps = prepareProps(
     $,
     $firstSignature,
@@ -73,7 +74,15 @@ export async function processMdxComponent(
   );
   addExtraSignatures(componentProps, extraProps);
 
-  return [await createOpeningTag(tagName, componentProps), `</${tagName}>`];
+  const minHeadingLevel = componentProps.isDedicatedPage ? 2 : headerLevel + 1;
+  const $componentBody = $(`<div>${bodyElements.join("\n")}</div>`);
+  setMinimumHeadingLevel($, $componentBody, minHeadingLevel);
+
+  return [
+    await createOpeningTag(tagName, componentProps),
+    $componentBody.html(),
+    `</${tagName}>`,
+  ].join("\n");
 }
 
 // ------------------------------------------------------------------
@@ -446,4 +455,84 @@ export async function htmlSignatureToMd(
     .replaceAll('"', '\\"')
     .replace(/^`/, "")
     .replace(/`$/, "");
+}
+
+function getHeaderLevel($: CheerioAPI, $dl: Cheerio<any>): number {
+  // We don't allow the header to be h1 or h2 because it's too large design-wise for API components.
+  // We try to ensure that the API docs are set up so there is always at least an h2 above the API
+  // component, but this is not always the case, especially with historical API docs. That means that
+  // we sometimes jump from h1 to h3. That's bad, but the tradeoff we're making to avoid using h2 for
+  // API components.
+  const minLevel = 3;
+  const priorHeaderLevel = getPriorHeaderLevel($, $dl);
+  if (!priorHeaderLevel) return minLevel;
+  if (+priorHeaderLevel == 6) {
+    throw new Error("API component cannot set non-existent header: <h7>");
+  }
+  return Math.max(minLevel, +priorHeaderLevel + 1);
+}
+
+function getPriorHeaderLevel(
+  $: CheerioAPI,
+  $dl: Cheerio<any>,
+): string | undefined {
+  const siblings = $dl.siblings();
+  for (const sibling of siblings) {
+    const $sibling = $(sibling);
+    if ($sibling.data("header-type")) {
+      // A component usually has other components as siblings in the API docs with their respective
+      // headers previously created by this script. We need to skip the generated headers to avoid cases
+      // where we have multiple methods, attributes, or classes at the same level. Components nested in
+      // a class should search for the previous header in a parent node.
+      continue;
+    }
+    const tagName = $sibling.get(0)?.tagName;
+    if (tagName?.match(/h[1-6]/)) {
+      return tagName.substring(1);
+    }
+  }
+
+  // If there's no header among the siblings, we look for the closest inline class in some ancestor node.
+  // The parent of a component is always a <div>, and the previous element of that <div> is the header
+  // we are looking for.
+  return $dl.closest("class").parent().prev().get(0)?.tagName.substring(1);
+}
+
+/**
+ * Sets the minimum heading level for the elements children, increasing each
+ * heading if needed to preserve the hierarchy.
+ *
+ * For example, `level=3` will convert:
+ * `<h1>Heading</h1><h2>Subheading</h2>`
+ * to
+ * `<h3>Heading</h3><h4>Subheading</h4>`
+ */
+function setMinimumHeadingLevel(
+  $: CheerioAPI,
+  $dl: Cheerio<any>,
+  minLevel: number,
+): void {
+  const detectedHeadingLevels = [1, 2, 3, 4, 5, 6].filter(
+    (level) => $dl.find(`h${level}`).length !== 0,
+  );
+  if (detectedHeadingLevels.length === 0) return;
+  const currentMinimumLevel = detectedHeadingLevels[0];
+  const numberToIncreaseEachHeadingBy = minLevel - currentMinimumLevel;
+  if (numberToIncreaseEachHeadingBy === 0) return;
+
+  for (const oldLevel of detectedHeadingLevels) {
+    const newLevel = oldLevel + numberToIncreaseEachHeadingBy;
+    const oldTag = `h${oldLevel}`;
+    const newTag: string = (() => {
+      if (newLevel < 7) return `h${newLevel}`;
+      console.warn(
+        "Heading hierarchy not preserved as it would result in an invalid heading tag (>h6)",
+      );
+      return "strong";
+    })();
+
+    $dl
+      .find(oldTag)
+      .replaceWith((_, el) => `<${newTag}>${$(el).html()}</${newTag}>`);
+  }
 }
