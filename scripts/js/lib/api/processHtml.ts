@@ -17,7 +17,7 @@ import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
-import { processMdxComponent } from "./generateApiComponents.js";
+import { createMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
 
 export type ProcessedHtml = {
@@ -47,7 +47,6 @@ export async function processHtml(
     determineGithubUrl,
     releaseNotesTitle,
     hasSeparateReleaseNotes,
-    isCApi,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
@@ -55,6 +54,7 @@ export async function processHtml(
   const isReleaseNotes =
     fileName.endsWith("release_notes.html") ||
     fileName.endsWith("release-notes.html");
+  const isIndex = fileName.endsWith("index.html");
   const images = loadImages(
     $,
     $main,
@@ -84,7 +84,9 @@ export async function processHtml(
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta, options);
-  maybeSetModuleMetadata($, $main, meta, options);
+  if (options.isCApi) maybeSetCMetadata($main, meta, isReleaseNotes, isIndex);
+  else maybeSetPythonModuleMetadata($, $main, meta);
+
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
   }
@@ -419,29 +421,41 @@ export async function processMembersAndSetMeta(
     if (signatures.length == 0) {
       $dl.replaceWith(`<div>${bodyElements.join("\n")}</div>`);
     } else {
-      const [openTag, closeTag] = await processMdxComponent(
+      const mdxComponent = await createMdxComponent(
         $,
         signatures,
         $dl,
+        bodyElements,
         priorApiType,
-        apiType!,
+        apiType,
         id,
         options,
       );
-      $dl.replaceWith(
-        `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
-      );
+      $dl.replaceWith(`<div>${mdxComponent}</div>`);
     }
   }
 }
 
-export function maybeSetModuleMetadata(
+function maybeSetCMetadata(
+  $main: Cheerio<any>,
+  meta: Metadata,
+  isReleaseNotes: boolean,
+  isIndex: boolean,
+): void {
+  // Every page in the C API should be displayed as a module except the index
+  // and the release notes.
+  if (isIndex || isReleaseNotes) return;
+  const topHeadingText = $main.find("h1").first().text();
+  meta.apiType = "module";
+  meta.apiName = topHeadingText;
+}
+
+export function maybeSetPythonModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-  options: { isCApi: boolean },
 ): void {
-  const modulePrefix = options.isCApi ? "group__" : "module-";
+  const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
     .find("span, section, div.section")
     .toArray()
