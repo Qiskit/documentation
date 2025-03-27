@@ -2,13 +2,15 @@
 title: QkObs (latest version)
 description: API reference for QkObs in the latest version of qiskit-c
 in_page_toc_min_heading_level: 2
-python_api_type: typedef
+python_api_type: module
 python_api_name: QkObs
 ---
 
 # QkObs
 
 This is a group of functions for interacting with an opaque (Rust-space) SparseObservable instance.
+
+## Data types
 
 ### QkObs
 
@@ -25,7 +27,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_zero" signature="QkObs *qk_obs_zero(uint32_t num_qubits)">
   Construct the zero observable (without any terms).
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md3" />
+
+  #### Example
 
   ```c
   QkObs *zero = qk_obs_zero(100);
@@ -45,7 +49,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_identity" signature="QkObs *qk_obs_identity(uint32_t num_qubits)">
   Construct the identity observable.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md4" />
+
+  #### Example
 
   ```c
   QkObs *identity = qk_obs_identity(100);
@@ -65,7 +71,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_new" signature="QkObs *qk_obs_new(uint32_t num_qubits, uint64_t num_terms, uint64_t num_bits, QkComplex64 *coeffs, QkBitTerm *bit_terms, uint32_t *indices, uintptr_t *boundaries)">
   Construct a new observable from raw data.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md5" />
+
+  #### Example
 
   ```c
   // define the raw data for the 100-qubit observable |01><01|_{0, 1} - |+-><+-|_{98, 99}
@@ -83,7 +91,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   );
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md6" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md6" />
 
   Behavior is undefined if any of the following conditions are violated:
 
@@ -112,14 +124,20 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_free" signature="void qk_obs_free(QkObs *obs)">
   Free the observable.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md7" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_zero(100);
   qk_obs_free(obs);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md8" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md8" />
 
   Behavior is undefined if `obs` is not either null or a valid pointer to a \[SparseObservable].
 
@@ -133,7 +151,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_add_term" signature="ExitCode qk_obs_add_term(QkObs *obs, const QkObsTerm *cterm)">
   Add a term to the observable.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md9" />
+
+  #### Example
 
   ```c
   uint32_t num_qubits = 100;
@@ -147,7 +167,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   int exit_code = qk_obs_add_term(obs, &term);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md10" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md10" />
 
   Behavior is undefined if any of the following is violated:
 
@@ -171,7 +195,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   A \[CSparseTerm] contains pointers to the indices and bit terms in the term, which can be used to modify the internal data of the observable. This can leave the observable in an incoherent state and should be avoided, unless great care is taken. It is generally safer to construct a new observable instead of attempting in-place modifications.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md11" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_identity(100);
@@ -181,7 +207,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   // int error = qk_obs_term(obs, 12, &term);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md12" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md12" />
 
   Behavior is undefined if any of the following is violated
 
@@ -204,14 +234,20 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_num_terms" signature="uintptr_t qk_obs_num_terms(const QkObs *obs)">
   Get the number of terms in the observable.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md13" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_identity(100);
   size_t num_terms = qk_obs_num_terms(obs);  // num_terms==1
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md14" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md14" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -229,14 +265,20 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_num_qubits" signature="uint32_t qk_obs_num_qubits(const QkObs *obs)">
   Get the number of qubits the observable is defined on.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md15" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_identity(100);
   uint32_t num_qubits = qk_obs_num_qubits(obs);  // num_qubits==100
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md16" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md16" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -254,14 +296,20 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_len" signature="uintptr_t qk_obs_len(const QkObs *obs)">
   Get the number of bit terms/indices in the observable.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md17" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_identity(100);
   size_t len = qk_obs_len(obs);  // len==0, as there are no non-trivial bit terms
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md18" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md18" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -281,7 +329,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   This can be used to read and modify the observable’s coefficients. The resulting pointer is valid to read for `qk_obs_num_terms(obs)` elements of `complex double`.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md19" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_identity(100);
@@ -293,7 +343,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   }
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md20" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md20" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -313,7 +367,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   This can be used to read and modify the observable’s indices. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint32_t`.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md21" />
+
+  #### Example
 
   ```c
   uint32_t num_qubits = 100;
@@ -333,7 +389,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   }
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md22" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md22" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -353,7 +413,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   This can be used to read and modify the observable’s term boundaries. The resulting pointer is valid to read for `qk_obs_num_terms(obs) + 1` elements of size `size_t`.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md23" />
+
+  #### Example
 
   ```c
   uint32_t num_qubits = 100;
@@ -373,7 +435,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   }
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md24" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md24" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -393,7 +459,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   This can be used to read and modify the observable’s bit terms. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint8_t`.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md25" />
+
+  #### Example
 
   ```c
   uint32_t num_qubits = 100;
@@ -413,7 +481,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   }
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md26" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md26" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`, or if invalid valus are written into the resulting `QkBitTerm` pointer.
 
@@ -431,7 +503,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_multiply" signature="QkObs *qk_obs_multiply(const QkObs *obs, const QkComplex64 *coeff)">
   Multiply the observable by a complex coefficient.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md27" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_identity(100);
@@ -439,7 +513,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   QkObs *result = qk_obs_multiply(obs, &coeff);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md28" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md28" />
 
   Behavior is undefined if any of the following is violated
 
@@ -457,7 +535,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_add" signature="QkObs *qk_obs_add(const QkObs *left, const QkObs *right)">
   Add two observables.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md29" />
+
+  #### Example
 
   ```c
   QkObs *left = qk_obs_identity(100);
@@ -465,7 +545,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   QkObs *result = qk_obs_add(left, right);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md30" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md30" />
 
   Behavior is undefined if `left` or `right` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -484,7 +568,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_compose" signature="QkObs *qk_obs_compose(const QkObs *first, const QkObs *second)">
   Compose (multiply) two observables.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md31" />
+
+  #### Example
 
   ```c
   QkObs *first = qk_obs_zero(100);
@@ -492,7 +578,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   QkObs *result = qk_obs_compose(first, second);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md32" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md32" />
 
   Behavior is undefined if `first` or `second` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -513,7 +603,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   Notably, this allows composing two observables of different size.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md33" />
+
+  #### Example
 
   ```c
   QkObs *first = qk_obs_zero(100);
@@ -521,7 +613,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   QkObs *result = qk_obs_compose(first, second);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md34" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md34" />
 
   To call this function safely
 
@@ -544,7 +640,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_canonicalize" signature="QkObs *qk_obs_canonicalize(const QkObs *obs, double tol)">
   Calculate the canonical representation of the observable.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md35" />
+
+  #### Example
 
   ```c
   QkObs *iden = qk_obs_identity(100);
@@ -554,7 +652,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   QkObs *canonical = qk_obs_canonicalize(two);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md36" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md36" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -573,14 +675,20 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_copy" signature="QkObs *qk_obs_copy(const QkObs *obs)">
   Copy the observable.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md37" />
+
+  #### Example
 
   ```c
   QkObs *original = qk_obs_identity(100);
   QkObs *copied = qk_obs_copy(original);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md38" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md38" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -600,7 +708,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   Note that this does not compare mathematical equality, but data equality. This means that two observables might represent the same observable but not compare as equal.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md39" />
+
+  #### Example
 
   ```c
   QkObs *observable = qk_obs_identity(100);
@@ -608,7 +718,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   bool are_equal = qk_obs_equal(observable, other);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md40" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md40" />
 
   Behavior is undefined if `obs` or `other` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -627,7 +741,9 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_str" signature="char *qk_obs_str(const QkObs *obs)">
   Return a string representation of a `SparseObservable`.
 
-  **Example**
+  <span id="group___qk_obs_1autotoc_md41" />
+
+  #### Example
 
   ```c
   QkObs *obs = qk_obs_identity(100);
@@ -635,7 +751,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
   qk_str_free(string);
   ```
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md42" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md42" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -657,7 +777,11 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_str_free" signature="void qk_str_free(char *string)">
   Free a string representation.
 
-  **Safety**
+  <span id="group___qk_obs_1autotoc_md43" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md43" />
 
   Behavior is undefined if `str` is not a pointer returned by `qk_obs_str` or `qk_obsterm_str`.
 

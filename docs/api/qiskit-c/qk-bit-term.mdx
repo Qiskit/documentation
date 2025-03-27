@@ -2,7 +2,7 @@
 title: QkBitTerm (latest version)
 description: API reference for QkBitTerm in the latest version of qiskit-c
 in_page_toc_min_heading_level: 2
-python_api_type: typedef
+python_api_type: module
 python_api_name: QkBitTerm
 ---
 
@@ -10,9 +10,93 @@ python_api_name: QkBitTerm
 
 This is a group of functions for interacting with an opaque (Rust-space) BitTerm instance.
 
+## Data types
+
 ### QkBitTerm
 
-<Class id="QkBitTerm" signature="typedef uint8_t QkBitTerm" />
+<Class id="QkBitTerm" signature="enum QkBitTerm">
+  Named handle to the alphabet of single-qubit terms.
+
+  This is just the Rust-space representation. We make a separate Python-space `enum.IntEnum` to represent the same information, since we enforce strongly typed interactions in Rust, including not allowing the stored values to be outside the valid `BitTerm`s, but doing so in Python would make it very difficult to use the class efficiently with Numpy array views. We attach this sister class of `BitTerm` to `SparseObservable` as a scoped class.
+
+  <span id="qiskit_8h_1autotoc_md0" />
+
+  #### Representation
+
+  <span id="qiskit_8h_1autotoc_md0" />
+
+  The `u8` representation and the exact numerical values of these are part of the public API. The low two bits are the symplectic Pauli representation of the required measurement basis with Z in the Lsb0 and X in the Lsb1 (e.g. X and its eigenstate projectors all have their two low bits as `0b10`). The high two bits are `00` for the operator, `10` for the projector to the positive eigenstate, and `01` for the projector to the negative eigenstate.
+
+  The `0b00_00` representation thus ends up being the natural representation of the `I` operator, but this is never stored, and is not named in the enumeration.
+
+  This operator does not store phase terms of \$-i\$. `BitTerm::Y` has `(1, 1)` as its `(z, x)` representation, and represents exactly the Pauli Y operator; any additional phase is stored only in a corresponding coefficient.
+
+  <span id="qiskit_8h_1autotoc_md1" />
+
+  #### Dev notes
+
+  <span id="qiskit_8h_1autotoc_md1" />
+
+  This type is required to be `u8`, but it’s a subtype of `u8` because not all `u8` are valid `BitTerm`s. For interop with Python space, we accept Numpy arrays of `u8` to represent this, which we transmute into slices of `BitTerm`, after checking that all the values are correct (or skipping the check if Python space promises that it upheld the checks).
+
+  We deliberately *don’t* impl `numpy::Element` for `BitTerm` (which would let us accept and return `PyArray1<BitTerm>` at Python-space boundaries) so that it’s clear when we’re doing the transmute, and we have to be explicit about the safety of that.
+
+  *Values:*
+
+  #### enumerator QkBitTerm\_X
+
+  <Attribute id="QkBitTerm_X">
+    Pauli X operator.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_Plus
+
+  <Attribute id="QkBitTerm_Plus">
+    Projector to the positive eigenstate of Pauli X.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_Minus
+
+  <Attribute id="QkBitTerm_Minus">
+    Projector to the negative eigenstate of Pauli X.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_Y
+
+  <Attribute id="QkBitTerm_Y">
+    Pauli Y operator.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_Right
+
+  <Attribute id="QkBitTerm_Right">
+    Projector to the positive eigenstate of Pauli Y.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_Left
+
+  <Attribute id="QkBitTerm_Left">
+    Projector to the negative eigenstate of Pauli Y.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_Z
+
+  <Attribute id="QkBitTerm_Z">
+    Pauli Z operator.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_Zero
+
+  <Attribute id="QkBitTerm_Zero">
+    Projector to the positive eigenstate of Pauli Z.
+  </Attribute>
+
+  #### enumerator QkBitTerm\_One
+
+  <Attribute id="QkBitTerm_One">
+    Projector to the negative eigenstate of Pauli Z.
+  </Attribute>
+</Class>
 
 ## Functions
 
@@ -21,7 +105,9 @@ This is a group of functions for interacting with an opaque (Rust-space) BitTerm
 <Function id="qk_bitterm_label" signature="uint8_t qk_bitterm_label(QkBitTerm bit_term)">
   Get the label for a bit term.
 
-  **Example**
+  <span id="group___qk_bit_term_1autotoc_md46" />
+
+  #### Example
 
   ```c
   QkBitTerm bit_term = QkBitTerm_Y;
@@ -29,7 +115,11 @@ This is a group of functions for interacting with an opaque (Rust-space) BitTerm
   char label = qk_bitterm_label(bit_term);
   ```
 
-  **Safety**
+  <span id="group___qk_bit_term_1autotoc_md47" />
+
+  #### Safety
+
+  <span id="group___qk_bit_term_1autotoc_md47" />
 
   The behavior is undefined if `bit_term` is not a valid `uint8_t` value of a \[BitTerm].
 
