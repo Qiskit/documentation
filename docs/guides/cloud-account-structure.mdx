@@ -1,6 +1,6 @@
 ---
-title: Cloud account structure
-description: Overview of cloud accounts, users, instances, and permissions.
+title: IBM Cloud account structure
+description: Overview of IBM Cloud accounts, users, instances, and permissions.
 platform: cloud
 ---
 
@@ -9,15 +9,15 @@ platform: cloud
 
 Before setting up Qiskit Runtime, it is important to understand the IBM Cloud&reg; [Identity and Access Management (IAM) account](https://cloud.ibm.com/docs/account?topic=account-overview) structure.  As shown in the following high-level diagram, there is an **account** at the highest level.  There is only one account owner, who has exclusive control over billing management.
 
-This account contains multiple **users** and **service instances** (such as IBM Quantum Runtime).  Each service instance exists in a specific **region** and has one **plan**, so if you want to have multiple plans available to your users, you will have multiple service instances; each associated with a different plan.
+This account contains multiple **users** and **service instances** (such as IBM Quantum Runtime).  Each service instance exists in a specific **region** and has one **plan**, so if you want to have multiple plans available to your users, you will have multiple service instances, each associated with a different plan.
 
-Each user has **access policies** assigned to them, which grant them various levels of access to service instances.  Access policies can be grouped together as an **access group**.
+Each user is assigned **access policies**, which grant them various levels of access to service instances.  Access policies can be grouped together as an **access group**.
 
-By default, all users within the account can view one another. However, there is an option in the account settings to restrict visibility, ensuring only users with permissions for the IAM service can see others. Notably, IBM Cloud doesn't support user groups or group-specific administrators.
+By default, all users within the account can view one another. In account settings, you can turn on the option to restrict visibility, ensuring only users with permissions for the IAM service can see others. Notably, IBM Cloud doesn't support user groups or group-specific administrators.
 
 ## Access policies and groups
 
-As described previously, each user can be assigned one or more [access policies;](https://cloud.ibm.com/docs/account?topic=account-iamusermanpol) individually, as part of an access group, or both.
+As described previously, each user can be assigned one or more [access policies:](https://cloud.ibm.com/docs/account?topic=account-iamusermanpol) individually, as part of an access group, or both.
 
 Within an access policy, you can specify permissions by selecting _platform_ and _service_ roles or creating custom roles. Platform roles define platform-level actions, such as creating or managing instances. Service roles grant access to perform actions within the service, such as invoking a "create jobs" API endpoint (that is, running a job).
 
