@@ -328,11 +328,14 @@ function prepareFunctionProps(
       isDedicatedPage: true,
     };
   }
-  const name = getLastPartFromFullIdentifier(id);
-  const htag = `h${headerLevel}`;
-  $(`<${htag} data-header-type="method-header">${name}</${htag}>`).insertBefore(
-    $dl,
-  );
+
+  if (id) {
+    const name = getLastPartFromFullIdentifier(id);
+    const htag = `h${headerLevel}`;
+    $(
+      `<${htag} data-header-type="method-header">${name}</${htag}>`,
+    ).insertBefore($dl);
+  }
 
   return props;
 }
