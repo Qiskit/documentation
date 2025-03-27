@@ -30,17 +30,17 @@ This section summarizes the recent enhancements and new features for IBM Quantum
 
 **27 March 2025**
 
-- Cost limits for Standard Plan
+Cost limits for Standard Plan
   
-  Standard Plan users with sufficient access can now view and edit maximum cost limits for their instances. Refer to the [documentation](/guides/upgrade-from-open#set-the-maximum-cost-limit) for more information.
+  - Standard Plan users with sufficient access can now view and edit maximum cost limits for their instances. Refer to the [documentation](/guides/upgrade-from-open#set-the-maximum-cost-limit) for more information.
 
-- Job management updates
+Job management updates
 
-  Now only administrators can delete workloads created by other users in an account, and collaborators will only be able to delete their own workloads.
+  - Now only administrators can delete workloads created by other users in an account, and collaborators will only be able to delete their own workloads.
 
-- Updated authentication error messages
+Updated authentication error messages
 
-  We have improved error messaging for account and authentication processes to reduce issues with signup flow. We have also updated our [Support page](/support) with expanded recommendations for troubleshooting and resolving common errors.
+  - We have improved error messaging for account and authentication processes to reduce issues with signup flow. We have also updated our [Support page](/support) with expanded recommendations for troubleshooting and resolving common errors.
 
 For full details on the early access release and upcoming improvements, [check out the blog](https://www.ibm.com/quantum/blog/iqp-upgrade).
 </CloudContent>
@@ -66,17 +66,17 @@ Wondering what will change? Read the [release changelog](https://github.com/Qisk
 
 **13 March 2025**
 
-- Deprecation
+Deprecation
 
-  The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits`, have all been deprecated. These attribute values used to represent the maximum number of shots and circuits that could be submitted in one job. See [job limits](/guides/job-limits#job-limits) for details.
+  - The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits`, have all been deprecated. These attribute values used to represent the maximum number of shots and circuits that could be submitted in one job. See [job limits](/guides/job-limits#job-limits) for details.
 
-- New features
+New features
 
-  `qiskit-ibm-runtime` is now compatible with Qiskit v2.0. This means that classes and methods removed in Qiskit v2.0 have also been removed or handled accordingly.  The `pulse`- and `channel`-related changes are highlighted in the following list. See the [Pulse migration guide](/migration-guides/pulse-migration) for details.
+  - `qiskit-ibm-runtime` is now compatible with Qiskit v2.0. This means that classes and methods removed in Qiskit v2.0 have also been removed or handled accordingly.  The `pulse`- and `channel`-related changes are highlighted in the following list. See the [Pulse migration guide](/migration-guides/pulse-migration) for details.
 
-  - `Channel` methods in `IBMBackend` have been removed.
-  - The backend configuration class `PulseBackendConfiguration` has been removed, so all backends will now be returned as `QasmBackendConfiguration`.
-  - `PulseDefaults` (backend defaults) can still be retrieved but they are no longer necessary when creating a backend `Target`.
+    - `Channel` methods in `IBMBackend` have been removed.
+    - The backend configuration class `PulseBackendConfiguration` has been removed, so all backends will now be returned as `QasmBackendConfiguration`.
+    - `PulseDefaults` (backend defaults) can still be retrieved but they are no longer necessary when creating a backend `Target`.
 
 See the full [0.37.0 release notes](/api/qiskit-ibm-runtime/release-notes#0370-2025-03-13).
 {/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
@@ -167,36 +167,14 @@ The Qiskit Transpiler Service leverages the resources of IBM Cloud&reg; to provi
 
 {/* need a blurb about the types of content here */}
 
-### Qiskit Functions Catalog Service client v0.1.0
+**10 March 2025**
 
-Introducing the Qiskit Functions preview, for IBM Quantum Premium Plan users. To get started, `pip install qiskit-ibm-catalog`, and explore the [Qiskit Functions documentation](/guides/functions). With the Qiskit Functions Catalog client, you can submit workloads to abstracted services designed to accelerate your research - sign in with your existing IBM Quantum Platform credentials.
+Latest additions to the Qiskit Functions Catalog
 
-Premium Plan users can get started right away with the IBM&reg; Circuit function, or request access to circuit or application functions from our partners.
+  - [Iskay Quantum Optimizer - A Qiskit Function by Kipu Quantum](/guides/kipu-optimization)
+  - [Singularity Machine Learning - Classification: A Qiskit Function by Multiverse Computing](/guides/multiverse-computing-singularity)
+  - [HI-VQE Chemistry - A Qiskit Function by Qunova Computing](/guides/qunova-chemistry)
 
-### Qiskit Functions Catalog updates
-
-**16 September 2024**
-
-The Qiskit Functions Catalog preview provides access to Premium Plan users to explore the available functions, including those written by IBM and those written by other members of our ecosystem. The catalog contains two kinds of functions: circuit functions and application functions.
-
-- **Circuit functions** provide a simplified interface for running circuits. They receive user-provided abstract circuits and observables as input, then manage synthesis, optimization, and execution of the representative ISA circuit. Circuit functions bring together the latest capabilities in transpilation, error suppression, and error mitigation to make utility-grade performance accessible out of the box. This allows computational scientists to focus on mapping their problems to circuits, rather than building the pattern for each problem from scratch.
-
-- **Application functions** cover higher-level tasks, like exploring algorithms and domain-specific use cases. Enterprise developers and data scientists may not have the background quantum information science knowledge for working with circuits, and instead hope to bring their domain knowledge to advance quantum computing algorithms and applications. With application functions, users can enter their classical inputs and receive solutions so they can more easily experiment with plugging quantum into their domain-specific workflows.
-
-With the launch of the Qiskit Functions Catalog, Premium Plan developers will be able to start exploring the IBM Circuit function. The IBM Circuit function includes the latest AI-powered extensions to Qiskit for circuit synthesis, optimization, and scheduling, as well as advanced error mitigation methods to return the most accurate estimations possible with today's hardware.
-
-Users can purchase licenses for the following functions contributed by our partners at Q-CTRL, QEDMA, Algorithmiq, and Qunasys.
-
-**Circuit functions**
-
-- Q-CTRL is releasing a circuit function that applies AI-driven quantum control techniques, with which users can scale successfully to larger problems.
-- Algorithmiq is releasing a circuit function that applies TEM (tensor-network error mitigation), an error mitigation method for obtaining estimators with fewer shots than the PEC (probabilistic error cancellation) method.
-- QEDMA is releasing a circuit function that uses proprietary protocols for efficient and accurate characterization of the noisy QPU operations, and applies error suppression and error mitigation based on the characterization data.
-
-**Application functions**
-
-- QunaSys is releasing a chemistry application function comprising three algorithms meant to solve the ground state energy estimation (GSEE) problem.
-- Q-CTRL is also releasing an optimization solver with which users can pass a graph or an objective, and receive solution costs.
 
 To get started, explore the [Qiskit Functions documentation](/guides/functions).
 
@@ -209,7 +187,7 @@ IBM Quantum documentation recently added a number of user-facing improvements, i
 
 **18 December 2024**
 
-- New pages
+New pages
 
   - Introductory and get-started material for these [Qiskit addons](/guides/addons):
 [SQD](/guides/qiskit-addons-sqd) | [AQC-Tensor](/guides/qiskit-addons-aqc) | [OBP](/guides/qiskit-addons-obp) | [MPF](/guides/qiskit-addons-mpf)
@@ -224,7 +202,7 @@ IBM Quantum documentation recently added a number of user-facing improvements, i
 
   - [Use Qiskit Code Assistant in local mode](/guides/qiskit-code-assistant-local)
 
-- Content additions and improvements
+Content additions and improvements
 
   <LegacyContent>
   - Guidance to [securely manage your API token](/guides/setup-channel#set-up-to-use-ibm-quantum-platform), as part of the guide to set up an IBM Quantum channel
@@ -240,14 +218,14 @@ IBM Quantum documentation recently added a number of user-facing improvements, i
 
   - Copyediting and typo fixes across the documentation, including bugs reported by open-source contributors - thank you!
 
-- New API reference documentation
+New API reference documentation
 
   - [Qiskit SDK v1.3](/api/qiskit/release-notes)
   - [qiskit-ibm-runtime v0.32-0.34](/api/qiskit-ibm-runtime/release-notes)
   - [qiskit-ibm-transpiler v0.8-0.9](/api/qiskit-ibm-transpiler/release-notes)
   - Qiskit addons: [qiskit-addon-aqc-tensor](/api/qiskit-addon-aqc-tensor/release-notes) | [qiskit-addon-cutting](/api/qiskit-addon-cutting/release-notes) | [qiskit-addon-obp](/api/qiskit-addon-obp/release-notes) | [qiskit-addon-mpf](/api/qiskit-addon-mpf/release-notes) | [qiskit-addon-sqd](/api/qiskit-addon-sqd/release-notes) | [qiskit-addon-utils](/api/qiskit-addon-utils/release-notes)
 
-- User experience improvements
+User experience improvements
 
   - The required versions of packages used in code examples are now listed at the top of each guide.
   - Bug in menu view on mobile devices is now fixed.
