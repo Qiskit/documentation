@@ -92,7 +92,7 @@ function getCrossRef(
   return { type: "link", url, children: [linkTextNode] };
 }
 
-type TextVisitor = (node: Text, index: number, parent: any) => void;
+export type TextVisitor = (node: Text, index: number, parent: any) => void;
 export function insertCrossRefsVisitor(
   packageName: string,
   version: string,

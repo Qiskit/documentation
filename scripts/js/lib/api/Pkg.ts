@@ -14,7 +14,7 @@ import { join } from "path/posix";
 
 import { findSeparateReleaseNotesVersions } from "./releaseNotes.js";
 import { determineHistoricalQiskitGithubUrl } from "../qiskitMetapackage.js";
-import { insertCrossRefsVisitor } from "./handleCrossRefs";
+import { TextVisitor, insertCrossRefsVisitor } from "./handleCrossRefs";
 import {
   TocGrouping,
   QISKIT_TOC_GROUPING,
@@ -270,8 +270,8 @@ export class Pkg {
     return this.language === "C";
   }
 
-  crossRefsVisitorFn(): any {
-    if (!this.isCApi()) return null;
+  crossRefsVisitorFn(): TextVisitor | undefined {
+    if (!this.isCApi()) return undefined;
     return insertCrossRefsVisitor(this.name, this.version);
   }
 

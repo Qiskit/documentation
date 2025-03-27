@@ -29,13 +29,14 @@ import { HtmlToMdResult } from "./HtmlToMdResult.js";
 import { Metadata, ApiTypeName } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
+import { TextVisitor } from "./handleCrossRefs.js";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
   fileName: string;
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
-  insertCrossReferences: ((textNode: Text) => void) | null;
+  insertCrossReferences?: TextVisitor;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
@@ -57,7 +58,7 @@ export async function sphinxHtmlToMarkdown(options: {
 async function generateMarkdownFile(
   mainHtml: string,
   meta: Metadata,
-  insertCrossReferences: ((textNode: Text) => void) | null,
+  insertCrossReferences?: TextVisitor,
 ): Promise<string> {
   const noop: any = () => {};
   const handlers = prepareHandlers(meta);
