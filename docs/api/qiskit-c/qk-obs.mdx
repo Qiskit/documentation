@@ -17,7 +17,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Class id="QkObs" signature="typedef struct QkObs QkObs">
   An observable over Pauli bases that stores its data in a qubit-sparse format.
 
-  See \[PySparseObservable] for detailed docs.
+  See [SparseObservable](/api/qiskit/2.0/qiskit.quantum_info.SparseObservable#sparseobservable) for detailed docs.
 </Class>
 
 ## Functions
@@ -139,7 +139,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   <span id="group___qk_obs_1autotoc_md8" />
 
-  Behavior is undefined if `obs` is not either null or a valid pointer to a \[SparseObservable].
+  Behavior is undefined if `obs` is not either null or a valid pointer to a [QkObs](/api/qiskit-c/2.0/qk-obs#qkobs-1).
 
   **Parameters**
 
@@ -193,7 +193,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 <Function id="qk_obs_term" signature="ExitCode qk_obs_term(QkObs *obs, uint64_t index, QkObsTerm *out)">
   Get an observable term by reference.
 
-  A \[CSparseTerm] contains pointers to the indices and bit terms in the term, which can be used to modify the internal data of the observable. This can leave the observable in an incoherent state and should be avoided, unless great care is taken. It is generally safer to construct a new observable instead of attempting in-place modifications.
+  A [QkObsTerm](/api/qiskit-c/2.0/qk-obs-term#qkobsterm-1) contains pointers to the indices and bit terms in the term, which can be used to modify the internal data of the observable. This can leave the observable in an incoherent state and should be avoided, unless great care is taken. It is generally safer to construct a new observable instead of attempting in-place modifications.
 
   <span id="group___qk_obs_1autotoc_md11" />
 
@@ -222,7 +222,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseO
 
   *   **obs** – A pointer to the observable.
   *   **index** – The index of the term to get.
-  *   **out** – A pointer to a \[CSparseTerm] used to return the observable term.
+  *   **out** – A pointer to a [QkObsTerm](/api/qiskit-c/2.0/qk-obs-term#qkobsterm-1) used to return the observable term.
 
   **Returns**
 
