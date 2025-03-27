@@ -34,6 +34,7 @@ import {
   maybeUpdateReleaseNotesFolder,
   handleReleaseNotesFile,
 } from "./releaseNotes.js";
+import { insertCrossRefsVisitor } from "./handleCrossRefs.js";
 
 export async function runConversionPipeline(
   htmlPath: string,
@@ -106,6 +107,7 @@ async function convertFilesToMarkdown(
       html,
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
+      insertCrossReferences: pkg.crossRefsVisitorFn(),
       imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
