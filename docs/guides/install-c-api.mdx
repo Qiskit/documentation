@@ -103,11 +103,9 @@ num_terms: 1
 observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
 ```
 
-## Windows (experimental)
+## Windows
 
-<Admonition type="caution">
-  Windows support is currently experimental. These instructions are a work in progress.
-</Admonition>
+This section provides build instructions for Windows systems.
 
 ### Requirements
 
@@ -116,41 +114,37 @@ Compilation requires the following tools:
 * A C compiler: for example, MSVC and the native command prompt offering the ``cl`` command
 * A Python installation, with access to both ``python3.lib`` and ``python3.dll``
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can install with `cargo install cbindgen`
-    Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`
+    Note that running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
 
 ### Build
 
 First, compile the `qiskit_cext` dynamic library, by running the following in Qiskit root
 ```bash
-set PATH="\path\to\pythonlib\";%PATH%
+set PATH="\path\to\pythonlib";%PATH%
 cargo rustc --release --crate-type cdylib -p qiskit-cext
 ```
 This will generate the ``.dll`` dynamic library and associated ``.dll.lib`` file in `target/release`.
 Next, generate the header with
 ```bash
-cbindgen --crate qiskit-cext --output target\release\qiskit.h
+cbindgen --crate qiskit-cext --output dist\c\include\qiskit.h
 ```
-This will write the MSVC-compatible header in the same directory as the library.
+This will write the MSVC-compatible header in ``dist\c\include``.
 
-Now you can use `cl` to compile the C program. For simplicity, here it is assumed the file is
-located in `target/release`.
+Now you can use `cl` to compile the C program. To ensure the compiler finds the qiskit library,
+we include `target\release` in the `PATH` variable.
 ```bash
-cl example.c qiskit_cext.dll.lib -I.
+set PATH="\path\to\target\release";%PATH%
+cl example.c qiskit_cext.dll.lib -I\path\to\dist\c\include
 ```
-If your source file has another location,  be sure to update the
-local `PATH` variable to include the location of the dynamic library and the include path set
-via `-I`.
 
-Finally, you can run the executable
+Before running, you have to include the path to your ``python3.dll``.
 ```bash
+set PATH="\path\to\python3-dll";%PATH%
 .\example.exe
 ```
-which should print
+should then print
 ```
 num_qubits: 100
 num_terms: 1
 observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
 ```
-
-If you get an error that reports libraries are missing, you can try updating the local `PATH`
-variable to include the necessary locations.
