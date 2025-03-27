@@ -8,106 +8,74 @@ python_api_name: QkBitTerm
 
 # QkBitTerm
 
-This is a group of functions for interacting with an opaque (Rust-space) BitTerm instance.
+```c
+enum QkBitTerm
+```
 
-## Data types
+An enum that to represent each of the single-qubit alphabet terms enumerated below.
 
-### QkBitTerm
+## Members
 
-<Class id="QkBitTerm" signature="enum QkBitTerm">
-  Named handle to the alphabet of single-qubit terms.
+*   ****enumerator QkBitTerm\_X****
 
-  This is just the Rust-space representation. We make a separate Python-space `enum.IntEnum` to represent the same information, since we enforce strongly typed interactions in Rust, including not allowing the stored values to be outside the valid `BitTerm`s, but doing so in Python would make it very difficult to use the class efficiently with Numpy array views. We attach this sister class of `BitTerm` to `SparseObservable` as a scoped class.
+    Value: 2 (`0b0010`) The Pauli $X$ operator.
 
-  <span id="qiskit_8h_1autotoc_md0" />
+*   ****enumerator QkBitTerm\_Y****
 
-  #### Representation
+    Value: 3 (`0b0011`) The Pauli $Y$ operator.
 
-  <span id="qiskit_8h_1autotoc_md0" />
+*   ****enumerator QkBitTerm\_Z****
 
-  The `u8` representation and the exact numerical values of these are part of the public API. The low two bits are the symplectic Pauli representation of the required measurement basis with Z in the Lsb0 and X in the Lsb1 (e.g. X and its eigenstate projectors all have their two low bits as `0b10`). The high two bits are `00` for the operator, `10` for the projector to the positive eigenstate, and `01` for the projector to the negative eigenstate.
+    Value: 1 (`0b0001`) The Pauli $Z$ operator.
 
-  The `0b00_00` representation thus ends up being the natural representation of the `I` operator, but this is never stored, and is not named in the enumeration.
+*   ****enumerator QkBitTerm\_Plus****
 
-  This operator does not store phase terms of \$-i\$. `BitTerm::Y` has `(1, 1)` as its `(z, x)` representation, and represents exactly the Pauli Y operator; any additional phase is stored only in a corresponding coefficient.
+    Value: 10 (`0b1010`) The projector $\lvert +\rangle\langle +\rvert$ to the positive $X$ eigenstate.
 
-  <span id="qiskit_8h_1autotoc_md1" />
+*   ****enumerator QkBitTerm\_Minus****
 
-  #### Dev notes
+    Value: 6 (`0b0110`) The projector $\lvert -\rangle\langle -\rvert$ to the negative $X$ eigenstate.]
 
-  <span id="qiskit_8h_1autotoc_md1" />
+*   ****enumerator QkBitTerm\_Right****
 
-  This type is required to be `u8`, but it’s a subtype of `u8` because not all `u8` are valid `BitTerm`s. For interop with Python space, we accept Numpy arrays of `u8` to represent this, which we transmute into slices of `BitTerm`, after checking that all the values are correct (or skipping the check if Python space promises that it upheld the checks).
+    Value: 11 (`0b1011`) The projector $\lvert r\rangle\langle r\rvert$ to the positive $Y$ eigenstate.
 
-  We deliberately *don’t* impl `numpy::Element` for `BitTerm` (which would let us accept and return `PyArray1<BitTerm>` at Python-space boundaries) so that it’s clear when we’re doing the transmute, and we have to be explicit about the safety of that.
+*   ****enumerator QkBitTerm\_Left****
 
-  *Values:*
+    Value: 7 (`0b1011`) The projector $\lvert l\rangle\langle l\rvert$ to the negative $Y$ eigenstate.
 
-  #### enumerator QkBitTerm\_X
+*   ****enumerator QkBitTerm\_Zero****
 
-  <Attribute id="QkBitTerm_X">
-    Pauli X operator.
-  </Attribute>
+    Value: 9 (`0b1001`) The projector $\lvert 0\rangle\langle 0\rvert$ to the positive $Z$ eigenstate.
 
-  #### enumerator QkBitTerm\_Plus
+*   ****enumerator QkBitTerm\_One****
 
-  <Attribute id="QkBitTerm_Plus">
-    Projector to the positive eigenstate of Pauli X.
-  </Attribute>
+    Value: 5 (`0b0101`) The projector $\lvert 1\rangle\langle 1\rvert$ to the negative $Z$ eigenstate.
 
-  #### enumerator QkBitTerm\_Minus
+## Representation
 
-  <Attribute id="QkBitTerm_Minus">
-    Projector to the negative eigenstate of Pauli X.
-  </Attribute>
+The enum is stored as single byte, its elements are represented as unsigned 8-bit integer.
 
-  #### enumerator QkBitTerm\_Y
+```c
+typedef uint8_t QkBitTerm
+```
 
-  <Attribute id="QkBitTerm_Y">
-    Pauli Y operator.
-  </Attribute>
+<Admonition title="Warning" type="caution">
+  Not all `uint8_t` values are valid bit terms. Passing invalid values is undefined behavior.
+</Admonition>
 
-  #### enumerator QkBitTerm\_Right
+The numeric structure of these is that they are all four-bit values of which the low two bits are the (phase-less) symplectic representation of the Pauli operator related to the object, where the low bit denotes a contribution by $Z$ and the second lowest a contribution by $X$, while the upper two bits are `00` for a Pauli operator, `01` for the negative-eigenstate projector, and `10` for the positive-eigenstate projector.
 
-  <Attribute id="QkBitTerm_Right">
-    Projector to the positive eigenstate of Pauli Y.
-  </Attribute>
+### Functions
 
-  #### enumerator QkBitTerm\_Left
-
-  <Attribute id="QkBitTerm_Left">
-    Projector to the negative eigenstate of Pauli Y.
-  </Attribute>
-
-  #### enumerator QkBitTerm\_Z
-
-  <Attribute id="QkBitTerm_Z">
-    Pauli Z operator.
-  </Attribute>
-
-  #### enumerator QkBitTerm\_Zero
-
-  <Attribute id="QkBitTerm_Zero">
-    Projector to the positive eigenstate of Pauli Z.
-  </Attribute>
-
-  #### enumerator QkBitTerm\_One
-
-  <Attribute id="QkBitTerm_One">
-    Projector to the negative eigenstate of Pauli Z.
-  </Attribute>
-</Class>
-
-## Functions
-
-### qk\_bitterm\_label
+#### qk\_bitterm\_label
 
 <Function id="qk_bitterm_label" signature="uint8_t qk_bitterm_label(QkBitTerm bit_term)">
   Get the label for a bit term.
 
   <span id="group___qk_bit_term_1autotoc_md46" />
 
-  #### Example
+  ##### Example
 
   ```c
   QkBitTerm bit_term = QkBitTerm_Y;
@@ -117,7 +85,7 @@ This is a group of functions for interacting with an opaque (Rust-space) BitTerm
 
   <span id="group___qk_bit_term_1autotoc_md47" />
 
-  #### Safety
+  ##### Safety
 
   <span id="group___qk_bit_term_1autotoc_md47" />
 
