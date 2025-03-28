@@ -16,8 +16,8 @@ import { CheerioAPI, Cheerio, load, Element } from "cheerio";
 import { escapeRegExp } from "lodash-es";
 
 import { Image } from "./HtmlToMdResult.js";
-import { Metadata, ApiType } from "./Metadata.js";
-import { processMdxComponent } from "./generateApiComponents.js";
+import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
+import { createMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
 
 export type ProcessedHtml = {
@@ -47,7 +47,6 @@ export async function processHtml(
     determineGithubUrl,
     releaseNotesTitle,
     hasSeparateReleaseNotes,
-    isCApi,
   } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
@@ -55,6 +54,7 @@ export async function processHtml(
   const isReleaseNotes =
     fileName.endsWith("release_notes.html") ||
     fileName.endsWith("release-notes.html");
+  const isIndex = fileName.endsWith("index.html");
   const images = loadImages(
     $,
     $main,
@@ -70,6 +70,7 @@ export async function processHtml(
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
+  removePublicMembersRubric($main);
   removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main, options);
@@ -83,7 +84,9 @@ export async function processHtml(
 
   const meta: Metadata = {};
   await processMembersAndSetMeta($, $main, meta, options);
-  maybeSetModuleMetadata($, $main, meta, options);
+  if (options.isCApi) maybeSetCMetadata($main, meta, isReleaseNotes, isIndex);
+  else maybeSetPythonModuleMetadata($, $main, meta);
+
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main);
   }
@@ -155,6 +158,22 @@ export function removePermalinks($main: Cheerio<any>): void {
 
 export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
+}
+
+/**
+ * This is because the rubric appears to have the same level at the fields
+ * themselves. We decided the best solution to avoid a confusing information
+ * hierarcy is to remove the rubric.
+ *
+ * A better solution is to implement https://github.com/Qiskit/documentation/issues/1395.
+ * Once implemented, we should rename "Public members" to "Fields" as C does not
+ * have methods and all fields are public (breathe is more targeted towards C++).
+ */
+function removePublicMembersRubric($main: Cheerio<any>): void {
+  $main
+    .find("p.breathe-sectiondef-title.rubric")
+    .filter((i, el) => load(el).text() === "Public members")
+    .remove();
 }
 
 export function removeMatplotlibFigCaptions($main: Cheerio<any>): void {
@@ -353,7 +372,9 @@ export async function processMembersAndSetMeta(
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception, dl.py.data, dl.cpp.function, dl.cpp.struct, dl.cpp.type, dl.cpp.enum, dl.cpp.enumerator",
+        Object.values(API_OBJECTS)
+          .map((x) => x.htmlSelector)
+          .join(", "),
       )
       // Components inside tables will not work properly. This happened with `dl.py.data` in /api/qiskit/utils.
       .not("td > dl")
@@ -375,8 +396,8 @@ export async function processMembersAndSetMeta(
         : $dl.find("dt").attr("id")) || "";
     const apiType = getApiType($dl);
 
-    if (apiType && apiType === "module") {
-      throw new Error("Did not expect apiType to be 'module'");
+    if (!apiType) {
+      throw new Error(`Could not determine apiType for '${$dl}'`);
     }
 
     const priorApiType = meta.apiType;
@@ -400,29 +421,41 @@ export async function processMembersAndSetMeta(
     if (signatures.length == 0) {
       $dl.replaceWith(`<div>${bodyElements.join("\n")}</div>`);
     } else {
-      const [openTag, closeTag] = await processMdxComponent(
+      const mdxComponent = await createMdxComponent(
         $,
         signatures,
         $dl,
+        bodyElements,
         priorApiType,
-        apiType!,
+        apiType,
         id,
         options,
       );
-      $dl.replaceWith(
-        `<div>${openTag}\n${bodyElements.join("\n")}\n${closeTag}</div>`,
-      );
+      $dl.replaceWith(`<div>${mdxComponent}</div>`);
     }
   }
 }
 
-export function maybeSetModuleMetadata(
+function maybeSetCMetadata(
+  $main: Cheerio<any>,
+  meta: Metadata,
+  isReleaseNotes: boolean,
+  isIndex: boolean,
+): void {
+  // Every page in the C API should be displayed as a module except the index
+  // and the release notes.
+  if (isIndex || isReleaseNotes) return;
+  const topHeadingText = $main.find("h1").first().text();
+  meta.apiType = "module";
+  meta.apiName = topHeadingText;
+}
+
+export function maybeSetPythonModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
-  options: { isCApi: boolean },
 ): void {
-  const modulePrefix = options.isCApi ? "group__" : "module-";
+  const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
     .find("span, section, div.section")
     .toArray()
@@ -467,7 +500,7 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
     });
 }
 
-function getApiType($dl: Cheerio<any>): ApiType | undefined {
+function getApiType($dl: Cheerio<any>): ApiObjectName | undefined {
   // Historical versions were generating properties incorrectly as methods.
   // We can fix this by looking at the modifier before the signature.
   // See https://github.com/Qiskit/documentation/issues/1352 for more information.
@@ -475,25 +508,13 @@ function getApiType($dl: Cheerio<any>): ApiType | undefined {
     return "property";
   }
 
-  const apiClassNames = [
-    "type",
-    "function",
-    "class",
-    "exception",
-    "method",
-    "property",
-    "attribute",
-    "module",
-    "data",
-    "struct",
-    "enum",
-    "enumerator",
-  ] as const;
-  for (const className of apiClassNames) {
-    if ($dl.hasClass(className)) {
-      if (className === "type") return "typedef";
-      return className;
-    }
+  for (const [apiTypeName, apiType] of Object.entries(API_OBJECTS)) {
+    const className = apiType.htmlSelector.split(".").pop();
+    if (!className)
+      throw new Error(
+        `'htmlSelector' attribute must be of form '<tag>.<lang>.<apiType>' (e.g. 'dl.py.function'), found '${apiType}'.`,
+      );
+    if ($dl.hasClass(className)) return apiTypeName as ApiObjectName;
   }
 
   return undefined;

@@ -1,0 +1,58 @@
+---
+title: QiskitAerSimulationSettings (v0.1)
+description: API reference for qiskit_addon_aqc_tensor.simulation.aer.QiskitAerSimulationSettings in qiskit-addon-aqc-tensor v0.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_aqc_tensor.simulation.aer.QiskitAerSimulationSettings
+---
+
+# QiskitAerSimulationSettings
+
+<Class id="qiskit_addon_aqc_tensor.simulation.aer.QiskitAerSimulationSettings" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/aer/simulation.py#L59-L92" signature="QiskitAerSimulationSettings(simulator, callback=None)" modifiers="class">
+  Bases: [`TensorNetworkSimulationSettings`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings")
+
+  Qiskit Aer simulator settings.
+
+  Example usage:
+
+  ```python
+  from qiskit_aer import AerSimulator
+  from qiskit_addon_aqc_tensor.simulation.aer import QiskitAerSimulationSettings
+
+  simulator = AerSimulator(
+      method="matrix_product_state",
+      matrix_product_state_max_bond_dimension=200,
+      matrix_product_state_truncation_threshold=1e-6,
+      mps_log_data=True,
+  )
+
+  def my_simulation_callback(circuit, result):
+      print(f"Simulated circuit of depth {circuit.depth()}")
+      metadata = result.results[0].metadata
+      print(metadata["MPS_log_data"])
+
+  settings = QiskitAerSimulationSettings(simulator, my_simulation_callback)
+  ```
+
+  See additional options for when using the `matrix_product_state` simulation method in the documentation for [`AerSimulator`](https://qiskit.github.io/qiskit-aer/stubs/qiskit_aer.AerSimulator.html#qiskit_aer.AerSimulator "(in Qiskit Aer v0.15.0)").
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **simulator** (*AerSimulator*)
+  *   **callback** (*Callable\[\[QuantumCircuit, Result], None] | None*)
+
+  ### callback
+
+  <Attribute id="qiskit_addon_aqc_tensor.simulation.aer.QiskitAerSimulationSettings.callback" attributeTypeHint="Callable[[QuantumCircuit, Result], None] | None" attributeValue="None">
+    This callable, if provided, is called with `(circuit, result)` as arguments immediately after each MPS simulation.
+  </Attribute>
+
+  ### simulator
+
+  <Attribute id="qiskit_addon_aqc_tensor.simulation.aer.QiskitAerSimulationSettings.simulator" attributeTypeHint="AerSimulator">
+    Aer simulator, must be configured with method=’matrix\_product\_state’. Stores configuration like `max_bond_dimension`, `truncation_threshold`, etc.
+  </Attribute>
+</Class>
+

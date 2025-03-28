@@ -11,16 +11,34 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from scripts.tool_runner import run_cmd
+import logging
+
+from scripts.tool_runner import configure_logging, run_cmd
+
+logger = logging.getLogger(__name__)
+
+# Note that these are ordered from fastest to slowest.
+CHECKS = {
+    "notebook linters": ["tox", "-e", "lint"],
+    "patterns index pages": ["npm", "run", "check:patterns-index"],
+    "Qiskit bot": ["npm", "run", "check:qiskit-bot"],
+    "metadata": ["npm", "run", "check:metadata"],
+    "images": ["npm", "run", "check:images"],
+    "orphan pages": ["npm", "run", "check:orphan-pages"],
+    "spelling": ["npm", "run", "check:spelling"],
+    "internal links": ["npm", "run", "check:internal-links"],
+}
 
 
 def main() -> None:
-    run_cmd(["tox", "-e", "lint"])
-    run_cmd(["npm", "run", "check"])
+    for i, (name, cmd) in enumerate(CHECKS.items()):
+        run_cmd(name, cmd, progress=f"{i + 1}/{len(CHECKS)}")
+    logger.info("🎉 All checks passed!")
 
 
 if __name__ == "__main__":
     try:
+        configure_logging()
         main()
     except KeyboardInterrupt:
         raise SystemExit(1)

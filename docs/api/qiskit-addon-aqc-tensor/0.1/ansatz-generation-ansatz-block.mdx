@@ -1,0 +1,386 @@
+---
+title: AnsatzBlock (v0.1)
+description: API reference for qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock in qiskit-addon-aqc-tensor v0.1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock
+---
+
+# AnsatzBlock
+
+<Class id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/ansatz_generation.py#L32-L52" signature="AnsatzBlock(params)" modifiers="class">
+  Bases: [`Gate`](/api/qiskit/qiskit.circuit.Gate "(in Qiskit v1.2)")
+
+  Ansatz block.
+
+  This is the base class of all blocks returned by [`generate_ansatz_from_circuit()`](ansatz-generation#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit").
+
+  Initialize the ansatz block.
+
+  **Parameters**
+
+  **params** ([`Sequence`](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.13)")\[[`Parameter`](/api/qiskit/qiskit.circuit.Parameter "(in Qiskit v1.2)")]) – Sequence of parameters.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.base_class "qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a `Target` from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.condition">
+    The classical condition on the instruction.
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.condition_bits">
+    Get Clbits in condition.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.duration">
+    Get the duration.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.unit">
+    Get the time unit of duration.
+  </Attribute>
+
+  ## Methods
+
+  ### add\_decomposition
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.add_decomposition" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  ### assemble
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.assemble" signature="assemble()">
+    Assemble a QasmQobjInstruction
+
+    <Admonition title="Deprecated since version 1.2" type="danger">
+      The method `qiskit.circuit.instruction.Instruction.assemble()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+    </Admonition>
+  </Function>
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
+
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
+
+    The general broadcasting rules are:
+
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
+
+    **Parameters**
+
+    *   **qargs** ([`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of quantum bit arguments.
+    *   **cargs** ([`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of classical bit arguments.
+
+    **Return type**
+
+    [`Iterable`](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")]]
+
+    **Returns**
+
+    A tuple with single arguments.
+
+    **Raises**
+
+    **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
+
+  ### c\_if
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.c_if" signature="c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+  </Function>
+
+  ### control
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.control" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return the controlled version of itself.
+
+    Implemented either as a controlled gate (ref. `ControlledGate`) or as an annotated operation (ref. `AnnotatedOperation`).
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** (int) – number of controls to add to gate (default: `1`)
+    *   **label** (str | None) – optional gate label. Ignored if implemented as an annotated operation.
+    *   **ctrl\_state** (int | str | None) – the control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+    *   **annotated** (bool | None) – indicates whether the controlled gate is implemented as an annotated gate. If `None`, this is set to `False` if the controlled gate can directly be constructed, and otherwise set to `True`. This allows defering the construction process in case the synthesis of the controlled gate requires more information (e.g. values of unbound parameters).
+
+    **Returns**
+
+    Controlled version of the given operation.
+
+    **Raises**
+
+    **QiskitError** – unrecognized mode or invalid ctrl\_state
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.copy" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.inverse" signature="inverse(annotated=False)">
+    Invert this instruction.
+
+    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
+
+    If annotated is True, the inverse instruction is implemented as `AnnotatedOperation`, and corresponds to the given instruction annotated with the “inverse modifier”.
+
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+    **Parameters**
+
+    **annotated** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if set to True the output inverse gate will be returned as `AnnotatedOperation`.
+
+    **Returns**
+
+    The inverse operation.
+
+    **Raises**
+
+    **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.is_parameterized" signature="is_parameterized()">
+    Return whether the `Instruction` contains [compile-time parameters](/api/qiskit/circuit#circuit-compile-time-parameters "(in Qiskit v1.2)").
+  </Function>
+
+  ### power
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.power" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. `UnitaryGate`) or as an annotated operation (ref. `AnnotatedOperation`). In the case of several standard gates, such as `RXGate`, when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as `RXGate`, this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    **CircuitError** – If gate is not unitary
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.repeat" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
+
+    If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)")
+
+    **Raises**
+
+    **CircuitError** – If n \< 1.
+  </Function>
+
+  ### reverse\_ops
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.reverse_ops" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.2)")
+  </Function>
+
+  ### soft\_compare
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.soft_compare" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### to\_matrix
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.to_matrix" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
+
+    **Returns**
+
+    if the Gate subclass has a matrix definition.
+
+    **Return type**
+
+    np.ndarray
+
+    **Raises**
+
+    **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
+
+  ### to\_mutable
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.to_mutable" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock.validate_parameter" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
+
