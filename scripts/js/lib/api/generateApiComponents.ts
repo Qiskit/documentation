@@ -328,6 +328,12 @@ function prepareFunctionProps(
       isDedicatedPage: true,
     };
   }
+
+  // The Function ID could not exist if the function is nested inside another function.
+  // Nested functions could appear for example when using the multiple dispatch paradigm
+  // by using the python `@dispatch` decorator.
+  if (!id) return props;
+
   const name = getLastPartFromFullIdentifier(id);
   const htag = `h${headerLevel}`;
   $(`<${htag} data-header-type="method-header">${name}</${htag}>`).insertBefore(
