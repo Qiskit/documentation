@@ -58,10 +58,10 @@ with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as the
 decimal integer `2` (measured with probability `1.0`).
 
 ```python
-from qiskit.primitives import SamplerV2 as Sampler
+from qiskit.primitives import StatevectorSampler as Sampler
 qc.measure_all()
 
-job = sampler.run([qc])
+job = Sampler().run([qc])
 result = job.result()
 print(f" > Counts: {result[0].data.meas.get_counts()}")
 ```

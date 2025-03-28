@@ -34,7 +34,7 @@ qc_random = [(random_circuit(20, 20, measure=True)) for _ in range(30)]
 optimization_level = 3
 
 service = QiskitRuntimeService()
-backend = service.get_backend(backend_name)
+backend = service.backend(backend_name)
 
 pass_manager = generate_preset_pass_manager(
     optimization_level=optimization_level, backend=backend
@@ -50,7 +50,7 @@ def transpile_parallel(circuit, pass_manager):
 
 transpiled_circuits = [
     transpile_parallel(circuit, pass_manager)
-    for circuit in circuits
+    for circuit in qc_random
 ]
 
 print(transpiled_circuits)
@@ -58,7 +58,7 @@ print(transpiled_circuits)
   </TabItem>
 
   <TabItem value="Serverless" label="Serverless">
-    ```python
+```python
 # transpile_remote.py
 
 from qiskit.transpiler import generate_preset_pass_manager
@@ -240,14 +240,14 @@ backend = "ibm_brisbane"
 optimization_level = 3
 
 # Running program
-transpile_remote_serverless = serverless.get('transpile_remote_serverless')
+transpile_remote_serverless = serverless.load('transpile_remote_serverless')
 job = transpile_remote_serverless.run(
     circuits=qc_random,
     backend=backend,
     optimization_level=optimization_level
 )
 
-job.job_id()
+job.job_id
 ```
 Output
 ```text

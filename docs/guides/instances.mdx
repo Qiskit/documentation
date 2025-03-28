@@ -117,15 +117,17 @@ You can specify an instance when initializing the service or when choosing a qua
 ```python
 
 # Optional: List all the instances you can access.
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import SamplerV2
 service = QiskitRuntimeService(channel='ibm_quantum')
 print(service.instances())
 
 # Optional: Specify it at service level. This becomes the default unless overwritten.
 service = QiskitRuntimeService(channel='ibm_quantum', instance="hub1/group1/project1")
-backend1 = service.backend("ibmq_manila")
+backend1 = service.backend("ibm_kyiv")
 
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used.
-backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
+backend2 = service.backend("ibm_kyiv", instance="hub2/group2/project2")
 
 sampler1 = SamplerV2(mode=backend1)    # this will use hub1/group1/project1
 sampler2 = SamplerV2(mode=backend2)    # this will use hub2/group2/project2
@@ -140,10 +142,10 @@ print(service.instances())
 
 # Optional: Specify it at service level. This becomes the default unless overwritten.
 service = QiskitRuntimeService(channel='ibm_cloud', instance="CRN")
-backend1 = service.backend("ibmq_manila")
+backend1 = service.backend("ibm_kyiv")
 
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used.
-backend2 = service.backend("ibmq_manila", instance="CRN")
+backend2 = service.backend("ibm_kyiv", instance="CRN")
 
 sampler1 = SamplerV2(mode=backend1)
 sampler2 = SamplerV2(mode=backend2)
