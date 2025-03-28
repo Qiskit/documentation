@@ -58,7 +58,7 @@ print(transpiled_circuits)
   </TabItem>
 
   <TabItem value="Serverless" label="Serverless">
-    ```python
+```python
 # transpile_remote.py
 
 from qiskit.transpiler import generate_preset_pass_manager
@@ -240,14 +240,14 @@ backend = "ibm_brisbane"
 optimization_level = 3
 
 # Running program
-transpile_remote_serverless = serverless.get('transpile_remote_serverless')
+transpile_remote_serverless = serverless.load('transpile_remote_serverless')
 job = transpile_remote_serverless.run(
     circuits=qc_random,
     backend=backend,
     optimization_level=optimization_level
 )
 
-job.job_id()
+job.job_id
 ```
 Output
 ```text
