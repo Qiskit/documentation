@@ -16,19 +16,21 @@ Use the table of contents on the right side to navigate to the module you are in
 <span id="generate_preset_pass_manager"></span>
 ### generate_preset_pass_manager interface
 
-Since the introduction of :class`.Target` and :class:`.BackendV2` (which contains a target), 
-the `target` and `backend` arguments have been the recommended ways to communicate 
-transpilation constraints to the preset pass manager in Qiskit (`transpile` and 
-`generate_preset_pass_manager`), over loose constraints such as `coupling_map` or `basis_gates`. 
+Qiskit v2.0.0 includes a series of updates to the preset pass manager interface (that is, the
+[`generate_preset_pass_manager`](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager) and 
+[`transpile`]((/api/qiskit/qiskit.compiler.transpile)) functions) that affect the 
+handling of loose constraint inputs, such as `coupling_map` or `basis_gates`. The number of 
+transpilation use cases where loose constraints are accepted has been reduced in favor of the 
+`target` and `backend` inputs (where `backend` is a [`BackendV2`](/api/qiskit/qiskit.providers.fake_provider.BackendV2) that 
+contains a [`Target`](/api/qiskit/qiskit.transpiler.Target) instance), 
+which allow for a more expressive communication of these constraints.
 
-Qiskit 2.0 includes a series of updates to the preset pass manager interface that affect the 
-handling of loose constraint inputs. The following examples show the main changes and suggested
-alternatives for migrating. Note that all of the migration tips below apply to both 
-`transpile` and `generate_preset_pass_manager`:
+The following examples show the main changes and suggested alternatives for migrating. Note that all 
+of the migration tips below apply to both `transpile` and `generate_preset_pass_manager`:
 
-- The `backend_properties` input argument is no longer supported, 
-  and the `BackendProperties` class has been removed. You should use the `target` or `backend` arguments instead to communicate
-  gate durations and errors. There are multiple paths to construct a custom `Target`:
+1. The `backend_properties` input argument is no longer supported, and the `BackendProperties` class has 
+   been removed. You should use the `target` or `backend` arguments instead to communicate
+   gate durations and errors. There are multiple paths for constructing a custom [`Target`](/api/qiskit/qiskit.transpiler.Target):
   
   a. Build a target from scratch and add the relevant errors and durations to the corresponding gates:
     
@@ -49,8 +51,8 @@ alternatives for migrating. Note that all of the migration tips below apply to b
     pm = generate_preset_pass_manager(target=target)
     ```
 
-  b. Use `GenericBackendV2` to quickly build a generic target with pre-filled errors and durations. These
-     can also be updated post-construction:
+  b. Use [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2) to quickly build a 
+     generic target with pre-filled errors and durations. These can also be updated post-construction:
 
     ```python
     from qiskit.providers.fake_provider import GenericBackendV2
@@ -64,8 +66,8 @@ alternatives for migrating. Note that all of the migration tips below apply to b
     pm = generate_preset_pass_manager(target=target)
     ```
 
-- The `instruction_durations` and `timing_constraints` input arguments are no longer supported. You should use the 
-  `target` or `backend` arguments instead. The alternatives are, as shown above, constructing a custom `Target` from
+2. The `instruction_durations` and `timing_constraints` input arguments are no longer supported. You should use the 
+  `target` or `backend` arguments instead. The alternatives are constructing a custom [`Target`](/api/qiskit/qiskit.transpiler.Target) from
   scratch, constructing a generic backend, and, in addition to these, it is possible to build a custom target with 
   `instruction_durations` and/or `timing_constraints` using the `Target.from_configuration` method:
 
@@ -88,17 +90,15 @@ alternatives for migrating. Note that all of the migration tips below apply to b
     pm = generate_preset_pass_manager(target=target)
     ```
 
-- The `inst_map` argument has been removed without alternative. It was used to provide pulse information
-  to the transpiler, and the full `qiskit.pulse` module has been removed.
-
-- Providing `coupling_map` and/or `basis_gates` along with a ``backend`` is discouraged, and from 
+3. Providing `coupling_map` and/or `basis_gates` along with a `backend` is discouraged, and from 
   v2.0 a `UserWarning` will be raised. In these cases there are multiple sources of truth, 
-  and in particular, any gate errors and durations from the backend will be invalidated.
+  and information such as gate errors and durations from the backend cannot be resolved based on the
+  information given.
   The suggested alternative is to define a custom target that combines the chosen constraints either
-  from scratch, using `Target.from_configuration` or `GenericBackendV2`. 
+  from scratch, using [`Target.from_configuration`](/api/qiskit/qiskit.transpiler.Target#from_configuration) or [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2). 
 
 - The `basis_gates` argument no longer accepts custom basis gates. The suggested alternative
-  is the ``target`` argument, which can be built from scratch or through `Target.from_configuration`
+  is the `target` argument, which can be built from scratch or through [`Target.from_configuration`](/api/qiskit/qiskit.transpiler.Target#from_configuration) 
   such as:
 
     ```python
@@ -113,7 +113,10 @@ alternatives for migrating. Note that all of the migration tips below apply to b
     pm = generate_preset_pass_manager(target=target)
     ```
 
-- Finally, the edge case where a custom ``coupling_map`` is provided with either a ``backend`` or ``basis_gates``
+- The input combination where a custom `coupling_map` is provided with either a `backend` or `basis_gates`
   that contain gates with 3 or more qubits is no longer allowed. The coupling map
   does not provide the necessary connectivity details to be able to determine the  action of the gate.
   In these cases, the recommended migration path is the creation of a custom target from scratch.
+
+- The `inst_map` argument has been removed without alternative. It was used to provide pulse information
+  to the transpiler, and the full `qiskit.pulse` module has been removed.
