@@ -51,7 +51,8 @@ ai_passmanager = PassManager([
   AIRouting(backend=backend, optimization_level=2, layout_mode="optimize", local_mode=True)
 ])
 
-circuit = efficient_su2(101, entanglement="circular", reps=1).decompose()
+
+circuit = efficient_su2(101, entanglement="circular", reps=1)
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
@@ -87,7 +88,7 @@ ai_passmanager = PassManager([
   AIPauliNetworkSynthesis(backend=ibm_torino, local_mode=False),  # Re-synthesize Pauli Network blocks. Only available in the Qiskit Transpiler Service
 ])
 
-circuit = efficient_su2(10, entanglement="full", reps=1).decompose()
+circuit = efficient_su2(10, entanglement="full", reps=1)
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
@@ -131,10 +132,12 @@ from qiskit_ibm_transpiler import generate_ai_pass_manager
 from qiskit.circuit.library import efficient_su2
 from qiskit_ibm_runtime import QiskitRuntimeService
 
+
 backend = QiskitRuntimeService().backend("ibm_torino")
 torino_coupling_map = backend.coupling_map
 
-su2_circuit = efficient_su2(101, entanglement="circular", reps=1).decompose()
+
+su2_circuit = efficient_su2(101, entanglement="circular", reps=1)
 
 ai_transpiler_pass_manager = generate_ai_pass_manager(
     coupling_map=torino_coupling_map,
