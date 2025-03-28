@@ -1,0 +1,48 @@
+---
+title: ansatz_generation (v0.1)
+description: API reference for qiskit_addon_aqc_tensor.ansatz_generation in qiskit-addon-aqc-tensor v0.1
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_aqc_tensor.ansatz_generation
+---
+
+<span id="module-qiskit_addon_aqc_tensor.ansatz_generation" />
+
+<span id="ansatz-generation-qiskit-addon-aqc-tensor-ansatz-generation" />
+
+# Ansatz generation
+
+`qiskit_addon_aqc_tensor.ansatz_generation`
+
+Utility for generating a general, parametrized, ansatz circuit which matches the two-qubit connectivity of an input circuit.
+
+|                                                                                                                                   |                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [`AnsatzBlock`](ansatz-generation-ansatz-block "qiskit_addon_aqc_tensor.ansatz_generation.AnsatzBlock")                           | Ansatz block.                                          |
+| [`OneQubitAnsatzBlock`](ansatz-generation-one-qubit-ansatz-block "qiskit_addon_aqc_tensor.ansatz_generation.OneQubitAnsatzBlock") | One-qubit ansatz block.                                |
+| [`TwoQubitAnsatzBlock`](ansatz-generation-two-qubit-ansatz-block "qiskit_addon_aqc_tensor.ansatz_generation.TwoQubitAnsatzBlock") | Two-qubit ansatz block.                                |
+| [`ZXZ`](ansatz-generation-zxz "qiskit_addon_aqc_tensor.ansatz_generation.ZXZ")                                                    | One-qubit ansatz block based on the ZXZ decomposition. |
+| [`KAK`](ansatz-generation-kak "qiskit_addon_aqc_tensor.ansatz_generation.KAK")                                                    | Two-qubit ansatz block based on the KAK decomposition. |
+
+### generate\_ansatz\_from\_circuit
+
+<Function id="qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/ansatz_generation.py#L117-L272" signature="generate_ansatz_from_circuit(qc, /, *, qubits_initially_zero=False, parameter_name='theta')">
+  Generate an ansatz from the two-qubit connectivity structure of a circuit.
+
+  See explanatatory material for motivation.
+
+  **Parameters**
+
+  *   **qc** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – A circuit, which is assumed to be unitary. Barriers are ignored.
+  *   **qubits\_initially\_zero** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, the first Z rotation on each qubit is removed from the ansatz under the assumption that it has no effect.
+  *   **parameter\_name** ([`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name for the [`ParameterVector`](/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.2)") representing the free parameters in the returned ansatz circuit.
+
+  **Return type**
+
+  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]]
+
+  **Returns**
+
+  `(ansatz, parameter_values)` such that `ansatz.assign_parameters(parameter_values)` is equivalent to `qc` up to a global phase.
+</Function>
+
