@@ -1,41 +1,71 @@
 ---
-title: SingleQubitQPDGate (latest version)
-description: API reference for qiskit_addon_cutting.qpd.SingleQubitQPDGate in the latest version of qiskit-addon-cutting
+title: Move (v0.9)
+description: API reference for qiskit_addon_cutting.instructions.Move in qiskit-addon-cutting v0.9
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
+python_api_name: qiskit_addon_cutting.instructions.Move
 ---
 
-# SingleQubitQPDGate
+# Move
 
-<Class id="qiskit_addon_cutting.qpd.SingleQubitQPDGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/qpd/instructions/qpd_gate.py" signature="SingleQubitQPDGate(basis, qubit_id, *, basis_id=None, label=None)" modifiers="class">
-  Bases: [`BaseQPDGate`](qpd-base-qpd-gate "qiskit_addon_cutting.qpd.instructions.qpd_gate.BaseQPDGate")
+<Class id="qiskit_addon_cutting.instructions.Move" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/instructions/move.py" signature="Move(label=None)" modifiers="class">
+  Bases: [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.3)")
 
-  Single qubit gate to be decomposed using quasiprobability decomposition.
+  A two-qubit instruction representing a reset of the second qubit followed by a swap.
 
-  This gate could be part of a larger decomposition on many qubits, or it could be a standalone single gate decomposition.
+  **Circuit Symbol:**
 
-  Initialize the single qubit QPD gate, and assign member variables.
+  ```python
+       ┌───────┐
+  q_0: ┤0      ├       q_0: ──────X─
+       │  Move │   =              │
+  q_1: ┤1      ├       q_1: ─|0>──X─
+       └───────┘
+  ```
 
-  **Parameters**
+  The desired effect of this instruction, typically, is to move the state of the first qubit to the second qubit. For this to work as expected, the second incoming qubit must share no entanglement with the remainder of the system. If this qubit *is* entangled, then performing the reset operation will in turn implement a quantum channel on the other qubit(s) with which it is entangled, resulting in the partial collapse of those qubits.
 
-  *   **basis** (QPDBasis) – A `QPDBasis` to which the gate should be decomposed
-  *   **qubit\_id** (int) – This gate’s relative index to the decomposition which it belongs. Single qubit QPDGates should have qubit\_id 0 if they describe a local decomposition, such as a wire cut.
-  *   **basis\_id** (int | None) – An index to the basis to which the gate should be decomposed. This index is to `basis.maps`.
-  *   **label** (str | None) – An optional label for the gate
+  The simplest way to ensure that the second (i.e., destination) qubit shares no entanglement with the remainder of the system is to use a fresh qubit which has not been used since initialization.
 
-  **Raises**
+  Another valid way is to use, as a desination qubit, a qubit whose immediate prior use was as the source (i.e., first) qubit of a preceding [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") operation.
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – qubit\_id is out of range
+  The following circuit contains two [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") operations, corresponding to each of the aforementioned cases:
+
+  ```python
+  import numpy as np
+  from qiskit import QuantumCircuit
+  from qiskit_addon_cutting.instructions import Move
+
+  qc = QuantumCircuit(4)
+  qc.ryy(np.pi / 4, 0, 1)
+  qc.rx(np.pi / 4, 3)
+  qc.append(Move(), [1, 2])
+  qc.rz(np.pi / 4, 0)
+  qc.ryy(np.pi / 4, 2, 3)
+  qc.append(Move(), [2, 1])
+  qc.ryy(np.pi / 4, 0, 1)
+  qc.rx(np.pi / 4, 3)
+  qc.draw("mpl")
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-cutting/0.9/qiskit_addon_cutting-instructions-Move-1.svg)
+
+  A full demonstration of the [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction is available in [the introductory tutorial on wire cutting](https://qiskit.github.io/qiskit-addon-cutting/tutorials/03_wire_cutting_via_move_instruction.html).
+
+  Create a [`Move`](#qiskit_addon_cutting.instructions.Move "qiskit_addon_cutting.instructions.Move") instruction.
 
   ## Attributes
 
+  **Parameters**
+
+  **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*)
+
   ### base\_class
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.base_class">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.base_class">
     Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
 
-    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit_addon_cutting.qpd.SingleQubitQPDGate.base_class "qiskit_addon_cutting.qpd.SingleQubitQPDGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a `Target` from the full parametrized gate.
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit_addon_cutting.instructions.Move.base_class "qiskit_addon_cutting.instructions.Move.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a `Target` from the full parametrized gate.
 
     This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
 
@@ -51,31 +81,9 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
     In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
   </Attribute>
 
-  ### basis
-
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.basis">
-    Quasiprobability decomposition basis.
-
-    **Returns**
-
-    The basis to which the gate should be decomposed
-  </Attribute>
-
-  ### basis\_id
-
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.basis_id">
-    Index to basis used to decompose this gate.
-
-    If set to None, a random basis will be chosen during decomposition.
-
-    **Returns**
-
-    The basis index
-  </Attribute>
-
   ### condition
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.condition">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.condition">
     The classical condition on the instruction.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
@@ -85,7 +93,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### condition\_bits
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.condition_bits">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.condition_bits">
     Get Clbits in condition.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
@@ -95,19 +103,19 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### decompositions
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.decompositions">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.decompositions">
     Get the decompositions of the instruction from the SessionEquivalenceLibrary.
   </Attribute>
 
   ### definition
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.definition">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.definition">
     Return definition in terms of other basic gates.
   </Attribute>
 
   ### duration
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.duration">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.duration">
     Get the duration.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
@@ -117,13 +125,13 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### label
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.label">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.label">
     Return instruction label
   </Attribute>
 
   ### mutable
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.mutable">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.mutable">
     Is this instance is a mutable unique instance or not.
 
     If this attribute is `False` the gate instance is a shared singleton and is not mutable.
@@ -131,37 +139,31 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### name
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.name">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.name">
     Return the name.
   </Attribute>
 
   ### num\_clbits
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.num_clbits">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.num_clbits">
     Return the number of clbits.
   </Attribute>
 
   ### num\_qubits
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.num_qubits">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.num_qubits">
     Return the number of qubits.
   </Attribute>
 
   ### params
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.params">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.params">
     The parameters of this `Instruction`. Ideally these will be gate angles.
-  </Attribute>
-
-  ### qubit\_id
-
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.qubit_id">
-    Relative qubit index of this gate in the overall decomposition.
   </Attribute>
 
   ### unit
 
-  <Attribute id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.unit">
+  <Attribute id="qiskit_addon_cutting.instructions.Move.unit">
     Get the time unit of duration.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
@@ -173,13 +175,13 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### add\_decomposition
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.add_decomposition" signature="add_decomposition(decomposition)">
+  <Function id="qiskit_addon_cutting.instructions.Move.add_decomposition" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### assemble
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.assemble" signature="assemble()">
+  <Function id="qiskit_addon_cutting.instructions.Move.assemble" signature="assemble()">
     Assemble a QasmQobjInstruction
 
     <Admonition title="Deprecated since version 1.2" type="danger">
@@ -189,7 +191,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### broadcast\_arguments
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit_addon_cutting.instructions.Move.broadcast_arguments" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -208,7 +210,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### c\_if
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.c_if" signature="c_if(classical, val)">
+  <Function id="qiskit_addon_cutting.instructions.Move.c_if" signature="c_if(classical, val)">
     Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
     <Admonition title="Note" type="note">
@@ -222,7 +224,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### copy
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.copy" signature="copy(name=None)">
+  <Function id="qiskit_addon_cutting.instructions.Move.copy" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -235,12 +237,12 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
     **Return type**
 
-    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.4)")
+    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.3)")
   </Function>
 
   ### inverse
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.inverse" signature="inverse(annotated=False)">
+  <Function id="qiskit_addon_cutting.instructions.Move.inverse" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -264,13 +266,13 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### is\_parameterized
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.is_parameterized" signature="is_parameterized()">
-    Return whether the `Instruction` contains [compile-time parameters](/api/qiskit/circuit#circuit-compile-time-parameters "(in Qiskit v1.4)").
+  <Function id="qiskit_addon_cutting.instructions.Move.is_parameterized" signature="is_parameterized()">
+    Return whether the `Instruction` contains [compile-time parameters](/api/qiskit/circuit#circuit-compile-time-parameters "(in Qiskit v1.3)").
   </Function>
 
   ### repeat
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.repeat" signature="repeat(n)">
+  <Function id="qiskit_addon_cutting.instructions.Move.repeat" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
 
     If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
@@ -285,7 +287,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
     **Return type**
 
-    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.4)")
+    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.3)")
 
     **Raises**
 
@@ -294,7 +296,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### reverse\_ops
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.reverse_ops" signature="reverse_ops()">
+  <Function id="qiskit_addon_cutting.instructions.Move.reverse_ops" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -307,12 +309,12 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
     **Return type**
 
-    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.4)")
+    [qiskit.circuit.Instruction](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.3)")
   </Function>
 
   ### soft\_compare
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.soft_compare" signature="soft_compare(other)">
+  <Function id="qiskit_addon_cutting.instructions.Move.soft_compare" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -330,7 +332,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### to\_mutable
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.to_mutable" signature="to_mutable()">
+  <Function id="qiskit_addon_cutting.instructions.Move.to_mutable" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -338,7 +340,7 @@ python_api_name: qiskit_addon_cutting.qpd.SingleQubitQPDGate
 
   ### validate\_parameter
 
-  <Function id="qiskit_addon_cutting.qpd.SingleQubitQPDGate.validate_parameter" signature="validate_parameter(parameter)">
+  <Function id="qiskit_addon_cutting.instructions.Move.validate_parameter" signature="validate_parameter(parameter)">
     Instruction parameters has no validation or normalization.
   </Function>
 </Class>
