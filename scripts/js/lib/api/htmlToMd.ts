@@ -22,19 +22,21 @@ import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
-import { Emphasis, Root, Content } from "mdast";
+import { Emphasis, Root, Content, Text, PhrasingContent } from "mdast";
 
 import { processHtml } from "./processHtml.js";
 import { HtmlToMdResult } from "./HtmlToMdResult.js";
 import { Metadata, ApiTypeName } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
+import { TextVisitor } from "./handleCrossRefs.js";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
   fileName: string;
   imageDestination: string;
   determineGithubUrl: (fileName: string) => string;
+  insertCrossReferences?: TextVisitor;
   releaseNotesTitle: string;
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
@@ -43,6 +45,7 @@ export async function sphinxHtmlToMarkdown(options: {
   const markdown = await generateMarkdownFile(
     processedHtml.html,
     processedHtml.meta,
+    options.insertCrossReferences,
   );
   return {
     markdown,
@@ -55,7 +58,9 @@ export async function sphinxHtmlToMarkdown(options: {
 async function generateMarkdownFile(
   mainHtml: string,
   meta: Metadata,
+  insertCrossReferences?: TextVisitor,
 ): Promise<string> {
+  const noop: any = () => {};
   const handlers = prepareHandlers(meta);
   const mdFile = await unified()
     .use(rehypeParse)
@@ -67,6 +72,9 @@ async function generateMarkdownFile(
     })
     .use(remarkStringify, remarkStringifyOptions)
     .use(() => (root: Root) => visit(root, "emphasis", mergeContiguousEmphasis))
+    .use(
+      () => (root: Root) => visit(root, "text", insertCrossReferences ?? noop),
+    )
     .process(mainHtml);
 
   return mdFile.toString().replaceAll(`<!---->`, "");
