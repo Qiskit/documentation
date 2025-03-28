@@ -18,39 +18,57 @@ An enum that to represent each of the single-qubit alphabet terms enumerated bel
 
 *   ****enumerator QkBitTerm\_X****
 
-    Value: 2 (`0b0010`) The Pauli $X$ operator.
+    Value: 2 (`0b0010`)
+
+    The Pauli $X$ operator.
 
 *   ****enumerator QkBitTerm\_Y****
 
-    Value: 3 (`0b0011`) The Pauli $Y$ operator.
+    Value: 3 (`0b0011`)
+
+    The Pauli $Y$ operator.
 
 *   ****enumerator QkBitTerm\_Z****
 
-    Value: 1 (`0b0001`) The Pauli $Z$ operator.
+    Value: 1 (`0b0001`)
+
+    The Pauli $Z$ operator.
 
 *   ****enumerator QkBitTerm\_Plus****
 
-    Value: 10 (`0b1010`) The projector $\lvert +\rangle\langle +\rvert$ to the positive $X$ eigenstate.
+    Value: 10 (`0b1010`)
+
+    The projector $\lvert +\rangle\langle +\rvert$ to the positive $X$ eigenstate.
 
 *   ****enumerator QkBitTerm\_Minus****
 
-    Value: 6 (`0b0110`) The projector $\lvert -\rangle\langle -\rvert$ to the negative $X$ eigenstate.]
+    Value: 6 (`0b0110`)
+
+    The projector $\lvert -\rangle\langle -\rvert$ to the negative $X$ eigenstate.]
 
 *   ****enumerator QkBitTerm\_Right****
 
-    Value: 11 (`0b1011`) The projector $\lvert r\rangle\langle r\rvert$ to the positive $Y$ eigenstate.
+    Value: 11 (`0b1011`)
+
+    The projector $\lvert r\rangle\langle r\rvert$ to the positive $Y$ eigenstate.
 
 *   ****enumerator QkBitTerm\_Left****
 
-    Value: 7 (`0b1011`) The projector $\lvert l\rangle\langle l\rvert$ to the negative $Y$ eigenstate.
+    Value: 7 (`0b1011`)
+
+    The projector $\lvert l\rangle\langle l\rvert$ to the negative $Y$ eigenstate.
 
 *   ****enumerator QkBitTerm\_Zero****
 
-    Value: 9 (`0b1001`) The projector $\lvert 0\rangle\langle 0\rvert$ to the positive $Z$ eigenstate.
+    Value: 9 (`0b1001`)
+
+    The projector $\lvert 0\rangle\langle 0\rvert$ to the positive $Z$ eigenstate.
 
 *   ****enumerator QkBitTerm\_One****
 
-    Value: 5 (`0b0101`) The projector $\lvert 1\rangle\langle 1\rvert$ to the negative $Z$ eigenstate.
+    Value: 5 (`0b0101`)
+
+    The projector $\lvert 1\rangle\langle 1\rvert$ to the negative $Z$ eigenstate.
 
 ## Representation
 
@@ -66,16 +84,16 @@ typedef uint8_t QkBitTerm
 
 The numeric structure of these is that they are all four-bit values of which the low two bits are the (phase-less) symplectic representation of the Pauli operator related to the object, where the low bit denotes a contribution by $Z$ and the second lowest a contribution by $X$, while the upper two bits are `00` for a Pauli operator, `01` for the negative-eigenstate projector, and `10` for the positive-eigenstate projector.
 
-### Functions
+## Functions
 
-#### qk\_bitterm\_label
+### qk\_bitterm\_label
 
 <Function id="qk_bitterm_label" signature="uint8_t qk_bitterm_label(QkBitTerm bit_term)">
   Get the label for a bit term.
 
   <span id="group___qk_bit_term_1autotoc_md46" />
 
-  ##### Example
+  #### Example
 
   ```c
   QkBitTerm bit_term = QkBitTerm_Y;
@@ -85,11 +103,11 @@ The numeric structure of these is that they are all four-bit values of which the
 
   <span id="group___qk_bit_term_1autotoc_md47" />
 
-  ##### Safety
+  #### Safety
 
   <span id="group___qk_bit_term_1autotoc_md47" />
 
-  The behavior is undefined if `bit_term` is not a valid `uint8_t` value of a [QkBitTerm](/api/qiskit-c/2.0/qk-bit-term#qkbitterm-1).
+  The behavior is undefined if `bit_term` is not a valid `uint8_t` value of a \[BitTerm].
 
   **Parameters**
 
