@@ -15,7 +15,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 ### QkObsTerm
 
 <Class id="QkObsTerm" signature="struct QkObsTerm">
-  A term in a \[SparseObservable].
+  A term in a `QkObs`.
 
   This contains the coefficient (`coeff`), the number of qubits of the observable (`num_qubits`) and pointers to the `bit_terms` and `indices` arrays, which have length `len`. It’s the responsibility of the user that the data is coherent, see also the below section on safety.
 
@@ -25,7 +25,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
 
   <span id="struct_qk_obs_term_1autotoc_md2" />
 
-  *   `bit_terms` must be a non-null, aligned pointer to `len` elements of type `BitTerm`.
+  *   `bit_terms` must be a non-null, aligned pointer to `len` elements of type `QkBitTerm`.
   *   `indices` must be a non-null, aligned pointer to `len` elements of type `uint32_t`.
 
   #### QkComplex64 coeff
@@ -43,7 +43,7 @@ This is a group of functions for interacting with an opaque (Rust-space) SparseT
   #### QkBitTerm \*bit\_terms
 
   <Attribute id="bit_terms">
-    A non-null, aligned pointer to `len` elements of type `BitTerm`.
+    A non-null, aligned pointer to `len` elements of type `QkBitTerm`.
   </Attribute>
 
   #### uint32\_t \*indices

@@ -907,3 +907,27 @@ for (size_t i = 0; i < num_terms; i++) {
   **string** – A pointer to the returned string representation from `qk_obs_str` or `qk_obsterm_str`.
 </Function>
 
+### qk\_obs\_to\_python
+
+<Function id="qk_obs_to_python" signature="PyObject *qk_obs_to_python(const QkObs *obs)">
+  Convert to a Python-space [](/api/qiskit/qiskit.quantum_info.SparseObservable#sparseobservable).
+
+  <span id="group___qk_obs_1autotoc_md48" />
+
+  #### Safety
+
+  <span id="group___qk_obs_1autotoc_md48" />
+
+  Behavior is undefined if `obs` is not a valid, non-null pointer to a `QkObs`.
+
+  It is assumed that the thread currently executing this function holds the Python GIL this is required to create the Python object returned by this function.
+
+  **Parameters**
+
+  **obs** – The C-space `QkObs` pointer.
+
+  **Returns**
+
+  A Python object representing the [](/api/qiskit/qiskit.quantum_info.SparseObservable#sparseobservable).
+</Function>
+
