@@ -9,3 +9,111 @@ description: Description of feature changes introduced in Qiskit 2.0 and how to 
 
 This guide describes migration paths for the most important feature changes in Qiskit 2.0, organized by module.
 Use the table of contents on the right side to navigate to the module you are interested in.
+
+<span id="qiskit.transpiler"></span>
+## qiskit.transpiler
+
+<span id="generate_preset_pass_manager"></span>
+### generate_preset_pass_manager interface
+
+Since the introduction of :class`.Target` and :class:`.BackendV2` (which contains a target), 
+the `target` and `backend` arguments have been the recommended ways to communicate 
+transpilation constraints to the preset pass manager in Qiskit (`transpile` and 
+`generate_preset_pass_manager`), over loose constraints such as `coupling_map` or `basis_gates`. 
+
+Qiskit 2.0 includes a series of updates to the preset pass manager interface that affect the 
+handling of loose constraint inputs. The following examples show the main changes and suggested
+alternatives for migrating. Note that all of the migration tips below apply to both 
+`transpile` and `generate_preset_pass_manager`:
+
+- The `backend_properties` input argument is no longer supported, 
+  and the `BackendProperties` class has been removed. You should use the `target` or `backend` arguments instead to communicate
+  gate durations and errors. There are multiple paths to construct a custom `Target`:
+  
+  a. Build a target from scratch and add the relevant errors and durations to the corresponding gates:
+    
+    ```python
+    from qiskit.transpiler import Target, InstructionProperties, generate_preset_pass_manager
+    from qiskit.circuit.library import XGate, CXGate
+
+    target = Target(num_qubits=2)
+    target.add_instruction(CXGate(), {(0, 1): InstructionProperties(error=.0001, duration=5e-7)})
+    target.add_instruction(
+        XGate(),
+        {
+            (0,): InstructionProperties(error=.00001, duration=5e-8),
+            (1,): InstructionProperties(error=.00002, duration=6e-8)
+        }
+    )
+
+    pm = generate_preset_pass_manager(target=target)
+    ```
+
+  b. Use `GenericBackendV2` to quickly build a generic target with pre-filled errors and durations. These
+     can also be updated post-construction:
+
+    ```python
+    from qiskit.providers.fake_provider import GenericBackendV2
+    from qiskit.transpiler import generate_preset_pass_manager
+
+    target = GenericBackendV2(num_qubits=2, basis_gates=["x", "cx"]).target
+    target.update_instruction_properties("x", (0,), InstructionProperties(0.00001))
+    target.update_instruction_properties("x", (1,), InstructionProperties(0.00002))
+    target.update_instruction_properties("cx", (0, 1), InstructionProperties(0.0001))
+
+    pm = generate_preset_pass_manager(target=target)
+    ```
+
+- The `instruction_durations` and `timing_constraints` input arguments are no longer supported. You should use the 
+  `target` or `backend` arguments instead. The alternatives are, as shown above, constructing a custom `Target` from
+  scratch, constructing a generic backend, and, in addition to these, it is possible to build a custom target with 
+  `instruction_durations` and/or `timing_constraints` using the `Target.from_configuration` method:
+
+    ```python
+    from qiskit.transpiler import Target, generate_preset_pass_manager
+    from qiskit.transpiler.timing_constraints import TimingConstraints
+    from qiskit.transpiler.instruction_durations import InstructionDurations
+
+    instruction_durations = InstructionDurations([("x", None, 200), ("cx", None, 1000)], dt=1e-7)
+
+    timing_constraints = TimingConstraints(
+            granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1
+        )
+
+    target = Target.from_configuration(num_qubits=2, 
+                                        basis_gates=["x", "cx"], 
+                                        instruction_durations=instruction_durations, 
+                                        timing_constraints=timing_constraints)
+    
+    pm = generate_preset_pass_manager(target=target)
+    ```
+
+- The `inst_map` argument has been removed without alternative. It was used to provide pulse information
+  to the transpiler, and the full `qiskit.pulse` module has been removed.
+
+- Providing `coupling_map` and/or `basis_gates` along with a ``backend`` is discouraged, and from 
+  v2.0 a `UserWarning` will be raised. In these cases there are multiple sources of truth, 
+  and in particular, any gate errors and durations from the backend will be invalidated.
+  The suggested alternative is to define a custom target that combines the chosen constraints either
+  from scratch, using `Target.from_configuration` or `GenericBackendV2`. 
+
+- The `basis_gates` argument no longer accepts custom basis gates. The suggested alternative
+  is the ``target`` argument, which can be built from scratch or through `Target.from_configuration`
+  such as:
+
+    ```python
+    from qiskit.circuit.library import XGate
+    from qiskit.transpiler.target import Target
+
+    basis_gates = ["my_x", "cx"]
+    custom_name_mapping = {"my_x": XGate()}
+    target = Target.from_configuration(
+        basis_gates=basis_gates, num_qubits=2, custom_name_mapping=custom_name_mapping
+    )
+    pm = generate_preset_pass_manager(target=target)
+    ```
+
+- Finally, the edge case where a custom ``coupling_map`` is provided with either a ``backend`` or ``basis_gates``
+  that contain gates with 3 or more qubits is no longer allowed. The coupling map
+  does not provide the necessary connectivity details to be able to determine the  action of the gate.
+  In these cases, the recommended migration path is the creation of a custom target from scratch.
