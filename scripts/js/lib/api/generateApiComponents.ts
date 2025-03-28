@@ -339,6 +339,7 @@ function prepareFunctionProps(
   $(`<${htag} data-header-type="method-header">${name}</${htag}>`).insertBefore(
     $dl,
   );
+
   return props;
 }
 
