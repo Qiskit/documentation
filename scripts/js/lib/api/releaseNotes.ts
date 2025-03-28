@@ -39,6 +39,12 @@ export async function handleReleaseNotesFile(
     return false;
   }
 
+  // If we're linking to a different to a different package's release notes, we
+  // shouldn't create a new release notes file.
+  if (pkg.releaseNotesConfig.linkToPackage) {
+    return false;
+  }
+
   // When the release notes are a single file, only use them if this is the latest version rather
   // than a historical release.
   if (!pkg.hasSeparateReleaseNotes()) {
