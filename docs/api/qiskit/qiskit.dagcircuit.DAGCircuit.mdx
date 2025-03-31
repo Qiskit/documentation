@@ -17,18 +17,6 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ## Attributes
 
-  ### calibrations
-
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.calibrations">
-    Return calibration dictionary.
-
-    **The custom pulse definition of a given gate is of the form**
-
-    \{‘gate\_name’: \{(qubits, params): schedule}}
-
-    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 2.0.0
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.clbits">
@@ -49,12 +37,16 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### cregs
 
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.cregs" />
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.cregs">
+    Returns the dict containing the QuantumRegisters in the circuit
+  </Attribute>
 
   ### duration
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.duration">
-    Duration.
+    Returns the total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.dagcircuit.DAGCircuit.unit "qiskit.dagcircuit.DAGCircuit.unit")
+
+    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 3.0.0
   </Attribute>
 
   ### global\_phase
@@ -115,7 +107,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### qregs
 
-  <Attribute id="qiskit.dagcircuit.DAGCircuit.qregs" />
+  <Attribute id="qiskit.dagcircuit.DAGCircuit.qregs">
+    Returns the dict containing the QuantumRegisters in the circuit
+  </Attribute>
 
   ### qubits
 
@@ -138,7 +132,9 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
   ### unit
 
   <Attribute id="qiskit.dagcircuit.DAGCircuit.unit">
-    Unit of duration.
+    Returns the unit that duration is specified in.
+
+    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 3.0.0
   </Attribute>
 
   ### wires
@@ -149,23 +145,14 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ## Methods
 
-  ### add\_calibration
+  ### add\_captured\_stretch
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.add_calibration" signature="add_calibration(gate, qubits, schedule, params=None)">
-    Register a low-level, custom pulse definition for the given gate.
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_captured_stretch" signature="add_captured_stretch(var)">
+    Add a captured stretch to the circuit.
 
     **Parameters**
 
-    *   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – Gate information.
-    *   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – List of qubits to be measured.
-    *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-    *   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
-
-    **Raises**
-
-    [**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.13)") – if the gate is of type string and params is None.
-
-    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 2.0.0
+    **var** – the stretch to add.
   </Function>
 
   ### add\_captured\_var
@@ -188,6 +175,16 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.add_creg" signature="add_creg(creg)">
     Add all wires in a classical register.
+  </Function>
+
+  ### add\_declared\_stretch
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.add_declared_stretch" signature="add_declared_stretch(var)">
+    Add a declared stretch to the circuit.
+
+    **Parameters**
+
+    **var** – the stretch to add.
   </Function>
 
   ### add\_declared\_var
@@ -356,13 +353,11 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
     **Returns**
 
-    **The list of dag nodes containing control flow ops. If there**
-
-    are no control flow nodes None is returned
+    The list of dag nodes containing control flow ops.
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")] | None
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
   </Function>
 
   ### copy\_empty\_like
@@ -527,12 +522,24 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
   </Function>
 
-  ### has\_calibration\_for
+  ### has\_identifier
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.has_calibration_for" signature="has_calibration_for(node)">
-    Return True if the dag has a calibration defined for the node operation. In this case, the operation does not need to be translated to the device basis.
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_identifier" signature="has_identifier(var)">
+    Is this identifier in the DAG?
 
-    DEPRECATED since Qiskit 1.3.0 and will be removed in Qiskit 2.0.0
+    **Parameters**
+
+    **var** – the identifier or name to check.
+  </Function>
+
+  ### has\_stretch
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.has_stretch" signature="has_stretch(var)">
+    Is this stretch in the DAG?
+
+    **Parameters**
+
+    **var** – the stretch or name to check.
   </Function>
 
   ### has\_var
@@ -575,10 +582,28 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     Checks if a second node is in the successors of node.
   </Function>
 
+  ### iter\_captured\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_captured_stretches" signature="iter_captured_stretches()">
+    Iterable over the captured stretches tracked by the circuit.
+  </Function>
+
   ### iter\_captured\_vars
 
   <Function id="qiskit.dagcircuit.DAGCircuit.iter_captured_vars" signature="iter_captured_vars()">
     Iterable over the captured classical variables tracked by the circuit.
+  </Function>
+
+  ### iter\_captures
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_captures" signature="iter_captures()">
+    Iterable over all captured identifiers tracked by the circuit.
+  </Function>
+
+  ### iter\_declared\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_declared_stretches" signature="iter_declared_stretches()">
+    Iterable over the declared stretches tracked by the circuit.
   </Function>
 
   ### iter\_declared\_vars
@@ -591,6 +616,12 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   <Function id="qiskit.dagcircuit.DAGCircuit.iter_input_vars" signature="iter_input_vars()">
     Iterable over the input classical variables tracked by the circuit.
+  </Function>
+
+  ### iter\_stretches
+
+  <Function id="qiskit.dagcircuit.DAGCircuit.iter_stretches" signature="iter_stretches()">
+    Iterable over all the stretches tracked by the circuit.
   </Function>
 
   ### iter\_vars
@@ -968,7 +999,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### substitute\_node
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node" signature="substitute_node(node, op, inplace=False, propagate_condition=True)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node" signature="substitute_node(node, op, inplace=False, propagate_condition=None)">
     Replace a DAGOpNode with a single operation. qargs, cargs and conditions for the new operation will be inferred from the node to be replaced. The new operation will be checked to match the shape of the replaced operation.
 
     **Parameters**
@@ -976,7 +1007,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – Node to be replaced
     *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") instance to be added to the DAG
     *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
-    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Optional, default True. If True, a condition on the `node` to be replaced will be applied to the new `op`. This is the legacy behaviour. If either node is a control-flow operation, this will be ignored. If the `op` already has a condition, [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") is raised.
+    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – DEPRECATED a legacy option that used to control the behavior of handling control flow. It has no effect anymore, left it for backwards compatibility. Will be removed in Qiskit 3.0.
 
     **Returns**
 
@@ -994,7 +1025,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
   ### substitute\_node\_with\_dag
 
-  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" signature="substitute_node_with_dag(node, input_dag, wires=None, propagate_condition=True)">
+  <Function id="qiskit.dagcircuit.DAGCircuit.substitute_node_with_dag" signature="substitute_node_with_dag(node, input_dag, wires=None, propagate_condition=None)">
     Replace one node with dag.
 
     **Parameters**
@@ -1002,7 +1033,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
     *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – node to substitute
     *   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
     *   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](circuit#qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
-    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")\ s (i.e. treated as if it is `False`); replacements of those must already fulfill the same conditional logic or this function would be close to useless for them.
+    *   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – DEPRECATED a legacy option that used to control the behavior of handling control flow. It has no effect anymore, left it for backwards compatibility. Will be removed in Qiskit 3.0.
 
     **Returns**
 
@@ -1045,7 +1076,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
     **Parameters**
 
-    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the `sort_key` attribute will be used as the sort key for each node.
+    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the bit qargs and cargs of a node will be used for sorting.
 
     **Returns**
 
@@ -1065,7 +1096,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
     **Parameters**
 
-    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the `sort_key` attribute will be used as the sort key for each node.
+    **key** (*Callable*) – A callable which will take a DAGNode object and return a string sort key. If not specified the qargs and cargs of a node will be used for sorting.
 
     **Returns**
 

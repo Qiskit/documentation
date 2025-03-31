@@ -2,17 +2,15 @@
 title: hamiltonian_variational_ansatz (latest version)
 description: API reference for qiskit.circuit.library.hamiltonian_variational_ansatz in the latest version of qiskit
 in_page_toc_min_heading_level: 1
-python_api_type: class
+python_api_type: function
 python_api_name: qiskit.circuit.library.hamiltonian_variational_ansatz
 ---
 
-<span id="hamiltonian-variational-ansatz" />
+<span id="qiskit-circuit-library-hamiltonian-variational-ansatz" />
 
-# hamiltonian\_variational\_ansatz
+# qiskit.circuit.library.hamiltonian\_variational\_ansatz
 
-<Class id="qiskit.circuit.library.hamiltonian_variational_ansatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L187-L276" signature="qiskit.circuit.library.hamiltonian_variational_ansatz(hamiltonian, reps=1, insert_barriers=False, name='HVA', parameter_prefix='t')" modifiers="class">
-  Bases:
-
+<Function id="qiskit.circuit.library.hamiltonian_variational_ansatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L187-L276" signature="qiskit.circuit.library.hamiltonian_variational_ansatz(hamiltonian, reps=1, insert_barriers=False, name='HVA', parameter_prefix='t')">
   Construct a Hamiltonian variational ansatz.
 
   For a Hamiltonian $H = \sum_{k=1}^K H_k$ where the terms $H_k$ consist of only commuting Paulis, but the terms do not commute among each other $[H_k, H_{k'}] \neq 0$, the Hamiltonian variational ansatz (HVA) is
@@ -21,7 +19,7 @@ $$
 \prod_{r=1}^{R} \left( \prod_{k=K}^1 e^{-i\theta_{k, r} H_k} \right)
 $$
 
-  where the exponentials $exp(-i\theta H_k)$ are implemented exactly \[1, 2]. Note that this differs from `evolved_operator_ansatz()`, where no assumptions on the structure of the operators are done.
+  where the exponentials $exp(-i\theta H_k)$ are implemented exactly \[1, 2]. Note that this differs from [`evolved_operator_ansatz()`](qiskit.circuit.library.evolved_operator_ansatz "qiskit.circuit.library.evolved_operator_ansatz"), where no assumptions on the structure of the operators are done.
 
   The Hamiltonian can be passed as [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), in which case we split the Hamiltonian into commuting terms $\{H_k\}_k$. Note, that this may not be optimal and if the minimal set of commuting terms is known it can be passed as sequence into this function.
 
@@ -69,12 +67,12 @@ $$
 
   **References**
 
-  **\[1] D. Wecker et al. Progress towards practical quantum variational algorithms (2015)**
+  ## \[1] D. Wecker et al. Progress towards practical quantum variational algorithms (2015)
 
   [Phys Rev A 92, 042303](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.042303)
 
-  **\[2] R. Wiersema et al. Exploring entanglement and optimization within the Hamiltonian**
+  ## \[2] R. Wiersema et al. Exploring entanglement and optimization within the Hamiltonian
 
   Variational Ansatz (2020) [arXiv:2008.02941](https://arxiv.org/abs/2008.02941)
-</Class>
+</Function>
 

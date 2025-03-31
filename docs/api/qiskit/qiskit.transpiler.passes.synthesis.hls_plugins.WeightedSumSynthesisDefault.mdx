@@ -1,0 +1,48 @@
+---
+title: WeightedSumSynthesisDefault (latest version)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault
+---
+
+# WeightedSumSynthesisDefault
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1930-L1958" signature="qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  Synthesize a [`WeightedSumGate`](qiskit.circuit.library.WeightedSumGate "qiskit.circuit.library.WeightedSumGate") using the default synthesis algorithm.
+
+  This plugin name is:`WeightedSum.default` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  <Admonition title="Note" type="note">
+    This default plugin requires auxiliary qubits. There is currently no implementation available without auxiliary qubits.
+  </Admonition>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1943-L1958" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given Operation.
+
+    **Parameters**
+
+    *   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object.
+    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend in case synthesis is done on a physical circuit.
+    *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend.
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of qubits over which the operation is defined in case synthesis is done on a physical circuit.
+    *   **options** – Additional method-specific optional kwargs.
+
+    **Returns**
+
+    **The quantum circuit representation of the Operation**
+
+    when successful, and `None` otherwise.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
+
