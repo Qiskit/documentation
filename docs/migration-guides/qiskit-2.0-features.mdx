@@ -85,6 +85,37 @@ with else_:
 ```
 
 
+<span id="instruction_durations"></span>
+### Removal of `Instruction.duration` and `Instruction.unit`
+
+Circuit [`Instruction`](/api/qiskit/qiskit.circuit.Instruction) objects used to have attributes called `duration` and `unit`.
+These no longer exist in Qiskit 2.0.
+This is because the field generally only duplicated information that was a fixed property of hardware, and was stored explicitly in the [`Target`](/api/qiskit/qiskit.transpiler.Target).
+Storing the information separately for each individual instruction significantly increased the memory demands of Qiskit and slowed down even circuit operations that did not directly need to touch the information.
+
+The [`Delay`](/api/qiskit/qiskit.circuit.Delay) instruction still contains these fields, as does the new-in-2.0 [`BoxOp`](/api/qiskit/qiskit.circuit.BoxOp), because these instructions have a _variable_ delay.
+
+You can retrieve the hardware-specified duration of a particular hardware-supported [`Instruction`](/api/qiskit/qiskit.circuit.Instruction) by querying the [`Target`](/api/qiskit/qiskit.transpiler.Target).
+To do this, index the [`Target`](/api/qiskit/qiskit.transpiler.Target) first with the operation's name, and then the indices of the hardware qubits as a tuple.
+This will return either `None` (if the instruction is supported, but no specific properties were assigned to it), or an [`InstructionProperties`](/api/qiskit/qiskit.transpiler.InstructionProperties) instance, from which the [`duration`](/api/qiskit/qiskit.transpiler.InstructionProperties#qiskit.transpiler.InstructionProperties.duration) field may provide the duration in seconds (or `None`, if not supplied).
+
+```python
+target = "<some Target from a hardware vendor>"
+
+# Query the duration of a CX instruction on hardware qubits (2, 4),
+# returning `None` if the duration is not specified.
+properties = target["cx"][2, 4]
+duration = None if properties is None else properties.duration
+
+# You can also do this in one step, using `getattr`:
+duration = getattr(target["cx"][2, 4], "duration", None)
+```
+
+In general, as classical control-flow becomes more common within circuit executions, the "duration" of a circuit will become less and less well defined.
+While Qiskit 2.x still includes the [`QuantumCircuit.duration`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.duration) attribute, we encourage you to move away from it, as it will likely be removed in the future; the assumptions under which it is valid will be violated more and more frequently.
+Instead, you can use the new [`QuantumCircuit.estimate_duration`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.estimate_duration) method, which is safer and clearer about the necessary assumptions.
+
+
 <span id="qiskit.transpiler"></span>
 ## qiskit.transpiler
 
