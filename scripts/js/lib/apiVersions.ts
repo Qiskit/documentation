@@ -34,3 +34,9 @@ export function parseMinorVersion(version: string): string | null {
   const versionMatch = version.match(/^(\d+\.\d+)/);
   return versionMatch ? versionMatch[0] : null;
 }
+
+export function isValidVersion(versionToCheck: string): boolean {
+  // The version must include a major, a minor, and a patch
+  const fullVersionFormat = new RegExp(/^(\d+\.\d+\.\d+)$/);
+  return !!versionToCheck.match(fullVersionFormat);
+}
