@@ -25,7 +25,7 @@ Read more about the benefits of Qiskit v2.0 on the [IBM&reg; blog](https://www.i
 Classical conditions in Qiskit have been preferentially represented by the instruction [`IfElseOp`](/api/qiskit/qiskit.circuit.IfElseOp) since before Qiskit 1.0.
 These operations are typically added to a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) by using the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method as a context manager.
 
-This also means that the [`Instruction`](/api/qiskit.circuit.Instruction) no longer has a `condition` attribute, and that you cannot chain `c_if` calls on the output of a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) gate-creating method call.
+This also means that the [`Instruction`](/api/qiskit/qiskit.circuit.Instruction) no longer has a `condition` attribute, and that you cannot chain `c_if` calls on the output of a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) gate-creating method call.
 
 The only instructions that might have a condition now are [`IfElseOp`](/api/qiskit/qiskit.circuit.IfElseOp) and [`WhileLoopOp`](/api/qiskit/qiskit.circuit.WhileLoopOp).
 The most correct way to test for a condition is to use an `isinstance` check to validate that you have the correct class.
@@ -34,7 +34,7 @@ If you want to support the legacy `Instruction.condition` attribute during your 
 The original, legacy method of supporting simple register-equality conditions in Qiskit was to use the `c_if` method on individual instructions or instruction sets.
 This was strictly less featureful than the full control-flow form, and was never well-supported on hardware.
 This legacy method has been removed in Qiskit 2.0; you should use the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method with a proper condition.
-You can continue to use the 2-tuple form of `(register, integer)` to represent a register equality, or you can use the more expressive [classical computation subsystem](/api/qiskit/qiskit.circuit.classical) to represent more complex conditions.
+You can continue to use the 2-tuple form of `(register, integer)` to represent a register equality, or you can use the more expressive [classical computation subsystem](/api/qiskit/qiskit.circuit_classical) to represent more complex conditions.
 
 For example, you might have written:
 
@@ -99,7 +99,7 @@ These no longer exist in Qiskit 2.0.
 This is because the field generally only duplicated information that was a fixed property of hardware, and was stored explicitly in the [`Target`](/api/qiskit/qiskit.transpiler.Target).
 Storing the information separately for each individual instruction significantly increased the memory demands of Qiskit and slowed down even circuit operations that did not directly need to touch the information.
 
-The [`Delay`](/api/qiskit/qiskit.circuit.Delay) instruction still contains these fields, as does the new-in-2.0 [`BoxOp`](/api/qiskit/qiskit.circuit.BoxOp), because these instructions have a _variable_ delay.
+The [`Delay`](/api/qiskit/qiskit.circuit#delay) instruction still contains these fields, as does the new-in-2.0 [`BoxOp`](/api/qiskit/qiskit.circuit#box), because these instructions have a _variable_ delay.
 
 You can retrieve the hardware-specified duration of a particular hardware-supported [`Instruction`](/api/qiskit/qiskit.circuit.Instruction) by querying the [`Target`](/api/qiskit/qiskit.transpiler.Target).
 To do this, index the [`Target`](/api/qiskit/qiskit.transpiler.Target) first with the operation's name, and then the indices of the hardware qubits as a tuple.
@@ -130,10 +130,10 @@ Instead, you can use the new [`QuantumCircuit.estimate_duration`](/api/qiskit/qi
 
 Qiskit v2.0.0 includes a series of updates to the preset pass manager interface (that is, the
 [`generate_preset_pass_manager`](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager) and 
-([`transpile`](/api/qiskit/qiskit.compiler.transpile) functions) that affect the 
+([`transpile`](/api/qiskit/qiskit.compiler#transpile) functions)) that affect the 
 handling of loose constraint inputs, such as `coupling_map` or `basis_gates`. The number of 
 transpilation use cases where loose constraints are accepted has been reduced in favor of the 
-`target` and `backend` inputs (where `backend` is a [`BackendV2`](/api/qiskit/qiskit.providers.fake_provider.BackendV2) that 
+`target` and `backend` inputs (where `backend` is a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) that 
 contains a [`Target`](/api/qiskit/qiskit.transpiler.Target) instance), 
 which allow for a more expressive communication of these constraints.
 
