@@ -10,6 +10,81 @@ description: Description of feature changes introduced in Qiskit 2.0 and how to 
 This guide describes migration paths for the most important feature changes in Qiskit 2.0, organized by module.
 Use the table of contents on the right side to navigate to the module you are interested in.
 
+<span id="qiskit.circuit"></span>
+## qiskit.circuit
+
+<span id="c_if"></span>
+### Removal of legacy `c_if` conditions
+
+Classical conditions in Qiskit have been preferentially represented by the instruction [`IfElseOp`](/api/qiskit/qiskit.circuit.IfElseOp) since before Qiskit 1.0.
+These operations are typically added to a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) by using the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method as a context manager.
+
+This also means that the [`Instruction`](/api/qiskit.circuit.Instruction) no longer has a `condition` attribute, and that you cannot chain `c_if` calls on the output of a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) gate-creating method call.
+
+The only instructions that might have a condition now are [`IfElseOp`](/api/qiskit/qiskit.circuit.IfElseOp) and [`WhileLoopOp`](/api/qiskit/qiskit.circuit.WhileLoopOp).
+The most correct way to test for a condition is to use an `isinstance` check to validate that you have the correct class.
+If you want to support the legacy `Instruction.condition` attribute during your library's transition to Qiskit 2.0 and above, you can use `getattr(operation, "condition", None)`, which will typically cause `Instruction` instances to behave as they did in Qiskit 1.x and before.
+
+The original, legacy method of supporting simple register-equality conditions in Qiskit was to use the `c_if` method on individual instructions or instruction sets.
+This was strictly less featureful than the full control-flow form, and was never well-supported on hardware.
+This legacy method has been removed in Qiskit 2.0; you should use the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method with a proper condition.
+You can continue to use the 2-tuple form of `(register, integer)` to represent a register equality, or you can use the more expressive [classical computation subsystem](/api/qiskit/qiskit.circuit.classical) to represent more complex conditions.
+
+For example, you might have written:
+
+```python
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+
+qr = QuantumRegister(2, "q")
+cr = ClassicalRegister(2, "c")
+qc = QuantumCircuit(qr, cr)
+qc.h(0)
+qc.h(1)
+qc.measure(qr, cr)
+
+# Apply an X to qubit 0 if both measurements were 1.
+qc.x(0).c_if(cr, 3)
+```
+
+The most direct translation of this is to use the 2-tuple form with the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) context manager:
+
+```python
+from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
+
+qr = QuantumRegister(2, "q")
+cr = ClassicalRegister(2, "c")
+qc = QuantumCircuit(qr, cr)
+qc.h(0)
+qc.h(1)
+qc.measure(qr, cr)
+
+# Apply an X to qubit 0 if both measurements were 1.
+with qc.if_test((cr, 3)):
+    qc.x(0)
+```
+
+Note that in this form, you can also have the conditional gate access to multiple operations (simply add more into the indented block) without re-evaluating the conditions.
+You can also provide an ``else`` statement, and use more complex conditional logic:
+
+```python
+from qiskit.circuit import QuantumCircuit
+from qiskit.circuit.classical import expr
+
+qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.h(1)
+qc.measure(qc.qubits, qc.clbits)
+
+# Apply an X to qubit 0 if both measurements were the same:
+with qc.if_test(expr.equal(qc.clbits[0], qc.clbits[1])) as else_:
+    qc.x(0)
+# ... or apply a Y to both qubits otherwise:
+with else_:
+    qc.y(0)
+    qc.y(1)
+```
+
+
 <span id="qiskit.transpiler"></span>
 ## qiskit.transpiler
 
