@@ -37,7 +37,7 @@ export class ReleaseNotesConfig {
 }
 
 type PackageType = "latest" | "historical" | "dev";
-type PackageLanguage = "Python" | "C";
+export type PackageLanguage = "Python" | "C";
 
 /**
  * Information about the specific package and version we're dealing with, e.g. qiskit 0.45.
