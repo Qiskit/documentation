@@ -124,6 +124,10 @@ export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._runtimeObjectsInvRegexes(),
   // TODO(#2761): Move the links to globs to load in `checkInternalLinks.ts` once Qiskit 1.4 becomes historical
   ...QISKIT_REMOVED_PAGES.map((link) => `\/api\/qiskit/1.4\/${link}(|#.*|$)`),
+  "/api/qiskit/1.4/qiskit.circuit.QuantumCircuit#add_calibration",
+  "/api/qiskit/1.4/compiler#qiskit.compiler.assemble",
+  "/api/qiskit/1.4/compiler#circuit-and-pulse-compilation-functions",
+  // End of TODO(#2761)
 ];
 
 // -----------------------------------------------------------------------------------
