@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
 # SwitchCaseOp
 
-<Class id="qiskit.circuit.SwitchCaseOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlflow/switch_case.py#L50-L189" signature="qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)" modifiers="class">
+<Class id="qiskit.circuit.SwitchCaseOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/switch_case.py#L50-L183" signature="qiskit.circuit.SwitchCaseOp(target, cases, *, label=None)" modifiers="class">
   Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
 
   A circuit operation that executes one particular circuit block based on matching a given `target` against an ordered list of `values`. The special value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") can be used to represent a default condition.
@@ -46,26 +46,6 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   <Attribute id="qiskit.circuit.SwitchCaseOp.blocks" />
 
-  ### condition
-
-  <Attribute id="qiskit.circuit.SwitchCaseOp.condition">
-    The classical condition on the instruction.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Attribute>
-
-  ### condition\_bits
-
-  <Attribute id="qiskit.circuit.SwitchCaseOp.condition_bits">
-    Get Clbits in condition.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Attribute>
-
   ### decompositions
 
   <Attribute id="qiskit.circuit.SwitchCaseOp.decompositions">
@@ -76,16 +56,6 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   <Attribute id="qiskit.circuit.SwitchCaseOp.definition">
     Return definition in terms of other basic gates.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.SwitchCaseOp.duration">
-    Get the duration.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
-    </Admonition>
   </Attribute>
 
   ### label
@@ -126,37 +96,17 @@ python_api_name: qiskit.circuit.SwitchCaseOp
     The parameters of this [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"). Ideally these will be gate angles.
   </Attribute>
 
-  ### unit
-
-  <Attribute id="qiskit.circuit.SwitchCaseOp.unit">
-    Get the time unit of duration.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
-    </Admonition>
-  </Attribute>
-
   ## Methods
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.SwitchCaseOp.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L359-L364" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.SwitchCaseOp.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
-  </Function>
-
-  ### assemble
-
-  <Function id="qiskit.circuit.SwitchCaseOp.assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L388-L398" signature="assemble()">
-    Assemble a QasmQobjInstruction
-
-    <Admonition title="Deprecated since version 1.2" type="danger">
-      The method `qiskit.circuit.instruction.Instruction.assemble()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
-    </Admonition>
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.SwitchCaseOp.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L572-L601" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.SwitchCaseOp.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L455-L484" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -173,23 +123,9 @@ python_api_name: qiskit.circuit.SwitchCaseOp
     [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
   </Function>
 
-  ### c\_if
-
-  <Function id="qiskit.circuit.SwitchCaseOp.c_if" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlflow/switch_case.py#L185-L189" signature="c_if(classical, val)">
-    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
-
-    <Admonition title="Note" type="note">
-      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
-    </Admonition>
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The method `qiskit.circuit.instruction.Instruction.c_if()` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Function>
-
   ### cases
 
-  <Function id="qiskit.circuit.SwitchCaseOp.cases" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlflow/switch_case.py#L163-L173" signature="cases()">
+  <Function id="qiskit.circuit.SwitchCaseOp.cases" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/switch_case.py#L163-L173" signature="cases()">
     Return a lookup table from case labels to the circuit that would be executed in that case. This object is not generally suitable for creating a new [`SwitchCaseOp`](#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") because any keys that point to the same object will not be grouped.
 
     <Admonition title="See also" type="note">
@@ -201,7 +137,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### cases\_specifier
 
-  <Function id="qiskit.circuit.SwitchCaseOp.cases_specifier" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlflow/switch_case.py#L149-L161" signature="cases_specifier()">
+  <Function id="qiskit.circuit.SwitchCaseOp.cases_specifier" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/switch_case.py#L149-L161" signature="cases_specifier()">
     Return an iterable where each element is a 2-tuple whose first element is a tuple of jump values, and whose second is the single circuit block that is associated with those values.
 
     This is an abstract specification of the jump table suitable for creating new [`SwitchCaseOp`](#qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") instances.
@@ -219,7 +155,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### copy
 
-  <Function id="qiskit.circuit.SwitchCaseOp.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L548-L563" signature="copy(name=None)">
+  <Function id="qiskit.circuit.SwitchCaseOp.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
@@ -237,7 +173,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### inverse
 
-  <Function id="qiskit.circuit.SwitchCaseOp.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L470-L525" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.SwitchCaseOp.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L374-L429" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -261,13 +197,23 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.SwitchCaseOp.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L324-L329" signature="is_parameterized()">
+  <Function id="qiskit.circuit.SwitchCaseOp.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
     Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
+
+  ### iter\_captured\_stretches
+
+  <Function id="qiskit.circuit.SwitchCaseOp.iter_captured_stretches" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/control_flow.py#L86-L94" signature="iter_captured_stretches()">
+    Get an iterator over the unique captured stretch variables in all blocks of this construct.
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[expr.Stretch](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")]
   </Function>
 
   ### iter\_captured\_vars
 
-  <Function id="qiskit.circuit.SwitchCaseOp.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlflow/control_flow.py#L77-L84" signature="iter_captured_vars()">
+  <Function id="qiskit.circuit.SwitchCaseOp.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/control_flow.py#L77-L84" signature="iter_captured_vars()">
     Get an iterator over the unique captured variables in all blocks of this construct.
 
     **Return type**
@@ -277,10 +223,8 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### repeat
 
-  <Function id="qiskit.circuit.SwitchCaseOp.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L611-L653" signature="repeat(n)">
+  <Function id="qiskit.circuit.SwitchCaseOp.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
     Creates an instruction with `self` repeated :math\`n\` times.
-
-    If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
 
     **Parameters**
 
@@ -301,7 +245,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### replace\_blocks
 
-  <Function id="qiskit.circuit.SwitchCaseOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlflow/switch_case.py#L179-L183" signature="replace_blocks(blocks)">
+  <Function id="qiskit.circuit.SwitchCaseOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/switch_case.py#L179-L183" signature="replace_blocks(blocks)">
     Return a new version of this control-flow operations with the [`blocks`](#qiskit.circuit.SwitchCaseOp.blocks "qiskit.circuit.SwitchCaseOp.blocks") mapped to the given new ones.
 
     Typically this is used in a workflow such as:
@@ -336,7 +280,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.SwitchCaseOp.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L444-L468" signature="reverse_ops()">
+  <Function id="qiskit.circuit.SwitchCaseOp.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -354,7 +298,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.SwitchCaseOp.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L255-L295" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.SwitchCaseOp.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -372,7 +316,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.SwitchCaseOp.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L174-L182" signature="to_mutable()">
+  <Function id="qiskit.circuit.SwitchCaseOp.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -380,7 +324,7 @@ python_api_name: qiskit.circuit.SwitchCaseOp
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.SwitchCaseOp.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L320-L322" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.SwitchCaseOp.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L282-L284" signature="validate_parameter(parameter)">
     Instruction parameters has no validation or normalization.
   </Function>
 </Class>

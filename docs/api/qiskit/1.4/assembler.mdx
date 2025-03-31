@@ -1,0 +1,186 @@
+---
+title: assembler (v1.4)
+description: API reference for qiskit.assembler in qiskit v1.4
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.assembler
+---
+
+<span id="module-qiskit.assembler" />
+
+<span id="qiskit-assembler" />
+
+<span id="circuit-and-schedule-assembler-qiskit-assembler" />
+
+# Circuit and Schedule Assembler
+
+`qiskit.assembler`
+
+## Functions
+
+### assemble\_circuits
+
+<Function id="qiskit.assembler.assemble_circuits" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/assembler/assemble_circuits.py#L408-L451" signature="qiskit.assembler.assemble_circuits(circuits, run_config, qobj_id, qobj_header)">
+  Assembles a list of circuits into a qobj that can be run on the backend.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The function `qiskit.assembler.assemble_circuits.assemble_circuits()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
+
+  **Parameters**
+
+  *   **circuits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – circuit(s) to assemble
+  *   **run\_config** ([*RunConfig*](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – configuration of the runtime environment
+  *   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – identifier for the generated qobj
+  *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – header to pass to the results
+
+  **Returns**
+
+  The qobj to be run on the backends
+
+  **Return type**
+
+  [*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
+
+  **Examples**
+
+  ```python
+  from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.assembler import assemble_circuits
+  from qiskit.assembler.run_config import RunConfig
+  # Build a circuit to convert into a Qobj
+  q = QuantumRegister(2)
+  c = ClassicalRegister(2)
+  qc = QuantumCircuit(q, c)
+  qc.h(q[0])
+  qc.cx(q[0], q[1])
+  qc.measure(q, c)
+  # Assemble a Qobj from the input circuit
+  qobj = assemble_circuits(circuits=[qc],
+                           qobj_id="custom-id",
+                           qobj_header=[],
+                           run_config=RunConfig(shots=2000, memory=True, init_qubits=True))
+  ```
+</Function>
+
+### assemble\_schedules
+
+<Function id="qiskit.assembler.assemble_schedules" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/assembler/assemble_schedules.py#L28-L105" signature="qiskit.assembler.assemble_schedules(schedules, qobj_id, qobj_header, run_config)">
+  Assembles a list of schedules into a qobj that can be run on the backend.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.assembler.assemble_schedules.assemble_schedules()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.assembler.assemble_schedules.assemble_schedules()` will have no alternative in Qiskit.
+  </Admonition>
+
+  **Parameters**
+
+  *   **schedules** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]]*) – Schedules to assemble.
+  *   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Identifier for the generated qobj.
+  *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – Header to pass to the results.
+  *   **run\_config** ([*RunConfig*](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – Configuration of the runtime environment.
+
+  **Returns**
+
+  The Qobj to be run on the backends.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – when frequency settings are not supplied.
+
+  **Return type**
+
+  [*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
+
+  **Examples**
+
+  ```python
+  from qiskit import pulse
+  from qiskit.assembler import assemble_schedules
+  from qiskit.assembler.run_config import RunConfig
+  # Construct a Qobj header for the output Qobj
+  header = {"backend_name": "FakeOpenPulse2Q", "backend_version": "0.0.0"}
+  # Build a configuration object for the output Qobj
+  config = RunConfig(shots=1024,
+                     memory=False,
+                     meas_level=1,
+                     meas_return='avg',
+                     memory_slot_size=100,
+                     parametric_pulses=[],
+                     init_qubits=True,
+                     qubit_lo_freq=[4900000000.0, 5000000000.0],
+                     meas_lo_freq=[6500000000.0, 6600000000.0],
+                     schedule_los=[])
+  # Build a Pulse schedule to assemble into a Qobj
+  schedule = pulse.Schedule()
+  schedule += pulse.Play(pulse.Waveform([0.1] * 16, name="test0"),
+                         pulse.DriveChannel(0),
+                         name="test1")
+  schedule += pulse.Play(pulse.Waveform([0.1] * 16, name="test1"),
+                         pulse.DriveChannel(0),
+                         name="test2")
+  schedule += pulse.Play(pulse.Waveform([0.5] * 16, name="test0"),
+                         pulse.DriveChannel(0),
+                         name="test1")
+  # Assemble a Qobj from the schedule.
+  pulseQobj = assemble_schedules(schedules=[schedule],
+                                 qobj_id="custom-id",
+                                 qobj_header=header,
+                                 run_config=config)
+  ```
+</Function>
+
+### disassemble
+
+<Function id="qiskit.assembler.disassemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/assembler/disassemble.py#L41-L92" signature="qiskit.assembler.disassemble(qobj)">
+  Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.
+
+  <Admonition title="Note" type="note">
+    `disassemble(assemble(qc))` is not guaranteed to produce an exactly equal circuit to the input, due to limitations in the [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") format that need to be maintained for backend system compatibility. This is most likely to be the case when using newer features of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). In most cases, the output should be equivalent, if not quite equal.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The function `qiskit.assembler.disassemble.disassemble()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
+
+  **Parameters**
+
+  **qobj** (*Qobj*) – The input qobj object to disassemble
+
+  **Returns**
+
+  The disassembled program which consists of:
+
+  > *   programs: A list of quantum circuits or pulse schedules
+  > *   run\_config: The dict of the run config
+  > *   user\_qobj\_header: The dict of any user headers in the qobj
+
+  **Return type**
+
+  Union\[CircuitModule, PulseModule]
+
+  **Examples**
+
+  ```python
+  from qiskit.circuit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.compiler.assembler import assemble
+  from qiskit.assembler.disassemble import disassemble
+  # Create a circuit to assemble into a qobj
+  q = QuantumRegister(2)
+  c = ClassicalRegister(2)
+  qc = QuantumCircuit(q, c)
+  qc.h(q[0])
+  qc.cx(q[0], q[1])
+  qc.measure(q, c)
+  # Assemble the circuit into a Qobj
+  qobj = assemble(qc, shots=2000, memory=True)
+  # Disassemble the qobj back into a circuit
+  circuits, run_config_out, headers = disassemble(qobj)
+  ```
+</Function>
+
+## Classes
+
+|                                                                                                                |                              |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`RunConfig`](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")(\[shots, seed\_simulator, memory, ...]) | Class for Run Configuration. |
+

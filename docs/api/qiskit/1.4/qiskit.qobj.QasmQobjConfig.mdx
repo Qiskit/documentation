@@ -1,0 +1,73 @@
+---
+title: QasmQobjConfig (v1.4)
+description: API reference for qiskit.qobj.QasmQobjConfig in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobjConfig
+---
+
+# QasmQobjConfig
+
+<Class id="qiskit.qobj.QasmQobjConfig" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L293-L426" signature="qiskit.qobj.QasmQobjConfig(shots=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)" modifiers="class">
+  Bases: [`SimpleNamespace`](https://docs.python.org/3/library/types.html#types.SimpleNamespace "(in Python v3.13)")
+
+  A configuration for an OpenQASM 2 Qobj.
+
+  Model for RunConfig.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.qobj.qasm_qobj.QasmQobjConfig` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
+
+  **Parameters**
+
+  *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of shots.
+  *   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the seed to use in the simulator
+  *   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether to request memory from backend (per-shot readouts)
+  *   **parameter\_binds** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*]*) – List of parameter bindings
+  *   **meas\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Measurement level 0, 1, or 2
+  *   **meas\_return** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – For measurement level \< 2, whether single or avg shots are returned
+  *   **memory\_slots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of memory slots on the device
+  *   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits on the device
+  *   **pulse\_library** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem").
+  *   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+  *   **rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
+  *   **qubit\_lo\_freq** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of frequencies (as floats) for the qubit driver LO’s in GHz.
+  *   **meas\_lo\_freq** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of frequencies (as floats) for the measurement driver LO’s in GHz.
+  *   **kwargs** – Additional free form key value fields to add to the configuration.
+
+  ## Methods
+
+  ### from\_dict
+
+  <Function id="qiskit.qobj.QasmQobjConfig.from_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L401-L420" signature="from_dict(data)" modifiers="classmethod">
+    Create a new QasmQobjConfig object from a dictionary.
+
+    **Parameters**
+
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – A dictionary for the config
+
+    **Returns**
+
+    The object from the input dictionary.
+
+    **Return type**
+
+    [QasmQobjConfig](#qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit.qobj.QasmQobjConfig.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L386-L399" signature="to_dict()">
+    Return a dictionary format representation of the OpenQASM 2 Qobj config.
+
+    **Returns**
+
+    The dictionary form of the QasmQobjConfig.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+  </Function>
+</Class>
+

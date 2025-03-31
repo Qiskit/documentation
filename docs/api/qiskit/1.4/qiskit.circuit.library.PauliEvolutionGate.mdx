@@ -1,0 +1,211 @@
+---
+title: PauliEvolutionGate (v1.4)
+description: API reference for qiskit.circuit.library.PauliEvolutionGate in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PauliEvolutionGate
+---
+
+# PauliEvolutionGate
+
+<Class id="qiskit.circuit.library.PauliEvolutionGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/pauli_evolution.py#L29-L155" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Time-evolution of an operator consisting of Paulis.
+
+  For an operator $H$ consisting of Pauli terms and (real) evolution time $t$ this gate implements
+
+$$
+U(t) = e^{-itH}.
+$$
+
+  This gate serves as a high-level definition of the evolution and can be synthesized into a circuit using different algorithms.
+
+  The evolution gates are related to the Pauli rotation gates by a factor of 2. For example the time evolution of the Pauli $X$ operator is connected to the Pauli $X$ rotation $R_X$ by
+
+$$
+U(t) = e^{-itX} = R_X(2t).
+$$
+
+  **Examples:**
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.circuit.library import PauliEvolutionGate
+  from qiskit.quantum_info import SparsePauliOp
+
+  X = SparsePauliOp("X")
+  Z = SparsePauliOp("Z")
+  I = SparsePauliOp("I")
+
+  # build the evolution gate
+  operator = (Z ^ Z) - 0.1 * (X ^ I)
+  evo = PauliEvolutionGate(operator, time=0.2)
+
+  # plug it into a circuit
+  circuit = QuantumCircuit(2)
+  circuit.append(evo, range(2))
+  print(circuit.draw())
+  ```
+
+  The above will print (note that the `-0.1` coefficient is not printed!):
+
+  ```python
+       ┌──────────────────────────┐
+  q_0: ┤0                         ├
+       │  exp(-it (ZZ + XI))(0.2) │
+  q_1: ┤1                         ├
+       └──────────────────────────┘
+  ```
+
+  **References:**
+
+  \[1] G. Li et al. Paulihedral: A Generalized Block-Wise Compiler Optimization Framework For Quantum Simulation Kernels (2021). \[[arXiv:2109.03371](https://arxiv.org/abs/2109.03371)]
+
+  **Parameters**
+
+  *   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
+  *   **time** (*ParameterValueType*) – The evolution time.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
+  *   **synthesis** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.PauliEvolutionGate.base_class "qiskit.circuit.library.PauliEvolutionGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ### time
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.time">
+    Return the evolution time as stored in the gate parameters.
+
+    **Returns**
+
+    The evolution time.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.PauliEvolutionGate.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/pauli_evolution.py#L150-L155" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+
+    **Parameters**
+
+    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) –
+
+    **Return type**
+
+    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+  </Function>
+</Class>
+

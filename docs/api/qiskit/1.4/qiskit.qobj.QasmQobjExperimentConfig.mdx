@@ -1,0 +1,61 @@
+---
+title: QasmQobjExperimentConfig (v1.4)
+description: API reference for qiskit.qobj.QasmQobjExperimentConfig in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobjExperimentConfig
+---
+
+# QasmQobjExperimentConfig
+
+<Class id="qiskit.qobj.QasmQobjExperimentConfig" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L435-L474" signature="qiskit.qobj.QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)" modifiers="class">
+  Bases: `QobjDictField`
+
+  Configuration for a single OpenQASM 2 experiment in the qobj.
+
+  <Admonition title="Deprecated since version 1.2" type="danger">
+    The class `qiskit.qobj.qasm_qobj.QasmQobjExperimentConfig` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+  </Admonition>
+
+  **Parameters**
+
+  *   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
+  *   **qubit\_lo\_freq** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – List of qubit LO frequencies in GHz.
+  *   **meas\_lo\_freq** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – List of meas readout LO frequencies in GHz.
+  *   **kwargs** – Additional free form key value fields to add to the configuration
+
+  ## Methods
+
+  ### from\_dict
+
+  <Function id="qiskit.qobj.QasmQobjExperimentConfig.from_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L469-L474" signature="from_dict(data)" modifiers="classmethod">
+    Create a new QobjHeader object from a dictionary.
+
+    **Parameters**
+
+    **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – A dictionary representing the QobjHeader to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.QasmQobjExperimentConfig.to_dict "qiskit.qobj.QasmQobjExperimentConfig.to_dict").
+
+    **Returns**
+
+    The QobjDictField from the input dictionary.
+
+    **Return type**
+
+    QobjDictFieldr
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit.qobj.QasmQobjExperimentConfig.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qobj/qasm_qobj.py#L463-L467" signature="to_dict()">
+    Return a dictionary format representation of the OpenQASM 2 Qobj.
+
+    **Returns**
+
+    The dictionary form of the QobjHeader.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+  </Function>
+</Class>
+

@@ -1,0 +1,217 @@
+---
+title: UnitaryGate (v1.4)
+description: API reference for qiskit.circuit.library.UnitaryGate in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.UnitaryGate
+---
+
+# UnitaryGate
+
+<Class id="qiskit.circuit.library.UnitaryGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/unitary.py#L39-L215" signature="qiskit.circuit.library.UnitaryGate(data, label=None, check_input=True, *, num_qubits=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Class quantum gates specified by a unitary matrix.
+
+  **Example**
+
+  We can create a unitary gate from a unitary matrix then add it to a quantum circuit. The matrix can also be directly applied to the quantum circuit, see [`QuantumCircuit.unitary()`](qiskit.circuit.QuantumCircuit#unitary "qiskit.circuit.QuantumCircuit.unitary").
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.circuit.library import UnitaryGate
+
+  matrix = [[0, 0, 0, 1],
+            [0, 0, 1, 0],
+            [1, 0, 0, 0],
+            [0, 1, 0, 0]]
+  gate = UnitaryGate(matrix)
+
+  circuit = QuantumCircuit(2)
+  circuit.append(gate, [0, 1])
+  ```
+
+  Create a gate from a numeric unitary matrix.
+
+  **Parameters**
+
+  *   **data** ([*numpy.ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| BaseOperator*) – Unitary operator.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Unitary name for backend \[Default: `None`].
+  *   **check\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `False` this asserts the input is known to be unitary and the checking to validate this will be skipped. This should only ever be used if you know the input is unitary, setting this to `False` and passing in a non-unitary matrix will result unexpected behavior and errors.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – If given, the number of qubits in the matrix. If not given, it is inferred.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If input data is not an N-qubit unitary operator.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.UnitaryGate.base_class "qiskit.circuit.library.UnitaryGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.UnitaryGate.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### adjoint
+
+  <Function id="qiskit.circuit.library.UnitaryGate.adjoint" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/unitary.py#L129-L131" signature="adjoint()">
+    Return the adjoint of the unitary.
+  </Function>
+
+  ### conjugate
+
+  <Function id="qiskit.circuit.library.UnitaryGate.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/unitary.py#L125-L127" signature="conjugate()">
+    Return the conjugate of the unitary.
+  </Function>
+
+  ### control
+
+  <Function id="qiskit.circuit.library.UnitaryGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/unitary.py#L163-L201" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return controlled version of gate.
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of controls to add to gate (default is 1).
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Optional gate label.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The control state in decimal or as a bit string (e.g. `"1011"`). If `None`, use `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate should be implemented as an annotated gate. If `None`, this is handled as `False`.
+
+    **Returns**
+
+    Controlled version of gate.
+
+    **Return type**
+
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") | [AnnotatedOperation](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.UnitaryGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/unitary.py#L121-L123" signature="inverse(annotated=False)">
+    Return the adjoint of the unitary.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+  </Function>
+
+  ### transpose
+
+  <Function id="qiskit.circuit.library.UnitaryGate.transpose" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/unitary.py#L133-L135" signature="transpose()">
+    Return the transpose of the unitary.
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.UnitaryGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/generalized_gates/unitary.py#L210-L215" signature="validate_parameter(parameter)">
+    Unitary gate parameter has to be an ndarray.
+  </Function>
+</Class>
+
