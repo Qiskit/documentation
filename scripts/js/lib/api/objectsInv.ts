@@ -16,6 +16,8 @@ import { join, dirname } from "path";
 import { mkdirp } from "mkdirp";
 
 import { removePrefix, removeSuffix } from "../stringUtils.js";
+import { C_API_BASE_PATH } from "./conversionPipeline.js";
+import { PackageLanguage } from "./Pkg";
 
 /**
  * Some pages exist in the sphinx docs but not in our docs
@@ -41,13 +43,9 @@ const ENTRIES_TO_EXCLUDE = [
   /^legacy_release_notes(\.html)?(?=#|$)/,
 ];
 
-const C_API_BASE_PATH = "cdoc/";
-
-type PackageLanguage = "Python" | "C" | "any";
-
 function shouldIncludeEntry(
   entry: ObjectsInvEntry,
-  packageLanguage: PackageLanguage,
+  packageLanguage: "Python" | "C" | "any",
 ): boolean {
   if (ENTRIES_TO_EXCLUDE.some((condition) => entry.uri.match(condition))) {
     return false;
@@ -57,11 +55,10 @@ function shouldIncludeEntry(
   if (entry.name.startsWith("group__")) return false;
   if (entry.name.startsWith("struct_")) return false;
 
-  // Not specified: Include both C and Python entries.
   // This happens during link checking.
   if (packageLanguage === "any") return true;
 
-  const isCPage = entry.uri.startsWith(C_API_BASE_PATH);
+  const isCPage = entry.uri.startsWith(C_API_BASE_PATH + "/");
   const isCApi = packageLanguage === "C";
   return isCApi === isCPage;
 }
@@ -95,7 +92,7 @@ export class ObjectsInv {
    */
   static async fromFile(
     directoryPath: string,
-    packageLanguage: PackageLanguage,
+    packageLanguage: PackageLanguage | "any",
   ): Promise<ObjectsInv> {
     const path = join(directoryPath, "objects.inv");
     let buffer = await readFile(path);
@@ -146,7 +143,7 @@ export class ObjectsInv {
    * we must manipulate the URI based on the object name.
    */
   static #transformCApiUri(uri: string, name: string): string {
-    const uriWithoutPrefix = removePrefix(uri, C_API_BASE_PATH);
+    const uriWithoutPrefix = removePrefix(uri, C_API_BASE_PATH + "/");
     if (!uriWithoutPrefix.includes("#")) return uriWithoutPrefix;
     const [path, _anchor] = uriWithoutPrefix.split("#");
 
