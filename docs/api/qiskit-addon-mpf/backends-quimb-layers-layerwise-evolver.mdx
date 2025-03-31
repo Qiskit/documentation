@@ -8,7 +8,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver
 
 # LayerwiseEvolver
 
-<Class id="qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_layers/evolver.py#L21-L75" signature="LayerwiseEvolver(evolution_state, layers, *args, **kwargs)" modifiers="class">
+<Class id="qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_layers/evolver.py#L23-L89" signature="LayerwiseEvolver(evolution_state, layers, *args, **kwargs)" modifiers="class">
   Bases: [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.evolver.TEBDEvolver")
 
   A special case of the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") based on layer-wise evolution models.
@@ -21,7 +21,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver
 
   **Parameters**
 
-  *   **evolution\_state** ([*quimb\_tebd.MPOState*](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState")) – forwarded to [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver"). Please refer to its documentation for more details.
+  *   **evolution\_state** ([*quimb\_tebd.MPOState*](backends-quimb-tebd-mpo-state "qiskit_addon_mpf.backends.quimb_tebd.MPOState") *| MatrixProductState*) – forwarded to [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver"). Please refer to its documentation for more details.
   *   **layers** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*LayerModel*](backends-quimb-layers-layer-model "qiskit_addon_mpf.backends.quimb_layers.LayerModel")*]*) – the list of models describing single layers of interactions. See above as well as the explanations provided in [`quimb_layers`](backends-quimb-layers#module-qiskit_addon_mpf.backends.quimb_layers "qiskit_addon_mpf.backends.quimb_layers").
   *   **args** – any further positional arguments will be forwarded to the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") constructor.
   *   **kwargs** – any further keyword arguments will be forwarded to the [`TEBDEvolver`](backends-quimb-tebd-tebd-evolver "qiskit_addon_mpf.backends.quimb_tebd.TEBDEvolver") constructor.
@@ -38,7 +38,7 @@ python_api_name: qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver
 
   ### step
 
-  <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver.step" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/backends/quimb_layers/evolver.py#L55-L75" signature="step()">
+  <Function id="qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver.step" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/backends/quimb_layers/evolver.py#L61-L89" signature="step()">
     Perform a single time step of TEBD.
 
     This will iterate over the [`layers`](#qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver.layers "qiskit_addon_mpf.backends.quimb_layers.LayerwiseEvolver.layers") and apply their interaction to the internal state.

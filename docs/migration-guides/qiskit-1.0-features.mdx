@@ -107,10 +107,10 @@ new_circuit = transpile(circuit, backend)
 job = backend.run(new_circuit)
 ```
 
-Alternatively, the [Sampler](/api/qiskit/qiskit.primitives.Sampler)
+Alternatively, the [Sampler](/api/qiskit/1.4/qiskit.primitives.Sampler)
 primitive is semantically equivalent to the removed `qiskit.execute`
 function. The class
-[`BackendSampler`](/api/qiskit/qiskit.primitives.BackendSampler) is a
+[`BackendSampler`](/api/qiskit/1.4/qiskit.primitives.BackendSampler) is a
 generic wrapper for backends that do not support primitives:
 
 ```python
@@ -490,7 +490,7 @@ sampler_v2 = StatevectorSampler()
 
 * Implicit conversion from a dense `BaseOperator` to a
   [`SparsePauliOp`](/api/qiskit/qiskit.quantum_info.SparsePauliOp) in
-  [`Estimator`](/api/qiskit/qiskit.primitives.Estimator) observable arguments
+  [`Estimator`](/api/qiskit/1.4/qiskit.primitives.Estimator) observable arguments
   is no longer allowed. You should explicitly convert to a `SparsePauliOp`
 by using
   [`SparsePauliOp.from_operator(operator)`](/api/qiskit/qiskit.quantum_info.SparsePauliOp#from_operator)
@@ -691,11 +691,11 @@ Removed                          |   Alternative
     `qiskit-ibm-runtime` dependency, you can also find new Qiskit-native generic fake backend alternatives.
     These include the following `BackendV1` classes (drop-in replacements):
 
-    * [`qiskit.providers.fake_provider.Fake5QV1`](/api/qiskit/qiskit.providers.fake_provider.Fake5QV1)
-    * [`qiskit.providers.fake_provider.Fake20QV1`](/api/qiskit/qiskit.providers.fake_provider.Fake20QV1)
-    * [`qiskit.providers.fake_provider.Fake7QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake7QPulseV1)
-    * [`qiskit.providers.fake_provider.Fake27QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake27QPulseV1)
-    * [`qiskit.providers.fake_provider.Fake127QPulseV1`](/api/qiskit/qiskit.providers.fake_provider.Fake127QPulseV1)
+    * [`qiskit.providers.fake_provider.Fake5QV1`](/api/qiskit/1.4/qiskit.providers.fake_provider.Fake5QV1)
+    * [`qiskit.providers.fake_provider.Fake20QV1`](/api/qiskit/1.4/qiskit.providers.fake_provider.Fake20QV1)
+    * [`qiskit.providers.fake_provider.Fake7QPulseV1`](/api/qiskit/1.4/qiskit.providers.fake_provider.Fake7QPulseV1)
+    * [`qiskit.providers.fake_provider.Fake27QPulseV1`](/api/qiskit/1.4/qiskit.providers.fake_provider.Fake27QPulseV1)
+    * [`qiskit.providers.fake_provider.Fake127QPulseV1`](/api/qiskit/1.4/qiskit.providers.fake_provider.Fake127QPulseV1)
 
     This is a configurable class that returns `BackendV2` instances:
 
@@ -766,7 +766,7 @@ backend = GenericBackendV2(num_qubits=5)
 
 The `qiskit.pulse.library.parametric_pulses.ParametricPulse` base class and
 pulse library have been superseded by
-[`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
+[`qiskit.pulse.SymbolicPulse`](/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse)
 and the corresponding pulse library. `SymbolicPulse` supports
 [QPY](/api/qiskit/qpy) serialization:
 
@@ -782,11 +782,11 @@ with open('schedule.qpy', 'wb') as fd:
 
 Removed                          |   Alternative
 ---------------------------------|--------------------------------------------
-`pulse.library.parametric_pulses.ParametricPulse` | [`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse)
-`pulse.library.parametric_pulses.Constant` |  [`pulse.library.symbolic_pulses.Constant`](/api/qiskit/qiskit.pulse.library.Constant)
-`pulse.library.parametric_pulses.Drag` |  [`pulse.library.symbolic_pulses.Drag`](/api/qiskit/qiskit.pulse.library.Drag)
-`pulse.library.parametric_pulses.Gaussian` |  [`pulse.library.symbolic_pulses.Gaussian`](/api/qiskit/qiskit.pulse.library.Gaussian)
-`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  [`pulse.library.symbolic_pulses.GaussianSquare`](/api/qiskit/qiskit.pulse.library.GaussianSquare)
+`pulse.library.parametric_pulses.ParametricPulse` | [`qiskit.pulse.SymbolicPulse`](/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse)
+`pulse.library.parametric_pulses.Constant` |  [`pulse.library.symbolic_pulses.Constant`](/api/qiskit/1.4/qiskit.pulse.library.Constant)
+`pulse.library.parametric_pulses.Drag` |  [`pulse.library.symbolic_pulses.Drag`](/api/qiskit/1.4/qiskit.pulse.library.Drag)
+`pulse.library.parametric_pulses.Gaussian` |  [`pulse.library.symbolic_pulses.Gaussian`](/api/qiskit/1.4/qiskit.pulse.library.Gaussian)
+`qiskit.pulse.library.parametric_pulses.GaussianSquare` |  [`pulse.library.symbolic_pulses.GaussianSquare`](/api/qiskit/1.4/qiskit.pulse.library.GaussianSquare)
 
 <span id="complex-val-amp"></span>
 ### Complex-valued amplitude
@@ -810,7 +810,7 @@ schedule.assign_parameters({angle: pi})
 ### Injecting circuit gate operations
 
 Injecting circuit gate operations into the pulse builder context through
-[`qiskit.pulse.builder.call`](/api/qiskit/pulse#call) is no longer possible.
+[`qiskit.pulse.builder.call`](/api/qiskit/1.4/pulse#call) is no longer possible.
 This removal affects input arguments of type `QuantumCircuit`, as well as the
 following functions:
 
@@ -901,13 +901,13 @@ The discrete pulse library has been removed from the code base. This includes:
 * `qiskit.pulse.library.drag`
 
 Instead, use the corresponding
-[`qiskit.pulse.SymbolicPulse`](/api/qiskit/qiskit.pulse.library.SymbolicPulse),
+[`qiskit.pulse.SymbolicPulse`](/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse),
 with
-[`SymbolicPulse.get_waveform()`](/api/qiskit/qiskit.pulse.library.SymbolicPulse#get_waveform).
+[`SymbolicPulse.get_waveform()`](/api/qiskit/1.4/qiskit.pulse.library.SymbolicPulse#get_waveform).
 For example, instead of `pulse.gaussian(100,0.5,10)`, use
 `pulse.Gaussian(100,0.5,10).get_waveform()`. Note that the phase of both
-[`Sawtooth`](/api/qiskit/qiskit.pulse.library.Sawtooth) and
-[`Square`](/api/qiskit/qiskit.pulse.library.Square) is defined such
+[`Sawtooth`](/api/qiskit/1.4/qiskit.pulse.library.Sawtooth) and
+[`Square`](/api/qiskit/1.4/qiskit.pulse.library.Square) is defined such
 that a phase of `2\\pi` shifts by a full cycle, contrary to the discrete
 counterpart. Also note that complex amplitudes are no longer supported in
 the symbolic pulse library; use `float`, `amp`, and  `angle` instead.
@@ -921,10 +921,10 @@ objects with a complex `amp` parameter from version 5 or earlier qpy files
 automatically be converted to `float` (`amp`, `angle`).
 
 This change applies to these pulses:
-* [`qiskit.pulse.Constant`](/api/qiskit/qiskit.pulse.library.Constant)
-* [`qiskit.pulse.Drag`](/api/qiskit/qiskit.pulse.library.Drag)
-* [`qiskit.pulse.Gaussian`](/api/qiskit/qiskit.pulse.library.Gaussian)
-* [`qiskit.pulse.GaussianSquare`](/api/qiskit/qiskit.pulse.library.GaussianSquare)
+* [`qiskit.pulse.Constant`](/api/qiskit/1.4/qiskit.pulse.library.Constant)
+* [`qiskit.pulse.Drag`](/api/qiskit/1.4/qiskit.pulse.library.Drag)
+* [`qiskit.pulse.Gaussian`](/api/qiskit/1.4/qiskit.pulse.library.Gaussian)
+* [`qiskit.pulse.GaussianSquare`](/api/qiskit/1.4/qiskit.pulse.library.GaussianSquare)
 
 
 <span id="qiskit.qasm"></span>

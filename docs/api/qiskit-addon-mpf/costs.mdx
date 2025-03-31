@@ -20,7 +20,7 @@ This module provides a number of optimization problem generator functions, each 
 
 ### LSE
 
-<Class id="qiskit_addon_mpf.costs.LSE" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/lse.py#L23-L73" signature="LSE(A, b)" modifiers="class">
+<Class id="qiskit_addon_mpf.costs.LSE" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/costs/lse.py#L23-L73" signature="LSE(A, b)" modifiers="class">
   Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple "(in Python v3.13)")
 
   A `namedtuple` representing a linear system of equations.
@@ -64,7 +64,7 @@ $$
 
   #### solve
 
-  <Function id="qiskit_addon_mpf.costs.LSE.solve" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/lse.py#L41-L73" signature="solve()">
+  <Function id="qiskit_addon_mpf.costs.LSE.solve" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/costs/lse.py#L41-L73" signature="solve()">
     Return the solution to this LSE: $x=A^{-1}b$.
 
     **Returns**
@@ -92,7 +92,7 @@ $$
 
 ### setup\_exact\_problem
 
-<Function id="qiskit_addon_mpf.costs.setup_exact_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/exact.py#L22-L74" signature="setup_exact_problem(lse)">
+<Function id="qiskit_addon_mpf.costs.setup_exact_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/costs/exact.py#L22-L74" signature="setup_exact_problem(lse)">
   Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)") for finding the exact MPF coefficients.
 
   <Admonition title="Note" type="note">
@@ -152,7 +152,7 @@ $$
 
 ### setup\_sum\_of\_squares\_problem
 
-<Function id="qiskit_addon_mpf.costs.setup_sum_of_squares_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/sum_of_squares.py#L22-L77" signature="setup_sum_of_squares_problem(lse, *, max_l1_norm=10.0)">
+<Function id="qiskit_addon_mpf.costs.setup_sum_of_squares_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/costs/sum_of_squares.py#L22-L77" signature="setup_sum_of_squares_problem(lse, *, max_l1_norm=10.0)">
   Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)") for finding approximate MPF coefficients.
 
   The optimization problem constructed by this function is defined as follows:
@@ -213,7 +213,7 @@ $$
 
 ### setup\_frobenius\_problem
 
-<Function id="qiskit_addon_mpf.costs.setup_frobenius_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.2/qiskit_addon_mpf/costs/frobenius.py#L22-L126" signature="setup_frobenius_problem(lse, *, max_l1_norm=10.0)">
+<Function id="qiskit_addon_mpf.costs.setup_frobenius_problem" github="https://github.com/Qiskit/qiskit-addon-mpf/tree/stable/0.3/qiskit_addon_mpf/costs/frobenius.py#L22-L126" signature="setup_frobenius_problem(lse, *, max_l1_norm=10.0)">
   Construct a [`cvxpy.Problem`](https://www.cvxpy.org/api_reference/cvxpy.problems.html#cvxpy.Problem "(in CVXPY v1.6)") for finding approximate MPF coefficients.
 
   The optimization problem constructed by this function is defined as follows:

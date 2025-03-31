@@ -10,18 +10,53 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-export type ApiType =
+export type ApiTypeName = ApiObjectName | "module";
+export type ApiObjectName =
+  // Python API types
   | "class"
   | "method"
   | "property"
   | "attribute"
-  | "module"
   | "function"
   | "exception"
-  | "data";
+  | "data"
+  // C API types
+  | "struct"
+  | "cFunction"
+  | "typedef"
+  | "enum"
+  | "enumerator"
+  | "structMember";
+
+interface ApiObjectInfo {
+  htmlSelector: string;
+  tagName: "class" | "function" | "attribute";
+}
+
+/**
+ * This object defines every API type we support. The key is the name we use to
+ * refer to the API type in this script, the `htmlSelector` is the HTML selector
+ * in the Sphinx HTML, and the `tagName` is the tag we transform it to (and how
+ * it'll be displayed on the website).
+ */
+export const API_OBJECTS: { [K in ApiObjectName]: ApiObjectInfo } = {
+  class: { htmlSelector: "dl.py.class", tagName: "class" },
+  exception: { htmlSelector: "dl.py.exception", tagName: "class" },
+  attribute: { htmlSelector: "dl.py.attribute", tagName: "attribute" },
+  property: { htmlSelector: "dl.py.property", tagName: "attribute" },
+  function: { htmlSelector: "dl.py.function", tagName: "function" },
+  cFunction: { htmlSelector: "dl.cpp.function", tagName: "function" },
+  method: { htmlSelector: "dl.py.method", tagName: "function" },
+  data: { htmlSelector: "dl.py.data", tagName: "attribute" },
+  struct: { htmlSelector: "dl.cpp.struct", tagName: "class" },
+  typedef: { htmlSelector: "dl.cpp.type", tagName: "class" },
+  enum: { htmlSelector: "dl.cpp.enum", tagName: "class" },
+  enumerator: { htmlSelector: "dl.cpp.enumerator", tagName: "attribute" },
+  structMember: { htmlSelector: "dl.cpp.var", tagName: "attribute" },
+} as const;
 
 export type Metadata = {
   apiName?: string;
-  apiType?: ApiType;
+  apiType?: ApiTypeName;
   hardcodedFrontmatter?: string;
 };
