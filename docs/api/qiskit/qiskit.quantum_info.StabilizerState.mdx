@@ -8,7 +8,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
 # StabilizerState
 
-<Class id="qiskit.quantum_info.StabilizerState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L36-L774" signature="qiskit.quantum_info.StabilizerState(data, validate=True)" modifiers="class">
+<Class id="qiskit.quantum_info.StabilizerState" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L36-L805" signature="qiskit.quantum_info.StabilizerState(data, validate=True)" modifiers="class">
   Bases: `QuantumState`
 
   StabilizerState class. Stabilizer simulator using the convention from reference \[1]. Based on the internal class [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford").
@@ -83,25 +83,25 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### conjugate
 
-  <Function id="qiskit.quantum_info.StabilizerState.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L192-L196" signature="conjugate()">
+  <Function id="qiskit.quantum_info.StabilizerState.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L196-L200" signature="conjugate()">
     Return the conjugate of the operator.
   </Function>
 
   ### copy
 
-  <Function id="qiskit.quantum_info.StabilizerState.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L74-L76" signature="copy()">
+  <Function id="qiskit.quantum_info.StabilizerState.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/quantum_state.py#L74-L76" signature="copy()">
     Make a copy of current operator.
   </Function>
 
   ### dims
 
-  <Function id="qiskit.quantum_info.StabilizerState.dims" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L70-L72" signature="dims(qargs=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.dims" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/quantum_state.py#L70-L72" signature="dims(qargs=None)">
     Return tuple of input dimension for specified subsystems.
   </Function>
 
   ### equiv
 
-  <Function id="qiskit.quantum_info.StabilizerState.equiv" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L323-L362" signature="equiv(other)">
+  <Function id="qiskit.quantum_info.StabilizerState.equiv" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L354-L393" signature="equiv(other)">
     Return True if the two generating sets generate the same stabilizer group.
 
     **Parameters**
@@ -119,7 +119,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### evolve
 
-  <Function id="qiskit.quantum_info.StabilizerState.evolve" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L234-L256" signature="evolve(other, qargs=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.evolve" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L238-L260" signature="evolve(other, qargs=None)">
     Evolve a stabilizer state by a Clifford operator.
 
     **Parameters**
@@ -143,7 +143,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### expand
 
-  <Function id="qiskit.quantum_info.StabilizerState.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L216-L232" signature="expand(other)">
+  <Function id="qiskit.quantum_info.StabilizerState.expand" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L220-L236" signature="expand(other)">
     Return the tensor product stabilizer state other ⊗ self.
 
     **Parameters**
@@ -165,30 +165,30 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### expectation\_value
 
-  <Function id="qiskit.quantum_info.StabilizerState.expectation_value" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L258-L321" signature="expectation_value(oper, qargs=None)">
-    Compute the expectation value of a Pauli operator.
+  <Function id="qiskit.quantum_info.StabilizerState.expectation_value" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L262-L287" signature="expectation_value(oper, qargs=None)">
+    Compute the expectation value of a Pauli or SparsePauliOp operator.
 
     **Parameters**
 
-    *   **oper** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a Pauli operator to evaluate expval.
-    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to apply the operator on.
+    *   **oper** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")) – A Pauli or SparsePauliOp operator to evaluate the expectation value.
+    *   **qargs** (*None |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Subsystems to apply the operator on.
 
     **Returns**
 
-    the expectation value (only 0 or 1 or -1 or i or -i).
+    The expectation value.
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if oper is not a Pauli or SparsePauliOp operator.
 
     **Return type**
 
     [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
-
-    **Raises**
-
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if oper is not a Pauli operator.
   </Function>
 
   ### from\_stabilizer\_list
 
-  <Function id="qiskit.quantum_info.StabilizerState.from_stabilizer_list" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L109-L137" signature="from_stabilizer_list(stabilizers, allow_redundant=False, allow_underconstrained=False)" modifiers="classmethod">
+  <Function id="qiskit.quantum_info.StabilizerState.from_stabilizer_list" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L113-L141" signature="from_stabilizer_list(stabilizers, allow_redundant=False, allow_underconstrained=False)" modifiers="classmethod">
     Create a stabilizer state from the collection of stabilizers.
 
     **Parameters**
@@ -208,13 +208,13 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### is\_valid
 
-  <Function id="qiskit.quantum_info.StabilizerState.is_valid" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L150-L152" signature="is_valid(atol=None, rtol=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.is_valid" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L154-L156" signature="is_valid(atol=None, rtol=None)">
     Return True if a valid StabilizerState.
   </Function>
 
   ### measure
 
-  <Function id="qiskit.quantum_info.StabilizerState.measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L487-L515" signature="measure(qargs=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.measure" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L518-L546" signature="measure(qargs=None)">
     Measure subsystems and return outcome and post-measure state.
 
     Note that this function uses the QuantumStates internal random number generator for sampling the measurement outcome. The RNG seed can be set using the [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
@@ -236,7 +236,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### probabilities
 
-  <Function id="qiskit.quantum_info.StabilizerState.probabilities" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L364-L388" signature="probabilities(qargs=None, decimals=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.probabilities" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L395-L419" signature="probabilities(qargs=None, decimals=None)">
     Return the subsystem measurement probability vector.
 
     Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
@@ -257,7 +257,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### probabilities\_dict
 
-  <Function id="qiskit.quantum_info.StabilizerState.probabilities_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L426-L448" signature="probabilities_dict(qargs=None, decimals=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.probabilities_dict" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L457-L479" signature="probabilities_dict(qargs=None, decimals=None)">
     Return the subsystem measurement probability dictionary.
 
     Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
@@ -280,7 +280,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### probabilities\_dict\_from\_bitstring
 
-  <Function id="qiskit.quantum_info.StabilizerState.probabilities_dict_from_bitstring" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L390-L424" signature="probabilities_dict_from_bitstring(outcome_bitstring, qargs=None, decimals=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.probabilities_dict_from_bitstring" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L421-L455" signature="probabilities_dict_from_bitstring(outcome_bitstring, qargs=None, decimals=None)">
     Return the subsystem measurement probability dictionary utilizing a targeted outcome\_bitstring to perform the measurement for. This will calculate a probability for only a single targeted outcome\_bitstring value, giving a performance boost over calculating all possible outcomes.
 
     Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
@@ -304,7 +304,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### purity
 
-  <Function id="qiskit.quantum_info.StabilizerState.purity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L174-L186" signature="purity()">
+  <Function id="qiskit.quantum_info.StabilizerState.purity" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L178-L190" signature="purity()">
     Return the purity of the quantum state, which equals to 1, since it is always a pure state.
 
     **Returns**
@@ -322,7 +322,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### reset
 
-  <Function id="qiskit.quantum_info.StabilizerState.reset" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L450-L485" signature="reset(qargs=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.reset" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L481-L516" signature="reset(qargs=None)">
     Reset state or subsystems to the 0-state.
 
     **Parameters**
@@ -344,7 +344,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### sample\_counts
 
-  <Function id="qiskit.quantum_info.StabilizerState.sample_counts" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L277-L304" signature="sample_counts(shots, qargs=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.sample_counts" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/quantum_state.py#L277-L304" signature="sample_counts(shots, qargs=None)">
     Sample a dict of qubit measurement outcomes in the computational basis.
 
     **Parameters**
@@ -369,7 +369,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### sample\_memory
 
-  <Function id="qiskit.quantum_info.StabilizerState.sample_memory" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L517-L541" signature="sample_memory(shots, qargs=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.sample_memory" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L548-L572" signature="sample_memory(shots, qargs=None)">
     Sample a list of qubit measurement outcomes in the computational basis.
 
     **Parameters**
@@ -394,13 +394,13 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### seed
 
-  <Function id="qiskit.quantum_info.StabilizerState.seed" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L78-L85" signature="seed(value=None)">
+  <Function id="qiskit.quantum_info.StabilizerState.seed" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/quantum_state.py#L78-L85" signature="seed(value=None)">
     Set the seed for the quantum state RNG.
   </Function>
 
   ### tensor
 
-  <Function id="qiskit.quantum_info.StabilizerState.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L198-L214" signature="tensor(other)">
+  <Function id="qiskit.quantum_info.StabilizerState.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L202-L218" signature="tensor(other)">
     Return the tensor product stabilizer state self ⊗ other.
 
     **Parameters**
@@ -422,7 +422,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### to\_operator
 
-  <Function id="qiskit.quantum_info.StabilizerState.to_operator" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L188-L190" signature="to_operator()">
+  <Function id="qiskit.quantum_info.StabilizerState.to_operator" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L192-L194" signature="to_operator()">
     Convert state to matrix operator class
 
     **Return type**
@@ -432,7 +432,7 @@ python_api_name: qiskit.quantum_info.StabilizerState
 
   ### trace
 
-  <Function id="qiskit.quantum_info.StabilizerState.trace" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/stabilizerstate.py#L160-L172" signature="trace()">
+  <Function id="qiskit.quantum_info.StabilizerState.trace" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/quantum_info/states/stabilizerstate.py#L164-L176" signature="trace()">
     Return the trace of the stabilizer state as a density matrix, which equals to 1, since it is always a pure state.
 
     **Returns**

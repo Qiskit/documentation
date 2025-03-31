@@ -8,14 +8,14 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
 # BasicSimulator
 
-<Class id="qiskit.providers.basic_provider.BasicSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/basic_provider/basic_simulator.py#L67-L833" signature="qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)" modifiers="class">
+<Class id="qiskit.providers.basic_provider.BasicSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/providers/basic_provider/basic_simulator.py#L65-L693" signature="qiskit.providers.basic_provider.BasicSimulator(provider=None, target=None, **fields)" modifiers="class">
   Bases: [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
   Python implementation of a basic (non-efficient) quantum simulator.
 
   **Parameters**
 
-  *   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider") *| None*) – An optional backwards reference to the [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider") object that the backend is from.
+  *   **provider** – An optional backwards reference to the provider object that the backend is from.
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target") *| None*) – An optional target to configure the simulator.
   *   **fields** – kwargs for the values to use to override the default options.
 
@@ -65,16 +65,6 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
   <Attribute id="qiskit.providers.basic_provider.BasicSimulator.instruction_durations">
     Return the [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object.
-  </Attribute>
-
-  ### instruction\_schedule\_map
-
-  <Attribute id="qiskit.providers.basic_provider.BasicSimulator.instruction_schedule_map">
-    Return the [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions defined in this backend’s target.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.providers.backend.BackendV2.instruction_schedule_map` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.instruction_schedule_map` will have no alternative in Qiskit.
-    </Admonition>
   </Attribute>
 
   ### instructions
@@ -132,15 +122,15 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
   ### provider
 
   <Attribute id="qiskit.providers.basic_provider.BasicSimulator.provider">
-    Return the backend Provider.
+    Return the backend provider.
 
     **Returns**
 
-    the Provider responsible for the backend.
+    the provider responsible for the backend.
 
     **Return type**
 
-    [Provider](qiskit.providers.Provider "qiskit.providers.Provider")
+    provider
   </Attribute>
 
   ### target
@@ -177,141 +167,9 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
   ## Methods
 
-  ### acquire\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.acquire_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L566-L580" signature="acquire_channel(qubit)">
-    Return the acquisition channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.acquire_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.acquire_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Returns**
-
-    The Qubit measurement acquisition line.
-
-    **Return type**
-
-    [AcquireChannel](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if the backend doesn’t support querying the measurement mapping
-
-    **Parameters**
-
-    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
-  </Function>
-
-  ### configuration
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.configuration" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/basic_provider/basic_simulator.py#L216-L274" signature="configuration()">
-    Return the simulator backend configuration.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The method `qiskit.providers.basic_provider.basic_simulator.BasicSimulator.configuration()` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0. The BackendConfiguration class is part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. The individual configuration elements can be retrieved directly from the backend or from the contained Target instance (backend.target)).
-    </Admonition>
-
-    **Returns**
-
-    The configuration for the backend.
-
-    **Return type**
-
-    [*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.backendconfiguration.BackendConfiguration")
-  </Function>
-
-  ### control\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.control_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L582-L603" signature="control_channel(qubits)">
-    Return the secondary drive channel for the given qubit
-
-    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.control_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.control_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Parameters**
-
-    **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
-
-    **Returns**
-
-    The multi qubit control line.
-
-    **Return type**
-
-    List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if the backend doesn’t support querying the measurement mapping
-  </Function>
-
-  ### drive\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.drive_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L534-L548" signature="drive_channel(qubit)">
-    Return the drive channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.drive_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.drive_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Returns**
-
-    The Qubit drive channel
-
-    **Return type**
-
-    [DriveChannel](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if the backend doesn’t support querying the measurement mapping
-
-    **Parameters**
-
-    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
-  </Function>
-
-  ### measure\_channel
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.measure_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L550-L564" signature="measure_channel(qubit)">
-    Return the measure stimulus channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.measure_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.measure_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Returns**
-
-    The Qubit measurement stimulus line
-
-    **Return type**
-
-    [MeasureChannel](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – if the backend doesn’t support querying the measurement mapping
-
-    **Parameters**
-
-    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
-  </Function>
-
   ### qubit\_properties
 
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L500-L532" signature="qubit_properties(qubit)">
+  <Function id="qiskit.providers.basic_provider.BasicSimulator.qubit_properties" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/providers/backend.py#L269-L301" signature="qubit_properties(qubit)">
     Return QubitProperties for a given qubit.
 
     If there are no defined or the backend doesn’t support querying these details this method does not need to be implemented.
@@ -335,13 +193,13 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
   ### run
 
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/basic_provider/basic_simulator.py#L517-L561" signature="run(run_input, **backend_options)">
+  <Function id="qiskit.providers.basic_provider.BasicSimulator.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/providers/basic_provider/basic_simulator.py#L422-L470" signature="run(run_input, **run_options)">
     Run on the backend.
 
     **Parameters**
 
-    *   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – payload of the experiment
-    *   **backend\_options** – backend options
+    *   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – the QuantumCircuit (or list of QuantumCircuit objects) to run
+    *   **run\_options** (*kwargs*) – additional runtime backend options
 
     **Returns**
 
@@ -353,66 +211,26 @@ python_api_name: qiskit.providers.basic_provider.BasicSimulator
 
     **Additional Information:**
 
-    **backend\_options: Is a dict of options for the backend. It may contain**
+    *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run. These may include:
 
-    *   “initial\_statevector”: vector\_like
-
-    The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in `run_input` parameter.
+        > *   “initial\_statevector”: vector-like. The “initial\_statevector” option specifies a custom initial statevector to be used instead of the all-zero state. The size of this vector must correspond to the number of qubits in the `run_input` argument.
+        > *   “seed\_simulator”: int. This is the internal seed for sample generation.
+        > *   “shots”: int. Number of shots used in the simulation.
+        > *   “memory”: bool. If True, the result will contain the results of every individual shot simulation.
 
     Example:
 
     ```python
-    backend_options = {
-        "initial_statevector": np.array([1, 0, 0, 1j]) / math.sqrt(2),
-    }
+    backend.run(
+        circuit_2q,
+        initial_statevector = np.array([1, 0, 0, 1j]) / math.sqrt(2)
+    )
     ```
-  </Function>
-
-  ### run\_experiment
-
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.run_experiment" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/basic_provider/basic_simulator.py#L601-L812" signature="run_experiment(experiment)">
-    Run an experiment (circuit) and return a single experiment result.
-
-    <Admonition title="Deprecated since version 1.4.0" type="danger">
-      The method `qiskit.providers.basic_provider.basic_simulator.BasicSimulator.run_experiment()` is deprecated as of qiskit 1.4.0. It will be removed in Qiskit 2.0.0. This method takes a QasmQobjExperiment as input argument. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. Use run instead.
-    </Admonition>
-
-    **Parameters**
-
-    **experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.qasm_qobj.QasmQobjExperiment")) – experiment from qobj experiments list
-
-    **Returns**
-
-    A result dictionary which looks something like:
-
-    ```python
-    {
-    "name": name of this experiment (obtained from qobj.experiment header)
-    "seed": random seed used for simulation
-    "shots": number of shots used in the simulation
-    "data":
-        {
-        "counts": {'0x9: 5, ...},
-        "memory": ['0x9', '0xF', '0x1D', ..., '0x9']
-        },
-    "status": status string for the simulation
-    "success": boolean
-    "time_taken": simulation time of this single experiment
-    }
-    ```
-
-    **Raises**
-
-    [**BasicProviderError**](qiskit.providers.basic_provider.BasicProviderError "qiskit.providers.basic_provider.BasicProviderError") – if an error occurred.
-
-    **Return type**
-
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), …]
   </Function>
 
   ### set\_options
 
-  <Function id="qiskit.providers.basic_provider.BasicSimulator.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/backend.py#L605-L622" signature="set_options(**fields)">
+  <Function id="qiskit.providers.basic_provider.BasicSimulator.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/providers/backend.py#L303-L320" signature="set_options(**fields)">
     Set the options fields for the backend
 
     This method is used to update the options of a backend. If you need to change any of the options prior to running just pass in the kwarg with the new value for the options.

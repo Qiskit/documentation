@@ -1,0 +1,579 @@
+---
+title: NLocal (v1.4)
+description: API reference for qiskit.circuit.library.NLocal in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.NLocal
+---
+
+# NLocal
+
+<Class id="qiskit.circuit.library.NLocal" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L268-L1242" signature="qiskit.circuit.library.NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal', flatten=None)" modifiers="class">
+  Bases: `BlueprintCircuit`
+
+  The n-local circuit class.
+
+  The structure of the n-local circuit are alternating rotation and entanglement layers. In both layers, parameterized circuit-blocks act on the circuit in a defined way. In the rotation layer, the blocks are applied stacked on top of each other, while in the entanglement layer according to the `entanglement` strategy. The circuit blocks can have arbitrary sizes (smaller equal to the number of qubits in the circuit). Each layer is repeated `reps` times, and by default a final rotation layer is appended.
+
+  For instance, a rotation block on 2 qubits and an entanglement block on 4 qubits using `'linear'` entanglement yields the following circuit.
+
+  ```text
+  ┌──────┐ ░ ┌──────┐                      ░ ┌──────┐
+  ┤0     ├─░─┤0     ├──────────────── ... ─░─┤0     ├
+  │  Rot │ ░ │      │┌──────┐              ░ │  Rot │
+  ┤1     ├─░─┤1     ├┤0     ├──────── ... ─░─┤1     ├
+  ├──────┤ ░ │  Ent ││      │┌──────┐      ░ ├──────┤
+  ┤0     ├─░─┤2     ├┤1     ├┤0     ├ ... ─░─┤0     ├
+  │  Rot │ ░ │      ││  Ent ││      │      ░ │  Rot │
+  ┤1     ├─░─┤3     ├┤2     ├┤1     ├ ... ─░─┤1     ├
+  ├──────┤ ░ └──────┘│      ││  Ent │      ░ ├──────┤
+  ┤0     ├─░─────────┤3     ├┤2     ├ ... ─░─┤0     ├
+  │  Rot │ ░         └──────┘│      │      ░ │  Rot │
+  ┤1     ├─░─────────────────┤3     ├ ... ─░─┤1     ├
+  └──────┘ ░                 └──────┘      ░ └──────┘
+
+  |                                 |
+  +---------------------------------+
+         repeated reps times
+  ```
+
+  If specified, barriers can be inserted in between every block. If an initial state object is provided, it is added in front of the NLocal.
+
+  <Admonition title="See also" type="note">
+    The `n_local()` function constructs a functionally equivalent circuit, but faster.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.3_pending" type="danger">
+    The class `qiskit.circuit.library.n_local.n_local.NLocal` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use the function qiskit.circuit.library.n\_local instead.
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits of the circuit.
+  *   **rotation\_blocks** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] | None*) – The blocks used in the rotation layers. If multiple are passed, these will be applied one after another (like new sub-layers).
+  *   **entanglement\_blocks** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] | None*) – The blocks used in the entanglement layers. If multiple are passed, these will be applied one after another. To use different entanglements for the sub-layers, see [`get_entangler_map()`](#qiskit.circuit.library.NLocal.get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map").
+  *   **entanglement** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | None*) – The indices specifying on which qubits the input blocks act. If `None`, the entanglement blocks are applied at the top of the circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often the rotation blocks and entanglement blocks are repeated.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The prefix used if default parameters are generated.
+  *   **overwrite\_block\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]*) – If the parameters in the added blocks should be overwritten. If `False`, the parameters in the blocks are not changed.
+  *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether a final rotation layer is added to the circuit.
+  *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object which can be used to describe an initial state prepended to the NLocal circuit.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The name of the circuit.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If `reps` parameter is less than or equal to 0.
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – If `reps` parameter is not an int value.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.NLocal.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.NLocal.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.NLocal.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.NLocal.data">
+    The circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.NLocal.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.NLocal.unit "qiskit.circuit.library.NLocal.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### entanglement
+
+  <Attribute id="qiskit.circuit.library.NLocal.entanglement">
+    Get the entanglement strategy.
+
+    **Returns**
+
+    The entanglement strategy, see [`get_entangler_map()`](#qiskit.circuit.library.NLocal.get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map") for more detail on how the format is interpreted.
+  </Attribute>
+
+  ### entanglement\_blocks
+
+  <Attribute id="qiskit.circuit.library.NLocal.entanglement_blocks">
+    The blocks in the entanglement layers.
+
+    **Returns**
+
+    The blocks in the entanglement layers.
+  </Attribute>
+
+  ### flatten
+
+  <Attribute id="qiskit.circuit.library.NLocal.flatten">
+    Returns whether the circuit is wrapped in nested gates/instructions or flattened.
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.NLocal.global_phase">
+    The global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### initial\_state
+
+  <Attribute id="qiskit.circuit.library.NLocal.initial_state">
+    Return the initial state that is added in front of the n-local circuit.
+
+    **Returns**
+
+    The initial state.
+  </Attribute>
+
+  ### insert\_barriers
+
+  <Attribute id="qiskit.circuit.library.NLocal.insert_barriers">
+    If barriers are inserted in between the layers or not.
+
+    **Returns**
+
+    `True`, if barriers are inserted in between the layers, `False` if not.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.NLocal.instances" attributeValue="185" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.NLocal.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.NLocal.metadata">
+    Arbitrary user-defined metadata for the circuit.
+
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.NLocal.num_input_vars "qiskit.circuit.library.NLocal.num_input_vars") must be zero.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.NLocal.num_captured_vars "qiskit.circuit.library.NLocal.num_captured_vars") must be zero.
+  </Attribute>
+
+  ### num\_layers
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_layers">
+    Return the number of layers in the n-local circuit.
+
+    **Returns**
+
+    The number of layers in the circuit.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
+
+  ### num\_parameters\_settable
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_parameters_settable">
+    The number of total parameters that can be set to distinct values.
+
+    This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+
+    **Returns**
+
+    The number of parameters originally available in the circuit.
+
+    <Admonition title="Note" type="note">
+      This quantity does not require the circuit to be built yet.
+    </Admonition>
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_qubits">
+    Returns the number of qubits in this circuit.
+
+    **Returns**
+
+    The number of qubits.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.NLocal.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.NLocal.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### ordered\_parameters
+
+  <Attribute id="qiskit.circuit.library.NLocal.ordered_parameters">
+    The parameters used in the underlying circuit.
+
+    This includes float values and duplicates.
+
+    **Examples**
+
+    ```python
+    >>> # prepare circuit ...
+    >>> print(nlocal)
+         ┌───────┐┌──────────┐┌──────────┐┌──────────┐
+    q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
+         └───────┘└──────────┘└──────────┘└──────────┘
+    >>> nlocal.parameters
+    {Parameter(θ[1]), Parameter(θ[3])}
+    >>> nlocal.ordered_parameters
+    [1, Parameter(θ[1]), Parameter(θ[1]), Parameter(θ[3])]
+    ```
+
+    **Returns**
+
+    The parameters objects used in the circuit.
+  </Attribute>
+
+  ### parameter\_bounds
+
+  <Attribute id="qiskit.circuit.library.NLocal.parameter_bounds">
+    The parameter bounds for the unbound parameters in the circuit.
+
+    **Returns**
+
+    A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If `None` is returned, problem is fully unbounded.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.NLocal.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
+
+  ### preferred\_init\_points
+
+  <Attribute id="qiskit.circuit.library.NLocal.preferred_init_points">
+    The initial points for the parameters. Can be stored as initial guess in optimization.
+
+    **Returns**
+
+    The initial values for the parameters, or None, if none have been set.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.NLocal.prefix" attributeValue="'circuit'" />
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.NLocal.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.NLocal.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### reps
+
+  <Attribute id="qiskit.circuit.library.NLocal.reps">
+    The number of times rotation and entanglement block are repeated.
+
+    **Returns**
+
+    The number of repetitions.
+  </Attribute>
+
+  ### rotation\_blocks
+
+  <Attribute id="qiskit.circuit.library.NLocal.rotation_blocks">
+    The blocks in the rotation layers.
+
+    **Returns**
+
+    The blocks in the rotation layers.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.NLocal.unit">
+    The unit that [`duration`](#qiskit.circuit.library.NLocal.duration "qiskit.circuit.library.NLocal.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.NLocal.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.NLocal.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ## Methods
+
+  ### add\_layer
+
+  <Function id="qiskit.circuit.library.NLocal.add_layer" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L985-L1045" signature="add_layer(other, entanglement=None, front=False)">
+    Append another layer to the NLocal.
+
+    **Parameters**
+
+    *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The layer to compose, can be another NLocal, an Instruction or Gate, or a QuantumCircuit.
+    *   **entanglement** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | None*) – The entanglement or qubit indices.
+    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, `other` is appended to the front, else to the back.
+
+    **Returns**
+
+    self, such that chained composes are possible.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – If other is not compatible, i.e. is no Instruction and does not have a to\_instruction method.
+
+    **Return type**
+
+    [NLocal](#qiskit.circuit.library.NLocal "qiskit.circuit.library.NLocal")
+  </Function>
+
+  ### assign\_parameters
+
+  <Function id="qiskit.circuit.library.NLocal.assign_parameters" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L1047-L1075" signature="assign_parameters(parameters, inplace=False, **kwargs)">
+    Assign parameters to the n-local circuit.
+
+    This method also supports passing a list instead of a dictionary. If a list is passed, the list must have the same length as the number of unbound parameters in the circuit. The parameters are assigned in the order of the parameters in [`ordered_parameters()`](#qiskit.circuit.library.NLocal.ordered_parameters "qiskit.circuit.library.NLocal.ordered_parameters").
+
+    **Returns**
+
+    A copy of the NLocal circuit with the specified parameters.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – If the parameters are given as list and do not match the number of parameters.
+
+    **Parameters**
+
+    *   **parameters** (*Mapping\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | Sequence\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) –
+    *   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") | None
+  </Function>
+
+  ### get\_entangler\_map
+
+  <Function id="qiskit.circuit.library.NLocal.get_entangler_map" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L818-L938" signature="get_entangler_map(rep_num, block_num, num_block_qubits)">
+    Get the entangler map for in the repetition `rep_num` and the block `block_num`.
+
+    The entangler map for the current block is derived from the value of `self.entanglement`. Below the different cases are listed, where `i` and `j` denote the repetition number and the block number, respectively, and `n` the number of qubits in the block.
+
+    | entanglement type                | entangler map                                      |
+    | -------------------------------- | -------------------------------------------------- |
+    | `None`                           | `[[0, ..., n - 1]]`                                |
+    | `str` (e.g `'full'`)             | the specified connectivity on `n` qubits           |
+    | `List[int]`                      | \[`entanglement`]                                  |
+    | `List[List[int]]`                | `entanglement`                                     |
+    | `List[List[List[int]]]`          | `entanglement[i]`                                  |
+    | `List[List[List[List[int]]]]`    | `entanglement[i][j]`                               |
+    | `List[str]`                      | the connectivity specified in `entanglement[i]`    |
+    | `List[List[str]]`                | the connectivity specified in `entanglement[i][j]` |
+    | `Callable[int, str]`             | same as `List[str]`                                |
+    | `Callable[int, List[List[int]]]` | same as `List[List[List[int]]]`                    |
+
+    Note that all indices are to be taken modulo the length of the array they act on, i.e. no out-of-bounds index error will be raised but we re-iterate from the beginning of the list.
+
+    **Parameters**
+
+    *   **rep\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The current repetition we are in.
+    *   **block\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The block number within the entanglement layers.
+    *   **num\_block\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits in the block.
+
+    **Returns**
+
+    The entangler map for the current block in the current repetition.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If the value of `entanglement` could not be cast to a corresponding entangler map.
+
+    **Return type**
+
+    [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]]
+  </Function>
+
+  ### get\_unentangled\_qubits
+
+  <Function id="qiskit.circuit.library.NLocal.get_unentangled_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L709-L722" signature="get_unentangled_qubits()">
+    Get the indices of unentangled qubits in a set.
+
+    **Returns**
+
+    The unentangled qubits.
+
+    **Return type**
+
+    [set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  </Function>
+
+  ### print\_settings
+
+  <Function id="qiskit.circuit.library.NLocal.print_settings" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/n_local.py#L794-L806" signature="print_settings()">
+    Returns information about the setting.
+
+    **Returns**
+
+    The class name and the attributes/parameters of the instance as `str`.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+</Class>
+

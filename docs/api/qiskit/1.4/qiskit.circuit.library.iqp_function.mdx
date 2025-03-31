@@ -1,0 +1,44 @@
+---
+title: iqp (v1.4)
+description: API reference for qiskit.circuit.library.iqp in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.iqp
+---
+
+# iqp
+
+<Class id="qiskit.circuit.library.iqp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/iqp.py#L86-L147" signature="qiskit.circuit.library.iqp(interactions)" modifiers="class">
+  Bases:
+
+  Instantaneous quantum polynomial time (IQP) circuit.
+
+  The circuit consists of a column of Hadamard gates, a column of powers of T gates, a sequence of powers of CS gates (up to $\frac{n^2-n}{2}$ of them), and a final column of Hadamard gates, as introduced in \[1].
+
+  The circuit is parameterized by an $n \times n$ interactions matrix. The powers of each T gate are given by the diagonal elements of the interactions matrix. The powers of the CS gates are given by the upper triangle of the interactions matrix.
+
+  **Reference Circuit:**
+
+  ![Diagram illustrating the previously described circuit.](/images/api/qiskit/1.4/qiskit-circuit-library-iqp_function-1.avif)
+
+  **Expanded Circuit:**
+
+  > ![Diagram illustrating the previously described circuit.](/images/api/qiskit/1.4/qiskit-circuit-library-iqp_function-2.avif)
+
+  **References:**
+
+  \[1] M. J. Bremner et al. Average-case complexity versus approximate simulation of commuting quantum computations, Phys. Rev. Lett. 117, 080501 (2016). [arXiv:1504.07999](https://arxiv.org/abs/1504.07999)
+
+  **Parameters**
+
+  **interactions** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – The interactions as symmetric square matrix. If `None`, then the `num_qubits` argument must be set and a random IQP circuit will be generated.
+
+  **Returns**
+
+  An IQP circuit.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Class>
+

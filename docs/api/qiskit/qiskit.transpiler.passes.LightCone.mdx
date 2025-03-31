@@ -1,0 +1,110 @@
+---
+title: LightCone (latest version)
+description: API reference for qiskit.transpiler.passes.LightCone in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.LightCone
+---
+
+# LightCone
+
+<Class id="qiskit.transpiler.passes.LightCone" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/optimization/light_cone.py#L26-L135" signature="qiskit.transpiler.passes.LightCone(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Remove the gates that do not affect the outcome of a measurement on a circuit.
+
+  Pass for computing the light-cone of an observable or measurement. The Pass can handle either an observable one would like to measure or a measurement on a set of qubits.
+
+  **Parameters**
+
+  *   **bit\_terms** – If `None` the light-cone will be computed for the set of measurements in the circuit. If a string is specified, the light-cone will correspond to the reduced circuit with the same expectation value for the observable.
+  *   **indices** – list of non-trivial indices corresponding to the observable in `bit_terms`.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.LightCone.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.LightCone.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.LightCone.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.LightCone.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.LightCone.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/optimization/light_cone.py#L90-L135" signature="run(dag)">
+    Run the LightCone pass on dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – The DAG to reduce.
+
+    **Returns**
+
+    The DAG reduced to the light-cone of the observable.
+
+    **Return type**
+
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.LightCone.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

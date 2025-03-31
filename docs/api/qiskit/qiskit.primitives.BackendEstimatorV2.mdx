@@ -8,12 +8,12 @@ python_api_name: qiskit.primitives.BackendEstimatorV2
 
 # BackendEstimatorV2
 
-<Class id="qiskit.primitives.BackendEstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/backend_estimator_v2.py#L75-L431" signature="qiskit.primitives.BackendEstimatorV2(*, backend, options=None)" modifiers="class">
+<Class id="qiskit.primitives.BackendEstimatorV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/backend_estimator_v2.py#L170-L510" signature="qiskit.primitives.BackendEstimatorV2(*, backend, options=None)" modifiers="class">
   Bases: [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.base.base_estimator.BaseEstimatorV2")
 
   Evaluates expectation values for provided quantum circuit and observable combinations.
 
-  The [`BackendEstimatorV2`](#qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2") class is a generic implementation of the [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") API. It facilitates using backends that do not provide a native [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") implementation in places that work with [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"). However, if you’re using a provider that has a native implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+  The [`BackendEstimatorV2`](#qiskit.primitives.BackendEstimatorV2 "qiskit.primitives.BackendEstimatorV2") class is a generic implementation of the [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") object in the [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") API. It facilitates using backends that do not provide a native [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2") implementation in places that work with [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"). However, if you’re using a provider that has a native implementation of [`BaseEstimatorV2`](qiskit.primitives.BaseEstimatorV2 "qiskit.primitives.BaseEstimatorV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
   This class does not perform any measurement or gate mitigation, and, presently, is only compatible with Pauli-based observables. More formally, given an observable of the type $O=\sum_{i=1}^Na_iP_i$, where $a_i$ is a complex number and $P_i$ is a Pauli operator, the estimator calculates the expectation $\mathbb{E}(P_i)$ of each $P_i$ and finally calculates the expectation value of $O$ as $\mathbb{E}(O)=\sum_{i=1}^Na_i\mathbb{E}(P_i)$. The reported `std` is calculated as
 
@@ -35,13 +35,9 @@ $$
 
   \[1] O. Crawford, B. van Straaten, D. Wang, T. Parks, E. Campbell, St. Brierley, Efficient quantum measurement of Pauli operators in the presence of finite sampling error. [Quantum 5, 385](https://doi.org/10.22331/q-2021-01-20-385)
 
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    The method `BackendEstimatorV2.__init__` will stop supporting inputs of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") in the backend parameter in a future release no earlier than 2.0. [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") is deprecated and implementations should move to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
-  </Admonition>
-
   **Parameters**
 
-  *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
+  *   **backend** ([*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
   *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) – The options to control the default precision (`default_precision`), the operator grouping (`abelian_grouping`), and the random seed for the simulator (`seed_simulator`).
 
   ## Attributes
@@ -62,7 +58,7 @@ $$
 
   ### run
 
-  <Function id="qiskit.primitives.BackendEstimatorV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/backend_estimator_v2.py#L177-L186" signature="run(pubs, *, precision=None)">
+  <Function id="qiskit.primitives.BackendEstimatorV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/backend_estimator_v2.py#L256-L265" signature="run(pubs, *, precision=None)">
     Estimate expectation values for each provided pub (Primitive Unified Bloc).
 
     **Parameters**

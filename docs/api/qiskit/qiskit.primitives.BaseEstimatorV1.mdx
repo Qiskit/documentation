@@ -8,29 +8,33 @@ python_api_name: qiskit.primitives.BaseEstimatorV1
 
 # BaseEstimatorV1
 
-<Class id="qiskit.primitives.BaseEstimatorV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_estimator.py#L42-L188" signature="qiskit.primitives.BaseEstimatorV1(*, options=None)" modifiers="class">
-  Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`T`]
+<Class id="qiskit.primitives.BaseEstimatorV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/base/base_estimator.py#L96-L247" signature="qiskit.primitives.BaseEstimatorV1(*, options=None)" modifiers="class">
+  Bases: `BasePrimitiveV1`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`T`]
 
-  Estimator V1 base class.
+  Base class for `EstimatorV1` implementations.
 
-  Base class for Estimator that estimates expectation values of quantum circuits and observables.
+  Note that the reference estimator in Qiskit follows the `EstimatorV2` interface specifications instead.
 
-  An estimator is initialized with an empty parameter set. The estimator is used to create a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Estimator.run()`](qiskit.primitives.Estimator#run "qiskit.primitives.Estimator.run") method. This method is called with the following parameters
+  An estimator calculates expectation values for provided quantum circuit and observable combinations.
+
+  Implementations of [`BaseEstimatorV1`](#qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.BaseEstimatorV1") should define their own `BaseEstimatorV1._run()` method that will be called by the public-facing [`qiskit.primitives.BaseEstimatorV1.run()`](#qiskit.primitives.BaseEstimatorV1.run "qiskit.primitives.BaseEstimatorV1.run"), which takes the following inputs:
 
   *   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects).
   *   observables ($H_j$): a list of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") objects.
   *   parameter values ($\theta_k$): list of sets of values to be bound to the parameters of the quantum circuits (list of list of float).
 
-  The method returns a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields the a list of expectation values plus optional metadata like confidence intervals for the estimation.
+  The method returns a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object. Calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields the a list of expectation values plus optional metadata like confidence intervals for the estimation.
 
 $$
 \langle\psi_i(\theta_k)|H_j|\psi_i(\theta_k)\rangle
 $$
 
-  Here is an example of how the estimator is used.
+  Here is an example of how a [`BaseEstimatorV1`](#qiskit.primitives.BaseEstimatorV1 "qiskit.primitives.BaseEstimatorV1") would be used:
 
   ```python
-  from qiskit.primitives import Estimator
+  # This is a fictional import path.
+  # There are currently no EstimatorV1 implementations in Qiskit.
+  from estimator_v1_location import EstimatorV1
   from qiskit.circuit.library import RealAmplitudes
   from qiskit.quantum_info import SparsePauliOp
 
@@ -45,7 +49,7 @@ $$
   theta2 = [0, 1, 1, 2, 3, 5, 8, 13]
   theta3 = [1, 2, 3, 4, 5, 6]
 
-  estimator = Estimator()
+  estimator = EstimatorV1()
 
   # calculate [ <psi1(theta1)|H1|psi1(theta1)> ]
   job = estimator.run([psi1], [H1], [theta1])
@@ -60,7 +64,7 @@ $$
   print(f"The primitive-job finished with result {job_result}")
   ```
 
-  Creating an instance of an Estimator V1, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
+  Initialize `EstimatorV1`.
 
   **Parameters**
 
@@ -82,7 +86,7 @@ $$
 
   ### run
 
-  <Function id="qiskit.primitives.BaseEstimatorV1.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_estimator.py#L121-L178" signature="run(circuits, observables, parameter_values=None, **run_options)">
+  <Function id="qiskit.primitives.BaseEstimatorV1.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/base/base_estimator.py#L180-L237" signature="run(circuits, observables, parameter_values=None, **run_options)">
     Run the job of the estimation of expectation value(s).
 
     `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
@@ -126,7 +130,7 @@ $$
 
   ### set\_options
 
-  <Function id="qiskit.primitives.BaseEstimatorV1.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive.py#L39-L45" signature="set_options(**fields)">
+  <Function id="qiskit.primitives.BaseEstimatorV1.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/base/base_primitive_v1.py#L39-L45" signature="set_options(**fields)">
     Set options values for the estimator.
 
     **Parameters**
