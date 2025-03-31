@@ -15,7 +15,7 @@ import { hideBin } from "yargs/helpers";
 
 import { Pkg } from "../../lib/api/Pkg.js";
 import { zxMain } from "../../lib/zx.js";
-import { parseMinorVersion } from "../../lib/apiVersions.js";
+import { parseMinorVersion, isValidVersion } from "../../lib/apiVersions.js";
 import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
 import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 import { runConversionPipeline } from "../../lib/api/conversionPipeline.js";
@@ -46,6 +46,14 @@ const readArgs = (): Arguments => {
       type: "string",
       demandOption: true,
       description: "The full version string of the --package, e.g. 0.44.0",
+      coerce: (version) => {
+        if (!isValidVersion(version)) {
+          throw new Error(
+            "The version must include a major, a minor, and a patch. E.g. `-v 0.46.3`",
+          );
+        }
+        return version;
+      },
     })
     .option("historical", {
       type: "boolean",

@@ -16,11 +16,11 @@ python_api_name: qiskit_addon_aqc_tensor.objective
 
 Code for building and evaluating objective functions used for AQC parameter optimization.
 
-Currently, this module provides the simplest possible objective function, [`OneMinusFidelity`](#qiskit_addon_aqc_tensor.objective.OneMinusFidelity "qiskit_addon_aqc_tensor.objective.OneMinusFidelity").
+Currently, this module provides the simplest possible objective function, [`MaximizeStateFidelity`](#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity").
 
-### OneMinusFidelity
+### MaximizeStateFidelity
 
-<Class id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/objective.py#L32-L85" signature="OneMinusFidelity(target, ansatz, settings)" modifiers="class">
+<Class id="qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/objective.py#L33-L103" signature="MaximizeStateFidelity(target, ansatz, settings)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
 
   Simplest possible objective function for use with AQC-Tensor.
@@ -31,30 +31,92 @@ $$
 C = 1 - \left| \langle 0 | V^{\dagger}(\vec\theta) | \psi_\mathrm{target} \rangle \right|^2 .
 $$
 
-  Minimizing this function is equivalent to maximizing the pure-state fidelity between the state prepared by the ansatz circuit at the current parameter point,($V(\vec\theta) |0\rangle$, and the target state, $| \psi_\mathrm{target} \rangle$.
+  Minimizing this function is equivalent to maximizing the pure-state fidelity between the state prepared by the ansatz circuit at the current parameter point, $V(\vec\theta) |0\rangle$, and the target state, $| \psi_\mathrm{target} \rangle$.
 
-  When called with an [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") of parameters, this object will return `(objective_value, gradient)` as a `tuple[float, numpy.ndarray]`.
+  When called with an [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)") of parameters, this object will return `(objective_value, gradient)` as a `tuple[float, numpy.ndarray]`.
 
   Initialize the objective function.
 
   **Parameters**
 
-  *   **ansatz** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Parametrized ansatz circuit.
+  *   **ansatz** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – Parametrized ansatz circuit.
+  *   **target** ([`TensorNetworkState`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")) – Target state in tensor-network representation.
+  *   **settings** ([`TensorNetworkSimulationSettings`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings")) – Tensor network simulation settings.
+
+  #### loss\_function
+
+  <Function id="qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/objective.py#L92-L98" signature="loss_function(x)">
+    Evaluate `(objective_value, gradient)` of function at point `x`.
+
+    **Return type**
+
+    [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
+  </Function>
+
+  #### target
+
+  <Attribute id="qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.target" attributeTypeHint="TensorNetworkState">
+    Target tensor network.
+  </Attribute>
+</Class>
+
+### OneMinusFidelity
+
+<Class id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/objective.py#L106-L131" signature="OneMinusFidelity(target, ansatz, settings)" modifiers="class">
+  Bases: [`MaximizeStateFidelity`](#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity")
+
+  DEPRECATED objective function, equivalent to [`MaximizeStateFidelity`](#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity").
+
+  Initialize the objective function.
+
+  The [`OneMinusFidelity`](#qiskit_addon_aqc_tensor.objective.OneMinusFidelity "qiskit_addon_aqc_tensor.objective.OneMinusFidelity") class is DEPRECATED since v0.2. Please migrate to [`MaximizeStateFidelity`](#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity") as soon as possible.
+
+  <Admonition title="Deprecated since version 0.2.0" type="danger">
+    The class `qiskit_addon_aqc_tensor.objective.OneMinusFidelity` is deprecated as of qiskit-addon-aqc-tensor 0.2.0. It will be removed no earlier than v0.4.0. This class has been renamed to `MaximizeStateFidelity`.
+  </Admonition>
+
+  **Parameters**
+
+  *   **ansatz** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – Parametrized ansatz circuit.
   *   **target** ([`TensorNetworkState`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")) – Target state in tensor-network representation.
   *   **settings** ([`TensorNetworkSimulationSettings`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings")) – Tensor network simulation settings.
 
   #### \_\_call\_\_
 
-  <Function id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity.__call__" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/objective.py#L74-L80" signature="__call__(x)">
+  <Function id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity.__call__" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/objective.py#L75-L90" signature="__call__(x)">
+    Evaluate `(objective_value, gradient)` of function at point `x`.
+
+    This method is DEPRECATED since v0.2. The [`loss_function()`](#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.loss_function") method should be called instead.
+
+    **Return type**
+
+    [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
+
+    <Admonition title="Deprecated since version 0.2.0" type="danger">
+      The method `qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity.__call__()` is deprecated as of qiskit-addon-aqc-tensor 0.2.0. It will be removed no earlier than v0.4.0. Going forward, the `loss_function` method should be called instead of calling the instance directly.
+    </Admonition>
+  </Function>
+
+  #### loss\_function
+
+  <Function id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity.loss_function" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/objective.py#L92-L98" signature="loss_function(x)">
     Evaluate `(objective_value, gradient)` of function at point `x`.
 
     **Return type**
 
-    [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+    [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)")]
 
     **Parameters**
 
-    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"))
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.2)"))
   </Function>
 
   #### target
