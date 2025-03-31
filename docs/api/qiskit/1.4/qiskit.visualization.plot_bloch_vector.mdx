@@ -1,0 +1,60 @@
+---
+title: plot_bloch_vector (v1.4)
+description: API reference for qiskit.visualization.plot_bloch_vector in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_bloch_vector
+---
+
+<span id="qiskit-visualization-plot-bloch-vector" />
+
+# qiskit.visualization.plot\_bloch\_vector
+
+<Function id="qiskit.visualization.plot_bloch_vector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/state_visualization.py#L188-L254" signature="qiskit.visualization.plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian', font_size=None)">
+  Plot the Bloch sphere.
+
+  Plot a Bloch sphere with the specified coordinates, that can be given in both cartesian and spherical systems.
+
+  **Parameters**
+
+  *   **bloch** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[double]*) – array of three elements where \[\<x>, \<y>, \<z>] (Cartesian) or \[\<r>, \<theta>, \<phi>] (spherical in radians) \<theta> is inclination angle from +z direction \<phi> is azimuth from +x direction
+  *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – a string that represents the plot title
+  *   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.10.1)")) – An Axes to use for rendering the bloch sphere
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – Figure size in inches. Has no effect is passing `ax`.
+  *   **coord\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – a string that specifies coordinate type for bloch (Cartesian or spherical), default is Cartesian
+  *   **font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Font size.
+
+  **Returns**
+
+  A matplotlib figure instance if `ax = None`.
+
+  **Return type**
+
+  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.10.1)")
+
+  **Raises**
+
+  [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
+
+  **Examples**
+
+  ```python
+  from qiskit.visualization import plot_bloch_vector
+
+  plot_bloch_vector([0,1,0], title="New Bloch Sphere")
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_bloch_vector-1.avif)
+
+  ```python
+  import numpy as np
+  from qiskit.visualization import plot_bloch_vector
+
+  # You can use spherical coordinates instead of cartesian.
+
+  plot_bloch_vector([1, np.pi/2, np.pi/3], coord_type='spherical')
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_bloch_vector-2.avif)
+</Function>
+

@@ -1,0 +1,391 @@
+---
+title: QuadraticFormGate (latest version)
+description: API reference for qiskit.circuit.library.QuadraticFormGate in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QuadraticFormGate
+---
+
+# QuadraticFormGate
+
+<Class id="qiskit.circuit.library.QuadraticFormGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/quadratic_form.py#L191-L364" signature="qiskit.circuit.library.QuadraticFormGate(num_result_qubits=None, quadratic=None, linear=None, offset=None, label='Q(x)')" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Implements a quadratic form on binary variables encoded in qubit registers.
+
+  A quadratic form on binary variables is a quadratic function $Q$ acting on a binary variable of $n$ bits, $x = x_0 ... x_{n-1}$. For an integer matrix $A$, an integer vector $b$ and an integer $c$ the function can be written as
+
+$$
+Q(x) = x^T A x + x^T b + c
+$$
+
+  If $A$, $b$ or $c$ contain scalar values, this circuit computes only an approximation of the quadratic form.
+
+  Provided with $m$ qubits to encode the value, this circuit computes $Q(x) \mod 2^m$ in \[two’s complement]\([https://stackoverflow.com/questions/1049722/what-is-2s-complement](https://stackoverflow.com/questions/1049722/what-is-2s-complement)) representation.
+
+$$
+|x\rangle_n |0\rangle_m \mapsto |x\rangle_n |(Q(x) + 2^m) \mod 2^m \rangle_m
+$$
+
+  Since we use two’s complement e.g. the value of $Q(x) = 3$ requires 2 bits to represent the value and 1 bit for the sign: 3 = ‘011’ where the first 0 indicates a positive value. On the other hand, $Q(x) = -3$ would be -3 = ‘101’, where the first 1 indicates a negative value and 01 is the two’s complement of 3.
+
+  If the value of $Q(x)$ is too large to be represented with m qubits, the resulting bitstring is $(Q(x) + 2^m) \mod 2^m)$.
+
+  The implementation of this circuit is discussed in \[1], Fig. 6.
+
+  **References**
+
+  **\[1]: Gilliam et al., Grover Adaptive Search for Constrained Polynomial Binary Optimization.**
+
+  [arXiv:1912.04088](https://arxiv.org/pdf/1912.04088.pdf)
+
+  Create a new gate.
+
+  **Parameters**
+
+  *   **name** – The Qobj name of the gate.
+  *   **num\_qubits** – The number of qubits the gate acts on.
+  *   **params** – A list of parameters.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – An optional label for the gate.
+  *   **num\_result\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+  *   **quadratic** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) –
+  *   **linear** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) –
+  *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) –
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.QuadraticFormGate.base_class "qiskit.circuit.library.QuadraticFormGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.QuadraticFormGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ## Methods
+
+  ### add\_decomposition
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L188-L245" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
+
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
+
+    The general broadcasting rules are:
+
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
+
+    **Parameters**
+
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of classical bit arguments.
+
+    **Returns**
+
+    A tuple with single arguments.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")]]
+  </Function>
+
+  ### control
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L105-L145" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return the controlled version of itself.
+
+    Implemented either as a controlled gate (ref. [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of controls to add to gate (default: `1`)
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – optional gate label. Ignored if implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – the control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate is implemented as an annotated gate. If `None`, this is set to `False` if the controlled gate can directly be constructed, and otherwise set to `True`. This allows defering the construction process in case the synthesis of the controlled gate requires more information (e.g. values of unbound parameters).
+
+    **Returns**
+
+    Controlled version of the given operation.
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L374-L429" signature="inverse(annotated=False)">
+    Invert this instruction.
+
+    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
+
+    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
+
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+    **Returns**
+
+    The inverse operation.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
+    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
+
+  ### power
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
+
+  ### required\_result\_qubits
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.required_result_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/quadratic_form.py#L266-L298" signature="required_result_qubits(quadratic, linear, offset)" modifiers="static">
+    Get the number of required result qubits.
+
+    **Parameters**
+
+    *   **quadratic** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]*) – A matrix containing the quadratic coefficients.
+    *   **linear** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*) – An array containing the linear coefficients.
+    *   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – A constant offset.
+
+    **Returns**
+
+    The number of qubits needed to represent the value of the quadratic form in twos complement.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### reverse\_ops
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### soft\_compare
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### to\_matrix
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
+
+    **Returns**
+
+    if the Gate subclass has a matrix definition.
+
+    **Return type**
+
+    np.ndarray
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
+
+  ### to\_mutable
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.QuadraticFormGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/quadratic_form.py#L300-L315" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
+

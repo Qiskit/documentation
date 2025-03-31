@@ -1,0 +1,46 @@
+---
+title: Cos (v1.4)
+description: API reference for qiskit.pulse.library.Cos in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.library.Cos
+---
+
+<span id="qiskit-pulse-library-cos" />
+
+# qiskit.pulse.library.Cos
+
+<Function id="qiskit.pulse.library.Cos" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/library/symbolic_pulses.py#L1576-L1638" signature="qiskit.pulse.library.Cos(duration, amp, phase, freq=None, angle=0.0, name=None, limit_amplitude=None)">
+  A cosine pulse.
+
+  The envelope of the pulse is given by:
+
+$$
+f(x) = \text{A}\cos\left(2\pi\text{freq}x+\text{phase}\right)  ,  0 <= x < duration
+$$
+
+  where $\text{A} = \text{amp} \times\exp\left(i\times\text{angle}\right)$.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The function `qiskit.pulse.library.symbolic_pulses.Cos()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
+  **Parameters**
+
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Pulse length in terms of the sampling period dt.
+  *   **amp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The magnitude of the amplitude of the cosine wave. Wave range is \[-amp,\`amp\`].
+  *   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The phase of the cosine wave (note that this is not equivalent to the angle of the complex amplitude).
+  *   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The frequency of the cosine wave, in terms of 1 over sampling period. If not provided defaults to a single cycle (i.e :math:’frac\{1}\{text\{duration}}’). The frequency is limited to the range $\left(0,0.5\right]$ (the Nyquist frequency).
+  *   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") *| None*) – The angle in radians of the complex phase factor uniformly scaling the pulse. Default value 0.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Display name for this pulse envelope.
+  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
+
+  **Returns**
+
+  ScalableSymbolicPulse instance.
+
+  **Return type**
+
+  ScalableSymbolicPulse
+</Function>
+

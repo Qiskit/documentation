@@ -1,0 +1,189 @@
+---
+title: RZXCalibrationBuilderNoEcho (v1.4)
+description: API reference for qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
+---
+
+# RZXCalibrationBuilderNoEcho
+
+<Class id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/calibration/rzx_builder.py#L252-L318" signature="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho(*args, **kwargs)" modifiers="class">
+  Bases: [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder")
+
+  Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate.
+
+  The `RZXCalibrationBuilderNoEcho` is a variation of the [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder") pass that creates calibrations for the cross-resonance pulses without inserting the echo pulses in the pulse schedule. This enables exposing the echo in the cross-resonance sequence as gates so that the transpiler can simplify them. The `RZXCalibrationBuilderNoEcho` only supports the hardware-native direction of the CX gate.
+
+  Initializes a RZXGate calibration builder.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder` will have no alternative in Qiskit.
+  </Admonition>
+
+  **Parameters**
+
+  *   **instruction\_schedule\_map** – The `InstructionScheduleMap` object representing the default pulse calibrations for the target backend
+  *   **verbose** – Set True to raise a user warning when RZX schedule cannot be built.
+  *   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `instruction_schedule_map` and this are specified then this argument will take precedence and `instruction_schedule_map` will be ignored.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – Instruction schedule map is not provided.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### get\_calibration
+
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/calibration/rzx_builder.py#L266-L318" signature="get_calibration(node_op, qubits)">
+    Builds the calibration schedule for the RZXGate(theta) without echos.
+
+    **Parameters**
+
+    *   **node\_op** (*CircuitInst*) – Instruction of the RZXGate(theta). I.e. params\[0] is theta.
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of qubits for which to get the schedules. The first qubit is the control and the second is the target.
+
+    **Returns**
+
+    The calibration schedule for the RZXGate(theta).
+
+    **Return type**
+
+    schedule
+
+    **Raises**
+
+    *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if rotation angle is not assigned.
+    *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the control and target qubits cannot be identified, or the backend does not natively support the specified direction of the cx.
+    *   **CalibrationNotAvailable** – RZX schedule cannot be built for input node.
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### rescale\_cr\_inst
+
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.rescale_cr_inst" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/calibration/rzx_builder.py#L112-L165" signature="rescale_cr_inst(instruction, theta, sample_mult=16)" modifiers="static">
+    A builder macro to play stretched pulse.
+
+    **Parameters**
+
+    *   **instruction** ([*Play*](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.play.Play")) – The instruction from which to create a new shortened or lengthened pulse.
+    *   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – desired angle, pi/2 is assumed to be the angle that the pulse in the given play instruction implements.
+    *   **sample\_mult** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – All pulses must be a multiple of sample\_mult.
+
+    **Returns**
+
+    Duration of stretched pulse.
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if rotation angle is not assigned.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/calibration/base_builder.py#L54-L79" signature="run(dag)">
+    Run the calibration adder pass on dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – DAG to schedule.
+
+    **Returns**
+
+    A DAG with calibrations added to it.
+
+    **Return type**
+
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
+  </Function>
+
+  ### supported
+
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.supported" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/calibration/rzx_builder.py#L98-L110" signature="supported(node_op, qubits)">
+    Determine if a given node supports the calibration.
+
+    **Parameters**
+
+    *   **node\_op** ([*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – Integer qubit indices to check.
+
+    **Returns**
+
+    Return `True` is calibration can be provided.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

@@ -15,7 +15,9 @@ import { unzipSync, deflateSync } from "zlib";
 import { join, dirname } from "path";
 import { mkdirp } from "mkdirp";
 
-import { removeSuffix } from "../stringUtils.js";
+import { removePrefix, removeSuffix } from "../stringUtils.js";
+import { C_API_BASE_PATH } from "./conversionPipeline.js";
+import { PackageLanguage } from "./Pkg";
 
 /**
  * Some pages exist in the sphinx docs but not in our docs
@@ -41,8 +43,24 @@ const ENTRIES_TO_EXCLUDE = [
   /^legacy_release_notes(\.html)?(?=#|$)/,
 ];
 
-function shouldExcludePage(uri: string): boolean {
-  return ENTRIES_TO_EXCLUDE.some((condition) => uri.match(condition));
+function shouldIncludeEntry(
+  entry: ObjectsInvEntry,
+  packageLanguage: "Python" | "C" | "any",
+): boolean {
+  if (ENTRIES_TO_EXCLUDE.some((condition) => entry.uri.match(condition))) {
+    return false;
+  }
+
+  // `group__` and `struct_` entries are from doxygen and are not present in the final pages.
+  if (entry.name.startsWith("group__")) return false;
+  if (entry.name.startsWith("struct_")) return false;
+
+  // This happens during link checking.
+  if (packageLanguage === "any") return true;
+
+  const isCPage = entry.uri.startsWith(C_API_BASE_PATH + "/");
+  const isCApi = packageLanguage === "C";
+  return isCApi === isCPage;
 }
 
 export type ObjectsInvEntry = {
@@ -72,7 +90,10 @@ export class ObjectsInv {
    * This function follows the process from:
    *   https://github.com/bskinn/sphobjinv/blob/stable/src/sphobjinv/zlib.py
    */
-  static async fromFile(directoryPath: string): Promise<ObjectsInv> {
+  static async fromFile(
+    directoryPath: string,
+    packageLanguage: PackageLanguage | "any",
+  ): Promise<ObjectsInv> {
     const path = join(directoryPath, "objects.inv");
     let buffer = await readFile(path);
     // Extract preamble (first 4 lines of file)
@@ -104,14 +125,34 @@ export class ObjectsInv {
         dispname: parts[5],
       };
       entry.uri = ObjectsInv.#expandUri(entry.uri, entry.name);
-      if (shouldExcludePage(entry.uri)) {
+      if (!shouldIncludeEntry(entry, packageLanguage)) {
         continue;
+      }
+      if (packageLanguage === "C") {
+        entry.uri = ObjectsInv.#transformCApiUri(entry.uri, entry.name);
       }
 
       entries.push(entry);
     }
 
     return new ObjectsInv(preamble, entries);
+  }
+
+  /**
+   * The anchors from the C API artifact do not make it into the final page, so
+   * we must manipulate the URI based on the object name.
+   */
+  static #transformCApiUri(uri: string, name: string): string {
+    const uriWithoutPrefix = removePrefix(uri, C_API_BASE_PATH + "/");
+    if (!uriWithoutPrefix.includes("#")) return uriWithoutPrefix;
+    const [path, _anchor] = uriWithoutPrefix.split("#");
+
+    // We have no way of working out the IDs of attributes (e.g.
+    // `QkObsTerm::num_qubits`), so we instead just point to the parent object.
+    // This is a best-effort attempt that should get users close to the right
+    // place.
+    const objectName = name.split("::")[0].toLowerCase();
+    return `${path}#${objectName}`;
   }
 
   static #expandUri(uri: string, name: string): string {

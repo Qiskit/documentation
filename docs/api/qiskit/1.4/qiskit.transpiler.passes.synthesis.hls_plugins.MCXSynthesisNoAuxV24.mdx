@@ -1,0 +1,34 @@
+---
+title: MCXSynthesisNoAuxV24 (v1.4)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24 in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24
+---
+
+# MCXSynthesisNoAuxV24
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1104-L1136" signature="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  Synthesis plugin for a multi-controlled X gate based on the implementation for MCPhaseGate, which is in turn based on the paper by Vale et al. (2024).
+
+  See \[1] for details.
+
+  This plugin name is :`mcx.noaux_v24` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  For a multi-controlled X gate with $k$ control qubits this synthesis method requires no additional clean auxiliary qubits. The synthesized circuit consists of $k + 1$ qubits.
+
+  **References**
+
+  1.  Vale et. al., *Circuit Decomposition of Multicontrolled Special Unitary Single-Qubit Gates*, IEEE TCAD 43(3) (2024), [arXiv:2302.06377](https://arxiv.org/abs/2302.06377)
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.MCXSynthesisNoAuxV24.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1124-L1136" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given MCX gate.
+  </Function>
+</Class>
+

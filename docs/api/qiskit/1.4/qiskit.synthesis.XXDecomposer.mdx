@@ -1,0 +1,64 @@
+---
+title: XXDecomposer (v1.4)
+description: API reference for qiskit.synthesis.XXDecomposer in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.XXDecomposer
+---
+
+# XXDecomposer
+
+<Class id="qiskit.synthesis.XXDecomposer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/two_qubit/xx_decompose/decomposer.py#L55-L324" signature="qiskit.synthesis.XXDecomposer(basis_fidelity=1.0, euler_basis='U', embodiments=None, backup_optimizer=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A class for optimal decomposition of 2-qubit unitaries into 2-qubit basis gates of `XX` type (i.e., each locally equivalent to $CAN(\alpha, 0, 0)$ for a possibly varying $alpha$).
+
+  **Parameters**
+
+  *   **basis\_fidelity** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – available strengths and fidelity of each. Can be either (1) a dictionary mapping `XX` angle values to fidelity at that angle; or (2) a single float `f`, interpreted as `{pi: f, pi/2: f/2, pi/3: f/3}`.
+  *   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Basis string provided to [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") for 1Q synthesis. Defaults to `"U"`.
+  *   **embodiments** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – A dictionary mapping interaction strengths alpha to native circuits which embody the gate $CAN(\alpha, 0, 0)$. Strengths are taken so that $\pi/2$ represents the class of a full [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+  *   **backup\_optimizer** (*Callable\[...,* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | None*) – If supplied, defers synthesis to this callable when [`XXDecomposer`](#qiskit.synthesis.XXDecomposer "qiskit.synthesis.XXDecomposer") has no efficient decomposition of its own. Useful for special cases involving 2 or 3 applications of $XX(\pi/2)$, in which case standard synthesis methods provide lower 1Q gate count.
+
+  <Admonition title="Note" type="note">
+    If `embodiments` is not passed, or if an entry is missing, it will be populated as needed using the method `_default_embodiment`.
+  </Admonition>
+
+  ### \_\_call\_\_
+
+  <Function id="qiskit.synthesis.XXDecomposer.__call__" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/two_qubit/xx_decompose/decomposer.py#L228-L324" signature="__call__(unitary, basis_fidelity=None, approximate=True, use_dag=False)">
+    Fashions a circuit which (perhaps approximately) models the special unitary operation `unitary`, using the circuit templates supplied at initialization as `embodiments`. The routine uses `basis_fidelity` to select the optimal circuit template, including when performing exact synthesis; the contents of `basis_fidelity` is a dictionary mapping interaction strengths (scaled so that $CX = RZX(\pi/2)$ corresponds to $\pi/2$) to circuit fidelities.
+
+    **Parameters**
+
+    *   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or ndarray*) – $4 \times 4$ unitary to synthesize.
+    *   **basis\_fidelity** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")  *or*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Fidelity of basis gates. Can be either (1) a dictionary mapping `XX` angle values to fidelity at that angle; or (2) a single float `f`, interpreted as `{pi: f, pi/2: f/2, pi/3: f/3}`. If given, overrides the basis\_fidelity given at init.
+    *   **approximate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Approximates if basis fidelities are less than 1.0 .
+    *   **use\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If true a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") is returned instead of a `QuantumCircuit` when this class is called.
+
+    **Returns**
+
+    Synthesized circuit.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+
+  ## Methods
+
+  ### num\_basis\_gates
+
+  <Function id="qiskit.synthesis.XXDecomposer.num_basis_gates" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/two_qubit/xx_decompose/decomposer.py#L185-L201" signature="num_basis_gates(unitary)">
+    Counts the number of gates that would be emitted during re-synthesis.
+
+    <Admonition title="Note" type="note">
+      This method is used by [`ConsolidateBlocks`](qiskit.transpiler.passes.ConsolidateBlocks "qiskit.transpiler.passes.ConsolidateBlocks").
+    </Admonition>
+
+    **Parameters**
+
+    **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *| np.ndarray*) –
+  </Function>
+</Class>
+

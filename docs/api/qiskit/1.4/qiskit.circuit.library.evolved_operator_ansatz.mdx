@@ -1,0 +1,54 @@
+---
+title: evolved_operator_ansatz (v1.4)
+description: API reference for qiskit.circuit.library.evolved_operator_ansatz in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.evolved_operator_ansatz
+---
+
+<span id="evolved-operator-ansatz" />
+
+# evolved\_operator\_ansatz
+
+<Class id="qiskit.circuit.library.evolved_operator_ansatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L39-L184" signature="qiskit.circuit.library.evolved_operator_ansatz(operators, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', remove_identities=True, flatten=None)" modifiers="class">
+  Bases:
+
+  Construct an ansatz out of operator evolutions.
+
+  For a set of operators $[O_1, ..., O_J]$ and $R$ repetitions (`reps`), this circuit is defined as
+
+$$
+\prod_{r=1}^{R} \left( \prod_{j=J}^1 e^{-i\theta_{j, r} O_j} \right)
+$$
+
+  where the exponentials $exp(-i\theta O_j)$ are expanded using the product formula specified by `evolution`.
+
+  **Examples**
+
+  ```python
+  from qiskit.circuit.library import evolved_operator_ansatz
+  from qiskit.quantum_info import Pauli
+
+  ops = [Pauli("ZZI"), Pauli("IZZ"), Pauli("IXI")]
+  ansatz = evolved_operator_ansatz(ops, reps=3, insert_barriers=True)
+  ansatz.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-library-evolved_operator_ansatz-1.avif)
+
+  **Parameters**
+
+  *   **operators** (*BaseOperator | Sequence\[BaseOperator]*) – The operators to evolve. Can be a single operator or a sequence thereof.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of times to repeat the evolved operators.
+  *   **evolution** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A specification of which evolution synthesis to use for the [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"). Defaults to first order Trotterization. Note, that operators of type [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") are evolved using the [`HamiltonianGate`](qiskit.circuit.library.HamiltonianGate "qiskit.circuit.library.HamiltonianGate"), as there are no Hamiltonian terms to expand in Trotterization.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert barriers in between each evolution.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – Set the names of the circuit parameters. If a string, the same prefix will be used for each parameters. Can also be a list to specify a prefix per operator.
+  *   **remove\_identities** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, ignore identity operators (note that we do not check [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") inputs). This will also remove parameters associated with identities.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – If `True`, a flat circuit is returned instead of nesting it inside multiple layers of gate objects. Setting this to `False` is significantly less performant, especially for parameter binding, but can be desirable for a cleaner visualization.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Class>
+

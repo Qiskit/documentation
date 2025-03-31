@@ -1,0 +1,101 @@
+---
+title: QkObsTerm (dev version)
+description: API reference for QkObsTerm in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkObsTerm
+---
+
+# QkObsTerm
+
+This is a group of functions for interacting with an opaque (Rust-space) SparseTerm instance.
+
+## Data types
+
+### QkObsTerm
+
+<Class id="QkObsTerm" signature="struct QkObsTerm">
+  A term in a `QkObs`.
+
+  This contains the coefficient (`coeff`), the number of qubits of the observable (`num_qubits`) and pointers to the `bit_terms` and `indices` arrays, which have length `len`. It’s the responsibility of the user that the data is coherent, see also the below section on safety.
+
+  <span id="structQkObsTerm_1autotoc_md2" />
+
+  #### Safety
+
+  <span id="structQkObsTerm_1autotoc_md2" />
+
+  *   `bit_terms` must be a non-null, aligned pointer to `len` elements of type `QkBitTerm`.
+  *   `indices` must be a non-null, aligned pointer to `len` elements of type `uint32_t`.
+
+  #### QkComplex64 coeff
+
+  <Attribute id="coeff">
+    The coefficient of the observable term.
+  </Attribute>
+
+  #### uintptr\_t len
+
+  <Attribute id="len">
+    Length of the `bit_terms` and `indices` arrays.
+  </Attribute>
+
+  #### QkBitTerm \*bit\_terms
+
+  <Attribute id="bit_terms">
+    A non-null, aligned pointer to `len` elements of type `QkBitTerm`.
+  </Attribute>
+
+  #### uint32\_t \*indices
+
+  <Attribute id="indices">
+    A non-null, aligned pointer to `len` elements of type `uint32_t`.
+  </Attribute>
+
+  #### uint32\_t num\_qubits
+
+  <Attribute id="num_qubits">
+    The number of qubits the observable term is defined on.
+  </Attribute>
+</Class>
+
+## Functions
+
+### qk\_obsterm\_str
+
+<Function id="qk_obsterm_str" signature="char *qk_obsterm_str(const QkObsTerm *term)">
+  Return a string representation of the sparse term.
+
+  <span id="group__QkObsTerm_1autotoc_md44" />
+
+  #### Example
+
+  ```c
+  QkObs *obs = qk_obs_identity(100);
+  QkObsTerm term;
+  qk_obs_term(obs, 0, &term);
+  char *string = qk_obsterm_str(&term);
+  qk_str_free(string);
+  ```
+
+  <span id="group__QkObsTerm_1autotoc_md45" />
+
+  #### Safety
+
+  <span id="group__QkObsTerm_1autotoc_md45" />
+
+  Behavior is undefined `term` is not a valid, non-null pointer to a `QkObsTerm`.
+
+  The string must not be freed with the normal C free, you must use `qk_str_free` to free the memory consumed by the String. Not calling `qk_str_free` will lead to a memory leak.
+
+  Do not change the length of the string after it’s returned, although values can be mutated.
+
+  **Parameters**
+
+  **term** – A pointer to the term.
+
+  **Returns**
+
+  The function exit code. This is `>0` if reading the term failed.
+</Function>
+

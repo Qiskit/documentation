@@ -1,0 +1,260 @@
+---
+title: TranspileLayout (v1.4)
+description: API reference for qiskit.transpiler.TranspileLayout in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.TranspileLayout
+---
+
+# TranspileLayout
+
+<Class id="qiskit.transpiler.TranspileLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/layout.py#L442-L740" signature="qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None, _input_qubit_count=None, _output_qubit_list=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  Layout attributes for the output circuit from transpiler.
+
+  The [`transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") is unitary-preserving up to the “initial layout” and “final layout” permutations. The initial layout permutation is caused by setting and applying the initial layout during the [Layout stage](transpiler#transpiler-preset-stage-layout). The final layout permutation is caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate") insertion during the [Routing stage](transpiler#transpiler-preset-stage-routing). This class provides an interface to reason about these permutations using a variety of helper methods.
+
+  During the layout stage, the transpiler can potentially remap the order of the qubits in the circuit as it fits the circuit to the target backend. For example, let the input circuit be:
+
+  ```python
+  from qiskit.circuit import QuantumCircuit, QuantumRegister
+
+  qr = QuantumRegister(3, name="MyReg")
+  qc = QuantumCircuit(qr)
+  qc.h(0)
+  qc.cx(0, 1)
+  qc.cx(0, 2)
+  qc.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-transpiler-TranspileLayout-1.avif)
+
+  Suppose that during the layout stage the transpiler reorders the qubits to be:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(3)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.cx(2, 0)
+  qc.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-transpiler-TranspileLayout-2.avif)
+
+  Then the output of the [`initial_virtual_layout()`](#qiskit.transpiler.TranspileLayout.initial_virtual_layout "qiskit.transpiler.TranspileLayout.initial_virtual_layout") method is equivalent to:
+
+  ```python
+  Layout({
+      qr[0]: 2,
+      qr[1]: 1,
+      qr[2]: 0,
+  })
+  ```
+
+  (it is also this attribute in the [`QuantumCircuit.draw()`](qiskit.circuit.QuantumCircuit#draw "qiskit.circuit.QuantumCircuit.draw") and [`circuit_drawer()`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer") which is used to display the mapping of qubits to positions in circuit visualizations post-transpilation).
+
+  Building on the above example, suppose that during the routing stage the transpiler needs to insert swap gates, and the output circuit becomes:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(3)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.swap(0, 1)
+  qc.cx(2, 1)
+  qc.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-transpiler-TranspileLayout-3.avif)
+
+  Then the output of the [`routing_permutation()`](#qiskit.transpiler.TranspileLayout.routing_permutation "qiskit.transpiler.TranspileLayout.routing_permutation") method is:
+
+  ```python
+  [1, 0, 2]
+  ```
+
+  which maps positions of qubits before routing to their final positions after routing.
+
+  There are three public attributes associated with the class, however these are mostly provided for backwards compatibility and represent the internal state from the transpiler. They are defined as:
+
+  > *   [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout") - This attribute is used to model the permutation caused by the [Layout stage](transpiler#transpiler-preset-stage-layout). It is a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object that maps the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")s [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects to the position in the output `QuantumCircuit.qubits` list.
+  > *   [`input_qubit_mapping`](#qiskit.transpiler.TranspileLayout.input_qubit_mapping "qiskit.transpiler.TranspileLayout.input_qubit_mapping") - This attribute is used to retain input ordering of the original [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object. It maps the virtual [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") object from the original circuit (and [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout")) to its corresponding position in [`QuantumCircuit.qubits`](qiskit.circuit.QuantumCircuit#qubits "qiskit.circuit.QuantumCircuit.qubits") in the original circuit. This is needed when computing the permutation of the `Operator` of the circuit (and used by [`Operator.from_circuit()`](qiskit.quantum_info.Operator#from_circuit "qiskit.quantum_info.Operator.from_circuit")).
+  > *   [`final_layout`](#qiskit.transpiler.TranspileLayout.final_layout "qiskit.transpiler.TranspileLayout.final_layout") - This attribute is used to model the permutation caused by the [Routing stage](transpiler#transpiler-preset-stage-routing). It is a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object that maps the output circuit’s qubits from `QuantumCircuit.qubits` in the output circuit to their final positions after routing. Importantly, this only represents the permutation caused by inserting [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s into the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") during the [Routing stage](transpiler#transpiler-preset-stage-routing). It is **not** a mapping from the original input circuit’s position to the final position at the end of the transpiled circuit. If you need this, you can use the [`final_index_layout()`](#qiskit.transpiler.TranspileLayout.final_index_layout "qiskit.transpiler.TranspileLayout.final_index_layout") to generate this. If [`final_layout`](#qiskit.transpiler.TranspileLayout.final_layout "qiskit.transpiler.TranspileLayout.final_layout") is set to `None`, this indicates that routing was not run, and can be considered equivalent to a trivial layout with the qubits from the output circuit’s [`qubits`](qiskit.circuit.QuantumCircuit#qubits "qiskit.circuit.QuantumCircuit.qubits") list.
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) –
+  *   **input\_qubit\_mapping** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+  *   **final\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout") *| None*) –
+  *   **\_input\_qubit\_count** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
+  *   **\_output\_qubit\_list** (*List\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*] | None*) –
+
+  ### final\_layout
+
+  <Attribute id="qiskit.transpiler.TranspileLayout.final_layout" attributeTypeHint="Layout | None" attributeValue="None" />
+
+  ### initial\_layout
+
+  <Attribute id="qiskit.transpiler.TranspileLayout.initial_layout" attributeTypeHint="Layout" />
+
+  ### input\_qubit\_mapping
+
+  <Attribute id="qiskit.transpiler.TranspileLayout.input_qubit_mapping" attributeTypeHint="dict[circuit.Qubit, int]" />
+
+  ## Methods
+
+  ### final\_index\_layout
+
+  <Function id="qiskit.transpiler.TranspileLayout.final_index_layout" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/layout.py#L624-L692" signature="final_index_layout(filter_ancillas=True)">
+    Generate the final layout as an array of integers.
+
+    This method will generate an array of final positions for each qubit in the input circuit. For example, if you had an input circuit like:
+
+    ```python
+    qc = QuantumCircuit(3)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.cx(0, 2)
+    ```
+
+    and the output from the transpiler was:
+
+    ```python
+    tqc = QuantumCircuit(3)
+    tqc.h(2)
+    tqc.cx(2, 1)
+    tqc.swap(0, 1)
+    tqc.cx(2, 1)
+    ```
+
+    then the [`final_index_layout()`](#qiskit.transpiler.TranspileLayout.final_index_layout "qiskit.transpiler.TranspileLayout.final_index_layout") method returns:
+
+    ```python
+    [2, 0, 1]
+    ```
+
+    This can be seen as follows. Qubit 0 in the original circuit is mapped to qubit 2 in the output circuit during the layout stage, which is mapped to qubit 2 during the routing stage. Qubit 1 in the original circuit is mapped to qubit 1 in the output circuit during the layout stage, which is mapped to qubit 0 during the routing stage. Qubit 2 in the original circuit is mapped to qubit 0 in the output circuit during the layout stage, which is mapped to qubit 1 during the routing stage. The output list length will be as wide as the input circuit’s number of qubits, as the output list from this method is for tracking the permutation of qubits in the original circuit caused by the transpiler.
+
+    **Parameters**
+
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `False` any ancillas allocated in the output circuit will be included in the layout.
+
+    **Returns**
+
+    A list of final positions for each input circuit qubit.
+
+    **Return type**
+
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  </Function>
+
+  ### final\_virtual\_layout
+
+  <Function id="qiskit.transpiler.TranspileLayout.final_virtual_layout" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/layout.py#L694-L740" signature="final_virtual_layout(filter_ancillas=True)">
+    Generate the final layout as a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object.
+
+    This method will generate an array of final positions for each qubit in the input circuit. For example, if you had an input circuit like:
+
+    ```python
+    qc = QuantumCircuit(3)
+    qc.h(0)
+    qc.cx(0, 1)
+    qc.cx(0, 2)
+    ```
+
+    and the output from the transpiler was:
+
+    ```python
+    tqc = QuantumCircuit(3)
+    tqc.h(2)
+    tqc.cx(2, 1)
+    tqc.swap(0, 1)
+    tqc.cx(2, 1)
+    ```
+
+    then the return from this function would be a layout object:
+
+    ```python
+    Layout({
+        qc.qubits[0]: 2,
+        qc.qubits[1]: 0,
+        qc.qubits[2]: 1,
+    })
+    ```
+
+    This can be seen as follows. Qubit 0 in the original circuit is mapped to qubit 2 in the output circuit during the layout stage, which is mapped to qubit 2 during the routing stage. Qubit 1 in the original circuit is mapped to qubit 1 in the output circuit during the layout stage, which is mapped to qubit 0 during the routing stage. Qubit 2 in the original circuit is mapped to qubit 0 in the output circuit during the layout stage, which is mapped to qubit 1 during the routing stage. The output list length will be as wide as the input circuit’s number of qubits, as the output list from this method is for tracking the permutation of qubits in the original circuit caused by the transpiler.
+
+    **Parameters**
+
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `False` any ancillas allocated in the output circuit will be included in the layout.
+
+    **Returns**
+
+    A layout object mapping to the final positions for each qubit.
+
+    **Return type**
+
+    [*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")
+  </Function>
+
+  ### initial\_index\_layout
+
+  <Function id="qiskit.transpiler.TranspileLayout.initial_index_layout" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/layout.py#L584-L606" signature="initial_index_layout(filter_ancillas=False)">
+    Generate an initial layout as an array of integers.
+
+    **Parameters**
+
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `True` any ancilla qubits added to the transpiler will not be included in the output.
+
+    **Returns**
+
+    A layout array that maps a position in the array to its new position in the output circuit.
+
+    **Return type**
+
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  </Function>
+
+  ### initial\_virtual\_layout
+
+  <Function id="qiskit.transpiler.TranspileLayout.initial_virtual_layout" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/layout.py#L559-L582" signature="initial_virtual_layout(filter_ancillas=False)">
+    Return a [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object for the initial layout.
+
+    This returns a mapping of virtual [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects in the input circuit to the positions of the physical qubits selected during layout. This is analogous to the [`initial_layout`](#qiskit.transpiler.TranspileLayout.initial_layout "qiskit.transpiler.TranspileLayout.initial_layout") attribute.
+
+    **Parameters**
+
+    **filter\_ancillas** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If set to `True` only qubits in the input circuit will be in the returned layout. Any ancilla qubits added to the output circuit will be filtered from the returned object.
+
+    **Returns**
+
+    A layout object mapping the input circuit’s [`Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") objects to the positions of the selected physical qubits.
+
+    **Return type**
+
+    [*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")
+  </Function>
+
+  ### routing\_permutation
+
+  <Function id="qiskit.transpiler.TranspileLayout.routing_permutation" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/layout.py#L608-L622" signature="routing_permutation()">
+    Generate a final layout as an array of integers.
+
+    If there is no [`final_layout`](#qiskit.transpiler.TranspileLayout.final_layout "qiskit.transpiler.TranspileLayout.final_layout") attribute present then that indicates there was no output permutation caused by routing or other transpiler transforms. In this case the function will return a list of `[0, 1, 2, .., n]`.
+
+    **Returns**
+
+    A layout array that maps a position in the array to its new position in the output circuit.
+
+    **Return type**
+
+    [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")]
+  </Function>
+</Class>
+

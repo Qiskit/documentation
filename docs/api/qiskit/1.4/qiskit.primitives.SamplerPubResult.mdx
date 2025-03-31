@@ -1,0 +1,65 @@
+---
+title: SamplerPubResult (v1.4)
+description: API reference for qiskit.primitives.SamplerPubResult in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.SamplerPubResult
+---
+
+# SamplerPubResult
+
+<Class id="qiskit.primitives.SamplerPubResult" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/containers/sampler_pub_result.py#L27-L74" signature="qiskit.primitives.SamplerPubResult(data, metadata=None)" modifiers="class">
+  Bases: [`PubResult`](qiskit.primitives.PubResult "qiskit.primitives.containers.pub_result.PubResult")
+
+  Result of Sampler Pub.
+
+  Initialize a pub result.
+
+  **Parameters**
+
+  *   **data** ([*DataBin*](qiskit.primitives.DataBin "qiskit.primitives.DataBin")) – Result data.
+  *   **metadata** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Any] | None*) – Metadata specific to this pub. Keys are expected to be strings.
+
+  ## Attributes
+
+  ### data
+
+  <Attribute id="qiskit.primitives.SamplerPubResult.data">
+    Result data for the pub.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.primitives.SamplerPubResult.metadata">
+    Metadata for the pub.
+  </Attribute>
+
+  ## Methods
+
+  ### join\_data
+
+  <Function id="qiskit.primitives.SamplerPubResult.join_data" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/containers/sampler_pub_result.py#L30-L74" signature="join_data(names=None)">
+    Join data from many registers into one data container.
+
+    Data is joined along the bits axis. For example, for [`BitArray`](qiskit.primitives.BitArray "qiskit.primitives.BitArray") data, this corresponds to bitstring concatenation.
+
+    **Parameters**
+
+    **names** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) – Which registers to join. Their order is maintained, for example, given `["alpha", "beta"]`, the data from register `alpha` is placed to the left of the data from register `beta`. When `None` is given, this value is set to the ordered list of register names, which will have been preserved from the input circuit order.
+
+    **Returns**
+
+    Joint data.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If specified names are empty.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – If specified name does not exist.
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – If specified data comes from incompatible types.
+
+    **Return type**
+
+    [BitArray](qiskit.primitives.BitArray "qiskit.primitives.BitArray") | np.ndarray
+  </Function>
+</Class>
+

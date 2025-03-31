@@ -1,0 +1,262 @@
+---
+title: converters (v1.4)
+description: API reference for qiskit.converters in qiskit v1.4
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.converters
+---
+
+<span id="module-qiskit.converters" />
+
+<span id="qiskit-converters" />
+
+<span id="circuit-converters-qiskit-converters" />
+
+# Circuit Converters
+
+`qiskit.converters`
+
+<span id="quantumcircuit-circuit-components" />
+
+## QuantumCircuit -> circuit components
+
+### circuit\_to\_instruction
+
+<Function id="qiskit.converters.circuit_to_instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/circuit_to_instruction.py#L20-L155" signature="qiskit.converters.circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None, label=None)">
+  Build an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+  The instruction is anonymous (not tied to a named quantum register), and so can be inserted into another circuit. The instruction will have the same string name as the circuit.
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+  *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
+  *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted instruction will be registered.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Optional instruction label.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if parameter\_map is not compatible with circuit
+
+  **Returns**
+
+  an instruction equivalent to the action of the input circuit. Upon decomposition, this instruction will yield the components comprising the original circuit.
+
+  **Return type**
+
+  [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+  **Example**
+
+  ```python
+  from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.converters import circuit_to_instruction
+
+  q = QuantumRegister(3, 'q')
+  c = ClassicalRegister(3, 'c')
+  circ = QuantumCircuit(q, c)
+  circ.h(q[0])
+  circ.cx(q[0], q[1])
+  circ.measure(q[0], c[0])
+  circ.rz(0.5, q[1]).c_if(c, 2)
+  circuit_to_instruction(circ)
+  ```
+</Function>
+
+### circuit\_to\_gate
+
+<Function id="qiskit.converters.circuit_to_gate" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/circuit_to_gate.py#L30-L107" signature="qiskit.converters.circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)">
+  Build a [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+  The gate is anonymous (not tied to a named quantum register), and so can be inserted into another circuit. The gate will have the same string name as the circuit.
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+  *   **parameter\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the gate. If None, existing circuit parameters will also parameterize the Gate.
+  *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted gate will be registered.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Optional gate label.
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if circuit is non-unitary or if parameter\_map is not compatible with circuit
+
+  **Returns**
+
+  a Gate equivalent to the action of the input circuit. Upon decomposition, this gate will yield the components comprising the original circuit.
+
+  **Return type**
+
+  [Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
+</Function>
+
+<span id="quantumcircuit-dagcircuit" />
+
+## QuantumCircuit \<-> DagCircuit
+
+### circuit\_to\_dag
+
+<Function id="qiskit.converters.circuit_to_dag" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/circuit_to_dag.py#L19-L78" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)">
+  Build a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+  *   **copy\_operations** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Deep copy the operation objects in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") for the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit"). This should only be set to `False` if the input [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will not be used anymore as the operations in the output [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
+  *   **qubit\_order** (*Iterable\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*] or None*) – the order that the qubits should be indexed in the output DAG. Defaults to the same order as in the circuit.
+  *   **clbit\_order** (*Iterable\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*] or None*) – the order that the clbits should be indexed in the output DAG. Defaults to the same order as in the circuit.
+
+  **Returns**
+
+  the DAG representing the input circuit.
+
+  **Return type**
+
+  [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – if the `qubit_order` or `clbit_order` parameters do not match the bits in the circuit.
+
+  **Example**
+
+  ```python
+  from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.dagcircuit import DAGCircuit
+  from qiskit.converters import circuit_to_dag
+
+  q = QuantumRegister(3, 'q')
+  c = ClassicalRegister(3, 'c')
+  circ = QuantumCircuit(q, c)
+  circ.h(q[0])
+  circ.cx(q[0], q[1])
+  circ.measure(q[0], c[0])
+  circ.rz(0.5, q[1]).c_if(c, 2)
+  dag = circuit_to_dag(circ)
+  ```
+</Function>
+
+### dag\_to\_circuit
+
+<Function id="qiskit.converters.dag_to_circuit" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/dag_to_circuit.py#L19-L80" signature="qiskit.converters.dag_to_circuit(dag, copy_operations=True)">
+  Build a `QuantumCircuit` object from a `DAGCircuit`.
+
+  **Parameters**
+
+  *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the input dag.
+  *   **copy\_operations** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Deep copy the operation objects in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") for the output [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). This should only be set to `False` if the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will not be used anymore as the operations in the output [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") will be shared instances and modifications to operations in the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") will be reflected in the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (and vice versa).
+
+  **Returns**
+
+  the circuit representing the input dag.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+  **Example**
+
+  ```python
+  from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
+  from qiskit.dagcircuit import DAGCircuit
+  from qiskit.converters import circuit_to_dag
+  from qiskit.circuit.library.standard_gates import CHGate, U2Gate, CXGate
+  from qiskit.converters import dag_to_circuit
+
+  q = QuantumRegister(3, 'q')
+  c = ClassicalRegister(3, 'c')
+  circ = QuantumCircuit(q, c)
+  circ.h(q[0])
+  circ.cx(q[0], q[1])
+  circ.measure(q[0], c[0])
+  circ.rz(0.5, q[1]).c_if(c, 2)
+  dag = circuit_to_dag(circ)
+  circuit = dag_to_circuit(dag)
+  circuit.draw('mpl')
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/converters-1.avif)
+</Function>
+
+<span id="quantumcircuit-dagdependency" />
+
+## QuantumCircuit \<-> DagDependency
+
+### dagdependency\_to\_circuit
+
+<Function id="qiskit.converters.dagdependency_to_circuit" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/dagdependency_to_circuit.py#L17-L46" signature="qiskit.converters.dagdependency_to_circuit(dagdependency)">
+  Build a `QuantumCircuit` object from a `DAGDependency`.
+
+  **Parameters**
+
+  **dagdependency** ([*DAGDependency*](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")) – the input dag.
+
+  **Returns**
+
+  the circuit representing the input dag dependency.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+</Function>
+
+### circuit\_to\_dagdependency
+
+<Function id="qiskit.converters.circuit_to_dagdependency" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/circuit_to_dagdependency.py#L18-L51" signature="qiskit.converters.circuit_to_dagdependency(circuit, create_preds_and_succs=True)">
+  Build a `DAGDependency` object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+  **Parameters**
+
+  *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+  *   **create\_preds\_and\_succs** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether to construct lists of predecessors and successors for every node.
+
+  **Returns**
+
+  the DAG representing the input circuit as a dag dependency.
+
+  **Return type**
+
+  [DAGDependency](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")
+</Function>
+
+<span id="dagcircuit-dagdependency" />
+
+## DagCircuit \<-> DagDependency
+
+### dag\_to\_dagdependency
+
+<Function id="qiskit.converters.dag_to_dagdependency" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/dag_to_dagdependency.py#L17-L55" signature="qiskit.converters.dag_to_dagdependency(dag, create_preds_and_succs=True)">
+  Build a `DAGDependency` object from a `DAGCircuit`.
+
+  **Parameters**
+
+  *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the input dag.
+  *   **create\_preds\_and\_succs** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – whether to construct lists of predecessors and successors for every node.
+
+  **Returns**
+
+  the DAG representing the input circuit as a dag dependency.
+
+  **Return type**
+
+  [DAGDependency](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")
+</Function>
+
+### dagdependency\_to\_dag
+
+<Function id="qiskit.converters.dagdependency_to_dag" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/converters/dagdependency_to_dag.py#L18-L54" signature="qiskit.converters.dagdependency_to_dag(dagdependency)">
+  Build a `DAGCircuit` object from a `DAGDependency`.
+
+  **Parameters**
+
+  **dependency** (*dag*) – the input dag.
+
+  **Returns**
+
+  the DAG representing the input circuit.
+
+  **Return type**
+
+  [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+</Function>
+
