@@ -16,7 +16,7 @@ python_api_name: qiskit.providers
 
 `qiskit.providers`
 
-This module contains the classes used to build external providers for Qiskit. A provider is anything that provides an external service to Qiskit. The typical example of this is a Backend provider which provides [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") objects which can be used for executing [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and/or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects. This module contains the abstract classes which are used to define the interface between a provider and Qiskit.
+This module contains the classes used to build external providers for Qiskit. A provider is anything that provides an external service to Qiskit. The typical example of this is a Backend provider which provides [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") objects which can be used for executing [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects. This module contains the abstract classes which are used to define the interface between a provider and Qiskit.
 
 ## Version Support
 
@@ -34,23 +34,13 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 ## Abstract Classes
 
-### Provider
-
-|                                                                             |                                                               |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider")()       | Base common type for all versioned Provider abstract classes. |
-| [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.ProviderV1")() | Base class for a Backend Provider.                            |
-
 ### Backend
 
-|                                                                                                                                   |                                                                                                                                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend")()                                                                | Base common type for all versioned Backend abstract classes.                                                                                                                                                       |
-| [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")(configuration\[, provider])                                | Abstract class for Backends                                                                                                                                                                                        |
-| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, ...])                       | Abstract class for Backends                                                                                                                                                                                        |
-| [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties")(\[t1, t2, frequency])                    | A representation of the properties of a qubit on a backend.                                                                                                                                                        |
-| [`BackendV2Converter`](qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter")(backend\[, name\_mapping, ...]) | A converter class that takes a [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") instance and wraps it in a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface. |
-| [`convert_to_target`](qiskit.providers.convert_to_target "qiskit.providers.convert_to_target")(configuration\[, ...])             | Decode transpiler target from backend data set.                                                                                                                                                                    |
+|                                                                                                                |                                                              |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend")()                                             | Base common type for all versioned Backend abstract classes. |
+| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, ...])    | Abstract class for Backends                                  |
+| [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties")(\[t1, t2, frequency]) | A representation of the properties of a qubit on a backend.  |
 
 ### Options
 
@@ -75,7 +65,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### QiskitBackendNotFoundError
 
-<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/exceptions.py#L31-L34" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
+<Class id="qiskit.providers.QiskitBackendNotFoundError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/providers/exceptions.py#L30-L33" signature="qiskit.providers.QiskitBackendNotFoundError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised while looking for a backend.
@@ -83,21 +73,9 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
   Set the error message.
 </Class>
 
-#### BackendPropertyError
-
-<Class id="qiskit.providers.BackendPropertyError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/exceptions.py#L37-L50" signature="qiskit.providers.BackendPropertyError(*message)" modifiers="exception">
-  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
-
-  Base class for errors raised while looking for a backend property.
-
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    The class `qiskit.providers.exceptions.BackendPropertyError` is deprecated as of qiskit 1.4. It will be removed in the 2.0 release. The models in `qiskit.providers.models` and related objects are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires these representations it likely relies on deprecated functionality and should be updated to use BackendV2.
-  </Admonition>
-</Class>
-
 #### JobError
 
-<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/exceptions.py#L19-L22" signature="qiskit.providers.JobError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/providers/exceptions.py#L18-L21" signature="qiskit.providers.JobError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised by Jobs.
@@ -107,7 +85,7 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
 
 #### JobTimeoutError
 
-<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/exceptions.py#L25-L28" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
+<Class id="qiskit.providers.JobTimeoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/providers/exceptions.py#L24-L27" signature="qiskit.providers.JobTimeoutError(*message)" modifiers="exception">
   Bases: [`JobError`](#qiskit.providers.JobError "qiskit.providers.exceptions.JobError")
 
   Base class for timeout errors raised by jobs.
@@ -115,21 +93,9 @@ It’s worth pointing out that Qiskit’s version support policy doesn’t mean 
   Set the error message.
 </Class>
 
-#### BackendConfigurationError
-
-<Class id="qiskit.providers.BackendConfigurationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/exceptions.py#L53-L66" signature="qiskit.providers.BackendConfigurationError(*message)" modifiers="exception">
-  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
-
-  Base class for errors raised by the BackendConfiguration.
-
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    The class `qiskit.providers.exceptions.BackendConfigurationError` is deprecated as of qiskit 1.4. It will be removed in the 2.0 release. The models in `qiskit.providers.models` and related objects are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires these representations it likely relies on deprecated functionality and should be updated to use BackendV2.
-  </Admonition>
-</Class>
-
 ## Writing a New Backend
 
-If you have a quantum device or simulator that you would like to integrate with Qiskit you will need to write a backend. A provider is a collection of backends and will provide Qiskit with a method to get available [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") objects. The [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") object provides both information describing a backend and its operation for the [`transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") so that circuits can be compiled to something that is optimized and can execute on the backend. It also provides the [`run()`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method which can run the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects and/or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects. This enables users and other Qiskit APIs to get results from executing circuits on devices in a standard fashion regardless of how the backend is implemented. At a high level the basic steps for writing a provider are:
+If you have a quantum device or simulator that you would like to integrate with Qiskit you will need to write a backend. A provider is a collection of backends and will provide Qiskit with a method to get available [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") objects. The [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") object provides both information describing a backend and its operation for the [`transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") so that circuits can be compiled to something that is optimized and can execute on the backend. It also provides the [`run()`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method which can run the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects. This enables users and other Qiskit APIs to get results from executing circuits on devices in a standard fashion regardless of how the backend is implemented. At a high level the basic steps for writing a provider are:
 
 > *   Implement a `Provider` class that handles access to the backend(s).
 >
@@ -140,8 +106,6 @@ If you have a quantum device or simulator that you would like to integrate with 
 > *   Implement a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") subclass that handles interacting with a running job.
 
 For a simple example of a provider, see the [qiskit-aqt-provider](https://github.com/qiskit-community/qiskit-aqt-provider)
-
-<span id="id1" />
 
 ### Provider
 
@@ -168,7 +132,7 @@ class MyProvider:
 
 Ensure that any necessary information for authentication (if required) are present in the class and that the backends method matches the required interface. The rest is up to the specific provider on how to implement.
 
-<span id="id2" />
+<span id="id1" />
 
 ### Backend
 
@@ -246,7 +210,7 @@ class Mybackend(Backend):
 
 The key piece of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") object is how it describes itself to the compiler. This is handled with the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") class which defines a model of a backend for the transpiler. A backend object will need to return a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object from the [`target`](qiskit.providers.BackendV2#target "qiskit.providers.BackendV2.target") attribute which the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function will use as its model of a backend target for compilation.
 
-<span id="id3" />
+<span id="id2" />
 
 #### Custom Basis Gates
 
@@ -414,13 +378,13 @@ self.options.set_validator("shots", (1, 4096))
 
 you can refer to the [`set_validator()`](qiskit.providers.Options#set_validator "qiskit.providers.Options.set_validator") documentation for a full list of validation options.
 
-<span id="id4" />
+<span id="id3" />
 
 ### Job
 
 The output from the [`run`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method is a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object. Each provider is expected to implement a custom job subclass that defines the behavior for the provider. There are 2 types of jobs depending on the backend’s execution method, either a sync or async. By default jobs are considered async and the expectation is that it represents a handle to the async execution of the circuits submitted with `Backend.run()`. An async job object provides users the ability to query the status of the execution, cancel a running job, and block until the execution is finished. The [`result`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") is the primary user facing method which will block until the execution is complete and then will return a [`Result`](qiskit.result.Result "qiskit.result.Result") object with results of the job.
 
-For some backends (mainly local simulators) the execution of circuits is a synchronous operation and there is no need to return a handle to a running job elsewhere. For sync jobs its expected that the [`run`](qiskit.providers.BackendV1#run "qiskit.providers.BackendV1.run") method on the backend will block until a [`Result`](qiskit.result.Result "qiskit.result.Result") object is generated and the sync job will return with that inner [`Result`](qiskit.result.Result "qiskit.result.Result") object.
+For some backends (mainly local simulators) the execution of circuits is a synchronous operation and there is no need to return a handle to a running job elsewhere. For sync jobs its expected that the [`run`](qiskit.providers.BackendV2#run "qiskit.providers.BackendV2.run") method on the backend will block until a [`Result`](qiskit.result.Result "qiskit.result.Result") object is generated and the sync job will return with that inner [`Result`](qiskit.result.Result "qiskit.result.Result") object.
 
 An example job class for an async API based backend would look something like:
 
@@ -463,7 +427,6 @@ class MyJob(Job):
             'backend_name': self._backend.configuration().backend_name,
             'backend_version': self._backend.configuration().backend_version,
             'job_id': self._job_id,
-            'qobj_id': ', '.join(x.name for x in self.circuits),
             'success': True,
         })
 
@@ -503,34 +466,7 @@ class MySyncJob(Job):
 
 ### Primitives
 
-While not directly part of the provider interface, the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is tightly coupled with providers. Specifically the primitive interfaces, such as [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") and [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), are designed to enable provider implementations to provide custom implementations which are optimized for the provider’s backends. This can include customizations like circuit transformations, additional pre- and post-processing, batching, caching, error mitigation, etc. The concept of the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is to explicitly enable this as the primitive objects are higher level abstractions to produce processed higher level outputs (such as probability distributions and expectation values) that abstract away the mechanics of getting the best result efficiently, to concentrate on higher level applications using these outputs.
+While not directly part of the provider interface, the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is tightly coupled with providers. Specifically the primitive interfaces, such as `BaseSampler` and `BaseEstimator`, are designed to enable provider implementations to provide custom implementations which are optimized for the provider’s backends. This can include customizations like circuit transformations, additional pre- and post-processing, batching, caching, error mitigation, etc. The concept of the [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") module is to explicitly enable this as the primitive objects are higher level abstractions to produce processed higher level outputs (such as probability distributions and expectation values) that abstract away the mechanics of getting the best result efficiently, to concentrate on higher level applications using these outputs.
 
-For example, if your backends were well suited to leverage [mthree](https://github.com/Qiskit/qiskit-addon-mthree) measurement mitigation to improve the quality of the results, you could implement a provider-specific [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler") implementation that leverages the `M3Mitigation` class internally to run the circuits and return quasi-probabilities directly from mthree in the result. Doing this would enable algorithms to get the best results with mitigation applied directly from your backends. You can refer to the documentation in [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") on how to write custom implementations. Also the built-in implementations: [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler"), [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator"), [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler"), and [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") can serve as references/models on how to implement these as well.
-
-## Migrating from BackendV1 to BackendV2
-
-The [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") class re-defined user access for most properties of a backend to make them work with native Qiskit data structures and have flatter access patterns. However this means when using a provider that upgrades from [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") existing access patterns will need to be adjusted. It is expected for existing providers to deprecate the old access where possible to provide a graceful migration, but eventually users will need to adjust code. The biggest change to adapt to in [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") is that most of the information accessible about a backend is contained in its [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object and the backend’s attributes often query its [`target`](qiskit.providers.BackendV2#target "qiskit.providers.BackendV2.target") attribute to return information, however in many cases the attributes only provide a subset of information the target can contain. For example, `backend.coupling_map` returns a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") constructed from the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") accessible in the [`target`](qiskit.providers.BackendV2#target "qiskit.providers.BackendV2.target") attribute, however the target may contain instructions that operate on more than two qubits (which can’t be represented in a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) or has instructions that only operate on a subset of qubits (or two qubit links for a two qubit instruction) which won’t be detailed in the full coupling map returned by [`coupling_map`](qiskit.providers.BackendV2#coupling_map "qiskit.providers.BackendV2.coupling_map"). So depending on your use case it might be necessary to look deeper than just the equivalent access with [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
-
-Below is a table of example access patterns in [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") and the new form with [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"):
-
-| [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") | [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `backend.configuration().n_qubits`                                     | `backend.num_qubits`                                                   |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.configuration().coupling_map`                                 | `backend.coupling_map`                                                 | The return from [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") is a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object. while in [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") it is an edge list. Also this is just a view of the information contained in `backend.target` which may only be a subset of the information contained in [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object. |
-| `backend.configuration().backend_name`                                 | `backend.name`                                                         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.configuration().backend_version`                              | `backend.backend_version`                                              | The [`version`](qiskit.providers.BackendV2#version "qiskit.providers.BackendV2.version") attribute represents the version of the abstract [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") interface the object implements while [`backend_version`](qiskit.providers.BackendV2#backend_version "qiskit.providers.BackendV2.backend_version") is metadata about the version of the backend itself.                                                                                  |
-| `backend.configuration().basis_gates`                                  | `backend.operation_names`                                              | The [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") return is a list of operation names contained in the `backend.target` attribute. The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") may contain more information that can be expressed by this list of names. For example, that some operations only work on a subset of qubits or that some names implement the same gate with different parameters.                                                   |
-| `backend.configuration().dt`                                           | `backend.dt`                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.configuration().dtm`                                          | `backend.dtm`                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.configuration().max_experiments`                              | `backend.max_circuits`                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.configuration().online_date`                                  | `backend.online_date`                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `InstructionDurations.from_backend(backend)`                           | `backend.instruction_durations`                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.defaults().instruction_schedule_map`                          | `backend.instruction_schedule_map`                                     |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.properties().t1(0)`                                           | `backend.qubit_properties(0).t1`                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.properties().t2(0)`                                           | `backend.qubit_properties(0).t2`                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.properties().frequency(0)`                                    | `backend.qubit_properties(0).frequency`                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.properties().readout_error(0)`                                | `backend.target["measure"][(0,)].error`                                | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the error rate for the `Measure` operation on a given qubit is used to model the readout error. However a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                                                                                  |
-| `backend.properties().readout_length(0)`                               | `backend.target["measure"][(0,)].duration`                             | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the duration for the `Measure` operation on a given qubit is used to model the readout length. However, a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                                                                                  |
-
-There is also a [`BackendV2Converter`](qiskit.providers.BackendV2Converter "qiskit.providers.BackendV2Converter") class available that enables you to wrap a [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") object with a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface.
+For example, if your backends were well suited to leverage [mthree](https://github.com/Qiskit/qiskit-addon-mthree) measurement mitigation to improve the quality of the results, you could implement a provider-specific `Sampler` implementation that leverages the `M3Mitigation` class internally to run the circuits and return quasi-probabilities directly from mthree in the result. Doing this would enable algorithms to get the best results with mitigation applied directly from your backends. You can refer to the documentation in [`qiskit.primitives`](primitives#module-qiskit.primitives "qiskit.primitives") on how to write custom implementations. Also, the built-in implementations: `Sampler`, `Estimator`, `BackendSampler`, and `BackendEstimator` can serve as references/models on how to implement these as well.
 

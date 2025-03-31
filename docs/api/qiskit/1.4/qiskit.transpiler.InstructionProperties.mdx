@@ -1,0 +1,58 @@
+---
+title: InstructionProperties (v1.4)
+description: API reference for qiskit.transpiler.InstructionProperties in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.InstructionProperties
+---
+
+# InstructionProperties
+
+<Class id="qiskit.transpiler.InstructionProperties" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/target.py#L66-L177" signature="qiskit.transpiler.InstructionProperties(duration=None, error=None, *args, **kwargs)" modifiers="class">
+  Bases: `BaseInstructionProperties`
+
+  A representation of the properties of a gate implementation.
+
+  This class provides the optional properties that a backend can provide about an instruction. These represent the set that the transpiler can currently work with if present. However, if your backend provides additional properties for instructions you should subclass this to add additional custom attributes for those custom/additional properties by the backend.
+
+  Create a new `InstructionProperties` object
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    `qiskit.transpiler.target.InstructionProperties.__init__()`’s argument `calibration` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and this argument uses a dependency on the package.
+  </Admonition>
+
+  **Parameters**
+
+  *   **duration** – The duration, in seconds, of the instruction on the specified set of qubits
+  *   **error** – The average error rate for the instruction on the specified set of qubits.
+  *   **calibration** – DEPRECATED. The pulse representation of the instruction.
+
+  ## Attributes
+
+  ### calibration
+
+  <Attribute id="qiskit.transpiler.InstructionProperties.calibration">
+    The pulse representation of the instruction.
+
+    <Admonition title="Note" type="note">
+      This attribute always returns a Qiskit pulse program, but it is internally wrapped by the `CalibrationEntry` to manage unbound parameters and to uniformly handle different data representation, for example, un-parsed Pulse Qobj JSON that a backend provider may provide.
+
+      This value can be overridden through the property setter in following manner. When you set either [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") this is always treated as a user-defined (custom) calibration and the transpiler may automatically attach the calibration data to the output circuit. This calibration data may appear in the wire format as an inline calibration, which may further update the backend standard instruction set architecture.
+
+      If you are a backend provider who provides a default calibration data that is not needed to be attached to the transpiled quantum circuit, you can directly set `CalibrationEntry` instance to this attribute, in which you should set `user_provided=False` when you define calibration data for the entry. End users can still intentionally utilize the calibration data, for example, to run pulse-level simulation of the circuit. However, such entry doesn’t appear in the wire format, and backend must use own definition to compile the circuit down to the execution format.
+    </Admonition>
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.transpiler.target.InstructionProperties.calibration` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.transpiler.target.InstructionProperties.calibration` will have no alternative in Qiskit.
+    </Admonition>
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.transpiler.InstructionProperties.duration" />
+
+  ### error
+
+  <Attribute id="qiskit.transpiler.InstructionProperties.error" />
+</Class>
+

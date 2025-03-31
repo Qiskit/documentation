@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
 # MCXRecursive
 
-<Class id="qiskit.circuit.library.MCXRecursive" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/x.py#L1328-L1398" signature="qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
+<Class id="qiskit.circuit.library.MCXRecursive" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/standard_gates/x.py#L1292-L1358" signature="qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None, *, _base_label=None)" modifiers="class">
   Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
 
   Implement the multi-controlled X gate using recursion.
@@ -23,7 +23,7 @@ python_api_name: qiskit.circuit.library.MCXRecursive
   2.  Iten et al., 2015. [https://arxiv.org/abs/1501.06911](https://arxiv.org/abs/1501.06911)
 
   <Admonition title="Deprecated since version 1.3_pending" type="danger">
-    The class `qiskit.circuit.library.standard_gates.x.MCXRecursive` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. It is recommended to use MCXGate and let HighLevelSynthesis choose the best synthesis method depending on the number of ancilla qubits available. If this specific synthesis method is required, one can specify it using the high-level-synthesis plugin ‘1\_clean\_b95’ for MCX gates, or, alternatively, one can use synth\_mcx\_1\_clean to construct the gate directly.
+    The class `qiskit.circuit.library.standard_gates.x.MCXRecursive` is pending deprecation as of Qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. It is recommended to use MCXGate and let HighLevelSynthesis choose the best synthesis method depending on the number of ancilla qubits available. If this specific synthesis method is required, one can specify it using the high-level-synthesis plugin ‘1\_clean\_b95’ for MCX gates, or, alternatively, one can use synth\_mcx\_1\_clean to construct the gate directly.
   </Admonition>
 
   ## Attributes
@@ -55,26 +55,6 @@ python_api_name: qiskit.circuit.library.MCXRecursive
     In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
   </Attribute>
 
-  ### condition
-
-  <Attribute id="qiskit.circuit.library.MCXRecursive.condition">
-    The classical condition on the instruction.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Attribute>
-
-  ### condition\_bits
-
-  <Attribute id="qiskit.circuit.library.MCXRecursive.condition_bits">
-    Get Clbits in condition.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
-    </Admonition>
-  </Attribute>
-
   ### ctrl\_state
 
   <Attribute id="qiskit.circuit.library.MCXRecursive.ctrl_state">
@@ -91,16 +71,6 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
   <Attribute id="qiskit.circuit.library.MCXRecursive.definition">
     Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.library.MCXRecursive.ctrl_state "qiskit.circuit.library.MCXRecursive.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
-  </Attribute>
-
-  ### duration
-
-  <Attribute id="qiskit.circuit.library.MCXRecursive.duration">
-    Get the duration.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
-    </Admonition>
   </Attribute>
 
   ### label
@@ -177,21 +147,11 @@ python_api_name: qiskit.circuit.library.MCXRecursive
     [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
   </Attribute>
 
-  ### unit
-
-  <Attribute id="qiskit.circuit.library.MCXRecursive.unit">
-    Get the time unit of duration.
-
-    <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
-    </Admonition>
-  </Attribute>
-
   ## Methods
 
   ### get\_num\_ancilla\_qubits
 
-  <Function id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/x.py#L1372-L1375" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')" modifiers="static">
+  <Function id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/standard_gates/x.py#L1332-L1335" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')" modifiers="static">
     Get the number of required ancilla qubits.
 
     **Parameters**
@@ -202,7 +162,7 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.MCXRecursive.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/x.py#L1377-L1389" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.MCXRecursive.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/standard_gates/x.py#L1337-L1349" signature="inverse(annotated=False)">
     Invert this gate. The MCX is its own inverse.
 
     **Parameters**

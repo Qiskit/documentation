@@ -1,0 +1,79 @@
+---
+title: plot_state_qsphere (v1.4)
+description: API reference for qiskit.visualization.plot_state_qsphere in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_state_qsphere
+---
+
+<span id="qiskit-visualization-plot-state-qsphere" />
+
+# qiskit.visualization.plot\_state\_qsphere
+
+<Function id="qiskit.visualization.plot_state_qsphere" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/state_visualization.py#L791-L1078" signature="qiskit.visualization.plot_state_qsphere(state, figsize=None, ax=None, show_state_labels=True, show_state_phases=False, use_degrees=False, *, filename=None)">
+  Plot the qsphere representation of a quantum state. Here, the size of the points is proportional to the probability of the corresponding term in the state and the color represents the phase.
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – Figure size in inches.
+  *   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.10.1)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+  *   **show\_state\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – An optional boolean indicating whether to show labels for each basis state.
+  *   **show\_state\_phases** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – An optional boolean indicating whether to show the phase for each basis state.
+  *   **use\_degrees** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – An optional boolean indicating whether to use radians or degrees for the phase values in the plot.
+
+  **Returns**
+
+  A matplotlib figure instance if the `ax` kwarg is not set
+
+  **Return type**
+
+  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.10.1)")
+
+  **Raises**
+
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – Input is not a valid N-qubit state.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – Input statevector does not have valid dimensions.
+
+  **Examples**
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Statevector
+  from qiskit.visualization import plot_state_qsphere
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+
+  state = Statevector(qc)
+  plot_state_qsphere(state)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_state_qsphere-1.avif)
+
+  ```python
+  # You can show the phase of each state and use
+  # degrees instead of radians
+
+  from qiskit.quantum_info import DensityMatrix
+  import numpy as np
+  from qiskit import QuantumCircuit
+  from qiskit.visualization import plot_state_qsphere
+
+  qc = QuantumCircuit(2)
+  qc.h([0, 1])
+  qc.cz(0,1)
+  qc.ry(np.pi/3, 0)
+  qc.rx(np.pi/5, 1)
+  qc.z(1)
+
+  matrix = DensityMatrix(qc)
+  plot_state_qsphere(matrix,
+       show_state_phases = True, use_degrees = True)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_state_qsphere-2.avif)
+</Function>
+

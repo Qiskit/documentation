@@ -1,0 +1,45 @@
+---
+title: AQC (v1.4)
+description: API reference for qiskit.synthesis.unitary.aqc.AQC in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.unitary.aqc.AQC
+---
+
+# AQC
+
+<Class id="qiskit.synthesis.unitary.aqc.AQC" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/unitary/aqc/aqc.py#L77-L175" signature="qiskit.synthesis.unitary.aqc.AQC(optimizer=None, seed=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A generic implementation of the Approximate Quantum Compiler. This implementation is agnostic of the underlying implementation of the approximate circuit, objective, and optimizer. Users may pass corresponding implementations of the abstract classes:
+
+  *   The *optimizer* is an implementation of the `Minimizer` protocol, a callable used to run the optimization process. The choice of optimizer may affect overall convergence, required time for the optimization process and achieved objective value.
+  *   The *approximate circuit* represents a template which parameters we want to optimize. Currently, there’s only one implementation based on 4-rotations CNOT unit blocks: [`CNOTUnitCircuit`](qiskit.synthesis.unitary.aqc.CNOTUnitCircuit "qiskit.synthesis.unitary.aqc.CNOTUnitCircuit"). See the paper for more details.
+  *   The *approximate objective* is tightly coupled with the approximate circuit implementation and provides two methods for computing objective function and gradient with respect to approximate circuit parameters. This objective is passed to the optimizer. Currently, there are two implementations based on 4-rotations CNOT unit blocks: [`DefaultCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective "qiskit.synthesis.unitary.aqc.DefaultCNOTUnitObjective") and its accelerated version [`FastCNOTUnitObjective`](qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective "qiskit.synthesis.unitary.aqc.FastCNOTUnitObjective"). Both implementations share the same idea of maximization the Hilbert-Schmidt product between the target matrix and its approximation. The former implementation approach should be considered as a baseline one. It may suffer from performance issues, and is mostly suitable for a small number of qubits (up to 5 or 6), whereas the latter, accelerated one, can be applied to larger problems.
+  *   One should take into consideration the exponential growth of matrix size with the number of qubits because the implementation not only creates a potentially large target matrix, but also allocates a number of temporary memory buffers comparable in size to the target matrix.
+
+  **Parameters**
+
+  *   **optimizer** (*Minimizer | None*) – an optimizer to be used in the optimization procedure of the search for the best approximate circuit. By default, the scipy minimizer with the `L-BFGS-B` method is used with max iterations set to 1000.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – a seed value to be used by a random number generator.
+
+  ## Methods
+
+  ### compile\_unitary
+
+  <Function id="qiskit.synthesis.unitary.aqc.AQC.compile_unitary" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/unitary/aqc/aqc.py#L127-L175" signature="compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)">
+    Approximately compiles a circuit represented as a unitary matrix by solving an optimization problem defined by `approximating_objective` and using `approximate_circuit` as a template for the approximate circuit.
+
+    **Parameters**
+
+    *   **target\_matrix** (*np.ndarray*) – a unitary matrix to approximate.
+    *   **approximate\_circuit** ([*ApproximateCircuit*](qiskit.synthesis.unitary.aqc.ApproximateCircuit "qiskit.synthesis.unitary.aqc.ApproximateCircuit")) – a template circuit that will be filled with the parameter values obtained in the optimization procedure.
+    *   **approximating\_objective** ([*ApproximatingObjective*](qiskit.synthesis.unitary.aqc.ApproximatingObjective "qiskit.synthesis.unitary.aqc.ApproximatingObjective")) – a definition of the optimization problem.
+    *   **initial\_point** (*np.ndarray | None*) – initial values of angles/parameters to start optimization from.
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

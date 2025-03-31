@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.Isometry
 
 # Isometry
 
-<Class id="qiskit.circuit.library.Isometry" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/generalized_gates/isometry.py#L41-L343" signature="qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)" modifiers="class">
+<Class id="qiskit.circuit.library.Isometry" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/isometry.py#L41-L343" signature="qiskit.circuit.library.Isometry(isometry, num_ancillas_zero, num_ancillas_dirty, epsilon=1e-10)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Decomposition of arbitrary isometries from $m$ to $n$ qubits.
@@ -103,15 +103,58 @@ python_api_name: qiskit.circuit.library.Isometry
 
   ## Methods
 
+  ### add\_decomposition
+
+  <Function id="qiskit.circuit.library.Isometry.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.circuit.library.Isometry.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L455-L484" signature="broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
+
+    **Parameters**
+
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
+
+    **Yields**
+
+    *Tuple(List, List)* – A tuple with single arguments.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.circuit.library.Isometry.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
   ### inv\_gate
 
-  <Function id="qiskit.circuit.library.Isometry.inv_gate" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/generalized_gates/isometry.py#L335-L343" signature="inv_gate()">
+  <Function id="qiskit.circuit.library.Isometry.inv_gate" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/isometry.py#L335-L343" signature="inv_gate()">
     Return the adjoint of the unitary.
   </Function>
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.Isometry.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/generalized_gates/isometry.py#L131-L135" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.Isometry.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/isometry.py#L131-L135" signature="inverse(annotated=False)">
     Invert this instruction.
 
     If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
@@ -133,9 +176,81 @@ python_api_name: qiskit.circuit.library.Isometry
     [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
   </Function>
 
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.library.Isometry.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
+    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit.circuit.library.Isometry.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
+
+  ### reverse\_ops
+
+  <Function id="qiskit.circuit.library.Isometry.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### soft\_compare
+
+  <Function id="qiskit.circuit.library.Isometry.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### to\_mutable
+
+  <Function id="qiskit.circuit.library.Isometry.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.Isometry.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/generalized_gates/isometry.py#L326-L333" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.Isometry.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/generalized_gates/isometry.py#L326-L333" signature="validate_parameter(parameter)">
     Isometry parameter has to be an ndarray.
   </Function>
 </Class>

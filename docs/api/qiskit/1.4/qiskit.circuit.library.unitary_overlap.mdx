@@ -1,0 +1,63 @@
+---
+title: unitary_overlap (v1.4)
+description: API reference for qiskit.circuit.library.unitary_overlap in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.unitary_overlap
+---
+
+<span id="unitary-overlap" />
+
+# unitary\_overlap
+
+<Class id="qiskit.circuit.library.unitary_overlap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/overlap.py#L105-L183" signature="qiskit.circuit.library.unitary_overlap(unitary1, unitary2, prefix1='p1', prefix2='p2', insert_barrier=False)" modifiers="class">
+  Bases:
+
+  Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$.
+
+  The input quantum circuits must represent unitary operations, since they must be invertible. If the inputs will have parameters, they are replaced by [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")s with names “p1” (for circuit `unitary1`) and “p2” (for circuit `unitary_2`) in the output circuit.
+
+  This circuit is usually employed in computing the fidelity:
+
+$$
+\left|\langle 0| U_2^{\dag} U_1|0\rangle\right|^{2}
+$$
+
+  by computing the probability of being in the all-zeros bit-string, or equivalently, the expectation value of projector $|0\rangle\langle 0|$.
+
+  **Reference Circuit:**
+
+  ```python
+  import numpy as np
+  from qiskit.circuit.library import EfficientSU2, unitary_overlap
+
+  # get two circuit to prepare states of which we compute the overlap
+  circuit = EfficientSU2(2, reps=1)
+  unitary1 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
+  unitary2 = circuit.assign_parameters(np.random.random(circuit.num_parameters))
+
+  # create the overlap circuit
+  overlap = unitary_overlap(unitary1, unitary2)
+  overlap.draw('mpl')
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-library-unitary_overlap-1.avif)
+
+  **Parameters**
+
+  *   **unitary1** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary acting on the ket vector.
+  *   **unitary2** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Unitary whose inverse operates on the bra vector.
+  *   **prefix1** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the parameter vector associated to `unitary1`, if it is parameterized. Defaults to `"p1"`.
+  *   **prefix2** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the parameter vector associated to `unitary2`, if it is parameterized. Defaults to `"p2"`.
+  *   **insert\_barrier** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert a barrier between the two unitaries.
+
+  **Raises**
+
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Number of qubits in `unitary1` and `unitary2` does not match.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Inputs contain measurements and/or resets.
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Class>
+

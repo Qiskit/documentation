@@ -1,0 +1,77 @@
+---
+title: BasicProvider (v1.4)
+description: API reference for qiskit.providers.basic_provider.BasicProvider in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basic_provider.BasicProvider
+---
+
+# BasicProvider
+
+<Class id="qiskit.providers.basic_provider.BasicProvider" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/basic_provider/basic_provider.py#L38-L101" signature="qiskit.providers.basic_provider.BasicProvider" modifiers="class">
+  Bases: [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.provider.ProviderV1")
+
+  Provider for test simulators.
+
+  <Admonition title="Deprecated since version 1.1" type="danger">
+    The class `qiskit.providers.provider.Provider` is deprecated as of qiskit 1.1. It will be removed no earlier than 3 months after the release date. The abstract Provider and ProviderV1 classes are deprecated and will be removed in 2.0. You can just remove it as the parent class and a get\_backend method that returns the backends from self.backend.
+  </Admonition>
+
+  ## Attributes
+
+  ### version
+
+  <Attribute id="qiskit.providers.basic_provider.BasicProvider.version" attributeValue="1" />
+
+  ## Methods
+
+  ### backends
+
+  <Function id="qiskit.providers.basic_provider.BasicProvider.backends" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/basic_provider/basic_provider.py#L50-L62" signature="backends(name=None, filters=None, **kwargs)">
+    Return a list of backends matching the specified filtering.
+
+    **Parameters**
+
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
+    *   **filters** (*Callable | None*) –
+
+    **Returns**
+
+    **a list of Backends that match the filtering**
+
+    criteria.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+  </Function>
+
+  ### get\_backend
+
+  <Function id="qiskit.providers.basic_provider.BasicProvider.get_backend" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/providers/basic_provider/basic_provider.py#L47-L48" signature="get_backend(name=None, **kwargs)">
+    Return a single backend matching the specified filtering.
+
+    <Admonition title="Deprecated since version 1.1" type="danger">
+      The method `qiskit.providers.provider.ProviderV1.get_backend()` is deprecated as of qiskit 1.1. It will be removed no earlier than 3 months after the release date. The abstract Provider and ProviderV1 classes are deprecated and will be removed in 2.0. You can just remove it as the parent class and a get\_backend method that returns the backends from self.backend.
+    </Admonition>
+
+    **Parameters**
+
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name of the backend.
+    *   **\*\*kwargs** – dict used for filtering.
+
+    **Returns**
+
+    a backend matching the filtering.
+
+    **Return type**
+
+    [Backend](qiskit.providers.Backend "qiskit.providers.Backend")
+
+    **Raises**
+
+    [**QiskitBackendNotFoundError**](providers#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+  </Function>
+</Class>
+

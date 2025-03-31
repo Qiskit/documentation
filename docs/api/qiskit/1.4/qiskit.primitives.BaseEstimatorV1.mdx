@@ -1,0 +1,137 @@
+---
+title: BaseEstimatorV1 (v1.4)
+description: API reference for qiskit.primitives.BaseEstimatorV1 in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.BaseEstimatorV1
+---
+
+# BaseEstimatorV1
+
+<Class id="qiskit.primitives.BaseEstimatorV1" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_estimator.py#L42-L188" signature="qiskit.primitives.BaseEstimatorV1(*, options=None)" modifiers="class">
+  Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`T`]
+
+  Estimator V1 base class.
+
+  Base class for Estimator that estimates expectation values of quantum circuits and observables.
+
+  An estimator is initialized with an empty parameter set. The estimator is used to create a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Estimator.run()`](qiskit.primitives.Estimator#run "qiskit.primitives.Estimator.run") method. This method is called with the following parameters
+
+  *   quantum circuits ($\psi_i(\theta)$): list of (parameterized) quantum circuits (a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects).
+  *   observables ($H_j$): a list of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") objects.
+  *   parameter values ($\theta_k$): list of sets of values to be bound to the parameters of the quantum circuits (list of list of float).
+
+  The method returns a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1") object, calling [`qiskit.providers.JobV1.result()`](qiskit.providers.JobV1#result "qiskit.providers.JobV1.result") yields the a list of expectation values plus optional metadata like confidence intervals for the estimation.
+
+$$
+\langle\psi_i(\theta_k)|H_j|\psi_i(\theta_k)\rangle
+$$
+
+  Here is an example of how the estimator is used.
+
+  ```python
+  from qiskit.primitives import Estimator
+  from qiskit.circuit.library import RealAmplitudes
+  from qiskit.quantum_info import SparsePauliOp
+
+  psi1 = RealAmplitudes(num_qubits=2, reps=2)
+  psi2 = RealAmplitudes(num_qubits=2, reps=3)
+
+  H1 = SparsePauliOp.from_list([("II", 1), ("IZ", 2), ("XI", 3)])
+  H2 = SparsePauliOp.from_list([("IZ", 1)])
+  H3 = SparsePauliOp.from_list([("ZI", 1), ("ZZ", 1)])
+
+  theta1 = [0, 1, 1, 2, 3, 5]
+  theta2 = [0, 1, 1, 2, 3, 5, 8, 13]
+  theta3 = [1, 2, 3, 4, 5, 6]
+
+  estimator = Estimator()
+
+  # calculate [ <psi1(theta1)|H1|psi1(theta1)> ]
+  job = estimator.run([psi1], [H1], [theta1])
+  job_result = job.result() # It will block until the job finishes.
+  print(f"The primitive-job finished with result {job_result}")
+
+  # calculate [ <psi1(theta1)|H1|psi1(theta1)>,
+  #             <psi2(theta2)|H2|psi2(theta2)>,
+  #             <psi1(theta3)|H3|psi1(theta3)> ]
+  job2 = estimator.run([psi1, psi2, psi1], [H1, H2, H3], [theta1, theta2, theta3])
+  job_result = job2.result()
+  print(f"The primitive-job finished with result {job_result}")
+  ```
+
+  Creating an instance of an Estimator V1, or using one in a `with` context opens a session that holds resources until the instance is `close()` ed or the context is exited.
+
+  **Parameters**
+
+  **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) – Default options.
+
+  ## Attributes
+
+  ### options
+
+  <Attribute id="qiskit.primitives.BaseEstimatorV1.options">
+    Return options values for the estimator.
+
+    **Returns**
+
+    options
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.primitives.BaseEstimatorV1.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_estimator.py#L121-L178" signature="run(circuits, observables, parameter_values=None, **run_options)">
+    Run the job of the estimation of expectation value(s).
+
+    `circuits`, `observables`, and `parameter_values` should have the same length. The i-th element of the result is the expectation of observable
+
+    ```python
+    obs = observables[i]
+    ```
+
+    for the state prepared by
+
+    ```python
+    circ = circuits[i]
+    ```
+
+    with bound parameters
+
+    ```python
+    values = parameter_values[i]
+    ```
+
+    **Parameters**
+
+    *   **circuits** (*Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – one or more circuit objects.
+    *   **observables** (*Sequence\[BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | BaseOperator |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – one or more observable objects. Several formats are allowed; importantly, `str` should follow the string representation format for [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli") objects.
+    *   **parameter\_values** (*Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] |* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – concrete parameters to be bound.
+    *   **run\_options** – runtime options used for circuit execution.
+
+    **Returns**
+
+    The job object of EstimatorResult.
+
+    **Raises**
+
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – Invalid argument type given.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – Invalid argument values given.
+
+    **Return type**
+
+    T
+  </Function>
+
+  ### set\_options
+
+  <Function id="qiskit.primitives.BaseEstimatorV1.set_options" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive.py#L39-L45" signature="set_options(**fields)">
+    Set options values for the estimator.
+
+    **Parameters**
+
+    **\*\*fields** – The fields to update the options
+  </Function>
+</Class>
+

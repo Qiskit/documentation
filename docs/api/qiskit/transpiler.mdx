@@ -127,7 +127,6 @@ from qiskit.circuit import library as lib
 from qiskit.transpiler import PassManager, generate_preset_pass_manager
 from qiskit.transpiler.passes import (
     ALAPScheduleAnalysis,
-    CXCancellation,
     InverseCancellation,
     PadDynamicalDecoupling,
 )
@@ -319,13 +318,21 @@ All of Qiskit’s built-in routing stages will additionally run the [`VF2PostLay
 
 When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins), the entry point for `routing` is `qiskit.transpiler.routing`. The built-in plugins are:
 
-| Method                                                    | Summary                                                                                                                                                    |
-| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [sabre](#transpiler-preset-stage-routing-sabre)           | Default. Uses [Qiskit’s modified Sabre routing algorithm](https://arxiv.org/abs/2409.08368) to swap map.                                                   |
-| [none](#transpiler-preset-stage-routing-none)             | Disable routing. Raises an error if routing is required.                                                                                                   |
-| [basic](#transpiler-preset-stage-routing-basic)           | Greedy swap insertion to route a single operation at a time.                                                                                               |
-| [stochastic](#transpiler-preset-stage-routing-stochastic) | Consider operations layer-by-layer, using a stochastic algorithm to find swap networks that implement a suitable permutation to make the layer executable. |
-| [lookahead](#transpiler-preset-stage-routing-lookahead)   | Breadth-first search with heuristic pruning to find swaps that make gates executable.                                                                      |
+| Method                                                  | Summary                                                                                                  |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [default](#transpiler-preset-stage-routing-default)     | Use a Qiskit-chosen default routing method.                                                              |
+| [sabre](#transpiler-preset-stage-routing-sabre)         | Default. Uses [Qiskit’s modified Sabre routing algorithm](https://arxiv.org/abs/2409.08368) to swap map. |
+| [none](#transpiler-preset-stage-routing-none)           | Disable routing. Raises an error if routing is required.                                                 |
+| [basic](#transpiler-preset-stage-routing-basic)         | Greedy swap insertion to route a single operation at a time.                                             |
+| [lookahead](#transpiler-preset-stage-routing-lookahead) | Breadth-first search with heuristic pruning to find swaps that make gates executable.                    |
+
+<span id="transpiler-preset-stage-routing-default" />
+
+<span id="id2" />
+
+#### Built-in `default` plugin
+
+Use a Qiskit-chosen default method for routing. As of Qiskit 2.0, the chosen algorithm is the same as [Built-in sabre plugin](#transpiler-preset-stage-routing-sabre), though in practice, usually the [built-in default layout-stage plugin](#transpiler-preset-stage-layout-default) will run the Sabre-based routing algorithm, and the routing stage will only be used to run [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout").
 
 <span id="built-in-none-plugin" />
 
@@ -347,22 +354,6 @@ The optimization level only affects the amount of work the [`VF2PostLayout`](qis
 
 This method typically has poor output quality.
 
-<span id="built-in-stochastic-plugin" />
-
-<span id="transpiler-preset-stage-routing-stochastic" />
-
-#### Built-in `stochastic` plugin
-
-<Admonition title="Deprecated since version 1.3" type="danger">
-  Use [Built-in sabre plugin](#transpiler-preset-stage-routing-sabre) instead.
-</Admonition>
-
-Uses the [`StochasticSwap`](qiskit.transpiler.passes.StochasticSwap "qiskit.transpiler.passes.StochasticSwap") algorithm to route. In short, this stratifies the circuit into layers, then uses a stochastic algorithm to find a permutation that will allow the layer to execute, and a series of swaps that will implement that permutation in a hardware-valid way.
-
-The optimization level affects the number of stochastic trials used for each layer, and the amount of work spent in [`VF2PostLayout`](qiskit.transpiler.passes.VF2PostLayout "qiskit.transpiler.passes.VF2PostLayout") to optimize the initial layout.
-
-This was Qiskit’s primary routing algorithm for several years, until approximately 2021. Now, it is reliably beaten in runtime and output quality by [Qiskit’s custom Sabre-based routing algorithm](#transpiler-preset-stage-routing-sabre).
-
 <span id="built-in-lookahead-plugin" />
 
 <span id="transpiler-preset-stage-routing-lookahead" />
@@ -379,7 +370,7 @@ In practice, [the “sabre” plugin](#transpiler-preset-stage-routing-sabre) ru
 
 <span id="transpiler-preset-stage-routing-sabre" />
 
-<span id="id2" />
+<span id="id3" />
 
 #### Built-in `sabre` plugin
 
@@ -403,20 +394,23 @@ This is almost invariably the best-performing built-in plugin, and the one Qiski
 
 The translation stage is responsible for rewriting all gates in the circuit into ones that are supported by the target ISA. For example, if a `cx` is requested on hardware qubits 0 and 1, but the ISA only contains a `cz` operation on those qubits, the translation stage must find a way of representing the `cx` gate using the `cz` and available one-qubit gates.
 
-<Admonition title="Note" type="note">
-  In Qiskit 1.x, translation plugins need not output gates with the correct directionality, provided the gate exists with opposite directionality on the given qubit pair. For example, if `cx(0, 1)` is ISA-supported, the translation stage can output `cx(1, 0)`.
-
-  This is likely to change in later versions of Qiskit.
-</Admonition>
-
 The translation stage is called before entering the optimization stage. Optimization plugins (including Qiskit’s built-in plugins) may also use the translation stage as a “fixup” stage after the optimization loop, if the optimization loop returns a circuit that includes non-ISA gates. This latter situation is fairly common; the optimization loop may only be concerned with minimizing properties like “number of two-qubit gates”, and will leave its output in terms of locally equivalent gates, which the translation stage can easily rewrite without affecting the target optimization properties. This allows easier separation of concerns between the two stages. Some optimization plugins may be stricter in their output, and so this follow-up to the translation stage may no longer be necessary.
 
 When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins), the entry point for `translation` is `qiskit.transpiler.translation`. The built-in plugins are:
 
 | Method                                                        | Summary                                                                                                 |
 | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [default](#transpiler-preset-stage-translation-translator)    | Use a Qiskit-chosen default translation method.                                                         |
 | [translator](#transpiler-preset-stage-translation-translator) | Symbolic translation of gates to the target basis using known equivalences.                             |
 | [synthesis](#transpiler-preset-stage-translation-synthesis)   | Collect each run of one- and two-qubit gates into a matrix representation, and resynthesize from there. |
+
+<span id="transpiler-preset-stage-translation-default" />
+
+<span id="id5" />
+
+#### Built-in `default` plugin
+
+Use a Qiskit-chosen default method for translation. As of Qiskit 2.0, this is the same as [Built-in translator plugin](#transpiler-preset-stage-translation-translator), but the chosen algorithm might change during the 2.x series, either for all targets, or only for certain classes of target.
 
 <span id="built-in-synthesis-plugin" />
 
@@ -468,7 +462,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-optimization-default" />
 
-<span id="id5" />
+<span id="id7" />
 
 #### Built-in `default` plugin
 
@@ -512,7 +506,7 @@ When writing [stage plugins](transpiler_plugins#transpiler-preset-stage-plugins)
 
 <span id="transpiler-preset-stage-scheduling-default" />
 
-<span id="id6" />
+<span id="id8" />
 
 #### Built-in `default` plugin
 
@@ -863,7 +857,7 @@ target.build_coupling_map('cz').draw()
 
 After the circuit has been translated to the target basis, mapped to the device, and optimized, a scheduling phase can be applied to optionally account for all the idle time in the circuit. At a high level, the scheduling can be thought of as inserting delays into the circuit to account for idle time on the qubits between the execution of instructions. For example, if we start with a circuit such as:
 
-![Diagram illustrating the previously described circuit.](/images/api/qiskit/transpiler-6.avif)
+![Diagram illustrating the previously described circuit.](/images/api/qiskit/transpiler-8.avif)
 
 we can then call [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") on it with `scheduling_method` set:
 
@@ -881,160 +875,13 @@ circ = transpile(ghz, backend, scheduling_method="asap")
 circ.draw(output='mpl')
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit/transpiler-7.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit/transpiler-9.avif)
 
 You can see here that the transpiler inserted [`Delay`](circuit#qiskit.circuit.Delay "qiskit.circuit.Delay") instructions to account for idle time on each qubit. To get a better idea of the timing of the circuit we can also look at it with the `timeline.draw()` function:
 
-![Output from circuit timeline drawer.](/images/api/qiskit/transpiler-8.avif)
+![Output from circuit timeline drawer.](/images/api/qiskit/transpiler-10.avif)
 
 The scheduling of a circuit involves two parts: analysis and constraint mapping, followed by a padding pass. The first part requires running a scheduling analysis pass such as `ALAPSchedulingAnalysis` or `ASAPSchedulingAnalysis` which analyzes the circuit and records the start time of each instruction in the circuit using a scheduling algorithm (“as late as possible” for `ALAPSchedulingAnalysis` and “as soon as possible” for `ASAPSchedulingAnalysis`) in the property set. Once the circuit has an initial scheduling, additional passes can be run to account for any timing constraints on the target backend, such as alignment constraints. This is typically done with the [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule") pass which will adjust the scheduling set in the property set to the constraints of the target backend. Once all the scheduling and adjustments/rescheduling are finished, a padding pass, such as [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay") or [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") is run to insert the instructions into the circuit, which completes the scheduling.
-
-### Scheduling analysis with control-flow instructions
-
-When running scheduling analysis passes on a circuit, you must keep in mind that there are additional constraints on classical conditions and control flow instructions. This section covers the details of these additional constraints that any scheduling pass will need to account for.
-
-#### Topological node ordering in scheduling
-
-The DAG representation of `QuantumCircuit` respects the node ordering in the classical register wires, though theoretically two conditional instructions conditioned on the same register could commute, i.e. read-access to the classical register doesn’t change its state.
-
-```text
-qc = QuantumCircuit(2, 1)
-qc.delay(100, 0)
-qc.x(0).c_if(0, True)
-qc.x(1).c_if(0, True)
-```
-
-The scheduler SHOULD comply with the above topological ordering policy of the DAG circuit. Accordingly, the asap-scheduled circuit will become
-
-```text
-     ┌────────────────┐   ┌───┐
-q_0: ┤ Delay(100[dt]) ├───┤ X ├──────────────
-     ├────────────────┤   └─╥─┘      ┌───┐
-q_1: ┤ Delay(100[dt]) ├─────╫────────┤ X ├───
-     └────────────────┘     ║        └─╥─┘
-                       ┌────╨────┐┌────╨────┐
-c: 1/══════════════════╡ c_0=0x1 ╞╡ c_0=0x1 ╞
-                       └─────────┘└─────────┘
-```
-
-Note that this scheduling might be inefficient in some cases, because the second conditional operation could start without waiting for the 100 dt delay. However, any additional optimization should be done in a different pass, not to break the topological ordering of the original circuit.
-
-#### Realistic control flow scheduling (respecting microarchitecture)
-
-In the dispersive QND readout scheme, the qubit (Q) is measured by sending a microwave stimulus, followed by a resonator ring-down (depopulation). This microwave signal is recorded in the buffer memory (B) with the hardware kernel, then a discriminated (D) binary value is moved to the classical register (C). A sequence from t0 to t1 of the measure instruction interval could be modeled as follows:
-
-```text
-Q ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-B ░░▒▒▒▒▒▒▒▒░░░░░░░░░
-D ░░░░░░░░░░▒▒▒▒▒▒░░░
-C ░░░░░░░░░░░░░░░░▒▒░
-```
-
-However, the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") representation is not accurate enough to represent this model. In the circuit representation, the corresponding [`circuit.Qubit`](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit") is occupied by the stimulus microwave signal during the first half of the interval, and the [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit") is only occupied at the very end of the interval.
-
-The lack of precision representing the physical model may induce edge cases in the scheduling:
-
-```text
-        ┌───┐
-q_0: ───┤ X ├──────
-        └─╥─┘   ┌─┐
-q_1: ─────╫─────┤M├
-     ┌────╨────┐└╥┘
-c: 1/╡ c_0=0x1 ╞═╩═
-     └─────────┘ 0
-```
-
-In this example, a user may intend to measure the state of `q_1` after the [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") is applied to `q_0`. This is the correct interpretation from the viewpoint of topological node ordering, i.e. The [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate") node comes in front of the [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure") node. However, according to the measurement model above, the data in the register is unchanged during the application of the stimulus, so two nodes are simultaneously operated. If one tries to alap-schedule this circuit, it may return following circuit:
-
-```text
-     ┌────────────────┐   ┌───┐
-q_0: ┤ Delay(500[dt]) ├───┤ X ├──────
-     └────────────────┘   └─╥─┘   ┌─┐
-q_1: ───────────────────────╫─────┤M├
-                       ┌────╨────┐└╥┘
-c: 1/══════════════════╡ c_0=0x1 ╞═╩═
-                       └─────────┘ 0
-```
-
-Note that there is no delay on the `q_1` wire, and the measure instruction immediately starts after t=0, while the conditional gate starts after the delay. It looks like the topological ordering between the nodes is flipped in the scheduled view. This behavior can be understood by considering the control flow model described above,
-
-```text
-: Quantum Circuit, first-measure
-0 ░░░░░░░░░░░░▒▒▒▒▒▒░
-1 ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-
-: In wire q0
-Q ░░░░░░░░░░░░░░░▒▒▒░
-C ░░░░░░░░░░░░▒▒░░░░░
-
-: In wire q1
-Q ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-B ░░▒▒▒▒▒▒▒▒░░░░░░░░░
-D ░░░░░░░░░░▒▒▒▒▒▒░░░
-C ░░░░░░░░░░░░░░░░▒▒░
-```
-
-Since there is no qubit register overlap between Q0 and Q1, the node ordering is determined by the shared classical register C. As you can see, the execution order is still preserved on C, i.e. read C then apply `XGate`, finally store the measured outcome in C. But because `DAGOpNode` cannot define different durations for the associated registers, the time ordering of the two nodes is inverted.
-
-This behavior can be controlled by `clbit_write_latency` and `conditional_latency`. `clbit_write_latency` determines the delay of the register write-access from the beginning of the measure instruction (t0), while `conditional_latency` determines the delay of conditional gate operations with respect to t0, which is determined by the register read-access. This information is accessible in the backend configuration and should be copied to the pass manager property set before the pass is called.
-
-Due to default latencies, the alap-scheduled circuit of above example may become
-
-```text
-        ┌───┐
-q_0: ───┤ X ├──────
-        └─╥─┘   ┌─┐
-q_1: ─────╫─────┤M├
-     ┌────╨────┐└╥┘
-c: 1/╡ c_0=0x1 ╞═╩═
-     └─────────┘ 0
-```
-
-If the backend microarchitecture supports smart scheduling of the control flow instructions, such as separately scheduling qubits and classical registers, the insertion of the delay yields an unnecessarily longer total execution time.
-
-```text
-: Quantum Circuit, first-XGate
-0 ░▒▒▒░░░░░░░░░░░░░░░
-1 ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-
-: In wire q0
-Q ░▒▒▒░░░░░░░░░░░░░░░
-C ░░░░░░░░░░░░░░░░░░░ (zero latency)
-
-: In wire q1
-Q ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-C ░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░ (zero latency, scheduled after C0 read-access)
-```
-
-However, this result is much more intuitive in the topological ordering view. If a finite conditional latency value is provided, for example, 30 dt, the circuit is scheduled as follows:
-
-```text
-     ┌───────────────┐   ┌───┐
-q_0: ┤ Delay(30[dt]) ├───┤ X ├──────
-     ├───────────────┤   └─╥─┘   ┌─┐
-q_1: ┤ Delay(30[dt]) ├─────╫─────┤M├
-     └───────────────┘┌────╨────┐└╥┘
-c: 1/═════════════════╡ c_0=0x1 ╞═╩═
-                      └─────────┘ 0
-```
-
-with the timing model:
-
-```text
-: Quantum Circuit, first-xgate
-0 ░░▒▒▒░░░░░░░░░░░░░░░
-1 ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-
-: In wire q0
-Q ░░▒▒▒░░░░░░░░░░░░░░░
-C ░▒░░░░░░░░░░░░░░░░░░ (30dt latency)
-
-: In wire q1
-Q ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-C ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
-```
-
-See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for more details.
 
 ## Transpiler API
 
@@ -1079,7 +926,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### TranspilerError
 
-<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L24-L25" signature="qiskit.transpiler.TranspilerError(*message)" modifiers="exception">
   Bases: [`TranspilerAccessError`](#qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.exceptions.TranspilerAccessError")
 
   Exceptions raised during transpilation.
@@ -1089,7 +936,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### TranspilerAccessError
 
-<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.TranspilerAccessError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L20-L21" signature="qiskit.transpiler.TranspilerAccessError(*message)" modifiers="exception">
   Bases: [`PassManagerError`](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
 
   DEPRECATED: Exception of access error in the transpiler passes.
@@ -1099,7 +946,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### CouplingError
 
-<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.CouplingError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L28-L38" signature="qiskit.transpiler.CouplingError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Base class for errors raised by the coupling graph object.
@@ -1109,7 +956,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### LayoutError
 
-<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
+<Class id="qiskit.transpiler.LayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L41-L51" signature="qiskit.transpiler.LayoutError(*msg)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the layout object.
@@ -1119,7 +966,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### CircuitTooWideForTarget
 
-<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.CircuitTooWideForTarget" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L54-L55" signature="qiskit.transpiler.CircuitTooWideForTarget(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised if the circuit is too wide for the target.
@@ -1129,7 +976,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 #### InvalidLayoutError
 
-<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
+<Class id="qiskit.transpiler.InvalidLayoutError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/exceptions.py#L58-L59" signature="qiskit.transpiler.InvalidLayoutError(*message)" modifiers="exception">
   Bases: [`TranspilerError`](#qiskit.transpiler.TranspilerError "qiskit.transpiler.exceptions.TranspilerError")
 
   Error raised when a user provided layout is invalid.
