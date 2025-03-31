@@ -126,7 +126,6 @@ export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ...QISKIT_REMOVED_PAGES.map((link) => `\/api\/qiskit/1.4\/${link}(|#.*|$)`),
   "/api/qiskit/1.4/qiskit.circuit.QuantumCircuit#add_calibration",
   "/api/qiskit/1.4/compiler#qiskit.compiler.assemble",
-  "/api/qiskit/1.4/compiler#circuit-and-pulse-compilation-functions",
   // End of TODO(#2761)
 ];
 
