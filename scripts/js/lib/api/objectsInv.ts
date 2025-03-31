@@ -53,6 +53,7 @@ function shouldIncludeEntry(entry: ObjectsInvEntry, isCApi?: boolean): boolean {
   if (entry.name.startsWith("struct_")) return false;
 
   // Not specified: Include both C and Python entries.
+  // This happens during link checking.
   if (isCApi === undefined) return true;
 
   const isCPage = entry.uri.startsWith(C_API_BASE_PATH);
