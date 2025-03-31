@@ -56,9 +56,7 @@ function shouldIncludeEntry(entry: ObjectsInvEntry, isCApi?: boolean): boolean {
   if (isCApi === undefined) return true;
 
   const isCPage = entry.uri.startsWith(C_API_BASE_PATH);
-  if (isCApi && !isCPage) return false;
-  if (!isCApi && isCPage) return false;
-  return true;
+  return isCApi === isCPage;
 }
 
 export type ObjectsInvEntry = {
