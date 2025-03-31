@@ -76,7 +76,7 @@ async function determineFilePaths(
 ): Promise<[string[], string, ObjectsInv | undefined]> {
   const maybeObjectsInv = await (pkg.isProblematicLegacyQiskit()
     ? undefined
-    : ObjectsInv.fromFile(htmlPath, pkg.isCApi()));
+    : ObjectsInv.fromFile(htmlPath, pkg.language));
 
   const extraFiles = pkg.isCApi()
     ? ["cdoc/**.html"]

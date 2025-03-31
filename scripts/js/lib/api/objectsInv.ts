@@ -43,7 +43,12 @@ const ENTRIES_TO_EXCLUDE = [
 
 const C_API_BASE_PATH = "cdoc/";
 
-function shouldIncludeEntry(entry: ObjectsInvEntry, isCApi?: boolean): boolean {
+type PackageLanguage = "Python" | "C" | "any";
+
+function shouldIncludeEntry(
+  entry: ObjectsInvEntry,
+  packageLanguage: PackageLanguage,
+): boolean {
   if (ENTRIES_TO_EXCLUDE.some((condition) => entry.uri.match(condition))) {
     return false;
   }
@@ -54,9 +59,10 @@ function shouldIncludeEntry(entry: ObjectsInvEntry, isCApi?: boolean): boolean {
 
   // Not specified: Include both C and Python entries.
   // This happens during link checking.
-  if (isCApi === undefined) return true;
+  if (packageLanguage === "any") return true;
 
   const isCPage = entry.uri.startsWith(C_API_BASE_PATH);
+  const isCApi = packageLanguage === "C";
   return isCApi === isCPage;
 }
 
@@ -89,7 +95,7 @@ export class ObjectsInv {
    */
   static async fromFile(
     directoryPath: string,
-    isCApi?: boolean,
+    packageLanguage: PackageLanguage,
   ): Promise<ObjectsInv> {
     const path = join(directoryPath, "objects.inv");
     let buffer = await readFile(path);
@@ -122,10 +128,10 @@ export class ObjectsInv {
         dispname: parts[5],
       };
       entry.uri = ObjectsInv.#expandUri(entry.uri, entry.name);
-      if (!shouldIncludeEntry(entry, isCApi)) {
+      if (!shouldIncludeEntry(entry, packageLanguage)) {
         continue;
       }
-      if (isCApi) {
+      if (packageLanguage === "C") {
         entry.uri = ObjectsInv.#transformCApiUri(entry.uri, entry.name);
       }
 
