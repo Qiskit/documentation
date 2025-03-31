@@ -1,0 +1,196 @@
+---
+title: SolovayKitaev (v1.4)
+description: API reference for qiskit.transpiler.passes.SolovayKitaev in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.SolovayKitaev
+---
+
+# SolovayKitaev
+
+<Class id="qiskit.transpiler.passes.SolovayKitaev" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L41-L189" signature="qiskit.transpiler.passes.SolovayKitaev(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Approximately decompose 1q gates to a discrete basis using the Solovay-Kitaev algorithm.
+
+  The Solovay-Kitaev theorem \[1] states that any single qubit gate can be approximated to arbitrary precision by a set of fixed single-qubit gates, if the set generates a dense subset in $SU(2)$. This is an important result, since it means that any single-qubit gate can be expressed in terms of a discrete, universal gate set that we know how to implement fault-tolerantly. Therefore, the Solovay-Kitaev algorithm allows us to take any non-fault tolerant circuit and rephrase it in a fault-tolerant manner.
+
+  This implementation of the Solovay-Kitaev algorithm is based on \[2].
+
+  For example, the following circuit
+
+  ```text
+       ┌─────────┐
+  q_0: ┤ RX(0.8) ├
+       └─────────┘
+  ```
+
+  can be decomposed into
+
+  ```text
+  global phase: 7π/8
+       ┌───┐┌───┐┌───┐
+  q_0: ┤ H ├┤ T ├┤ H ├
+       └───┘└───┘└───┘
+  ```
+
+  with an L2-error of approximately 0.01.
+
+  **Examples**
+
+  Per default, the basis gate set is `["t", "tdg", "h"]`:
+
+  ```python
+  import numpy as np
+  from qiskit.circuit import QuantumCircuit
+  from qiskit.transpiler.passes.synthesis import SolovayKitaev
+  from qiskit.quantum_info import Operator
+
+  circuit = QuantumCircuit(1)
+  circuit.rx(0.8, 0)
+
+  print("Original circuit:")
+  print(circuit.draw())
+
+  skd = SolovayKitaev(recursion_degree=2)
+
+  discretized = skd(circuit)
+
+  print("Discretized circuit:")
+  print(discretized.draw())
+
+  print("Error:", np.linalg.norm(Operator(circuit).data - Operator(discretized).data))
+  ```
+
+  ```text
+  Original circuit:
+     ┌─────────┐
+  q: ┤ Rx(0.8) ├
+     └─────────┘
+  Discretized circuit:
+  global phase: 7π/8
+     ┌───┐┌───┐┌───┐
+  q: ┤ H ├┤ T ├┤ H ├
+     └───┘└───┘└───┘
+  Error: 2.828408279166474
+  ```
+
+  For individual basis gate sets, the `generate_basic_approximations` function can be used:
+
+  ```python
+  from qiskit.synthesis import generate_basic_approximations
+  from qiskit.transpiler.passes import SolovayKitaev
+
+  basis = ["s", "sdg", "t", "tdg", "z", "h"]
+  approx = generate_basic_approximations(basis, depth=3)
+
+  skd = SolovayKitaev(recursion_degree=2, basic_approximations=approx)
+  ```
+
+  **References**
+
+  **\[1]: Kitaev, A Yu (1997). Quantum computations: algorithms and error correction.**
+
+  Russian Mathematical Surveys. 52 (6): 1191–1249. [Online](https://iopscience.iop.org/article/10.1070/RM1997v052n06ABEH002155).
+
+  **\[2]: Dawson, Christopher M.; Nielsen, Michael A. (2005) The Solovay-Kitaev Algorithm.**
+
+  [arXiv:quant-ph/0505030](https://arxiv.org/abs/quant-ph/0505030).
+
+  **Parameters**
+
+  *   **recursion\_degree** – The recursion depth for the Solovay-Kitaev algorithm. A larger recursion depth increases the accuracy and length of the decomposition.
+  *   **basic\_approximations** – The basic approximations for the finding the best discrete decomposition at the root of the recursion. If a string, it specifies the `.npy` file to load the approximations from. If a dictionary, it contains `{label: SO(3)-matrix}` pairs. If None, a default based on the H, T and Tdg gates up to combinations of depth 10 is generated.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaev.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.SolovayKitaev.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py#L154-L189" signature="run(dag)">
+    Run the `SolovayKitaev` pass on dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – The input dag.
+
+    **Returns**
+
+    Output dag with 1q gates synthesized in the discrete target basis.
+
+    **Raises**
+
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a gates does not have to\_matrix
+
+    **Return type**
+
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.SolovayKitaev.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

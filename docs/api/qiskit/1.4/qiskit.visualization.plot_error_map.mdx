@@ -1,0 +1,52 @@
+---
+title: plot_error_map (v1.4)
+description: API reference for qiskit.visualization.plot_error_map in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_error_map
+---
+
+<span id="qiskit-visualization-plot-error-map" />
+
+# qiskit.visualization.plot\_error\_map
+
+<Function id="qiskit.visualization.plot_error_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/gate_map.py#L1286-L1539" signature="qiskit.visualization.plot_error_map(backend, figsize=(15, 12), show_title=True, qubit_coordinates=None)">
+  Plots the error map of a given backend.
+
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    The function `plot_error_map` will stop supporting inputs of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") in the backend parameter in a future release no earlier than 2.0. [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") is deprecated and implementations should move to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
+  </Admonition>
+
+  **Parameters**
+
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Given backend.
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – Figure size in inches.
+  *   **show\_title** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Show the title or not.
+  *   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
+
+  **Returns**
+
+  A matplotlib figure showing error map.
+
+  **Return type**
+
+  Figure
+
+  **Raises**
+
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – The backend does not provide gate errors for the ‘sx’ gate.
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If matplotlib or seaborn is not installed.
+
+  **Example**
+
+  ```python
+  from qiskit.visualization import plot_error_map
+  from qiskit.providers.fake_provider import GenericBackendV2
+
+  backend = GenericBackendV2(num_qubits=5)
+  plot_error_map(backend)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_error_map-1.avif)
+</Function>
+

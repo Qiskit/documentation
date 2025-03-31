@@ -1,0 +1,52 @@
+---
+title: HalfAdderSynthesisDefault (v1.4)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault
+---
+
+# HalfAdderSynthesisDefault
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1358-L1401" signature="qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  The default half-adder (no carry in, but a carry out qubit) synthesis.
+
+  If we have an auxiliary qubit available, the Cuccaro ripple-carry adder uses $O(n)$ CX gates and 1 auxiliary qubit, whereas the Vedral ripple-carry uses more CX and $n-1$ auxiliary qubits. The QFT-based adder uses no auxiliary qubits, but $O(n^2)$, hence it is only used if no auxiliary qubits are available.
+
+  This plugin name is:`HalfAdder.default` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  If at least one clean auxiliary qubit is available, the [`HalfAdderSynthesisC04`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisC04") is used, otherwise [`HalfAdderSynthesisD00`](qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00 "qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisD00").
+
+  The plugin supports the following plugin-specific options:
+
+  *   `num_clean_ancillas`: The number of clean auxiliary qubits available.
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.HalfAdderSynthesisDefault.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1378-L1401" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given Operation.
+
+    **Parameters**
+
+    *   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object.
+    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend in case synthesis is done on a physical circuit.
+    *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend.
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of qubits over which the operation is defined in case synthesis is done on a physical circuit.
+    *   **options** – Additional method-specific optional kwargs.
+
+    **Returns**
+
+    **The quantum circuit representation of the Operation**
+
+    when successful, and `None` otherwise.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
+

@@ -1,0 +1,369 @@
+---
+title: timeline_drawer (v1.4)
+description: API reference for qiskit.visualization.timeline_drawer in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.timeline_drawer
+---
+
+<span id="qiskit-visualization-timeline-drawer" />
+
+# qiskit.visualization.timeline\_drawer
+
+<Function id="qiskit.visualization.timeline_drawer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/timeline/interface.py#L33-L443" signature="qiskit.visualization.timeline_drawer(program, style=None, time_range=None, disable_bits=None, show_clbits=None, idle_wires=None, plot_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None, target=None, *, show_idle=None, show_barriers=None)">
+  Generate visualization data for scheduled circuit programs.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The `target` parameter needs to be specified in Qiskit 2.0 in order to get the instruction durations.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    `qiskit.visualization.timeline.interface.draw()`’s argument `show_barriers` is deprecated as of qiskit 1.4. It will be removed no earlier than 3 months after the release date. Instead, use the argument `plot_barriers`, which behaves identically.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    `qiskit.visualization.timeline.interface.draw()`’s argument `show_idle` is deprecated as of qiskit 1.4. It will be removed no earlier than 3 months after the release date. Instead, use the argument `idle_wires`, which behaves identically.
+  </Admonition>
+
+  **Parameters**
+
+  *   **program** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Program to visualize. This program should be a QuantumCircuit which is transpiled with a scheduling\_method, thus containing gate time information.
+
+  *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
+
+  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – Set horizontal axis limit.
+
+  *   **disable\_bits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[Bits]*) – List of qubits of classical bits not shown in the output image.
+
+  *   **show\_clbits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – A control property to show classical bits. Set True to show classical bits.
+
+  *   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – A control property to show idle timeline. Set True to show timeline without gates.
+
+  *   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – A control property to show barrier instructions. Set True to show barrier instructions.
+
+  *   **show\_delays** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – A control property to show delay instructions. Set True to show delay instructions.
+
+  *   **show\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – A control property to show annotations, i.e. name, of gates. Set True to show annotations.
+
+  *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+
+      Name of plotter API to generate an output image. One of following APIs should be specified:
+
+      ```python
+      mpl: Matplotlib API
+          Matplotlib API to generate 2D image. Timelines are placed along y axis with
+          vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+      ```
+
+      axis and style kwargs may depend on the plotter.
+
+  *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters uses given axis instead of internally initializing a figure object. This object format depends on the plotter. See plotters section for details.
+
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – If provided the output image is dumped into a file under the filename.
+
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.target.Target") *| None*) – The target for the backend the timeline is being generated for.
+
+  *   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – DEPRECATED.
+
+  *   **show\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – DEPRECATED.
+
+  **Returns**
+
+  Visualization output data.
+
+  The returned data type depends on the plotter. If matplotlib family is specified, this will be a matplotlib.pyplot.Figure data. The returned data is generated by the .get\_image method of the specified plotter API.
+
+  **Raises**
+
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – When required visualization package is not installed.
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API is specified.
+
+  <span id="style-dict-doc" />
+
+  **Style Dict Details**
+
+  The stylesheet kwarg contains numerous options that define the style of the output timeline visualization. The stylesheet options can be classified into formatter, generator and layout. Those options available in the stylesheet are defined below:
+
+  **Parameters**
+
+  *   **formatter.general.fig\_width** – Width of output image (default 14).
+
+  *   **formatter.general.fig\_unit\_height** – Height of output image per timeline. The sum of all timeline becomes the height of the output image (default 0.8).
+
+  *   **formatter.general.dpi** – Dot per inch of image if filename is set (default 150).
+
+  *   **formatter.margin.top** – Margin from the top boundary of the figure canvas to the zero line of the first time slot (default 0.5).
+
+  *   **formatter.margin.bottom** – Margin from the bottom boundary of the figure canvas to the zero lien of the last time slot (default 0.5).
+
+  *   **formatter.margin.left\_percent** – Margin from the left boundary of the figure canvas to the left limit of the horizontal axis. The value is in units of percentage of the whole program duration. If the duration is 100 and the value of 0.5 is set, this keeps left margin of 5 (default 0.02).
+
+  *   **formatter.margin.right\_percent** – Margin from the right boundary of the figure canvas to the right limit of the horizontal axis. The value is in units of percentage of the whole program duration. If the duration is 100 and the value of 0.5 is set, this keeps right margin of 5 (default 0.02).
+
+  *   **formatter.margin.link\_interval\_percent** – Allowed overlap of gate links. If multiple gate links are drawing within this range, links are horizontally shifted not to overlap with each other. The value is in units of percentage of the whole program duration (default 0.01).
+
+  *   **formatter.time\_bucket.edge\_dt** – The length of round edge of gate boxes. Gate boxes are smoothly faded in and out from the zero line. This value is in units of the system cycle time dt (default 10).
+
+  *   **formatter.margin.minimum\_duration** – Minimum scheduled circuit duration. If the duration of input circuit is below this value, horizontal limit is set based on this value. This value is in units of the system cycle time dt (default 50).
+
+  *   **formatter.color.background** – Color code of the face color of canvas (default #FFFFFF).
+
+  *   **formatter.color.timeslot** – Face color of the time slot box (default #DDDDDD).
+
+  *   **formatter.color.gate\_name** – Text color of the gate name annotations (default #000000).
+
+  *   **formatter.color.bit\_name** – Text color of the bit label annotations (default #000000).
+
+  *   **formatter.color.barrier** – Line color of barriers (default #222222).
+
+  *   **formatter.color.gates** –
+
+      A dictionary of the gate box or gate symbol colors to use for each element type in the output visualization. The default values are:
+
+      ```python
+      {
+          'u0': '#FA74A6',
+          'u1': '#000000',
+          'u2': '#FA74A6',
+          'u3': '#FA74A6',
+          'id': '#05BAB6',
+          'sx': '#FA74A6',
+          'sxdg': '#FA74A6',
+          'x': '#05BAB6',
+          'y': '#05BAB6',
+          'z': '#05BAB6',
+          'h': '#6FA4FF',
+          'cx': '#6FA4FF',
+          'cy': '#6FA4FF',
+          'cz': '#6FA4FF',
+          'swap': '#6FA4FF',
+          's': '#6FA4FF',
+          'sdg': '#6FA4FF',
+          'dcx': '#6FA4FF',
+          'iswap': '#6FA4FF',
+          't': '#BB8BFF',
+          'tdg': '#BB8BFF',
+          'r': '#BB8BFF',
+          'rx': '#BB8BFF',
+          'ry': '#BB8BFF',
+          'rz': '#000000',
+          'reset': '#808080',
+          'measure': '#808080'
+      }
+      ```
+
+      You must specify all the necessary values if using this. If a gate name is not specified, the color in formatter.color.default\_gate is applied.
+
+  *   **formatter.color.default\_gate** – Default gate color. This color is applied when a gate name to visualize is not contained in the dictionary of formatter.color.gates (default #BB8BFF).
+
+  *   **formatter.latex\_symbol.gates** –
+
+      A dictionary of latex representation of gate names to use for each element type in the output visualization. The default values are:
+
+      ```python
+      {
+          'u0': r'{\rm U}_0',
+          'u1': r'{\rm U}_1',
+          'u2': r'{\rm U}_2',
+          'u3': r'{\rm U}_3',
+          'id': r'{\rm Id}',
+          'x': r'{\rm X}',
+          'y': r'{\rm Y}',
+          'z': r'{\rm Z}',
+          'h': r'{\rm H}',
+          'cx': r'{\rm CX}',
+          'cy': r'{\rm CY}',
+          'cz': r'{\rm CZ}',
+          'swap': r'{\rm SWAP}',
+          's': r'{\rm S}',
+          'sdg': r'{\rm S}^\dagger',
+          'sx': r'{\rm √X}',
+          'sxdg': r'{\rm √X}^\dagger',
+          'dcx': r'{\rm DCX}',
+          'iswap': r'{\rm iSWAP}',
+          't': r'{\rm T}',
+          'tdg': r'{\rm T}^\dagger',
+          'r': r'{\rm R}',
+          'rx': r'{\rm R}_x',
+          'ry': r'{\rm R}_y',
+          'rz': r'{\rm R}_z',
+          'reset': r'|0\rangle',
+          'measure': r'{\rm Measure}'
+      }
+      ```
+
+      You must specify all the necessary values if using this. There is no provision for passing an incomplete dict in.
+
+  *   **formatter.latex\_symbol.frame\_change** – Latex representation of the frame change symbol (default r\`circlearrowleft\`).
+
+  *   **formatter.unicode\_symbol.frame\_change** – Unicode representation of the frame change symbol (default u’u21BA’).
+
+  *   **formatter.box\_height.gate** – Height of gate box (default 0.5).
+
+  *   **formatter.box\_height.timeslot** – Height of time slot (default 0.6).
+
+  *   **formatter.layer.gate** – Layer index of gate boxes. Larger number comes in the front of the output image (default 3).
+
+  *   **formatter.layer.timeslot** – Layer index of time slots. Larger number comes in the front of the output image (default 0).
+
+  *   **formatter.layer.gate\_name** – Layer index of gate name annotations. Larger number comes in the front of the output image (default 5).
+
+  *   **formatter.layer.bit\_name** – Layer index of bit labels. Larger number comes in the front of the output image (default 5).
+
+  *   **formatter.layer.frame\_change** – Layer index of frame change symbols. Larger number comes in the front of the output image (default 4).
+
+  *   **formatter.layer.barrier** – Layer index of barrier lines. Larger number comes in the front of the output image (default 1).
+
+  *   **formatter.layer.gate\_link** – Layer index of gate link lines. Larger number comes in the front of the output image (default 2).
+
+  *   **formatter.alpha.gate** – Transparency of gate boxes. A value in the range from 0 to 1. The value 0 gives completely transparent boxes (default 1.0).
+
+  *   **formatter.alpha.timeslot** – Transparency of time slots. A value in the range from 0 to 1. The value 0 gives completely transparent boxes (default 0.7).
+
+  *   **formatter.alpha.barrier** – Transparency of barrier lines. A value in the range from 0 to 1. The value 0 gives completely transparent lines (default 0.5).
+
+  *   **formatter.alpha.gate\_link** – Transparency of gate link lines. A value in the range from 0 to 1. The value 0 gives completely transparent lines (default 0.8).
+
+  *   **formatter.line\_width.gate** – Line width of the fringe of gate boxes (default 0).
+
+  *   **formatter.line\_width.timeslot** – Line width of the fringe of time slots (default 0).
+
+  *   **formatter.line\_width.barrier** – Line width of barrier lines (default 3).
+
+  *   **formatter.line\_width.gate\_link** – Line width of gate links (default 3).
+
+  *   **formatter.line\_style.barrier** – Line style of barrier lines. This conforms to the line style spec of matplotlib (default ‘-’).
+
+  *   **formatter.line\_style.gate\_link** – Line style of gate link lines. This conforms to the line style spec of matplotlib (default ‘-’).
+
+  *   **formatter.text\_size.gate\_name** – Text size of gate name annotations (default 12).
+
+  *   **formatter.text\_size.bit\_name** – Text size of bit labels (default 15).
+
+  *   **formatter.text\_size.frame\_change** – Text size of frame change symbols (default 18).
+
+  *   **formatter.text\_size.axis\_label** – Text size of axis labels (default 13).
+
+  *   **formatter.label\_offset.frame\_change** – Offset of zero duration gate name annotations from the zero line of time slot (default 0.25).
+
+  *   **formatter.control.show\_idle** – Set True to show time slots without gate (default True).
+
+  *   **formatter.control.show\_clbits** – Set True to show time slots of classical bits (default True).
+
+  *   **formatter.control.show\_barriers** – Set True to show barriers (default True).
+
+  *   **formatter.control.show\_delays** – Set True to show delay boxes (default True).
+
+  *   **generator.gates** – List of callback functions that generates drawings for gates. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the timeline drawer. See `generators` for more details. No default generator is set (default \[]).
+
+  *   **generator.bits** – List of callback functions that generates drawings for bit labels and time slots. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the timeline drawer. See `generators` for more details. No default generator is set (default \[]).
+
+  *   **generator.barriers** – List of callback functions that generates drawings for barriers. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the timeline drawer. See `generators` for more details. No default generator is set (default \[]).
+
+  *   **generator.gate\_links** – List of callback functions that generates drawings for gate links. Arbitrary callback functions satisfying the generator format can be set here. There are some default generators in the timeline drawer. See `generators` for more details. No default generator is set (default \[]).
+
+  *   **layout.bit\_arrange** – Callback function that sorts bits. See `layouts` for more details. No default layout is set. (default None).
+
+  *   **layout.time\_axis\_map** – Callback function that determines the layout of horizontal axis labels. See `layouts` for more details. No default layout is set. (default None).
+
+  *   **program** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) –
+
+  *   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")*] | None*) –
+
+  *   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+
+  *   **disable\_bits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[Bits]*) –
+
+  *   **show\_clbits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **plot\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **show\_delays** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **show\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+
+  *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+
+  *   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)") *| None*) –
+
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) –
+
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.target.Target") *| None*) –
+
+  *   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  *   **show\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) –
+
+  **Examples**
+
+  To visualize a scheduled circuit program, you can call this function with a set of control arguments. Most of the appearance of the output image can be controlled by the stylesheet.
+
+  Drawing with the default stylesheet.
+
+  ```python
+  from qiskit import QuantumCircuit, transpile, schedule
+  from qiskit.visualization.timeline import draw
+  from qiskit.providers.fake_provider import GenericBackendV2
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0,1)
+
+  qc = transpile(qc, GenericBackendV2(5), scheduling_method='alap', layout_method='trivial')
+  draw(qc)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-timeline_drawer-1.avif)
+
+  Drawing with the simple stylesheet.
+
+  ```python
+  from qiskit import QuantumCircuit, transpile, schedule
+  from qiskit.visualization.timeline import draw, IQXSimple
+  from qiskit.providers.fake_provider import GenericBackendV2
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0,1)
+
+  qc = transpile(qc, GenericBackendV2(5), scheduling_method='alap', layout_method='trivial')
+  draw(qc, style=IQXSimple())
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-timeline_drawer-2.avif)
+
+  Drawing with the stylesheet suited for program debugging.
+
+  ```python
+  from qiskit import QuantumCircuit, transpile, schedule
+  from qiskit.visualization.timeline import draw, IQXDebugging
+  from qiskit.providers.fake_provider import GenericBackendV2
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0,1)
+
+  qc = transpile(qc, GenericBackendV2(5), scheduling_method='alap', layout_method='trivial')
+  draw(qc, style=IQXDebugging())
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-timeline_drawer-3.avif)
+
+  You can partially customize a preset stylesheet when call it:
+
+  ```python
+  my_style = {
+      'formatter.general.fig_width': 16,
+      'formatter.general.fig_unit_height': 1
+  }
+  style = IQXStandard(**my_style)
+
+  # draw
+  draw(qc, style=style)
+  ```
+
+  In the same way as above, you can create custom generator or layout functions and update existing stylesheet with custom functions. This feature enables you to control the most of the appearance of the output image without modifying the codebase of the scheduled circuit drawer.
+</Function>
+

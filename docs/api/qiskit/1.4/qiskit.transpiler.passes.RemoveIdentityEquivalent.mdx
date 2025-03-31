@@ -1,0 +1,122 @@
+---
+title: RemoveIdentityEquivalent (v1.4)
+description: API reference for qiskit.transpiler.passes.RemoveIdentityEquivalent in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.RemoveIdentityEquivalent
+---
+
+# RemoveIdentityEquivalent
+
+<Class id="qiskit.transpiler.passes.RemoveIdentityEquivalent" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/remove_identity_equiv.py#L23-L68" signature="qiskit.transpiler.passes.RemoveIdentityEquivalent(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Remove gates with negligible effects.
+
+  Removes gates whose effect is close to an identity operation up to a global phase and up to the specified tolerance. Parameterized gates are not considered by this pass.
+
+  For a cutoff fidelity $f$, this pass removes gates whose average gate fidelity with respect to the identity is below $f$. Concretely, a gate $G$ is removed if $\bar F < f$ where
+
+$$
+\bar{F} = \frac{1 + F_{\text{process}}}{1 + d},\
+
+F_{\text{process}} = \frac{|\mathrm{Tr}(G)|^2}{d^2}
+$$
+
+  where $d = 2^n$ is the dimension of the gate for $n$ qubits.
+
+  Initialize the transpiler pass.
+
+  **Parameters**
+
+  *   **approximation\_degree** – The degree to approximate for the equivalence check. This can be a floating point value between 0 and 1, or `None`. If the value is 1 this does not approximate above floating point precision. For a value \< 1 this is used as a scaling factor for the cutoff fidelity. If the value is `None` this approximates up to the fidelity for the gate specified in `target`.
+  *   **target** – If `approximation_degree` is set to `None` and a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") is provided for this field the tolerance for determining whether an operation is equivalent to identity will be set to the reported error rate in the target. If `approximation_degree` (the default) this has no effect, if `approximation_degree=None` it uses the error rate specified in the `Target` for the gate being evaluated, and a numeric value other than 1 with `target` set is used as a scaling factor of the target’s error rate.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.RemoveIdentityEquivalent.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.RemoveIdentityEquivalent.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.RemoveIdentityEquivalent.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.RemoveIdentityEquivalent.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.RemoveIdentityEquivalent.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/remove_identity_equiv.py#L66-L68" signature="run(dag)">
+    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – the dag on which the pass is run.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – when this is left unimplemented for a pass.
+
+    **Return type**
+
+    [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.RemoveIdentityEquivalent.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+
