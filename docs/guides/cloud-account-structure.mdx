@@ -36,6 +36,12 @@ There are two families of roles: platform management and service access.
 Performing actions often requires a combination of platform management and service access roles.   The `writer` service role allows you to run jobs, for example, but not list instances. To list the instance you need at least the `viewer` role for the platform. Following are some commonly used roles:
 
 - Creating instances requires the `manager` service access role, as well as the `viewer` platform management role on All account management services.
+  <Admonition type="note">
+  Users with the `viewer` platform management role on All account management services can also view all account management services, such as billing. To prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
+  ```cli
+  ibmcloud iam access-group-policy-create <group name> --roles Viewer --resource-type resource-group
+  ```
+  </Admonition>
 - Running jobs requires the `writer` service access role and `viewer` platform management role access to the instance.
 
 When creating an access policy (either on an access group or for a user), you can check which actions are part of the role by reviwing the description. For example `quantum-computing.job.create - Create a job to run a program`.
