@@ -1,0 +1,144 @@
+---
+title: Optimize1qGates (v1.4)
+description: API reference for qiskit.transpiler.passes.Optimize1qGates in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.Optimize1qGates
+---
+
+# Optimize1qGates
+
+<Class id="qiskit.transpiler.passes.Optimize1qGates" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/optimize_1q_gates.py#L34-L364" signature="qiskit.transpiler.passes.Optimize1qGates(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Optimize chains of single-qubit u1, u2, u3 gates by combining them into a single gate.
+
+  Optimize1qGates initializer.
+
+  **Parameters**
+
+  *   **basis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – Basis gates to consider, e.g. \[‘u3’, ‘cx’]. For the effects of this pass, the basis is the set intersection between the basis parameter and the set \{‘u1’,’u2’,’u3’, ‘u’, ‘p’}.
+  *   **eps** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – EPS to check against
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `basis` and `target` are specified then this argument will take precedence and `basis` will be ignored.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.Optimize1qGates.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.Optimize1qGates.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### compose\_u3
+
+  <Function id="qiskit.transpiler.passes.Optimize1qGates.compose_u3" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/optimize_1q_gates.py#L326-L339" signature="compose_u3(theta1, phi1, lambda1, theta2, phi2, lambda2)" modifiers="static">
+    Return a triple theta, phi, lambda for the product.
+
+    **u3(theta, phi, lambda)**
+
+    \= u3(theta1, phi1, lambda1).u3(theta2, phi2, lambda2) = Rz(phi1).Ry(theta1).Rz(lambda1+phi2).Ry(theta2).Rz(lambda2) = Rz(phi1).Rz(phi’).Ry(theta’).Rz(lambda’).Rz(lambda2) = u3(theta’, phi1 + phi’, lambda2 + lambda’)
+
+    Return theta, phi, lambda.
+  </Function>
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.Optimize1qGates.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.Optimize1qGates.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.Optimize1qGates.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/optimize_1q_gates.py#L54-L324" signature="run(dag)">
+    Run the Optimize1qGates pass on dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
+
+    **Returns**
+
+    the optimized DAG.
+
+    **Return type**
+
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+    **Raises**
+
+    [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if `YZY` and `ZYZ` angles do not give same rotation matrix.
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.Optimize1qGates.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+
+  ### yzy\_to\_zyz
+
+  <Function id="qiskit.transpiler.passes.Optimize1qGates.yzy_to_zyz" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/optimize_1q_gates.py#L341-L364" signature="yzy_to_zyz(xi, theta1, theta2, eps=1e-09)" modifiers="static">
+    Express a Y.Z.Y single qubit gate as a Z.Y.Z gate.
+
+    Solve the equation
+
+$$
+$$
+
+    Ry(theta1).Rz(xi).Ry(theta2) = Rz(phi).Ry(theta).Rz(lambda)
+
+    for theta, phi, and lambda.
+
+    Return a solution theta, phi, and lambda.
+  </Function>
+</Class>
+

@@ -1,0 +1,109 @@
+---
+title: Waveform (v1.4)
+description: API reference for qiskit.pulse.library.Waveform in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.library.Waveform
+---
+
+# Waveform
+
+<Class id="qiskit.pulse.library.Waveform" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/library/waveform.py#L24-L136" signature="qiskit.pulse.library.Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)" modifiers="class">
+  Bases: `Pulse`
+
+  A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
+
+  Create new sample pulse command.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.library.waveform.Waveform` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
+  **Parameters**
+
+  *   **samples** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")*]*) – Complex array of the samples in the pulse envelope.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Unique name to identify the pulse.
+  *   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
+  *   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – Passed to parent Pulse
+
+  ## Attributes
+
+  ### duration
+
+  <Attribute id="qiskit.pulse.library.Waveform.duration" />
+
+  ### name
+
+  <Attribute id="qiskit.pulse.library.Waveform.name" />
+
+  ### id
+
+  <Attribute id="qiskit.pulse.library.Waveform.id">
+    Unique identifier for this pulse.
+  </Attribute>
+
+  ### limit\_amplitude
+
+  <Attribute id="qiskit.pulse.library.Waveform.limit_amplitude" attributeValue="True" />
+
+  ### parameters
+
+  <Attribute id="qiskit.pulse.library.Waveform.parameters">
+    Return a dictionary containing the pulse’s parameters.
+  </Attribute>
+
+  ### samples
+
+  <Attribute id="qiskit.pulse.library.Waveform.samples">
+    Return sample values.
+  </Attribute>
+
+  ## Methods
+
+  ### draw
+
+  <Function id="qiskit.pulse.library.Waveform.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/library/pulse.py#L79-L134" signature="draw(style=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)">
+    Plot the interpolated envelope of pulse.
+
+    **Parameters**
+
+    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Any] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+
+    *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+
+    *   **time\_range** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+
+    *   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+
+    *   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+
+    *   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+        Name of plotter API to generate an output image. One of following APIs should be specified:
+
+        ```python
+        mpl2d: Matplotlib API for 2D image generation.
+            Matplotlib API to generate 2D image. Charts are placed along y axis with
+            vertical offset. This API takes matplotlib.axes.Axes as `axis` input.
+        ```
+
+        axis and style kwargs may depend on the plotter.
+
+    *   **axis** (*Any | None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+
+    **Returns**
+
+    Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.pulse.library.Waveform.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/library/waveform.py#L110-L112" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+</Class>
+

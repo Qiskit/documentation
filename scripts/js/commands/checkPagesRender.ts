@@ -145,7 +145,9 @@ zxMain(async () => {
       `💔 ${failures.length} pages crash when rendering. This is usually due to invalid syntax, such as forgetting ` +
         "the closing component tag, like `</Admonition>`. You can sometimes get a helpful error message " +
         "by previewing the docs locally or in CI. See the README for instructions.\n\n" +
-        failures.join("\n"),
+        failures.join("\n") +
+        "\n\nIf your files are platform specific, you should add them to the `LEGACY_ONLY_PAGES` or `CLOUD_ONLY_PAGES` list " +
+        "at the beginning of `scripts/js/commands/checkPagesRender.ts`",
     );
     process.exit(1);
   }
