@@ -31,33 +31,33 @@ There are two families of roles: platform management and service access.
 
 **Platform management** roles define allowable actions, such as assigning user access and creating service instances for managing resources at the platform level. Platform roles also apply to actions that can be taken within the context of account management services, such as inviting and removing users, managing access groups, and managing service IDs.
 
-**Service access** roles define allowable actions, such as calling service APIs or accessing a service's dashboard. These roles are customized based on the service that is selected within the policy. In the context of these guides, the service is always Qiskit Runtime.
+**Service access** roles define allowable actions, such as calling service APIs or accessing a service's dashboard. These roles are customized based on the service that is selected within the policy. In the context of these guides, the service is always IBM Quantum.
 
 Performing actions often requires a combination of platform management and service access roles.   The `writer` service role allows you to run jobs, for example, but not list instances. To list the instance you need at least the `viewer` role for the platform. Following are some commonly used roles:
 
-- Creating instances requires the `manager` service access role, as well as the `viewer` platform management role on All account management services.
+- Creating instances requires the `manager` service access role, as well as the `viewer` platform management role on all account management services.
   <Admonition type="note">
-  Users with the `viewer` platform management role on All account management services can also view all account management services, such as billing. To prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
+  Users with the `viewer` platform management role on all account management services can also view all account management services, such as billing. To prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
   ```cli
   ibmcloud iam access-group-policy-create <group name> --roles Viewer --resource-type resource-group
   ```
   </Admonition>
 - Running jobs requires the `writer` service access role and `viewer` platform management role access to the instance.
 
-When creating an access policy (either on an access group or for a user), you can check which actions are part of the role by reviwing the description. For example `quantum-computing.job.create - Create a job to run a program`.
+When creating an access policy (either on an access group or for a user), you can check which actions are part of the role by reviwing the description. For example: `quantum-computing.job.create - Create a job to run a program`.
 
-The following table provides examples for some of the platform management actions that users can take within the context of the Qiskit Runtime service.
+The following table provides examples for some of the platform management actions that users can take within the context of the IBM Quantum service.
 
-| Platform management role | Qiskit Runtime service                                       |
+| Platform management role | IBM Quantum service                                       |
 |--------------------------|--------------------------------------------------------------|
 | Viewer role              | View instances and credentials                               |
 | Operator role            | View instances and manage credentials                        |
 | Editor role              | Create, delete, edit, and view instances. Manage credentials |
 | Administrator role       | All management actions for services                          |
 
-The following table provides examples for some of the platform management actions that users can take within the context of the Qiskit Runtime service.
+The following table provides examples for some of the platform management actions that users can take within the context of the IBM Quantum service.
 
-| Service access role | Qiskit Runtime actions                                               |
+| Service access role | IBM Quantum actions                                               |
 |---------------------|----------------------------------------------------------------------|
 | Reader              | Perform read-only actions, such as viewing jobs                      |
 | Writer              | Permissions beyond the reader role, including running jobs           |
