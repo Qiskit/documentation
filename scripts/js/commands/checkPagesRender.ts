@@ -30,6 +30,17 @@ const CLOUD_ONLY_PAGES: Set<string> = new Set([
   "docs/guides/cloud-setup.mdx",
   "docs/guides/upgrade-from-open.mdx",
   "docs/guides/view-cost.mdx",
+  "docs/guides/access-groups.mdx",
+  "docs/guides/cloud-account-structure.mdx",
+  "docs/guides/considerations-set-up-runtime.mdx",
+  "docs/guides/custom-roles.mdx",
+  "docs/guides/invite-and-manage-users.mdx",
+  "docs/guides/manage-appid-cloud.mdx",
+  "docs/guides/manage-appid-id-provider.mdx",
+  "docs/guides/manage-cloud-users.mdx",
+  "docs/guides/plans-overview.mdx",
+  "docs/guides/quickstart-org.mdx",
+  "docs/guides/quickstart-steps-org.mdx",
 ]);
 
 const PORT = 3000;
