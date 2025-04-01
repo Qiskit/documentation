@@ -16,7 +16,7 @@ import {
   addLanguageClassToCodeBlocks,
   loadImages,
   handleSphinxDesignCards,
-  maybeSetModuleMetadata,
+  maybeSetPythonModuleMetadata,
   renameAllH1s,
   removeHtmlExtensionsInRelativeLinks,
   removeDownloadSourceCode,
@@ -395,12 +395,12 @@ test("handleFootnotes()", () => {
     <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
 });
 
-test.describe("maybeSetModuleMetadata()", () => {
+test.describe("maybeSetPythonModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta, { isCApi: false });
+    maybeSetPythonModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({});
   });
@@ -412,7 +412,7 @@ test.describe("maybeSetModuleMetadata()", () => {
   ): void => {
     const meta: Metadata = {};
     const doc = CheerioDoc.load(html);
-    maybeSetModuleMetadata(doc.$, doc.$main, meta, { isCApi });
+    maybeSetPythonModuleMetadata(doc.$, doc.$main, meta);
     doc.expectHtml(html);
     expect(meta).toEqual({
       apiType: "module",
@@ -439,14 +439,6 @@ test.describe("maybeSetModuleMetadata()", () => {
     checkModuleFound(
       `<section id="module-qiskit_ibm_provider.transpiler.passes.basis"><h1>Hello</h1></section>`,
       "qiskit_ibm_provider.transpiler.passes.basis",
-    );
-  });
-
-  test("C API group", () => {
-    checkModuleFound(
-      `<section id="group__QkSparseObservable"><h1>Hello</h1></section>`,
-      "QkSparseObservable",
-      true,
     );
   });
 });
@@ -666,7 +658,7 @@ marked as builtins since they are not actually present in any include file this 
   
 <div><p>Construct the identity observable.</p>
 <section id=\"group__QkSparseObservable_1autotoc_md4\">
-<h2>Example<a class=\"headerlink\" href=\"#group__QkSparseObservable_1autotoc_md4\" title=\"Permalink to this heading\">¶</a></h2>
+<h4>Example<a class=\"headerlink\" href=\"#group__QkSparseObservable_1autotoc_md4\" title=\"Permalink to this heading\">¶</a></h4>
 <div class=\"highlight-default notranslate\" id=\"group__QkSparseObservable_1autotoc_md4\"><div class=\"highlight\"><pre><span></span><span class=\"n\">QkSparseObservable</span> <span class=\"o\">*</span><span class=\"n\">identity</span> <span class=\"o\">=</span> <span class=\"n\">qk_obs_identity</span><span class=\"p\">(</span><span class=\"mi\">100</span><span class=\"p\">);</span>
 </pre></div>
 </div>

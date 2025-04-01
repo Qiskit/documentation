@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 
 # PiecewisePolynomialPauliRotations
 
-<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L27-L317" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')" modifiers="class">
+<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L27-L308" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')" modifiers="class">
   Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
   Piecewise-polynomially-controlled Pauli rotations.
@@ -73,9 +73,7 @@ $$
 
   *   **num\_state\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The number of qubits representing the state.
   *   **breakpoints** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
-  *   **coeffs** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]]*) – The coefficients of the polynomials for different segments of the
-  *   **x** (*piecewise-linear function. coeffs\[j]\[i] is the coefficient of the i-th power of*) –
-  *   **polynomial.** (*for the j-th*) – Defaults to linear: `[[1]]`.
+  *   **coeffs** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]]]*) – The coefficients of the polynomials for different segments of the piecewise-linear function. `coeffs[j][i]` is the coefficient of the i-th power of x for the j-th polynomial. Defaults to linear: `[[1]]`.
   *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
 
@@ -111,18 +109,6 @@ $$
     The list of breakpoints.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.clbits">
@@ -149,6 +135,12 @@ $$
     True, if 0 is the first breakpoint, otherwise False.
   </Attribute>
 
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.cregs">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
   ### data
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.data">
@@ -169,7 +161,7 @@ $$
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit "qiskit.circuit.library.PiecewisePolynomialPauliRotations.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -181,7 +173,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.instances" attributeValue="268" />
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.instances" attributeValue="229" />
 
   ### layout
 
@@ -227,6 +219,14 @@ $$
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_input_vars "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_captured_vars">
@@ -241,12 +241,28 @@ $$
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_vars "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_vars") + [`num_stretches()`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_stretches "qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -279,6 +295,14 @@ $$
     The number of state qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.num_vars">
@@ -292,11 +316,15 @@ $$
   <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -367,8 +395,8 @@ $$
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.qregs">
+    A list of the quantum registers associated with the circuit.
   </Attribute>
 
   ### qubits
@@ -383,7 +411,7 @@ $$
     The unit that [`duration`](#qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration "qiskit.circuit.library.PiecewisePolynomialPauliRotations.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -393,17 +421,11 @@ $$
     A human-readable name for the circuit.
   </Attribute>
 
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
   ## Methods
 
   ### evaluate
 
-  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L210-L224" signature="evaluate(x)">
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L201-L215" signature="evaluate(x)">
     Classically evaluate the piecewise polynomial rotation.
 
     **Parameters**

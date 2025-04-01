@@ -1,0 +1,59 @@
+---
+title: Operation (v1.4)
+description: API reference for qiskit.circuit.Operation in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.Operation
+---
+
+# Operation
+
+<Class id="qiskit.circuit.Operation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/operation.py#L18-L68" signature="qiskit.circuit.Operation" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)")
+
+  Quantum operation interface.
+
+  The minimal interface that any object must fulfil in order to be added to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+  Concrete instances of this interface include [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"), [`Reset`](circuit#qiskit.circuit.Reset "qiskit.circuit.Reset"), [`Barrier`](circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier"), [`Measure`](circuit#qiskit.circuit.Measure "qiskit.circuit.Measure"), and operators such as [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford").
+
+  The main purpose is to allow abstract mathematical objects to be added directly onto abstract circuits, and for the exact syntheses of these to be determined later, during compilation.
+
+  **Example**
+
+  Add a Clifford and a Toffoli gate to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Clifford, random_clifford
+
+  qc = QuantumCircuit(3)
+  cliff = random_clifford(2)
+  qc.append(cliff, [0, 1])
+  qc.ccx(0, 1, 2)
+  qc.draw('mpl')
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-Operation-1.avif)
+
+  ## Attributes
+
+  ### name
+
+  <Attribute id="qiskit.circuit.Operation.name">
+    Unique string identifier for operation type.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.Operation.num_clbits">
+    Number of classical bits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.Operation.num_qubits">
+    Number of qubits.
+  </Attribute>
+</Class>
+

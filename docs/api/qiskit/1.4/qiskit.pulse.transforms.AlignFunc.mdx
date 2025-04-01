@@ -1,0 +1,80 @@
+---
+title: AlignFunc (v1.4)
+description: API reference for qiskit.pulse.transforms.AlignFunc in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.transforms.AlignFunc
+---
+
+# AlignFunc
+
+<Class id="qiskit.pulse.transforms.AlignFunc" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/transforms/alignments.py#L328-L406" signature="qiskit.pulse.transforms.AlignFunc(duration, func)" modifiers="class">
+  Bases: [`AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+
+  Allocate instructions at position specified by callback function.
+
+  The position is specified for each instruction of index `j` as a fractional coordinate in \[0, 1] within the specified duration.
+
+  Instructions played on different channels are also arranged in a sequence. This alignment is convenient to create dynamical decoupling sequences such as UDD.
+
+  For example, UDD sequence with 10 pulses can be specified with following function.
+
+  ```python
+  import numpy as np
+
+  def udd10_pos(j):
+      return np.sin(np.pi*j/(2*10 + 2))**2
+  ```
+
+  <Admonition title="Note" type="note">
+    This context cannot be QPY serialized because of the callable. If you use this context, your program cannot be saved in QPY format.
+  </Admonition>
+
+  Create new equispaced context.
+
+  **Parameters**
+
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+  *   **func** (*Callable*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
+
+  ## Attributes
+
+  ### duration
+
+  <Attribute id="qiskit.pulse.transforms.AlignFunc.duration">
+    Return context duration.
+  </Attribute>
+
+  ### func
+
+  <Attribute id="qiskit.pulse.transforms.AlignFunc.func">
+    Return context alignment function.
+  </Attribute>
+
+  ### is\_sequential
+
+  <Attribute id="qiskit.pulse.transforms.AlignFunc.is_sequential" />
+
+  ## Methods
+
+  ### align
+
+  <Function id="qiskit.pulse.transforms.AlignFunc.align" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/transforms/alignments.py#L381-L406" signature="align(schedule)">
+    Reallocate instructions according to the policy.
+
+    Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+
+    **Parameters**
+
+    **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+
+    **Returns**
+
+    Schedule with reallocated instructions.
+
+    **Return type**
+
+    [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+  </Function>
+</Class>
+

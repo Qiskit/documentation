@@ -26,7 +26,7 @@ Quimb as a tensor network backend.
 
 ### is\_quimb\_available
 
-<Function id="qiskit_addon_aqc_tensor.simulation.quimb.is_quimb_available" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L57-L63" signature="is_quimb_available()">
+<Function id="qiskit_addon_aqc_tensor.simulation.quimb.is_quimb_available" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L57-L63" signature="is_quimb_available()">
   Return `True` is qiskit-quimb is installed, `False` otherwise.
 
   **Return type**
@@ -36,33 +36,37 @@ Quimb as a tensor network backend.
 
 ### qiskit\_ansatz\_to\_quimb
 
-<Function id="qiskit_addon_aqc_tensor.simulation.quimb.qiskit_ansatz_to_quimb" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L188-L268" signature="qiskit_ansatz_to_quimb(qc, initial_parameters, /)">
+<Function id="qiskit_addon_aqc_tensor.simulation.quimb.qiskit_ansatz_to_quimb" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L212-L300" signature="qiskit_ansatz_to_quimb(qc, initial_parameters, /)">
   Convert a Qiskit ansatz to a Quimb parametrized circuit.
 
   **Return type**
 
-  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`Circuit`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/circuit/index.html#quimb.tensor.circuit.Circuit "(in quimb v1.9)"), [`QiskitQuimbConversionContext`](simulation-quimb-qiskit-quimb-conversion-context "qiskit_addon_aqc_tensor.simulation.quimb.QiskitQuimbConversionContext")]
+  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`Circuit`](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/circuit/index.html#quimb.tensor.circuit.Circuit "(in quimb v1.10)"), [`QiskitQuimbConversionContext`](simulation-quimb-qiskit-quimb-conversion-context "qiskit_addon_aqc_tensor.simulation.quimb.QiskitQuimbConversionContext")]
 
   **Parameters**
 
-  *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+  *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)"))
   *   **initial\_parameters** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]*)
 </Function>
 
 ### recover\_parameters\_from\_quimb
 
-<Function id="qiskit_addon_aqc_tensor.simulation.quimb.recover_parameters_from_quimb" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L271-L285" signature="recover_parameters_from_quimb(circ_opt, ctx, /)">
+<Function id="qiskit_addon_aqc_tensor.simulation.quimb.recover_parameters_from_quimb" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L303-L317" signature="recover_parameters_from_quimb(circ_opt, ctx, /)">
   Recover Qiskit circuit parameters from a Quimb circuit.
+
+  **Return type**
+
+  [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]
 
   **Parameters**
 
-  *   **circ\_opt** ([*Circuit*](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/circuit/index.html#quimb.tensor.circuit.Circuit "(in quimb v1.9)"))
+  *   **circ\_opt** ([*Circuit*](https://quimb.readthedocs.io/en/latest/autoapi/quimb/tensor/circuit/index.html#quimb.tensor.circuit.Circuit "(in quimb v1.10)"))
   *   **ctx** ([*QiskitQuimbConversionContext*](simulation-quimb-qiskit-quimb-conversion-context "qiskit_addon_aqc_tensor.simulation.quimb.QiskitQuimbConversionContext"))
 </Function>
 
 ### tnoptimizer\_objective\_kwargs
 
-<Function id="qiskit_addon_aqc_tensor.simulation.quimb.tnoptimizer_objective_kwargs" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/quimb.py" signature="tnoptimizer_objective_kwargs(objective, /)">
+<Function id="qiskit_addon_aqc_tensor.simulation.quimb.tnoptimizer_objective_kwargs" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/simulation/quimb.py" signature="tnoptimizer_objective_kwargs(objective, /)">
   Return keyword arguments for use with `TNOptimizer()`. :rtype: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")\[[`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")]
 
   *   `loss_fn`
@@ -70,7 +74,7 @@ Quimb as a tensor network backend.
 
   **Parameters**
 
-  **objective** ([*OneMinusFidelity*](objective#qiskit_addon_aqc_tensor.objective.OneMinusFidelity "qiskit_addon_aqc_tensor.objective.OneMinusFidelity"))
+  **objective** ([*MaximizeStateFidelity*](objective#qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity "qiskit_addon_aqc_tensor.objective.MaximizeStateFidelity"))
 
   **Return type**
 

@@ -12,7 +12,7 @@ Use batch mode to submit multiple primitive jobs simultaneously. Following are e
 
 Before starting a batch, you must [set up Qiskit Runtime](/guides/install-qiskit) and initialize it as a service:
 
-``` python
+```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Batch, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 service = QiskitRuntimeService()
@@ -27,7 +27,7 @@ class. When you start a batch,  you must specify a QPU by passing a `backend` ob
 
 **Batch class**
 
-``` python
+```python
 from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
@@ -42,7 +42,7 @@ batch.close()
 
 The context manager automatically opens and closes the batch.
 
-``` python
+```python
 from qiskit_ibm_runtime import Batch, SamplerV2 as Sampler, EstimatorV2 as Estimator
 
 backend = service.least_busy(operational=True, simulator=False)
@@ -56,7 +56,7 @@ with Batch(backend=backend):
 
 You can define the batch's maximum time to live (TTL) with the `max_time` parameter. This should exceed the longest job's execution time. This timer starts when the batch starts.  When the value is reached, the batch is closed.  Any jobs that are running will finish, but jobs still queued are failed.
 
-``` python
+```python
 with Batch(backend=backend, max_time="25m"):
   ...
 ```
@@ -76,7 +76,7 @@ To determine a batch's max TTL or interactive TTL, follow the instructions in [D
 
 A batch automatically closes when it exits the context manager. When the batch context manager is exited, the batch is put into "In progress, not accepting new jobs" status. This means that the batch finishes processing all running or queued jobs until the maximum TTL value is reached. After all jobs are completed, the batch is immediately closed. You cannot submit jobs to a closed batch.
 
-``` python
+```python
 with Batch(backend=backend) as batch:
     estimator = Estimator()
     job1 = estimator.run(...)
@@ -91,7 +91,7 @@ result2 = job2.result()
 If you are not using a context manager, manually close the batch.  If you leave the batch open and submit more jobs to it later, it is possible that the maximum TTL will be reached before the subsequent jobs start running; causing them to be canceled. You can close a batch as soon as you are done submitting jobs to it. When a batch is closed with `batch.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved.
 </Admonition>
 
-``` python
+```python
 batch = Batch(backend=backend)
 
 # If using qiskit-ibm-runtime earlier than 0.24.0, change `mode=` to `batch=`
@@ -110,7 +110,7 @@ batch.close()
 
 For a comprehensive overview of a batch's configuration and status, including its interactive and max TTL, use the  `batch.details() method`.
 
-``` python
+```python
 from qiskit_ibm_runtime import QiskitRuntimeService, batch, SamplerV2 as Sampler
 
 service = QiskitRuntimeService()
@@ -126,20 +126,20 @@ with Batch(backend=backend) as batch:
 There are multiple ways you can reconfigure your jobs to take advantage of the parallel processing provided by batching. The following example shows how you can partition a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
 ```python
- from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
+from qiskit_ibm_runtime import SamplerV2 as Sampler, Batch
 
- max_circuits = 100
- all_partitioned_circuits = []
- for i in range(0, len(circuits), max_circuits):
-     all_partitioned_circuits.append(circuits[i : i + max_circuits])
- jobs = []
- start_idx = 0
+max_circuits = 100
+all_partitioned_circuits = []
+for i in range(0, len(circuits), max_circuits):
+    all_partitioned_circuits.append(circuits[i : i + max_circuits])
+jobs = []
+start_idx = 0
 
- with Batch(backend=backend):
-     sampler = Sampler()
-     for partitioned_circuits in all_partitioned_circuits:
-         job = sampler.run(partitioned_circuits)
-         jobs.append(job)
+with Batch(backend=backend):
+    sampler = Sampler()
+    for partitioned_circuits in all_partitioned_circuits:
+        job = sampler.run(partitioned_circuits)
+        jobs.append(job)
 ```
 
 <Admonition type="caution">

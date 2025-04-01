@@ -25,7 +25,7 @@ Main quasiprobability decomposition functionality.
 
 ### WeightType
 
-<Class id="qiskit_addon_cutting.qpd.WeightType" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/weights.py" signature="WeightType(value)" modifiers="class">
+<Class id="qiskit_addon_cutting.qpd.WeightType" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/qpd/weights.py" signature="WeightType(value)" modifiers="class">
   Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.13)")
 
   Type of weight associated with a QPD sample.
@@ -45,7 +45,7 @@ Main quasiprobability decomposition functionality.
 
 ### generate\_qpd\_weights
 
-<Function id="qiskit_addon_cutting.qpd.generate_qpd_weights" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/weights.py" signature="generate_qpd_weights(qpd_bases, num_samples=1000)">
+<Function id="qiskit_addon_cutting.qpd.generate_qpd_weights" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/qpd/weights.py" signature="generate_qpd_weights(qpd_bases, num_samples=1000)">
   Generate weights from the joint quasiprobability distribution.
 
   Each weight whose absolute value is above a threshold of `1 / num_samples` will be evaluated exactly. The remaining weights – those in the tail of the distribution – will then be sampled from, resulting in at most `num_samples` unique weights.
@@ -68,7 +68,7 @@ Main quasiprobability decomposition functionality.
 
 ### decompose\_qpd\_instructions
 
-<Function id="qiskit_addon_cutting.qpd.decompose_qpd_instructions" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/decompose.py" signature="decompose_qpd_instructions(circuit, instruction_ids, map_ids=None, *, inplace=False)">
+<Function id="qiskit_addon_cutting.qpd.decompose_qpd_instructions" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/qpd/decompose.py" signature="decompose_qpd_instructions(circuit, instruction_ids, map_ids=None, *, inplace=False)">
   Replace all QPD instructions in the circuit with local Qiskit operations and measurements.
 
   **Parameters**
@@ -99,10 +99,10 @@ Main quasiprobability decomposition functionality.
 
 ### qpdbasis\_from\_instruction
 
-<Function id="qiskit_addon_cutting.qpd.qpdbasis_from_instruction" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.9/qiskit_addon_cutting/qpd/decompositions.py" signature="qpdbasis_from_instruction(gate, /)">
+<Function id="qiskit_addon_cutting.qpd.qpdbasis_from_instruction" github="https://github.com/Qiskit/qiskit-addon-cutting/tree/stable/0.10/qiskit_addon_cutting/qpd/decompositions.py" signature="qpdbasis_from_instruction(gate, /)">
   Generate a [`QPDBasis`](qpd-qpd-basis "qiskit_addon_cutting.qpd.QPDBasis") object, given a supported operation.
 
-  All two-qubit gates which implement the [`to_matrix()`](/api/qiskit/qiskit.circuit.Gate#to_matrix "(in Qiskit v1.3)") method are supported. This should include the vast majority of gates with no unbound parameters, but there are some special cases (see, e.g., [qiskit issue #10396](https://github.com/Qiskit/qiskit/issues/10396)).
+  All two-qubit gates which implement the [`to_matrix()`](/api/qiskit/qiskit.circuit.Gate#to_matrix "(in Qiskit v1.4)") method are supported. This should include the vast majority of gates with no unbound parameters, but there are some special cases (see, e.g., [qiskit issue #10396](https://github.com/Qiskit/qiskit/issues/10396)).
 
   The [`Move`](instructions-move "qiskit_addon_cutting.instructions.Move") operation, which can be used to specify a wire cut, is also supported.
 
@@ -122,6 +122,6 @@ Main quasiprobability decomposition functionality.
 
   **Parameters**
 
-  **gate** ([*Instruction*](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.3)"))
+  **gate** ([*Instruction*](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.4)"))
 </Function>
 

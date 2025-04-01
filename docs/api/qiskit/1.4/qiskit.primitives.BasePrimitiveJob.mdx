@@ -1,0 +1,101 @@
+---
+title: BasePrimitiveJob (v1.4)
+description: API reference for qiskit.primitives.BasePrimitiveJob in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.BasePrimitiveJob
+---
+
+# BasePrimitiveJob
+
+<Class id="qiskit.primitives.BasePrimitiveJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L26-L78" signature="qiskit.primitives.BasePrimitiveJob(job_id, **kwargs)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.13)"), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.13)")\[`ResultT`, `StatusT`]
+
+  Primitive job abstract base class.
+
+  Initializes the primitive job.
+
+  **Parameters**
+
+  *   **job\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – A unique id in the context of the primitive used to run the job.
+  *   **kwargs** – Any key value metadata to associate with this job.
+
+  ## Methods
+
+  ### cancel
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.cancel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L75-L78" signature="cancel()" modifiers="abstract">
+    Attempt to cancel the job.
+  </Function>
+
+  ### cancelled
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.cancelled" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L63-L66" signature="cancelled()" modifiers="abstract">
+    Return whether the job has been cancelled.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### done
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.done" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L53-L56" signature="done()" modifiers="abstract">
+    Return whether the job has successfully run.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### in\_final\_state
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.in_final_state" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L68-L73" signature="in_final_state()" modifiers="abstract">
+    Return whether the job is in a final job state such as `DONE` or `ERROR`.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### job\_id
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.job_id" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L39-L41" signature="job_id()">
+    Return a unique id identifying the job.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### result
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.result" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L43-L46" signature="result()" modifiers="abstract">
+    Return the results of the job.
+
+    **Return type**
+
+    *ResultT*
+  </Function>
+
+  ### running
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.running" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L58-L61" signature="running()" modifiers="abstract">
+    Return whether the job is actively running.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### status
+
+  <Function id="qiskit.primitives.BasePrimitiveJob.status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/base/base_primitive_job.py#L48-L51" signature="status()" modifiers="abstract">
+    Return the status of the job.
+
+    **Return type**
+
+    *StatusT*
+  </Function>
+</Class>
+

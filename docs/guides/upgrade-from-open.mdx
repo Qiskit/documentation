@@ -13,18 +13,15 @@ This guide is for entities who want to upgrade from the IBM Quantum&reg; Open Pl
 
 If you are an individual setting up the service for the first time or if you have been invited to an instance by an administrator, follow the steps in [Install Qiskit](./install-qiskit) instead.
 
-<span id="sign-up-cloud"></span>
-## Sign up for IBM Cloud
+## Before you begin
 
-Skip this step if you already have an IBM Cloud account. Follow these steps to sign up for IBM Cloud:
+If necessary, follow the steps in the [Set up to use IBM Cloud](./cloud-setup#cloud) section to complete the following:
 
-1. Go to the [IBM Cloud registration page](https://cloud.ibm.com/registration?cm_sp=quantum&utm_content=quantum-next&target=https%3A%2F%2Fquantum.cloud.ibm.com&error_uri=). Fill in the form and accept the terms.
-2. Verify your identity by providing the additional account information as required.
-
-Next, [create a Qiskit Runtime instance.](#create-qr-account)
+- Sign up for an IBM Cloud account.
+- Create an IBM Quantum instance.
 
 <span id="update-cloud-account"></span>
-### Optional: Upgrade your IBM Cloud account
+## Upgrade your IBM Cloud account
 
 Skip this if you already have an IBM Cloud account with a Pay-As-You-Go Plan. All new IBM Cloud accounts are set up with a Pay-As-You-Go Plan.
 
@@ -33,67 +30,23 @@ You must upgrade your IBM Cloud account in the following circumstances:
 - You have a Trial account.
 - You have a Lite account (deprecated) that you created before 25 October 2021.
 
-After you upgrade, you can continue to use any instances that you created with your Lite account (deprecated). To upgrade to a Pay-As-You-Go account, complete the following steps:
+After you upgrade, you can continue to use any instances that you created with your Lite account. To upgrade to a Pay-As-You-Go account, complete the following steps:
 
 1. Go to Manage > [Account](https://cloud.ibm.com/account) in the IBM Cloud console.
 2. Select **Account settings**, and click **Add credit card**.
 3. Enter your payment information and click **Next** to submit your information.
 4. After your payment information is processed, your account is upgraded, and you can explore and access the full IBM Cloud catalog.
 
-<span id="create-qr-account"></span>
-## Create a Qiskit Runtime instance
+## Create a new instance
 
-To create a Qiskit Runtime service instance, complete the following steps:
+To use your IBM Cloud Standard Plan, create a new [instance](./instances) and assign it to the Standard Plan.  All jobs sent to QPUs by specifying this instance will incur a cost, except under special circumstances, such as if you have credits that give you free usage.
 
-1. Go to [Quantum instances](https://quantum.cloud.ibm.com/instances) and click **Create instance** at the top right.
-1. Complete the following on the creation page:
-   - Select **Standard Plan** and specify a name for the instance.
-   - If you have a promotional code, enter it in **Apply promo code** in the panel on the right and click **Apply**.
-   - Accept the terms and click **Create**. You are redirected to the new instance's details page.
+## Next steps
 
-<span id="set-max-cost-new"></span>
-## Set the maximum cost limit
-
-If you successfully created a Qiskit Runtime instance in the previous step, you were redirected to the instance details page. Otherwise, open it by going to the [Instances page](https://quantum.cloud.ibm.com/instances), and clicking on the instance you created.
-
-To set the maximum cost limit, complete the following steps:
-
-1. Click **Edit** in the Cost limits panel.
-1. In the **Maximum total cost limit** field, enter the maximum cost allowed in this instance, then click **Save**.
-
-If the instance usage reaches this limit, any running jobs are canceled and the instance will not incur additional charges. See [Manage costs](./manage-cost) for more information.
-
-## Manage users and access
-
-Skip this step if you are an individual user setting up Qiskit Runtime for your own use. In these instructions, the owner of this account also administrates the Qiskit Runtime instances that the rest of the company's users will use. In more complex configurations, there could be more roles and many different ways to manage the users, as explained in [Plan Qiskit Runtime for an organization](/administration/quickstart-org).
-
-As the account owner or administrator, you add the people in your organization to the IBM Cloud account and then assign them access permissions to use the Qiskit Runtime instance created in [step 3](#create-qr-account).
-
-To share a Qiskit Runtime instance with other users, complete the following steps:
-
-1. Go to Manage > [Access (IAM)](https://cloud.ibm.com/iam/overview) in the IBM Cloud console.
-1. On the left panel in the **Manage access** section, click **Access groups**, then click **Create** on the right side.
-1. In the **Create access group** window that opens, add a name and description that represent the group of users that you will invite.  For example, the company name. Click **Create**.
-1. In the access group just created, click the **Access** tab, then click **Assign access** at the top right.
-1. In the **Create policy** page that opens, define these elements:
-   - **Service** - In the search field look for Qiskit Runtime and select it. Click **Next**.
-   - **Resources** - Select **Specific resources**, and in the rest of the dropdowns, choose the following:
-      - For **Attribute type**, select **Service Instance**.
-      - For **Operator**, select **string equals**.
-      - For **Value**, select the instance you created. Click **Next**.
-   - **Roles and actions** - Select the following values:
-      - For **Service access**, select one of the following:
-         - **Reader**, if the user only needs to view (but not send) jobs.
-         - **Writer**, if the user needs to send, update, and delete jobs.
-         - **Manager**, if in addition to Writer and Reader actions, the user needs to update the instance `max cost limit`.
-         - Your own custom role, defined on the [Roles](https://cloud.ibm.com/iam/roles) page.  See [Creating custom roles](https://cloud.ibm.com/docs/account?topic=account-custom-roles&interface=ui) for instructions.
-      - For **Platform access**, select **Viewer**.
-   - **Conditions (optional)**. Click **Review**.
-
-   At the bottom, click **Add**. You should see the policy on the right panel. Click **Assign** at the bottom of the right panel. You have successfully created an access group.
-1. On the left panel in the **Manage identities** section, click **Users**. Then, at the top right click **Invite users**.
-   - Enter the email addresses of your users separated by commas, spaces, or line breaks.
-   - Select **Access groups** as the way to assign access.
-   - In the access groups table, select the one you already created and click **Add**. You will see the Access summary on the right panel. Click **Invite** at the bottom of the Access summary panel.
-
-Users will receive an email with an invitation to use this account with the access defined in [step 3](#create-qr-account) for the shared instance. After they accept the invitation, they will see a new account in their account switcher at the top of any page on IBM Cloud. After selecting the new account, they will see the shared instance.
+<Admonition type="tip" title="Recommendations">
+  -  [Manage cost](manage-cost) when using the Standard Plan.
+  -  Learn about the available [plans.](plans-overview)
+  -  Follow the steps in [Hello world](hello-world) to write and run a quantum program.
+  -  [Get started with IBM Quantum on Cloud.](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-get-started)
+  -  Try a [tutorial](https://learning.quantum.ibm.com/catalog/tutorials) in IBM Quantum Learning.
+</Admonition>
