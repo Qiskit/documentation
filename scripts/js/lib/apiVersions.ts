@@ -36,7 +36,9 @@ export function parseMinorVersion(version: string): string | null {
 }
 
 export function isValidVersion(versionToCheck: string): boolean {
-  // The version must include a major, a minor, and a patch
-  const fullVersionFormat = new RegExp(/^(\d+\.\d+\.\d+)$/);
+  // The version must include a major, a minor, and a patch. Dev versions must also
+  // include the suffixes `rc` or `-dev` immediately following the patch version.
+  // E.g. 1.0.0rc1 or 1.0.0-dev`
+  const fullVersionFormat = new RegExp(/^(\d+\.\d+\.\d+)(-dev|rc\d+|)$/);
   return !!versionToCheck.match(fullVersionFormat);
 }
