@@ -1,22 +1,19 @@
 ---
-title: Manage ID provider users with IBM Cloud
-description: Use IBM Cloud Identity Access Management (IAM) to manage users
+title: Manage ID provider users
+description: Use IBM Cloud Identity Access Management (IAM) to manage users with or without an IBM Cloud account
 platform: cloud
 ---
 
-# Manage ID provider users with the ID provider
+# Manage ID provider users
+
 <Admonition type="note">
 This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/admin/)
 </Admonition>
 
-App ID creates an ID provider so you can add users directly in App ID or connect to other external ID providers. This guide gives an overview of how to set up your ID provider to work with users that do not have IBM Cloud&reg; accounts. You can also view the full [App ID documentation.](https://cloud.ibm.com/docs/appid?topic=appid-getting-started)
+App ID creates an ID provider so you can add users directly in App ID or connect to other external ID providers. The following sections give an overview of how to set up your ID provider to work with [users that do not have IBM Cloud&reg; accounts](#id-provider), as well as [those that do have IBM Cloud accounts](#id-cloud). You can also view the full [App ID documentation.](https://cloud.ibm.com/docs/appid?topic=appid-getting-started)
 
-To manage users by using IBM Cloud, see one of these topics:
-
-* [Manage IBM Cloud users](/guides/manage-cloud-users)
-* [Manage ID provider users with IBM Cloud](/guides/manage-appid-cloud)
-
-## Steps
+<span id="id-provider"></span>
+## Manage ID provider users with the ID provider
 
 Follow these high-level steps to set up your environment:
 
@@ -40,7 +37,7 @@ Follow these high-level steps to set up your environment:
    If you don't see the user that you want to manage, verify that they logged in to IBM Cloud at least once.
 
 <span id="user-flow-org"></span>
-## User flow
+### User flow
 
 1. A user is sent the ID provider URL for the IBM Cloud account.
    <Admonition type="note">
@@ -50,8 +47,8 @@ Follow these high-level steps to set up your environment:
 2. The user creates an API key by going to ([Manage → Access (IAM) → API keys](https://cloud.ibm.com/iam/apikeys)).
 3. For further information, users can review [Install Qiskit.](/guides/install-qiskit)
 
-<span id="steps-appid-org}"></span>
-## Example scenario
+<span id="steps-appid-org"></span>
+### Example scenario
 
 This example creates the following setup:
 
@@ -80,6 +77,71 @@ The steps to implement this setup are:
    * For Ravi, the custom attributes contain `{"project":"finance"}`.
    * For Amyra, the custom attributes contain `{"project":"ml finance"}`.
 6. Users log in through the ID provider URL, create API keys, and work with their projects' service instances.
+
+<span id="id-cloud"></span>
+## Manage ID provider users with IBM Cloud
+
+Follow these high-level steps to set up your environment:
+
+1. [Create an App ID instance.](https://cloud.ibm.com/docs/appid?topic=appid-getting-started)
+2. Configure the ID provider.
+   * Use the **Cloud Directory** capability to add users to the ID provider. Open the [IBM Cloud resource list](https://cloud.ibm.com/resources), search for your App ID instance and click its name to edit its details.
+   * Refer to the [App ID documentation](https://cloud.ibm.com/docs/appid?topic=appid-getting-started) for instructions how to integrate other ID providers into App ID.
+3. Integrate the App ID instance as the ID provider for the administrator's account on the [Identity Providers](https://cloud.ibm.com/iam/identity-providers) page. See [Managing authentication](https://cloud.ibm.com/docs/appid?topic=appid-managing-idp) for full details.
+
+   After enabling enable the ID provider, default IdP URL is shown. Share this URL with users when they need to log in.
+
+5. Add users. When you use App ID as ID provider with the Cloud directory, you can create users in the Cloud user interface from the [resource list.](https://cloud.ibm.com/resources)
+6. Create or modify users' project assignments from the [IAM user page.](https://cloud.ibm.com/iam/users)
+
+   If you don't see the user that you want to manage, verify that they logged in to IBM Cloud at least once.
+
+7. Add or modify users' access groups from the [IAM user page.](https://cloud.ibm.com/iam/users)
+
+<span id="user-org-cloud"></span>
+### User flow
+
+1. A user is sent the ID provider URL for the IBM Cloud account. They use this URL and the login information to access the system. The user should change their password after they log on.
+
+   <Admonition type="note">
+   The administrator can always go to [Manage → Access (IAM) → Identity providers](https://cloud.ibm.com/iam/identity-providers) to look up the ID provider URL.
+   </Admonition>
+
+2. The user create an API key from ([Manage → Access (IAM) → API keys](https://cloud.ibm.com/iam/apikeys)).
+3. For further information, users can review [Install Qiskit.](/guides/install-qiskit)
+
+<span id="steps-appid-org-cloud"></span>
+### Example scenario
+
+This example creates the following setup:
+
+* There are two projects, `ml` and `finance`.
+   * The `ml` project needs access to the service instances `QR-ml` and `QR-common`.
+   * The `finance` project should have access to the service instances `QR-finance` and `QR-common`.
+* There are three users:
+   * Fatima needs access to the `ml` project.
+   * Ravi needs access to the `finance` project.
+   * Amyra needs access to both projects.
+* It uses access groups without resource groups.
+* Users are defined in IBM Cloud but project assignments are done in an App ID instance.
+* Users should be able to delete jobs.
+
+The steps to implement this setup are:
+
+1. The Cloud administrator creates an App ID instance and ensures that it is linked in the Cloud administrator's account. The administrator notes the ID provider URL to share it with users.
+2. The Cloud administrator creates three service instances: `QR-ml`, `QR finance`, and `QR-common`.
+3. The Cloud administrator creates a custom rule that includes the `quantum-computing.job.delete` action.
+4. The Cloud administrator creates two access groups:
+   * The `ml` access group can access `QR-ml` and `QR-common`. This access group needs a dynamic rule for the App ID IDP that accepts users whose `project` attribute contains `ml`.
+   * The `finance` access group can access `QR-finance` and `QR-common`. This access group needs a dynamic rule for the App ID IDP that accepts users whose `project` attribute contains `finance`.
+
+5. The ID provider administrator defines the three users in the IBM Cloud user interface.
+1. Users log in at least once.
+6. The cloud administrator assigns access by adding users to the access groups that give them access to the projects:
+   * Fatima is given access to the `ml` project.
+   * Ravi is given access to the `finance` project.
+   * Amyra is given access to the `ml` and `finanace` projects.
+6. Users can log in through the ID provider URL, create API keys, and work with their projects' service instances.
 
 ## Next steps
 
