@@ -44,17 +44,20 @@ The `AIRouting` pass acts both as a layout stage and a routing stage. It can be 
 from qiskit.transpiler import PassManager
 from qiskit.circuit.library import efficient_su2
 from qiskit_ibm_transpiler.ai.routing import AIRouting
+from qiskit_ibm_runtime import QiskitRuntimeService
 
+backend = QiskitRuntimeService().backend("ibm_torino")
 ai_passmanager = PassManager([
-  AIRouting(backend_name="ibm_sherbrooke", optimization_level=2, layout_mode="optimize", local_mode=True)
+  AIRouting(backend=backend, optimization_level=2, layout_mode="optimize", local_mode=True)
 ])
+
 
 circuit = efficient_su2(101, entanglement="circular", reps=1)
 
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
 
-Here, the `backend_name` determines which backend to route for, the `optimization_level` (1, 2, or 3) determines the computational effort to spend in the process (higher usually gives better results but takes longer), and the `layout_mode` specifies how to handle the layout selection.
+Here, the `backend` determines which coupling map to route for, the `optimization_level` (1, 2, or 3) determines the computational effort to spend in the process (higher usually gives better results but takes longer), and the `layout_mode` specifies how to handle the layout selection.
 The `layout_mode` includes the following options:
 
 - `keep`: This respects the layout set by the previous transpiler passes (or uses the trivial layout if not set). It is typically only used when the circuit must be run on specific qubits of the device. It often produces worse results because it has less room for optimization.
@@ -76,12 +79,13 @@ from qiskit_ibm_transpiler.ai.synthesis import AIPauliNetworkSynthesis
 from qiskit_ibm_transpiler.ai.collection import CollectPauliNetworks
 from qiskit.circuit.library import efficient_su2
 
+ibm_torino = QiskitRuntimeService().backend('ibm_torino')
 ai_passmanager = PassManager([
-  AIRouting(backend_name="ibm_cairo", optimization_level=3, layout_mode="optimize", local_mode=True),  # Route circuit
+  AIRouting(backend=ibm_torino, optimization_level=3, layout_mode="optimize", local_mode=True),  # Route circuit
   CollectLinearFunctions(),  # Collect Linear Function blocks
-  AILinearFunctionSynthesis(backend_name="ibm_cairo", local_mode=True),  # Re-synthesize Linear Function blocks
+  AILinearFunctionSynthesis(backend=ibm_torino, local_mode=True),  # Re-synthesize Linear Function blocks
   CollectPauliNetworks(), # Collect Pauli Networks blocks
-  AIPauliNetworkSynthesis(backend_name="ibm_cairo", local_mode=False),  # Re-synthesize Pauli Network blocks. Only available in the Qiskit Transpiler Service
+  AIPauliNetworkSynthesis(backend=ibm_torino, local_mode=False),  # Re-synthesize Pauli Network blocks. Only available in the Qiskit Transpiler Service
 ])
 
 circuit = efficient_su2(10, entanglement="full", reps=1)
@@ -103,7 +107,7 @@ We expect to gradually increase the size of the supported blocks.
 All passes use a thread pool to send several requests in parallel. By default, the number for max threads is the number of cores plus four (default values for the `ThreadPoolExecutor` Python object). However, you can set your own value with the `max_threads` argument at pass instantiation. For example, the following line instantiates the `AILinearFunctionSynthesis` pass, which allows it to use a maximum of 20 threads.
 
 ```python
-AILinearFunctionSynthesis(backend_name="ibm_cairo", max_threads=20)  # Re-synthesize Linear Function blocks using 20 threads max
+AILinearFunctionSynthesis(backend=ibm_torino, max_threads=20)  # Re-synthesize Linear Function blocks using 20 threads max
 ```
 
 You can also set the environment variable `AI_TRANSPILER_MAX_THREADS` to the desired number of maximum threads, and all synthesis passes instantiated after that will use that value.
@@ -124,23 +128,25 @@ These custom collection passes limit the sizes of the collected sub-circuits so 
 The `qiskit-ibm-transpiler` allows you to configure a hybrid pass manager that combines the best of Qiskit's heuristic and the AI-powered transpiler passes. This feature behaves similarly to the Qiskit `generate_pass_manager` method. A typical way to use `generate_ai_pass_manager` is as follows:
 
 ```python
-    from qiskit_ibm_transpiler import generate_ai_pass_manager
-    from qiskit.circuit.library import efficient_su2
-    from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_transpiler import generate_ai_pass_manager
+from qiskit.circuit.library import efficient_su2
+from qiskit_ibm_runtime import QiskitRuntimeService
 
-    backend = QiskitRuntimeService().backend("ibm_fez")
-    fez_coupling_map = backend.coupling_map
 
-    su2_circuit = efficient_su2(101, entanglement="circular", reps=1)
+backend = QiskitRuntimeService().backend("ibm_torino")
+torino_coupling_map = backend.coupling_map
 
-    ai_transpiler_pass_manager = generate_ai_pass_manager(
-        coupling_map=fez_coupling_map,
-        ai_optimization_level=3,
-        optimization_level=3,
-        ai_layout_mode="optimize",
-    )
 
-    ai_su2_transpiled_circuit = ai_transpiler_pass_manager.run(su2_circuit),
+su2_circuit = efficient_su2(101, entanglement="circular", reps=1)
+
+ai_transpiler_pass_manager = generate_ai_pass_manager(
+    coupling_map=torino_coupling_map,
+    ai_optimization_level=3,
+    optimization_level=3,
+    ai_layout_mode="optimize",
+)
+
+ai_su2_transpiled_circuit = ai_transpiler_pass_manager.run(su2_circuit),
 ```
 
 The following options are used in this example:

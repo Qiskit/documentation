@@ -1,0 +1,679 @@
+---
+title: Statevector (v1.4)
+description: API reference for qiskit.quantum_info.Statevector in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.Statevector
+---
+
+# Statevector
+
+<Class id="qiskit.quantum_info.Statevector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L45-L967" signature="qiskit.quantum_info.Statevector(data, dims=None)" modifiers="class">
+  Bases: `QuantumState`, `TolerancesMixin`
+
+  Statevector class
+
+  Initialize a statevector object.
+
+  **Parameters**
+
+  *   **data** (*np.ndarray |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *|*[*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *|*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Data from which the statevector can be constructed. This can be either a complex vector, another statevector, a `Operator` with only one column or a `QuantumCircuit` or `Instruction`. If the data is a circuit or instruction, the statevector is constructed by assuming that all qubits are initialized to the zero state.
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *| None*) – The subsystem dimension of the state (See additional information).
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not valid.
+
+  **Additional Information:**
+
+  The `dims` kwarg can be None, an integer, or an iterable of integers.
+
+  *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
+  *   `Int` or `None` – the length of the input vector specifies the total dimension of the density matrix. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
+
+  ## Attributes
+
+  ### atol
+
+  <Attribute id="qiskit.quantum_info.Statevector.atol" attributeValue="1e-08" />
+
+  ### data
+
+  <Attribute id="qiskit.quantum_info.Statevector.data">
+    Return data.
+  </Attribute>
+
+  ### dim
+
+  <Attribute id="qiskit.quantum_info.Statevector.dim">
+    Return total state dimension.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.quantum_info.Statevector.num_qubits">
+    Return the number of qubits if a N-qubit state or None otherwise.
+  </Attribute>
+
+  ### rtol
+
+  <Attribute id="qiskit.quantum_info.Statevector.rtol" attributeValue="1e-05" />
+
+  ### settings
+
+  <Attribute id="qiskit.quantum_info.Statevector.settings">
+    Return settings.
+  </Attribute>
+
+  ## Methods
+
+  ### conjugate
+
+  <Function id="qiskit.quantum_info.Statevector.conjugate" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L257-L259" signature="conjugate()">
+    Return the conjugate of the operator.
+
+    **Return type**
+
+    [*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.quantum_info.Statevector.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L74-L76" signature="copy()">
+    Make a copy of current operator.
+  </Function>
+
+  ### dims
+
+  <Function id="qiskit.quantum_info.Statevector.dims" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L70-L72" signature="dims(qargs=None)">
+    Return tuple of input dimension for specified subsystems.
+  </Function>
+
+  ### draw
+
+  <Function id="qiskit.quantum_info.Statevector.draw" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L138-L196" signature="draw(output=None, **drawer_args)">
+    Return a visualization of the Statevector.
+
+    **repr**: ASCII TextMatrix of the state’s `__repr__`.
+
+    **text**: ASCII TextMatrix that can be printed in the console.
+
+    **latex**: An IPython Latex object for displaying in Jupyter Notebooks.
+
+    **latex\_source**: Raw, uncompiled ASCII source to generate array using LaTeX.
+
+    **qsphere**: Matplotlib figure, rendering of statevector using plot\_state\_qsphere().
+
+    **hinton**: Matplotlib figure, rendering of statevector using plot\_state\_hinton().
+
+    **bloch**: Matplotlib figure, rendering of statevector using plot\_bloch\_multivector().
+
+    **city**: Matplotlib figure, rendering of statevector using plot\_state\_city().
+
+    **paulivec**: Matplotlib figure, rendering of statevector using plot\_state\_paulivec().
+
+    **Parameters**
+
+    *   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, qsphere, hinton, bloch, city, or paulivec. Default is repr. Default can be changed by adding the line `state_drawer = <default>` to `~/.qiskit/settings.conf` under `[default]`.
+    *   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex(), plot\_state\_qsphere(), plot\_state\_hinton() or plot\_bloch\_multivector()). See the relevant function under qiskit.visualization for that function’s documentation.
+
+    **Returns**
+
+    `matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") or `TextMatrix` or `IPython.display.Latex`: Drawing of the Statevector.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – when an invalid output method is selected.
+
+    **Examples**
+
+    Plot one of the Bell states
+
+    ```python
+    from numpy import sqrt
+    from qiskit.quantum_info import Statevector
+    sv=Statevector([1/sqrt(2), 0, 0, -1/sqrt(2)])
+    sv.draw(output='hinton')
+    ```
+
+    ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-quantum_info-Statevector-1.avif)
+  </Function>
+
+  ### equiv
+
+  <Function id="qiskit.quantum_info.Statevector.equiv" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L414-L444" signature="equiv(other, rtol=None, atol=None)">
+    Return True if other is equivalent as a statevector up to global phase.
+
+    <Admonition title="Note" type="note">
+      If other is not a Statevector, but can be used to initialize a statevector object, this will check that Statevector(other) is equivalent to the current statevector up to global phase.
+    </Admonition>
+
+    **Parameters**
+
+    *   **other** ([*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – an object from which a `Statevector` can be constructed.
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – relative tolerance value for comparison.
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – absolute tolerance value for comparison.
+
+    **Returns**
+
+    True if statevectors are equivalent up to global phase.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### evolve
+
+  <Function id="qiskit.quantum_info.Statevector.evolve" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L371-L412" signature="evolve(other, qargs=None)">
+    Evolve a quantum state by the operator.
+
+    **Parameters**
+
+    *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operator to evolve by.
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – a list of Statevector subsystem positions to apply the operator on.
+
+    **Returns**
+
+    the output quantum state.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the operator dimension does not match the specified Statevector subsystem dimensions.
+  </Function>
+
+  ### expand
+
+  <Function id="qiskit.quantum_info.Statevector.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L314-L331" signature="expand(other)">
+    Return the tensor product state other ⊗ self.
+
+    **Parameters**
+
+    **other** ([*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – a quantum state object.
+
+    **Returns**
+
+    the tensor product state other ⊗ self.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a quantum state.
+  </Function>
+
+  ### expectation\_value
+
+  <Function id="qiskit.quantum_info.Statevector.expectation_value" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L501-L524" signature="expectation_value(oper, qargs=None)">
+    Compute the expectation value of an operator.
+
+    **Parameters**
+
+    *   **oper** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator to evaluate expval of.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to apply operator on.
+
+    **Returns**
+
+    the expectation value.
+
+    **Return type**
+
+    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+  </Function>
+
+  ### from\_instruction
+
+  <Function id="qiskit.quantum_info.Statevector.from_instruction" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L751-L776" signature="from_instruction(instruction)" modifiers="classmethod">
+    Return the output statevector of an instruction.
+
+    The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same number of qubits as the input instruction or circuit, evolved by the input instruction, and the output statevector returned.
+
+    **Parameters**
+
+    **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – instruction or circuit
+
+    **Returns**
+
+    The final statevector.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the instruction contains invalid instructions for the statevector simulation.
+  </Function>
+
+  ### from\_int
+
+  <Function id="qiskit.quantum_info.Statevector.from_int" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L723-L749" signature="from_int(i, dims)" modifiers="static">
+    Return a computational basis statevector.
+
+    **Parameters**
+
+    *   **i** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the basis state element.
+    *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – The subsystem dimensions of the statevector (See additional information).
+
+    **Returns**
+
+    The computational basis state $|i\rangle$.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+    **Additional Information:**
+
+    The `dims` kwarg can be an integer or an iterable of integers.
+
+    *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
+    *   `Int` – the integer specifies the total dimension of the state. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
+  </Function>
+
+  ### from\_label
+
+  <Function id="qiskit.quantum_info.Statevector.from_label" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L654-L721" signature="from_label(label)" modifiers="classmethod">
+    Return a tensor product of Pauli X,Y,Z eigenstates.
+
+    | Label | Statevector                     |
+    | ----- | ------------------------------- |
+    | `"0"` | $[1, 0]$                        |
+    | `"1"` | $[0, 1]$                        |
+    | `"+"` | $[1 / \sqrt{2}, 1 / \sqrt{2}]$  |
+    | `"-"` | $[1 / \sqrt{2}, -1 / \sqrt{2}]$ |
+    | `"r"` | $[1 / \sqrt{2}, i / \sqrt{2}]$  |
+    | `"l"` | $[1 / \sqrt{2}, -i / \sqrt{2}]$ |
+
+    **Parameters**
+
+    **label** (*string*) – a eigenstate string ket label (see table for allowed values).
+
+    **Returns**
+
+    The N-qubit basis state density matrix.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the label contains invalid characters, or the length of the label is larger than an explicitly specified num\_qubits.
+  </Function>
+
+  ### inner
+
+  <Function id="qiskit.quantum_info.Statevector.inner" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L292-L312" signature="inner(other)">
+    Return the inner product of self and other as $\langle self| other \rangle$.
+
+    **Parameters**
+
+    **other** ([*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – a quantum state object.
+
+    **Returns**
+
+    the inner product of self and other, $\langle self| other \rangle$.
+
+    **Return type**
+
+    np.complex128
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a quantum state or has different dimension.
+  </Function>
+
+  ### is\_valid
+
+  <Function id="qiskit.quantum_info.Statevector.is_valid" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L243-L250" signature="is_valid(atol=None, rtol=None)">
+    Return True if a Statevector has norm 1.
+
+    **Parameters**
+
+    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) –
+    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) –
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### measure
+
+  <Function id="qiskit.quantum_info.Statevector.measure" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L306-L341" signature="measure(qargs=None)">
+    Measure subsystems and return outcome and post-measure state.
+
+    Note that this function uses the QuantumStates internal random number generator for sampling the measurement outcome. The RNG seed can be set using the [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
+
+    **Parameters**
+
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+
+    **Returns**
+
+    **the pair `(outcome, state)` where `outcome` is the**
+
+    measurement outcome string label, and `state` is the collapsed post-measurement state for the corresponding outcome.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")
+  </Function>
+
+  ### probabilities
+
+  <Function id="qiskit.quantum_info.Statevector.probabilities" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L526-L606" signature="probabilities(qargs=None, decimals=None)">
+    Return the subsystem measurement probability vector.
+
+    Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
+
+    **Parameters**
+
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+
+    **Returns**
+
+    The Numpy vector array of probabilities.
+
+    **Return type**
+
+    np.array
+
+    **Examples**
+
+    Consider a 2-qubit product state $|\psi\rangle=|+\rangle\otimes|0\rangle$.
+
+    ```python
+    from qiskit.quantum_info import Statevector
+
+    psi = Statevector.from_label('+0')
+
+    # Probabilities for measuring both qubits
+    probs = psi.probabilities()
+    print('probs: {}'.format(probs))
+
+    # Probabilities for measuring only qubit-0
+    probs_qubit_0 = psi.probabilities([0])
+    print('Qubit-0 probs: {}'.format(probs_qubit_0))
+
+    # Probabilities for measuring only qubit-1
+    probs_qubit_1 = psi.probabilities([1])
+    print('Qubit-1 probs: {}'.format(probs_qubit_1))
+    ```
+
+    ```text
+    probs: [0.5 0.  0.5 0. ]
+    Qubit-0 probs: [1. 0.]
+    Qubit-1 probs: [0.5 0.5]
+    ```
+
+    We can also permute the order of qubits in the `qargs` list to change the qubit position in the probabilities output
+
+    ```python
+    from qiskit.quantum_info import Statevector
+
+    psi = Statevector.from_label('+0')
+
+    # Probabilities for measuring both qubits
+    probs = psi.probabilities([0, 1])
+    print('probs: {}'.format(probs))
+
+    # Probabilities for measuring both qubits
+    # but swapping qubits 0 and 1 in output
+    probs_swapped = psi.probabilities([1, 0])
+    print('Swapped probs: {}'.format(probs_swapped))
+    ```
+
+    ```text
+    probs: [0.5 0.  0.5 0. ]
+    Swapped probs: [0.5 0.5 0.  0. ]
+    ```
+  </Function>
+
+  ### probabilities\_dict
+
+  <Function id="qiskit.quantum_info.Statevector.probabilities_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L220-L244" signature="probabilities_dict(qargs=None, decimals=None)">
+    Return the subsystem measurement probability dictionary.
+
+    Measurement probabilities are with respect to measurement in the computation (diagonal) basis.
+
+    This dictionary representation uses a Ket-like notation where the dictionary keys are qudit strings for the subsystem basis vectors. If any subsystem has a dimension greater than 10 comma delimiters are inserted between integers so that subsystems can be distinguished.
+
+    **Parameters**
+
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+    *   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+
+    **Returns**
+
+    The measurement probabilities in dict (ket) form.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+  </Function>
+
+  ### purity
+
+  <Function id="qiskit.quantum_info.Statevector.purity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L265-L271" signature="purity()">
+    Return the purity of the quantum state.
+
+    **Return type**
+
+    *float64*
+  </Function>
+
+  ### reset
+
+  <Function id="qiskit.quantum_info.Statevector.reset" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L608-L652" signature="reset(qargs=None)">
+    Reset state or subsystems to the 0-state.
+
+    **Parameters**
+
+    **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
+
+    **Returns**
+
+    the reset state.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+    **Additional Information:**
+
+    If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform a measurement on those subsystems and evolve the subsystems so that the collapsed post-measurement states are rotated to the 0-state. The RNG seed for this sampling can be set using the [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
+  </Function>
+
+  ### reverse\_qargs
+
+  <Function id="qiskit.quantum_info.Statevector.reverse_qargs" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L446-L465" signature="reverse_qargs()">
+    Return a Statevector with reversed subsystem ordering.
+
+    For a tensor product state this is equivalent to reversing the order of tensor product subsystems. For a statevector $|\psi \rangle = |\psi_{n-1} \rangle \otimes ... \otimes |\psi_0 \rangle$ the returned statevector will be $|\psi_{0} \rangle \otimes ... \otimes |\psi_{n-1} \rangle$.
+
+    **Returns**
+
+    the Statevector with reversed subsystem order.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+  </Function>
+
+  ### sample\_counts
+
+  <Function id="qiskit.quantum_info.Statevector.sample_counts" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L277-L304" signature="sample_counts(shots, qargs=None)">
+    Sample a dict of qubit measurement outcomes in the computational basis.
+
+    **Parameters**
+
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+
+    **Returns**
+
+    sampled counts dictionary.
+
+    **Return type**
+
+    [Counts](qiskit.result.Counts "qiskit.result.Counts")
+
+    Additional Information:
+
+    > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.Statevector.probabilities "qiskit.quantum_info.Statevector.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
+    >
+    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
+  </Function>
+
+  ### sample\_memory
+
+  <Function id="qiskit.quantum_info.Statevector.sample_memory" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L246-L275" signature="sample_memory(shots, qargs=None)">
+    Sample a list of qubit measurement outcomes in the computational basis.
+
+    **Parameters**
+
+    *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of samples to generate.
+    *   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+
+    **Returns**
+
+    list of sampled counts if the order sampled.
+
+    **Return type**
+
+    np.array
+
+    Additional Information:
+
+    > This function *samples* measurement outcomes using the measure [`probabilities()`](#qiskit.quantum_info.Statevector.probabilities "qiskit.quantum_info.Statevector.probabilities") for the current state and qargs. It does not actually implement the measurement so the current state is not modified.
+    >
+    > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
+  </Function>
+
+  ### seed
+
+  <Function id="qiskit.quantum_info.Statevector.seed" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/quantum_state.py#L78-L85" signature="seed(value=None)">
+    Set the seed for the quantum state RNG.
+  </Function>
+
+  ### tensor
+
+  <Function id="qiskit.quantum_info.Statevector.tensor" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L273-L290" signature="tensor(other)">
+    Return the tensor product state self ⊗ other.
+
+    **Parameters**
+
+    **other** ([*Statevector*](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – a quantum state object.
+
+    **Returns**
+
+    the tensor product operator self ⊗ other.
+
+    **Return type**
+
+    [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other is not a quantum state.
+  </Function>
+
+  ### to\_dict
+
+  <Function id="qiskit.quantum_info.Statevector.to_dict" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L778-L850" signature="to_dict(decimals=None)">
+    Convert the statevector to dictionary form.
+
+    This dictionary representation uses a Ket-like notation where the dictionary keys are qudit strings for the subsystem basis vectors. If any subsystem has a dimension greater than 10 comma delimiters are inserted between integers so that subsystems can be distinguished.
+
+    **Parameters**
+
+    **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+
+    **Returns**
+
+    the dictionary form of the Statevector.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")
+
+    **Example**
+
+    The ket-form of a 2-qubit statevector $|\psi\rangle = |-\rangle\otimes |0\rangle$
+
+    ```python
+    from qiskit.quantum_info import Statevector
+
+    psi = Statevector.from_label('-0')
+    print(psi.to_dict())
+    ```
+
+    ```text
+    {'00': (0.7071067811865475+0j), '10': (-0.7071067811865475+0j)}
+    ```
+
+    For non-qubit subsystems the integer range can go from 0 to 9. For example in a qutrit system
+
+    ```python
+    import numpy as np
+    from qiskit.quantum_info import Statevector
+
+    vec = np.zeros(9)
+    vec[0] = 1 / np.sqrt(2)
+    vec[-1] = 1 / np.sqrt(2)
+    psi = Statevector(vec, dims=(3, 3))
+    print(psi.to_dict())
+    ```
+
+    ```text
+    {'00': (0.7071067811865475+0j), '22': (0.7071067811865475+0j)}
+    ```
+
+    For large subsystem dimensions delimiters are required. The following example is for a 20-dimensional system consisting of a qubit and 10-dimensional qudit.
+
+    ```python
+    import numpy as np
+    from qiskit.quantum_info import Statevector
+
+    vec = np.zeros(2 * 10)
+    vec[0] = 1 / np.sqrt(2)
+    vec[-1] = 1 / np.sqrt(2)
+    psi = Statevector(vec, dims=(2, 10))
+    print(psi.to_dict())
+    ```
+
+    ```text
+    {'00': (0.7071067811865475+0j), '91': (0.7071067811865475+0j)}
+    ```
+  </Function>
+
+  ### to\_operator
+
+  <Function id="qiskit.quantum_info.Statevector.to_operator" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L252-L255" signature="to_operator()">
+    Convert state to a rank-1 projector operator
+
+    **Return type**
+
+    [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator")
+  </Function>
+
+  ### trace
+
+  <Function id="qiskit.quantum_info.Statevector.trace" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/statevector.py#L261-L263" signature="trace()">
+    Return the trace of the quantum state as a density matrix.
+
+    **Return type**
+
+    *float64*
+  </Function>
+</Class>
+

@@ -1,0 +1,133 @@
+---
+title: StochasticSwap (v1.4)
+description: API reference for qiskit.transpiler.passes.StochasticSwap in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.StochasticSwap
+---
+
+# StochasticSwap
+
+<Class id="qiskit.transpiler.passes.StochasticSwap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/stochastic_swap.py#L48-L480" signature="qiskit.transpiler.passes.StochasticSwap(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Map a DAGCircuit onto a coupling\_map adding swap gates.
+
+  Uses a randomized algorithm.
+
+  **Notes**
+
+  1.  Measurements may occur and be followed by swaps that result in repeated measurement of the same qubit. Near-term experiments cannot implement these circuits, so some care is required when using this mapper with experimental backend targets.
+  2.  We do not use the fact that the input state is zero to simplify the circuit.
+
+  StochasticSwap initializer.
+
+  The coupling map is a connected graph
+
+  If these are not satisfied, the behavior is undefined.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.transpiler.passes.routing.stochastic_swap.StochasticSwap` is deprecated as of qiskit 1.3. It will be removed in the 2.0 release. The StochasticSwap transpilation pass is a suboptimal routing algorithm and has been superseded by the SabreSwap pass.
+  </Admonition>
+
+  **Parameters**
+
+  *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph representing a coupling map.
+  *   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – maximum number of iterations to attempt
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – seed for random number generator
+  *   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if true, it will only pretend to do routing, i.e., no swap is effectively added.
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – starting layout at beginning of pass.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.StochasticSwap.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.StochasticSwap.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.StochasticSwap.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.StochasticSwap.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.StochasticSwap.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/stochastic_swap.py#L101-L140" signature="run(dag)">
+    Run the StochasticSwap pass on dag.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to map.
+
+    **Returns**
+
+    A mapped DAG.
+
+    **Return type**
+
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+    **Raises**
+
+    *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the coupling map or the layout are not
+    *   **compatible with the DAG**\*\*, or \*\***if the coupling\_map=None** –
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.StochasticSwap.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

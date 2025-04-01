@@ -1,0 +1,477 @@
+---
+title: ControlledGate (v1.4)
+description: API reference for qiskit.circuit.ControlledGate in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.ControlledGate
+---
+
+# ControlledGate
+
+<Class id="qiskit.circuit.ControlledGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlledgate.py#L28-L276" signature="qiskit.circuit.ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None, duration=None, unit=None, *, _base_label=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Controlled unitary gate.
+
+  Create a new ControlledGate. In the new gate the first `num_ctrl_qubits` of the gate are the controls.
+
+  **Parameters**
+
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the gate.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits the gate acts on.
+  *   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of parameters for the gate.
+  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – An optional label for the gate.
+  *   **num\_ctrl\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – Number of control qubits.
+  *   **definition** (*Optional\['QuantumCircuit']*) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
+  *   **ctrl\_state** (*Optional\[Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]]*) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
+  *   **base\_gate** (*Optional\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – Gate object to be controlled.
+
+  **Raises**
+
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If `num_ctrl_qubits` >= `num_qubits`.
+  *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – ctrl\_state \< 0 or ctrl\_state > 2\*\*num\_ctrl\_qubits.
+
+  Examples:
+
+  Create a controlled standard gate and apply it to a circuit.
+
+  ```python
+  from qiskit import QuantumCircuit, QuantumRegister
+  from qiskit.circuit.library.standard_gates import HGate
+
+  qr = QuantumRegister(3)
+  qc = QuantumCircuit(qr)
+  c3h_gate = HGate().control(2)
+  qc.append(c3h_gate, qr)
+  qc.draw('mpl')
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-ControlledGate-1.avif)
+
+  Create a controlled custom gate and apply it to a circuit.
+
+  ```python
+  from qiskit import QuantumCircuit, QuantumRegister
+  from qiskit.circuit.library.standard_gates import HGate
+
+  qc1 = QuantumCircuit(2)
+  qc1.x(0)
+  qc1.h(1)
+  custom = qc1.to_gate().control(2)
+
+  qc2 = QuantumCircuit(4)
+  qc2.append(custom, [0, 3, 1, 2])
+  qc2.draw('mpl')
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-ControlledGate-2.avif)
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.ControlledGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.ControlledGate.base_class "qiskit.circuit.ControlledGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.ControlledGate.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.ControlledGate.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### ctrl\_state
+
+  <Attribute id="qiskit.circuit.ControlledGate.ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.ControlledGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.ControlledGate.definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.ControlledGate.ctrl_state "qiskit.circuit.ControlledGate.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.ControlledGate.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.ControlledGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.ControlledGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.ControlledGate.name">
+    Get name of gate. If the gate has open controls the gate name will become:
+
+    > \<original\_name\_o\<ctrl\_state>
+
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.ControlledGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_ctrl\_qubits
+
+  <Attribute id="qiskit.circuit.ControlledGate.num_ctrl_qubits">
+    Get number of control qubits.
+
+    **Returns**
+
+    The number of control qubits for the gate.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.ControlledGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.ControlledGate.params">
+    Get parameters from base\_gate.
+
+    **Returns**
+
+    List of gate parameters.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.ControlledGate.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### add\_decomposition
+
+  <Function id="qiskit.circuit.ControlledGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L359-L364" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  ### assemble
+
+  <Function id="qiskit.circuit.ControlledGate.assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L388-L398" signature="assemble()">
+    Assemble a QasmQobjInstruction
+
+    <Admonition title="Deprecated since version 1.2" type="danger">
+      The method `qiskit.circuit.instruction.Instruction.assemble()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
+    </Admonition>
+  </Function>
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.circuit.ControlledGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/gate.py#L190-L247" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
+
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
+
+    The general broadcasting rules are:
+
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
+
+    **Parameters**
+
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of classical bit arguments.
+
+    **Returns**
+
+    A tuple with single arguments.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")]]
+  </Function>
+
+  ### c\_if
+
+  <Function id="qiskit.circuit.ControlledGate.c_if" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L527-L546" signature="c_if(classical, val)">
+    Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+
+    <Admonition title="Note" type="note">
+      This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+    </Admonition>
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The method `qiskit.circuit.instruction.Instruction.c_if()` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Function>
+
+  ### control
+
+  <Function id="qiskit.circuit.ControlledGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/gate.py#L107-L147" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return the controlled version of itself.
+
+    Implemented either as a controlled gate (ref. [`ControlledGate`](#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of controls to add to gate (default: `1`)
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – optional gate label. Ignored if implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – the control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate is implemented as an annotated gate. If `None`, this is set to `False` if the controlled gate can directly be constructed, and otherwise set to `True`. This allows defering the construction process in case the synthesis of the controlled gate requires more information (e.g. values of unbound parameters).
+
+    **Returns**
+
+    Controlled version of the given operation.
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.circuit.ControlledGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L548-L563" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.ControlledGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/controlledgate.py#L268-L276" signature="inverse(annotated=False)">
+    Invert this gate by calling inverse on the base gate.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+
+    **Return type**
+
+    ControlledGate’ | ‘AnnotatedOperation
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.ControlledGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L324-L329" signature="is_parameterized()">
+    Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
+
+  ### power
+
+  <Function id="qiskit.circuit.ControlledGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/gate.py#L65-L96" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit.circuit.ControlledGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L611-L653" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
+
+    If this operation has a conditional, the output instruction will have the same conditional and the inner repeated operations will be unconditional; instructions within a compound definition cannot be conditioned on registers within Qiskit’s data model. This means that it is not valid to apply a repeated instruction to a clbit that it both writes to and reads from in its condition.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
+
+  ### reverse\_ops
+
+  <Function id="qiskit.circuit.ControlledGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L444-L468" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### soft\_compare
+
+  <Function id="qiskit.circuit.ControlledGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L255-L295" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### to\_matrix
+
+  <Function id="qiskit.circuit.ControlledGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/gate.py#L51-L63" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
+
+    **Returns**
+
+    if the Gate subclass has a matrix definition.
+
+    **Return type**
+
+    np.ndarray
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
+
+  ### to\_mutable
+
+  <Function id="qiskit.circuit.ControlledGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/instruction.py#L174-L182" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.ControlledGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/gate.py#L249-L263" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
+

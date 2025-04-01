@@ -1,0 +1,889 @@
+---
+title: quantum_info (v1.4)
+description: API reference for qiskit.quantum_info in qiskit v1.4
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.quantum_info
+---
+
+<span id="module-qiskit.quantum_info" />
+
+<span id="qiskit-quantum-info" />
+
+<span id="quantum-information-qiskit-quantum-info" />
+
+# Quantum Information
+
+`qiskit.quantum_info`
+
+<span id="quantum-info-operators" />
+
+## Operators
+
+|                                                                                                                       |                                                                               |
+| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")(data\[, input\_dims, output\_dims])         | Matrix operator class                                                         |
+| [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")(\[data])                                             | N-qubit Pauli operator.                                                       |
+| [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")(data\[, validate, copy])                    | An N-qubit unitary operator from the Clifford group.                          |
+| [`ScalarOp`](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")(\[dims, coeff])                             | Scalar identity operator class.                                               |
+| [`SparseObservable`](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")                     | An observable over Pauli bases that stores its data in a qubit-sparse format. |
+| [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")(data\[, coeffs, ...])        | Sparse N-qubit operator in a Pauli basis representation.                      |
+| [`CNOTDihedral`](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")(\[data, num\_qubits, validate]) | An N-qubit operator from the CNOT-Dihedral group.                             |
+| [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")(data)                                    | List of N-qubit Pauli operators.                                              |
+| [`pauli_basis`](qiskit.quantum_info.pauli_basis "qiskit.quantum_info.pauli_basis")(num\_qubits\[, weight])            | Return the ordered PauliList for the n-qubit Pauli basis.                     |
+
+<span id="quantum-info-states" />
+
+## States
+
+|                                                                                                                   |                        |
+| ----------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")(data\[, dims])                 | Statevector class      |
+| [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")(data\[, dims])           | DensityMatrix class    |
+| [`StabilizerState`](qiskit.quantum_info.StabilizerState "qiskit.quantum_info.StabilizerState")(data\[, validate]) | StabilizerState class. |
+
+## Channels
+
+|                                                                                                                        |                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")(data\[, input\_dims, output\_dims])                      | Choi-matrix representation of a Quantum Channel.                 |
+| [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")(data\[, input\_dims, output\_dims])             | Superoperator representation of a quantum channel.               |
+| [`Kraus`](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")(data\[, input\_dims, output\_dims])                   | Kraus representation of a quantum channel.                       |
+| [`Stinespring`](qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")(data\[, input\_dims, output\_dims]) | Stinespring representation of a quantum channel.                 |
+| [`Chi`](qiskit.quantum_info.Chi "qiskit.quantum_info.Chi")(data\[, input\_dims, output\_dims])                         | Pauli basis Chi-matrix representation of a quantum channel.      |
+| [`PTM`](qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")(data\[, input\_dims, output\_dims])                         | Pauli Transfer Matrix (PTM) representation of a Quantum Channel. |
+
+## Measures
+
+### average\_gate\_fidelity
+
+<Function id="qiskit.quantum_info.average_gate_fidelity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/measures.py#L145-L204" signature="qiskit.quantum_info.average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)">
+  Return the average gate fidelity of a noisy quantum channel.
+
+  The average gate fidelity $F_{\text{ave}}$ is given by
+
+$$
+\begin{aligned}
+F_{\text{ave}}(\mathcal{E}, U)
+&= \int d\psi \langle\psi|U^\dagger
+\mathcal{E}(|\psi\rangle\!\langle\psi|)U|\psi\rangle \\
+&= \frac{d F_{\text{pro}}(\mathcal{E}, U) + 1}{d + 1}
+\end{aligned}
+
+
+$$
+
+  where $F_{\text{pro}}(\mathcal{E}, U)$ is the [`process_fidelity()`](#qiskit.quantum_info.process_fidelity "qiskit.quantum_info.process_fidelity") of the input quantum *channel* $\mathcal{E}$ with a *target* unitary $U$, and $d$ is the dimension of the *channel*.
+
+  **Parameters**
+
+  *   **channel** (*QuantumChannel or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – noisy quantum channel.
+  *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
+  *   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+  *   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\text{out}}[\mathcal{E}] - I$ \[Default: True].
+
+  **Returns**
+
+  The average gate fidelity $F_{\text{ave}}$.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the channel and target do not have the same dimensions, or have different input and output dimensions.
+</Function>
+
+### process\_fidelity
+
+<Function id="qiskit.quantum_info.process_fidelity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/measures.py#L34-L142" signature="qiskit.quantum_info.process_fidelity(channel, target=None, require_cp=True, require_tp=True)">
+  Return the process fidelity of a noisy quantum channel.
+
+  The process fidelity $F_{\text{pro}}(\mathcal{E}, \mathcal{F})$ between two quantum channels $\mathcal{E}, \mathcal{F}$ is given by
+
+$$
+F_{\text{pro}}(\mathcal{E}, \mathcal{F})
+= F(\rho_{\mathcal{E}}, \rho_{\mathcal{F}})
+
+
+$$
+
+  where $F$ is the [`state_fidelity()`](#qiskit.quantum_info.state_fidelity "qiskit.quantum_info.state_fidelity"), $\rho_{\mathcal{E}} = \Lambda_{\mathcal{E}} / d$ is the normalized [`Choi`](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") matrix for the channel $\mathcal{E}$, and $d$ is the input dimension of $\mathcal{E}$.
+
+  When the target channel is unitary this is equivalent to
+
+$$
+F_{\text{pro}}(\mathcal{E}, U)
+= \frac{Tr[S_U^\dagger S_{\mathcal{E}}]}{d^2}
+
+
+$$
+
+  where $S_{\mathcal{E}}, S_{U}$ are the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices for the *input* quantum channel $\mathcal{E}$ and *target* unitary $U$ respectively, and $d$ is the input dimension of the channel.
+
+  **Parameters**
+
+  *   **channel** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel*) – input quantum channel.
+  *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel or None*) – target quantum channel. If None target is the identity operator \[Default: None].
+  *   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+  *   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\text{out}}[\mathcal{E}] - I$ \[Default: True].
+
+  **Returns**
+
+  The process fidelity $F_{\text{pro}}$.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the channel and target do not have the same dimensions.
+</Function>
+
+### gate\_error
+
+<Function id="qiskit.quantum_info.gate_error" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/measures.py#L207-L251" signature="qiskit.quantum_info.gate_error(channel, target=None, require_cp=True, require_tp=False)">
+  Return the gate error of a noisy quantum channel.
+
+  The gate error $E$ is given by the average gate infidelity
+
+$$
+E(\mathcal{E}, U) = 1 - F_{\text{ave}}(\mathcal{E}, U)
+
+
+$$
+
+  where $F_{\text{ave}}(\mathcal{E}, U)$ is the [`average_gate_fidelity()`](#qiskit.quantum_info.average_gate_fidelity "qiskit.quantum_info.average_gate_fidelity") of the input quantum *channel* $\mathcal{E}$ with a *target* unitary $U$.
+
+  **Parameters**
+
+  *   **channel** (*QuantumChannel*) – noisy quantum channel.
+  *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
+  *   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+  *   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\text{out}}[\mathcal{E}] - I$ \[Default: True].
+
+  **Returns**
+
+  The average gate error $E$.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the channel and target do not have the same dimensions, or have different input and output dimensions.
+</Function>
+
+### diamond\_norm
+
+<Function id="qiskit.quantum_info.diamond_norm" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/measures.py#L254-L350" signature="qiskit.quantum_info.diamond_norm(choi, solver='SCS', **kwargs)">
+  Return the diamond norm of the input quantum channel object.
+
+  This function computes the completely-bounded trace-norm (often referred to as the diamond-norm) of the input quantum channel object using the semidefinite-program from reference \[1].
+
+  **Parameters**
+
+  *   **choi** ([*Choi*](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") *or QuantumChannel*) – a quantum channel object or Choi-matrix array.
+  *   **solver** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The solver to use.
+  *   **kwargs** – optional arguments to pass to CVXPY solver.
+
+  **Returns**
+
+  The completely-bounded trace norm $\|\mathcal{E}\|_{\diamond}$.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if CVXPY package cannot be found.
+
+  **Additional Information:**
+
+  The input to this function is typically *not* a CPTP quantum channel, but rather the *difference* between two quantum channels $\|\Delta\mathcal{E}\|_\diamond$ where $\Delta\mathcal{E} = \mathcal{E}_1 - \mathcal{E}_2$.
+
+  **Reference:**
+
+  J. Watrous. “Simpler semidefinite programs for completely bounded norms”, arXiv:1207.5726 \[quant-ph] (2012).
+
+  <Admonition title="Note" type="note">
+    This function requires the optional CVXPY package to be installed. Any additional kwargs will be passed to the `cvxpy.solve` function. See the CVXPY documentation for information on available SDP solvers.
+  </Admonition>
+</Function>
+
+### state\_fidelity
+
+<Function id="qiskit.quantum_info.state_fidelity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/measures.py#L29-L79" signature="qiskit.quantum_info.state_fidelity(state1, state2, validate=True)">
+  Return the state fidelity between two quantum states.
+
+  The state fidelity $F$ for density matrix input states $\rho_1, \rho_2$ is given by
+
+$$
+F(\rho_1, \rho_2) = Tr[\sqrt{\sqrt{\rho_1}\rho_2\sqrt{\rho_1}}]^2.
+
+
+$$
+
+  If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \langle\psi_1|\rho_2|\psi_1\rangle$, where $\rho_1 = |\psi_1\rangle\!\langle\psi_1|$.
+
+  **Parameters**
+
+  *   **state1** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the first quantum state.
+  *   **state2** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the second quantum state.
+  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if the inputs are valid quantum states \[Default: True]
+
+  **Returns**
+
+  The state fidelity $F(\rho_1, \rho_2)$.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `validate=True` and the inputs are invalid quantum states.
+</Function>
+
+### purity
+
+<Function id="qiskit.quantum_info.purity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/measures.py#L82-L102" signature="qiskit.quantum_info.purity(state, validate=True)">
+  Calculate the purity of a quantum state.
+
+  The purity of a density matrix $\rho$ is
+
+$$
+\text{Purity}(\rho) = Tr[\rho^2]
+$$
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
+  *   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – check if input state is valid \[Default: True]
+
+  **Returns**
+
+  the purity $Tr[\rho^2]$.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input isn’t a valid quantum state.
+</Function>
+
+### concurrence
+
+<Function id="qiskit.quantum_info.concurrence" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/measures.py#L165-L222" signature="qiskit.quantum_info.concurrence(state)">
+  Calculate the concurrence of a quantum state.
+
+  The concurrence of a bipartite [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") $|\psi\rangle$ is given by
+
+$$
+C(|\psi\rangle) = \sqrt{2(1 - Tr[\rho_0^2])}
+$$
+
+  where $\rho_0 = Tr_1[|\psi\rangle\!\langle\psi|]$ is the reduced state from by taking the [`partial_trace()`](#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace") of the input state.
+
+  For density matrices the concurrence is only defined for 2-qubit states, it is given by:
+
+$$
+C(\rho) = \max(0, \lambda_1 - \lambda_2 - \lambda_3 - \lambda_4)
+$$
+
+  where $\lambda _1 \ge \lambda _2 \ge \lambda _3 \ge \lambda _4$ are the ordered eigenvalues of the matrix $R=\sqrt{\sqrt{\rho }(Y\otimes Y)\overline{\rho}(Y\otimes Y)\sqrt{\rho}}$.
+
+  **Parameters**
+
+  **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a 2-qubit quantum state.
+
+  **Returns**
+
+  The concurrence.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input state is not a valid QuantumState.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is not a bipartite QuantumState.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if density matrix input is not a 2-qubit state.
+</Function>
+
+### entropy
+
+<Function id="qiskit.quantum_info.entropy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/measures.py#L105-L131" signature="qiskit.quantum_info.entropy(state, base=2)">
+  Calculate the von-Neumann entropy of a quantum state.
+
+  The entropy $S$ is given by
+
+$$
+S(\rho) = - Tr[\rho \log(\rho)]
+$$
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
+  *   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the base of the logarithm \[Default: 2].
+
+  **Returns**
+
+  The von-Neumann entropy S(rho).
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input state is not a valid QuantumState.
+</Function>
+
+### entanglement\_of\_formation
+
+<Function id="qiskit.quantum_info.entanglement_of_formation" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/measures.py#L225-L257" signature="qiskit.quantum_info.entanglement_of_formation(state)">
+  Calculate the entanglement of formation of quantum state.
+
+  The input quantum state must be either a bipartite state vector, or a 2-qubit density matrix.
+
+  **Parameters**
+
+  **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a 2-qubit quantum state.
+
+  **Returns**
+
+  The entanglement of formation.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input state is not a valid QuantumState.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is not a bipartite QuantumState.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if density matrix input is not a 2-qubit state.
+</Function>
+
+### mutual\_information
+
+<Function id="qiskit.quantum_info.mutual_information" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/measures.py#L134-L162" signature="qiskit.quantum_info.mutual_information(state, base=2)">
+  Calculate the mutual information of a bipartite state.
+
+  The mutual information $I$ is given by:
+
+$$
+I(\rho_{AB}) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})
+$$
+
+  where $\rho_A=Tr_B[\rho_{AB}], \rho_B=Tr_A[\rho_{AB}]$, are the reduced density matrices of the bipartite state $\rho_{AB}$.
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a bipartite state.
+  *   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the base of the logarithm \[Default: 2].
+
+  **Returns**
+
+  The mutual information $I(\rho_{AB})$.
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Raises**
+
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input state is not a valid QuantumState.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input is not a bipartite QuantumState.
+</Function>
+
+## Utility Functions
+
+|                                                                                       |                                    |
+| ------------------------------------------------------------------------------------- | ---------------------------------- |
+| [`Quaternion`](qiskit.quantum_info.Quaternion "qiskit.quantum_info.Quaternion")(data) | A class representing a Quaternion. |
+
+### partial\_trace
+
+<Function id="qiskit.quantum_info.partial_trace" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/utils.py#L29-L80" signature="qiskit.quantum_info.partial_trace(state, qargs)">
+  Return reduced density matrix by tracing out part of quantum state.
+
+  If all subsystems are traced over this returns the [`trace()`](qiskit.quantum_info.DensityMatrix#trace "qiskit.quantum_info.DensityMatrix.trace") of the input state.
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the input state.
+  *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – The subsystems to trace over.
+
+  **Returns**
+
+  The reduced density matrix.
+
+  **Return type**
+
+  [DensityMatrix](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input state is invalid.
+</Function>
+
+### schmidt\_decomposition
+
+<Function id="qiskit.quantum_info.schmidt_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/utils.py#L126-L208" signature="qiskit.quantum_info.schmidt_decomposition(state, qargs)">
+  Return the Schmidt Decomposition of a pure quantum state.
+
+  For an arbitrary bipartite state:
+
+$$
+|\psi\rangle_{AB} = \sum_{i,j} c_{ij}
+|x_i\rangle_A \otimes |y_j\rangle_B,
+
+
+$$
+
+  its Schmidt Decomposition is given by the single-index sum over k:
+
+$$
+|\psi\rangle_{AB} = \sum_{k} \lambda_{k}
+|u_k\rangle_A \otimes |v_k\rangle_B
+
+
+$$
+
+  where $|u_k\rangle_A$ and $|v_k\rangle_B$ are an orthonormal set of vectors in their respective spaces $A$ and $B$, and the Schmidt coefficients $\lambda_k$ are positive real values.
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the input state.
+  *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – the list of Input state positions corresponding to subsystem $B$.
+
+  **Returns**
+
+  list of tuples `(s, u, v)`, where `s` (float) are the Schmidt coefficients $\lambda_k$, and `u` (Statevector), `v` (Statevector) are the Schmidt vectors $|u_k\rangle_A$, $|u_k\rangle_B$, respectively.
+
+  **Return type**
+
+  [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+
+  **Raises**
+
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if Input qargs is not a list of positions of the Input state.
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if Input qargs is not a proper subset of Input state.
+
+  <Admonition title="Note" type="note">
+    In Qiskit, qubits are ordered using little-endian notation, with the least significant qubits having smaller indices. For example, a four-qubit system is represented as $|q_3q_2q_1q_0\rangle$. Using this convention, setting `qargs=[0]` will partition the state as $|q_3q_2q_1\rangle_A\otimes|q_0\rangle_B$. Furthermore, qubits will be organized in this notation regardless of the order they are passed. For instance, passing either `qargs=[1,2]` or `qargs=[2,1]` will result in partitioning the state as $|q_3q_0\rangle_A\otimes|q_2q_1\rangle_B$.
+  </Admonition>
+</Function>
+
+### shannon\_entropy
+
+<Function id="qiskit.quantum_info.shannon_entropy" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/utils.py#L83-L123" signature="qiskit.quantum_info.shannon_entropy(pvec, base=2)">
+  Compute the Shannon entropy of a probability vector.
+
+  The shannon entropy of a probability vector $\vec{p} = [p_0, ..., p_{n-1}]$ is defined as
+
+$$
+H(\vec{p}) = \sum_{i=0}^{n-1} p_i \log_b(p_i)
+$$
+
+  where $b$ is the log base and (default 2), and $0 \log_b(0) \equiv 0$.
+
+  **Parameters**
+
+  *   **pvec** (*array\_like*) – a probability vector.
+  *   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the base of the logarithm \[Default: 2].
+
+  **Returns**
+
+  The Shannon entropy H(pvec).
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+</Function>
+
+### commutator
+
+<Function id="qiskit.quantum_info.commutator" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/utils/commutator.py#L23-L36" signature="qiskit.quantum_info.commutator(a, b)">
+  Compute commutator of a and b.
+
+$$
+ab - ba.
+$$
+
+  **Parameters**
+
+  *   **a** (*OperatorTypeT*) – Operator a.
+  *   **b** (*OperatorTypeT*) – Operator b.
+
+  **Returns**
+
+  The commutator
+
+  **Return type**
+
+  *OperatorTypeT*
+</Function>
+
+### anti\_commutator
+
+<Function id="qiskit.quantum_info.anti_commutator" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/utils/anti_commutator.py#L23-L36" signature="qiskit.quantum_info.anti_commutator(a, b)">
+  Compute anti-commutator of a and b.
+
+$$
+ab + ba.
+$$
+
+  **Parameters**
+
+  *   **a** (*OperatorTypeT*) – Operator a.
+  *   **b** (*OperatorTypeT*) – Operator b.
+
+  **Returns**
+
+  The anti-commutator
+
+  **Return type**
+
+  *OperatorTypeT*
+</Function>
+
+### double\_commutator
+
+<Function id="qiskit.quantum_info.double_commutator" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/utils/double_commutator.py#L23-L76" signature="qiskit.quantum_info.double_commutator(a, b, c, *, commutator=True)">
+  Compute symmetric double commutator of a, b and c.
+
+  See also Equation (13.6.18) in \[1].
+
+  If commutator is True, it returns
+
+$$
+[[A, B], C]/2 + [A, [B, C]]/2
+= (2ABC + 2CBA - BAC - CAB - ACB - BCA)/2.
+$$
+
+  If commutator is False, it returns
+
+$$
+\lbrace[A, B], C\rbrace/2 + \lbrace A, [B, C]\rbrace/2
+= (2ABC - 2CBA - BAC + CAB - ACB + BCA)/2.
+
+
+$$
+
+  **Parameters**
+
+  *   **a** (*OperatorTypeT*) – Operator a.
+  *   **b** (*OperatorTypeT*) – Operator b.
+  *   **c** (*OperatorTypeT*) – Operator c.
+  *   **commutator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True` compute the double commutator, if `False` the double anti-commutator.
+
+  **Returns**
+
+  The double commutator
+
+  **Return type**
+
+  *OperatorTypeT*
+
+  **References**
+
+  **\[1]: R. McWeeny.**
+
+  Methods of Molecular Quantum Mechanics. 2nd Edition, Academic Press, 1992. ISBN 0-12-486552-6.
+</Function>
+
+## Random
+
+### random\_statevector
+
+<Function id="qiskit.quantum_info.random_statevector" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/random.py#L29-L60" signature="qiskit.quantum_info.random_statevector(dims, seed=None)">
+  Generator a random Statevector.
+
+  The statevector is sampled from the uniform distribution. This is the measure induced by the Haar measure on unitary matrices.
+
+  **Parameters**
+
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – the dimensions of the state.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  the random statevector.
+
+  **Return type**
+
+  [Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+  **Reference:**
+
+  K. Zyczkowski and H. Sommers (2001), “Induced measures in the space of mixed quantum states”, [J. Phys. A: Math. Gen. 34 7111](https://arxiv.org/abs/quant-ph/0012101).
+</Function>
+
+### random\_density\_matrix
+
+<Function id="qiskit.quantum_info.random_density_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/states/random.py#L63-L98" signature="qiskit.quantum_info.random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)">
+  Generator a random DensityMatrix.
+
+  **Parameters**
+
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – the dimensions of the DensityMatrix.
+  *   **rank** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or None*) – Optional, the rank of the density matrix. The default value is full-rank.
+  *   **method** (*string*) – Optional. The method to use. ‘Hilbert-Schmidt’: (Default) sample from the Hilbert-Schmidt metric. ‘Bures’: sample from the Bures metric.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  the random density matrix.
+
+  **Return type**
+
+  [DensityMatrix](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the method is not valid.
+</Function>
+
+### random\_unitary
+
+<Function id="qiskit.quantum_info.random_unitary" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/random.py#L32-L56" signature="qiskit.quantum_info.random_unitary(dims, seed=None)">
+  Return a random unitary Operator.
+
+  The operator is sampled from the unitary Haar measure.
+
+  **Parameters**
+
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – the input dimensions of the Operator.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  a unitary operator.
+
+  **Return type**
+
+  [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+</Function>
+
+### random\_hermitian
+
+<Function id="qiskit.quantum_info.random_hermitian" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/random.py#L59-L102" signature="qiskit.quantum_info.random_hermitian(dims, traceless=False, seed=None)">
+  Return a random hermitian Operator.
+
+  The operator is sampled from Gaussian Unitary Ensemble.
+
+  **Parameters**
+
+  *   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – the input dimension of the Operator.
+  *   **traceless** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Optional. If True subtract diagonal entries to return a traceless hermitian operator (Default: False).
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  a Hermitian operator.
+
+  **Return type**
+
+  [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+</Function>
+
+### random\_pauli
+
+<Function id="qiskit.quantum_info.random_pauli" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/symplectic/random.py#L28-L54" signature="qiskit.quantum_info.random_pauli(num_qubits, group_phase=False, seed=None)">
+  Return a random Pauli.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits.
+  *   **group\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Optional. If True generate random phase. Otherwise the phase will be set so that the Pauli coefficient is +1 (default: False).
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  a random Pauli
+
+  **Return type**
+
+  [Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+</Function>
+
+### random\_clifford
+
+<Function id="qiskit.quantum_info.random_clifford" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/symplectic/random.py#L90-L117" signature="qiskit.quantum_info.random_clifford(num_qubits, seed=None)">
+  Return a random Clifford operator.
+
+  The Clifford is sampled using the method of Reference \[1].
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits for the Clifford
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  a random Clifford operator.
+
+  **Return type**
+
+  [Clifford](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
+
+  **Reference:**
+
+  1.  S. Bravyi and D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*. [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
+</Function>
+
+### random\_quantum\_channel
+
+<Function id="qiskit.quantum_info.random_quantum_channel" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/random.py#L105-L154" signature="qiskit.quantum_info.random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)">
+  Return a random CPTP quantum channel.
+
+  This constructs the Stinespring operator for the quantum channel by sampling a random isometry from the unitary Haar measure.
+
+  **Parameters**
+
+  *   **input\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – the input dimension of the channel.
+  *   **output\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – the input dimension of the channel.
+  *   **rank** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Optional. The rank of the quantum channel Choi-matrix.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  a quantum channel operator.
+
+  **Return type**
+
+  [Stinespring](qiskit.quantum_info.Stinespring "qiskit.quantum_info.Stinespring")
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if rank or dimensions are invalid.
+</Function>
+
+### random\_cnotdihedral
+
+<Function id="qiskit.quantum_info.random_cnotdihedral" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/dihedral/random.py#L22-L64" signature="qiskit.quantum_info.random_cnotdihedral(num_qubits, seed=None)">
+  Return a random CNOTDihedral element.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits for the CNOTDihedral object.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or RandomState*) – Optional. Set a fixed seed or generator for RNG.
+
+  **Returns**
+
+  a random CNOTDihedral element.
+
+  **Return type**
+
+  [CNOTDihedral](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")
+</Function>
+
+### random\_pauli\_list
+
+<Function id="qiskit.quantum_info.random_pauli_list" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/operators/symplectic/random.py#L57-L87" signature="qiskit.quantum_info.random_pauli_list(num_qubits, size=1, seed=None, phase=True)">
+  Return a random PauliList.
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the number of qubits.
+  *   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Optional. The length of the Pauli list (Default: 1).
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+  *   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True the Pauli phases are randomized, otherwise the phases are fixed to 0. \[Default: True]
+
+  **Returns**
+
+  a random PauliList.
+
+  **Return type**
+
+  [PauliList](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
+</Function>
+
+## Analysis
+
+### hellinger\_distance
+
+<Function id="qiskit.quantum_info.hellinger_distance" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/analysis/distance.py#L18-L54" signature="qiskit.quantum_info.hellinger_distance(dist_p, dist_q)">
+  Computes the Hellinger distance between two counts distributions.
+
+  **Parameters**
+
+  *   **dist\_p** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – First dict of counts.
+  *   **dist\_q** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Second dict of counts.
+
+  **Returns**
+
+  Distance
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **References**
+
+  [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
+</Function>
+
+### hellinger\_fidelity
+
+<Function id="qiskit.quantum_info.hellinger_fidelity" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/quantum_info/analysis/distance.py#L57-L102" signature="qiskit.quantum_info.hellinger_fidelity(dist_p, dist_q)">
+  Computes the Hellinger fidelity between two counts distributions.
+
+  The fidelity is defined as $\left(1-H^{2}\right)^{2}$ where H is the Hellinger distance. This value is bounded in the range \[0, 1].
+
+  This is equivalent to the standard classical fidelity $F(Q,P)=\left(\sum_{i}\sqrt{p_{i}q_{i}}\right)^{2}$ that in turn is equal to the quantum state fidelity for diagonal density matrices.
+
+  **Parameters**
+
+  *   **dist\_p** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – First dict of counts.
+  *   **dist\_q** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – Second dict of counts.
+
+  **Returns**
+
+  Fidelity
+
+  **Return type**
+
+  [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+
+  **Example**
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info.analysis import hellinger_fidelity
+  from qiskit.providers.basic_provider import BasicSimulator
+
+  qc = QuantumCircuit(5, 5)
+  qc.h(2)
+  qc.cx(2, 1)
+  qc.cx(2, 3)
+  qc.cx(3, 4)
+  qc.cx(1, 0)
+  qc.measure(range(5), range(5))
+
+  sim = BasicSimulator()
+  res1 = sim.run(qc).result()
+  res2 = sim.run(qc).result()
+
+  hellinger_fidelity(res1.get_counts(), res2.get_counts())
+  ```
+
+  **References**
+
+  [Quantum Fidelity @ wikipedia](https://en.wikipedia.org/wiki/Fidelity_of_quantum_states) [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
+</Function>
+
+|                                                                                                                         |                                                                                                                                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`Z2Symmetries`](qiskit.quantum_info.Z2Symmetries "qiskit.quantum_info.Z2Symmetries")(symmetries, sq\_paulis, sq\_list) | The \$Z\_2\$ symmetry converter identifies symmetries from the problem hamiltonian and uses them to provide a tapered - more efficient - representation of operators as Paulis for this problem. |
+

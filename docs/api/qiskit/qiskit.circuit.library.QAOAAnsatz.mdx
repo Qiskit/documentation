@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
 # QAOAAnsatz
 
-<Class id="qiskit.circuit.library.QAOAAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/qaoa_ansatz.py#L108-L367" signature="qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)" modifiers="class">
+<Class id="qiskit.circuit.library.QAOAAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/qaoa_ansatz.py#L108-L367" signature="qiskit.circuit.library.QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA', flatten=None)" modifiers="class">
   Bases: [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.n_local.evolved_operator_ansatz.EvolvedOperatorAnsatz")
 
   A generalized QAOA quantum circuit with a support of custom initial states and mixers.
@@ -36,18 +36,6 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.QAOAAnsatz.clbits">
@@ -66,6 +54,12 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
     **Return type**
 
     BaseOperator or OperatorBase
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.cregs">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
   ### data
@@ -88,7 +82,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QAOAAnsatz.unit "qiskit.circuit.library.QAOAAnsatz.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -156,7 +150,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.instances" attributeValue="157" />
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.instances" attributeValue="267" />
 
   ### layout
 
@@ -196,6 +190,14 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.QAOAAnsatz.num_input_vars "qiskit.circuit.library.QAOAAnsatz.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_captured_vars">
@@ -210,12 +212,28 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.QAOAAnsatz.num_vars "qiskit.circuit.library.QAOAAnsatz.num_vars") + [`num_stretches()`](#qiskit.circuit.library.QAOAAnsatz.num_stretches "qiskit.circuit.library.QAOAAnsatz.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -262,6 +280,14 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_qubits" />
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.QAOAAnsatz.num_vars">
@@ -275,11 +301,15 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
   <Attribute id="qiskit.circuit.library.QAOAAnsatz.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -408,8 +438,8 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  <Attribute id="qiskit.circuit.library.QAOAAnsatz.qregs">
+    A list of the quantum registers associated with the circuit.
   </Attribute>
 
   ### qubits
@@ -440,7 +470,7 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
     The unit that [`duration`](#qiskit.circuit.library.QAOAAnsatz.duration "qiskit.circuit.library.QAOAAnsatz.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -448,12 +478,6 @@ python_api_name: qiskit.circuit.library.QAOAAnsatz
 
   <Attribute id="qiskit.circuit.library.QAOAAnsatz.name" attributeTypeHint="str">
     A human-readable name for the circuit.
-  </Attribute>
-
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.QAOAAnsatz.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 </Class>
 

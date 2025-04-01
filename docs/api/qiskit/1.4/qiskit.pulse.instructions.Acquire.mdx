@@ -1,0 +1,242 @@
+---
+title: Acquire (v1.4)
+description: API reference for qiskit.pulse.instructions.Acquire in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.instructions.Acquire
+---
+
+# Acquire
+
+<Class id="qiskit.pulse.instructions.Acquire" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/acquire.py#L25-L150" signature="qiskit.pulse.instructions.Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)" modifiers="class">
+  Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+
+  The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g. instantiated with AcquireChannel(0), the Acquire command will trigger data collection for the channel associated with qubit 0 readout. This instruction also provides acquisition metadata:
+
+  > *   the number of cycles during which to acquire (in terms of dt),
+  > *   the register slot to store classified, intermediary readout results,
+  > *   the memory slot to return classified results,
+  > *   the kernel to integrate raw data for each shot, and
+  > *   the discriminator to classify kerneled IQ points.
+
+  Create a new Acquire instruction.
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    The class `qiskit.pulse.instructions.acquire.Acquire` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics)
+  </Admonition>
+
+  **Parameters**
+
+  *   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – Length of time to acquire data in terms of dt.
+  *   **channel** ([*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")) – The channel that will acquire data.
+  *   **mem\_slot** ([*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot") *| None*) – The classical memory slot in which to store the classified readout result.
+  *   **reg\_slot** ([*RegisterSlot*](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot") *| None*) – The fast-access register slot in which to store the classified readout result for fast feedback.
+  *   **kernel** (*Kernel | None*) – A `Kernel` for integrating raw data.
+  *   **discriminator** (*Discriminator | None*) – A `Discriminator` for discriminating kerneled IQ data into 0/1 results.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the instruction for display purposes.
+
+  ## Attributes
+
+  ### acquire
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.acquire">
+    Acquire channel to acquire data. The `AcquireChannel` index maps trivially to qubit index.
+  </Attribute>
+
+  ### channel
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.channel">
+    Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
+  </Attribute>
+
+  ### channels
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.channels">
+    Returns the channels that this schedule uses.
+  </Attribute>
+
+  ### discriminator
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.discriminator">
+    Return discrimination settings.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.duration">
+    Duration of this instruction.
+  </Attribute>
+
+  ### id
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.id">
+    Unique identifier for this instruction.
+  </Attribute>
+
+  ### instructions
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.instructions">
+    Iterable for getting instructions from Schedule tree.
+  </Attribute>
+
+  ### kernel
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.kernel">
+    Return kernel settings.
+  </Attribute>
+
+  ### mem\_slot
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.mem_slot">
+    The classical memory slot which will store the classified readout result.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.name">
+    Name of this instruction.
+  </Attribute>
+
+  ### operands
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.operands">
+    Return instruction operands.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.parameters">
+    Parameters which determine the instruction behavior.
+  </Attribute>
+
+  ### reg\_slot
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.reg_slot">
+    The fast-access register slot which will store the classified readout result for fast-feedback computation.
+  </Attribute>
+
+  ### start\_time
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.start_time">
+    Relative begin time of this instruction.
+  </Attribute>
+
+  ### stop\_time
+
+  <Attribute id="qiskit.pulse.instructions.Acquire.stop_time">
+    Relative end time of this instruction.
+  </Attribute>
+
+  ## Methods
+
+  ### append
+
+  <Function id="qiskit.pulse.instructions.Acquire.append" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L187-L200" signature="append(schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+
+    **Parameters**
+
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
+
+    **Returns**
+
+    A new schedule with `schedule` a this instruction at t=0.
+
+    **Return type**
+
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+
+  ### ch\_duration
+
+  <Function id="qiskit.pulse.instructions.Acquire.ch_duration" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L114-L120" signature="ch_duration(*channels)">
+    Return duration of the supplied channels in this Instruction.
+
+    **Parameters**
+
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### ch\_start\_time
+
+  <Function id="qiskit.pulse.instructions.Acquire.ch_start_time" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L122-L129" signature="ch_start_time(*channels)">
+    Return minimum start time for supplied channels.
+
+    **Parameters**
+
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### ch\_stop\_time
+
+  <Function id="qiskit.pulse.instructions.Acquire.ch_stop_time" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L131-L139" signature="ch_stop_time(*channels)">
+    Return maximum start time for supplied channels.
+
+    **Parameters**
+
+    **\*channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Supplied channels
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### insert
+
+  <Function id="qiskit.pulse.instructions.Acquire.insert" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L169-L185" signature="insert(start_time, schedule, name=None)">
+    Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+
+    **Parameters**
+
+    *   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Time to insert the schedule schedule
+    *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
+
+    **Returns**
+
+    A new schedule with `schedule` inserted with this instruction at t=0.
+
+    **Return type**
+
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.pulse.instructions.Acquire.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/acquire.py#L138-L140" signature="is_parameterized()">
+    Return True iff the instruction is parameterized.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### shift
+
+  <Function id="qiskit.pulse.instructions.Acquire.shift" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/pulse/instructions/instruction.py#L153-L167" signature="shift(time, name=None)">
+    Return a new schedule shifted forward by time.
+
+    **Parameters**
+
+    *   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Time to shift by
+    *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of the new schedule. Defaults to name of self
+
+    **Returns**
+
+    The shifted schedule.
+
+    **Return type**
+
+    [Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+  </Function>
+</Class>
+

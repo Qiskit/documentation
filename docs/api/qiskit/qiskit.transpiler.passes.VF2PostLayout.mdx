@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
 # VF2PostLayout
 
-<Class id="qiskit.transpiler.passes.VF2PostLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/layout/vf2_post_layout.py#L54-L441" signature="qiskit.transpiler.passes.VF2PostLayout(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.VF2PostLayout" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/layout/vf2_post_layout.py#L52-L376" signature="qiskit.transpiler.passes.VF2PostLayout(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   A pass for improving an existing Layout after transpilation of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
@@ -22,7 +22,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
   > *   `"nonexistent solution"`: If no solution was found.
   > *   `">2q gates in basis"`: If VF2PostLayout can’t work with the basis of the circuit.
 
-  By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
+  By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target`. However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
 
   ```python
   from qiskit.transpiler.passes.layout.vf2_utils import ErrorMap
@@ -37,19 +37,9 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
   Initialize a `VF2PostLayout` pass instance
 
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    `qiskit.transpiler.passes.layout.vf2_post_layout.VF2PostLayout.__init__()`’s argument `coupling_map` is deprecated as of Qiskit 1.4. It will be removed in Qiskit 2.0. This argument was only used with properties, which relied on the deprecated BackendProperties data structure. The target input argument should be used instead. You can use Target.from\_configuration() to build the target from coupling map + properties, but in 2.0 you will need to generate a target directly.
-  </Admonition>
-
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    `qiskit.transpiler.passes.layout.vf2_post_layout.VF2PostLayout.__init__()`’s argument `properties` is deprecated as of Qiskit 1.4. It will be removed in Qiskit 2.0. The BackendProperties data structure has been deprecated and will be removed in Qiskit 2.0. The target input argument should be used instead. You can use Target.from\_configuration() to build the target from the properties object, but in 2.0 you will need to generate a target directly.
-  </Admonition>
-
   **Parameters**
 
-  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2PostLayout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
-  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
-  *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2PostLayout` on.
   *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
   *   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of state visits to attempt in each execution of VF2.
   *   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – The total time limit in seconds to run `VF2PostLayout`
@@ -58,7 +48,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
   **Raises**
 
-  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – At runtime, if neither `coupling_map` or `target` are provided.
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – At runtime, if `target` isn’t provided.
 
   ## Attributes
 
@@ -82,7 +72,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.VF2PostLayout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.VF2PostLayout.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -102,7 +92,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.VF2PostLayout.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.VF2PostLayout.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -112,13 +102,13 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.VF2PostLayout.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/layout/vf2_post_layout.py#L176-L397" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.VF2PostLayout.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/layout/vf2_post_layout.py#L142-L354" signature="run(dag)">
     run the layout method
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.VF2PostLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.VF2PostLayout.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

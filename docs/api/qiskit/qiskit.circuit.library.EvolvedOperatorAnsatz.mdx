@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
 # EvolvedOperatorAnsatz
 
-<Class id="qiskit.circuit.library.EvolvedOperatorAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L279-L474" signature="qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)" modifiers="class">
+<Class id="qiskit.circuit.library.EvolvedOperatorAnsatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L279-L474" signature="qiskit.circuit.library.EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', parameter_prefix='t', initial_state=None, flatten=None)" modifiers="class">
   Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
   The evolved operator ansatz.
@@ -32,21 +32,15 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.cregs">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
@@ -70,7 +64,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.EvolvedOperatorAnsatz.unit "qiskit.circuit.library.EvolvedOperatorAnsatz.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -142,7 +136,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.instances" attributeValue="157" />
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.instances" attributeValue="163" />
 
   ### layout
 
@@ -168,6 +162,14 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.EvolvedOperatorAnsatz.num_input_vars "qiskit.circuit.library.EvolvedOperatorAnsatz.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_captured_vars">
@@ -182,12 +184,28 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.EvolvedOperatorAnsatz.num_vars "qiskit.circuit.library.EvolvedOperatorAnsatz.num_vars") + [`num_stretches()`](#qiskit.circuit.library.EvolvedOperatorAnsatz.num_stretches "qiskit.circuit.library.EvolvedOperatorAnsatz.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -240,6 +258,14 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
     The number of qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.num_vars">
@@ -253,11 +279,15 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -384,8 +414,8 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.qregs">
+    A list of the quantum registers associated with the circuit.
   </Attribute>
 
   ### qubits
@@ -420,7 +450,7 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
     The unit that [`duration`](#qiskit.circuit.library.EvolvedOperatorAnsatz.duration "qiskit.circuit.library.EvolvedOperatorAnsatz.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -428,12 +458,6 @@ python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 
   <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.name" attributeTypeHint="str">
     A human-readable name for the circuit.
-  </Attribute>
-
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.EvolvedOperatorAnsatz.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 </Class>
 
