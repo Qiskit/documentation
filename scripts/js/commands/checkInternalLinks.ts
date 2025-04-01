@@ -19,6 +19,7 @@ import { hideBin } from "yargs/helpers";
 import { readApiMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
+import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -97,11 +98,18 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
+const QISKIT_REMOVED_PAGES_TO_LOAD = [
+  ...QISKIT_REMOVED_PAGES,
+  "qiskit.circuit.QuantumCircuit",
+  "compiler",
+].map((page) => `docs/api/qiskit/1.4/${page}.mdx`);
+
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
   "docs/guides/*.{mdx,ipynb}",
   "docs/migration-guides/*.{mdx,ipynb}",
+  ...QISKIT_REMOVED_PAGES_TO_LOAD,
 ];
 const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const QISKIT_GLOBS_TO_LOAD = [
@@ -214,6 +222,8 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
     "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
+    // These pages were removed in Qiskit 2.0.
+    ...QISKIT_REMOVED_PAGES_TO_LOAD,
   ];
 
   if (args.currentApis) {
