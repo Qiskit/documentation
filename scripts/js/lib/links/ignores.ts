@@ -10,8 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { QISKIT_REMOVED_PAGES } from "./QiskitRemovedPages";
-
 // -----------------------------------------------------------------------------------
 // Ignored files
 // -----------------------------------------------------------------------------------
@@ -122,11 +120,6 @@ function _runtimeObjectsInvRegexes(): string[] {
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
   ..._runtimeObjectsInvRegexes(),
-  // TODO(#2761): Move the links to globs to load in `checkInternalLinks.ts` once Qiskit 1.4 becomes historical
-  ...QISKIT_REMOVED_PAGES.map((link) => `\/api\/qiskit/1.4\/${link}(|#.*|$)`),
-  "/api/qiskit/1.4/qiskit.circuit.QuantumCircuit#add_calibration",
-  "/api/qiskit/1.4/compiler#qiskit.compiler.assemble",
-  // End of TODO(#2761)
 ];
 
 // -----------------------------------------------------------------------------------
