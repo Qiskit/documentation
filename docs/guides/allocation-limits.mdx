@@ -1,0 +1,33 @@
+---
+title: Set instance allocation limits
+description: Set allocation limits on an instance
+platform: cloud
+
+---
+# Set instance allocation limits
+
+Premium accounts are alloted a certain amount of time.  Because each account can have many instances, setting allocation limits helps you control which instances are allowed to consume that time.
+
+The time that you allocate is used by the fair-share algorithm and determines the priority in the queue, based on usage of all QPUs over a rolling time window of 28 days.
+
+Optionally you can set this time allocation as a limit for the instance.
+
+Setting allocations and limits is optional.  If none are set for your instances, the [fair-share scheduler](/fair-share-queue) prioritizes workloads from instances with lower usage, and your account is still limited to its overall time allotment.
+
+You can view and change allocated time on the [instances page.](https://quantum.cloud.ibm.com/instances)
+
+## What happens when the limit is reached
+
+The following happens when an instance reaches its limit:
+
+- Active workloads continure running.
+- Pending jobs remain queued.
+- No workloads are canceled.
+- Collaborators can submit new workloads, which will remain queued until more time is available.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Learn about [instances.](/instances)
+    - Review suggestions to [minimize job quantum time.](minimize-time)
+</Admonition>
