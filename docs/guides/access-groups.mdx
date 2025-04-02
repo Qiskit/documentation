@@ -59,7 +59,6 @@ ibmcloud iam access-group-policy-create GROUP_NAME {-f, --file @JSON_FILE | --ro
 
 You can use the following JSON code to create policies for an Administrators access group:
 
-- All IAM Account Management services (administrator)
 ```json
 {
     "type": "access",
@@ -140,6 +139,9 @@ You can use the following JSON code to create policies for an Administrators acc
 }
 ```
 
+- All IAM Account Management services (administrator)
+
+
 <span id="ui"></span>
 ### Use the IBM Cloud IAM console
 
@@ -151,7 +153,7 @@ As an account owner or administrator, follow these steps to create an IBM Quantu
 
 Next, create policies for the Qiskit Runtime service,  for All IAM Account Management services, and for All Account Management services.
 1. In the access group just created, click the **Access** tab, then click **Assign access**.
-1. In the **Create policy** page that opens, define these elements.
+1. In the **Create policy** page that opens, define these elements:
    - **Service** - Search for Qiskit Runtime and select it. Click **Next**.
    - **Resources** - Select **Specific resources**, and in the rest of the dropdowns, choose the following:
       - For **Attribute type**, select **Service Instance**.
@@ -166,7 +168,7 @@ Next, create policies for the Qiskit Runtime service,  for All IAM Account Manag
 You have successfully created an access group with one policy.  Next, create a second policy for the same instance.
 
 1. In the same access group, click the **Access** tab, then click **Assign access**.
-1. In the **Create policy** page that opens, define these elements.
+1. In the **Create policy** page that opens, define these elements:
    - **Service** - Select **All IAM Account Management services**. Click **Next**.
    - **Roles and actions** - For Platform access, select **Administrator**, Click **Next**.
    At the bottom, click **Add**, then click **Assign**.
@@ -174,12 +176,12 @@ You have successfully created an access group with one policy.  Next, create a s
 Create a third policy for the same instance.
 
 1. In the same access group, click the **Access** tab, then click **Assign access**.
-1. In the **Create policy** page that opens, define these elements.
+1. In the **Create policy** page that opens, define these elements:
    - **Service** - Select **All Account Management services**. Click **Next**.
    - **Roles and actions** - For Platform access, select **Viewer**, Click **Next**.
    At the bottom, click **Add**, then click **Assign**.
 
-finally, invite users to the access group.  You can do this from the access group's **Users** page, or by using the IBM Quantum Platform [Access management](https://quantum.cloud.ibm.com/admin/access-groups) page.
+Finally, invite users to the access group.  You can do this from the access group's **Users** page, or by using the IBM Quantum Platform [Access management](https://quantum.cloud.ibm.com/admin/access-groups) page.
 
 Invited users will receive an email with an invitation to use this account with the defined access to the instance. After they accept the invitation, they will see a new account in their account switcher at the top of the IBM Quantum Platform page. After selecting the new account, they will see the shared instance.
 
