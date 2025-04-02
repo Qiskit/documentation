@@ -120,12 +120,12 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/guides",
         "docs/migration-guides",
         "docs/open-source",
-        "public/videos",
-        "public/images/guides",
-        "public/images/qiskit-patterns",
+        "public/docs/videos",
+        "public/docs/images/guides",
+        "public/docs/images/qiskit-patterns",
     ]:
         dest = (
-            root_dir / "packages/preview" / dir
+            root_dir / "packages/preview" / dir.replace("/docs", "")
             if dir.startswith("public")
             else root_dir / _add_locale_to_docs(dir)
         )
