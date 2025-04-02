@@ -51,7 +51,8 @@ ${markdown}
       // so that people can quickly scroll up to the code object, since
       // it is non-trivial, like having the class constructor. But for
       // module pages, showing the h1 in the page ToC is noisy.
-      const toc_min_level = result.meta.apiType === "module" ? 2 : 1;
+      const toc_min_level =
+        pkg.isCApi() || result.meta.apiType === "module" ? 2 : 1;
       result.markdown = `---
 title: ${getLastPartFromFullIdentifier(result.meta.apiName)} (${titleVersion})
 description: API reference for ${result.meta.apiName} ${descriptionVersion}

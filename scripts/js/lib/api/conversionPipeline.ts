@@ -35,6 +35,9 @@ import {
   handleReleaseNotesFile,
 } from "./releaseNotes.js";
 
+// This is the folder that contains all C API docs in the Sphinx artifact.
+export const C_API_BASE_PATH = "cdoc" as const;
+
 export async function runConversionPipeline(
   htmlPath: string,
   docsBaseFolder: string,
@@ -76,12 +79,11 @@ async function determineFilePaths(
 ): Promise<[string[], string, ObjectsInv | undefined]> {
   const maybeObjectsInv = await (pkg.isProblematicLegacyQiskit()
     ? undefined
-    : ObjectsInv.fromFile(htmlPath));
+    : ObjectsInv.fromFile(htmlPath, pkg.language));
 
-  const extraFiles =
-    pkg.language == "C"
-      ? ["cdoc/**.html"]
-      : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
+  const extraFiles = pkg.isCApi()
+    ? [`${C_API_BASE_PATH}/**.html`]
+    : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
   const files = await globby(
     [...extraFiles, "release_notes.html", "release-notes.html"],
     {
@@ -110,7 +112,7 @@ async function convertFilesToMarkdown(
       imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
-      isCApi: pkg.language == "C",
+      isCApi: pkg.isCApi(),
     });
 
     // Avoid creating an empty markdown file for HTML files without content

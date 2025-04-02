@@ -1,0 +1,90 @@
+---
+title: plot_state_paulivec (v1.4)
+description: API reference for qiskit.visualization.plot_state_paulivec in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_state_paulivec
+---
+
+<span id="qiskit-visualization-plot-state-paulivec" />
+
+# qiskit.visualization.plot\_state\_paulivec
+
+<Function id="qiskit.visualization.plot_state_paulivec" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/state_visualization.py#L618-L731" signature="qiskit.visualization.plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, filename=None)">
+  Plot the Pauli-vector representation of a quantum state as bar graph.
+
+  The Pauli-vector of a density matrix $\rho$ is defined by the expectation of each possible tensor product of single-qubit Pauli operators (including the identity), that is
+
+$$
+\rho = \frac{1}{2^n} \sum_{\sigma \in \{I, X, Y, Z\}^{\otimes n}}
+\mathrm{Tr}(\sigma \rho) \sigma.
+$$
+
+  This function plots the coefficients $\mathrm{Tr}(\sigma\rho)$ as bar graph.
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+  *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – a string that represents the plot title
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – Figure size in inches.
+  *   **color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Color of the coefficient value bars.
+  *   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.10.1)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+
+  **Returns**
+
+  The matplotlib.Figure of the visualization if the `ax` kwarg is not set
+
+  **Return type**
+
+  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.10.1)")
+
+  **Raises**
+
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+
+  **Examples**
+
+  ```python
+  # You can set a color for all the bars.
+
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Statevector
+  from qiskit.visualization import plot_state_paulivec
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+
+  state = Statevector(qc)
+  plot_state_paulivec(state, color='midnightblue', title="New PauliVec plot")
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_state_paulivec-1.avif)
+
+  ```python
+  # If you introduce a list with less colors than bars, the color of the bars will
+  # alternate following the sequence from the list.
+
+  import numpy as np
+  from qiskit.quantum_info import DensityMatrix
+  from qiskit import QuantumCircuit
+  from qiskit.visualization import plot_state_paulivec
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.cx(0, 1)
+
+  qc = QuantumCircuit(2)
+  qc.h([0, 1])
+  qc.cz(0, 1)
+  qc.ry(np.pi/3, 0)
+  qc.rx(np.pi/5, 1)
+
+  matrix = DensityMatrix(qc)
+  plot_state_paulivec(matrix, color=['crimson', 'midnightblue', 'seagreen'])
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_state_paulivec-2.avif)
+</Function>
+

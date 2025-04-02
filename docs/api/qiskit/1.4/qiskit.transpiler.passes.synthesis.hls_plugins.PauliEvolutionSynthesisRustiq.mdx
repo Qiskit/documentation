@@ -1,0 +1,72 @@
+---
+title: PauliEvolutionSynthesisRustiq (v1.4)
+description: API reference for qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq
+---
+
+# PauliEvolutionSynthesisRustiq
+
+<Class id="qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1597-L1665" signature="qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq" modifiers="class">
+  Bases: [`HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
+
+  Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") using Rustiq.
+
+  This plugin name is :`PauliEvolution.rustiq` which can be used as the key on an [`HLSConfig`](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig") object to use this method with [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis").
+
+  The Rustiq synthesis algorithm is described in \[1], and is implemented in Rust-based quantum circuit synthesis library available at [https://github.com/smartiel/rustiq-core](https://github.com/smartiel/rustiq-core).
+
+  On large circuits the plugin may take a significant runtime.
+
+  The plugin supports the following additional options:
+
+  *   **optimize\_count (bool): if True the synthesis algorithm will try to optimize**
+
+      the 2-qubit gate count; and if False then the 2-qubit depth.
+
+  *   **preserve\_order (bool): whether the order of paulis should be preserved, up to**
+
+      commutativity.
+
+  *   upto\_clifford (bool): if True, the final Clifford operator is not synthesized.
+
+  *   **upto\_phase (bool): if True, the global phase of the returned circuit may**
+
+      differ from the global phase of the given pauli network.
+
+  *   **resynth\_clifford\_method (int): describes the strategy to synthesize the final**
+
+      Clifford operator. Allowed values are 0 (naive approach), 1 (qiskit greedy synthesis), 2 (rustiq isometry synthesis).
+
+  **References**
+
+  1.  Timothée Goubault de Brugière and Simon Martiel, *Faster and shorter synthesis of Hamiltonian simulation circuits*, [arXiv:2404.03280 \[quant-ph\]](https://arxiv.org/abs/2404.03280)
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.synthesis.hls_plugins.PauliEvolutionSynthesisRustiq.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/synthesis/hls_plugins.py#L1629-L1665" signature="run(high_level_object, coupling_map=None, target=None, qubits=None, **options)">
+    Run synthesis for the given Operation.
+
+    **Parameters**
+
+    *   **high\_level\_object** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The Operation to synthesize to a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object.
+    *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – The coupling map of the backend in case synthesis is done on a physical circuit.
+    *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend.
+    *   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of qubits over which the operation is defined in case synthesis is done on a physical circuit.
+    *   **options** – Additional method-specific optional kwargs.
+
+    **Returns**
+
+    **The quantum circuit representation of the Operation**
+
+    when successful, and `None` otherwise.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
+

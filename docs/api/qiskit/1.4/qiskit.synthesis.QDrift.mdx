@@ -1,0 +1,88 @@
+---
+title: QDrift (v1.4)
+description: API reference for qiskit.synthesis.QDrift in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.QDrift
+---
+
+# QDrift
+
+<Class id="qiskit.synthesis.QDrift" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/evolution/qdrift.py#L34-L137" signature="qiskit.synthesis.QDrift(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None, seed=None, wrap=False, preserve_order=True)" modifiers="class">
+  Bases: [`ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
+
+  The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in Ref. \[1].
+
+  **References**
+
+  \[1]: E. Campbell, “A random compiler for fast Hamiltonian simulation” (2018). [arXiv:quant-ph/1811.08017](https://arxiv.org/abs/1811.08017)
+
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    The ‘Callable\[\[Pauli | SparsePauliOp, float], QuantumCircuit]’ signature of the ‘atomic\_evolution’ argument is deprecated as of qiskit 1.4. It will be removed no earlier than 3 months after the release date. Instead you should update your ‘atomic\_evolution’ function to be of the following type: ‘Callable\[\[QuantumCircuit, Pauli | SparsePauliOp, float], None]’.
+  </Admonition>
+
+  **Parameters**
+
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of times to repeat the Trotterization circuit.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert barriers between the atomic evolutions.
+  *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – How to arrange the CX gates for the Pauli evolutions, can be `"chain"`, where next neighbor connections are used, or `"fountain"`, where all qubits are connected to one. This only takes effect when `atomic_evolution is None`.
+  *   **atomic\_evolution** (*Callable\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] | Callable\[\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*], None] | None*) – A function to apply the evolution of a single [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli"), or [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") of only commuting terms, to a circuit. The function takes in three arguments: the circuit to append the evolution to, the Pauli operator to evolve, and the evolution time. By default, a single Pauli evolution is decomposed into a chain of `CX` gates and a single `RZ` gate. Alternatively, the function can also take Pauli operator and evolution time as inputs and returns the circuit that will be appended to the overall circuit being built.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – An optional seed for reproducibility of the random sampling process.
+  *   **wrap** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to wrap the atomic evolutions into custom gate objects. This only takes effect when `atomic_evolution is None`.
+  *   **preserve\_order** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `False`, allows reordering the terms of the operator to potentially yield a shallower evolution circuit. Not relevant when synthesizing operator with a single term.
+
+  ## Attributes
+
+  ### settings
+
+  <Attribute id="qiskit.synthesis.QDrift.settings">
+    Return the settings in a dictionary, which can be used to reconstruct the object.
+
+    **Returns**
+
+    A dictionary containing the settings of this product formula.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – If a custom atomic evolution is set, which cannot be serialized.
+  </Attribute>
+
+  ## Methods
+
+  ### expand
+
+  <Function id="qiskit.synthesis.QDrift.expand" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/evolution/qdrift.py#L101-L137" signature="expand(evolution)">
+    Apply the product formula to expand the Hamiltonian in the evolution gate.
+
+    **Parameters**
+
+    **evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), whose Hamiltonian we expand.
+
+    **Returns**
+
+    A list of Pauli rotations in a sparse format, where each element is `(paulistring, qubits, coefficient)`. For example, the Lie-Trotter expansion of `H = XI + ZZ` would return `[("X", [1], 1), ("ZZ", [0, 1], 1)]`.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)"), [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")], [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]]
+  </Function>
+
+  ### synthesize
+
+  <Function id="qiskit.synthesis.QDrift.synthesize" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/synthesis/evolution/product_formula.py#L145-L167" signature="synthesize(evolution)">
+    Synthesize a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate").
+
+    **Parameters**
+
+    **evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
+
+    **Returns**
+
+    A circuit implementing the evolution.
+
+    **Return type**
+
+    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+  </Function>
+</Class>
+

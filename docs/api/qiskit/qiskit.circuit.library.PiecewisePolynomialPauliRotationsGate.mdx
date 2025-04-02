@@ -1,0 +1,414 @@
+---
+title: PiecewisePolynomialPauliRotationsGate (latest version)
+description: API reference for qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate
+---
+
+# PiecewisePolynomialPauliRotationsGate
+
+<Class id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L311-L480" signature="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate(num_state_qubits, breakpoints=None, coeffs=None, basis='Y', label=None)" modifiers="class">
+  Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+
+  Piecewise-polynomially-controlled Pauli rotations.
+
+  This class implements a piecewise polynomial (not necessarily continuous) function, $f(x)$, on qubit amplitudes, which is defined through breakpoints and coefficients as follows. Suppose the breakpoints $(x_0, ..., x_J)$ are a subset of $[0, 2^n-1]$, where $n$ is the number of state qubits. Further on, denote the corresponding coefficients by $[a_{j,1},...,a_{j,d}]$, where $d$ is the highest degree among all polynomials.
+
+  Then $f(x)$ is defined as:
+
+$$
+f(x) = \begin{cases}
+0, x < x_0 \\
+\sum_{i=0}^{i=d}a_{j,i}/2 x^i, x_j \leq x < x_{j+1}
+\end{cases}
+$$
+
+  where if given the same number of breakpoints as polynomials, we implicitly assume $x_{J+1} = 2^n$.
+
+  <Admonition title="Note" type="note">
+    Note the $1/2$ factor in the coefficients of $f(x)$, this is consistent with Qiskit’s Pauli rotations.
+  </Admonition>
+
+  **Examples**
+
+  ```python
+  >>> from qiskit import QuantumCircuit
+  >>> from qiskit.circuit.library.arithmetic.piecewise_polynomial_pauli_rotations import\
+  ... PiecewisePolynomialPauliRotations
+  >>> qubits, breakpoints, coeffs = (2, [0, 2], [[0, -1.2],[-1, 1, 3]])
+  >>> poly_r = PiecewisePolynomialPauliRotations(num_state_qubits=qubits,
+  ...breakpoints=breakpoints, coeffs=coeffs)
+  >>>
+  >>> qc = QuantumCircuit(poly_r.num_qubits)
+  >>> qc.h(list(range(qubits)));
+  >>> qc.append(poly_r.to_instruction(), list(range(qc.num_qubits)));
+  >>> qc.draw()
+       ┌───┐┌──────────┐
+  q_0: ┤ H ├┤0         ├
+       ├───┤│          │
+  q_1: ┤ H ├┤1         ├
+       └───┘│          │
+  q_2: ─────┤2         ├
+            │  pw_poly │
+  q_3: ─────┤3         ├
+            │          │
+  q_4: ─────┤4         ├
+            │          │
+  q_5: ─────┤5         ├
+            └──────────┘
+  ```
+
+  **References**
+
+  **\[1]: Haener, T., Roetteler, M., & Svore, K. M. (2018).**
+
+  Optimizing Quantum Circuits for Arithmetic. [arXiv:1805.12445](http://arxiv.org/abs/1805.12445)
+
+  **\[2]: Carrera Vazquez, A., Hiptmair, R., & Woerner, S. (2022).**
+
+  Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [ACM Transactions on Quantum Computing 3, 1, Article 2](https://doi.org/10.1145/3490631)
+
+  **Parameters**
+
+  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits representing the state.
+  *   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
+  *   **coeffs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) – The coefficients of the polynomials for different segments of the piecewise-linear function. `coeffs[j][i]` is the coefficient of the i-th power of x for the j-th polynomial. Defaults to linear: `[[1]]`.
+  *   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – An optional label for the gate.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.base_class "qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.params">
+    The parameters of this `Instruction`. Ideally these will be gate angles.
+  </Attribute>
+
+  ## Methods
+
+  ### add\_decomposition
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L188-L245" signature="broadcast_arguments(qargs, cargs)">
+    Validation and handling of the arguments and its relationship.
+
+    For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+
+    ```python
+    in: [[q[0],q[1]], q[2]],[]
+    outs: [q[0], q[2]], []
+          [q[1], q[2]], []
+    ```
+
+    The general broadcasting rules are:
+
+    > *   If len(qargs) == 1:
+    >
+    >     ```python
+    >     [q[0], q[1]] -> [q[0]],[q[1]]
+    >     ```
+    >
+    > *   If len(qargs) == 2:
+    >
+    >     ```python
+    >     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+    >     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+    >     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+    >     ```
+    >
+    > *   If len(qargs) >= 3:
+    >
+    >     ```python
+    >     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+    >     ```
+
+    **Parameters**
+
+    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of classical bit arguments.
+
+    **Returns**
+
+    A tuple with single arguments.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")]]
+  </Function>
+
+  ### control
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L105-L145" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+    Return the controlled version of itself.
+
+    Implemented either as a controlled gate (ref. [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")).
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of controls to add to gate (default: `1`)
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – optional gate label. Ignored if implemented as an annotated operation.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – the control state in decimal or as a bitstring (e.g. `'111'`). If `None`, use `2**num_ctrl_qubits-1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – indicates whether the controlled gate is implemented as an annotated gate. If `None`, this is set to `False` if the controlled gate can directly be constructed, and otherwise set to `True`. This allows defering the construction process in case the synthesis of the controlled gate requires more information (e.g. values of unbound parameters).
+
+    **Returns**
+
+    Controlled version of the given operation.
+
+    **Raises**
+
+    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – unrecognized mode or invalid ctrl\_state
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### evaluate
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.evaluate" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py#L419-L434" signature="evaluate(x)">
+    Classically evaluate the piecewise polynomial rotation.
+
+    **Parameters**
+
+    **x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Value to be evaluated at.
+
+    **Returns**
+
+    Value of piecewise polynomial function at x.
+
+    **Return type**
+
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L374-L429" signature="inverse(annotated=False)">
+    Invert this instruction.
+
+    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
+
+    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
+
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+    **Returns**
+
+    The inverse operation.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
+    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
+
+  ### power
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.power" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L63-L94" signature="power(exponent, annotated=False)">
+    Raise this gate to the power of `exponent`.
+
+    Implemented either as a unitary gate (ref. [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")) or as an annotated operation (ref. [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")). In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), when the power of a gate can be expressed in terms of another standard gate that is returned directly.
+
+    **Parameters**
+
+    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the power gate can be implemented as an annotated operation. In the case of several standard gates, such as [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate"), this argument is ignored when the power of a gate can be expressed in terms of another standard gate.
+
+    **Returns**
+
+    An operation implementing `gate^exponent`
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If gate is not unitary
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
+
+  ### reverse\_ops
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### soft\_compare
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### to\_matrix
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L49-L61" signature="to_matrix()">
+    Return a Numpy.array for the gate unitary matrix.
+
+    **Returns**
+
+    if the Gate subclass has a matrix definition.
+
+    **Return type**
+
+    np.ndarray
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+  </Function>
+
+  ### to\_mutable
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.library.PiecewisePolynomialPauliRotationsGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/gate.py#L247-L261" signature="validate_parameter(parameter)">
+    Gate parameters should be int, float, or ParameterExpression
+  </Function>
+</Class>
+

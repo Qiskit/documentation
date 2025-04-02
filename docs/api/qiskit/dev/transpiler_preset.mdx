@@ -24,7 +24,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### level\_0\_pass\_manager
 
-<Function id="qiskit.transpiler.preset_passmanagers.level_0_pass_manager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/level0.py#L26-L104" signature="qiskit.transpiler.preset_passmanagers.level_0_pass_manager(pass_manager_config)">
+<Function id="qiskit.transpiler.preset_passmanagers.level_0_pass_manager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/level0.py#L26-L104" signature="qiskit.transpiler.preset_passmanagers.level_0_pass_manager(pass_manager_config)">
   Level 0 pass manager: no explicit optimization other than mapping to backend.
 
   This pass manager applies the user-given initial layout. If none is given, a trivial layout consisting of mapping the i-th virtual qubit to the i-th physical qubit is used. Any unused physical qubit is allocated as ancilla space.
@@ -50,7 +50,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### level\_1\_pass\_manager
 
-<Function id="qiskit.transpiler.preset_passmanagers.level_1_pass_manager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/level1.py#L26-L108" signature="qiskit.transpiler.preset_passmanagers.level_1_pass_manager(pass_manager_config)">
+<Function id="qiskit.transpiler.preset_passmanagers.level_1_pass_manager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/level1.py#L26-L108" signature="qiskit.transpiler.preset_passmanagers.level_1_pass_manager(pass_manager_config)">
   Level 1 pass manager: light optimization by simple adjacent gate collapsing.
 
   This pass manager applies the user-given initial layout. If none is given, and a trivial layout (i-th virtual -> i-th physical) makes the circuit fit the coupling map, that is used. Otherwise, the circuit is mapped to the most densely connected coupling subgraph, and swaps are inserted to map. Any unused physical qubit is allocated as ancilla space. The pass manager then unrolls the circuit to the desired basis, and transforms the circuit to match the coupling map. Finally, optimizations in the form of adjacent gate collapse and redundant reset removal are performed.
@@ -74,7 +74,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### level\_2\_pass\_manager
 
-<Function id="qiskit.transpiler.preset_passmanagers.level_2_pass_manager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/level2.py#L27-L109" signature="qiskit.transpiler.preset_passmanagers.level_2_pass_manager(pass_manager_config)">
+<Function id="qiskit.transpiler.preset_passmanagers.level_2_pass_manager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/level2.py#L27-L109" signature="qiskit.transpiler.preset_passmanagers.level_2_pass_manager(pass_manager_config)">
   Level 2 pass manager: medium optimization by initial layout selection and gate cancellation using commutativity rules.
 
   This pass manager applies the user-given initial layout. If none is given, a search for a perfect layout (i.e. one that satisfies all 2-qubit interactions) is conducted. If no such layout is found, qubits are laid out on the most densely connected subset which also exhibits the best gate fidelities.
@@ -100,7 +100,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### level\_3\_pass\_manager
 
-<Function id="qiskit.transpiler.preset_passmanagers.level_3_pass_manager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/level3.py#L27-L110" signature="qiskit.transpiler.preset_passmanagers.level_3_pass_manager(pass_manager_config)">
+<Function id="qiskit.transpiler.preset_passmanagers.level_3_pass_manager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/level3.py#L27-L110" signature="qiskit.transpiler.preset_passmanagers.level_3_pass_manager(pass_manager_config)">
   Level 3 pass manager: heavy optimization by noise adaptive qubit mapping and gate cancellation using commutativity rules and unitary synthesis.
 
   This pass manager applies the user-given initial layout. If none is given, a search for a perfect layout (i.e. one that satisfies all 2-qubit interactions) is conducted. If no such layout is found, and device calibration information is available, the circuit is mapped to the qubits with best readouts and to CX gates with highest fidelity.
@@ -130,7 +130,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### generate\_control\_flow\_options\_check
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_control_flow_options_check" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L112-L158" signature="qiskit.transpiler.preset_passmanagers.generate_control_flow_options_check(layout_method=None, routing_method=None, translation_method=None, optimization_method=None, scheduling_method=None, basis_gates=(), target=None)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_control_flow_options_check" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L112-L158" signature="qiskit.transpiler.preset_passmanagers.generate_control_flow_options_check(layout_method=None, routing_method=None, translation_method=None, optimization_method=None, scheduling_method=None, basis_gates=(), target=None)">
   Generate a pass manager that, when run on a DAG that contains control flow, fails with an error message explaining the invalid options, and what could be used instead.
 
   **Returns**
@@ -144,13 +144,13 @@ This module contains functions for generating the preset pass managers for the t
 
 ### generate\_error\_on\_control\_flow
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_error_on_control_flow" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L161-L167" signature="qiskit.transpiler.preset_passmanagers.generate_error_on_control_flow(message)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_error_on_control_flow" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L161-L167" signature="qiskit.transpiler.preset_passmanagers.generate_error_on_control_flow(message)">
   Get a pass manager that always raises an error if control flow is present in a given circuit.
 </Function>
 
 ### generate\_unroll\_3q
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_unroll_3q" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L184-L244" signature="qiskit.transpiler.preset_passmanagers.generate_unroll_3q(target, basis_gates=None, approximation_degree=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, qubits_initially_zero=True)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_unroll_3q" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L184-L244" signature="qiskit.transpiler.preset_passmanagers.generate_unroll_3q(target, basis_gates=None, approximation_degree=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, qubits_initially_zero=True)">
   Generate an unroll >3q [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
   **Parameters**
@@ -174,7 +174,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### generate\_embed\_passmanager
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_embed_passmanager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L247-L260" signature="qiskit.transpiler.preset_passmanagers.generate_embed_passmanager(coupling_map)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_embed_passmanager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L247-L260" signature="qiskit.transpiler.preset_passmanagers.generate_embed_passmanager(coupling_map)">
   Generate a layout embedding [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
   This is used to generate a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") object that can be used to expand and apply an initial layout to a circuit
@@ -196,7 +196,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### generate\_routing\_passmanager
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_routing_passmanager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L278-L374" signature="qiskit.transpiler.preset_passmanagers.generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, seed_transpiler=-1, check_trivial=False, use_barrier_before_measurement=True, vf2_max_trials=None)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_routing_passmanager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L278-L374" signature="qiskit.transpiler.preset_passmanagers.generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, seed_transpiler=-1, check_trivial=False, use_barrier_before_measurement=True, vf2_max_trials=None)">
   Generate a routing [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
   **Parameters**
@@ -221,7 +221,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### generate\_pre\_op\_passmanager
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_pre_op_passmanager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L377-L415" signature="qiskit.transpiler.preset_passmanagers.generate_pre_op_passmanager(target=None, coupling_map=None, remove_reset_in_zero=False)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_pre_op_passmanager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L377-L415" signature="qiskit.transpiler.preset_passmanagers.generate_pre_op_passmanager(target=None, coupling_map=None, remove_reset_in_zero=False)">
   Generate a pre-optimization loop [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
   This pass manager will check to ensure that directionality from the coupling map is respected.
@@ -247,7 +247,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### generate\_translation\_passmanager
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_translation_passmanager" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L418-L566" signature="qiskit.transpiler.preset_passmanagers.generate_translation_passmanager(target, basis_gates=None, method='translator', approximation_degree=None, coupling_map=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, qubits_initially_zero=True)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_translation_passmanager" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L418-L566" signature="qiskit.transpiler.preset_passmanagers.generate_translation_passmanager(target, basis_gates=None, method='translator', approximation_degree=None, coupling_map=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, qubits_initially_zero=True)">
   Generate a basis translation [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
   **Parameters**
@@ -277,7 +277,7 @@ This module contains functions for generating the preset pass managers for the t
 
 ### generate\_scheduling
 
-<Function id="qiskit.transpiler.preset_passmanagers.generate_scheduling" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/preset_passmanagers/common.py#L569-L643" signature="qiskit.transpiler.preset_passmanagers.generate_scheduling(instruction_durations, scheduling_method, timing_constraints, target=None)">
+<Function id="qiskit.transpiler.preset_passmanagers.generate_scheduling" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/preset_passmanagers/common.py#L569-L643" signature="qiskit.transpiler.preset_passmanagers.generate_scheduling(instruction_durations, scheduling_method, timing_constraints, target=None)">
   Generate a post optimization scheduling [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
   **Parameters**
