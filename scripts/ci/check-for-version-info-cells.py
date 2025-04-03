@@ -22,25 +22,20 @@ guides_path = Path("./docs/guides")
 for notebook in guides_path.glob("*.ipynb"):
     nb = nbformat.read(notebook, as_version=4)
     num_version_info_cells = len(
-        list(
-            filter(
-                lambda cell: "version-info" in cell.metadata.get("tags", []),
-                nb.cells,
-            )
-        )
+        [cell for cell in nb.cells if "version-info" in cell.metadata.get("tags", [])]
     )
     if num_version_info_cells == 1:
         continue
     if num_version_info_cells == 0:
         print(
-            f"\n\n❌ No version info cell found in {notebook}; add an empty markdown "
-            "cell immediately after the top-level heading and add a "
-            "`version-info` tag. This is so the package versions will be added "
-            "to the notebook next time it's executed.\n\n"
+            f"\n\n❌ No version info cell found in {notebook}. (This allows users to "
+            "see what versions of requirements were used when developing the notebook.)\n\n"
+            "To fix, add a new markdown cell immediately after the top-level heading. Keep its content "
+            "empty. In the `tags` metadata, add 'version-info'.\n\n"
         )
     else:
         print(
-            f"\n\n❌ Found more than one cell with tag `version-info` in {notebook}; "
-            "remove all but one.\n\n"
+            f"\n\n❌ Found more than one cell with tag `version-info` in {notebook}. "
+            "To fix, remove all but one.\n\n"
         )
     sys.exit(1)
