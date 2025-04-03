@@ -16,30 +16,80 @@ import path from "path";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { flatten } from "lodash-es";
+import { flattenDeep } from "lodash-es";
 
 import { TocEntry } from "../lib/api/generateToc.js";
 
+const TODAY = new Date();
 
 // Grab the toc and grab each url with a newpill
 async function main() {
-  const tocPills = findNewPills('docs');
-  const currentPills = findCurrentPills();
-
-  for (const pill of currentPills) {
-
+  const tocNewPills = await findNewPills("docs/guides/_toc.json");  
+  const outdatedPills = await getOutdatedPills(tocNewPills);
+  if (outdatedPills.length > 0) {
+    console.error(
+      "\n❌ There are some outdated new pills! These URLs need to have their new pill removed: \n\n",
+      outdatedPills.join("\n"),
+    );
+    process.exit(1);
   }
-  console.log("\nNo new pills need to be removed ✅\n");
+  console.log("\nNo outdated new pills found ✅\n");
+}
+
+async function getOutdatedPills(newPills: string[]): Promise<string[]> {
+  const outdatedPills = [];
+  for (const pill of newPills) {
+    const isOld = getDateDifference(pill[1]);
+    if (isOld == true) {
+      outdatedPills.push(pill[0]);
+    }
+  }
+  return outdatedPills;
+}
+
+function getDateDifference(pubDate: string): boolean {
+  const [year, month, day] = pubDate.split('-').map(Number);
+  const oldDate = new Date(year, month-1, day);
+  const dateDiff = Math.abs(TODAY.getTime() - oldDate.getTime() )
+  const diffDays = Math.ceil(dateDiff / (1000 * 3600 * 24));
+  if (diffDays > 14) {
+    return true;
+  }
+  return false;
+}
+
+// Parse _toc.json to extract urls and dicts containing 'isNew' entries
+async function findNewPills(tocFilePath: string): Promise<string[]> {
+  console.log("Checking new pills in toc:", tocFilePath);
+  const raw = await fs.readFile(tocFilePath, "utf-8");
+  const rootEntries = JSON.parse(raw).children;
+  const isNewEntries = collectNewPills(rootEntries);
+  console.log("isNewPills are: ",isNewEntries);
+  return isNewEntries;
+}
+
+function collectNewPills(entries: TocEntry[]): string[] {
+  const isNewDates = [];
+  for (const entry of entries) {
+    if("children" in entry) {
+      const childEntries = collectNewPills(entry.children || []);
+      isNewDates.push(...childEntries);
+    } else if (entry.isNew !== undefined) {
+      isNewDates.push([entry.url, entry.isNewDate]);
+    }
+  }
+  return isNewDates;
 }
 
 
-async function findNewPills(directory: string): Promise<string[]> {
-  const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
-  return fileList.map((fileName) =>
-    fileName.replace("docs", "").replace(".mdx", "").replace(".ipynb", ""),
-  );
+
+
+async function findTocFiles(includeApis: boolean): Promise<string[]> {
+  const globs = [
+    "docs/**/_toc.json",
+    includeApis ? "docs/api/**/_toc.json" : "!docs/api/**",
+  ];
+  return globby(globs);
 }
 
-async function findCurrentPills(): {
-
-}
+main().then(() => process.exit());
