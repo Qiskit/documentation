@@ -110,32 +110,39 @@ export class ObjectsInv {
     // Sort the strings into their parts
     const entries: ObjectsInvEntry[] = [];
     for (const line of lines) {
-      // Regex from sphinx source
-      // https://github.com/sphinx-doc/sphinx/blob/2f60b44999d7e610d932529784f082fc1c6af989/sphinx/util/inventory.py#L115-L116
-      const parts = line.match(/(.+?)\s+(\S+)\s+(-?\d+)\s+?(\S*)\s+(.*)/);
-      if (parts == null || parts.length != 6) {
-        console.warn(`Error parsing line of objects.inv: ${line}`);
-        continue;
-      }
-      const entry = {
-        name: parts[1],
-        domainAndRole: parts[2],
-        priority: parts[3],
-        uri: parts[4],
-        dispname: parts[5],
-      };
-      entry.uri = ObjectsInv.#expandUri(entry.uri, entry.name);
-      if (!shouldIncludeEntry(entry, packageLanguage)) {
-        continue;
-      }
-      if (packageLanguage === "C") {
-        entry.uri = ObjectsInv.#transformCApiUri(entry.uri, entry.name);
-      }
-
-      entries.push(entry);
+      const entry = ObjectsInv.lineToEntry(line, packageLanguage);
+      if (entry) entries.push(entry);
     }
 
     return new ObjectsInv(preamble, entries);
+  }
+
+  public static lineToEntry(
+    line: string,
+    packageLanguage: PackageLanguage | "any",
+  ): ObjectsInvEntry | null {
+    // Regex from sphinx source
+    // https://github.com/sphinx-doc/sphinx/blob/2f60b44999d7e610d932529784f082fc1c6af989/sphinx/util/inventory.py#L115-L116
+    const parts = line.match(/(.+?)\s+(\S+)\s+(-?\d+)\s+?(\S*)\s+(.*)/);
+    if (parts == null || parts.length != 6) {
+      console.warn(`Error parsing line of objects.inv: ${line}`);
+      return null;
+    }
+    const entry = {
+      name: parts[1],
+      domainAndRole: parts[2],
+      priority: parts[3],
+      uri: parts[4],
+      dispname: parts[5],
+    };
+    entry.uri = ObjectsInv.#expandUri(entry.uri, entry.name);
+    if (!shouldIncludeEntry(entry, packageLanguage)) {
+      return null;
+    }
+    if (packageLanguage === "C") {
+      entry.uri = ObjectsInv.#transformCApiUri(entry.uri, entry.name);
+    }
+    return entry;
   }
 
   /**
