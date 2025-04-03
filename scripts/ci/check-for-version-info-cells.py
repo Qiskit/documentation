@@ -18,24 +18,29 @@ from pathlib import Path
 import nbformat
 import sys
 
-guides_path = Path("./docs/guides")
-for notebook in guides_path.glob("*.ipynb"):
-    nb = nbformat.read(notebook, as_version=4)
-    num_version_info_cells = len(
-        [cell for cell in nb.cells if "version-info" in cell.metadata.get("tags", [])]
-    )
-    if num_version_info_cells == 1:
-        continue
-    if num_version_info_cells == 0:
-        print(
-            f"\n\n❌ No version info cell found in {notebook}. (This allows users to "
-            "see what versions of requirements were used when developing the notebook.)\n\n"
-            "To fix, add a new markdown cell immediately after the top-level heading. Keep its content "
-            "empty. In the `tags` metadata, add 'version-info'.\n\n"
+if __name__ == "__main__":
+    guides_path = Path("./docs/guides")
+    for notebook in guides_path.glob("*.ipynb"):
+        nb = nbformat.read(notebook, as_version=4)
+        num_version_info_cells = len(
+            [
+                cell
+                for cell in nb.cells
+                if "version-info" in cell.metadata.get("tags", [])
+            ]
         )
-    else:
-        print(
-            f"\n\n❌ Found more than one cell with tag `version-info` in {notebook}. "
-            "To fix, remove all but one.\n\n"
-        )
-    sys.exit(1)
+        if num_version_info_cells == 1:
+            continue
+        if num_version_info_cells == 0:
+            print(
+                f"\n\n❌ No version info cell found in {notebook}. (This allows users to "
+                "see what versions of requirements were used when developing the notebook.)\n\n"
+                "To fix, add a new markdown cell immediately after the top-level heading. Keep its content "
+                "empty. In the `tags` metadata, add 'version-info'.\n\n"
+            )
+        else:
+            print(
+                f"\n\n❌ Found more than one cell with tag `version-info` in {notebook}. "
+                "To fix, remove all but one.\n\n"
+            )
+        sys.exit(1)
