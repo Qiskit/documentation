@@ -1,0 +1,21 @@
+from qiskit_ibm_runtime import QiskitRuntimeService
+import os
+
+PREV_QISKIT_RUNTIME_SERVICE_INIT = QiskitRuntimeService.__init__
+
+def patched_qiskit_runtime_service(self, *args, **kwargs):
+    token = os.getenv("DOCS_QISKIT_TOKEN")
+    return PREV_QISKIT_RUNTIME_SERVICE_INIT(
+        self,
+        token=token,
+        channel="{channel}",
+        url="{url}",
+        instance="{instance}"
+    )
+
+def patched_least_busy(self, *args, **kwargs):
+    return self.backend("{backend_name}")
+
+
+QiskitRuntimeService.__init__ = patched_qiskit_runtime_service
+QiskitRuntimeService.least_busy = patched_least_busy
