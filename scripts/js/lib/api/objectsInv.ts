@@ -140,7 +140,7 @@ export class ObjectsInv {
       return null;
     }
     if (packageLanguage === "C") {
-      entry.uri = ObjectsInv.#transformCApiUri(entry.uri, entry.name);
+      entry.uri = ObjectsInv.transformCApiUri(entry.uri, entry.name);
     }
     return entry;
   }
@@ -149,7 +149,7 @@ export class ObjectsInv {
    * The anchors from the C API artifact do not make it into the final page, so
    * we must manipulate the URI based on the object name.
    */
-  static #transformCApiUri(uri: string, name: string): string {
+  public static transformCApiUri(uri: string, name: string): string {
     const uriWithoutPrefix = removePrefix(uri, C_API_BASE_PATH + "/");
     if (!uriWithoutPrefix.includes("#")) return uriWithoutPrefix;
     const [path, _anchor] = uriWithoutPrefix.split("#");

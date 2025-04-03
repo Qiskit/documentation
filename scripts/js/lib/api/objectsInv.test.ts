@@ -130,4 +130,31 @@ test.describe("objects.inv", () => {
       "qk_bitterm_label::bit_term cpp:functionParam 1 qk-bit-term.html#qk_bitterm_label -",
     ]);
   });
+
+  test("C entries are transformed correctly", async () => {
+    function transformLine(line: string): string {
+      const entry = ObjectsInv.lineToEntry(line, "C");
+      if (entry === null) throw new Error(`Failed to parse line: ${line}`);
+      return ObjectsInv.transformCApiUri(entry.uri, entry.name);
+    }
+    const testCases: [string, string][] = [
+      // These should just have the 'cdoc/' and anchor removed
+      [
+        "QkBitTerm cpp:type 1 cdoc/qk-bit-term.html#_CPPv49$ -",
+        "qk-bit-term.html#qkbitterm",
+      ],
+      [
+        "qk_bitterm_label cpp:function 1 cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm -",
+        "qk-bit-term.html#qk_bitterm_label",
+      ],
+      // Attributes should point to their parents
+      [
+        "qk_bitterm_label::bit_term cpp:functionParam 1 cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm -",
+        "qk-bit-term.html#qk_bitterm_label",
+      ],
+    ];
+    for (const [line, expectedUri] of testCases) {
+      expect(transformLine(line)).toEqual(expectedUri);
+    }
+  });
 });
