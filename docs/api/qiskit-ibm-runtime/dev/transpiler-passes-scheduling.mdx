@@ -17,7 +17,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling
 A collection of scheduling passes for working with IBM Quantum’s next-generation backends that support advanced “dynamic circuit” capabilities. Ie., circuits with support for classical control-flow/feedback based off of measurement results.
 
 <Admonition title="Warning" type="caution">
-  You should not mix these scheduling passes with Qiskit’s built in scheduling passes as they will negatively interact with the scheduling routines for dynamic circuits. This includes setting `scheduling_method` in [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v1.4)") or `generate_preset_pass_manager()`.
+  You should not mix these scheduling passes with Qiskit’s built in scheduling passes as they will negatively interact with the scheduling routines for dynamic circuits. This includes setting `scheduling_method` in [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v2.0)") or `generate_preset_pass_manager()`.
 </Admonition>
 
 ## Classes
@@ -107,60 +107,7 @@ dd_teleport.draw(output="mpl", style="iqp")
 
 ![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-2.avif)
 
-When compiling a circuit with Qiskit, it is more efficient and more robust to perform all the transformations in a single transpilation. This has been done above by extending Qiskit’s preset pass managers. For example, Qiskit’s [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v1.4)") function internally builds its pass set by using `generate_preset_pass_manager()`. This returns instances of [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager "(in Qiskit v1.4)"), which can be extended.
-
-<span id="scheduling-old-format-c-if-conditioned-gates" />
-
-## Scheduling old format c\_if conditioned gates
-
-Scheduling with old format `c_if` conditioned gates is not supported.
-
-```python
-qc_c_if = QuantumCircuit(1, 1)
-qc_c_if.x(0).c_if(0, 1)
-qc_c_if.draw(output="mpl", style="iqp")
-```
-
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-3.avif)
-
-The [`IBMBackend`](ibm-backend "qiskit_ibm_runtime.IBMBackend") configures a translation plugin `IBMTranslationPlugin` to automatically apply transformations and optimizations for IBM hardware backends when invoking [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v1.4)"). This will automatically convert all old style `c_if` conditioned gates to new-style control-flow. We may then schedule the transpiled circuit without further modification.
-
-```python
-# Temporary workaround for mock backends. For real backends this is not required.
-backend.get_translation_stage_plugin = lambda: "ibm_dynamic_circuits"
-
-pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
-pm.scheduling = PassManager(
-    [
-        ALAPScheduleAnalysis(durations),
-        PadDynamicalDecoupling(durations, dd_sequence),
-    ]
-)
-
-qc_if_dd = pm.run(qc_c_if, backend)
-qc_if_dd.draw(output="mpl", style="iqp")
-```
-
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-4.avif)
-
-If you are not using the transpiler plugin stages to work around this please manually run the pass [qiskit.transpiler.passes.ConvertConditionsToIfOps](/api/qiskit/1.4/qiskit.transpiler.passes.ConvertConditionsToIfOps "(in Qiskit v1.4)") prior to your scheduling pass. This is only necessary in Qiskit 1.x.
-
-```python
-from qiskit.transpiler import passes
-
-pm = generate_preset_pass_manager(optimization_level=1, backend=backend)
-
-scheduling = [ALAPScheduleAnalysis(durations), PadDelay(durations)]
-if (convert_pass := getattr(passes, "ConvertConditionsToIfOps", None)) is not None:
-    # This pass is neither present nor necessary in Qiskit 2.x.
-    scheduling = [convert_pass()] + scheduling
-pm.scheduling = PassManager(scheduling)
-
-qc_if_dd = pm.run(qc_c_if)
-qc_if_dd.draw(output="mpl", style="iqp")
-```
-
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-5.avif)
+When compiling a circuit with Qiskit, it is more efficient and more robust to perform all the transformations in a single transpilation. This has been done above by extending Qiskit’s preset pass managers. For example, Qiskit’s [`transpile()`](/api/qiskit/compiler#qiskit.compiler.transpile "(in Qiskit v2.0)") function internally builds its pass set by using `generate_preset_pass_manager()`. This returns instances of [`StagedPassManager`](/api/qiskit/qiskit.transpiler.StagedPassManager "(in Qiskit v2.0)"), which can be extended.
 
 <span id="exploiting-ibm-backend-s-local-parallel-fast-path" />
 
@@ -183,7 +130,7 @@ with qc.if_test((1, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-6.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-3.avif)
 
 The circuit below will not use the fast-path as the conditional gate is on a different qubit than the measurement qubit.
 
@@ -196,7 +143,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-7.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-4.avif)
 
 Similarly, the circuit below contains gates on multiple qubits and will not be performed using the fast-path.
 
@@ -210,7 +157,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-8.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-5.avif)
 
 A fast-path block may contain multiple gates as long as they are on the fast-path qubit. If there are multiple fast-path blocks being performed in parallel each block will be padded out to the duration of the longest block.
 
@@ -228,7 +175,7 @@ with qc.if_test((1, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-9.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-6.avif)
 
 This behavior is also applied to the else condition of a fast-path eligible branch.
 
@@ -245,7 +192,7 @@ with else_:
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-10.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-7.avif)
 
 If a single measurement result is used with several conditional blocks, if there is a fast-path eligible block it will be applied followed by the non-fast-path blocks which will execute with the standard higher latency conditional branch.
 
@@ -263,7 +210,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-11.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-8.avif)
 
 If you wish to prevent the usage of the fast-path you may insert a barrier between the measurement and the conditional branch.
 
@@ -278,7 +225,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-12.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-9.avif)
 
 Conditional measurements are not eligible for the fast-path.
 
@@ -292,7 +239,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-13.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-10.avif)
 
 Similarly nested control-flow is not eligible.
 
@@ -308,7 +255,7 @@ with qc.if_test((0, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-14.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-11.avif)
 
 The scheduler is aware of the fast-path behavior and will not insert delays on idle qubits in blocks that satisfy the fast-path conditions so as to avoid preventing the backend compiler from performing the necessary optimizations to utilize the fast-path. If there are fast-path blocks that will be performed in parallel they currently *will not* be padded out by the scheduler to ensure they are of the same duration in Qiskit
 
@@ -329,7 +276,7 @@ with qc.if_test((1, 1)):
 qc.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-15.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-12.avif)
 
 ```python
 dd_sequence = [XGate(), XGate()]
@@ -345,7 +292,7 @@ qc_dd = pm.run(qc)
 qc_dd.draw(output="mpl", style="iqp")
 ```
 
-![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-16.avif)
+![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-13.avif)
 
 <Admonition title="Note" type="note">
   If there are qubits that are *not* involved in a fast-path decision it is not currently possible to use them in a fast-path branch in parallel with the fast-path qubits resulting from a measurement. This will be revised in the future as we further improve these capabilities.
@@ -369,6 +316,6 @@ qc_dd.draw(output="mpl", style="iqp")
   qc.draw(output="mpl", style="iqp")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-17.avif)
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-ibm-runtime/dev/qiskit_ibm_runtime-transpiler-passes-scheduling-14.avif)
 </Admonition>
 
