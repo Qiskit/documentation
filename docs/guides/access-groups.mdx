@@ -9,7 +9,7 @@ platform: cloud
 This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/admin/)
 </Admonition>
 
-When you create an instance in IBM Quantum Platform, an access group is automatically generated (unless you opt out) for collaborators to use that instance. If you want to customize that access group or create other access groups, use the IBM&reg; Cloud console for [Access groups.](https://cloud.ibm.com/iam/groups)
+When you create an instance in IBM Quantum Platform, an access group is automatically generated for collaborators to use that instance. If you want to customize that access group or create other access groups, use the IBM&reg; Cloud console for [Access groups](https://cloud.ibm.com/iam/groups).
 
 An _access group_ contains _policies_, which define the actions that access group members can take on specific resources, such as services.  In this guide, the resource is generally an IBM Quantum _service instance_.
 
@@ -17,7 +17,7 @@ An _access group_ contains _policies_, which define the actions that access grou
 After an access group is created, you can invite users to the group by using the IBM Quantum Platform [Access management](https://quantum.cloud.ibm.com/access-groups) page in the left-hand menu.
 </Admonition>
 
-You can create an access group by using the IBM Cloud [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
+You can create additional access groups by using the IBM Cloud [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
 
 ## Create an IBM Quantum Administrators access group
 After setting up an account for your organization, it's recommended that you create an  IBM Quantum Administrators access group. This access group lets other users  create and manage instances, and manage user access for the Qiskit Runtime service.
@@ -34,13 +34,13 @@ When you create this access group, include the following policies:
 
 
 <Admonition type="note">
-  Users with the `viewer` platform management role on "all account management services" can also view services such as billing. To prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
+  Users with the `viewer` platform management role on "all account management services" can also view services such as billing. If you want to prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
   ```cli
   ibmcloud iam access-group-policy-create <group name> --roles Viewer --resource-type resource-group
   ```
 </Admonition>
 
-Follow these examples to create an Administrators access group by using the IBM Cloud CLI or console.
+Follow these examples to create an IBM Quantum Administrators access group by using the IBM Cloud CLI or console.
 
 <span id="cli"></span>
 ### Use the IBM Cloud CLI
