@@ -13,10 +13,6 @@ When you create an instance in IBM Quantum Platform, an access group is automati
 
 An _access group_ contains _policies_, which define the actions that access group members can take on specific resources, such as services.  In this guide, the resource is generally an IBM Quantum _service instance_.
 
-<Admonition type="note">
-After an access group is created, you can invite users to the group by using the IBM Quantum Platform [Access management](https://quantum.cloud.ibm.com/access-groups) page in the left-hand menu.
-</Admonition>
-
 You can create an access group by using the IBM Cloud [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
 
 ## Create an IBM Quantum Administrators access group
@@ -58,31 +54,6 @@ ibmcloud iam access-group-policy-create GROUP_NAME {-f, --file @JSON_FILE | --ro
 ```
 
 You can use the following JSON code to create policies for an Administrators access group:
-
-```json
-{
-    "type": "access",
-    "roles": [
-        {
-            "role_id": "crn:v1:bluemix:public:iam::::role:Administrator"
-        }
-    ],
-    "resources": [
-        {
-            "attributes": [
-                {
-                    "name": "accountId",
-                    "value": "[ACCOUNT_ID]"
-                },
-                {
-                    "name": "service_group_id",
-                    "value": "IAM"
-                }
-            ]
-        }
-    ]
-}
-```
 
 - All Account Management services (viewer)
 ```json
@@ -140,6 +111,30 @@ You can use the following JSON code to create policies for an Administrators acc
 ```
 
 - All IAM Account Management services (administrator)
+```json
+{
+    "type": "access",
+    "roles": [
+        {
+            "role_id": "crn:v1:bluemix:public:iam::::role:Administrator"
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "name": "accountId",
+                    "value": "[ACCOUNT_ID]"
+                },
+                {
+                    "name": "service_group_id",
+                    "value": "IAM"
+                }
+            ]
+        }
+    ]
+}
+```
 
 
 <span id="ui"></span>
@@ -155,10 +150,8 @@ Next, create policies for the Qiskit Runtime service,  for All IAM Account Manag
 1. In the access group just created, click the **Access** tab, then click **Assign access**.
 1. In the **Create policy** page that opens, define these elements:
    - **Service** - Search for Qiskit Runtime and select it. Click **Next**.
-   - **Resources** - Select **Specific resources**, and in the rest of the dropdowns, choose the following:
-      - For **Attribute type**, select **Service Instance**.
-      - For the operator, leave **string equals**.
-      - For **Value**, select the instance you want to grant access to. Click **Next**.
+   - **Resources** - Select **All resources**. Click **Next**.
+      Note: If you were creating a policy that you want to apply only to a certain instance, you would instead choose **Specific resources**, **Service instance**, **string equals**, then select the instance.
    - **Roles and actions** - Select the following values:
       - For **Service access**, select  **Manager**.
       - For **Platform access**, select **Administrator**.
@@ -183,7 +176,9 @@ Create a third policy for the same instance.
 
 Finally, invite users to the access group.  You can do this from the access group's **Users** page, or by using the IBM Quantum Platform [Access management](https://quantum.cloud.ibm.com/admin/access-groups) page.
 
-Invited users will receive an email with an invitation to use this account with the defined access to the instance. After they accept the invitation, they will see a new account in their account switcher at the top of the IBM Quantum Platform page. After selecting the new account, they will see the shared instance.
+<Admonition type="note">
+You can only invite users who are already members of the account.  If you don't see a user on the Add users page, follow the steps in [Invite and manage users](/guides/invite-and-manage-users#invite) to add them to the account first.  After they accept the invitation, you can add them to the access group.
+</Admonition>
 
 
 ## Next steps
