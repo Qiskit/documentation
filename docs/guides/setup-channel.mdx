@@ -53,10 +53,10 @@ Available plans:
     </Admonition>
 
     <Admonition type="caution">
-      **Protect your API token!** Never include your token in source code, Python script, or notebook file. If you are working in a trusted Python environment (such as on a personal laptop or workstation), use the [`save_account()`](/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account) method described in the next step to store your credentials, keeping in mind that your token will still be stored as plain text on your local drive. If you are executing code in a Python environment that is not trusted, see the [instructions in step 4](#untrusted-machine).
+      **Protect your API key!** Never include your key in source code, Python script, or notebook file. If you are working in a trusted Python environment (such as on a personal laptop or workstation), use the [`save_account()`](/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account) method described in the next step to store your credentials, keeping in mind that your key will still be stored as plain text on your local drive. If you are executing code in a Python environment that is not trusted, see the [instructions in step 4](#untrusted-machine).
     </Admonition>
 
-1. Retrieve your API token from the [IBM Quantum account page](https://quantum.ibm.com/account), and activate your Python virtual environment.  See the [installation instructions](/guides/install-qiskit#local) if you do not already have a virtual environment set up.
+1. Retrieve your API key from the [IBM Quantum account page](https://quantum.ibm.com/account), and activate your Python virtual environment.  See the [installation instructions](/guides/install-qiskit#local) if you do not already have a virtual environment set up.
 
     <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run `python` in your shell, then enter the following:
 
@@ -87,20 +87,20 @@ Available plans:
       * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
 
-1. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API token after each use by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API token field) to reduce risk. To initialize the service in this situation, you can use code like the following:
+1. <span id="untrusted-machine"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API key after each use by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API key field) to reduce risk. To initialize the service in this situation, you can use code like the following:
 
     ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
 
     # After using the following code, go to your dashboard (https://quantum.ibm.com/)
-    # and expire your API token (click the refresh button in the API token field)
+    # and expire your API key (click the refresh button in the API key field)
     service = QiskitRuntimeService(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>")
     ```
 
     <Admonition type="caution">
-      When sharing code with others, ensure that your API token is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
+      When sharing code with others, ensure that your API key is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
 
-      If you accidentally share your token with someone or include it in version control like Git, immediately revoke your token by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API token field) to reduce risk.
+      If you accidentally share your key with someone or include it in version control like Git, immediately revoke your key by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API key field) to reduce risk.
     </Admonition>
 
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
@@ -135,9 +135,9 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
       The Instances section in your [IBM Quantum account page](https://quantum.ibm.com/account) lists the instances that you can access.
     </Admonition>
 
-1. Retrieve your API token from the [IBM Quantum account page](https://quantum.ibm.com/account).
+1. Retrieve your API key from the [IBM Quantum account page](https://quantum.ibm.com/account).
 
-1. Because of the security risks posed by executing code that contains your API token, the recommended authentication method is to first create an environment variable for your API token, but only do so **if you are working in a trusted Python environment (such as on a personal laptop or workstation).** [Skip to the next step](#rest-untrusted) if you are not using a trusted environment, such as a shared or public computer.
+1. Because of the security risks posed by executing code that contains your API key, the recommended authentication method is to first create an environment variable for your API key, but only do so **if you are working in a trusted Python environment (such as on a personal laptop or workstation).** [Skip to the next step](#rest-untrusted) if you are not using a trusted environment, such as a shared or public computer.
 
     To set the IQP_API_TOKEN environment variable in your system, you can add the following line to your shell profile (for example, .bashrc or .zshrc) or by setting it directly in your terminal:
 
@@ -165,24 +165,24 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     print(response.json())
     ```
 
-    Note that when creating an environment variable, your API token is still stored locally in plain text, and should be safeguarded.
+    Note that when creating an environment variable, your API key is still stored locally in plain text, and should be safeguarded.
 
-1. <span id="rest-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API token after each use by rotating it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API token field). To initialize the service in this situation, use your API token directly:
+1. <span id="rest-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API key after each use by rotating it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API key field). To initialize the service in this situation, use your API key directly:
 
     ```python
-    # Refresh your API token on the dashboard after using the code as follows:
+    # Refresh your API key on the dashboard after using the code as follows:
     "Authorization": "Bearer <your-token>"
     ```
 
     <Admonition type="caution">
-      When sharing code with others, ensure that your API token is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
+      When sharing code with others, ensure that your API key is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
 
-      If you accidentally share your token with someone or include it in version control like Git, immediately revoke your token by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API token field) to reduce risk.
+      If you accidentally share your key with someone or include it in version control like Git, immediately revoke your key by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API key field) to reduce risk.
     </Admonition>
 
 #### Use a temporary access token
 
-1. Optionally obtain a temporary access token by supplying your API token. This is especially useful if you would like control over tokens, such as token invalidation. Follow the same precautions previously mentioned about securely using the environment variable.
+1. Optionally obtain a temporary access token by supplying your API key. This is especially useful if you would like control over tokens, such as token invalidation. Follow the same precautions previously mentioned about securely using the environment variable.
 
     ```python
     import os
@@ -210,7 +210,7 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
 
     You can then [transpile circuits using REST API](./transpile-rest-api) and run them using either the [Sampler or the Estimator primitives](./primitives-rest-api).
 
-1. After your experiments are complete, you can proceed to invalidate your token and then test its invalidation.
+1. After your experiments are complete, you can proceed to invalidate your key and then test its invalidation.
 
     ```python
     logout_url = 'https://auth.quantum-computing.ibm.com/api/users/logout'
@@ -265,7 +265,7 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
     service = QiskitRuntimeService(
         channel="ibm_cloud", # `channel` distinguishes between different account types
         token=token, # Your token is confidential.
-        # Take care not to share your token in public code.
+        # Take care not to share your key in public code.
         instance="<IBM Cloud CRN>",
         name="<account-name>",
     )
@@ -285,12 +285,12 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
       * If you don't save your credentials, you must specify them every time you start a new session.
 
-1. <span id="cloud-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API token after each use by deleting it on the [API keys page](https://cloud.ibm.com/iam/apikeys) and creating a new one.
+1. <span id="cloud-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API key after each use by deleting it on the [API keys page](https://cloud.ibm.com/iam/apikeys) and creating a new one.
 
     <Admonition type="caution">
-      **Protect your API token!** Never include your token in source code, Python script, or notebook file. When sharing code with others, ensure that your API token is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
+      **Protect your API key!** Never include your key in source code, Python script, or notebook file. When sharing code with others, ensure that your API key is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
 
-      If you accidentally share your token with someone or include it in version control like Git, immediately revoke your token by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API token field) to reduce risk.
+      If you accidentally share your key with someone or include it in version control like Git, immediately revoke your key by expiring it on the [IBM Quantum Platform dashboard](https://quantum.ibm.com/) (click the refresh button in the API key field) to reduce risk.
     </Admonition>
 
     To initialize the service in this situation, you can use code like the following:
@@ -300,7 +300,7 @@ Alternatively, you can also access quantum processors with REST APIs, enabling y
 
     service = QiskitRuntimeService(
       channel="ibm_cloud",
-      # Delete your token on the API keys page after entering this code:
+      # Delete your key on the API keys page after entering this code:
       token="<IBM Cloud API key>",
       instance="<IBM Cloud CRN>"
       )
