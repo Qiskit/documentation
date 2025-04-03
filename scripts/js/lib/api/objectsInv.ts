@@ -154,6 +154,17 @@ export class ObjectsInv {
     if (!uriWithoutPrefix.includes("#")) return uriWithoutPrefix;
     const [path, _anchor] = uriWithoutPrefix.split("#");
 
+    // We sometimes get anchors of the form
+    // 'structQkObsTerm_1a14ff1665641903565439ad9877fd2c8e' and
+    // 'structQkObsTerm_1autotoc_md2', we just map these to the object.
+    const maybeStructAutoTocMatch = uri.match(
+      /struct([A-z]+)_(\dautotoc_|[\dabcdef]{34})/,
+    );
+    if (maybeStructAutoTocMatch) {
+      const objectName = maybeStructAutoTocMatch[1].toLowerCase();
+      return `${path}#${objectName}`;
+    }
+
     // We have no way of working out the IDs of attributes (e.g.
     // `QkObsTerm::num_qubits`), so we instead just point to the parent object.
     // This is a best-effort attempt that should get users close to the right

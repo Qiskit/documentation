@@ -132,29 +132,47 @@ test.describe("objects.inv", () => {
   });
 
   test("C entries are transformed correctly", async () => {
-    function transformLine(line: string): string {
-      const entry = ObjectsInv.lineToEntry(line, "C");
-      if (entry === null) throw new Error(`Failed to parse line: ${line}`);
-      return ObjectsInv.transformCApiUri(entry.uri, entry.name);
-    }
-    const testCases: [string, string][] = [
+    const testCases: [{ name: string; uri: string }, string][] = [
       // These should just have the 'cdoc/' and anchor removed
       [
-        "QkBitTerm cpp:type 1 cdoc/qk-bit-term.html#_CPPv49$ -",
+        { name: "QkBitTerm", uri: "cdoc/qk-bit-term.html#_CPPv49QkBitTerm" },
         "qk-bit-term.html#qkbitterm",
       ],
       [
-        "qk_bitterm_label cpp:function 1 cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm -",
+        {
+          name: "qk_bitterm_label",
+          uri: "cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm",
+        },
         "qk-bit-term.html#qk_bitterm_label",
       ],
+
       // Attributes should point to their parents
       [
-        "qk_bitterm_label::bit_term cpp:functionParam 1 cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm -",
+        {
+          name: "qk_bitterm_label::bit_term",
+          uri: "cdoc/qk-bit-term.html#_CPPv416qk_bitterm_label9QkBitTerm",
+        },
         "qk-bit-term.html#qk_bitterm_label",
       ],
+
+      // Map these labels to their objects
+      [
+        {
+          name: "structQkObsTerm_1a14ff1665641903565439ad9877fd2c8e",
+          uri: "cdoc/qk-obs-term.html#structQkObsTerm_1a14ff1665641903565439ad9877fd2c8e",
+        },
+        "qk-obs-term.html#qkobsterm",
+      ],
+      [
+        {
+          name: "structQkObsTerm_1autotoc_md2",
+          uri: "cdoc/qk-obs-term.html#structQkObsTerm_1autotoc_md2",
+        },
+        "qk-obs-term.html#qkobsterm",
+      ],
     ];
-    for (const [line, expectedUri] of testCases) {
-      expect(transformLine(line)).toEqual(expectedUri);
+    for (const [{ name, uri }, expectedUri] of testCases) {
+      expect(ObjectsInv.transformCApiUri(uri, name)).toEqual(expectedUri);
     }
   });
 });
