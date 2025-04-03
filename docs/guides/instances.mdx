@@ -48,7 +48,7 @@ By default, users who sign up for an IBM Quantum account are assigned to the Ope
 Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard,](https://quantum.ibm.com/) [Workloads,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) pages.
 </LegacyContent>
 <CloudContent>
-After you have an IBM Cloud&reg; account, you can create an instance in the Open Plan and access up to 10 minutes total of quantum time per 28-day rolling window. Open Plan users can track their usage on the [Platform dashboard](https://quantum.cloud.ibm.com/) and the [Workloads](https://quantum.cloud.ibm.com/workloads) pages.
+After you have an IBM Cloud&reg; account, you can create an instance in the Open Plan and access up to 10 minutes total of quantum time per 28-day rolling window.
 </CloudContent>
 ## View your instances
 
@@ -64,7 +64,7 @@ You can use [the `instances()` method](../api/qiskit-ibm-runtime/qiskit-runtime-
 The IBM Quantum Platform dashboard, Compute resources, and Workloads pages display information such as usage metrics, workloads, and quantum computers based on your instance. If you have access to multiple instances, use the dropdown in the menu bar to switch between instances.
 </LegacyContent>
 <CloudContent>
-The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/), [Compute resources](https://quantum.cloud.ibm.com/computers), and [Workloads](https://quantum.cloud.ibm.com/workloads) pages display information such as usage metrics, workloads, and quantum computers based on your account. If you have access to multiple accounts, use the dropdown in the menu bar to switch between accounts.
+The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/), [Compute resources](https://quantum.cloud.ibm.com/computers), and [Workloads](https://quantum.cloud.ibm.com/workloads) pages display information such as workloads and quantum computers based on your account. If you have access to multiple accounts, use the dropdown in the menu bar to switch between accounts.
 
 By default, the Workloads and Compute resources pages display all data across all instances you can access within an account. You can filter the data table by a specific instance using the filter icon in the upper right.
 </CloudContent>
@@ -86,6 +86,7 @@ If you switch to a different instance, it is remembered the next time you log on
 When you execute a task using an IBM Quantum service (for example, sending circuits to a quantum computer), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final computation results. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.
 </LegacyContent>
 
+
 ## How usage affects job priority within an instance
 <LegacyContent>
 *This section applies to Premium Plan users only, since their access includes multiple instances.*
@@ -103,9 +104,7 @@ If an instance has been marked as "limited" by your administrator (you will see 
 An alert displays on an instance's usage when it has exceeded its allocation.
 </LegacyContent>
 <CloudContent>
-If an instance has been marked as "limited" by your administrator (you will see a "**Remaining**" column in the usage area) and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, active and pending workloads might be canceled. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
-
-An alert displays on an instance's usage when it has exceeded its allocation.
+If an instance has been marked as "limited" by your administrator and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, active and pending workloads might be canceled. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
 </CloudContent>
 <span id="connect-instance"></span>
 ## Specify an instance in your code
