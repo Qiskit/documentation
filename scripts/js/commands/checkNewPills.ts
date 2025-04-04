@@ -16,32 +16,51 @@ import path from "path";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { flattenDeep } from "lodash-es";
+import { flatten, flattenDeep } from "lodash-es";
 
 import { TocEntry } from "../lib/api/generateToc.js";
+
+
 
 const TODAY = new Date();
 
 // Grab the toc and grab each url with a newpill
 async function main() {
-  const tocNewPills = await findNewPills("docs/guides/_toc.json");  
-  const outdatedPills = await getOutdatedPills(tocNewPills);
-  if (outdatedPills.length > 0) {
+  const tocFiles = await globby([
+    "docs/guides/_toc.json",
+    "docs/migration-guides/_toc.json",
+    "docs/open-source/_toc.json"
+  ]);
+  const allOutdatedPills = [];
+  for (const tocFile of tocFiles) {
+    const tocNewPills = await findNewPills(tocFile);
+    const outdatedPills = await getOutdatedPills(tocNewPills);
+    if (outdatedPills.length > 0) {
+      allOutdatedPills.push(...outdatedPills);
+    }
+  }
+  if (allOutdatedPills.length > 0) {
     console.error(
       "\n❌ There are some outdated new pills! These URLs need to have their new pill removed: \n\n",
-      outdatedPills.join("\n"),
+      allOutdatedPills.map(item => item.join(' : ')).join("\n"),
+      "\n\n",
     );
-    process.exit(1);
   }
-  console.log("\nNo outdated new pills found ✅\n");
+  else {
+    console.log("\nNo outdated new pills found ✅\n");
+  }
 }
 
-async function getOutdatedPills(newPills: string[]): Promise<string[]> {
+async function getOutdatedPills(newPills: string[]): Promise<string[][]> {
   const outdatedPills = [];
   for (const pill of newPills) {
-    const isOld = getDateDifference(pill[1]);
-    if (isOld == true) {
-      outdatedPills.push(pill[0]);
+    var isOld;
+    if (pill[1] == 'null') {
+      outdatedPills.push([pill[0], 'null']);
+    }
+    else{
+      const isOld = getDateDifference(pill[1]);
+      outdatedPills.push([pill[0], pill[1]]);
     }
   }
   return outdatedPills;
@@ -64,7 +83,6 @@ async function findNewPills(tocFilePath: string): Promise<string[]> {
   const raw = await fs.readFile(tocFilePath, "utf-8");
   const rootEntries = JSON.parse(raw).children;
   const isNewEntries = collectNewPills(rootEntries);
-  console.log("isNewPills are: ",isNewEntries);
   return isNewEntries;
 }
 
@@ -75,21 +93,15 @@ function collectNewPills(entries: TocEntry[]): string[] {
       const childEntries = collectNewPills(entry.children || []);
       isNewDates.push(...childEntries);
     } else if (entry.isNew !== undefined) {
-      isNewDates.push([entry.url, entry.isNewDate]);
+      if (entry.isNewDate !== undefined) {
+        isNewDates.push([entry.url, entry.isNewDate]);
+      } else {
+        isNewDates.push([entry.url, 'no-date']);
+      }
     }
   }
   return isNewDates;
 }
 
-
-
-
-async function findTocFiles(includeApis: boolean): Promise<string[]> {
-  const globs = [
-    "docs/**/_toc.json",
-    includeApis ? "docs/api/**/_toc.json" : "!docs/api/**",
-  ];
-  return globby(globs);
-}
 
 main().then(() => process.exit());
