@@ -67,7 +67,7 @@ External URLs should use the entire URL, such as `[GitHub](https://github.com)`.
 
 ## Images
 
-Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/images/guides/my-file/img1.png`.
+Images are stored in the `public/docs/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/images/guides/my-file/img1.png`.
 
 To use the image:
 
@@ -91,7 +91,7 @@ You can include a version of the image to be with the dark theme. You only need 
 
 ## Videos
 
-Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/videos/guides/my-file/video1.mp4`.
+Videos are stored in the `public/docs/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/videos/guides/my-file/video1.mp4`.
 
 To add a video:
 

@@ -90,7 +90,7 @@ export async function generateVersion(
   await deleteExistingFiles(pkg);
 
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
-  await runConversionPipeline(sphinxArtifactFolder, "docs", "public", pkg);
+  await runConversionPipeline(sphinxArtifactFolder, "docs", "public/docs", pkg);
   await generateHistoricalRedirects();
 }
 
@@ -140,7 +140,7 @@ async function deleteExistingFiles(pkg: Pkg): Promise<void> {
   if (await pathExists(markdownDir)) {
     await rmFilesInFolder(markdownDir);
   }
-  const imagesDir = pkg.outputDir("public/images");
+  const imagesDir = pkg.outputDir("public/docs/images");
   if (await pathExists(imagesDir)) {
     await rmFilesInFolder(imagesDir);
   }

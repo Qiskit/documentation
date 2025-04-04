@@ -36,7 +36,7 @@ const readArgs = (): Arguments => {
 async function main() {
   const args = readArgs();
 
-  const files = await determineTocFiles(args);
+  const files = await determineContentFiles(args);
   const fileErrors: string[] = [];
 
   for (const file of files) {
@@ -60,7 +60,7 @@ async function main() {
   console.log("✅ All images are valid.\n");
 }
 
-async function determineTocFiles(args: Arguments): Promise<string[]> {
+async function determineContentFiles(args: Arguments): Promise<string[]> {
   // We always skip historical versions to simplify the code and to have a faster script.
   // Even though it is possible for someone to add a new image without alt text to a
   // historical version that wasn't in the original release, that's very unlikely.

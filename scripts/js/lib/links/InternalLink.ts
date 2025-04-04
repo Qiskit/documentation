@@ -66,7 +66,7 @@ export class InternalLink {
       this.value.startsWith("/videos") ||
       this.value.endsWith(".pdf")
     ) {
-      return [path.join("public/", this.value)];
+      return [path.join("public/docs/", this.value)];
     }
 
     const relativeToFolder = this.value.startsWith("/")
@@ -119,8 +119,8 @@ export class InternalLink {
     let suggestionPathAnchors: string[] = [];
 
     existingFiles.forEach((file) => {
-      const candidatePath = file.path.startsWith("public/")
-        ? file.path.replace(/^public/, "")
+      const candidatePath = file.path.startsWith("public/docs/")
+        ? file.path.replace(/^public\/docs/, "")
         : file.path.replace(/\.[^\/.]+$/, "").replace(/^docs/, "");
       let score = levenshtein.get(this.value, candidatePath);
       if (score < minScoreLink) {

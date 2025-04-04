@@ -15,8 +15,11 @@ import { globby } from "globby";
 
 import { zxMain, isInstalled } from "../lib/zx.js";
 
+// When users link to this folder, they leave off this prefix.
+const PUBLIC_FOLDER_PREFIX = "public/docs/";
+
 // Files that are used in closed source, so should not be removed.
-// Format: full file path, e.g. "public/images/guides/paulibasis.png"
+// Format: full file path, e.g. "public/docs/images/guides/paulibasis.png"
 const ALLOW_LIST = new Set<string>([]);
 
 zxMain(async () => {
@@ -27,7 +30,7 @@ zxMain(async () => {
     numFilesChecked++;
     const isUnused = await isImageUnused(fp);
     if (isUnused) {
-      console.error(`❌ image is unused: public/${fp}`);
+      console.error(`❌ image is unused: ${PUBLIC_FOLDER_PREFIX}${fp}`);
       allGood = false;
     }
 
@@ -49,15 +52,15 @@ zxMain(async () => {
 
 async function getStrippedImagePaths(): Promise<Set<string>> {
   const fullPaths = await globby([
-    "public/images/**",
+    `${PUBLIC_FOLDER_PREFIX}images/**`,
     // We don't check API images because the API pipeline will already ensure there are no
     // stale images when regenerating API docs.
-    "!public/images/api/**",
+    `!${PUBLIC_FOLDER_PREFIX}images/api/**`,
   ]);
   return new Set(
     fullPaths.map((fp) =>
       fp
-        .split("public/")[1]
+        .split(PUBLIC_FOLDER_PREFIX)[1]
         // Dark mode variants aren't explicitly loaded in images in Markdown.
         // As long as the path with `@dark` removed is found, it's a valid file.
         .replace(/@dark/g, ""),
@@ -70,5 +73,8 @@ async function isImageUnused(strippedFp: string): Promise<boolean> {
     ? ["rg", "-l", strippedFp, "docs", "-g", "!docs/api"]
     : ["git", "grep", "-l", strippedFp, "docs", ":!docs/api"];
   const proc = await $`${args}`.quiet().catch((result) => result);
-  return proc.stdout === "" && !ALLOW_LIST.has(`public/${strippedFp}`);
+  return (
+    proc.stdout === "" &&
+    !ALLOW_LIST.has(`${PUBLIC_FOLDER_PREFIX}${strippedFp}`)
+  );
 }

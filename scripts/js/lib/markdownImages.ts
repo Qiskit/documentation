@@ -43,7 +43,7 @@ export async function collectInvalidImageErrors(
             ".avif",
           );
           imagesErrors.add(
-            `Convert '${imageName}' to AVIF. You can use the command \`magick public${node.url} public${urlWithAvifExtension}\`. ` +
+            `Convert '${imageName}' to AVIF. You can use the command \`magick public/docs${node.url} public/docs${urlWithAvifExtension}\`. ` +
               `If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. ` +
               `Then delete the old file and update the markdown to point to the new file.`,
           );

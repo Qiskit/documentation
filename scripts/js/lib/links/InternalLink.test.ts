@@ -112,7 +112,7 @@ test.describe("Validate links", () => {
     let testLink = new InternalLink("/images/my-img.png", [
       "docs/test/testorigin.mdx",
     ]);
-    let imgFile = new File("public/images/my-img.png", new Set());
+    let imgFile = new File("public/docs/images/my-img.png", new Set());
     const results = testLink.check([imgFile]);
     expect(results).toBeUndefined();
   });
@@ -121,7 +121,7 @@ test.describe("Validate links", () => {
     let testLink = new InternalLink("/images/my-img.png", [
       "docs/test/testorigin.mdx",
     ]);
-    let imgFile = new File("public/images/another-img.png", new Set());
+    let imgFile = new File("public/docs/images/another-img.png", new Set());
     const results = testLink.check([imgFile]);
     expect(results).toEqual(
       "❌ Could not find link '/images/my-img.png'. Appears in:\n" +
