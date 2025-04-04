@@ -45,6 +45,7 @@ function readArgs(): Arguments {
 zxMain(async () => {
   const args = readArgs();
   const cspellCmd = ["npx", "cspell", "--no-progress", "--config", args.config];
+  let allGood = true;
 
   try {
     await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`.pipe(process.stdout);
@@ -53,9 +54,11 @@ zxMain(async () => {
     }
   } catch (p) {
     explainHowToFix("mdx");
+    allGood = false;
   }
 
   await checkAllNotebooks(args.config);
+  if (!allGood) process.exit(1);
 });
 
 function explainHowToFix(format: "mdx" | "jupyter"): void {
