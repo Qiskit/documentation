@@ -24,9 +24,12 @@ Usage is a measurement of the amount of time the QPU is locked for your workload
 * Batch usage is the sum of quantum time of all jobs in the batch.
 * Single job usage is the quantum time the job uses in processing.
 
+<LegacyContent>
 The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
-
+</LegacyContent>
 <CloudContent>
+Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
+
 For Standard Plan users, usage determines how much the workload costs. See [Manage cost](/guides/manage-cost) for details.
 </CloudContent>
 
@@ -39,19 +42,26 @@ Your usage has different impacts, depending on which channel you're using:
 
 <span id="failed-job"></span>
 ## Usage for failed and canceled jobs
+<CloudContent>
+When a job is failed or canceled, the usage is as follows:
 
+* Job or batch mode: The usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the usage is zero. Otherwise, the workload's usage is the amount of usage before the workload failed or was canceled. Thus, some failed jobs do not appear in your usage and others do.
+
+* Session mode: The usage is the wall-clock time from when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
+</CloudContent>
+<LegacyContent>
 When a job is failed or canceled, the reported usage is as follows:
 
 * Job or batch mode: The reported usage is the time the QPU was locked for executing your workload until the time it failed or was canceled. Therefore, if the failure or cancellation occurred before the lock, the reported usage is zero. Otherwise, the workload's reported usage is the amount of usage before the workload failed or was canceled. Thus, some failed jobs do not appear in your reported usage and others do.
 
 * Session mode: The reported usage is the wall-clock time from when the first job started executing in the session until the session terminates, regardless of the number of jobs that fail or are canceled.
+</LegacyContent>
 
 <span id="view-usage"></span>
 ## Determine a workload's actual usage
 
 After a workload has completed, there are several ways to view its actual usage:
 
-- On the IBM Quantum Platform [Workloads table](https://quantum.ibm.com/workloads) in the Usage column.  From the Home page, click *View all* on the Recent workloads table.  The Usage column shows actual usage for completed workloads.
 - Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
 - Call the [GET usage](/api/runtime/tags/usage#tags__usage) REST API directly to see the total usage across all workloads for your account (IBM Quantum Platform channel only).
 - Use [`GET /sessions/{id}`](/api/runtime/tags/sessions#tags__sessions__operations__GetSessionDetailsExtendedController_getSessionDetails) to see usage for a specific batch or session.

@@ -38,7 +38,7 @@ To retrieve/view the model disclaimer, make a **GET** request to the disclaimer 
 curl -X 'GET' \
   'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-8b-qiskit/disclaimer' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer <IBM Quantum API token>'
+  -H 'Authorization: Bearer <IBM Quantum API key>'
 ```
 
 If you agree with the model disclaimer, to accept it, **POST** to the disclaimer endpoint providing the disclaimer's ID and whether it is accepted or rejected. For example:
@@ -47,7 +47,7 @@ If you agree with the model disclaimer, to accept it, **POST** to the disclaimer
 curl -X 'POST' \
   'https://qiskit-code-assistant.quantum.ibm.com/v1/model/granite-8b-qiskit/disclaimer' \
   -H 'accept: application/json' \
-  -H 'Authorization: Bearer <IBM Quantum API token>' \
+  -H 'Authorization: Bearer <IBM Quantum API key>' \
   -H 'Content-Type: application/json' \
   -d '{
   "disclaimer": "<DISCLAIMER_ID>",
@@ -96,7 +96,7 @@ response = completion(
     messages=[
         {"role": "user", "content": "#Transpile a random circuit using the Qiskit Transpiler Service"}
     ],
-    api_key=<IBM Quantum API token>
+    api_key=<IBM Quantum API key>
 )
 
 completion_response = response.json()

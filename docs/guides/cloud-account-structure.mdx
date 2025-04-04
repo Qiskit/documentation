@@ -42,7 +42,7 @@ Performing actions often requires a combination of platform management and servi
 
 - Creating instances requires the `manager` service access role, as well as the `viewer` platform management role on All account management services.
   <Admonition type="note">
-  Users with the `viewer` platform management role on All account management services can also view all account management services, such as billing. To prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
+  Users with the `viewer` platform management role on All account management services can also view services such as billing. If you want to prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
   ```cli
   ibmcloud iam access-group-policy-create <group name> --roles Viewer --resource-type resource-group
   ```
@@ -65,8 +65,8 @@ The following table provides examples for some of the platform management action
 | Service access role | Qiskit Runtime actions                                               |
 |---------------------|----------------------------------------------------------------------|
 | Reader              | Perform read-only actions, such as viewing jobs                      |
-| Writer              | Permissions beyond the reader role, including running jobs           |
-| Manager             | Permissions beyond the writer role, including provisioning instances |
+| Writer              | Permissions beyond the reader role, including running, updating, and canceling jobs           |
+| Manager             | Permissions beyond the writer role, including provisioning instances and setting the instance cost limit |
 
 ## Next steps
 
