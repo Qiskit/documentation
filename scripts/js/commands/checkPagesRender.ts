@@ -38,7 +38,6 @@ const CLOUD_ONLY_PAGES: Set<string> = new Set([
   "docs/guides/manage-appid.mdx",
   "docs/guides/manage-cloud-users.mdx",
   "docs/guides/plans-overview.mdx",
-  "docs/guides/quickstart-org.mdx",
   "docs/guides/quickstart-steps-org.mdx",
   "docs/guides/allocation-limits.mdx",
 ]);
