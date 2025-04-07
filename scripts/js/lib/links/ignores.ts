@@ -164,7 +164,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
   const legacy = Object.fromEntries(
     ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
       (vers) => [
-        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
           `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
           `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
@@ -175,7 +175,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
   const legacy2 = Object.fromEntries(
     ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
       (vers) => [
-        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
           `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
         ],
@@ -194,7 +194,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.35/",
       "0.36/",
     ].map((vers) => [
-      `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
         `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
       ],
@@ -208,7 +208,7 @@ function _qiskitUtilsData(): FilesToIgnores {
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
     ["0.45/", "1.0/", "1.1/"].map((vers) => [
-      `public/api/qiskit/${vers}objects.inv`,
+      `public/docs/api/qiskit/${vers}objects.inv`,
       [
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CONSTRAINT`,
