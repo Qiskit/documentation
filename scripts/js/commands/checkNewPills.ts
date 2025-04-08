@@ -11,20 +11,16 @@
 // that they have been altered from the originals.
 
 import fs from "fs/promises";
-import path from "path";
-
 import { globby } from "globby";
-import yargs from "yargs/yargs";
-import { hideBin } from "yargs/helpers";
-import { flatten, flattenDeep } from "lodash-es";
 
 import { TocEntry } from "../lib/api/generateToc.js";
 
 const TODAY = new Date();
 
 interface NewPillEntry {
+  toc: string;
   url: string;
-  date?: string | "null";
+  date: string | null;
 }
 
 // Grab the toc and grab each url with a newpill
@@ -35,15 +31,22 @@ async function main() {
     "docs/open-source/_toc.json",
   ]);
   const allOutdatedPills = [];
+  const allMissingDates = [];
   for (const tocFile of tocFiles) {
     const tocNewPills = await findNewPills(tocFile);
-    const outdatedPills = await getOutdatedPills(tocNewPills);
-    allOutdatedPills.push(...outdatedPills);
+    const outdatedPills = detectOutdatedNewPills(tocNewPills);
+    allOutdatedPills.push(...outdatedPills.outdated);
+    allMissingDates.push(...outdatedPills.missingDate);
   }
-  if (allOutdatedPills.length > 0) {
+  if (allOutdatedPills.length > 0 || allMissingDates.length > 0) {
     allOutdatedPills.forEach((outdatedPill: NewPillEntry) =>
       console.error(
-        `\n❌ This URL needs to have their new pill removed: ${outdatedPill.url}`,
+        `\n❌ The new pill should be removed for the URL: '${outdatedPill.url}' in '${outdatedPill.toc}'`,
+      ),
+    );
+    allMissingDates.forEach((missingDatePill: NewPillEntry) =>
+      console.error(
+        `\n❌ There is a missing 'isNewDate' entry for the URL: '${missingDatePill.url}' in '${missingDatePill.toc}'`,
       ),
     );
   } else {
@@ -51,10 +54,12 @@ async function main() {
   }
 }
 
-async function getOutdatedPills(
-  newPills: NewPillEntry[],
-): Promise<NewPillEntry[]> {
+function detectOutdatedNewPills(newPills: NewPillEntry[]): {
+  outdated: NewPillEntry[];
+  missingDate: NewPillEntry[];
+} {
   const outdatedPills = [];
+  const missingDates = [];
   const msPerDay = 1000 * 60 * 60 * 24;
   for (const pill of newPills) {
     if (pill.date) {
@@ -64,10 +69,10 @@ async function getOutdatedPills(
         outdatedPills.push(pill);
       }
     } else {
-      outdatedPills.push(pill);
+      missingDates.push(pill);
     }
   }
-  return outdatedPills;
+  return { outdated: outdatedPills, missingDate: missingDates };
 }
 
 // Parse _toc.json to extract urls and dicts containing 'isNew' entries
@@ -75,25 +80,28 @@ async function findNewPills(tocFilePath: string): Promise<NewPillEntry[]> {
   console.log("Checking new pills in toc:", tocFilePath);
   const raw = await fs.readFile(tocFilePath, "utf-8");
   const rootEntries = JSON.parse(raw).children;
-  const isNewEntries = collectNewPills(rootEntries);
-  return isNewEntries;
+  return collectNewPills(rootEntries, tocFilePath);
 }
 
-function collectNewPills(entries: TocEntry[]): NewPillEntry[] {
-  const isNewDates = [];
+function collectNewPills(entries: TocEntry[], tocPath: string): NewPillEntry[] {
+  const newPillEntries = [];
   for (const entry of entries) {
     if ("children" in entry) {
-      const childEntries = collectNewPills(entry.children || []);
-      isNewDates.push(...childEntries);
+      const childEntries = collectNewPills(entry.children || [], tocPath);
+      newPillEntries.push(...childEntries);
     } else if (entry.isNew && entry.url) {
       if (entry.isNewDate) {
-        isNewDates.push({ url: entry.url, date: entry.isNewDate });
+        newPillEntries.push({
+          toc: tocPath,
+          url: entry.url,
+          date: entry.isNewDate,
+        });
       } else {
-        isNewDates.push({ url: entry.url });
+        newPillEntries.push({ toc: tocPath, url: entry.url, date: null });
       }
     }
   }
-  return isNewDates;
+  return newPillEntries;
 }
 
 main().then(() => process.exit());
