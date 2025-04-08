@@ -93,6 +93,7 @@ async function updateHtmlArtifacts(args: {
   const prior = JSON.parse(rawContent);
   if (qiskitUrl) {
     prior["qiskit"]["dev"] = qiskitUrl;
+    prior["qiskit-c"]["dev"] = qiskitUrl;
   }
   if (runtimeUrl) {
     prior["qiskit-ibm-runtime"]["dev"] = runtimeUrl;
