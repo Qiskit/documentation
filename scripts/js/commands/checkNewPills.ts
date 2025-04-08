@@ -49,6 +49,7 @@ async function main() {
         `\n❌ There is a missing 'isNewDate' entry for the url: '${missingDatePill.url}' in '${missingDatePill.toc}'`,
       ),
     );
+    process.exit(1);
   } else {
     console.log("\nNo outdated new pills found ✅\n");
   }
@@ -66,11 +67,11 @@ function detectOutdatedNewPills(newPills: NewPillEntry[]): {
       missingDates.push(pill);
       continue;
     }
-   const oldDate = new Date(pill.date);
-   const daysDiff = (TODAY.getTime() - oldDate.getTime()) / msPerDay;
-   if (daysDiff > 14) {
-     outdatedPills.push(pill);
-   }
+    const oldDate = new Date(pill.date);
+    const daysDiff = (TODAY.getTime() - oldDate.getTime()) / msPerDay;
+    if (daysDiff > 14) {
+      outdatedPills.push(pill);
+    }
   }
   return { outdated: outdatedPills, missingDate: missingDates };
 }
