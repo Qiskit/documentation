@@ -34,9 +34,9 @@ async function main() {
   const allMissingDates = [];
   for (const tocFile of tocFiles) {
     const tocNewPills = await findNewPills(tocFile);
-    const outdatedPills = detectOutdatedNewPills(tocNewPills);
-    allOutdatedPills.push(...outdatedPills.outdated);
-    allMissingDates.push(...outdatedPills.missingDate);
+    const { outdated, missingDate } = detectOutdatedNewPills(tocNewPills);
+    allOutdatedPills.push(...outdated);
+    allMissingDates.push(...missingDate);
   }
   if (allOutdatedPills.length > 0 || allMissingDates.length > 0) {
     allOutdatedPills.forEach((outdatedPill: NewPillEntry) =>
@@ -62,20 +62,20 @@ function detectOutdatedNewPills(newPills: NewPillEntry[]): {
   const missingDates = [];
   const msPerDay = 1000 * 60 * 60 * 24;
   for (const pill of newPills) {
-    if (pill.date) {
-      const oldDate = new Date(pill.date);
-      const daysDiff = (TODAY.getTime() - oldDate.getTime()) / msPerDay;
-      if (daysDiff > 14) {
-        outdatedPills.push(pill);
-      }
-    } else {
+    if (!pill.date) {
       missingDates.push(pill);
+      continue;
     }
+   const oldDate = new Date(pill.date);
+   const daysDiff = (TODAY.getTime() - oldDate.getTime()) / msPerDay;
+   if (daysDiff > 14) {
+     outdatedPills.push(pill);
+   }
   }
   return { outdated: outdatedPills, missingDate: missingDates };
 }
 
-// Parse _toc.json to extract urls and dicts containing 'isNew' entries
+/** Parse _toc.json to extract urls and dicts containing 'isNew' entries */
 async function findNewPills(tocFilePath: string): Promise<NewPillEntry[]> {
   console.log("Checking new pills in toc:", tocFilePath);
   const raw = await fs.readFile(tocFilePath, "utf-8");
