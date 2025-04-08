@@ -97,8 +97,17 @@ export class FileBatch {
     const [docsFiles, links] = await this.load();
     const existingFiles = docsFiles.concat(otherFiles);
 
+    // Temporary until all the guides links are updated
+    const linksWithoutBasePath = links.map(
+      (link) =>
+        new InternalLink(
+          `${link.value.replace(/^\/docs\//, "")}${link.anchor}`,
+          Array.from(link.originFiles),
+        ),
+    );
+
     let allGood = true;
-    links.forEach((link) => {
+    linksWithoutBasePath.forEach((link) => {
       const result = link.check(existingFiles);
       if (result === undefined) return;
       console.error(result);

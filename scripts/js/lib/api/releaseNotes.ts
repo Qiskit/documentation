@@ -53,14 +53,19 @@ export async function handleReleaseNotesFile(
 
   // Else, there is a distinct release note per version. So, we use the release note but
   // have custom logic to handle it.
-  const baseUrl = pkg.isHistorical()
+  const apiBaseUrl = pkg.isHistorical()
     ? `/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `/api/${pkg.name}`;
-  result.markdown = transformLinks(result.markdown, (link, _) =>
-    link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
-      ? link
-      : `${baseUrl}/${link}`,
-  );
+  result.markdown = transformLinks(result.markdown, (link, _) => {
+    const fullPathLink =
+      link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+        ? link
+        : `${apiBaseUrl}/${link}`;
+
+    if (fullPathLink.startsWith("/") && !fullPathLink.startsWith("/docs/"))
+      return `/docs${fullPathLink}`;
+    return fullPathLink;
+  });
   await writeReleaseNoteForVersion(pkg, result.markdown);
   return false;
 }

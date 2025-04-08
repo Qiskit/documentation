@@ -33,6 +33,8 @@ export interface Link {
   text?: string; // What the user sees
 }
 
+const BASE_PATH = "/docs";
+
 /**
  * Anchors generated from markdown headings are always lower case but, if these
  * headings are API references, Sphinx sometimes expects them to include
@@ -62,10 +64,16 @@ export function normalizeUrl(
   kwargs: { kebabCaseAndShorten: boolean; pkgName: string },
 ): string {
   if (isAbsoluteUrl(url)) return url;
+
+  // We add the base path to the internal links if needed
+  if (url.startsWith("/") && !url.startsWith(BASE_PATH)) {
+    url = `${BASE_PATH}${url}`;
+  }
+
   // Absolute URLs are already normalized, except those pointing to the same API docs.
   // For those cases, we need to transform them to kebab-case.
   // Todo: Transform URLs pointing to other APIs, when they all use kebab-case.
-  if (url.startsWith("/") && !url.startsWith(`/api/${kwargs.pkgName}`))
+  if (url.startsWith("/") && !url.startsWith(`/docs/api/${kwargs.pkgName}`))
     return url;
   url = transformSpecialCaseUrl(url);
 
