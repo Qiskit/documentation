@@ -13,7 +13,7 @@
 import path from "node:path";
 import levenshtein from "fast-levenshtein";
 
-const DOCS_ROOT = "./docs";
+const DOCS_ROOT = "./";
 const CONTENT_FILE_EXTENSIONS = [".mdx", ".ipynb"];
 
 export class File {
@@ -62,11 +62,11 @@ export class InternalLink {
       return [originFile];
     }
     if (
-      this.value.startsWith("/images") ||
-      this.value.startsWith("/videos") ||
+      this.value.startsWith("/docs/images") ||
+      this.value.startsWith("/docs/videos") ||
       this.value.endsWith(".pdf")
     ) {
-      return [path.join("public/docs/", this.value)];
+      return [path.join("public/", this.value)];
     }
 
     const relativeToFolder = this.value.startsWith("/")
@@ -109,7 +109,7 @@ export class InternalLink {
    * Returns a string with a suggested replacement for a broken link
    * if exists a link similar enough to the broken one
    */
-  didYouMean(existingFiles: File[], originFile: string): string | null {
+  didYouMean(existingFiles: File[]): string | null {
     // Minimum similarity between 0 and 1 that the suggested link should have
     const MIN_SIMILARITY = 0.5;
 
@@ -120,8 +120,8 @@ export class InternalLink {
 
     existingFiles.forEach((file) => {
       const candidatePath = file.path.startsWith("public/docs/")
-        ? file.path.replace(/^public\/docs/, "")
-        : file.path.replace(/\.[^\/.]+$/, "").replace(/^docs/, "");
+        ? file.path.replace(/^public/, "")
+        : file.path.replace(/\.[^\/.]+$/, "");
       let score = levenshtein.get(this.value, candidatePath);
       if (score < minScoreLink) {
         minScoreLink = score;
@@ -178,7 +178,7 @@ export class InternalLink {
       if (this.isValid(existingFiles, originFile)) {
         return;
       }
-      const resultSuggestion = this.didYouMean(existingFiles, originFile);
+      const resultSuggestion = this.didYouMean(existingFiles);
       const suggestedPath = resultSuggestion ? `    ${resultSuggestion}` : "";
       failingFiles.push(`    ${originFile}${suggestedPath}`);
     });
