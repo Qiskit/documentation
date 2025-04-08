@@ -119,6 +119,7 @@ def _copy_local_content(root_dir: Path) -> None:
     for dir in [
         "docs/guides",
         "docs/tutorials",
+        "public/docs/images/tutorials",
         "docs/migration-guides",
         "docs/open-source",
         "public/docs/videos",
