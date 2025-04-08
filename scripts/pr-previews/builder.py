@@ -118,6 +118,7 @@ def _copy_local_content(root_dir: Path) -> None:
     # We intentionally don't copy over API docs to speed up the build.
     for dir in [
         "docs/guides",
+        "docs/tutorials",
         "docs/migration-guides",
         "docs/open-source",
         "public/docs/videos",
