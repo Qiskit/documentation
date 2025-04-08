@@ -21,6 +21,8 @@ export type TocEntry = {
   title: string;
   url?: string;
   children?: TocEntry[];
+  isNew?: string;
+  isNewDate?: string;
 };
 
 type Toc = {
