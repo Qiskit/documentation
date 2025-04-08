@@ -27,7 +27,6 @@ const SYNTHETIC_FILES: string[] = [
   "docs/administration/quickstart-org.mdx",
   "docs/administration/analytics.mdx",
   "docs/errors.mdx",
-  "docs/api/qiskit-ibm-transpiler-rest/index.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
@@ -77,7 +76,7 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/{images,videos,open-source}/**/*")).map(
+    ...(await globby("public/docs/{images,videos,open-source}/**/*")).map(
       (fp) => new File(fp, new Set()),
     ),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
@@ -191,13 +190,13 @@ async function determineCurrentDocsFileBatch(
 ): Promise<FileBatch> {
   const toCheck = [
     "docs/**/*.{ipynb,mdx}",
-    "public/api/*/objects.inv",
+    "public/docs/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/*/[0-9]*/*",
-    "!public/api/*/[0-9]*/*",
+    "!public/docs/api/*/[0-9]*/*",
     // Ignore dev version
     "!docs/api/*/dev/*",
-    "!public/api/*/dev/*",
+    "!public/docs/api/*/dev/*",
     // Ignore Qiskit release notes
     "!docs/api/qiskit/release-notes/*",
   ];
@@ -230,7 +229,8 @@ async function determineCurrentDocsFileBatch(
     const currentQiskitVersion = await readApiMinorVersion("docs/api/qiskit");
     toCheck.push(`docs/api/qiskit/release-notes/${currentQiskitVersion}.mdx`);
   } else {
-    toCheck.push(`!{public,docs}/api/*/*`);
+    toCheck.push(`!public/docs/api/*/*`);
+    toCheck.push(`!docs/api/*/*`);
     toLoad.push(`docs/api/*/*`);
   }
 
@@ -249,7 +249,10 @@ async function determineDevFileBatches(): Promise<FileBatch[]> {
   const result = [];
   for (const [project, toLoad] of projects) {
     const fileBatch = await FileBatch.fromGlobs(
-      [`docs/api/${project}/dev/*`, `public/api/${project}/dev/objects.inv`],
+      [
+        `docs/api/${project}/dev/*`,
+        `public/docs/api/${project}/dev/objects.inv`,
+      ],
       toLoad,
       `${project} dev docs`,
     );
@@ -286,7 +289,7 @@ async function determineHistoricalFileBatches(
 
     const toCheck: string[] = [
       `docs/api/${projectName}/${folder.name}/*`,
-      `public/api/${projectName}/${folder.name}/objects.inv`,
+      `public/docs/api/${projectName}/${folder.name}/objects.inv`,
     ];
     const toLoad = [...extraGlobsToLoad];
 
