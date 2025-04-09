@@ -228,7 +228,11 @@ function filterPlatformSpecificPage(page: string, legacy?: boolean) {
   if (legacy) {
     // API docs should never be checked with the legacy app because they render
     // identically in the cloud app.
-    return !CLOUD_ONLY_PAGES.has(page) && !page.startsWith("docs/api");
+    return (
+      !CLOUD_ONLY_PAGES.has(page) &&
+      !page.startsWith("docs/api") &&
+      !page.startsWith("docs/tutorials")
+    );
   }
 
   return !LEGACY_ONLY_PAGES.has(page);
