@@ -21,9 +21,9 @@ Add the file to these places:
 
 - The appropriate "index" page in the Development workflow section, such as `guides/map-problem-to-circuits` AND the Tools section in the `_toc.json` file. Or, in the rare case that it doesn't belong on any of these pages, list it in `scripts/js/commands/checkPatternsIndex.ts` in the ALLOWLIST_MISSING_FROM_INDEX or the ALLOWLIST_MISSING_FROM_TOC section. For example, `"/guides/qiskit-code-assistant"`.
 - qiskit_bot.yaml. Everyone listed under the file name is notified any time the file is updated. If someone wants to be listed as an owner but does not want to receive notifications, put their ID in single quotes. For example, - "`@NoNotifications`"
-- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` to that page's entry.
+- The folder's `_toc.json`, such as `guides/_toc.json`. The `title` will show up in the left side bar. Note that the `url` leaves off the file extension. If you want a "New" pill to appear next to the page in the side bar, add `"isNew": true` and `"isNewDate:"YYYY-MM-DD"`with the page's publish date to that page's entry.
   > [!NOTE]
-  > The New pill should be used to label a brand new page (or a page with significant updates to it) for about a month before removing the pill (by deleting `"isNew": true` in its toc entry).
+  > The New pill should be used to label a brand new page (or a page with significant updates to it) for about two weeks before removing the pill (by deleting `"isNew": true` and `"isNewDate": "YYY-MM-DD"`in its toc entry).
 
 ## Page metadata
 
@@ -67,7 +67,7 @@ External URLs should use the entire URL, such as `[GitHub](https://github.com)`.
 
 ## Images
 
-Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/images/guides/my-file/img1.png`.
+Images are stored in the `public/docs/images` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/images/guides/my-file/img1.png`.
 
 To use the image:
 
@@ -91,7 +91,7 @@ You can include a version of the image to be with the dark theme. You only need 
 
 ## Videos
 
-Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/videos/guides/my-file/video1.mp4`.
+Videos are stored in the `public/docs/videos` folder. You should use subfolders to organize the files. For example, images for `guides/my-file.mdx` should be stored like `public/docs/videos/guides/my-file/video1.mp4`.
 
 To add a video:
 

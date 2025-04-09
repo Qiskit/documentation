@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 # Note that these are ordered from fastest to slowest.
 CHECKS = {
     "notebook linters": ["tox", "-e", "lint"],
+    "all notebooks are tested": ["python", "scripts/ci/check-all-notebooks-are-tested.py"],
     "patterns index pages": ["npm", "run", "check:patterns-index"],
     "Qiskit bot": ["npm", "run", "check:qiskit-bot"],
     "metadata": ["npm", "run", "check:metadata"],

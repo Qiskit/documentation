@@ -3,7 +3,7 @@ title: Use Qiskit Code Assistant in local mode
 description: Learn how to deploy and use the Qiskit Code Assistant model locally.
 ---
 
-{/* cspell:ignore ollama, gguf */}
+{/* cspell:ignore ollama, gguf, modelfile */}
 
 # Use Qiskit Code Assistant in local mode
 
@@ -154,8 +154,8 @@ from llama_cpp import Llama
 model_path = <PATH-TO-GGUF-FILE>
 
 model = Llama(
-        model_path, 
-        seed=17, 
+        model_path,
+        seed=17,
         n_ctx=10000,
         n_gpu_layers=37, # to offload in gpu, but put 0 if all in cpu
     )

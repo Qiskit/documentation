@@ -24,6 +24,8 @@ export const IGNORED_FILES: Set<string> = new Set([]);
 const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://auth.quantum-computing.ibm.com/api",
   "https://auth.quantum.ibm.com/api",
+  "https://api.quantum-computing.ibm.com/runtime",
+  "https://us-east.quantum-computing.cloud.ibm.com/",
   "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   "http://www.satcompetition.org/2009/format-benchmarks2009.html",
   "https://qiskit.slack.com/archives/C06KF8YHUAU",
@@ -32,6 +34,8 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://colab.research.google.com/",
   "https://colab.research.google.com/#create=true",
   "https://marketplace.visualstudio.com/items?itemName=qiskit.qiskit-vscode",
+  "https://forms.office.com/r/zN3hvMTqJ1",
+  "https://platform.openai.com/docs/api-reference/completions",
   "https://code.visualstudio.com/",
   "https://doi.org/10.1002/qute.201800012",
   "https://stackoverflow.com/",
@@ -61,6 +65,15 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "http://dx.doi.org/10.1103/PhysRevA.83.012308",
   "https://doi.org/10.1103/PhysRevLett.103.150502",
   "https://doi.org/10.1103/PhysRevA.99.032331",
+  "https://dl.acm.org/doi/10.1145/3445814.3446706",
+  "https://doi.org/10.1145/3520304.3533963",
+  "https://doi.org/10.1145/3445814.3446706",
+  "https://doi.org/10.1145/3490631",
+  "http://dx.doi.org/10.1145/1278349.1278355",
+  "https://doi.org/10.1063/5.0042147",
+  "https://doi.org/10.1103/PhysRevApplied.22.054037",
+  "https://doi.org/10.1103/PhysRevApplied.20.014024",
+  "https://doi.org/10.1103/PhysRevApplied.22.064068",
   "https://aip.scitation.org/doi/10.1063/1.5019371",
   "https://aip.scitation.org/doi/10.1063/1.5141835",
   "https://pubs.aip.org/aip/rsi/article/88/10/104703/836456",
@@ -164,7 +177,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
   const legacy = Object.fromEntries(
     ["0.16/", "0.17/", "0.18/", "0.19/", "0.20/", "0.21/", "0.22/"].map(
       (vers) => [
-        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
           `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
           `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
@@ -175,7 +188,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
   const legacy2 = Object.fromEntries(
     ["0.23/", "0.24/", "0.25/", "0.26/", "0.27/", "0.28/", "0.29/"].map(
       (vers) => [
-        `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+        `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
           `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
         ],
@@ -194,7 +207,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.35/",
       "0.36/",
     ].map((vers) => [
-      `public/api/qiskit-ibm-runtime/${vers}objects.inv`,
+      `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
         `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
       ],
@@ -208,7 +221,7 @@ function _qiskitUtilsData(): FilesToIgnores {
   // because it is too tedious.
   const objectsInv = Object.fromEntries(
     ["0.45/", "1.0/", "1.1/"].map((vers) => [
-      `public/api/qiskit/${vers}objects.inv`,
+      `public/docs/api/qiskit/${vers}objects.inv`,
       [
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
         `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CONSTRAINT`,
