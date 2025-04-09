@@ -44,11 +44,11 @@ function readArgs(): Arguments {
 
 zxMain(async () => {
   const args = readArgs();
-  await checkMdx(args.config, args.apis);
+  await checkMdxAndToc(args.config, args.apis);
   await checkNotebooks(args.config);
 });
 
-function explainHowToFix(format: "mdx" | "jupyter"): void {
+function explainHowToFix(format: "mdxAndToc" | "jupyter"): void {
   const dictionary =
     "Add the word to a dictionary. This means it will be valid in all other files, too. " +
     "Add names to the `scripts/config/cspell/dictionaries/people.txt` file. " +
@@ -58,10 +58,10 @@ function explainHowToFix(format: "mdx" | "jupyter"): void {
 
   let hasMultipleFixes: boolean;
   let fix: string;
-  if (format === "mdx") {
+  if (format === "mdxAndToc") {
     hasMultipleFixes = true;
     fix =
-      "1. Add a comment on a dedicated line near the top of the MDX file, between the page metadata " +
+      "1. For MDX files, add a comment on a dedicated line near the top of the file, between the page metadata " +
       "and the H1 heading, such as: {/* cspell:ignore hellllooooo, ayyyyy */}\n\n" +
       `2. ${dictionary}`;
   } else if (format === "jupyter") {
@@ -76,7 +76,7 @@ function explainHowToFix(format: "mdx" | "jupyter"): void {
   }
 
   const allowlistInstruction = hasMultipleFixes
-    ? "there are two ways to allowlist it"
+    ? "there are multiple ways to allowlist it"
     : "you can allowlist it";
   console.error(
     "\n\n---------------\n\n🙅 There are unrecognized words (see above). If " +
@@ -84,15 +84,22 @@ function explainHowToFix(format: "mdx" | "jupyter"): void {
   );
 }
 
-async function checkMdx(configPath: string, checkApis: boolean): Promise<void> {
+async function checkMdxAndToc(
+  configPath: string,
+  checkApis: boolean,
+): Promise<void> {
   const cspellCmd = ["npx", "cspell", "--no-progress", "--config", configPath];
   try {
-    await $`${cspellCmd} docs/**/*.mdx !docs/api/**/*.mdx`.pipe(process.stdout);
+    await $`${cspellCmd} docs/**/*.mdx docs/**/_toc.json !docs/api/**/*.mdx !docs/api/**/_toc.json`.pipe(
+      process.stdout,
+    );
     if (checkApis) {
-      await $`${cspellCmd} docs/api/**/*.mdx`.pipe(process.stdout);
+      await $`${cspellCmd} docs/api/**/*.mdx docs/api/**/_toc.json`.pipe(
+        process.stdout,
+      );
     }
   } catch (p) {
-    explainHowToFix("mdx");
+    explainHowToFix("mdxAndToc");
     process.exit(1);
   }
 }
