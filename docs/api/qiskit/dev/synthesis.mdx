@@ -1118,7 +1118,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
 #### adder\_qft\_d00
 
-<Function id="qiskit.synthesis.adder_qft_d00" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/adders/draper_qft_adder.py#L22-L103" signature="qiskit.synthesis.adder_qft_d00(num_state_qubits, kind='half')">
+<Function id="qiskit.synthesis.adder_qft_d00" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/synthesis/arithmetic/adders/draper_qft_adder.py#L22-L107" signature="qiskit.synthesis.adder_qft_d00(num_state_qubits, kind='half', annotated=False)">
   A circuit that uses QFT to perform in-place addition on two qubit registers.
 
   For registers with $n$ qubits, the QFT adder can perform addition modulo $2^n$ (with `kind="fixed"`) or ordinary addition by adding a carry qubits (with `kind="half"`). The fixed adder uses $(3n^2 - n)/2$ [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate") operators, with an additional $n$ for the half adder.
@@ -1142,6 +1142,7 @@ The Approximate Quantum Compiler is available as the module [`qiskit.synthesis.u
 
   *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits in either input register for state $|a\rangle$ or $|b\rangle$. The two input registers must have the same number of qubits.
   *   **kind** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The kind of adder, can be `"half"` for a half adder or `"fixed"` for a fixed-sized adder. A half adder contains a carry-out to represent the most-significant bit, but the fixed-sized adder doesn’t and hence performs addition modulo `2 ** num_state_qubits`.
+  *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, creates appropriate control and inverse operations as `AnnotatedOperation` objects.
 
   **Return type**
 
