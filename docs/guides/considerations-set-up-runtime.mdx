@@ -1,37 +1,37 @@
 ---
-title: Considerations for setting up Qiskit Runtime for an organization
-description: Considerations for setting up Qiskit Runtime in an organization
+title: Considerations for setting up IBM Quantum Platform for an organization
+description: Considerations for setting up IBM Quantum Platform in an organization
 platform: cloud
 ---
 
 
-# Considerations for setting up Qiskit Runtime for an organization
+# Considerations for setting up IBM Quantum Platform for an organization
 <Admonition type="note">
 This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/admin/)
 </Admonition>
 
-In an organization where individuals might work on several projects, Qiskit Runtime governance can seem complex. However, access management can be used to easily enable user collaboration and to restrict visibility of users and projects when necessary. Managing access becomes more relevant with Qiskit Runtime resources that are not free - that is, Qiskit Runtime service instances that use the Standard Plan (which organizations are charged for).
+In an organization where individuals might work on several projects, IBM Quantum Platform governance can seem complex. However, access management can be used to easily enable user collaboration and to restrict visibility of users and projects when necessary. Managing access becomes more relevant with IBM Quantum Platform resources that are not free - that is, service instances that use the Standard Plan (which organizations are charged for).
 
 <span id="overview-org"></span>
 ## Overview
 
    <Admonition type="note">
-   IBM Cloud&reg; provides various ways to implement these mechanisms described in this guide. There are several ways to achieve these objectives. Additionally, most of the steps in this guide are generic to IBM Cloud and not specific to Qiskit Runtime, except the custom role details.
+   IBM Cloud&reg; provides various ways to implement these mechanisms described in this guide. There are several ways to achieve these objectives. Additionally, most of the steps in this guide are generic to IBM Cloud and not specific to IBM Quantum Platform, except the custom role details.
 </Admonition>
 
 ### Involved personas
 
 The are several main personas that are mentioned in this guide:
 
-* **User**: Someone who gets access to Qiskit Runtime resources (_service instances_) and can potentially collaborate with other users on these resources. Users' access is controlled by an administrator and they cannot create or delete service instances.
-* **Cloud administrator**: An IBM Cloud account owner who owns Qiskit Runtime resources and manages which users can access these resources. As the resource owner, the administrator is charged for any paid resource use.
+* **User**: Someone who gets access to IBM Quantum Platform resources (_service instances_) and can potentially collaborate with other users on these resources. Users' access is controlled by an administrator and they cannot create or delete service instances.
+* **Cloud administrator**: An IBM Cloud account owner who owns IBM Quantum Platform resources and manages which users can access these resources. As the resource owner, the administrator is charged for any paid resource use.
 * **IDP administrator**: An administrator who defines identities and their attributes in an identity provider (IDP).
 
 ### Terminology
 
 This guide uses the following terms:
 
-* _Resource_: A generic IBM Cloud term that refers to an object that can be managed through the Cloud user interface, CLI, or API. For this guide, a _resource_ is a Qiskit Runtime service instance.
+* _Resource_: A generic IBM Cloud term that refers to an object that can be managed through the Cloud user interface, CLI, or API. For this guide, a _resource_ is an IBM Quantum Platform service instance.
 * _Service instance_: A service instance is used to access Cloud functions. Specifically, quantum computing on real devices or simulators. It is defined through the catalog. You can define several service instances based on the same or different plans, which offer access to different quantum computing backends. See [Available IBM Cloud plan](/guides/plans-overview) for details.
 * _Project_: A grouping unit that enables users to work on the same resources. This guide uses two projects: `ml` and `finance`. See [Hierarchical project structures](#nest-org) for more information.
 
@@ -42,7 +42,7 @@ This guide uses the following terms:
 <span id="xplanning-orgx"></span>
 ## Plan your setup
 
-Before you set up Qiskit Runtime for your organization, you need to make these decisions:
+Before you set up IBM Quantum Platform for your organization, you need to make these decisions:
 
 * How are user identities defined? You can set up IBM Cloud users, users from another IDP, or both.
    * If you are using a different IDP, does the Cloud administrator or the IDP administrator assign users to project resources?
@@ -54,8 +54,8 @@ Before you set up Qiskit Runtime for your organization, you need to make these d
    * Service instances can be based on different plans, allowing access to different backends like real devices or simulators.
 * Which users need to access which projects?
 * Should users be able to delete jobs? Keeping jobs in service instances gives more traceability for billing costs.
-* Will you use access groups that directly reference Qiskit Runtime service instances or organize services into resource groups?
-   * **Access groups** are a convenient and common way of controlling user access for IBM Cloud resources. They are a simple but powerful means to consistently assign user access. We create an access group for each project and map users to access groups. Each access group uses a custom role that allows users to access specific Qiskit Runtime service instances or resource groups.
+* Will you use access groups that directly reference IBM Quantum Platform service instances or organize services into resource groups?
+   * **Access groups** are a convenient and common way of controlling user access for IBM Cloud resources. They are a simple but powerful means to consistently assign user access. We create an access group for each project and map users to access groups. Each access group uses a custom role that allows users to access specific service instances or resource groups.
    * **Resource groups** are used only when you need to maintain a clear separation of service instances. If more service instances are created in a resource group, all users that have access to the resource group see them automatically without updating access groups. If you choose to use resource groups, you will create access groups and then assign them to resource groups.
 
    <Admonition type="note">
@@ -98,7 +98,7 @@ The steps of this guide can be automated for consistent and repeatable managemen
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-   * See [Configure Qiskit Runtime for an organization](./quickstart-steps-org) for the steps to set up Qiskit Runtime.
+   * See [Configure IBM Quantum Platform for an organization](./quickstart-steps-org) for the steps to set up IBM Quantum Platform.
    * [Understand available plans.](/guides/plans-overview)
    * [Create instances.](/guides/instances)
    * [Understand the IBM Cloud structure.](/guides/cloud-account-structure)
