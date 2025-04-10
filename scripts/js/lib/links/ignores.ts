@@ -286,69 +286,72 @@ function _patternsReorg(): FilesToIgnores {
     ["", "0.45/", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
-        ["/build/circuit-construction"],
+        ["/docs/build/circuit-construction"],
       ],
       [
         `docs/api/qiskit/${vers}qiskit.transpiler.passes.ValidatePulseGates.mdx`,
-        ["/build/pulse"],
+        ["/docs/build/pulse"],
       ],
-      [`docs/api/qiskit/${vers}qpy.mdx`, ["/build/pulse"]],
+      [`docs/api/qiskit/${vers}qpy.mdx`, ["/docs/build/pulse"]],
     ]),
   );
   const runtime = Object.fromEntries(
     [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26].flatMap((vers) => [
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/batch.mdx`,
-        ["/run/run-jobs-batch", "/run/max-execution-time"],
+        ["/docs/run/run-jobs-batch", "/docs/run/max-execution-time"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/session.mdx`,
-        ["/run/max-execution-time"],
+        ["/docs/run/max-execution-time"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/options-options.mdx`,
         [
-          "/run/max-execution-time",
-          "/run/configure-error-mitigation",
-          "/run/max-execution-time#maximum-execution-time",
+          "/docs/run/max-execution-time",
+          "/docs/run/configure-error-mitigation",
+          "/docs/run/max-execution-time#maximum-execution-time",
         ],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/options-estimator-options.mdx`,
         [
-          "/run/configure-error-mitigation",
-          "/run/configure-runtime-compilation",
+          "/docs/run/configure-error-mitigation",
+          "/docs/run/configure-runtime-compilation",
         ],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
-        ["/api/migration-guides/v2-primitives"],
+        ["/docs/api/migration-guides/v2-primitives"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
-        ["/api/migration-guides/v2-primitives"],
+        ["/docs/api/migration-guides/v2-primitives"],
       ],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/run"]],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/docs/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/docs/run"]],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/noise-learner-noise-learner.mdx`,
-        ["/run"],
+        ["/docs/run"],
       ],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/transpiler.mdx`, ["/transpile"]],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/transpiler.mdx`,
+        ["/docs/transpile"],
+      ],
     ]),
   );
   return {
     ...qiskit,
     ...runtime,
     "docs/api/qiskit/release-notes/1.0.mdx": [
-      "/start/install#qiskit-versioning",
-      "/start/configure-qiskit-local",
+      "/docs/start/install#qiskit-versioning",
+      "/docs/start/configure-qiskit-local",
     ],
     "docs/api/qiskit/release-notes/0.46.mdx": [
-      "/start/install#qiskit-versioning",
+      "/docs/start/install#qiskit-versioning",
     ],
     "docs/api/qiskit/1.1/qiskit.quantum_info.SparsePauliOp.mdx": [
-      "/start/configure-qiskit-local#environment-variables",
+      "/docs/start/configure-qiskit-local#environment-variables",
     ],
   };
 }

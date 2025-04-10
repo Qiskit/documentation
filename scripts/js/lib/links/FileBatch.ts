@@ -98,13 +98,12 @@ export class FileBatch {
     const existingFiles = docsFiles.concat(otherFiles);
 
     // Temporary until all the guides links are updated
-    const linksWithoutBasePath = links.map(
-      (link) =>
-        new InternalLink(
-          `${link.value.replace(/^\/docs\//, "")}${link.anchor}`,
-          Array.from(link.originFiles),
-        ),
-    );
+    const linksWithoutBasePath = links.map((link) => {
+      return new InternalLink(
+        `${link.value.replace(/^\/docs\//, "/")}${link.anchor}`,
+        Array.from(link.originFiles),
+      );
+    });
 
     let allGood = true;
     linksWithoutBasePath.forEach((link) => {
