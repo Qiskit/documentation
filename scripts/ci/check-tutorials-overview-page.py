@@ -23,7 +23,7 @@ import re
 import sys
 
 TUTORIALS_ROOT = Path("./docs/tutorials/")
-OVERVIEW_PAGE = Path(TUTORIALS_ROOT, "overview.mdx")
+OVERVIEW_PAGE = Path(TUTORIALS_ROOT, "index.mdx")
 
 # All links must be of the form
 # * [Tutorial title](/tutorials/tutorial-slug)
