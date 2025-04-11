@@ -22,7 +22,7 @@ Transpilation is the process of rewriting a given input circuit to match the top
 
 Most circuits must undergo a series of transformations that make them compatible with a given target device, and optimize them to reduce the effects of noise on the resulting outcomes. Rewriting quantum circuits to match hardware constraints and optimizing for performance can be far from trivial. The flow of logic in the rewriting tool chain need not be linear, and can often have iterative sub-loops, conditional branches, and other complex behaviors. That being said, the basic building blocks follow the structure given below:
 
-![../\_images/transpiling\_core\_steps.png](/images/api/qiskit/0.26/transpiling_core_steps.avif)
+![../\_images/transpiling\_core\_steps.png](/docs/images/api/qiskit/0.26/transpiling_core_steps.avif)
 
 Qiskit has four pre-built transpilation pipelines available here: [`qiskit.transpiler.preset_passmanagers`](transpiler_preset#module-qiskit.transpiler.preset_passmanagers "qiskit.transpiler.preset_passmanagers"). Unless the reader is familiar with quantum circuit optimization methods and their usage, it is best to use one of these ready-made routines.
 
@@ -55,7 +55,7 @@ qc.measure([0], [0])
 qc.draw(output='mpl')
 ```
 
-![../\_images/transpiler\_2\_0.png](/images/api/qiskit/0.26/transpiler_2_0.avif)
+![../\_images/transpiler\_2\_0.png](/docs/images/api/qiskit/0.26/transpiler_2_0.avif)
 
 We have $H$, $X$, and controlled-$P$ gates, all of which are not in our devices basis gate set, and must be expanded. This expansion is taken care of for us in the `qiskit.execute()` function. However, we can decompose the circuit to show what it would look like in the native gate set of the IBM Quantum devices:
 
@@ -64,7 +64,7 @@ qc_basis = qc.decompose()
 qc_basis.draw(output='mpl')
 ```
 
-![../\_images/transpiler\_3\_0.png](/images/api/qiskit/0.26/transpiler_3_0.avif)
+![../\_images/transpiler\_3\_0.png](/docs/images/api/qiskit/0.26/transpiler_3_0.avif)
 
 A few things to highlight. First, the circuit has gotten longer with respect to the initial one. This can be verified by checking the depth of the circuits:
 
@@ -88,7 +88,7 @@ It is important to highlight two special cases:
     swap_circ.decompose().draw(output='mpl')
     ```
 
-    ![../\_images/transpiler\_5\_0.png](/images/api/qiskit/0.26/transpiler_5_0.avif)
+    ![../\_images/transpiler\_5\_0.png](/docs/images/api/qiskit/0.26/transpiler_5_0.avif)
 
     As a product of three CNOT gates, SWAP gates are expensive operations to perform on a noisy quantum devices. However, such operations are usually necessary for embedding a circuit into the limited entangling gate connectivities of actual devices. Thus, minimizing the number of SWAP gates in a circuit is a primary goal in the transpilation process.
 
@@ -100,7 +100,7 @@ It is important to highlight two special cases:
     ccx_circ.decompose().draw(output='mpl')
     ```
 
-    ![../\_images/transpiler\_6\_0.png](/images/api/qiskit/0.26/transpiler_6_0.avif)
+    ![../\_images/transpiler\_6\_0.png](/docs/images/api/qiskit/0.26/transpiler_6_0.avif)
 
     For every Toffoli gate in a quantum circuit, the IBM Quantum hardware may execute up to six CNOT gates, and a handful of single-qubit gates. From this example, it should be clear that any algorithm that makes use of multiple Toffoli gates will end up as a circuit with large depth and will therefore be appreciably affected by noise and gate errors.
 
@@ -108,7 +108,7 @@ Initial layout
 
 Quantum circuits are abstract entities whose qubits are “virtual” representations of actual qubits used in computations. We need to be able to map these virtual qubits in a one-to-one manner to the “physical” qubits in an actual quantum device.
 
-![../\_images/mapping.png](/images/api/qiskit/0.26/mapping.avif)
+![../\_images/mapping.png](/docs/images/api/qiskit/0.26/mapping.avif)
 
 By default, qiskit will do this mapping for you. The choice of mapping depends on the properties of the circuit, the particular device you are targeting, and the optimization level that is chosen. The basic mapping strategies are the following:
 
@@ -138,7 +138,7 @@ ghz.measure(range(3), range(3))
 ghz.draw(output='mpl')
 ```
 
-![../\_images/transpiler\_7\_0.png](/images/api/qiskit/0.26/transpiler_7_0.avif)
+![../\_images/transpiler\_7\_0.png](/docs/images/api/qiskit/0.26/transpiler_7_0.avif)
 
 *   **Layout Using Optimization Level 0**
 
@@ -147,7 +147,7 @@ ghz.draw(output='mpl')
     > plot_circuit_layout(new_circ_lv0, backend)
     > ```
     >
-    > ![../\_images/transpiler\_8\_0.png](/images/api/qiskit/0.26/transpiler_8_0.avif)
+    > ![../\_images/transpiler\_8\_0.png](/docs/images/api/qiskit/0.26/transpiler_8_0.avif)
 
 *   **Layout Using Optimization Level 3**
 
@@ -156,7 +156,7 @@ ghz.draw(output='mpl')
     > plot_circuit_layout(new_circ_lv3, backend)
     > ```
     >
-    > ![../\_images/transpiler\_9\_0.png](/images/api/qiskit/0.26/transpiler_9_0.avif)
+    > ![../\_images/transpiler\_9\_0.png](/docs/images/api/qiskit/0.26/transpiler_9_0.avif)
 
 It is completely possible to specify your own initial layout. To do so we can pass a list of integers to [`qiskit.compiler.transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") via the initial\_layout keyword argument, where the index labels the virtual qubit in the circuit and the corresponding value is the label for the physical qubit to map onto:
 
@@ -170,7 +170,7 @@ my_ghz = transpile(ghz, backend, initial_layout=[3, 4, 2])
 plot_circuit_layout(my_ghz, backend)
 ```
 
-![../\_images/transpiler\_10\_0.png](/images/api/qiskit/0.26/transpiler_10_0.avif)
+![../\_images/transpiler\_10\_0.png](/docs/images/api/qiskit/0.26/transpiler_10_0.avif)
 
 Mapping circuits to hardware topology
 
@@ -192,7 +192,7 @@ ghz.cx(0,range(1,5))
 ghz.draw(output='mpl')
 ```
 
-![../\_images/transpiler\_11\_0.png](/images/api/qiskit/0.26/transpiler_11_0.avif)
+![../\_images/transpiler\_11\_0.png](/docs/images/api/qiskit/0.26/transpiler_11_0.avif)
 
 ```python
 depths = []
@@ -208,7 +208,7 @@ plt.xlabel('Depth', fontsize=14)
 plt.ylabel('Counts', fontsize=14);
 ```
 
-![../\_images/transpiler\_12\_0.png](/images/api/qiskit/0.26/transpiler_12_0.avif)
+![../\_images/transpiler\_12\_0.png](/docs/images/api/qiskit/0.26/transpiler_12_0.avif)
 
 This distribution is quite wide, signaling the difficultly the SWAP mapper is having in computing the best mapping. Most circuits will have a distribution of depths, perhaps not as wide as this one, due to the stochastic nature of the default SWAP mapper. Of course, we want the best circuit we can get, especially in cases where the depth is critical to success or failure. In cases like this, it is best to `transpile()` a circuit several times, e.g. 10, and take the one with the lowest depth. The `transpile()` function will automatically run in parallel mode, making this procedure relatively speedy in most cases.
 
@@ -232,7 +232,7 @@ ghz.cx(0,range(1,5))
 ghz.draw(output='mpl')
 ```
 
-![../\_images/transpiler\_13\_0.png](/images/api/qiskit/0.26/transpiler_13_0.avif)
+![../\_images/transpiler\_13\_0.png](/docs/images/api/qiskit/0.26/transpiler_13_0.avif)
 
 ```python
 for kk in range(4):

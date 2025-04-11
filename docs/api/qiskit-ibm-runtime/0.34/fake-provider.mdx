@@ -41,7 +41,7 @@ circuit.measure_all()
 circuit.draw('mpl', style="iqp")
 ```
 
-![\[Circuit diagram output by the previous code.\]](/images/api/qiskit-ibm-runtime/0.34/fake_provider-1.avif)
+![\[Circuit diagram output by the previous code.\]](/docs/images/api/qiskit-ibm-runtime/0.34/fake_provider-1.avif)
 
 ```python
 # Transpile the ideal circuit to a circuit that can be
@@ -50,7 +50,7 @@ transpiled_circuit = transpile(circuit, backend)
 transpiled_circuit.draw('mpl', style="iqp")
 ```
 
-![\[Circuit diagram output by the previous code.\]](/images/api/qiskit-ibm-runtime/0.34/fake_provider-2.avif)
+![\[Circuit diagram output by the previous code.\]](/docs/images/api/qiskit-ibm-runtime/0.34/fake_provider-2.avif)
 
 ```python
 # Run the transpiled circuit using the simulated fake backend
@@ -61,7 +61,7 @@ counts = pub_result.data.meas.get_counts()
 plot_histogram(counts)
 ```
 
-![\[Histogram output by the previous code.\]](/images/api/qiskit-ibm-runtime/0.34/fake_provider-3.avif)
+![\[Histogram output by the previous code.\]](/docs/images/api/qiskit-ibm-runtime/0.34/fake_provider-3.avif)
 
 <Admonition title="Important" type="danger">
   Please note that the simulation is done using a noise model generated from system snapshots obtained in the past (sometimes a few years ago) and the results are not representative of the latest behaviours of the real quantum system which the fake backend is mimicking. If you want to run noisy simulations to compare with the real quantum system, you should use the `qiskit_aer` library. After installation, you can follow the steps below to generate a simulator that mimics a real quantum system with the latest calibration results.
