@@ -105,7 +105,7 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
     (module): TocEntry => ({
       title: module.meta.apiName!,
       // Remove the final /index from the url
-      url: module.url.replace(/\/index$/, ""),
+      url: `/docs${module.url.replace(/\/index$/, "")}`,
     }),
   );
 }
@@ -127,7 +127,7 @@ function addItemsToModules(
       if (!itemModule.children) itemModule.children = [];
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
-        url: item.url,
+        url: `/docs${item.url}`,
       };
       itemModule.children.push(itemTocEntry);
     }
@@ -207,7 +207,7 @@ function ensureIndexPage(
   pkg: Pkg,
   tocModules: TocEntry[],
 ): TocEntry | undefined {
-  const docsFolder = pkg.outputDir("/");
+  const docsFolder = pkg.outputDir("/docs/");
   return tocModules.some((entry) => entry.url === docsFolder)
     ? undefined
     : {
@@ -230,7 +230,7 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
 
 function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   if (!pkg.releaseNotesConfig.enabled) return;
-  const releaseNotesUrl = `/api/${pkg.releaseNotesPackageName()}/release-notes`;
+  const releaseNotesUrl = `/docs/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
