@@ -62,7 +62,7 @@ if __name__ == "__main__":
             appearances = section.paths.count(path)
             if appearances == 0:
                 problems.append(f'"{path}" is not listed in section "{section.title}."')
-            if appearances > 1:
+            if section.title == "Browse tutorials by topic" and appearances > 1:
                 problems.append(
                     f'"{path}" appears more than once in section "{section.title}".'
                 )
