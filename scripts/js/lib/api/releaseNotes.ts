@@ -19,6 +19,7 @@ import transformLinks from "transform-markdown-links";
 import { pathExists } from "../fs.js";
 import type { Pkg } from "./Pkg.js";
 import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling
@@ -62,8 +63,13 @@ export async function handleReleaseNotesFile(
         ? link
         : `${apiBaseUrl}/${link}`;
 
-    if (fullPathLink.startsWith("/") && !fullPathLink.startsWith("/docs/"))
-      return `/docs${fullPathLink}`;
+    // We check that the links does not start with the base path and does not end with the base path to include the docs home page.
+    if (
+      fullPathLink.startsWith("/") &&
+      !fullPathLink.startsWith(`${DOCS_BASE_PATH}/`) &&
+      !fullPathLink.endsWith(DOCS_BASE_PATH)
+    )
+      return `${DOCS_BASE_PATH}${fullPathLink}`;
     return fullPathLink;
   });
   await writeReleaseNoteForVersion(pkg, result.markdown);

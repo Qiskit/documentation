@@ -27,13 +27,12 @@ import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
+import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 export interface Link {
   url: string; // Where the link goes
   text?: string; // What the user sees
 }
-
-const BASE_PATH = "/docs";
 
 /**
  * Anchors generated from markdown headings are always lower case but, if these
@@ -66,14 +65,21 @@ export function normalizeUrl(
   if (isAbsoluteUrl(url)) return url;
 
   // We add the base path to the internal links if needed
-  if (url.startsWith("/") && !url.startsWith(BASE_PATH)) {
-    url = `${BASE_PATH}${url}`;
+  if (
+    url.startsWith("/") &&
+    !url.startsWith(DOCS_BASE_PATH) &&
+    !url.endsWith(DOCS_BASE_PATH)
+  ) {
+    url = `${DOCS_BASE_PATH}${url}`;
   }
 
   // Absolute URLs are already normalized, except those pointing to the same API docs.
   // For those cases, we need to transform them to kebab-case.
   // Todo: Transform URLs pointing to other APIs, when they all use kebab-case.
-  if (url.startsWith("/") && !url.startsWith(`/docs/api/${kwargs.pkgName}`))
+  if (
+    url.startsWith("/") &&
+    !url.startsWith(`${DOCS_BASE_PATH}/api/${kwargs.pkgName}`)
+  )
     return url;
   url = transformSpecialCaseUrl(url);
 

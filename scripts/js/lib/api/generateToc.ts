@@ -16,6 +16,7 @@ import { getLastPartFromFullIdentifier } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import type { TocGrouping } from "./TocGrouping.js";
+import { DOCS_BASE_PATH } from "./conversionPipeline.js";
 
 export type TocEntry = {
   title: string;
@@ -105,7 +106,7 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
     (module): TocEntry => ({
       title: module.meta.apiName!,
       // Remove the final /index from the url
-      url: `/docs${module.url.replace(/\/index$/, "")}`,
+      url: `${DOCS_BASE_PATH}${module.url.replace(/\/index$/, "")}`,
     }),
   );
 }
@@ -127,7 +128,7 @@ function addItemsToModules(
       if (!itemModule.children) itemModule.children = [];
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
-        url: `/docs${item.url}`,
+        url: `${DOCS_BASE_PATH}${item.url}`,
       };
       itemModule.children.push(itemTocEntry);
     }
@@ -207,7 +208,7 @@ function ensureIndexPage(
   pkg: Pkg,
   tocModules: TocEntry[],
 ): TocEntry | undefined {
-  const docsFolder = pkg.outputDir("/docs/");
+  const docsFolder = pkg.outputDir(`${DOCS_BASE_PATH}/`);
   return tocModules.some((entry) => entry.url === docsFolder)
     ? undefined
     : {
@@ -230,7 +231,7 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
 
 function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   if (!pkg.releaseNotesConfig.enabled) return;
-  const releaseNotesUrl = `/docs/api/${pkg.releaseNotesPackageName()}/release-notes`;
+  const releaseNotesUrl = `${DOCS_BASE_PATH}/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };

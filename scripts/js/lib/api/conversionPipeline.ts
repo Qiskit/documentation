@@ -38,6 +38,8 @@ import {
 // This is the folder that contains all C API docs in the Sphinx artifact.
 export const C_API_BASE_PATH = "cdoc" as const;
 
+export const DOCS_BASE_PATH = "/docs";
+
 export async function runConversionPipeline(
   htmlPath: string,
   docsBaseFolder: string,
@@ -109,7 +111,7 @@ async function convertFilesToMarkdown(
       html,
       fileName: file,
       determineGithubUrl: pkg.determineGithubUrlFn(),
-      imageDestination: pkg.outputDir("/docs/images"),
+      imageDestination: pkg.outputDir(`${DOCS_BASE_PATH}/images`),
       releaseNotesTitle: pkg.releaseNotesTitle(),
       hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
       isCApi: pkg.isCApi(),
