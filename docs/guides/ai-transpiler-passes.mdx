@@ -24,7 +24,7 @@ The following passes are currently available:
  - `AIPermutationSynthesis`: Permutation circuit synthesis
  - `AIPauliNetworkSynthesis`: Pauli Network circuit synthesis (only available in the Qiskit Transpiler Service, not in local environment)
 
-To use the AI transpiler passes, first [install the `qiskit-ibm-transpiler` package](/guides/qiskit-transpiler-service#install-transpiler-service). Visit the [qiskit-ibm-transpiler API documentation](/api/qiskit-ibm-transpiler) to get more information about the different options available.
+To use the AI transpiler passes, first [install the `qiskit-ibm-transpiler` package](/docs/guides/qiskit-transpiler-service#install-transpiler-service). Visit the [qiskit-ibm-transpiler API documentation](/docs/api/qiskit-ibm-transpiler) to get more information about the different options available.
 
 ## Run the AI transpiler passes locally or on the cloud
 
@@ -67,7 +67,7 @@ The `layout_mode` includes the following options:
 
 ## AI circuit synthesis passes
 
-The AI circuit synthesis passes allow you to optimize pieces of different circuit types ([Clifford](/api/qiskit/qiskit.quantum_info.Clifford), [Linear Function](/api/qiskit/qiskit.circuit.library.LinearFunction), [Permutation](/api/qiskit/qiskit.circuit.library.Permutation#permutation), Pauli Network) by re-synthesizing them. A typical way to use the synthesis pass is as follows:
+The AI circuit synthesis passes allow you to optimize pieces of different circuit types ([Clifford](/docs/api/qiskit/qiskit.quantum_info.Clifford), [Linear Function](/docs/api/qiskit/qiskit.circuit.library.LinearFunction), [Permutation](/docs/api/qiskit/qiskit.circuit.library.Permutation#permutation), Pauli Network) by re-synthesizing them. A typical way to use the synthesis pass is as follows:
 
 ```python
 from qiskit.transpiler import PassManager
@@ -97,9 +97,9 @@ The synthesis respects the coupling map of the device: it can be run safely afte
 
 The following synthesis passes are available from `qiskit_ibm_transpiler.ai.synthesis`:
 
-- *AICliffordSynthesis*: Synthesis for [Clifford](/api/qiskit/qiskit.quantum_info.Clifford) circuits (blocks of `H`, `S`, and `CX` gates). Currently up to nine qubit blocks.
-- *AILinearFunctionSynthesis*: Synthesis for [Linear Function](/api/qiskit/qiskit.circuit.library.LinearFunction) circuits (blocks of `CX` and `SWAP` gates). Currently up to nine qubit blocks.
-- *AIPermutationSynthesis*: Synthesis for [Permutation](/api/qiskit/qiskit.circuit.library.Permutation#permutation) circuits (blocks of `SWAP` gates). Currently available for 65, 33, and 27 qubit blocks.
+- *AICliffordSynthesis*: Synthesis for [Clifford](/docs/api/qiskit/qiskit.quantum_info.Clifford) circuits (blocks of `H`, `S`, and `CX` gates). Currently up to nine qubit blocks.
+- *AILinearFunctionSynthesis*: Synthesis for [Linear Function](/docs/api/qiskit/qiskit.circuit.library.LinearFunction) circuits (blocks of `CX` and `SWAP` gates). Currently up to nine qubit blocks.
+- *AIPermutationSynthesis*: Synthesis for [Permutation](/docs/api/qiskit/qiskit.circuit.library.Permutation#permutation) circuits (blocks of `SWAP` gates). Currently available for 65, 33, and 27 qubit blocks.
 - *AIPauliNetworkSynthesis*: Synthesis for Pauli Network circuits (blocks of `H`, `S`, `SX`, `CX`, `RX`, `RY` and `RZ` gates). Currently up to six qubit blocks. This pass is only available in the Qiskit Transpiler Service, not locally.
 
 We expect to gradually increase the size of the supported blocks.

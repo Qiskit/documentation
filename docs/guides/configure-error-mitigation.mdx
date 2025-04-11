@@ -11,7 +11,7 @@ results in quantum pre-processing overhead related to model training and
 classical post-processing overhead to mitigate errors in the raw results
 by using the generated model.
 
-The Estimator primitive supports several error mitigation techniques, including [TREX](/api/qiskit-ibm-runtime/options-resilience-options-v2#measure_mitigation), [ZNE](/api/qiskit-ibm-runtime/options-resilience-options-v2#zne), [PEC](/api/qiskit-ibm-runtime/options-resilience-options-v2#pec), and [PEA](/api/qiskit-ibm-runtime/options-zne-options). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each. When using primitives, you can turn on or off individual methods. See the [Custom error settings](#advanced-error) section for details.
+The Estimator primitive supports several error mitigation techniques, including [TREX](/docs/api/qiskit-ibm-runtime/options-resilience-options-v2#measure_mitigation), [ZNE](/docs/api/qiskit-ibm-runtime/options-resilience-options-v2#zne), [PEC](/docs/api/qiskit-ibm-runtime/options-resilience-options-v2#pec), and [PEA](/docs/api/qiskit-ibm-runtime/options-zne-options). See [Error mitigation and suppression techniques](error-mitigation-and-suppression-techniques) for an explanation of each. When using primitives, you can turn on or off individual methods. See the [Custom error settings](#advanced-error) section for details.
 
 <Admonition type="note">
 
@@ -103,7 +103,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value.](/images/guides/configure-error-mitigation/resilience-2.svg "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value.](/docs/images/guides/configure-error-mitigation/resilience-2.svg "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,

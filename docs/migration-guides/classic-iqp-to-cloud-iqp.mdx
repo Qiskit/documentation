@@ -7,7 +7,7 @@ description: Migrate to using the upgraded IBM Quantum Platform for Open users
 
 This guide describes how, why, and when to transition to the [new version of IBM Quantum Platform,](https://quantum.cloud.ibm.com/) which is now available in early access mode.
 
-Early access mode means that while you are able to log in, create instances, run jobs, and so on, some functions are not yet available and will be added in the coming months. Find the recent changes to the new platform on the [Latest updates page,](/guides/latest-updates) which is updated every two weeks.
+Early access mode means that while you are able to log in, create instances, run jobs, and so on, some functions are not yet available and will be added in the coming months. Find the recent changes to the new platform on the [Latest updates page,](/docs/guides/latest-updates) which is updated every two weeks.
 
 You can continue to use [IBM Quantum Platform Classic](https://quantum.ibm.com/) until it is sunset on 1 July, 2025.
 
@@ -26,7 +26,7 @@ The new version of IBM Quantum Platform is very similar to the current interface
 There are a few major changes you will see in the updated IBM Quantum Platform:
 
 * For Open Plan users, there is no longer a limit to the number of jobs you can have in the queue.
-* Open Plan users cannot run session jobs.  Previously, if you tried to run a job in a session, it was run in job mode.  Now, if you try to run a job in a session, the job fails.  Instead, Open Plan users should explicitly write their code to run in job or batch mode. See [execution modes](/guides/execution-modes) to learn how to set the execution mode.
+* Open Plan users cannot run session jobs.  Previously, if you tried to run a job in a session, it was run in job mode.  Now, if you try to run a job in a session, the job fails.  Instead, Open Plan users should explicitly write their code to run in job or batch mode. See [execution modes](/docs/guides/execution-modes) to learn how to set the execution mode.
 * When activating the service, an instance is required, and the channel must be set to `ibm_cloud`. The instance is specified by using its cloud resource name (CRN).
 * Quantum computers powered by the state-of-the-art IBM Quantum Heron processor are available through the Open Plan.
 * For IBM Quantum Platform Classic users, the hierarchical authorization structure has changed.  That is, there are no hubs, groups, or projects in the new platform. All user management is done through IBM Cloud [identity and access management (IAM)](https://cloud.ibm.com/docs/account?topic=account-iamoverview). By default, access groups are created for you when you create an instance through the IBM Quantum Platform user interface.
@@ -42,7 +42,7 @@ You can see the instances you have access to on the dashboard or by clicking the
 The following plans are available to non-Premium users:
 
 * **Open** - Free plan with 10 minutes of access to quantum computers per 28-day period.
-* **Standard** - Pay only for your actual [usage](/guides/estimate-job-run-time).
+* **Standard** - Pay only for your actual [usage](/docs/guides/estimate-job-run-time).
 
 <Admonition>
 The Lite Plan is deprecated and will be removed on 14 March 2025.
@@ -58,7 +58,7 @@ Instead of accessing [IBM Quantum Platform Classic](https://quantum.ibm.com/), y
 Jobs that were run on IBM Quantum Platform Classic will not be available after that version of the platform is sunset on 1 July, 2025.
 </Admonition>
 
-* Open users should save any workloads data from the classic platform prior to that date by following the steps in the [Save and retrieve jobs](/guides/save-jobs) guide.
+* Open users should save any workloads data from the classic platform prior to that date by following the steps in the [Save and retrieve jobs](/docs/guides/save-jobs) guide.
 * Premium Plan, Dedicated Service, and Startup Program users should wait to receive  guidance from their administrators regarding whether to download historical data.
 
 <span id="onboard"></span>
@@ -91,7 +91,7 @@ Follow these steps to start using the new version of IBM Quantum Platform.
    <Admonition type="note">
    This API key is only visible for a short amount of time so be sure to store it in a safe place.  To manage your API key, use IBM Cloud.  See [Managing user API keys](https://cloud.ibm.com/docs/account?topic=account-userapikey) for instructions.
    </Admonition>
-2. Use your API key to activate your Python virtual environment.  See the [installation instructions](/guides/install-qiskit#local) if you do not already have a virtual environment set up.
+2. Use your API key to activate your Python virtual environment.  See the [installation instructions](/docs/guides/install-qiskit#local) if you do not already have a virtual environment set up.
 
     <span id="save-account"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#untrusted-machine) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Quantum Platform.) To use `save_account()`, run `python` in your shell, then enter the following:
 
@@ -163,5 +163,5 @@ This transition enhances security, scalability, and user experience while keepin
 * If you currently use the Lite Plan (deprecated), you can switch to [using simulators locally](https://quantum.cloud.ibm.com/docs/migration-guides/local-simulators). Optionally, you can [create instances in the Open Plan,](#onboard) which lets you run jobs on quantum hardware.
 
 <Admonition type="important">
-To set, change, or remove cost limits, you need to use the API or CLI.  Follow the instructions in the [Manage cost](/guides/manage-cost#cost-limit) guide.
+To set, change, or remove cost limits, you need to use the API or CLI.  Follow the instructions in the [Manage cost](/docs/guides/manage-cost#cost-limit) guide.
 </Admonition>

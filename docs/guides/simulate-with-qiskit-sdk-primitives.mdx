@@ -36,7 +36,7 @@ qc.h(0)
 qc.cx(0,1)
 qc.draw("mpl", style="iqp")
 ```
-![Initial QuantumCircuit](/images/guides/simulate-with-qiskit-primitives/estimator-initialize.avif "Initial QuantumCircuit")
+![Initial QuantumCircuit](/docs/images/guides/simulate-with-qiskit-primitives/estimator-initialize.avif "Initial QuantumCircuit")
 
 ```python
 from qiskit.quantum_info import SparsePauliOp
@@ -77,7 +77,7 @@ estimator = StatevectorEstimator()
 This example only uses one circuit (of type [`QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)) and one
 observable.
 
-Run the estimation by calling the [`StatevectorEstimator.run`](../api/qiskit/qiskit.primitives.StatevectorEstimator#run) method, which returns an instance of a [`PrimitiveJob`](/api/qiskit/qiskit.primitives.PrimitiveJob) object. You can get the results from the job (as a [`qiskit.primitives.PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult) object)
+Run the estimation by calling the [`StatevectorEstimator.run`](../api/qiskit/qiskit.primitives.StatevectorEstimator#run) method, which returns an instance of a [`PrimitiveJob`](/docs/api/qiskit/qiskit.primitives.PrimitiveJob) object. You can get the results from the job (as a [`qiskit.primitives.PrimitiveResult`](../api/qiskit/qiskit.primitives.PrimitiveResult) object)
 with the [`qiskit.primitives.PrimitiveJob.result`](../api/qiskit/qiskit.primitives.PrimitiveJob#result) method.
 
 ```python
@@ -91,9 +91,9 @@ print(f" > Result class: {type(result)}")
 
 #### Get the expected value from the result
 
-The primitives result outputs an array of [`PubResult`s](/api/qiskit/qiskit.primitives.PubResult#pubresult), where each item of the array is a `PubResult` object that contains in its data the array of evaluations corresponding to every circuit-observable combination in the PUB.
+The primitives result outputs an array of [`PubResult`s](/docs/api/qiskit/qiskit.primitives.PubResult#pubresult), where each item of the array is a `PubResult` object that contains in its data the array of evaluations corresponding to every circuit-observable combination in the PUB.
 
-To retrieve the expectation values and metadata for the first (and in this case, only) circuit evaluation, we must access the evaluation [`data`](/api/qiskit/qiskit.primitives.PubResult#data) for PUB 0:
+To retrieve the expectation values and metadata for the first (and in this case, only) circuit evaluation, we must access the evaluation [`data`](/docs/api/qiskit/qiskit.primitives.PubResult#data) for PUB 0:
 
 ```python
 print(f" > Expectation value: {result[0].data.evs}")
@@ -139,7 +139,7 @@ qc.cx(0,1)
 qc.measure_all()
 qc.draw("mpl", style="iqp")
 ```
-![Initial QuantumCircuit](/images/guides/simulate-with-qiskit-primitives/sampler-initialize.avif "Initial QuantumCircuit")
+![Initial QuantumCircuit](/docs/images/guides/simulate-with-qiskit-primitives/sampler-initialize.avif "Initial QuantumCircuit")
 
 <Admonition type="note">
 Any quantum circuit passed to a Sampler **must** include measurements.
@@ -272,8 +272,8 @@ For a full example, see the [Primitives examples](./primitives-examples#sampler-
 <Admonition type="tip" title="Recommendations">
   - For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, see [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
   - To learn how to use Quantum Composer for simulation, try the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
-  - Read the [Qiskit Estimator API](/api/qiskit/1.4/qiskit.primitives.Estimator) reference.
-  - Read the [Qiskit Sampler API](/api/qiskit/1.4/qiskit.primitives.Sampler) reference.
+  - Read the [Qiskit Estimator API](/docs/api/qiskit/1.4/qiskit.primitives.Estimator) reference.
+  - Read the [Qiskit Sampler API](/docs/api/qiskit/1.4/qiskit.primitives.Sampler) reference.
   - Learn how to run on a QPU in the [Run](./execute-on-hardware) step of the Qiskit patterns workflow.
-  - Read [Migrate to V2 primitives](/migration-guides/v2-primitives).
+  - Read [Migrate to V2 primitives](/docs/migration-guides/v2-primitives).
 </Admonition>

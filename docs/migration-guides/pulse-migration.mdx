@@ -11,7 +11,7 @@ With the introduction of [fractional gates](../guides/fractional-gates), pulse-l
 
 The most common use-case of pulse-level control was to build custom pulse schedules that modify the `ECR` or `RX` pulses to directly execute single- and two-qubit rotations. The typical process was to use the `RXCalibrationBuilder` and `RZXCalibrationBuilder` (or `RZXCalibrationBuilderNoEcho`) and add either a `RXGate` or `RZXGate` instruction to a QPU's `target`, then build a transpilation pipeline containing the calibration builder passes to calibrate the single- and two-qubit rotations for a specified angle. In the background this created a *calibration*, which is a map between a `ScheduleBlock` and a gate in a `QuantumCircuit`.
 
-You can now accomplish this on Heron processors using the new `use_fractional_gates` flag. As specified in the [fractional gates guide](/guides/fractional-gates), both $R_X(\theta)$ and $R_ZZ(\theta)$ must be loaded using this flag, which returns a backend whose `Target` attribute contains information about these gates.
+You can now accomplish this on Heron processors using the new `use_fractional_gates` flag. As specified in the [fractional gates guide](/docs/guides/fractional-gates), both $R_X(\theta)$ and $R_ZZ(\theta)$ must be loaded using this flag, which returns a backend whose `Target` attribute contains information about these gates.
 
 ```python
 service = QiskitRuntimeService()

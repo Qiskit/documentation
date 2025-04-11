@@ -9,7 +9,7 @@ Circuit cutting is a technique to increase the size of circuits that can run on 
 
 ## Important terms
 
-- **Subcircuits**: The set of circuits resulting from cutting gates in a `QuantumCircuit` and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`s](/api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate) and are used to instantiate each subexperiment.
+- **Subcircuits**: The set of circuits resulting from cutting gates in a `QuantumCircuit` and then separating the disconnected qubit subsets into smaller circuits. These circuits contain [`SingleQubitQPDGate`s](/docs/api/qiskit-addon-cutting/qpd-single-qubit-qpd-gate) and are used to instantiate each subexperiment.
 
 - **Subexperiment**: A term used to describe the unique circuit samples associated with a subcircuit, which are sent to a QPU for execution.
 
@@ -89,7 +89,7 @@ In the circuit cutting process, there are two types of cuts: a **gate** or "spac
 
 The diagram below depicts an example of cutting gates so that the circuit can be split into two smaller pieces with fewer qubits.
 
-![Diagram of gate cutting by taking one larger circuit and cutting it into two smaller ones labeled "A" and "B"](/images/guides/qiskit-addons/circuit-cutting-diagram.avif)
+![Diagram of gate cutting by taking one larger circuit and cutting it into two smaller ones labeled "A" and "B"](/docs/images/guides/qiskit-addons/circuit-cutting-diagram.avif)
 
 There are three scenarios to consider when preparing a circuit cutting workflow, which center around the availability of classical communication between the circuit executions. The first is where only local operations (LO) are available, while the other two introduce classical communication between executions known as local operations and classical communication (LOCC). The LOCC scenarios are then grouped into either near-time, one-directional communication between circuit executions, or real-time, bi-directional communication (which you might see in a multi-QPU environment).
 
@@ -134,8 +134,8 @@ The following table provides the sampling overhead factor for a variety of two-q
 ## Next steps
 
 <Admonition type="tip" title="Recommendations"> 
-    - [Get started with circuit cutting using gate cuts.](/guides/qiskit-addons-cutting-gates)
-    - [Get started with circuit cutting using wire cuts.](/guides/qiskit-addons-cutting-wires)
+    - [Get started with circuit cutting using gate cuts.](/docs/guides/qiskit-addons-cutting-gates)
+    - [Get started with circuit cutting using wire cuts.](/docs/guides/qiskit-addons-cutting-wires)
 </Admonition>
 
 
