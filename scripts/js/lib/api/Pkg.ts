@@ -54,6 +54,7 @@ export class Pkg {
   readonly tocGrouping?: TocGrouping;
   /// Convert URLs like `my_pkg.SomeClass` to `some-class` for better SEO.
   readonly kebabCaseAndShortenUrls: boolean;
+  readonly artifactPackageName: string;
 
   static VALID_NAMES = [
     "qiskit",
@@ -79,6 +80,7 @@ export class Pkg {
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
     kebabCaseAndShortenUrls: boolean;
+    artifactPackageName?: string;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -91,6 +93,7 @@ export class Pkg {
       kwargs.releaseNotesConfig ?? new ReleaseNotesConfig({});
     this.tocGrouping = kwargs.tocGrouping;
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
+    this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
   }
 
   static async fromArgs(
@@ -207,6 +210,7 @@ export class Pkg {
           enabled: true,
           linkToPackage: "qiskit",
         }),
+        artifactPackageName: "qiskit",
       });
     }
 
