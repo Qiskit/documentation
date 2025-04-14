@@ -44,7 +44,7 @@ class OverviewSection:
         )
 
 
-if __name__ == "__main__":
+def main():
     all_tutorial_paths = [
         f"/{path.with_suffix('').relative_to('./docs')}"
         for path in TUTORIALS_ROOT.glob("*.ipynb")
@@ -55,6 +55,11 @@ if __name__ == "__main__":
         OverviewSection.from_mdx(subsection)
         for subsection in overview_page_source.split("##")[1:]
     ]
+
+    if not len(sections) == 2:
+        raise AssertionError(
+            'Expected two sections: "Browse tutorials by topic" and "Browse tutorials by tool"'
+        )
 
     problems: list[str] = []
     for section in sections:
@@ -75,3 +80,7 @@ if __name__ == "__main__":
         print(f"  {problem}")
     print()
     sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
