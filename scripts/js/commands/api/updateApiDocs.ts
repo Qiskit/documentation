@@ -92,21 +92,6 @@ export async function generateVersion(
   console.log(`Run pipeline for ${pkg.name}:${pkg.versionWithoutPatch}`);
   await runConversionPipeline(sphinxArtifactFolder, "docs", "public/docs", pkg);
   await generateHistoricalRedirects();
-
-  if (pkg.name === "qiskit") {
-    const majorVersion = Number(pkg.version.split(".").pop());
-    if (majorVersion >= 2) {
-      await generateVersion(
-        await Pkg.fromArgs(
-          "qiskit-c",
-          pkg.version,
-          pkg.versionWithoutPatch,
-          pkg.type,
-        ),
-        args,
-      );
-    }
-  }
 }
 
 export function determineMinorVersion(args: Arguments): string {
