@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/interface.py#L207-L344" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L207-L344" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -103,7 +103,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/interface.py#L75-L204" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=14)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/interface.py#L75-L204" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=14)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -170,7 +170,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
 
 ### QpyError
 
-<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
+<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the qpy module.
@@ -182,7 +182,7 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
 ### UnsupportedFeatureForVersion
 
-<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
+<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
   Bases: [`QpyError`](#qiskit.qpy.QpyError "qiskit.qpy.exceptions.QpyError")
 
   QPY error raised when the target dump version is too low for a feature that is present in the object to be serialized.
@@ -226,7 +226,7 @@ If a feature being loaded is deprecated in the corresponding qiskit release, QPY
 
 ### QPYLoadingDeprecatedFeatureWarning
 
-<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
+<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
   Bases: [`QiskitWarning`](exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning")
 
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
@@ -251,6 +251,13 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 2.0.0                                      | 13, 14                                                                   | 14                                                                                                                  |
+| 1.4.2                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.4.1                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.4.0                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.3.3                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.3.2                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.3.1                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
 | 1.3.0                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
 | 1.2.4                                      | 10, 11, 12                                                               | 12                                                                                                                  |
 | 1.2.3 (yanked)                             | 10, 11, 12                                                               | 12                                                                                                                  |

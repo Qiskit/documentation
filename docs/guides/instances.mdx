@@ -1,9 +1,9 @@
 ---
-title: Instances
+title: Create and manage instances
 description: What IBM Quantum Platform instances are and how to use them
 ---
 
-# Instances
+# Create and manage instances
 
 <LegacyContent>
 <Admonition type="note">
@@ -23,7 +23,7 @@ Access to IBM Quantum Platform services is controlled by the **instances** (prev
   IBM Cloud&reg; instances are different from IBM Quantum Platform instances.  IBM Cloud does not use the hub/group/project structure for user management. This section describes instances in IBM Quantum Platform. To view and create IBM Cloud instances, visit the [IBM Cloud Quantum Instances page](https://cloud.ibm.com/quantum/instances). Click the name of an instance to see details such as your CRN for that instance, what compute resources are available to you by using that instance, and what jobs you have run on that instance.
 </Admonition>
 
-![Alice, Bob, and Charlie are all in Hub A.  Hub A has Group 1 and 2.  Alice and Bob are in Group 1.  Charlie is in Group 2.  Group 1 has Project X and Y.  Alice is in both projects.  Bob is only in project X.  Group 2 has Project Z.  Charlie is in project Z.  Therefore, Charlie's instance is Hub-A/Group-2/Project-Z.](/images/guides/providers1.avif "Hub / group / project hierarchy")
+![Alice, Bob, and Charlie are all in Hub A.  Hub A has Group 1 and 2.  Alice and Bob are in Group 1.  Charlie is in Group 2.  Group 1 has Project X and Y.  Alice is in both projects.  Bob is only in project X.  Group 2 has Project Z.  Charlie is in project Z.  Therefore, Charlie's instance is Hub-A/Group-2/Project-Z.](/images/guides/instances/providers1.avif "Hub / group / project hierarchy")
 
 The hub/group/project hierarchy that makes up an IBM Quantum instance.
 
@@ -33,6 +33,8 @@ The instances that you can access are listed at the bottom of your [Account page
 </LegacyContent>
 <CloudContent>
 Access to IBM Quantum Platform services is controlled by the **instances** to which you are assigned. Users can belong to more than one instance at any given time.
+
+An instance is a deployment of Qiskit Runtime. You need a different instance for every service plan (Open or Standard) you use in every region that you want to use. The account manager and anyone with enough permission can create an instance and define its configuration, such as its allocations, usage limits, quantum computers, and user permissions. Each instance is identified by a unique CRN.  This CRN is used when sending workloads from your Qiskit programs.
 
 Users with a public account can create an instance in the [Open Plan](#open-plan). For organizations outside of IBM&reg;, the organization's administrator assigns users to instances.
 
@@ -46,7 +48,7 @@ By default, users who sign up for an IBM Quantum account are assigned to the Ope
 Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard,](https://quantum.ibm.com/) [Workloads,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) pages.
 </LegacyContent>
 <CloudContent>
-After you have an IBM Cloud&reg; account, you can create an instance in the Open Plan and access up to 10 minutes total of quantum time per 28-day rolling window. Open Plan users can track their usage on the [Platform dashboard](https://quantum.cloud.ibm.com/) and the [Workloads](https://quantum.cloud.ibm.com/workloads) pages.
+After you have an IBM Cloud&reg; account, you can create an instance in the Open Plan and access up to 10 minutes total of quantum time per 28-day rolling window.
 </CloudContent>
 ## View your instances
 
@@ -62,7 +64,7 @@ You can use [the `instances()` method](../api/qiskit-ibm-runtime/qiskit-runtime-
 The IBM Quantum Platform dashboard, Compute resources, and Workloads pages display information such as usage metrics, workloads, and quantum computers based on your instance. If you have access to multiple instances, use the dropdown in the menu bar to switch between instances.
 </LegacyContent>
 <CloudContent>
-The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/), [Compute resources](https://quantum.cloud.ibm.com/computers), and [Workloads](https://quantum.cloud.ibm.com/workloads) pages display information such as usage metrics, workloads, and quantum computers based on your account. If you have access to multiple accounts, use the dropdown in the menu bar to switch between accounts.
+The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/), [Compute resources](https://quantum.cloud.ibm.com/computers), and [Workloads](https://quantum.cloud.ibm.com/workloads) pages display information such as workloads and quantum computers based on your account. If you have access to multiple accounts, use the dropdown in the menu bar to switch between accounts.
 
 By default, the Workloads and Compute resources pages display all data across all instances you can access within an account. You can filter the data table by a specific instance using the filter icon in the upper right.
 </CloudContent>
@@ -75,7 +77,7 @@ If you switch to a different instance, it is remembered the next time you log on
 </LegacyContent>
 <CloudContent>
 <Admonition type="note">
- Administrators can filter analytics data by instance (as well as by other options) by choosing specific parameters in the Filters card on the [Analytics](https://quantum.cloud.ibm.com/admin/analytics) page.
+ Administrators can filter analytics data by instance (as well as by other options) by choosing specific parameters in the Filters card on the [Analytics](https://quantum.cloud.ibm.com/analytics) page.
  </Admonition>
  </CloudContent>
  <LegacyContent>
@@ -83,6 +85,7 @@ If you switch to a different instance, it is remembered the next time you log on
 
 When you execute a task using an IBM Quantum service (for example, sending circuits to a quantum computer), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final computation results. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.
 </LegacyContent>
+
 
 ## How usage affects job priority within an instance
 <LegacyContent>
@@ -101,9 +104,7 @@ If an instance has been marked as "limited" by your administrator (you will see 
 An alert displays on an instance's usage when it has exceeded its allocation.
 </LegacyContent>
 <CloudContent>
-If an instance has been marked as "limited" by your administrator (you will see a "**Remaining**" column in the usage area) and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, active and pending workloads might be canceled. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
-
-An alert displays on an instance's usage when it has exceeded its allocation.
+If an instance has been marked as "limited" by your administrator and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, active and pending workloads might be canceled. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
 </CloudContent>
 <span id="connect-instance"></span>
 ## Specify an instance in your code
@@ -117,15 +118,17 @@ You can specify an instance when initializing the service or when choosing a qua
 ```python
 
 # Optional: List all the instances you can access.
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import SamplerV2
 service = QiskitRuntimeService(channel='ibm_quantum')
 print(service.instances())
 
 # Optional: Specify it at service level. This becomes the default unless overwritten.
 service = QiskitRuntimeService(channel='ibm_quantum', instance="hub1/group1/project1")
-backend1 = service.backend("ibmq_manila")
+backend1 = service.backend("ibm_kyiv")
 
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used.
-backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
+backend2 = service.backend("ibm_kyiv", instance="hub2/group2/project2")
 
 sampler1 = SamplerV2(mode=backend1)    # this will use hub1/group1/project1
 sampler2 = SamplerV2(mode=backend2)    # this will use hub2/group2/project2
@@ -140,10 +143,10 @@ print(service.instances())
 
 # Optional: Specify it at service level. This becomes the default unless overwritten.
 service = QiskitRuntimeService(channel='ibm_cloud', instance="CRN")
-backend1 = service.backend("ibmq_manila")
+backend1 = service.backend("ibm_kyiv")
 
 # Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used.
-backend2 = service.backend("ibmq_manila", instance="CRN")
+backend2 = service.backend("ibm_kyiv", instance="CRN")
 
 sampler1 = SamplerV2(mode=backend1)
 sampler2 = SamplerV2(mode=backend2)
@@ -158,17 +161,54 @@ If you do not specify an instance, the code will select one in the following ord
 3. In all other cases, the code selects the first instance other than the Open Plan instance that has access to the quantum computer.
 </Admonition>
 
+<span id="add-instance"></span>
+## Add an instance
+
+1. To add an instance to your account, first ensure you have the correct account and region selected in the account switcher in the top header.
+   <span id="regions"></span>
+   <Admonition type="note" title="About regions">
+   The instance will be created in the selected region. This region determines these important characteristics:
+     * The region determines which QPUs are available.
+     * The jobs' classical computation, such as compilation, takes place in the region.
+     * The user's workflow data remains in the region.
+
+    The workflow data includes the input circuits, circuit parameters, and quantum computation results.  It does not include metadata, such as number of shots, size of circuits, or other job statistics.
+
+   To avoid exposure of the user's workflow data to a global Distributed Denial of Service protection layer, you can use [Virtual Private Endpoints](https://cloud.ibm.com/docs/overview?topic=overview-endpoints-support). `qiskit-ibm-runtime` supports this through the [private_endpoint parameter](/api/qiskit-ibm-runtime/qiskit-runtime-service).
+   </Admonition>
+
+1. From the dashboard Instances pane, click **View all**, or go to the [Instances](https://quantum.cloud.ibm.com/instances) page from the main menu.
+1. From the Instances page, click *Create instance&nbsp;+*. Enter a name and optionally add tags. If you have access to more than one resource group in IBM Cloud&reg;, you can choose to change the resource group this instance belongs to. See [Managing resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui) and [Giving access to resources in resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs_manage_access) for more information.
+1. Select the plan this instance is associated with (for example, Premium Plan), then enter the number of minutes to allocate to this instance. The unallocated time available to use appears under the allocation entry box.
+1. Click **Next**. A list of the QPUs the instance can access is shown. If you want the instance to have access to all the QPUs listed (and all QPUs added to this plan in the future), click **Next**. To customize which QPUs can be accessed with this instance, click the "Customize allocated compute resources" toggle. Select specific QPUs that this instance can access, then click **Next**.
+   <Admonition type="note">
+      If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU the account has access on the plan. So if in the future there is a new system added to the plan, the instance automatically has access to it.
+    </Admonition>
+1. Click **Create instance**. You can now view the instance on the Instances page (if you have set up multiple plans on your account, each plan type has its own tab on the Instances table).
+
+A "collaborators" access group is automatically created for this instance. Users added to this access group can use the time allocated to this instance. You can [modify or create additional access groups](/guides/access-groups) by using the IBM Cloud console.
+
+
+## Edit an instance and its allocation
+
+Find the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. To edit the instance, click the overflow menu at the end the instance's row, and select Edit details. In the modal that opens, you can edit the name of the instance, the number of minutes allocated to the instance, and which compute resources the instance can access.
+
 <LegacyContent>
 ## Leave an instance
 
-To leave an instance, visit the instance list on your [Account page.](https://quantum.ibm.com/account) Select the instance you wish to leave, then select the overflow menu and choose *Leave instance*.
+To leave an instance, visit the instance list on your [Account page.](https://quantum.ibm.com/account) Select the instance you wish to leave, then select the overflow menu and choose **Leave instance**.
 
-![Screenshot of the Account page.](/images/guides/leaving1.avif "Leave instance")
+![Screenshot of the Account page.](/images/guides/instances/leaving1.avif "Leave instance")
 </LegacyContent>
+
+## Delete an instance
+
+Find the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. To delete the instance, click the overflow menu at the end the instance's row, and select **Delete**.
+
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-    - Review the [QiskitRuntimeService instances method](/api/qiskit-ibm-runtime/qiskit-runtime-service#instances) reference.
+    - [Work with access groups](/guides/access-groups)
+    - [Manage users.](/guides/invite-and-manage-users)
 </Admonition>

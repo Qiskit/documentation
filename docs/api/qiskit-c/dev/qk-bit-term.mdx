@@ -1,0 +1,120 @@
+---
+title: QkBitTerm (dev version)
+description: API reference for QkBitTerm in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkBitTerm
+---
+
+# QkBitTerm
+
+```c
+enum QkBitTerm
+```
+
+An enum that to represent each of the single-qubit alphabet terms enumerated below.
+
+## Values
+
+*   **`QkBitTerm_X`**
+
+    The Pauli $X$ operator.
+
+    Value: 2 (`0b0010`)
+
+*   **`QkBitTerm_Y`**
+
+    The Pauli $Y$ operator.
+
+    Value: 3 (`0b0011`)
+
+*   **`QkBitTerm_Z`**
+
+    The Pauli $Z$ operator.
+
+    Value: 1 (`0b0001`)
+
+*   **`QkBitTerm_Plus`**
+
+    The projector $\lvert +\rangle\langle +\rvert$ to the positive $X$ eigenstate.
+
+    Value: 10 (`0b1010`)
+
+*   **`QkBitTerm_Minus`**
+
+    The projector $\lvert -\rangle\langle -\rvert$ to the negative $X$ eigenstate.
+
+    Value: 6 (`0b0110`)
+
+*   **`QkBitTerm_Right`**
+
+    The projector $\lvert r\rangle\langle r\rvert$ to the positive $Y$ eigenstate.
+
+    Value: 11 (`0b1011`)
+
+*   **`QkBitTerm_Left`**
+
+    The projector $\lvert l\rangle\langle l\rvert$ to the negative $Y$ eigenstate.
+
+    Value: 7 (`0b1011`)
+
+*   **`QkBitTerm_Zero`**
+
+    The projector $\lvert 0\rangle\langle 0\rvert$ to the positive $Z$ eigenstate.
+
+    Value: 9 (`0b1001`)
+
+*   **`QkBitTerm_One`**
+
+    The projector $\lvert 1\rangle\langle 1\rvert$ to the negative $Z$ eigenstate.
+
+    Value: 5 (`0b0101`)
+
+## Representation
+
+The enum is stored as single byte, its elements are represented as unsigned 8-bit integer.
+
+```c
+typedef uint8_t QkBitTerm
+```
+
+<Admonition title="Warning" type="caution">
+  Not all `uint8_t` values are valid bit terms. Passing invalid values is undefined behavior.
+</Admonition>
+
+The numeric structure of these is that they are all four-bit values of which the low two bits are the (phase-less) symplectic representation of the Pauli operator related to the object, where the low bit denotes a contribution by $Z$ and the second lowest a contribution by $X$, while the upper two bits are `00` for a Pauli operator, `01` for the negative-eigenstate projector, and `10` for the positive-eigenstate projector.
+
+## Functions
+
+### qk\_bitterm\_label
+
+<Function id="qk_bitterm_label" signature="uint8_t qk_bitterm_label(QkBitTerm bit_term)">
+  Get the label for a bit term.
+
+  <span id="group__QkBitTerm_1autotoc_md46" />
+
+  #### Example
+
+  ```c
+  QkBitTerm bit_term = QkBitTerm_Y;
+  // cast the uint8_t to char
+  char label = qk_bitterm_label(bit_term);
+  ```
+
+  <span id="group__QkBitTerm_1autotoc_md47" />
+
+  #### Safety
+
+  <span id="group__QkBitTerm_1autotoc_md47" />
+
+  The behavior is undefined if `bit_term` is not a valid `uint8_t` value of a `QkBitTerm`.
+
+  **Parameters**
+
+  **bit\_term** – The bit term.
+
+  **Returns**
+
+  The label as `uint8_t`, which can be cast to `char` to obtain the character.
+</Function>
+

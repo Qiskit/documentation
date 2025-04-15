@@ -1,0 +1,73 @@
+---
+title: pauli_two_design (v1.4)
+description: API reference for qiskit.circuit.library.pauli_two_design in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.pauli_two_design
+---
+
+<span id="pauli-two-design" />
+
+# pauli\_two\_design
+
+<Class id="qiskit.circuit.library.pauli_two_design" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/pauli_two_design.py#L25-L112" signature="qiskit.circuit.library.pauli_two_design(num_qubits, reps=3, seed=None, insert_barriers=False, parameter_prefix='θ', name='PauliTwoDesign')" modifiers="class">
+  Bases:
+
+  Construct a Pauli 2-design ansatz.
+
+  This class implements a particular form of a 2-design circuit \[1], which is frequently studied in quantum machine learning literature, such as, e.g., the investigation of Barren plateaus in variational algorithms \[2].
+
+  The circuit consists of alternating rotation and entanglement layers with an initial layer of $\sqrt{H} = RY(\pi/4)$ gates. The rotation layers contain single qubit Pauli rotations, where the axis is chosen uniformly at random to be X, Y or Z. The entanglement layers is compromised of pairwise CZ gates with a total depth of 2.
+
+  For instance, the circuit could look like this:
+
+  ```python
+       ┌─────────┐┌──────────┐       ░ ┌──────────┐       ░  ┌──────────┐
+  q_0: ┤ RY(π/4) ├┤ RZ(θ[0]) ├─■─────░─┤ RY(θ[4]) ├─■─────░──┤ RZ(θ[8]) ├
+       ├─────────┤├──────────┤ │     ░ ├──────────┤ │     ░  ├──────────┤
+  q_1: ┤ RY(π/4) ├┤ RZ(θ[1]) ├─■──■──░─┤ RY(θ[5]) ├─■──■──░──┤ RX(θ[9]) ├
+       ├─────────┤├──────────┤    │  ░ ├──────────┤    │  ░ ┌┴──────────┤
+  q_2: ┤ RY(π/4) ├┤ RX(θ[2]) ├─■──■──░─┤ RY(θ[6]) ├─■──■──░─┤ RX(θ[10]) ├
+       ├─────────┤├──────────┤ │     ░ ├──────────┤ │     ░ ├───────────┤
+  q_3: ┤ RY(π/4) ├┤ RZ(θ[3]) ├─■─────░─┤ RX(θ[7]) ├─■─────░─┤ RY(θ[11]) ├
+       └─────────┘└──────────┘       ░ └──────────┘       ░ └───────────┘
+  ```
+
+  **Examples**
+
+  ```python
+  from qiskit.circuit.library import pauli_two_design
+  circuit = pauli_two_design(4, reps=2, seed=5, insert_barriers=True)
+  circuit.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-library-pauli_two_design-1.avif)
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits of the Pauli Two-Design circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often a block consisting of a rotation layer and entanglement layer is repeated.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The seed for randomly choosing the axes of the Pauli rotations.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The prefix used for the rotation parameters.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted. Defaults to `False`.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The circuit name.
+
+  **Returns**
+
+  A Pauli 2-design circuit.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+  **References**
+
+  **\[1]: Nakata et al., Unitary 2-designs from random X- and Z-diagonal unitaries.**
+
+  [arXiv:1502.07514](https://arxiv.org/pdf/1502.07514.pdf)
+
+  **\[2]: McClean et al., Barren plateaus in quantum neural network training landscapes.**
+
+  [arXiv:1803.11173](https://arxiv.org/pdf/1803.11173.pdf)
+</Class>
+

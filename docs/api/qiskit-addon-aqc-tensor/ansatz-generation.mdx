@@ -14,7 +14,7 @@ python_api_name: qiskit_addon_aqc_tensor.ansatz_generation
 
 `qiskit_addon_aqc_tensor.ansatz_generation`
 
-Utility for generating a general, parametrized, ansatz circuit which matches the two-qubit connectivity of an input circuit.
+Tools for generating ansatz circuits.
 
 |                                                                                                                                   |                                                        |
 | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
@@ -26,23 +26,195 @@ Utility for generating a general, parametrized, ansatz circuit which matches the
 
 ### generate\_ansatz\_from\_circuit
 
-<Function id="qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/ansatz_generation.py#L117-L272" signature="generate_ansatz_from_circuit(qc, /, *, qubits_initially_zero=False, parameter_name='theta')">
+<Function id="qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/ansatz_generation/from_connectivity.py#L157-L401" signature="generate_ansatz_from_circuit(qc, /, *, qubits_initially_zero=False, parameter_name='theta')">
   Generate an ansatz from the two-qubit connectivity structure of a circuit.
 
-  See explanatatory material for motivation.
+  See the [explanatatory material](https://qiskit.github.io/qiskit-addon-aqc-tensor/explanation/index.html#ansatz-generation-motivation) for motivation.
 
   **Parameters**
 
-  *   **qc** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – A circuit, which is assumed to be unitary. Barriers are ignored.
-  *   **qubits\_initially\_zero** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, the first Z rotation on each qubit is removed from the ansatz under the assumption that it has no effect.
-  *   **parameter\_name** ([`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name for the [`ParameterVector`](/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.2)") representing the free parameters in the returned ansatz circuit.
+  *   **qc** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – A circuit, which is assumed to be unitary. Barriers are ignored.
+  *   **qubits\_initially\_zero** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, the first Z rotation on each qubit is fixed to zero because such a rotation has no effect on the state $|0\rangle$.
+  *   **parameter\_name** ([`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name for the [`ParameterVector`](/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.4)") representing the free parameters in the returned ansatz circuit.
 
   **Return type**
 
-  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]]
+  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]]
 
   **Returns**
 
   `(ansatz, parameter_values)` such that `ansatz.assign_parameters(parameter_values)` is equivalent to `qc` up to a global phase.
+
+  #### Example:
+
+  Consider the following circuit as an example:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(6)
+  qc.rx(0.4, 0)
+  qc.ryy(0.2, 2, 3)
+  qc.h(2)
+  qc.rz(0.1, 2)
+  qc.rxx(0.3, 0, 1)
+  qc.rzz(0.3, 0, 1)
+  qc.cx(2, 1)
+  qc.s(1)
+  qc.h(4)
+  qc.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-1.svg)
+
+  If the above circuit is passed to [`generate_ansatz_from_circuit()`](#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), it will return an ansatz with parametrized two-qubit KAK rotations in the same locations as the input:
+
+  ```python
+  from qiskit_addon_aqc_tensor import generate_ansatz_from_circuit
+
+  ansatz, initial_params = generate_ansatz_from_circuit(
+      qc, qubits_initially_zero=True, parameter_name="x"
+  )
+  ansatz.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-2.svg)
+
+  Note that in the generated ansatz, all consecutive single-qubit gates are collapsed into the same ZXZ block, and all consecutive two-qubit gates are collapsed into a single KAK block, up to single-qubit rotations.
+
+  Further, the [`generate_ansatz_from_circuit()`](#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit") function provides parameters which, when bound to the ansatz, will result in a circuit equivalent to the original one, up to a global phase:
+
+  ```python
+  ansatz.assign_parameters(initial_params).draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-3.svg)
+
+  A 1D Trotter circuit leads to a similar result, with its characteristic brickwork structure:
+
+  ```python
+  from rustworkx.generators import path_graph
+  from qiskit.synthesis import SuzukiTrotter
+  from qiskit_addon_utils.problem_generators import generate_time_evolution_circuit, generate_xyz_hamiltonian
+
+  hamiltonian = generate_xyz_hamiltonian(
+      path_graph(6),
+      coupling_constants=(0.0, 0.0, 1.0),
+      ext_magnetic_field=(0.4, 0.0, 0.0),
+  )
+
+  good_circuit = generate_time_evolution_circuit(
+      hamiltonian,
+      synthesis=SuzukiTrotter(reps=2),
+      time=1.0,
+  )
+
+  good_circuit.draw("mpl", initial_state=True)
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-4.svg)
+
+  ```python
+  from qiskit_addon_aqc_tensor import generate_ansatz_from_circuit
+
+  ansatz, initial_params = generate_ansatz_from_circuit(
+      good_circuit, qubits_initially_zero=True, parameter_name="x"
+  )
+  ansatz.assign_parameters(initial_params).draw("mpl", initial_state=True)
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-5.svg)
+</Function>
+
+### parametrize\_circuit
+
+<Function id="qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/ansatz_generation/parametrize_circuit.py#L22-L148" signature="parametrize_circuit(qc, /, *, parameter_name='theta')">
+  Create a parametrized version of a circuit.
+
+  Given a quantum circuit, constructs another quantum circuit which is identical except that any gates with numerical parameters are replaced by gates (of the same type) with free parameters. The new circuit is returned along with a list containing the original values of the parameters.
+
+  **Parameters**
+
+  *   **qc** (QuantumCircuit) – The quantum circuit to parametrize.
+  *   **parameter\_name** (str) – Name for the [`ParameterVector`](/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.4)") representing the free parameters in the returned ansatz circuit.
+
+  **Return type**
+
+  tuple\[QuantumCircuit, list\[float | None]]
+
+  **Returns**
+
+  `(ansatz, parameter_values)` such that `ansatz.assign_parameters(parameter_values)` is identical to `qc` as long as `qc` did not already contain parameters. If `qc` already had parameters, then `parameter_values` will contain `None` at the entries corresponding to those parameters.
+
+  <span id="id1" />
+
+  #### Example:
+
+  Consider the following circuit as an example:
+
+  ```python
+  from qiskit import QuantumCircuit
+
+  qc = QuantumCircuit(6)
+  qc.rx(0.4, 0)
+  qc.ryy(0.2, 2, 3)
+  qc.h(2)
+  qc.rz(0.1, 2)
+  qc.rxx(0.3, 0, 1)
+  qc.rzz(0.3, 0, 1)
+  qc.cx(2, 1)
+  qc.s(1)
+  qc.h(4)
+  qc.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-6.svg)
+
+  If the above circuit is passed to [`parametrize_circuit()`](#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit"), it will return an ansatz obtained from this circuit by replacing numerical parameters with free parameters:
+
+  ```python
+  from qiskit_addon_aqc_tensor import parametrize_circuit
+
+  ansatz, initial_params = parametrize_circuit(qc)
+  ansatz.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-7.svg)
+
+  Further, the [`parametrize_circuit()`](#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit") function provides parameters which, when bound to the ansatz, will result in a circuit identical to the original one:
+
+  ```python
+  ansatz.assign_parameters(initial_params).draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-8.svg)
+
+  If the original circuit already contained parameters, then the returned parameter values will contain `None` at the entries corresponding to those parameters, and the preceding code will not work. The following example shows how to recover the original circuit in this case.
+
+  ```python
+  from qiskit.circuit import Parameter
+
+  qc = QuantumCircuit(3)
+  alpha1 = Parameter("alpha1")
+  alpha2 = Parameter("alpha2")
+  qc.ry(alpha1, [0])
+  qc.rz(0.1, [0])
+  qc.ry(alpha2, [1])
+  qc.rz(alpha1, [1])
+  qc.ry(0.2, [2])
+  qc.rz(0.3, [2])
+  ansatz, initial_params = parametrize_circuit(qc)
+  ansatz.assign_parameters(
+      {
+          param: val
+          for param, val in zip(ansatz.parameters, initial_params)
+          if val is not None
+      },
+      inplace=True,
+  )
+  ansatz.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-9.svg)
 </Function>
 

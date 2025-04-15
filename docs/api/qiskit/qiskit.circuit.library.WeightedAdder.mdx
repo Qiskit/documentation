@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.WeightedAdder
 
 # WeightedAdder
 
-<Class id="qiskit.circuit.library.WeightedAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/arithmetic/weighted_adder.py#L23-L337" signature="qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')" modifiers="class">
+<Class id="qiskit.circuit.library.WeightedAdder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/arithmetic/weighted_adder.py#L25-L339" signature="qiskit.circuit.library.WeightedAdder(num_state_qubits=None, weights=None, name='adder')" modifiers="class">
   Bases: `BlueprintCircuit`
 
   A circuit to compute the weighted sum of qubit registers.
@@ -58,8 +58,8 @@ $$
 
   **Parameters**
 
-  *   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of state qubits.
-  *   **weights** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) – List of weights, one for each state qubit. If none are provided they default to 1 for every qubit.
+  *   **num\_state\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) – The number of state qubits.
+  *   **weights** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) – List of weights, one for each state qubit. If none are provided they default to 1 for every qubit.
   *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
 
   ## Attributes
@@ -70,21 +70,15 @@ $$
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.WeightedAdder.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.cregs">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
@@ -108,7 +102,7 @@ $$
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.WeightedAdder.unit "qiskit.circuit.library.WeightedAdder.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -120,7 +114,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.instances" attributeValue="157" />
+  <Attribute id="qiskit.circuit.library.WeightedAdder.instances" attributeValue="164" />
 
   ### layout
 
@@ -144,6 +138,14 @@ $$
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.num_ancillas">
     Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.WeightedAdder.num_input_vars "qiskit.circuit.library.WeightedAdder.num_input_vars") must be zero.
   </Attribute>
 
   ### num\_captured\_vars
@@ -184,12 +186,28 @@ $$
     The number of additional control qubits required (0 or 1).
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.WeightedAdder.num_vars "qiskit.circuit.library.WeightedAdder.num_vars") + [`num_stretches()`](#qiskit.circuit.library.WeightedAdder.num_stretches "qiskit.circuit.library.WeightedAdder.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -222,6 +240,14 @@ $$
     The number of state qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.WeightedAdder.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_sum\_qubits
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.num_sum_qubits">
@@ -245,11 +271,15 @@ $$
   <Attribute id="qiskit.circuit.library.WeightedAdder.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -320,8 +350,8 @@ $$
 
   ### qregs
 
-  <Attribute id="qiskit.circuit.library.WeightedAdder.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  <Attribute id="qiskit.circuit.library.WeightedAdder.qregs">
+    A list of the quantum registers associated with the circuit.
   </Attribute>
 
   ### qubits
@@ -336,7 +366,7 @@ $$
     The unit that [`duration`](#qiskit.circuit.library.WeightedAdder.duration "qiskit.circuit.library.WeightedAdder.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -354,12 +384,6 @@ $$
 
   <Attribute id="qiskit.circuit.library.WeightedAdder.name" attributeTypeHint="str">
     A human-readable name for the circuit.
-  </Attribute>
-
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.WeightedAdder.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 </Class>
 

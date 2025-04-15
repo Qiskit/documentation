@@ -21,6 +21,8 @@ export type TocEntry = {
   title: string;
   url?: string;
   children?: TocEntry[];
+  isNew?: string;
+  isNewDate?: string;
 };
 
 type Toc = {
@@ -90,6 +92,8 @@ function getModulesAndItems(
         "data",
         "struct",
         "type",
+        "enum",
+        "enumerator",
       ].includes(result.meta.apiType),
   );
 
@@ -226,19 +230,18 @@ function generateOverviewPage(tocModules: TocEntry[]): void {
 
 function generateReleaseNotesEntry(pkg: Pkg): TocEntry | undefined {
   if (!pkg.releaseNotesConfig.enabled) return;
-  const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
+  const releaseNotesUrl = `/api/${pkg.releaseNotesPackageName()}/release-notes`;
   const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
-  if (pkg.hasSeparateReleaseNotes()) {
-    releaseNotesEntry.children =
-      pkg.releaseNotesConfig.separatePagesVersions.map((vers) => ({
-        title: vers,
-        url: `${releaseNotesUrl}/${vers}`,
-      }));
-  } else {
-    releaseNotesEntry.url = releaseNotesUrl;
-  }
+  if (!pkg.hasSeparateReleaseNotes())
+    return { ...releaseNotesEntry, url: releaseNotesUrl };
+  releaseNotesEntry.children = pkg.releaseNotesConfig.separatePagesVersions.map(
+    (vers) => ({
+      title: vers,
+      url: `${releaseNotesUrl}/${vers}`,
+    }),
+  );
   return releaseNotesEntry;
 }
 

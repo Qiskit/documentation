@@ -1,15 +1,21 @@
 ---
-title: Migrate to the new IBM Quantum Platform (early access)
-description: Migrate to using the new IBM Quantum Platform (early access) for Open users
+title: Migrate to the upgraded IBM Quantum Platform
+description: Migrate to using the upgraded IBM Quantum Platform for Open users
 ---
 
-# Migrate to the new IBM Quantum Platform (early access)
+# Migrate to the upgraded IBM Quantum Platform
 
-This guide is for users who do not have Premium access and want to start using the updated version of IBM Quantum&reg; Platform (which runs on IBM Cloud&reg;). If you have Premium access, contact your administrator for instructions.
+This guide describes how, why, and when to transition to the [new version of IBM Quantum Platform,](https://quantum.cloud.ibm.com/) which is now available in early access mode.
 
-<Admonition type="caution" title="Important">
-The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is in **early access** mode.  Therefore, you can log on, create instances, run jobs, and so on, but some functions are not available yet.  If you need to use functions that are not yet available, use [IBM Quantum Platform Classic](https://quantum.ibm.com/) or [Qiskit Runtime on IBM Cloud](https://cloud.ibm.com/quantum) instead.
-</Admonition>
+Early access mode means that while you are able to log in, create instances, run jobs, and so on, some functions are not yet available and will be added in the coming months. Find the recent changes to the new platform on the [Latest updates page,](/guides/latest-updates) which is updated every two weeks.
+
+You can continue to use [IBM Quantum Platform Classic](https://quantum.ibm.com/) until it is sunset on 1 July, 2025.
+
+## When should I make the transition?
+
+Open and Pay-as-you-go Standard Plan users are encouraged to create an account and start using the new platform as soon as possible.
+
+Premium Plan, Dedicated Service, and Startup Program users should not create a new account yet and should wait to receive migration guidance from their administrators in the coming weeks.
 
 ## Benefits
 
@@ -44,7 +50,16 @@ The Lite Plan is deprecated and will be removed on 14 March 2025.
 
 ## Current IBM Quantum Platform users
 
-Instead of accessing [IBM Quantum Platform Classic](https://quantum.ibm.com/), you will now access the [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/), which is integrated with IBM Cloud.  Because of this integration, all users need to follow the onboarding instructions before using the new platform.
+Instead of accessing [IBM Quantum Platform Classic](https://quantum.ibm.com/), you will now access the [upgraded version of IBM Quantum Platform](https://quantum.cloud.ibm.com/), which is integrated with IBM Cloud.  To use the new platform, users will need to follow these onboarding instructions.
+
+### Save results from IBM Quantum Platform Classic
+
+<Admonition type="important">
+Jobs that were run on IBM Quantum Platform Classic will not be available after that version of the platform is sunset on 1 July, 2025.
+</Admonition>
+
+* Open users should save any workloads data from the classic platform prior to that date by following the steps in the [Save and retrieve jobs](/guides/save-jobs) guide.
+* Premium Plan, Dedicated Service, and Startup Program users should wait to receive  guidance from their administrators regarding whether to download historical data.
 
 <span id="onboard"></span>
 ### Onboard
@@ -56,7 +71,7 @@ Follow these steps to start using the new version of IBM Quantum Platform.
    1. Log on to the new [IBM Quantum Platform.](https://quantum.cloud.ibm.com) Choose **IBMid** and enter your IBM Cloud account information. The dashboard opens.
    1. If you do not already have an instance, Click **Create instance** on the dashboard page.
       <Admonition type="note">
-      If you have already created an instance, go to your account [administration page](https://quantum.cloud.ibm.com/admin/instances) to create new ones.
+      If you have already created an instance, go to your [Instances page](https://quantum.cloud.ibm.com/instances) to create new ones.
       </Admonition>
    1. Specify a name and choose the type of plan you want. Scroll down to see the **Terms** link.  After reading the terms, select the **agree** checkbox and click **Next**.
    1. On the Plan inheritance page, leave the default setting (toggle is not enabled) and click **Next** if you're setting up an Open instance.  If you are not setting up an Open instance and you want a fixed set of QPUs to be available to this plan, enable the "Customize allocated compute resources" toggle, choose the QPUs you want this instance to be able to access, then click **Next**.
@@ -123,7 +138,7 @@ Follow these steps to start using the new version of IBM Quantum Platform.
     <Admonition type="caution">
       When sharing code with others, ensure that your API key is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
 
-      If you accidentally share your token with someone or include it in version control like Git, immediately revoke your token by following these instructions to [delete an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) to reduce risk.
+      If you accidentally share your key with someone or include it in version control like Git, immediately revoke your key by following these instructions to [delete an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) to reduce risk.
     </Admonition>
 
 ## Current Qiskit Runtime on IBM Cloud users
@@ -132,7 +147,7 @@ These updates are designed to enhance your workflow while keeping your IBM Cloud
 
 #### New interface
 
-Until now, you’ve been using the IBM Cloud interface to create and manage your Qiskit Runtime instances. With the launch of the new IBM Quantum Platform, you can still view existing instances in [IBM Cloud](https://cloud.ibm.com/resources), but managing them in [IBM Quantum Platform](https://quantum.cloud.ibm.com/) gives you deeper insights and control.
+Until now, you’ve been using the IBM Cloud interface to create and manage your IBM Quantum instances. With the launch of the new IBM Quantum Platform, you can still view existing instances in [IBM Cloud](https://cloud.ibm.com/resources), but managing them in [IBM Quantum Platform](https://quantum.cloud.ibm.com/) gives you deeper insights and control.
 
 The new IBM Quantum Platform offers a quantum-first experience:
 
@@ -144,7 +159,7 @@ This transition enhances security, scalability, and user experience while keepin
 
 ### Steps to migrate
 
-* If you currently use the Standard Plan, you dont' have to do anything.  You'll just use the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/) interface.
+* If you currently use the Standard Plan, you don't have to do anything.  You'll just use the new [IBM Quantum Platform](https://quantum.cloud.ibm.com/) interface.
 * If you currently use the Lite Plan (deprecated), you can switch to [using simulators locally](https://quantum.cloud.ibm.com/docs/migration-guides/local-simulators). Optionally, you can [create instances in the Open Plan,](#onboard) which lets you run jobs on quantum hardware.
 
 <Admonition type="important">

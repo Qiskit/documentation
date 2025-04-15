@@ -1,0 +1,53 @@
+---
+title: qaoa_ansatz (v1.4)
+description: API reference for qiskit.circuit.library.qaoa_ansatz in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.qaoa_ansatz
+---
+
+<span id="qaoa-ansatz" />
+
+# qaoa\_ansatz
+
+<Class id="qiskit.circuit.library.qaoa_ansatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/qaoa_ansatz.py#L33-L105" signature="qiskit.circuit.library.qaoa_ansatz(cost_operator, reps=1, initial_state=None, mixer_operator=None, insert_barriers=False, name='QAOA', flatten=True)" modifiers="class">
+  Bases:
+
+  A generalized QAOA quantum circuit with a support of custom initial states and mixers.
+
+  **Examples**
+
+  To define the QAOA ansatz we require a cost Hamiltonian, encoding the classical optimization problem:
+
+  ```python
+  from qiskit.quantum_info import SparsePauliOp
+  from qiskit.circuit.library import qaoa_ansatz
+
+  cost_operator = SparsePauliOp(["ZZII", "IIZZ", "ZIIZ"])
+  ansatz = qaoa_ansatz(cost_operator, reps=3, insert_barriers=True)
+  ansatz.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-library-qaoa_ansatz-1.avif)
+
+  **Parameters**
+
+  *   **cost\_operator** (*BaseOperator*) – The operator representing the cost of the optimization problem, denoted as $U(C, \gamma)$ in \[1].
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The integer determining the depth of the circuit, called $p$ in \[1].
+  *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – An optional initial state to use, which defaults to a layer of Hadamard gates preparing the $|+\rangle^{\otimes n}$ state. If a custom mixer is chosen, this circuit should be set to prepare its ground state, to appropriately fulfill the annealing conditions.
+  *   **mixer\_operator** (*BaseOperator | None*) – An optional custom mixer, which defaults to global Pauli-$X$ rotations. This is denoted as $U(B, \beta)$ in \[1]. If this is set, the `initial_state` might also require modification.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert barriers in-between the cost and mixer operators.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+  *   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, a flat circuit is returned instead of nesting it inside multiple layers of gate objects. Setting this to `False` is significantly less performant, especially for parameter binding, but can be desirable for a cleaner visualization.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+  **References**
+
+  **\[1]: Farhi et al., A Quantum Approximate Optimization Algorithm.**
+
+  [arXiv:1411.4028](https://arxiv.org/pdf/1411.4028)
+</Class>
+

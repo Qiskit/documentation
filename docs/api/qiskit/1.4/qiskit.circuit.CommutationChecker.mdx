@@ -1,0 +1,95 @@
+---
+title: CommutationChecker (v1.4)
+description: API reference for qiskit.circuit.CommutationChecker in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.CommutationChecker
+---
+
+# CommutationChecker
+
+<Class id="qiskit.circuit.CommutationChecker" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/commutation_checker.py#L21-L106" signature="qiskit.circuit.CommutationChecker(standard_gate_commutations=None, cache_max_entries=1000000, *, gates=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  This code is essentially copy-pasted from commutative\_analysis.py. This code cleverly hashes commutativity and non-commutativity results between DAG nodes and seems quite efficient for large Clifford circuits. They may be other possible efficiency improvements: using rule-based commutativity analysis, evicting from the cache less useful entries, etc.
+
+  ## Methods
+
+  **Parameters**
+
+  *   **standard\_gate\_commutations** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) –
+  *   **cache\_max\_entries** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  *   **gates** ([*Set*](https://docs.python.org/3/library/typing.html#typing.Set "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) –
+
+  ### check\_commutation\_entries
+
+  <Function id="qiskit.circuit.CommutationChecker.check_commutation_entries" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/commutation_checker.py#L86-L106" signature="check_commutation_entries(first_op, first_qargs, second_op, second_qargs)">
+    Returns stored commutation relation if any
+
+    **Parameters**
+
+    *   **first\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
+    *   **first\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")) – first operation’s qubits.
+    *   **second\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
+    *   **second\_qargs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")) – second operation’s qubits.
+
+    **Returns**
+
+    True if the gates commute and false if it is not the case.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### clear\_cached\_commutations
+
+  <Function id="qiskit.circuit.CommutationChecker.clear_cached_commutations" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/commutation_checker.py#L82-L84" signature="clear_cached_commutations()">
+    Clears the dictionary holding cached commutations
+  </Function>
+
+  ### commute
+
+  <Function id="qiskit.circuit.CommutationChecker.commute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/commutation_checker.py#L47-L76" signature="commute(op1, qargs1, cargs1, op2, qargs2, cargs2, max_num_qubits=3)">
+    Checks if two Operations commute. The return value of True means that the operations truly commute, and the return value of False means that either the operations do not commute or that the commutation check was skipped (for example, when the operations have conditions or have too many qubits).
+
+    **Parameters**
+
+    *   **op1** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – first operation.
+    *   **qargs1** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")) – first operation’s qubits.
+    *   **cargs1** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")) – first operation’s clbits.
+    *   **op2** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.operation.Operation")) – second operation.
+    *   **qargs2** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")) – second operation’s qubits.
+    *   **cargs2** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")) – second operation’s clbits.
+    *   **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – the maximum number of qubits to consider, the check may be skipped if the number of qubits for either operation exceeds this amount.
+
+    **Returns**
+
+    whether two operations commute.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### commute\_nodes
+
+  <Function id="qiskit.circuit.CommutationChecker.commute_nodes" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/commutation_checker.py#L38-L45" signature="commute_nodes(op1, op2, max_num_qubits=3)">
+    Checks if two DAGOpNodes commute.
+
+    **Parameters**
+
+    **max\_num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### num\_cached\_entries
+
+  <Function id="qiskit.circuit.CommutationChecker.num_cached_entries" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/commutation_checker.py#L78-L80" signature="num_cached_entries()">
+    Returns number of cached entries
+  </Function>
+</Class>
+

@@ -1,0 +1,310 @@
+---
+title: BoxOp (latest version)
+description: API reference for qiskit.circuit.BoxOp in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.BoxOp
+---
+
+# BoxOp
+
+<Class id="qiskit.circuit.BoxOp" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/box.py#L26-L111" signature="qiskit.circuit.BoxOp(body, duration=None, unit='dt', label=None)" modifiers="class">
+  Bases: [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+
+  A scoped “box” of operations on a circuit that are treated atomically in the greater context.
+
+  A “box” is a control-flow construct that is entered unconditionally. The contents of the box behave somewhat as if the start and end of the box were barriers, except it is permissible to commute operations “all the way” through the box. The box is also an explicit scope for the purposes of variables, stretches and compiler passes.
+
+  Typically you create this by using the builder-interface form of [`QuantumCircuit.box()`](qiskit.circuit.QuantumCircuit#box "qiskit.circuit.QuantumCircuit.box").
+
+  Default constructor of [`BoxOp`](#qiskit.circuit.BoxOp "qiskit.circuit.BoxOp").
+
+  **Parameters**
+
+  *   **body** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the circuit to use as the body of the box. This should explicit close over any [`expr.Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") variables that must be incident from the outer circuit. The expected number of qubit and clbits for the resulting instruction are inferred from the number in the circuit, even if they are idle.
+  *   **duration** (*None*) – an optional duration for the box as a whole.
+  *   **unit** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.13)")*\['dt', 's', 'ms', 'us', 'ns', 'ps']*) – the unit of the `duration`.
+  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – an optional string label for the instruction.
+
+  ## Attributes
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.BoxOp.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.BoxOp.base_class "qiskit.circuit.BoxOp.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that [`Instruction.name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### blocks
+
+  <Attribute id="qiskit.circuit.BoxOp.blocks" />
+
+  ### body
+
+  <Attribute id="qiskit.circuit.BoxOp.body">
+    The `body` [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") of the operation.
+
+    This is the same as object returned as the sole entry in [`params()`](#qiskit.circuit.BoxOp.params "qiskit.circuit.BoxOp.params") and [`blocks()`](#qiskit.circuit.BoxOp.blocks "qiskit.circuit.BoxOp.blocks").
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.BoxOp.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.BoxOp.definition">
+    Return definition in terms of other basic gates.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.BoxOp.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.BoxOp.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.BoxOp.name">
+    Return the name.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.BoxOp.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.BoxOp.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.BoxOp.params" />
+
+  ## Methods
+
+  ### add\_decomposition
+
+  <Function id="qiskit.circuit.BoxOp.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L321-L326" signature="add_decomposition(decomposition)">
+    Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+  </Function>
+
+  ### broadcast\_arguments
+
+  <Function id="qiskit.circuit.BoxOp.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L455-L484" signature="broadcast_arguments(qargs, cargs)">
+    Validation of the arguments.
+
+    **Parameters**
+
+    *   **qargs** (*List*) – List of quantum bit arguments.
+    *   **cargs** (*List*) – List of classical bit arguments.
+
+    **Yields**
+
+    *Tuple(List, List)* – A tuple with single arguments.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+  </Function>
+
+  ### copy
+
+  <Function id="qiskit.circuit.BoxOp.copy" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L431-L446" signature="copy(name=None)">
+    Copy of the instruction.
+
+    **Parameters**
+
+    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+
+    **Returns**
+
+    a copy of the current instruction, with the name updated if it was provided
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.BoxOp.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L374-L429" signature="inverse(annotated=False)">
+    Invert this instruction.
+
+    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
+
+    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
+
+    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
+
+    **Returns**
+
+    The inverse operation.
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.BoxOp.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L286-L291" signature="is_parameterized()">
+    Return whether the [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  </Function>
+
+  ### iter\_captured\_stretches
+
+  <Function id="qiskit.circuit.BoxOp.iter_captured_stretches" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/control_flow.py#L86-L94" signature="iter_captured_stretches()">
+    Get an iterator over the unique captured stretch variables in all blocks of this construct.
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[expr.Stretch](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch")]
+  </Function>
+
+  ### iter\_captured\_vars
+
+  <Function id="qiskit.circuit.BoxOp.iter_captured_vars" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/control_flow.py#L77-L84" signature="iter_captured_vars()">
+    Get an iterator over the unique captured variables in all blocks of this construct.
+
+    **Return type**
+
+    [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")\[[expr.Var](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var")]
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit.circuit.BoxOp.repeat" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L494-L524" signature="repeat(n)">
+    Creates an instruction with `self` repeated :math\`n\` times.
+
+    **Parameters**
+
+    **n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Number of times to repeat the instruction
+
+    **Returns**
+
+    Containing the definition.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+  </Function>
+
+  ### replace\_blocks
+
+  <Function id="qiskit.circuit.BoxOp.replace_blocks" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/controlflow/box.py#L101-L103" signature="replace_blocks(blocks)">
+    Return a new version of this control-flow operations with the [`blocks`](#qiskit.circuit.BoxOp.blocks "qiskit.circuit.BoxOp.blocks") mapped to the given new ones.
+
+    Typically this is used in a workflow such as:
+
+    ```python
+    existing_op = ...
+
+    def map_block(block: QuantumCircuit) -> QuantumCircuit:
+        new_block = block.copy_empty_like()
+        # ... do something to `new_block` ...
+        return new_block
+
+    new_op = existing_op.replace_blocks(
+        map_block(block) for block in existing_op.blocks
+    )
+    ```
+
+    It is the caller’s responsibility to ensure that the mapped blocks are defined over a unified set of circuit resources, much like constructing a [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") using its default constructor.
+
+    **Parameters**
+
+    **blocks** – the new subcircuit blocks to use.
+
+    **Returns**
+
+    New [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp") with replaced blocks.
+  </Function>
+
+  ### reverse\_ops
+
+  <Function id="qiskit.circuit.BoxOp.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L348-L372" signature="reverse_ops()">
+    For a composite instruction, reverse the order of sub-instructions.
+
+    This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+    **Returns**
+
+    **a new instruction with**
+
+    sub-instructions reversed.
+
+    **Return type**
+
+    [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+  </Function>
+
+  ### soft\_compare
+
+  <Function id="qiskit.circuit.BoxOp.soft_compare" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L217-L257" signature="soft_compare(other)">
+    Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+    **Parameters**
+
+    **other** (*instruction*) – other instruction.
+
+    **Returns**
+
+    are self and other equal up to parameter expressions.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+
+  ### to\_mutable
+
+  <Function id="qiskit.circuit.BoxOp.to_mutable" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L146-L154" signature="to_mutable()">
+    Return a mutable copy of this gate.
+
+    This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
+  </Function>
+
+  ### validate\_parameter
+
+  <Function id="qiskit.circuit.BoxOp.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/instruction.py#L282-L284" signature="validate_parameter(parameter)">
+    Instruction parameters has no validation or normalization.
+  </Function>
+</Class>
+

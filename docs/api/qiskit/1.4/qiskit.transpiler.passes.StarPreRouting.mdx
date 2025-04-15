@@ -1,0 +1,169 @@
+---
+title: StarPreRouting (v1.4)
+description: API reference for qiskit.transpiler.passes.StarPreRouting in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.StarPreRouting
+---
+
+# StarPreRouting
+
+<Class id="qiskit.transpiler.passes.StarPreRouting" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/star_prerouting.py#L90-L367" signature="qiskit.transpiler.passes.StarPreRouting(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Run star to linear pre-routing
+
+  This pass is a logical optimization pass that rewrites any solely 2q gate star connectivity subcircuit as a linear connectivity equivalent with swaps.
+
+  For example:
+
+  > ```python
+  > from qiskit.circuit import QuantumCircuit
+  > from qiskit.transpiler.passes import StarPreRouting
+  >
+  > qc = QuantumCircuit(10)
+  > qc.h(0)
+  > qc.cx(0, range(1, 5))
+  > qc.h(9)
+  > qc.cx(9, range(8, 4, -1))
+  > qc.measure_all()
+  > StarPreRouting()(qc).draw("mpl")
+  > ```
+  >
+  > ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-transpiler-passes-StarPreRouting-1.avif)
+
+  This pass was inspired by a similar pass described in Section IV of: C. Campbell et al., “Superstaq: Deep Optimization of Quantum Programs,” 2023 IEEE International Conference on Quantum Computing and Engineering (QCE), Bellevue, WA, USA, 2023, pp. 1020-1032, doi: 10.1109/QCE57702.2023.00116.
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.StarPreRouting.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.StarPreRouting.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### collect\_all\_matching\_blocks
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.collect_all_matching_blocks" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/star_prerouting.py#L211-L258" signature="collect_all_matching_blocks(dag, min_block_size=2)">
+    Collects all blocks that match a given filtering function filter\_fn. This iteratively finds the largest block that does not match filter\_fn, then the largest block that matches filter\_fn, and so on, until no more uncollected nodes remain. Intuitively, finding larger blocks of non-matching nodes helps to find larger blocks of matching nodes later on. The option `min_block_size` specifies the minimum number of gates in the block for the block to be collected.
+
+    By default, blocks are collected in the direction from the inputs towards the outputs of the circuit. The option `collect_from_back` allows to change this direction, that is collect blocks from the outputs towards the inputs of the circuit.
+
+    Returns the list of matching blocks only.
+  </Function>
+
+  ### collect\_matching\_block
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.collect_matching_block" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/star_prerouting.py#L176-L209" signature="collect_matching_block(dag, filter_fn)">
+    Iteratively collects the largest block of input nodes (that is, nodes with `_in_degree` equal to 0) that match a given filtering function. Examples of this include collecting blocks of swap gates, blocks of linear gates (CXs and SWAPs), blocks of Clifford gates, blocks of single-qubit gates, blocks of two-qubit gates, etc. Here ‘iteratively’ means that once a node is collected, the `_in_degree` of each of its immediate successor is decreased by 1, allowing more nodes to become input and to be eligible for collecting into the current block. Returns the block of collected nodes.
+  </Function>
+
+  ### determine\_star\_blocks\_processing
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.determine_star_blocks_processing" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/star_prerouting.py#L292-L307" signature="determine_star_blocks_processing(dag, min_block_size)">
+    Returns star blocks in dag and the processing order of nodes within these star blocks :param dag: a dag on which star blocks should be determined. :type dag: DAGCircuit or DAGDependency :param min\_block\_size: minimum number of two-qubit gates in a star block. :type min\_block\_size: int
+
+    **Returns**
+
+    a list of star blocks in the given dag Union\[List\[DAGOpNode], List\[DAGDepNode]]: a list of operations specifying processing order
+
+    **Return type**
+
+    List\[StarBlock]
+
+    **Parameters**
+
+    *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")  *|*[*DAGDependency*](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.dagdependency.DAGDependency")) –
+    *   **min\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+  </Function>
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/star_prerouting.py#L260-L290" signature="run(dag)">
+    Run a pass on the DAGCircuit. This is implemented by the pass developer.
+
+    **Parameters**
+
+    **dag** – the dag on which the pass is run.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.13)") – when this is left unimplemented for a pass.
+  </Function>
+
+  ### star\_preroute
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.star_preroute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/routing/star_prerouting.py#L309-L367" signature="star_preroute(dag, blocks, processing_order)">
+    Returns star blocks in dag and the processing order of nodes within these star blocks :param dag: a dag on which star prerouting should be performed. :type dag: DAGCircuit or DAGDependency :param blocks: a list of star blocks in the given dag. :type blocks: List\[StarBlock] :param processing\_order: a list of operations specifying :type processing\_order: Union\[List\[DAGOpNode], List\[DAGDepNode]] :param processing order:
+
+    **Returns**
+
+    a dag specifying the pre-routed circuit qubit\_mapping: the final qubit mapping after pre-routing
+
+    **Return type**
+
+    new\_dag
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.StarPreRouting.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

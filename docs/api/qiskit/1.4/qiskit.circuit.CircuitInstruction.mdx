@@ -1,0 +1,142 @@
+---
+title: CircuitInstruction (v1.4)
+description: API reference for qiskit.circuit.CircuitInstruction in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.CircuitInstruction
+---
+
+# CircuitInstruction
+
+<Class id="qiskit.circuit.CircuitInstruction" isDedicatedPage={true} signature="qiskit.circuit.CircuitInstruction" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") and various operands.
+
+  <Admonition title="Note" type="note">
+    There is some possible confusion in the names of this class, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), and [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation"), and this class’s attribute [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation"). Our preferred terminology is by analogy to assembly languages, where an “instruction” is made up of an “operation” and its “operands”.
+
+    Historically, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") came first, and originally contained the qubits it operated on and any parameters, so it was a true “instruction”. Over time, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") became responsible for tracking qubits and clbits, and the class became better described as an “operation”. Changing the name of such a core object would be a very unpleasant API break for users, and so we have stuck with it.
+
+    This class was created to provide a formal “instruction” context object in `QuantumCircuit.data`, which had long been made of ad-hoc tuples. With this, and the advent of the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface for adding more complex objects to circuits, we took the opportunity to correct the historical naming. For the time being, this leads to an awkward case where [`CircuitInstruction.operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") is often an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") implements the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface), but as the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") interface gains more use, this confusion will hopefully abate.
+  </Admonition>
+
+  <Admonition title="Warning" type="caution">
+    This is a lightweight internal class and there is minimal error checking; you must respect the type hints when using it. It is the user’s responsibility to ensure that direct mutations of the object do not invalidate the types, nor the restrictions placed on it by its context. Typically this will mean, for example, that [`qubits`](#qiskit.circuit.CircuitInstruction.qubits "qiskit.circuit.CircuitInstruction.qubits") must be a sequence of distinct items, with no duplicates.
+  </Admonition>
+
+  ## Attributes
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.clbits">
+    A sequence of the classical bits that this operation reads from or writes to.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.condition" />
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.duration" />
+
+  ### label
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.label" />
+
+  ### matrix
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.matrix" />
+
+  ### name
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.name">
+    Returns the Instruction name corresponding to the op for this node
+  </Attribute>
+
+  ### operation
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.operation">
+    The logical operation that this instruction represents an execution of.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.params" />
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.qubits">
+    A sequence of the qubits that the operation is applied to.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.CircuitInstruction.unit" />
+
+  ## Methods
+
+  ### copy
+
+  <Function id="qiskit.circuit.CircuitInstruction.copy" signature="copy()">
+    Returns a shallow copy.
+
+    **Returns**
+
+    The shallow copy.
+
+    **Return type**
+
+    [CircuitInstruction](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")
+  </Function>
+
+  ### from\_standard
+
+  <Function id="qiskit.circuit.CircuitInstruction.from_standard" signature="from_standard(standard, qubits, params, label=None)" modifiers="static" />
+
+  ### is\_control\_flow
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_control_flow" signature="is_control_flow()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this instruction a control-flow operation (i.e. an instance of [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp"))?
+  </Function>
+
+  ### is\_controlled\_gate
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_controlled_gate" signature="is_controlled_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this instruction a subclass of [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")?
+  </Function>
+
+  ### is\_directive
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_directive" signature="is_directive()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this node a directive?
+  </Function>
+
+  ### is\_parameterized
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_parameterized" signature="is_parameterized()">
+    Does this instruction contain any [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") parameters?
+  </Function>
+
+  ### is\_standard\_gate
+
+  <Function id="qiskit.circuit.CircuitInstruction.is_standard_gate" signature="is_standard_gate()">
+    Is the [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") contained in this instruction a Qiskit standard gate?
+  </Function>
+
+  ### replace
+
+  <Function id="qiskit.circuit.CircuitInstruction.replace" signature="replace(operation=None, qubits=None, clbits=None, params=None)">
+    Creates a shallow copy with the given fields replaced.
+
+    **Returns**
+
+    A new instance with the given fields replaced.
+
+    **Return type**
+
+    [CircuitInstruction](#qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")
+  </Function>
+</Class>
+

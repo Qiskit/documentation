@@ -37,7 +37,7 @@ The _cost limit_ or _instance limit_ refers to the total cost of all jobs run wi
 
 An instance administrator can limit how much is spent. There are several ways to set or change this limit:
 
-* **IBM Quantum Platform**: Click the main menu icon in the upper left corner and choose **Administration**. Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/admin/instances) Find the instance you want to limit, click the overflow menu at the end of the row, and then click **Edit details**. Set the total cost limit or the usage limit, then click **Save changes**.
+* **IBM Quantum Platform**: Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/instances) Find the instance you want to limit, click the overflow menu at the end of the row, and then click **Edit details**. Set the total cost limit or the usage limit, then click **Save changes**.
    <Admonition type = "note">
    You can also set the cost or usage limit when creating a new Standard Plan instance.
    </Admonition>
@@ -94,7 +94,7 @@ An instance administrator can limit how much is spent. There are several ways to
 
 There are several ways to view the current cost limit:
 
-* **IBM Quantum Platform**: Click the main menu icon in the upper left corner and choose **Administration**. The Max cost limit is shown on the Standard tab of the [Instances & allocation tab.](https://quantum.cloud.ibm.com/admin/instances)
+* **IBM Quantum Platform**: The Max cost limit is shown on the Standard tab of the [Instances & allocation tab.](https://quantum.cloud.ibm.com/instances)
 
 * **API**:
    * New IBM Quantum Platform users: [`GET /v1/instances/configuration`](/api/qiskit-runtime-rest/tags/instances).
@@ -114,7 +114,7 @@ There are several ways to view the current cost limit:
 
 An instance administrator can remove the cost limit in several ways:
 
-* **IBM Quantum Platform**: Click the main menu icon in the upper left corner and choose **Administration**. Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/admin/instances) Find the instance you want to update, click the overflow menu at the end of the row, and then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
+* **IBM Quantum Platform**: Open the [Instances & allocation tab.](https://quantum.cloud.ibm.com/instances) Find the instance you want to update, click the overflow menu at the end of the row, and then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
 
 * **API**: Set the instance limit to `null`.
    * New IBM Quantum Platform users: [`PUT /v1/instances/configuration "instance_limit":null`](/api/qiskit-runtime-rest/tags/instances).
@@ -143,8 +143,12 @@ Additionally, you can determine cost per instance or per job at any time.
 
 ### View usage
 
+<LegacyContent>
 To view the instance's usage, follow the instructions in the [analytics](/administration/analytics) guide.
-
+</LegacyContent>
+<CloudContent>
+View the instance's usage on the [Analytics](https://quantum.cloud.ibm.com/analytics) page.
+</CloudContent>
 {/* ### View instance cost
 
 To determine how much has been billed to an instance during the current billing cycle, from the <LegacyContent>[IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances)</LegacyContent><CloudContent>[Instances page](https://quantum.cloud.ibm.com/instances)</CloudContent>, click the instance to open its details page.
@@ -179,6 +183,11 @@ On the Standard Plan, you can set up spending notifications to get notified when
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
+<LegacyContent>
     - Review the [Qiskit Runtime plans](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-plans) available on IBM Cloud.
+    </LegacyContent>
+    <CloudContent>
+    - Review the [plans](plans-overview) available to IBM Quantum users.
+    </CloudContent>
     - Review suggestions to [minimize job quantum time.](minimize-time)
 </Admonition>

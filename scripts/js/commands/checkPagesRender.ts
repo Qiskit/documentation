@@ -30,6 +30,16 @@ const CLOUD_ONLY_PAGES: Set<string> = new Set([
   "docs/guides/cloud-setup.mdx",
   "docs/guides/upgrade-from-open.mdx",
   "docs/guides/view-cost.mdx",
+  "docs/guides/access-groups.mdx",
+  "docs/guides/cloud-account-structure.mdx",
+  "docs/guides/considerations-set-up-runtime.mdx",
+  "docs/guides/custom-roles.mdx",
+  "docs/guides/invite-and-manage-users.mdx",
+  "docs/guides/manage-appid.mdx",
+  "docs/guides/manage-cloud-users.mdx",
+  "docs/guides/plans-overview.mdx",
+  "docs/guides/quickstart-steps-org.mdx",
+  "docs/guides/allocation-limits.mdx",
 ]);
 
 const PORT = 3000;
@@ -134,7 +144,9 @@ zxMain(async () => {
       `💔 ${failures.length} pages crash when rendering. This is usually due to invalid syntax, such as forgetting ` +
         "the closing component tag, like `</Admonition>`. You can sometimes get a helpful error message " +
         "by previewing the docs locally or in CI. See the README for instructions.\n\n" +
-        failures.join("\n"),
+        failures.join("\n") +
+        "\n\nIf your files are platform specific, you should add them to the `LEGACY_ONLY_PAGES` or `CLOUD_ONLY_PAGES` list " +
+        "at the beginning of `scripts/js/commands/checkPagesRender.ts`",
     );
     process.exit(1);
   }
@@ -172,15 +184,14 @@ async function validateDockerRunning(): Promise<void> {
     const response = await fetch(`http://localhost:${PORT}`);
     if (response.status !== 200) {
       console.error(
-        "Failed to access http://localhost:3000. Have you started the Docker server with `./start`? " +
-          "Refer to the README for instructions.",
+        "Failed to access http://localhost:3000. Have you started the Docker server with `./start` in another shell? ",
       );
       process.exit(1);
     }
   } catch (error) {
     console.error(
       "Error when accessing http://localhost:3000. Make sure that you've started the Docker server " +
-        "with `./start`. Refer to the README for instructions.\n\n" +
+        "with `./start` in another shell.\n\n" +
         `${error}`,
     );
     process.exit(1);
@@ -216,7 +227,11 @@ function filterPlatformSpecificPage(page: string, legacy?: boolean) {
   if (legacy) {
     // API docs should never be checked with the legacy app because they render
     // identically in the cloud app.
-    return !CLOUD_ONLY_PAGES.has(page) && !page.startsWith("docs/api");
+    return (
+      !CLOUD_ONLY_PAGES.has(page) &&
+      !page.startsWith("docs/api") &&
+      !page.startsWith("docs/tutorials")
+    );
   }
 
   return !LEGACY_ONLY_PAGES.has(page);

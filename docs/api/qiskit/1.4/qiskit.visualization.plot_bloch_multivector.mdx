@@ -1,0 +1,83 @@
+---
+title: plot_bloch_multivector (v1.4)
+description: API reference for qiskit.visualization.plot_bloch_multivector in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_bloch_multivector
+---
+
+<span id="qiskit-visualization-plot-bloch-multivector" />
+
+# qiskit.visualization.plot\_bloch\_multivector
+
+<Function id="qiskit.visualization.plot_bloch_multivector" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/state_visualization.py#L257-L362" signature="qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)">
+  Plot a Bloch sphere for each qubit.
+
+  Each component $(x,y,z)$ of the Bloch sphere labeled as ‘qubit i’ represents the expected value of the corresponding Pauli operator acting only on that qubit, that is, the expected value of $I_{N-1} \otimes\dotsb\otimes I_{i+1}\otimes P_i \otimes I_{i-1}\otimes\dotsb\otimes I_0$, where $N$ is the number of qubits, $P\in \{X,Y,Z\}$ and $I$ is the identity operator.
+
+  **Parameters**
+
+  *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+  *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – a string that represents the plot title
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – size of each individual Bloch sphere figure, in inches.
+  *   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, plots qubits following Qiskit’s convention \[Default:False].
+  *   **font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Font size for the Bloch ball figures.
+  *   **title\_font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Font size for the title.
+  *   **title\_pad** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Padding for the title (suptitle y position is y=1+title\_pad/100).
+
+  **Returns**
+
+  A matplotlib figure instance.
+
+  **Return type**
+
+  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.10.1)")
+
+  **Raises**
+
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
+  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+
+  **Examples**
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Statevector
+  from qiskit.visualization import plot_bloch_multivector
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.x(1)
+
+  state = Statevector(qc)
+  plot_bloch_multivector(state)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_bloch_multivector-1.avif)
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit.quantum_info import Statevector
+  from qiskit.visualization import plot_bloch_multivector
+
+  qc = QuantumCircuit(2)
+  qc.h(0)
+  qc.x(1)
+
+  # You can reverse the order of the qubits.
+
+  from qiskit.quantum_info import DensityMatrix
+
+  qc = QuantumCircuit(2)
+  qc.h([0, 1])
+  qc.t(1)
+  qc.s(0)
+  qc.cx(0,1)
+
+  matrix = DensityMatrix(qc)
+  plot_bloch_multivector(matrix, title='My Bloch Spheres', reverse_bits=True)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_bloch_multivector-2.avif)
+</Function>
+

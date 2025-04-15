@@ -19,6 +19,7 @@ import { hideBin } from "yargs/helpers";
 import { readApiMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
+import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -26,7 +27,6 @@ const SYNTHETIC_FILES: string[] = [
   "docs/administration/quickstart-org.mdx",
   "docs/administration/analytics.mdx",
   "docs/errors.mdx",
-  "docs/api/qiskit-ibm-transpiler-rest/index.mdx",
   "docs/api/runtime/index.mdx",
   "docs/api/runtime/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
@@ -76,7 +76,7 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("public/{images,videos,open-source}/**/*")).map(
+    ...(await globby("public/docs/{images,videos,open-source}/**/*")).map(
       (fp) => new File(fp, new Set()),
     ),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, new Set(), true)),
@@ -97,11 +97,18 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
+const QISKIT_REMOVED_PAGES_TO_LOAD = [
+  ...QISKIT_REMOVED_PAGES,
+  "qiskit.circuit.QuantumCircuit",
+  "compiler",
+].map((page) => `docs/api/qiskit/1.4/${page}.mdx`);
+
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
   "docs/guides/*.{mdx,ipynb}",
   "docs/migration-guides/*.{mdx,ipynb}",
+  ...QISKIT_REMOVED_PAGES_TO_LOAD,
 ];
 const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
 const QISKIT_GLOBS_TO_LOAD = [
@@ -183,13 +190,13 @@ async function determineCurrentDocsFileBatch(
 ): Promise<FileBatch> {
   const toCheck = [
     "docs/**/*.{ipynb,mdx}",
-    "public/api/*/objects.inv",
+    "public/docs/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/*/[0-9]*/*",
-    "!public/api/*/[0-9]*/*",
+    "!public/docs/api/*/[0-9]*/*",
     // Ignore dev version
     "!docs/api/*/dev/*",
-    "!public/api/*/dev/*",
+    "!public/docs/api/*/dev/*",
     // Ignore Qiskit release notes
     "!docs/api/qiskit/release-notes/*",
   ];
@@ -214,13 +221,16 @@ async function determineCurrentDocsFileBatch(
     "docs/api/qiskit-ibm-runtime/0.29/session.mdx",
     "docs/api/qiskit-ibm-runtime/0.30/runtime-job.mdx",
     "docs/api/qiskit-ibm-runtime/0.34/ibm-backend.mdx",
+    // These pages were removed in Qiskit 2.0.
+    ...QISKIT_REMOVED_PAGES_TO_LOAD,
   ];
 
   if (args.currentApis) {
     const currentQiskitVersion = await readApiMinorVersion("docs/api/qiskit");
     toCheck.push(`docs/api/qiskit/release-notes/${currentQiskitVersion}.mdx`);
   } else {
-    toCheck.push(`!{public,docs}/api/*/*`);
+    toCheck.push(`!public/docs/api/*/*`);
+    toCheck.push(`!docs/api/*/*`);
     toLoad.push(`docs/api/*/*`);
   }
 
@@ -239,7 +249,10 @@ async function determineDevFileBatches(): Promise<FileBatch[]> {
   const result = [];
   for (const [project, toLoad] of projects) {
     const fileBatch = await FileBatch.fromGlobs(
-      [`docs/api/${project}/dev/*`, `public/api/${project}/dev/objects.inv`],
+      [
+        `docs/api/${project}/dev/*`,
+        `public/docs/api/${project}/dev/objects.inv`,
+      ],
       toLoad,
       `${project} dev docs`,
     );
@@ -276,7 +289,7 @@ async function determineHistoricalFileBatches(
 
     const toCheck: string[] = [
       `docs/api/${projectName}/${folder.name}/*`,
-      `public/api/${projectName}/${folder.name}/objects.inv`,
+      `public/docs/api/${projectName}/${folder.name}/objects.inv`,
     ];
     const toLoad = [...extraGlobsToLoad];
 

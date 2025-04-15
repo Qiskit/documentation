@@ -9,7 +9,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 # DynamicCircuitInstructionDurations
 
 <Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/utils.py#L140-L328" signature="DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)" modifiers="class">
-  Bases: [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.4)")
+  Bases: [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.0)")
 
   For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. For now we use this class to report updated InstructionDurations. TODO: This would be mitigated by a specialized Backend/Target for dynamic circuit backends.
 
@@ -19,7 +19,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 
   **Parameters**
 
-  *   **instruction\_durations** (*List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None, str]] | List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None]] | List\[Tuple\[str, Iterable\[int] | None, float, str]] | List\[Tuple\[str, Iterable\[int] | None, float]] |* [*InstructionDurations*](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.4)") *| None*)
+  *   **instruction\_durations** (*List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None, str]] | List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None]] | List\[Tuple\[str, Iterable\[int] | None, float, str]] | List\[Tuple\[str, Iterable\[int] | None, float]] |* [*InstructionDurations*](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.0)") *| None*)
   *   **dt** (*float*)
   *   **enable\_patching** (*bool*)
 
@@ -48,7 +48,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 
     **Parameters**
 
-    **backend** ([*Backend*](/api/qiskit/qiskit.providers.Backend "(in Qiskit v1.4)"))
+    **backend** ([*Backend*](/api/qiskit/qiskit.providers.Backend "(in Qiskit v2.0)"))
   </Function>
 
   ### from\_target
@@ -66,7 +66,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 
     **Parameters**
 
-    **target** ([*Target*](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.4)"))
+    **target** ([*Target*](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.0)"))
   </Function>
 
   ### get
@@ -78,7 +78,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 
     **Parameters**
 
-    *   **inst** (*str |* [*qiskit.circuit.Instruction*](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.4)")) – An instruction or its name to be queried.
+    *   **inst** (*str |* [*qiskit.circuit.Instruction*](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v2.0)")) – An instruction or its name to be queried.
     *   **qubits** (*int | list\[int]*) – Qubit indices that the instruction acts on.
     *   **unit** (*str*) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
     *   **parameters** (*list\[float] | None*) – The value of the parameters of the desired instruction.
@@ -117,7 +117,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.DynamicCircuitI
 
     **Parameters**
 
-    *   **inst\_durations** (*List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None, str]] | List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None]] | List\[Tuple\[str, Iterable\[int] | None, float, str]] | List\[Tuple\[str, Iterable\[int] | None, float]] |* [*InstructionDurations*](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.4)") *| None*) – Instruction durations to be merged into self (overwriting self).
+    *   **inst\_durations** (*List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None, str]] | List\[Tuple\[str, Iterable\[int] | None, float, Iterable\[float] | None]] | List\[Tuple\[str, Iterable\[int] | None, float, str]] | List\[Tuple\[str, Iterable\[int] | None, float]] |* [*InstructionDurations*](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.0)") *| None*) – Instruction durations to be merged into self (overwriting self).
     *   **dt** (*float | None*) – Sampling duration in seconds of the target backend.
 
     **Returns**

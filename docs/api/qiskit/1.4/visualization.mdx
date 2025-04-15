@@ -1,0 +1,233 @@
+---
+title: visualization (v1.4)
+description: API reference for qiskit.visualization in qiskit v1.4
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.visualization
+---
+
+<span id="module-qiskit.visualization" />
+
+<span id="qiskit-visualization" />
+
+<span id="visualizations-qiskit-visualization" />
+
+# Visualizations
+
+`qiskit.visualization`
+
+The visualization module contain functions that visualizes measurement outcome counts, quantum states, circuits, pulses, devices and more.
+
+To use visualization functions, you are required to install visualization optionals to your development environment:
+
+```bash
+pip install 'qiskit[visualization]'
+```
+
+## Common Keyword Arguments
+
+Many of the figures created by visualization functions in this module are created by [Matplotlib](https://matplotlib.org/) and accept a subset of the following common arguments. Consult the individual documentation for exact details.
+
+*   `title` (`str`): a text string to use for the plot title.
+*   `legend` (`list`): a list of strings to use for labels of the data.
+*   `figsize` (`tuple`): figure size in inches .
+*   `color` (`list`): a list of strings for plotting.
+*   `ax` ([matplotlib.axes.Axes](https://matplotlib.org/stable/api/axes_api.html)): An optional `Axes` object to be used for the visualization output. If none is specified a new [matplotlib.figure.Figure](https://matplotlib.org/stable/api/figure_api.html) will be created and used. Additionally, if specified there will be no returned `Figure` since it is redundant.
+*   `filename` (`str`): file path to save image to.
+
+The following example demonstrates the common usage of these arguments:
+
+```python
+from qiskit.visualization import plot_histogram
+
+counts1 = {'00': 499, '11': 501}
+counts2 = {'00': 511, '11': 489}
+
+data = [counts1, counts2]
+plot_histogram(data)
+```
+
+![Output from the previous code.](/images/api/qiskit/1.4/visualization-1.avif)
+
+You can specify `legend`, `title`, `figsize` and `color` by passing to the kwargs.
+
+```python
+from qiskit.visualization import plot_histogram
+
+counts1 = {'00': 499, '11': 501}
+counts2 = {'00': 511, '11': 489}
+data = [counts1, counts2]
+
+legend = ['First execution', 'Second execution']
+title = 'New histogram'
+figsize = (10,10)
+color=['crimson','midnightblue']
+plot_histogram(data, legend=legend, title=title, figsize=figsize, color=color)
+```
+
+![Output from the previous code.](/images/api/qiskit/1.4/visualization-2.avif)
+
+You can save the figure to file either by passing the file name to `filename` kwarg or use [matplotlib.figure.Figure.savefig](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.savefig) method.
+
+```python
+plot_histogram(data, filename='new_hist.png')
+
+hist = plot_histogram(data)
+hist.savefig('new_hist.png')
+```
+
+## Counts Visualizations
+
+This section contains functions that visualize measurement outcome counts.
+
+|                                                                                                                             |                                        |
+| --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [`plot_histogram`](qiskit.visualization.plot_histogram "qiskit.visualization.plot_histogram")(data\[, figsize, color, ...]) | Plot a histogram of input counts data. |
+
+### Example Usage
+
+Here is an example of using [`plot_histogram()`](qiskit.visualization.plot_histogram "qiskit.visualization.plot_histogram") to visualize measurement outcome counts:
+
+```python
+from qiskit.visualization import plot_histogram
+
+counts = {"00": 501, "11": 499}
+plot_histogram(counts)
+```
+
+![Output from the previous code.](/images/api/qiskit/1.4/visualization-3.avif)
+
+The data can be a dictionary with bit string as key and counts as value, or more commonly a [`Counts`](qiskit.result.Counts "qiskit.result.Counts") object obtained from [`get_counts()`](qiskit.result.Result#get_counts "qiskit.result.Result.get_counts").
+
+## Distribution Visualizations
+
+This section contains functions that visualize sampled distributions.
+
+|                                                                                                                                      |                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| [`plot_distribution`](qiskit.visualization.plot_distribution "qiskit.visualization.plot_distribution")(data\[, figsize, color, ...]) | Plot a distribution from input sampled data. |
+
+## State Visualizations
+
+This section contains functions that visualize quantum states.
+
+|                                                                                                                                             |                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`plot_bloch_vector`](qiskit.visualization.plot_bloch_vector "qiskit.visualization.plot_bloch_vector")(bloch\[, title, ax, ...])            | Plot the Bloch sphere.                                                |
+| [`plot_bloch_multivector`](qiskit.visualization.plot_bloch_multivector "qiskit.visualization.plot_bloch_multivector")(state\[, title, ...]) | Plot a Bloch sphere for each qubit.                                   |
+| [`plot_state_city`](qiskit.visualization.plot_state_city "qiskit.visualization.plot_state_city")(state\[, title, figsize, ...])             | Plot the cityscape of quantum state.                                  |
+| [`plot_state_hinton`](qiskit.visualization.plot_state_hinton "qiskit.visualization.plot_state_hinton")(state\[, title, figsize, ...])       | Plot a hinton diagram for the density matrix of a quantum state.      |
+| [`plot_state_paulivec`](qiskit.visualization.plot_state_paulivec "qiskit.visualization.plot_state_paulivec")(state\[, title, figsize, ...]) | Plot the Pauli-vector representation of a quantum state as bar graph. |
+| [`plot_state_qsphere`](qiskit.visualization.plot_state_qsphere "qiskit.visualization.plot_state_qsphere")(state\[, figsize, ax, ...])       | Plot the qsphere representation of a quantum state.                   |
+
+<span id="id1" />
+
+### Example Usage
+
+Here is an example of using [`plot_state_city()`](qiskit.visualization.plot_state_city "qiskit.visualization.plot_state_city") to visualize a quantum state:
+
+```python
+from qiskit.visualization import plot_state_city
+
+state = [[ 0.75  , 0.433j],
+         [-0.433j, 0.25  ]]
+plot_state_city(state)
+```
+
+![Output from the previous code.](/images/api/qiskit/1.4/visualization-4.avif)
+
+The state can be array-like list of lists, `numpy.array`, or more commonly [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") or [`DensityMatrix`](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") objects obtained from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"):
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+from qiskit.visualization import plot_state_city
+
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0,1)
+
+# plot using a Statevector
+state = Statevector(qc)
+plot_state_city(state)
+```
+
+![Output from the previous code.](/images/api/qiskit/1.4/visualization-5.avif)
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import DensityMatrix
+from qiskit.visualization import plot_state_city
+
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0,1)
+
+# plot using a DensityMatrix
+state = DensityMatrix(qc)
+plot_state_city(state)
+```
+
+![Output from the previous code.](/images/api/qiskit/1.4/visualization-6.avif)
+
+You can find code examples for each visualization functions on the individual function API page.
+
+## Device Visualizations
+
+|                                                                                                                                        |                                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`plot_gate_map`](qiskit.visualization.plot_gate_map "qiskit.visualization.plot_gate_map")(backend\[, figsize, ...])                   | Plots the gate map of a device.                                     |
+| [`plot_error_map`](qiskit.visualization.plot_error_map "qiskit.visualization.plot_error_map")(backend\[, figsize, ...])                | Plots the error map of a given backend.                             |
+| [`plot_circuit_layout`](qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout")(circuit, backend\[, ...]) | Plot the layout of a circuit transpiled for a given target backend. |
+| [`plot_coupling_map`](qiskit.visualization.plot_coupling_map "qiskit.visualization.plot_coupling_map")(num\_qubits, ...\[, ...])       | Plots an arbitrary coupling map of qubits (embedded in a plane).    |
+
+## Circuit Visualizations
+
+|                                                                                                                                 |                           |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`circuit_drawer`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer")(circuit\[, scale, filename, ...]) | Draw the quantum circuit. |
+
+## DAG Visualizations
+
+|                                                                                                                   |                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| [`dag_drawer`](qiskit.visualization.dag_drawer "qiskit.visualization.dag_drawer")(dag\[, scale, filename, style]) | Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit. |
+
+## Pass Manager Visualizations
+
+|                                                                                                                                     |                         |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| [`pass_manager_drawer`](qiskit.visualization.pass_manager_drawer "qiskit.visualization.pass_manager_drawer")(pass\_manager\[, ...]) | Draws the pass manager. |
+
+## Timeline Visualizations
+
+|                                                                                                                          |                                                             |
+| ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| [`timeline_drawer`](qiskit.visualization.timeline_drawer "qiskit.visualization.timeline_drawer")(program\[, style, ...]) | Generate visualization data for scheduled circuit programs. |
+
+## Single Qubit State Transition Visualizations
+
+|                                                                                                                                         |                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [`visualize_transition`](qiskit.visualization.visualize_transition "qiskit.visualization.visualize_transition")(circuit\[, trace, ...]) | Creates animation showing transitions between states of a single qubit by applying quantum gates. |
+
+<span id="array-matrix-visualizations" />
+
+## Array/Matrix Visualizations
+
+|                                                                                                                                 |                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`array_to_latex`](qiskit.visualization.array_to_latex "qiskit.visualization.array_to_latex")(array\[, precision, prefix, ...]) | Latex representation of a complex numpy array (with dimension 1 or 2) |
+
+## Exceptions
+
+### VisualizationError
+
+<Class id="qiskit.visualization.VisualizationError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/exceptions.py#L18-L21" signature="qiskit.visualization.VisualizationError(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
+  For visualization specific errors.
+
+  Set the error message.
+</Class>
+

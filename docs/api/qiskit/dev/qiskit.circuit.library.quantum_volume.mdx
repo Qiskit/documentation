@@ -2,17 +2,15 @@
 title: quantum_volume (dev version)
 description: API reference for qiskit.circuit.library.quantum_volume in the dev version of qiskit
 in_page_toc_min_heading_level: 1
-python_api_type: class
+python_api_type: function
 python_api_name: qiskit.circuit.library.quantum_volume
 ---
 
-<span id="quantum-volume" />
+<span id="qiskit-circuit-library-quantum-volume" />
 
-# quantum\_volume
+# qiskit.circuit.library.quantum\_volume
 
-<Class id="qiskit.circuit.library.quantum_volume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/quantum_volume.py#L133-L170" signature="qiskit.circuit.library.quantum_volume(num_qubits, depth=None, seed=None)" modifiers="class">
-  Bases:
-
+<Function id="qiskit.circuit.library.quantum_volume" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/quantum_volume.py#L133-L179" signature="qiskit.circuit.library.quantum_volume(num_qubits, depth=None, seed=None)">
   A quantum volume model circuit.
 
   The model circuits are random instances of circuits used to measure the Quantum Volume metric, as introduced in \[1].
@@ -21,6 +19,16 @@ python_api_name: qiskit.circuit.library.quantum_volume
 
   This function is multithreaded and will launch a thread pool with threads equal to the number of CPUs by default. You can tune the number of threads with the `RAYON_NUM_THREADS` environment variable. For example, setting `RAYON_NUM_THREADS=4` would limit the thread pool to 4 threads.
 
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number qubits to use for the generated circuit.
+  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of layers for the generated circuit. If this is not specified it will default to `num_qubits` layers.
+  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| np.random.Generator | None*) – An optional RNG seed used for generating the random SU(4) matrices used in the output circuit. This can be either an integer or a numpy generator. If an integer is specfied it must be an value between 0 and 2\*\*64 - 1.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
   **Reference Circuit:**
 
   ![Diagram illustrating the previously described circuit.](/images/api/qiskit/dev/qiskit-circuit-library-quantum_volume-1.avif)
@@ -28,15 +36,5 @@ python_api_name: qiskit.circuit.library.quantum_volume
   **References:**
 
   \[1] A. Cross et al. Validating quantum computers using randomized model circuits, Phys. Rev. A 100, 032328 (2019). [arXiv:1811.12926](https://arxiv.org/abs/1811.12926)
-
-  **Parameters**
-
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) –
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| np.random.Generator | None*) –
-
-  **Return type**
-
-  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-</Class>
+</Function>
 

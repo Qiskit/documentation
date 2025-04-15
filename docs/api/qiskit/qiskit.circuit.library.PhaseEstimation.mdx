@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PhaseEstimation
 
 # PhaseEstimation
 
-<Class id="qiskit.circuit.library.PhaseEstimation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/phase_estimation.py#L22-L105" signature="qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')" modifiers="class">
+<Class id="qiskit.circuit.library.PhaseEstimation" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/phase_estimation.py#L22-L105" signature="qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')" modifiers="class">
   Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
   Phase Estimation circuit.
@@ -36,7 +36,7 @@ $$
   [textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
 
   <Admonition title="Deprecated since version 1.3_pending" type="danger">
-    The class `qiskit.circuit.library.phase_estimation.PhaseEstimation` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use qiskit.circuit.library.phase\_estimation instead.
+    The class `qiskit.circuit.library.phase_estimation.PhaseEstimation` is pending deprecation as of Qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. Use qiskit.circuit.library.phase\_estimation instead.
   </Admonition>
 
   **Parameters**
@@ -62,21 +62,15 @@ $$
     A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
-  ### calibrations
-
-  <Attribute id="qiskit.circuit.library.PhaseEstimation.calibrations">
-    Return calibration dictionary.
-
-    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
-    </Admonition>
-  </Attribute>
-
   ### clbits
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.cregs">
     A list of `Clbit`s in the order that they were added. You should not mutate this.
   </Attribute>
 
@@ -100,7 +94,7 @@ $$
     The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.PhaseEstimation.unit "qiskit.circuit.library.PhaseEstimation.unit").
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -112,7 +106,7 @@ $$
 
   ### instances
 
-  <Attribute id="qiskit.circuit.library.PhaseEstimation.instances" attributeValue="264" />
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.instances" attributeValue="219" />
 
   ### layout
 
@@ -138,6 +132,14 @@ $$
     Return the number of ancilla qubits.
   </Attribute>
 
+  ### num\_captured\_stretches
+
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.num_captured_stretches">
+    The number of stretches in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_stretches()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.PhaseEstimation.num_input_vars "qiskit.circuit.library.PhaseEstimation.num_input_vars") must be zero.
+  </Attribute>
+
   ### num\_captured\_vars
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.num_captured_vars">
@@ -152,12 +154,28 @@ $$
     Return number of classical bits.
   </Attribute>
 
+  ### num\_declared\_stretches
+
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.num_declared_stretches">
+    The number of stretches in the circuit that are declared by this circuit scope, excluding captures.
+
+    This is the length of the `iter_declared_stretches()` iterable.
+  </Attribute>
+
   ### num\_declared\_vars
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.num_declared_vars">
     The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
 
     This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_identifiers
+
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.num_identifiers">
+    The number of real-time classical variables and stretches in the circuit.
+
+    This is equal to [`num_vars()`](#qiskit.circuit.library.PhaseEstimation.num_vars "qiskit.circuit.library.PhaseEstimation.num_vars") + [`num_stretches()`](#qiskit.circuit.library.PhaseEstimation.num_stretches "qiskit.circuit.library.PhaseEstimation.num_stretches").
   </Attribute>
 
   ### num\_input\_vars
@@ -180,6 +198,14 @@ $$
     Return number of qubits.
   </Attribute>
 
+  ### num\_stretches
+
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.num_stretches">
+    The number of stretches in the circuit.
+
+    This is the length of the `iter_stretches()` iterable.
+  </Attribute>
+
   ### num\_vars
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.num_vars">
@@ -193,11 +219,15 @@ $$
   <Attribute id="qiskit.circuit.library.PhaseEstimation.op_start_times">
     Return a list of operation start times.
 
+    <Admonition title="Note" type="note">
+      This attribute computes the estimate starting time of the operations in the scheduled circuit and only works for simple circuits that have no control flow or other classical feed-forward operations.
+    </Admonition>
+
     This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
 
     **Returns**
 
-    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+    List of integers representing instruction estimated start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
 
     **Raises**
 
@@ -266,6 +296,12 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.prefix" attributeValue="'circuit'" />
 
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.PhaseEstimation.qregs">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
   ### qubits
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.qubits">
@@ -278,7 +314,7 @@ $$
     The unit that [`duration`](#qiskit.circuit.library.PhaseEstimation.duration "qiskit.circuit.library.PhaseEstimation.duration") is specified in.
 
     <Admonition title="Deprecated since version 1.3.0" type="danger">
-      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of Qiskit 1.3.0. It will be removed in Qiskit 3.0.0.
     </Admonition>
   </Attribute>
 
@@ -286,18 +322,6 @@ $$
 
   <Attribute id="qiskit.circuit.library.PhaseEstimation.name" attributeTypeHint="str">
     A human-readable name for the circuit.
-  </Attribute>
-
-  ### qregs
-
-  <Attribute id="qiskit.circuit.library.PhaseEstimation.qregs" attributeTypeHint="list[QuantumRegister]">
-    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
-  </Attribute>
-
-  ### cregs
-
-  <Attribute id="qiskit.circuit.library.PhaseEstimation.cregs" attributeTypeHint="list[ClassicalRegister]">
-    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
   </Attribute>
 </Class>
 

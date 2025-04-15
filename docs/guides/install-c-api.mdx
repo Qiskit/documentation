@@ -1,0 +1,151 @@
+---
+title: Install the Qiskit C API
+description: How to install and use the Qiskit C API as standalone library
+---
+{/* cspell:ignore pythonlib */}
+
+# Install the Qiskit C API
+
+This guide describes how to install and use the Qiskit C API. To see how to extend your
+Qiskit Python workflow with C, read [Extend Python with the Qiskit C API](/guides/c-extension-for-python).
+
+The following example builds an observable with C:
+```c
+// file: example.c
+#include <stdio.h>
+#include <stdint.h>
+#include <complex.h>
+#include <qiskit.h>
+
+int main(int argc, char* argv[]) {
+    // build a 100-qubit empty observable
+    u_int32_t num_qubits = 100;
+    QkObs *obs = qk_obs_zero(num_qubits);
+
+    // add the term 2 * (X0 Y1 Z2) to the observable
+    complex double coeff = 2;  // on MSVC use: _Dcomplex coeff = {2, 0}
+    QkBitTerm bit_terms[3] = {QkBitTerm_X, QkBitTerm_Y, QkBitTerm_Z};  // bit terms: X Y Z
+    uint32_t indices[3] = {0, 1, 2};  // indices: 0 1 2
+    QkObsTerm term = {coeff, 3, bit_terms, indices, num_qubits};
+    qk_obs_add_term(obs, &term);  // append the term
+
+    // print some properties and the observable itself
+    printf("num_qubits: %i\n", qk_obs_num_qubits(obs));
+    printf("num_terms: %lu\n", qk_obs_num_terms(obs));
+    printf("observable: %s\n", qk_obs_str(obs));
+
+    // free the memory allocated for the observable
+    qk_obs_free(obs);
+
+    return 0;
+}
+```
+
+## UNIX-like
+
+This section provides build instructions for UNIX-like systems.
+
+### Requirements
+
+Compilation requires the following tools:
+* A Rust compiler: see for example the [guide on installing Qiskit from source](/guides/install-qiskit-source)
+* A C compiler: for example, GCC on Linux and Clang on MacOS
+* [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can install with `cargo install cbindgen`
+    Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`
+* (GNU) Make: this is optional but is recommended to use automated install processes
+
+This code verifies that everything has been installed:
+```bash
+rustc --version
+gcc --version
+cbindgen --version
+make --version  # optional, but recommended
+```
+
+### Build
+
+To build the C header and library, you can run the following Make command[^1] in Qiskit root,
+[^1]: If you did not install Make, check the `Makefile` in Qiskit root for the required commands - or simply install Make; it's not too late.)
+```bash
+make c
+```
+which will provide the compiled shared library in `dist/c/lib` and the `qiskit.h` header with
+all function declarations in `dist/c/include`. Note that the precise library name depends
+on the platform; for example,`libqiskit.so` on UNIX and `libqiskit.dylib` on MacOS.
+(Note that this step currently emits a lot of warnings, which is expected, and is no cause for alarm. Future versions will remove the warnings.)
+
+You can then compile a C program using the Qiskit C header and library:
+```bash
+gcc example.c -o example.o -I /path/to/dist/c/include -L /path/to/dist/c/lib -lqiskit
+```
+To ensure the library is found during execution, set the runtime library path to
+include `/path/to/dist/c/lib`. This depends on the platform. On Linux:
+```bash
+export LD_LIBRARY_PATH=/path/to/dist/c/lib:$LD_LIBRARY_PATH
+```
+On MacOS:
+```bash
+export DYLD_LIBRARY_PATH=/path/to/dist/c/lib:$DYLD_LIBRARY_PATH
+```
+Alternatively, you can set the runtime library path during compilation by adding
+```
+-Wl,-rpath,/path/to/dist/c/lib
+```
+to the compiler flags.
+
+Now you can execute the binary:
+```bash
+./example.o
+```
+which, if using the example snippet shown previously, should print
+```
+num_qubits: 100
+num_terms: 1
+observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
+```
+
+## Windows
+
+This section provides build instructions for Windows systems.
+
+### Requirements
+
+Compilation requires the following tools:
+* A Rust compiler: see for example the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source)
+* A C compiler: for example, MSVC and the native command prompt offering the ``cl`` command
+* A Python installation, with access to both ``python3.lib`` and ``python3.dll``
+* [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to crate the C header, which you can install with `cargo install cbindgen`
+    Note that running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
+
+### Build
+
+First, compile the `qiskit_cext` dynamic library, by running the following in Qiskit root
+```bash
+set PATH="\path\to\pythonlib";%PATH%
+cargo rustc --release --crate-type cdylib -p qiskit-cext
+```
+This will generate the ``.dll`` dynamic library and associated ``.dll.lib`` file in `target/release`.
+Next, generate the header with
+```bash
+cbindgen --crate qiskit-cext --output dist\c\include\qiskit.h
+```
+This will write the MSVC-compatible header in ``dist\c\include``.
+
+Now you can use `cl` to compile the C program. To ensure the compiler finds the qiskit library,
+we include `target\release` in the `PATH` variable.
+```bash
+set PATH="\path\to\target\release";%PATH%
+cl example.c qiskit_cext.dll.lib -I\path\to\dist\c\include
+```
+
+Before running, you have to include the path to your ``python3.dll``.
+```bash
+set PATH="\path\to\python3-dll";%PATH%
+.\example.exe
+```
+should then print
+```
+num_qubits: 100
+num_terms: 1
+observable: SparseObservable { num_qubits: 100, coeffs: [Complex { re: 2.0, im: 0.0 }], bit_terms: [X, Y, Z], indices: [0, 1, 2], boundaries: [0, 3] }
+```

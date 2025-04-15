@@ -518,7 +518,7 @@ the [`quantum_info`](/api/qiskit/quantum_info) module.
 The migration to the new paths is straightforward. You can replace most
 classes in `qiskit.providers.basicaer` with their
 [`qiskit.providers.basic_provider`](/api/qiskit/providers_basic_provider)
-counterpart (drop-in replacement). Note that the following classes have 
+counterpart (drop-in replacement). Note that the following classes have
 new paths and names:
 
 Removed                          | Alternative
@@ -631,7 +631,7 @@ The following examples show the migration paths of the `basicaer` simulators.
 <span id="fake-backends-runtime"></span>
 ### fake_provider
 
-Most of the user-facing 
+Most of the user-facing
 `qiskit.providers.fake_provider` components have
 been migrated to the `qiskit-ibm-runtime` Python package. This includes the
 fake provider classes, all of the device-specific fake backends (such as
@@ -843,7 +843,7 @@ object.
 from math import pi
 from qiskit.compiler import schedule, transpile
 
-qc = QuatumCircuit(2)
+qc = QuantumCircuit(2)
 qc.rz(pi / 2, 0)
 qc.sx(0)
 qc.rz(pi / 2, 0)
@@ -856,7 +856,7 @@ with pulse.build() as only_pulse_scheds:
 
 We recommend writing a minimum pulse program with the builder and attaching it to
 `QuantumCircuit` through the
-[`QuantumCircuit.add_calibration`](/api/qiskit/qiskit.circuit.QuantumCircuit#add_calibration)
+[`QuantumCircuit.add_calibration`](/api/qiskit/1.4/qiskit.circuit.QuantumCircuit#add_calibration)
 method as a microcode of a gate instruction, rather than writing the entire
 program with the pulse model.
 
@@ -916,7 +916,7 @@ the symbolic pulse library; use `float`, `amp`, and  `angle` instead.
 ### ScalableSymbolicPulse
 
 It is no longer possible to load library `qiskit.pulse.ScalableSymbolicPulse`
-objects with a complex `amp` parameter from version 5 or earlier qpy files 
+objects with a complex `amp` parameter from version 5 or earlier qpy files
 (Qiskit Terra < 0.23.0). No migration action is required, as complex `amp` will
 automatically be converted to `float` (`amp`, `angle`).
 
@@ -1095,7 +1095,7 @@ been removed.
 
 The `append` methods of the
 [`ConditionalController`](/api/qiskit/qiskit.passmanager.ConditionalController),
-[`FlowControllerLinear`](/api/qiskit/qiskit.passmanager.FlowControllerLinear), and 
+[`FlowControllerLinear`](/api/qiskit/qiskit.passmanager.FlowControllerLinear), and
 [`DoWhileController`](/api/qiskit/qiskit.passmanager.DoWhileController) classes
 have been removed. Instead, all tasks must be provided when the controller
 objects are constructed.

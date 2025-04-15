@@ -48,7 +48,7 @@ circuit = qiskit.qasm2.loads(program)
 circuit.draw()
 ```
 
-![output](/images/guides/qasm2.avif)
+![output](/images/guides/interoperate-qiskit-qasm2/qasm2.avif)
 
 #### Example: import an OpenQASM 2 program from a file
 
@@ -235,7 +235,7 @@ The second is the function ``math.atan2``, which represents the mathematical ope
 
 ```python
 import math
-import qiskit.qasm2
+from qiskit import qasm2
 
 program = '''
     include "qelib1.inc";
@@ -251,7 +251,7 @@ customs = [
     # Our `add_one` takes only one parameter.
     qasm2.CustomClassical("add_one", 1, add_one),
     # `arctan` takes two parameters, and `math.atan2` implements it.
-    qasm2.CustomClassical("atan2", 2, math.atan2),
+    qasm2.CustomClassical("arctan", 2, math.atan2),
 ]
 circuit = qasm2.loads(program, custom_classical=customs)
 ```

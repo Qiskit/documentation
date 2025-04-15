@@ -208,13 +208,7 @@ Below are the synthesis plugin classes available in Qiskit. These classes should
 
 <span id="module-qiskit.transpiler.passes.synthesis.unitary_synthesis" />
 
-<span id="unitary-synthesis-plugin-in-qiskit-transpiler-passes-synthesis-unitary-synthesis" />
-
-#### Unitary Synthesis Plugin (in [`qiskit.transpiler.passes.synthesis.unitary_synthesis`](#module-qiskit.transpiler.passes.synthesis.unitary_synthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis"))
-
-|                                                                                                                                                                                            |                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| [`DefaultUnitarySynthesis`](qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis "qiskit.transpiler.passes.synthesis.unitary_synthesis.DefaultUnitarySynthesis")() | The default unitary synthesis plugin. |
+Unitary Synthesis Transpiler Pass
 
 <span id="module-qiskit.transpiler.passes.synthesis.solovay_kitaev_synthesis" />
 
@@ -342,6 +336,30 @@ The following table lists synthesis plugins available for an [`MCXGate`](qiskit.
 | [`MCMTSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisNoAux")()       | A V-chain based synthesis for `MCMTGate`. |
 | [`MCMTSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.MCMTSynthesisDefault")() | A default decomposition for MCMT gates.   |
 
+##### Integer comparators
+
+| Plugin name | Plugin class                                                                                                                                                                                   | Description                                                        | Auxiliary qubits |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ---------------- |
+| `"twos"`    | [`IntComparatorSynthesis2s`](qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesis2s "qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesis2s")                | use addition with two’s complement                                 | `n - 1` clean    |
+| `"noaux"`   | [`IntComparatorSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisNoAux")       | flip the target controlled on all $O(2^l)$ allowed integer values  | none             |
+| `"default"` | [`IntComparatorSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisDefault") | use the best algorithm depending on the available auxiliary qubits | any              |
+
+|                                                                                                                                                                                                  |                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| [`IntComparatorSynthesis2s`](qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesis2s "qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesis2s")()                | An integer comparison based on 2s complement.                          |
+| [`IntComparatorSynthesisNoAux`](qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisNoAux "qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisNoAux")()       | A potentially exponentially expensive comparison w/o auxiliary qubits. |
+| [`IntComparatorSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.IntComparatorSynthesisDefault")() | The default synthesis for `IntegerComparatorGate`.                     |
+
+##### Sums
+
+| Plugin name | Plugin class                                                                                                                                                                             | Description                   | Auxiliary qubits                                                       |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------- |
+| `"default"` | [`WeightedSumSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault") | use a V-chain based synthesis | given `s` sum qubits, used `s - 1 + int(s > 2)` clean auxiliary qubits |
+
+|                                                                                                                                                                                            |                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`WeightedSumSynthesisDefault`](qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault "qiskit.transpiler.passes.synthesis.hls_plugins.WeightedSumSynthesisDefault")() | Synthesize a [`WeightedSumGate`](qiskit.circuit.library.WeightedSumGate "qiskit.circuit.library.WeightedSumGate") using the default synthesis algorithm. |
+
 ##### Pauli Evolution Synthesis
 
 | Plugin name | Plugin class                                                                                                                                                                                      | Description                                                                                               | Targeted connectivity |
@@ -402,10 +420,10 @@ The following table lists synthesis plugins available for an [`MCXGate`](qiskit.
 
 ##### Multiplier Synthesis
 
-| Plugin name    | Plugin class                                                                                                                                                              | Number of clean ancillas                                                                                             | Description                                   |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| `"cumulative"` | [`MultiplierSynthesisH18`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18") | depending on the [`HalfAdderGate`](qiskit.circuit.library.HalfAdderGate "qiskit.circuit.library.HalfAdderGate") used | a cumulative adder based on controlled adders |
-| `"qft"`        | [`MultiplierSynthesisR17`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17") | 0                                                                                                                    | a QFT-based multiplier                        |
+| Plugin name    | Plugin class                                                                                                                                                              | Number of clean ancillas          | Description                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | --------------------------------------------- |
+| `"cumulative"` | [`MultiplierSynthesisH18`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisH18") | depending on the `AdderGate` used | a cumulative adder based on controlled adders |
+| `"qft"`        | [`MultiplierSynthesisR17`](qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17 "qiskit.transpiler.passes.synthesis.hls_plugins.MultiplierSynthesisR17") | 0                                 | a QFT-based multiplier                        |
 
 |                                                                                                                                                                             |                                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |

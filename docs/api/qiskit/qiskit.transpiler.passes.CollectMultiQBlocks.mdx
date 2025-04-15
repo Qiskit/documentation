@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
 # CollectMultiQBlocks
 
-<Class id="qiskit.transpiler.passes.CollectMultiQBlocks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L20-L227" signature="qiskit.transpiler.passes.CollectMultiQBlocks(*args, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.passes.CollectMultiQBlocks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L20-L242" signature="qiskit.transpiler.passes.CollectMultiQBlocks(*args, **kwargs)" modifiers="class">
   Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
   Collect sequences of uninterrupted gates acting on groups of qubits. `max_block_size` specifies the maximum number of qubits that can be acted upon by any single group of gates
@@ -20,6 +20,8 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
   ```
 
   Blocks are reported in a valid topological order. Further, the gates within each block are also reported in topological order Some gates may not be present in any block (e.g. if the number of operands is greater than `max_block_size`)
+
+  By default, blocks are collected in the direction from the inputs towards the outputs of the DAG. The option `collect_from_back` allows to change this direction, that is to collect blocks from the outputs towards the inputs. Note that the blocks are still reported in a valid topological order.
 
   A Disjoint Set Union data structure (DSU) is used to maintain blocks as gates are processed. This data structure points each qubit to a set at all times and the sets correspond to current blocks. These change over time and the data structure allows these changes to be done quickly.
 
@@ -45,7 +47,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.execute" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L72-L118" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
@@ -65,13 +67,13 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### find\_set
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.find_set" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L53-L67" signature="find_set(index)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.find_set" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L59-L73" signature="find_set(index)">
     DSU function for finding root of set of items If my parent is myself, I am the root. Otherwise we recursively find the root for my parent. After that, we assign my parent to be my root, saving recursion in the future.
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.name" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
     Name of the pass.
 
     **Return type**
@@ -81,7 +83,7 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### run
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L88-L227" signature="run(dag)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L94-L242" signature="run(dag)">
     Run the CollectMultiQBlocks pass on dag.
 
     The blocks contain “op” nodes in topological sort order such that all gates in a block act on the same set of qubits and are adjacent in the circuit.
@@ -93,13 +95,13 @@ python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 
   ### union\_set
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.union_set" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L69-L86" signature="union_set(set1, set2)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.union_set" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/transpiler/passes/optimization/collect_multiqubit_blocks.py#L75-L92" signature="union_set(set1, set2)">
     DSU function for unioning two sets together Find the roots of each set. Then assign one to have the other as its parent, thus liking the sets. Merges smaller set into larger set in order to have better runtime
   </Function>
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.CollectMultiQBlocks.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/passmanager/base_tasks.py#L120-L138" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

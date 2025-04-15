@@ -1,0 +1,75 @@
+---
+title: ConditionalController (v1.4)
+description: API reference for qiskit.passmanager.ConditionalController in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.passmanager.ConditionalController
+---
+
+# ConditionalController
+
+<Class id="qiskit.passmanager.ConditionalController" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/flow_controllers.py#L90-L116" signature="qiskit.passmanager.ConditionalController(tasks=(), condition=None, *, options=None)" modifiers="class">
+  Bases: [`BaseController`](qiskit.passmanager.BaseController "qiskit.passmanager.base_tasks.BaseController")
+
+  A flow controller runs the pipeline once if the condition is true, or does nothing if the condition is false.
+
+  Create new flow controller.
+
+  **Parameters**
+
+  *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*, Any] | None*) – Option for this flow controller.
+  *   **tasks** (*Task | Iterable\[Task]*) –
+  *   **condition** (*Callable\[\[*[*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet")*],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")*]*) –
+
+  ## Attributes
+
+  ### passes
+
+  <Attribute id="qiskit.passmanager.ConditionalController.passes">
+    Alias of tasks for backward compatibility.
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.passmanager.ConditionalController.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L202-L230" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### iter\_tasks
+
+  <Function id="qiskit.passmanager.ConditionalController.iter_tasks" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/flow_controllers.py#L113-L116" signature="iter_tasks(state)">
+    A custom logic to choose a next task to run.
+
+    Controller subclass can consume the state to build a proper task pipeline. The updated state after a task execution will be fed back in as the “return” value of any `yield` statements. This indicates the order of task execution is only determined at running time. This method is not allowed to mutate the given state object.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – The state of the passmanager workflow at the beginning of this flow controller’s execution.
+    *   **state** – the state of pass manager after the execution of the last task that was yielded. The generator does not need to inspect this if it is irrelevant to its logic, nor update it.
+
+    **Yields**
+
+    *Task* – Next task to run.
+
+    **Return type**
+
+    [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator "(in Python v3.13)")\[*Task*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState"), None]
+  </Function>
+</Class>
+

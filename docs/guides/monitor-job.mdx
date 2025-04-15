@@ -53,13 +53,13 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 
 # Initialize the account first.
 service = QiskitRuntimeService()
-
+# Use `limit` to retrieve a specific number of jobs. The default `limit` is 10.
 service.jobs(backend_name=my_backend)
 ```
 
 ## Cancel a job
 
-You can cancel a job from the IBM Quantum Platform dashboard either on the Workloads page or the details page for a specific workload. On the Workloads page, click the three-dots menu at the end of the row for that workload, and select Cancel. If you are on the details page for a specific workload, use the Actions dropdown at the top of the page, and select Cancel.
+You can cancel a job from the IBM Quantum Platform dashboard either on the Workloads page or the details page for a specific workload. On the Workloads page, click the overflow menu at the end of the row for that workload, and select Cancel. If you are on the details page for a specific workload, use the Actions dropdown at the top of the page, and select Cancel.
 
 In Qiskit, use `job.cancel()` to cancel a job.
 

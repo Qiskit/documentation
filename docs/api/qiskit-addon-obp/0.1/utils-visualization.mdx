@@ -1,0 +1,224 @@
+---
+title: visualization (v0.1)
+description: API reference for qiskit_addon_obp.utils.visualization in qiskit-addon-obp v0.1
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_obp.utils.visualization
+---
+
+<span id="module-qiskit_addon_obp.utils.visualization" />
+
+<span id="visualization-utilities-qiskit-addon-obp-utils-visualization" />
+
+# Visualization utilities
+
+`qiskit_addon_obp.utils.visualization`
+
+Various visualization utilities.
+
+### plot\_accumulated\_error
+
+<Function id="qiskit_addon_obp.utils.visualization.plot_accumulated_error" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/visualization.py#L24-L84" signature="plot_accumulated_error(metadata, axes)">
+  Plot the accumulated error.
+
+  This method populates the provided figure axes with a line-plot of the [`OBPMetadata.accumulated_error()`](utils-metadata-obp-metadata#accumulated_error "qiskit_addon_obp.utils.metadata.OBPMetadata.accumulated_error"). Below is an example where we plot some `metadata` which exists within our context.
+
+  ```python
+  >>> from matplotlib import pyplot as plt
+  >>> from qiskit_addon_obp.utils.visualization import plot_accumulated_error
+  >>> fig, axes = plt.subplots(1, 1)
+  >>> plot_accumulated_error(metadata, axes)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-obp/0.1/qiskit_addon_obp-utils-visualization-2.avif)
+
+  As you can see in the figure above, the number of backpropagated slices is displayed along the x-axis. You can think of this as the “time” of the backpropagation algorithm. The accumulated error due to truncated Pauli terms is displayed along the y-axis. If `OBPMetadata.truncation_error_budget.max_error_total` is not [`numpy.inf`](https://numpy.org/doc/stable/reference/constants.html#numpy.inf "(in NumPy v2.2)"), it is displayed as a red horizontal line. Each observable that was backpropagated, gets its own line.
+
+  This data is related to the one visualized by [`plot_slice_errors()`](#qiskit_addon_obp.utils.visualization.plot_slice_errors "qiskit_addon_obp.utils.visualization.plot_slice_errors"). This method plots the cumulative sum of the slice errors along the x-axis.
+
+  **Parameters**
+
+  *   **metadata** ([*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")) – the metadata to be visualized.
+  *   **axes** (*Axes*) – the matplotlib axes in which to plot.
+
+  **Return type**
+
+  None
+</Function>
+
+### plot\_left\_over\_error\_budget
+
+<Function id="qiskit_addon_obp.utils.visualization.plot_left_over_error_budget" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/visualization.py#L87-L132" signature="plot_left_over_error_budget(metadata, axes)">
+  Plot the left-over error budget.
+
+  This method populates the provided figure axes with a line-plot of the [`OBPMetadata.left_over_error_budget()`](utils-metadata-obp-metadata#left_over_error_budget "qiskit_addon_obp.utils.metadata.OBPMetadata.left_over_error_budget"). Below is an example where we plot some `metadata` which exists within our context.
+
+  ```python
+  >>> from matplotlib import pyplot as plt
+  >>> from qiskit_addon_obp.utils.visualization import plot_left_over_error_budget
+  >>> fig, axes = plt.subplots(1, 1)
+  >>> plot_left_over_error_budget(metadata, axes)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-obp/0.1/qiskit_addon_obp-utils-visualization-4.avif)
+
+  As you can see in the figure above, the number of backpropagated slices is displayed along the x-axis. You can think of this as the “time” of the backpropagation algorithm. The left-over error budget available at each backpropagation step is displayed along the y-axis. Since each observable that was backpropagated has its own budget, they are plotted as separate lines.
+
+  **Parameters**
+
+  *   **metadata** ([*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")) – the metadata to be visualized.
+  *   **axes** (*Axes*) – the matplotlib axes in which to plot.
+
+  **Return type**
+
+  None
+</Function>
+
+### plot\_slice\_errors
+
+<Function id="qiskit_addon_obp.utils.visualization.plot_slice_errors" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/visualization.py#L135-L187" signature="plot_slice_errors(metadata, axes)">
+  Plot the slice errors.
+
+  This method populates the provided figure axes with a bar-plot of the truncation error incurred at each backpropagated slice. Below is an example where we plot some `metadata` which exists within our context.
+
+  ```python
+  >>> from matplotlib import pyplot as plt
+  >>> from qiskit_addon_obp.utils.visualization import plot_slice_errors
+  >>> fig, axes = plt.subplots(1, 1)
+  >>> plot_slice_errors(metadata, axes)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-obp/0.1/qiskit_addon_obp-utils-visualization-6.avif)
+
+  As you can see in the figure above, the number of backpropagated slices is displayed along the x-axis. You can think of this as the “time” of the backpropagation algorithm. The truncation error incurred at each backpropagation step is displayed along the y-axis. Since each observable is treated individually, they are plotted separately.
+
+  This data is related to the one visualized by [`plot_accumulated_error()`](#qiskit_addon_obp.utils.visualization.plot_accumulated_error "qiskit_addon_obp.utils.visualization.plot_accumulated_error"). That method will plot the cumulative sum of the slice errors along the x-axis.
+
+  **Parameters**
+
+  *   **metadata** ([*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")) – the metadata to be visualized.
+  *   **axes** (*Axes*) – the matplotlib axes in which to plot.
+
+  **Return type**
+
+  None
+</Function>
+
+### plot\_num\_paulis
+
+<Function id="qiskit_addon_obp.utils.visualization.plot_num_paulis" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/visualization.py#L190-L235" signature="plot_num_paulis(metadata, axes)">
+  Plot the number of Pauli terms.
+
+  This method populates the provided figure axes with a line-plot of the number of Pauli terms at each backpropagated slice. Below is an example where we plot some `metadata` which exists within our context.
+
+  ```python
+  >>> from matplotlib import pyplot as plt
+  >>> from qiskit_addon_obp.utils.visualization import plot_num_paulis
+  >>> fig, axes = plt.subplots(1, 1)
+  >>> plot_num_paulis(metadata, axes)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-obp/0.1/qiskit_addon_obp-utils-visualization-8.avif)
+
+  As you can see in the figure above, the number of backpropagated slices is displayed along the x-axis. You can think of this as the “time” of the backpropagation algorithm. The number of Pauli terms at each backpropagation step is displayed along the y-axis. Since each observable is treated individually, they are plotted separately.
+
+  You can also find out the number of unique Pauli terms across all observables by using [`plot_sum_paulis()`](#qiskit_addon_obp.utils.visualization.plot_sum_paulis "qiskit_addon_obp.utils.visualization.plot_sum_paulis").
+
+  **Parameters**
+
+  *   **metadata** ([*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")) – the metadata to be visualized.
+  *   **axes** (*Axes*) – the matplotlib axes in which to plot.
+
+  **Return type**
+
+  None
+</Function>
+
+### plot\_num\_truncated\_paulis
+
+<Function id="qiskit_addon_obp.utils.visualization.plot_num_truncated_paulis" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/visualization.py#L238-L290" signature="plot_num_truncated_paulis(metadata, axes)">
+  Plot the number of truncated Pauli terms.
+
+  This method populates the provided figure axes with a bar-plot of the number of the truncated Pauli terms at each backpropagated slice. Below is an example where we plot some `metadata` which exists within our context.
+
+  ```python
+  >>> from matplotlib import pyplot as plt
+  >>> from qiskit_addon_obp.utils.visualization import plot_num_truncated_paulis
+  >>> fig, axes = plt.subplots(1, 1)
+  >>> plot_num_truncated_paulis(metadata, axes)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-obp/0.1/qiskit_addon_obp-utils-visualization-10.avif)
+
+  As you can see in the figure above, the number of backpropagated slices is displayed along the x-axis. You can think of this as the “time” of the backpropagation algorithm. The number of truncated Pauli terms at each backpropagation step is displayed along the y-axis. Since each observable is treated individually, they are plotted separately.
+
+  This data can give you additional insight as to how the accumulated error is split across multiple Pauli terms (see also the output of [`plot_accumulated_error()`](#qiskit_addon_obp.utils.visualization.plot_accumulated_error "qiskit_addon_obp.utils.visualization.plot_accumulated_error")).
+
+  **Parameters**
+
+  *   **metadata** ([*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")) – the metadata to be visualized.
+  *   **axes** (*Axes*) – the matplotlib axes in which to plot.
+
+  **Return type**
+
+  None
+</Function>
+
+### plot\_sum\_paulis
+
+<Function id="qiskit_addon_obp.utils.visualization.plot_sum_paulis" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/visualization.py#L293-L347" signature="plot_sum_paulis(metadata, axes)">
+  Plot the total number of all Pauli terms.
+
+  This method populates the provided figure axes with a line-plot of the total number of all Pauli terms at each backpropagated slice. Below is an example where we plot some `metadata` which exists within our context.
+
+  ```python
+  >>> from matplotlib import pyplot as plt
+  >>> from qiskit_addon_obp.utils.visualization import plot_sum_paulis
+  >>> fig, axes = plt.subplots(1, 1)
+  >>> plot_sum_paulis(metadata, axes)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-obp/0.1/qiskit_addon_obp-utils-visualization-12.avif)
+
+  As you can see in the figure above, the number of backpropagated slices is displayed along the x-axis. You can think of this as the “time” of the backpropagation algorithm. The total number of all Pauli terms at each backpropagation step is displayed along the y-axis. If `OBPMetadata.operator_budget.max_paulis` is not None, it is displayed as a red horizontal line.
+
+  This data can give you additional insight into how many unique Pauli terms are spread across all of the backpropagated observables. See also the output of [`plot_num_paulis()`](#qiskit_addon_obp.utils.visualization.plot_num_paulis "qiskit_addon_obp.utils.visualization.plot_num_paulis") for the number of Pauli terms in each observable individually.
+
+  **Parameters**
+
+  *   **metadata** ([*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")) – the metadata to be visualized.
+  *   **axes** (*Axes*) – the matplotlib axes in which to plot.
+
+  **Return type**
+
+  None
+</Function>
+
+### plot\_num\_qwc\_groups
+
+<Function id="qiskit_addon_obp.utils.visualization.plot_num_qwc_groups" github="https://github.com/Qiskit/qiskit-addon-obp/tree/stable/0.1/qiskit_addon_obp/utils/visualization.py#L350-L400" signature="plot_num_qwc_groups(metadata, axes)">
+  Plot the number of qubit-wise commuting Pauli groups.
+
+  This method populates the provided figure axes with a line-plot of the number of qubit-wise commuting Pauli groups at each backpropagated slice. Below is an example where we plot some `metadata` which exists within our context.
+
+  ```python
+  >>> from matplotlib import pyplot as plt
+  >>> from qiskit_addon_obp.utils.visualization import plot_num_qwc_groups
+  >>> fig, axes = plt.subplots(1, 1)
+  >>> plot_num_qwc_groups(metadata, axes)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit-addon-obp/0.1/qiskit_addon_obp-utils-visualization-14.avif)
+
+  As you can see in the figure above, the number of backpropagated slices is displayed along the x-axis. You can think of this as the “time” of the backpropagation algorithm. The number of qubit-wise commuting Pauli groups at each backpropagation step is displayed along the y-axis. If `OBPMetadata.operator_budget.max_qwc_groups` is not None, it is displayed as a red horizontal line.
+
+  **Parameters**
+
+  *   **metadata** ([*OBPMetadata*](utils-metadata-obp-metadata "qiskit_addon_obp.utils.metadata.OBPMetadata")) – the metadata to be visualized.
+  *   **axes** (*Axes*) – the matplotlib axes in which to plot.
+
+  **Return type**
+
+  None
+</Function>
+

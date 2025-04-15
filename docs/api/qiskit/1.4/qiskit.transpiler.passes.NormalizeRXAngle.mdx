@@ -1,0 +1,148 @@
+---
+title: NormalizeRXAngle (v1.4)
+description: API reference for qiskit.transpiler.passes.NormalizeRXAngle in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.NormalizeRXAngle
+---
+
+# NormalizeRXAngle
+
+<Class id="qiskit.transpiler.passes.NormalizeRXAngle" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/normalize_rx_angle.py#L30-L157" signature="qiskit.transpiler.passes.NormalizeRXAngle(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+
+  Normalize theta parameter of RXGate instruction.
+
+  The parameter normalization is performed with following steps.
+
+  1\) Wrap RX Gate theta into \[0, pi]. When theta is negative value, the gate is decomposed into the following sequence.
+
+  ```python
+     ┌───────┐┌─────────┐┌────────┐
+  q: ┤ Rz(π) ├┤ Rx(|θ|) ├┤ Rz(-π) ├
+     └───────┘└─────────┘└────────┘
+  ```
+
+  2.  If the operation is supported by target, convert RX(pi/2) to SX, and RX(pi) to X.
+  3.  Quantize theta value according to the user-specified resolution.
+
+  This will help reduce the size of calibration data sent over the wire, and allow us to exploit the more accurate, hardware-calibrated pulses. Note that pulse calibration might be attached per each rotation angle.
+
+  NormalizeRXAngle initializer.
+
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    The class `qiskit.transpiler.passes.optimization.normalize_rx_angle.NormalizeRXAngle` is deprecated as of qiskit 1.4. It will be removed in Qiskit 2.0. This pass was used as pre-processing step of `RXCalibrationBuilder`. With the removal of Pulse in Qiskit 2.0, this pass is no longer needed.
+  </Admonition>
+
+  **Parameters**
+
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. If the target contains SX and X calibrations, this pass will replace the corresponding RX gates with SX and X gates.
+  *   **resolution\_in\_radian** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Resolution for RX rotation angle quantization. If set to zero, this pass won’t modify the rotation angles in the given DAG. (=Provides arbitrary-angle RX)
+
+  ## Attributes
+
+  ### is\_analysis\_pass
+
+  <Attribute id="qiskit.transpiler.passes.NormalizeRXAngle.is_analysis_pass">
+    Check if the pass is an analysis pass.
+
+    If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+  </Attribute>
+
+  ### is\_transformation\_pass
+
+  <Attribute id="qiskit.transpiler.passes.NormalizeRXAngle.is_transformation_pass">
+    Check if the pass is a transformation pass.
+
+    If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+  </Attribute>
+
+  ## Methods
+
+  ### execute
+
+  <Function id="qiskit.transpiler.passes.NormalizeRXAngle.execute" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L189-L211" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)")) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.13)") *| None*) – A callback function which is caller per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.13)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit.transpiler.passes.NormalizeRXAngle.name" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/passmanager/base_tasks.py#L68-L70" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")
+  </Function>
+
+  ### quantize\_angles
+
+  <Function id="qiskit.transpiler.passes.NormalizeRXAngle.quantize_angles" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/normalize_rx_angle.py#L75-L97" signature="quantize_angles(qubit, original_angle)">
+    Quantize the RX rotation angles by assigning the same value for the angles that differ within a resolution provided by the user.
+
+    **Parameters**
+
+    *   **qubit** ([*qiskit.circuit.Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – This will be the dict key to access the list of quantized rotation angles.
+    *   **original\_angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Original rotation angle, before quantization.
+
+    **Returns**
+
+    Quantized angle.
+
+    **Return type**
+
+    [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")
+  </Function>
+
+  ### run
+
+  <Function id="qiskit.transpiler.passes.NormalizeRXAngle.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passes/optimization/normalize_rx_angle.py#L99-L157" signature="run(dag)">
+    Run the NormalizeRXAngle pass on `dag`.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – The DAG to be optimized.
+
+    **Returns**
+
+    A DAG with RX gate calibration.
+
+    **Return type**
+
+    [DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit.transpiler.passes.NormalizeRXAngle.update_status" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/basepasses.py#L213-L221" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
+  </Function>
+</Class>
+

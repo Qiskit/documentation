@@ -1,0 +1,80 @@
+---
+title: hamiltonian_variational_ansatz (v1.4)
+description: API reference for qiskit.circuit.library.hamiltonian_variational_ansatz in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.hamiltonian_variational_ansatz
+---
+
+<span id="hamiltonian-variational-ansatz" />
+
+# hamiltonian\_variational\_ansatz
+
+<Class id="qiskit.circuit.library.hamiltonian_variational_ansatz" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/n_local/evolved_operator_ansatz.py#L187-L276" signature="qiskit.circuit.library.hamiltonian_variational_ansatz(hamiltonian, reps=1, insert_barriers=False, name='HVA', parameter_prefix='t')" modifiers="class">
+  Bases:
+
+  Construct a Hamiltonian variational ansatz.
+
+  For a Hamiltonian $H = \sum_{k=1}^K H_k$ where the terms $H_k$ consist of only commuting Paulis, but the terms do not commute among each other $[H_k, H_{k'}] \neq 0$, the Hamiltonian variational ansatz (HVA) is
+
+$$
+\prod_{r=1}^{R} \left( \prod_{k=K}^1 e^{-i\theta_{k, r} H_k} \right)
+$$
+
+  where the exponentials $exp(-i\theta H_k)$ are implemented exactly \[1, 2]. Note that this differs from `evolved_operator_ansatz()`, where no assumptions on the structure of the operators are done.
+
+  The Hamiltonian can be passed as [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), in which case we split the Hamiltonian into commuting terms $\{H_k\}_k$. Note, that this may not be optimal and if the minimal set of commuting terms is known it can be passed as sequence into this function.
+
+  **Examples**
+
+  A single operator will be split into commuting terms automatically:
+
+  ```python
+  from qiskit.quantum_info import SparsePauliOp
+  from qiskit.circuit.library import hamiltonian_variational_ansatz
+
+  # this Hamiltonian will be split into the two terms [ZZI, IZZ] and [IXI]
+  hamiltonian = SparsePauliOp(["ZZI", "IZZ", "IXI"])
+  ansatz = hamiltonian_variational_ansatz(hamiltonian, reps=2)
+  ansatz.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-library-hamiltonian_variational_ansatz-1.avif)
+
+  Alternatively, we can directly provide the terms:
+
+  ```python
+  from qiskit.quantum_info import SparsePauliOp
+  from qiskit.circuit.library import hamiltonian_variational_ansatz
+
+  zz = SparsePauliOp(["ZZI", "IZZ"])
+  x = SparsePauliOp(["IXI"])
+  ansatz = hamiltonian_variational_ansatz([zz, x], reps=2)
+  ansatz.draw("mpl")
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-library-hamiltonian_variational_ansatz-2.avif)
+
+  **Parameters**
+
+  *   **hamiltonian** ([*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") *| Sequence\[*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")*]*) – The Hamiltonian to evolve. If given as single operator, it will be split into commuting terms. If a sequence of [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp"), then it is assumed that each element consists of commuting terms, but the elements do not commute among each other.
+  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of times to repeat the evolved operators.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to insert barriers in between each evolution.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the circuit.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Set the names of the circuit parameters. If a string, the same prefix will be used for each parameters. Can also be a list to specify a prefix per operator.
+
+  **Return type**
+
+  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+  **References**
+
+  **\[1] D. Wecker et al. Progress towards practical quantum variational algorithms (2015)**
+
+  [Phys Rev A 92, 042303](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.92.042303)
+
+  **\[2] R. Wiersema et al. Exploring entanglement and optimization within the Hamiltonian**
+
+  Variational Ansatz (2020) [arXiv:2008.02941](https://arxiv.org/abs/2008.02941)
+</Class>
+

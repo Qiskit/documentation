@@ -1,0 +1,51 @@
+---
+title: fourier_checking (v1.4)
+description: API reference for qiskit.circuit.library.fourier_checking in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.fourier_checking
+---
+
+<span id="fourier-checking" />
+
+# fourier\_checking
+
+<Class id="qiskit.circuit.library.fourier_checking" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/fourier_checking.py#L104-L160" signature="qiskit.circuit.library.fourier_checking(f, g)" modifiers="class">
+  Bases:
+
+  Fourier checking circuit.
+
+  The circuit for the Fourier checking algorithm, introduced in \[1], involves a layer of Hadamards, the function $f$, another layer of Hadamards, the function $g$, followed by a final layer of Hadamards. The functions $f$ and $g$ are classical functions realized as phase oracles (diagonal operators with \{-1, 1} on the diagonal).
+
+  The probability of observing the all-zeros string is $p(f,g)$. The algorithm solves the promise Fourier checking problem, which decides if f is correlated with the Fourier transform of g, by testing if $p(f,g) <= 0.01$ or $p(f,g) >= 0.05$, promised that one or the other of these is true.
+
+  The functions $f$ and $g$ are currently implemented from their truth tables but could be represented concisely and implemented efficiently for special classes of functions.
+
+  Fourier checking is a special case of $k$-fold forrelation \[2].
+
+  **Reference Circuit:**
+
+  ```python
+  from qiskit.circuit.library import fourier_checking
+  circuit = fourier_checking([1, -1, -1, -1], [1, 1, -1, -1])
+  circuit.draw('mpl')
+  ```
+
+  ![Circuit diagram output by the previous code.](/images/api/qiskit/1.4/qiskit-circuit-library-fourier_checking-1.avif)
+
+  **Reference:**
+
+  \[1] S. Aaronson, BQP and the Polynomial Hierarchy, 2009 (Section 3.2). [arXiv:0910.4698](https://arxiv.org/abs/0910.4698)
+
+  \[2] S. Aaronson, A. Ambainis, Forrelation: a problem that optimally separates quantum from classical computing, 2014. [arXiv:1411.5729](https://arxiv.org/abs/1411.5729)
+
+  **Parameters**
+
+  *   **f** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+  *   **g** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+
+  **Return type**
+
+  [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+</Class>
+

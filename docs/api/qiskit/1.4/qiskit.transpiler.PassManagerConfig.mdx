@@ -1,0 +1,79 @@
+---
+title: PassManagerConfig (v1.4)
+description: API reference for qiskit.transpiler.PassManagerConfig in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.PassManagerConfig
+---
+
+# PassManagerConfig
+
+<Class id="qiskit.transpiler.PassManagerConfig" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passmanager_config.py#L24-L227" signature="qiskit.transpiler.PassManagerConfig(initial_layout=None, basis_gates=None, inst_map=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, qubits_initially_zero=True)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  Pass Manager Configuration.
+
+  Initialize a PassManagerConfig object
+
+  <Admonition title="Deprecated since version 1.3" type="danger">
+    `qiskit.transpiler.passmanager_config.PassManagerConfig.__init__()`’s argument `inst_map` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and this argument uses a dependency on the package.
+  </Admonition>
+
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    `qiskit.transpiler.passmanager_config.PassManagerConfig.__init__()`’s argument `backend_properties` is deprecated as of Qiskit 1.4. It will be removed in Qiskit 2.0. The BackendProperties data structure has been deprecated and will be removed in Qiskit 2.0. The target input argument should be used instead. You can use Target.from\_configuration() to build the target from the properties object, but in 2.0 you will need to generate a target directly.
+  </Admonition>
+
+  **Parameters**
+
+  *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – Initial position of virtual qubits on physical qubits.
+  *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – List of basis gate names to unroll to.
+  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping object that maps gate to schedule.
+  *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
+  *   **layout\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the pass to use for choosing initial qubit placement. This will be the plugin name if an external layout stage plugin is being used.
+  *   **routing\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the pass to use for routing qubits on the architecture. This will be a plugin name if an external routing stage plugin is being used.
+  *   **translation\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the pass to use for translating gates to basis\_gates. This will be a plugin name if an external translation stage plugin is being used.
+  *   **scheduling\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – the pass to use for scheduling instructions. This will be a plugin name if an external scheduling stage plugin is being used.
+  *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
+  *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
+  *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
+  *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Sets random seed for the stochastic parts of the transpiler.
+  *   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
+  *   **unitary\_synthesis\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The string method to use for the [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") pass. Will search installed plugins for a valid method. You can see a list of installed plugins with [`unitary_synthesis_plugin_names()`](qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names "qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names").
+  *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The backend target
+  *   **hls\_config** ([*HLSConfig*](qiskit.transpiler.passes.HLSConfig "qiskit.transpiler.passes.HLSConfig")) – An optional configuration class to use for [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") pass. Specifies how to synthesize various high-level objects.
+  *   **init\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The plugin name for the init stage plugin to use
+  *   **optimization\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The plugin name for the optimization stage plugin to use.
+  *   **qubits\_initially\_zero** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Indicates whether the input circuit is zero-initialized.
+
+  ## Methods
+
+  ### from\_backend
+
+  <Function id="qiskit.transpiler.PassManagerConfig.from_backend" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/transpiler/passmanager_config.py#L126-L198" signature="from_backend(backend, _skip_target=False, **pass_manager_options)" modifiers="classmethod">
+    Construct a configuration based on a backend and user input.
+
+    This method automatically generates a PassManagerConfig object based on the backend’s features. User options can be used to overwrite the configuration.
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The method `PassManagerConfig.from_backend` will stop supporting inputs of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") in the backend parameter in a future release no earlier than 2.0. [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") is deprecated and implementations should move to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
+    </Admonition>
+
+    **Parameters**
+
+    *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *or*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend that provides the configuration.
+    *   **pass\_manager\_options** – User-defined option-value pairs.
+
+    **Returns**
+
+    The configuration generated based on the arguments.
+
+    **Return type**
+
+    [PassManagerConfig](#qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – If the backend does not support a configuration() method.
+  </Function>
+</Class>
+

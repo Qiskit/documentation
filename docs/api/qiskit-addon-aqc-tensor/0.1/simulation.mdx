@@ -1,0 +1,201 @@
+---
+title: simulation (v0.1)
+description: API reference for qiskit_addon_aqc_tensor.simulation in qiskit-addon-aqc-tensor v0.1
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_aqc_tensor.simulation
+---
+
+<span id="module-qiskit_addon_aqc_tensor.simulation" />
+
+<span id="tensor-network-simulation-qiskit-addon-aqc-tensor-simulation" />
+
+# Tensor network simulation
+
+`qiskit_addon_aqc_tensor.simulation`
+
+This module provides an interface to tensor-network simulation that is agnostic to which backend is used.
+
+Currently, there is a single implementation, which uses the Qiskit Aer matrix-product state (MPS) simulator as its backend.
+
+## Available backends
+
+*   [`qiskit_addon_aqc_tensor.simulation.aer`](simulation-aer#module-qiskit_addon_aqc_tensor.simulation.aer "qiskit_addon_aqc_tensor.simulation.aer")
+*   [`qiskit_addon_aqc_tensor.simulation.quimb`](simulation-quimb#module-qiskit_addon_aqc_tensor.simulation.quimb "qiskit_addon_aqc_tensor.simulation.quimb")
+
+## Functions
+
+The following functions provide a common interface that can be used with any supported backend. Regardless of which backend you use, you will invoke these functions as a common interface.
+
+In each function below, the documentation shows every distinct implementation available for that function. The addon will choose which implementation to use based on the types of the arguments that you provide. (This paradigm is called “multiple dispatch”.)
+
+### tensornetwork\_from\_circuit
+
+<Function id="qiskit_addon_aqc_tensor.simulation.tensornetwork_from_circuit" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="tensornetwork_from_circuit(qc, settings, /)">
+  Create a tensor-network state by simulating a quantum circuit.
+
+  The type of tensor-network state will correspond to the type of the `settings` object. For instance, a [`QiskitAerSimulationSettings`](simulation-aer-qiskit-aer-simulation-settings "qiskit_addon_aqc_tensor.simulation.aer.QiskitAerSimulationSettings") will result in this function returning a [`QiskitAerMPS`](simulation-aer-qiskit-aer-mps "qiskit_addon_aqc_tensor.simulation.aer.QiskitAerMPS").
+
+  <Function github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="tensornetwork_from_circuit(qc: qiskit.circuit.quantumcircuit.QuantumCircuit, settings: qiskit_addon_aqc_tensor.simulation.aer.simulation.QiskitAerSimulationSettings | plum.type.ModuleType[qiskit_aer.AerSimulator], /, *, out_state: numpy.ndarray | None = None) → qiskit_addon_aqc_tensor.simulation.aer.state.QiskitAerMPS">
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+    *   **settings** ([*TensorNetworkSimulationSettings*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings"))
+
+    **Return type**
+
+    [*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")
+  </Function>
+
+  <Function github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="tensornetwork_from_circuit(qc: qiskit.circuit.quantumcircuit.QuantumCircuit, settings: qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator, /) → quimb.tensor.Circuit">
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+    *   **settings** ([*TensorNetworkSimulationSettings*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings"))
+
+    **Return type**
+
+    [*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")
+  </Function>
+
+  **Return type**
+
+  [`TensorNetworkState`](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")
+
+  **Parameters**
+
+  *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+  *   **settings** ([*TensorNetworkSimulationSettings*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings"))
+</Function>
+
+### apply\_circuit\_to\_state
+
+<Function id="qiskit_addon_aqc_tensor.simulation.apply_circuit_to_state" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="apply_circuit_to_state(qc, psi, settings, /, *, out_state=None)">
+  Apply a quantum circuit to a tensor network state.
+
+  The input state (`psi`) is not modified.
+
+  **Return type**
+
+  [`TensorNetworkState`](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")
+
+  **Returns**
+
+  The new state.
+
+  **Parameters**
+
+  *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+  *   **psi** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+  *   **settings** ([*TensorNetworkSimulationSettings*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings"))
+  *   **out\_state** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") *| None*)
+
+  <Function github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="apply_circuit_to_state(qc: qiskit.circuit.quantumcircuit.QuantumCircuit, psi: qiskit_addon_aqc_tensor.simulation.aer.state.QiskitAerMPS, settings: qiskit_addon_aqc_tensor.simulation.aer.simulation.QiskitAerSimulationSettings | plum.type.ModuleType[qiskit_aer.AerSimulator], /, *, out_state: numpy.ndarray | None = None) → qiskit_addon_aqc_tensor.simulation.aer.state.QiskitAerMPS">
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+    *   **psi** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+    *   **settings** ([*TensorNetworkSimulationSettings*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings"))
+    *   **out\_state** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") *| None*)
+
+    **Return type**
+
+    [*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")
+  </Function>
+
+  <Function github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="apply_circuit_to_state(qc: qiskit.circuit.quantumcircuit.QuantumCircuit, circ0: plum.type.ModuleType[quimb.tensor.Circuit], settings: qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator, /, *, out_state: numpy.ndarray | None = None) → quimb.tensor.Circuit">
+    **Parameters**
+
+    *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+    *   **psi** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+    *   **settings** ([*TensorNetworkSimulationSettings*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings"))
+    *   **out\_state** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") *| None*)
+
+    **Return type**
+
+    [*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")
+  </Function>
+
+  Apply a quantum circuit to a tensor network state.
+
+  The input state (`psi`) is not modified.
+
+  **Returns**
+
+  The new state.
+
+  **Parameters**
+
+  *   **qc** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)"))
+  *   **psi** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+  *   **settings** ([*TensorNetworkSimulationSettings*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings"))
+  *   **out\_state** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") *| None*)
+
+  **Return type**
+
+  [*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")
+</Function>
+
+### compute\_overlap
+
+<Function id="qiskit_addon_aqc_tensor.simulation.compute_overlap" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="compute_overlap(psi_1, psi_2, /)">
+  Compute overlap of two quantum states: $\langle \psi_1 | \psi_2 \rangle$.
+
+  NOTE: Unlike `numpy.dot`, implementations of this method will perform complex conjugation on the first argument.
+
+  **Parameters**
+
+  *   **psi\_1** ([`TensorNetworkState`](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")) – first quantum state.
+  *   **psi\_2** ([`TensorNetworkState`](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")) – second quantum state.
+
+  **Return type**
+
+  [`complex`](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+
+  **Returns**
+
+  complex dot product value.
+
+  <Function github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="compute_overlap(mps1: qiskit_addon_aqc_tensor.simulation.aer.state.QiskitAerMPS, mps2: qiskit_addon_aqc_tensor.simulation.aer.state.QiskitAerMPS, /) → complex">
+    **Parameters**
+
+    *   **psi\_1** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+    *   **psi\_2** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+
+    **Return type**
+
+    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+  </Function>
+
+  <Function github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py" signature="compute_overlap(circ1: plum.type.ModuleType[quimb.tensor.Circuit], circ2: plum.type.ModuleType[quimb.tensor.Circuit], /) → complex">
+    **Parameters**
+
+    *   **psi\_1** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+    *   **psi\_2** ([*TensorNetworkState*](#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState"))
+
+    **Return type**
+
+    [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.13)")
+  </Function>
+</Function>
+
+## Abstract classes
+
+These are abstract classes, implemented by each backend.
+
+### TensorNetworkState
+
+<Class id="qiskit_addon_aqc_tensor.simulation.TensorNetworkState" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py#L24-L25" signature="TensorNetworkState" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  Abstract tensor network state.
+</Class>
+
+### TensorNetworkSimulationSettings
+
+<Class id="qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/abstract.py#L28-L29" signature="TensorNetworkSimulationSettings" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  Abstract truncation settings.
+</Class>
+

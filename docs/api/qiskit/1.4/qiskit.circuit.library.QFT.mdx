@@ -1,0 +1,367 @@
+---
+title: QFT (v1.4)
+description: API reference for qiskit.circuit.library.QFT in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QFT
+---
+
+# QFT
+
+<Class id="qiskit.circuit.library.QFT" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/basis_change/qft.py#L23-L279" signature="qiskit.circuit.library.QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)" modifiers="class">
+  Bases: `BlueprintCircuit`
+
+  Quantum Fourier Transform Circuit.
+
+  The Quantum Fourier Transform (QFT) on $n$ qubits is the operation
+
+$$
+|j\rangle \mapsto \frac{1}{2^{n/2}} \sum_{k=0}^{2^n - 1} e^{2\pi ijk / 2^n} |k\rangle
+$$
+
+  The circuit that implements this transformation can be implemented using Hadamard gates on each qubit, a series of controlled-U1 (or Z, depending on the phase) gates and a layer of Swap gates. The layer of Swap gates can in principle be dropped if the QFT appears at the end of the circuit, since then the re-ordering can be done classically. They can be turned off using the `do_swaps` attribute.
+
+  For 4 qubits, the circuit that implements this transformation is:
+
+  ![Diagram illustrating the previously described circuit.](/images/api/qiskit/1.4/qiskit-circuit-library-QFT-1.avif)
+
+  The inverse QFT can be obtained by calling the `inverse` method on this class. The respective circuit diagram is:
+
+  ![Diagram illustrating the previously described circuit.](/images/api/qiskit/1.4/qiskit-circuit-library-QFT-2.avif)
+
+  One method to reduce circuit depth is to implement the QFT approximately by ignoring controlled-phase rotations where the angle is beneath a threshold. This is discussed in more detail in [https://arxiv.org/abs/quant-ph/9601018](https://arxiv.org/abs/quant-ph/9601018) or [https://arxiv.org/abs/quant-ph/0403071](https://arxiv.org/abs/quant-ph/0403071).
+
+  Here, this can be adjusted using the `approximation_degree` attribute: the smallest `approximation_degree` rotation angles are dropped from the QFT. For instance, a QFT on 5 qubits with approximation degree 2 yields (the barriers are dropped in this example):
+
+  ![Diagram illustrating the previously described circuit.](/images/api/qiskit/1.4/qiskit-circuit-library-QFT-3.avif)
+
+  Construct a new QFT circuit.
+
+  <Admonition title="Deprecated since version 1.3_pending" type="danger">
+    The class `qiskit.circuit.library.basis_change.qft.QFT` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. (‘Use qiskit.circuit.library.QFTGate or qiskit.synthesis.qft.synth\_qft\_full instead, for access to all previous arguments.’,)
+  </Admonition>
+
+  **Parameters**
+
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – The number of qubits on which the QFT acts.
+  *   **approximation\_degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The degree of approximation (0 for no approximation).
+  *   **do\_swaps** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to include the final swaps in the QFT.
+  *   **inverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, the inverse Fourier transform is constructed.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, barriers are inserted as visualization improvement.
+  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – The name of the circuit.
+
+  ## Attributes
+
+  ### ancillas
+
+  <Attribute id="qiskit.circuit.library.QFT.ancillas">
+    A list of `AncillaQubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### approximation\_degree
+
+  <Attribute id="qiskit.circuit.library.QFT.approximation_degree">
+    The approximation degree of the QFT.
+
+    **Returns**
+
+    The currently set approximation degree.
+  </Attribute>
+
+  ### calibrations
+
+  <Attribute id="qiskit.circuit.library.QFT.calibrations">
+    Return calibration dictionary.
+
+    The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`
+
+    <Admonition title="Deprecated since version 1.3" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.circuit.quantumcircuit.QuantumCircuit.calibrations` will have no alternative in Qiskit.
+    </Admonition>
+  </Attribute>
+
+  ### clbits
+
+  <Attribute id="qiskit.circuit.library.QFT.clbits">
+    A list of `Clbit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### data
+
+  <Attribute id="qiskit.circuit.library.QFT.data">
+    The circuit data (instructions and context).
+
+    **Returns**
+
+    a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+
+    **Return type**
+
+    QuantumCircuitData
+  </Attribute>
+
+  ### do\_swaps
+
+  <Attribute id="qiskit.circuit.library.QFT.do_swaps">
+    Whether the final swaps of the QFT are applied or not.
+
+    **Returns**
+
+    True, if the final swaps are applied, False if not.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.QFT.duration">
+    The total duration of the circuit, set by a scheduling transpiler pass. Its unit is specified by [`unit`](#qiskit.circuit.library.QFT.unit "qiskit.circuit.library.QFT.unit").
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### global\_phase
+
+  <Attribute id="qiskit.circuit.library.QFT.global_phase">
+    The global phase of the current circuit scope in radians.
+  </Attribute>
+
+  ### insert\_barriers
+
+  <Attribute id="qiskit.circuit.library.QFT.insert_barriers">
+    Whether barriers are inserted for better visualization or not.
+
+    **Returns**
+
+    True, if barriers are inserted, False if not.
+  </Attribute>
+
+  ### instances
+
+  <Attribute id="qiskit.circuit.library.QFT.instances" attributeValue="160" />
+
+  ### layout
+
+  <Attribute id="qiskit.circuit.library.QFT.layout">
+    Return any associated layout information about the circuit
+
+    This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
+
+    There are two types of permutations caused by the [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") function, an initial layout which permutes the qubits based on the selected physical qubits on the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), and a final layout which is an output permutation caused by [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")s inserted during routing.
+  </Attribute>
+
+  ### metadata
+
+  <Attribute id="qiskit.circuit.library.QFT.metadata">
+    Arbitrary user-defined metadata for the circuit.
+
+    Qiskit will not examine the content of this mapping, but it will pass it through the transpiler and reattach it to the output, so you can track your own metadata.
+  </Attribute>
+
+  ### num\_ancillas
+
+  <Attribute id="qiskit.circuit.library.QFT.num_ancillas">
+    Return the number of ancilla qubits.
+  </Attribute>
+
+  ### num\_captured\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_captured_vars">
+    The number of real-time classical variables in the circuit marked as captured from an enclosing scope.
+
+    This is the length of the `iter_captured_vars()` iterable. If this is non-zero, [`num_input_vars`](#qiskit.circuit.library.QFT.num_input_vars "qiskit.circuit.library.QFT.num_input_vars") must be zero.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.QFT.num_clbits">
+    Return number of classical bits.
+  </Attribute>
+
+  ### num\_declared\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_declared_vars">
+    The number of real-time classical variables in the circuit that are declared by this circuit scope, excluding inputs or captures.
+
+    This is the length of the `iter_declared_vars()` iterable.
+  </Attribute>
+
+  ### num\_input\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_input_vars">
+    The number of real-time classical variables in the circuit marked as circuit inputs.
+
+    This is the length of the `iter_input_vars()` iterable. If this is non-zero, [`num_captured_vars`](#qiskit.circuit.library.QFT.num_captured_vars "qiskit.circuit.library.QFT.num_captured_vars") must be zero.
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="qiskit.circuit.library.QFT.num_parameters">
+    The number of parameter objects in the circuit.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.QFT.num_qubits">
+    The number of qubits in the QFT circuit.
+
+    **Returns**
+
+    The number of qubits in the circuit.
+  </Attribute>
+
+  ### num\_vars
+
+  <Attribute id="qiskit.circuit.library.QFT.num_vars">
+    The number of real-time classical variables in the circuit.
+
+    This is the length of the `iter_vars()` iterable.
+  </Attribute>
+
+  ### op\_start\_times
+
+  <Attribute id="qiskit.circuit.library.QFT.op_start_times">
+    Return a list of operation start times.
+
+    This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
+
+    **Returns**
+
+    List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
+
+    **Raises**
+
+    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.13)") – When circuit is not scheduled.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="qiskit.circuit.library.QFT.parameters">
+    The parameters defined in the circuit.
+
+    This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
+
+    **Examples**
+
+    The snippet below shows that insertion order of parameters does not matter.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> a, b, elephant = Parameter("a"), Parameter("b"), Parameter("elephant")
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.rx(b, 0)
+    >>> circuit.rz(elephant, 0)
+    >>> circuit.ry(a, 0)
+    >>> circuit.parameters  # sorted alphabetically!
+    ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
+    ```
+
+    Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter
+    >>> angles = [Parameter("angle_1"), Parameter("angle_2"), Parameter("angle_10")]
+    >>> circuit = QuantumCircuit(1)
+    >>> circuit.u(*angles, 0)
+    >>> circuit.draw()
+       ┌─────────────────────────────┐
+    q: ┤ U(angle_1,angle_2,angle_10) ├
+       └─────────────────────────────┘
+    >>> circuit.parameters
+    ParameterView([Parameter(angle_1), Parameter(angle_10), Parameter(angle_2)])
+    ```
+
+    To respect numerical sorting, a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") can be used.
+
+    ```python
+    >>> from qiskit.circuit import QuantumCircuit, Parameter, ParameterVector
+    >>> x = ParameterVector("x", 12)
+    >>> circuit = QuantumCircuit(1)
+    >>> for x_i in x:
+    ...     circuit.rx(x_i, 0)
+    >>> circuit.parameters
+    ParameterView([
+        ParameterVectorElement(x[0]), ParameterVectorElement(x[1]),
+        ParameterVectorElement(x[2]), ParameterVectorElement(x[3]),
+        ..., ParameterVectorElement(x[11])
+    ])
+    ```
+
+    **Returns**
+
+    The sorted [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+  </Attribute>
+
+  ### prefix
+
+  <Attribute id="qiskit.circuit.library.QFT.prefix" attributeValue="'circuit'" />
+
+  ### qregs
+
+  <Attribute id="qiskit.circuit.library.QFT.qregs" attributeTypeHint="list[QuantumRegister]">
+    A list of the `QuantumRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ### qubits
+
+  <Attribute id="qiskit.circuit.library.QFT.qubits">
+    A list of `Qubit`s in the order that they were added. You should not mutate this.
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.QFT.unit">
+    The unit that [`duration`](#qiskit.circuit.library.QFT.duration "qiskit.circuit.library.QFT.duration") is specified in.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.quantumcircuit.QuantumCircuit.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.QFT.name" attributeTypeHint="str">
+    A human-readable name for the circuit.
+  </Attribute>
+
+  ### cregs
+
+  <Attribute id="qiskit.circuit.library.QFT.cregs" attributeTypeHint="list[ClassicalRegister]">
+    A list of the `ClassicalRegister`s in this circuit. You should not mutate this.
+  </Attribute>
+
+  ## Methods
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.QFT.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/basis_change/qft.py#L216-L244" signature="inverse(annotated=False)">
+    Invert this circuit.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the inverse gate can be implemented as an annotated gate. The value of this argument is ignored as the inverse of a QFT is an IQFT which is just another instance of [`QFT`](#qiskit.circuit.library.QFT "qiskit.circuit.library.QFT").
+
+    **Returns**
+
+    The inverted circuit.
+
+    **Return type**
+
+    [*QFT*](#qiskit.circuit.library.QFT "qiskit.circuit.library.basis_change.qft.QFT")
+  </Function>
+
+  ### is\_inverse
+
+  <Function id="qiskit.circuit.library.QFT.is_inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/basis_change/qft.py#L208-L214" signature="is_inverse()">
+    Whether the inverse Fourier transform is implemented.
+
+    **Returns**
+
+    True, if the inverse Fourier transform is implemented, False otherwise.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")
+  </Function>
+</Class>
+

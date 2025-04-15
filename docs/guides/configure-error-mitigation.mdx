@@ -103,7 +103,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value.](/images/optimize/resilience-2.svg "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise amplification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise-amplified values.  There is a horizontal line just above the X-axis labeled Exact value.](/images/guides/configure-error-mitigation/resilience-2.svg "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,
@@ -172,6 +172,7 @@ print(f">>> measurement error mitigation is turned on: {estimator.options.resili
 from qiskit_ibm_runtime import SamplerV2 as Sampler
 
 # Estimator and Sampler have different options
+sampler = Sampler(backend)
 options = sampler.options
 
 options.dynamical_decoupling.enable = True

@@ -1,0 +1,67 @@
+---
+title: Set up custom roles
+description: How to set up custom roles that provide access to a specific set of actions
+platform: cloud
+---
+
+# Set up custom roles
+
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/admin/)
+</Admonition>
+
+When account owners and administrators set up user access for an account, they assign roles (example: Editor, Viewer, Operator, and so on) to [access policies and access groups](/guides/access-groups), and then assign users to those policies or groups. A user can perform all the actions mapped to the role or roles that have been assigned to their access group or policy.
+
+In addition to the pre-configured roles listed on the [Roles](https://cloud.ibm.com/iam/roles) page, account owners and administrators can create roles that better match their needs. For example, you can create a custom role that grants a user access to view account usage analytics without granting any other management access. The next section gives a step-by-step demonstration of this example.
+
+<span id="custom"></span>
+## Example: create a custom role that allows users to perform actions to work with IBM Quantum service instances
+
+This custom role grants quantum-specific roles to users.
+
+
+1. From [Manage → IAM → Roles](https://cloud.ibm.com/iam/roles), click `Create`.
+2. Enter a name, ID, description, and select `Qiskit Runtime` for the service.
+3. Select the following roles, then click **Create**.
+    * quantum-computing.device.read
+    * quantum-computing.job.cancel
+    * quantum-computing.job.create
+    * quantum-computing.job.read
+    * quantum-computing.program.create
+    * quantum-computing.program.delete
+    * quantum-computing.program.read
+    * quantum-computing.program.update
+    * quantum-computing.user.logout
+    * Select quantum-computing.job.delete if you want to allow users to delete jobs.
+
+## Example: create a custom role for a user to view analytics only
+
+1. Go to [Manage → IAM → Roles](https://cloud.ibm.com/iam/roles) in IBM Cloud. Select the Qiskit Runtime service from the dropdown menu to see the roles that currently exist for this service.
+
+2. Click the **Create +** button.
+
+3. Enter a name for the custom role, such as `Analytics Viewer`.
+
+4. Enter an ID. You can input any unique string for this ID, as long as it starts with a capital letter, and contains only alphanumeric characters (no spaces) - for example, `AnalyticsViewer`.
+
+5. Enter a description for the custom role. In this example, an appropriate description might be "As an Analytics Viewer, you can view account analytics only."
+
+6. In the Service dropdown menu, choose Qiskit Runtime. A table appears that contains all the actions that you can map to the role.
+
+7. For this example, look for any actions that pertain to analytics, such as "Read usage filters for analytics" and "Read usage for analytics". To add the actions to your custom role, click Add at the end of the action's row.
+
+8. Once you have added all the actions you want mapped to the role, click Create.
+
+9. Go to [Manage → IAM → Access groups](https://cloud.ibm.com/iam/groups). Click **Create +** to create a new access role. (It is recommended to create a new access group especially for this role, rather than add the role to your Public Access group, unless you want all your users to have the access granted by your custom role.) Once you have clicked **Create +** and named your new group (or, in the case of editing an existing access group, once you have clicked the name of the access group to edit), then click the Access tab. Click **Assign access +**.
+
+10. Under Service, select Qiskit Runtime, then click Next.
+
+11. Under Resources, select All resources, then click Next. (Note that if you do not scope the access to all resources, the Analytics Viewer role will not be able to see analytics from all instances.)
+
+12. Under Roles and actions, check the Viewer box (under Platform) and the Analytics Viewer box (under Custom access), then click Next.
+
+13. Click **Add >**, then click Assign. You have now created a policy that includes your custom role as well as the Viewer role.
+
+14. View the access group, and click the Users tab to add a user to this group. This user will now be able to perform the actions in your custom role (as well as the other roles you assigned to the policy).
+
+To learn more, see the [Creating custom roles](https://cloud.ibm.com/docs/account?topic=account-custom-roles) and the [What are IAM policies and who can assign them?](https://cloud.ibm.com/docs/account?topic=account-iamusermanpol) topics.

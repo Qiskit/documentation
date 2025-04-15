@@ -8,8 +8,8 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
 # IBMBackend
 
-<Class id="qiskit_ibm_runtime.IBMBackend" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L64-L571" signature="IBMBackend(configuration, service, api_client, instance=None)" modifiers="class">
-  Bases: [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v1.4)")
+<Class id="qiskit_ibm_runtime.IBMBackend" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L64-L579" signature="IBMBackend(configuration, service, api_client, instance=None)" modifiers="class">
+  Bases: [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2 "(in Qiskit v2.0)")
 
   Backend class interfacing with an IBM Quantum backend.
 
@@ -33,7 +33,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   >
   > *   num\_qubits: number of qubits.
   >
-  > *   target: A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.4)") object for the backend.
+  > *   target: A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.0)") object for the backend.
   >
   > *   basis\_gates: list of basis gates names on the backend.
   >
@@ -137,7 +137,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### coupling\_map
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.coupling_map">
-    Return the [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v1.4)") object
+    Return the [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v2.0)") object
   </Attribute>
 
   ### dt
@@ -173,17 +173,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### instruction\_durations
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.instruction_durations">
-    Return the [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v1.4)") object.
-  </Attribute>
-
-  ### instruction\_schedule\_map
-
-  <Attribute id="qiskit_ibm_runtime.IBMBackend.instruction_schedule_map">
-    Return the [InstructionScheduleMap](/api/qiskit/1.4/qiskit.pulse.InstructionScheduleMap "(in Qiskit v1.4)") for the instructions defined in this backend’s target.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The property `qiskit.providers.backend.BackendV2.instruction_schedule_map` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.instruction_schedule_map` will have no alternative in Qiskit.
-    </Admonition>
+    Return the [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v2.0)") object.
   </Attribute>
 
   ### instructions
@@ -231,7 +221,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### operations
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.operations">
-    A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v1.4)") instances that the backend supports.
+    A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction "(in Qiskit v2.0)") instances that the backend supports.
   </Attribute>
 
   ### options
@@ -245,15 +235,15 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### provider
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.provider">
-    Return the backend Provider.
+    Return the backend provider.
 
     **Returns**
 
-    the Provider responsible for the backend.
+    the provider responsible for the backend.
 
     **Return type**
 
-    Provider
+    provider
   </Attribute>
 
   ### service
@@ -273,7 +263,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### target
 
   <Attribute id="qiskit_ibm_runtime.IBMBackend.target">
-    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.4)") object for the backend.
+    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.0)") object for the backend.
 
     **Returns**
 
@@ -312,7 +302,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### \_\_call\_\_
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.__call__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L479-L481" signature="__call__()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.__call__" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L487-L489" signature="__call__()">
     Call self as a function.
 
     **Return type**
@@ -320,42 +310,14 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     [*IBMBackend*](#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
   </Function>
 
-  ### acquire\_channel
-
-  <Function id="qiskit_ibm_runtime.IBMBackend.acquire_channel" signature="acquire_channel(qubit)">
-    Return the acquisition channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.acquire_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.acquire_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Returns**
-
-    The Qubit measurement acquisition line.
-
-    **Return type**
-
-    AcquireChannel
-
-    **Raises**
-
-    **NotImplementedError** – if the backend doesn’t support querying the measurement mapping
-
-    **Parameters**
-
-    **qubit** (*int*)
-  </Function>
-
   ### check\_faulty
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L503-L535" signature="check_faulty(circuit)">
+  <Function id="qiskit_ibm_runtime.IBMBackend.check_faulty" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L511-L543" signature="check_faulty(circuit)">
     Check if the input circuit uses faulty qubits or edges.
 
     **Parameters**
 
-    **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – Circuit to check.
+    **circuit** ([*QuantumCircuit*](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v2.0)")) – Circuit to check.
 
     **Raises**
 
@@ -368,7 +330,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### configuration
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L450-L474" signature="configuration()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.configuration" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L458-L482" signature="configuration()">
     Return the backend configuration.
 
     Backend configuration contains fixed information about the backend, such as its name, number of qubits, basis gates, coupling map, quantum volume, etc.
@@ -396,40 +358,10 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     *QasmBackendConfiguration*
   </Function>
 
-  ### control\_channel
-
-  <Function id="qiskit_ibm_runtime.IBMBackend.control_channel" signature="control_channel(qubits)">
-    Return the secondary drive channel for the given qubit
-
-    This is typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.control_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.control_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Parameters**
-
-    **qubits** (*Iterable\[int]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
-
-    **Returns**
-
-    The multi qubit control line.
-
-    **Return type**
-
-    List\[ControlChannel]
-
-    **Raises**
-
-    **NotImplementedError** – if the backend doesn’t support querying the measurement mapping
-  </Function>
-
   ### defaults
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L427-L448" signature="defaults(refresh=False)">
-    Return the pulse defaults for the backend.
+  <Function id="qiskit_ibm_runtime.IBMBackend.defaults" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L427-L456" signature="defaults(refresh=False)">
+    (DEPRECATED) Return the pulse defaults for the backend.
 
     The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-schemas/default\_pulse\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json).
 
@@ -446,70 +378,14 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
     *PulseDefaults* | None
   </Function>
 
-  ### drive\_channel
-
-  <Function id="qiskit_ibm_runtime.IBMBackend.drive_channel" signature="drive_channel(qubit)">
-    Return the drive channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.drive_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.drive_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Returns**
-
-    The Qubit drive channel
-
-    **Return type**
-
-    DriveChannel
-
-    **Raises**
-
-    **NotImplementedError** – if the backend doesn’t support querying the measurement mapping
-
-    **Parameters**
-
-    **qubit** (*int*)
-  </Function>
-
   ### get\_translation\_stage\_plugin
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.get_translation_stage_plugin" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L567-L571" signature="get_translation_stage_plugin()">
+  <Function id="qiskit_ibm_runtime.IBMBackend.get_translation_stage_plugin" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L575-L579" signature="get_translation_stage_plugin()">
     Return the default translation stage plugin name for IBM backends.
 
     **Return type**
 
     str
-  </Function>
-
-  ### measure\_channel
-
-  <Function id="qiskit_ibm_runtime.IBMBackend.measure_channel" signature="measure_channel(qubit)">
-    Return the measure stimulus channel for the given qubit.
-
-    This is required to be implemented if the backend supports Pulse scheduling.
-
-    <Admonition title="Deprecated since version 1.3" type="danger">
-      The method `qiskit.providers.backend.BackendV2.measure_channel()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that once removed, `qiskit.providers.backend.BackendV2.measure_channel()` will have no alternative in Qiskit.
-    </Admonition>
-
-    **Returns**
-
-    The Qubit measurement stimulus line
-
-    **Return type**
-
-    MeasureChannel
-
-    **Raises**
-
-    **NotImplementedError** – if the backend doesn’t support querying the measurement mapping
-
-    **Parameters**
-
-    **qubit** (*int*)
   </Function>
 
   ### properties
@@ -561,7 +437,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    [*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.4)") | *List*\[[*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v1.4)")]
+    [*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.0)") | *List*\[[*QubitProperties*](/api/qiskit/qiskit.providers.QubitProperties "(in Qiskit v2.0)")]
   </Function>
 
   ### refresh
@@ -576,7 +452,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.IBMBackend.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L555-L565" signature="run(*args, **kwargs)">
+  <Function id="qiskit_ibm_runtime.IBMBackend.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L563-L573" signature="run(*args, **kwargs)">
     **Raises**
 
     **IBMBackendError** – The run() method is no longer supported.
@@ -627,7 +503,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
   ### target\_history
 
   <Function id="qiskit_ibm_runtime.IBMBackend.target_history" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/ibm_backend.py#L324-L334" signature="target_history(datetime=None)">
-    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.4)") object for the backend.
+    A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.0)") object for the backend.
 
     **Returns**
 
@@ -639,7 +515,7 @@ python_api_name: qiskit_ibm_runtime.IBMBackend
 
     **Return type**
 
-    [*Target*](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v1.4)")
+    [*Target*](/api/qiskit/qiskit.transpiler.Target "(in Qiskit v2.0)")
   </Function>
 </Class>
 

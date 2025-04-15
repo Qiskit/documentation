@@ -1,0 +1,63 @@
+---
+title: plot_gate_map (v1.4)
+description: API reference for qiskit.visualization.plot_gate_map in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_gate_map
+---
+
+<span id="qiskit-visualization-plot-gate-map" />
+
+# qiskit.visualization.plot\_gate\_map
+
+<Function id="qiskit.visualization.plot_gate_map" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/visualization/gate_map.py#L36-L967" signature="qiskit.visualization.plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='white', ax=None, filename=None, qubit_coordinates=None)">
+  Plots the gate map of a device.
+
+  <Admonition title="Deprecated since version 1.4" type="danger">
+    The function `plot_gate_map` will stop supporting inputs of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") in the backend parameter in a future release no earlier than 2.0. [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") is deprecated and implementations should move to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
+  </Admonition>
+
+  **Parameters**
+
+  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – The backend instance that will be used to plot the device gate map.
+  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")) – Output figure size (wxh) in inches.
+  *   **plot\_directed** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Plot directed coupling map.
+  *   **label\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Label the qubits.
+  *   **qubit\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Size of qubit marker.
+  *   **line\_width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Width of lines.
+  *   **font\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Font size of qubit labels.
+  *   **qubit\_color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of colors for the qubits
+  *   **qubit\_labels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of qubit labels
+  *   **line\_color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")) – A list of colors for each line from coupling\_map.
+  *   **font\_color** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The font color for the qubit labels.
+  *   **ax** (*Axes*) – A Matplotlib axes instance.
+  *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – file path to save image to.
+  *   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much match the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
+
+  **Returns**
+
+  A Matplotlib figure instance.
+
+  **Return type**
+
+  Figure
+
+  **Raises**
+
+  *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If you tried to pass a simulator or the backend is None, but one of num\_qubits, mpl\_data, or cmap is None.
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If matplotlib not installed.
+
+  **Example**
+
+  ```python
+  from qiskit.providers.fake_provider import GenericBackendV2
+  from qiskit.visualization import plot_gate_map
+
+  backend = GenericBackendV2(num_qubits=5)
+
+  plot_gate_map(backend)
+  ```
+
+  ![Output from the previous code.](/images/api/qiskit/1.4/qiskit-visualization-plot_gate_map-1.avif)
+</Function>
+

@@ -1,0 +1,243 @@
+---
+title: MCXGate (v1.4)
+description: API reference for qiskit.circuit.library.MCXGate in qiskit v1.4
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCXGate
+---
+
+# MCXGate
+
+<Class id="qiskit.circuit.library.MCXGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/x.py#L1095-L1244" signature="qiskit.circuit.library.MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)" modifiers="class">
+  Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+
+  The general, multi-controlled X gate.
+
+  Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`mcx()`](qiskit.circuit.QuantumCircuit#mcx "qiskit.circuit.QuantumCircuit.mcx") method.
+
+  Create new MCX gate.
+
+  ## Attributes
+
+  **Parameters**
+
+  *   **num\_ctrl\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]*) –
+  *   **label** (*Optional\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) –
+  *   **ctrl\_state** (*Optional\[Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]]*) –
+
+  ### base\_class
+
+  <Attribute id="qiskit.circuit.library.MCXGate.base_class">
+    Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+    The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioral perspective. In particular, you should *not* override [`base_class`](#qiskit.circuit.library.MCXGate.base_class "qiskit.circuit.library.MCXGate.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrized gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrized gate.
+
+    This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+    ```python
+    >>> isinstance(XGate(), XGate)
+    True
+    >>> type(XGate()) is XGate
+    False
+    >>> XGate().base_class is XGate
+    True
+    ```
+
+    In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+  </Attribute>
+
+  ### condition
+
+  <Attribute id="qiskit.circuit.library.MCXGate.condition">
+    The classical condition on the instruction.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### condition\_bits
+
+  <Attribute id="qiskit.circuit.library.MCXGate.condition_bits">
+    Get Clbits in condition.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.condition_bits` is deprecated as of qiskit 1.3.0. It will be removed in 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### ctrl\_state
+
+  <Attribute id="qiskit.circuit.library.MCXGate.ctrl_state">
+    Return the control state of the gate as a decimal integer.
+  </Attribute>
+
+  ### decompositions
+
+  <Attribute id="qiskit.circuit.library.MCXGate.decompositions">
+    Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+  </Attribute>
+
+  ### definition
+
+  <Attribute id="qiskit.circuit.library.MCXGate.definition">
+    Return definition in terms of other basic gates. If the gate has open controls, as determined from [`ctrl_state`](#qiskit.circuit.library.MCXGate.ctrl_state "qiskit.circuit.library.MCXGate.ctrl_state"), the returned definition is conjugated with X without changing the internal `_definition`.
+  </Attribute>
+
+  ### duration
+
+  <Attribute id="qiskit.circuit.library.MCXGate.duration">
+    Get the duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.duration` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit.circuit.library.MCXGate.label">
+    Return instruction label
+  </Attribute>
+
+  ### mutable
+
+  <Attribute id="qiskit.circuit.library.MCXGate.mutable">
+    Is this instance is a mutable unique instance or not.
+
+    If this attribute is `False` the gate instance is a shared singleton and is not mutable.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit.circuit.library.MCXGate.name">
+    Get name of gate. If the gate has open controls the gate name will become:
+
+    > \<original\_name\_o\<ctrl\_state>
+
+    where \<original\_name> is the gate name for the default case of closed control qubits and \<ctrl\_state> is the integer value of the control state for the gate.
+  </Attribute>
+
+  ### num\_ancilla\_qubits
+
+  <Attribute id="qiskit.circuit.library.MCXGate.num_ancilla_qubits">
+    The number of ancilla qubits.
+  </Attribute>
+
+  ### num\_clbits
+
+  <Attribute id="qiskit.circuit.library.MCXGate.num_clbits">
+    Return the number of clbits.
+  </Attribute>
+
+  ### num\_ctrl\_qubits
+
+  <Attribute id="qiskit.circuit.library.MCXGate.num_ctrl_qubits">
+    Get number of control qubits.
+
+    **Returns**
+
+    The number of control qubits for the gate.
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit.circuit.library.MCXGate.num_qubits">
+    Return the number of qubits.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="qiskit.circuit.library.MCXGate.params">
+    Get parameters from base\_gate.
+
+    **Returns**
+
+    List of gate parameters.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")
+
+    **Raises**
+
+    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – Controlled gate does not define a base gate
+  </Attribute>
+
+  ### unit
+
+  <Attribute id="qiskit.circuit.library.MCXGate.unit">
+    Get the time unit of duration.
+
+    <Admonition title="Deprecated since version 1.3.0" type="danger">
+      The property `qiskit.circuit.instruction.Instruction.unit` is deprecated as of qiskit 1.3.0. It will be removed in Qiskit 2.0.0.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### control
+
+  <Function id="qiskit.circuit.library.MCXGate.control" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/x.py#L1214-L1244" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=False)">
+    Return a multi-controlled-X gate with more control lines.
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of control qubits.
+    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – An optional label for the gate \[Default: `None`]
+    *   **ctrl\_state** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – control state expressed as integer, string (e.g. `'110'`), or `None`. If `None`, use all 1s.
+    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – indicates whether the controlled gate should be implemented as an annotated gate.
+
+    **Returns**
+
+    controlled version of this gate.
+
+    **Return type**
+
+    [ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+  </Function>
+
+  ### get\_num\_ancilla\_qubits
+
+  <Function id="qiskit.circuit.library.MCXGate.get_num_ancilla_qubits" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/x.py#L1173-L1199" signature="get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')" modifiers="static">
+    Get the number of required ancilla qubits without instantiating the class.
+
+    This staticmethod might be necessary to check the number of ancillas before creating the gate, or to use the number of ancillas in the initialization.
+
+    <Admonition title="Deprecated since version 1.3_pending" type="danger">
+      The method `qiskit.circuit.library.standard_gates.x.MCXGate.get_num_ancilla_qubits()` is pending deprecation as of qiskit 1.3. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. For an MCXGate it is no longer possible to know the number of ancilla qubits that would be eventually used by the transpiler when the gate is created. Instead, it is recommended to use MCXGate and let HighLevelSynthesis choose the best synthesis method depending on the number of ancilla qubits available. However, if a specific synthesis method using a specific number of ancilla qubits is require, one can create a custom gate by calling the corresponding synthesis function directly.
+    </Admonition>
+
+    **Parameters**
+
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
+    *   **mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) –
+
+    **Return type**
+
+    [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")
+  </Function>
+
+  ### inverse
+
+  <Function id="qiskit.circuit.library.MCXGate.inverse" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/circuit/library/standard_gates/x.py#L1159-L1171" signature="inverse(annotated=False)">
+    Invert this gate. The MCX is its own inverse.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – when set to `True`, this is typically used to return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with an inverse modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, for this class this argument is ignored as this gate is self-inverse.
+
+    **Returns**
+
+    inverse gate (self-inverse).
+
+    **Return type**
+
+    [MCXGate](#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate")
+  </Function>
+</Class>
+

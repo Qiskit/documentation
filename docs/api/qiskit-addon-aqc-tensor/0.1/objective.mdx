@@ -1,0 +1,66 @@
+---
+title: objective (v0.1)
+description: API reference for qiskit_addon_aqc_tensor.objective in qiskit-addon-aqc-tensor v0.1
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_aqc_tensor.objective
+---
+
+<span id="module-qiskit_addon_aqc_tensor.objective" />
+
+<span id="objective-function-s-qiskit-addon-aqc-tensor-objective" />
+
+# Objective function(s)
+
+`qiskit_addon_aqc_tensor.objective`
+
+Code for building and evaluating objective functions used for AQC parameter optimization.
+
+Currently, this module provides the simplest possible objective function, [`OneMinusFidelity`](#qiskit_addon_aqc_tensor.objective.OneMinusFidelity "qiskit_addon_aqc_tensor.objective.OneMinusFidelity").
+
+### OneMinusFidelity
+
+<Class id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/objective.py#L32-L85" signature="OneMinusFidelity(target, ansatz, settings)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  Simplest possible objective function for use with AQC-Tensor.
+
+  Its definition is given by Eq. (7) in [arXiv:2301.08609v6](https://arxiv.org/abs/2301.08609v6):
+
+$$
+C = 1 - \left| \langle 0 | V^{\dagger}(\vec\theta) | \psi_\mathrm{target} \rangle \right|^2 .
+$$
+
+  Minimizing this function is equivalent to maximizing the pure-state fidelity between the state prepared by the ansatz circuit at the current parameter point,($V(\vec\theta) |0\rangle$, and the target state, $| \psi_\mathrm{target} \rangle$.
+
+  When called with an [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)") of parameters, this object will return `(objective_value, gradient)` as a `tuple[float, numpy.ndarray]`.
+
+  Initialize the objective function.
+
+  **Parameters**
+
+  *   **ansatz** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.2)")) – Parametrized ansatz circuit.
+  *   **target** ([`TensorNetworkState`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkState "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkState")) – Target state in tensor-network representation.
+  *   **settings** ([`TensorNetworkSimulationSettings`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings")) – Tensor network simulation settings.
+
+  #### \_\_call\_\_
+
+  <Function id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity.__call__" github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/objective.py#L74-L80" signature="__call__(x)">
+    Evaluate `(objective_value, gradient)` of function at point `x`.
+
+    **Return type**
+
+    [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)"), [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)")]
+
+    **Parameters**
+
+    **x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v2.1)"))
+  </Function>
+
+  #### target
+
+  <Attribute id="qiskit_addon_aqc_tensor.objective.OneMinusFidelity.target" attributeTypeHint="TensorNetworkState">
+    Target tensor network.
+  </Attribute>
+</Class>
+

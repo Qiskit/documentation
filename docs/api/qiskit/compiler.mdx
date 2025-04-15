@@ -16,158 +16,22 @@ python_api_name: qiskit.compiler
 
 `qiskit.compiler`
 
-## Circuit and Pulse Compilation Functions
-
-### assemble
-
-<Function id="qiskit.compiler.assemble" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/compiler/assembler.py#L44-L189" signature="qiskit.compiler.assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)">
-  Assemble a list of circuits or pulse schedules into a `Qobj`.
-
-  This function serializes the payloads, which could be either circuits or schedules, to create `Qobj` “experiments”. It further annotates the experiment payload with header and configurations.
-
-  NOTE: `Backend.options` is not used within assemble. The required values (previously given by backend.set\_options) should be manually extracted from options and supplied directly when calling.
-
-  <Admonition title="Deprecated since version 1.2" type="danger">
-    The function `qiskit.compiler.assembler.assemble()` is deprecated as of qiskit 1.2. It will be removed in the 2.0 release. The Qobj class and related functionality are part of the deprecated BackendV1 workflow, and no longer necessary for BackendV2. If a user workflow requires Qobj it likely relies on deprecated functionality and should be updated to use BackendV2.
-  </Admonition>
-
-  **Parameters**
-
-  *   **experiments** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] |* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")*] |* [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*]*) – Circuit(s) or pulse schedule(s) to execute
-
-  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – If set, some runtime options are automatically grabbed from `backend.configuration()` and `backend.defaults()`. If any other option is explicitly set (e.g., `rep_time`), it will override the backend’s. If any other options is set in the run\_config, it will also override the backend’s.
-
-  *   **qobj\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – String identifier to annotate the `Qobj`
-
-  *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)") *| None*) – User input that will be inserted in `Qobj` header, and will also be copied to the corresponding Result header. Headers do not affect the run.
-
-  *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Number of repetitions of each circuit, for sampling. Default: 1024 or `max_shots` from the backend configuration, whichever is smaller
-
-  *   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)") *| None*) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option.
-
-  *   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Random seed to control sampling, for when backend is a simulator
-
-  *   **qubit\_lo\_freq** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*) – List of job level qubit drive LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits.`
-
-  *   **meas\_lo\_freq** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*) – List of measurement LO frequencies in Hz. Overridden by `schedule_los` if specified. Must have length `n_qubits.`
-
-  *   **qubit\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*) – List of job level drive LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `qubit_lo_freq`. Must have length `n_qubits.`
-
-  *   **meas\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None*) – List of job level measurement LO ranges each of form `[range_min, range_max]` in Hz. Used to validate `meas_lo_freq`. Must have length `n_qubits.`
-
-  *   **schedule\_los** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[PulseChannel,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | LoConfig] |* [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[PulseChannel,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | LoConfig | None*) – Experiment level (ie circuit or schedule) LO frequency configurations for qubit drive and measurement channels. These values override the job level values from `default_qubit_los` and `default_meas_los`. Frequencies are in Hz. Settable for OpenQASM 2 and pulse jobs.
-
-  *   **meas\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| MeasLevel*) – Set the appropriate level of the measurement output for pulse experiments.
-
-  *   **meas\_return** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| MeasReturnType*) –
-
-      Level of measurement data for the backend to return.
-
-      **For `meas_level` 0 and 1:**
-
-      *   `single` returns information from every shot.
-      *   `avg` returns average measurement output (averaged over number of shots).
-
-  *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")*]] | None*) – List of lists, containing qubits that must be measured together.
-
-  *   **memory\_slot\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Size of each memory slot if the output is Level 0.
-
-  *   **rep\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Time per program execution in seconds. Must be from the list provided by the backend (`backend.configuration().rep_times`). Defaults to the first entry.
-
-  *   **rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – Delay between programs in seconds. Only supported on certain backends (if `backend.configuration().dynamic_reprate_enabled=True`). If supported, `rep_delay` will be used instead of `rep_time` and must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is given by `backend.configuration().default_rep_delay`.
-
-  *   **parameter\_binds** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] | None*) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form \{Parameter1: value1, Parameter2: value2, …}. All binds will be executed across all experiments; e.g., if parameter\_binds is a length-n list, and there are m experiments, a total of m x n experiments will be run (one for each experiment/bind pair).
-
-  *   **parametric\_pulses** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) –
-
-      A list of pulse shapes which are supported internally on the backend. Example:
-
-      ```python
-      ['gaussian', 'constant']
-      ```
-
-  *   **init\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether to reset the qubits to the ground state for each shot. Default: `True`.
-
-  *   **\*\*run\_config** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")) – Extra arguments used to configure the run (e.g., for Aer configurable backends). Refer to the backend documentation for details on these arguments.
-
-  **Returns**
-
-  A `Qobj` that can be run on a backend. Depending on the type of input, this will be either a `QasmQobj` or a `PulseQobj`.
-
-  **Raises**
-
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input cannot be interpreted as either circuits or schedules
-
-  **Return type**
-
-  [*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj") | [*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
-</Function>
-
-### schedule
-
-<Function id="qiskit.compiler.schedule" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/compiler/scheduler.py#L39-L109" signature="qiskit.compiler.schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)">
-  Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in `qiskit.scheduler.schedule_circuit`.
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    The function `qiskit.compiler.scheduler.schedule()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that `qiskit.compiler.scheduler.schedule()` will be moved as well.
-  </Admonition>
-
-  **Parameters**
-
-  *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – The quantum circuit or circuits to translate
-  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – A backend instance, which contains hardware-specific data required for scheduling
-  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap") *| None*) – Mapping of circuit operations to pulse schedules. If `None`, defaults to the `backend`’s `instruction_schedule_map`
-  *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | None*) – List of sets of qubits that must be measured together. If `None`, defaults to the `backend`’s `meas_map`
-  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – The output sample rate of backend control electronics. For scheduled circuits which contain time information, dt is required. If not provided, it will be obtained from the backend configuration
-  *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) – Optionally specify a particular scheduling method
-
-  **Returns**
-
-  A pulse `Schedule` that implements the input circuit
-
-  **Raises**
-
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If `inst_map` and `meas_map` are not passed and `backend` is not passed
-
-  **Return type**
-
-  [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
-</Function>
+## Circuit Compilation Functions
 
 ### transpile
 
-<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/compiler/transpiler.py#L43-L458" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=1.0, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
+<Function id="qiskit.compiler.transpile" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/compiler/transpiler.py#L36-L300" signature="qiskit.compiler.transpile(circuits, backend=None, basis_gates=None, coupling_map=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, dt=None, approximation_degree=1.0, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None, hls_config=None, init_method=None, optimization_method=None, ignore_backend_supplied_default_methods=False, num_processes=None, qubits_initially_zero=True)">
   Transpile one or more circuits, according to some desired transpilation targets.
 
   Transpilation is potentially done in parallel using multiprocessing when `circuits` is a list with > 1 [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object, depending on the local environment and configuration.
 
-  The prioritization of transpilation target constraints works as follows: if a `target` input is provided, it will take priority over any `backend` input or loose constraints (`basis_gates`, `inst_map`, `coupling_map`, `backend_properties`, `instruction_durations`, `dt` or `timing_constraints`). If a `backend` is provided together with any loose constraint from the list above, the loose constraint will take priority over the corresponding backend constraint. This behavior is independent of whether the `backend` instance is of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") or [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"), as summarized in the table below. The first column in the table summarizes the potential user-provided constraints, and each cell shows whether the priority is assigned to that specific constraint input or another input (target/backend(V1)/backend(V2)).
+  The prioritization of transpilation target constraints works as follows: if a `target` input is provided, it will take priority over any `backend` input or loose constraints (`basis_gates`, `coupling_map`, or `dt`). If a `backend` is provided together with any loose constraint from the list above, the loose constraint will take priority over the corresponding backend constraint. This behavior is summarized in the table below. The first column in the table summarizes the potential user-provided constraints, and each cell shows whether the priority is assigned to that specific constraint input or another input (target/backend(V2)).
 
-  | User Provided              | target | backend(V1)            | backend(V2)            |
-  | -------------------------- | ------ | ---------------------- | ---------------------- |
-  | **basis\_gates**           | target | basis\_gates           | basis\_gates           |
-  | **coupling\_map**          | target | coupling\_map          | coupling\_map          |
-  | **instruction\_durations** | target | instruction\_durations | instruction\_durations |
-  | **inst\_map**              | target | inst\_map              | inst\_map              |
-  | **dt**                     | target | dt                     | dt                     |
-  | **timing\_constraints**    | target | timing\_constraints    | timing\_constraints    |
-  | **backend\_properties**    | target | backend\_properties    | backend\_properties    |
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `inst_map` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and this argument uses a dependency on the package.
-  </Admonition>
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `backend_properties` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The target parameter should be used instead. You can build a Target instance with defined properties with Target.from\_configuration(…, backend\_properties=…)
-  </Admonition>
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `timing_constraints` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The target parameter should be used instead. You can build a Target instance with defined timing constraints with Target.from\_configuration(…, timing\_constraints=…)
-  </Admonition>
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    `qiskit.compiler.transpiler.transpile()`’s argument `instruction_durations` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The target parameter should be used instead. You can build a Target instance with defined instruction durations with Target.from\_configuration(…, instruction\_durations=…)
-  </Admonition>
+  | User Provided     | target | backend(V2)   |
+  | ----------------- | ------ | ------------- |
+  | **basis\_gates**  | target | basis\_gates  |
+  | **coupling\_map** | target | coupling\_map |
+  | **dt**            | target | dt            |
 
   **Parameters**
 
@@ -177,8 +41,6 @@ python_api_name: qiskit.compiler
 
   *   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*] | None*) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
 
-  *   **inst\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")*] | None*) – DEPRECATED. Mapping of unrolled gates to pulse schedules. If this is not provided, transpiler tries to get from the backend. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation. This feature is available iff the backend supports the pulse gate experiment.
-
   *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | None*) –
 
       Directed coupling map (perhaps custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified.
@@ -187,8 +49,6 @@ python_api_name: qiskit.compiler
 
       1.  `CouplingMap` instance
       2.  List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
-
-  *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties") *| None*) – properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
 
   *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)") *| None*) –
 
@@ -230,26 +90,13 @@ python_api_name: qiskit.compiler
 
   *   **routing\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’). Note This can also be the external plugin name to use for the `routing` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"routing"` for the `stage_name` argument.
 
-  *   **translation\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of translation pass (`"translator"` or `"synthesis"`) This can also be the external plugin name to use for the `translation` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"translation"` for the `stage_name` argument.
+  *   **translation\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of translation pass (`"default"`, `"translator"` or `"synthesis"`). This can also be the external plugin name to use for the `translation` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"translation"` for the `stage_name` argument.
 
   *   **scheduling\_method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)") *| None*) – Name of scheduling pass. \* `'as_soon_as_possible'`: Schedule instructions greedily, as early as possible on a qubit resource. (alias: `'asap'`) \* `'as_late_as_possible'`: Schedule instructions late, i.e. keeping qubits in the ground state when possible. (alias: `'alap'`) If `None`, no scheduling will be done. This can also be the external plugin name to use for the `scheduling` stage. You can see a list of installed plugins by using [`list_stage_plugins()`](transpiler_plugins#qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins "qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins") with `"scheduling"` for the `stage_name` argument.
 
-  *   **instruction\_durations** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]] |* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*] | None]] |* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]] |* [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")*]] |* [*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations") *| None*) – Durations of instructions. Applicable only if scheduling\_method is specified. The gate lengths defined in `backend.properties` are used as default. They are overwritten if this `instruction_durations` is specified. The format of `instruction_durations` must be as follows. The instruction\_durations must be given as a list of tuples \[(instruction\_name, qubits, duration, unit), …]. | \[(‘cx’, \[0, 1], 12.3, ‘ns’), (‘u3’, \[0], 4.56, ‘ns’)] | \[(‘cx’, \[0, 1], 1000), (‘u3’, \[0], 300)] If unit is omitted, the default is ‘dt’, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
-
-  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Backend sample time (resolution) in seconds. If `None` (default), `backend.configuration().dt` is used.
+  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – Backend sample time (resolution) in seconds. If `None` (default), `backend.dt` is used.
 
   *   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")) – heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation)
-
-  *   **timing\_constraints** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*] | None*) –
-
-      An optional control hardware restriction on instruction time resolution. A quantum computer backend may report a set of restrictions, namely:
-
-      *   granularity: An integer value representing minimum pulse gate resolution in units of `dt`. A user-defined pulse gate should have duration of a multiple of this granularity value.
-      *   min\_length: An integer value representing minimum pulse gate length in units of `dt`. A user-defined pulse gate should be longer than this length.
-      *   pulse\_alignment: An integer value representing a time resolution of gate instruction starting time. Gate instruction should start at time which is a multiple of the alignment value.
-      *   acquire\_alignment: An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time which is a multiple of the alignment value.
-
-      This information will be provided by the backend configuration. If the backend doesn’t have any restriction on the instruction time allocation, then `timing_constraints` is None and no adjustment will be performed.
 
   *   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| None*) – Sets random seed for the stochastic parts of the transpiler
 
@@ -310,35 +157,5 @@ python_api_name: qiskit.compiler
   **Return type**
 
   *\_CircuitT*
-</Function>
-
-### sequence
-
-<Function id="qiskit.compiler.sequence" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/compiler/sequencer.py#L27-L71" signature="qiskit.compiler.sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)">
-  Schedule a scheduled circuit to a pulse `Schedule`, using the backend.
-
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    The function `qiskit.compiler.sequencer.sequence()` is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and will be moved to the Qiskit Dynamics repository: [https://github.com/qiskit-community/qiskit-dynamics](https://github.com/qiskit-community/qiskit-dynamics). Note that `qiskit.compiler.sequencer.sequence()` will be moved as well.
-  </Admonition>
-
-  **Parameters**
-
-  *   **scheduled\_circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – Scheduled circuit(s) to be translated
-  *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.backend.Backend") *| None*) – A backend instance, which contains hardware-specific data required for scheduling
-  *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap") *| None*) – Mapping of circuit operations to pulse schedules. If `None`, defaults to the `backend`’s `instruction_schedule_map`
-  *   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*]] | None*) – List of sets of qubits that must be measured together. If `None`, defaults to the `backend`’s `meas_map`
-  *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)") *| None*) – The output sample rate of backend control electronics. For scheduled circuits which contain time information, dt is required. If not provided, it will be obtained from the backend configuration
-
-  **Returns**
-
-  A pulse `Schedule` that implements the input circuit
-
-  **Raises**
-
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If `inst_map` and `meas_map` are not passed and `backend` is not passed
-
-  **Return type**
-
-  [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
 </Function>
 

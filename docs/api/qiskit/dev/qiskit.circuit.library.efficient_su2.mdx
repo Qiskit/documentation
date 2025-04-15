@@ -2,17 +2,15 @@
 title: efficient_su2 (dev version)
 description: API reference for qiskit.circuit.library.efficient_su2 in the dev version of qiskit
 in_page_toc_min_heading_level: 1
-python_api_type: class
+python_api_type: function
 python_api_name: qiskit.circuit.library.efficient_su2
 ---
 
-<span id="efficient-su2" />
+<span id="qiskit-circuit-library-efficient-su2" />
 
-# efficient\_su2
+# qiskit.circuit.library.efficient\_su2
 
-<Class id="qiskit.circuit.library.efficient_su2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/circuit/library/n_local/efficient_su2.py#L31-L134" signature="qiskit.circuit.library.efficient_su2(num_qubits, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, name='EfficientSU2')" modifiers="class">
-  Bases:
-
+<Function id="qiskit.circuit.library.efficient_su2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/n_local/efficient_su2.py#L31-L134" signature="qiskit.circuit.library.efficient_su2(num_qubits, su2_gates=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, name='EfficientSU2')">
   The hardware-efficient $SU(2)$ 2-local circuit.
 
   The `efficient_su2` circuit consists of layers of single qubit operations spanned by $SU(2)$ and CX entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuit for machine learning.
@@ -58,7 +56,7 @@ python_api_name: qiskit.circuit.library.efficient_su2
   *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – The number of qubits.
   *   **su2\_gates** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*] | None*) – The $SU(2)$ single qubit gates to apply in single qubit gate layers. If only one gate is provided, the same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order.
   *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
-  *   **entanglement** (*BlockEntanglement | Iterable\[BlockEntanglement] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*], BlockEntanglement | Iterable\[BlockEntanglement]]*) – The indices specifying on which qubits the input blocks act. See `n_local()` for detailed information.
+  *   **entanglement** (*BlockEntanglement | Iterable\[BlockEntanglement] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")*], BlockEntanglement | Iterable\[BlockEntanglement]]*) – The indices specifying on which qubits the input blocks act. See [`n_local()`](qiskit.circuit.library.n_local "qiskit.circuit.library.n_local") for detailed information.
   *   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – Whether a final rotation layer is added to the circuit.
   *   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
   *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – The name of the free parameters.
@@ -68,5 +66,5 @@ python_api_name: qiskit.circuit.library.efficient_su2
   **Returns**
 
   An efficient-SU(2) circuit.
-</Class>
+</Function>
 

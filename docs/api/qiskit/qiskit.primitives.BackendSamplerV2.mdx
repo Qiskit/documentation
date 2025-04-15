@@ -8,12 +8,12 @@ python_api_name: qiskit.primitives.BackendSamplerV2
 
 # BackendSamplerV2
 
-<Class id="qiskit.primitives.BackendSamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/backend_sampler_v2.py#L81-L283" signature="qiskit.primitives.BackendSamplerV2(*, backend, options=None)" modifiers="class">
+<Class id="qiskit.primitives.BackendSamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/backend_sampler_v2.py#L81-L268" signature="qiskit.primitives.BackendSamplerV2(*, backend, options=None)" modifiers="class">
   Bases: [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.base.base_sampler.BaseSamplerV2")
 
   Evaluates bitstrings for provided quantum circuits
 
-  The [`BackendSamplerV2`](#qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2") class is a generic implementation of the [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the class [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") API. It facilitates using backends that do not provide a native [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") implementation in places that work with [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"). However, if you’re using a provider that has a native implementation of [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+  The [`BackendSamplerV2`](#qiskit.primitives.BackendSamplerV2 "qiskit.primitives.BackendSamplerV2") class is a generic implementation of the [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") object in the class [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") API. It facilitates using backends that do not provide a native [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2") implementation in places that work with [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"). However, if you’re using a provider that has a native implementation of [`BaseSamplerV2`](qiskit.primitives.BaseSamplerV2 "qiskit.primitives.BaseSamplerV2"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
   This class does not perform any measurement or gate mitigation.
 
@@ -29,13 +29,9 @@ python_api_name: qiskit.primitives.BackendSamplerV2
     This class requires a backend that supports `memory` option.
   </Admonition>
 
-  <Admonition title="Deprecated since version 1.4" type="danger">
-    The method `BackendSamplerV2.__init__` will stop supporting inputs of type [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") in the backend parameter in a future release no earlier than 2.0. [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") is deprecated and implementations should move to [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2").
-  </Admonition>
-
   **Parameters**
 
-  *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
+  *   **backend** ([*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – The backend to run the primitive on.
   *   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)") *| None*) – The options to control the default shots (`default_shots`) and the random seed for the simulator (`seed_simulator`).
 
   ## Attributes
@@ -56,7 +52,7 @@ python_api_name: qiskit.primitives.BackendSamplerV2
 
   ### run
 
-  <Function id="qiskit.primitives.BackendSamplerV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/primitives/backend_sampler_v2.py#L159-L168" signature="run(pubs, *, shots=None)">
+  <Function id="qiskit.primitives.BackendSamplerV2.run" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/primitives/backend_sampler_v2.py#L144-L153" signature="run(pubs, *, shots=None)">
     Run and collect samples from each pub.
 
     **Parameters**

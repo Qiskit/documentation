@@ -26,7 +26,7 @@ test.describe("objects.inv", () => {
   });
 
   test("read file and decompress", async () => {
-    const objectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
+    const objectsInv = await ObjectsInv.fromFile(TEST_FOLDER, "Python");
 
     expect(objectsInv.preamble).toEqual(
       "# Sphinx inventory version 2\n" +
@@ -54,10 +54,10 @@ test.describe("objects.inv", () => {
   });
 
   test("write file and re-read matches original", async () => {
-    const originalObjectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
+    const originalObjectsInv = await ObjectsInv.fromFile(TEST_FOLDER, "Python");
     await originalObjectsInv.write(TEMP_FOLDER);
 
-    const newObjectsInv = await ObjectsInv.fromFile(TEMP_FOLDER);
+    const newObjectsInv = await ObjectsInv.fromFile(TEMP_FOLDER, "Python");
     expect(originalObjectsInv.entries.length).toEqual(
       newObjectsInv.entries.length,
     );

@@ -1,0 +1,27 @@
+---
+title: TwoQubitControlledUDecomposer (latest version)
+description: API reference for qiskit.synthesis.TwoQubitControlledUDecomposer in the latest version of qiskit
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.TwoQubitControlledUDecomposer
+---
+
+# TwoQubitControlledUDecomposer
+
+<Class id="qiskit.synthesis.TwoQubitControlledUDecomposer" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/synthesis/two_qubit/two_qubit_decompose.py#L268-L317" signature="qiskit.synthesis.TwoQubitControlledUDecomposer(rxx_equivalent_gate, euler_basis='ZXZ')" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.13)")
+
+  Decompose two-qubit unitary in terms of a desired $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+
+  Initialize the KAK decomposition.
+
+  **Parameters**
+
+  *   **rxx\_equivalent\_gate** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – Gate that is locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"): $U \sim U_d(\alpha, 0, 0) \sim \text{Ctrl-U}$ gate. Valid options are \[[`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate"), [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate"), [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate"), [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate"), [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate"), [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate"), [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate"), [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate")].
+  *   **euler\_basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Basis string to be provided to [`OneQubitEulerDecomposer`](qiskit.synthesis.OneQubitEulerDecomposer "qiskit.synthesis.OneQubitEulerDecomposer") for 1Q synthesis. Valid options are \[`'ZXZ'`, `'ZYZ'`, `'XYX'`, `'XZX'`, `'U'`, `'U3'`, `'U321'`, `'U1X'`, `'PSX'`, `'ZSX'`, `'ZSXX'`, `'RR'`].
+
+  **Raises**
+
+  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the gate is not locally equivalent to an [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+</Class>
+

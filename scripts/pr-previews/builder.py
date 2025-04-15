@@ -118,15 +118,16 @@ def _copy_local_content(root_dir: Path) -> None:
     # We intentionally don't copy over API docs to speed up the build.
     for dir in [
         "docs/guides",
+        "docs/tutorials",
+        "public/docs/images/tutorials",
         "docs/migration-guides",
         "docs/open-source",
-        "public/videos",
-        "public/images/guides",
-        "public/images/optimize",
-        "public/images/qiskit-patterns",
+        "public/docs/videos",
+        "public/docs/images/guides",
+        "public/docs/images/qiskit-patterns",
     ]:
         dest = (
-            root_dir / "packages/preview" / dir
+            root_dir / "packages/preview" / dir.replace("/docs", "")
             if dir.startswith("public")
             else root_dir / _add_locale_to_docs(dir)
         )

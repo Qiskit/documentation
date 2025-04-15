@@ -4,7 +4,7 @@ description: Installation and setup instructions for IBM Quantum on IBM Cloud to
 platform: cloud
 ---
 
-{/* cspell:ignore WQVY */}
+{/* cspell:ignore urlendcoded, WQVY */}
 
 # Set up your IBM Cloud account
 <Admonition type="note">
@@ -15,16 +15,6 @@ You can run workloads on IBM&reg; quantum processing units (QPUs) by setting up 
 <Admonition type="caution" title="Important">
 The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is in **early access** mode.  Therefore, you can log on, create instances, run jobs, and so on, but some functions are not available yet.  If you need to use functions that are not yet available, use [IBM Quantum Platform Classic](https://quantum.ibm.com/) or [Qiskit Runtime on IBM Cloud](https://cloud.ibm.com/quantum) instead.
 </Admonition>
-
-<span id="cloud-plans"></span>
-Available IBM Cloud plans:
-
-- **Premium Plan** - Run quantum circuits on the world's best QPUs using an enterprise quantum time subscription.
-- **Standard (Pay-as-you-go) Plan** - Run quantum circuits on the world's best QPUs and pay only for the quantum time you use.
-- **Open Plan**: Run your quantum circuits on the world's best QPUs for free (up to 10 minutes quantum time per month).
-   <Admonition type="note">
-   During early access, users on the Open Plan get 10 minutes per 28-day period.
-   </Admonition>
 
 <span id="cloud"></span>
 ## Set up to use IBM Cloud
@@ -48,7 +38,7 @@ Available IBM Cloud plans:
       You can add or remove access groups at any time from IBM Cloud.  See [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) for instructions.
 
     <Admonition type="note">
-      If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-quickstart-org).
+      If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-considerations-set-up-runtime).
     </Admonition>
 
 1. Find your access credentials.
@@ -67,7 +57,7 @@ Available IBM Cloud plans:
     service = QiskitRuntimeService.save_account(
         channel="ibm_cloud", # `channel` distinguishes between different account types
         token=token, # Your token is confidential.
-        # Do not share your token in public code.
+        # Do not share your key in public code.
         instance="<IBM Cloud CRN>",
         name="<account-name>", # Optionally name this set of account credentials.
         set_as_default=True, # Optionally set these as your default credentials.
@@ -90,12 +80,12 @@ Available IBM Cloud plans:
       * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file.
       * If you don't save your credentials, you must specify them every time you start a new session.
 
-1. <span id="cloud-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API token after each use by deleting it on the [API keys page](https://cloud.ibm.com/iam/apikeys) and creating a new one.
+1. <span id="cloud-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API key after each use by deleting it on the [API keys page](https://cloud.ibm.com/iam/apikeys) and creating a new one.
 
     <Admonition type="caution">
-      **Protect your API token!** Never include your token in source code, Python script, or notebook file. When sharing code with others, ensure that your API token is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
+      **Protect your API key!** Never include your key in source code, Python script, or notebook file. When sharing code with others, ensure that your API key is not embedded directly within the Python script. Instead, share the script without the token and provide instructions for securely setting it up.
 
-      If you accidentally share your token with someone or include it in version control like Git, immediately revoke your token by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) topic on IBM Cloud.
+      If you accidentally share your key with someone or include it in version control like Git, immediately revoke your key by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) topic on IBM Cloud.
     </Admonition>
 
     To initialize the service in this situation, you can use code like the following:
@@ -105,7 +95,7 @@ Available IBM Cloud plans:
 
     service = QiskitRuntimeService(
       channel="ibm_cloud",
-      # Delete your token on the API keys page after entering this code:
+      # Delete your key on the API keys page after entering this code:
       token="<IBM Cloud API key>",
       instance="<IBM Cloud CRN>"
       )
@@ -183,12 +173,12 @@ Because of the security risks posed by executing code that contains your API key
     api_token = os.environ['IQP_API_TOKEN']
     ```
 
-    Note that when creating an environment variable, your API token is still stored locally in plain text, and should be safeguarded.
+    Note that when creating an environment variable, your API key is still stored locally in plain text, and should be safeguarded.
 
 <details>
 <summary> **Click here for tips for running code on untrusted systems** </summary>
 
-1. <span id="rest-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API token after each use by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) topic on IBM Cloud. To initialize the service in this situation, use your API key directly:
+1. <span id="rest-untrusted"></span>**Avoid executing code on an untrusted machine or an external cloud Python environment to minimize security risks.** If you must use an untrusted environment (on, for example, a public computer), change your API key after each use by following the [Deleting an API key](https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui#delete_user_key) topic on IBM Cloud. To initialize the service in this situation, use your API key directly:
 
 ```python
 # Refresh your API key on the dashboard after using the code as follows:
@@ -215,8 +205,8 @@ curl -X 'GET' \
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
+  -  [Overview of available plans.](plans-overview)
   -  [Configure the Qiskit SDK locally.](configure-qiskit-local)
   -  Follow the steps in [Hello world](hello-world) to write and run a quantum program.
-  -  [Get started with IBM Quantum on Cloud.](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-get-started)
   -  Try a [tutorial](https://learning.quantum.ibm.com/catalog/tutorials) in IBM Quantum Learning.
 </Admonition>

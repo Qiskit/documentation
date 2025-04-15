@@ -1,0 +1,191 @@
+---
+title: Set up access policies and access groups
+description: How to create and manage access groups for your organization's account users.
+platform: cloud
+---
+
+# Create access policies and access groups
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/admin/)
+</Admonition>
+
+When you create an instance in IBM Quantum Platform, an access group is automatically generated for collaborators to use that instance. If you want to customize that access group or create other access groups, use the IBM&reg; Cloud console for [Access groups](https://cloud.ibm.com/iam/groups).
+
+An _access group_ contains _policies_, which define the actions that access group members can take on specific resources, such as services.  In this guide, the resource is generally an IBM Quantum _service instance_.
+
+You can create additional access groups by using the IBM Cloud [console,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) [CLI,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli) [API,](https://cloud.ibm.com/docs/account?topic=account-groups&interface=api) or [Terraform.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform)
+
+## Create an IBM Quantum Administrators access group
+After setting up an account for your organization, it's recommended that you create an  IBM Quantum Administrators access group. This access group lets other users create and manage instances, and manage user access for the Qiskit Runtime service.
+
+When you create this access group, include the following policies:
+
+- Qiskit Runtime service - Grant access to manage all IBM Quantum instances in the account and view account usage analytics.
+  - **Manager** service access role
+  - **Administrator** platform management access role
+- All account management services - Grant access to list all the resource groups in the account.
+  - **Viewer** platform management access role
+- All IAM Account Management services - Grant access to invite users, manage access groups, and create access policies.
+  - **Administrator** platform management access role
+
+
+<Admonition type="note">
+  Users with the `viewer` platform management role on "all account management services" can also view services such as billing. If you want to prevent this extra view access, use the IBM Cloud CLI to give them access to just Resource groups:
+  ```cli
+  ibmcloud iam access-group-policy-create <group name> --roles Viewer --resource-type resource-group
+  ```
+</Admonition>
+
+Follow these examples to create an IBM Quantum Administrators access group by using the IBM Cloud CLI or console.
+
+<span id="cli"></span>
+### Use the IBM Cloud CLI
+
+To create an _access group_ by using the CLI, use the [`ibmcloud iam access-group-create`](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_access_group_policy_create) command.
+
+```cli
+ibmcloud iam access-group-create GROUP_NAME [-d, --description DESCRIPTION]
+```
+
+To create an access group _policy_ by using the CLI, use the [`ibmcloud iam access-group-policy-create`](https://cloud.ibm.com/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_access_group_policy_create) command.
+
+```cli
+ibmcloud iam access-group-policy-create GROUP_NAME {-f, --file @JSON_FILE | --roles ROLE_NAME1,ROLE_NAME2... [--service-name SERVICE_NAME] [--service-instance SERVICE_INSTANCE] [--region REGION] [--resource-type RESOURCE_TYPE] [--resource RESOURCE] [--resource-group-name RESOURCE_GROUP_NAME] [--resource-group-id RESOURCE_GROUP_ID]}
+```
+
+You can use the following JSON code to create policies for an Administrators access group:
+
+- All Account Management services (viewer)
+```json
+{
+    "type": "access",
+    "roles": [
+        {
+            "role_id": "crn:v1:bluemix:public:iam::::role:Viewer"
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "name": "accountId",
+                    "value": "[ACCOUNT_ID]"
+                },
+                {
+                    "name": "serviceType",
+                    "value": "platform_service"
+                }
+            ]
+        }
+    ]
+}
+```
+
+- Qiskit Runtime Service (Manager, Administrator)
+```json
+{
+    "type": "access",
+    "roles": [
+        {
+            "role_id": "crn:v1:bluemix:public:iam::::serviceRole:Manager"
+        },
+        {
+            "role_id": "crn:v1:bluemix:public:iam::::role:Administrator"
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "name": "accountId",
+                    "value": "[ACCOUNT_ID]"
+                },
+                {
+                    "name": "serviceName",
+                    "value": "quantum-computing"
+                }
+            ]
+        }
+    ]
+}
+```
+
+- All IAM Account Management services (administrator)
+```json
+{
+    "type": "access",
+    "roles": [
+        {
+            "role_id": "crn:v1:bluemix:public:iam::::role:Administrator"
+        }
+    ],
+    "resources": [
+        {
+            "attributes": [
+                {
+                    "name": "accountId",
+                    "value": "[ACCOUNT_ID]"
+                },
+                {
+                    "name": "service_group_id",
+                    "value": "IAM"
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+<span id="ui"></span>
+### Use the IBM Cloud IAM console
+
+As an account owner or administrator, follow these steps to create an IBM Quantum Administrator access group.
+
+1. Go to Manage > [Access (IAM)](https://cloud.ibm.com/iam/overview) in the IBM Cloud console.
+1. On the left panel in the **Manage access** section, click **Access groups**, then click **Create**.
+1. In the **Create access group** window that opens, add a name and description that represent the group of users that you will invite.  For example, IBM Quantum Administrators. Click **Create**.
+
+Next, create policies for the Qiskit Runtime service,  for All IAM Account Management services, and for All Account Management services.
+1. In the access group just created, click the **Access** tab, then click **Assign access**.
+1. In the **Create policy** page that opens, define these elements:
+   - **Service** - Search for Qiskit Runtime and select it. Click **Next**.
+   - **Resources** - Select **All resources**. Click **Next**.
+      Note: If you were creating a policy that you want to apply only to a certain instance, you would instead choose **Specific resources**, **Service instance**, **string equals**, then select the instance.
+   - **Roles and actions** - Select the following values:
+      - For **Service access**, select  **Manager**.
+      - For **Platform access**, select **Administrator**.
+
+   At the bottom, click **Add**. You should see the policy on the right-hand panel. Click **Assign** at the bottom of that panel.
+
+You have successfully created an access group with one policy.  Next, create a second policy for the same instance.
+
+1. In the same access group, click the **Access** tab, then click **Assign access**.
+1. In the **Create policy** page that opens, define these elements:
+   - **Service** - Select **All IAM Account Management services**. Click **Next**.
+   - **Roles and actions** - For Platform access, select **Administrator**, Click **Next**.
+   At the bottom, click **Add**, then click **Assign**.
+
+Create a third policy for the same instance.
+
+1. In the same access group, click the **Access** tab, then click **Assign access**.
+1. In the **Create policy** page that opens, define these elements:
+   - **Service** - Select **All Account Management services**. Click **Next**.
+   - **Roles and actions** - For Platform access, select **Viewer**, Click **Next**.
+   At the bottom, click **Add**, then click **Assign**.
+
+Finally, add users to the access group.  You can do this from the access group's **Users** page, or by using the IBM Quantum Platform [Access management](https://quantum.cloud.ibm.com/access-groups) page.
+
+<Admonition type="note">
+You can only invite users who are already members of the account.  If you don't see a user on the Add users page, follow the steps in [Invite and manage users](/guides/invite-and-manage-users#invite) to add them to the account first.  After they accept the invitation, you can add them to the access group.
+</Admonition>
+
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+   - Understand the [IBM Cloud account structure,](/guides/cloud-account-structure) including access policies, groups, and roles.
+   - Read about [how IBM Cloud IAM works.](https://cloud.ibm.com/docs/account?topic=account-iamoverview)
+   - Read more about how to [set up access groups.](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui)
+   - Learn about [creating custom roles.](/guides/custom-roles)
+</Admonition>

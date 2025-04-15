@@ -8,12 +8,30 @@ python_api_name: qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator
 
 # QuimbSimulator
 
-<Class id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.1/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L75-L101" signature="QuimbSimulator(quimb_circuit_factory, autodiff_backend=None, progbar=False)" modifiers="class">
+<Class id="qiskit_addon_aqc_tensor.simulation.quimb.QuimbSimulator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-addon-aqc-tensor/tree/stable/0.2/qiskit_addon_aqc_tensor/simulation/quimb/__init__.py#L75-L126" signature="QuimbSimulator(quimb_circuit_factory, autodiff_backend=None, progbar=False)" modifiers="class">
   Bases: [`TensorNetworkSimulationSettings`](simulation#qiskit_addon_aqc_tensor.simulation.TensorNetworkSimulationSettings "qiskit_addon_aqc_tensor.simulation.abstract.TensorNetworkSimulationSettings")
 
   Settings for Quimb simulator.
 
-  This is compatible with both [Quimb’s MPS simulator](https://quimb.readthedocs.io/en/latest/tensor-circuit-mps.html), which eagerly contracts gates, as well as [Quimb’s standard method for circuit simulation](https://quimb.readthedocs.io/en/latest/tensor-circuit.html).
+  This is compatible with both [Quimb’s MPS simulator](https://quimb.readthedocs.io/en/latest/tensor-circuit-mps.html), which eagerly contracts gates by default, as well as [Quimb’s standard method for circuit simulation](https://quimb.readthedocs.io/en/latest/tensor-circuit.html).
+
+  Example usage:
+
+  ```python
+  from functools import partial
+  import quimb.tensor
+  from qiskit_addon_aqc_tensor.simulation.quimb import QuimbSimulator
+
+  simulator_settings = QuimbSimulator(
+      partial(
+          quimb.tensor.CircuitMPS,
+          gate_opts={"cutoff": 1e-8},
+      ),
+      autodiff_backend="jax",
+  )
+  ```
+
+  For additional options, see the API documentation for [quimb.tensor.Circuit](https://quimb.readthedocs.io/en/main/autoapi/quimb/tensor/circuit/index.html#quimb.tensor.circuit.Circuit) and [quimb.tensor.CircuitMPS](https://quimb.readthedocs.io/en/main/autoapi/quimb/tensor/circuit/index.html#quimb.tensor.circuit.CircuitMPS).
 
   ## Attributes
 

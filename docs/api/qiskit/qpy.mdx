@@ -16,7 +16,7 @@ python_api_name: qiskit.qpy
 
 `qiskit.qpy`
 
-QPY is a binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") objects that is designed to be cross-platform, Python version agnostic, and backwards compatible moving forward. QPY should be used if you need a mechanism to save or copy between systems a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") that preserves the full Qiskit object structure (except for custom attributes defined outside of Qiskit code). This differs from other serialization formats like [OpenQASM](https://github.com/openqasm/openqasm) (2.0 or 3.0) which has a different abstraction model and can result in a loss of information contained in the original circuit (or is unable to represent some aspects of the Qiskit objects) or Python’s [pickle](https://docs.python.org/3/library/pickle.html) which will preserve the Qiskit object exactly but will only work for a single Qiskit version (it is also [potentially insecure](https://docs.python.org/3/library/pickle.html#module-pickle)).
+QPY is a binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects that is designed to be cross-platform, Python version agnostic, and backwards compatible moving forward. QPY should be used if you need a mechanism to save or copy between systems a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that preserves the full Qiskit object structure (except for custom attributes defined outside of Qiskit code). This differs from other serialization formats like [OpenQASM](https://github.com/openqasm/openqasm) (2.0 or 3.0) which has a different abstraction model and can result in a loss of information contained in the original circuit (or is unable to represent some aspects of the Qiskit objects) or Python’s [pickle](https://docs.python.org/3/library/pickle.html) which will preserve the Qiskit object exactly but will only work for a single Qiskit version (it is also [potentially insecure](https://docs.python.org/3/library/pickle.html#module-pickle)).
 
 ## Basic Usage
 
@@ -47,18 +47,19 @@ with open('twenty_bells.qpy', 'wb') as fd:
 
 and then loading that file will return a list with all the circuits
 
-> **with open(‘twenty\_bells.qpy’, ‘rb’) as fd:**
->
-> twenty\_new\_bells = qpy.load(fd)
+```python
+with open('twenty_bells.qpy', 'rb') as fd:
+    twenty_new_bells = qpy.load(fd)
+```
 
 ## API documentation
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qpy/interface.py#L238-L391" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, trust_payload=False)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/interface.py#L207-L344" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None)">
   Load a QPY binary file
 
-  This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from its contents. For example:
+  This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
 
   ```python
   from qiskit import qpy
@@ -77,21 +78,12 @@ and then loading that file will return a list with all the circuits
       circuits = qpy.load(fd)
   ```
 
-  which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") objects from the file.
+  which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from the file.
 
   **Parameters**
 
-  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – A file like object that contains the QPY binary data for a circuit or pulse schedule.
+  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – A file like object that contains the QPY binary data for a circuit.
   *   **metadata\_deserializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONDecoder] | None*) – An optional JSONDecoder class that will be used for the `cls` kwarg on the internal `json.load` call used to deserialize the JSON payload used for the `.metadata` attribute for any programs in the QPY file. If this is not specified the circuit metadata will be parsed as JSON with the stdlib `json.load()` function using the default `JSONDecoder` class.
-  *   **trust\_payload** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if set to `False` (the default), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") objects in the payload that were serialized using `sympy` are not allowed and will error. This is because the `sympy` parsing uses [`eval()`](https://docs.python.org/3/library/functions.html#eval "(in Python v3.13)"), which can allow for arbitrary code execution. The flag should only be set to `True` if you trust the QPY payload you are loading.
-
-  **Return type**
-
-  [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
-
-  <Admonition title="Warning" type="caution">
-    If `trust_payload` is set to `True` this can enable arbitrary code execution because internally `sympy` relies on [`eval()`](https://docs.python.org/3/library/functions.html#eval "(in Python v3.13)").
-  </Admonition>
 
   **Returns**
 
@@ -101,21 +93,17 @@ and then loading that file will return a list with all the circuits
 
   *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if `file_obj` is not a valid QPY file
   *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – When invalid data type is loaded.
-
-  **Parameters**
-
-  *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) –
-  *   **metadata\_deserializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONDecoder] | None*) –
-  *   **trust\_payload** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) –
+  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If the `symengine` engine library is not installed when loading a QPY version 10, 11, or 12 payload that is using symengine symbolic encoding and contains [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") instances.
+  *   [**QpyError**](#qiskit.qpy.QpyError "qiskit.qpy.QpyError") – if known but unsupported data type is loaded.
 
   **Return type**
 
-  [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+  [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")\[[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
 </Function>
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qpy/interface.py#L77-L235" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=True, version=13)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/interface.py#L75-L204" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=14)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -150,19 +138,15 @@ and then loading that file will return a list with all the circuits
 
   Which will save the qpy serialized circuit to the provided file.
 
-  <Admonition title="Deprecated since version 1.3" type="danger">
-    Passing ScheduleBlock to programs is deprecated as of Qiskit 1.3. It will be removed in Qiskit 2.0. The entire Qiskit Pulse package is being deprecated and this argument uses a dependency on the package.
-  </Admonition>
-
   **Parameters**
 
-  *   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Different data types must be separately serialized. Support for [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is deprecated since Qiskit 1.3.0.
+  *   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.13)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
   *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.13)")) – The file like object to write the QPY data too
 
   *   **metadata\_serializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.13)")*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
 
-  *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If True, all objects containing symbolic expressions will be serialized using symengine’s native mechanism. This is a faster serialization alternative, but not supported in all platforms. This flag only has an effect if the emitted QPY format version is 10, 11, or 12. For QPY format version >= 13 (which is the default starting in Qiskit 1.3.0) this flag is no longer used.
+  *   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – This flag is no longer used by QPY versions supported by this function and will have no impact on the generated QPY payload except to set a field in a QPY v13 file header which is unused.
 
   *   **version** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) –
 
@@ -173,21 +157,20 @@ and then loading that file will return a list with all the circuits
         </Admonition>
 
         <Admonition title="Note" type="note">
-          If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") that contain [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.4 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
+          If serializing a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") that contains [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects with `version` set low with the intent to load the payload using a historical release of Qiskit, it is safest to set the `use_symengine` flag to `False`. Versions of Qiskit prior to 1.2.4 cannot load QPY files containing `symengine`-serialized [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects unless the version of `symengine` used between the loading and generating environments matches.
         </Admonition>
 
   **Raises**
 
-  *   [**QpyError**](#qiskit.qpy.QpyError "qiskit.qpy.QpyError") – When multiple data format is mixed in the output.
   *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.13)") – When invalid data type is input.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – When an unsupported version number is passed in for the `version` argument
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.13)") – When an unsupported version number is passed in for the `version` argument.
 </Function>
 
 These functions will raise a custom subclass of [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") if they encounter problems during serialization or deserialization.
 
 ### QpyError
 
-<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
+<Class id="qiskit.qpy.QpyError" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L18-L28" signature="qiskit.qpy.QpyError(*message)" modifiers="exception">
   Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
 
   Errors raised by the qpy module.
@@ -199,7 +182,7 @@ When a lower-than-maximum target QPY version is set for serialization, but the o
 
 ### UnsupportedFeatureForVersion
 
-<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
+<Class id="qiskit.qpy.UnsupportedFeatureForVersion" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L31-L48" signature="qiskit.qpy.UnsupportedFeatureForVersion(feature, required, target)" modifiers="exception">
   Bases: [`QpyError`](#qiskit.qpy.QpyError "qiskit.qpy.exceptions.QpyError")
 
   QPY error raised when the target dump version is too low for a feature that is present in the object to be serialized.
@@ -243,7 +226,7 @@ If a feature being loaded is deprecated in the corresponding qiskit release, QPY
 
 ### QPYLoadingDeprecatedFeatureWarning
 
-<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/1.4/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
+<Class id="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" github="https://github.com/Qiskit/qiskit/tree/stable/2.0/qiskit/qpy/exceptions.py#L51-L53" signature="qiskit.qpy.QPYLoadingDeprecatedFeatureWarning" modifiers="exception">
   Bases: [`QiskitWarning`](exceptions#qiskit.exceptions.QiskitWarning "qiskit.exceptions.QiskitWarning")
 
   Visible deprecation warning for QPY loading functions without a stable point in the call stack.
@@ -258,12 +241,23 @@ If a feature being loaded is deprecated in the corresponding qiskit release, QPY
   To recover a QPY file that fails with `symengine` version-related errors during a call to [`qpy.load()`](#qiskit.qpy.load "qiskit.qpy.load"), first attempt to use Qiskit >= 1.2.4 to load the file. If this still fails, it is likely because Qiskit 0.45.x was used to generate the file with `use_symengine=True`. In this case, use Qiskit 0.45.3 with `symengine==0.9.2` to load the file, and then re-export it to QPY setting `use_symengine=False`. The resulting file can then be loaded by any later version of Qiskit.
 </Admonition>
 
+<Admonition title="Note" type="note">
+  Starting with Qiskit version 2.0.0, which removed the Pulse module from the library, QPY provides limited support for loading payloads that include pulse data. Loading a `ScheduleBlock` payload, a [`QpyError`](#qiskit.qpy.QpyError "qiskit.qpy.QpyError") exception will be raised. Loading a payload for a circuit that contained pulse gates, the output circuit will contain custom instructions **without** calibration data attached for each pulse gate, leaving them undefined.
+</Admonition>
+
 ### QPY format version history
 
 If you’re planning to load a QPY file between different Qiskit versions knowing which versions were available in a given release are useful. As the QPY is backwards compatible but not forwards compatible you need to ensure a given QPY format version was released in the release you’re calling [`load()`](#qiskit.qpy.load "qiskit.qpy.load") with. The following table lists the QPY versions that were supported in every Qiskit (and qiskit-terra prior to Qiskit 1.0.0) release going back to the introduction of QPY in qiskit-terra 0.18.0.
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 2.0.0                                      | 13, 14                                                                   | 14                                                                                                                  |
+| 1.4.2                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.4.1                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.4.0                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.3.3                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.3.2                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
+| 1.3.1                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
 | 1.3.0                                      | 10, 11, 12, 13                                                           | 13                                                                                                                  |
 | 1.2.4                                      | 10, 11, 12                                                               | 12                                                                                                                  |
 | 1.2.3 (yanked)                             | 10, 11, 12                                                               | 12                                                                                                                  |
@@ -348,6 +342,65 @@ The file header is immediately followed by the circuit payloads. Each individual
 The `STANDALONE_VARS` are new in QPY version 12; before that, there was no data between `REGISTERS` and `CUSTOM_DEFINITIONS`.
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-14" />
+
+### Version 14
+
+Version 14 adds a new core DURATION type, support for additional [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type") classes [`Float`](circuit_classical#qiskit.circuit.classical.types.Float "qiskit.circuit.classical.types.Float") and [`Duration`](circuit_classical#qiskit.circuit.classical.types.Duration "qiskit.circuit.classical.types.Duration"), and a new expression node type [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch").
+
+#### DURATION
+
+A [`Duration`](circuit#qiskit.circuit.Duration "qiskit.circuit.Duration") is encoded by a single-byte ASCII `char` that encodes the kind of type, followed by a payload that varies depending on the type. The defined codes are:
+
+| Qiskit class | Type code | Payload                         |
+| ------------ | --------- | ------------------------------- |
+| `dt`         | `t`       | One `unsigned long long value`. |
+| `ns`         | `n`       | One `double value`.             |
+| `us`         | `u`       | One `double value`.             |
+| `ms`         | `m`       | One `double value`.             |
+| `s`          | `s`       | One `double value`.             |
+
+<span id="changes-to-expr-var-declaration" />
+
+#### Changes to EXPR\_VAR\_DECLARATION
+
+The `EXPR_VAR_DECLARATION` type is now used to represent both [`Var`](circuit_classical#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") standalone variables and [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") identifiers. To support this change, the usage type code has two new possible entries, in addition to the existing ones:
+
+| Type code | Meaning                                    |
+| --------- | ------------------------------------------ |
+| `A`       | A `capture` stretch to the circuit.        |
+| `O`       | A locally declared stretch to the circuit. |
+
+### Changes to EXPRESSION
+
+The EXPRESSION type code has a new possible entry, `s`, corresponding to [`expr.Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") nodes.
+
+| Qiskit class                                                                                                 | Type code | Payload                        | Children |
+| ------------------------------------------------------------------------------------------------------------ | --------- | ------------------------------ | -------- |
+| [`Stretch`](circuit_classical#qiskit.circuit.classical.expr.Stretch "qiskit.circuit.classical.expr.Stretch") | `s`       | One `unsigned short var_index` | 0        |
+
+<span id="changes-to-expr-type" />
+
+#### Changes to EXPR\_TYPE
+
+The following table shows the new type classes added in the version:
+
+| Qiskit class                                                                                                      | Type code | Payload |
+| ----------------------------------------------------------------------------------------------------------------- | --------- | ------- |
+| [`Float`](circuit_classical#qiskit.circuit.classical.types.Float "qiskit.circuit.classical.types.Float")          | `f`       | None.   |
+| [`Duration`](circuit_classical#qiskit.circuit.classical.types.Duration "qiskit.circuit.classical.types.Duration") | `d`       | None.   |
+
+<span id="changes-to-expr-value" />
+
+#### Changes to EXPR\_VALUE
+
+The classical expression’s type system now supports new encoding types for value literals, in addition to the existing encodings for int and bool. The new value type encodings are below:
+
+| Python type                                                             | Type code | Payload             |
+| ----------------------------------------------------------------------- | --------- | ------------------- |
+| `float`                                                                 | `f`       | One `double value`. |
+| [`Duration`](circuit#qiskit.circuit.Duration "qiskit.circuit.Duration") | `t`       | One `DURATION`.     |
 
 <span id="qpy-version-13" />
 
@@ -488,6 +541,8 @@ The `EXPR_VAR` variable has gained a new type code and payload, in addition to t
 | `UUID`       | `U`       | One `uint32_t` index of the variable into the series of `EXPR_VAR_STANDALONE` variables that were written immediately after the circuit header. |
 
 Notably, this new type-code indexes into pre-defined variables from the circuit header, rather than redefining the variable again in each location it is used.
+
+<span id="id4" />
 
 ### Changes to EXPRESSION
 
@@ -718,13 +773,13 @@ The conventional [SCHEDULE\_BLOCK](#qpy-schedule-block) data model is preserved,
 
 New type key character is added to the [SCHEDULE\_BLOCK\_INSTRUCTIONS](#qpy-schedule-instructions) group for the `Reference` instruction.
 
-*   `y`: [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction
+*   `y`: `Reference` instruction
 
 New type key character is added to the [SCHEDULE\_BLOCK\_OPERANDS](#qpy-schedule-operands) group for the operands of `Reference` instruction, which is a tuple of strings, e.g. (“cr45p”, “q0”, “q1”).
 
 *   `o`: string (operand string)
 
-Note that this is the same encoding with the built-in Python string, however, the standard value encoding in QPY uses `s` type character for string data, which conflicts with the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") in the scope of pulse instruction operands. A special type character `o` is reserved for the string data that appears in the pulse instruction operands.
+Note that this is the same encoding with the built-in Python string, however, the standard value encoding in QPY uses `s` type character for string data, which conflicts with the `SymbolicPulse` in the scope of pulse instruction operands. A special type character `o` is reserved for the string data that appears in the pulse instruction operands.
 
 In addition, version 7 adds two new type keys to the INSTRUCTION\_PARM struct. `"d"` is followed by no data and represents the literal value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") for switch-statement support. `"R"` represents a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"), and is followed by the same format as the description of register or classical bit as used in the first element of [the condition of an INSTRUCTION field](#qpy-instructions).
 
@@ -755,7 +810,7 @@ The only change compared to [Version 5](#qpy-version-5) is the addition of class
 
 Version 5 changes from [Version 4](#qpy-version-4) by adding support for `ScheduleBlock` and changing two payloads the INSTRUCTION metadata payload and the CUSTOM\_INSTRUCTION block. These now have new fields to better account for [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") objects in a circuit. In addition, new payload MAP\_ITEM is defined to implement the [MAPPING](#qpy-mapping) block.
 
-With the support of `ScheduleBlock`, now [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") can be serialized together with [`calibrations`](qiskit.circuit.QuantumCircuit#calibrations "qiskit.circuit.QuantumCircuit.calibrations"), or [Pulse Gates](/guides/pulse). In QPY version 5 and above, [CIRCUIT\_CALIBRATIONS](#qpy-circuit-calibrations) payload is packed after the [INSTRUCTIONS](#qpy-instructions) block.
+With the support of `ScheduleBlock`, now [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") can be serialized together with `calibrations`, or [Pulse Gates](/guides/pulse). In QPY version 5 and above, [CIRCUIT\_CALIBRATIONS](#qpy-circuit-calibrations) payload is packed after the [INSTRUCTIONS](#qpy-instructions) block.
 
 In QPY version 5 and above,
 
@@ -768,7 +823,7 @@ struct {
 immediately follows the file header block to represent the program type stored in the file.
 
 *   When `type==c`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") payload follows
-*   When `type==s`, [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") payload follows
+*   When `type==s`, `ScheduleBlock` payload follows
 
 <Admonition title="Note" type="note">
   Different programs cannot be packed together in the same file. You must create different files for different program types. Multiple objects with the same type can be saved in a single file.
@@ -780,7 +835,7 @@ immediately follows the file header block to represent the program type stored i
 
 #### SCHEDULE\_BLOCK
 
-[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") is first supported in QPY Version 5. This allows users to save pulse programs in the QPY binary format as follows:
+`ScheduleBlock` is first supported in QPY Version 5. This allows users to save pulse programs in the QPY binary format as follows:
 
 ```python
 from qiskit import pulse, qpy
@@ -789,10 +844,10 @@ with pulse.build() as schedule:
     pulse.play(pulse.Gaussian(160, 0.1, 40), pulse.DriveChannel(0))
 
 with open('schedule.qpy', 'wb') as fd:
-    qpy.dump(qc, fd)
+    qpy.dump(schedule, fd)
 
 with open('schedule.qpy', 'rb') as fd:
-    new_qc = qpy.load(fd)[0]
+    new_schedule = qpy.load(fd)[0]
 ```
 
 Note that circuit and schedule block are serialized and deserialized through the same QPY interface. Input data type is implicitly analyzed and no extra option is required to save the schedule block.
@@ -803,7 +858,7 @@ Note that circuit and schedule block are serialized and deserialized through the
 
 #### SCHEDULE\_BLOCK\_HEADER
 
-[`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") block starts with the following header:
+`ScheduleBlock` block starts with the following header:
 
 ```c
 struct {
@@ -823,12 +878,12 @@ which is immediately followed by `name_size` utf8 bytes of schedule name and `me
 
 Then, alignment context of the schedule block starts with `char` representing the supported context type followed by the [SEQUENCE](#qpy-sequence) block representing the parameters associated with the alignment context `AlignmentKind._context_params`. The context type char is mapped to each alignment subclass as follows:
 
-*   `l`: [`AlignLeft`](qiskit.pulse.transforms.AlignLeft "qiskit.pulse.transforms.AlignLeft")
-*   `r`: [`AlignRight`](qiskit.pulse.transforms.AlignRight "qiskit.pulse.transforms.AlignRight")
-*   `s`: [`AlignSequential`](qiskit.pulse.transforms.AlignSequential "qiskit.pulse.transforms.AlignSequential")
-*   `e`: [`AlignEquispaced`](qiskit.pulse.transforms.AlignEquispaced "qiskit.pulse.transforms.AlignEquispaced")
+*   `l`: `AlignLeft`
+*   `r`: `AlignRight`
+*   `s`: `AlignSequential`
+*   `e`: `AlignEquispaced`
 
-Note that [`AlignFunc`](qiskit.pulse.transforms.AlignFunc "qiskit.pulse.transforms.AlignFunc") context is not supported because of the callback function stored in the context parameters.
+Note that `AlignFunc` context is not supported because of the callback function stored in the context parameters.
 
 <span id="schedule-block-instructions" />
 
@@ -836,18 +891,18 @@ Note that [`AlignFunc`](qiskit.pulse.transforms.AlignFunc "qiskit.pulse.transfor
 
 #### SCHEDULE\_BLOCK\_INSTRUCTIONS
 
-This alignment block is further followed by `num_element` length of block elements which may consist of nested schedule blocks and schedule instructions. Each schedule instruction starts with `char` representing the instruction type followed by the [SEQUENCE](#qpy-sequence) block representing the instruction `operands`. Note that the data structure of pulse [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction") is unified so that instance can be uniquely determined by the class and a tuple of operands. The mapping of type char to the instruction subclass is defined as follows:
+This alignment block is further followed by `num_element` length of block elements which may consist of nested schedule blocks and schedule instructions. Each schedule instruction starts with `char` representing the instruction type followed by the [SEQUENCE](#qpy-sequence) block representing the instruction `operands`. Note that the data structure of pulse `Instruction` is unified so that instance can be uniquely determined by the class and a tuple of operands. The mapping of type char to the instruction subclass is defined as follows:
 
-*   `a`: [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") instruction
-*   `p`: [`Play`](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.Play") instruction
-*   `d`: [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction
-*   `f`: [`SetFrequency`](qiskit.pulse.instructions.SetFrequency "qiskit.pulse.instructions.SetFrequency") instruction
-*   `g`: [`ShiftFrequency`](qiskit.pulse.instructions.ShiftFrequency "qiskit.pulse.instructions.ShiftFrequency") instruction
-*   `q`: [`SetPhase`](qiskit.pulse.instructions.SetPhase "qiskit.pulse.instructions.SetPhase") instruction
-*   `r`: [`ShiftPhase`](qiskit.pulse.instructions.ShiftPhase "qiskit.pulse.instructions.ShiftPhase") instruction
-*   `b`: [`RelativeBarrier`](qiskit.pulse.instructions.RelativeBarrier "qiskit.pulse.instructions.RelativeBarrier") instruction
-*   `t`: [`TimeBlockade`](qiskit.pulse.instructions.TimeBlockade "qiskit.pulse.instructions.TimeBlockade") instruction
-*   `y`: [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction (new in version 0.7)
+*   `a`: `Acquire` instruction
+*   `p`: `Play` instruction
+*   `d`: `Delay` instruction
+*   `f`: `SetFrequency` instruction
+*   `g`: `ShiftFrequency` instruction
+*   `q`: `SetPhase` instruction
+*   `r`: `ShiftPhase` instruction
+*   `b`: `RelativeBarrier` instruction
+*   `t`: `TimeBlockade` instruction
+*   `y`: `Reference` instruction (new in version 0.7)
 
 <span id="schedule-block-operands" />
 
@@ -857,23 +912,23 @@ This alignment block is further followed by `num_element` length of block elemen
 
 The operands of these instances can be serialized through the standard QPY value serialization mechanism, however there are special object types that only appear in the schedule operands. Since the operands are serialized as [SEQUENCE](#qpy-sequence), each element must be packed with the INSTRUCTION\_PARAM pack struct, where each payload starts with a header block consists of the char `type` and uint64\_t `size`. Special objects start with the following type key:
 
-*   `c`: [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
-*   `w`: [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")
-*   `s`: [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse")
+*   `c`: `Channel`
+*   `w`: `Waveform`
+*   `s`: `SymbolicPulse`
 *   `o`: string (operand string, new in version 0.7)
 
 <span id="qpy-schedule-channel" />
 
 #### CHANNEL
 
-Channel block starts with channel subtype `char` that maps an object data to [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") subclass. Mapping is defined as follows:
+Channel block starts with channel subtype `char` that maps an object data to `Channel` subclass. Mapping is defined as follows:
 
-*   `d`: [`DriveChannel`](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
-*   `c`: [`ControlChannel`](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")
-*   `m`: [`MeasureChannel`](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
-*   `a`: [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
-*   `e`: [`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")
-*   `r`: [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")
+*   `d`: `DriveChannel`
+*   `c`: `ControlChannel`
+*   `m`: `MeasureChannel`
+*   `a`: `AcquireChannel`
+*   `e`: `MemorySlot`
+*   `r`: `RegisterSlot`
 
 The key is immediately followed by the channel index serialized as the INSTRUCTION\_PARAM.
 
@@ -891,7 +946,7 @@ struct {
 }
 ```
 
-which is followed by `data_size` bytes of complex `ndarray` binary generated by [numpy.save](https://numpy.org/doc/stable/reference/generated/numpy.save.html). This represents the complex IQ data points played on a quantum device. [`name`](qiskit.pulse.library.Waveform#name "qiskit.pulse.library.Waveform.name") is saved after the samples in the INSTRUCTION\_PARAM pack struct, which can be string or `None`.
+which is followed by `data_size` bytes of complex `ndarray` binary generated by [numpy.save](https://numpy.org/doc/stable/reference/generated/numpy.save.html). This represents the complex IQ data points played on a quantum device. `name` is saved after the samples in the INSTRUCTION\_PARAM pack struct, which can be string or `None`.
 
 <span id="qpy-schedule-symbolic-pulse" />
 
@@ -909,9 +964,9 @@ struct {
 }
 ```
 
-which is followed by `type_size` utf8 bytes of [`SymbolicPulse.pulse_type`](qiskit.pulse.library.SymbolicPulse#pulse_type "qiskit.pulse.library.SymbolicPulse.pulse_type") string that represents a class of waveform, such as “Gaussian” or “GaussianSquare”. Then, `envelope_size`, `constraints_size`, `valid_amp_conditions_size` utf8 bytes of serialized symbolic expressions are generated for [`SymbolicPulse.envelope`](qiskit.pulse.library.SymbolicPulse#envelope "qiskit.pulse.library.SymbolicPulse.envelope"), [`SymbolicPulse.constraints`](qiskit.pulse.library.SymbolicPulse#constraints "qiskit.pulse.library.SymbolicPulse.constraints"), and [`SymbolicPulse.valid_amp_conditions`](qiskit.pulse.library.SymbolicPulse#valid_amp_conditions "qiskit.pulse.library.SymbolicPulse.valid_amp_conditions"), respectively. Since string representation of these expressions are usually lengthy, the expression binary is generated by the python [zlib](https://docs.python.org/3/library/zlib.html) module with data compression.
+which is followed by `type_size` utf8 bytes of `SymbolicPulse.pulse_type` string that represents a class of waveform, such as “Gaussian” or “GaussianSquare”. Then, `envelope_size`, `constraints_size`, `valid_amp_conditions_size` utf8 bytes of serialized symbolic expressions are generated for `SymbolicPulse.envelope`, `SymbolicPulse.constraints`, and `SymbolicPulse.valid_amp_conditions`, respectively. Since string representation of these expressions are usually lengthy, the expression binary is generated by the python [zlib](https://docs.python.org/3/library/zlib.html) module with data compression.
 
-To uniquely specify a pulse instance, we also need to store the associated parameters, which consist of `duration` and the rest of parameters as a dictionary. Dictionary parameters are first dumped in the [MAPPING](#qpy-mapping) form, and then `duration` is dumped with the INSTRUCTION\_PARAM pack struct. Lastly, [`name`](qiskit.pulse.library.SymbolicPulse#name "qiskit.pulse.library.SymbolicPulse.name") is saved also with the INSTRUCTION\_PARAM pack struct, which can be string or `None`.
+To uniquely specify a pulse instance, we also need to store the associated parameters, which consist of `duration` and the rest of parameters as a dictionary. Dictionary parameters are first dumped in the [MAPPING](#qpy-mapping) form, and then `duration` is dumped with the INSTRUCTION\_PARAM pack struct. Lastly, `name` is saved also with the INSTRUCTION\_PARAM pack struct, which can be string or `None`.
 
 <span id="qpy-mapping" />
 
@@ -956,7 +1011,7 @@ struct {
 }
 ```
 
-The calibration definition header is then followed by `name_size` utf8 bytes of the gate name, `num_qubits` length of integers representing a sequence of qubits, and `num_params` length of INSTRUCTION\_PARAM payload for parameters associated to the custom instruction. The `type` indicates the class of pulse program which is either, in principle, [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"). As of QPY Version 5, only [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") payload is supported. Finally, [SCHEDULE\_BLOCK](#qpy-schedule-block) payload is packed for each CALIBRATION\_DEF entry.
+The calibration definition header is then followed by `name_size` utf8 bytes of the gate name, `num_qubits` length of integers representing a sequence of qubits, and `num_params` length of INSTRUCTION\_PARAM payload for parameters associated to the custom instruction. The `type` indicates the class of pulse program which is either, in principle, `ScheduleBlock` or `Schedule`. As of QPY Version 5, only `ScheduleBlock` payload is supported. Finally, [SCHEDULE\_BLOCK](#qpy-schedule-block) payload is packed for each CALIBRATION\_DEF entry.
 
 <span id="qpy-instruction-v5" />
 
@@ -1099,7 +1154,7 @@ struct {
 }
 ```
 
-which is immediately followed by `pauli_op_size` bytes which are .npy format <span id="id4" />[\[2\]](#f2) data which represents the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
+which is immediately followed by `pauli_op_size` bytes which are .npy format <span id="id5" />[\[2\]](#f2) data which represents the [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp").
 
 Version 3 of the QPY format also defines a struct format to represent a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") as a distinct subclass from a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter"). This adds a new parameter type char `'v'` to represent a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") which is now supported as a type string value for an INSTRUCTION\_PARAM. The payload for these parameters are defined below as [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector).
 
@@ -1180,7 +1235,7 @@ This is immediately followed by `name_size` bytes of utf8 data for the name of t
 
 ### Version 1
 
-<span id="id5" />
+<span id="id6" />
 
 #### HEADER
 
@@ -1322,7 +1377,7 @@ struct {
 }
 ```
 
-After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#qpy-param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a [PARAMETER](#qpy-param-struct) struct, `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a [PARAMETER\_EXPR](#qpy-param-expr) struct (on QPY format [Version 3](#qpy-version-3) the format is tweak slightly see: [PARAMETER\_EXPR](#qpy-param-expr-v3)), `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format <span id="id6" />[\[2\]](#f2) data, and in QPY [Version 3](#qpy-version-3) `'v'` represents a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") which is represented by a [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector) struct.
+After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#qpy-param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a [PARAMETER](#qpy-param-struct) struct, `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a [PARAMETER\_EXPR](#qpy-param-expr) struct (on QPY format [Version 3](#qpy-version-3) the format is tweak slightly see: [PARAMETER\_EXPR](#qpy-param-expr-v3)), `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format <span id="id7" />[\[2\]](#f2) data, and in QPY [Version 3](#qpy-version-3) `'v'` represents a [`ParameterVectorElement`](qiskit.circuit.ParameterVectorElement "qiskit.circuit.ParameterVectorElement") which is represented by a [PARAMETER\_VECTOR\_ELEMENT](#qpy-param-vector) struct.
 
 <span id="qpy-param-struct" />
 
@@ -1341,7 +1396,7 @@ which is immediately followed by `name_size` utf8 bytes representing the paramet
 
 <span id="qpy-param-expr" />
 
-<span id="id7" />
+<span id="id8" />
 
 #### PARAMETER\_EXPR
 
@@ -1380,7 +1435,7 @@ struct {
 }
 ```
 
-this matches the internal C representation of Python’s complex type. <span id="id8" />[\[3\]](#f3)
+this matches the internal C representation of Python’s complex type. <span id="id9" />[\[3\]](#f3)
 
 ## References
 
@@ -1392,13 +1447,13 @@ this matches the internal C representation of Python’s complex type. <span id=
 
 <span id="f2" />
 
-\[2] ([1](#id4),[2](#id6))
+\[2] ([1](#id5),[2](#id7))
 
 [https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html)
 
 <span id="f3" />
 
-\[[3](#id8)]
+\[[3](#id9)]
 
 [https://docs.python.org/3/c-api/complex.html#c.Py\_complex](https://docs.python.org/3/c-api/complex.html#c.Py_complex)
 

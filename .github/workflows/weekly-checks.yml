@@ -66,9 +66,23 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: npm run check:external-links -- 'docs/**/*.{md,mdx,ipynb}'
 
+    new-pill-checker:
+      runs-on: ubuntu-latest
+      if: github.repository_owner == 'Qiskit'
+      steps:
+        - uses: actions/checkout@v4
+        - name: Set up Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: 18
+        - name: Install Node.js dependencies
+          run: npm ci
+        - name: Check outdated new pills
+          run: npm run check:new-pills
+
   make_issue:
     name: Make issue on failure
-    needs: [external-link-checker, pages-render]
+    needs: [external-link-checker, pages-render, new-pill-checker]
     if: ${{ failure() && github.event_name == 'schedule' }}
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,60 @@
+---
+title: Configure IBM Quantum Platform for an organization
+description: Configure IBM Quantum Platform for an organization by configuring IAM, resource groups, and access groups.
+platform: cloud
+---
+
+# Configure IBM Quantum Platform for an organization
+<Admonition type="note">
+This documentation is relevant to the new IBM Quantum&reg; Platform. If you need the previous version, return to the [IBM Quantum Platform Classic documentation.](https://docs.quantum.ibm.com/admin/)
+</Admonition>
+
+Follow these steps to set up IBM Quantum Platform.
+
+<span id="iam-org"></span>
+## 1. Configure IAM settings
+
+First, configure the following settings in the administrator's IAM account. To review and configure these settings, go to [Manage → IAM → Settings](https://cloud.ibm.com/iam/settings).
+
+* **User list visibility** determines whether users can see each other, regardless of project assignment. The `enabled` setting restricts user visibility. That is, users in your account cannot see each other, even if they can access the same resources. Choose the appropriate value for your environment. See [Controlling user visibility](https://cloud.ibm.com/docs/account?topic=account-iam-user-setting) for more information.
+* **API key creation** controls whether users can create API keys. In IBM Quantum Platform, it is common to use API keys. If API keys are being used, choose `disabled`. Alternatively, you can give specific permissions to each user.
+
+<span id="crt-rsc-grp-org"></span>
+## 2. (Optional) Create resource groups
+
+Skip this step if you are using access groups that directly reference IBM Quantum service instances.
+
+If you chose to use resource groups, go to [Manage → Account → Resource groups (in Account resources)](https://cloud.ibm.com/account/resource-groups) and click **Create**.
+
+<span id="create-instance-org"></span>
+## 3. Create IBM Quantum service instances
+
+If you already created IBM Quantum service instances, skip this step.
+
+* If you are using resource groups, make sure to create the service instances on the appropriate resource group.
+* The service instance name, such as `QR-ml`, is needed for access group references.
+
+Follow the steps in [Set up to use IBM Cloud](/guides/cloud-setup#cloud) for instructions.
+
+<span id="create-group-org"></span>
+## 4. Create access groups for projects
+
+First, [create a custom role](/guides/custom-roles#custom) that allows users to perform actions to work with IBM Quantum service instances.
+Next, [create an access group](/guides/access-groups) for each project and give that group the minimum set of permissions that are required to work with the project resources.
+
+<span id="setup-idp-org"></span>
+## 5. Set up your ID provider and assign users
+
+Follow the steps in the appropriate topic, depending on the ID provider you chose to use:
+
+* [Use IBM Cloud&reg; as the ID provider for users that have IBM Cloud accounts](/guides/manage-cloud-users)
+* [Use IBM Cloud as the ID provider for users that do not have IBM Cloud accounts](/guides/manage-appid#id-cloud)
+* [Use an ID provider other than IBM Cloud for users that do not have IBM Cloud accounts](/guides/manage-appid#id-provider)
+* [Invite users and manage their access](/guides/invite-and-manage-users)
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  Learn about the [IBM Cloud account structure.](/guides/cloud-account-structure)
+  -  Read an [overview of the available plans.](/guides/plans-overview)
+</Admonition>

@@ -1255,7 +1255,7 @@ test("handle <dl> with className struct", async () => {
 
   <span id=\"structQkSparseTerm_1autotoc_md2\" />
 
-  ## Safety
+  #### Safety
 
   *   \`bit_terms\` must be a non-null, aligned pointer to \`len\` elements of type \`BitTerm\`.
   *   \`indices\` must be a non-null, aligned pointer to \`len\` elements of type \`uint32_t\`.
