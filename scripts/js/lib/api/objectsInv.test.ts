@@ -133,7 +133,7 @@ test.describe("objects.inv", () => {
 
   test("C entries are transformed correctly", async () => {
     const testCases: [{ name: string; uri: string }, string][] = [
-      // These should just have the 'cdoc/' and anchor removed
+      // These should just have the 'cdoc/' removed and the anchor normalized
       [
         { name: "QkBitTerm", uri: "cdoc/qk-bit-term.html#_CPPv49QkBitTerm" },
         "qk-bit-term.html#qkbitterm",
