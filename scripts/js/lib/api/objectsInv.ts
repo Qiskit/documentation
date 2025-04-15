@@ -157,9 +157,9 @@ export class ObjectsInv {
     // We sometimes get anchors of the form
     // 'structQkObsTerm_1a14ff1665641903565439ad9877fd2c8e' and
     // 'structQkObsTerm_1autotoc_md2', we just map these to the object.
-    const maybeStructAutoTocMatch = uri.match(
-      /struct([A-z]+)_(\dautotoc_|[\dabcdef]{34})/,
-    );
+    const maybeStructAutoTocMatch =
+      uri.match(/struct([A-z]+)_(\dautotoc_|[\dabcdef]{34})/) ||
+      uri.match(/struct([A-Z][A-z]+)$/);
     if (maybeStructAutoTocMatch) {
       const objectName = maybeStructAutoTocMatch[1].toLowerCase();
       return `${path}#${objectName}`;
