@@ -126,22 +126,9 @@ function _runtimeObjectsInvRegexes(): string[] {
   );
 }
 
-function _qiskitCObjectsInvRegexes(): string[] {
-  return [
-    "qk-obs-term#structqkobsterm",
-    "qk-obs-term#structqkobsterm_1a14ff1665641903565439ad9877fd2c8e",
-    "qk-obs-term#structqkobsterm_1a3e532a189705a89456f2d2b96d2ff759",
-    "qk-obs-term#structqkobsterm_1aaab7bf8363689e37e5c9a8131c54f674",
-    "qk-obs-term#structqkobsterm_1af1019513a1a00f578d33b38d10b36670",
-    "qk-obs-term#structqkobsterm_1af131526e747cdcac7ecc1dffc66b439c",
-    "qk-obs-term#structqkobsterm_1autotoc_md2",
-  ].map((path) => `\/api\/qiskit-c\/${path}$`);
-}
-
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
   ..._runtimeObjectsInvRegexes(),
-  ..._qiskitCObjectsInvRegexes(),
 ];
 
 // -----------------------------------------------------------------------------------
@@ -206,6 +193,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.34/",
       "0.35/",
       "0.36/",
+      "0.37/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [

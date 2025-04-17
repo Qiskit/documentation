@@ -230,8 +230,9 @@ The [`qiskit.circuit`](#module-qiskit.circuit "qiskit.circuit") module also expo
 
 There are also utilities for generating random circuits:
 
-*   [`random.random_circuit()`](#qiskit.circuit.random.random_circuit "qiskit.circuit.random.random_circuit")
-*   [`random.random_clifford_circuit()`](#qiskit.circuit.random.random_clifford_circuit "qiskit.circuit.random.random_clifford_circuit")
+*   [`random.random_circuit()`](circuit_random#qiskit.circuit.random.random_circuit "qiskit.circuit.random.random_circuit")
+*   [`random.random_circuit_from_graph()`](circuit_random#qiskit.circuit.random.random_circuit_from_graph "qiskit.circuit.random.random_circuit_from_graph")
+*   [`random.random_clifford_circuit()`](circuit_random#qiskit.circuit.random.random_clifford_circuit "qiskit.circuit.random.random_clifford_circuit")
 
 Finally, the circuit module has its own exception class, to indicate when things went wrong in circuit-specific manners:
 
@@ -861,80 +862,6 @@ Qiskit also defines a shared global-state object, [`SessionEquivalenceLibrary`](
   The default instance of [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary"), which will be used by most Qiskit objects if no library is manually specified. You can feel free to add equivalences to this using [`add_equivalence()`](qiskit.circuit.EquivalenceLibrary#add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence"). It inherits all the built-in rules of [`StandardEquivalenceLibrary`](#qiskit.circuit.StandardEquivalenceLibrary "qiskit.circuit.StandardEquivalenceLibrary").
 </Attribute>
 
-### Generating random circuits
-
-#### random\_circuit
-
-<Function id="qiskit.circuit.random.random_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L24-L295" signature="qiskit.circuit.random.random_circuit(num_qubits, depth, max_operands=4, measure=False, conditional=False, reset=False, seed=None, num_operand_distribution=None)">
-  Generate random circuit of arbitrary size and form.
-
-  This function will generate a random circuit by randomly selecting gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
-
-  ```python
-  from qiskit.circuit.random import random_circuit
-
-  circ = random_circuit(2, 2, measure=True)
-  circ.draw(output='mpl')
-  ```
-
-  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/circuit-3.avif)
-
-  **Parameters**
-
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of quantum wires
-  *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – layers of operations (i.e. critical path length)
-  *   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – maximum qubit operands of each gate (between 1 and 4)
-  *   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, measure all qubits at the end
-  *   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle measurements and conditionals
-  *   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – if True, insert middle resets
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – sets random seed (optional)
-  *   **num\_operand\_distribution** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.13)")) – a distribution of gates that specifies the ratio of 1-qubit, 2-qubit, 3-qubit, …, n-qubit gates in the random circuit. Expect a deviation from the specified ratios that depends on the size of the requested random circuit. (optional)
-
-  **Returns**
-
-  constructed circuit
-
-  **Return type**
-
-  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-  **Raises**
-
-  [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when invalid options given
-</Function>
-
-#### random\_clifford\_circuit
-
-<Function id="qiskit.circuit.random.random_clifford_circuit" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/random/utils.py#L298-L366" signature="qiskit.circuit.random.random_clifford_circuit(num_qubits, num_gates, gates='all', seed=None)">
-  Generate a pseudo-random Clifford circuit.
-
-  This function will generate a Clifford circuit by randomly selecting the chosen amount of Clifford gates from the set of standard gates in `qiskit.circuit.library.standard_gates`. For example:
-
-  ```python
-  from qiskit.circuit.random import random_clifford_circuit
-
-  circ = random_clifford_circuit(num_qubits=2, num_gates=6)
-  circ.draw(output='mpl')
-  ```
-
-  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/circuit-4.avif)
-
-  **Parameters**
-
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of quantum wires.
-  *   **num\_gates** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)")) – number of gates in the circuit.
-  *   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")*]*) – optional list of Clifford gate names to randomly sample from. If `"all"` (default), use all Clifford gates in the standard library.
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.13)") *| np.random.Generator*) – sets random seed/generator (optional).
-
-  **Returns**
-
-  constructed circuit
-
-  **Return type**
-
-  [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-</Function>
-
 ### Apply Pauli twirling to a circuit
 
 There are two primary types of noise when executing quantum circuits. The first is stochastic, or incoherent, noise that is mainly due to the unwanted interaction between the quantum processor and the external environment in which it resides. The second is known as coherent error, and these errors arise due to imperfect control of a quantum system. This can be unwanted terms in a system Hamiltonian, i.e. incorrect unitary evolution, or errors from incorrect temporal control of the quantum system, which includes things like incorrect pulse-shapes for gates.
@@ -1021,7 +948,7 @@ If we draw this circuit, we will see that Qiskit places the zeroth qubit on the 
 qc.draw("mpl")
 ```
 
-![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/circuit-6.avif)
+![Circuit diagram output by the previous code.](/docs/images/api/qiskit/dev/circuit-4.avif)
 
 ### Matrix representations
 
