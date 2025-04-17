@@ -136,7 +136,7 @@ export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
 // -----------------------------------------------------------------------------------
 
 export const ALWAYS_IGNORED_URL_PREFIXES: string[] = [
-  "/announcements/product-updates",
+  "/docs/announcements/product-updates",
 ];
 
 // -----------------------------------------------------------------------------------
