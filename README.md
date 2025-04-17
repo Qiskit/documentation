@@ -100,15 +100,15 @@ The preview application does not include the top nav bar. Instead, navigate to t
 
 Maintainers: when you release a new version of the image, you need to update the image digest in `./start` by following the instructions at the top of the file and opening a pull request.
 
-### Tip: periodically prune Docker
+### Tip: Periodically prune Docker
 
-Occasionally, Docker may fail due to running out of disk space. For example, you may encounter an error like this:
+Occasionally, Docker might fail when it runs out of disk space. For example, you might encounter an error like this:
 
 ```
 ENOSPC: no space left on device, mkdir '/tmp/xfs-4d1dfe51'
 ```
 
-It can be helpful to clear Docker's system space by running `docker system prune`.
+Try running `docker system prune` to clear Docker's system space.
 
 ### API docs authors: How to preview your changes
 
