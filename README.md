@@ -100,6 +100,16 @@ The preview application does not include the top nav bar. Instead, navigate to t
 
 Maintainers: when you release a new version of the image, you need to update the image digest in `./start` by following the instructions at the top of the file and opening a pull request.
 
+### Tip: periodically prune Docker
+
+Occasionally, Docker may fail due to running out of disk space. For example, you may encounter an error like this:
+
+```
+ENOSPC: no space left on device, mkdir '/tmp/xfs-4d1dfe51'
+```
+
+It can be helpful to clear Docker's system space by running `docker system prune`.
+
 ### API docs authors: How to preview your changes
 
 API docs authors can preview their changes to one of the APIs by using the `-a` parameter to specify the path to the docs folder:
