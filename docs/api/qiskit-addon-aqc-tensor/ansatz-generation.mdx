@@ -33,13 +33,13 @@ Tools for generating ansatz circuits.
 
   **Parameters**
 
-  *   **qc** ([`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – A circuit, which is assumed to be unitary. Barriers are ignored.
+  *   **qc** ([`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)")) – A circuit, which is assumed to be unitary. Barriers are ignored.
   *   **qubits\_initially\_zero** ([`bool`](https://docs.python.org/3/library/functions.html#bool "(in Python v3.13)")) – If `True`, the first Z rotation on each qubit is fixed to zero because such a rotation has no effect on the state $|0\rangle$.
-  *   **parameter\_name** ([`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name for the [`ParameterVector`](/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.4)") representing the free parameters in the returned ansatz circuit.
+  *   **parameter\_name** ([`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.13)")) – Name for the [`ParameterVector`](/docs/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.4)") representing the free parameters in the returned ansatz circuit.
 
   **Return type**
 
-  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]]
+  [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.13)")\[[`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v1.4)"), [`list`](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.13)")\[[`float`](https://docs.python.org/3/library/functions.html#float "(in Python v3.13)")]]
 
   **Returns**
 
@@ -65,7 +65,7 @@ Tools for generating ansatz circuits.
   qc.draw("mpl")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-1.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-1.svg)
 
   If the above circuit is passed to [`generate_ansatz_from_circuit()`](#qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit "qiskit_addon_aqc_tensor.ansatz_generation.generate_ansatz_from_circuit"), it will return an ansatz with parametrized two-qubit KAK rotations in the same locations as the input:
 
@@ -78,7 +78,7 @@ Tools for generating ansatz circuits.
   ansatz.draw("mpl")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-2.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-2.svg)
 
   Note that in the generated ansatz, all consecutive single-qubit gates are collapsed into the same ZXZ block, and all consecutive two-qubit gates are collapsed into a single KAK block, up to single-qubit rotations.
 
@@ -88,7 +88,7 @@ Tools for generating ansatz circuits.
   ansatz.assign_parameters(initial_params).draw("mpl")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-3.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-3.svg)
 
   A 1D Trotter circuit leads to a similar result, with its characteristic brickwork structure:
 
@@ -112,7 +112,7 @@ Tools for generating ansatz circuits.
   good_circuit.draw("mpl", initial_state=True)
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-4.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-4.svg)
 
   ```python
   from qiskit_addon_aqc_tensor import generate_ansatz_from_circuit
@@ -123,7 +123,7 @@ Tools for generating ansatz circuits.
   ansatz.assign_parameters(initial_params).draw("mpl", initial_state=True)
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-5.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-5.svg)
 </Function>
 
 ### parametrize\_circuit
@@ -136,7 +136,7 @@ Tools for generating ansatz circuits.
   **Parameters**
 
   *   **qc** (QuantumCircuit) – The quantum circuit to parametrize.
-  *   **parameter\_name** (str) – Name for the [`ParameterVector`](/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.4)") representing the free parameters in the returned ansatz circuit.
+  *   **parameter\_name** (str) – Name for the [`ParameterVector`](/docs/api/qiskit/qiskit.circuit.ParameterVector "(in Qiskit v1.4)") representing the free parameters in the returned ansatz circuit.
 
   **Return type**
 
@@ -168,7 +168,7 @@ Tools for generating ansatz circuits.
   qc.draw("mpl")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-6.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-6.svg)
 
   If the above circuit is passed to [`parametrize_circuit()`](#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit"), it will return an ansatz obtained from this circuit by replacing numerical parameters with free parameters:
 
@@ -179,7 +179,7 @@ Tools for generating ansatz circuits.
   ansatz.draw("mpl")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-7.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-7.svg)
 
   Further, the [`parametrize_circuit()`](#qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit "qiskit_addon_aqc_tensor.ansatz_generation.parametrize_circuit") function provides parameters which, when bound to the ansatz, will result in a circuit identical to the original one:
 
@@ -187,7 +187,7 @@ Tools for generating ansatz circuits.
   ansatz.assign_parameters(initial_params).draw("mpl")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-8.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-8.svg)
 
   If the original circuit already contained parameters, then the returned parameter values will contain `None` at the entries corresponding to those parameters, and the preceding code will not work. The following example shows how to recover the original circuit in this case.
 
@@ -215,6 +215,6 @@ Tools for generating ansatz circuits.
   ansatz.draw("mpl")
   ```
 
-  ![Circuit diagram output by the previous code.](/images/api/qiskit-addon-aqc-tensor/ansatz_generation-9.svg)
+  ![Circuit diagram output by the previous code.](/docs/images/api/qiskit-addon-aqc-tensor/ansatz_generation-9.svg)
 </Function>
 
