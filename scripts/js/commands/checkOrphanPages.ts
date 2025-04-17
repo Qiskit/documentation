@@ -96,7 +96,8 @@ function parseTocUrls(entries: TocEntry[]): string[] {
       const childUrls = parseTocUrls(entry.children || []);
       urls.push(...childUrls);
     } else if (entry.url !== undefined) {
-      urls.push(entry.url);
+      // Temporary until all the pages include `/docs`
+      urls.push(entry.url.replace("/docs", ""));
     }
   }
   return urls;

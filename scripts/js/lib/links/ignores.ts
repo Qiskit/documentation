@@ -126,22 +126,9 @@ function _runtimeObjectsInvRegexes(): string[] {
   );
 }
 
-function _qiskitCObjectsInvRegexes(): string[] {
-  return [
-    "qk-obs-term#structqkobsterm",
-    "qk-obs-term#structqkobsterm_1a14ff1665641903565439ad9877fd2c8e",
-    "qk-obs-term#structqkobsterm_1a3e532a189705a89456f2d2b96d2ff759",
-    "qk-obs-term#structqkobsterm_1aaab7bf8363689e37e5c9a8131c54f674",
-    "qk-obs-term#structqkobsterm_1af1019513a1a00f578d33b38d10b36670",
-    "qk-obs-term#structqkobsterm_1af131526e747cdcac7ecc1dffc66b439c",
-    "qk-obs-term#structqkobsterm_1autotoc_md2",
-  ].map((path) => `\/api\/qiskit-c\/${path}$`);
-}
-
 export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
   ..._addonsObjectsInvRegexes(),
   ..._runtimeObjectsInvRegexes(),
-  ..._qiskitCObjectsInvRegexes(),
 ];
 
 // -----------------------------------------------------------------------------------
@@ -179,8 +166,8 @@ function _runtimeObjectsInv(): FilesToIgnores {
       (vers) => [
         `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
-          `/api/qiskit-ibm-runtime/${vers}index#next-steps`,
-          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+          `/docs/api/qiskit-ibm-runtime/${vers}index#next-steps`,
+          `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
         ],
       ],
     ),
@@ -190,7 +177,7 @@ function _runtimeObjectsInv(): FilesToIgnores {
       (vers) => [
         `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
         [
-          `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
+          `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-version-api-docs-preview`,
         ],
       ],
     ),
@@ -206,10 +193,11 @@ function _runtimeObjectsInv(): FilesToIgnores {
       "0.34/",
       "0.35/",
       "0.36/",
+      "0.37/",
     ].map((vers) => [
       `public/docs/api/qiskit-ibm-runtime/${vers}objects.inv`,
       [
-        `/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
+        `/docs/api/qiskit-ibm-runtime/${vers}index#qiskit-runtime-release-api-docs-preview`,
       ],
     ]),
   );
@@ -223,39 +211,39 @@ function _qiskitUtilsData(): FilesToIgnores {
     ["0.45/", "1.0/", "1.1/"].map((vers) => [
       `public/docs/api/qiskit/${vers}objects.inv`,
       [
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CONSTRAINT`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CPLEX`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CVXPY`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_DOCPLEX`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_FIXTURES`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_GRAPHVIZ`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IBMQ`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IGNIS`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IPYTHON`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IPYWIDGETS`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_JAX`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_JUPYTER`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_MATPLOTLIB`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_NETWORKX`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_NLOPT`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PDFLATEX`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PDFTOCAIRO`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PIL`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYDOT`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYGMENTS`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYLATEX`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_QASM3_IMPORT`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SEABORN`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKLEARN`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKQUANT`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKSNFIT`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SQSNOBFIT`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SYMENGINE`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TESTTOOLS`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TOQM`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TWEEDLEDUM`,
-        `/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_Z3`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_AER`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CONSTRAINT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CPLEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_CVXPY`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_DOCPLEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_FIXTURES`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_GRAPHVIZ`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IBMQ`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IGNIS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IPYTHON`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_IPYWIDGETS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_JAX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_JUPYTER`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_MATPLOTLIB`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_NETWORKX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_NLOPT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PDFLATEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PDFTOCAIRO`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PIL`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYDOT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYGMENTS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_PYLATEX`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_QASM3_IMPORT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SEABORN`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKLEARN`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKQUANT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SKSNFIT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SQSNOBFIT`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_SYMENGINE`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TESTTOOLS`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TOQM`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_TWEEDLEDUM`,
+        `/docs/api/qiskit/${vers}utils#qiskit.utils.optionals.HAS_Z3`,
       ],
     ]),
   );
@@ -285,7 +273,7 @@ function _qiskitUtilsData(): FilesToIgnores {
   );
   return {
     "docs/api/qiskit/release-notes/1.0.mdx": [
-      "/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
+      "/docs/api/qiskit/1.0/utils#qiskit.utils.optionals.HAS_SYMENGINE",
     ],
     ...objectsInv,
     ...utilsFile,
@@ -299,69 +287,72 @@ function _patternsReorg(): FilesToIgnores {
     ["", "0.45/", "0.46/", "1.0/", "1.1/", "1.2/"].flatMap((vers) => [
       [
         `docs/api/qiskit/${vers}qiskit.circuit.QuantumCircuit.mdx`,
-        ["/build/circuit-construction"],
+        ["/docs/build/circuit-construction"],
       ],
       [
         `docs/api/qiskit/${vers}qiskit.transpiler.passes.ValidatePulseGates.mdx`,
-        ["/build/pulse"],
+        ["/docs/build/pulse"],
       ],
-      [`docs/api/qiskit/${vers}qpy.mdx`, ["/build/pulse"]],
+      [`docs/api/qiskit/${vers}qpy.mdx`, ["/docs/build/pulse"]],
     ]),
   );
   const runtime = Object.fromEntries(
     [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26].flatMap((vers) => [
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/batch.mdx`,
-        ["/run/run-jobs-batch", "/run/max-execution-time"],
+        ["/docs/run/run-jobs-batch", "/docs/run/max-execution-time"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/session.mdx`,
-        ["/run/max-execution-time"],
+        ["/docs/run/max-execution-time"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/options-options.mdx`,
         [
-          "/run/max-execution-time",
-          "/run/configure-error-mitigation",
-          "/run/max-execution-time#maximum-execution-time",
+          "/docs/run/max-execution-time",
+          "/docs/run/configure-error-mitigation",
+          "/docs/run/max-execution-time#maximum-execution-time",
         ],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/options-estimator-options.mdx`,
         [
-          "/run/configure-error-mitigation",
-          "/run/configure-runtime-compilation",
+          "/docs/run/configure-error-mitigation",
+          "/docs/run/configure-runtime-compilation",
         ],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v1.mdx`,
-        ["/api/migration-guides/v2-primitives"],
+        ["/docs/api/migration-guides/v2-primitives"],
       ],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v1.mdx`,
-        ["/api/migration-guides/v2-primitives"],
+        ["/docs/api/migration-guides/v2-primitives"],
       ],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/run"]],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/estimator-v2.mdx`, ["/docs/run"]],
+      [`docs/api/qiskit-ibm-runtime/0.${vers}/sampler-v2.mdx`, ["/docs/run"]],
       [
         `docs/api/qiskit-ibm-runtime/0.${vers}/noise-learner-noise-learner.mdx`,
-        ["/run"],
+        ["/docs/run"],
       ],
-      [`docs/api/qiskit-ibm-runtime/0.${vers}/transpiler.mdx`, ["/transpile"]],
+      [
+        `docs/api/qiskit-ibm-runtime/0.${vers}/transpiler.mdx`,
+        ["/docs/transpile"],
+      ],
     ]),
   );
   return {
     ...qiskit,
     ...runtime,
     "docs/api/qiskit/release-notes/1.0.mdx": [
-      "/start/install#qiskit-versioning",
-      "/start/configure-qiskit-local",
+      "/docs/start/install#qiskit-versioning",
+      "/docs/start/configure-qiskit-local",
     ],
     "docs/api/qiskit/release-notes/0.46.mdx": [
-      "/start/install#qiskit-versioning",
+      "/docs/start/install#qiskit-versioning",
     ],
     "docs/api/qiskit/1.1/qiskit.quantum_info.SparsePauliOp.mdx": [
-      "/start/configure-qiskit-local#environment-variables",
+      "/docs/start/configure-qiskit-local#environment-variables",
     ],
   };
 }
