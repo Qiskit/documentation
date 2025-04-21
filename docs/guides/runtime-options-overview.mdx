@@ -171,9 +171,10 @@ Due to differences in the device compilation process, certain runtime features c
   - PEC
   - Dynamical decoupling
   - Fractional gates
-  - Pulse gates
 
-  Can be used with gate twirling for non-conditional gates.
+  Other notes:
+  - Can be used with gate twirling for non-conditional gates.
+  - Dynamic circuits are not supported on all QPUs.  Additionally, some dynamic circuit functions have been deprecated.  For details, see [Classical feedforward and control flow.](guides/classical-feedforward-and-control-flow)
   </TabItem>
   <TabItem value="DD" label="Dynamical decoupling">
   Incompatible with dynamic circuits.
@@ -196,14 +197,14 @@ Due to differences in the device compilation process, certain runtime features c
   - PEA
   - PEC
 
-  Can be used with pulse gates, but it might not work when using custom gates.
+  Might not work when using custom gates.
   </TabItem>
   <TabItem value="Twirling" label="Gate twirling">
   Incompatible with fractional gates.
 
   Other notes:
   - Can be used with dynamic circuits with non-conditional gates.
-  - Can be used with pulse gates, but it does not work with non-Clifford entanglers.
+  - Does not work with non-Clifford entanglers.
 
   </TabItem>
 
@@ -211,7 +212,6 @@ Due to differences in the device compilation process, certain runtime features c
   Incompatible with:
   - Dynamic circuits
   - Fractional gates
-  - Pulse gates
 
   </TabItem>
 
@@ -221,7 +221,6 @@ Due to differences in the device compilation process, certain runtime features c
   - Fractional gates
   - Gate-folding ZNE
   - PEC
-  - Pulse gates
   </TabItem>
 
   <TabItem value="PEC" label="PEC">
@@ -230,23 +229,7 @@ Due to differences in the device compilation process, certain runtime features c
   - Fractional gates
   - Gate-folding ZNE
   - PEA
-  - Pulse gates
   </TabItem>
-
-  <TabItem value="Pulse" label="Pulse gates (Eagle only)">
-  Incompatible with:
-  - Dynamic circuits
-  - Dynamical decoupling
-  - gen3-turbo
-  - PEA
-  - PEC
-
-
-  Other notes:
-  - Can be used with gate-folding ZNE, but it might not work with custom gates.
-  - Can be used with gate twirling, but it does not work with non-Clifford entanglers.
-  </TabItem>
-
 
 </Tabs>
 
