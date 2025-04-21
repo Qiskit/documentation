@@ -5,11 +5,12 @@ platform: cloud
 ---
 # Set instance allocation limits
 
-An account might have allotted time on the premium plan. Because each account can have many premium plan instances, setting allocation limits helps you control which instances are allowed to consume that time. Note that if the allocation is not set as a limit, the instance can use more than its alloted time.
+An account might have allotted time on the Premium or Flex plan. Because each account can have many instances on a plan, setting allocation limits helps you control which instances are allowed to consume that time. Note that if the allocation is not set as a limit, the instance can use more than its alloted time.
 
-The time that you allocate to premium plan instances is used by the fair-share algorithm and determines the priority in the queue, based on usage of all QPUs over a rolling time window of 28 days.
+The time that you allocate to instances is used by the fair-share algorithm and determines the priority in the queue, based on usage of all QPUs over a rolling time window of 28 days (for Premium plan users) or over the subscription period (for Flex plan users).
 
 The allocation is set when creating the instance.  However, you can view and change allocated time on the [instances page.](https://quantum.cloud.ibm.com/instances)
+
 
 ## What happens when the limit is reached
 
@@ -19,6 +20,7 @@ You can optionally set the time allocation as a limit for the instance. The foll
 - Pending jobs remain queued.
 - No workloads are canceled.
 - Collaborators can submit new workloads, which will remain queued until more time is available.
+- For the Flex plan, the instance cannot process more jobs unless the limit has been increased.
 
 ## Next steps
 
