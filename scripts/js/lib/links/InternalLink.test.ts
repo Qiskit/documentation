@@ -51,7 +51,8 @@ test.describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", new Set());
     const results = testLink.check([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '/docs/test-alternative-path'. Appears in:\n    /testorigin.mdx",
+      "❌ Could not find link '/docs/test-alternative-path'. Appears in:\n" +
+        "    /testorigin.mdx    ❓ Did you mean '/docs/testpath'?",
     );
   });
 
@@ -72,7 +73,7 @@ test.describe("Validate links", () => {
     const results = testLink.check([testFile]);
     expect(results).toEqual(
       "❌ Could not find link '../testpath'. Appears in:\n" +
-        "    docs/test1/test2/testorigin.mdx    ❓ Did you mean 'docs/testpath'?",
+        "    docs/test1/test2/testorigin.mdx    ❓ Did you mean '/docs/testpath'?",
     );
   });
 
@@ -101,10 +102,10 @@ test.describe("Validate links", () => {
     const results = testLink.check([testFile1, testFile2]);
     expect(results).toEqual(
       "❌ Could not find link '/docs/testpath'. Appears in:\n" +
-        "    docs/test/test2/test4/testorigin.mdx    ❓ Did you mean 'docs/test/testpath'?\n" +
-        "    docs/test/test2/testorigin.mdx    ❓ Did you mean 'docs/test/testpath'?\n" +
-        "    docs/test/test3/testorigin.mdx    ❓ Did you mean 'docs/test/testpath'?\n" +
-        "    docs/test/testorigin.mdx    ❓ Did you mean 'docs/test/testpath'?",
+        "    docs/test/test2/test4/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?\n" +
+        "    docs/test/test2/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?\n" +
+        "    docs/test/test3/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?\n" +
+        "    docs/test/testorigin.mdx    ❓ Did you mean '/docs/test/testpath'?",
     );
   });
 
@@ -143,8 +144,8 @@ test.describe("Validate links", () => {
     const results = testLink.check([testFile1, testFile2]);
     expect(results).toEqual(
       "❌ Could not find link '../testpath'. Appears in:\n" +
-        "    docs/test/test2/testorigin.mdx    ❓ Did you mean 'docs/testpath'?\n" +
-        "    docs/test/test3/testorigin.mdx    ❓ Did you mean 'docs/testpath'?",
+        "    docs/test/test2/testorigin.mdx    ❓ Did you mean '/docs/testpath'?\n" +
+        "    docs/test/test3/testorigin.mdx    ❓ Did you mean '/docs/testpath'?",
     );
   });
 
@@ -167,7 +168,7 @@ test.describe("Validate links", () => {
     );
     const results = testLink.check([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '/docs/testpath#test_anchor'. Appears in:\n    /testorigin.mdx    ❓ Did you mean 'docs/testpath#test_diff_anchor'?",
+      "❌ Could not find link '/docs/testpath#test_anchor'. Appears in:\n    /testorigin.mdx    ❓ Did you mean '/docs/testpath#test_diff_anchor'?",
     );
   });
 
@@ -190,7 +191,7 @@ test.describe("Validate links", () => {
     );
     const results = testLink.check([testFile]);
     expect(results).toEqual(
-      "❌ Could not find link '../testpath#test-anchor'. Appears in:\n    docs/test/testorigin.mdx    ❓ Did you mean 'docs/testpath#test_diff_anchor'?",
+      "❌ Could not find link '../testpath#test-anchor'. Appears in:\n    docs/test/testorigin.mdx    ❓ Did you mean '/docs/testpath#test_diff_anchor'?",
     );
   });
 });
