@@ -18,27 +18,27 @@ test("Test the finding of invalid images", async () => {
   const markdown = `
 # A header
 
-![Our first image with alt text](/images/img1.png)
+![Our first image with alt text](/docs/images/img1.png)
 
-![](/images/invalid_img1.png)
+![](/docs/images/invalid_img1.png)
 
-![Here's another valid image](/images/img2.png)
+![Here's another valid image](/docs/images/img2.png)
 
-![](/images/invalid_img2.png)
+![](/docs/images/invalid_img2.png)
 
-![](/images/invalid_img2.png)
+![](/docs/images/invalid_img2.png)
 
-![Here's an actual valid image](/images/valid.avif)
+![Here's an actual valid image](/docs/images/valid.avif)
 
-![And a valid SVG](/images/valid.svg)
+![And a valid SVG](/docs/images/valid.svg)
 
-<img src="/images/HTMLexample1.jpg" alt="" width="200"/>
+<img src="/docs/images/HTMLexample1.jpg" alt="" width="200"/>
 
-<img src="/images/HTMLexample2.jpg" alt="Example" width="200"/>
+<img src="/docs/images/HTMLexample2.jpg" alt="Example" width="200"/>
 
 ![And now, our last link](https://ibm.com)
 
-![../\_images/invalid\_img3.png](/images/invalid_img3.png)
+![../docs/\_images/invalid\_img3.png](/docs/images/invalid_img3.png)
     `;
   const images = await collectInvalidImageErrors(markdown);
   const correct_images = new Set([

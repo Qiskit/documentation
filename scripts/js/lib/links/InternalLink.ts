@@ -64,6 +64,8 @@ export class InternalLink {
     if (
       this.value.startsWith("/docs/images") ||
       this.value.startsWith("/docs/videos") ||
+      this.value.startsWith("/learning/images") ||
+      this.value.startsWith("/learning/videos") ||
       this.value.endsWith(".pdf")
     ) {
       return [path.join("public/", this.value)];
@@ -122,7 +124,7 @@ export class InternalLink {
       // We need to add the initial `/` to the file paths.
       // E.g. docs/guides/my-guide.mdx -> /docs/guides/my-guide.mdx
       const filePath = `/${file.path}`;
-      const candidatePath = filePath.startsWith("/public/docs/")
+      const candidatePath = filePath.match(/^\/public\/(docs|learning)\//)
         ? filePath.replace(/^\/public/, "")
         : filePath.replace(/\.[^\/.]+$/, "");
       let score = levenshtein.get(this.value, candidatePath);

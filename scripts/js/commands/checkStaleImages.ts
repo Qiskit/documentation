@@ -15,8 +15,8 @@ import { globby } from "globby";
 
 import { zxMain, isInstalled } from "../lib/zx.js";
 
-// When users link to this folder, they leave off this prefix.
-const PUBLIC_FOLDER_PREFIX = "public/docs/";
+// When writers link to this folder, they leave off this prefix.
+const PUBLIC_FOLDER_PREFIX = "public/{docs,learning}/";
 
 // Files that are used in closed source, so should not be removed.
 // Format: full file path, e.g. "public/docs/images/guides/paulibasis.png"
@@ -70,8 +70,8 @@ async function getStrippedImagePaths(): Promise<Set<string>> {
 
 async function isImageUnused(strippedFp: string): Promise<boolean> {
   const args = (await isInstalled("rg"))
-    ? ["rg", "-l", strippedFp, "docs", "-g", "!docs/api"]
-    : ["git", "grep", "-l", strippedFp, "docs", ":!docs/api"];
+    ? ["rg", "-l", strippedFp, "{docs,learning}", "-g", "!docs/api"]
+    : ["git", "grep", "-l", strippedFp, "{docs,learning}", ":!docs/api"];
   const proc = await $`${args}`.quiet().catch((result) => result);
   return (
     proc.stdout === "" &&

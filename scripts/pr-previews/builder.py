@@ -122,9 +122,11 @@ def _copy_local_content(root_dir: Path) -> None:
         "public/docs/images/tutorials",
         "docs/migration-guides",
         "docs/open-source",
+        "learning",
         "public/docs/videos",
         "public/docs/images/guides",
         "public/docs/images/qiskit-patterns",
+        "public/learning",
     ]:
         dest = (
             root_dir / "packages/preview" / dir.replace("/docs", "")
