@@ -135,9 +135,7 @@ export const ALWAYS_IGNORED_URL_REGEXES: string[] = [
 // Always ignored URL prefixes - be careful using this
 // -----------------------------------------------------------------------------------
 
-export const ALWAYS_IGNORED_URL_PREFIXES: string[] = [
-  "/docs/announcements/product-updates",
-];
+export const ALWAYS_IGNORED_URL_PREFIXES: string[] = [];
 
 // -----------------------------------------------------------------------------------
 // Files to ignores
