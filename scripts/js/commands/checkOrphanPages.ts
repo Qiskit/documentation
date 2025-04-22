@@ -77,7 +77,7 @@ async function readTocUrls(filePath: string): Promise<Set<string>> {
 async function findExistentUrls(directory: string): Promise<string[]> {
   const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
   return fileList.map(
-    (fileName) => `/${fileName.replace(".mdx", "").replace(".ipynb", "")}`,
+    (fileName) => "/" + fileName.replace(".mdx", "").replace(".ipynb", ""),
   );
 }
 
