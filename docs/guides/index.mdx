@@ -21,9 +21,9 @@ The name "Qiskit" is a general term referring to a collection of software for ex
 
 In addition, many open-source projects are part of the broader Qiskit ecosystem. These software tools are not part of Qiskit itself, but rather interface with Qiskit and can provide valuable additional functionality.
 
-![All Qiskit pattern steps are shown (Map the problem, Optimize for hardware, Execute on hardware, and Post-process results). All steps, except for 'Execute on hardware', use the Qiskit SDK. 'Optimizing for hardware' additionally uses the Qiskit Transpiler Service.  'Executing on hardware' uses only the Qiskit Runtime Service.](/images/qiskit-patterns/patterns.svg)
+![All Qiskit pattern steps are shown (Map the problem, Optimize for hardware, Execute on hardware, and Post-process results). All steps, except for 'Execute on hardware', use the Qiskit SDK. 'Optimizing for hardware' additionally uses the Qiskit Transpiler Service.  'Executing on hardware' uses only the Qiskit Runtime Service.](/docs/images/qiskit-patterns/patterns.svg)
 
-IBM is committed to the responsible development of quantum computing. Learn more and review our responsible quantum principles in the [Responsible quantum computing](/responsible-quantum-computing) topic.
+IBM is committed to the responsible development of quantum computing. Learn more and review our responsible quantum principles in the [Responsible quantum computing](/docs/responsible-quantum-computing) topic.
 
 ## The Qiskit SDK
 
@@ -31,15 +31,15 @@ The Qiskit SDK (package name [`qiskit`](https://pypi.org/project/qiskit/)) is an
 
 Some of the most useful features of the Qiskit SDK include:
 
-- **Circuit-building tools** ([`qiskit.circuit`](/api/qiskit/circuit)) - For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects.
+- **Circuit-building tools** ([`qiskit.circuit`](/docs/api/qiskit/circuit)) - For initializing and manipulating registers, circuits, instructions, gates, parameters, and control flow objects.
 
-- **Circuit library** ([`qiskit.circuit.library`](/api/qiskit/circuit_library)) - A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
+- **Circuit library** ([`qiskit.circuit.library`](/docs/api/qiskit/circuit_library)) - A vast range of circuits, instructions, and gates - key building blocks for circuit-based quantum computations.
 
-- **Quantum info library** ([`qiskit.quantum_info`](/api/qiskit/quantum_info)) - A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyze fidelity of outputs from primitives queries.
+- **Quantum info library** ([`qiskit.quantum_info`](/docs/api/qiskit/quantum_info)) - A toolkit for working with quantum states, operators and channels, using exact calculations (no sampling noise). Use this module to specify input observables and analyze fidelity of outputs from primitives queries.
 
-- **Transpiler** ([`qiskit.transpiler`](/api/qiskit/transpiler)) - For transforming and adapting quantum circuits to suit specific device topology, and optimizing for execution on real quantum processing units (QPUs).
+- **Transpiler** ([`qiskit.transpiler`](/docs/api/qiskit/transpiler)) - For transforming and adapting quantum circuits to suit specific device topology, and optimizing for execution on real quantum processing units (QPUs).
 
-- **Primitives** ([`qiskit.primitives`](/api/qiskit/primitives)) - The module that contains the base definitions and reference implementations of the Sampler and Estimator primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
+- **Primitives** ([`qiskit.primitives`](/docs/api/qiskit/primitives)) - The module that contains the base definitions and reference implementations of the Sampler and Estimator primitives, from which different quantum hardware providers can derive their own implementations. See more information about the Qiskit Runtime primitives [in the documentation](./primitives).
 
 ### Installation
 
@@ -64,7 +64,7 @@ With Qiskit Runtime you can choose to run your quantum programs on IBM Quantum h
 Qiskit Runtime is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](./configure-error-mitigation) page.
 
 
-Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: [_Job_, _Session_, and _Batch_,](/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. <CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
+Qiskit Runtime also includes three types of execution modes for running your quantum program on IBM hardware: [_Job_, _Session_, and _Batch_,](/docs/guides/execution-modes) each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. <CloudContent>Note that Open Plan users cannot submit session jobs.</CloudContent>
 
 
 To quickly install Qiskit Runtime, run the following command:
@@ -79,7 +79,7 @@ The short answer is, _not all of it_. The Qiskit Runtime service software that h
 
 ## Qiskit Serverless
 
-Creating utility-scale quantum applications generally requires a variety of compute resource requirements. Qiskit Serverless (`qiskit-ibm-catalog.QiskitServerless`) provides a simple interface to run workloads across quantum-classical resources. This includes deploying programs to IBM Quantum Platform and running workloads remotely, as well as easy resource management for multi-cloud and quantum-centric supercomputing use cases. See more information in the [Qiskit Serverless documentation](/guides/serverless) about how to use this collection of tools to:
+Creating utility-scale quantum applications generally requires a variety of compute resource requirements. Qiskit Serverless (`qiskit-ibm-catalog.QiskitServerless`) provides a simple interface to run workloads across quantum-classical resources. This includes deploying programs to IBM Quantum Platform and running workloads remotely, as well as easy resource management for multi-cloud and quantum-centric supercomputing use cases. See more information in the [Qiskit Serverless documentation](/docs/guides/serverless) about how to use this collection of tools to:
 
 - Parallelize classical tasks, such as pre-processing and post-processing
 - Persist long-running workloads in the cloud, even if your laptop is turned off
@@ -115,26 +115,26 @@ pip install qiskit-ibm-transpiler
 
 ## Qiskit addons
 
-Qiskit addons are a collection of research capabilities for utility-scale algorithm discovery. These capabilities build upon Qiskit’s performant foundation of tools for creating and running quantum algorithms. Addons are modular software components that plug into a workflow to scale or design new quantum algorithms. To learn more about the set of available Qiskit addons and how to get started using them, visit the [documentation](/guides/addons).
+Qiskit addons are a collection of research capabilities for utility-scale algorithm discovery. These capabilities build upon Qiskit’s performant foundation of tools for creating and running quantum algorithms. Addons are modular software components that plug into a workflow to scale or design new quantum algorithms. To learn more about the set of available Qiskit addons and how to get started using them, visit the [documentation](/docs/guides/addons).
 
 There are a number of addons depending on what research capability you are interested in. Each of them can be installed with pip.
 
-[Sample-based quantum diagonalization (SQD)](/guides/qiskit-addons-sqd):
+[Sample-based quantum diagonalization (SQD)](/docs/guides/qiskit-addons-sqd):
 ```bash
 pip install qiskit-addon-sqd
 ```
 
-[Approximate quantum compilation (AQC)](/guides/qiskit-addons-aqc):
+[Approximate quantum compilation (AQC)](/docs/guides/qiskit-addons-aqc):
 ```bash
 pip install qiskit-addon-aqc-tensor[quimb-jax]
 ```
 
-[Operator backpropagation (OBP)](/guides/qiskit-addons-obp):
+[Operator backpropagation (OBP)](/docs/guides/qiskit-addons-obp):
 ```bash
 pip install qiskit-addon-obp
 ```
 
-[Multi-product formulas (MPF)](/guides/qiskit-addons-mpf):
+[Multi-product formulas (MPF)](/docs/guides/qiskit-addons-mpf):
 ```bash
 pip install qiskit-addon-mpf
 ```
@@ -154,6 +154,6 @@ You can find a catalog of projects in the [Qiskit ecosystem page](https://qiskit
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  -  [Install the Qiskit SDK and Qiskit Runtime](/guides/install-qiskit).
-  -  Run your first quantum program with the [Hello World](/guides/hello-world) guide.
+  -  [Install the Qiskit SDK and Qiskit Runtime](/docs/guides/install-qiskit).
+  -  Run your first quantum program with the [Hello World](/docs/guides/hello-world) guide.
 </Admonition>
