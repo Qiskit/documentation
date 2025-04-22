@@ -119,9 +119,12 @@ export class InternalLink {
     let suggestionPathAnchors: string[] = [];
 
     existingFiles.forEach((file) => {
-      const candidatePath = file.path.startsWith("public/docs/")
-        ? file.path.replace(/^public/, "")
-        : file.path.replace(/\.[^\/.]+$/, "");
+      // We need to add the initial `/` to the file paths.
+      // E.g. docs/guides/my-guide.mdx -> /docs/guides/my-guide.mdx
+      const filePath = `/${file.path}`;
+      const candidatePath = filePath.startsWith("/public/docs/")
+        ? filePath.replace(/^\/public/, "")
+        : filePath.replace(/\.[^\/.]+$/, "");
       let score = levenshtein.get(this.value, candidatePath);
       if (score < minScoreLink) {
         minScoreLink = score;
