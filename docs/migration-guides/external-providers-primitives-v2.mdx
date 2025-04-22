@@ -9,7 +9,7 @@ description: Migrate to the primitives interface in external providers
 ## Why should third-party providers implement primitives?
 
 The Qiskit SDK is built to support third parties in creating external providers of quantum resources.
-The evolution of [user access patterns for QPUs](/guides/primitives#qpu-access-patterns)
+The evolution of [user access patterns for QPUs](/docs/guides/primitives#qpu-access-patterns)
 led to the Qiskit primitives (`Sampler` and `Estimator`) superseding the `backend.run` interface.
 To ensure Qiskit users can seamlessly transition between providers, all third-party providers should
 implement native support of the primitives for performant access to their hardware or simulators.
@@ -25,8 +25,8 @@ After you migrate your interface to primitives, your users with primitives-based
 
 ## Exposing native `Sampler` and `Estimator` implementations
 
-Qiskit defines base interfaces ([BaseEstimatorV2](/api/qiskit/qiskit.primitives.BaseEstimatorV2)
-and [BaseSamplerV2](/api/qiskit/qiskit.primitives.BaseSamplerV2)) that set the standards for input and output handling
+Qiskit defines base interfaces ([BaseEstimatorV2](/docs/api/qiskit/qiskit.primitives.BaseEstimatorV2)
+and [BaseSamplerV2](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2)) that set the standards for input and output handling
 in the primitives. Native primitive implementations can be developed to wrap any service provider hardware access function
 (for example, `execute_workload(QPU)` or `resource.access()`) or local simulator,
 as long as the final inputs and outputs conform to the established standards set by the base interfaces.
@@ -34,20 +34,20 @@ as long as the final inputs and outputs conform to the established standards set
 The `Estimator` interface exposes a tool to calculate expectation
 values of observables with respect to quantum states, while the `Sampler` interface outputs the counts or probability distributions
 obtained by sampling a quantum state in a QPU. These base interfaces also provide standard methods for execution,
-querying job status, and returning the job results. See the `qiskit.primitives` [API documentation](/api/qiskit/primitives)
+querying job status, and returning the job results. See the `qiskit.primitives` [API documentation](/docs/api/qiskit/primitives)
 for more information.
 
 The primitive unified bloc (PUB) data model defines the primitive input format, as described in
-[Overview of PUBs](/guides/primitive-input-output#pubs).
+[Overview of PUBs](/docs/guides/primitive-input-output#pubs).
 While different types of data can be accepted in a PUB, both `SamplerPub` and `EstimatorPub` have a `coerce()`
 method that can be used to convert them into the respective model. The following code snippets provide an
 example for each of the primitives.
 
-The [PrimitiveResult](/api/qiskit/qiskit.primitives.PrimitiveResult)
+The [PrimitiveResult](/docs/api/qiskit/qiskit.primitives.PrimitiveResult)
 defines the output of a primitive job. It is comprised of additional data models such as
-[PubResult](/api/qiskit/qiskit.primitives.PubResult) and
-[DataBin](/api/qiskit/qiskit.primitives.DataBin).
-See [Overview of primitive results](/guides/primitive-input-output#overview-of-primitive-outputs)
+[PubResult](/docs/api/qiskit/qiskit.primitives.PubResult) and
+[DataBin](/docs/api/qiskit/qiskit.primitives.DataBin).
+See [Overview of primitive results](/docs/guides/primitive-input-output#overview-of-primitive-outputs)
 for more information.
 
 ## Example of a third-party `Sampler` implementation
@@ -156,7 +156,7 @@ class CustomSampler(BaseSamplerV2):
         )
 ```
 
-This implementation is based on the [`StatevectorSampler` source code](/api/qiskit/qiskit.primitives.StatevectorSampler),
+This implementation is based on the [`StatevectorSampler` source code](/docs/api/qiskit/qiskit.primitives.StatevectorSampler),
 with some additions to represent the backend (hardware) resource access, as the `StatevectorSampler` class is designed for local statevector simulators.
 
 ## Example of a third-party `Estimator` implementation
@@ -263,5 +263,5 @@ class CustomEstimator(BaseEstimatorV2):
         )
 ```
 
-Similar to the `Sampler` example, this implementation is based on the [`StatevectorEstimator` source code](/api/qiskit/qiskit.primitives.StatevectorEstimator),
+Similar to the `Sampler` example, this implementation is based on the [`StatevectorEstimator` source code](/docs/api/qiskit/qiskit.primitives.StatevectorEstimator),
 with some additions to represent the backend (hardware) resource access, as the `StatevectorEstimator` class is designed for local statevector simulators.

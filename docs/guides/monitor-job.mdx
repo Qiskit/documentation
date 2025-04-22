@@ -66,11 +66,11 @@ In Qiskit, use `job.cancel()` to cancel a job.
 <span id="execution-spans"></span>
 ## View Sampler execution spans
 
-The results of [`SamplerV2`](/api/qiskit-ibm-runtime/sampler-v2) jobs executed in Qiskit Runtime contain execution timing information in their metadata.
+The results of [`SamplerV2`](/docs/api/qiskit-ibm-runtime/sampler-v2) jobs executed in Qiskit Runtime contain execution timing information in their metadata.
 This timing information can be used to place upper and lower timestamp bounds on when particular shots were executed on the QPU.
-Shots are grouped into [`ExecutionSpan`](/api/qiskit-ibm-runtime/execution-span-execution-span) objects, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
+Shots are grouped into [`ExecutionSpan`](/docs/api/qiskit-ibm-runtime/execution-span-execution-span) objects, each of which indicates a start time, a stop time, and a specification of which shots were collected in the span.
 
-An execution span specifies which data was executed during its window by providing an [`ExecutionSpan.mask`](/api/qiskit-ibm-runtime/execution-span-execution-span#mask) method. This method, given any [Primitive Unified Block (PUB)](/guides/primitive-input-output) index, returns a boolean mask that is `True` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`. See the [execution_span](/api/qiskit-ibm-runtime/execution-span) API page for full details.
+An execution span specifies which data was executed during its window by providing an [`ExecutionSpan.mask`](/docs/api/qiskit-ibm-runtime/execution-span-execution-span#mask) method. This method, given any [Primitive Unified Block (PUB)](/docs/guides/primitive-input-output) index, returns a boolean mask that is `True` for all shots executed during its window. PUBs are indexed by the order in which they were given to the Sampler run call. If, for example, a PUB has shape `(2, 3)` and was run with four shots, then the mask's shape is `(2, 3, 4)`. See the [execution_span](/docs/api/qiskit-ibm-runtime/execution-span) API page for full details.
 
 Example:
 
@@ -138,5 +138,5 @@ It is possible for time windows specified by distinct execution spans to overlap
 
 <Admonition type="tip" title="Recommendations">
     - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
-    - [Migrate from qiskit_ibm_provider](/migration-guides/qiskit-runtime-from-ibm-provider)
+    - [Migrate from qiskit_ibm_provider](/docs/migration-guides/qiskit-runtime-from-ibm-provider)
 </Admonition>
