@@ -67,6 +67,16 @@ After a workload has completed, there are several ways to view its actual usage:
 - Use [`GET /sessions/{id}`](/docs/api/runtime/tags/sessions#tags__sessions__operations__GetSessionDetailsExtendedController_getSessionDetails) to see usage for a specific batch or session.
 - Use [`GET /jobs/{id}`](/docs/api/runtime/tags/jobs#tags__jobs__operations__GetJobByIdController_getJobById) to see usage for a single job.
 
+<CloudContent>
+<span id="instance-usage"></span>
+## View instance usage
+
+You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because they calculate usage differently.
+
+The Instances page shows real-time usage for the last 28 days (rolling), up to the current time on the current day.  The Analytics page usage is re-calculated hourly and includes the last 28 full days; that is, it shows usage from 00:00 28 days ago to today, at the top of the hour.
+
+</CloudContent>
+
 ## Estimate workload usage
 
 After submitting a job to the IBM Quantum channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Alternatively, you can [view this information on the IBM Quantum Platform user interface](#view-usage).
