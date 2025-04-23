@@ -44,9 +44,10 @@ def main() -> None:
         current_branch = run_subprocess(
             ["git", "branch", "--show-current"]
         ).stdout.strip()
-        assert (
-            current_branch == "gh-pages"
-        ), f"Did not expect to be on branch '{current_branch}'; exiting"
+        if current_branch != "gh-pages":
+            raise AssertionError(
+                f"Did not expect to be on branch '{current_branch}'; exiting"
+            )
 
         # Squash all commits on this branch to save space
         run_subprocess(["git", "reset", "--soft", INITIAL_COMMIT])
