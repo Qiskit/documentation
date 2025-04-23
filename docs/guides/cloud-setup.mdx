@@ -42,8 +42,8 @@ The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is
     </Admonition>
 
 1. Find your access credentials.
-    1. Find your API key. From the [API keys page](https://cloud.ibm.com/iam/apikeys), view or create your API key, then copy it to a secure location so you can use it for authentication.
-    2. Find your Cloud Resource Name (CRN). Open the [Instances page](https://cloud.ibm.com/quantum/instances) and click your instance. In the page that opens, click the icon to copy your CRN. Save it in a secure location so you can use it for authentication.
+    1. Find your API key. From the [dashboard](https://quantum.cloud.ibm.com/), create your API key, then copy it to a secure location so you can use it for authentication.
+    2. Find your Cloud Resource Name (CRN) from the Instances section of the dashboard. Click the icon to copy your CRN for the instance you want to use, then save it in a secure location so you can use it for authentication.
 
 1. <span id="cloud-save"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#cloud-untrusted) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Cloud.) To use `save_account()`, activate a Python virtual environment (see the [installation instructions](/docs/guides/install-qiskit#local) if you do not already have a virtual environment set up). Then, run Python in your virtual environment and enter the following:
 
@@ -52,17 +52,16 @@ The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is
     token = "<your-API-token>"
     ```
 
-    ```python
-    from qiskit_ibm_runtime import QiskitRuntimeService
-    service = QiskitRuntimeService.save_account(
-        channel="ibm_cloud", # `channel` distinguishes between different account types
-        token=token, # Your token is confidential.
-        # Do not share your key in public code.
-        instance="<IBM Cloud CRN>",
-        name="<account-name>", # Optionally name this set of account credentials.
-        set_as_default=True, # Optionally set these as your default credentials.
-    )
-    ```
+```python
+  from qiskit_ibm_runtime import QiskitRuntimeService
+  service = QiskitRuntimeService.save_account(
+    token=token, # Your token is confidential.
+    # Do not share your key in public code.
+    instance="<IBM Cloud CRN>",
+    name="<account-name>", # Optionally name this set of account credentials.
+    set_as_default=True, # Optionally set these as your default credentials.
+  )
+```
 
 1. Type `exit()`. From now on, whenever you need to authenticate to the service, you can load your credentials with `QiskitRuntimeService()`.  Test your setup and ensure that you can connect to the service:
 

@@ -48,8 +48,20 @@ By default, users who sign up for an IBM Quantum account are assigned to the Ope
 Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard,](https://quantum.ibm.com/) [Workloads,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) pages.
 </LegacyContent>
 <CloudContent>
-After you have an IBM Cloud&reg; account, you can create an instance in the Open Plan and access up to 10 minutes total of quantum time per 28-day rolling window.
+By default, users who sign up for an IBM Quantum account are assigned to the Open Plan and the Open Plan's instance, `ibm-q/open/main`. To guarantee that everyone can use the quantum computers allocated to the plan fairly, **an individual can have no more than three jobs running and/or in the queue (across all quantum computers) at the same time.** Submitting more than three jobs at a time will return error [#3458](../errors#3458), and additional jobs will be canceled.
+
+Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard,](https://quantum.ibm.com/) [Workloads,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) pages.
+
+After you have an IBM Cloud&reg; account, you can create an instance in the Open Plan and access up to 10 minutes total of quantum time for free per 28-day rolling window.
 </CloudContent>
+
+<CloudContent>
+<span id="standard-plan"></span>
+## Standard Plan instance
+
+By default, users who sign up for an IBM Quantum account are assigned to the Standard Plan, which is a paid plan. To use this plan, you must create an instance and assign it to the plan. All workloads sent to QPUs by using this plan incur a charge.
+</CloudContent>
+
 ## View your instances
 
 You can see information about your instances programmatically or in the user interface.
@@ -64,9 +76,8 @@ You can use [the `instances()` method](../api/qiskit-ibm-runtime/qiskit-runtime-
 The IBM Quantum Platform dashboard, Compute resources, and Workloads pages display information such as usage metrics, workloads, and quantum computers based on your instance. If you have access to multiple instances, use the dropdown in the menu bar to switch between instances.
 </LegacyContent>
 <CloudContent>
-The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/), [Compute resources](https://quantum.cloud.ibm.com/computers), and [Workloads](https://quantum.cloud.ibm.com/workloads) pages display information such as workloads and quantum computers based on your account. If you have access to multiple accounts, use the dropdown in the menu bar to switch between accounts.
+The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/), [Compute resources](https://quantum.cloud.ibm.com/computers), and [Workloads](https://quantum.cloud.ibm.com/workloads) pages display information such as usage metrics, workloads and quantum computers based on your account. If you have access to multiple accounts, use the dropdown in the menu bar to switch between accounts.
 
-By default, the Workloads and Compute resources pages display all data across all instances you can access within an account. You can filter the data table by a specific instance using the filter icon in the upper right.
 </CloudContent>
 <LegacyContent>
 <Admonition type="note">
@@ -96,23 +107,20 @@ When determining which jobs to run, the [fair-share scheduler](/docs/guides/fair
 The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can see the usage for an instance on your [dashboard](https://quantum.ibm.com/) (use the [instance switcher](#switch-instances) at the top of the page to change which instance is reflected on your dashboard).
 </LegacyContent>
 <CloudContent>
-The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can see the usage for an instance on your [dashboard](https://quantum.cloud.ibm.com/).
+The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can see the usage for an instance on your [dashboard](https://quantum.cloud.ibm.com/) (use the [instance switcher](#switch-instances) at the top of the page to change which instance is reflected on your dashboard).
 </CloudContent>
-<LegacyContent>
+
 If an instance has been marked as "limited" by your administrator (you will see a "**Remaining**" column in the usage area) and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, any active workload will continue running (including sessions) but pending workloads will remain in the queue until more time is available. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
 
 An alert displays on an instance's usage when it has exceeded its allocation.
-</LegacyContent>
-<CloudContent>
-If an instance has been marked as "limited" by your administrator and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, active and pending workloads might be canceled. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
-</CloudContent>
+
 <span id="connect-instance"></span>
 ## Specify an instance in your code
 <LegacyContent>
 You can specify an instance when initializing the service or when choosing a quantum computer.  You can copy the service-level code by clicking the three dots by the instance name on the Instances section of the [Account overview page](https://quantum.ibm.com/account).
 </LegacyContent>
 <CloudContent>
-You can specify an instance when initializing the service or when choosing a quantum computer.  You can copy the Cloud Resource Name (CRN) of an instance by clicking the copy button next to its CRN on the [Platform dashboard](https://quantum.cloud.ibm.com/).
+You must use the Cloud Resource Name (CRN)  to specify an instance to use; either when initializing the service or when sending the workload to a QPU.  The instance's CRN is listed on the [Platform dashboard](https://quantum.cloud.ibm.com/). Before running the below code, follow the steps to [save an account.](/guides/cloud-setup#cloud-save)
 </CloudContent>
 <LegacyContent>
 ```python
@@ -137,19 +145,13 @@ sampler2 = SamplerV2(mode=backend2)    # this will use hub2/group2/project2
 <CloudContent>
 ```python
 
-# Optional: List all the instances you can access.
-service = QiskitRuntimeService(channel='ibm_cloud')
+# Optional: List all the instances you can access. This assumes you have already saved your account credentials.
+service = QiskitRuntimeService()
 print(service.instances())
 
-# Optional: Specify it at service level. This becomes the default unless overwritten.
-service = QiskitRuntimeService(channel='ibm_cloud', instance="CRN")
-backend1 = service.backend("ibm_kyiv")
-
-# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used.
-backend2 = service.backend("ibm_kyiv", instance="CRN")
-
-sampler1 = SamplerV2(mode=backend1)
-sampler2 = SamplerV2(mode=backend2)
+# Optional: Specify an instance at service level. This becomes the default unless overwritten.
+service = QiskitRuntimeService(instance="<CRN>")
+backend1 = service.backend("<QPU-name>")
 ```
 </CloudContent>
 
