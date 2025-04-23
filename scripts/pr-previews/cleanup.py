@@ -25,8 +25,9 @@ from utils import (
     setup_git_account,
     switch_branch,
     changed_files,
-    commit_all_and_push,
 )
+
+INITIAL_COMMIT = "499a5040585d02593cdd8237e19c9ee4a84ae126"
 
 
 def main() -> None:
@@ -39,8 +40,20 @@ def main() -> None:
             logger.info("No changed files detected, so no push made to gh-pages")
             return
 
-        commit_all_and_push("Clean up PR previews")
-        logger.info("Pushed updates to gh-pages branch")
+        # Be extra sure about the branch before we force-push
+        current_branch = run_subprocess(
+            ["git", "branch", "--show-current"]
+        ).stdout.strip()
+        assert (
+            current_branch == "gh-pages"
+        ), f"Did not expect to be on branch '{current_branch}'; exiting"
+
+        # Squash all commits on this branch to save space
+        run_subprocess(["git", "reset", "--soft", INITIAL_COMMIT])
+        run_subprocess(["git", "add", "."])
+        run_subprocess(["git", "commit", "-m", "Clean up PR previews"])
+        run_subprocess(["git", "push", "-f"])
+        logger.info("Cleaned up closed PR previews")
 
 
 def get_active_pr_folders() -> set[str]:
