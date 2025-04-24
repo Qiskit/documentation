@@ -22,7 +22,7 @@ Transpilation is the process of rewriting a given input circuit to match the top
 
 Most circuits must undergo a series of transformations that make them compatible with a given target device, and optimize them to reduce the effects of noise on the resulting outcomes. Rewriting quantum circuits to match hardware constraints and optimizing for performance can be far from trivial. The flow of logic in the rewriting tool chain need not be linear, and can often have iterative sub-loops, conditional branches, and other complex behaviors. That being said, the standard compilation flow follows the structure given below:
 
-![../\_images/transpiling\_core\_steps.png](/images/api/qiskit/0.43/transpiling_core_steps.avif)
+![../\_images/transpiling\_core\_steps.png](/docs/images/api/qiskit/0.43/transpiling_core_steps.avif)
 
 Qiskit has four pre-built transpilation pipelines available here: [`qiskit.transpiler.preset_passmanagers`](transpiler_preset#module-qiskit.transpiler.preset_passmanagers "qiskit.transpiler.preset_passmanagers"). Unless the reader is familiar with quantum circuit optimization methods and their usage, it is best to use one of these ready-made routines. By default the preset pass managers are composed of six stages:
 
@@ -433,7 +433,7 @@ qc.measure([0], [0])
 qc.draw(output='mpl')
 ```
 
-![../\_images/transpiler-4.png](/images/api/qiskit/0.43/transpiler-4.avif)
+![../\_images/transpiler-4.png](/docs/images/api/qiskit/0.43/transpiler-4.avif)
 
 We have $H$, $X$, and controlled-$P$ gates, none of which are in our device’s basis gate set, and thus must be translated. This translation is taken care of for us in the `qiskit.execute()` function. However, we can transpile the circuit to show what it will look like in the native gate set of the target IBM Quantum device (the [`FakeVigoV2`](qiskit.providers.fake_provider.FakeVigoV2 "qiskit.providers.fake_provider.FakeVigoV2") backend is a fake backend that models the historical IBM Vigo 5 qubit device for test purposes):
 
@@ -456,7 +456,7 @@ qc_basis = transpile(qc, backend)
 qc_basis.draw(output='mpl')
 ```
 
-![../\_images/transpiler-5.png](/images/api/qiskit/0.43/transpiler-5.avif)
+![../\_images/transpiler-5.png](/docs/images/api/qiskit/0.43/transpiler-5.avif)
 
 A few things to highlight. First, the circuit has gotten longer with respect to the original. This can be verified by checking the depth of both circuits:
 
@@ -497,7 +497,7 @@ It is important to highlight two special cases:
     ccx_circ.decompose().draw(output='mpl')
     ```
 
-    ![../\_images/transpiler-6.png](/images/api/qiskit/0.43/transpiler-6.avif)
+    ![../\_images/transpiler-6.png](/docs/images/api/qiskit/0.43/transpiler-6.avif)
 
     For every Toffoli gate in a quantum circuit, the hardware may execute up to six CNOT gates, and a handful of single-qubit gates. From this example, it should be clear that any algorithm that makes use of multiple Toffoli gates will end up as a circuit with large depth and will therefore be appreciably affected by noise and gate errors.
 
@@ -507,7 +507,7 @@ It is important to highlight two special cases:
 
 Quantum circuits are abstract entities whose qubits are “virtual” representations of actual qubits used in computations. We need to be able to map these virtual qubits in a one-to-one manner to the “physical” qubits in an actual quantum device.
 
-![../\_images/mapping.png](/images/api/qiskit/0.43/mapping.avif)
+![../\_images/mapping.png](/docs/images/api/qiskit/0.43/mapping.avif)
 
 By default, qiskit will do this mapping for you. The choice of mapping depends on the properties of the circuit, the particular device you are targeting, and the optimization level that is chosen. The choice of initial layout is extremely important for minimizing the number of swap operations needed to map the input circuit onto the device topology and for minimizing the loss due to non-uniform noise properties across a device. Due to the importance of this stage, the preset pass managers try a few different methods to find the best layout. Typically this involves 2 steps: first, trying to find a “perfect” layout (a layout which does not require any swap operations) and then, a heuristic pass that tries to find the best layout to use if a perfect layout cannot be found. For the first stage there are 2 passes typically used for this:
 
@@ -536,7 +536,7 @@ ghz.measure(range(3), range(3))
 ghz.draw(output='mpl')
 ```
 
-![../\_images/transpiler-7.png](/images/api/qiskit/0.43/transpiler-7.avif)
+![../\_images/transpiler-7.png](/docs/images/api/qiskit/0.43/transpiler-7.avif)
 
 *   **Layout Using Optimization Level 0**
 
@@ -556,7 +556,7 @@ ghz.draw(output='mpl')
     > plot_circuit_layout(new_circ_lv0, backend)
     > ```
     >
-    > ![../\_images/transpiler-8.png](/images/api/qiskit/0.43/transpiler-8.avif)
+    > ![../\_images/transpiler-8.png](/docs/images/api/qiskit/0.43/transpiler-8.avif)
 
 *   **Layout Using Optimization Level 3**
 
@@ -576,7 +576,7 @@ ghz.draw(output='mpl')
     > plot_circuit_layout(new_circ_lv3, backend)
     > ```
     >
-    > ![../\_images/transpiler-9.png](/images/api/qiskit/0.43/transpiler-9.avif)
+    > ![../\_images/transpiler-9.png](/docs/images/api/qiskit/0.43/transpiler-9.avif)
 
 It is possible to override automatic layout selection by specifying an initial layout. To do so we can pass a list of integers to [`qiskit.compiler.transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") via the initial\_layout keyword argument, where the index labels the virtual qubit in the circuit and the corresponding value is the label for the physical qubit to map onto:
 
@@ -601,7 +601,7 @@ my_ghz = transpile(ghz, backend, initial_layout=[3, 4, 2])
 plot_circuit_layout(my_ghz, backend)
 ```
 
-![../\_images/transpiler-10.png](/images/api/qiskit/0.43/transpiler-10.avif)
+![../\_images/transpiler-10.png](/docs/images/api/qiskit/0.43/transpiler-10.avif)
 
 <span id="id4" />
 
@@ -613,7 +613,7 @@ However, as with many important things in life, finding the optimal swap mapping
 
 In order to highlight this, we run a GHZ circuit 100 times, using a “bad” (disconnected) initial\_layout:
 
-![../\_images/transpiler-11.png](/images/api/qiskit/0.43/transpiler-11.avif)
+![../\_images/transpiler-11.png](/docs/images/api/qiskit/0.43/transpiler-11.avif)
 
 ```python
 import matplotlib.pyplot as plt
@@ -641,7 +641,7 @@ plt.xlabel('Depth', fontsize=14)
 plt.ylabel('Counts', fontsize=14);
 ```
 
-![../\_images/transpiler-12.png](/images/api/qiskit/0.43/transpiler-12.avif)
+![../\_images/transpiler-12.png](/docs/images/api/qiskit/0.43/transpiler-12.avif)
 
 This distribution is quite wide, signaling the difficulty the swap mapper is having in computing the best mapping. Most circuits will have a distribution of depths, perhaps not as wide as this one, due to the stochastic nature of the default swap mapper. Of course, we want the best circuit we can get, especially in cases where the depth is critical to success or failure. The [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") pass will by default by run its algorithm in parallel with multiple seed values and select the output which uses the fewest swaps. If you would like to increase the number of trials [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") runs you can refer to [Working with Preset Pass Managers](#working-with-preset-pass-managers) and modify the `routing` stage with a custom instance of [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") with a larger value for the `trials` argument.
 
@@ -657,7 +657,7 @@ Decomposing quantum circuits into the basis gate set of the target device, and t
   The output from [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") varies due to the stochastic swap mapper. So the numbers below will likely change each time you run the code.
 </Admonition>
 
-![../\_images/transpiler-13.png](/images/api/qiskit/0.43/transpiler-13.avif)
+![../\_images/transpiler-13.png](/docs/images/api/qiskit/0.43/transpiler-13.avif)
 
 ```python
 import matplotlib.pyplot as plt
@@ -693,7 +693,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-![../\_images/transpiler-14.png](/images/api/qiskit/0.43/transpiler-14.avif)
+![../\_images/transpiler-14.png](/docs/images/api/qiskit/0.43/transpiler-14.avif)
 
 <span id="id6" />
 
@@ -701,7 +701,7 @@ plt.show()
 
 After the circuit has been translated to the target basis, mapped to the device, and optimized, a scheduling phase can be applied to optionally account for all the idle time in the circuit. At a high level the scheduling can be thought of as inserting delays into the circuit to account for idle time on the qubits between the execution of instructions. For example, if we start with a circuit such as:
 
-![../\_images/transpiler-15.png](/images/api/qiskit/0.43/transpiler-15.avif)
+![../\_images/transpiler-15.png](/docs/images/api/qiskit/0.43/transpiler-15.avif)
 
 we can then call [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") on it with `scheduling_method` set:
 
@@ -719,11 +719,11 @@ circ = transpile(ghz, backend, scheduling_method="asap")
 circ.draw(output='mpl')
 ```
 
-![../\_images/transpiler-16.png](/images/api/qiskit/0.43/transpiler-16.avif)
+![../\_images/transpiler-16.png](/docs/images/api/qiskit/0.43/transpiler-16.avif)
 
 You can see here that the transpiler inserted [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") instructions to account for idle time on each qubit. To get a better idea of the timing of the circuit we can also look at it with the `timeline.draw()` function:
 
-![../\_images/transpiler-17.png](/images/api/qiskit/0.43/transpiler-17.avif)
+![../\_images/transpiler-17.png](/docs/images/api/qiskit/0.43/transpiler-17.avif)
 
 The scheduling of a circuit involves two parts, analysis and constraint mapping followed by a padding pass. The first part requires running a scheduling analysis pass such as `ALAPSchedulingAnalysis` or `ASAPSchedulingAnalysis` which analyzes the circuit and records the start time of each instruction in the circuit using a scheduling algorithm (“as late as possible” for `ALAPSchedulingAnalysis` and “as soon as possible” for `ASAPSchedulingAnalysis`) in the property set. Once the circuit has an initial scheduling additional passes can be run to account for any timing constraints on the target backend, such as alignment constraints. This is typically done with the [`ConstrainedReschedule`](qiskit.transpiler.passes.ConstrainedReschedule "qiskit.transpiler.passes.ConstrainedReschedule") pass which will adjust the scheduling set in the property set to the constraints of the target backend. Once all the scheduling and adjustments/rescheduling are finished a padding pass, such as [`PadDelay`](qiskit.transpiler.passes.PadDelay "qiskit.transpiler.passes.PadDelay") or [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") is run to insert the instructions into the circuit, which completes the scheduling.
 

@@ -101,7 +101,7 @@ async function parseObjectsInv(filePath: string): Promise<Set<string>> {
     "any",
   );
   // All URIs are relative to the objects.inv file
-  const dirname = removePrefix(path.dirname(filePath), "public/docs");
+  const dirname = removePrefix(path.dirname(filePath), "public");
   return new Set(objinv.entries.map((entry) => path.join(dirname, entry.uri)));
 }
 
