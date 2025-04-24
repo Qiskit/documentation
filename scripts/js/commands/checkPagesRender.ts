@@ -174,7 +174,6 @@ async function canRender(fp: string): Promise<RenderSuccess | RenderFailure> {
 
 function pathToUrl(path: string): string {
   const strippedPath = path
-    .replace("docs/", "")
     .replace(/\.(?:md|mdx|ipynb)$/g, "");
   return `http://localhost:${PORT}/${strippedPath}`;
 }
