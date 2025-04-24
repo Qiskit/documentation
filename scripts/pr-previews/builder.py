@@ -86,7 +86,7 @@ def yarn_build(root_dir: Path, base_path: str) -> None:
     run_subprocess(
         ["yarn", "build"],
         cwd=root_dir,
-        env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path, "DOCS_DIR": '../../docs'},
+        env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path},
         stream_output=True,
     )
 
@@ -129,7 +129,7 @@ def _copy_local_content(root_dir: Path) -> None:
         dest = (
             root_dir / "packages/preview" / dir
             if dir.startswith("public")
-            else root_dir / dir
+            else root_dir / f"content/{dir}"
         )
         shutil.copytree(dir, dest)
 
@@ -138,7 +138,7 @@ def _copy_local_content(root_dir: Path) -> None:
         "docs/responsible-quantum-computing.mdx",
         "docs/faq.mdx",
     ]:
-        shutil.copy2(fp, root_dir / fp)
+        shutil.copy2(fp, root_dir / f"content/{fp}")
 
     logger.info("local content files copied")
 
