@@ -86,7 +86,7 @@ def yarn_build(root_dir: Path, base_path: str) -> None:
     run_subprocess(
         ["yarn", "build"],
         cwd=root_dir,
-        env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path},
+        env={**os.environ, "NEXT_PUBLIC_BASE_PATH": base_path, "DOCS_DIR": '../../docs'},
         stream_output=True,
     )
 
