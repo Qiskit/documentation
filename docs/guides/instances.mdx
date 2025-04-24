@@ -34,11 +34,11 @@ The instances that you can access are listed at the bottom of your [Account page
 <CloudContent>
 Access to IBM Quantum Platform services is controlled by the **instances** to which you are assigned. Users can belong to more than one instance at any given time.
 
-An instance is a deployment of Qiskit Runtime. You need a different instance for every service plan (Open or Standard) you use in every region that you want to use. The account manager and anyone with enough permission can create an instance and define its configuration, such as its allocations, usage limits, quantum computers, and user permissions. Each instance is identified by a unique Cloud Resource Name (CRN).  This CRN is used when sending workloads from your Qiskit programs.
-
-Users with a public account can create an instance in the [Open Plan](#open-plan). For organizations outside of IBM&reg;, the organization's administrator assigns users to instances.
+An instance is a deployment of Qiskit Runtime. You need a different instance for every service plan (such as Open or Standard) you use in every region that you want to use. The account manager and anyone with enough permission can create an instance and define its configuration, such as its allocations, usage limits, quantum computers, and user permissions. Each instance is identified by a unique Cloud Resource Name (CRN).  This CRN is used when sending workloads from your Qiskit programs.
 
 The IBM Quantum Platform [dashboard](https://quantum.cloud.ibm.com/) displays the instances to which you have access.
+
+It is important that you understand which instance you are using, because all instances that are not associated with the Open Plan incur a cost.
 </CloudContent>
 <span id="open-plan"></span>
 ## Open Plan instance
@@ -141,19 +141,6 @@ backend2 = service.backend("ibm_kyiv", instance="hub2/group2/project2")
 sampler1 = SamplerV2(mode=backend1)    # this will use hub1/group1/project1
 sampler2 = SamplerV2(mode=backend2)    # this will use hub2/group2/project2
 ```
-</LegacyContent>
-<CloudContent>
-```python
-
-# Optional: List all the instances you can access. This assumes you have already saved your account credentials.
-service = QiskitRuntimeService()
-print(service.instances())
-
-# Optional: Specify an instance at service level. This becomes the default unless overwritten.
-service = QiskitRuntimeService(instance="<CRN>")
-backend1 = service.backend("<QPU-name>")
-```
-</CloudContent>
 
 <Admonition type="note">
 If you do not specify an instance, the code will select one in the following order:
@@ -162,6 +149,14 @@ If you do not specify an instance, the code will select one in the following ord
 2. If your account has access to multiple instances but only one can access the requested QPU, the instance with access is selected.
 3. In all other cases, the code selects the first instance other than the Open Plan instance that has access to the quantum computer.
 </Admonition>
+</LegacyContent>
+<CloudContent>
+```python
+# Specify an instance at service level. This becomes the default unless overwritten.
+service = QiskitRuntimeService(instance="<CRN>")
+backend1 = service.backend("<QPU-name>")
+```
+</CloudContent>
 
 <span id="add-instance"></span>
 ## Add an instance
