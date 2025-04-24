@@ -5,7 +5,7 @@ description: Learn how to measure qubits, including constraints on where measure
 
 # Measure qubits
 
-To get information about a qubit's state, you can _measure_ it onto a [classical bit](/api/qiskit/circuit#qiskit.circuit.Clbit). In Qiskit, measurements are performed in the computational basis, that is, the single-qubit Pauli-$Z$ basis. Therefore, a measurement yields 0 or 1, depending on the overlap with the Pauli-$Z$ eigenstates $|0\rangle$ and $|1\rangle$:
+To get information about a qubit's state, you can _measure_ it onto a [classical bit](/docs/api/qiskit/circuit#qiskit.circuit.Clbit). In Qiskit, measurements are performed in the computational basis, that is, the single-qubit Pauli-$Z$ basis. Therefore, a measurement yields 0 or 1, depending on the overlap with the Pauli-$Z$ eigenstates $|0\rangle$ and $|1\rangle$:
 
 $$
 |q\rangle \xrightarrow{measure}\begin{cases}
@@ -20,7 +20,7 @@ There are several ways to apply measurements to a circuit:
 
 ### `QuantumCircuit.measure` method
 
-Use the [`measure`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure) method to measure a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class).
+Use the [`measure`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#measure) method to measure a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#quantumcircuit-class).
 
 Examples:
 
@@ -44,7 +44,7 @@ qc.measure(1, 0)    # Measure qubit 1 into the classical bit 0.
 
 ### `Measure` class
 
-The Qiskit [Measure](/api/qiskit/circuit#qiskit.circuit.Measure) class measures the specified qubits.
+The Qiskit [Measure](/docs/api/qiskit/circuit#qiskit.circuit.Measure) class measures the specified qubits.
 
 ```python
 from qiskit.circuit import Measure
@@ -56,7 +56,7 @@ qc.append(Measure(), [0], [0])  # measure qubit 0 into clbit 0
 
 ### `QuantumCircuit.measure_all` method
 
-To measure all qubits into the corresponding classical bits, use the [`measure_all`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all) method. By default, this method adds new classical bits in a `ClassicalRegister` to store these measurements.
+To measure all qubits into the corresponding classical bits, use the [`measure_all`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all) method. By default, this method adds new classical bits in a `ClassicalRegister` to store these measurements.
 
 ```python
 from qiskit import QuantumCircuit
@@ -68,7 +68,7 @@ qc.measure_all() # Measure all qubits.
 
 ### `QuantumCircuit.measure_active` method
 
-To measure all qubits that are not idle, use the [`measure_active`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_active) method. This method creates a new `ClassicalRegister` with a size equal to the number of non-idle qubits being measured.
+To measure all qubits that are not idle, use the [`measure_active`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#measure_active) method. This method creates a new `ClassicalRegister` with a size equal to the number of non-idle qubits being measured.
 
 ```python
 from qiskit import QuantumCircuit
@@ -90,8 +90,8 @@ qc.measure_active() # Measure qubits that are not idle, i.e., qubits 0 and 2.
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- [`Measure`](/api/qiskit/circuit#qiskit.circuit.Measure) class
-- [`measure_all`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all) method
-- [`measure_active`](/api/qiskit/qiskit.circuit.QuantumCircuit#measure_active) method
-- [`random_circuit`](/api/qiskit/circuit#random_circuit) method
+- [`Measure`](/docs/api/qiskit/circuit#qiskit.circuit.Measure) class
+- [`measure_all`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all) method
+- [`measure_active`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#measure_active) method
+- [`random_circuit`](/docs/api/qiskit/circuit#random_circuit) method
 </Admonition>

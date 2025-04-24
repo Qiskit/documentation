@@ -7,14 +7,14 @@ description: How to update your project so that it works with Qiskit v2.0.
 
 # Qiskit v2.0 migration guide
 
-Qiskit v2.0 is the next step within the Qiskit SDK's newly stabilized life cycle. 
-This major version does break compatibility with previous versions of Qiskit, but, 
-in contrast to the v1.0 release, doesn't involve any changes in the packaging structure. 
+Qiskit v2.0 is the next step within the Qiskit SDK's newly stabilized life cycle.
+This major version does break compatibility with previous versions of Qiskit, but,
+in contrast to the v1.0 release, doesn't involve any changes in the packaging structure.
 
 This guide describes migration paths for the most important feature changes in Qiskit v2.0, organized by module.
 Use the table of contents on the right side to navigate to the module you are interested in.
 
-Read more about the benefits of Qiskit v2.0 on the [IBM&reg; blog](https://www.ibm.com/quantum/blog/qiskit-1-0-release-summary).
+Read more about the benefits of Qiskit v2.0 on the [IBM&reg; blog](https://www.ibm.com/quantum/blog/qiskit-2-0-release-summary).
 
 <span id="qiskit.circuit"></span>
 ## qiskit.circuit
@@ -22,19 +22,19 @@ Read more about the benefits of Qiskit v2.0 on the [IBM&reg; blog](https://www.i
 <span id="c_if"></span>
 ### Removal of legacy `c_if` conditions
 
-Classical conditions in Qiskit have been preferentially represented by the instruction [`IfElseOp`](/api/qiskit/qiskit.circuit.IfElseOp) since before Qiskit v1.0.
-These operations are typically added to a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) by using the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method as a context manager.
+Classical conditions in Qiskit have been preferentially represented by the instruction [`IfElseOp`](/docs/api/qiskit/qiskit.circuit.IfElseOp) since before Qiskit v1.0.
+These operations are typically added to a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) by using the [`if_test`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method as a context manager.
 
-This also means that the [`Instruction`](/api/qiskit/qiskit.circuit.Instruction) no longer has a `condition` attribute, and that you cannot chain `c_if` calls on the output of a [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) gate-creating method call.
+This also means that the [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction) no longer has a `condition` attribute, and that you cannot chain `c_if` calls on the output of a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) gate-creating method call.
 
-The only instructions that might have a condition now are [`IfElseOp`](/api/qiskit/qiskit.circuit.IfElseOp) and [`WhileLoopOp`](/api/qiskit/qiskit.circuit.WhileLoopOp).
+The only instructions that might have a condition now are [`IfElseOp`](/docs/api/qiskit/qiskit.circuit.IfElseOp) and [`WhileLoopOp`](/docs/api/qiskit/qiskit.circuit.WhileLoopOp).
 The most correct way to test for a condition is to use an `isinstance` check to validate that you have the correct class.
 If you want to support the legacy `Instruction.condition` attribute during your library's transition to Qiskit v2.0 and later, you can use `getattr(operation, "condition", None)`, which will typically cause `Instruction` instances to behave as they did in Qiskit v1.x and earlier.
 
 The original, legacy method of supporting simple register-equality conditions in Qiskit was to use the `c_if` method on individual instructions or instruction sets.
 This was strictly less featureful than the full control-flow form, and was never well-supported on hardware.
-This legacy method has been removed in Qiskit v2.0; you should use the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method with a proper condition.
-You can continue to use the 2-tuple form of `(register, integer)` to represent a register equality, or you can use the more expressive [classical computation subsystem](/api/qiskit/circuit_classical) to represent more complex conditions.
+This legacy method has been removed in Qiskit v2.0; you should use the [`if_test`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) method with a proper condition.
+You can continue to use the 2-tuple form of `(register, integer)` to represent a register equality, or you can use the more expressive [classical computation subsystem](/docs/api/qiskit/circuit_classical) to represent more complex conditions.
 
 For example, you might have written:
 
@@ -52,7 +52,7 @@ qc.measure(qr, cr)
 qc.x(0).c_if(cr, 3)
 ```
 
-The most direct translation of this is to use the 2-tuple form with the [`if_test`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) context manager:
+The most direct translation of this is to use the 2-tuple form with the [`if_test`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.if_test) context manager:
 
 ```python
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
@@ -94,16 +94,16 @@ with else_:
 <span id="instruction_durations"></span>
 ### Removal of `Instruction.duration` and `Instruction.unit`
 
-Circuit [`Instruction`](/api/qiskit/qiskit.circuit.Instruction) objects previously had attributes called `duration` and `unit`.
+Circuit [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction) objects previously had attributes called `duration` and `unit`.
 These no longer exist in Qiskit v2.0.
-This is because the field generally only duplicated information that was a fixed property of hardware, and was stored explicitly in the [`Target`](/api/qiskit/qiskit.transpiler.Target).
+This is because the field generally only duplicated information that was a fixed property of hardware, and was stored explicitly in the [`Target`](/docs/api/qiskit/qiskit.transpiler.Target).
 Storing the information separately for each individual instruction significantly increased the memory demands of Qiskit and slowed down even circuit operations that did not directly need to touch the information.
 
-The [`Delay`](/api/qiskit/circuit#delay) instruction still contains these fields, as does the new-in-v2.0 [`BoxOp`](/api/qiskit/qiskit.circuit.QuantumCircuit#box), because these instructions have a _variable_ delay.
+The [`Delay`](/docs/api/qiskit/circuit#delay) instruction still contains these fields, as does the new-in-v2.0 [`BoxOp`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#box), because these instructions have a _variable_ delay.
 
-You can retrieve the hardware-specified duration of a particular hardware-supported [`Instruction`](/api/qiskit/qiskit.circuit.Instruction) by querying the [`Target`](/api/qiskit/qiskit.transpiler.Target).
-To do this, index the [`Target`](/api/qiskit/qiskit.transpiler.Target) first with the operation's name, and then the indices of the hardware qubits as a tuple.
-This will return either `None` (if the instruction is supported, but no specific properties were assigned to it), or an [`InstructionProperties`](/api/qiskit/qiskit.transpiler.InstructionProperties) instance, from which the [`duration`](/api/qiskit/qiskit.transpiler.InstructionProperties#qiskit.transpiler.InstructionProperties.duration) field may provide the duration in seconds (or `None`, if not supplied).
+You can retrieve the hardware-specified duration of a particular hardware-supported [`Instruction`](/docs/api/qiskit/qiskit.circuit.Instruction) by querying the [`Target`](/docs/api/qiskit/qiskit.transpiler.Target).
+To do this, index the [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) first with the operation's name, and then the indices of the hardware qubits as a tuple.
+This will return either `None` (if the instruction is supported, but no specific properties were assigned to it), or an [`InstructionProperties`](/docs/api/qiskit/qiskit.transpiler.InstructionProperties) instance, from which the [`duration`](/docs/api/qiskit/qiskit.transpiler.InstructionProperties#qiskit.transpiler.InstructionProperties.duration) field may provide the duration in seconds (or `None`, if not supplied).
 
 ```python
 target = "<some Target from a hardware vendor>"
@@ -118,8 +118,8 @@ duration = getattr(target["cx"][2, 4], "duration", None)
 ```
 
 In general, as classical control-flow becomes more common within circuit executions, the "duration" of a circuit will become less and less well defined.
-While Qiskit v2.x still includes the [`QuantumCircuit.duration`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.duration) attribute, it is recommended to move away from it, as it will likely be removed in the future; the assumptions under which it is valid will be violated more and more frequently.
-Instead, you can use the new [`QuantumCircuit.estimate_duration`](/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.estimate_duration) method, which is safer and clearer about the necessary assumptions.
+While Qiskit v2.x still includes the [`QuantumCircuit.duration`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.duration) attribute, it is recommended to move away from it, as it will likely be removed in the future; the assumptions under which it is valid will be violated more and more frequently.
+Instead, you can use the new [`QuantumCircuit.estimate_duration`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.estimate_duration) method, which is safer and clearer about the necessary assumptions.
 
 
 <span id="qiskit.transpiler"></span>
@@ -129,23 +129,23 @@ Instead, you can use the new [`QuantumCircuit.estimate_duration`](/api/qiskit/qi
 ### Changes to `generate_preset_pass_manager` interface
 
 Qiskit v2.0.0 includes a series of updates to the preset pass manager interface (that is, the
-[`generate_preset_pass_manager`](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager) and 
-[`transpile`](/api/qiskit/compiler#transpile) functions) that affect the 
-handling of loose constraint inputs, such as `coupling_map` or `basis_gates`. The number of 
-transpilation use cases where loose constraints are accepted has been reduced in favor of the 
-`target` and `backend` inputs (where `backend` is a [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) that 
-contains a [`Target`](/api/qiskit/qiskit.transpiler.Target) instance), 
+[`generate_preset_pass_manager`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager) and
+[`transpile`](/docs/api/qiskit/compiler#transpile) functions) that affect the
+handling of loose constraint inputs, such as `coupling_map` or `basis_gates`. The number of
+transpilation use cases where loose constraints are accepted has been reduced in favor of the
+`target` and `backend` inputs (where `backend` is a [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2) that
+contains a [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) instance),
 which allow for a more expressive communication of these constraints.
 
-The following examples show the main changes and suggested alternatives for migrating. Note that all 
+The following examples show the main changes and suggested alternatives for migrating. Note that all
 of the migration tips below apply to both `transpile` and `generate_preset_pass_manager`:
 
-1. The `backend_properties` input argument is no longer supported, and the `BackendProperties` class has 
+1. The `backend_properties` input argument is no longer supported, and the `BackendProperties` class has
    been removed. You should use the `target` or `backend` arguments instead to communicate
-   gate durations and errors. There are multiple paths for constructing a custom [`Target`](/api/qiskit/qiskit.transpiler.Target):
+   gate durations and errors. There are multiple paths for constructing a custom [`Target`](/docs/api/qiskit/qiskit.transpiler.Target):
 
   a. Build a target from scratch and add the relevant errors and durations to the corresponding gates:
-    
+
     ```python
     from qiskit.transpiler import Target, InstructionProperties, generate_preset_pass_manager
     from qiskit.circuit.library import XGate, CXGate
@@ -163,7 +163,7 @@ of the migration tips below apply to both `transpile` and `generate_preset_pass_
     pm = generate_preset_pass_manager(target=target)
     ```
 
-  b. Use [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2) to quickly build a 
+  b. Use [`GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2) to quickly build a
      generic target with pre-filled errors and durations. These can also be updated post-construction:
 
     ```python
@@ -178,9 +178,9 @@ of the migration tips below apply to both `transpile` and `generate_preset_pass_
     pm = generate_preset_pass_manager(target=target)
     ```
 
-2. The `instruction_durations` and `timing_constraints` input arguments are no longer supported. You should use the 
-  `target` or `backend` arguments instead. The alternatives are constructing a custom [`Target`](/api/qiskit/qiskit.transpiler.Target) from
-  scratch, constructing a generic backend, and, in addition to these, it is possible to build a custom target with 
+2. The `instruction_durations` and `timing_constraints` input arguments are no longer supported. You should use the
+  `target` or `backend` arguments instead. The alternatives are constructing a custom [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) from
+  scratch, constructing a generic backend, and, in addition to these, it is possible to build a custom target with
   `instruction_durations` and/or `timing_constraints` using the `Target.from_configuration` method:
 
     ```python
@@ -194,23 +194,23 @@ of the migration tips below apply to both `transpile` and `generate_preset_pass_
             granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1
         )
 
-    target = Target.from_configuration(num_qubits=2, 
-                                        basis_gates=["x", "cx"], 
-                                        instruction_durations=instruction_durations, 
+    target = Target.from_configuration(num_qubits=2,
+                                        basis_gates=["x", "cx"],
+                                        instruction_durations=instruction_durations,
                                         timing_constraints=timing_constraints)
 
     pm = generate_preset_pass_manager(target=target)
     ```
 
-3. Providing `coupling_map` and/or `basis_gates` along with a `backend` is discouraged, and from 
-  v2.0 a `UserWarning` will be raised. In these cases there are multiple sources of truth, 
+3. Providing `coupling_map` and/or `basis_gates` along with a `backend` is discouraged, and from
+  v2.0 a `UserWarning` will be raised. In these cases there are multiple sources of truth,
   and information such as gate errors and durations from the backend cannot be resolved based on the
   information given.
   The suggested alternative is to define a custom target that combines the chosen constraints either
-  from scratch, using [`Target.from_configuration`](/api/qiskit/qiskit.transpiler.Target#from_configuration) or [`GenericBackendV2`](/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2). 
+  from scratch, using [`Target.from_configuration`](/docs/api/qiskit/qiskit.transpiler.Target#from_configuration) or [`GenericBackendV2`](/docs/api/qiskit/qiskit.providers.fake_provider.GenericBackendV2).
 
 4. The `basis_gates` argument no longer accepts custom basis gates. The suggested alternative
-  is the `target` argument, which can be built from scratch or through [`Target.from_configuration`](/api/qiskit/qiskit.transpiler.Target#from_configuration) 
+  is the `target` argument, which can be built from scratch or through [`Target.from_configuration`](/docs/api/qiskit/qiskit.transpiler.Target#from_configuration)
   such as:
 
     ```python
@@ -240,21 +240,21 @@ of the migration tips below apply to both `transpile` and `generate_preset_pass_
 The module `qiskit.pulse` has been completely removed from Qiskit, without replacement.
 This includes the related items:
 
-- the [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit), [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit) and [`DAGDependency`](/api/qiskit/qiskit.dagcircuit.DAGDependency) property `calibrations`.
-- the [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit) methods `has_calibration_for` and `add_calibration`.
-- the [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit) method `has_calibration_for`.
+- the [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) and [`DAGDependency`](/docs/api/qiskit/qiskit.dagcircuit.DAGDependency) property `calibrations`.
+- the [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) methods `has_calibration_for` and `add_calibration`.
+- the [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) method `has_calibration_for`.
 - the transpiler passes `PulseGates`, `RXCalibrationBuilder`, `RZXCalibrationBuilder`, `EchoRZXWeylDecomposition`, `ValidatePulseGates`.
 - the module `qiskit.scheduler` and all its contents.
-- the [`BackendV2`](/api/qiskit/qiskit.providers.BackendV2) methods `instruction_schedule_map`, `drive_channel`, `measure_channel`, `acquire_channel` and `control_channel`.
-- the [`Target`](/api/qiskit/qiskit.transpiler.Target) methods `has_calibration`, `get_calibration`, `instruction_schedule_map` and `update_from_instruction_schedule_map`.
-- the `inst_map` argument of [`generate_preset_pass_manager`](/api/qiskit/qiskit.transpiler.generate_preset_pass_manager), [`transpile`](/api/qiskit/compiler#transpile), and [`Target.from_configuration`](/api/qiskit/qiskit.transpiler.Target#qiskit.transpiler.Target.from_configuration).
-- the `calibration` field of [`InstructionProperties`](/api/qiskit/qiskit.transpiler.InstructionProperties).
+- the [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2) methods `instruction_schedule_map`, `drive_channel`, `measure_channel`, `acquire_channel` and `control_channel`.
+- the [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) methods `has_calibration`, `get_calibration`, `instruction_schedule_map` and `update_from_instruction_schedule_map`.
+- the `inst_map` argument of [`generate_preset_pass_manager`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager), [`transpile`](/docs/api/qiskit/compiler#transpile), and [`Target.from_configuration`](/docs/api/qiskit/qiskit.transpiler.Target#qiskit.transpiler.Target.from_configuration).
+- the `calibration` field of [`InstructionProperties`](/docs/api/qiskit/qiskit.transpiler.InstructionProperties).
 
 This happened because IBM Quantum&reg; QPUs ceased to offer pulse-level access, and the Qiskit team no longer had resources to maintain the little-used package.
 You can continue to use the `qiskit.pulse` module while using the v1.x series of Qiskit, which has bug-fix support until September 2024 and security support until March 2025, but the module is removed from the v2.x series.
 
 Most uses of `qiskit.pulse` can be replaced with direct access to fractional gates on IBM Quantum Heron QPUs (and later generations, if applicable).
-You can read more in [the migration guide for converted pulse usage to fractional gates](/migration-guides/pulse-migration).
+You can read more in [the migration guide for converted pulse usage to fractional gates](/docs/migration-guides/pulse-migration).
 
 You can no longer load QPY files that contain `ScheduleBlock` objects in Qiskit v2.0 because of the removal of Qiskit Pulse.
 You can continue to load these files in the Qiskit v1.x series.
