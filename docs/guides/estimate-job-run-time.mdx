@@ -30,14 +30,14 @@ The usage reported on the dashboard or by using the API is the time a QPU is loc
 <CloudContent>
 Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
-For Standard Plan users, usage determines how much the workload costs. See [Manage cost](/guides/manage-cost) for details.
+For Standard Plan users, usage determines how much the workload costs. See [Manage cost](/docs/guides/manage-cost) for details.
 </CloudContent>
 
 <LegacyContent>
 Your usage has different impacts, depending on which channel you're using:
 
-- For Qiskit Runtime on IBM Cloud&reg; users, the usage determines how much the job costs.  See [Manage cost](/guides/manage-cost) for details.
-- For IBM Quantum&reg; Platform users, this translates to shares. The [fair-share scheduler](/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
+- For Qiskit Runtime on IBM Cloud&reg; users, the usage determines how much the job costs.  See [Manage cost](/docs/guides/manage-cost) for details.
+- For IBM Quantum&reg; Platform users, this translates to shares. The [fair-share scheduler](/docs/guides/fair-share-scheduler) prioritizes instances with the most shares left. Thus, the higher your usage, the longer your next job stays in the queue.
 </LegacyContent>
 
 <span id="failed-job"></span>
@@ -62,10 +62,20 @@ When a job is failed or canceled, the reported usage is as follows:
 
 After a workload has completed, there are several ways to view its actual usage:
 
-- Run [`batch.usage()`](/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
-- Call the [GET usage](/api/runtime/tags/usage#tags__usage) REST API directly to see the total usage across all workloads for your account (IBM Quantum Platform channel only).
-- Use [`GET /sessions/{id}`](/api/runtime/tags/sessions#tags__sessions__operations__GetSessionDetailsExtendedController_getSessionDetails) to see usage for a specific batch or session.
-- Use [`GET /jobs/{id}`](/api/runtime/tags/jobs#tags__jobs__operations__GetJobByIdController_getJobById) to see usage for a single job.
+- Run [`batch.usage()`](/docs/api/qiskit-ibm-runtime/batch#usage) or [`session.usage()`](/docs/api/qiskit-ibm-runtime/session#usage) in `qiskit-ibm-runtime` 0.30 or later.  If using an older version of `qiskit-ibm-runtime` (>= 0.23 and < 0.30), the usage can be still be found in `session.details()["usage_time"]` and `batch.details()["usage_time"]`.
+- Call the [GET usage](/docs/api/runtime/tags/usage#tags__usage) REST API directly to see the total usage across all workloads for your account (IBM Quantum Platform channel only).
+- Use [`GET /sessions/{id}`](/docs/api/runtime/tags/sessions#tags__sessions__operations__GetSessionDetailsExtendedController_getSessionDetails) to see usage for a specific batch or session.
+- Use [`GET /jobs/{id}`](/docs/api/runtime/tags/jobs#tags__jobs__operations__GetJobByIdController_getJobById) to see usage for a single job.
+
+<CloudContent>
+<span id="instance-usage"></span>
+## View instance usage
+
+You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because they calculate usage differently.
+
+The Instances page shows real-time usage for the last 28 days (rolling), up to the current time on the current day.  The Analytics page usage is re-calculated hourly and includes the last 28 full days; that is, it shows usage from 00:00 28 days ago to today, at the top of the hour.
+
+</CloudContent>
 
 ## Estimate workload usage
 

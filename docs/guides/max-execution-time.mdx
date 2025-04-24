@@ -37,7 +37,7 @@ The maximum execution time for a job is the smaller of these values:
 
 The `max_execution_time` value is based on _quantum time_, not wall clock time. Quantum time is the time spent by the QPU complex to process the job. Simulator jobs use wall clock time because they do not have quantum time.
 
-Set the maximum execution time (in seconds) on the job options, as shown in the following example.  See [Specify options](/guides/specify-runtime-options) for information about setting options.
+Set the maximum execution time (in seconds) on the job options, as shown in the following example.  See [Specify options](/docs/guides/specify-runtime-options) for information about setting options.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -72,7 +72,7 @@ When a batch is started, it is assigned a maximum time to live (maximum TTL) val
 
 Batches also have an interactive time to live (interactive TTL) value between jobs that cannot be configured. If you don't explicitly close a batch, it is deactivated after the interactive TTL expires and can be reactivated at any time until it reaches its  maximum TTL.
 
-For instructions to work with these values, see [Run jobs in a batch.](/guides/run-jobs-batch)
+For instructions to work with these values, see [Run jobs in a batch.](/docs/guides/run-jobs-batch)
 
 <span id="session-max-time"></span>
 ## Session maximum execution time
@@ -81,7 +81,7 @@ When a session is started, it is assigned a maximum TTL value that determines ho
 
 There is also an interactive TTL value that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated.
 
-For instructions to work with these values, see [Run jobs in a session.](/guides/run-jobs-session)
+For instructions to work with these values, see [Run jobs in a session.](/docs/guides/run-jobs-session)
 
 ## Other limitations
 <LegacyContent>
@@ -90,7 +90,7 @@ For instructions to work with these values, see [Run jobs in a session.](/guides
 </LegacyContent>
 <CloudContent>
 *   Inputs to jobs cannot exceed 64MB in size.
-*   Open Plan users can use up to 10 minutes of QPU execution time per month. QPU execution time is the amount of time that the QPU is dedicated to processing your job.
+*   Open Plan users can use up to 10 minutes of QPU execution time per month. QPU execution time is the amount of time that the QPU is dedicated to processing your job. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page.
 </CloudContent>
 ## Next steps
 
