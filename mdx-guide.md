@@ -58,10 +58,10 @@ In Jupyter notebooks, set `title` and `description` in the `metadata` section fo
 
 ## Links
 
-Internal URLs referring to other docs pages should start with `/` and not include the file extension. For example:
+Internal URLs referring to other docs pages should start with `/docs` and not include the file extension. For example:
 
-- `[Qiskit SDK](/api/qiskit)`
-- `[Bit ordering in the Qiskit SDK](/guides/bit-ordering)`
+- `[Qiskit SDK](/docs/api/qiskit)`
+- `[Bit ordering in the Qiskit SDK](/docs/guides/bit-ordering)`
 
 External URLs should use the entire URL, such as `[GitHub](https://github.com)`.
 
@@ -72,19 +72,19 @@ Images are stored in the `public/docs/images` folder. You should use subfolders 
 To use the image:
 
 ```markdown
-![Alt text for the image](/images/guides/your-file/your_image.png)
+![Alt text for the image](/docs/images/guides/your-file/your_image.png)
 ```
 
 To add an inline images:
 
 ```markdown
-Inline ![Alt text for the image](/images/guides/your-file/your_image.png) image
+Inline ![Alt text for the image](/docs/images/guides/your-file/your_image.png) image
 ```
 
 To include a caption:
 
 ```markdown
-![Alt text for the image](/images/guides/your-file/your_image.png "Image caption")
+![Alt text for the image](/docs/images/guides/your-file/your_image.png "Image caption")
 ```
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
@@ -97,7 +97,7 @@ To add a video:
 
 ```markdown
 <video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
-    <source src="/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
+    <source src="/docs/videos/guides/sessions/demo.mp4" type="video/mp4"></source>
 </video>
 ```
 

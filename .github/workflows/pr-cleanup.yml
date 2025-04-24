@@ -13,9 +13,8 @@
 name: PR preview cleanup
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "main"
+  schedule:
+    - cron: "0 0 * * *" # At midnight
 
 jobs:
   preview-cleanup:
