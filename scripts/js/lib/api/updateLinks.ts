@@ -10,6 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import { join } from "path";
 import { initial, keyBy, keys, last } from "lodash-es";
 import { Root } from "mdast";
 import { visit } from "unist-util-visit";
@@ -150,6 +151,8 @@ export function relativizeLink(link: Link): Link | undefined {
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
     ["https://docs.quantum.ibm.com/", ""],
     ["https://docs.quantum-computing.ibm.com/", ""],
+    ["https://quantum.cloud.ibm.com/docs", "/docs"],
+    ["https://quantum.cloud.ibm.com/learning", "/learning"],
   ]);
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
@@ -166,7 +169,8 @@ export function relativizeLink(link: Link): Link | undefined {
 
   const newText = link.url === link.text ? url : undefined;
   const newPrefix = priorPrefixToNewPrefix.get(priorPrefix)!;
-  return { url: `${newPrefix}/${url}`, text: newText };
+  const relativeUrl = removePrefix(join(newPrefix, url), "/");
+  return { url: `/${relativeUrl}`, text: newText };
 }
 
 export async function updateLinks(
