@@ -16,6 +16,12 @@ You can run workloads on IBM&reg; quantum processing units (QPUs) by setting up 
 The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is in **early access** mode.  Therefore, you can log on, create instances, run jobs, and so on, but some functions are not available yet.  If you need to use functions that are not yet available, use [IBM Quantum Platform Classic](https://quantum.ibm.com/) or [Qiskit Runtime on IBM Cloud](https://cloud.ibm.com/quantum) instead.
 </Admonition>
 
+Your user account is associated with one or more [instances](./instances) that give access to IBM Quantum services. Additionally, a unique token is assigned to each account -- known as a *Cloud Resource Name* (CRN) -- allowing for IBM Quantum access from Qiskit.  For instructions to choose a specific instance, see [Connect to an instance](./instances#connect-instance).
+
+    <Admonition type="note">
+      The [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com) and the [Instances page](https://quantum.cloud.ibm.com/instances) list the instances that you can access.
+    </Admonition>
+
 <span id="cloud"></span>
 ## Set up to use IBM Cloud
 
@@ -24,10 +30,10 @@ The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is
    <Admonition type="note">
    You can have multiple IBM Cloud accounts.  You can access any of your IBM Cloud accounts at any time from the account switcher in the top header of the [IBM Quantum Platform interface](https://quantum.cloud.ibm.com).
    </Admonition>
-1. Create an instance, if necessary. Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, continue to the next step.
+1. Create an instance, if necessary. Go to the [IBM Quantum Platform dashboard.](https://quantum.cloud.ibm.com) If you have one or more instances shown, continue to the next step. Otherwise, follow these steps to create an instance.
    1. Make sure that you have the correct account selected from the account switcher in the top header. Click **Create instance**.
       * Choose a name and the plan to use.
-      * If you are creating an instance of the Standard Plan, you can set the total cost limit or the usage. (These values can be updated later.)
+      * If you are creating an instance of the Standard Plan, it is recommended that you set the total cost limit or the usage limit. (These values can be updated later.)
       * Scroll down to see the **Terms** link.  After reading the terms, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Next**.
    1. On the Plan inheritance page, leave the default setting (toggle is not enabled) and click **Next** if you're setting up an Open instance.  If you are not setting up an Open instance and you want different QPUs to be available on this instance, enable the "Customize allocated compute resources" toggle, choose the QPUs you want this instance to be able to access, then click **Next**.
       <Admonition type="note">
@@ -43,9 +49,9 @@ The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is
 
 1. Find your access credentials.
     1. Find your API key. From the [dashboard](https://quantum.cloud.ibm.com/), create your API key, then copy it to a secure location so you can use it for authentication.
-    2. Find your Cloud Resource Name (CRN) from the Instances section of the dashboard. Click the icon to copy your CRN for the instance you want to use, then save it in a secure location so you can use it for authentication.
+    2. Find your CRN from the Instances section of the dashboard. Click the icon to copy your CRN for the instance you want to use, then save it in a secure location so you can use it for authentication.
 
-1. <span id="cloud-save"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#cloud-untrusted) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Cloud.) To use `save_account()`, activate a Python virtual environment (see the [installation instructions](/docs/guides/install-qiskit#local) if you do not already have a virtual environment set up). Then, run Python in your virtual environment and enter the following:
+1. <span id="cloud-save"></span>**If you are working in a trusted Python environment (such as on a personal laptop or workstation),** use the `save_account()` method to save your credentials locally. ([Skip to the next step](#cloud-untrusted) if you are not using a trusted environment, such as a shared or public computer, to authenticate to IBM Cloud.) To use `save_account()`, activate a Python virtual environment. Then, run Python in your virtual environment and enter the following:
 
 
     ```python
@@ -102,17 +108,11 @@ The [updated version of IBM Quantum Platform](https://quantum.cloud.ibm.com/) is
 <span id="iqp-rest-api"></span>
 ## Set up to use IBM Quantum Platform with REST API
 
-Alternatively, you can also access quantum processors with REST APIs, enabling you to work with QPUs using any programming language or framework.
+You can access quantum processors with REST APIs, enabling you to work with QPUs using any programming language or framework.
 
-1. If you do not already have a user account, get one at the [IBM Quantum login page.](https://quantum.cloud.ibm.com/login)  Your user account is associated with one or more [instances](./instances) that give access to IBM Quantum services. Additionally, a unique token is assigned to each account -- known as a *Cloud Resource Name* (CRN) -- allowing for IBM Quantum access from Qiskit.  For instructions to choose a specific instance, see [Connect to an instance](./instances#connect-instance).
-
-    <Admonition type="note">
-      The [IBM Quantum Platform dashboard](https://quantum.cloud.ibm.com) and the [Instances page](https://quantum.cloud.ibm.com/instances) list the instances that you can access.
-    </Admonition>
-
+1. If you do not already have a user account, get one at the [IBM Quantum login page.](https://quantum.cloud.ibm.com/login)
 1. Create an API key on the [dashboard.](https://quantum.cloud.ibm.com)
-
-1. Once you have an API key, you'll then need to generate an IBM Cloud Identity and Access Management (IAM) bearer token. These are short-lived tokens which are used to authenticate requests to the REST API. To generate one, call the [IAM Identity Services API](https://cloud.ibm.com/apidocs/iam-identity-token-api#create-api-key) as shown in the following sample request:
+1. Generate an IBM Cloud Identity and Access Management (IAM) bearer token. This is a short-lived token  used to authenticate requests to the REST API. To generate one, call the [IAM Identity Services API](https://cloud.ibm.com/apidocs/iam-identity-token-api#create-api-key) as shown in the following sample request:
 <Tabs>
 
    <TabItem value="Curl" label="Curl">
@@ -191,7 +191,7 @@ api_key = "<your-key>"
 </details>
 </Admonition>
 
-4. Lastly, once you have an IAM bearer token, you can authenticate requests to the Qiskit Runtime REST API by including the CRN and bearer token to the request's headers.
+4. Authenticate requests to the Qiskit Runtime REST API by including the CRN and bearer token to the request's headers.
 ```bash
 curl -X 'GET' \
    'https://quantum.cloud.ibm.com/api/v1/usage' \
