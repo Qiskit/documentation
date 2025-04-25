@@ -1,7 +1,7 @@
 ---
 title: Workload usage
 description: Explains what usage is and how to estimate how long a job that uses a primitive will take to run
-
+platform: legacy
 ---
 
 <span id="usage"></span>
@@ -28,7 +28,7 @@ Usage is a measurement of the amount of time the QPU is locked for your workload
 The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 </LegacyContent>
 <CloudContent>
-The usage reported on the dashboard or by using the API is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
+The reported usage is the time a QPU is locked for your workload. Failed or canceled jobs count toward your usage in certain circumstances - see the [Failed and canceled jobs](#failed-job) section for details.
 
 For Standard Plan users, usage determines how much the workload costs. See [Manage cost](/docs/guides/manage-cost) for details.
 </CloudContent>
@@ -67,12 +67,12 @@ You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.co
 The Instances page shows real-time usage for the last 28 days (rolling), up to the current time on the current day.  The Analytics page usage is re-calculated hourly and includes the last 28 full days; that is, it shows usage from 00:00 28 days ago to today, at the top of the hour.
 
 </CloudContent>
-
+<LegacyContent>
 ## Estimate workload usage
 
-After submitting a job to the IBM Quantum channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Alternatively, you can [view this information on the IBM Quantum Platform user interface](#view-usage).
+After submitting a job to the IBM Quantum channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Quantum time is the duration, in seconds, a QPU is committed to fulfilling a user request.
 
-Quantum time is the duration, in seconds, a QPU is committed to fulfilling a user request.
+Alternatively, you can view this information on IBM Quantum Platform by opening the job details.
 
 <Admonition type="note">
 This only applies to jobs that use primitives.
@@ -121,7 +121,7 @@ Output:
 ```python
 {'quantum_seconds': 4.1058720028432445}
 ```
-
+</LegacyContent>
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
