@@ -1,32 +1,14 @@
 ---
-title: Fixed and dynamic repetition rate execution
-description: Explanatory content on fixed and dynamic repetition rate execution
+title: Dynamic repetition rate execution
+description: Explanatory content about dynamic repetition rate execution
 
 ---
 
-# Fixed and dynamic repetition rate execution
+# Dynamic repetition rate execution
 
-## Fixed repetition rate execution
+All IBM&reg; quantum processing units (QPUs) use dynamic repetition rate execution for circuit execution. These QPUs are identified in Qiskit using `backend.configuration().dynamic_reprate_enabled`, and return a value of `True`. On these QPUs, it is possible to manually set the above idle time by setting the `rep_delay` of the submitted job. One can see from the above figures that by reducing the idle time one can potentially see a greater throughput of circuits on the QPUs that support dynamic repetition rates.
 
-Most IBM&reg; quantum processing units (QPUs) execute circuits at a fixed rate. Although this *repetition rate* varies by QPU, the underlying execution model is the same, and is described here. First, consider three circuits sent to a QPU using separate jobs, one for each circuit. The example below shows what happens for jobs of varying lengths. Because of the fixed repetition rate, there is a variable amount of *idle time* that occurs before the start of a circuit in order to make the entire duration match that given by the QPU repetition rate.
-
-![With fixed-rate execution, shorter jobs result in longer idle time.](/docs/images/guides/repetition-rate-execution/fixed_single_circuit1.avif "Idle time versus job length")
-
-The situation changes somewhat when the same circuits are batched into a single job. In this case the circuits included in the job are executed by iterating over the circuits for each shot requested; the execution is column-wise over a matrix of circuits and shots (see below).
-
-![The first column represents shot 0.  The circuits are run in order from 0 through 3.  The second column represents shot 1.  The circuits are run in order from 0 through 3.  The remaining columns follow the same pattern. ](/docs/images/guides/repetition-rate-execution/circuits_shots_matrix1.avif "Column-wise execution matrix")
-
-Matrix of four circuits in a job showing the execution pattern over the circuits.
-
-When submitting batches of circuits to QPUs, the circuits are executed differently than they would be if executed separately. Namely, the initialization of the circuit, that is, prepare the ground state, and measurements (if any) are aligned over all circuits.
-
-![The image shows three circuits.  Although they are different lengths, they take the same amount of time to complete because they were submitted in a batch.](/docs/images/guides/repetition-rate-execution/fixed_batch_circuit1.avif)
-
-Therefore, each circuit is equal in duration to the longest circuit in the batch, and there is a common idle time that is placed in front of all circuits to match the repetition rate.
-
-## Dynamic repetition rate execution
-
-Some IBM QPUs allow for dynamic repetition rate execution. These QPUs are identified in Qiskit using `backend.configuration().dynamic_reprate_enabled`, and return a value of `True`. On these QPUs, it is possible to manually set the above idle time by setting the `rep_delay` of the submitted job. One can see from the above figures that by reducing the idle time one can potentially see a greater throughput of circuits on the QPUs that support dynamic repetition rates.
+Note that while circuits are processed in order; that is, circuit0_shot0 -> circuit1_shot0, and so on, there is no guarantee on the order the circuits from PUBs are executed. Thus, even though you submit pubs=[pub1, pub2], there is no guarantee the circuits from pub1 will run before those from pub2.
 
 ## Specify rep_delay for a primitive job
 
