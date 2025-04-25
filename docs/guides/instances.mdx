@@ -52,8 +52,6 @@ By default, users who sign up for an IBM Quantum account are assigned to the Ope
 
 Those using the Open Plan instance have up to 10 minutes total of quantum time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open Plan users can track their usage on the [Platform dashboard,](https://quantum.ibm.com/) [Workloads,](https://quantum.ibm.com/workloads) and [Account](https://quantum.ibm.com/account) pages.
 
-After you have an IBM Cloud&reg; account, you can create an instance in the Open Plan and access up to 10 minutes total of quantum time for free per 28-day rolling window.
-
 <span id="standard-plan"></span>
 ## Standard Plan instance
 
@@ -95,7 +93,7 @@ The jobs you run and the jobs run by other collaborators in the same instance co
 The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.com/instances) page, or, for those with the proper authority, the [Analytics](https://quantum.cloud.ibm.com/analytics) page.  Note that the pages might show different usage numbers because the Instance page shows usage in a 28-day rolling window prior to the current timestamp, while the Analytics page uses full-day boundaries.
 </CloudContent>
 
-If an instance has been marked as "limited" by your administrator (you will see a "**Remaining**" column in the usage area) and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, any active workload will continue running (including sessions) but pending workloads will remain in the queue until more time is available. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
+If an instance has been marked as "limited" by your administrator (you will see a "Remaining" column in the usage area) and the instance exceeds its allocation (defined by your administrator) within the 28-day rolling window, any active workload will continue running (including sessions) but pending workloads will remain in the queue until more time is available. If an instance is not limited and the instance exceeds its allocation, jobs run with that instance are likely to run at a lower priority and experience longer queue times.
 
 An alert displays on an instance's usage when it has exceeded its allocation.
 
@@ -112,7 +110,8 @@ from qiskit_ibm_runtime import SamplerV2
 service = QiskitRuntimeService(channel='ibm_quantum')
 print(service.instances())
 
-# Optional: Specify it at service level. This becomes the default unless overwritten.
+# Optional: Specify it at service level.
+# This becomes the default unless overwritten.
 service = QiskitRuntimeService(channel='ibm_quantum', instance="hub1/group1/project1")
 backend1 = service.backend("ibm_kyiv")
 
@@ -158,7 +157,7 @@ backend = service.backend("<QPU-name>")
    </Admonition>
 
 1. From the dashboard Instances pane, click **View all**, or go to the [Instances](https://quantum.cloud.ibm.com/instances) page from the main menu.
-1. From the Instances page, click *Create instance&nbsp;+*. Enter a name and optionally add tags. If you have access to more than one resource group in IBM Cloud&reg;, you can choose to change the resource group this instance belongs to. See [Managing resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui) and [Giving access to resources in resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs_manage_access) for more information.
+1. From the Instances page, click **Create instance**. Enter a name and optionally add tags. If you have access to more than one resource group in IBM Cloud&reg;, you can choose to change the resource group this instance belongs to. See [Managing resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui) and [Giving access to resources in resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs_manage_access) for more information.
 1. Select the plan this instance is associated with (for example, Premium Plan), then enter the number of minutes to allocate to this instance. The unallocated time available to use appears under the allocation entry box.
 1. Click **Next**. A list of the QPUs the instance can access is shown. If you want the instance to have access to all the QPUs listed (and all QPUs added to this plan in the future), click **Next**. To customize which QPUs can be accessed with this instance, click the "Customize allocated compute resources" toggle. Select specific QPUs that this instance can access, then click **Next**.
    <Admonition type="note">
