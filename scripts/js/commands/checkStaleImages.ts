@@ -16,7 +16,7 @@ import { globby } from "globby";
 import { zxMain, isInstalled } from "../lib/zx.js";
 
 // When writers link to this folder, they leave off this prefix.
-const PUBLIC_FOLDER_PREFIX = "public/{docs,learning}/";
+const PUBLIC_FOLDER_PREFIX = "public/";
 
 // Files that are used in closed source, so should not be removed.
 // Format: full file path, e.g. "public/docs/images/guides/paulibasis.png"

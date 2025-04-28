@@ -49,9 +49,9 @@ async function main() {
   const args = readArgs();
 
   const fileBatch = await FileBatch.fromGlobs(
-    ["{docs,learning}/**/*.{ipynb,mdx}"],
+    ["docs/**/*.{ipynb,mdx}"],
     [],
-    "docs and learning",
+    "docs",
   );
   const publicFiles = (await globby("public/{images,videos}/**/*")).map(
     (fp) => new File(fp, new Set()),

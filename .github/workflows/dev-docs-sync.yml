@@ -46,7 +46,7 @@ jobs:
         # images are generated non-deterministically.
         run: |
           echo "CHANGED_FILES<<EOF" >> $GITHUB_OUTPUT
-          git diff --name-only docs learning >> $GITHUB_OUTPUT
+          git diff --name-only docs >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Make pull request
