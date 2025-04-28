@@ -6,9 +6,16 @@ description: Explanatory content about dynamic repetition rate execution
 
 # Dynamic repetition rate execution
 
-All IBM&reg; quantum processing units (QPUs) use dynamic repetition rate execution for circuit execution. These QPUs are identified in Qiskit using `backend.configuration().dynamic_reprate_enabled`, and return a value of `True`. On these QPUs, it is possible to manually set the above idle time by setting the `rep_delay` of the submitted job. One can see from the above figures that by reducing the idle time one can potentially see a greater throughput of circuits on the QPUs that support dynamic repetition rates.
+When a circuit is executed on an IBM&reg; quantum processing unit (QPU), an implicit reset is typically inserted at the beginning of the circuit to ensure the qubits are initialized to zero. However, the reset process is not perfect, leading to state preparation errors. To alleviate the error, the system also inserts repetition delay time (or `rep_delay`) between circuits. Each backend has a different default `rep_delay`, but it's usually longer than T1 to allow the environment to reset the qubits. The default `rep_delay` can be queried by running `backend.default_rep_delay`.
 
-Note that while circuits are processed in order; that is, circuit0_shot0 -> circuit1_shot0, and so on, there is no guarantee on the order the circuits from PUBs are executed. Thus, even though you submit pubs=[pub1, pub2], there is no guarantee the circuits from pub1 will run before those from pub2.
+All IBM QPUs use dynamic repetition rate execution, which allows you to change the `rep_delay` for each job. Circuits you submit in a primitive job are batched together for execution on the QPU. These circuits are executed by iterating over the circuits for each shot requested; the execution is column-wise over a matrix of circuits and shots, as illustrated in the following figure.
+
+![The first column represents shot 0.  The circuits are run in order from 0 through 3.  The second column represents shot 1.  The circuits are run in order from 0 through 3.  The remaining columns follow the same pattern. ](/docs/images/guides/repetition-rate-execution/circuits_shots_matrix1.avif "Column-wise execution matrix")
+
+
+Because `rep_delay` is inserted between circuits, each shot of the execution encounters this delay. Therefore, lowering the `rep_delay` decreases the total QPU execution time, but at the expense of increased state preparation error rate.
+
+Note that while circuits in a primitive job are batched together for QPU execution, there is no guarantee on the order the circuits from PUBs are executed. Thus, even though you submit `pubs=[pub1, pub2]`, there is no guarantee the circuits from `pub1` will run before those from `pub2`. There is also no guarantee that circuits from the same job would run as a single batch on the QPU.
 
 ## Specify rep_delay for a primitive job
 
