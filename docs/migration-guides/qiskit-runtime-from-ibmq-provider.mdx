@@ -191,6 +191,29 @@ service = QiskitRuntimeService(channel="ibm_cloud", instance="<CRN>")
 Use the updated code to specify a backend.
 
 <Tabs>
+<CloudContent>
+  <TabItem value="updated" label="Runtime primitives">
+```python
+service = QiskitRuntimeService(instance="<CRN>")
+backend = service.backend("<QPU-name>")
+```
+
+With Qiskit Runtime, you can also run in local testing mode.
+
+```python
+# Define a local backend
+from qiskit_ibm_runtime.fake_provider import FakeManilaV2
+backend = FakeManilaV2()
+
+# You could use an Aer simulator instead by using the following code:
+# from qiskit_aer import AerSimulator
+# backend = AerSimulator()
+```
+
+  </TabItem>
+  </CloudContent>
+
+<LegacyContent>
   <TabItem value="updated" label="Runtime primitives">
 ```python
 # You can specify the instance in service.backend() instead of initializing a new service
@@ -217,6 +240,7 @@ backend = FakeManilaV2()
 ```
 
   </TabItem>
+  </LegacyContent>
 
   <TabItem value="legacy" label="backend.run">
 ```python
