@@ -39,6 +39,12 @@ test("Test the finding of invalid images", async () => {
 ![And now, our last link](https://ibm.com)
 
 ![../docs/\_images/invalid\_img3.png](/docs/images/invalid_img3.png)
+
+![Here's an actual valid image](/learning/images/valid.avif)
+
+![And a valid SVG](/learning/images/valid.svg)
+
+<img src="/learning/images/HTMLexample1.jpg" alt="" width="200"/>
     `;
   const images = await collectInvalidImageErrors(markdown);
   const correct_images = new Set([
@@ -47,11 +53,12 @@ test("Test the finding of invalid images", async () => {
     "Convert 'invalid_img1.png' to AVIF. You can use the command `magick <path/to/image>.png <path/to/image>.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
     "Convert 'invalid_img2.png' to AVIF. You can use the command `magick <path/to/image>.png <path/to/image>.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
     "Convert 'invalid_img3.png' to AVIF. You can use the command `magick <path/to/image>.png <path/to/image>.avif`. If ImageMagick isn't preinstalled, you can get it from https://imagemagick.org/script/download.php. Then delete the old file and update the markdown to point to the new file.",
-    "The image '/images/HTMLexample1.jpg' uses an HTML <img> tag instead of markdown syntax.",
-    "The image '/images/HTMLexample2.jpg' uses an HTML <img> tag instead of markdown syntax.",
-    "The image '/images/invalid_img1.png' does not have alt text.",
-    "The image '/images/invalid_img2.png' does not have alt text.",
-    "The image '/images/invalid_img3.png' does not have alt text.",
+    "The image '/docs/images/HTMLexample1.jpg' uses an HTML <img> tag instead of markdown syntax.",
+    "The image '/docs/images/HTMLexample2.jpg' uses an HTML <img> tag instead of markdown syntax.",
+    "The image '/docs/images/invalid_img1.png' does not have alt text.",
+    "The image '/docs/images/invalid_img2.png' does not have alt text.",
+    "The image '/docs/images/invalid_img3.png' does not have alt text.",
+    "The image '/learning/images/HTMLexample1.jpg' uses an HTML <img> tag instead of markdown syntax.",
   ]);
 
   expect(images).toEqual(correct_images);
