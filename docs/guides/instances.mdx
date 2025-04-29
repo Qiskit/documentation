@@ -84,9 +84,7 @@ When you execute a task using an IBM Quantum service (for example, sending circu
 ## How usage affects job priority within an instance
 
 *This section applies to Premium Plan users only, since their access includes multiple instances.*
-
 When determining which jobs to run, the [fair-share scheduler](/docs/guides/fair-share-scheduler) takes into account an instance's [usage](/docs/guides/estimate-job-run-time) compared to its allocation. For example, an instance with a large allocation that has already run many jobs, or has run one very long job, might have a lower priority when compared to an instance with a smaller allocation but very low usage.
-
 The jobs you run and the jobs run by other collaborators in the same instance count toward the reported usage for that instance. You can see the usage for an instance on your [dashboard](https://quantum.ibm.com/) (use the [instance switcher](#switch-instances) at the top of the page to change which instance is reflected on your dashboard).
 </LegacyContent>
 <CloudContent>
@@ -126,8 +124,8 @@ sampler2 = SamplerV2(mode=backend2)    # this will use hub2/group2/project2
 If you do not specify an instance, the code will select one in the following order:
 
 1. If your account only has access to one instance, it is selected by default.
-2. If your account has access to multiple instances but only one can access the requested QPU, the instance with access is selected.
-3. In all other cases, the code selects the first instance other than the Open Plan instance that has access to the quantum computer.
+2. If your account has access to multiple instances but only one can access the requested QPU, the instance with access is selected. If this instance is not associated with a free plan, a cost will be incurred.
+3. In all other cases, the code selects the first instance other than the Open Plan instance that has access to the quantum computer. If this instance is not associated with a free plan, a cost will be incurred.
 </Admonition>
 
 </LegacyContent>
@@ -157,16 +155,24 @@ backend = service.backend("<QPU-name>")
    </Admonition>
 
 1. From the dashboard Instances pane, click **View all**, or go to the [Instances](https://quantum.cloud.ibm.com/instances) page from the main menu.
+1. From the Instances page, click *Create instance&nbsp;+*. Enter a name and optionally add tags. If you have access to more than one resource group in IBM Cloud&reg;, you can choose to change the resource group this instance belongs to. See [Managing resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui) and [Giving access to resources in resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs_manage_access) for more information.
+1. Select the plan this instance is associated with (for example, Premium Plan), then enter the number of minutes to allocate to this instance. The unallocated time available to use appears under the allocation entry box. If this instance is not associated with a free plan, a cost will be incurred when this instance is used to run workloads.
 1. From the Instances page, click **Create instance**. Enter a name and optionally add tags. If you have access to more than one resource group in IBM Cloud&reg;, you can choose to change the resource group this instance belongs to. See [Managing resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui) and [Giving access to resources in resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs_manage_access) for more information.
 1. Select the plan this instance is associated with (for example, Premium Plan), then enter the number of minutes to allocate to this instance. The unallocated time available to use appears under the allocation entry box.
 1. Click **Next**. A list of the QPUs the instance can access is shown. If you want the instance to have access to all the QPUs listed (and all QPUs added to this plan in the future), click **Next**. To customize which QPUs can be accessed with this instance, click the "Customize allocated compute resources" toggle. Select specific QPUs that this instance can access, then click **Next**.
    <Admonition type="note">
       If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU the account has access on the plan. So if in the future there is a new system added to the plan, the instance automatically has access to it.
     </Admonition>
-1. Click **Create instance**. You can now view the instance on the Instances page (if you have set up multiple plans on your account, each plan type has its own tab on the Instances table).
+1. Click **Create instance**. You can now view the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. If you have set up multiple plans on your account, each plan type has its own tab on the Instances table.
 
 A "collaborators" access group is automatically created for this instance. Users added to this access group can use the time allocated to this instance. You can [modify or create additional access groups](/docs/guides/access-groups) by using the IBM Cloud console.
+
+
+## Edit an instance and its allocation
+
+Find the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. Click the overflow menu at the end the instance's row, and select Edit details.
 </CloudContent>
+
 <LegacyContent>
 ## Leave an instance
 
