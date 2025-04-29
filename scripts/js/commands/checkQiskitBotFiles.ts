@@ -16,10 +16,7 @@ import { load } from "js-yaml";
 import { globby } from "globby";
 
 const ALLOWED_OWNERLESS_FILES = new Set([
-  "learning/courses/_toc",
-  "learning/courses/index",
-  "learning/modules/_toc",
-  "learning/modules/index",
+  "learning/index",
   "docs/guides/_toc",
   "docs/guides/bit-ordering",
   "docs/guides/operators-overview",
