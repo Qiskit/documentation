@@ -14,7 +14,7 @@ There are several ways you can limit the amount of time spent processing and run
 
 - Use only the necessary settings for error suppression and error mitigation, because higher values can cause your jobs to run longer. See [Introduction to options](./runtime-options-overview), [Configure error suppression](./configure-error-suppression), and [Configure error mitigation](configure-error-mitigation) for details.
 
-- If you are running multiple jobs that contain the same (likely parameterized) circuits and using an error mitigation method that requires noise models, such as PEA and PEC, consider using `NoiseLearner`. This helper program allows you to learn the noise model of a circuit once and reuse the model in subsequent Estimator queries. Note that a noise model becomes stale after certain time, so this is only practical if there is no long delay between jobs (e.g. within a Session). See [Noise learning helper
+- If you are running multiple jobs that contain the same (likely parameterized) circuits and are using an error mitigation method that requires noise models, such as PEA and PEC, consider using `NoiseLearner`. With this helper program, you can learn the noise model of a circuit once and reuse the model in subsequent Estimator queries. Note that a noise model becomes stale after a certain time, so this is only practical if there is no long delay between jobs (for example, within a session). See [Noise learning helper
 ](./noise-learning) for more details.
 
 ## Next steps
