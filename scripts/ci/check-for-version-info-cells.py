@@ -19,6 +19,7 @@ import nbformat
 import sys
 
 if __name__ == "__main__":
+    # We only use the version-info cell in guides notebooks for now.
     guides_path = Path("./docs/guides")
     for notebook in guides_path.glob("*.ipynb"):
         nb = nbformat.read(notebook, as_version=4)
