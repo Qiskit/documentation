@@ -206,7 +206,7 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
 
   const globs = [];
   if (args.nonApi || args.legacy) {
-    globs.push("docs/**/*.{ipynb,mdx}");
+    globs.push("{docs,learning}/**/*.{ipynb,mdx}");
   }
 
   for (const [isIncluded, glob] of [
@@ -229,7 +229,8 @@ function filterPlatformSpecificPage(page: string, legacy?: boolean) {
     return (
       !CLOUD_ONLY_PAGES.has(page) &&
       !page.startsWith("docs/api") &&
-      !page.startsWith("docs/tutorials")
+      !page.startsWith("docs/tutorials") &&
+      !page.startsWith("learning")
     );
   }
 
