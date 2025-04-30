@@ -8,10 +8,11 @@ Refer to:
 - Our [style guide](./style-guide.md) for technical writing guidance.
 
 ### Licensing
+
 This repository is dual-licensed to distinguish between code and content.
+
 - Code (including scripts, source files, and code snippets in documentation examples) is licensed under the Apache License 2.0, please review the `LICENSE` file for more information
 - Content (including guides, tutorials, courses, media, and other non-code assets) is licensed under the Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0), please review the `LICENSE-DOCS` file for more information.
-
 
 ## Improving IBM Quantum and Qiskit documentation
 
