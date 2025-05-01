@@ -10,11 +10,13 @@ Use these tutorials to learn how to apply Qiskit to common quantum computing use
 
 ## Explore workflows towards utility
 
-Tutorials in this section cover large scale demonstrations of quantum algorithms. These are classified into three categories: Verifiable sampling algorithms, Observable estimation and Fault tolerant algorithms. Verifiable sampling algorithms are algorithms which return an answer which can be efficiently verified to be correct. Examples of algorithms in this category are optimization algorithms, peaked random circuits and ground state estimation algorithms based on the variational principle. The Observable estimation section includes examples where the quantum computer is used to obtain the error mitigated expectation value of large-scale observables, which in some cases can be a challenging task for classical computers. The Fault tolerant algorithms section collects examples of algorithms which are too resource intensive to be executed today but which have guarantees of advantage compared to their classical counterparts.
+Tutorials in this section cover large scale demonstrations of quantum algorithms. These are classified into three categories: Verifiable sampling algorithms, Observable estimation and Fault tolerant algorithms. 
 
 
 <details>
   <summary>**Verifiable sampling algorithms**</summary>
+
+The algorithms in this category focus on quantum circuits whose output distributions encode solutions to structured problems and whose output can be validated. Verifiability here refers to the ability to check consistency between measured data either through evaluating the chosen bitstring or knowledge that false positive are known to not occur. The tutorials highlight techniques where repeated sampling enables estimation of problem-specific quantities (e.g., cost function values or spectral weights). These methods are particularly relevant for optimization and simulation tasks with symmetries.
 
 * [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization)
 
@@ -33,6 +35,8 @@ Tutorials in this section cover large scale demonstrations of quantum algorithms
 
 <details>
   <summary>**Observable estimation**</summary>
+
+These tutorials focus on estimating physically meaningful quantities—such as energy or correlation values—by preparing quantum states and measuring observables. Techniques include both variational and trotterized circuit approaches that balance circuit expressiveness with circuit-depth efficiency. Emphasis in our development is placed on workflows that reduce quantum resource demands while maintaining accuracy, enabling practical estimation of observables in chemical and physical systems.
 
 * [Krylov quantum diagonalization of lattice Hamiltonians](/docs/tutorials/krylov-quantum-diagonalization)
 
@@ -53,20 +57,23 @@ Tutorials in this section cover large scale demonstrations of quantum algorithms
 <details>
   <summary>**Fault tolerant algorithms**</summary>
 
+This section features algorithms with well-defined theoretical guarantees that are designed to run on future error-corrected quantum hardware. The circuits or sampling overhead for these algorithms scale in a manner which is not depth-efficient and are thereby more likely to demonstrate quantum advantage when there exist a fault-tolerant quantum computer. Tutorials illustrate how these methods operate in idealized settings and have demonstration for small scale examples.
+
 * [Grover's algorithm](/docs/tutorials/grovers-algorithm)
 
 </details>
 
 
 
-
 ## Leverage Qiskit capabilities
 
-Simple text to explain this tools-based schema
+This section introduces advanced capabilities within the Qiskit ecosystem that enhance performance, reliability, and speed when executing quantum algorithms.
 
 
 <details>
   <summary>**Workload optimization**</summary>
+
+Workload optimization focuses on either efficient orchestration of classical and quantum resources or tailored methods for improving manipulating quantum circuits. 
 
 * [Qiskit AI-powered transpiler service introduction](/docs/tutorials/ai-transpiler-introduction)
 
@@ -81,6 +88,8 @@ Simple text to explain this tools-based schema
 
 <details>
   <summary>**Addons**</summary>
+
+Addons enable advanced circuit manipulation —such as cutting, backpropagating observables, or approximating circuits— that allow users to sidestep hardware limitations at the cost of increased classical compute overhead.
 
 * [Approximate quantum compilation for time evolution circuits](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)
 
@@ -98,6 +107,8 @@ Simple text to explain this tools-based schema
 <details>
   <summary>**Error mitigation**</summary>
 
+Error mitigation addresses the challenge of noise without full fault tolerance by recovering accurate expectation values through controlled circuit manipulation and post processing. 
+
 * [Utility-scale error mitigation with probabilistic error amplification](/docs/tutorials/probabilistic-error-amplification)
 
 * [Combine error mitigation options with the estimator primitive](/docs/tutorials/combine-error-mitigation-techniques)
@@ -113,6 +124,8 @@ Simple text to explain this tools-based schema
 
 <details>
   <summary>**Error detection**</summary>
+
+Error detection identifies faulty operations to return noise-free results shot-by-shot by post-processing.
 
 * [Repeat until success](/docs/tutorials/repeat-until-success)
 
